@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.prowidesoftware</groupId>
+  <artifactId>pw-swift-core</artifactId>
+  <version>SRU2016-7.8.5</version>
+  <packaging>jar</packaging>
+
+  <properties>
+  	<maven.compiler.source>1.5</maven.compiler.source>
+  </properties>
+
+  <dependencies>
+	<dependency>
+		<groupId>commons-lang</groupId>
+		<artifactId>commons-lang</artifactId>
+		<version>2.6</version>
+		<scope>runtime</scope>
+	</dependency>
+    <dependency>
+		<groupId>rhino</groupId>
+		<artifactId>js</artifactId>
+		<version>1.7R2</version>
+		<scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
+  <name>Prowide Core</name>
+  <description>Prowide Core Libraries for SWIFT (TM) messages</description>
+  <url>http://www.prowidesoftware.com</url>
+
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License version 3.0 (LGPLv3)</name>
+      <url>https://www.gnu.org/licenses/lgpl.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <organization>
+  	<name>Prowide</name>
+  	<url>www.prowidesoftware.com</url>
+  </organization>
+  
+  <developers>
+    <developer>
+      <id>zubri</id>
+      <name>Sebastian Zubrinic</name>
+      <email>sebastian@prowidesoftware.com</email>
+    </developer>
+  </developers>
+  
+  <scm>
+  	<url>https://github.com/prowide/prowide-core</url>
+  </scm>
+  
+</project>
