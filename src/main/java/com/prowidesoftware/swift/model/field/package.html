@@ -1,0 +1,61 @@
+<html>
+<head>
+</head>
+<body>
+<p>Base package for classes that model SWIFT fields.</p>
+
+This package provides classes to parse and model every possible field and letter option of a SWIFT MT message.<br />
+
+<p>
+The constructor of each field class accepts the field's literal value and parses its content into a list of components with a simple and generic API of getComponent1() ... getComponentN().<br />
+Components are modeled as string, but if the component represents a date or number, additional API is provided to get the component parsed into a Calendar and Number with methods like getComponent1AsCalendar() and getComponent3AsNumber().
+</p>
+
+<p>To best usage scenario for this functionality is to read and process received SWIFT messages, when you have a FIN message parsed into a SwiftMessage object and you need to retrieve specific fields' components.</p>
+
+<p>
+Simple usage example:
+<pre>
+Field32A f = new Field32A("090801USD1234,56");
+String sdate = f.getComponent1()); //"090801";
+Calendar date = f.getComponent1AsCalendar();
+BigDecimal number = new BigDecimal(f.getComponent3AsNumber().doubleValue());
+</pre>
+</p>
+
+<p>Full parsing example:
+<pre>
+String fin = "{1:F01BANKDEFMAXXX2039063581}"+
+"{2:O1031609050901BANKDEFXAXXX89549829458949811609N}"+
+"{3:{108:00750532785315}}{4:\n"+
+":20:007505327853\n"+
+":23B:CRED\n"+
+":32A:050902JPY3520000,\n"+
+":33B:JPY3520000,\n"+
+":50K:EUROXXXEI\n"+
+":52A:FEBXXXM1\n"+
+":53A:MHCXXXJT\n"+
+":54A:FOOBICXX\n"+
+":59:/13212312\n"+
+"RECEIVER NAME S.A\n"+
+":70:FUTURES\n"+
+":71A:SHA\n"+
+":71F:EUR12,00\n"+
+":71F:EUR2,34\n"+
+"-}";
+SwiftMessage m = (new SwiftParser()).parse(fin);
+
+Field32A f = new Field32A(m.getBlock3().getTagValue("32A"));
+
+assertEquals("010203", f.getComponent1());
+assertEquals(2001, f.getComponent1AsCalendar().get(Calendar.YEAR));
+assertEquals(1, f.getComponent1AsCalendar().get(Calendar.MONTH));
+assertEquals(3, f.getComponent1AsCalendar().get(Calendar.DATE));
+assertEquals("USD", f.getComponent2());
+assertEquals(new BigDecimal(123.45), 
+new BigDecimal(f.getComponent3AsNumber().doubleValue()));
+</pre>
+</p>
+
+</body>
+</html>

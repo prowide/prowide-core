@@ -1,0 +1,46 @@
+<html>
+<head>
+</head>
+<body>
+<p>Core package with classes that model SWIFT messages.</p>
+
+<p>This is a core package that provides classes to hold the structure for all SWIFT messages.</p>
+
+<p>It is basically a three level hierarchy representing the primary elements that defines a SWIFT message; the message itself, it's blocks, and the tag (or fields) inside each block.<br />
+The object model is quite generic and loosely coupled to particular MT structures, that require minimal construction constrains.</p>
+
+<p>
+<b>SwiftMessage</b>
+The top level object in the hierarchy is the SwiftMessage, which contains attributes to hold up to five SwiftBlock objects and optionally an arbitrary number of SwiftBlockUser (see below).
+</p>
+
+<p>
+<b>SwiftBlock</b>
+Each block class is a subclass of SwiftBlock. There is a small hierarchy of different block classes, grouped by functionality. For example, in FIN messages, block 1 is fixed length a string, and block 4 is a set of tags. An abstract class hierarchy represents this block taxonomy and specific subclasses exist for each of the five possible SWIFT blocks.
+</p>
+
+<p>
+<b>SwiftValueBlock</b>
+In the hierarchy the SwiftValueBlock is a container for blocks with fixed length string value. Its child classes implement then specific attributes for each field of the string value. For Block1 for example you have getters and setters for serviceId, applicationId, etc..
+</p>
+
+<p>
+<b>SwiftTagListBlock</b>
+And SwiftTagListBlock is a container for blocks conformed by list of Tag. A tag is basically a pair of datums, the name of the tag (for example; "59", "13C", "23E") and a value. Generic getters are provided to obtain individual tags or lists containing filtered subsets of tags.
+</p>
+
+<p>
+<b>SwiftBlockUser</b>
+SwiftBlockUser is not part of SWIFT standard, but seems to be common practice for users to append some locally defined blocks to annotate messages in an almost-compatible way (for example: add block 9 for some local information or block "S" for system reference).
+Contents of this block are opaque for WIFE, but they are preserved so applications can still have them available
+</p>
+
+<a name="wildcard_notation"><h1>Wildcard Notation</h1></a>
+<p> Some methods support a wildcard notation. This allows to refer to many fields in one name.</p>
+<p>When 'a' notation, AKA wildcard notattion is supported, "50a" will match the names: 50, 50A, 50B, 50D. 
+It is very important to understand that 'a' functions as a wildcard while 'A' is a letter option, just as B C or
+any uppercase letter. For those who are confused about this notation, it comes from the standards documentation.
+Specificaction mention '50a' with the same meaning that is used here.</p> 
+
+</body>
+</html>
