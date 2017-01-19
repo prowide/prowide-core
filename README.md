@@ -6,7 +6,7 @@ It implements messages parsing, modelling, building and XML transformation for a
 
 The project is active since 2006, production ready and commercially supported.
 
-This repository exposes the **source code for the LTS yearly releases**, lauched by October (one month before SWIFT production date) for the general public, and released with 6 months advance for subscribed customers. 
+This repository exposes the **source code for the LTS yearly releases**, made available on October (one month before SWIFT production date) for the general public, and 6 months in advance for subscribed customers. 
 
 For **binary downloads**, additional resources and complementary commercial offerings please check http://www.prowidesoftware.com/
 
