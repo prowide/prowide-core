@@ -27,6 +27,8 @@ This repository exposes the **source code for the LTS yearly releases**, made av
 
 **binary DOWNLOAD** available at http://www.prowidesoftware.com/download.jsp
 
+##License
 
+LGPL v3
 
 SWIFT is a trademark of S.W.I.F.T. SCRL. (www.swift.com )
