@@ -122,6 +122,7 @@ public class Field31B extends Field implements Serializable, DateContainer, com.
 	@Override
 	public void parse(final String value) {
 		init(5);
+		// @NotImplemented
 		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : <DATE2>$S[$S]0-3");
 	}
 	
@@ -568,12 +569,9 @@ public class Field31B extends Field implements Serializable, DateContainer, com.
 		if (component < 1 || component > 5) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 31B");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

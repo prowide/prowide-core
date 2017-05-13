@@ -84,9 +84,9 @@ public class Field330 extends Field implements Serializable {
 	public static final Integer ISN = 2;
 
 	/**
-	 * Component number for the ISNNAK subfield
+	 * Component number for the ISN NAK subfield
 	 */
-	public static final Integer ISNNAK = 3;
+	public static final Integer ISN_NAK = 3;
 
 	/**
 	 * Component number for the OSN subfield
@@ -94,9 +94,9 @@ public class Field330 extends Field implements Serializable {
 	public static final Integer OSN = 4;
 
 	/**
-	 * Component number for the OSNNAK subfield
+	 * Component number for the OSN NAK subfield
 	 */
-	public static final Integer OSNNAK = 5;
+	public static final Integer OSN_NAK = 5;
 
 	/**
 	 * Component number for the ACK Replay Indicator subfield
@@ -263,7 +263,7 @@ public class Field330 extends Field implements Serializable {
 	 */
 	public Field330 setComponent1(java.lang.Number component1) {
 		if (component1 != null) {
-			setComponent(1, ""+component1.intValue());
+			setComponent(1, Integer.toString(component1.intValue()));
 		}
 		return this;
 	}
@@ -340,7 +340,7 @@ public class Field330 extends Field implements Serializable {
 	 */
 	public Field330 setComponent2(java.lang.Number component2) {
 		if (component2 != null) {
-			setComponent(2, ""+component2.intValue());
+			setComponent(2, Integer.toString(component2.intValue()));
 		}
 		return this;
 	}
@@ -380,16 +380,16 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the ISNNAK (component3).
-	 * @return the ISNNAK from component3
+	 * Get the ISN NAK (component3).
+	 * @return the ISN NAK from component3
 	 */
 	public String getISNNAK() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the ISNNAK (component3) as Number
-	 * @return the ISNNAK from component3 converted to Number or <code>null</code> if cannot be converted
+	 * Get the ISN NAK (component3) as Number
+	 * @return the ISN NAK from component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getISNNAKAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
@@ -417,14 +417,14 @@ public class Field330 extends Field implements Serializable {
 	 */
 	public Field330 setComponent3(java.lang.Number component3) {
 		if (component3 != null) {
-			setComponent(3, ""+component3.intValue());
+			setComponent(3, Integer.toString(component3.intValue()));
 		}
 		return this;
 	}
 	
 	/**
-	 * Set the ISNNAK (component3).
-	 * @param component3 the ISNNAK to set
+	 * Set the ISN NAK (component3).
+	 * @param component3 the ISN NAK to set
 	 */
 	public Field330 setISNNAK(String component3) {
 		setComponent(3, component3);
@@ -432,9 +432,9 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Set the ISNNAK (component3) from a Number object.
+	 * Set the ISN NAK (component3) from a Number object.
 	 * @see #setComponent3(java.lang.Number)
-	 * @param component3 Number with the ISNNAK content to set
+	 * @param component3 Number with the ISN NAK content to set
 	 */
 	public Field330 setISNNAK(java.lang.Number component3) {
 		setComponent3(component3);
@@ -494,7 +494,7 @@ public class Field330 extends Field implements Serializable {
 	 */
 	public Field330 setComponent4(java.lang.Number component4) {
 		if (component4 != null) {
-			setComponent(4, ""+component4.intValue());
+			setComponent(4, Integer.toString(component4.intValue()));
 		}
 		return this;
 	}
@@ -534,16 +534,16 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the OSNNAK (component5).
-	 * @return the OSNNAK from component5
+	 * Get the OSN NAK (component5).
+	 * @return the OSN NAK from component5
 	 */
 	public String getOSNNAK() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the OSNNAK (component5) as Number
-	 * @return the OSNNAK from component5 converted to Number or <code>null</code> if cannot be converted
+	 * Get the OSN NAK (component5) as Number
+	 * @return the OSN NAK from component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getOSNNAKAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
@@ -571,14 +571,14 @@ public class Field330 extends Field implements Serializable {
 	 */
 	public Field330 setComponent5(java.lang.Number component5) {
 		if (component5 != null) {
-			setComponent(5, ""+component5.intValue());
+			setComponent(5, Integer.toString(component5.intValue()));
 		}
 		return this;
 	}
 	
 	/**
-	 * Set the OSNNAK (component5).
-	 * @param component5 the OSNNAK to set
+	 * Set the OSN NAK (component5).
+	 * @param component5 the OSN NAK to set
 	 */
 	public Field330 setOSNNAK(String component5) {
 		setComponent(5, component5);
@@ -586,9 +586,9 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Set the OSNNAK (component5) from a Number object.
+	 * Set the OSN NAK (component5) from a Number object.
 	 * @see #setComponent5(java.lang.Number)
-	 * @param component5 Number with the OSNNAK content to set
+	 * @param component5 Number with the OSN NAK content to set
 	 */
 	public Field330 setOSNNAK(java.lang.Number component5) {
 		setComponent5(component5);
@@ -648,7 +648,7 @@ public class Field330 extends Field implements Serializable {
 	 */
 	public Field330 setComponent6(java.lang.Number component6) {
 		if (component6 != null) {
-			setComponent(6, ""+component6.intValue());
+			setComponent(6, Integer.toString(component6.intValue()));
 		}
 		return this;
 	}
@@ -813,12 +813,9 @@ public class Field330 extends Field implements Serializable {
 		if (component < 1 || component > 6) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 330");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -826,7 +823,7 @@ public class Field330 extends Field implements Serializable {
 		}
 		if (component == 2) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent2AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -834,7 +831,7 @@ public class Field330 extends Field implements Serializable {
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -842,7 +839,7 @@ public class Field330 extends Field implements Serializable {
 		}
 		if (component == 4) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent4AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -850,7 +847,7 @@ public class Field330 extends Field implements Serializable {
 		}
 		if (component == 5) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent5AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -858,7 +855,7 @@ public class Field330 extends Field implements Serializable {
 		}
 		if (component == 6) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent6AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -879,9 +876,9 @@ public class Field330 extends Field implements Serializable {
 		List<String> result = new ArrayList<String>();
 		result.add("Session Number");
 		result.add("ISN");
-		result.add("ISNNAK");
+		result.add("ISN NAK");
 		result.add("OSN");
-		result.add("OSNNAK");
+		result.add("OSN NAK");
 		result.add("ACK Replay Indicator");
 		return result;
 	}

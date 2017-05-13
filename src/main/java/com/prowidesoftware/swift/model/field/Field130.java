@@ -72,6 +72,26 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 	public static final String COMPONENTS_PATTERN = "NSNS";
 
 	/**
+	 * Component number for the Heading Code subfield
+	 */
+	public static final Integer HEADING_CODE = 1;
+
+	/**
+	 * Component number for the Heading Text subfield
+	 */
+	public static final Integer HEADING_TEXT = 2;
+
+	/**
+	 * Component number for the Heading Code 2 subfield
+	 */
+	public static final Integer HEADING_CODE_2 = 3;
+
+	/**
+	 * Component number for the Heading Text 2 subfield
+	 */
+	public static final Integer HEADING_TEXT_2 = 4;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field130() {
@@ -114,13 +134,13 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 	public void parse(final String value) {
 		init(4);
 		java.util.List<String> lines = SwiftParseUtils.getLines(value);
-		if (lines.size() > 0) {
+		if (!lines.isEmpty()) {
 			setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/"));
 			setComponent2(SwiftParseUtils.getTokenSecondLast(lines.get(0), "/", "/"));
-		}
-		if (lines.size() > 1) {
-			setComponent3(SwiftParseUtils.getTokenFirst(lines.get(1), "/", "/"));
-			setComponent4(SwiftParseUtils.getTokenSecondLast(lines.get(1), "/", "/"));
+			if (lines.size() > 1) {
+				setComponent3(SwiftParseUtils.getTokenFirst(lines.get(1), "/", "/"));
+				setComponent4(SwiftParseUtils.getTokenSecondLast(lines.get(1), "/", "/"));
+			}
 		}
 	}
 	
@@ -191,6 +211,22 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
+	 * Get the Heading Code (component1).
+	 * @return the Heading Code from component1
+	 */
+	public String getHeadingCode() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Heading Code (component1) as Number
+	 * @return the Heading Code from component1 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getHeadingCodeAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -212,8 +248,27 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field130 setComponent1(java.lang.Number component1) {
 		if (component1 != null) {
-			setComponent(1, ""+component1.intValue());
+			setComponent(1, Integer.toString(component1.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Heading Code (component1).
+	 * @param component1 the Heading Code to set
+	 */
+	public Field130 setHeadingCode(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Heading Code (component1) from a Number object.
+	 * @see #setComponent1(java.lang.Number)
+	 * @param component1 Number with the Heading Code content to set
+	 */
+	public Field130 setHeadingCode(java.lang.Number component1) {
+		setComponent1(component1);
 		return this;
 	}
 	/**
@@ -233,10 +288,27 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
+	 * Get the Heading Text (component2).
+	 * @return the Heading Text from component2
+	 */
+	public String getHeadingText() {
+		return getComponent(2);
+	}
+
+	/**
 	 * Set the component2.
 	 * @param component2 the component2 to set
 	 */
 	public Field130 setComponent2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Heading Text (component2).
+	 * @param component2 the Heading Text to set
+	 */
+	public Field130 setHeadingText(String component2) {
 		setComponent(2, component2);
 		return this;
 	}
@@ -253,6 +325,22 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+
+	/**
+	 * Get the Heading Code 2 (component3).
+	 * @return the Heading Code 2 from component3
+	 */
+	public String getHeadingCode2() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Heading Code 2 (component3) as Number
+	 * @return the Heading Code 2 from component3 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getHeadingCode2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
@@ -278,8 +366,27 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field130 setComponent3(java.lang.Number component3) {
 		if (component3 != null) {
-			setComponent(3, ""+component3.intValue());
+			setComponent(3, Integer.toString(component3.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Heading Code 2 (component3).
+	 * @param component3 the Heading Code 2 to set
+	 */
+	public Field130 setHeadingCode2(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Heading Code 2 (component3) from a Number object.
+	 * @see #setComponent3(java.lang.Number)
+	 * @param component3 Number with the Heading Code 2 content to set
+	 */
+	public Field130 setHeadingCode2(java.lang.Number component3) {
+		setComponent3(component3);
 		return this;
 	}
 	/**
@@ -299,10 +406,27 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
+	 * Get the Heading Text 2 (component4).
+	 * @return the Heading Text 2 from component4
+	 */
+	public String getHeadingText2() {
+		return getComponent(4);
+	}
+
+	/**
 	 * Set the component4.
 	 * @param component4 the component4 to set
 	 */
 	public Field130 setComponent4(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the Heading Text 2 (component4).
+	 * @param component4 the Heading Text 2 to set
+	 */
+	public Field130 setHeadingText2(String component4) {
 		setComponent(4, component4);
 		return this;
 	}
@@ -527,12 +651,9 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 130");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -544,7 +665,7 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -567,10 +688,10 @@ public class Field130 extends Field implements Serializable, com.prowidesoftware
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Heading Code");
+		result.add("Heading Text");
+		result.add("Heading Code 2");
+		result.add("Heading Text 2");
 		return result;
 	}
 	

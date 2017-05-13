@@ -35,7 +35,7 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
  * Field 105<br /><br />
  *
  * validation pattern: 1!n<br />
- * parser pattern: S<br />
+ * parser pattern: N<br />
  * components pattern: N<br />
  *
  * <h1>Components Data types</h1>
@@ -65,7 +65,7 @@ public class Field105 extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_105 = "105";
-	public static final String PARSER_PATTERN ="S";
+	public static final String PARSER_PATTERN ="N";
 	public static final String COMPONENTS_PATTERN = "N";
 
 	/**
@@ -136,7 +136,7 @@ public class Field105 extends Field implements Serializable {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
+		result.append(joinComponents());
 		return result.toString();
 	}
 
@@ -214,7 +214,7 @@ public class Field105 extends Field implements Serializable {
 	 */
 	public Field105 setComponent1(java.lang.Number component1) {
 		if (component1 != null) {
-			setComponent(1, ""+component1.intValue());
+			setComponent(1, Integer.toString(component1.intValue()));
 		}
 		return this;
 	}
@@ -379,12 +379,9 @@ public class Field105 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 105");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);

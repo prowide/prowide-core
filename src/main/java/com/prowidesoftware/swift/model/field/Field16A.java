@@ -214,7 +214,7 @@ public class Field16A extends Field implements Serializable {
 	 */
 	public Field16A setComponent1(java.lang.Number component1) {
 		if (component1 != null) {
-			setComponent(1, ""+component1.intValue());
+			setComponent(1, Integer.toString(component1.intValue()));
 		}
 		return this;
 	}
@@ -379,12 +379,9 @@ public class Field16A extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 16A");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);

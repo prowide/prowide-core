@@ -16,6 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsA {
 
+    public final static String AFRI = "AFRI";
+    public final static String APAC = "APAC";
     public final static String AUTH = "AUTH";
     public final static String AMTL = "AMTL";
     public final static String AMAM = "AMAM";
@@ -45,12 +47,10 @@ public interface SchemeConstantsA {
     public final static String ADVC = "ADVC";
     public final static String ADTX = "ADTX";
     public final static String AGRE = "AGRE";
+    public final static String ADMT = "ADMT";
     public final static String ADDR = "ADDR";
     public final static String ADDINFO = "ADDINFO";
     public final static String ACOW = "ACOW";
-    public final static String ADMT = "ADMT";
-    public final static String AUDT = "AUDT";
-    public final static String ACTI = "ACTI";
     public final static String ADDRESS = "ADDRESS";
     public final static String ANOU = "ANOU";
     public final static String ACRU = "ACRU";
@@ -67,7 +67,9 @@ public interface SchemeConstantsA {
     public final static String AKTI = "AKTI";
     public final static String AUTA = "AUTA";
     public final static String AGGR = "AGGR";
+    public final static String AUDT = "AUDT";
     public final static String AVAI = "AVAI";
+    public final static String ACTI = "ACTI";
     public final static String ASRF = "ASRF";
     public final static String ADEL = "ADEL";
     public final static String ALOC = "ALOC";

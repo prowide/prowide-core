@@ -464,16 +464,13 @@ public class Field98A extends Field implements Serializable, DateContainer, com.
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 98A");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

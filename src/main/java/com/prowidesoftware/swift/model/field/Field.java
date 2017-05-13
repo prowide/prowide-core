@@ -32,7 +32,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.time.DateFormatUtils;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.Tag;
@@ -102,14 +104,7 @@ public abstract class Field implements PatternContainer {
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
-	/*
-	 * sebastian oct 2015
-	 * Este metodo debe ser abstract. No lo es ahroa solamente por compatibilidad
-	 * con SRU2014 donde el parseo esta impementado en el constructor. Esto puede
-	 * ponerse como abstract en caso de regenerar con codegen fields de SRU2014 o
-	 * bien cuando se implemente SRU2016 y quede deprecado SRU2014.
-	 */
-	public void parse(final String value) {};
+	public abstract void parse(final String value);
 
 	/**
 	 * Copy constructor.<br>
@@ -169,31 +164,35 @@ public abstract class Field implements PatternContainer {
 	 * @return the formatted date as dd/MM/yyyy or empty if exception occurs during formatting
 	 */
 	protected static String format(final Calendar d) {
-		try {
-			return DateFormatUtils.format(d.getTime(), "dd/MM/yyyy");
-		} catch (final Exception ignored) {
-			return StringUtils.EMPTY;
+		if (d != null) {
+			try {
+				return DateFormatUtils.format(d.getTime(), "dd/MM/yyyy");
+			} catch (final Exception e) {
+				log.log(Level.WARNING, "error formatting date", e);
+			}
 		}
+		return StringUtils.EMPTY;
 	}
 
 	/**
-	 * A formatted amount with a fixed format nnnn-nnnnn-nnn-n
+	 * A formatted account with a fixed format nnnn-nnnnn-nnn-n
 	 * @param a string with an account number or <code>null</code>
 	 * @return the formatted account or an empty String if param is <code>null</code>
 	 */
 	// TODO support user formatting masks from property file
 	protected static String formatAccount(final String a) {
-		if (a==null) {
-			//be gentle with null
-			return StringUtils.EMPTY;
+		if (a != null) {
+			final StringBuilder result = new StringBuilder(a);
+			try {
+				result.insert(4, '-');
+				result.insert(9, '-');
+				result.insert(12, '-');
+				return result.toString();
+			} catch (final Exception e) {
+				log.log(Level.WARNING, "error formatting account", e);
+			}
 		}
-		final StringBuilder result = new StringBuilder(a);
-		try {
-			result.insert(4, '-');
-			result.insert(9, '-');
-			result.insert(12, '-');
-		} catch (final Exception ignored) {}
-		return result.toString();
+		return StringUtils.EMPTY;
 	}
 
 	/**
@@ -548,7 +547,7 @@ public abstract class Field implements PatternContainer {
 			r = ct.newInstance(arglist);
 		} catch (final ClassNotFoundException e) {
 			log.log(Level.WARNING, "Field class for Field" + name
-			        + " not found. This is normally caused by an unrecognized field in the message. Please check the structure validation problems reported by the validation.", e);			
+			        + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.", e);			
 		} catch (final Exception e) {
 			log.log(Level.WARNING, "An error occured while creating an instance of " + name, e);			
 		}
@@ -560,8 +559,9 @@ public abstract class Field implements PatternContainer {
  	 * @deprecated field labels varies depending on the specific MT and sequence, label should be retrieve using {@link #getLabel(String, String, String, Locale)} with proper MT and sequence identifiers
 	 */
 	@Deprecated
-	@DeleteSchedule(2018)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public String getLabel() {
+		DeprecationUtils.phase2(Field.class, "getLabel()", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale.getDefault())} with proper MT and sequence identifiers instead.");
 		return getLabel(Locale.getDefault());
 	}
 
@@ -569,8 +569,9 @@ public abstract class Field implements PatternContainer {
 	 * @deprecated field labels varies depending on the specific MT and sequence, label should be retrieve using {@link #getLabel(String, String, String, Locale)} with proper MT and sequence identifiers
 	 */
 	@Deprecated
-	@DeleteSchedule(2018)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public String getLabel(final Locale locale) {
+		DeprecationUtils.phase2(Field.class, "getLabel(Locale)", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale)} with proper MT and sequence identifiers instead.");
 		return getLabel(getName(), locale);
 	}
 
@@ -578,13 +579,14 @@ public abstract class Field implements PatternContainer {
 	 * @deprecated field labels varies depending on the specific MT and sequence, label should be retrieve using {@link #getLabel(String, String, String, Locale)} with proper MT and sequence identifiers
 	 */
 	@Deprecated
-	@DeleteSchedule(2018)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	static public String getLabel(final String fieldName, final Locale locale) {
+		DeprecationUtils.phase2(Field.class, "getLabel(String, Locale)", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale)} with proper MT and sequence identifiers instead.");
 		return _getLabel(fieldName, null, null, locale);
 	}
 	
 	/*
-	 * Legacy implementation for backward compatibility
+	 * @deprecated Legacy implementation for backward compatibility
 	 * This method is used only by deprecated label API, to maintain the old version of labels.
 	 * 
 	 * The usage of this deprecated bundle and labels API is discourage because labels are context dependent, meaning
@@ -596,7 +598,7 @@ public abstract class Field implements PatternContainer {
 	 * variations per MT and in several cases per sequence.
 	 */
 	@Deprecated
-	@DeleteSchedule(2018)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	static private String _getLabel(final String fieldName, final String mt, final String sequence, final Locale locale) {
 		final String bundle = "deprecated_labels";
 		String key = null;
@@ -762,7 +764,7 @@ public abstract class Field implements PatternContainer {
 	private static String getString(final ResourceBundle labels, final String key) {
 		try {
 			return labels.getString(key);
-		} catch (final MissingResourceException e) {
+		} catch (final MissingResourceException ignored) {
 			return null;
 		}
 	}
@@ -1153,6 +1155,20 @@ public abstract class Field implements PatternContainer {
 		return null;
 	}
 
+	/**
+	 * Ensures a not-null locale parameter.
+	 * @param locale a locale or <code>null</code>
+	 * @return the parameter locale if it is not <code>null</code> or the default locale
+	 * @since 7.8.8
+	 */
+	protected final Locale notNull(final Locale locale) {
+		if (locale != null) {
+			return locale;
+		} else {
+			return Locale.getDefault();
+		}
+	}
+	
 	/*
 	 * TO DO: 
 	 * this will take the result of getLabelComponents

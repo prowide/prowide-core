@@ -69,6 +69,11 @@ public class Field122 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "N";
 
 	/**
+	 * Component number for the Number of Messages subfield
+	 */
+	public static final Integer NUMBER_OF_MESSAGES = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field122() {
@@ -172,6 +177,22 @@ public class Field122 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Number of Messages (component1).
+	 * @return the Number of Messages from component1
+	 */
+	public String getNumberofMessages() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Number of Messages (component1) as Number
+	 * @return the Number of Messages from component1 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getNumberofMessagesAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -193,8 +214,27 @@ public class Field122 extends Field implements Serializable {
 	 */
 	public Field122 setComponent1(java.lang.Number component1) {
 		if (component1 != null) {
-			setComponent(1, ""+component1.intValue());
+			setComponent(1, Integer.toString(component1.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Number of Messages (component1).
+	 * @param component1 the Number of Messages to set
+	 */
+	public Field122 setNumberofMessages(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Number of Messages (component1) from a Number object.
+	 * @see #setComponent1(java.lang.Number)
+	 * @param component1 Number with the Number of Messages content to set
+	 */
+	public Field122 setNumberofMessages(java.lang.Number component1) {
+		setComponent1(component1);
 		return this;
 	}
 
@@ -339,12 +379,9 @@ public class Field122 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 122");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -363,7 +400,7 @@ public class Field122 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Number of Messages");
 		return result;
 	}
 	

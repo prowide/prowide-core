@@ -26,7 +26,6 @@ import com.prowidesoftware.swift.model.BIC;
  * 
  * @author www.prowidesoftware.com
  * @since 6.1
- * @version $Revision: 1.1 $
  */
 public interface BICContainer {
 

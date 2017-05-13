@@ -41,10 +41,10 @@ public interface SchemeConstantsP {
     public final static String PTYA = "PTYA";
     public final static String PUTT = "PUTT";
     public final static String PLIS = "PLIS";
-    public final static String PBOX = "PBOX";
-    public final static String PAYS = "PAYS";
     public final static String PERSDET = "PERSDET";
+    public final static String PAYS = "PAYS";
     public final static String PRFC = "PRFC";
+    public final static String PBOX = "PBOX";
     public final static String PFRE = "PFRE";
     public final static String POST = "POST";
     public final static String PERM = "PERM";

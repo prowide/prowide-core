@@ -14,6 +14,8 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model.mt;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * Available service identification values in MT header block 1.
  * 
@@ -50,6 +52,35 @@ public enum ServiceIdType {
 	 * 01 - GPA/FIN Message (system and user-to-user)
 	 */
 	public String description() {
-		return this.name().substring(1) + " - " + this.description;
+		return number() + " - " + this.description;
 	}
+	
+	/**
+	 * Returns this service id type number
+	 * @since 7.8.8
+	 */
+	public final String number() {
+		return this.name().substring(1);
+	}
+	
+	/**
+	 * Returns true if the parameter number is a valid service id. 
+	 * This method is null-safe.
+	 * 
+	 * @param number the service id number to test, may be <code>null</code>
+	 * @return <code>true</code> if the parameter number is a valid service id
+	 * @since 7.8.8
+	 */
+	public static final boolean valid(String number) {
+		if (StringUtils.isNotEmpty(number)) {
+			try {
+				valueOf("_"+number);
+				return true;
+			} catch (Exception unused) {
+				return false;
+			}
+		}
+		return false;
+	}
+
 }

@@ -19,7 +19,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -239,7 +238,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument {
 	 */
 	public String document() {
 		return message();
-	};
+	}
 	
 	/**
 	 * Get this message document as an XML string.
@@ -274,17 +273,19 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument {
 	/**
 	 * Writes the message document content into a file in XML format (headers not included).
 	 *
-	 * @param file a non null file to write, if it does not exists, it will be created
+	 * @param file a not null file to write, if it does not exists, it will be created
 	 * @since 7.7
 	 */
 	public void write(final File file) throws IOException {
 		Validate.notNull(file, "the file to write cannot be null");
-		if (!file.exists()) {
-			file.createNewFile();
+		boolean created = file.createNewFile();
+		if (created) {
+			log.fine("new file created: "+file.getAbsolutePath());
 		}
 		final FileOutputStream stream = new FileOutputStream(file.getAbsoluteFile());
 		write(stream);
-	};
+		stream.close();
+	}
 
 	/**
  	 * Writes the message document content into a file in XML format, encoding content in UTF-8 (headers not included).
@@ -312,7 +313,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument {
 	 */
 	public void setBusinessHeader(final BusinessHeader businessHeader) {
 		this.businessHeader = businessHeader;
-	};
+	}
 
 	/**
 	 * Returns the MX message identification.<br>
@@ -323,9 +324,9 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument {
 	 */
 	public MxId getMxId() {
 		return new MxId(getBusinessProcess(),
-				StringUtils.leftPad("" + getFunctionality(), 3, "0"),
-				StringUtils.leftPad("" + getVariant(), 3, "0"),
-				StringUtils.leftPad("" + getVersion(), 2, "0"));
+				StringUtils.leftPad(Integer.toString(getFunctionality()), 3, "0"),
+				StringUtils.leftPad(Integer.toString(getVariant()), 3, "0"),
+				StringUtils.leftPad(Integer.toString(getVersion()), 2, "0"));
 	}
 
 	public Element element() {

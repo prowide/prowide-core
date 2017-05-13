@@ -16,8 +16,10 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsL {
 
-    public final static String LINK = "LINK";
     public final static String L = "L";
+    public final static String LC = "LC";
+    public final static String LF = "LF";
+    public final static String LINK = "LINK";
     public final static String LDFP = "LDFP";
     public final static String LDCO = "LDCO";
     public final static String LDCR = "LDCR";
@@ -25,9 +27,9 @@ public interface SchemeConstantsL {
     public final static String LDPRTY1 = "LDPRTY1";
     public final static String LDDET = "LDDET";
     public final static String LAST = "LAST";
-    public final static String LANG = "LANG";
     public final static String LOCA = "LOCA";
     public final static String LOTS = "LOTS";
+    public final static String LANG = "LANG";
     public final static String LEVY = "LEVY";
     public final static String LIST = "LIST";
     public final static String LOCO = "LOCO";

@@ -612,9 +612,6 @@ public class Field252 extends Field implements Serializable {
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 252");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -625,7 +622,7 @@ public class Field252 extends Field implements Serializable {
 		}
 		if (component == 3) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent3AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -633,7 +630,7 @@ public class Field252 extends Field implements Serializable {
 		}
 		if (component == 4) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent4AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

@@ -188,62 +188,63 @@ public class Field68C extends Field implements Serializable, CurrencyContainer, 
 	public void parse(final String value) {
 		init(12);
 		java.util.List<String> lines = SwiftParseUtils.getLines(value);
-		if (lines.size() > 0) {
-			if (lines.get(0) != null) {
-				setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), "/"));
-				setComponent2(SwiftParseUtils.getTokenSecond(lines.get(0), "/"));
-				String toparse = SwiftParseUtils.getTokenThirdLast(lines.get(0), "/");
-				if (toparse != null && toparse.length() >= 1) {
-					StringBuilder parsed = new StringBuilder();
-					setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 0, 1));
-					if (getComponent3() != null) {
-						parsed.append(getComponent3());
-					}
-					String toparse2 = org.apache.commons.lang.StringUtils.substringAfter(toparse, parsed.toString());
-					setComponent4(SwiftParseUtils.getNumericPrefix(toparse2));
-					if (getComponent4() != null) {
-						parsed.append(getComponent4());
-					}
-					toparse2 = org.apache.commons.lang.StringUtils.substringAfter(toparse, parsed.toString());
-					setComponent5(SwiftParseUtils.getAlphaPrefix(toparse2));
-					setComponent6(SwiftParseUtils.getNumericSuffix(toparse2));
+		if (lines.isEmpty()) {
+			return;
+		}
+		if (lines.get(0) != null) {
+			setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), "/"));
+			setComponent2(SwiftParseUtils.getTokenSecond(lines.get(0), "/"));
+			String toparse = SwiftParseUtils.getTokenThirdLast(lines.get(0), "/");
+			if (toparse != null && toparse.length() >= 1) {
+				StringBuilder parsed = new StringBuilder();
+				setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 0, 1));
+				if (getComponent3() != null) {
+					parsed.append(getComponent3());
 				}
+				String toparse2 = org.apache.commons.lang.StringUtils.substringAfter(toparse, parsed.toString());
+				setComponent4(SwiftParseUtils.getNumericPrefix(toparse2));
+				if (getComponent4() != null) {
+					parsed.append(getComponent4());
+				}
+				toparse2 = org.apache.commons.lang.StringUtils.substringAfter(toparse, parsed.toString());
+				setComponent5(SwiftParseUtils.getAlphaPrefix(toparse2));
+				setComponent6(SwiftParseUtils.getNumericSuffix(toparse2));
 			}
 		}
 		if (lines.size() > 1) {
 			if (lines.get(1) != null) {
 				StringBuilder parsed = new StringBuilder();
 				String l = lines.get(1);
-
+	
 				setComponent7(SwiftParseUtils.getAlphaPrefix(l));
 				if (getComponent7() != null) {
 					parsed.append(getComponent7());
 				}
-				
+					
 				String toparse = org.apache.commons.lang.StringUtils.substringAfter(l, parsed.toString());
 				setComponent8(SwiftParseUtils.getNumericPrefix(toparse));
 				if (getComponent8() != null) {
 					parsed.append(getComponent8());
 				}
-
+	
 				toparse = org.apache.commons.lang.StringUtils.substringAfter(l, parsed.toString());
 				setComponent9(SwiftParseUtils.getAlphaPrefix(toparse));
 				if (getComponent9() != null) {
 					parsed.append(getComponent9());
 				}
-				
+					
 				toparse = org.apache.commons.lang.StringUtils.substringAfter(l, parsed.toString());
 				setComponent10(SwiftParseUtils.getNumericPrefix(toparse));
 				if (getComponent10() != null) {
 					parsed.append(getComponent10());
 				}
-
+	
 				toparse = org.apache.commons.lang.StringUtils.substringAfter(l, parsed.toString());
 				setComponent11(SwiftParseUtils.getAlphaPrefix(toparse));
 				if (getComponent11() != null) {
 					parsed.append(getComponent11());
 				}
-
+	
 				toparse = org.apache.commons.lang.StringUtils.substringAfter(l, parsed.toString());
 				setComponent12(SwiftParseUtils.getNumericPrefix(toparse));
 			}
@@ -1066,9 +1067,7 @@ public class Field68C extends Field implements Serializable, CurrencyContainer, 
 	}
     
 	public List<String> currencyStrings() {
-		List<String> result = new ArrayList<String>();
-		result = CurrencyResolver.resolveComponentsPattern(COMPONENTS_PATTERN, components);
-		return result;
+		return CurrencyResolver.resolveComponentsPattern(COMPONENTS_PATTERN, components);
 	}
 
 	public List<Currency> currencies() {
@@ -1105,9 +1104,16 @@ public class Field68C extends Field implements Serializable, CurrencyContainer, 
 		return result;
 	}
     
+	/**
+	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
+	
+	/**
+	 * @see {@linkplain AmountResolver#amount(Field)}
+	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
 	}
@@ -1332,9 +1338,6 @@ public class Field68C extends Field implements Serializable, CurrencyContainer, 
 		if (component < 1 || component > 12) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 68C");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -1349,7 +1352,7 @@ public class Field68C extends Field implements Serializable, CurrencyContainer, 
 		}
 		if (component == 4) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent4AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -1361,7 +1364,7 @@ public class Field68C extends Field implements Serializable, CurrencyContainer, 
 		}
 		if (component == 6) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent6AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1373,7 +1376,7 @@ public class Field68C extends Field implements Serializable, CurrencyContainer, 
 		}
 		if (component == 8) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent8AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1385,7 +1388,7 @@ public class Field68C extends Field implements Serializable, CurrencyContainer, 
 		}
 		if (component == 10) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent10AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1397,7 +1400,7 @@ public class Field68C extends Field implements Serializable, CurrencyContainer, 
 		}
 		if (component == 12) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent12AsNumber();
 			if (n != null) {
 				return f.format(n);

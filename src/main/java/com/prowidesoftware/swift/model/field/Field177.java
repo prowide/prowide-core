@@ -370,13 +370,10 @@ public class Field177 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 177");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//date + time
-			java.text.DateFormat df = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
-			java.text.DateFormat tf = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat df = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+			java.text.DateFormat tf = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return df.format(cal.getTime()) + " " + tf.format(cal.getTime());

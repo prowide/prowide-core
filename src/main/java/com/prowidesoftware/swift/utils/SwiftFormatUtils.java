@@ -29,6 +29,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 
 import com.prowidesoftware.swift.model.BIC;
+import com.prowidesoftware.swift.model.LogicalTerminalAddress;
 import com.prowidesoftware.swift.model.MIR;
 import com.prowidesoftware.swift.model.MOR;
 
@@ -59,6 +60,11 @@ import com.prowidesoftware.swift.model.MOR;
 public class SwiftFormatUtils {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftFormatUtils.class.getName());
 
+	// Suppress default constructor for noninstantiability
+	private SwiftFormatUtils() {
+		throw new AssertionError();
+	}
+
 	/**
 	 * Parses a DATE2 string (accept dates in format YYMMDD) into a Calendar object.
 	 * @param strDate string to parse
@@ -88,21 +94,35 @@ public class SwiftFormatUtils {
 	 */
 	public static Calendar getDate1(final String strDate) {
 		if ((strDate != null) && (strDate.length() == 4)) {
-			/* 2016 Mar, Miguel
-			 * Agregamos el año actual de forma ficticia para que detecte los años bisiestos,
-			 * de otro modo al parsear 0229 en un año bisiesto va a dar error
-			 */
-			final int y = Calendar.getInstance().get(Calendar.YEAR);
-			return getCalendar(y+strDate, "yyyyMMdd");
+			return getCalendar(strDate, "MMdd");
 		} else {
 			return null;
 		}
 	}
 
 	/**
+	 * returns true if the the current year is a leap year
+	 * @since 7.8.8
+	 */
+	public static final boolean isLeapYear() {
+		return Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
+	}
+	
+	/**
+	 * returns true if the parameter year is a leap year
+	 * @since 7.8.8
+	 */
+	public static final boolean isLeapYear(int year) {
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, year);
+		return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
+	}
+
+	/**
 	 * Parses a Calendar object into a DATE1 string.
+	 * For February 29 it will return null if current year is not a leap year
 	 * @param date Calendar to parse
-	 * @return parsed date or <code>null</code> if the calendar is null
+	 * @return parsed date or <code>null</code> if the calendar is null 
 	 * @since 6.4
 	 */
 	public static String getDate1(final Calendar date) {
@@ -372,14 +392,18 @@ public class SwiftFormatUtils {
 
 	/**
 	 * Gets the code from the parameter BIC.
+	 * If branch is present, returns a BIC11, otherwise returns a BIC8.
 	 * @param bic BIC to use
 	 * @return the string with the BIC code
 	 * @since 6.4
 	 */
 	public static String getBIC(final BIC bic) {
-		return bic.getBic();
+		if (StringUtils.isBlank(bic.getBranch())) {
+			return bic.getBic8();
+		} else {
+			return bic.getBic11();
+		}
 	}
-
 
 	/**
 	 * Gets the given string as boolean.
@@ -632,5 +656,27 @@ public class SwiftFormatUtils {
 			}
 		}
 		return 0;
+	}
+	
+	/**
+	 * @param code string with a LT identifier code (12 chars) composed by the
+	 * BIC, LT identifier and branch.
+	 * @return a LT address initialized from the parameter code
+	 * @since 7.8.8
+	 */
+	public static final LogicalTerminalAddress getLTAddress(final String address) {
+		return new LogicalTerminalAddress(address);
+	}
+
+	/**
+	 * Gets the code from the parameter LogicalTerminalAddress.
+	 * If the address is not complete, it will be filled with default values
+	 * using {@linkplain LogicalTerminalAddress#getSenderLogicalTerminalAddress()}
+	 * @param address LT address to use
+	 * @return the string with the full 12 characters long LT identifier
+	 * @since 7.8.8
+	 */
+	public static final String getLTAddress(final LogicalTerminalAddress address) {
+		return address.getSenderLogicalTerminalAddress();
 	}
 }

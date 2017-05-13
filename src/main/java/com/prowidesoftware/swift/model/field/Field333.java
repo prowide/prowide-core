@@ -419,7 +419,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	 */
 	public Field333 setComponent3(java.lang.Number component3) {
 		if (component3 != null) {
-			setComponent(3, ""+component3.intValue());
+			setComponent(3, Integer.toString(component3.intValue()));
 		}
 		return this;
 	}
@@ -632,7 +632,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	 */
 	public Field333 setComponent6(java.lang.Number component6) {
 		if (component6 != null) {
-			setComponent(6, ""+component6.intValue());
+			setComponent(6, Integer.toString(component6.intValue()));
 		}
 		return this;
 	}
@@ -709,7 +709,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	 */
 	public Field333 setComponent7(java.lang.Number component7) {
 		if (component7 != null) {
-			setComponent(7, ""+component7.intValue());
+			setComponent(7, Integer.toString(component7.intValue()));
 		}
 		return this;
 	}
@@ -786,7 +786,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	 */
 	public Field333 setComponent8(java.lang.Number component8) {
 		if (component8 != null) {
-			setComponent(8, ""+component8.intValue());
+			setComponent(8, Integer.toString(component8.intValue()));
 		}
 		return this;
 	}
@@ -960,12 +960,9 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		if (component < 1 || component > 8) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 333");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -973,7 +970,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		}
 		if (component == 2) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -981,7 +978,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -989,7 +986,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		}
 		if (component == 4) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent4AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -997,7 +994,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		}
 		if (component == 5) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent5AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -1005,7 +1002,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		}
 		if (component == 6) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent6AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1013,7 +1010,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		}
 		if (component == 7) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent7AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1021,7 +1018,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		}
 		if (component == 8) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent8AsNumber();
 			if (n != null) {
 				return f.format(n);

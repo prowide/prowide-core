@@ -53,7 +53,10 @@ import com.prowidesoftware.swift.model.mt.mt6xx.MT671;
  */
 public class SequenceUtils {
 
-	private SequenceUtils(){}
+	// Suppress default constructor for noninstantiability
+	private SequenceUtils() {
+		throw new AssertionError();
+	}
 
 	public static List<MT307.SequenceA1> resolveMT307GetSequenceA1List_sru2016(final MT307 mt307) {
 		Validate.notNull(mt307);

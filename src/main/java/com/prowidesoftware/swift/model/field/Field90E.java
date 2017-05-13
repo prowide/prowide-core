@@ -429,9 +429,6 @@ public class Field90E extends Field implements Serializable, com.prowidesoftware
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 90E");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);

@@ -22,8 +22,6 @@ import java.util.Locale;
 import java.util.List;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
-import com.prowidesoftware.swift.model.BIC;
-import com.prowidesoftware.swift.model.field.BICContainer;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -38,13 +36,13 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 /**
  * Field 263<br /><br />
  *
- * validation pattern: &lt;BIC&gt;&lt;DATE2&gt;&lt;HHMM&gt;&lt;HHMM&gt;[4!n]<br />
- * parser pattern: 12!S&lt;DATE2&gt;&lt;HHMM&gt;&lt;HHMM&gt;[N]<br />
- * components pattern: BEHHN<br />
+ * validation pattern: &lt;LT&gt;&lt;DATE2&gt;&lt;HHMM&gt;&lt;HHMM&gt;[4!n]<br />
+ * parser pattern: &lt;LT&gt;&lt;DATE2&gt;&lt;HHMM&gt;&lt;HHMM&gt;[N]<br />
+ * components pattern: ZEHHN<br />
  *
  * <h1>Components Data types</h1>
  * <ul> 
- * 		<li>component1: <code>BIC</code></li> 
+ * 		<li>component1: <code>LogicalTerminalAddress</code></li> 
  * 		<li>component2: <code>Calendar</code></li> 
  * 		<li>component3: <code>Calendar</code></li> 
  * 		<li>component4: <code>Calendar</code></li> 
@@ -58,7 +56,7 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
  */
 @SuppressWarnings("unused") 
 @Generated
-public class Field263 extends Field implements Serializable, DateContainer, BICContainer {
+public class Field263 extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -73,13 +71,13 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_263 = "263";
-	public static final String PARSER_PATTERN ="12!S<DATE2><HHMM><HHMM>[N]";
-	public static final String COMPONENTS_PATTERN = "BEHHN";
+	public static final String PARSER_PATTERN ="<LT><DATE2><HHMM><HHMM>[N]";
+	public static final String COMPONENTS_PATTERN = "ZEHHN";
 
 	/**
-	 * Component number for the BIC subfield
+	 * Component number for the LT Address subfield
 	 */
-	public static final Integer BIC = 1;
+	public static final Integer LT_ADDRESS = 1;
 
 	/**
 	 * Component number for the Date subfield
@@ -156,7 +154,7 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 			if (value.length() >= 26) {
 				setComponent4(org.apache.commons.lang.StringUtils.substring(value, 22, 26));
 			}
-			if (value.length() >= 26) {
+			if (value.length() > 26) {
 				setComponent5(org.apache.commons.lang.StringUtils.substring(value, 26));
 			}
 		}
@@ -219,27 +217,27 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the component1 as BIC
-	 * @return the component1 converted to BIC or <code>null</code> if cannot be converted
+	 * Get the component1 as LogicalTerminalAddress
+	 * @return the component1 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
 	 */
-	public com.prowidesoftware.swift.model.BIC getComponent1AsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(1));
+	public com.prowidesoftware.swift.model.LogicalTerminalAddress getComponent1AsLogicalTerminalAddress() {
+		return SwiftFormatUtils.getLTAddress(getComponent(1));
 	}
 
 	/**
-	 * Get the BIC (component1).
-	 * @return the BIC from component1
+	 * Get the LT Address (component1).
+	 * @return the LT Address from component1
 	 */
-	public String getBIC() {
+	public String getLTAddress() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the BIC (component1) as BIC
-	 * @return the BIC from component1 converted to BIC or <code>null</code> if cannot be converted
+	 * Get the LT Address (component1) as LogicalTerminalAddress
+	 * @return the LT Address from component1 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
 	 */
-	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(1));
+	public com.prowidesoftware.swift.model.LogicalTerminalAddress getLTAddressAsLogicalTerminalAddress() {
+		return SwiftFormatUtils.getLTAddress(getComponent(1));
 	}
 
 	/**
@@ -252,29 +250,29 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 	}
 	
 	/**
-	 * Set the component1 from a BIC object.
-	 * @param component1 the BIC with the component1 content to set
+	 * Set the component1 from a LogicalTerminalAddress object.
+	 * @param component1 the LogicalTerminalAddress with the component1 content to set
 	 */
-	public Field263 setComponent1(com.prowidesoftware.swift.model.BIC component1) {
-		setComponent(1, SwiftFormatUtils.getBIC(component1));
+	public Field263 setComponent1(com.prowidesoftware.swift.model.LogicalTerminalAddress component1) {
+		setComponent(1, SwiftFormatUtils.getLTAddress(component1));
 		return this;
 	}
 	
 	/**
-	 * Set the BIC (component1).
-	 * @param component1 the BIC to set
+	 * Set the LT Address (component1).
+	 * @param component1 the LT Address to set
 	 */
-	public Field263 setBIC(String component1) {
+	public Field263 setLTAddress(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
 	
 	/**
-	 * Set the BIC (component1) from a BIC object.
-	 * @see #setComponent1(com.prowidesoftware.swift.model.BIC)
-	 * @param component1 BIC with the BIC content to set
+	 * Set the LT Address (component1) from a LogicalTerminalAddress object.
+	 * @see #setComponent1(com.prowidesoftware.swift.model.LogicalTerminalAddress)
+	 * @param component1 LogicalTerminalAddress with the LT Address content to set
 	 */
-	public Field263 setBIC(com.prowidesoftware.swift.model.BIC component1) {
+	public Field263 setLTAddress(com.prowidesoftware.swift.model.LogicalTerminalAddress component1) {
 		setComponent1(component1);
 		return this;
 	}
@@ -536,7 +534,7 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 	 */
 	public Field263 setComponent5(java.lang.Number component5) {
 		if (component5 != null) {
-			setComponent(5, ""+component5.intValue());
+			setComponent(5, Integer.toString(component5.intValue()));
 		}
 		return this;
 	}
@@ -565,17 +563,6 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 		result.add(SwiftFormatUtils.getDate2(getComponent(2)));
 		result.add(SwiftFormatUtils.getTime3(getComponent(3)));
 		result.add(SwiftFormatUtils.getTime3(getComponent(4)));
-		return result;
-	}
-
-	public List<BIC> bics () {
-		final List<BIC> result = new ArrayList<BIC>();
-		result.add(SwiftFormatUtils.getBIC(getComponent(1)));
-		return result;
-	}
-	public List<String> bicStrings () {
-		final List<String> result = new ArrayList<String>();
-		result.add(getComponent(1));
 		return result;
 	}
 
@@ -631,7 +618,7 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "<BIC><DATE2><HHMM><HHMM>[4!n]";
+		return "<LT><DATE2><HHMM><HHMM>[4!n]";
 	}
 
 	/**
@@ -720,16 +707,13 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 		if (component < 1 || component > 5) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 263");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -737,7 +721,7 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 		}
 		if (component == 3) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent3AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -745,7 +729,7 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 		}
 		if (component == 4) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent4AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -753,7 +737,7 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 		}
 		if (component == 5) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent5AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -772,7 +756,7 @@ public class Field263 extends Field implements Serializable, DateContainer, BICC
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add("BIC");
+		result.add("LT Address");
 		result.add("Date");
 		result.add("Start Time");
 		result.add("End Time");

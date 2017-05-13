@@ -70,6 +70,16 @@ public class Field342 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "SH";
 
 	/**
+	 * Component number for the Region subfield
+	 */
+	public static final Integer REGION = 1;
+
+	/**
+	 * Component number for the Time subfield
+	 */
+	public static final Integer TIME = 2;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field342() {
@@ -180,10 +190,27 @@ public class Field342 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Region (component1).
+	 * @return the Region from component1
+	 */
+	public String getRegion() {
+		return getComponent(1);
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
 	public Field342 setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Region (component1).
+	 * @param component1 the Region to set
+	 */
+	public Field342 setRegion(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -204,6 +231,22 @@ public class Field342 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Time (component2).
+	 * @return the Time from component2
+	 */
+	public String getTime() {
+		return getComponent(2);
+	}
+	
+	/**
+	 * Get the Time (component2) as Calendar
+	 * @return the Time from component2 converted to Calendar or <code>null</code> if cannot be converted
+	 */
+	public java.util.Calendar getTimeAsCalendar() {
+		return SwiftFormatUtils.getTime3(getComponent(2));
+	}
+
+	/**
 	 * Set the component2.
 	 * @param component2 the component2 to set
 	 */
@@ -218,6 +261,25 @@ public class Field342 extends Field implements Serializable {
 	 */
 	public Field342 setComponent2(java.util.Calendar component2) {
 		setComponent(2, SwiftFormatUtils.getTime3(component2));
+		return this;
+	}
+	
+	/**
+	 * Set the Time (component2).
+	 * @param component2 the Time to set
+	 */
+	public Field342 setTime(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Time (component2) from a Calendar object.
+	 * @see #setComponent2(java.util.Calendar)
+	 * @param component2 Calendar with the Time content to set
+	 */
+	public Field342 setTime(java.util.Calendar component2) {
+		setComponent2(component2);
 		return this;
 	}
 
@@ -362,16 +424,13 @@ public class Field342 extends Field implements Serializable {
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 342");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -390,8 +449,8 @@ public class Field342 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
+		result.add("Region");
+		result.add("Time");
 		return result;
 	}
 	

@@ -74,9 +74,7 @@ public class FINWriterVisitor implements IMessageVisitor {
 		// if b1 not empty
 		if (b1 != null && StringUtils.isNotEmpty(b1.getValue())) {
 			// check for app id and service id
-			String appId  = b1.getApplicationId() != null ? b1.getApplicationId() : "";  
-			String servId = b1.getServiceId()     != null ? b1.getServiceId()     : "";
-			if (!appId.equals("F") || !servId.equals("01")) {
+			if (!StringUtils.equals(b1.getApplicationId(), "F") || !StringUtils.equals(b1.getServiceId(), "01")) {
 				// if app identifier NOT 'F' OR service identifier NOT '01' => USE TAG-BLOCK syntax
 				this.block4asText = Boolean.FALSE;
 			}
@@ -86,7 +84,7 @@ public class FINWriterVisitor implements IMessageVisitor {
 		// if b2 not empty
 		if (b2 != null && StringUtils.isNotEmpty(b2.getValue())) {
 			// check for message category
-			String mt = b2.getMessageType() != null ? b2.getMessageType() : "";
+			String mt = StringUtils.trimToEmpty(b2.getMessageType());
 			if (mt.startsWith("0")) {
 				// if message type is category 0 => USE TAG-BLOCK  syntax
 				this.block4asText = Boolean.FALSE;
@@ -118,8 +116,9 @@ public class FINWriterVisitor implements IMessageVisitor {
 	}
 
 	public void value(SwiftBlock1  b, String v) {
-		if (v != null && ! v.equals(""))
+		if (StringUtils.isNotEmpty(v)) {
 			write(v);
+		}
 	}
 
 	public void endBlock1(SwiftBlock1 b) {
@@ -146,8 +145,9 @@ public class FINWriterVisitor implements IMessageVisitor {
 	}
 
 	public void value(SwiftBlock2 b, String v) {
-		if (v != null && ! v.equals(""))
+		if (StringUtils.isNotEmpty(v)) {
 			write(v);
+		}
 	}
 
 	public void endBlock2(SwiftBlock2 b) {
@@ -205,7 +205,7 @@ public class FINWriterVisitor implements IMessageVisitor {
 			appendTextTag(t);
 		} else {
 			appendBlockTag(t);
-		};
+		}
 	}
 
 	public void endBlock4(SwiftBlock4 b) {
@@ -286,16 +286,16 @@ public class FINWriterVisitor implements IMessageVisitor {
 			return;
 		if (b instanceof SwiftBlock3) {
 			tag( (SwiftBlock3) b, t);
-		};
+		}
 		if (b instanceof SwiftBlock4) {
 			tag( (SwiftBlock4) b, t);
-		};
+		}
 		if (b instanceof SwiftBlock5) {
 			tag( (SwiftBlock5) b, t);
-		};
+		}
 		if (b instanceof SwiftBlockUser) {
 			tag( (SwiftBlockUser) b, t);
-		};
+		}
 	}
 
 	////////////////////////////////////////////////////////////
@@ -304,21 +304,20 @@ public class FINWriterVisitor implements IMessageVisitor {
 	//
 	////////////////////////////////////////////////////////////
 	private final void appendBlockTag(Tag t) {
-
 		// this goes: "{<tag>:<value>}" (quotes not included)
-		String name  = t.getName()  != null ? t.getName()  : "";
-		String value = t.getValue() != null ? t.getValue() : "";
 		
 		// empty tags are not written
-		if (name.equals("") && value.equals("")) return;
+		if (StringUtils.isEmpty(t.getName()) && StringUtils.isEmpty(t.getValue())) {
+			return;
+		}
 		
-		if ( ! name.equals("")) {
+		if (StringUtils.isNotEmpty(t.getName())) {
 			// we have name
-			write("{" + name + ":" + value);
+			write("{" + t.getName() + ":" + t.getValue());
 		} else {
 			// no name but value => {<value>}
-			write("{" + value);
-		};
+			write("{" + t.getValue());
+		}
 
 		// if tag has unparsed texts, write them down.
 		// this goes "{<tag>:<value>unparsed_texts}" (NOTICE that unparsed text goes inside tag braquets)
@@ -334,20 +333,19 @@ public class FINWriterVisitor implements IMessageVisitor {
 	}
 	
 	private final void appendTextTag(Tag t) {
-
 		// this goes: ":<tag>:<value>[CRLF]" (quotes not included)
-		String name  = t.getName()  != null ? t.getName()  : "";
-		String value = t.getValue() != null ? t.getValue() : "";
-		if ( ! name.equals(""))
-			write(":" + name + ":" + value + SWIFT_EOL);
+		if (StringUtils.isNotEmpty(t.getName())) {
+			write(":" + t.getName() + ":" + StringUtils.trimToEmpty(t.getValue()) + SWIFT_EOL);
+		}
 
 		// if tag has unparsed texts, write them down
 		//
 		// IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
 		//            creates the object if not already there. Guard this with the size "if" that is
 		//            safe (returns 0 if there is no list or real size otherwise).
-		if (t.getUnparsedTextsSize().intValue() > 0)
+		if (t.getUnparsedTextsSize().intValue() > 0) {
 			write(t.getUnparsedTexts());
+		}
 	}
 
 
@@ -371,14 +369,13 @@ public class FINWriterVisitor implements IMessageVisitor {
 	}
 
 	private void write(UnparsedTextList texts) {
-
 		// write the unparsed texts (if any)
 		if (texts.size().intValue() > 0) {
 			for(int i = 0; i < texts.size().intValue(); i++) {
-				if (texts.isMessage(new Integer(i)).booleanValue())
-					write(texts.getText(new Integer(i)));
-			};
-		};
+				if (texts.isMessage(Integer.valueOf(i)).booleanValue())
+					write(texts.getText(Integer.valueOf(i)));
+			}
+		}
 	}
 
 	private void write(String s) {
@@ -387,7 +384,7 @@ public class FINWriterVisitor implements IMessageVisitor {
 		} catch (IOException e) {
 			log.log(Level.SEVERE, "Caught exception in FINWriterVisitor, method write", e);
 			throw new WifeException(e);
-		};
+		}
 	}
 
 }

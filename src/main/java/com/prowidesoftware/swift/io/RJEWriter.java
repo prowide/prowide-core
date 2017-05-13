@@ -34,6 +34,8 @@ import com.prowidesoftware.swift.model.mt.AbstractMT;
  */
 public class RJEWriter extends AbstractWriter {
 
+	private int count = 0;
+	
 	/**
 	 * Constructs a RJEWriter to write content into a given Writer instance.
 	 * @param writer
@@ -74,7 +76,7 @@ public class RJEWriter extends AbstractWriter {
 	 * @throws IOException if an I/O error occurs
 	 */	
     public void write(final String msg) throws IOException {
-    	write(msg, super.writer);
+    	_write(msg, super.writer);
     }
     
     /**
@@ -83,11 +85,23 @@ public class RJEWriter extends AbstractWriter {
      * @throws IOException if an I/O error occurs
      */
     public void write(final AbstractMT msg) throws IOException {
-    	write(msg, this.writer);
+    	_write(msg.message(), this.writer);
+    }
+
+    private void _write(final String msg, final Writer writer) throws IOException {
+    	Validate.notNull(writer, "writer has not been initialized");
+    	Validate.notNull(msg, "message to write cannot be null");
+    	if (count > 0) {
+        	writer.write(FINWriterVisitor.SWIFT_EOL);
+        	writer.write(RJEReader.SPLITCHAR);
+        	writer.write(FINWriterVisitor.SWIFT_EOL);
+    	}
+    	writer.write(msg);
+    	count++;
     }
     
     /**
-     * Writes the message into the writer in RJE format
+     * @see #write(String, Writer)
      * @param msg message to write
      * @param writer
      * @throws IOException if an I/O error occurs
@@ -98,7 +112,13 @@ public class RJEWriter extends AbstractWriter {
     }
     
 	/**
-	 * Writes the message content into the writer in RJE format
+	 * Static implementation to write the message content into the parameter writer in RJE format.
+	 * 
+	 * <p>IMPORTANT: this method will always append a trailing CRLF and $ at the end which
+	 * in some platforms can be rejected as an invalid RJE file. For a more compliant version
+	 * use the non static implementation of the write calls, to ensure the split separator
+	 * is present only between messages but not afterwards the last one.</p>
+	 * 
 	 * @param msg SWIFT MT content to write
 	 * @param writer
 	 * @throws IOException if an I/O error occurs

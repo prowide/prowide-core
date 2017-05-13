@@ -486,9 +486,6 @@ public class Field29F extends Field implements Serializable, com.prowidesoftware
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 29F");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);

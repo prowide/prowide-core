@@ -503,7 +503,7 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	 */
 	public Field61 setComponent5(java.lang.Number component5) {
 		if (component5 != null) {
-			setComponent(5, ""+component5.intValue());
+			setComponent(5, Integer.toString(component5.intValue()));
 		}
 		return this;
 	}
@@ -964,12 +964,9 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 		if (component < 1 || component > 10) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 61");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -977,7 +974,7 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 		}
 		if (component == 2) {
 			//monthday
-			java.text.DateFormat f = new java.text.SimpleDateFormat("MMM", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("MMM", notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -993,7 +990,7 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 		}
 		if (component == 5) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent5AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1047,75 +1044,78 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	
 
 	/**
-	 * Custom parser for Field61.<br />
-	 * Uses semantic information to split components 3 and 4 (assuming component 3 can only be D, C, RD, RC).
-	 * It also splits VAR-SEQU-1 into components 7 and 8.<br /><br />
+	 * Custom parser for Field61.
 	 *
-	 * MT=940, 942<br />
-	 *                     <DATE2>[<DATE1>]2a[1a]<NUMBER>15<SUB-6><VAR-SEQU-1>[’CRLF’<ERI-F61>]
-	 *<br /><br />
-	 * MT=other, i.e. : 608, 950, 970, 972, n92, n95, n96<br /> 
-	 *                     <DATE2>[<DATE1>]2a[1a]<NUMBER>15<SUB-6><VAR-SEQU-1>[’CRLF’34x](**)
-	 *<br /><br />
+	 * <p>Uses semantic information to split components 3 and 4 (assuming component 3 can only be D, C, RD, RC).
+	 * It also splits VAR-SEQU-1 into components 7 and 8.</p>
 	 *
-	 * Thanks to Mark Karatovic for his contribution.
+	 * <p>MT=940, 942<br />
+	 * <DATE2>[<DATE1>]2a[1a]<NUMBER>15<SUB-6><VAR-SEQU-1>[’CRLF’<ERI-F61>]
+	 * </p>
+	 *
+	 * <p>MT=other, i.e. : 608, 950, 970, 972, n92, n95, n96<br /> 
+	 * <DATE2>[<DATE1>]2a[1a]<NUMBER>15<SUB-6><VAR-SEQU-1>[’CRLF’34x](**)
+	 * </p>
 	 */
 	protected void parseCustom(String value) {
+		//thanks to Mark Karatovic for his contribution on this implementation.
 		java.util.List<String>lines = SwiftParseUtils.getLines(value);
-		if (lines.size() > 0) {
-			/*
-			 * parse dates
-			 */
-			String dates = SwiftParseUtils.getNumericPrefix(lines.get(0));
-			int dates_length = dates != null ? dates.length() : 0;
-			if (dates_length >= 6) {
-				setComponent1(org.apache.commons.lang.StringUtils.substring(dates, 0, 6));
-			}
-			if (dates_length >= 10) {
-				setComponent2(org.apache.commons.lang.StringUtils.substring(dates, 6));
-			}
-			String toparse = org.apache.commons.lang.StringUtils.substring(lines.get(0), dates_length);
+		if (lines.isEmpty()) {
+			return;
+		}
+		/*
+		 * parse dates
+		 */
+		String dates = SwiftParseUtils.getNumericPrefix(lines.get(0));
+		int dates_length = dates != null ? dates.length() : 0;
+		if (dates_length >= 6) {
+			setComponent1(org.apache.commons.lang.StringUtils.substring(dates, 0, 6));
+		}
+		if (dates_length >= 10) {
+			setComponent2(org.apache.commons.lang.StringUtils.substring(dates, 6));
+		}
+		String toparse = org.apache.commons.lang.StringUtils.substring(lines.get(0), dates_length);
 			
-			/*
-			 * parse component 3 and 4 (DC mark and optional funds code)
-			 */
-			String comp3and4 = SwiftParseUtils.getAlphaPrefix(toparse);	
-			int comp3and4_length = comp3and4 != null ? comp3and4.length() : 0;
-    		if (comp3and4.charAt(0) == 'R' || comp3and4.charAt(0) == 'E') {
-    			/*
+		/*
+		 * parse component 3 and 4 (DC mark and optional funds code)
+		 */
+		String comp3and4 = SwiftParseUtils.getAlphaPrefix(toparse);	
+		if (comp3and4 != null) {
+	    	if (comp3and4.charAt(0) == 'R' || comp3and4.charAt(0) == 'E') {
+	    		/*
 		         EC Expected Credit
 		         ED Expected Debit
 		         RC Reversal of Credit (debit entry)
 		         RD Reversal of Debit (credit entry)
 		        */
-    			if (comp3and4_length >= 2) {
-    				setComponent3(org.apache.commons.lang.StringUtils.substring(comp3and4, 0, 2));
-    			}
-    			if (comp3and4_length >= 3) {
-    				setComponent4(org.apache.commons.lang.StringUtils.substring(comp3and4, 2));
-    			}
-    		} else{
-    			/*
+	    		if (comp3and4.length() >= 2) {
+	    			setComponent3(org.apache.commons.lang.StringUtils.substring(comp3and4, 0, 2));
+	    		}
+	    		if (comp3and4.length() >= 3) {
+	    			setComponent4(org.apache.commons.lang.StringUtils.substring(comp3and4, 2));
+	    		}
+	    	} else{
+	    		/*
 		         C  Credit
 		         D  Debit
 		        */
-    			if (comp3and4_length >= 1) {
-    				setComponent3(org.apache.commons.lang.StringUtils.substring(comp3and4, 0, 1));
-    			}
-    			if (comp3and4_length >= 2) {
-    				setComponent4(org.apache.commons.lang.StringUtils.substring(comp3and4, 1));
-    			}
-    		}
-			
-			String toparse2 = org.apache.commons.lang.StringUtils.substring(toparse, comp3and4_length);
-
+	    		if (comp3and4.length() >= 1) {
+	    			setComponent3(org.apache.commons.lang.StringUtils.substring(comp3and4, 0, 1));
+	    		}
+	    		if (comp3and4.length() >= 2) {
+	    			setComponent4(org.apache.commons.lang.StringUtils.substring(comp3and4, 1));
+	    		}
+	    	}
+	    		
+			String toparse2 = org.apache.commons.lang.StringUtils.substring(toparse, comp3and4.length());
+				
 			/*
 			 * parse component 5
 			 */
 			String comp5 = SwiftParseUtils.getNumericPrefix(toparse2);
 			int comp5_length = comp5 != null ? comp5.length() : 0;
 			setComponent5(comp5);
-			
+				
 			/*
 			 * parse <SUB-6> into components 6 and 7
 			 */
@@ -1126,13 +1126,14 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 
 			int toParseTxnCodeLength = toParseTxnCode != null ? toParseTxnCode.length() : 0;
 			String toparse4 = org.apache.commons.lang.StringUtils.substring(toparse3, toParseTxnCodeLength);
-			
+				
 			/*
 			 * parse <VAR-SEQU-1> into components 8 and 9
 			 */
 			setComponent8(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substringBefore(toparse4, "//")));
 			setComponent9(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substringAfter(toparse4, "//"))); 
 		}
+		
 		if (lines.size() > 1) {
 			setComponent10(org.apache.commons.lang.StringUtils.trimToNull(lines.get(1)));
 		}

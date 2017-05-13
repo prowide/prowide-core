@@ -84,7 +84,7 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
 	 * @return Integer containing the block's number
 	 */
 	public Integer getNumber() {
-		return new Integer(5);
+		return Integer.valueOf(5);
 	}
 
 	/**

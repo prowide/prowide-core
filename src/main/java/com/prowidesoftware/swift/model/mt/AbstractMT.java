@@ -27,7 +27,9 @@ import java.util.logging.Logger;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
@@ -71,10 +73,12 @@ public abstract class AbstractMT extends AbstractMessage {
 	 * @param m swift message to model as a particular MT
 	 * @deprecated use constructor from subclasses instead
 	 */
-	@DeleteSchedule(2016)	
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear._2018)	
 	public AbstractMT(MtSwiftMessage m) {
 		super(MessageStandardType.MT);
-		this.m = m.getModelMessage();
+		this.m = m.modelMessage();
+		DeprecationUtils.phase3(getClass(), "AbstractMT(MtSwiftMessage)", "Use a constructor from the specific MT subclasses instead.");
 	}
 
 	/**
@@ -105,7 +109,8 @@ public abstract class AbstractMT extends AbstractMessage {
 	 * Creates a new input message for the given type setting the given sender and receiver.<br />
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
-	 * and branch codes if not provided,
+	 * and branch codes if not provided. For the message type, if the indicated number is below 100 the
+	 * category 0 will be assumed (meaning 10 will be set as 010).
 	 * 
 	 * @param messageType message type to create
 	 * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
@@ -117,7 +122,14 @@ public abstract class AbstractMT extends AbstractMessage {
 		this.m = new SwiftMessage(true);
 		this.m.getBlock1().setSender(sender);
 		final SwiftBlock2Input b2 = new SwiftBlock2Input();
-        b2.setMessageType(Integer.valueOf(messageType).toString());
+		
+		final StringBuilder type = new StringBuilder();
+		if (messageType < 100) {
+			type.append("0");
+		}
+		type.append(messageType);
+		b2.setMessageType(type.toString());
+        
         b2.setInput(true);
         b2.setMessagePriority("N");
         b2.setReceiver(receiver);
@@ -183,7 +195,7 @@ public abstract class AbstractMT extends AbstractMessage {
 	 */
 	protected SwiftMessage getSwiftMessageNotNullOrException() {
 		if (this.m == null) {
-			throw new IllegalStateException("swiftMessage is null");
+			throw new IllegalStateException("SwiftMessage is null");
 		}
 		return m;
 	}
@@ -452,8 +464,9 @@ public abstract class AbstractMT extends AbstractMessage {
 	 * @see #message()
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public String FIN() {
+		DeprecationUtils.phase3(getClass(), "FIN()", "This method has been replaced by message() so the same method can be used for both MT and MX");
 		return message();
 	}
 	
@@ -467,7 +480,7 @@ public abstract class AbstractMT extends AbstractMessage {
 		this.m.removeEmptyBlocks();
 		IConversionService srv = new ConversionService();
 		return srv.getFIN(this.m);
-	};
+	}
 
 	/**
 	 * Returns this message type according to the specific class.
@@ -497,6 +510,7 @@ public abstract class AbstractMT extends AbstractMessage {
 		Object o = invokeHere(methodName, this, null);
 		return (List<SwiftTagListBlock>)o;
 	}
+	
 	/**
 	 * Get the sequence with a given name from the given subblock
 	 * @param name the name of the sequence to get. Must not be <code>null</code>
@@ -508,11 +522,12 @@ public abstract class AbstractMT extends AbstractMessage {
 	 * @return found sequences or empty list
 	 * @since 7.8.1
 	 */
+	@SuppressWarnings("unchecked")
 	public /* cant make static, but should be */ List<SwiftTagListBlock> getSequenceList(final String name, final SwiftTagListBlock block) {
 		final String methodName = "getSequence"+name+"List";
-		Object o = invokeHere(methodName, this, block);
-		return (List<SwiftTagListBlock>)o;
+		return (List<SwiftTagListBlock>) invokeHere(methodName, this, block);
 	}
+	
 	/**
 	 * Test if the MT class contains a getSequenceXList method
 	 * @since 7.8
@@ -525,6 +540,7 @@ public abstract class AbstractMT extends AbstractMessage {
 			return false;
 		}
 	}
+	
 	/**
 	 * Test if the MT class contains a getSequenceX method
 	 * @since 7.8
@@ -695,7 +711,7 @@ public abstract class AbstractMT extends AbstractMessage {
 	 */
     protected static SwiftMessage read(String fin) {
     	SwiftParser p = new SwiftParser(fin);
-    	p.setLenient(true);
+    	p.getConfiguration().setLenient(true);
     	try {
 	        return p.message();
         } catch (IOException e) {
@@ -709,20 +725,21 @@ public abstract class AbstractMT extends AbstractMessage {
     /**
 	 * Writes the message into a file with its message content in the FIN format.
 	 * 
-	 * @param file a non null file to write, if it does not exists, it will be created
+	 * @param file a not null file to write, if it does not exists, it will be created
 	 * @since 7.7
 	 */
 	public void write(File file) throws IOException {
 		Validate.notNull(file, "the file to write cannot be null");
 		Validate.notNull(this.m, "the message to write cannot be null");
-		if (!file.exists()) {
-			file.createNewFile();
+		boolean created = file.createNewFile();
+		if (created) {
+			log.fine("new file created: "+file.getAbsolutePath());
 		}
 		FileWriter fw = new FileWriter(file.getAbsoluteFile());
 		this.m.removeEmptyBlocks();
-		final SwiftWriter w = new SwiftWriter();
-		w.writeMessage(this.m, fw);
-	};
+		SwiftWriter.writeMessage(this.m, fw);
+		fw.close();
+	}
 	
 	/**
 	 * Writes the message into a given output stream with its message content in the FIN format, 
@@ -735,7 +752,7 @@ public abstract class AbstractMT extends AbstractMessage {
 		Validate.notNull(stream, "the stream to write cannot be null");
 		Validate.notNull(this.m, "the message to write cannot be null");
 		stream.write(message().getBytes("UTF-8"));
-	};
+	}
 	
 	/**
 	 * Returns the JSON representation of the SwiftMessage attribute
@@ -760,7 +777,7 @@ public abstract class AbstractMT extends AbstractMessage {
 		return this.m.toXml();
 	}
 	
-	/*
+	/**
 	 * Returns true if the message is the same type as the indicated by parameter.
 	 * 
 	 * @param type a three digits number indicating a SWIFT MT type
@@ -815,4 +832,34 @@ public abstract class AbstractMT extends AbstractMessage {
 		return new MtId(getMessageType(), getVariant());
 	}
 	
+	/**
+	 * Returns a tag or null if tag not found
+	 * @param tagName tag name to find including letter option, example "33B"
+	 * @return found tag or null
+	 * @since 7.8.9
+	 */
+	protected Tag tag(final String tagName) {
+		final SwiftMessage _m = getSwiftMessageNotNullOrException();
+		if (_m.getBlock4() == null) {
+			log.info("block4 is null");
+			return null;
+		}
+		return _m.getBlock4().getTagByName(tagName);
+	}
+
+	/**
+	 * Returns an array of tags or null if non is found
+	 * @param tagName tag name to find including letter option, example "33B"
+	 * @return found tags or null
+	 * @since 7.8.9
+	 */
+	protected Tag[] tags(final String tagName) {
+		final SwiftMessage _m = getSwiftMessageNotNullOrException();
+		if (_m.getBlock4() == null) {
+			log.info("block4 is null");
+			return null;
+		} else {
+			return _m.getBlock4().getTagsByName(tagName);
+		}
+	}
 }

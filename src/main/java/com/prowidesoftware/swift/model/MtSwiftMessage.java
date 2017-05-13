@@ -24,11 +24,14 @@ import java.util.logging.Level;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.parser.SwiftParserConfiguration;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
+import com.prowidesoftware.swift.model.mt.ServiceIdType;
 import com.prowidesoftware.swift.utils.Lib;
 
 
@@ -173,37 +176,51 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 		if (model == null) {
 			throw new IllegalArgumentException("the raw message parameter could not be parsed into a SwiftMessage");
 		} else {
-			updateAttributes(model, getMessage());
+			updateAttributes(model);
 		}
 	}
 	
-	private void updateAttributes(final SwiftMessage model, final String fin) {
+	private void updateAttributes(final SwiftMessage model) {
 		setFileFormat(FileFormat.FIN);
-		if (model.isSystemMessage()) {
-			/*
-			 * sebastian agosto 2016
-			 *  esto ahora queda redundante con la factory, sacar o dejar por las dudas
-			 *  para uso en core sin sdk? no jode dejarlo, pero es codigo redundante 
-			 */
-			if (model.isAck()) {
-				super.identifier = "ACK";
-			} else if (model.isNack()) {
-				super.identifier = "NAK";
+		if (model.isServiceMessage21()) {
+			if (model.getUnparsedTextsSize() > 0) {
+				/*
+				 * set identifier for system aknowledge
+				 */
+				if (model.isAck()) {
+					super.identifier = IDENTIFIER_ACK;
+				} else if (model.isNack()) {
+					super.identifier = IDENTIFIER_NAK;
+				}
+				/*
+				 * try to parse the appended original message (if any)
+				 * to gather receiver and reference information
+				 */
+				final SwiftMessage original = model.getUnparsedTexts().getTextAsMessage(0);
+				if (original != null) {
+					super.receiver = StringUtils.substring(original.getReceiver(), 0, 8);
+					setDirection(original.getDirection());
+					setReference(SwiftMessageUtils.reference(original));
+				}
 			}
-			setDirection(MessageIOType.incoming);
-		} else {
+		} else if (model.getBlock1() != null && model.getBlock1().getServiceIdType() == ServiceIdType._01) {
 			super.identifier = model.getMtId().id();
-			super.sender = StringUtils.substring(model.getSender(), 0, 8);
 			super.receiver = StringUtils.substring(model.getReceiver(), 0, 8);
 			setDirection(model.getDirection());
+			setReference(SwiftMessageUtils.reference(model));
+			CurrencyAmount currencyAmount = SwiftMessageUtils.currencyAmount(model);
+			if (currencyAmount != null) {
+				setCurrency(currencyAmount.getCurrency());
+				setAmount(currencyAmount.getAmount());
+			}
 		}
+		super.sender = StringUtils.substring(model.getSender(), 0, 8);
 		setChecksum(SwiftMessageUtils.calculateChecksum(model));
 		setPde(model.getPDE());
 		setPdm(model.getPDM());
 		setMir(model.getMIR());
 		setMur(model.getMUR());
 		setUuid(model.getUUID());
-		setReference(SwiftMessageUtils.reference(model));
 		setLastModified(Calendar.getInstance());
 	}
 
@@ -247,7 +264,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 		final String fin = (new ConversionService()).getFIN(model);
 		Validate.notNull(fin, "the raw message could not be created from the SwiftMessage parameter");
 		setMessage(fin);
-		updateAttributes(model, fin);
+		updateAttributes(model);
 	}
 
 	/**
@@ -263,22 +280,34 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	}
 	
 	/**
-	 * @deprecated use update from string or constructor from String, File or InputStream instead,
-	 * the internal model message is no longer user to avoid inconsistencies
+	 * @deprecated Use {@link #updateFromModel(SwiftMessage)} or constructor {@link #MtSwiftMessage(SwiftMessage)} instead,
+	 * The internal model message is no longer kept as class attribute to avoid inconsistencies
 	 * between the raw format and the parsed data.
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public void updateFromModel() {
+		DeprecationUtils.phase3(getClass(), "updateFromModel()", "Use updateFromModel(SwiftMessage) or constructor MtSwiftMessage(SwiftMessage) instead.");
 	}
 
 	/**
-	 * @deprecated the internal model message is no longer user to avoid inconsistencies
-	 * between the raw format and the parsed data.
+	 * @deprecated The internal model message is no longer kept as class attribute to avoid 
+	 * inconsistencies between the raw format and the parsed data. To parse the internal raw
+	 * format into a model object use {@link #modelMessage()} instead of this getter.
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public SwiftMessage getModelMessage() {
+		DeprecationUtils.phase2(getClass(), "getModelMessage()", "Use modelMessage() instead.");
+		return modelMessage();
+	}
+	
+	/**
+	 * Parses the raw message content into a {@linkplain SwiftMessage} object.
+	 * @return the parsed message or <code>null</code> if the raw content is not set or cannot be parsed
+	 * @since 7.8.9
+	 */
+	public SwiftMessage modelMessage() {
 		if (getMessage() != null) {
 			final SwiftParser parser = new SwiftParser(getMessage());
 			parser.getConfiguration().setLenient(true);
@@ -292,14 +321,14 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	}
 
 	/**
-	 * @deprecated the internal model message is no longer user to avoid inconsistencies
-	 * between the raw format and the parsed data.
-	 * 
-	 * use {@link #updateFromModel()}
+	 * @deprecated The internal model message is no longer kept as class attribute to avoid 
+	 * inconsistencies between the raw format and the parsed data. To update the internal raw
+	 * format from a model object use {@link #updateFromModel(SwiftMessage)} instead of this setter.
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public void setModelMessage(final SwiftMessage modelMessage) {
+		DeprecationUtils.phase2(getClass(), "setModelMessage(SwiftMessage)", "Use updateFromModel(SwiftMessage) instead.");
 		updateFromModel(modelMessage);
 	}
 
@@ -478,8 +507,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	 * @deprecated use the constructor {@link #MtSwiftMessage(File)} instead
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public MtSwiftMessage readFile(final File file) throws IOException {
+		DeprecationUtils.phase3(getClass(), "readFile(File)", "Use the constructor MtSwiftMessage(File) instead.");
 		final MtSwiftMessage result = new MtSwiftMessage();
 		result.setModelMessage(new SwiftParser(new FileInputStream(file)).message());
 		result.setMessage(Lib.readFile(file));

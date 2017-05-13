@@ -89,7 +89,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 	 * @return Integer containing the block's number
 	 */
 	public Integer getNumber() {
-		return new Integer(2);
+		return Integer.valueOf(2);
 	}
 
 	/**
@@ -153,7 +153,9 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 			try {
 				return MessagePriority.valueOf(this.messagePriority);
 			} catch (Exception e) {
-				log.log(Level.WARNING, "Block2 messagePriority contains an invalid value ["+ this.messagePriority +"]. The expected values are "+MessagePriority.values(), e);
+				final String text = "Block2 messagePriority contains an invalid value ["+ this.messagePriority +"]. The expected values are "+MessagePriority.values();
+				log.warning(text);
+				log.log(Level.FINEST, text, e);
 			}
 		}
 		return null;

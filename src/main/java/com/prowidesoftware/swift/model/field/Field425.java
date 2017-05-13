@@ -34,9 +34,9 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 /**
  * Field 425<br /><br />
  *
- * validation pattern: [2!c]*20/37x<br />
- * parser pattern: 2!S*20/S<br />
- * components pattern: SSSSSSSSSSSSSSSSSSSSS<br />
+ * validation pattern: 20*(2!c/37x)<br />
+ * parser pattern: 20*(S/S)<br />
+ * components pattern: SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS<br />
  *
  * <h1>Components Data types</h1>
  * <ul> 
@@ -61,6 +61,25 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
  * 		<li>component19: <code>String</code></li> 
  * 		<li>component20: <code>String</code></li> 
  * 		<li>component21: <code>String</code></li> 
+ * 		<li>component22: <code>String</code></li> 
+ * 		<li>component23: <code>String</code></li> 
+ * 		<li>component24: <code>String</code></li> 
+ * 		<li>component25: <code>String</code></li> 
+ * 		<li>component26: <code>String</code></li> 
+ * 		<li>component27: <code>String</code></li> 
+ * 		<li>component28: <code>String</code></li> 
+ * 		<li>component29: <code>String</code></li> 
+ * 		<li>component30: <code>String</code></li> 
+ * 		<li>component31: <code>String</code></li> 
+ * 		<li>component32: <code>String</code></li> 
+ * 		<li>component33: <code>String</code></li> 
+ * 		<li>component34: <code>String</code></li> 
+ * 		<li>component35: <code>String</code></li> 
+ * 		<li>component36: <code>String</code></li> 
+ * 		<li>component37: <code>String</code></li> 
+ * 		<li>component38: <code>String</code></li> 
+ * 		<li>component39: <code>String</code></li> 
+ * 		<li>component40: <code>String</code></li> 
  * </ul>
  *		 
  * <em>NOTE: this source code has been generated from template</em>
@@ -85,14 +104,14 @@ public class Field425 extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_425 = "425";
-	public static final String PARSER_PATTERN ="2!S*20/S";
-	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSSSSSSSSSS";
+	public static final String PARSER_PATTERN ="20*(S/S)";
+	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS";
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field425() {
-		super(21);
+		super(40);
 	}
 	    					
 	/**
@@ -129,8 +148,34 @@ public class Field425 extends Field implements Serializable {
 	 */
 	@Override
 	public void parse(final String value) {
-		init(21);
-		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : 2!S*20/S");
+		init(40);
+		/*
+		 * This parser implementation needs review, the actual field format is not clear in the standard:
+		 
+		 * 422 <MI-message-data-text> 20*(2!c/37x) This field is only for use by Market Infrastructures 
+		 * which have subscribed to the Market Infrastructure Resiliency Service (MIRS).
+		 *
+		 * It is not clear how to split one instance to the other between the 12 occurrences
+		 */
+		if (value != null) {
+			String[] tokens = org.apache.commons.lang.StringUtils.split(value, "/");
+			final StringBuilder lastComponent = new StringBuilder();
+			for (int i=0; i<tokens.length; i++) {
+				if (i < 40) {
+					//set all components sequentially, but the last one
+					setComponent(i+1, tokens[i]);
+				} else {
+					//the last component will include all the remaining string
+					if (lastComponent.length() > 0) {
+						lastComponent.append("/");
+					}
+					lastComponent.append(tokens[i]);
+				}
+			}
+			if (lastComponent.length() > 0) {
+				setComponent40(lastComponent.toString());
+			}
+		}
 	}
 	
 	/**
@@ -151,7 +196,7 @@ public class Field425 extends Field implements Serializable {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		//FIXME serialization 2!S*20/S
+		//FIXME serialization 20*(S/S)
 		// @NotImplemented
 		int notImplemented;
 		return result.toString();
@@ -681,6 +726,462 @@ public class Field425 extends Field implements Serializable {
 		setComponent(21, component21);
 		return this;
 	}
+	/**
+	 * Get the component22
+	 * @return the component22
+	 */
+	public String getComponent22() {
+		return getComponent(22);
+	}
+
+	/**
+	 * Same as getComponent(22)
+	 */
+	@Deprecated
+	public java.lang.String getComponent22AsString() {
+		return getComponent(22);
+	}
+
+	/**
+	 * Set the component22.
+	 * @param component22 the component22 to set
+	 */
+	public Field425 setComponent22(String component22) {
+		setComponent(22, component22);
+		return this;
+	}
+	/**
+	 * Get the component23
+	 * @return the component23
+	 */
+	public String getComponent23() {
+		return getComponent(23);
+	}
+
+	/**
+	 * Same as getComponent(23)
+	 */
+	@Deprecated
+	public java.lang.String getComponent23AsString() {
+		return getComponent(23);
+	}
+
+	/**
+	 * Set the component23.
+	 * @param component23 the component23 to set
+	 */
+	public Field425 setComponent23(String component23) {
+		setComponent(23, component23);
+		return this;
+	}
+	/**
+	 * Get the component24
+	 * @return the component24
+	 */
+	public String getComponent24() {
+		return getComponent(24);
+	}
+
+	/**
+	 * Same as getComponent(24)
+	 */
+	@Deprecated
+	public java.lang.String getComponent24AsString() {
+		return getComponent(24);
+	}
+
+	/**
+	 * Set the component24.
+	 * @param component24 the component24 to set
+	 */
+	public Field425 setComponent24(String component24) {
+		setComponent(24, component24);
+		return this;
+	}
+	/**
+	 * Get the component25
+	 * @return the component25
+	 */
+	public String getComponent25() {
+		return getComponent(25);
+	}
+
+	/**
+	 * Same as getComponent(25)
+	 */
+	@Deprecated
+	public java.lang.String getComponent25AsString() {
+		return getComponent(25);
+	}
+
+	/**
+	 * Set the component25.
+	 * @param component25 the component25 to set
+	 */
+	public Field425 setComponent25(String component25) {
+		setComponent(25, component25);
+		return this;
+	}
+	/**
+	 * Get the component26
+	 * @return the component26
+	 */
+	public String getComponent26() {
+		return getComponent(26);
+	}
+
+	/**
+	 * Same as getComponent(26)
+	 */
+	@Deprecated
+	public java.lang.String getComponent26AsString() {
+		return getComponent(26);
+	}
+
+	/**
+	 * Set the component26.
+	 * @param component26 the component26 to set
+	 */
+	public Field425 setComponent26(String component26) {
+		setComponent(26, component26);
+		return this;
+	}
+	/**
+	 * Get the component27
+	 * @return the component27
+	 */
+	public String getComponent27() {
+		return getComponent(27);
+	}
+
+	/**
+	 * Same as getComponent(27)
+	 */
+	@Deprecated
+	public java.lang.String getComponent27AsString() {
+		return getComponent(27);
+	}
+
+	/**
+	 * Set the component27.
+	 * @param component27 the component27 to set
+	 */
+	public Field425 setComponent27(String component27) {
+		setComponent(27, component27);
+		return this;
+	}
+	/**
+	 * Get the component28
+	 * @return the component28
+	 */
+	public String getComponent28() {
+		return getComponent(28);
+	}
+
+	/**
+	 * Same as getComponent(28)
+	 */
+	@Deprecated
+	public java.lang.String getComponent28AsString() {
+		return getComponent(28);
+	}
+
+	/**
+	 * Set the component28.
+	 * @param component28 the component28 to set
+	 */
+	public Field425 setComponent28(String component28) {
+		setComponent(28, component28);
+		return this;
+	}
+	/**
+	 * Get the component29
+	 * @return the component29
+	 */
+	public String getComponent29() {
+		return getComponent(29);
+	}
+
+	/**
+	 * Same as getComponent(29)
+	 */
+	@Deprecated
+	public java.lang.String getComponent29AsString() {
+		return getComponent(29);
+	}
+
+	/**
+	 * Set the component29.
+	 * @param component29 the component29 to set
+	 */
+	public Field425 setComponent29(String component29) {
+		setComponent(29, component29);
+		return this;
+	}
+	/**
+	 * Get the component30
+	 * @return the component30
+	 */
+	public String getComponent30() {
+		return getComponent(30);
+	}
+
+	/**
+	 * Same as getComponent(30)
+	 */
+	@Deprecated
+	public java.lang.String getComponent30AsString() {
+		return getComponent(30);
+	}
+
+	/**
+	 * Set the component30.
+	 * @param component30 the component30 to set
+	 */
+	public Field425 setComponent30(String component30) {
+		setComponent(30, component30);
+		return this;
+	}
+	/**
+	 * Get the component31
+	 * @return the component31
+	 */
+	public String getComponent31() {
+		return getComponent(31);
+	}
+
+	/**
+	 * Same as getComponent(31)
+	 */
+	@Deprecated
+	public java.lang.String getComponent31AsString() {
+		return getComponent(31);
+	}
+
+	/**
+	 * Set the component31.
+	 * @param component31 the component31 to set
+	 */
+	public Field425 setComponent31(String component31) {
+		setComponent(31, component31);
+		return this;
+	}
+	/**
+	 * Get the component32
+	 * @return the component32
+	 */
+	public String getComponent32() {
+		return getComponent(32);
+	}
+
+	/**
+	 * Same as getComponent(32)
+	 */
+	@Deprecated
+	public java.lang.String getComponent32AsString() {
+		return getComponent(32);
+	}
+
+	/**
+	 * Set the component32.
+	 * @param component32 the component32 to set
+	 */
+	public Field425 setComponent32(String component32) {
+		setComponent(32, component32);
+		return this;
+	}
+	/**
+	 * Get the component33
+	 * @return the component33
+	 */
+	public String getComponent33() {
+		return getComponent(33);
+	}
+
+	/**
+	 * Same as getComponent(33)
+	 */
+	@Deprecated
+	public java.lang.String getComponent33AsString() {
+		return getComponent(33);
+	}
+
+	/**
+	 * Set the component33.
+	 * @param component33 the component33 to set
+	 */
+	public Field425 setComponent33(String component33) {
+		setComponent(33, component33);
+		return this;
+	}
+	/**
+	 * Get the component34
+	 * @return the component34
+	 */
+	public String getComponent34() {
+		return getComponent(34);
+	}
+
+	/**
+	 * Same as getComponent(34)
+	 */
+	@Deprecated
+	public java.lang.String getComponent34AsString() {
+		return getComponent(34);
+	}
+
+	/**
+	 * Set the component34.
+	 * @param component34 the component34 to set
+	 */
+	public Field425 setComponent34(String component34) {
+		setComponent(34, component34);
+		return this;
+	}
+	/**
+	 * Get the component35
+	 * @return the component35
+	 */
+	public String getComponent35() {
+		return getComponent(35);
+	}
+
+	/**
+	 * Same as getComponent(35)
+	 */
+	@Deprecated
+	public java.lang.String getComponent35AsString() {
+		return getComponent(35);
+	}
+
+	/**
+	 * Set the component35.
+	 * @param component35 the component35 to set
+	 */
+	public Field425 setComponent35(String component35) {
+		setComponent(35, component35);
+		return this;
+	}
+	/**
+	 * Get the component36
+	 * @return the component36
+	 */
+	public String getComponent36() {
+		return getComponent(36);
+	}
+
+	/**
+	 * Same as getComponent(36)
+	 */
+	@Deprecated
+	public java.lang.String getComponent36AsString() {
+		return getComponent(36);
+	}
+
+	/**
+	 * Set the component36.
+	 * @param component36 the component36 to set
+	 */
+	public Field425 setComponent36(String component36) {
+		setComponent(36, component36);
+		return this;
+	}
+	/**
+	 * Get the component37
+	 * @return the component37
+	 */
+	public String getComponent37() {
+		return getComponent(37);
+	}
+
+	/**
+	 * Same as getComponent(37)
+	 */
+	@Deprecated
+	public java.lang.String getComponent37AsString() {
+		return getComponent(37);
+	}
+
+	/**
+	 * Set the component37.
+	 * @param component37 the component37 to set
+	 */
+	public Field425 setComponent37(String component37) {
+		setComponent(37, component37);
+		return this;
+	}
+	/**
+	 * Get the component38
+	 * @return the component38
+	 */
+	public String getComponent38() {
+		return getComponent(38);
+	}
+
+	/**
+	 * Same as getComponent(38)
+	 */
+	@Deprecated
+	public java.lang.String getComponent38AsString() {
+		return getComponent(38);
+	}
+
+	/**
+	 * Set the component38.
+	 * @param component38 the component38 to set
+	 */
+	public Field425 setComponent38(String component38) {
+		setComponent(38, component38);
+		return this;
+	}
+	/**
+	 * Get the component39
+	 * @return the component39
+	 */
+	public String getComponent39() {
+		return getComponent(39);
+	}
+
+	/**
+	 * Same as getComponent(39)
+	 */
+	@Deprecated
+	public java.lang.String getComponent39AsString() {
+		return getComponent(39);
+	}
+
+	/**
+	 * Set the component39.
+	 * @param component39 the component39 to set
+	 */
+	public Field425 setComponent39(String component39) {
+		setComponent(39, component39);
+		return this;
+	}
+	/**
+	 * Get the component40
+	 * @return the component40
+	 */
+	public String getComponent40() {
+		return getComponent(40);
+	}
+
+	/**
+	 * Same as getComponent(40)
+	 */
+	@Deprecated
+	public java.lang.String getComponent40AsString() {
+		return getComponent(40);
+	}
+
+	/**
+	 * Set the component40.
+	 * @param component40 the component40 to set
+	 */
+	public Field425 setComponent40(String component40) {
+		setComponent(40, component40);
+		return this;
+	}
 
    /**
     * Given a component number it returns true if the component is optional,
@@ -734,7 +1235,7 @@ public class Field425 extends Field implements Serializable {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "[2!c]*20/37x";
+		return "20*(2!c/37x)";
 	}
 
 	/**
@@ -806,7 +1307,7 @@ public class Field425 extends Field implements Serializable {
 	 */
 	@Override
 	public int componentsSize() {
-		return 21;
+		return 40;
 	}
 
 	/**
@@ -820,11 +1321,8 @@ public class Field425 extends Field implements Serializable {
 	 */
 	@Override
 	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 21) {
+		if (component < 1 || component > 40) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 425");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)
@@ -910,6 +1408,82 @@ public class Field425 extends Field implements Serializable {
 			//default format (as is)
 			return getComponent(21);
 		}
+		if (component == 22) {
+			//default format (as is)
+			return getComponent(22);
+		}
+		if (component == 23) {
+			//default format (as is)
+			return getComponent(23);
+		}
+		if (component == 24) {
+			//default format (as is)
+			return getComponent(24);
+		}
+		if (component == 25) {
+			//default format (as is)
+			return getComponent(25);
+		}
+		if (component == 26) {
+			//default format (as is)
+			return getComponent(26);
+		}
+		if (component == 27) {
+			//default format (as is)
+			return getComponent(27);
+		}
+		if (component == 28) {
+			//default format (as is)
+			return getComponent(28);
+		}
+		if (component == 29) {
+			//default format (as is)
+			return getComponent(29);
+		}
+		if (component == 30) {
+			//default format (as is)
+			return getComponent(30);
+		}
+		if (component == 31) {
+			//default format (as is)
+			return getComponent(31);
+		}
+		if (component == 32) {
+			//default format (as is)
+			return getComponent(32);
+		}
+		if (component == 33) {
+			//default format (as is)
+			return getComponent(33);
+		}
+		if (component == 34) {
+			//default format (as is)
+			return getComponent(34);
+		}
+		if (component == 35) {
+			//default format (as is)
+			return getComponent(35);
+		}
+		if (component == 36) {
+			//default format (as is)
+			return getComponent(36);
+		}
+		if (component == 37) {
+			//default format (as is)
+			return getComponent(37);
+		}
+		if (component == 38) {
+			//default format (as is)
+			return getComponent(38);
+		}
+		if (component == 39) {
+			//default format (as is)
+			return getComponent(39);
+		}
+		if (component == 40) {
+			//default format (as is)
+			return getComponent(40);
+		}
 		return null;	
 	}
 	
@@ -923,6 +1497,25 @@ public class Field425 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
 		result.add(null);
 		result.add(null);
 		result.add(null);

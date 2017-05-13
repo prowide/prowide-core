@@ -543,16 +543,13 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 		if (component < 1 || component > 3) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 69A");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -560,7 +557,7 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 		}
 		if (component == 3) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent3AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

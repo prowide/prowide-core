@@ -17,6 +17,10 @@ package com.prowidesoftware.swift.model;
 import java.math.BigInteger;
 import java.util.logging.Level;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 /**
  * Utility class to validate IBAN codes.
  * 
@@ -78,8 +82,9 @@ public class IBAN {
 	 * @throws IllegalStateException if iban is <code>null</code>
 	 */
 	public boolean isValid() {
-		if (this.iban==null)
+		if (this.iban == null) {
 			throw new IllegalStateException("iban is null");
+		}
 		invalidCause = null;
 		final String code = removeNonAlpha(this.iban);
 		final int len = code.length();
@@ -122,8 +127,9 @@ public class IBAN {
 	 * @deprecated use {@link IBAN#translateChars(StringBuilder)}
 	 */
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public String translateChars(final StringBuffer bban) {
+		DeprecationUtils.phase2(getClass(), "translateChars(StringBuffer)", "Use translateChars(StringBuilder) instead.");
 		return translateChars(new StringBuilder(bban));
 	}
 

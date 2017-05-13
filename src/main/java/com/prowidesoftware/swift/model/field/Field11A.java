@@ -283,9 +283,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
 	}
     
 	public List<String> currencyStrings() {
-		List<String> result = new ArrayList<String>();
-		result = CurrencyResolver.resolveComponentsPattern(COMPONENTS_PATTERN, components);
-		return result;
+		return CurrencyResolver.resolveComponentsPattern(COMPONENTS_PATTERN, components);
 	}
 
 	public List<Currency> currencies() {
@@ -491,9 +489,6 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 11A");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

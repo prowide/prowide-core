@@ -16,7 +16,9 @@ package com.prowidesoftware.swift.model;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 /**
  * Helper class to process BIC related information.
@@ -47,13 +49,14 @@ public class BIC {
 
 	private String invalidCause = null;
 	private String bic8 = null;
-	private String branch = null;
+	protected String branch = null;
 	private String subtype = null;
 
 	/**
 	 * Constructor with BIC code.
 	 * It accepts a BIC8, BIC11 or a logical terminal address (12 characters) in which
 	 * case the LT identifier at position 9 will be dropped.
+	 * @see LogicalTerminalAddress subclass to deal with 12 characters length LT identifiers
 	 *
 	 * @param bic the BIC code to use in this BIC
 	 */
@@ -64,6 +67,7 @@ public class BIC {
 
 	/**
 	 * Parse the given string into the corresponding object attributes.
+	 * Important: the LT identifier character is loss if parameter is 12 characters long
 	 *
 	 * @param bic
 	 */
@@ -92,8 +96,9 @@ public class BIC {
 	 * @deprecated use getBic8 or getBic11 instead
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public String getBic() {
+		DeprecationUtils.phase3(getClass(), "getBic()", "Use getBic8() or getBic11() instead.");
 		final StringBuilder sb = new StringBuilder();
 		if (this.bic8 != null) {
 			sb.append(this.bic8);
@@ -109,8 +114,9 @@ public class BIC {
 	 * @deprecated use the constructor passing the string as parameter
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public void setBic(final String bic) {
+		DeprecationUtils.phase3(getClass(), "getBic()", "Use the constructor instead, passing the BIC value as String parameter.");
 		parse(bic);
 	}
 

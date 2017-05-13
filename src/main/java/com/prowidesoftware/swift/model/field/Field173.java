@@ -69,6 +69,11 @@ public class Field173 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "P";
 
 	/**
+	 * Component number for the Day Time subfield
+	 */
+	public static final Integer DAY_TIME = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field173() {
@@ -172,6 +177,22 @@ public class Field173 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Day Time (component1).
+	 * @return the Day Time from component1
+	 */
+	public String getDayTime() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Day Time (component1) as Calendar
+	 * @return the Day Time from component1 converted to Calendar or <code>null</code> if cannot be converted
+	 */
+	public java.util.Calendar getDayTimeAsCalendar() {
+		return SwiftFormatUtils.getDayTime(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -186,6 +207,25 @@ public class Field173 extends Field implements Serializable {
 	 */
 	public Field173 setComponent1(java.util.Calendar component1) {
 		setComponent(1, SwiftFormatUtils.getDayTime(component1));
+		return this;
+	}
+	
+	/**
+	 * Set the Day Time (component1).
+	 * @param component1 the Day Time to set
+	 */
+	public Field173 setDayTime(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Day Time (component1) from a Calendar object.
+	 * @see #setComponent1(java.util.Calendar)
+	 * @param component1 Calendar with the Day Time content to set
+	 */
+	public Field173 setDayTime(java.util.Calendar component1) {
+		setComponent1(component1);
 		return this;
 	}
 
@@ -330,13 +370,10 @@ public class Field173 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 173");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//day + time
-			java.text.DateFormat df = new java.text.SimpleDateFormat("dd", locale);
-			java.text.DateFormat tf = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat df = new java.text.SimpleDateFormat("dd", notNull(locale));
+			java.text.DateFormat tf = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return df.format(cal.getTime()) + " " + tf.format(cal.getTime());
@@ -355,7 +392,7 @@ public class Field173 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Day Time");
 		return result;
 	}
 	

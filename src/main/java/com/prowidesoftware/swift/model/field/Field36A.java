@@ -238,9 +238,16 @@ public class Field36A extends Field implements Serializable, AmountContainer {
 		return this;
 	}
     
+	/**
+	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
+	
+	/**
+	 * @see {@linkplain AmountResolver#amount(Field)}
+	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
 	}
@@ -386,12 +393,9 @@ public class Field36A extends Field implements Serializable, AmountContainer {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 36A");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);

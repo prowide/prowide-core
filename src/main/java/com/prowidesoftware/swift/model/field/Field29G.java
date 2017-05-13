@@ -266,7 +266,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field29G setComponent1(java.lang.Number component1) {
 		if (component1 != null) {
-			setComponent(1, ""+component1.intValue());
+			setComponent(1, Integer.toString(component1.intValue()));
 		}
 		return this;
 	}
@@ -332,7 +332,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field29G setComponent3(java.lang.Number component3) {
 		if (component3 != null) {
-			setComponent(3, ""+component3.intValue());
+			setComponent(3, Integer.toString(component3.intValue()));
 		}
 		return this;
 	}
@@ -398,7 +398,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field29G setComponent5(java.lang.Number component5) {
 		if (component5 != null) {
-			setComponent(5, ""+component5.intValue());
+			setComponent(5, Integer.toString(component5.intValue()));
 		}
 		return this;
 	}
@@ -464,7 +464,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field29G setComponent7(java.lang.Number component7) {
 		if (component7 != null) {
-			setComponent(7, ""+component7.intValue());
+			setComponent(7, Integer.toString(component7.intValue()));
 		}
 		return this;
 	}
@@ -530,7 +530,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field29G setComponent9(java.lang.Number component9) {
 		if (component9 != null) {
-			setComponent(9, ""+component9.intValue());
+			setComponent(9, Integer.toString(component9.intValue()));
 		}
 		return this;
 	}
@@ -596,7 +596,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field29G setComponent11(java.lang.Number component11) {
 		if (component11 != null) {
-			setComponent(11, ""+component11.intValue());
+			setComponent(11, Integer.toString(component11.intValue()));
 		}
 		return this;
 	}
@@ -662,7 +662,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field29G setComponent13(java.lang.Number component13) {
 		if (component13 != null) {
-			setComponent(13, ""+component13.intValue());
+			setComponent(13, Integer.toString(component13.intValue()));
 		}
 		return this;
 	}
@@ -728,7 +728,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field29G setComponent15(java.lang.Number component15) {
 		if (component15 != null) {
-			setComponent(15, ""+component15.intValue());
+			setComponent(15, Integer.toString(component15.intValue()));
 		}
 		return this;
 	}
@@ -794,7 +794,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field29G setComponent17(java.lang.Number component17) {
 		if (component17 != null) {
-			setComponent(17, ""+component17.intValue());
+			setComponent(17, Integer.toString(component17.intValue()));
 		}
 		return this;
 	}
@@ -1091,12 +1091,9 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 		if (component < 1 || component > 18) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 29G");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1108,7 +1105,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1120,7 +1117,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 5) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent5AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1132,7 +1129,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 7) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent7AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1144,7 +1141,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 9) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent9AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1156,7 +1153,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 11) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent11AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1168,7 +1165,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 13) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent13AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1180,7 +1177,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 15) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent15AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -1192,7 +1189,7 @@ public class Field29G extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 17) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent17AsNumber();
 			if (n != null) {
 				return f.format(n);

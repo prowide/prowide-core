@@ -130,7 +130,7 @@ public class Field37H extends Field implements Serializable, AmountContainer {
 	public void parse(final String value) {
 		init(3);
 		String toparse = SwiftParseUtils.getAlphaPrefix(value);
-		if (toparse.length() > 1) {
+		if (toparse != null && toparse.length() > 1) {
 			setComponent1(org.apache.commons.lang.StringUtils.substring(toparse, 0, toparse.length()-1));
 			setComponent2(org.apache.commons.lang.StringUtils.substring(toparse, toparse.length()-1));
 		} else {
@@ -341,9 +341,16 @@ public class Field37H extends Field implements Serializable, AmountContainer {
 		return this;
 	}
     
+	/**
+	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
+	
+	/**
+	 * @see {@linkplain AmountResolver#amount(Field)}
+	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
 	}
@@ -492,9 +499,6 @@ public class Field37H extends Field implements Serializable, AmountContainer {
 		if (component < 1 || component > 3) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 37H");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -505,7 +509,7 @@ public class Field37H extends Field implements Serializable, AmountContainer {
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);

@@ -15,6 +15,8 @@
 package com.prowidesoftware.swift.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.commons.lang.Validate;
@@ -28,7 +30,6 @@ import org.apache.commons.lang.Validate;
  */
 public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
 	private static final long serialVersionUID = 4377884587811023149L;
-	@SuppressWarnings("unused")
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock3.class.getName());
 
 	/**
@@ -78,13 +79,13 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
 	 * @return Integer containing the block's number
 	 */
 	public Integer getNumber() {
-		return new Integer(3);
+		return Integer.valueOf(3);
 	}
 
 	/**
 	 * Returns the block name (the value 3 as a string)
 	 * @return block name
-	 * 
+	 * st
 	 * @since 5.0
 	 */
 	public String getName() {
@@ -96,9 +97,26 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
 	 * @return true if the message is STP
 	 */
 	public Boolean isSTP() {
-		if (containsTag("119") && getTagValue(("119")).toLowerCase().equals("stp")) {
+		if (containsTag("119") && "STP".equalsIgnoreCase(getTagValue("119"))) {
 			return Boolean.TRUE;
 		}
 		return Boolean.FALSE;
+	}
+	
+	/**
+	 * This method will generate a MUR field (tag 108) with a timestamp using
+	 * current time formatted as yyMMddHHmmssSSSS
+	 * @param overwriteIfExist when true and field 108 already exist, its value will be overwriten with the generated timestamp
+	 * @since 7.8.8
+	 */
+	public void generateMUR(boolean overwriteIfExist) {
+		final String MUR = (new SimpleDateFormat("yyMMddHHmmssSSSS").format(Calendar.getInstance().getTime()));
+		Tag t = getTagByName("108");
+		if (t != null && overwriteIfExist) {
+			log.fine("block 3 MUR value "+t.getValue()+" overwritten with generated MUR "+MUR);
+			t.setValue(MUR);
+		} else {
+			append(new Tag("108", MUR));
+		}
 	}
 }

@@ -116,6 +116,7 @@ public class Field87E extends Field implements Serializable, BICContainer, com.p
 	@Override
 	public void parse(final String value) {
 		init(4);
+		// @NotImplemented
 		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : S$[/c][/S]S");
 	}
 	
@@ -513,9 +514,6 @@ public class Field87E extends Field implements Serializable, BICContainer, com.p
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 87E");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

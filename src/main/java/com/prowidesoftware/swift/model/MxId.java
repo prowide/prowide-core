@@ -171,5 +171,51 @@ public class MxId {
 	public String toString() {
 		return id();
 	}
+	
+	/**
+	 * @since 7.8.8
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((businessProcess == null) ? 0 : businessProcess.hashCode());
+		result = prime * result + ((functionality == null) ? 0 : functionality.hashCode());
+		result = prime * result + ((variant == null) ? 0 : variant.hashCode());
+		result = prime * result + ((version == null) ? 0 : version.hashCode());
+		return result;
+	}
+
+	/**
+	 * @since 7.8.8
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MxId other = (MxId) obj;
+		if (businessProcess != other.businessProcess)
+			return false;
+		if (functionality == null) {
+			if (other.functionality != null)
+				return false;
+		} else if (!functionality.equals(other.functionality))
+			return false;
+		if (variant == null) {
+			if (other.variant != null)
+				return false;
+		} else if (!variant.equals(other.variant))
+			return false;
+		if (version == null) {
+			if (other.version != null)
+				return false;
+		} else if (!version.equals(other.version))
+			return false;
+		return true;
+	}
 
 }

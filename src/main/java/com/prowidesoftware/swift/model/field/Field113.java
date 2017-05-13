@@ -69,6 +69,11 @@ public class Field113 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "S";
 
 	/**
+	 * Component number for the Banking Priority subfield
+	 */
+	public static final Integer BANKING_PRIORITY = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field113() {
@@ -172,10 +177,27 @@ public class Field113 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Banking Priority (component1).
+	 * @return the Banking Priority from component1
+	 */
+	public String getBankingPriority() {
+		return getComponent(1);
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
 	public Field113 setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Banking Priority (component1).
+	 * @param component1 the Banking Priority to set
+	 */
+	public Field113 setBankingPriority(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -321,9 +343,6 @@ public class Field113 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 113");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -341,7 +360,7 @@ public class Field113 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Banking Priority");
 		return result;
 	}
 	

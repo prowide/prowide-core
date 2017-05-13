@@ -43,7 +43,7 @@ public class CurrencyResolver {
 
 	public static String resolveCurrencyString(CurrencyContainer o) {
 		final List<String> list = o.currencyStrings();
-		if (list.size()>0) {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
 		return null;

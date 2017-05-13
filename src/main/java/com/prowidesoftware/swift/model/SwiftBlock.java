@@ -186,7 +186,7 @@ public abstract class SwiftBlock implements Serializable {
 	public Integer getUnparsedTextsSize() {
 		// no list => size is zero...
 		if (this.unparsedTexts == null) {
-			return new Integer(0);
+			return Integer.valueOf(0);
 		}
 		return this.unparsedTexts.size();
 	}
@@ -286,7 +286,7 @@ public abstract class SwiftBlock implements Serializable {
 	 * @deprecated use {@link #getBlockType()}
 	 */
 	public Boolean getInput() {
-		return new Boolean(StringUtils.equals(getBlockType(), "2I"));
+		return Boolean.valueOf(StringUtils.equals(getBlockType(), "2I"));
 	}
 
 	/**
@@ -303,7 +303,7 @@ public abstract class SwiftBlock implements Serializable {
 	 * @deprecated use {@link #getBlockType()}
 	 */
 	public Boolean getOutput() {
-		return new Boolean(StringUtils.equals(getBlockType(), "2O"));
+		return Boolean.valueOf(StringUtils.equals(getBlockType(), "2O"));
 	}
 
 	/**
@@ -312,5 +312,5 @@ public abstract class SwiftBlock implements Serializable {
 	 */
 	public void setOutput(Boolean output) {
 		this.output = output;
-	}
+	}	
 }

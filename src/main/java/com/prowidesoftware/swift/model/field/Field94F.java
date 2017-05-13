@@ -520,9 +520,6 @@ public class Field94F extends Field implements Serializable, BICContainer, com.p
 		if (component < 1 || component > 3) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 94F");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);

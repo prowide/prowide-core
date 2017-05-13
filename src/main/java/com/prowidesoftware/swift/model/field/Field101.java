@@ -69,6 +69,11 @@ public class Field101 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "S";
 
 	/**
+	 * Component number for the Application Identifier subfield
+	 */
+	public static final Integer APPLICATION_IDENTIFIER = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field101() {
@@ -172,10 +177,27 @@ public class Field101 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Application Identifier (component1).
+	 * @return the Application Identifier from component1
+	 */
+	public String getApplicationIdentifier() {
+		return getComponent(1);
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
 	public Field101 setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Application Identifier (component1).
+	 * @param component1 the Application Identifier to set
+	 */
+	public Field101 setApplicationIdentifier(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -321,9 +343,6 @@ public class Field101 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 101");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -341,7 +360,7 @@ public class Field101 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Application Identifier");
 		return result;
 	}
 	

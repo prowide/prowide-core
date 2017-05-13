@@ -260,9 +260,11 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
 	public DeliveryMonitoring getDeliveryMonitoringType() {
 		if (this.deliveryMonitoring != null) {
 			try {
-				return DeliveryMonitoring.valueOf(this.deliveryMonitoring);
+				return DeliveryMonitoring.valueOf("_"+this.deliveryMonitoring);
 			} catch (Exception e) {
-				log.log(Level.WARNING, "Block2 deliveryMonitoring contains an invalid value ["+ this.deliveryMonitoring +"]. The expected values are "+DeliveryMonitoring.values(), e);
+				final String text = "Block2 deliveryMonitoring contains an invalid value ["+ this.deliveryMonitoring +"]";
+				log.warning(text);
+				log.log(Level.FINEST, text, e);
 			}
 		}
 		return null;

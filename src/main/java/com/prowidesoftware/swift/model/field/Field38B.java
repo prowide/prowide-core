@@ -113,6 +113,7 @@ public class Field38B extends Field implements Serializable {
 	@Override
 	public void parse(final String value) {
 		init(3);
+		// @NotImplemented
 		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : S/S[/N]");
 	}
 	
@@ -250,7 +251,7 @@ public class Field38B extends Field implements Serializable {
 	 */
 	public Field38B setComponent3(java.lang.Number component3) {
 		if (component3 != null) {
-			setComponent(3, ""+component3.intValue());
+			setComponent(3, Integer.toString(component3.intValue()));
 		}
 		return this;
 	}
@@ -399,9 +400,6 @@ public class Field38B extends Field implements Serializable {
 		if (component < 1 || component > 3) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 38B");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -412,7 +410,7 @@ public class Field38B extends Field implements Serializable {
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);

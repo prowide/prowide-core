@@ -126,22 +126,23 @@ public class Field11S extends Field implements Serializable, DateContainer, com.
 	public void parse(final String value) {
 		init(4);
 		java.util.List<String> lines = SwiftParseUtils.getLines(value);
-		if (lines.size() > 0) {
-			setComponent1(lines.get(0));
+		if (lines.isEmpty()) {
+			return;
 		}
+		setComponent1(lines.get(0));
 		if (lines.size() > 1) {
 			setComponent2(lines.get(1));
 		}
 		if (lines.size() > 2) {
-    		String toparse = lines.get(2);
-    		if (toparse != null && toparse.length() >= 4) {
-    			setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 0, 4));
-	    		if (toparse != null && toparse.length() > 4 ) {
-	    			setComponent4(org.apache.commons.lang.StringUtils.substring(toparse, 4));
-	    		}
-    		} else {
-    			setComponent3(toparse);
-    		}
+	    	String toparse = lines.get(2);
+	    	if (toparse != null && toparse.length() >= 4) {
+	    		setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 0, 4));
+		   		if (toparse.length() > 4 ) {
+		   			setComponent4(org.apache.commons.lang.StringUtils.substring(toparse, 4));
+		   		}
+	    	} else {
+	    		setComponent3(toparse);
+	    	}
 		}
 	}
 	
@@ -337,7 +338,7 @@ public class Field11S extends Field implements Serializable, DateContainer, com.
 	 */
 	public Field11S setComponent3(java.lang.Number component3) {
 		if (component3 != null) {
-			setComponent(3, ""+component3.intValue());
+			setComponent(3, Integer.toString(component3.intValue()));
 		}
 		return this;
 	}
@@ -379,7 +380,7 @@ public class Field11S extends Field implements Serializable, DateContainer, com.
 	 */
 	public Field11S setComponent4(java.lang.Number component4) {
 		if (component4 != null) {
-			setComponent(4, ""+component4.intValue());
+			setComponent(4, Integer.toString(component4.intValue()));
 		}
 		return this;
 	}
@@ -616,16 +617,13 @@ public class Field11S extends Field implements Serializable, DateContainer, com.
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 11S");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -633,7 +631,7 @@ public class Field11S extends Field implements Serializable, DateContainer, com.
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -641,7 +639,7 @@ public class Field11S extends Field implements Serializable, DateContainer, com.
 		}
 		if (component == 4) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent4AsNumber();
 			if (n != null) {
 				return f.format(n);

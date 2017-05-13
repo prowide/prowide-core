@@ -22,8 +22,9 @@ import java.io.InputStream;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.parser.MxParser;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.model.mx.BusinessHeader;
@@ -293,12 +294,12 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 		if (groupHeader != null) {
 			MxNode senderBic = groupHeader.findFirst("./InstgAgt/FinInstnId/BIC");
 			if (senderBic != null) {
-				sender = StringUtils.substring(senderBic.getValue(), 0, 8);;
+				sender = StringUtils.substring(senderBic.getValue(), 0, 8);
 				updated = true;
 			}
 			MxNode receiverBic = groupHeader.findFirst("./InstdAgt/FinInstnId/BIC");
 			if (receiverBic != null) {
-				receiver = StringUtils.substring(receiverBic.getValue(), 0, 8);;
+				receiver = StringUtils.substring(receiverBic.getValue(), 0, 8);
 				updated = true;
 			}
 			MxNode reference = groupHeader.findFirst("./MsgId");
@@ -389,17 +390,26 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
     /**
      * @deprecated use the constructor {@link #MxSwiftMessage(File)} instead
      */
-	@DeleteSchedule(2016)
 	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear._2018)
     public MxSwiftMessage readFile(File file) throws IOException {
+		DeprecationUtils.phase3(getClass(), "readFile(File)", "Use the constructor MxSwiftMessage(File) instead.");
         MxSwiftMessage result = new MxSwiftMessage();
         result.setMessage(Lib.readFile(file));
         result.setFilename(file.getAbsolutePath());
         return result;
     }
 	
-	@ProwideDeprecated()
+	/**
+	 * @deprecated The internal metadata is set automatically from the message content when
+	 * the object is constructed from String, File or Stream. This should not be updated from
+	 * a decoupled namespace String to avoid inconsistencies between the stored raw message content
+	 * and the metadata.
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	protected void setDataFromNamespace(String namespace) {
+		DeprecationUtils.phase3(getClass(), "setDataFromNamespace(String)", "The internal metadata is set automatically from the message content when the object is constructed from String, File or Stream.");
 		Validate.notNull(namespace, "namespace can not be null");
 		final String[] tokens = StringUtils.split(namespace, '.');
 		if (tokens == null || tokens.length<4) {
@@ -480,4 +490,15 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	    msg.setVariant(getVariant());
 	    msg.setVersion(getVersion());
 	}
+
+	/**
+	 * @since 7.8.6
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append("MxSwiftMessage id=").append(getId()).append(" message=").append(getMessage());
+		return sb.toString();
+	}
+
 }

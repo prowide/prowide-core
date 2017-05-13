@@ -25,10 +25,13 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.WifeException;
 import com.prowidesoftware.swift.model.SwiftBlock;
 import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
 import com.prowidesoftware.swift.model.SwiftBlock2Input;
 import com.prowidesoftware.swift.model.SwiftBlock2Output;
 import com.prowidesoftware.swift.model.SwiftBlock3;
@@ -203,8 +206,9 @@ public class SwiftParser {
 	 * @deprecated use {@link #consumeBlock(UnparsedTextList)} instead of this, <code>consumeBlock(null)</code> is acceptable
 	 */
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	protected SwiftBlock consumeBlock() throws IOException {
+		DeprecationUtils.phase2(getClass(), "consumeBlock()", "Use consumeBlock(UnparsedTextList) instead of this, consumeBlock(null) is acceptable.");
 		return consumeBlock(null);
 	}
 	
@@ -338,18 +342,23 @@ public class SwiftParser {
 	}
 
 	/**
-	 * Attempt to detect if block 2 refers to an input or output message
-	 * @param s the block 2 value (as a FIN value)
+	 * Attempt to detect if block 2 refers to an input or output message.
+	 * If the parameter block content is not well-formed will return false as default.
+	 * @param s the block 2 value (as a FIN value) for example I100BANKDEFFXXXXU3003 or 2:I100BANKDEFFXXXXU3003
 	 * @return whether it's an input block 2 (true) or an output one (false)
 	 */
-	private boolean isInput(final String s) {
+	private static boolean isInput(final String s) {
 		// try to find out the in/out type
 		final int i = s.indexOf(':');
+		Character ch = null;
 		if (i >= 0 && (i + 1) < s.length()) {
-			// check for input mark
-			return Character.toUpperCase(s.charAt(i + 1)) == 'I';
+			// check for input mark after ':'
+			ch = s.charAt(i + 1);
+		} else if (s.length() > 0) {
+			// check start
+			ch = s.charAt(0);
 		}
-		return false;
+		return ch != null && Character.toUpperCase(ch) == 'I';
 	}
 
 	/**
@@ -388,9 +397,7 @@ public class SwiftParser {
 				} else {
 					// read all the characters until data end or a new '{'
 					int end;
-					for (end = i; end < data.length() && data.charAt(end) != '{'; end++) {
-						;
-					}
+					for (end = i; end < data.length() && data.charAt(end) != '{'; end++) {}
 					final String unparsedText = data.substring(i, end).trim();
 					if (!"".equals(unparsedText)) {
 						b.unparsedTextAddText(unparsedText);
@@ -761,7 +768,7 @@ public class SwiftParser {
 		}
 
 		// ignore empty tags (most likely, an "{}" in an unparsed text...)
-		if ((name == null || name.equals("")) && (value == null || value.equals(""))) {
+		if (StringUtils.isEmpty(name) && StringUtils.isEmpty(value)) {
 			return null; // no tag...
 		}
 
@@ -788,7 +795,7 @@ public class SwiftParser {
 		// NOTE: if we will use different Tag classes, here is the instantiation point
 		//
 		final Tag t = new Tag();
-		if (name!=null) {
+		if (name != null) {
 			t.setName(name);
 			t.setValue(value);
 		} else {
@@ -1069,20 +1076,22 @@ public class SwiftParser {
 	}
 
 	/**
-	 * @deprecated use {@link #getConfiguration()} instead
+	 * @deprecated use {@link #getConfiguration()#isLenient()} instead
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public boolean isLenient() {
+		DeprecationUtils.phase3(getClass(), "isLenient()", "Use getConfiguration()#isLenient() instead.");
 		return this.configuration.isLenient();
 	}
 
 	/**
-	 * @deprecated use {@link #setConfiguration(SwiftParserConfiguration)} instead
+	 * @deprecated use {@link #getConfiguration()#setLenient(boolean)} instead
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public void setLenient(final boolean lenient) {
+		DeprecationUtils.phase3(getClass(), "setLenient(boolean)", "Use getConfiguration()#setLenient(boolean) instead.");
 		this.configuration.setLenient(lenient);
 	}
 
@@ -1124,4 +1133,83 @@ public class SwiftParser {
 		SwiftParser parser = new SwiftParser();
 		return parser.block4Consume(b4, toParse);
 	}
+	
+	/**
+	 * Parses a string containing an MT message block 3 content 
+	 * @param s block content starting with "{3:" and ending with "}"
+	 * @return content parsed into a block 3 or an empty block 3 if string cannot be parsed
+	 * @throws IOException
+	 * @since 7.8.6
+	 */
+	static public SwiftBlock3 parseBlock3(String s) throws IOException {
+		SwiftBlock3 b3 = new SwiftBlock3();
+		SwiftParser parser = new SwiftParser();
+		return (SwiftBlock3) parser.tagListBlockConsume(b3, s);
+	}
+	
+	/**
+	 * Parses a string containing an MT message block 5 content 
+	 * @param s block content starting with "{5:" and ending with "}"
+	 * @return content parsed into a block 5 or an empty block 5 if string cannot be parsed
+	 * @throws IOException
+	 * @since 7.8.6
+	 */
+	static public SwiftBlock5 parseBlock5(String s) throws IOException {
+		SwiftBlock5 b5 = new SwiftBlock5();
+		SwiftParser parser = new SwiftParser();
+		return (SwiftBlock5) parser.tagListBlockConsume(b5, s);
+	}
+
+	/**
+	 * Parses a string containing an MT message block 1 content 
+	 * @param s block content starting with "{1:" and ending with "}"
+	 * @return content parsed into a block 1 or an empty block 1 if string cannot be parsed
+	 * @throws IOException
+	 * @since 7.8.6
+	 */
+	static public SwiftBlock1 parseBlock1(String s) throws IOException {
+		return new SwiftBlock1(StringUtils.strip(s, "{}"), true);
+	}
+
+	/**
+	 * Parses a string containing an MT message block 2 content.
+	 * <p>Will return either a {@link SwiftBlock2Input} or {@link SwiftBlock2Output} depending
+	 * on the parameter block content.</p>
+	 * @param s block content starting with "{2:" and ending with "}"
+	 * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
+	 * @throws IOException
+	 * @since 7.8.6
+	 */
+	static public SwiftBlock2 parseBlock2(String s) throws IOException {
+		if (isInput(s)) {
+			return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
+		} else {
+			return new SwiftBlock2Output(StringUtils.strip(s, "{}"), true);
+		}
+	}
+	
+	/**
+	 * Parses a string containing an MT message block 2 input content (outgoing message sent to SWIFT).
+	 * <p>If you don't know the container message direction, user {@link #parseBlock2(String)} instead</p>
+	 * @param s block content starting with "{2:I" and ending with "}"
+	 * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
+	 * @throws IOException
+	 * @since 7.8.6
+	 */
+	static public SwiftBlock2Input parseBlock2Input(String s) throws IOException {
+		return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
+	}
+
+	/**
+	 * Parses a string containing an MT message block 2 output content (incoming message received from SWIFT).
+	 * <p>If you don't know the container message direction, user {@link #parseBlock2(String)} instead</p>
+	 * @param s block content starting with "{2:O" and ending with "}"
+	 * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
+	 * @throws IOException
+	 * @since 7.8.6
+	 */
+	static public SwiftBlock2Output parseBlock2Output(String s) throws IOException {
+		return new SwiftBlock2Output(StringUtils.strip(s, "{}"), true);
+	}
+
 }

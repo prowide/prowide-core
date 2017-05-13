@@ -24,6 +24,7 @@ import org.apache.commons.lang.Validate;
  * 
  * @author www.prowidesoftware.com
  */
+//Sebastian Feb 2016: make this API static
 public class MultilineUtil {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger
 			.getLogger(MultilineUtil.class.getName());

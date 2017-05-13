@@ -36,8 +36,8 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 /**
  * Field 128<br /><br />
  *
- * validation pattern: 1a&lt;BIC&gt;<br />
- * parser pattern: cS<br />
+ * validation pattern: 1a/&lt;BIC&gt;<br />
+ * parser pattern: S/S<br />
  * components pattern: cB<br />
  *
  * <h1>Components Data types</h1>
@@ -68,7 +68,7 @@ public class Field128 extends Field implements Serializable, BICContainer {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_128 = "128";
-	public static final String PARSER_PATTERN ="cS";
+	public static final String PARSER_PATTERN ="S/S";
 	public static final String COMPONENTS_PATTERN = "cB";
 
 	/**
@@ -123,14 +123,8 @@ public class Field128 extends Field implements Serializable, BICContainer {
 	@Override
 	public void parse(final String value) {
 		init(2);
-		if (value != null) {
-        	if (value.length() >= 1) {
-				setComponent1(org.apache.commons.lang.StringUtils.substring(value, 0, 1));
-			}
-        	if (value.length() > 1) {
-				setComponent2(org.apache.commons.lang.StringUtils.substring(value, 1));
-			}
-		}
+		setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
+		setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
 	}
 	
 	/**
@@ -151,7 +145,9 @@ public class Field128 extends Field implements Serializable, BICContainer {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(joinComponents());
+		result.append(StringUtils.trimToEmpty(getComponent1()));
+        result.append("/");
+        result.append(StringUtils.trimToEmpty(getComponent2()));
 		return result.toString();
 	}
 
@@ -340,7 +336,7 @@ public class Field128 extends Field implements Serializable, BICContainer {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "1a<BIC>";
+		return "1a/<BIC>";
 	}
 
 	/**
@@ -428,9 +424,6 @@ public class Field128 extends Field implements Serializable, BICContainer {
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 128");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

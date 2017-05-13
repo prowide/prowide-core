@@ -16,6 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsF {
 
+    public final static String FC = "FC";
+    public final static String FF = "FF";
     public final static String FROZ = "FROZ";
     public final static String FRWD = "FRWD";
     public final static String FRAU = "FRAU";
@@ -47,12 +49,12 @@ public interface SchemeConstantsF {
     public final static String FXOR = "FXOR";
     public final static String FXORDER = "FXORDER";
     public final static String FIAN = "FIAN";
+    public final static String FCOU = "FCOU";
     public final static String FIAC = "FIAC";
     public final static String FIA = "FIA";
+    public final static String FORM = "FORM";
     public final static String FRNR = "FRNR";
     public final static String FRNF = "FRNF";
-    public final static String FCOU = "FCOU";
-    public final static String FORM = "FORM";
     public final static String FICL = "FICL";
     public final static String FXIB = "FXIB";
     public final static String FXIS = "FXIS";

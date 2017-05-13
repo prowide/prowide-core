@@ -27,10 +27,10 @@ public interface SchemeConstantsB {
     public final static String BLOC = "BLOC";
     public final static String BBAIRS = "BBAIRS";
     public final static String BUSE = "BUSE";
-    public final static String BPAR = "BPAR";
-    public final static String BENT = "BENT";
     public final static String BREF = "BREF";
+    public final static String BPAR = "BPAR";
     public final static String BIRT = "BIRT";
+    public final static String BENT = "BENT";
     public final static String BENE = "BENE";
     public final static String BASK = "BASK";
     public final static String BUYR = "BUYR";

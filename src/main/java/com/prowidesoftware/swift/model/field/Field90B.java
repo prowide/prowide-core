@@ -426,9 +426,7 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
 	}
     
 	public List<String> currencyStrings() {
-		List<String> result = new ArrayList<String>();
-		result = CurrencyResolver.resolveComponentsPattern(COMPONENTS_PATTERN, components);
-		return result;
+		return CurrencyResolver.resolveComponentsPattern(COMPONENTS_PATTERN, components);
 	}
 
 	public List<Currency> currencies() {
@@ -459,9 +457,16 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
 		CurrencyResolver.resolveSetCurrency(this, cur);
 	}
     
+	/**
+	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
+	
+	/**
+	 * @see {@linkplain AmountResolver#amount(Field)}
+	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
 	}
@@ -642,9 +647,6 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 90B");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -659,7 +661,7 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
 		}
 		if (component == 4) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent4AsNumber();
 			if (n != null) {
 				return f.format(n);

@@ -69,6 +69,11 @@ public class Field119 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "S";
 
 	/**
+	 * Component number for the Validation Flag subfield
+	 */
+	public static final Integer VALIDATION_FLAG = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field119() {
@@ -172,10 +177,27 @@ public class Field119 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Validation Flag (component1).
+	 * @return the Validation Flag from component1
+	 */
+	public String getValidationFlag() {
+		return getComponent(1);
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
 	public Field119 setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Validation Flag (component1).
+	 * @param component1 the Validation Flag to set
+	 */
+	public Field119 setValidationFlag(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -321,9 +343,6 @@ public class Field119 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 119");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -341,7 +360,7 @@ public class Field119 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Validation Flag");
 		return result;
 	}
 	

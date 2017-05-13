@@ -131,7 +131,7 @@ public class Field35B extends Field implements Serializable, com.prowidesoftware
 	public void parse(final String value) {
 		init(6);
 		java.util.List<String> lines = SwiftParseUtils.getLines(value);
-		if (lines.size() > 0 && org.apache.commons.lang.StringUtils.startsWith(lines.get(0), "ISIN ")) {
+		if (!lines.isEmpty() && org.apache.commons.lang.StringUtils.startsWith(lines.get(0), "ISIN ")) {
 			setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), " "));
 			setComponent2(SwiftParseUtils.getTokenSecondLast(lines.get(0), " "));
 			SwiftParseUtils.setComponentsFromLines(this, 3, null, 1, lines);
@@ -704,9 +704,6 @@ public class Field35B extends Field implements Serializable, com.prowidesoftware
 		if (component < 1 || component > 6) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 35B");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -757,6 +754,7 @@ public class Field35B extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use ISIN instead
 	 */
 	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final Integer IDENTIFICATION = 2;
 
 }

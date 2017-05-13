@@ -135,16 +135,18 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
 		init(5);
 		setComponent1(SwiftParseUtils.getTokenFirst(value, "//"));
 		String toparse = SwiftParseUtils.getTokenSecond(value, "//");
-		if (toparse != null && toparse.length() >= 6) {
-			setComponent2(org.apache.commons.lang.StringUtils.substring(toparse, 0, 6));
-		}
-		if (toparse != null && toparse.length() >= 7) {
-			setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 6, 7));
-		}
-		if (toparse != null && toparse.length() > 7) {
-			String toparse2 = org.apache.commons.lang.StringUtils.substring(toparse, 7);
-			setComponent4(SwiftParseUtils.getTokenFirst(toparse2, "/"));
-			setComponent5(SwiftParseUtils.getTokenSecondLast(toparse2, "/"));
+		if (toparse != null) {
+			if (toparse.length() >= 6) {
+				setComponent2(org.apache.commons.lang.StringUtils.substring(toparse, 0, 6));
+			}
+			if (toparse.length() >= 7) {
+				setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 6, 7));
+			}
+			if (toparse.length() > 7) {
+				String toparse2 = org.apache.commons.lang.StringUtils.substring(toparse, 7);
+				setComponent4(SwiftParseUtils.getTokenFirst(toparse2, "/"));
+				setComponent5(SwiftParseUtils.getTokenSecondLast(toparse2, "/"));
+			}
 		}
 	}
 	
@@ -468,9 +470,16 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
 		return result;
 	}
     
+	/**
+	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
+	
+	/**
+	 * @see {@linkplain AmountResolver#amount(Field)}
+	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
 	}
@@ -628,12 +637,9 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
 		if (component < 1 || component > 5) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 37C");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -641,7 +647,7 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
 		}
 		if (component == 2) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -653,7 +659,7 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
 		}
 		if (component == 4) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent4AsNumber();
 			if (n != null) {
 				return f.format(n);

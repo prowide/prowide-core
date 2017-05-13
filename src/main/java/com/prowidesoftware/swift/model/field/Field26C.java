@@ -117,20 +117,22 @@ public class Field26C extends Field implements Serializable {
 		setComponent1(SwiftParseUtils.getTokenFirst(value, null, "/"));
 		setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
 		String toparse = SwiftParseUtils.getTokenThirdLast(value, "/");
-		if (toparse != null && toparse.length() < 5) {
-			setComponent3(toparse);
-		}
-		if (toparse != null && toparse.length() >= 5) {
-			setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 0, 5));
-		}
-		if (toparse != null && toparse.length() > 5 && toparse.length() < 9) {
-			setComponent4(org.apache.commons.lang.StringUtils.substring(toparse, 5));
-		}
-		if (toparse != null && toparse.length() >= 9) {
-			setComponent4(org.apache.commons.lang.StringUtils.substring(toparse, 5, 9));
-		}
-		if (toparse != null && toparse.length() > 9) {
-			setComponent5(org.apache.commons.lang.StringUtils.substring(toparse, 9));
+		if (toparse != null) {
+			if (toparse.length() < 5) {
+				setComponent3(toparse);
+			}
+			if (toparse.length() >= 5) {
+				setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 0, 5));
+			}
+			if (toparse.length() > 5 && toparse.length() < 9) {
+				setComponent4(org.apache.commons.lang.StringUtils.substring(toparse, 5));
+			}
+			if (toparse.length() >= 9) {
+				setComponent4(org.apache.commons.lang.StringUtils.substring(toparse, 5, 9));
+			}
+			if (toparse.length() > 9) {
+				setComponent5(org.apache.commons.lang.StringUtils.substring(toparse, 9));
+			}
 		}
 	}
 	
@@ -446,9 +448,6 @@ public class Field26C extends Field implements Serializable {
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 5) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 26C");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

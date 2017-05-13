@@ -17,16 +17,21 @@ package com.prowidesoftware.swift.io;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 /**
- * @deprecated us {@linkplain PPCReader} instead
+ * @deprecated use {@linkplain PPCReader} instead
  * @author www@prowidesoftware.com
  */
 @Deprecated
-@DeleteSchedule(2017)
+@ProwideDeprecated(phase3=TargetYear._2018)
 public class PPCFileReader extends PPCReader {
+	
 	public PPCFileReader(final File file) throws FileNotFoundException {
 		super(file);
+		DeprecationUtils.phase2(getClass(), null, "Use PPCReader instead.");
 	}
+	
 }

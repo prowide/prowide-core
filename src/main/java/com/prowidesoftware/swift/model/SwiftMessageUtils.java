@@ -79,6 +79,7 @@ public class SwiftMessageUtils {
 	}
 
 	/**
+	 * Gets the message value date
 	 * @see #valueDate(SwiftMessage)
 	 */
 	public Calendar valueDate() {
@@ -311,8 +312,8 @@ public class SwiftMessageUtils {
 	}
 
 	/**
-	 * Gets the message reference from field 20 (if present) 
-	 * or from field 20C if message category is 5.
+	 * Gets the message reference from field 20 (if present) or from field 20C:SEME if message category is 5.
+	 * For system messages returns the value of the MUR (108) field, if present.
 	 * @param m the message where the reference is to be found
 	 * @return found reference or <code>null</code> if the message does not defines a reference, or if the defined reference field is not present in the message
 	 * @since 7.8
@@ -331,9 +332,23 @@ public class SwiftMessageUtils {
 						return f.getComponent(2);
 					}
 				}
+				final Tag mur = b4.getTagByName("108");
+				if (mur != null) {
+					return mur.getValue();
+				}
+				
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Gets the message reference
+	 * @see #reference(SwiftMessage)
+	 * @since 7.8.8
+	 */
+	public final String reference() {
+		return SwiftMessageUtils.reference(msg);
 	}
 
 	/**
@@ -354,7 +369,6 @@ public class SwiftMessageUtils {
 		}
 		return result;
 	}
-	
 
 	/**
 	 * Creates a sequence  and all it's containing parents.
@@ -417,4 +431,268 @@ public class SwiftMessageUtils {
 			throw new WifeException("Reflection error: mt="+mt.getName()+", sequenceName="+sequenceName+", tags="+tags+" - "+e);
 		}
 	}
+	
+	/**
+	 * Gets the message main amount
+	 * @see #currencyAmount(SwiftMessage)
+	 * @since 7.8.8
+	 */
+	protected CurrencyAmount currencyAmount() {
+		return currencyAmount(msg);
+	}
+	
+	/**
+	 * Gets the message main amount<br />
+	 *
+	 * <p>The amount is meaningful and defined by the standard only for a subset of message types.
+	 * In most of the cases it is contained in the currency and amount subfields of fields 32a 
+	 * in payments messages and 19A in securities.</p>
+	 *
+	 * This implementation is a work in progress and the interpretation of which field is consider
+	 * the main amount for each message type may change from time to time adding more cases or 
+	 * even changing the used field.
+	 * 
+	 * @param m a message with some amount field
+	 * @return the currency and amount object extracted from the message or <code>null</code> if non is present or cannot be created from its fields
+	 * @since 7.8.8
+	 */
+	/*
+	 * Do not use API from MTs and Field classes here to avoid cyclic dependency in code generation.
+	 * Keep in sync special case for 104 and 107 with MT104 and MT107 getSequenceC logic.
+	 */
+	static final CurrencyAmount currencyAmount(final SwiftMessage m) {
+		if (m == null || m.isServiceMessage21()) {
+			return null;
+		}
+		final SwiftBlock4 b4 = m.getBlock4();
+		if (b4 == null || b4.isEmpty()) {
+			return null;
+		}
+		/*
+		The following amount per MT cases need to be reviewed
+		
+        300 B2 {"33B"}
+        300 D1 {"32B"}
+        300 B1 {"32B"}
+        
+        303 B {"32B", "33B"}
+        303 C {"32B", "33B", "34B"}
+        303 D2 {"33B"}
+        303 D3 {"34B"}
+        303 D1 {"32B"}
+        
+        304 D {"32G", "34B"}
+        304 E {"32G"}
+        304 B2 {"33B"}
+        304 B1 {"32B"}
+        
+        305 A {"32B", "33B", "34P", "34R"}
+        
+        306 D {"32B", "33B"}
+        306 L1 {"32H"}
+        306 E {"33E"}
+        306 B1 {"34B"}
+        
+        307 D {"19B"}
+        307 C {"19B"}
+        
+        320 G {"33B", "33E"}
+        320 B {"32B", "32H", "34E"}
+        320 I1 {"32H"}
+        
+        321 B {"19A"}
+        
+        330 G {"33B", "33E"}
+        330 B {"32B", "32H", "34E"}
+        
+        362 D {"33F", "32H", "33E"}
+        362 E1 {"32M"}
+        362 B {"33F", "32H"}
+        362 C1 {"32M"}
+        
+        535 B1b1 {"19A"}
+        535 B1b {"19A"}
+        535 B1c {"19A"}
+        535 C {"19A"}
+        535 B1 {"19A"}
+
+		509 B {"19A"}
+		
+        536 B1a2 {"19A"}
+        
+        537 B2b {"19A"}
+        
+        540 D {"19A"}
+        540 E3 {"19A"}
+        
+        541 D {"19A"}
+        541 E3 {"19A"}
+        
+        542 D {"19A"}
+        542 E3 {"19A"}
+        
+        543 D {"19A"}
+        543 E3 {"19A"}
+        
+        544 D {"19A"}
+        544 E3 {"19A"}
+        544 C {"19A"}
+        
+        545 D {"19A"}
+        545 E3 {"19A"}
+        545 C {"19A"}
+        
+        546 D {"19A"}
+        546 E3 {"19A"}
+        546 C {"19A"}
+        
+        547 D {"19A"}
+        547 E3 {"19A"}
+        547 C {"19A"}
+        
+        548 B {"19A"}
+        
+        558 D {"19A"}
+        558 A {"19A"}
+        558 B {"19A"}
+        558 C {"19A"}
+        
+        559 _A {"32M", "32G", "34A"}
+        559 main {"19"}
+        
+        564 E2 {"19B"}
+        
+        566 D2 {"19B"}
+        
+        567 B {"19B"}
+        
+        569 D {"19A"}
+        569 B {"19A"}
+        569 C {"19A"}
+        569 C1a1 {"19A"}
+        569 C1 {"19A"}
+        569 C1a {"19A"}
+        
+        574_IRSLSTB2 {"19A"}
+        
+        575 B1a2 {"19A"}
+        575 B1a3 {"19A"}
+        
+        576 B2 {"19A"}
+        
+        578 D {"19A"}
+        578 E3 {"19A"}
+               
+        586 B4 {"19A"}
+        586 B5b {"19A"}
+        
+        609 _A1 {"68B", "68C"}
+        */
+		if (m.isType(102, 103, 200, 202, 205, 256, 450, 455, 643, 644, 646, 734, 802, 900, 910)) {
+			//for 646 will pick the first one, from sequence A,ignoring the 32A from sequence C
+			return CurrencyAmount.of(b4.getFieldByName("32A"));
+		} else if (m.isType(191, 291, 391, 491, 591, 691, 791, 891, 991, 340, 341, 350, 360, 361, 364, 365, 620, 700, 705, 710, 720, 732, 740, 742, 756)) {
+			return CurrencyAmount.of(b4.getFieldByName("32B"));
+		} else if (m.isType(370, 508)) {
+			return CurrencyAmount.of(b4.getFieldByName("19A"));
+		} else if (m.isType(581, 707, 747)) {
+			return CurrencyAmount.of(b4.getFieldByName("34B"));
+		} else if (m.isType(380, 381, 505)) {
+			 //for 505 will pick the first found, that will be from the cash collateral details or from other collateral details
+			return CurrencyAmount.of(b4.getFieldByName("19B"));
+		} else if (m.isType(800)) {
+			return CurrencyAmount.of(b4.getFieldByName("33B"));
+		} else if (m.isType(941)) {
+			return CurrencyAmount.of(b4.getFieldByName("62F"));
+
+		} else if (m.isType(600, 601)) {
+			return CurrencyAmount.ofAny(b4, "34P", "34R");
+		} else if (m.isType(111, 112, 516, 649) || m.isType(754)) {
+			return CurrencyAmount.ofAny(b4, "32A", "32B");
+		} else if (m.isType(190, 290, 390, 490, 590, 690, 790, 890, 990)) {
+			return CurrencyAmount.ofAny(b4, "32C", "32D");
+		} else if (m.isType(730) || m.isType(768)) {
+			return CurrencyAmount.ofAny(b4, "32B", "32D");
+		} else if (m.isType(400, 410)) {
+			return CurrencyAmount.ofAny(b4, "32A", "32B", "32K");
+		} else if (m.isType(430)) {
+			return CurrencyAmount.ofAny(b4, "33A", "33K", "32A", "32K");
+		} else if (m.isType(750)) {
+			return CurrencyAmount.ofAny(b4, "34B", "32B");
+		} else if (m.isType(752)) {
+			return CurrencyAmount.ofAny(b4, "33A", "33B", "32B");
+		} else if (m.isType(769)) {
+			return CurrencyAmount.ofAny(b4, "32B", "32D", "33B", "34B");
+		} else if (m.isType(940, 950, 970)) {
+			return CurrencyAmount.ofAny(b4, "62F", "62M");
+	    	
+		} else if (m.isType(101, 201, 203, 204, 207, 210)) {
+			return CurrencyAmount.ofSum(b4.getFieldsByName("32B"));
+		} else if (m.isType(110, 416, 420, 422, 456)) {
+			return CurrencyAmount.ofSum(b4.getFieldsByName("32a"));
+		} else if (m.isType(509)) {
+			return CurrencyAmount.ofSum(b4.getFieldsByName("19A"));
+		} else if (m.isType(112)) {
+			return CurrencyAmount.ofSum(b4.getFieldsByName("32A"));
+		} else if (m.isType(801)) {
+			return CurrencyAmount.ofSum(b4.getFieldsByName("33B"));
+		} else if (m.isType(824)) {
+			return CurrencyAmount.ofSum(b4.getFieldsByName("68A"));
+			
+		} else if (m.isType(104, 107)) {
+			// we pick field 32B from sequence C
+			// find last mandatory tag of mandatory sequence B
+			int last59 = b4.indexOfAnyLast("59", "59A");
+			if (last59 >= 0) {
+				int startIndexOfC = b4.indexOfAnyFirstAfterIndex(last59, "32B");
+				if (startIndexOfC >= 0) {
+					Tag t = b4.getTags().get(startIndexOfC);
+					if (t != null) {
+						return CurrencyAmount.of(t.asField());
+					}
+				}
+			}
+			
+		} else if (m.isType(502, 513)) {
+			/*
+			 * we pick the first available 19A from the order detail
+			 * for MT513 will be only one
+			 */
+			SwiftTagListBlock seq = b4.getSubBlock("ORDRDET");
+			if (seq != null) {
+				return CurrencyAmount.of(seq.getFieldByName("19A"));
+			}
+		
+		} else if (m.isType(514, 515, 518)) {
+			/*
+			 * we pick the first available 19A from the confirmation detail
+			 * for 515 and 518 will be only one
+			 */
+			SwiftTagListBlock seq = b4.getSubBlock("CONFDET");
+			if (seq != null) {
+				return CurrencyAmount.of(seq.getFieldByName("19A"));
+			}
+			
+		} else if (m.isType(503, 504, 506)) {
+			/*
+			 * we pick the first available 19B from the summary
+			 */
+			SwiftTagListBlock seq = b4.getSubBlock("SUMM");
+			if (seq != null) {
+				return CurrencyAmount.of(seq.getFieldByName("19B"));
+			}
+			
+		} else if (m.isType(527)) {
+			/*
+			 * we pick the first available 19A from the deal transaction details
+			 */
+			SwiftTagListBlock seq = b4.getSubBlock("DEALTRAN");
+			if (seq != null) {
+				return CurrencyAmount.of(seq.getFieldByName("19A"));
+			}
+		}
+		
+		return null;
+	}
+
 }

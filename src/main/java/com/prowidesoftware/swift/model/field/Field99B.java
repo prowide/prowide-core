@@ -265,7 +265,7 @@ public class Field99B extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field99B setComponent2(java.lang.Number component2) {
 		if (component2 != null) {
-			setComponent(2, ""+component2.intValue());
+			setComponent(2, Integer.toString(component2.intValue()));
 		}
 		return this;
 	}
@@ -465,16 +465,13 @@ public class Field99B extends Field implements Serializable, com.prowidesoftware
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 99B");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent2AsNumber();
 			if (n != null) {
 				return f.format(n);

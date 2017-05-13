@@ -69,6 +69,11 @@ public class Field302 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "L";
 
 	/**
+	 * Component number for the Holiday Suppression subfield
+	 */
+	public static final Integer HOLIDAY_SUPPRESSION = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field302() {
@@ -172,6 +177,22 @@ public class Field302 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Holiday Suppression (component1).
+	 * @return the Holiday Suppression from component1
+	 */
+	public String getHolidaySuppression() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Holiday Suppression (component1) as Boolean
+	 * @return the Holiday Suppression from component1 converted to Boolean or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Boolean getHolidaySuppressionAsBoolean() {
+		return SwiftFormatUtils.getBoolean(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -186,6 +207,25 @@ public class Field302 extends Field implements Serializable {
 	 */
 	public Field302 setComponent1(java.lang.Boolean component1) {
 		setComponent(1, SwiftFormatUtils.getBoolean(component1));
+		return this;
+	}
+	
+	/**
+	 * Set the Holiday Suppression (component1).
+	 * @param component1 the Holiday Suppression to set
+	 */
+	public Field302 setHolidaySuppression(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Holiday Suppression (component1) from a Boolean object.
+	 * @see #setComponent1(java.lang.Boolean)
+	 * @param component1 Boolean with the Holiday Suppression content to set
+	 */
+	public Field302 setHolidaySuppression(java.lang.Boolean component1) {
+		setComponent1(component1);
 		return this;
 	}
 
@@ -330,9 +370,6 @@ public class Field302 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 302");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -350,7 +387,7 @@ public class Field302 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Holiday Suppression");
 		return result;
 	}
 	

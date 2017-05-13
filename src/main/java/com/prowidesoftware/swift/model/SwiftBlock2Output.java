@@ -368,7 +368,6 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
         	} else {
         		len = 6;
         		this.setMIRSequenceNumber(String.valueOf(sb.subSequence(offset, offset + len)));
-        		offset += len;
         	}
 		}
 	}
@@ -549,7 +548,6 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
         	} else {
         		len = 1;
         		this.setMessagePriority(this.getValuePart(value, offset, len));
-        		offset += len; // optional (system messages)
         	}
         	
 		}
@@ -562,6 +560,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 		setValue(value);
 	}
 
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
@@ -569,88 +568,58 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 		result = prime * result + ((MIRLogicalTerminal == null) ? 0 : MIRLogicalTerminal.hashCode());
 		result = prime * result + ((MIRSequenceNumber == null) ? 0 : MIRSequenceNumber.hashCode());
 		result = prime * result + ((MIRSessionNumber == null) ? 0 : MIRSessionNumber.hashCode());
-		result = prime * result + ((messagePriority == null) ? 0 : messagePriority.hashCode());
-		result = prime * result + ((messageType == null) ? 0 : messageType.hashCode());
 		result = prime * result + ((receiverOutputDate == null) ? 0 : receiverOutputDate.hashCode());
 		result = prime * result + ((receiverOutputTime == null) ? 0 : receiverOutputTime.hashCode());
 		result = prime * result + ((senderInputTime == null) ? 0 : senderInputTime.hashCode());
 		return result;
 	}
 
-	public boolean equals(final Object obj) {
-		if (this == obj) {
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (this == obj)
 			return true;
-		}
-		if (!super.equals(obj)) {
+		if (!super.equals(obj))
 			return false;
-		}
-		if (getClass() != obj.getClass()) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
-		final SwiftBlock2Output other = (SwiftBlock2Output) obj;
+		SwiftBlock2Output other = (SwiftBlock2Output) obj;
 		if (MIRDate == null) {
-			if (other.MIRDate != null) {
+			if (other.MIRDate != null)
 				return false;
-			}
-		} else if (!MIRDate.equals(other.MIRDate)) {
+		} else if (!MIRDate.equals(other.MIRDate))
 			return false;
-		}
 		if (MIRLogicalTerminal == null) {
-			if (other.MIRLogicalTerminal != null) {
+			if (other.MIRLogicalTerminal != null)
 				return false;
-			}
-		} else if (!MIRLogicalTerminal.equals(other.MIRLogicalTerminal)) {
+		} else if (!MIRLogicalTerminal.equals(other.MIRLogicalTerminal))
 			return false;
-		}
 		if (MIRSequenceNumber == null) {
-			if (other.MIRSequenceNumber != null) {
+			if (other.MIRSequenceNumber != null)
 				return false;
-			}
-		} else if (!MIRSequenceNumber.equals(other.MIRSequenceNumber)) {
+		} else if (!MIRSequenceNumber.equals(other.MIRSequenceNumber))
 			return false;
-		}
 		if (MIRSessionNumber == null) {
-			if (other.MIRSessionNumber != null) {
+			if (other.MIRSessionNumber != null)
 				return false;
-			}
-		} else if (!MIRSessionNumber.equals(other.MIRSessionNumber)) {
+		} else if (!MIRSessionNumber.equals(other.MIRSessionNumber))
 			return false;
-		}
-		if (messagePriority == null) {
-			if (other.messagePriority != null) {
-				return false;
-			}
-		} else if (!messagePriority.equals(other.messagePriority)) {
-			return false;
-		}
-		if (messageType == null) {
-			if (other.messageType != null) {
-				return false;
-			}
-		} else if (!messageType.equals(other.messageType)) {
-			return false;
-		}
 		if (receiverOutputDate == null) {
-			if (other.receiverOutputDate != null) {
+			if (other.receiverOutputDate != null)
 				return false;
-			}
-		} else if (!receiverOutputDate.equals(other.receiverOutputDate)) {
+		} else if (!receiverOutputDate.equals(other.receiverOutputDate))
 			return false;
-		}
 		if (receiverOutputTime == null) {
-			if (other.receiverOutputTime != null) {
+			if (other.receiverOutputTime != null)
 				return false;
-			}
-		} else if (!receiverOutputTime.equals(other.receiverOutputTime)) {
+		} else if (!receiverOutputTime.equals(other.receiverOutputTime))
 			return false;
-		}
 		if (senderInputTime == null) {
-			if (other.senderInputTime != null) {
+			if (other.senderInputTime != null)
 				return false;
-			}
-		} else if (!senderInputTime.equals(other.senderInputTime)) {
+		} else if (!senderInputTime.equals(other.senderInputTime))
 			return false;
-		}
 		return true;
 	}
 	

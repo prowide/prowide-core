@@ -113,6 +113,7 @@ public class Field14T extends Field implements Serializable {
 	@Override
 	public void parse(final String value) {
 		init(3);
+		// @NotImplemented
 		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : S[/S[/S]]");
 	}
 	
@@ -385,9 +386,6 @@ public class Field14T extends Field implements Serializable {
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 3) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 14T");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

@@ -35,7 +35,7 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
  * Field 110<br /><br />
  *
  * validation pattern: 3!n<br />
- * parser pattern: S<br />
+ * parser pattern: N<br />
  * components pattern: N<br />
  *
  * <h1>Components Data types</h1>
@@ -65,8 +65,13 @@ public class Field110 extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_110 = "110";
-	public static final String PARSER_PATTERN ="S";
+	public static final String PARSER_PATTERN ="N";
 	public static final String COMPONENTS_PATTERN = "N";
+
+	/**
+	 * Component number for the Window Size subfield
+	 */
+	public static final Integer WINDOW_SIZE = 1;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -131,7 +136,7 @@ public class Field110 extends Field implements Serializable {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
+		result.append(joinComponents());
 		return result.toString();
 	}
 
@@ -172,6 +177,22 @@ public class Field110 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Window Size (component1).
+	 * @return the Window Size from component1
+	 */
+	public String getWindowSize() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Window Size (component1) as Number
+	 * @return the Window Size from component1 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getWindowSizeAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -193,8 +214,27 @@ public class Field110 extends Field implements Serializable {
 	 */
 	public Field110 setComponent1(java.lang.Number component1) {
 		if (component1 != null) {
-			setComponent(1, ""+component1.intValue());
+			setComponent(1, Integer.toString(component1.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Window Size (component1).
+	 * @param component1 the Window Size to set
+	 */
+	public Field110 setWindowSize(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Window Size (component1) from a Number object.
+	 * @see #setComponent1(java.lang.Number)
+	 * @param component1 Number with the Window Size content to set
+	 */
+	public Field110 setWindowSize(java.lang.Number component1) {
+		setComponent1(component1);
 		return this;
 	}
 
@@ -339,12 +379,9 @@ public class Field110 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 110");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -363,7 +400,7 @@ public class Field110 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Window Size");
 		return result;
 	}
 	

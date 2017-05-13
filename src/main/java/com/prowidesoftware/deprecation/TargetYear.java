@@ -23,6 +23,7 @@ package com.prowidesoftware.deprecation;
  *
  */
 public enum TargetYear {
+	@Deprecated
 	_2017,
 	_2018,
 	_2019,

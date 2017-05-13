@@ -14,7 +14,8 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model.mx;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 /**
  * <b>This class will be deleted and will not be available in 2017.
@@ -22,7 +23,7 @@ import com.prowidesoftware.swift.DeleteSchedule;
  * @deprecated 
  */
 @Deprecated
-@DeleteSchedule(2017)
+@ProwideDeprecated(phase3=TargetYear._2018)
 public class MxPayload {
 	private BusinessHeader header;
 	private IDocument document;

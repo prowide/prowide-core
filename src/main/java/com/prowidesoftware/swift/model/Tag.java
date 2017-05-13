@@ -81,7 +81,7 @@ public class Tag implements Serializable {
 	/**
 	 * Reference to the sequence node, if any, that this tags belongs to.
 	 */
-	protected SequenceNode sequence = null;
+	protected transient SequenceNode sequence = null;
 	
 	/**
 	 * Default constructor
@@ -431,7 +431,7 @@ public class Tag implements Serializable {
 	 */
 	public int getNameAsInt() {
 		try {
-			return Integer.valueOf(this.name).intValue();
+			return Integer.parseInt(this.name);
 		} catch (Exception unused) {
 			return -1;
 		}

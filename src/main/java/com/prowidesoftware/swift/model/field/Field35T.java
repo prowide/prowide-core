@@ -115,6 +115,7 @@ public class Field35T extends Field implements Serializable, AmountContainer {
 	@Override
 	public void parse(final String value) {
 		init(3);
+		// @NotImplemented
 		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : N/SN");
 	}
 	
@@ -268,9 +269,16 @@ public class Field35T extends Field implements Serializable, AmountContainer {
 		return this;
 	}
     
+	/**
+	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
+	
+	/**
+	 * @see {@linkplain AmountResolver#amount(Field)}
+	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
 	}
@@ -416,12 +424,9 @@ public class Field35T extends Field implements Serializable, AmountContainer {
 		if (component < 1 || component > 3) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 35T");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -433,7 +438,7 @@ public class Field35T extends Field implements Serializable, AmountContainer {
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);

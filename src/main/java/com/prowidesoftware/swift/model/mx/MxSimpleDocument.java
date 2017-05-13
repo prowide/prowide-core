@@ -24,7 +24,7 @@ package com.prowidesoftware.swift.model.mx;
  * @since 7.7
  */
 public class MxSimpleDocument implements IDocument {
-	private String xml;
+	//private String xml;
 	
 	// TODO agregar get de xmlnode y algun otro elemento java de libs de 1.5
 }

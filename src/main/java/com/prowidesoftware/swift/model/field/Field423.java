@@ -69,6 +69,11 @@ public class Field423 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "S";
 
 	/**
+	 * Component number for the Balance Checkpoint Date Time subfield
+	 */
+	public static final Integer BALANCE_CHECKPOINT_DATE_TIME = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field423() {
@@ -172,10 +177,27 @@ public class Field423 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Balance Checkpoint Date Time (component1).
+	 * @return the Balance Checkpoint Date Time from component1
+	 */
+	public String getBalanceCheckpointDateTime() {
+		return getComponent(1);
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
 	public Field423 setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Balance Checkpoint Date Time (component1).
+	 * @param component1 the Balance Checkpoint Date Time to set
+	 */
+	public Field423 setBalanceCheckpointDateTime(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -321,9 +343,6 @@ public class Field423 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 423");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -341,7 +360,7 @@ public class Field423 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Balance Checkpoint Date Time");
 		return result;
 	}
 	

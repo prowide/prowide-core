@@ -35,7 +35,7 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
  * Field 334<br /><br />
  *
  * validation pattern: 3!c&lt;HHMM&gt;<br />
- * parser pattern: 3!S&lt;HHMM&gt;<br />
+ * parser pattern: S&lt;HHMM&gt;<br />
  * components pattern: SH<br />
  *
  * <h1>Components Data types</h1>
@@ -66,7 +66,7 @@ public class Field334 extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_334 = "334";
-	public static final String PARSER_PATTERN ="3!S<HHMM>";
+	public static final String PARSER_PATTERN ="S<HHMM>";
 	public static final String COMPONENTS_PATTERN = "SH";
 
 	/**
@@ -121,7 +121,8 @@ public class Field334 extends Field implements Serializable {
 	@Override
 	public void parse(final String value) {
 		init(2);
-		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : 3!S<HHMM>");
+		// @NotImplemented
+		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : S<HHMM>");
 	}
 	
 	/**
@@ -142,7 +143,9 @@ public class Field334 extends Field implements Serializable {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(joinComponents());
+		//FIXME serialization S<HHMM>
+		// @NotImplemented
+		int notImplemented;
 		return result.toString();
 	}
 
@@ -417,16 +420,13 @@ public class Field334 extends Field implements Serializable {
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 334");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

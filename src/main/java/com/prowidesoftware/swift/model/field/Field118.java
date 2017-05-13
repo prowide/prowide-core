@@ -34,7 +34,7 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 /**
  * Field 118<br /><br />
  *
- * validation pattern: 1!a<br />
+ * validation pattern: &lt;BOOL&gt;<br />
  * parser pattern: S<br />
  * components pattern: L<br />
  *
@@ -67,6 +67,11 @@ public class Field118 extends Field implements Serializable {
     public static final String F_118 = "118";
 	public static final String PARSER_PATTERN ="S";
 	public static final String COMPONENTS_PATTERN = "L";
+
+	/**
+	 * Component number for the LT Subsets Shared Flag subfield
+	 */
+	public static final Integer LT_SUBSETS_SHARED_FLAG = 1;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -172,6 +177,22 @@ public class Field118 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the LT Subsets Shared Flag (component1).
+	 * @return the LT Subsets Shared Flag from component1
+	 */
+	public String getLTSubsetsSharedFlag() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the LT Subsets Shared Flag (component1) as Boolean
+	 * @return the LT Subsets Shared Flag from component1 converted to Boolean or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Boolean getLTSubsetsSharedFlagAsBoolean() {
+		return SwiftFormatUtils.getBoolean(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -186,6 +207,25 @@ public class Field118 extends Field implements Serializable {
 	 */
 	public Field118 setComponent1(java.lang.Boolean component1) {
 		setComponent(1, SwiftFormatUtils.getBoolean(component1));
+		return this;
+	}
+	
+	/**
+	 * Set the LT Subsets Shared Flag (component1).
+	 * @param component1 the LT Subsets Shared Flag to set
+	 */
+	public Field118 setLTSubsetsSharedFlag(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the LT Subsets Shared Flag (component1) from a Boolean object.
+	 * @see #setComponent1(java.lang.Boolean)
+	 * @param component1 Boolean with the LT Subsets Shared Flag content to set
+	 */
+	public Field118 setLTSubsetsSharedFlag(java.lang.Boolean component1) {
+		setComponent1(component1);
 		return this;
 	}
 
@@ -241,7 +281,7 @@ public class Field118 extends Field implements Serializable {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "1!a";
+		return "<BOOL>";
 	}
 
 	/**
@@ -330,9 +370,6 @@ public class Field118 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 118");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -350,7 +387,7 @@ public class Field118 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("LT Subsets Shared Flag");
 		return result;
 	}
 	

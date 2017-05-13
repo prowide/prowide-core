@@ -12,9 +12,29 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum NamePrefix1Code {
 
+
+    /**
+     * Title of the person is Doctor or Dr.
+     * 
+     */
     DOCT,
+
+    /**
+     * Title of the person is Mister or Mr.
+     * 
+     */
     MIST,
+
+    /**
+     * Title of the person is Miss.
+     * 
+     */
     MISS,
+
+    /**
+     * Title of the person is Madam.
+     * 
+     */
     MADM;
 
     public String value() {

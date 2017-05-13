@@ -16,6 +16,7 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsS {
 
+    public final static String S = "S";
     public final static String SHA = "SHA";
     public final static String SPAY = "SPAY";
     public final static String SSTD = "SSTD";
@@ -25,7 +26,6 @@ public interface SchemeConstantsS {
     public final static String STOP = "STOP";
     public final static String SKOT = "SKOT";
     public final static String SITR = "SITR";
-    public final static String S = "S";
     public final static String SKIN = "SKIN";
     public final static String SAFE = "SAFE";
     public final static String SEME = "SEME";
@@ -35,8 +35,8 @@ public interface SchemeConstantsS {
     public final static String SETPRTY = "SETPRTY";
     public final static String STRT = "STRT";
     public final static String SNUM = "SNUM";
-    public final static String SIZE = "SIZE";
     public final static String SHAR = "SHAR";
+    public final static String SIZE = "SIZE";
     public final static String SETS = "SETS";
     public final static String SETR = "SETR";
     public final static String STAM = "STAM";

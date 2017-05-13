@@ -72,6 +72,26 @@ public class Field343 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "NNNN";
 
 	/**
+	 * Component number for the Region Time Count 1 subfield
+	 */
+	public static final Integer REGION_TIME_COUNT_1 = 1;
+
+	/**
+	 * Component number for the Region Time Count 2 subfield
+	 */
+	public static final Integer REGION_TIME_COUNT_2 = 2;
+
+	/**
+	 * Component number for the Region Time Count 3 subfield
+	 */
+	public static final Integer REGION_TIME_COUNT_3 = 3;
+
+	/**
+	 * Component number for the Region Time Count 4 subfield
+	 */
+	public static final Integer REGION_TIME_COUNT_4 = 4;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field343() {
@@ -186,6 +206,22 @@ public class Field343 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Region Time Count 1 (component1).
+	 * @return the Region Time Count 1 from component1
+	 */
+	public String getRegionTimeCount1() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Region Time Count 1 (component1) as Number
+	 * @return the Region Time Count 1 from component1 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getRegionTimeCount1AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -207,8 +243,27 @@ public class Field343 extends Field implements Serializable {
 	 */
 	public Field343 setComponent1(java.lang.Number component1) {
 		if (component1 != null) {
-			setComponent(1, ""+component1.intValue());
+			setComponent(1, Integer.toString(component1.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Region Time Count 1 (component1).
+	 * @param component1 the Region Time Count 1 to set
+	 */
+	public Field343 setRegionTimeCount1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Region Time Count 1 (component1) from a Number object.
+	 * @see #setComponent1(java.lang.Number)
+	 * @param component1 Number with the Region Time Count 1 content to set
+	 */
+	public Field343 setRegionTimeCount1(java.lang.Number component1) {
+		setComponent1(component1);
 		return this;
 	}
 	/**
@@ -224,6 +279,22 @@ public class Field343 extends Field implements Serializable {
 	 * @return the component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(2));
+	}
+
+	/**
+	 * Get the Region Time Count 2 (component2).
+	 * @return the Region Time Count 2 from component2
+	 */
+	public String getRegionTimeCount2() {
+		return getComponent(2);
+	}
+	
+	/**
+	 * Get the Region Time Count 2 (component2) as Number
+	 * @return the Region Time Count 2 from component2 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getRegionTimeCount2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
@@ -249,8 +320,27 @@ public class Field343 extends Field implements Serializable {
 	 */
 	public Field343 setComponent2(java.lang.Number component2) {
 		if (component2 != null) {
-			setComponent(2, ""+component2.intValue());
+			setComponent(2, Integer.toString(component2.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Region Time Count 2 (component2).
+	 * @param component2 the Region Time Count 2 to set
+	 */
+	public Field343 setRegionTimeCount2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Region Time Count 2 (component2) from a Number object.
+	 * @see #setComponent2(java.lang.Number)
+	 * @param component2 Number with the Region Time Count 2 content to set
+	 */
+	public Field343 setRegionTimeCount2(java.lang.Number component2) {
+		setComponent2(component2);
 		return this;
 	}
 	/**
@@ -266,6 +356,22 @@ public class Field343 extends Field implements Serializable {
 	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+
+	/**
+	 * Get the Region Time Count 3 (component3).
+	 * @return the Region Time Count 3 from component3
+	 */
+	public String getRegionTimeCount3() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Region Time Count 3 (component3) as Number
+	 * @return the Region Time Count 3 from component3 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getRegionTimeCount3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
@@ -291,8 +397,27 @@ public class Field343 extends Field implements Serializable {
 	 */
 	public Field343 setComponent3(java.lang.Number component3) {
 		if (component3 != null) {
-			setComponent(3, ""+component3.intValue());
+			setComponent(3, Integer.toString(component3.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Region Time Count 3 (component3).
+	 * @param component3 the Region Time Count 3 to set
+	 */
+	public Field343 setRegionTimeCount3(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Region Time Count 3 (component3) from a Number object.
+	 * @see #setComponent3(java.lang.Number)
+	 * @param component3 Number with the Region Time Count 3 content to set
+	 */
+	public Field343 setRegionTimeCount3(java.lang.Number component3) {
+		setComponent3(component3);
 		return this;
 	}
 	/**
@@ -308,6 +433,22 @@ public class Field343 extends Field implements Serializable {
 	 * @return the component4 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(4));
+	}
+
+	/**
+	 * Get the Region Time Count 4 (component4).
+	 * @return the Region Time Count 4 from component4
+	 */
+	public String getRegionTimeCount4() {
+		return getComponent(4);
+	}
+	
+	/**
+	 * Get the Region Time Count 4 (component4) as Number
+	 * @return the Region Time Count 4 from component4 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getRegionTimeCount4AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));
 	}
 
@@ -333,8 +474,27 @@ public class Field343 extends Field implements Serializable {
 	 */
 	public Field343 setComponent4(java.lang.Number component4) {
 		if (component4 != null) {
-			setComponent(4, ""+component4.intValue());
+			setComponent(4, Integer.toString(component4.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Region Time Count 4 (component4).
+	 * @param component4 the Region Time Count 4 to set
+	 */
+	public Field343 setRegionTimeCount4(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the Region Time Count 4 (component4) from a Number object.
+	 * @see #setComponent4(java.lang.Number)
+	 * @param component4 Number with the Region Time Count 4 content to set
+	 */
+	public Field343 setRegionTimeCount4(java.lang.Number component4) {
+		setComponent4(component4);
 		return this;
 	}
 
@@ -479,12 +639,9 @@ public class Field343 extends Field implements Serializable {
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 343");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -492,7 +649,7 @@ public class Field343 extends Field implements Serializable {
 		}
 		if (component == 2) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent2AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -500,7 +657,7 @@ public class Field343 extends Field implements Serializable {
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -508,7 +665,7 @@ public class Field343 extends Field implements Serializable {
 		}
 		if (component == 4) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent4AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -527,10 +684,10 @@ public class Field343 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Region Time Count 1");
+		result.add("Region Time Count 2");
+		result.add("Region Time Count 3");
+		result.add("Region Time Count 4");
 		return result;
 	}
 	

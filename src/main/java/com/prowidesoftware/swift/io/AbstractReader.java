@@ -90,12 +90,15 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 	
 	/**
 	 * Reads the next raw content from the iterator and returns the message parsed into an MT.
-	 * <br /><br />
-	 * Important Note: Since MTnnn model clases are implemented only for user messages 
-	 * (categories 1 to 9) if an ACK/NAK (F21) message is found, the MT following the system 
-	 * message is returned (not the ACK/NAK).
-	 * <br />
-	 * For FIN and system messages support use {@link #nextSwiftMessage()} 
+	 * <p>IMPORTANT:<br />
+	 * Since MTnnn model classes are implemented only for system and user-to-user messages 
+	 * (categories 0 to 9) if an ACK/NAK (service id 21) message is found, the MT following 
+	 * the system message is returned (not the ACK/NAK).<br /> 
+	 * For other service messages (login, select, quit) this method will return null because 
+	 * there is no MT representation to create.<br />
+	 * If you need to deal with all type of messages (including service, system and user-to-user)
+	 * you can use {@linkplain #nextSwiftMessage()} instead. 
+	 * </p> 
 	 * 
 	 * @return parsed message or null if content is blank
 	 * @throws IOException if the message content cannot be parsed into an MT
@@ -103,10 +106,16 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 	public AbstractMT nextMT() throws IOException {
 		SwiftMessage candidate = nextSwiftMessage();
 		if (candidate != null) {
-			if (candidate.isSystemMessage()) {
+			if (candidate.isServiceMessage21()) {
+				/*
+				 * message is an ACK/NACK, we parse the appended original message instead
+				 */
 				final String fin = candidate.getUnparsedTexts().getAsFINString();
 				SwiftParser parser = new SwiftParser(new ByteArrayInputStream(fin.getBytes()));
 				return parser.message().toMT();
+			} else if (candidate.isServiceMessage()) {
+				log.warning("nextMT in "+getClass().getName()+" is not intended for service messages, use nextSwiftMessage() instead");
+				return null;
 			} else {
 				return candidate.toMT();
 			}
@@ -116,9 +125,11 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 	
 	/**
 	 * Reads the next raw content from the iterator and returns the message parsed as a generic SwiftMessage.
+	 * This method is convenient where the RJE content can include any type of message including
+	 * service messages, system messages and user-to-user messages.
 	 * 
 	 * @return parsed message or null if content is blank
-	 * @throws IOException if the message content cannot be parsed into an SwiftMessage
+	 * @throws IOException if the message content cannot be parsed into a SwiftMessage
 	 * @since 7.8.3
 	 */
 	public SwiftMessage nextSwiftMessage() throws IOException {
@@ -127,7 +138,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 			SwiftParser parser = new SwiftParser(new ByteArrayInputStream(msg.getBytes()));
 			return parser.message();
 		}
-		log.warning("Message content cannot be parsed as MT");
+		log.warning("Ignoring blank message");
 		return null;
 	}
 

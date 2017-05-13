@@ -117,6 +117,7 @@ public class Field87F extends Field implements Serializable, com.prowidesoftware
 	@Override
 	public void parse(final String value) {
 		init(7);
+		// @NotImplemented
 		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : S$[/c][/S]S[$S]0-3");
 	}
 	
@@ -576,9 +577,6 @@ public class Field87F extends Field implements Serializable, com.prowidesoftware
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 7) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 87F");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

@@ -16,10 +16,10 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsO {
 
+    public final static String O = "O";
     public final static String OUR = "OUR";
     public final static String OTHR = "OTHR";
     public final static String OTHER = "OTHER";
-    public final static String O = "O";
     public final static String OTHRPRTY = "OTHRPRTY";
     public final static String ORDRPRTY = "ORDRPRTY";
     public final static String ORDR = "ORDR";

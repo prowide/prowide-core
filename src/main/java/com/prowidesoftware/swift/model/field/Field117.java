@@ -69,6 +69,11 @@ public class Field117 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "S";
 
 	/**
+	 * Component number for the Authentication Code subfield
+	 */
+	public static final Integer AUTHENTICATION_CODE = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field117() {
@@ -172,10 +177,27 @@ public class Field117 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Authentication Code (component1).
+	 * @return the Authentication Code from component1
+	 */
+	public String getAuthenticationCode() {
+		return getComponent(1);
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
 	public Field117 setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Authentication Code (component1).
+	 * @param component1 the Authentication Code to set
+	 */
+	public Field117 setAuthenticationCode(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -321,9 +343,6 @@ public class Field117 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 117");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -341,7 +360,7 @@ public class Field117 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Authentication Code");
 		return result;
 	}
 	

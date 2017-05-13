@@ -28,12 +28,12 @@ public interface SchemeConstantsD {
     public final static String D = "D";
     public final static String DAAC = "DAAC";
     public final static String DPLO = "DPLO";
-    public final static String DENO = "DENO";
-    public final static String DFON = "DFON";
     public final static String DBIR = "DBIR";
     public final static String DOMI = "DOMI";
     public final static String DIST = "DIST";
     public final static String DDTE = "DDTE";
+    public final static String DENO = "DENO";
+    public final static String DFON = "DFON";
     public final static String DBNM = "DBNM";
     public final static String DEAL = "DEAL";
     public final static String DEBT = "DEBT";

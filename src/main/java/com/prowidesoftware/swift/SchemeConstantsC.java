@@ -16,6 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsC {
 
+    public final static String CLAM = "CLAM";
+    public final static String CEEE = "CEEE";
     public final static String CMTO = "CMTO";
     public final static String CMZB = "CMZB";
     public final static String CMSW = "CMSW";
@@ -29,7 +31,6 @@ public interface SchemeConstantsC {
     public final static String CLOS = "CLOS";
     public final static String C = "C";
     public final static String CANC = "CANC";
-    public final static String CLAM = "CLAM";
     public final static String CLEU = "CLEU";
     public final static String CURR = "CURR";
     public final static String CANCEL = "CANCEL";
@@ -45,6 +46,7 @@ public interface SchemeConstantsC {
     public final static String CSHPRTY = "CSHPRTY";
     public final static String CINT = "CINT";
     public final static String CONU = "CONU";
+    public final static String CHNG = "CHNG";
     public final static String CAPBUYER = "CAPBUYER";
     public final static String COLLARBYER = "COLLARBYER";
     public final static String CAPSELLER = "CAPSELLER";
@@ -55,12 +57,11 @@ public interface SchemeConstantsC {
     public final static String CADETL = "CADETL";
     public final static String CLAS = "CLAS";
     public final static String COUP = "COUP";
-    public final static String CLTDET = "CLTDET";
-    public final static String CALD = "CALD";
     public final static String CITY = "CITY";
+    public final static String CLTDET = "CLTDET";
     public final static String CERT = "CERT";
-    public final static String CONS = "CONS";
     public final static String CUFC = "CUFC";
+    public final static String CALD = "CALD";
     public final static String COWA = "COWA";
     public final static String CLBR = "CLBR";
     public final static String CHAR = "CHAR";
@@ -125,6 +126,7 @@ public interface SchemeConstantsC {
     public final static String COFF = "COFF";
     public final static String CONP = "CONP";
     public final static String CODE = "CODE";
+    public final static String CONS = "CONS";
     public final static String CLTR = "CLTR";
     public final static String CLEA = "CLEA";
     public final static String CCPT = "CCPT";

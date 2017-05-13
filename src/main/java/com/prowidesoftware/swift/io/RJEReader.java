@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 public class RJEReader extends AbstractReader {
 	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(RJEReader.class.getName());
-	static char SPLITCHAR = '$'; 
+	public static final char SPLITCHAR = '$'; 
 	
 	/**
 	 * Constructs a RJEReader to read messages from a given Reader instance

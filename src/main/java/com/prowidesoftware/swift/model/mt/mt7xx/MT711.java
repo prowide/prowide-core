@@ -12,14 +12,16 @@
  *     
  *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
  *******************************************************************************/
- package com.prowidesoftware.swift.model.mt.mt7xx;
+package com.prowidesoftware.swift.model.mt.mt7xx;
+
+
 
 import com.prowidesoftware.Generated;
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.internal.*;
-import com.prowidesoftware.swift.internal.SequenceStyle.Type;
 import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.utils.Lib;
@@ -28,24 +30,50 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * MT 711<br />
- * Advice of a Third Bank's or a Non-Bank's Documentary Credit<br />
- <h1>MT711 Format</h1>
- <pre>
- <div class="mainsequence">
-<em>Main Sequence main</em><br/>
-<div class="field"><em>Field 27</em>
-Letter options: null<br/></div><div class="field"><em>Field 20</em>
-Letter options: null<br/></div><div class="field"><em>Field 21</em>
-Letter options: null<br/></div><div class="field"><em>Field 45</em>
-Letter options: B<br/></div><div class="field"><em>Field 46</em>
-Letter options: B<br/></div><div class="field"><em>Field 47</em>
-Letter options: B<br/></div></div>
-
- </pre>
- * <em>This source code is specific to release SRU 2016</em><br /> 
+ * <h1>MT 711 - Advice of a Third Bank's or a Non-Bank's Documentary Credit</h1>
+ * <h3>SWIFT MT711 (ISO 15022) message structure:</h3>
  *
- *		 
+ <div class="scheme"><ul>
+<li class="field">Field 27  (M)</li>
+<li class="field">Field 20  (M)</li>
+<li class="field">Field 21  (M)</li>
+<li class="field">Field 45 B (O)</li>
+<li class="field">Field 46 B (O)</li>
+<li class="field">Field 47 B (O)</li>
+</ul></div>
+
+ <style>
+.scheme, .scheme ul, .scheme li {
+     position: relative;
+}
+.scheme ul {
+    list-style: none;
+    padding-left: 32px;
+}
+.scheme li::before, .scheme li::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+}
+.scheme li::before {
+    border-top: 1px solid #000;
+    top: 9px;
+    width: 8px;
+    height: 0;
+}
+.scheme li::after {
+    border-left: 1px solid #000;
+    height: 100%;
+    width: 0px;
+    top: 2px;
+}
+.scheme ul > li:last-child::after {
+    height: 8px;
+}</style>
+
+ *
+ * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
  */
@@ -73,7 +101,7 @@ public class MT711 extends AbstractMT implements Serializable {
 	 */
 	public MT711(SwiftMessage m) {
 		super(m);
-		// TODO issue warning if incorrect message type or illegal argument if different
+		sanityCheck(m);
 	}
 
 	/**
@@ -84,7 +112,7 @@ public class MT711 extends AbstractMT implements Serializable {
 	public MT711(MtSwiftMessage m) {
 		this();
 		super.m = super.getSwiftMessageNotNullOrException();
-		// TODO issue warning if incorrect message type or illegal argument if different
+		sanityCheck(super.m);
 	}
 	
 	/**
@@ -109,7 +137,7 @@ public class MT711 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	public MT711() {
-		super(711);
+		this(BIC.TEST8, BIC.TEST8);
 	}
 	
 	/**
@@ -130,13 +158,15 @@ public class MT711 extends AbstractMT implements Serializable {
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* Use instead <code>new MT711(sender, receiver)</code>
+	* 
 	* @see #MT711(String, String)
-	* @deprecated
+	* @deprecated Use instead <code>new MT711(sender, receiver)</code> instead
 	*/
 	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public MT711(final int messageType, final String sender, final String receiver) {
 		super(711, sender, receiver);
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT711(int, String, String)", "Use the constructor MT711(sender, receiver) instead.");
 	}
 	
 	/**
@@ -154,7 +184,16 @@ public class MT711 extends AbstractMT implements Serializable {
 			final SwiftMessage parsed = read(fin);
 			if (parsed != null) {
 				super.m = parsed;
+				sanityCheck(parsed);
 			}
+		}
+    }
+    
+    private void sanityCheck(final SwiftMessage param) {
+    	if (param.isServiceMessage()) {
+			log.warning("Creating an MT711 object from FIN content with a Service Message. Check if the MT711 you are intended to read is prepended with and ACK.");
+		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+			log.warning("Creating an MT711 object from FIN content with message type "+param.getType());
 		}
     }
 	
@@ -290,18 +329,11 @@ public class MT711 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field27 getField27() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("27");
+		if (t != null) {
+			return new Field27(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("27");
-			if (t == null) {
-				log.fine("field 27 not found");
-				return null;
-			} else {
-				return new Field27(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -315,18 +347,11 @@ public class MT711 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field20 getField20() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("20");
+		if (t != null) {
+			return new Field20(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("20");
-			if (t == null) {
-				log.fine("field 20 not found");
-				return null;
-			} else {
-				return new Field20(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -340,18 +365,11 @@ public class MT711 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field21 getField21() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("21");
+		if (t != null) {
+			return new Field21(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("21");
-			if (t == null) {
-				log.fine("field 21 not found");
-				return null;
-			} else {
-				return new Field21(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -365,18 +383,11 @@ public class MT711 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field45B getField45B() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("45B");
+		if (t != null) {
+			return new Field45B(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("45B");
-			if (t == null) {
-				log.fine("field 45B not found");
-				return null;
-			} else {
-				return new Field45B(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -390,18 +401,11 @@ public class MT711 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field46B getField46B() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("46B");
+		if (t != null) {
+			return new Field46B(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("46B");
-			if (t == null) {
-				log.fine("field 46B not found");
-				return null;
-			} else {
-				return new Field46B(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -415,28 +419,14 @@ public class MT711 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field47B getField47B() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("47B");
+		if (t != null) {
+			return new Field47B(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("47B");
-			if (t == null) {
-				log.fine("field 47B not found");
-				return null;
-			} else {
-				return new Field47B(t.getValue());
-			}
+			return null;
 		}
 	}
 	
-
-/*
- * sequences code
- *
- */ 
-
-
 
 
 

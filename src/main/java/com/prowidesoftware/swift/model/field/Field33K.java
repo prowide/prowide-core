@@ -139,11 +139,13 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
 		String toparse2 = SwiftParseUtils.getAlphaSuffix(toparse);
 		setComponent5(SwiftParseUtils.getNumericSuffix(toparse2));		
 		String toparse3 = SwiftParseUtils.getAlphaPrefix(toparse2);
-		if (toparse3 != null && toparse3.length() >= 3) {
+		if (toparse3 != null) {
+			if (toparse3.length() >= 3) {
 				setComponent4(org.apache.commons.lang.StringUtils.substring(toparse3, toparse3.length()-3, toparse3.length()));
-		}
-		if (toparse3 != null && toparse3.length() >= 4) {
+			}
+			if (toparse3.length() >= 4) {
 				setComponent3(org.apache.commons.lang.StringUtils.substring(toparse3, 0, toparse3.length()-3));
+			}
 		}
 	}
 	
@@ -446,9 +448,7 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
 	}
     
 	public List<String> currencyStrings() {
-		List<String> result = new ArrayList<String>();
-		result = CurrencyResolver.resolveComponentsPattern(COMPONENTS_PATTERN, components);
-		return result;
+		return CurrencyResolver.resolveComponentsPattern(COMPONENTS_PATTERN, components);
 	}
 
 	public List<Currency> currencies() {
@@ -479,9 +479,16 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
 		CurrencyResolver.resolveSetCurrency(this, cur);
 	}
     
+	/**
+	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
+	
+	/**
+	 * @see {@linkplain AmountResolver#amount(Field)}
+	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
 	}
@@ -627,16 +634,13 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
 		if (component < 1 || component > 5) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 33K");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent2AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -652,7 +656,7 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
 		}
 		if (component == 5) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent5AsNumber();
 			if (n != null) {
 				return f.format(n);

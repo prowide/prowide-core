@@ -20,8 +20,10 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.SwiftBlock2Input;
-import com.prowidesoftware.swift.model.SwiftBlock3;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.Tag;
@@ -33,11 +35,15 @@ import com.prowidesoftware.swift.model.Tag;
  */
 public class TestUtils {
 
+	// Suppress default constructor for noninstantiability
+	private TestUtils() {
+		throw new AssertionError();
+	}
 
 	public static SwiftMessage createMT(final int type) {
 		final SwiftMessage result = new SwiftMessage(true);
 		final SwiftBlock2Input b2 = new SwiftBlock2Input();
-		b2.setMessageType(""+type);
+		b2.setMessageType(Integer.toString(type));
 		b2.setInput(true);
 		b2.setMessagePriority("N");
 		b2.setDeliveryMonitoring("2");
@@ -53,7 +59,9 @@ public class TestUtils {
 	 * @deprecated use new MTxxx instead of this
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public static SwiftMessage createMT(final int i, final Tag ... tags ) {
+		DeprecationUtils.phase2(TestUtils.class, "createMT(int, Tag...)", "Use new MTxxx plus the append methods instead.");
 		final com.prowidesoftware.swift.model.SwiftMessage result = createMT(i);
 		if (tags != null && tags.length>0) {
 			for (final Tag t:tags) {
@@ -67,7 +75,9 @@ public class TestUtils {
 	 * @deprecated use new MTxxx instead of this
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public static SwiftMessage createMT(final int i, final com.prowidesoftware.swift.model.SwiftTagListBlock ... blocks ) {
+		DeprecationUtils.phase2(TestUtils.class, "createMT(int, SwiftTagListBlock...)", "Use new MTxxx plus the append methods instead.");
 		final SwiftMessage result = createMT(i);
 
 		if (blocks != null && blocks.length>0) {
@@ -108,7 +118,13 @@ public class TestUtils {
 		return msg;
 	}
 
+	/**
+	 * @deprecated use new MTnnn instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public static SwiftMessage createMTwithEmptyTags(final int i, final String ... tags) {
+		DeprecationUtils.phase2(TestUtils.class, "createMTwithEmptyTags(int, String...)", "Use new MTxxx plus the append methods instead.");
 		final SwiftMessage r = createMT(i, (Tag[])null);
 		if (tags != null && tags.length>0) {
 			for (final String n : tags) {
@@ -116,30 +132,6 @@ public class TestUtils {
 			}
 		}
 		return r;
-	}
-
-	public static void setSTP(final SwiftMessage m) {
-		if (m.getBlock3() == null) {
-			m.addBlock(new SwiftBlock3());
-		}
-		final SwiftBlock3 b3 = m.getBlock3();
-		if (b3.containsTag("119")) {
-			b3.getTagByName("119").setValue("STP");
-		} else {
-			b3.append(new Tag("119", "STP"));
-		}
-	}
-	
-	public static void setREMIT(final SwiftMessage m) {
-		if (m.getBlock3() == null) {
-			m.addBlock(new SwiftBlock3());
-		}
-		final SwiftBlock3 b3 = m.getBlock3();
-		if (b3.containsTag("119")) {
-			b3.getTagByName("119").setValue("REMIT");
-		} else {
-			b3.append(new Tag("119", "REMIT"));
-		}
 	}
 
 	/**
@@ -150,7 +142,9 @@ public class TestUtils {
 	 * @deprecated use directly MTXXX.SequenceX.newInstance(Tag ...)
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public static Tag[] newSeq(final String startEnd16rs, final Tag ... tags ) {
+		DeprecationUtils.phase2(TestUtils.class, "newSeq(String, Tag...)", "Use new MTxxx plus the append methods instead.");
 		final ArrayList<Tag> result = new ArrayList<Tag>();
 		result.add(new Tag("16R", startEnd16rs));
 		if (tags != null && tags.length>0) {
@@ -167,8 +161,12 @@ public class TestUtils {
 	 * @param startEnd16rs qualifier for 16RS tag
 	 * @param tagnames tag names to create
 	 * @return the created array of tag objects
+	 * @deprecated use directly MTXXX.SequenceX.newInstance(Tag ...)
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public static Tag[] newSeq(final String startEnd16rs, final String ... tagnames ) {
+		DeprecationUtils.phase2(TestUtils.class, "newSeq(String, String...)", "Use new MTxxx plus the append methods instead.");
 		final ArrayList<Tag> result = new ArrayList<Tag>();
 		result.add(new Tag("16R", startEnd16rs));
 		if (tagnames != null && tagnames.length>0) {
@@ -190,9 +188,6 @@ public class TestUtils {
 		Validate.notNull(m, "message must not be null");
 		Validate.notNull(block, "block must not be null");
 		m.getBlock4().append(block);
-	}
-	public static void readFile(final String string) {
-		// TODO Auto-generated method stub
 	}
 	
 	/**

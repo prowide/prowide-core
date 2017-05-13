@@ -38,7 +38,7 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
  *
  * validation pattern: &lt;DATE2&gt;&lt;TIME2&gt;&lt;MIR&gt;<br />
  * parser pattern: &lt;DATE2&gt;&lt;TIME2&gt;S<br />
- * components pattern: ETS<br />
+ * components pattern: DTS<br />
  *
  * <h1>Components Data types</h1>
  * <ul> 
@@ -70,7 +70,7 @@ public class Field109 extends Field implements Serializable, DateContainer {
      */
     public static final String F_109 = "109";
 	public static final String PARSER_PATTERN ="<DATE2><TIME2>S";
-	public static final String COMPONENTS_PATTERN = "ETS";
+	public static final String COMPONENTS_PATTERN = "DTS";
 
 	/**
 	 * Component number for the Date subfield
@@ -81,6 +81,11 @@ public class Field109 extends Field implements Serializable, DateContainer {
 	 * Component number for the Time subfield
 	 */
 	public static final Integer TIME = 2;
+
+	/**
+	 * Component number for the MIR subfield
+	 */
+	public static final Integer MIR = 3;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -192,7 +197,7 @@ public class Field109 extends Field implements Serializable, DateContainer {
 	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
-		return SwiftFormatUtils.getDate2(getComponent(1));
+		return SwiftFormatUtils.getDate4(getComponent(1));
 	}
 
 	/**
@@ -208,7 +213,7 @@ public class Field109 extends Field implements Serializable, DateContainer {
 	 * @return the Date from component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
-		return SwiftFormatUtils.getDate2(getComponent(1));
+		return SwiftFormatUtils.getDate4(getComponent(1));
 	}
 
 	/**
@@ -225,7 +230,7 @@ public class Field109 extends Field implements Serializable, DateContainer {
 	 * @param component1 the Calendar with the component1 content to set
 	 */
 	public Field109 setComponent1(java.util.Calendar component1) {
-		setComponent(1, SwiftFormatUtils.getDate2(component1));
+		setComponent(1, SwiftFormatUtils.getDate4(component1));
 		return this;
 	}
 	
@@ -332,6 +337,14 @@ public class Field109 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
+	 * Get the MIR (component3).
+	 * @return the MIR from component3
+	 */
+	public String getMIR() {
+		return getComponent(3);
+	}
+
+	/**
 	 * Set the component3.
 	 * @param component3 the component3 to set
 	 */
@@ -339,10 +352,19 @@ public class Field109 extends Field implements Serializable, DateContainer {
 		setComponent(3, component3);
 		return this;
 	}
+	
+	/**
+	 * Set the MIR (component3).
+	 * @param component3 the MIR to set
+	 */
+	public Field109 setMIR(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
     
     public List<Calendar> dates() {
 		List<Calendar> result = new java.util.ArrayList<Calendar>();
-		result.add(SwiftFormatUtils.getDate2(getComponent(1)));
+		result.add(SwiftFormatUtils.getDate4(getComponent(1)));
 		result.add(SwiftFormatUtils.getTime2(getComponent(2)));
 		return result;
 	}
@@ -488,12 +510,9 @@ public class Field109 extends Field implements Serializable, DateContainer {
 		if (component < 1 || component > 3) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 109");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -501,7 +520,7 @@ public class Field109 extends Field implements Serializable, DateContainer {
 		}
 		if (component == 2) {
 			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -526,7 +545,7 @@ public class Field109 extends Field implements Serializable, DateContainer {
 		List<String> result = new ArrayList<String>();
 		result.add("Date");
 		result.add("Time");
-		result.add(null);
+		result.add("MIR");
 		return result;
 	}
 	

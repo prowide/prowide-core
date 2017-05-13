@@ -70,9 +70,9 @@ public class Field132 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "cN";
 
 	/**
-	 * Component number for the Broadcast Initiator subfield
+	 * Component number for the Broadcast Indicator subfield
 	 */
-	public static final Integer BROADCAST_INITIATOR = 1;
+	public static final Integer BROADCAST_INDICATOR = 1;
 
 	/**
 	 * Component number for the Broadcast Number subfield
@@ -176,10 +176,10 @@ public class Field132 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Broadcast Initiator (component1).
-	 * @return the Broadcast Initiator from component1
+	 * Get the Broadcast Indicator (component1).
+	 * @return the Broadcast Indicator from component1
 	 */
-	public String getBroadcastInitiator() {
+	public String getBroadcastIndicator() {
 		return getComponent(1);
 	}
 
@@ -193,10 +193,10 @@ public class Field132 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Set the Broadcast Initiator (component1).
-	 * @param component1 the Broadcast Initiator to set
+	 * Set the Broadcast Indicator (component1).
+	 * @param component1 the Broadcast Indicator to set
 	 */
-	public Field132 setBroadcastInitiator(String component1) {
+	public Field132 setBroadcastIndicator(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -254,7 +254,7 @@ public class Field132 extends Field implements Serializable {
 	 */
 	public Field132 setComponent2(java.lang.Number component2) {
 		if (component2 != null) {
-			setComponent(2, ""+component2.intValue());
+			setComponent(2, Integer.toString(component2.intValue()));
 		}
 		return this;
 	}
@@ -422,16 +422,13 @@ public class Field132 extends Field implements Serializable {
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 132");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent2AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -450,7 +447,7 @@ public class Field132 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add("Broadcast Initiator");
+		result.add("Broadcast Indicator");
 		result.add("Broadcast Number");
 		return result;
 	}

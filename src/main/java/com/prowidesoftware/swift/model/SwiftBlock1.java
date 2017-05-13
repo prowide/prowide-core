@@ -637,7 +637,9 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 		try {
 			return ServiceIdType.valueOf("_"+this.serviceId);
 		} catch (Exception e) {
-			log.log(Level.WARNING, "Block1 serviceId contains an invalid value ["+ this.serviceId +"]. The expected values are "+ServiceIdType.values(), e);
+			final String text = "Block1 serviceId contains an invalid value ["+ this.serviceId +"]. The expected values are "+ServiceIdType.values();
+			log.warning(text);
+			log.log(Level.FINEST, text, e);
 			return null;
 		}
 	}

@@ -330,12 +330,9 @@ public class Field179 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 179");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

@@ -20,8 +20,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
-import com.prowidesoftware.swift.model.BIC;
-import com.prowidesoftware.swift.model.field.BICContainer;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -36,16 +34,16 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 /**
  * Field 335<br /><br />
  *
- * validation pattern: &lt;HHMM&gt;&lt;MIR&gt;&lt;MT&gt;&lt;BIC&gt;[&lt;HHMM&gt;]<br />
- * parser pattern: &lt;HHMM&gt;&lt;MIR&gt;N12!S[N]<br />
- * components pattern: HRMBH<br />
+ * validation pattern: &lt;HHMM&gt;&lt;MIR&gt;&lt;MT&gt;&lt;LT&gt;[&lt;HHMM&gt;]<br />
+ * parser pattern: &lt;HHMM&gt;&lt;MIR&gt;NS[N]<br />
+ * components pattern: HRMZH<br />
  *
  * <h1>Components Data types</h1>
  * <ul> 
  * 		<li>component1: <code>Calendar</code></li> 
  * 		<li>component2: <code>MIR</code></li> 
  * 		<li>component3: <code>Number</code></li> 
- * 		<li>component4: <code>BIC</code></li> 
+ * 		<li>component4: <code>LogicalTerminalAddress</code></li> 
  * 		<li>component5: <code>Calendar</code></li> 
  * </ul>
  *		 
@@ -56,7 +54,7 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
  */
 @SuppressWarnings("unused") 
 @Generated
-public class Field335 extends Field implements Serializable, BICContainer {
+public class Field335 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -71,8 +69,8 @@ public class Field335 extends Field implements Serializable, BICContainer {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_335 = "335";
-	public static final String PARSER_PATTERN ="<HHMM><MIR>N12!S[N]";
-	public static final String COMPONENTS_PATTERN = "HRMBH";
+	public static final String PARSER_PATTERN ="<HHMM><MIR>NS[N]";
+	public static final String COMPONENTS_PATTERN = "HRMZH";
 
 	/**
 	 * Component number for the Time Message Entered subfield
@@ -148,14 +146,16 @@ public class Field335 extends Field implements Serializable, BICContainer {
 			if (value.length() >= 32) {
 				setComponent2(org.apache.commons.lang.StringUtils.substring(value, 4, 32));
 			}
-			String toparse = org.apache.commons.lang.StringUtils.substring(value, 32);
-			setComponent3(SwiftParseUtils.getNumericPrefix(toparse));
-			String toparse2 = SwiftParseUtils.getAlphaSuffix(toparse);
-			if (toparse2.length() >= 12) {
-				setComponent4(org.apache.commons.lang.StringUtils.substring(toparse2, 0, 12));
-			}
-			if (toparse2.length() > 12) {
-				setComponent5(org.apache.commons.lang.StringUtils.substring(toparse2, 12));
+			if (value.length() > 32) {
+				final String toparse = org.apache.commons.lang.StringUtils.substring(value, 32);
+				if (toparse != null) {
+					setComponent3(SwiftParseUtils.getNumericPrefix(toparse));
+					final String toparse2 = SwiftParseUtils.getAlphaSuffix(toparse);
+					if (toparse2 != null) {
+						setComponent4(SwiftParseUtils.getAlphaPrefix(toparse2));
+						setComponent5(SwiftParseUtils.getNumericSuffix(toparse2));
+					}
+				}
 			}
 		}
 	}
@@ -178,13 +178,7 @@ public class Field335 extends Field implements Serializable, BICContainer {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		result.append(StringUtils.trimToEmpty(getComponent2()));
-		result.append(StringUtils.trimToEmpty(getComponent3()));
-		result.append(StringUtils.trimToEmpty(getComponent4()));
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent5())) {
-			result.append(StringUtils.trimToEmpty(getComponent5()));
-		}
+		result.append(joinComponents());
 		return result.toString();
 	}
 
@@ -386,11 +380,11 @@ public class Field335 extends Field implements Serializable, BICContainer {
 	}
 
 	/**
-	 * Get the component4 as BIC
-	 * @return the component4 converted to BIC or <code>null</code> if cannot be converted
+	 * Get the component4 as LogicalTerminalAddress
+	 * @return the component4 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
 	 */
-	public com.prowidesoftware.swift.model.BIC getComponent4AsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(4));
+	public com.prowidesoftware.swift.model.LogicalTerminalAddress getComponent4AsLogicalTerminalAddress() {
+		return SwiftFormatUtils.getLTAddress(getComponent(4));
 	}
 
 	/**
@@ -402,11 +396,11 @@ public class Field335 extends Field implements Serializable, BICContainer {
 	}
 	
 	/**
-	 * Get the Receiver (component4) as BIC
-	 * @return the Receiver from component4 converted to BIC or <code>null</code> if cannot be converted
+	 * Get the Receiver (component4) as LogicalTerminalAddress
+	 * @return the Receiver from component4 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
 	 */
-	public com.prowidesoftware.swift.model.BIC getReceiverAsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(4));
+	public com.prowidesoftware.swift.model.LogicalTerminalAddress getReceiverAsLogicalTerminalAddress() {
+		return SwiftFormatUtils.getLTAddress(getComponent(4));
 	}
 
 	/**
@@ -419,11 +413,11 @@ public class Field335 extends Field implements Serializable, BICContainer {
 	}
 	
 	/**
-	 * Set the component4 from a BIC object.
-	 * @param component4 the BIC with the component4 content to set
+	 * Set the component4 from a LogicalTerminalAddress object.
+	 * @param component4 the LogicalTerminalAddress with the component4 content to set
 	 */
-	public Field335 setComponent4(com.prowidesoftware.swift.model.BIC component4) {
-		setComponent(4, SwiftFormatUtils.getBIC(component4));
+	public Field335 setComponent4(com.prowidesoftware.swift.model.LogicalTerminalAddress component4) {
+		setComponent(4, SwiftFormatUtils.getLTAddress(component4));
 		return this;
 	}
 	
@@ -437,11 +431,11 @@ public class Field335 extends Field implements Serializable, BICContainer {
 	}
 	
 	/**
-	 * Set the Receiver (component4) from a BIC object.
-	 * @see #setComponent4(com.prowidesoftware.swift.model.BIC)
-	 * @param component4 BIC with the Receiver content to set
+	 * Set the Receiver (component4) from a LogicalTerminalAddress object.
+	 * @see #setComponent4(com.prowidesoftware.swift.model.LogicalTerminalAddress)
+	 * @param component4 LogicalTerminalAddress with the Receiver content to set
 	 */
-	public Field335 setReceiver(com.prowidesoftware.swift.model.BIC component4) {
+	public Field335 setReceiver(com.prowidesoftware.swift.model.LogicalTerminalAddress component4) {
 		setComponent4(component4);
 		return this;
 	}
@@ -514,17 +508,6 @@ public class Field335 extends Field implements Serializable, BICContainer {
 		return this;
 	}
 
-	public List<BIC> bics () {
-		final List<BIC> result = new ArrayList<BIC>();
-		result.add(SwiftFormatUtils.getBIC(getComponent(4)));
-		return result;
-	}
-	public List<String> bicStrings () {
-		final List<String> result = new ArrayList<String>();
-		result.add(getComponent(4));
-		return result;
-	}
-
    /**
     * Given a component number it returns true if the component is optional,
     * regardless of the field being mandatory in a particular message.<br />
@@ -577,7 +560,7 @@ public class Field335 extends Field implements Serializable, BICContainer {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "<HHMM><MIR><MT><BIC>[<HHMM>]";
+		return "<HHMM><MIR><MT><LT>[<HHMM>]";
 	}
 
 	/**
@@ -666,12 +649,9 @@ public class Field335 extends Field implements Serializable, BICContainer {
 		if (component < 1 || component > 5) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 335");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -691,7 +671,7 @@ public class Field335 extends Field implements Serializable, BICContainer {
 		}
 		if (component == 5) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent5AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

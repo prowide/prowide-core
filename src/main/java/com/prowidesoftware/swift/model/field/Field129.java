@@ -70,6 +70,16 @@ public class Field129 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "NN";
 
 	/**
+	 * Component number for the Section subfield
+	 */
+	public static final Integer SECTION = 1;
+
+	/**
+	 * Component number for the Total subfield
+	 */
+	public static final Integer TOTAL = 2;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field129() {
@@ -176,6 +186,22 @@ public class Field129 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Section (component1).
+	 * @return the Section from component1
+	 */
+	public String getSection() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Section (component1) as Number
+	 * @return the Section from component1 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getSectionAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -197,8 +223,27 @@ public class Field129 extends Field implements Serializable {
 	 */
 	public Field129 setComponent1(java.lang.Number component1) {
 		if (component1 != null) {
-			setComponent(1, ""+component1.intValue());
+			setComponent(1, Integer.toString(component1.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Section (component1).
+	 * @param component1 the Section to set
+	 */
+	public Field129 setSection(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Section (component1) from a Number object.
+	 * @see #setComponent1(java.lang.Number)
+	 * @param component1 Number with the Section content to set
+	 */
+	public Field129 setSection(java.lang.Number component1) {
+		setComponent1(component1);
 		return this;
 	}
 	/**
@@ -214,6 +259,22 @@ public class Field129 extends Field implements Serializable {
 	 * @return the component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(2));
+	}
+
+	/**
+	 * Get the Total (component2).
+	 * @return the Total from component2
+	 */
+	public String getTotal() {
+		return getComponent(2);
+	}
+	
+	/**
+	 * Get the Total (component2) as Number
+	 * @return the Total from component2 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getTotalAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
@@ -239,8 +300,27 @@ public class Field129 extends Field implements Serializable {
 	 */
 	public Field129 setComponent2(java.lang.Number component2) {
 		if (component2 != null) {
-			setComponent(2, ""+component2.intValue());
+			setComponent(2, Integer.toString(component2.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Total (component2).
+	 * @param component2 the Total to set
+	 */
+	public Field129 setTotal(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Total (component2) from a Number object.
+	 * @see #setComponent2(java.lang.Number)
+	 * @param component2 Number with the Total content to set
+	 */
+	public Field129 setTotal(java.lang.Number component2) {
+		setComponent2(component2);
 		return this;
 	}
 
@@ -385,12 +465,9 @@ public class Field129 extends Field implements Serializable {
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 129");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent1AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -398,7 +475,7 @@ public class Field129 extends Field implements Serializable {
 		}
 		if (component == 2) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent2AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -417,8 +494,8 @@ public class Field129 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
+		result.add("Section");
+		result.add("Total");
 		return result;
 	}
 	

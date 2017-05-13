@@ -14,6 +14,7 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.text.DateFormat;
@@ -31,13 +32,18 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.parser.XMLParser;
+import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
+import com.prowidesoftware.swift.model.mt.AckSystemMessage;
 import com.prowidesoftware.swift.model.mt.MTVariant;
+import com.prowidesoftware.swift.model.mt.MtCategory;
 import com.prowidesoftware.swift.model.mt.ServiceIdType;
-import com.prowidesoftware.swift.model.mt.SystemMessage;
 import com.prowidesoftware.swift.utils.IMessageVisitor;
 
 /**
@@ -110,8 +116,6 @@ public class SwiftMessage implements Serializable {
 	 */
 	protected Long id;
 
-	private boolean initBlocks = false;
-
 	/**
 	 * Default constructor.
 	 * Must be called since here is performed default handler registration
@@ -119,7 +123,6 @@ public class SwiftMessage implements Serializable {
 	 */
 	public SwiftMessage() {
 		super();
-		initBlocks();
 	}
 
 	/**
@@ -129,9 +132,13 @@ public class SwiftMessage implements Serializable {
 	 */
 	public SwiftMessage(final boolean initBlocks) {
 		super();
-		this.initBlocks = initBlocks;
 		if (initBlocks) {
-			initBlocks();
+			addBlock(new SwiftBlock1());
+			addBlock(new SwiftBlock2Input());
+			addBlock(new SwiftBlock3());
+			addBlock(new SwiftBlock4());
+			addBlock(new SwiftBlock5());
+			this.userBlocks = new ArrayList<SwiftBlockUser>();
 		}
 	}
 
@@ -165,19 +172,21 @@ public class SwiftMessage implements Serializable {
 	}
 
 	/**
-	 * initializes blocks
+	 * Parses a the string content into a SwiftMessage. 
+	 * If the file contains more than a message it will parse the first one. 
+	 * If the string is empty, does not contain any MT message, the message type is not set or 
+	 * an error occurs reading and parsing the message content; this method returns null.
+	 * 
+	 * @param fin string a string containing a swift MT message
+	 * @return parser message or null if string content could not be parsed
+	 * @throws IOException
+	 * 
+	 * @since 7.8.8
 	 */
-	private void initBlocks() {
-		if (initBlocks) {
-			addBlock(new SwiftBlock1());
-			addBlock(new SwiftBlock2Input());
-			addBlock(new SwiftBlock3());
-			addBlock(new SwiftBlock4());
-			addBlock(new SwiftBlock5());
-			this.userBlocks = new ArrayList<SwiftBlockUser>();
-		}
+	public final static SwiftMessage parse(final String fin) throws IOException {
+		return (new SwiftParser(fin)).message();
 	}
-
+	
 	/**
 	 * Get the block number specified by b.
 	 *
@@ -268,8 +277,11 @@ public class SwiftMessage implements Serializable {
 	 * @throws IllegalArgumentException if parameter type is <code>null</code> or not a valid type (i.e: 3 chars len)
 	 * @see SwiftBlock2#getMessageType()
 	 * @see #getType()
-	 *
+	 * 
+	 * @deprecated this method has been deprecated in favor of {@link #isType(int)} which provides a safer API just passing an int number for the message type
 	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear._2018)
 	public boolean isMT(final String type) {
 		// sanity check
 		Validate.notNull(type);
@@ -298,6 +310,7 @@ public class SwiftMessage implements Serializable {
 	 *
 	 * @param visitor the visitor to use
 	 * @throws IllegalArgumentException if parameter visitor is <code>null</code>
+	 * @see SwiftWriter#writeMessage(SwiftMessage, java.io.Writer)
 	 */
 	public void visit(final IMessageVisitor visitor) {
 		Validate.notNull(visitor);
@@ -313,7 +326,7 @@ public class SwiftMessage implements Serializable {
 			visitor.endBlock1(b1);
 		}
 
-		// visit block 1 and value
+		// visit block 2 and value
 		final SwiftBlock2 b2 = getBlock2();
 		if (b2 != null) {
 			visitor.startBlock2(b2);
@@ -365,6 +378,7 @@ public class SwiftMessage implements Serializable {
 	 * Visit a Block 3 (SwiftBlock3), i.e: call the tag method for block 3
 	 * This method is called from {@link #visit(IMessageVisitor)} but may be used independently, in such case,
 	 * the startBlockX and endBlockX in the visitor will not be called.
+	 * <p>To serialize in SWIFT native format with block boundaries check {@link SwiftWriter#writeBlock3(SwiftBlock3, java.io.Writer)}</p>
 	 *
 	 * @param block the block containing the tags to visit
 	 * @param visitor the visitor to use
@@ -372,7 +386,7 @@ public class SwiftMessage implements Serializable {
 	 *
 	 * @since 5.0
 	 */
-	public void visit(final SwiftBlock3 block, final IMessageVisitor visitor) {
+	public static void visit(final SwiftBlock3 block, final IMessageVisitor visitor) {
 		// sanity check
 		Validate.notNull(block);
 		Validate.notNull(visitor);
@@ -387,6 +401,7 @@ public class SwiftMessage implements Serializable {
 	 * Visit a Block 4 (SwiftBlock4), i.e: call the tag method for block 4
 	 * This method is called from {@link #visit(IMessageVisitor)} but may be used independently, in such case,
 	 * the startBlockX and endBlockX in the visitor will not be called.
+	 * <p>To serialize in SWIFT native format with block boundaries check {@link SwiftWriter#writeBlock4(SwiftBlock4, java.io.Writer)}</p>
 	 *
 	 * @param block the block containing the tags to visit
 	 * @param visitor the visitor to use
@@ -394,7 +409,7 @@ public class SwiftMessage implements Serializable {
 	 *
 	 * @since 5.0
 	 */
-	public void visit(final SwiftBlock4 block, final IMessageVisitor visitor) {
+	public static void visit(final SwiftBlock4 block, final IMessageVisitor visitor) {
 		// sanity check
 		Validate.notNull(block);
 		Validate.notNull(visitor);
@@ -410,6 +425,7 @@ public class SwiftMessage implements Serializable {
 	 * Visit a Block 5 (SwiftBlock5), i.e: call the tag method for block 4
 	 * This method is called from {@link #visit(IMessageVisitor)} but may be used independently, in such case,
 	 * the startBlockX and endBlockX in the visitor will not be called.
+	 * <p>To serialize in SWIFT native format with block boundaries check {@link SwiftWriter#writeBlock5(SwiftBlock5, java.io.Writer)}</p>
 	 *
 	 * @param block the block containing the tags to visit
 	 * @param visitor the visitor to use
@@ -417,7 +433,7 @@ public class SwiftMessage implements Serializable {
 	 *
 	 * @since 5.0
 	 */
-	public void visit(final SwiftBlock5 block, final IMessageVisitor visitor) {
+	public static void visit(final SwiftBlock5 block, final IMessageVisitor visitor) {
 		// sanity check
 		Validate.notNull(block);
 		Validate.notNull(visitor);
@@ -440,7 +456,7 @@ public class SwiftMessage implements Serializable {
 	 *
 	 * @since 5.0
 	 */
-	public void visit(final SwiftBlockUser block, final IMessageVisitor visitor) {
+	public static void visit(final SwiftBlockUser block, final IMessageVisitor visitor) {
 		// sanity check
 		Validate.notNull(block);
 		Validate.notNull(visitor);
@@ -964,6 +980,7 @@ public class SwiftMessage implements Serializable {
 		this.unparsedTexts.addText(message);
 	}
 
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -977,66 +994,50 @@ public class SwiftMessage implements Serializable {
 		return result;
 	}
 
-	public boolean equals(final Object obj) {
-		if (this == obj) {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		}
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-		if (getClass() != obj.getClass()) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
-		final SwiftMessage other = (SwiftMessage) obj;
+		SwiftMessage other = (SwiftMessage) obj;
 		if (block1 == null) {
-			if (other.block1 != null) {
+			if (other.block1 != null)
 				return false;
-			}
-		} else if (!block1.equals(other.block1)) {
+		} else if (!block1.equals(other.block1))
 			return false;
-		}
 		if (block2 == null) {
-			if (other.block2 != null) {
+			if (other.block2 != null)
 				return false;
-			}
-		} else if (!block2.equals(other.block2)) {
+		} else if (!block2.equals(other.block2))
 			return false;
-		}
 		if (block3 == null) {
-			if (other.block3 != null) {
+			if (other.block3 != null)
 				return false;
-			}
-		} else if (!block3.equals(other.block3)) {
+		} else if (!block3.equals(other.block3))
 			return false;
-		}
 		if (block4 == null) {
-			if (other.block4 != null) {
+			if (other.block4 != null)
 				return false;
-			}
-		} else if (!block4.equals(other.block4)) {
+		} else if (!block4.equals(other.block4))
 			return false;
-		}
 		if (block5 == null) {
-			if (other.block5 != null) {
+			if (other.block5 != null)
 				return false;
-			}
-		} else if (!block5.equals(other.block5)) {
+		} else if (!block5.equals(other.block5))
 			return false;
-		}
 		if (unparsedTexts == null) {
-			if (other.unparsedTexts != null) {
+			if (other.unparsedTexts != null)
 				return false;
-			}
-		} else if (!unparsedTexts.equals(other.unparsedTexts)) {
+		} else if (!unparsedTexts.equals(other.unparsedTexts))
 			return false;
-		}
 		if (userBlocks == null) {
-			if (other.userBlocks != null) {
+			if (other.userBlocks != null)
 				return false;
-			}
-		} else if (!userBlocks.equals(other.userBlocks)) {
+		} else if (!userBlocks.equals(other.userBlocks))
 			return false;
-		}
 		return true;
 	}
 
@@ -1076,19 +1077,20 @@ public class SwiftMessage implements Serializable {
 
 	/**
 	 * Gets the message sender BIC from the message headers.
-	 * For outgoing messages this is the the logical terminal at block 1,
-	 * and for incoming messages this is logical terminal at the MIR of block 2.
+	 * <p>For outgoing messages this is the the logical terminal at block 1,
+	 * and for incoming messages this is logical terminal at the MIR of block 2.</p>
+	 * <p>for service message (example acknowledges) always returns the logical terminal from block1</p>
 	 *
 	 * @return the proper sender address or <code>null</code> if blocks 1 or 2 are not found or incomplete
 	 */
 	public String getSender() {
 		try {
-			if (getDirection() == MessageIOType.incoming) {
+			if (isServiceMessage() || getDirection() == MessageIOType.outgoing) {
+				return getBlock1() == null ? null : getBlock1().getLogicalTerminal();
+			} else if (getDirection() == MessageIOType.incoming) {
 				if (getBlock2() != null) {
 					return ((SwiftBlock2Output) getBlock2()).getMIRLogicalTerminal();
 				}
-			} else if (getDirection() == MessageIOType.outgoing) {
-				return getBlock1() == null ? null : getBlock1().getLogicalTerminal();
 			}
 		} catch (final Exception e) {
 			log.severe("Exception ocurred while retrieving sender's BIC from message data: "+e);
@@ -1098,14 +1100,17 @@ public class SwiftMessage implements Serializable {
 
 	/**
 	 * Gets the message receiver BIC from the message headers.
-	 * For outgoing messages this is the receiver address at block 2,
-	 * and for incoming messages this is logical terminal at block 1.
-	 *
+	 * <p>For outgoing messages this is the receiver address at block 2,
+	 * and for incoming messages this is logical terminal at block 1.</p>
+	 * <p>for service message (example acknowledges) returns always null</p>
+	 * 
 	 * @return the proper receiver address or <code>null</code> if blocks 1 or 2 are not found or incomplete
 	 */
 	public String getReceiver() {
 		try {
-			if (getDirection() == MessageIOType.incoming) {
+			if (isServiceMessage()) {
+				return null;
+			} else if (getDirection() == MessageIOType.incoming) {
 				return getBlock1().getLogicalTerminal();
 			} else if (getDirection() == MessageIOType.outgoing) {
 				return ((SwiftBlock2Input) getBlock2()).getReceiverAddress();
@@ -1164,14 +1169,19 @@ public class SwiftMessage implements Serializable {
 
 	/**
 	 * get message type as an int or -1 if an error occurs or it is not set
-	 * @return the message type number or -1
+	 * @return the message type number or -1 if the message type is invalid or block 2 not present (for instance if the message is a service message)
 	 * @since 6.4.1
 	 */
 	public int getTypeInt() {
+		if (isServiceMessage()) {
+			return -1;
+		}
 		try {
 			return Integer.valueOf(getType());
 		} catch (final NumberFormatException e) {
-			log.log(Level.WARNING, "Error converting type to int " + getType(), e);
+			final String text = "Error converting type to int " + getType();
+			log.warning(text);
+			log.log(Level.FINEST, text, e);
 			return -1;
 		}
 	}
@@ -1262,7 +1272,8 @@ public class SwiftMessage implements Serializable {
 	}
 
 	/**
-	 * Gets MUR from the application header block or null if the the message is not incoming or the application header block is null
+	 * Gets MUR from the user header block or null if the user header or MUR are not present.
+	 * The MUR is the Message User Reference used by applications for reconciliation with ACK.
 	 * @since 7.0
 	 */
 	public String getMUR() {
@@ -1461,17 +1472,20 @@ public class SwiftMessage implements Serializable {
 
 	/**
 	 * Get the MTxxx instance that corresponds to the current message type.
-	 * if you have a MT102 in a SwiftMessage, this method is the same as invoking
-	 * <code>new MT102(SwiftMessage)</code>.
-	 * If the message type is not set or an error occurs this method returns null
+	 * <p>If you have a MT102 in a SwiftMessage, this method is the same as invoking
+	 * <code>new MT102(SwiftMessage)</code>.</p>
+	 * <p>For messages with service id 21 = GPA/FIN Message (ACK/NAK/UAK/UNK) it will
+	 * return an instance of {@linkplain AckSystemMessage}.</p>
+	 * 
+	 * @return created specific MT object or null if the message type is not set or an error occurs during message creation 
 	 */
 	public AbstractMT toMT() {
 		final String type = getType();
 		if (type == null) {
-			if (isSystemMessage()) {
-				return SystemMessage.newInstance(this);
+			if (isServiceMessage21()) {
+				return AckSystemMessage.newInstance(this);
 			}
-			log.warning("Can not create an instance of message with type not set:\n"+toString());
+			log.warning("Cannot determine the message type from application header (block 2)");
 		} else {
 			final StringBuilder className = new StringBuilder();
 			className.append("com.prowidesoftware.swift.model.mt.mt");
@@ -1479,11 +1493,23 @@ public class SwiftMessage implements Serializable {
 			className.append("xx.MT");
 			className.append(type);
 			if (isSTP()) {
-				className.append("_STP");
+				if (isType(102, 103)) {
+					className.append("_STP");
+				} else {
+					log.warning("Unexpected STP flag in MT "+getType());
+				}
 			} else if (isREMIT()) {
-				className.append("_REMIT");
+				if (isType(103)) {
+					className.append("_REMIT");
+				} else {
+					log.warning("Unexpected REMIT flag in MT "+getType());
+				}
 			} else if (isCOV()) {
-				className.append("COV");
+				if (isType(202, 205)) {
+					className.append("COV");
+				} else {
+					log.warning("Unexpected COV flag in MT "+getType());
+				}
 			}
 			log.finer("About to create an instance of "+className);
 			try {
@@ -1497,7 +1523,22 @@ public class SwiftMessage implements Serializable {
 	}
 
 	/**
-	 * Returns true if the message type number is equal to one of the given by parameter
+	 * <p>Returns true if the message type is equal to the given number.</p>
+	 * <p>Notice this method only checks the message type number but can be combined with any
+	 * message variant check such as {@link #isSTP()}, {@link #isREMIT()} or {@link #isCOV()}
+	 * to determine the message kind precisely.</p>
+	 * <p>The implementation uses {@link #getTypeInt()}</p>
+	 * @param type message type number to check
+	 * @return true if message type matches, false if does not match or cannot be determined because the message content is invalid
+	 * @since 7.8.9
+	 */
+	public boolean isType(final int type) {
+		return getTypeInt() == type;
+	}
+	
+	/**
+	 * Returns true if the message type is equal to one of the given numbers.
+	 * The implementation uses {@link #getTypeInt()}
 	 * @param types message type numbers to check
 	 * @return true if message type matches, false if does not match or cannot be determined because the message content is invalid
 	 * @since 7.7
@@ -1512,21 +1553,83 @@ public class SwiftMessage implements Serializable {
 		return false;
 	}
 
-	 /**
-     * Returns true if message application id is: 21 = GPA/FIN	Message (ACK/NAK/UAK/UNK)
-     * <br>
-     * Note this will NOT return true for FIN system messages (category 0). It is just 
-     * useful to detect acknowledges.
+	/**
+	 * Returns true if the message category is equal to one of the given by parameter
+	 * @param categories the categories 0 to 9 to check
+	 * @return true if message category, false if does not match or cannot be determined because the message content is invalid or the categories parameter contains values other than 0 to 9
+	 * @since 7.8.8
+	 */
+	public final boolean isCategory(final MtCategory... categories) {
+		final MtCategory cat = getCategory();
+		for (final MtCategory t : categories) {
+			if (cat == t) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Returns the message category from the message type.
+	 * This implementation uses {@link #getType()} to retrieve the message type of the message.
+	 * @return the category found as the first digit of the message type or <code>null</code> if block 2 is not found or the message type is not category number
+	 */
+	public final MtCategory getCategory() {
+		final String type = getType();
+		if (type != null) {
+			try {
+				return MtCategory.valueOf("_"+type.substring(0, 1));
+			} catch (final Exception e) {
+				final String text = "Error extracting category from message type " + getType();
+				log.warning(text);
+				log.log(Level.FINEST, text, e);
+			}
+		}
+		return null;
+	}
+
+	/**
+     * Returns true if message service id is anything but 01 = GPA/FIN Message (system and user-to-user)
+     * 
+     * @since 7.8.8
+     */
+    public final boolean isServiceMessage() {
+    	if (getBlock1() == null) {
+    		return false;
+    	}
+    	return getBlock1().getServiceIdType() != ServiceIdType._01;
+    }
+
+	/**
+     * Returns true if message service id is 21 = GPA/FIN Message (ACK/NAK/UAK/UNK)
+     * <p>IMPORTANT: Note despite the method name this will NOT return true for FIN system messages (category 0). 
+     * It is just useful to detect acknowledges.<br />
+     * To check for system messages use {@link #isCategory(int...)} instead, passing zero as parameter</p>
+     * 
+     * <p>@deprecated this method is kept for backward compatibility but was replace by {@link #isServiceMessage21()} which
+     * reflects what the method returns properly. Notice a "system message" is actually a message with category 0, which is 
+     * not the same as a "service message".</p>
      * 
      * @since 7.8
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear._2018)
     public boolean isSystemMessage() {
+    	return isServiceMessage21();
+    }
+
+    /**
+     * Returns true if message service id is 21 = GPA/FIN Message (ACK/NAK/UAK/UNK)
+     * @return true if it is a service message for acknowledgment, false if not or header is null and service id cannot be determined
+     * @since 7.8.9
+     */
+    public boolean isServiceMessage21() {
     	if (getBlock1() == null) {
     		return false;
     	}
     	return getBlock1().getServiceIdType() == ServiceIdType._21;
     }
-
+    
     /**
      * Returns true if this message is an ACK.
      * This is determined by testing first if it is a system message, and second
@@ -1535,7 +1638,7 @@ public class SwiftMessage implements Serializable {
      * @since 7.8
      */
 	public boolean isAck() {
-		if (isSystemMessage()) {
+		if (isServiceMessage21()) {
 			if (getBlock4() == null) {
 				return false;
 			}
@@ -1556,7 +1659,7 @@ public class SwiftMessage implements Serializable {
 	 * @since 7.8
 	 */
 	public boolean isNack() {
-		if (isSystemMessage()) {
+		if (isServiceMessage21()) {
 			if (getBlock4() == null) {
 				return false;
 			}
@@ -1607,10 +1710,14 @@ public class SwiftMessage implements Serializable {
 	 * Composed by the business process, message type and variant.
 	 * Example: fin.103.STP
 	 *
-	 * @return the constructed message id
+	 * @return the constructed message id or <code>null</code> if message is a service message
 	 * @since 7.8.4
 	 */
 	public MtId getMtId() {
-		return new MtId(getType(), getVariant());
+		if (isServiceMessage()) {
+			return null;
+		} else {
+			return new MtId(getType(), getVariant());
+		} 
 	}
 }

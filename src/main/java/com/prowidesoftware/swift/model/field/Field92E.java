@@ -497,9 +497,16 @@ public class Field92E extends Field implements Serializable, AmountContainer, co
 		return this;
 	}
     
+	/**
+	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
+	
+	/**
+	 * @see {@linkplain AmountResolver#amount(Field)}
+	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
 	}
@@ -689,9 +696,6 @@ public class Field92E extends Field implements Serializable, AmountContainer, co
 		if (component < 1 || component > 6) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 92E");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -710,7 +714,7 @@ public class Field92E extends Field implements Serializable, AmountContainer, co
 		}
 		if (component == 5) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent5AsNumber();
 			if (n != null) {
 				return f.format(n);

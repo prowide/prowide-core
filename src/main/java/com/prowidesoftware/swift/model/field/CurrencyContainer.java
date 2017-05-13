@@ -25,7 +25,6 @@ import java.util.List;
  * 
  * @author www.prowidesoftware.com
  * @since 6.0
- * @version $Revision: 1.1 $
  */
 public interface CurrencyContainer extends PatternContainer {
 

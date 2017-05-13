@@ -27,7 +27,7 @@ import com.prowidesoftware.deprecation.TargetYear;
  */
 @Retention(RetentionPolicy.SOURCE)
 @Deprecated
-@ProwideDeprecated(phase2=TargetYear._2017)
+@ProwideDeprecated(phase3=TargetYear._2018)
 public @interface DeleteSchedule {
 
 	/**

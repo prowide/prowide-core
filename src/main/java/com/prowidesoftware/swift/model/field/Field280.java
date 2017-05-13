@@ -34,7 +34,7 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 /**
  * Field 280<br /><br />
  *
- * validation pattern: &lt;HHMM&gt;&lt;MIR&gt;&lt;1!a&gt;&lt;?&gt;<br />
+ * validation pattern: &lt;HHMM&gt;&lt;MIR&gt;1!a&lt;?&gt;<br />
  * parser pattern: &lt;HHMM&gt;&lt;MIR&gt;cS<br />
  * components pattern: HRLS<br />
  *
@@ -489,7 +489,7 @@ public class Field280 extends Field implements Serializable {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "<HHMM><MIR><1!a><?>";
+		return "<HHMM><MIR>1!a<?>";
 	}
 
 	/**
@@ -578,12 +578,9 @@ public class Field280 extends Field implements Serializable {
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 280");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

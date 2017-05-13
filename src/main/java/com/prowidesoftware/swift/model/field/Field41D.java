@@ -116,22 +116,21 @@ public class Field41D extends Field implements Serializable, com.prowidesoftware
 		init(5);
 		final java.util.List<String> lines = SwiftParseUtils.getLines(value);
 		String c5 = null;
-		if (lines.size()>1) {
+		if (lines.size() > 1) {
 			c5 = lines.remove(lines.size()>5?4:lines.size()-1);
 		}
-		if (lines.size() > 0) {
+		if (!lines.isEmpty()) {
 			setComponent1(lines.get(0));
-		} 
-		if (lines.size() > 1) {
-			setComponent2(lines.get(1));
+			if (lines.size() > 1) {
+				setComponent2(lines.get(1));
+			}
+			if (lines.size() > 2) {
+				setComponent3(lines.get(2));
+			}
+			if (lines.size() > 3) {
+				setComponent4(lines.get(3));
+			}
 		}
-		if (lines.size() > 2) {
-			setComponent3(lines.get(2));
-		}
-		if (lines.size() > 3) {
-			setComponent4(lines.get(3));
-		}
-		
 		if (c5 != null) {
 			setComponent5(c5);
 		}
@@ -530,9 +529,6 @@ public class Field41D extends Field implements Serializable, com.prowidesoftware
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 5) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 41D");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

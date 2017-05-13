@@ -28,11 +28,11 @@ public interface SchemeConstantsR {
     public final static String RECP = "RECP";
     public final static String RVAL = "RVAL";
     public final static String REAS = "REAS";
-    public final static String REST = "REST";
-    public final static String REGDET = "REGDET";
     public final static String RREG = "RREG";
+    public final static String REST = "REST";
     public final static String REGI = "REGI";
     public final static String RREA = "RREA";
+    public final static String REGDET = "REGDET";
     public final static String RESU = "RESU";
     public final static String RMTH = "RMTH";
     public final static String RERT = "RERT";

@@ -155,21 +155,14 @@ public class Field98G extends Field implements Serializable, DateContainer {
 			    if (toparse3 != null) {
 					if (toparse3.length() < 2) {
 					    setComponent4(toparse3);
-					} else if (toparse3.length() == 2) {
-					    //HH
+					} else if (toparse3.length() == 2 || toparse3.length() == 4) {
+					    //HH or HH[MM] 
 					    setComponent5(toparse3);
-					} else if (toparse3.length() == 3) {
-					    //[N]HH
+					} else if (toparse3.length() == 3 || toparse3.length() == 5) {
+					    //[N]HH or [N]HH[MM]
 					    setComponent4(org.apache.commons.lang.StringUtils.substring(toparse3, 0, 1));
 					    setComponent5(org.apache.commons.lang.StringUtils.substring(toparse3, 1));
-					} else if (toparse3.length() == 4) {
-					    //HH[MM]
-					    setComponent5(toparse3);
-					} else if (toparse3.length() == 5) {
-					    //[N]HH[MM]
-					    setComponent4(org.apache.commons.lang.StringUtils.substring(toparse3, 0, 1));
-					    setComponent5(org.apache.commons.lang.StringUtils.substring(toparse3, 1));
-					} if (toparse3.length() > 4) {
+					} else if (toparse3.length() > 4) {
 					    setComponent4(SwiftParseUtils.getAlphaPrefix(toparse3));
 					    setComponent5(SwiftParseUtils.getNumericSuffix(toparse3));
 					}
@@ -422,7 +415,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	 */
 	public Field98G setComponent3(java.lang.Number component3) {
 		if (component3 != null) {
-			setComponent(3, ""+component3.intValue());
+			setComponent(3, Integer.toString(component3.intValue()));
 		}
 		return this;
 	}
@@ -737,12 +730,9 @@ public class Field98G extends Field implements Serializable, DateContainer {
 		if (component < 1 || component > 5) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 98G");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -750,7 +740,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 		}
 		if (component == 2) {
 			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -758,7 +748,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 		}
 		if (component == 3) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent3AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -770,7 +760,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 		}
 		if (component == 5) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent5AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

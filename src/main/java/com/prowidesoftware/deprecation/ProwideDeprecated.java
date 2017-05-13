@@ -41,14 +41,14 @@ public @interface ProwideDeprecated {
 	/**
 	 * Scheduled year for entering phase 2 of deprecation
 	 */
-	TargetYear phase2() default TargetYear._2017;
+	TargetYear phase2() default TargetYear._2018;
 	/**
 	 * Scheduled year for entering phase 3 of deprecation
 	 */
-	TargetYear phase3() default TargetYear._2018;
+	TargetYear phase3() default TargetYear._2019;
 	/**
 	 * Scheduled year for entering phase 4 of deprecation
 	 */
-	TargetYear phase4() default TargetYear._2019;
+	TargetYear phase4() default TargetYear._2020;
 	
 }

@@ -18,18 +18,21 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 /**
  * @deprecated us {@linkplain RJEReader} instead 
  * @author www.prowidesoftware.com
  */
 @Deprecated
-@DeleteSchedule(2017)
+@ProwideDeprecated(phase3=TargetYear._2018)
 public class ReaderIterator extends RJEReader {
 	
 	public ReaderIterator(Reader r) {
 		super(r);
+		DeprecationUtils.phase2(getClass(), null, "Use RJEReader instead.");
 	}
 	
 	public static ReaderIterator fromResource(String string) {
@@ -40,4 +43,5 @@ public class ReaderIterator extends RJEReader {
 		}
 		return null;
 	}
+	
 }

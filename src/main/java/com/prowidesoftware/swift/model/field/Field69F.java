@@ -139,7 +139,7 @@ public class Field69F extends Field implements Serializable, DateContainer, com.
 		String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
 		setComponent2(SwiftParseUtils.getTokenFirst(toparse, "/"));
 		String toparse2 = SwiftParseUtils.getTokenSecondLast(toparse, "/");
-	        if (toparse2 != null) {
+		if (toparse2 != null) {
 			if (toparse2.length() >= 8) {
 				setComponent3(org.apache.commons.lang.StringUtils.substring(toparse2, 0, 8));
 			}
@@ -599,9 +599,6 @@ public class Field69F extends Field implements Serializable, DateContainer, com.
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 69F");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -612,7 +609,7 @@ public class Field69F extends Field implements Serializable, DateContainer, com.
 		}
 		if (component == 3) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent3AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -620,7 +617,7 @@ public class Field69F extends Field implements Serializable, DateContainer, com.
 		}
 		if (component == 4) {
 			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
 			java.util.Calendar cal = getComponent4AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

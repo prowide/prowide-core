@@ -74,8 +74,12 @@ public class ConversionService implements IConversionService {
 		} catch (final Exception e) {
 			log.severe("Error in EOL correction: "+e);
 		}
-		// remove the last EOL inserted
-		return buf.substring(0, buf.length()-FINWriterVisitor.SWIFT_EOL.length());
+		if (buf.length() > 0) {
+			//remove the last EOL inserted
+			return buf.substring(0, buf.length()-FINWriterVisitor.SWIFT_EOL.length());
+		} else {
+			return "";
+		}
 	}
 
 	/**

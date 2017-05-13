@@ -126,6 +126,7 @@ public class Field82S extends Field implements Serializable, com.prowidesoftware
 	@Override
 	public void parse(final String value) {
 		init(6);
+		// @NotImplemented
 		throw new org.apache.commons.lang.NotImplementedException("Missing parserPattern in Field.vm : S$[/S][$S]0-4");
 	}
 	
@@ -591,9 +592,6 @@ public class Field82S extends Field implements Serializable, com.prowidesoftware
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 6) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 82S");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

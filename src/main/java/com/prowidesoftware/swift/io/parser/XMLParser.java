@@ -106,11 +106,11 @@ public class XMLParser {
 				if (blockNode.getNodeType()==Node.ELEMENT_NODE) {
 					final String blockName = blockNode.getNodeName();
 
-					if (blockName.equalsIgnoreCase("block1")) {
+					if ("block1".equalsIgnoreCase(blockName)) {
 						m.setBlock1(getBlock1FromNode(blockNode));
-					} else if (blockName.equalsIgnoreCase("block2")) {
+					} else if ("block2".equalsIgnoreCase(blockName)) {
 						m.setBlock2(getBlock2FromNode(blockNode));
-					} else if (blockName.equalsIgnoreCase("unparsedtexts")) {
+					} else if ("unparsedtexts".equalsIgnoreCase(blockName)) {
 						// unparsed texts at <message> level
 						m.setUnparsedTexts(getUnparsedTextsFromNode(blockNode));
 					} else {
@@ -190,9 +190,9 @@ public class XMLParser {
 		if (type == null) {
 			log.severe("atrribute 'type' was expected but not found at <block2> xml tag");
 			return null;
-		} else if (type.equals("input")) {
+		} else if ("input".equals(type)) {
 			return getBlock2InputFromNode(blockNode);
-		} else if (type.equals("output")) {
+		} else if ("output".equals(type)) {
 			return getBlock2OutputFromNode(blockNode);
 		} else {
 			log.severe("expected 'input' or 'output' value for 'type' atribute at <block2> xml tag, and found: " + type);
@@ -291,14 +291,14 @@ public class XMLParser {
 	 */
 	private SwiftTagListBlock getTagListBlockFromNode(final Node blockNode) {
 		final String blockName = blockNode.getNodeName();
-		SwiftTagListBlock b = null;
-		if (blockName.equalsIgnoreCase("block3")) {
+		SwiftTagListBlock b;
+		if ("block3".equalsIgnoreCase(blockName)) {
 			b = new SwiftBlock3();
-		} else if (blockName.equalsIgnoreCase("block4")) {
+		} else if ("block4".equalsIgnoreCase(blockName)) {
 			b = new SwiftBlock4();
-		} else if (blockName.equalsIgnoreCase("block5")) {
+		} else if ("block5".equalsIgnoreCase(blockName)) {
 			b = new SwiftBlock5();
-		} else if (blockName.equalsIgnoreCase("block")) {
+		} else if ("block".equalsIgnoreCase(blockName)) {
 			final String name = getNodeAttribute(blockNode, "name");
 			if (name != null) {
 				b = new SwiftBlockUser(name);

@@ -78,56 +78,6 @@ public class Field347 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "SSSSSSSSSS";
 
 	/**
-	 * Component number for the Field1 subfield
-	 */
-	public static final Integer FIELD1 = 1;
-
-	/**
-	 * Component number for the Field2 subfield
-	 */
-	public static final Integer FIELD2 = 2;
-
-	/**
-	 * Component number for the Field3 subfield
-	 */
-	public static final Integer FIELD3 = 3;
-
-	/**
-	 * Component number for the Field4 subfield
-	 */
-	public static final Integer FIELD4 = 4;
-
-	/**
-	 * Component number for the Field5 subfield
-	 */
-	public static final Integer FIELD5 = 5;
-
-	/**
-	 * Component number for the Field6 subfield
-	 */
-	public static final Integer FIELD6 = 6;
-
-	/**
-	 * Component number for the Field7 subfield
-	 */
-	public static final Integer FIELD7 = 7;
-
-	/**
-	 * Component number for the Field8 subfield
-	 */
-	public static final Integer FIELD8 = 8;
-
-	/**
-	 * Component number for the Field9 subfield
-	 */
-	public static final Integer FIELD9 = 9;
-
-	/**
-	 * Component number for the Field10 subfield
-	 */
-	public static final Integer FIELD10 = 10;
-
-	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field347() {
@@ -233,27 +183,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field1 (component1).
-	 * @return the Field1 from component1
-	 */
-	public String getField1() {
-		return getComponent(1);
-	}
-
-	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
 	public Field347 setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Field1 (component1).
-	 * @param component1 the Field1 to set
-	 */
-	public Field347 setField1(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -274,27 +207,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field2 (component2).
-	 * @return the Field2 from component2
-	 */
-	public String getField2() {
-		return getComponent(2);
-	}
-
-	/**
 	 * Set the component2.
 	 * @param component2 the component2 to set
 	 */
 	public Field347 setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Field2 (component2).
-	 * @param component2 the Field2 to set
-	 */
-	public Field347 setField2(String component2) {
 		setComponent(2, component2);
 		return this;
 	}
@@ -315,27 +231,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field3 (component3).
-	 * @return the Field3 from component3
-	 */
-	public String getField3() {
-		return getComponent(3);
-	}
-
-	/**
 	 * Set the component3.
 	 * @param component3 the component3 to set
 	 */
 	public Field347 setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the Field3 (component3).
-	 * @param component3 the Field3 to set
-	 */
-	public Field347 setField3(String component3) {
 		setComponent(3, component3);
 		return this;
 	}
@@ -356,27 +255,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field4 (component4).
-	 * @return the Field4 from component4
-	 */
-	public String getField4() {
-		return getComponent(4);
-	}
-
-	/**
 	 * Set the component4.
 	 * @param component4 the component4 to set
 	 */
 	public Field347 setComponent4(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the Field4 (component4).
-	 * @param component4 the Field4 to set
-	 */
-	public Field347 setField4(String component4) {
 		setComponent(4, component4);
 		return this;
 	}
@@ -397,27 +279,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field5 (component5).
-	 * @return the Field5 from component5
-	 */
-	public String getField5() {
-		return getComponent(5);
-	}
-
-	/**
 	 * Set the component5.
 	 * @param component5 the component5 to set
 	 */
 	public Field347 setComponent5(String component5) {
-		setComponent(5, component5);
-		return this;
-	}
-	
-	/**
-	 * Set the Field5 (component5).
-	 * @param component5 the Field5 to set
-	 */
-	public Field347 setField5(String component5) {
 		setComponent(5, component5);
 		return this;
 	}
@@ -438,27 +303,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field6 (component6).
-	 * @return the Field6 from component6
-	 */
-	public String getField6() {
-		return getComponent(6);
-	}
-
-	/**
 	 * Set the component6.
 	 * @param component6 the component6 to set
 	 */
 	public Field347 setComponent6(String component6) {
-		setComponent(6, component6);
-		return this;
-	}
-	
-	/**
-	 * Set the Field6 (component6).
-	 * @param component6 the Field6 to set
-	 */
-	public Field347 setField6(String component6) {
 		setComponent(6, component6);
 		return this;
 	}
@@ -479,27 +327,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field7 (component7).
-	 * @return the Field7 from component7
-	 */
-	public String getField7() {
-		return getComponent(7);
-	}
-
-	/**
 	 * Set the component7.
 	 * @param component7 the component7 to set
 	 */
 	public Field347 setComponent7(String component7) {
-		setComponent(7, component7);
-		return this;
-	}
-	
-	/**
-	 * Set the Field7 (component7).
-	 * @param component7 the Field7 to set
-	 */
-	public Field347 setField7(String component7) {
 		setComponent(7, component7);
 		return this;
 	}
@@ -520,27 +351,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field8 (component8).
-	 * @return the Field8 from component8
-	 */
-	public String getField8() {
-		return getComponent(8);
-	}
-
-	/**
 	 * Set the component8.
 	 * @param component8 the component8 to set
 	 */
 	public Field347 setComponent8(String component8) {
-		setComponent(8, component8);
-		return this;
-	}
-	
-	/**
-	 * Set the Field8 (component8).
-	 * @param component8 the Field8 to set
-	 */
-	public Field347 setField8(String component8) {
 		setComponent(8, component8);
 		return this;
 	}
@@ -561,27 +375,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field9 (component9).
-	 * @return the Field9 from component9
-	 */
-	public String getField9() {
-		return getComponent(9);
-	}
-
-	/**
 	 * Set the component9.
 	 * @param component9 the component9 to set
 	 */
 	public Field347 setComponent9(String component9) {
-		setComponent(9, component9);
-		return this;
-	}
-	
-	/**
-	 * Set the Field9 (component9).
-	 * @param component9 the Field9 to set
-	 */
-	public Field347 setField9(String component9) {
 		setComponent(9, component9);
 		return this;
 	}
@@ -602,27 +399,10 @@ public class Field347 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Field10 (component10).
-	 * @return the Field10 from component10
-	 */
-	public String getField10() {
-		return getComponent(10);
-	}
-
-	/**
 	 * Set the component10.
 	 * @param component10 the component10 to set
 	 */
 	public Field347 setComponent10(String component10) {
-		setComponent(10, component10);
-		return this;
-	}
-	
-	/**
-	 * Set the Field10 (component10).
-	 * @param component10 the Field10 to set
-	 */
-	public Field347 setField10(String component10) {
 		setComponent(10, component10);
 		return this;
 	}
@@ -768,9 +548,6 @@ public class Field347 extends Field implements Serializable {
 		if (component < 1 || component > 10) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 347");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -824,16 +601,16 @@ public class Field347 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add("Field1");
-		result.add("Field2");
-		result.add("Field3");
-		result.add("Field4");
-		result.add("Field5");
-		result.add("Field6");
-		result.add("Field7");
-		result.add("Field8");
-		result.add("Field9");
-		result.add("Field10");
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
+		result.add(null);
 		return result;
 	}
 	

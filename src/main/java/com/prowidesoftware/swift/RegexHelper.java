@@ -22,6 +22,11 @@ import java.util.regex.Pattern;
 public class RegexHelper {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(RegexHelper.class.getName());
 
+	// Suppress default constructor for noninstantiability
+	private RegexHelper() {
+		throw new AssertionError();
+	}
+
 	static List<String> parse(String regex, String string) {
 		Pattern pat = Pattern.compile(regex, Pattern.MULTILINE);
 		Matcher matcher = pat.matcher(string);

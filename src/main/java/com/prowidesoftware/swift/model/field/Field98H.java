@@ -134,7 +134,7 @@ public class Field98H extends Field implements Serializable {
 	public void parse(final String value) {
 		init(4);
 		if (value != null) {
-			String left = null;
+			String left;
 			String right = null;
 			if (value.indexOf('/') >= 0) {
 				left = SwiftParseUtils.getTokenFirst(value, "/");
@@ -148,22 +148,14 @@ public class Field98H extends Field implements Serializable {
 			if (right != null) {
 				if (right.length() < 2) {
 					setComponent3(right);
-				} else if (right.length() == 2) {
-					//HH
+				} else if (right.length() == 2 || right.length() == 4) {
+					//HH or HH[MM]
 					setComponent4(right);
-				} else if (right.length() == 3) {
-					//[N]HH
+				} else if (right.length() == 3 || right.length() == 5) {
+					//[N]HH or [N]HH[MM]
 					setComponent3(org.apache.commons.lang.StringUtils.substring(right, 0, 1));
 					setComponent4(org.apache.commons.lang.StringUtils.substring(right, 1));
-				} else if (right.length() == 4) {
-					//HH[MM]
-					setComponent4(right);
-				} else if (right.length() == 5) {
-					//[N]HH[MM]
-					setComponent3(org.apache.commons.lang.StringUtils.substring(right, 0, 1));
-					setComponent4(org.apache.commons.lang.StringUtils.substring(right, 1));
-				}
-				if (right.length() > 4) {
+				} else if (right.length() > 4) {
 					setComponent3(SwiftParseUtils.getAlphaPrefix(right));
 					setComponent4(SwiftParseUtils.getNumericSuffix(right));
 				}
@@ -346,7 +338,7 @@ public class Field98H extends Field implements Serializable {
 	 */
 	public Field98H setComponent2(java.lang.Number component2) {
 		if (component2 != null) {
-			setComponent(2, ""+component2.intValue());
+			setComponent(2, Integer.toString(component2.intValue()));
 		}
 		return this;
 	}
@@ -653,12 +645,9 @@ public class Field98H extends Field implements Serializable {
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 98H");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -666,7 +655,7 @@ public class Field98H extends Field implements Serializable {
 		}
 		if (component == 2) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent2AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -678,7 +667,7 @@ public class Field98H extends Field implements Serializable {
 		}
 		if (component == 4) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent4AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

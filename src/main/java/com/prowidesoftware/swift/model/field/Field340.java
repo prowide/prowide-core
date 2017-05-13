@@ -125,7 +125,7 @@ public class Field340 extends Field implements Serializable, DateContainer {
 		init(2);
 	if (value != null && value.length() >= 2) {
 		setComponent1(org.apache.commons.lang.StringUtils.substring(value, 0, 2));
-		if (value != null && value.length() > 2) {
+		if (value.length() > 2) {
 			setComponent2(org.apache.commons.lang.StringUtils.substring(value, 2));
 		}
 	}
@@ -393,9 +393,6 @@ public class Field340 extends Field implements Serializable, DateContainer {
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 340");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

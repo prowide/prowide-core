@@ -128,28 +128,29 @@ public class Field53B extends Field implements Serializable, com.prowidesoftware
 	public void parse(final String value) {
 		init(3);
 		java.util.List<String> lines = SwiftParseUtils.getLines(value);
-		if (lines.size() > 0) {
-			if (lines.get(0).startsWith("/")) {
-				if (lines.get(0).startsWith("//")) {
-					setComponent1("");
-					setComponent2(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(lines.get(0), 2)));
-				} else {
-					String t1 = SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/");
-					if (org.apache.commons.lang.StringUtils.isNotEmpty(t1)) {
-						if (t1.length() == 1) {
-							setComponent1(t1);
-							setComponent2(SwiftParseUtils.getTokenSecondLast(org.apache.commons.lang.StringUtils.substring(lines.get(0), 1), "/"));
-						} else {
-							setComponent2(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(lines.get(0), 1)));
-						}
+		if (lines.isEmpty()) {
+			return;
+		}
+		if (lines.get(0).startsWith("/")) {
+			if (lines.get(0).startsWith("//")) {
+				setComponent1("");
+				setComponent2(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(lines.get(0), 2)));
+			} else {
+				String t1 = SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/");
+				if (org.apache.commons.lang.StringUtils.isNotEmpty(t1)) {
+					if (t1.length() == 1) {
+						setComponent1(t1);
+						setComponent2(SwiftParseUtils.getTokenSecondLast(org.apache.commons.lang.StringUtils.substring(lines.get(0), 1), "/"));
+					} else {
+						setComponent2(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(lines.get(0), 1)));
 					}
 				}
-				if (lines.size() > 1) {
-					setComponent3(lines.get(1));
-				}
-			} else {
-				setComponent3(lines.get(0));
 			}
+			if (lines.size() > 1) {
+				setComponent3(lines.get(1));
+			}
+		} else {
+			setComponent3(lines.get(0));
 		}
 	}
 	
@@ -571,9 +572,6 @@ public class Field53B extends Field implements Serializable, com.prowidesoftware
 		if (component < 1 || component > 3) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 53B");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -607,16 +605,20 @@ public class Field53B extends Field implements Serializable, com.prowidesoftware
 	
 	/**
 	 * @see #getDCMark()
+	 * @deprecated use getDCMark() instead
 	 */
-	@Deprecated 
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2018)
 	public String getDC() {
 		return getDCMark();
 	}
 
 	/**
 	 * @see #setDCMark(String component1)
+	 * @deprecated use setDCMark(String) instead
 	 */
-	@Deprecated 
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2018)
 	public void setDC(final String DC) {
 		setDCMark(DC);
 	}

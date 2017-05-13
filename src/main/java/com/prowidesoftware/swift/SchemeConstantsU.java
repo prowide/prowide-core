@@ -16,8 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsU {
 
-    public final static String URGP = "URGP";
     public final static String U = "U";
+    public final static String URGP = "URGP";
     public final static String UNWEIGHT = "UNWEIGHT";
     public final static String UNDE = "UNDE";
     public final static String UNKNOWN = "UNKNOWN";

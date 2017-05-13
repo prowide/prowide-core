@@ -18,10 +18,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.xml.bind.annotation.XmlTransient;
@@ -29,7 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.Lib;
 
 /**
@@ -48,6 +52,18 @@ import com.prowidesoftware.swift.utils.Lib;
 public abstract class AbstractSwiftMessage implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
 	private static final long serialVersionUID = 3769865560736793606L;
+	
+	/**
+	 * Identifier constant for acknowledge service messages
+	 * @since 7.8.8
+	 */
+	protected final static String IDENTIFIER_ACK = "ACK";
+	
+	/**
+	 * Identifier constant for non-acknowledge service messages
+	 * @since 7.8.8
+	 */
+	protected final static String IDENTIFIER_NAK = "NAK";
 
 	/**
 	 * Unique identifier (used for ORM mapped to the table record id)
@@ -58,10 +74,14 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	 */
 	private String message;
 	/**
-	 * Message type identification as specify by SWIFT.<br />
-	 * For MT: fin.<msgtype>[.<mug|variant>] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV
-	 * <br />
-	 * For MX: <bus.area>.<msgtype>.<variant>.<version> for example: camt.034.001.02, ifds.001.001.01
+	 * Message type identification as specify by SWIFT.
+	 * <ul>
+	 * 	<li>For MT: fin.<msgtype>[.<mug|variant>] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
+	 * 	<li>For MX: <bus.area>.<msgtype>.<variant>.<version> for example: camt.034.001.02, ifds.001.001.01</li>
+	 * 	<li>For acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
+	 * 	<li>For non-acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
+	 * 	<li>For other service messages the identifier is left <code>null</code></li>
+	 * </ul>
 	 */
 	protected String identifier;
 	/**
@@ -125,6 +145,16 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	 * Message reference
 	 */
 	private String reference;
+	/**
+	 * Main currency
+	 * @since 7.8.8
+	 */
+	private String currency;
+	/**
+	 * Main amount
+	 * @since 7.8.8
+	 */
+	private BigDecimal amount;
 
 	/**
 	 * Snapshots of message content used to track its changes history
@@ -284,6 +314,10 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		this.message = message;
 	}
     
+    /**
+     * {@linkplain #identifier}
+     * @return
+     */
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -292,6 +326,10 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		this.identifier = identifier;
 	}
 	
+    /**
+     * {@linkplain #checksum}
+     * @return
+     */
 	public String getChecksum() {
 		return checksum;
 	}
@@ -359,6 +397,10 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		this.status = status;
 	}
 	
+	/**
+	 * {@linkplain #sender}
+	 * @return
+	 */
 	public String getSender() {
 		return sender;
 	}
@@ -367,6 +409,10 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		this.sender = sender;
 	}
 
+	/**
+	 * {@linkplain #receiver}
+	 * @return
+	 */
 	public String getReceiver() {
 		return receiver;
 	}
@@ -410,7 +456,6 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	 */
 	public void addStatus(SwiftMessageStatusInfo status) {
 		if (status != null) {
-			// 2015.07 M explicitamente llamar get y set interceptados por hib para evitar quilombo de sesion/coleccion si esto anda ok hay que replicar en los otros similars en esta clase, notes y revisions
 			if (this.getStatusTrail() == null) {
 				this.setStatusTrail(new ArrayList<SwiftMessageStatusInfo>());
 			}
@@ -584,21 +629,60 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	public String getLastData() {
 		return getLastData((String[])null);
 	}
-	
+
 	/**
-	 * Finds the first status info from the status trail, with the given name or returns <code>null</code> if not found
+	 * Finds the first status info from the status trail, with a name matching any of the given status names, or returns <code>null</code> if not found
+	 * This method is similar to {@link #findStatusInfoLast(String...)} but checks the status trail in ascending order from oldest to latest.
+	 * @since 7.8.8
 	 */
-	public SwiftMessageStatusInfo findStatusInfo(String statusName) {
+	public SwiftMessageStatusInfo findStatusInfo(String ... statusNames) {
 		List<SwiftMessageStatusInfo> l = getStatusTrail();
 		if (l != null && !l.isEmpty()) {
 			for (SwiftMessageStatusInfo sms : l) {
-				if (StringUtils.equals(statusName, sms.getName()))
+				if (ArrayUtils.contains(statusNames, sms.getName())) {
 					return sms;
+				}
 			}
 		}
 		return null;
 	}
+
+	/**
+	 * Finds the first status info from the status trail, with the given name or returns <code>null</code> if not found
+	 * @see #findStatusInfo(String...)
+	 */
+	public SwiftMessageStatusInfo findStatusInfo(String statusName) {
+		String[] statuses = { statusName };
+		return findStatusInfo(statuses);
+	}
 	
+	/**
+	 * Finds the last status info from the status trail, with a name matching any of the given status names, or returns <code>null</code> if not found.
+	 * This method is similar to {@link #findStatusInfo(String...)} but checks the status trail in descending order from latest to oldest.
+	 * @since 7.8.8
+	 */
+	public SwiftMessageStatusInfo findStatusInfoLast(String ... statusNames) {
+		final List<SwiftMessageStatusInfo> l = getStatusTrail();
+		if (l != null && !l.isEmpty()) {
+			for (int i=l.size()-1; i>=0 ;i--) {
+				if (ArrayUtils.contains(statusNames, l.get(i).getName())) {
+					return l.get(i);
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Finds the last status info from the status trail, with the given name or returns <code>null</code> if not found
+	 * @see #findStatusInfoLast(String...)
+	 * @since 7.8.8
+	 */
+	public SwiftMessageStatusInfo findStatusInfoLast(String statusName) {
+		String[] statuses = { statusName };
+		return findStatusInfoLast(statuses);
+	}
+
 	/**
 	 * Adds a new note to the messages, initializing the note list if necessary.
 	 * @param n note to add
@@ -616,17 +700,16 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	public void sanityCheckProperties() {
 		try {
 			final Map<String, String> p = getProperties();
-			for (String k : p.keySet()) {
-				String v = p.get(k);
-				if (v!=null && v.length()>500) {
-					log.severe("Value for key="+k+" too long, will be truncated. value="+v);
-					v = v.substring(0, 500);
-					p.put(k, v);
+			for (Map.Entry<String, String> entry : p.entrySet()) {
+				final String v = entry.getValue();
+				if (v != null && v.length() > 500) {
+					log.severe("Value for key="+entry.getKey()+" too long, will be truncated. value="+v);
+					p.put(entry.getKey(), v.substring(0, 500));
 				}
-				if (k.length()>200) {
-					log.severe("Key too long: "+k+" will be truncated");
-					p.remove(k);
-					p.put(k.substring(0, 200), v);
+				if (entry.getKey().length() > 200) {
+					log.severe("Key too long: "+entry.getKey()+" will be truncated");
+					p.remove(entry.getKey());
+					p.put(entry.getKey().substring(0, 200), v);
 				}
 			}
 		} catch (Exception e) {
@@ -639,7 +722,7 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	 */
 	public String getProperty(String key) {
 		Map<String, String> p = getProperties();
-		if (p!=null && p.containsKey(key) && StringUtils.isNotBlank(p.get(key))) {
+		if (p != null && p.containsKey(key) && StringUtils.isNotBlank(p.get(key))) {
 			return p.get(key);
 		}
 		return null;
@@ -806,7 +889,8 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	/**
 	 * @deprecated use the constructor {@link #AbstractSwiftMessage(File)} instead
 	 */
-	@DeleteSchedule(2016)
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear._2018)
     public abstract AbstractSwiftMessage readFile(File file) throws IOException;
 
 	/**
@@ -942,6 +1026,30 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
+	
+	/**
+	 * @return the main currency or <code>null</code> if non is present or does not apply for this message type
+	 * @since 7.8.8
+	 */
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	/**
+	 * @return the main amount or <code>null</code> if non is present or does not apply for this message type
+	 * @since 7.8.8
+	 */
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
 
 	/**
 	 * Applies the parameter regex to the message identifier.
@@ -963,4 +1071,69 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	public boolean match(final String regex) {
 		return this.identifier != null && StringUtils.isNotBlank(regex) && this.identifier.matches(regex);
 	}
+
+	/**
+	 * If the amount is set, returns its currency and value formatted using the default locale.
+	 * @see #getAmount()
+	 * @see #formattedAmount(Locale, boolean)
+	 * @return formatted amount for example USD 123,456.78 or empty string if amount is not set
+	 * @since 7.8.8
+	 */
+	public String formattedAmount() {
+		return formattedAmount(null, true);
+	}
+	
+	/**
+	 * If the amount is set, returns its value formatted for the given locale.
+	 * @see #getAmount()
+	 * @param locale a specific locale to use or <code>null</code> to use the current default locale 
+	 * @param includeCurrency if true and the currency is set, the formatted value will be prefixed by the currency symbol
+	 * @return formatted amount for example USD 123,456.78 or empty string if amount is not set
+	 * @since 7.8.8
+	 */
+	public String formattedAmount(final Locale locale, boolean includeCurrency) {
+		StringBuilder result = new StringBuilder();
+		if (this.amount != null) {
+			if (includeCurrency && this.currency != null) {
+				result.append(this.currency);
+				result.append(" ");
+			}
+			NumberFormat formatter = locale != null? NumberFormat.getInstance(locale) : NumberFormat.getInstance();
+			result.append(formatter.format(this.amount));
+		}
+		return result.toString();
+	}
+	
+	/**
+	 * Returns true if this message identifier is {@link #IDENTIFIER_ACK}
+	 * 
+	 * <p>The implementation does not check the inner content of the message.</p>
+	 * 
+	 * <p>It is safe to use this method to check if message is effectively 
+	 * and acknowledge only when the API is used with the provided subclasses
+	 * for MT and MX and when the identifier has not been altered by the accesor.</p>
+	 *  
+	 * @return true if the identifier is {@link #IDENTIFIER_ACK} false otherwise
+	 * @since 7.8.8
+	 */
+	public boolean identifiedAsACK() {
+		return StringUtils.equals(this.identifier, IDENTIFIER_ACK);
+	}
+	
+	/**
+	 * Returns true if this message identifier is {@link #IDENTIFIER_NAK}
+	 * 
+	 * <p>The implementation does not check the inner content of the message.</p>
+	 * 
+	 * <p>It is safe to use this method to check if message is effectively 
+	 * and non-acknowledge only when the API is used with the provided subclasses
+	 * for MT and MX and when the identifier has not been altered by the accesor.</p>
+	 *  
+	 * @return true if the identifier is {@link #IDENTIFIER_NAK} false otherwise
+	 * @since 7.8.8
+	 */
+	public boolean identifiedAsNAK() {
+		return StringUtils.equals(this.identifier, IDENTIFIER_NAK);
+	}
+
 }

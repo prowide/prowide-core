@@ -14,6 +14,9 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
+import java.util.Calendar;
+
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 /**
  * This class models and parses the Message Input Reference (MIR), 
@@ -255,5 +258,15 @@ public class MIR {
 		} else if (!sessionNumber.equals(other.sessionNumber))
 			return false;
 		return true;
+	}
+	
+	/**
+	 * Returns this MIR date as Calendar.
+	 * This implementation uses {@linkplain SwiftFormatUtils#getDate2(String)}
+	 * @return the parsed date or <code>null</code> if MIR date is invalid or not set
+	 * @since 7.8.8
+	 */
+	public final Calendar getDateAsCalendar() {
+		return SwiftFormatUtils.getDate2(this.date);
 	}
 }

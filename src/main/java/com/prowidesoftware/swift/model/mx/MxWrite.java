@@ -14,7 +14,8 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model.mx;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 /**
  * Interface to plug in code that serializes MX message objects to XML string
@@ -36,7 +37,7 @@ public interface MxWrite {
 	 */
 	@SuppressWarnings("rawtypes")
 	@Deprecated
-	@DeleteSchedule(2017)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	String message(String namespace, AbstractMX obj, Class[]classes);
 
 	/**

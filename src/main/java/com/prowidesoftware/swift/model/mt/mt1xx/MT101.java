@@ -12,13 +12,17 @@
  *     
  *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
  *******************************************************************************/
- package com.prowidesoftware.swift.model.mt.mt1xx;
+package com.prowidesoftware.swift.model.mt.mt1xx;
+
+
 
 import com.prowidesoftware.Generated;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Collections;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.internal.*;
@@ -31,49 +35,73 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * MT 101<br />
- * Request for Transfer<br />
- <h1>MT101 Format</h1>
- <pre>
- <div class="mainsequence">
-<em>Main Sequence main</em><br/>
-<div class="sequence">
-<em>Sequence A</em><br/>
-<div class="field"><em>Field 20</em>
-Letter options: null<br/></div><div class="field"><em>Field 21</em>
-Letter options: R<br/></div><div class="field"><em>Field 28</em>
-Letter options: D<br/></div><div class="field"><em>Field 50</em>
-Letter options: C,L<br/></div><div class="field"><em>Field 50</em>
-Letter options: F,G,H<br/></div><div class="field"><em>Field 52</em>
-Letter options: A,C<br/></div><div class="field"><em>Field 51</em>
-Letter options: A<br/></div><div class="field"><em>Field 30</em>
-Letter options: null<br/></div><div class="field"><em>Field 25</em>
-Letter options: null<br/></div></blockquote>
-<div class="sequence">
-<em>Sequence B</em><br/>
-<div class="field"><em>Field 21</em>
-Letter options: null<br/></div><div class="field"><em>Field 21</em>
-Letter options: F<br/></div><div class="field"><em>Field 23</em>
-Letter options: E<br/></div><div class="field"><em>Field 32</em>
-Letter options: B<br/></div><div class="field"><em>Field 50</em>
-Letter options: C,L<br/></div><div class="field"><em>Field 50</em>
-Letter options: F,G,H<br/></div><div class="field"><em>Field 52</em>
-Letter options: A,C<br/></div><div class="field"><em>Field 56</em>
-Letter options: A,C,D<br/></div><div class="field"><em>Field 57</em>
-Letter options: A,C,D<br/></div><div class="field"><em>Field 59</em>
-Letter options: A,F,NONE<br/></div><div class="field"><em>Field 70</em>
-Letter options: null<br/></div><div class="field"><em>Field 77</em>
-Letter options: B<br/></div><div class="field"><em>Field 33</em>
-Letter options: B<br/></div><div class="field"><em>Field 71</em>
-Letter options: A<br/></div><div class="field"><em>Field 25</em>
-Letter options: A<br/></div><div class="field"><em>Field 36</em>
-Letter options: null<br/></div></blockquote>
-</div>
-
- </pre>
- * <em>This source code is specific to release SRU 2016</em><br /> 
+ * <h1>MT 101 - Request for Transfer</h1>
+ * <h3>SWIFT MT101 (ISO 15022) message structure:</h3>
  *
- *		 
+ <div class="scheme"><ul>
+<li class="sequence">
+Sequence A (M)<ul><li class="field">Field 20  (M)</li>
+<li class="field">Field 21 R (O)</li>
+<li class="field">Field 28 D (M)</li>
+<li class="field">Field 50 C,L (O)</li>
+<li class="field">Field 50 F,G,H (O)</li>
+<li class="field">Field 52 A,C (O)</li>
+<li class="field">Field 51 A (O)</li>
+<li class="field">Field 30  (M)</li>
+<li class="field">Field 25  (O)</li>
+</ul></li>
+<li class="sequence">
+Sequence B (M) (repetitive)<ul><li class="field">Field 21  (M)</li>
+<li class="field">Field 21 F (O)</li>
+<li class="field">Field 23 E (O) (repetitive)</li>
+<li class="field">Field 32 B (M)</li>
+<li class="field">Field 50 C,L (O)</li>
+<li class="field">Field 50 F,G,H (O)</li>
+<li class="field">Field 52 A,C (O)</li>
+<li class="field">Field 56 A,C,D (O)</li>
+<li class="field">Field 57 A,C,D (O)</li>
+<li class="field">Field 59 A,F,NONE (M)</li>
+<li class="field">Field 70  (O)</li>
+<li class="field">Field 77 B (O)</li>
+<li class="field">Field 33 B (O)</li>
+<li class="field">Field 71 A (M)</li>
+<li class="field">Field 25 A (O)</li>
+<li class="field">Field 36  (O)</li>
+</ul></li>
+</ul></div>
+
+ <style>
+.scheme, .scheme ul, .scheme li {
+     position: relative;
+}
+.scheme ul {
+    list-style: none;
+    padding-left: 32px;
+}
+.scheme li::before, .scheme li::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+}
+.scheme li::before {
+    border-top: 1px solid #000;
+    top: 9px;
+    width: 8px;
+    height: 0;
+}
+.scheme li::after {
+    border-left: 1px solid #000;
+    height: 100%;
+    width: 0px;
+    top: 2px;
+}
+.scheme ul > li:last-child::after {
+    height: 8px;
+}</style>
+
+ *
+ * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
  */
@@ -99,7 +127,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsB#BEN
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String BEN = "BEN";
 
 	/**
@@ -108,7 +136,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsC#CHQB
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String CHQB = "CHQB";
 
 	/**
@@ -117,7 +145,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsC#CMSW
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String CMSW = "CMSW";
 
 	/**
@@ -126,7 +154,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsC#CMTO
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String CMTO = "CMTO";
 
 	/**
@@ -135,7 +163,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsC#CMZB
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String CMZB = "CMZB";
 
 	/**
@@ -144,7 +172,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsC#CORT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String CORT = "CORT";
 
 	/**
@@ -153,7 +181,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsE#EQUI
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String EQUI = "EQUI";
 
 	/**
@@ -162,7 +190,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsI#INTC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String INTC = "INTC";
 
 	/**
@@ -171,7 +199,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsN#NETS
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String NETS = "NETS";
 
 	/**
@@ -180,7 +208,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsO#OTHR
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String OTHR = "OTHR";
 
 	/**
@@ -189,7 +217,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsO#OUR
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String OUR = "OUR";
 
 	/**
@@ -198,7 +226,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsP#PHON
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String PHON = "PHON";
 
 	/**
@@ -207,7 +235,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsR#REPA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String REPA = "REPA";
 
 	/**
@@ -216,7 +244,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsR#RTGS
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String RTGS = "RTGS";
 
 	/**
@@ -225,7 +253,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsS#SHA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String SHA = "SHA";
 
 	/**
@@ -234,7 +262,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	* @see com.prowidesoftware.swift.SchemeConstantsU#URGP
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2017)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String URGP = "URGP";
 
 // end qualifiers constants	
@@ -245,7 +273,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	 */
 	public MT101(SwiftMessage m) {
 		super(m);
-		// TODO issue warning if incorrect message type or illegal argument if different
+		sanityCheck(m);
 	}
 
 	/**
@@ -256,7 +284,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	public MT101(MtSwiftMessage m) {
 		this();
 		super.m = super.getSwiftMessageNotNullOrException();
-		// TODO issue warning if incorrect message type or illegal argument if different
+		sanityCheck(super.m);
 	}
 	
 	/**
@@ -281,7 +309,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	public MT101() {
-		super(101);
+		this(BIC.TEST8, BIC.TEST8);
 	}
 	
 	/**
@@ -302,13 +330,15 @@ public class MT101 extends AbstractMT implements Serializable {
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* Use instead <code>new MT101(sender, receiver)</code>
+	* 
 	* @see #MT101(String, String)
-	* @deprecated
+	* @deprecated Use instead <code>new MT101(sender, receiver)</code> instead
 	*/
 	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public MT101(final int messageType, final String sender, final String receiver) {
 		super(101, sender, receiver);
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT101(int, String, String)", "Use the constructor MT101(sender, receiver) instead.");
 	}
 	
 	/**
@@ -326,7 +356,16 @@ public class MT101 extends AbstractMT implements Serializable {
 			final SwiftMessage parsed = read(fin);
 			if (parsed != null) {
 				super.m = parsed;
+				sanityCheck(parsed);
 			}
+		}
+    }
+    
+    private void sanityCheck(final SwiftMessage param) {
+    	if (param.isServiceMessage()) {
+			log.warning("Creating an MT101 object from FIN content with a Service Message. Check if the MT101 you are intended to read is prepended with and ACK.");
+		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+			log.warning("Creating an MT101 object from FIN content with message type "+param.getType());
 		}
     }
 	
@@ -462,18 +501,11 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field20 getField20() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("20");
+		if (t != null) {
+			return new Field20(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("20");
-			if (t == null) {
-				log.fine("field 20 not found");
-				return null;
-			} else {
-				return new Field20(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -487,18 +519,11 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field21R getField21R() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("21R");
+		if (t != null) {
+			return new Field21R(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("21R");
-			if (t == null) {
-				log.fine("field 21R not found");
-				return null;
-			} else {
-				return new Field21R(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -512,18 +537,11 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field28D getField28D() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("28D");
+		if (t != null) {
+			return new Field28D(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("28D");
-			if (t == null) {
-				log.fine("field 28D not found");
-				return null;
-			} else {
-				return new Field28D(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -537,18 +555,11 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field51A getField51A() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("51A");
+		if (t != null) {
+			return new Field51A(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("51A");
-			if (t == null) {
-				log.fine("field 51A not found");
-				return null;
-			} else {
-				return new Field51A(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -562,18 +573,11 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field30 getField30() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("30");
+		if (t != null) {
+			return new Field30(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("30");
-			if (t == null) {
-				log.fine("field 30 not found");
-				return null;
-			} else {
-				return new Field30(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -587,18 +591,11 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field25 getField25() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("25");
+		if (t != null) {
+			return new Field25(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("25");
-			if (t == null) {
-				log.fine("field 25 not found");
-				return null;
-			} else {
-				return new Field25(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -612,18 +609,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field21> getField21() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("21");
-			final List<Field21> result = new ArrayList<Field21>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field21(tags[i].getValue()));
-			}
-			return result;
+		final List<Field21> result = new ArrayList<Field21>();
+		final Tag[] tags = tags("21");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field21(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -636,18 +627,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field21F> getField21F() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("21F");
-			final List<Field21F> result = new ArrayList<Field21F>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field21F(tags[i].getValue()));
-			}
-			return result;
+		final List<Field21F> result = new ArrayList<Field21F>();
+		final Tag[] tags = tags("21F");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field21F(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -660,18 +645,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field23E> getField23E() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("23E");
-			final List<Field23E> result = new ArrayList<Field23E>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field23E(tags[i].getValue()));
-			}
-			return result;
+		final List<Field23E> result = new ArrayList<Field23E>();
+		final Tag[] tags = tags("23E");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field23E(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -684,18 +663,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field32B> getField32B() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("32B");
-			final List<Field32B> result = new ArrayList<Field32B>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field32B(tags[i].getValue()));
-			}
-			return result;
+		final List<Field32B> result = new ArrayList<Field32B>();
+		final Tag[] tags = tags("32B");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field32B(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -708,18 +681,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field50C> getField50C() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("50C");
-			final List<Field50C> result = new ArrayList<Field50C>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field50C(tags[i].getValue()));
-			}
-			return result;
+		final List<Field50C> result = new ArrayList<Field50C>();
+		final Tag[] tags = tags("50C");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field50C(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -732,18 +699,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field50L> getField50L() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("50L");
-			final List<Field50L> result = new ArrayList<Field50L>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field50L(tags[i].getValue()));
-			}
-			return result;
+		final List<Field50L> result = new ArrayList<Field50L>();
+		final Tag[] tags = tags("50L");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field50L(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -756,18 +717,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field50F> getField50F() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("50F");
-			final List<Field50F> result = new ArrayList<Field50F>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field50F(tags[i].getValue()));
-			}
-			return result;
+		final List<Field50F> result = new ArrayList<Field50F>();
+		final Tag[] tags = tags("50F");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field50F(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -780,18 +735,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field50G> getField50G() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("50G");
-			final List<Field50G> result = new ArrayList<Field50G>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field50G(tags[i].getValue()));
-			}
-			return result;
+		final List<Field50G> result = new ArrayList<Field50G>();
+		final Tag[] tags = tags("50G");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field50G(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -804,18 +753,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field50H> getField50H() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("50H");
-			final List<Field50H> result = new ArrayList<Field50H>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field50H(tags[i].getValue()));
-			}
-			return result;
+		final List<Field50H> result = new ArrayList<Field50H>();
+		final Tag[] tags = tags("50H");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field50H(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -828,18 +771,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field52A> getField52A() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("52A");
-			final List<Field52A> result = new ArrayList<Field52A>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field52A(tags[i].getValue()));
-			}
-			return result;
+		final List<Field52A> result = new ArrayList<Field52A>();
+		final Tag[] tags = tags("52A");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field52A(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -852,18 +789,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field52C> getField52C() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("52C");
-			final List<Field52C> result = new ArrayList<Field52C>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field52C(tags[i].getValue()));
-			}
-			return result;
+		final List<Field52C> result = new ArrayList<Field52C>();
+		final Tag[] tags = tags("52C");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field52C(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -876,18 +807,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field56A> getField56A() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("56A");
-			final List<Field56A> result = new ArrayList<Field56A>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field56A(tags[i].getValue()));
-			}
-			return result;
+		final List<Field56A> result = new ArrayList<Field56A>();
+		final Tag[] tags = tags("56A");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field56A(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -900,18 +825,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field56C> getField56C() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("56C");
-			final List<Field56C> result = new ArrayList<Field56C>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field56C(tags[i].getValue()));
-			}
-			return result;
+		final List<Field56C> result = new ArrayList<Field56C>();
+		final Tag[] tags = tags("56C");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field56C(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -924,18 +843,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field56D> getField56D() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("56D");
-			final List<Field56D> result = new ArrayList<Field56D>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field56D(tags[i].getValue()));
-			}
-			return result;
+		final List<Field56D> result = new ArrayList<Field56D>();
+		final Tag[] tags = tags("56D");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field56D(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -948,18 +861,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field57A> getField57A() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("57A");
-			final List<Field57A> result = new ArrayList<Field57A>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field57A(tags[i].getValue()));
-			}
-			return result;
+		final List<Field57A> result = new ArrayList<Field57A>();
+		final Tag[] tags = tags("57A");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field57A(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -972,18 +879,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field57C> getField57C() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("57C");
-			final List<Field57C> result = new ArrayList<Field57C>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field57C(tags[i].getValue()));
-			}
-			return result;
+		final List<Field57C> result = new ArrayList<Field57C>();
+		final Tag[] tags = tags("57C");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field57C(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -996,18 +897,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field57D> getField57D() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("57D");
-			final List<Field57D> result = new ArrayList<Field57D>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field57D(tags[i].getValue()));
-			}
-			return result;
+		final List<Field57D> result = new ArrayList<Field57D>();
+		final Tag[] tags = tags("57D");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field57D(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -1020,18 +915,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field59A> getField59A() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("59A");
-			final List<Field59A> result = new ArrayList<Field59A>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field59A(tags[i].getValue()));
-			}
-			return result;
+		final List<Field59A> result = new ArrayList<Field59A>();
+		final Tag[] tags = tags("59A");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field59A(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -1044,18 +933,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field59F> getField59F() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("59F");
-			final List<Field59F> result = new ArrayList<Field59F>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field59F(tags[i].getValue()));
-			}
-			return result;
+		final List<Field59F> result = new ArrayList<Field59F>();
+		final Tag[] tags = tags("59F");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field59F(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -1068,18 +951,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field59> getField59() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("59");
-			final List<Field59> result = new ArrayList<Field59>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field59(tags[i].getValue()));
-			}
-			return result;
+		final List<Field59> result = new ArrayList<Field59>();
+		final Tag[] tags = tags("59");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field59(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -1092,18 +969,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field70> getField70() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("70");
-			final List<Field70> result = new ArrayList<Field70>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field70(tags[i].getValue()));
-			}
-			return result;
+		final List<Field70> result = new ArrayList<Field70>();
+		final Tag[] tags = tags("70");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field70(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -1116,18 +987,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field77B> getField77B() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("77B");
-			final List<Field77B> result = new ArrayList<Field77B>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field77B(tags[i].getValue()));
-			}
-			return result;
+		final List<Field77B> result = new ArrayList<Field77B>();
+		final Tag[] tags = tags("77B");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field77B(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -1140,18 +1005,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field33B> getField33B() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("33B");
-			final List<Field33B> result = new ArrayList<Field33B>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field33B(tags[i].getValue()));
-			}
-			return result;
+		final List<Field33B> result = new ArrayList<Field33B>();
+		final Tag[] tags = tags("33B");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field33B(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -1164,18 +1023,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field71A> getField71A() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("71A");
-			final List<Field71A> result = new ArrayList<Field71A>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field71A(tags[i].getValue()));
-			}
-			return result;
+		final List<Field71A> result = new ArrayList<Field71A>();
+		final Tag[] tags = tags("71A");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field71A(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -1188,18 +1041,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field25A> getField25A() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("25A");
-			final List<Field25A> result = new ArrayList<Field25A>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field25A(tags[i].getValue()));
-			}
-			return result;
+		final List<Field25A> result = new ArrayList<Field25A>();
+		final Tag[] tags = tags("25A");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field25A(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -1212,26 +1059,14 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field36> getField36() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("36");
-			final List<Field36> result = new ArrayList<Field36>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field36(tags[i].getValue()));
-			}
-			return result;
+		final List<Field36> result = new ArrayList<Field36>();
+		final Tag[] tags = tags("36");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field36(tags[i].getValue()));
 		}
+		return result;
 	}
 	
-
-/*
- * sequences code
- *
- */ 
-
 
 // BaseSequenceCodeGenerator [seq=A]
 	/**
@@ -1262,11 +1097,11 @@ public class MT101 extends AbstractMT implements Serializable {
 		* Last mandatory tagname of the sequence: <em>"30"  </em>
 		* Array format is for cases when more than one letter options is allowed
 		*/
-		public static final String[] END = { "30"   };
+		protected static final String[] END = { "30"   };
 		/**
 		* List of optional tags after the last mandatory tag
 		*/
-		public static final String[] TAIL = new String[]{ "25"   };
+		protected static final String[] TAIL = new String[]{ "25"   };
 
 		/**
 		* same as newInstance(0, 0, tags);
@@ -1362,11 +1197,11 @@ public class MT101 extends AbstractMT implements Serializable {
 		* Last mandatory tagname of the sequence: <em>"71A"  </em>
 		* Array format is for cases when more than one letter options is allowed
 		*/
-		public static final String[] END = { "71A"   };
+		protected static final String[] END = { "71A"   };
 		/**
 		* List of optional tags after the last mandatory tag
 		*/
-		public static final String[] TAIL = new String[]{ "25A", "36"   };
+		protected static final String[] TAIL = new String[]{ "25A", "36"   };
 
 		/**
 		* same as newInstance(0, 0, tags);
@@ -1428,7 +1263,6 @@ public class MT101 extends AbstractMT implements Serializable {
 		return Collections.emptyList();
 	} 
  
-
 
 
 

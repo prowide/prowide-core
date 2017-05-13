@@ -25,7 +25,9 @@ import java.util.logging.Level;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.MxId;
 import com.prowidesoftware.swift.model.MxNode;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
@@ -81,13 +83,14 @@ public class MxParser {
 	private MxStructureInfo info = null;
 
 	/**
-	 * @deprecated the generic constructor is discouraged, use constructor with
-	 *             specific source parameter
+	 * @deprecated the generic constructor is discouraged, use a constructor with
+	 *             specific source parameter instead
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public MxParser() {
 		super();
+		DeprecationUtils.phase3(getClass(), "MxParser()", "The generic constructor is discouraged, use a constructor with specific source parameter instead.");
 	}
 
 	/**
@@ -126,8 +129,9 @@ public class MxParser {
 	 * @since 7.6
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public MxNode parse(final InputStream stream) {
+		DeprecationUtils.phase3(getClass(), "parse(stream)", "Initialize the parser with the stream instead an call the generic parse() method.");
 		try {
 			this.buffer = Lib.readStream(stream);
 			return parse();
@@ -147,8 +151,9 @@ public class MxParser {
 	 * @since 7.6
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase4=TargetYear._2018)
 	public MxNode parse(final Reader reader) throws IOException {
+		DeprecationUtils.phase3(getClass(), "parse(reader)", "Initialize the parser with the reader instead an call the generic parse() method.");
 		this.buffer = Lib.readReader(reader);
 		return parse();
 	}
@@ -181,7 +186,9 @@ public class MxParser {
 	 * @deprecated use {@link #stripDocument()} and {@link #stripHeader()} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public MxPayload payload() {
+		DeprecationUtils.phase2(getClass(), "payload()", "In order to get the payload of a wrapped MX, use stripDocument() and stripHeader() instead.");
 		final MxId id = detectMessage();
 		log.fine("Detected message " + id);
 		final MxPayload result = new MxPayload();
@@ -202,17 +209,11 @@ public class MxParser {
 	public BusinessHeader parseBusinessHeader() {
 		final BusinessHeader bh = new BusinessHeader();
 		final MxNode tree = parse();
-		boolean isAH = false;
 		if (tree != null) {
 			MxNode appHdr = tree.findFirstByName(HEADER_LOCALNAME);
 			if (appHdr != null) {
 				final String ns = appHdr.getAttribute("xmlns");
-				if (ns != null && ns.equals(BusinessHeader.NAMESPACE_AH)) {
-					isAH = true;
-				} else if (appHdr.findFirstByName("From") != null) {
-					isAH = true;
-				}
-				if (isAH) {
+				if ((ns != null && ns.equals(BusinessHeader.NAMESPACE_AH)) || (appHdr.findFirstByName("From") != null)) {
 					bh.setApplicationHeader(parseApplicationHeader(tree));
 				} else {
 					bh.setBusinessApplicationHeader(parseBusinessApplicationHeaderV01(tree));
@@ -324,12 +325,12 @@ public class MxParser {
 	
 	/**
 	 * Convenient API to get structure information from an MX message.
-	 * <br ><br>
-	 * This can be helpful when the actual content of an XML is unknown and 
+	 * <p>This can be helpful when the actual content of an XML is unknown and 
 	 * some preprocessing of the XML must be done in order to parse or
-	 * validate its content properly.
-	 * <br >
-	 * The implementation is intended to be lightweight and efficient, based on {@link javax.xml.stream.XMLStreamReader}
+	 * validate its content properly.</p>
+	 * <p>The implementation is intended to be lightweight and efficient, based on {@link javax.xml.stream.XMLStreamReader}</p>
+	 * <p>If the message contains more than one Document element, the first one will be picked. The same applies for
+	 * the header, only the first AppHdr will be picked</p>
 	 *  
 	 * @since 7.8.4
 	 */
@@ -349,11 +350,11 @@ public class MxParser {
 			while (reader.hasNext()) {
 				int event = reader.next();
 				if (javax.xml.stream.XMLStreamConstants.START_ELEMENT == event) {
-					if (reader.getLocalName().equals(DOCUMENT_LOCALNAME)) {
+					if (!this.info.containsDocument && reader.getLocalName().equals(DOCUMENT_LOCALNAME)) {
 						this.info.containsDocument = true;
 						this.info.documentNamespace = readNamespace(reader);
 						this.info.documentPrefix = StringUtils.trimToNull(reader.getPrefix());
-					} else if (reader.getLocalName().equals(HEADER_LOCALNAME)) {
+					} else if (!this.info.containsHeader && reader.getLocalName().equals(HEADER_LOCALNAME)) {
 						this.info.containsHeader = true;
 						this.info.headerNamespace = readNamespace(reader);
 						this.info.headerPrefix = StringUtils.trimToNull(reader.getPrefix());
@@ -396,14 +397,14 @@ public class MxParser {
 	 * @since 7.8.4
 	 */
 	public class MxStructureInfo {
-		boolean containsWrapper = false;
-		boolean containsHeader = false;
-		boolean containsDocument = false;
-		String documentNamespace = null;
-		String documentPrefix = null;
-		String headerNamespace = null;
-		String headerPrefix = null;
-		Exception exception = null;
+		private boolean containsWrapper = false;
+		private boolean containsHeader = false;
+		private boolean containsDocument = false;
+		private String documentNamespace = null;
+		private String documentPrefix = null;
+		private String headerNamespace = null;
+		private String headerPrefix = null;
+		private Exception exception = null;
 		
 		public boolean containsWrapper() {
 			return containsWrapper;
@@ -429,10 +430,19 @@ public class MxParser {
 		public Exception getException() {
 			return exception;
 		}
+		@Override
+		public String toString() {
+			return "MxStructureInfo [containsWrapper=" + containsWrapper + ", containsHeader=" + containsHeader
+					+ ", containsDocument=" + containsDocument + ", documentNamespace=" + documentNamespace
+					+ ", documentPrefix=" + documentPrefix + ", headerNamespace=" + headerNamespace + ", headerPrefix="
+					+ headerPrefix + "]";
+		}
 	}
 	
 	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public MxPayload mx() {
+		DeprecationUtils.phase3(getClass(), "mx()", "In order to get the payload of a wrapped MX, use stripDocument() and stripHeader() instead.");
 		return null;
 	}
 	
@@ -460,40 +470,78 @@ public class MxParser {
 	
 	/**
 	 * Helper API to strip Document portion of message XML.
-	 * <br >
-	 * This operation is intended to be lightweight and efficient so it actually
-	 * does a simple substring operation on the XML using information provided
-	 * by the result of {@link #analizeMessage()}
-	 * <br >
-	 * This API is convenient when only the Document element of an MX message
-	 * is needed and the wrapper/payload structure is unknown.
 	 * 
+	 * <p>This API is convenient when only the Document element of an MX message
+	 * is needed and the wrapper/payload structure is unknown.</p>
+	 *
+	 * <p>This implementation is intended to be lightweight and efficient so it actually
+	 * does a simple substring operation on the XML using information provided
+	 * by the result of {@link #analizeMessage()}. The XML is not converted into DOM.
+	 * <br >
+	 * If the message contains more than one Document element the expected result is as follows:
+	 * <ul>
+	 * <li>If the documents are nested (this can happen for example when an additional MX message
+	 * is provided within a supplementary data element within the main MX) then the outermost Document
+	 * will be returned.</li>
+	 * <li>If the documents are not-nested (weird situation) the result might be not well-formed</li>
+	 * </ul>
+	 * </p>
+	 *  
 	 * @since 7.8.4
 	 * @return XML with Document element of the Mx message or null if message is blank or invalid
 	 */
 	public String stripDocument() {
 		analizeMessage();
-		if (this.info.containsWrapper() || this.info.containsHeader()) {
-			final String tag = this.info.getDocumentPrefix() != null? this.info.getDocumentPrefix() + ":" + MxParser.DOCUMENT_LOCALNAME : MxParser.DOCUMENT_LOCALNAME;
-			int beginIndex = this.buffer.indexOf("<" + tag);
-			int endIndex = this.buffer.indexOf("</" + tag);
+		final String tag = this.info.getDocumentPrefix() != null? this.info.getDocumentPrefix() + ":" + MxParser.DOCUMENT_LOCALNAME : MxParser.DOCUMENT_LOCALNAME;
+		int beginIndex = this.buffer.indexOf("<" + tag);
+		int endIndex = this.buffer.lastIndexOf("</" + tag);
+		if (beginIndex >=0 && endIndex >= 0) {
 			return this.buffer.substring(beginIndex, endIndex) + "</"+tag+">";
 		} else {
-			return this.buffer;
+			return null;
 		}
 	}
 	
+	/* alternative future implementation using DOM instead of MxNode
+	public String stripDocument1() {
+		try {
+		    javax.xml.parsers.DocumentBuilderFactory dbf = javax.xml.parsers.DocumentBuilderFactory.newInstance();
+		    org.w3c.dom.Document doc = dbf.newDocumentBuilder().parse(new org.xml.sax.InputSource(new StringReader(this.buffer)));
+		    javax.xml.xpath.XPath xPath = javax.xml.xpath.XPathFactory.newInstance().newXPath();
+		    org.w3c.dom.Node result = (org.w3c.dom.Node)xPath.evaluate("Document", doc, javax.xml.xpath.XPathConstants.NODE);
+		    return nodeToString(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	private static String nodeToString(org.w3c.dom.Node node) throws javax.xml.transform.TransformerException {
+	    StringWriter buf = new StringWriter();
+	    javax.xml.transform.Transformer xform = javax.xml.transform.TransformerFactory.newInstance().newTransformer();
+	    xform.setOutputProperty(javax.xml.transform.OutputKeys.OMIT_XML_DECLARATION, "yes");
+	    xform.transform(new javax.xml.transform.dom.DOMSource(node), new javax.xml.transform.stream.StreamResult(buf));
+	    return(buf.toString());
+	}
+	*/
+	
 	/**
 	 * Helper API to strip AppHdr portion of message XML.
-	 * <br >
-	 * This operation is intended to be lightweight and efficient so it actually
+	 * 
+	 * <p>This API is convenient when only the header element of an MX message
+	 * is needed and the wrapper/payload structure is unknown.</p>
+	 * 
+	 * <p>To gather the header already parsed into objects see {@link #parseBusinessHeader()}</p>
+	 * 
+	 * <p>This implementation is intended to be lightweight and efficient so it actually
 	 * does a simple substring operation on the XML using information provided
-	 * by the result of {@link #analizeMessage()}
+	 * by the result of {@link #analizeMessage()}. The XML is not converted into DOM.
 	 * <br >
-	 * This API is convenient when only the header element of an MX message
-	 * is needed and the wrapper/payload structure is unknown.
-	 * <br>
-	 * To gather the header already parsed into objects see {@link #parseBusinessHeader()}
+	 * If the message contains more than one AppHdr element the expected result is as follows:
+	 * <ul>
+	 * <li>If the headers are not nested, the first one will be returned.</li>
+	 * <li>If the headers are nested (weird situation) the result might be not well-formed</li>
+	 * </ul>
+	 * </p>
 	 * 
 	 * @since 7.8.4
 	 * @return XML with AppHdr element of the Mx message or null if not found
@@ -504,7 +552,11 @@ public class MxParser {
 			final String tag = this.info.getHeaderPrefix() != null? this.info.getHeaderPrefix() + ":" + MxParser.HEADER_LOCALNAME : MxParser.HEADER_LOCALNAME;
 			int beginIndex = this.buffer.indexOf("<" + tag);
 			int endIndex = this.buffer.indexOf("</" + tag);
-			return this.buffer.substring(beginIndex, endIndex) + "</"+tag+">";
+			if (beginIndex >=0 && endIndex >= 0) {
+				return this.buffer.substring(beginIndex, endIndex) + "</"+tag+">";
+			} else {
+				return null;
+			}
 		}
 		return null;
 	}

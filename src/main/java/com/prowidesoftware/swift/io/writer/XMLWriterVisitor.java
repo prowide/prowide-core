@@ -409,14 +409,12 @@ public class XMLWriterVisitor implements IMessageVisitor {
 	}
 
 	private void write(UnparsedTextList texts, int level) {
-
 		// write prefix
-		String prefix = "\t";
+		String prefix;
 		switch (level) {
 			case 0:  prefix = "";     break;
-			case 1:  prefix = "\t";   break;
 			case 2:  prefix = "\t\t"; break;
-			default: prefix = "\t";   break;
+			default: prefix = "\t";   break; //level 1 is catched here
 		}
 		
 		// write the unparsed texts (if any)
@@ -424,7 +422,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
 			write(EOL + prefix + "<unparsedTexts>");
 			for(int i = 0; i < texts.size().intValue(); i++) {
 				write(EOL + prefix + "\t<text>");
-				write(texts.getText(new Integer(i)));
+				write(texts.getText(Integer.valueOf(i)));
 				write("</text>");
 			}
 			write(EOL + prefix + "</unparsedTexts>");

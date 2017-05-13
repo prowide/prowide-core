@@ -29,7 +29,9 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
-import com.prowidesoftware.swift.DeleteSchedule;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.field.Field;
 
 /**
@@ -51,7 +53,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * Contains instances of Tag in this block, used to store the block's fields.
 	 * @see Tag
 	 */
-	protected List<Tag> tags = new ArrayList<Tag>();
+	private List<Tag> tags = new ArrayList<Tag>();
 
 	/**
 	 * Default constructor, shouldn't be used normally.
@@ -265,17 +267,12 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	}
 
 	/**
-	 * Adds a tag to this block.
-	 * <b>This method may be deleted after 2016</b>
-	 *
-	 * @param t the tag to add
-	 * @throws IllegalArgumentException if parameter t is <code>null</code>
-	 * @deprecated use append(tag) instead of this
-	 * @see #append(Tag)
+	 * @deprecated use {@link #append(Tag)} instead of this
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public void addTag(final Tag t) {
+		DeprecationUtils.phase2(getClass(), "addTag(Tag)", "use append(Tag) instead.");
 		// sanity check
 		Validate.notNull(t, "parameter 't' cannot not be null");
 
@@ -288,22 +285,22 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		this.tags.add(t);
 	}
 	/**
-	 * <b>This method may be deleted after 2016</b>
-	 * @deprecated use append(field) instead of this
-	 * @see #append(Field)
+	 * @deprecated use {@link #append(Field)} instead
 	 */
 	@Deprecated
-	@DeleteSchedule(2016)
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public void add(final Field f) {
+		DeprecationUtils.phase2(getClass(), "add(Field)", "use append(Field) instead.");
 		append(new Tag(f.getName(), f.getValue()));
 	}
 
 	/**
 	 * @deprecated renamed to {@link #countByName(String)}
-	 * @see #countByName(String)
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public int getTagCount(final String key) {
+		DeprecationUtils.phase2(getClass(), "getTagCount(String)", "Use countByName(String) instead.");
 		return countByName(key);
 	}
 
@@ -607,12 +604,13 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * @deprecated use {@link #countAll()} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public int getTagCount() {
 		return countAll();
 	}
 	
 	/**
-	 * Gets the amount of tags in this taglist
+	 * Gets the number of tags in this taglist
 	 * @return zero or the amount of tags contained in the block
 	 */	public int countAll() {
 		 return (this.tags == null ? 0 : tags.size());
@@ -1230,7 +1228,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	  */
 	 public SwiftTagListBlock getSubBlockAfterFirst(final String tagname, final boolean includeSeparator) {
 		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 if (this.tags != null && this.tags.size()>0) {
+		 if (this.tags != null && !this.tags.isEmpty()) {
 			 boolean toggleAdd = false;
 			 for (int i=0;i<this.tags.size() ; i++) {
 				 boolean isSeparator = false;
@@ -1253,11 +1251,11 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 /**
 	  * Get a subblock after the first tag with the given tagname.
 	  * The given separator tag is included in the result
-	  * replace with
-	  * <code>getSubBlockAfterFirst(tagname, true);</code>
+	  * replace with <code>getSubBlockAfterFirst(tagname, true);</code>
 	  * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)}
 	  */
 	 @Deprecated
+	 @ProwideDeprecated(phase2=TargetYear._2018)
 	 public SwiftTagListBlock getSubBlockAfterFirst(final String tagname) {
 		 return getSubBlockAfterFirst(tagname, true);
 	 }
@@ -1268,7 +1266,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	  */
 	 public SwiftTagListBlock getSubBlockBeforeFirst(final String tagname, final boolean includeSeparator) {
 		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 if (this.tags != null && this.tags.size()>0) {
+		 if (this.tags != null && !this.tags.isEmpty()) {
 			 final Iterator<Tag> it = tags.iterator();
 			 boolean done = false;
 			 while (it.hasNext() && !done) {
@@ -1991,7 +1989,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	  * @param startsWith
 	  */
 	 public SwiftTagListBlock removeAfterFirstStartsWith(final String name, final String startsWith) {
-		 if (this.tags == null || this.tags.size()==0) {
+		 if (this.tags == null || !this.tags.isEmpty()) {
 			 return new SwiftTagListBlock();
 		 }
 

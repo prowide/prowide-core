@@ -16,11 +16,14 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsN {
 
+    public final static String N = "N";
+    public final static String NY = "NY";
+    public final static String NN = "NN";
+    public final static String NAMR = "NAMR";
     public final static String NETS = "NETS";
     public final static String NAUT = "NAUT";
     public final static String NMAT = "NMAT";
     public final static String NELI = "NELI";
-    public final static String N = "N";
     public final static String NEWT = "NEWT";
     public final static String NEW = "NEW";
     public final static String NETCASH = "NETCASH";

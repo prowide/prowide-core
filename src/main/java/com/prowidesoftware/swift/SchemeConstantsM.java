@@ -16,15 +16,16 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsM {
 
+    public final static String MIDE = "MIDE";
     public final static String MATU = "MATU";
     public final static String M = "M";
     public final static String MEOR = "MEOR";
     public final static String MICO = "MICO";
     public final static String MODIFIEDF = "MODIFIEDF";
     public final static String MRKT = "MRKT";
-    public final static String MERE = "MERE";
     public final static String MAIL = "MAIL";
     public final static String MINO = "MINO";
+    public final static String MERE = "MERE";
     public final static String MPLE = "MPLE";
     public final static String MAIN = "MAIN";
     public final static String MFKT = "MFKT";

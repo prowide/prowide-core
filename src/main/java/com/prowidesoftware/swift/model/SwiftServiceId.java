@@ -19,12 +19,19 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.enums.Enum;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.mt.ServiceIdType;
+
 /**
  * Class to hold valid service id values.
  * 
  * @author www.prowidesoftware.com
  * @since 6.0
+ * @deprecated use {@linkplain ServiceIdType instead}
  */
+@ProwideDeprecated(phase3=TargetYear._2018)
 public class SwiftServiceId extends Enum {
 	private static final long serialVersionUID = 3435194171796145884L;
 
@@ -106,6 +113,7 @@ public class SwiftServiceId extends Enum {
 	 */
 	protected SwiftServiceId(String name) {
 		super(name);
+		DeprecationUtils.phase2(getClass(), null, "Use the enumeration ServiceIdType instead.");
 	}
 
 	/**
@@ -116,9 +124,11 @@ public class SwiftServiceId extends Enum {
 	 *            the name to test as service id, may be <code>null</code>
 	 * @return <code>true</code> if the parameter name is a valid service id
 	 * @since 6.0
+	 * @deprecated use {@linkplain ServiceIdType#valid(String)} instead
 	 */
-	@SuppressWarnings("unchecked")
+	@ProwideDeprecated(phase3=TargetYear._2018)
 	public static boolean contains(String name) {
+		DeprecationUtils.phase2(SwiftServiceId.class, "contains(String)", "Use the enumeration ServiceIdType instead.");
 		if (StringUtils.isNotEmpty(name)) {
 			List values = getEnumList(SwiftServiceId.class);
 			for (int i = 0; i < values.size(); i++) {

@@ -69,6 +69,11 @@ public class Field348 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "S";
 
 	/**
+	 * Component number for the Subset Sharing subfield
+	 */
+	public static final Integer SUBSET_SHARING = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field348() {
@@ -172,10 +177,27 @@ public class Field348 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Subset Sharing (component1).
+	 * @return the Subset Sharing from component1
+	 */
+	public String getSubsetSharing() {
+		return getComponent(1);
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
 	public Field348 setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Subset Sharing (component1).
+	 * @param component1 the Subset Sharing to set
+	 */
+	public Field348 setSubsetSharing(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -321,9 +343,6 @@ public class Field348 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 348");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -341,7 +360,7 @@ public class Field348 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Subset Sharing");
 		return result;
 	}
 	

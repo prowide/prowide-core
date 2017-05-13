@@ -130,15 +130,15 @@ public class Field134 extends Field implements Serializable, BICContainer, com.p
 	public void parse(final String value) {
 		init(3);
 		java.util.List<String> lines = SwiftParseUtils.getLines(value);
-		if (lines.size() > 0) {
+		if (!lines.isEmpty()) {
 			setComponent1(lines.get(0));
+			if (lines.size() > 1) {
+				setComponent2(lines.get(1));
+			}
+			if (lines.size() > 2) {
+				setComponent3(lines.get(2));
+			}
 		} 
-		if (lines.size() > 1) {
-			setComponent2(lines.get(1));
-		}
-		if (lines.size() > 2) {
-			setComponent3(lines.get(2));
-		}
 	}
 	
 	/**
@@ -568,9 +568,6 @@ public class Field134 extends Field implements Serializable, BICContainer, com.p
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 3) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 134");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

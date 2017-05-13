@@ -140,8 +140,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 	    try {
 			blockNumber = Integer.decode(blockName);
 		} catch (NumberFormatException fe) {
-		};
-
+		}
 		return(blockNumber);
 	}
 
@@ -172,7 +171,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 	protected void setBlockNumber(Integer blockNumber) {
 		// sanity check
 		Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-		Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), "'" + blockNumber.toString() + "' is not a valid User Defined Block number");
+		Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), "'" + blockNumber + "' is not a valid User Defined Block number");
 
         this.blockName = blockNumber.toString();
 	}
@@ -236,7 +235,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 				return(Boolean.FALSE);
 		} catch (NumberFormatException nfe) {
 			// do nothing (it was not a number)
-		};
+		}
 		
 		// for named blocks, the name must be only one letter
 		if (blockName.length() != 1)
@@ -268,7 +267,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 		if (blockNumber.intValue() != -1) {
 			if (1 <= blockNumber.intValue() && blockNumber.intValue() <= 5)
 				return(Boolean.FALSE);
-		};
+		}
 
 		return(Boolean.TRUE);
 	}

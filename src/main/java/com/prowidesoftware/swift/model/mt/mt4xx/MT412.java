@@ -12,13 +12,17 @@
  *     
  *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
  *******************************************************************************/
- package com.prowidesoftware.swift.model.mt.mt4xx;
+package com.prowidesoftware.swift.model.mt.mt4xx;
+
+
 
 import com.prowidesoftware.Generated;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Collections;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.internal.*;
@@ -31,25 +35,50 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * MT 412<br />
- * Advice of Acceptance<br />
- <h1>MT412 Format</h1>
- <pre>
- <div class="mainsequence">
-<em>Main Sequence main</em><br/>
-<div class="sequence">
-<em>Sequence A</em><br/>
-<div class="field"><em>Field 20</em>
-Letter options: null<br/></div><div class="field"><em>Field 21</em>
-Letter options: null<br/></div><div class="field"><em>Field 32</em>
-Letter options: A<br/></div></blockquote>
-<div class="field"><em>Field 72</em>
-Letter options: null<br/></div></div>
-
- </pre>
- * <em>This source code is specific to release SRU 2016</em><br /> 
+ * <h1>MT 412 - Advice of Acceptance</h1>
+ * <h3>SWIFT MT412 (ISO 15022) message structure:</h3>
  *
- *		 
+ <div class="scheme"><ul>
+<li class="sequence">
+Sequence A (M) (repetitive)<ul><li class="field">Field 20  (M)</li>
+<li class="field">Field 21  (M)</li>
+<li class="field">Field 32 A (M)</li>
+</ul></li>
+<li class="field">Field 72  (O)</li>
+</ul></div>
+
+ <style>
+.scheme, .scheme ul, .scheme li {
+     position: relative;
+}
+.scheme ul {
+    list-style: none;
+    padding-left: 32px;
+}
+.scheme li::before, .scheme li::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+}
+.scheme li::before {
+    border-top: 1px solid #000;
+    top: 9px;
+    width: 8px;
+    height: 0;
+}
+.scheme li::after {
+    border-left: 1px solid #000;
+    height: 100%;
+    width: 0px;
+    top: 2px;
+}
+.scheme ul > li:last-child::after {
+    height: 8px;
+}</style>
+
+ *
+ * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
  */
@@ -77,7 +106,7 @@ public class MT412 extends AbstractMT implements Serializable {
 	 */
 	public MT412(SwiftMessage m) {
 		super(m);
-		// TODO issue warning if incorrect message type or illegal argument if different
+		sanityCheck(m);
 	}
 
 	/**
@@ -88,7 +117,7 @@ public class MT412 extends AbstractMT implements Serializable {
 	public MT412(MtSwiftMessage m) {
 		this();
 		super.m = super.getSwiftMessageNotNullOrException();
-		// TODO issue warning if incorrect message type or illegal argument if different
+		sanityCheck(super.m);
 	}
 	
 	/**
@@ -113,7 +142,7 @@ public class MT412 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	public MT412() {
-		super(412);
+		this(BIC.TEST8, BIC.TEST8);
 	}
 	
 	/**
@@ -134,13 +163,15 @@ public class MT412 extends AbstractMT implements Serializable {
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* Use instead <code>new MT412(sender, receiver)</code>
+	* 
 	* @see #MT412(String, String)
-	* @deprecated
+	* @deprecated Use instead <code>new MT412(sender, receiver)</code> instead
 	*/
 	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public MT412(final int messageType, final String sender, final String receiver) {
 		super(412, sender, receiver);
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT412(int, String, String)", "Use the constructor MT412(sender, receiver) instead.");
 	}
 	
 	/**
@@ -158,7 +189,16 @@ public class MT412 extends AbstractMT implements Serializable {
 			final SwiftMessage parsed = read(fin);
 			if (parsed != null) {
 				super.m = parsed;
+				sanityCheck(parsed);
 			}
+		}
+    }
+    
+    private void sanityCheck(final SwiftMessage param) {
+    	if (param.isServiceMessage()) {
+			log.warning("Creating an MT412 object from FIN content with a Service Message. Check if the MT412 you are intended to read is prepended with and ACK.");
+		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+			log.warning("Creating an MT412 object from FIN content with message type "+param.getType());
 		}
     }
 	
@@ -294,18 +334,11 @@ public class MT412 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public Field72 getField72() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return null;
+		final Tag t = tag("72");
+		if (t != null) {
+			return new Field72(t.getValue());
 		} else {
-			final Tag t = _m.getBlock4().getTagByName("72");
-			if (t == null) {
-				log.fine("field 72 not found");
-				return null;
-			} else {
-				return new Field72(t.getValue());
-			}
+			return null;
 		}
 	}
 	
@@ -319,18 +352,12 @@ public class MT412 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field20> getField20() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("20");
-			final List<Field20> result = new ArrayList<Field20>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field20(tags[i].getValue()));
-			}
-			return result;
+		final List<Field20> result = new ArrayList<Field20>();
+		final Tag[] tags = tags("20");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field20(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -343,18 +370,12 @@ public class MT412 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field21> getField21() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("21");
-			final List<Field21> result = new ArrayList<Field21>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field21(tags[i].getValue()));
-			}
-			return result;
+		final List<Field21> result = new ArrayList<Field21>();
+		final Tag[] tags = tags("21");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field21(tags[i].getValue()));
 		}
+		return result;
 	}
 	
 	/**
@@ -367,26 +388,14 @@ public class MT412 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field32A> getField32A() {
-		final SwiftMessage _m = super.getSwiftMessageNotNullOrException();
-		if (_m.getBlock4() == null) {
-			log.info("block4 is null");
-			return Collections.emptyList();
-		} else {
-			final Tag[] tags = _m.getBlock4().getTagsByName("32A");
-			final List<Field32A> result = new ArrayList<Field32A>();
-			for (int i=0; i<tags.length; i++) {
-				result.add(new Field32A(tags[i].getValue()));
-			}
-			return result;
+		final List<Field32A> result = new ArrayList<Field32A>();
+		final Tag[] tags = tags("32A");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field32A(tags[i].getValue()));
 		}
+		return result;
 	}
 	
-
-/*
- * sequences code
- *
- */ 
-
 
 // BaseSequenceCodeGenerator [seq=A]
 	/**
@@ -417,11 +426,11 @@ public class MT412 extends AbstractMT implements Serializable {
 		* Last mandatory tagname of the sequence: <em>"32A"  </em>
 		* Array format is for cases when more than one letter options is allowed
 		*/
-		public static final String[] END = { "32A"   };
+		protected static final String[] END = { "32A"   };
 		/**
 		* List of optional tags after the last mandatory tag
 		*/
-		public static final String[] TAIL = new String[]{  };
+		protected static final String[] TAIL = new String[]{  };
 
 		/**
 		* same as newInstance(0, 0, tags);
@@ -483,7 +492,6 @@ public class MT412 extends AbstractMT implements Serializable {
 		return Collections.emptyList();
 	} 
  
-
 
 
 

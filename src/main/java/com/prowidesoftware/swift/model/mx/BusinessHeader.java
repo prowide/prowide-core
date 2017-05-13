@@ -127,9 +127,13 @@ public class BusinessHeader {
 	 */
 
 	/**
-	 * Gets the sender BIC code
-	 * 
-	 * If the header is a BAH, gets the BIC code from BusinessApplicationHeaderV01/Fr/FIId/FinInstnId/BICFI
+	 * Gets the sender BIC code.
+	 * <br />
+	 * If the header is a BAH, tries to gets the BIC code from this elements in the following order:
+	 * <ol>
+	 * 	<li>BusinessApplicationHeaderV01/Fr/FIId/FinInstnId/BICFI</li>
+	 *  <li>BusinessApplicationHeaderV01/Fr/OrgId/Id/OrgId/Id/AnyBIC</li>
+	 * </ol>
 	 * <br />
 	 * If the header is an AH, gets the same from ApplicationHeader/From/Type+Id where if Type
 	 * is BIC the Id is returned as is, otherwise the domain name is parsed using {@link MxParser#getBICFromDN(String)}
@@ -144,11 +148,7 @@ public class BusinessHeader {
 			/*
 			 * is BAH
 			 */
-			try {
-				return this.businessApplicationHeader.getFr().getFIId().getFinInstnId().getBICFI();
-			} catch (NullPointerException e) {
-				return null;
-			}
+			return getBIC(this.businessApplicationHeader.getFr());
 		} else {
 			/*
 			 * is AH
@@ -164,11 +164,16 @@ public class BusinessHeader {
 			}
 		}
 	}
+	
 
 	/**
 	 * Gets the receiver BIC code
-	 * 
-	 * If the header is a BAH, gets the BIC code from BusinessApplicationHeaderV01/To/FIId/FinInstnId/BICFI
+	 * <br />
+	 * If the header is a BAH, tries to gets the BIC code from this elements in the following order:
+	 * <ol>
+	 * 	<li>BusinessApplicationHeaderV01/To/FIId/FinInstnId/BICFI</li>
+	 *  <li>BusinessApplicationHeaderV01/To/OrgId/Id/OrgId/Id/AnyBIC</li>
+	 * </ol>
 	 * <br />
 	 * If the header is an AH, gets the same from ApplicationHeader/To/Type+Id where if Type
 	 * is BIC the Id is returned as is, otherwise the domain name is parsed using {@link MxParser#getBICFromDN(String)}
@@ -183,11 +188,7 @@ public class BusinessHeader {
 			/*
 			 * is BAH
 			 */
-			try {
-				return this.businessApplicationHeader.getTo().getFIId().getFinInstnId().getBICFI();
-			} catch (NullPointerException e) {
-				return null;
-			}
+			return getBIC(this.businessApplicationHeader.getTo());
 		} else {
 			/*
 			 * is AH
@@ -203,7 +204,25 @@ public class BusinessHeader {
 			}
 		}
 	}
-	
+
+	private String getBIC(final Party9Choice p) {
+		try {
+			final String found = p.getFIId().getFinInstnId().getBICFI();
+			if (!StringUtils.isEmpty(found)) {
+				return found;
+			}
+		} catch (NullPointerException e) {
+			try {
+				final String found = p.getOrgId().getId().getOrgId().getAnyBIC();
+				if (!StringUtils.isEmpty(found)) {
+					return found;
+				}
+			} catch (NullPointerException e2) {
+				return null;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Get the message reference.
@@ -245,7 +264,7 @@ public class BusinessHeader {
 	 * @since 7.8
 	 */
 	public String xml(final String prefix, boolean includeXMLDeclaration) {
-		Object header = null;
+		Object header;
 		if (this.businessApplicationHeader != null) {
 			header = this.businessApplicationHeader;
 		} else if (this.applicationHeader != null) {
@@ -275,7 +294,7 @@ public class BusinessHeader {
 	 * @since 7.8
 	 */
 	public Element element() {
-		Object header = null;
+		Object header;
 		if (this.businessApplicationHeader != null) {
 			header = this.businessApplicationHeader;
 		} else if (this.applicationHeader != null) {

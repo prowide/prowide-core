@@ -1354,9 +1354,6 @@ public class Field35F extends Field implements Serializable, com.prowidesoftware
 		if (component < 1 || component > 35) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 35F");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);

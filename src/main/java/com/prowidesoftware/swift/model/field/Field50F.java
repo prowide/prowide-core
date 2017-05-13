@@ -119,25 +119,25 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	public void parse(final String value) {
 		init(9);
 		java.util.List<String> lines = SwiftParseUtils.getLines(value);
-		if (lines.size() > 0) {
+		if (!lines.isEmpty()) {
 			setComponent1(lines.get(0));
-		} 
-		if (lines.size() > 1) {
-			setComponent2(SwiftParseUtils.getTokenFirst(lines.get(1), "/"));
-			setComponent3(SwiftParseUtils.getTokenSecondLast(lines.get(1), "/"));
+			if (lines.size() > 1) {
+				setComponent2(SwiftParseUtils.getTokenFirst(lines.get(1), "/"));
+				setComponent3(SwiftParseUtils.getTokenSecondLast(lines.get(1), "/"));
+			}
+			if (lines.size() > 2) {
+				setComponent4(SwiftParseUtils.getTokenFirst(lines.get(2), "/"));
+				setComponent5(SwiftParseUtils.getTokenSecondLast(lines.get(2), "/"));
+			} 
+			if (lines.size() > 3) {
+				setComponent6(SwiftParseUtils.getTokenFirst(lines.get(3), "/"));
+				setComponent7(SwiftParseUtils.getTokenSecondLast(lines.get(3), "/"));
+			}
+			if (lines.size() > 4) {
+				setComponent8(SwiftParseUtils.getTokenFirst(lines.get(4), "/"));
+				setComponent9(SwiftParseUtils.getTokenSecondLast(lines.get(4), "/"));
+			}	
 		}
-		if (lines.size() > 2) {
-			setComponent4(SwiftParseUtils.getTokenFirst(lines.get(2), "/"));
-			setComponent5(SwiftParseUtils.getTokenSecondLast(lines.get(2), "/"));
-		} 
-		if (lines.size() > 3) {
-			setComponent6(SwiftParseUtils.getTokenFirst(lines.get(3), "/"));
-			setComponent7(SwiftParseUtils.getTokenSecondLast(lines.get(3), "/"));
-		}
-		if (lines.size() > 4) {
-			setComponent8(SwiftParseUtils.getTokenFirst(lines.get(4), "/"));
-			setComponent9(SwiftParseUtils.getTokenSecondLast(lines.get(4), "/"));
-		}	
 	}
 	
 	/**
@@ -273,7 +273,7 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field50F setComponent2(java.lang.Number component2) {
 		if (component2 != null) {
-			setComponent(2, ""+component2.intValue());
+			setComponent(2, Integer.toString(component2.intValue()));
 		}
 		return this;
 	}
@@ -339,7 +339,7 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field50F setComponent4(java.lang.Number component4) {
 		if (component4 != null) {
-			setComponent(4, ""+component4.intValue());
+			setComponent(4, Integer.toString(component4.intValue()));
 		}
 		return this;
 	}
@@ -405,7 +405,7 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field50F setComponent6(java.lang.Number component6) {
 		if (component6 != null) {
-			setComponent(6, ""+component6.intValue());
+			setComponent(6, Integer.toString(component6.intValue()));
 		}
 		return this;
 	}
@@ -471,7 +471,7 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field50F setComponent8(java.lang.Number component8) {
 		if (component8 != null) {
-			setComponent(8, ""+component8.intValue());
+			setComponent(8, Integer.toString(component8.intValue()));
 		}
 		return this;
 	}
@@ -738,16 +738,13 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		if (component < 1 || component > 9) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 50F");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent2AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -759,7 +756,7 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 4) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent4AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -771,7 +768,7 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 6) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent6AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -783,7 +780,7 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		}
 		if (component == 8) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent8AsNumber();
 			if (n != null) {
 				return f.format(n);

@@ -35,6 +35,11 @@ public class SwiftParseUtils {
 	@SuppressWarnings("unused")
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftParseUtils.class.getName());
 
+	// Suppress default constructor for noninstantiability
+	private SwiftParseUtils() {
+		throw new AssertionError();
+	}
+	
 	/**
 	 * Split components of a line, with an optional starting string and a component separator.
 	 * Adjacent separators are treated as one separator.
@@ -294,7 +299,7 @@ public class SwiftParseUtils {
 	public static String getAlphaPrefix(final String value) {
 		if (value != null && value.length() > 0) {
 			int i = 0;
-			while (i<value.length() && !StringUtils.isNumeric(""+value.charAt(i))) {
+			while (i<value.length() && !StringUtils.isNumeric(Character.toString(value.charAt(i)))) {
 				i++;
 			}
 			if (i > 0) {
@@ -317,7 +322,7 @@ public class SwiftParseUtils {
 	public static String getNumericPrefix(final String value) {
 		if (value != null && value.length() > 0) {
 			int i = 0;
-			while (i<value.length() && (StringUtils.isNumeric(""+value.charAt(i)) || StringUtils.equals(""+value.charAt(i), ","))) {
+			while (i<value.length() && (StringUtils.isNumeric(Character.toString(value.charAt(i))) || value.charAt(i) == ',')) {
 				i++;
 			}
 			if (i > 0) {
@@ -340,7 +345,7 @@ public class SwiftParseUtils {
 	public static String getNumericSuffix(final String value) {
 		if (value != null && value.length() > 0) {
 			int i = 0;
-			while (i<value.length() && !StringUtils.isNumeric(""+value.charAt(i))) {
+			while (i<value.length() && !StringUtils.isNumeric(Character.toString(value.charAt(i)))) {
 				i++;
 			}
 			if (i < value.length()) {
@@ -363,7 +368,7 @@ public class SwiftParseUtils {
 	public static String getAlphaSuffix(final String value) {
 		if (value != null && value.length() > 0) {
 			int i = 0;
-			while (i<value.length() && (StringUtils.isNumeric(""+value.charAt(i)) || StringUtils.equals(""+value.charAt(i), ","))) {
+			while (i<value.length() && (StringUtils.isNumeric(Character.toString(value.charAt(i))) || value.charAt(i) == ',')) {
 				i++;
 			}
 			if (i < value.length()) {

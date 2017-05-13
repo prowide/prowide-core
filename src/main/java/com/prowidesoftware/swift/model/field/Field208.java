@@ -69,6 +69,11 @@ public class Field208 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "L";
 
 	/**
+	 * Component number for the LT Directed Queue subfield
+	 */
+	public static final Integer LT_DIRECTED_QUEUE = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field208() {
@@ -172,6 +177,22 @@ public class Field208 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the LT Directed Queue (component1).
+	 * @return the LT Directed Queue from component1
+	 */
+	public String getLTDirectedQueue() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the LT Directed Queue (component1) as Boolean
+	 * @return the LT Directed Queue from component1 converted to Boolean or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Boolean getLTDirectedQueueAsBoolean() {
+		return SwiftFormatUtils.getBoolean(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -186,6 +207,25 @@ public class Field208 extends Field implements Serializable {
 	 */
 	public Field208 setComponent1(java.lang.Boolean component1) {
 		setComponent(1, SwiftFormatUtils.getBoolean(component1));
+		return this;
+	}
+	
+	/**
+	 * Set the LT Directed Queue (component1).
+	 * @param component1 the LT Directed Queue to set
+	 */
+	public Field208 setLTDirectedQueue(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the LT Directed Queue (component1) from a Boolean object.
+	 * @see #setComponent1(java.lang.Boolean)
+	 * @param component1 Boolean with the LT Directed Queue content to set
+	 */
+	public Field208 setLTDirectedQueue(java.lang.Boolean component1) {
+		setComponent1(component1);
 		return this;
 	}
 
@@ -330,9 +370,6 @@ public class Field208 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 208");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -350,7 +387,7 @@ public class Field208 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("LT Directed Queue");
 		return result;
 	}
 	

@@ -69,6 +69,11 @@ public class Field143 extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "A";
 
 	/**
+	 * Component number for the End Date Time subfield
+	 */
+	public static final Integer END_DATE_TIME = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field143() {
@@ -172,6 +177,22 @@ public class Field143 extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the End Date Time (component1).
+	 * @return the End Date Time from component1
+	 */
+	public String getEndDateTime() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the End Date Time (component1) as Calendar
+	 * @return the End Date Time from component1 converted to Calendar or <code>null</code> if cannot be converted
+	 */
+	public java.util.Calendar getEndDateTimeAsCalendar() {
+		return SwiftFormatUtils.getDateTime(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -186,6 +207,25 @@ public class Field143 extends Field implements Serializable {
 	 */
 	public Field143 setComponent1(java.util.Calendar component1) {
 		setComponent(1, SwiftFormatUtils.getDateTime(component1));
+		return this;
+	}
+	
+	/**
+	 * Set the End Date Time (component1).
+	 * @param component1 the End Date Time to set
+	 */
+	public Field143 setEndDateTime(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the End Date Time (component1) from a Calendar object.
+	 * @see #setComponent1(java.util.Calendar)
+	 * @param component1 Calendar with the End Date Time content to set
+	 */
+	public Field143 setEndDateTime(java.util.Calendar component1) {
+		setComponent1(component1);
 		return this;
 	}
 
@@ -330,13 +370,10 @@ public class Field143 extends Field implements Serializable {
 		if (component < 1 || component > 1) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 143");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//date + time
-			java.text.DateFormat df = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
-			java.text.DateFormat tf = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat df = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+			java.text.DateFormat tf = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent1AsCalendar();
 			if (cal != null) {
 				return df.format(cal.getTime()) + " " + tf.format(cal.getTime());
@@ -355,7 +392,7 @@ public class Field143 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("End Date Time");
 		return result;
 	}
 	

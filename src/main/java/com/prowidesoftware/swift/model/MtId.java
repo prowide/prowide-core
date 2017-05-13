@@ -33,6 +33,15 @@ public class MtId {
 	private String variant;
 
 	/**
+	 * Creates an identification given the message type, with no variant. 
+	 * @param messageType the message type number
+	 * @since 7.8.6
+	 */
+	public MtId(String messageType) {
+		this(messageType, (String)null);
+	}
+	
+	/**
 	 * @param messageType the message type number
 	 * @param variant An MT variant (STP, REMIT, COV), a MUG identifier or null if none applies
 	 */
@@ -100,5 +109,48 @@ public class MtId {
 			sb.append("." + variant);
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * @since 7.8.6
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((businessProcess == null) ? 0 : businessProcess.hashCode());
+		result = prime * result + ((messageType == null) ? 0 : messageType.hashCode());
+		result = prime * result + ((variant == null) ? 0 : variant.hashCode());
+		return result;
+	}
+
+	/**
+	 * @since 7.8.6
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MtId other = (MtId) obj;
+		if (businessProcess == null) {
+			if (other.businessProcess != null)
+				return false;
+		} else if (!businessProcess.equals(other.businessProcess))
+			return false;
+		if (messageType == null) {
+			if (other.messageType != null)
+				return false;
+		} else if (!messageType.equals(other.messageType))
+			return false;
+		if (variant == null) {
+			if (other.variant != null)
+				return false;
+		} else if (!variant.equals(other.variant))
+			return false;
+		return true;
 	}
 }

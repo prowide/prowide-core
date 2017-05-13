@@ -24,7 +24,7 @@ import com.prowidesoftware.deprecation.TargetYear;
  * @deprecated this will be replaced by ProwideException
  */
 @Deprecated
-@ProwideDeprecated(phase2=TargetYear._2017)
+@ProwideDeprecated(phase3=TargetYear._2018)
 public class WifeException extends RuntimeException {
 	private static final long serialVersionUID = -5598159933338062109L;
 

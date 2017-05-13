@@ -161,26 +161,19 @@ public class Field98E extends Field implements Serializable, DateContainer, com.
 			    setComponent4(SwiftParseUtils.getTokenFirst(toparse2, ",", "/"));
 			    String toparse3 = SwiftParseUtils.getTokenSecondLast(toparse2, "/");
 			    if (toparse3 != null) {
-				if (toparse3.length() < 2) {
-				    setComponent5(toparse3);
-				} else if (toparse3.length() == 2) {
-				    //HH
-				    setComponent6(toparse3);
-				} else if (toparse3.length() == 3) {
-				    //[N]HH
-				    setComponent5(org.apache.commons.lang.StringUtils.substring(toparse3, 0, 1));
-				    setComponent6(org.apache.commons.lang.StringUtils.substring(toparse3, 1));
-				} else if (toparse3.length() == 4) {
-				    //HH[MM]
-				    setComponent6(toparse3);
-				} else if (toparse3.length() == 5) {
-				    //[N]HH[MM]
-				    setComponent5(org.apache.commons.lang.StringUtils.substring(toparse3, 0, 1));
-				    setComponent6(org.apache.commons.lang.StringUtils.substring(toparse3, 1));
-				} if (toparse3.length() > 4) {
-				    setComponent5(SwiftParseUtils.getAlphaPrefix(toparse3));
-				    setComponent6(SwiftParseUtils.getNumericSuffix(toparse3));
-				}
+					if (toparse3.length() < 2) {
+					    setComponent5(toparse3);
+					} else if (toparse3.length() == 2 || toparse3.length() == 4) {
+					    //HH or HH[MM]
+					    setComponent6(toparse3);
+					} else if (toparse3.length() == 3 || toparse3.length() == 5) {
+					    //[N]HH or [N]HH[MM]
+					    setComponent5(org.apache.commons.lang.StringUtils.substring(toparse3, 0, 1));
+					    setComponent6(org.apache.commons.lang.StringUtils.substring(toparse3, 1));
+					} else if (toparse3.length() > 4) {
+					    setComponent5(SwiftParseUtils.getAlphaPrefix(toparse3));
+					    setComponent6(SwiftParseUtils.getNumericSuffix(toparse3));
+					}
 			    }
 			}
 		}
@@ -472,7 +465,7 @@ public class Field98E extends Field implements Serializable, DateContainer, com.
 	 */
 	public Field98E setComponent4(java.lang.Number component4) {
 		if (component4 != null) {
-			setComponent(4, ""+component4.intValue());
+			setComponent(4, Integer.toString(component4.intValue()));
 		}
 		return this;
 	}
@@ -822,16 +815,13 @@ public class Field98E extends Field implements Serializable, DateContainer, com.
 		if (component < 1 || component > 6) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 98E");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, locale);
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
 			java.util.Calendar cal = getComponent2AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -839,7 +829,7 @@ public class Field98E extends Field implements Serializable, DateContainer, com.
 		}
 		if (component == 3) {
 			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
 			java.util.Calendar cal = getComponent3AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
@@ -847,7 +837,7 @@ public class Field98E extends Field implements Serializable, DateContainer, com.
 		}
 		if (component == 4) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent4AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -859,7 +849,7 @@ public class Field98E extends Field implements Serializable, DateContainer, com.
 		}
 		if (component == 6) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent6AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());

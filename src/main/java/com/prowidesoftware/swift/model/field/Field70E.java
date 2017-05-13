@@ -131,7 +131,7 @@ public class Field70E extends Field implements Serializable, com.prowidesoftware
 	public void parse(final String value) {
 		init(11);
 		java.util.List<String> lines = SwiftParseUtils.getLines(value);
-		if (lines.size() > 0) {
+		if (!lines.isEmpty()) {
 			setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), ":", "//"));
 			setComponent2(SwiftParseUtils.getTokenSecond(lines.get(0), "//"));
 		}
@@ -944,9 +944,6 @@ public class Field70E extends Field implements Serializable, com.prowidesoftware
 	public String getValueDisplay(int component, Locale locale) {
 		if (component < 1 || component > 11) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 70E");
-		}
-		if (locale == null) {
-			locale = Locale.getDefault();
 		}
 		if (component == 1) {
 			//default format (as is)

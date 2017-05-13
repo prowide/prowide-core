@@ -34,9 +34,9 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 /**
  * Field 137<br /><br />
  *
- * validation pattern: 1a3!x2!a4!n<br />
- * parser pattern: c3!SSN<br />
- * components pattern: cSSN<br />
+ * validation pattern: 1a3!x&lt;CC&gt;4!n<br />
+ * parser pattern: c3!S&lt;CC&gt;N<br />
+ * components pattern: cSKN<br />
  *
  * <h1>Components Data types</h1>
  * <ul> 
@@ -68,13 +68,13 @@ public class Field137 extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_137 = "137";
-	public static final String PARSER_PATTERN ="c3!SSN";
-	public static final String COMPONENTS_PATTERN = "cSSN";
+	public static final String PARSER_PATTERN ="c3!S<CC>N";
+	public static final String COMPONENTS_PATTERN = "cSKN";
 
 	/**
-	 * Component number for the Broadcast Initiator subfield
+	 * Component number for the Broadcast Indicator subfield
 	 */
-	public static final Integer BROADCAST_INITIATOR = 1;
+	public static final Integer BROADCAST_INDICATOR = 1;
 
 	/**
 	 * Component number for the Unsequenced Broadcast subfield
@@ -134,17 +134,21 @@ public class Field137 extends Field implements Serializable {
 	public void parse(final String value) {
 		init(4);
 		if (value != null) {
-        	if (value.length() >= 1) {
-				setComponent1(org.apache.commons.lang.StringUtils.substring(value, 0, 1));
+			final String toparse = SwiftParseUtils.getAlphaPrefix(value);
+			if (toparse != null && toparse.length() > 0) {
+				if (toparse.length() > 0) {
+					setComponent1(org.apache.commons.lang.StringUtils.substring(toparse, 0, 1));
+					if (toparse.length() >= 4) {
+						setComponent2(org.apache.commons.lang.StringUtils.substring(toparse, 1, 4));
+						if (toparse.length() > 4) {
+							setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 4));
+						}
+					} else {
+						setComponent2(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(toparse, 1)));
+					}
+				}
 			}
-        	if (value.length() >= 4) {
-				setComponent2(org.apache.commons.lang.StringUtils.substring(value, 1, 4));
-			}
-			if (value.length() > 4) {
-				String toparse = org.apache.commons.lang.StringUtils.substring(value, 4);
-				setComponent3(SwiftParseUtils.getAlphaPrefix(toparse));
-				setComponent4(SwiftParseUtils.getNumericSuffix(toparse));
-			}
+			setComponent4(SwiftParseUtils.getNumericSuffix(value));
 		}
 	}
 	
@@ -199,10 +203,10 @@ public class Field137 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Broadcast Initiator (component1).
-	 * @return the Broadcast Initiator from component1
+	 * Get the Broadcast Indicator (component1).
+	 * @return the Broadcast Indicator from component1
 	 */
-	public String getBroadcastInitiator() {
+	public String getBroadcastIndicator() {
 		return getComponent(1);
 	}
 
@@ -216,10 +220,10 @@ public class Field137 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Set the Broadcast Initiator (component1).
-	 * @param component1 the Broadcast Initiator to set
+	 * Set the Broadcast Indicator (component1).
+	 * @param component1 the Broadcast Indicator to set
 	 */
-	public Field137 setBroadcastInitiator(String component1) {
+	public Field137 setBroadcastIndicator(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -269,14 +273,6 @@ public class Field137 extends Field implements Serializable {
 	 * @return the component3
 	 */
 	public String getComponent3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Same as getComponent(3)
-	 */
-	@Deprecated
-	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
 
@@ -359,7 +355,7 @@ public class Field137 extends Field implements Serializable {
 	 */
 	public Field137 setComponent4(java.lang.Number component4) {
 		if (component4 != null) {
-			setComponent(4, ""+component4.intValue());
+			setComponent(4, Integer.toString(component4.intValue()));
 		}
 		return this;
 	}
@@ -435,7 +431,7 @@ public class Field137 extends Field implements Serializable {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "1a3!x2!a4!n";
+		return "1a3!x<CC>4!n";
 	}
 
 	/**
@@ -524,9 +520,6 @@ public class Field137 extends Field implements Serializable {
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 137");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
@@ -541,7 +534,7 @@ public class Field137 extends Field implements Serializable {
 		}
 		if (component == 4) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent4AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -560,7 +553,7 @@ public class Field137 extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add("Broadcast Initiator");
+		result.add("Broadcast Indicator");
 		result.add("Unsequenced Broadcast");
 		result.add("Broadcast Issuer");
 		result.add("Broadcast Number");

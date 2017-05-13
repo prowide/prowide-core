@@ -16,6 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsE {
 
+    public final static String EUZN = "EUZN";
+    public final static String EEAR = "EEAR";
     public final static String EQUI = "EQUI";
     public final static String EXOP = "EXOP";
     public final static String ELEC = "ELEC";

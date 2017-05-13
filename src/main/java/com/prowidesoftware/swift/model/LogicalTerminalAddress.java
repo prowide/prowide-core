@@ -46,10 +46,14 @@ public class LogicalTerminalAddress extends BIC {
 		return LTIdentifier;
 	}
 
-	public void setLTIdentifier(Character lTIdentifier) {
+	public void setLTIdentifier(final Character lTIdentifier) {
 		LTIdentifier = lTIdentifier;
 	}
-	
+
+	public void setBranch(final String branch) {
+		super.branch = branch;
+	}
+
 	/**
 	 * Returns a proper LT address for the sender of a message, assuring
 	 * the returned code has 12 characters and with no "X" in the 9th position.<br />
@@ -71,7 +75,7 @@ public class LogicalTerminalAddress extends BIC {
 	}
 	
 	/**
-	 * Returns a proper LT address for the sender of a message, assuring
+	 * Returns a proper LT address for the receiver of a message, assuring
 	 * the returned code has 12 characters and with a fixed "X" in the 9th position.<br />
 	 * 
 	 * The branch code is padded with "XXX" if not present. 

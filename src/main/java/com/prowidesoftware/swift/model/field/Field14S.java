@@ -129,7 +129,7 @@ public class Field14S extends Field implements Serializable {
 	public void parse(final String value) {
 		init(4);
 		if (value != null) {
-			String left = null;
+			String left;
 			String right = null;
 			if (value.indexOf('/') >= 0) {
 				left = SwiftParseUtils.getTokenFirst(value, "/");
@@ -291,7 +291,7 @@ public class Field14S extends Field implements Serializable {
 	 */
 	public Field14S setComponent2(java.lang.Number component2) {
 		if (component2 != null) {
-			setComponent(2, ""+component2.intValue());
+			setComponent(2, Integer.toString(component2.intValue()));
 		}
 		return this;
 	}
@@ -554,16 +554,13 @@ public class Field14S extends Field implements Serializable {
 		if (component < 1 || component > 4) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 14S");
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
 		if (component == 2) {
 			//number or amount
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
     		Number n = getComponent2AsNumber();
 			if (n != null) {
 				return f.format(n);
@@ -571,7 +568,7 @@ public class Field14S extends Field implements Serializable {
 		}
 		if (component == 3) {
 			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", locale);
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
 			java.util.Calendar cal = getComponent3AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
