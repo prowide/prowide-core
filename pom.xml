@@ -38,14 +38,7 @@
 		<groupId>commons-lang</groupId>
 		<artifactId>commons-lang</artifactId>
 		<version>2.6</version>
-		<scope>runtime</scope>
 	</dependency>
-    <dependency>
-		<groupId>rhino</groupId>
-		<artifactId>js</artifactId>
-		<version>1.7R2</version>
-		<scope>runtime</scope>
-    </dependency>
   </dependencies>
 
   <organization>
