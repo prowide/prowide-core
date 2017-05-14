@@ -5,7 +5,7 @@
 
 The project (previously known as WIFE) is active since 2006, production ready and commercially supported.
 
-##What's included?
+### What's included?
 * Java model for ISO 15022 MT (ex: MT103 and Field32A classes, for all MT message categories)
 * Parser from SWIFT (FIN or RJE) into Java
 * Builder API from Java to SWIFT (FIN or RJE)
@@ -17,7 +17,7 @@ The project (previously known as WIFE) is active since 2006, production ready an
 
 For SWIFT messages validation, extended MX support, GUI application and more, please check our complementary commercial offerings at http://www.prowidesoftware.com/
 
-##Documentation
+### Documentation
 * Javadoc http://api.prowidesoftware.com/core/
 * Code examples https://github.com/prowide/prowide-core-examples
 * Additional resources http://www.prowidesoftware.com/resources.jsp
@@ -27,7 +27,7 @@ This repository exposes the **source code for the LTS yearly releases**, made av
 
 **binary DOWNLOAD** available at http://www.prowidesoftware.com/download.jsp
 
-##License
+### License
 
 LGPL v3
 
