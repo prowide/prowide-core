@@ -20,12 +20,12 @@ For SWIFT messages validation, extended MX support, GUI application and more, pl
 ### Documentation
 * Javadoc http://api.prowidesoftware.com/core/
 * Code examples https://github.com/prowide/prowide-core-examples
-* Additional resources http://www.prowidesoftware.com/resources.jsp
+* Additional resources http://www.prowidesoftware.com/resources
 
 ##Distribution
 This repository exposes the **source code for the LTS yearly releases**, made available on October (one month before SWIFT production date) for the general public, and 6 months in advance for subscribed customers. 
 
-**binary DOWNLOAD** available at http://www.prowidesoftware.com/download.jsp
+**binary DOWNLOAD** available at http://www.prowidesoftware.com/download-prowide-core
 
 ### License
 
