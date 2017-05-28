@@ -22,7 +22,7 @@ For SWIFT messages validation, extended MX support, GUI application and more, pl
 * Code examples https://github.com/prowide/prowide-core-examples
 * Additional resources http://www.prowidesoftware.com/resources
 
-### Distribution#
+### Distribution
 This repository exposes the **source code for the LTS yearly releases**, made available on October (one month before SWIFT production date) for the general public, and 6 months in advance for subscribed customers. 
 
 **binary DOWNLOAD** available at http://www.prowidesoftware.com/download-prowide-core
