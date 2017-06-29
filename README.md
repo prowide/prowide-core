@@ -6,6 +6,9 @@
 The project (previously known as WIFE) is active since 2006, production ready and commercially supported.
 
 ### What's included?
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2005f830d80c4db4a5c26e4380eb8d23)](https://www.codacy.com/app/prowide/prowide-core?utm_source=github.com&utm_medium=referral&utm_content=prowide/prowide-core&utm_campaign=badger)
+
 * Java model for ISO 15022 MT (ex: MT103 and Field32A classes, for all MT message categories)
 * Parser from SWIFT (FIN or RJE) into Java
 * Builder API from Java to SWIFT (FIN or RJE)
