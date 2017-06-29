@@ -11,7 +11,7 @@
 
   <licenses>
     <license>
-    
+
       <name>GNU Library or Lesser General Public License version 2.0 (LGPLv2)</name>
       <url>https://www.gnu.org/licenses/old-licenses/lgpl-2.0.html</url>
       <distribution>repo</distribution>
@@ -32,13 +32,19 @@
       <organizationUrl>http://www.prowidesoftware.com</organizationUrl>
     </developer>
   </developers>
-  
+
   <dependencies>
 	<dependency>
 		<groupId>commons-lang</groupId>
 		<artifactId>commons-lang</artifactId>
 		<version>2.6</version>
 	</dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.12</version>
+      </dependency>
+
   </dependencies>
 
   <organization>
