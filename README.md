@@ -18,12 +18,15 @@ The project (previously known as WIFE) is active since 2006, production ready an
 For SWIFT messages validation, extended MX support, GUI application and more, please check our complementary commercial offerings at http://www.prowidesoftware.com/
 
 ### Documentation
+* Documentation site http://www.prowidesoftware.com/resources
 * Javadoc http://api.prowidesoftware.com/core/
 * Code examples https://github.com/prowide/prowide-core-examples
-* Additional resources http://www.prowidesoftware.com/resources
 
 ### Distribution
 This repository exposes the **source code for the LTS yearly releases**, made available on October (one month before SWIFT production date) for the general public, and 6 months in advance for subscribed customers. 
+
+
+Actual development is done in a private repository and source code is pushed here along with public releases.
 
 **binary DOWNLOAD** available at http://www.prowidesoftware.com/download-prowide-core
 
