@@ -6,6 +6,7 @@
 The project (previously known as WIFE) is active since 2006, production ready and commercially supported.
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2005f830d80c4db4a5c26e4380eb8d23)](https://www.codacy.com/app/prowide/prowide-core?utm_source=github.com&utm_medium=referral&utm_content=prowide/prowide-core&utm_campaign=badger)
+<a href="https://codeclimate.com/github/prowide/prowide-core"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg" /></a>
 
 ### What's included?
 
