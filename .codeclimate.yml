@@ -1,0 +1,10 @@
+---
+engines:
+  fixme:
+    enabled: true
+  checks:
+    XXX:
+     enabled: false
+ratings:
+  paths: []
+exclude_paths: []
