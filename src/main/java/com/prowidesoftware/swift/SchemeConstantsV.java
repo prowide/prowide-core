@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "V".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 

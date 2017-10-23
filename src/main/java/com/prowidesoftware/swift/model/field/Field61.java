@@ -16,54 +16,60 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
+import java.math.BigDecimal;
+import com.prowidesoftware.swift.model.field.AmountContainer;
+import com.prowidesoftware.swift.model.field.AmountResolver;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 61<br /><br />
+ * <h2>SWIFT MT Field 61</h2>
+ * Model and parser for field 61 of a SWIFT MT message.
  *
- * validation pattern: CUSTOM<br />
- * parser pattern: CUSTOM<br />
- * components pattern: EJSSNSSSSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>Calendar</code></li> 
- * 		<li>component2: <code>Calendar</code></li> 
- * 		<li>component3: <code>String</code></li> 
- * 		<li>component4: <code>String</code></li> 
- * 		<li>component5: <code>Number</code></li> 
- * 		<li>component6: <code>String</code></li> 
- * 		<li>component7: <code>String</code></li> 
- * 		<li>component8: <code>String</code></li> 
- * 		<li>component9: <code>String</code></li> 
- * 		<li>component10: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>CUSTOM</code></li>
+ * 		<li>parser pattern: <code>CUSTOM</code></li>
+ * 		<li>components pattern: <code>EJSSNSSSSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
-public class Field61 extends Field implements Serializable, com.prowidesoftware.swift.model.field.MultiLineField {
+public class Field61 extends Field implements Serializable, AmountContainer, com.prowidesoftware.swift.model.field.MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -161,8 +167,10 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -192,21 +200,21 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
 		// CUSTOM pattern for field 61
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		result.append(StringUtils.trimToEmpty(getComponent2()));
-		result.append(StringUtils.trimToEmpty(getComponent3()));
-		result.append(StringUtils.trimToEmpty(getComponent4()));
-		result.append(StringUtils.trimToEmpty(getComponent5()));
-		result.append(StringUtils.trimToEmpty(getComponent6()));
-		result.append(StringUtils.trimToEmpty(getComponent7()));
-		result.append(StringUtils.trimToEmpty(getComponent8()));
-		if (StringUtils.isNotEmpty(getComponent9())) {	
+		append(result, 1);
+		append(result, 2);
+		append(result, 3);
+		append(result, 4);
+		append(result, 5);
+		append(result, 6);
+		append(result, 7);
+		append(result, 8);
+		if (getComponent9() != null) {	
 			result.append("//");
-			result.append(StringUtils.trimToEmpty(getComponent9()));
+			result.append(getComponent9());
 		}
-		if (StringUtils.isNotEmpty(getComponent10())) {	
+		if (getComponent10() != null) {	
 			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-			result.append(StringUtils.trimToEmpty(getComponent10()));
+			result.append(getComponent10());
 		}
 		return result.toString();
 	}
@@ -274,6 +282,13 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	
 	/**
 	 * Set the component1 from a Calendar object.
+	 * <br />
+	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+	 * <ul>
+	 * 	<li>Example: 1234.00 -> 1234,</li>
+	 * 	<li>Example: 1234 -> 1234,</li>
+	 * 	<li>Example: 1234.56 -> 1234,56</li>
+	 * </ul>
 	 * @param component1 the Calendar with the component1 content to set
 	 */
 	public Field61 setComponent1(java.util.Calendar component1) {
@@ -342,6 +357,13 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	
 	/**
 	 * Set the component2 from a Calendar object.
+	 * <br />
+	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+	 * <ul>
+	 * 	<li>Example: 1234.00 -> 1234,</li>
+	 * 	<li>Example: 1234 -> 1234,</li>
+	 * 	<li>Example: 1234.56 -> 1234,56</li>
+	 * </ul>
 	 * @param component2 the Calendar with the component2 content to set
 	 */
 	public Field61 setComponent2(java.util.Calendar component2) {
@@ -377,8 +399,10 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -418,8 +442,10 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent4AsString() {
 		return getComponent(4);
 	}
@@ -493,18 +519,16 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	/**
 	 * Set the component5 from a Number object.
 	 * <br />
-	 * <em>If the component being set is a fixed length number, the argument will not be 
-	 * padded.</em> It is recommended for these cases to use the setComponent5(String) 
-	 * method.
-	 * 
-	 * @see #setComponent5(String)
-	 *
+	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+	 * <ul>
+	 * 	<li>Example: 1234.00 -> 1234,</li>
+	 * 	<li>Example: 1234 -> 1234,</li>
+	 * 	<li>Example: 1234.56 -> 1234,56</li>
+	 * </ul>
 	 * @param component5 the Number with the component5 content to set
 	 */
 	public Field61 setComponent5(java.lang.Number component5) {
-		if (component5 != null) {
-			setComponent(5, Integer.toString(component5.intValue()));
-		}
+		setComponent(5, SwiftFormatUtils.getNumber(component5));
 		return this;
 	}
 	
@@ -536,8 +560,10 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(6)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent6AsString() {
 		return getComponent(6);
 	}
@@ -577,8 +603,10 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(7)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent7AsString() {
 		return getComponent(7);
 	}
@@ -618,8 +646,10 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(8)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent8AsString() {
 		return getComponent(8);
 	}
@@ -659,8 +689,10 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(9)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent9AsString() {
 		return getComponent(9);
 	}
@@ -700,8 +732,10 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(10)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent10AsString() {
 		return getComponent(10);
 	}
@@ -730,6 +764,20 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	public Field61 setSupplementaryDetails(String component10) {
 		setComponent(10, component10);
 		return this;
+	}
+    
+	/**
+	 * @see AmountResolver#amounts(Field)
+	 */
+	public List<BigDecimal> amounts() {
+		return AmountResolver.amounts(this);
+	}
+	
+	/**
+	 * @see AmountResolver#amount(Field)
+	 */
+	public BigDecimal amount() {
+		return AmountResolver.amount(this);
 	}
 
    /**
@@ -833,7 +881,7 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field61> getAll(final SwiftMessage msg) {
+	public static List<Field61> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -845,13 +893,13 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field61> getAll(final SwiftTagListBlock block) {
+	public static List<Field61> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field61> result = new java.util.ArrayList<Field61>(arr.length);
+			final ArrayList<Field61> result = new ArrayList<Field61>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field61(f));
 			}
@@ -1121,8 +1169,8 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 			 */
 			String toparse3 = org.apache.commons.lang.StringUtils.substring(toparse2, comp5_length);
 			String toParseTxnCode = org.apache.commons.lang.StringUtils.substring(toparse3, 0, 4);
-			setComponent6(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(toParseTxnCode, 0, 1)));
-			setComponent7(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(toParseTxnCode, 1)));
+			setComponent6(org.apache.commons.lang.StringUtils.substring(toParseTxnCode, 0, 1));
+			setComponent7(org.apache.commons.lang.StringUtils.substring(toParseTxnCode, 1));
 
 			int toParseTxnCodeLength = toParseTxnCode != null ? toParseTxnCode.length() : 0;
 			String toparse4 = org.apache.commons.lang.StringUtils.substring(toparse3, toParseTxnCodeLength);
@@ -1130,12 +1178,12 @@ public class Field61 extends Field implements Serializable, com.prowidesoftware.
 			/*
 			 * parse <VAR-SEQU-1> into components 8 and 9
 			 */
-			setComponent8(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substringBefore(toparse4, "//")));
-			setComponent9(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substringAfter(toparse4, "//"))); 
+			setComponent8(org.apache.commons.lang.StringUtils.substringBefore(toparse4, "//"));
+			setComponent9(org.apache.commons.lang.StringUtils.substringAfter(toparse4, "//")); 
 		}
 		
 		if (lines.size() > 1) {
-			setComponent10(org.apache.commons.lang.StringUtils.trimToNull(lines.get(1)));
+			setComponent10(lines.get(1));
 		}
 	}
 }

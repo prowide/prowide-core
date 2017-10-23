@@ -23,8 +23,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "schmeNm",
     "issr"
 })
-public class GenericFinancialIdentification1
-    implements CopyableTo<GenericFinancialIdentification1>
+public class GenericFinancialIdentification1 implements CopyableTo<GenericFinancialIdentification1>
 {
 
     @XmlElement(name = "Id", required = true)
@@ -125,11 +124,10 @@ public class GenericFinancialIdentification1
     }
 
     public final void copyTo(final GenericFinancialIdentification1 target) {
-        // debug: does not implement copyTo
         target.id = id;
-        // debug: does not implement copyTo
-        target.schmeNm = schmeNm;
-        // debug: does not implement copyTo
+        FinancialIdentificationSchemeName1Choice schmeNmTarget = new FinancialIdentificationSchemeName1Choice();
+        schmeNm.copyTo(schmeNmTarget);
+        target.schmeNm = schmeNmTarget;
         target.issr = issr;
     }
 

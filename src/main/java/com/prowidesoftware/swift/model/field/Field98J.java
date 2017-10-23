@@ -16,10 +16,13 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.BIC;
@@ -28,32 +31,32 @@ import com.prowidesoftware.swift.model.field.BICContainer;
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 98J<br /><br />
+ * <h2>SWIFT MT Field 98J</h2>
+ * Model and parser for field 98J of a SWIFT MT message.
  *
- * validation pattern: :4!c//&lt;BIC&gt;//&lt;DATE4&gt;&lt;TIME2&gt;<br />
- * parser pattern: :S//S//&lt;DATE4&gt;&lt;TIME2&gt;<br />
- * components pattern: SBDT<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>BIC</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>BIC</code></li> 
- * 		<li>component3: <code>Calendar</code></li> 
- * 		<li>component4: <code>Calendar</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>:4!c//&lt;DATE4&gt;&lt;TIME2&gt;/&lt;BIC&gt;</code></li>
+ * 		<li>parser pattern: <code>:S//&lt;DATE4&gt;&lt;TIME2&gt;/S</code></li>
+ * 		<li>components pattern: <code>SDTB</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -61,7 +64,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -72,8 +75,28 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_98J = "98J";
-	public static final String PARSER_PATTERN =":S//S//<DATE4><TIME2>";
-	public static final String COMPONENTS_PATTERN = "SBDT";
+	public static final String PARSER_PATTERN =":S//<DATE4><TIME2>/S";
+	public static final String COMPONENTS_PATTERN = "SDTB";
+
+	/**
+	 * Component number for the Qualifier subfield
+	 */
+	public static final Integer QUALIFIER = 1;
+
+	/**
+	 * Component number for the Date subfield
+	 */
+	public static final Integer DATE = 2;
+
+	/**
+	 * Component number for the Time subfield
+	 */
+	public static final Integer TIME = 3;
+
+	/**
+	 * Component number for the BIC subfield
+	 */
+	public static final Integer BIC = 4;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -109,8 +132,10 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -119,14 +144,14 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 		init(4);
 		setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
 		String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
-		setComponent2(SwiftParseUtils.getTokenFirst(toparse, "//"));
-		String toparse2 = SwiftParseUtils.getTokenSecondLast(toparse, "//");
+		String toparse2 = SwiftParseUtils.getTokenFirst(toparse, "/");
+		setComponent4(SwiftParseUtils.getTokenSecondLast(toparse, "/"));
 		if (toparse2 != null) {
 			if (toparse2.length() >= 8) {
-				setComponent3(org.apache.commons.lang.StringUtils.substring(toparse2, 0, 8));
+				setComponent2(StringUtils.substring(toparse2, 0, 8));
 			}
 			if (toparse2.length() > 8) {
-				setComponent4(org.apache.commons.lang.StringUtils.substring(toparse2, 8));
+				setComponent3(StringUtils.substring(toparse2, 8));
 			}
 		}
 	}
@@ -150,12 +175,12 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
 		result.append(":");
-		result.append(StringUtils.trimToEmpty(getComponent1()));
+		append(result, 1);
 		result.append("//");
-		result.append(StringUtils.trimToEmpty(getComponent2()));
-		result.append("//");
-		result.append(StringUtils.trimToEmpty(getComponent3()));
-		result.append(StringUtils.trimToEmpty(getComponent4()));
+		append(result, 2);
+		append(result, 3);
+		result.append("/");
+		append(result, 4);
 		return result.toString();
 	}
 
@@ -189,9 +214,19 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
+		return getComponent(1);
+	}
+
+	/**
+	 * Get the Qualifier (component1).
+	 * @return the Qualifier from component1
+	 */
+	public String getQualifier() {
 		return getComponent(1);
 	}
 
@@ -200,6 +235,15 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	 * @param component1 the component1 to set
 	 */
 	public Field98J setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Qualifier (component1).
+	 * @param component1 the Qualifier to set
+	 */
+	public Field98J setQualifier(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -212,11 +256,27 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the component2 as BIC
-	 * @return the component2 converted to BIC or <code>null</code> if cannot be converted
+	 * Get the component2 as Calendar
+	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
-	public com.prowidesoftware.swift.model.BIC getComponent2AsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(2));
+	public java.util.Calendar getComponent2AsCalendar() {
+		return SwiftFormatUtils.getDate4(getComponent(2));
+	}
+
+	/**
+	 * Get the Date (component2).
+	 * @return the Date from component2
+	 */
+	public String getDate() {
+		return getComponent(2);
+	}
+	
+	/**
+	 * Get the Date (component2) as Calendar
+	 * @return the Date from component2 converted to Calendar or <code>null</code> if cannot be converted
+	 */
+	public java.util.Calendar getDateAsCalendar() {
+		return SwiftFormatUtils.getDate4(getComponent(2));
 	}
 
 	/**
@@ -229,11 +289,30 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 	
 	/**
-	 * Set the component2 from a BIC object.
-	 * @param component2 the BIC with the component2 content to set
+	 * Set the component2 from a Calendar object.
+	 * @param component2 the Calendar with the component2 content to set
 	 */
-	public Field98J setComponent2(com.prowidesoftware.swift.model.BIC component2) {
-		setComponent(2, SwiftFormatUtils.getBIC(component2));
+	public Field98J setComponent2(java.util.Calendar component2) {
+		setComponent(2, SwiftFormatUtils.getDate4(component2));
+		return this;
+	}
+	
+	/**
+	 * Set the Date (component2).
+	 * @param component2 the Date to set
+	 */
+	public Field98J setDate(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Date (component2) from a Calendar object.
+	 * @see #setComponent2(java.util.Calendar)
+	 * @param component2 Calendar with the Date content to set
+	 */
+	public Field98J setDate(java.util.Calendar component2) {
+		setComponent2(component2);
 		return this;
 	}
 	/**
@@ -249,7 +328,23 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	 * @return the component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent3AsCalendar() {
-		return SwiftFormatUtils.getDate4(getComponent(3));
+		return SwiftFormatUtils.getTime2(getComponent(3));
+	}
+
+	/**
+	 * Get the Time (component3).
+	 * @return the Time from component3
+	 */
+	public String getTime() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Time (component3) as Calendar
+	 * @return the Time from component3 converted to Calendar or <code>null</code> if cannot be converted
+	 */
+	public java.util.Calendar getTimeAsCalendar() {
+		return SwiftFormatUtils.getTime2(getComponent(3));
 	}
 
 	/**
@@ -266,7 +361,26 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	 * @param component3 the Calendar with the component3 content to set
 	 */
 	public Field98J setComponent3(java.util.Calendar component3) {
-		setComponent(3, SwiftFormatUtils.getDate4(component3));
+		setComponent(3, SwiftFormatUtils.getTime2(component3));
+		return this;
+	}
+	
+	/**
+	 * Set the Time (component3).
+	 * @param component3 the Time to set
+	 */
+	public Field98J setTime(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Time (component3) from a Calendar object.
+	 * @see #setComponent3(java.util.Calendar)
+	 * @param component3 Calendar with the Time content to set
+	 */
+	public Field98J setTime(java.util.Calendar component3) {
+		setComponent3(component3);
 		return this;
 	}
 	/**
@@ -278,11 +392,27 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the component4 as Calendar
-	 * @return the component4 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the component4 as BIC
+	 * @return the component4 converted to BIC or <code>null</code> if cannot be converted
 	 */
-	public java.util.Calendar getComponent4AsCalendar() {
-		return SwiftFormatUtils.getTime2(getComponent(4));
+	public com.prowidesoftware.swift.model.BIC getComponent4AsBIC() {
+		return SwiftFormatUtils.getBIC(getComponent(4));
+	}
+
+	/**
+	 * Get the BIC (component4).
+	 * @return the BIC from component4
+	 */
+	public String getBIC() {
+		return getComponent(4);
+	}
+	
+	/**
+	 * Get the BIC (component4) as BIC
+	 * @return the BIC from component4 converted to BIC or <code>null</code> if cannot be converted
+	 */
+	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+		return SwiftFormatUtils.getBIC(getComponent(4));
 	}
 
 	/**
@@ -295,29 +425,48 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 	
 	/**
-	 * Set the component4 from a Calendar object.
-	 * @param component4 the Calendar with the component4 content to set
+	 * Set the component4 from a BIC object.
+	 * @param component4 the BIC with the component4 content to set
 	 */
-	public Field98J setComponent4(java.util.Calendar component4) {
-		setComponent(4, SwiftFormatUtils.getTime2(component4));
+	public Field98J setComponent4(com.prowidesoftware.swift.model.BIC component4) {
+		setComponent(4, SwiftFormatUtils.getBIC(component4));
+		return this;
+	}
+	
+	/**
+	 * Set the BIC (component4).
+	 * @param component4 the BIC to set
+	 */
+	public Field98J setBIC(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the BIC (component4) from a BIC object.
+	 * @see #setComponent4(com.prowidesoftware.swift.model.BIC)
+	 * @param component4 BIC with the BIC content to set
+	 */
+	public Field98J setBIC(com.prowidesoftware.swift.model.BIC component4) {
+		setComponent4(component4);
 		return this;
 	}
     
     public List<Calendar> dates() {
-		List<Calendar> result = new java.util.ArrayList<Calendar>();
-		result.add(SwiftFormatUtils.getDate4(getComponent(3)));
-		result.add(SwiftFormatUtils.getTime2(getComponent(4)));
+		List<Calendar> result = new ArrayList<Calendar>();
+		result.add(SwiftFormatUtils.getDate4(getComponent(2)));
+		result.add(SwiftFormatUtils.getTime2(getComponent(3)));
 		return result;
 	}
 
 	public List<BIC> bics () {
 		final List<BIC> result = new ArrayList<BIC>();
-		result.add(SwiftFormatUtils.getBIC(getComponent(2)));
+		result.add(SwiftFormatUtils.getBIC(getComponent(4)));
 		return result;
 	}
 	public List<String> bicStrings () {
 		final List<String> result = new ArrayList<String>();
-		result.add(getComponent(2));
+		result.add(getComponent(4));
 		return result;
 	}
 
@@ -408,7 +557,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	 */
 	@Override
 	public final String validatorPattern() {
-		return ":4!c//<BIC>//<DATE4><TIME2>";
+		return ":4!c//<DATE4><TIME2>/<BIC>";
 	}
 
 	/**
@@ -445,7 +594,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field98J> getAll(final SwiftMessage msg) {
+	public static List<Field98J> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -457,13 +606,13 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field98J> getAll(final SwiftTagListBlock block) {
+	public static List<Field98J> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field98J> result = new java.util.ArrayList<Field98J>(arr.length);
+			final ArrayList<Field98J> result = new ArrayList<Field98J>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field98J(f));
 			}
@@ -502,24 +651,24 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 			return getComponent(1);
 		}
 		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
-		}
-		if (component == 3) {
 			//date
 			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+			java.util.Calendar cal = getComponent2AsCalendar();
+			if (cal != null) {
+				return f.format(cal.getTime());
+			}
+		}
+		if (component == 3) {
+			//time with seconds
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
 			java.util.Calendar cal = getComponent3AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
 			}
 		}
 		if (component == 4) {
-			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
-			java.util.Calendar cal = getComponent4AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
+			//default format (as is)
+			return getComponent(4);
 		}
 		return null;	
 	}
@@ -534,10 +683,10 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Qualifier");
+		result.add("Date");
+		result.add("Time");
+		result.add("BIC");
 		return result;
 	}
 	

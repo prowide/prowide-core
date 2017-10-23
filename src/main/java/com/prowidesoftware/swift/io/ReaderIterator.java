@@ -23,7 +23,7 @@ import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 
 /**
- * @deprecated us {@linkplain RJEReader} instead 
+ * @deprecated us {@link RJEReader} instead 
  * @author www.prowidesoftware.com
  */
 @Deprecated

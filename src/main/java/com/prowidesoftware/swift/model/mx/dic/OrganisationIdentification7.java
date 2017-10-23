@@ -24,8 +24,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "anyBIC",
     "othr"
 })
-public class OrganisationIdentification7
-    implements CopyableTo<OrganisationIdentification7>
+public class OrganisationIdentification7 implements CopyableTo<OrganisationIdentification7>
 {
 
     @XmlElement(name = "AnyBIC")
@@ -103,9 +102,8 @@ public class OrganisationIdentification7
     }
 
     public final void copyTo(final OrganisationIdentification7 target) {
-        // debug: does not implement copyTo
         target.anyBIC = anyBIC;
-        // debug: does not implement copyTo
+        // debug: List<GenericOrganisationIdentification1> does not implement copyTo
         target.othr = othr;
     }
 

@@ -25,8 +25,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "ctryOfRes",
     "ctctDtls"
 })
-public class PartyIdentification42
-    implements CopyableTo<PartyIdentification42>
+public class PartyIdentification42 implements CopyableTo<PartyIdentification42>
 {
 
     @XmlElement(name = "Nm")
@@ -181,16 +180,17 @@ public class PartyIdentification42
     }
 
     public final void copyTo(final PartyIdentification42 target) {
-        // debug: does not implement copyTo
         target.nm = nm;
-        // debug: does not implement copyTo
-        target.pstlAdr = pstlAdr;
-        // debug: does not implement copyTo
-        target.id = id;
-        // debug: does not implement copyTo
+        PostalAddress6 pstlAdrTarget = new PostalAddress6();
+        pstlAdr.copyTo(pstlAdrTarget);
+        target.pstlAdr = pstlAdrTarget;
+        Party10Choice idTarget = new Party10Choice();
+        id.copyTo(idTarget);
+        target.id = idTarget;
         target.ctryOfRes = ctryOfRes;
-        // debug: does not implement copyTo
-        target.ctctDtls = ctctDtls;
+        ContactDetails2 ctctDtlsTarget = new ContactDetails2();
+        ctctDtls.copyTo(ctctDtlsTarget);
+        target.ctctDtls = ctctDtlsTarget;
     }
 
 }

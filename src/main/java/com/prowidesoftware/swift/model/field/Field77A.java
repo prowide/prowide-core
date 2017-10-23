@@ -16,56 +16,59 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 77A<br /><br />
+ * <h2>SWIFT MT Field 77A</h2>
+ * Model and parser for field 77A of a SWIFT MT message.
  *
- * validation pattern: CUSTOM<br />
- * parser pattern: S[$S]0-19<br />
- * components pattern: SSSSSSSSSSSSSSSSSSSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
- * 		<li>component4: <code>String</code></li> 
- * 		<li>component5: <code>String</code></li> 
- * 		<li>component6: <code>String</code></li> 
- * 		<li>component7: <code>String</code></li> 
- * 		<li>component8: <code>String</code></li> 
- * 		<li>component9: <code>String</code></li> 
- * 		<li>component10: <code>String</code></li> 
- * 		<li>component11: <code>String</code></li> 
- * 		<li>component12: <code>String</code></li> 
- * 		<li>component13: <code>String</code></li> 
- * 		<li>component14: <code>String</code></li> 
- * 		<li>component15: <code>String</code></li> 
- * 		<li>component16: <code>String</code></li> 
- * 		<li>component17: <code>String</code></li> 
- * 		<li>component18: <code>String</code></li> 
- * 		<li>component19: <code>String</code></li> 
- * 		<li>component20: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>CUSTOM</code></li>
+ * 		<li>parser pattern: <code>S[$S]0-19</code></li>
+ * 		<li>components pattern: <code>SSSSSSSSSSSSSSSSSSSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -73,7 +76,7 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -86,6 +89,11 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
     public static final String F_77A = "77A";
 	public static final String PARSER_PATTERN ="S[$S]0-19";
 	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSSSSSSSSS";
+
+	/**
+	 * Component number for the Narrative subfield
+	 */
+	public static final Integer NARRATIVE = 1;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -121,15 +129,17 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
 	@Override
 	public void parse(final String value) {
 		init(20);
-		java.util.List<String> lines = SwiftParseUtils.getLines(value);
+		List<String> lines = SwiftParseUtils.getLines(value);
 		SwiftParseUtils.setComponentsFromLines(this, 1, null, 0, lines);
 	}
 	
@@ -151,8 +161,7 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		appendInLines(result, 2, 20);
+		appendInLines(result, 1, 20);
 		return result.toString();
 	}
 
@@ -186,10 +195,189 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
+	}
+
+	/**
+	 * Get the Narrative (component1).
+	 * @return the Narrative from component1
+	 */
+	public String getNarrativeLine1() {
+		return getComponent(1);
+	}
+
+	/**
+	 * Get the Narrative (component2).
+	 * @return the Narrative from component2
+	 */
+	public String getNarrativeLine2() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Get the Narrative (component3).
+	 * @return the Narrative from component3
+	 */
+	public String getNarrativeLine3() {
+		return getComponent(3);
+	}
+
+	/**
+	 * Get the Narrative (component4).
+	 * @return the Narrative from component4
+	 */
+	public String getNarrativeLine4() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Get the Narrative (component5).
+	 * @return the Narrative from component5
+	 */
+	public String getNarrativeLine5() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Get the Narrative (component6).
+	 * @return the Narrative from component6
+	 */
+	public String getNarrativeLine6() {
+		return getComponent(6);
+	}
+
+	/**
+	 * Get the Narrative (component7).
+	 * @return the Narrative from component7
+	 */
+	public String getNarrativeLine7() {
+		return getComponent(7);
+	}
+
+	/**
+	 * Get the Narrative (component8).
+	 * @return the Narrative from component8
+	 */
+	public String getNarrativeLine8() {
+		return getComponent(8);
+	}
+
+	/**
+	 * Get the Narrative (component9).
+	 * @return the Narrative from component9
+	 */
+	public String getNarrativeLine9() {
+		return getComponent(9);
+	}
+
+	/**
+	 * Get the Narrative (component10).
+	 * @return the Narrative from component10
+	 */
+	public String getNarrativeLine10() {
+		return getComponent(10);
+	}
+
+	/**
+	 * Get the Narrative (component11).
+	 * @return the Narrative from component11
+	 */
+	public String getNarrativeLine11() {
+		return getComponent(11);
+	}
+
+	/**
+	 * Get the Narrative (component12).
+	 * @return the Narrative from component12
+	 */
+	public String getNarrativeLine12() {
+		return getComponent(12);
+	}
+
+	/**
+	 * Get the Narrative (component13).
+	 * @return the Narrative from component13
+	 */
+	public String getNarrativeLine13() {
+		return getComponent(13);
+	}
+
+	/**
+	 * Get the Narrative (component14).
+	 * @return the Narrative from component14
+	 */
+	public String getNarrativeLine14() {
+		return getComponent(14);
+	}
+
+	/**
+	 * Get the Narrative (component15).
+	 * @return the Narrative from component15
+	 */
+	public String getNarrativeLine15() {
+		return getComponent(15);
+	}
+
+	/**
+	 * Get the Narrative (component16).
+	 * @return the Narrative from component16
+	 */
+	public String getNarrativeLine16() {
+		return getComponent(16);
+	}
+
+	/**
+	 * Get the Narrative (component17).
+	 * @return the Narrative from component17
+	 */
+	public String getNarrativeLine17() {
+		return getComponent(17);
+	}
+
+	/**
+	 * Get the Narrative (component18).
+	 * @return the Narrative from component18
+	 */
+	public String getNarrativeLine18() {
+		return getComponent(18);
+	}
+
+	/**
+	 * Get the Narrative (component19).
+	 * @return the Narrative from component19
+	 */
+	public String getNarrativeLine19() {
+		return getComponent(19);
+	}
+
+	/**
+	 * Get the Narrative (component20).
+	 * @return the Narrative from component20
+	 */
+	public String getNarrativeLine20() {
+		return getComponent(20);
+	}
+
+	/**
+	 * Get the Narrative as a concatenation of component1 to component20.
+	 * @return the Narrative from components
+	 */
+	public String getNarrative() {
+		StringBuilder result = new StringBuilder();
+		for (int i = 1 ; i < 21 ; i++) {
+			if (StringUtils.isNotBlank(getComponent(i))) {
+				if (result.length() > 0) {
+					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
+				}
+				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			}
+		}
+		return result.toString();
 	}
 
 	/**
@@ -198,6 +386,196 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field77A setComponent1(String component1) {
 		setComponent(1, component1);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component1).
+	 * @param component1 the Narrative to set
+	 */
+	public Field77A setNarrativeLine1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component2).
+	 * @param component2 the Narrative to set
+	 */
+	public Field77A setNarrativeLine2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component3).
+	 * @param component3 the Narrative to set
+	 */
+	public Field77A setNarrativeLine3(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component4).
+	 * @param component4 the Narrative to set
+	 */
+	public Field77A setNarrativeLine4(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component5).
+	 * @param component5 the Narrative to set
+	 */
+	public Field77A setNarrativeLine5(String component5) {
+		setComponent(5, component5);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component6).
+	 * @param component6 the Narrative to set
+	 */
+	public Field77A setNarrativeLine6(String component6) {
+		setComponent(6, component6);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component7).
+	 * @param component7 the Narrative to set
+	 */
+	public Field77A setNarrativeLine7(String component7) {
+		setComponent(7, component7);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component8).
+	 * @param component8 the Narrative to set
+	 */
+	public Field77A setNarrativeLine8(String component8) {
+		setComponent(8, component8);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component9).
+	 * @param component9 the Narrative to set
+	 */
+	public Field77A setNarrativeLine9(String component9) {
+		setComponent(9, component9);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component10).
+	 * @param component10 the Narrative to set
+	 */
+	public Field77A setNarrativeLine10(String component10) {
+		setComponent(10, component10);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component11).
+	 * @param component11 the Narrative to set
+	 */
+	public Field77A setNarrativeLine11(String component11) {
+		setComponent(11, component11);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component12).
+	 * @param component12 the Narrative to set
+	 */
+	public Field77A setNarrativeLine12(String component12) {
+		setComponent(12, component12);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component13).
+	 * @param component13 the Narrative to set
+	 */
+	public Field77A setNarrativeLine13(String component13) {
+		setComponent(13, component13);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component14).
+	 * @param component14 the Narrative to set
+	 */
+	public Field77A setNarrativeLine14(String component14) {
+		setComponent(14, component14);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component15).
+	 * @param component15 the Narrative to set
+	 */
+	public Field77A setNarrativeLine15(String component15) {
+		setComponent(15, component15);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component16).
+	 * @param component16 the Narrative to set
+	 */
+	public Field77A setNarrativeLine16(String component16) {
+		setComponent(16, component16);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component17).
+	 * @param component17 the Narrative to set
+	 */
+	public Field77A setNarrativeLine17(String component17) {
+		setComponent(17, component17);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component18).
+	 * @param component18 the Narrative to set
+	 */
+	public Field77A setNarrativeLine18(String component18) {
+		setComponent(18, component18);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component19).
+	 * @param component19 the Narrative to set
+	 */
+	public Field77A setNarrativeLine19(String component19) {
+		setComponent(19, component19);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component20).
+	 * @param component20 the Narrative to set
+	 */
+	public Field77A setNarrativeLine20(String component20) {
+		setComponent(20, component20);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative splitting the parameter lines into components 1 to 20.
+	 * @param value the Narrative to set, may contain line ends and each line will be set to its correspondent component attribute
+	 */
+	public Field77A setNarrative(String value) {
+		List<String> lines = SwiftParseUtils.getLines(value);
+		SwiftParseUtils.setComponentsFromLines(this, 1, 20, 0, lines);
 		return this;
 	}
 	/**
@@ -210,8 +588,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
 		return getComponent(2);
 	}
@@ -234,8 +614,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -258,8 +640,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent4AsString() {
 		return getComponent(4);
 	}
@@ -282,8 +666,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent5AsString() {
 		return getComponent(5);
 	}
@@ -306,8 +692,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(6)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent6AsString() {
 		return getComponent(6);
 	}
@@ -330,8 +718,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(7)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent7AsString() {
 		return getComponent(7);
 	}
@@ -354,8 +744,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(8)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent8AsString() {
 		return getComponent(8);
 	}
@@ -378,8 +770,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(9)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent9AsString() {
 		return getComponent(9);
 	}
@@ -402,8 +796,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(10)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent10AsString() {
 		return getComponent(10);
 	}
@@ -426,8 +822,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(11)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent11AsString() {
 		return getComponent(11);
 	}
@@ -450,8 +848,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(12)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent12AsString() {
 		return getComponent(12);
 	}
@@ -474,8 +874,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(13)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent13AsString() {
 		return getComponent(13);
 	}
@@ -498,8 +900,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(14)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent14AsString() {
 		return getComponent(14);
 	}
@@ -522,8 +926,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(15)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent15AsString() {
 		return getComponent(15);
 	}
@@ -546,8 +952,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(16)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent16AsString() {
 		return getComponent(16);
 	}
@@ -570,8 +978,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(17)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent17AsString() {
 		return getComponent(17);
 	}
@@ -594,8 +1004,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(18)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent18AsString() {
 		return getComponent(18);
 	}
@@ -618,8 +1030,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(19)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent19AsString() {
 		return getComponent(19);
 	}
@@ -642,8 +1056,10 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(20)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent20AsString() {
 		return getComponent(20);
 	}
@@ -746,7 +1162,7 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field77A> getAll(final SwiftMessage msg) {
+	public static List<Field77A> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -758,13 +1174,13 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field77A> getAll(final SwiftTagListBlock block) {
+	public static List<Field77A> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field77A> result = new java.util.ArrayList<Field77A>(arr.length);
+			final ArrayList<Field77A> result = new ArrayList<Field77A>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field77A(f));
 			}
@@ -970,26 +1386,26 @@ public class Field77A extends Field implements Serializable, com.prowidesoftware
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Narrative");
+		result.add("Narrative 2");
+		result.add("Narrative 3");
+		result.add("Narrative 4");
+		result.add("Narrative 5");
+		result.add("Narrative 6");
+		result.add("Narrative 7");
+		result.add("Narrative 8");
+		result.add("Narrative 9");
+		result.add("Narrative 10");
+		result.add("Narrative 11");
+		result.add("Narrative 12");
+		result.add("Narrative 13");
+		result.add("Narrative 14");
+		result.add("Narrative 15");
+		result.add("Narrative 16");
+		result.add("Narrative 17");
+		result.add("Narrative 18");
+		result.add("Narrative 19");
+		result.add("Narrative 20");
 		return result;
 	}
 	

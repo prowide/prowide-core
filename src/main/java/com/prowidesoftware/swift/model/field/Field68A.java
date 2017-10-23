@@ -16,46 +16,51 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Currency;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
+import com.prowidesoftware.swift.model.field.CurrencyResolver;
 import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
+import com.prowidesoftware.swift.model.field.AmountResolver;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 68A<br /><br />
+ * <h2>SWIFT MT Field 68A</h2>
+ * Model and parser for field 68A of a SWIFT MT message.
  *
- * validation pattern: 6n&lt;CUR&gt;6n/2n[/&lt;AMOUNT&gt;15][//10x]<br />
- * parser pattern: NSN/N[/N][//S]<br />
- * components pattern: NCNNNS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>Currency</code></li> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>Number</code></li> 
- * 		<li>component2: <code>Currency</code></li> 
- * 		<li>component3: <code>Number</code></li> 
- * 		<li>component4: <code>Number</code></li> 
- * 		<li>component5: <code>Number</code></li> 
- * 		<li>component6: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>6n&lt;CUR&gt;6n/2n[/&lt;AMOUNT&gt;15][//10x]</code></li>
+ * 		<li>parser pattern: <code>NSN/N[/N][//S]</code></li>
+ * 		<li>components pattern: <code>NCNNNS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -63,7 +68,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -76,6 +81,36 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
     public static final String F_68A = "68A";
 	public static final String PARSER_PATTERN ="NSN/N[/N][//S]";
 	public static final String COMPONENTS_PATTERN = "NCNNNS";
+
+	/**
+	 * Component number for the Number subfield
+	 */
+	public static final Integer NUMBER = 1;
+
+	/**
+	 * Component number for the Currency subfield
+	 */
+	public static final Integer CURRENCY = 2;
+
+	/**
+	 * Component number for the Denomination subfield
+	 */
+	public static final Integer DENOMINATION = 3;
+
+	/**
+	 * Component number for the Mode subfield
+	 */
+	public static final Integer MODE = 4;
+
+	/**
+	 * Component number for the Amount subfield
+	 */
+	public static final Integer AMOUNT = 5;
+
+	/**
+	 * Component number for the Product Code subfield
+	 */
+	public static final Integer PRODUCT_CODE = 6;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -111,8 +146,10 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -148,18 +185,16 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		result.append(StringUtils.trimToEmpty(getComponent2()));
-		result.append(StringUtils.trimToEmpty(getComponent3()));
+		append(result, 1);
+		append(result, 2);
+		append(result, 3);
 		result.append("/");
-		result.append(StringUtils.trimToEmpty(getComponent4()));
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent5())) {
-			result.append("/");
-			result.append(StringUtils.trimToEmpty(getComponent5()));
+		append(result, 4);
+		if (getComponent5() != null) {
+			result.append("/").append(getComponent5());
 		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent6())) {
-			result.append("//");
-			result.append(StringUtils.trimToEmpty(getComponent6()));
+		if (getComponent6() != null) {
+			result.append("//").append(getComponent6());
 		}
 		return result.toString();
 	}
@@ -201,6 +236,22 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
+	 * Get the Number (component1).
+	 * @return the Number from component1
+	 */
+	public String getNumber() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Number (component1) as Number
+	 * @return the Number from component1 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getNumberAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -224,6 +275,25 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 		setComponent(1, SwiftFormatUtils.getNumber(component1));
 		return this;
 	}
+	
+	/**
+	 * Set the Number (component1).
+	 * @param component1 the Number to set
+	 */
+	public Field68A setNumber(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Number (component1) from a Number object.
+	 * @see #setComponent1(java.lang.Number)
+	 * @param component1 Number with the Number content to set
+	 */
+	public Field68A setNumber(java.lang.Number component1) {
+		setComponent1(component1);
+		return this;
+	}
 	/**
 	 * Get the component2
 	 * @return the component2
@@ -237,6 +307,22 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	 * @return the component2 converted to Currency or <code>null</code> if cannot be converted
 	 */
 	public java.util.Currency getComponent2AsCurrency() {
+		return SwiftFormatUtils.getCurrency(getComponent(2));
+	}
+
+	/**
+	 * Get the Currency (component2).
+	 * @return the Currency from component2
+	 */
+	public String getCurrency() {
+		return getComponent(2);
+	}
+	
+	/**
+	 * Get the Currency (component2) as Currency
+	 * @return the Currency from component2 converted to Currency or <code>null</code> if cannot be converted
+	 */
+	public java.util.Currency getCurrencyAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(2));
 	}
 
@@ -264,6 +350,25 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 		setComponent(2, SwiftFormatUtils.getCurrency(component2));
 		return this;
 	}
+	
+	/**
+	 * Set the Currency (component2).
+	 * @param component2 the Currency to set
+	 */
+	public Field68A setCurrency(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Currency (component2) from a Currency object.
+	 * @see #setComponent2(java.util.Currency)
+	 * @param component2 Currency with the Currency content to set
+	 */
+	public Field68A setCurrency(java.util.Currency component2) {
+		setComponent2(component2);
+		return this;
+	}
 	/**
 	 * Get the component3
 	 * @return the component3
@@ -277,6 +382,22 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+
+	/**
+	 * Get the Denomination (component3).
+	 * @return the Denomination from component3
+	 */
+	public String getDenomination() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Denomination (component3) as Number
+	 * @return the Denomination from component3 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getDenominationAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
@@ -304,6 +425,25 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 		setComponent(3, SwiftFormatUtils.getNumber(component3));
 		return this;
 	}
+	
+	/**
+	 * Set the Denomination (component3).
+	 * @param component3 the Denomination to set
+	 */
+	public Field68A setDenomination(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Denomination (component3) from a Number object.
+	 * @see #setComponent3(java.lang.Number)
+	 * @param component3 Number with the Denomination content to set
+	 */
+	public Field68A setDenomination(java.lang.Number component3) {
+		setComponent3(component3);
+		return this;
+	}
 	/**
 	 * Get the component4
 	 * @return the component4
@@ -317,6 +457,22 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	 * @return the component4 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(4));
+	}
+
+	/**
+	 * Get the Mode (component4).
+	 * @return the Mode from component4
+	 */
+	public String getMode() {
+		return getComponent(4);
+	}
+	
+	/**
+	 * Get the Mode (component4) as Number
+	 * @return the Mode from component4 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getModeAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));
 	}
 
@@ -344,6 +500,25 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 		setComponent(4, SwiftFormatUtils.getNumber(component4));
 		return this;
 	}
+	
+	/**
+	 * Set the Mode (component4).
+	 * @param component4 the Mode to set
+	 */
+	public Field68A setMode(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the Mode (component4) from a Number object.
+	 * @see #setComponent4(java.lang.Number)
+	 * @param component4 Number with the Mode content to set
+	 */
+	public Field68A setMode(java.lang.Number component4) {
+		setComponent4(component4);
+		return this;
+	}
 	/**
 	 * Get the component5
 	 * @return the component5
@@ -357,6 +532,22 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	 * @return the component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(5));
+	}
+
+	/**
+	 * Get the Amount (component5).
+	 * @return the Amount from component5
+	 */
+	public String getAmount() {
+		return getComponent(5);
+	}
+	
+	/**
+	 * Get the Amount (component5) as Number
+	 * @return the Amount from component5 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
 	}
 
@@ -384,6 +575,25 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 		setComponent(5, SwiftFormatUtils.getNumber(component5));
 		return this;
 	}
+	
+	/**
+	 * Set the Amount (component5).
+	 * @param component5 the Amount to set
+	 */
+	public Field68A setAmount(String component5) {
+		setComponent(5, component5);
+		return this;
+	}
+	
+	/**
+	 * Set the Amount (component5) from a Number object.
+	 * @see #setComponent5(java.lang.Number)
+	 * @param component5 Number with the Amount content to set
+	 */
+	public Field68A setAmount(java.lang.Number component5) {
+		setComponent5(component5);
+		return this;
+	}
 	/**
 	 * Get the component6
 	 * @return the component6
@@ -394,9 +604,19 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 
 	/**
 	 * Same as getComponent(6)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent6AsString() {
+		return getComponent(6);
+	}
+
+	/**
+	 * Get the Product Code (component6).
+	 * @return the Product Code from component6
+	 */
+	public String getProductCode() {
 		return getComponent(6);
 	}
 
@@ -405,6 +625,15 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	 * @param component6 the component6 to set
 	 */
 	public Field68A setComponent6(String component6) {
+		setComponent(6, component6);
+		return this;
+	}
+	
+	/**
+	 * Set the Product Code (component6).
+	 * @param component6 the Product Code to set
+	 */
+	public Field68A setProductCode(String component6) {
 		setComponent(6, component6);
 		return this;
 	}
@@ -442,14 +671,14 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	}
     
 	/**
-	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 * @see AmountResolver#amounts(Field)
 	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
 	
 	/**
-	 * @see {@linkplain AmountResolver#amount(Field)}
+	 * @see AmountResolver#amount(Field)
 	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
@@ -550,7 +779,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field68A> getAll(final SwiftMessage msg) {
+	public static List<Field68A> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -562,13 +791,13 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field68A> getAll(final SwiftTagListBlock block) {
+	public static List<Field68A> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field68A> result = new java.util.ArrayList<Field68A>(arr.length);
+			final ArrayList<Field68A> result = new ArrayList<Field68A>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field68A(f));
 			}
@@ -655,12 +884,12 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Number");
+		result.add("Currency");
+		result.add("Denomination");
+		result.add("Mode");
+		result.add("Amount");
+		result.add("Product Code");
 		return result;
 	}
 	

@@ -22,8 +22,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "orgId",
     "prvtId"
 })
-public class Party10Choice
-    implements CopyableTo<Party10Choice>
+public class Party10Choice implements CopyableTo<Party10Choice>
 {
 
     @XmlElement(name = "OrgId")
@@ -97,10 +96,12 @@ public class Party10Choice
     }
 
     public final void copyTo(final Party10Choice target) {
-        // debug: does not implement copyTo
-        target.orgId = orgId;
-        // debug: does not implement copyTo
-        target.prvtId = prvtId;
+        OrganisationIdentification7 orgIdTarget = new OrganisationIdentification7();
+        orgId.copyTo(orgIdTarget);
+        target.orgId = orgIdTarget;
+        PersonIdentification5 prvtIdTarget = new PersonIdentification5();
+        prvtId.copyTo(prvtIdTarget);
+        target.prvtId = prvtIdTarget;
     }
 
 }

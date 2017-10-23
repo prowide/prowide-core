@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "P".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -20,19 +20,14 @@ public interface SchemeConstantsP {
     public final static String PHOB = "PHOB";
     public final static String PHOI = "PHOI";
     public final static String P = "P";
-    public final static String PRCT = "PRCT";
-    public final static String PNTS = "PNTS";
-    public final static String PTEU = "PTEU";
-    public final static String PTAM = "PTAM";
     public final static String PRINCIPAL = "PRINCIPAL";
     public final static String PUTO = "PUTO";
     public final static String PC = "PC";
-    public final static String PAFI = "PAFI";
-    public final static String PREV = "PREV";
-    public final static String PACO = "PACO";
     public final static String PRIN = "PRIN";
     public final static String POOL = "POOL";
     public final static String PRIT = "PRIT";
+    public final static String PREV = "PREV";
+    public final static String PACO = "PACO";
     public final static String PRECEDING = "PRECEDING";
     public final static String PTRM = "PTRM";
     public final static String PTRC = "PTRC";
@@ -64,6 +59,7 @@ public interface SchemeConstantsP {
     public final static String PVAD = "PVAD";
     public final static String PREX = "PREX";
     public final static String PACK = "PACK";
+    public final static String PAFI = "PAFI";
     public final static String PAFILL = "PAFILL";
     public final static String PRWI = "PRWI";
     public final static String PRDF = "PRDF";
@@ -104,10 +100,5 @@ public interface SchemeConstantsP {
     public final static String PHYSICAL = "PHYSICAL";
     public final static String PUT = "PUT";
     public final static String PMTH = "PMTH";
-    public final static String PINV = "PINV";
-    public final static String PROJ = "PROJ";
-    public final static String PGWO = "PGWO";
-    public final static String PGCO = "PGCO";
-    public final static String PGDO = "PGDO";
 
 }

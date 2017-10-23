@@ -104,7 +104,8 @@ Fieldset 11
  (O)<ul><li>FieldsetItem 11 A (O)</li><li>FieldsetItem 11 A (O)</li><li>FieldsetItem 11 A (O)</li></ul></li><li class="field">Field 35 B (O)</li>
 <li class="fieldset">
 Fieldset 36
- (M) (repetitive)<ul><li>FieldsetItem 36 B,C (M) (repetitive)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
+ (O) (repetitive)<ul><li>FieldsetItem 36 B,C (O) (repetitive)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="field">Field 19 B (O)</li>
+<li class="field">Field 98 A,C (O)</li>
 <li class="fieldset">
 Fieldset 92
  (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li></ul></li><li class="fieldset">
@@ -153,7 +154,7 @@ Fieldset 95
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -163,7 +164,7 @@ public class MT565 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT565.class.getName());
 	
@@ -823,6 +824,15 @@ public class MT565 extends AbstractMT implements Serializable {
 	public static final String PUTT = "PUTT";
 
 	/**
+	* Constant for qualifier with value QCAS 
+	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsQ.QCAS
+	* @see com.prowidesoftware.swift.SchemeConstantsQ#QCAS
+	*/
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	public static final String QCAS = "QCAS";
+
+	/**
 	* Constant for qualifier with value QINS 
 	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsQ.QINS
 	* @see com.prowidesoftware.swift.SchemeConstantsQ#QINS
@@ -1223,6 +1233,24 @@ public class MT565 extends AbstractMT implements Serializable {
 		final Tag t = tag("94F");
 		if (t != null) {
 			return new Field94F(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 19B, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 19B at MT565 is expected to be the only one.
+	 * 
+	 * @return a Field19B object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field19B getField19B() {
+		final Tag t = tag("19B");
+		if (t != null) {
+			return new Field19B(t.getValue());
 		} else {
 			return null;
 		}

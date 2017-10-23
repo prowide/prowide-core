@@ -16,41 +16,44 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.field.BICContainer;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 134<br /><br />
+ * <h2>SWIFT MT Field 134</h2>
+ * Model and parser for field 134 of a SWIFT MT message.
  *
- * validation pattern: &lt;BIC&gt;$65x$65x<br />
- * parser pattern: S$S$S<br />
- * components pattern: BSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>BIC</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>BIC</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>&lt;BIC&gt;$65x$65x</code></li>
+ * 		<li>parser pattern: <code>S$S$S</code></li>
+ * 		<li>components pattern: <code>BSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -58,7 +61,7 @@ public class Field134 extends Field implements Serializable, BICContainer, com.p
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -121,15 +124,17 @@ public class Field134 extends Field implements Serializable, BICContainer, com.p
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
 	@Override
 	public void parse(final String value) {
 		init(3);
-		java.util.List<String> lines = SwiftParseUtils.getLines(value);
+		List<String> lines = SwiftParseUtils.getLines(value);
 		if (!lines.isEmpty()) {
 			setComponent1(lines.get(0));
 			if (lines.size() > 1) {
@@ -159,11 +164,7 @@ public class Field134 extends Field implements Serializable, BICContainer, com.p
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-		result.append(StringUtils.trimToEmpty(getComponent2()));
-		result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-		result.append(StringUtils.trimToEmpty(getComponent3()));
+		appendInLines(result, 1, 3);
 		return result.toString();
 	}
 
@@ -265,8 +266,10 @@ public class Field134 extends Field implements Serializable, BICContainer, com.p
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
 		return getComponent(2);
 	}
@@ -306,8 +309,10 @@ public class Field134 extends Field implements Serializable, BICContainer, com.p
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -438,7 +443,7 @@ public class Field134 extends Field implements Serializable, BICContainer, com.p
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field134> getAll(final SwiftMessage msg) {
+	public static List<Field134> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -450,13 +455,13 @@ public class Field134 extends Field implements Serializable, BICContainer, com.p
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field134> getAll(final SwiftTagListBlock block) {
+	public static List<Field134> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field134> result = new java.util.ArrayList<Field134>(arr.length);
+			final ArrayList<Field134> result = new ArrayList<Field134>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field134(f));
 			}

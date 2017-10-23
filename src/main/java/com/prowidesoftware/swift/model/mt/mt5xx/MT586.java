@@ -57,7 +57,7 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 </ul></li>
 <li class="fieldset">
 Fieldset 95
- (O)<ul><li>FieldsetItem 95 P,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B (M)</li>
+ (O)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B (M)</li>
 <li class="field">Field 17 B (M)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -199,7 +199,7 @@ Fieldset 95
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -209,7 +209,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT586.class.getName());
 	
@@ -1112,6 +1112,15 @@ public class MT586 extends AbstractMT implements Serializable {
 	public static final String RESU = "RESU";
 
 	/**
+	* Constant for qualifier with value RMDR 
+	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.RMDR
+	* @see com.prowidesoftware.swift.SchemeConstantsR#RMDR
+	*/
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	public static final String RMDR = "RMDR";
+
+	/**
 	* Constant for qualifier with value RSPR 
 	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.RSPR
 	* @see com.prowidesoftware.swift.SchemeConstantsR#RSPR
@@ -1860,6 +1869,24 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95Q, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * Multiple occurrences of field 95Q at MT586 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field95Q objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field95Q> getField95Q() {
+		final List<Field95Q> result = new ArrayList<Field95Q>();
+		final Tag[] tags = tags("95Q");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field95Q(tags[i].getValue()));
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95R, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br />
 	 * Multiple occurrences of field 95R at MT586 are expected at one sequence or across several sequences.
@@ -2292,24 +2319,6 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95Q, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
-	 * Multiple occurrences of field 95Q at MT586 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field95Q objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field95Q> getField95Q() {
-		final List<Field95Q> result = new ArrayList<Field95Q>();
-		final Tag[] tags = tags("95Q");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field95Q(tags[i].getValue()));
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95S, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br />
 	 * Multiple occurrences of field 95S at MT586 are expected at one sequence or across several sequences.
@@ -2662,7 +2671,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceA1List_sru2016(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceA1List_sru2017(this);
 	}
 	/**
 	* Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS 
@@ -2688,7 +2697,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		* So we call a special method to resolve this situation until we find a better approach.
 		*
 		*/
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceA1List_sru2016(new MT586().append(parentSequence));
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceA1List_sru2017(new MT586().append(parentSequence));
 
 	} 	
  	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
@@ -2946,7 +2955,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceB1List_sru2016(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceB1List_sru2017(this);
 	}
 	/**
 	* Get the list of SequenceB1 delimited by 16R/16S with value specified in SequenceB1#START_END_16RS 
@@ -2972,7 +2981,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		* So we call a special method to resolve this situation until we find a better approach.
 		*
 		*/
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceB1List_sru2016(new MT586().append(parentSequence));
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceB1List_sru2017(new MT586().append(parentSequence));
 
 	} 	
  	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator

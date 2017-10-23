@@ -16,37 +16,44 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 22C<br /><br />
+ * <h2>SWIFT MT Field 22C</h2>
+ * Model and parser for field 22C of a SWIFT MT message.
  *
- * validation pattern: CUSTOM<br />
- * parser pattern: S<br />
- * components pattern: S<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>CUSTOM</code></li>
+ * 		<li>parser pattern: <code>4!S2!S4!S4!S2!S</code></li>
+ * 		<li>components pattern: <code>SSNSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -54,7 +61,7 @@ public class Field22C extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -65,14 +72,39 @@ public class Field22C extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_22C = "22C";
-	public static final String PARSER_PATTERN ="S";
-	public static final String COMPONENTS_PATTERN = "S";
+	public static final String PARSER_PATTERN ="4!S2!S4!S4!S2!S";
+	public static final String COMPONENTS_PATTERN = "SSNSS";
+
+	/**
+	 * Component number for the Party Prefix 1 subfield
+	 */
+	public static final Integer PARTY_PREFIX_1 = 1;
+
+	/**
+	 * Component number for the Party Suffix 1 subfield
+	 */
+	public static final Integer PARTY_SUFFIX_1 = 2;
+
+	/**
+	 * Component number for the Reference Code subfield
+	 */
+	public static final Integer REFERENCE_CODE = 3;
+
+	/**
+	 * Component number for the Party Prefix 2 subfield
+	 */
+	public static final Integer PARTY_PREFIX_2 = 4;
+
+	/**
+	 * Component number for the Party Suffix 2 subfield
+	 */
+	public static final Integer PARTY_SUFFIX_2 = 5;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field22C() {
-		super(1);
+		super(5);
 	}
 	    					
 	/**
@@ -102,15 +134,33 @@ public class Field22C extends Field implements Serializable {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
 	@Override
 	public void parse(final String value) {
-		init(1);
-		setComponent1(value);
+		init(5);
+		if (value != null) {
+        	if (value.length() >= 4) {
+				setComponent1(StringUtils.substring(value, 0, 4));
+			}
+			if (value.length() >= 6) {
+				setComponent2(StringUtils.substring(value, 4, 6));
+			}
+			if (value.length() >= 10) {
+				setComponent3(StringUtils.substring(value, 6, 10));
+			}
+			if (value.length() >= 14) {
+				setComponent4(StringUtils.substring(value, 10, 14));
+			}
+			if (value.length() > 14) {
+				setComponent5(StringUtils.substring(value, 14));
+			}
+		}
 	}
 	
 	/**
@@ -131,7 +181,7 @@ public class Field22C extends Field implements Serializable {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
+		result.append(joinComponents());
 		return result.toString();
 	}
 
@@ -165,9 +215,19 @@ public class Field22C extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
+		return getComponent(1);
+	}
+
+	/**
+	 * Get the Party Prefix 1 (component1).
+	 * @return the Party Prefix 1 from component1
+	 */
+	public String getPartyPrefix1() {
 		return getComponent(1);
 	}
 
@@ -177,6 +237,221 @@ public class Field22C extends Field implements Serializable {
 	 */
 	public Field22C setComponent1(String component1) {
 		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Party Prefix 1 (component1).
+	 * @param component1 the Party Prefix 1 to set
+	 */
+	public Field22C setPartyPrefix1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	/**
+	 * Get the component2
+	 * @return the component2
+	 */
+	public String getComponent2() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
+	public java.lang.String getComponent2AsString() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Get the Party Suffix 1 (component2).
+	 * @return the Party Suffix 1 from component2
+	 */
+	public String getPartySuffix1() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Set the component2.
+	 * @param component2 the component2 to set
+	 */
+	public Field22C setComponent2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Party Suffix 1 (component2).
+	 * @param component2 the Party Suffix 1 to set
+	 */
+	public Field22C setPartySuffix1(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	/**
+	 * Get the component3
+	 * @return the component3
+	 */
+	public String getComponent3() {
+		return getComponent(3);
+	}
+
+	/**
+	 * Get the component3 as Number
+	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getComponent3AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+
+	/**
+	 * Get the Reference Code (component3).
+	 * @return the Reference Code from component3
+	 */
+	public String getReferenceCode() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Reference Code (component3) as Number
+	 * @return the Reference Code from component3 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getReferenceCodeAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+
+	/**
+	 * Set the component3.
+	 * @param component3 the component3 to set
+	 */
+	public Field22C setComponent3(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the component3 from a Number object.
+	 * <br />
+	 * <em>If the component being set is a fixed length number, the argument will not be 
+	 * padded.</em> It is recommended for these cases to use the setComponent3(String) 
+	 * method.
+	 * 
+	 * @see #setComponent3(String)
+	 *
+	 * @param component3 the Number with the component3 content to set
+	 */
+	public Field22C setComponent3(java.lang.Number component3) {
+		if (component3 != null) {
+			setComponent(3, Integer.toString(component3.intValue()));
+		}
+		return this;
+	}
+	
+	/**
+	 * Set the Reference Code (component3).
+	 * @param component3 the Reference Code to set
+	 */
+	public Field22C setReferenceCode(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Reference Code (component3) from a Number object.
+	 * @see #setComponent3(java.lang.Number)
+	 * @param component3 Number with the Reference Code content to set
+	 */
+	public Field22C setReferenceCode(java.lang.Number component3) {
+		setComponent3(component3);
+		return this;
+	}
+	/**
+	 * Get the component4
+	 * @return the component4
+	 */
+	public String getComponent4() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
+	public java.lang.String getComponent4AsString() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Get the Party Prefix 2 (component4).
+	 * @return the Party Prefix 2 from component4
+	 */
+	public String getPartyPrefix2() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Set the component4.
+	 * @param component4 the component4 to set
+	 */
+	public Field22C setComponent4(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the Party Prefix 2 (component4).
+	 * @param component4 the Party Prefix 2 to set
+	 */
+	public Field22C setPartyPrefix2(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	/**
+	 * Get the component5
+	 * @return the component5
+	 */
+	public String getComponent5() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
+	public java.lang.String getComponent5AsString() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Get the Party Suffix 2 (component5).
+	 * @return the Party Suffix 2 from component5
+	 */
+	public String getPartySuffix2() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Set the component5.
+	 * @param component5 the component5 to set
+	 */
+	public Field22C setComponent5(String component5) {
+		setComponent(5, component5);
+		return this;
+	}
+	
+	/**
+	 * Set the Party Suffix 2 (component5).
+	 * @param component5 the Party Suffix 2 to set
+	 */
+	public Field22C setPartySuffix2(String component5) {
+		setComponent(5, component5);
 		return this;
 	}
 
@@ -269,7 +544,7 @@ public class Field22C extends Field implements Serializable {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field22C> getAll(final SwiftMessage msg) {
+	public static List<Field22C> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -281,13 +556,13 @@ public class Field22C extends Field implements Serializable {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field22C> getAll(final SwiftTagListBlock block) {
+	public static List<Field22C> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field22C> result = new java.util.ArrayList<Field22C>(arr.length);
+			final ArrayList<Field22C> result = new ArrayList<Field22C>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field22C(f));
 			}
@@ -304,7 +579,7 @@ public class Field22C extends Field implements Serializable {
 	 */
 	@Override
 	public int componentsSize() {
-		return 1;
+		return 5;
 	}
 
 	/**
@@ -318,12 +593,32 @@ public class Field22C extends Field implements Serializable {
 	 */
 	@Override
 	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 1) {
+		if (component < 1 || component > 5) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 22C");
 		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
+		}
+		if (component == 2) {
+			//default format (as is)
+			return getComponent(2);
+		}
+		if (component == 3) {
+			//number or amount
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+    		Number n = getComponent3AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 4) {
+			//default format (as is)
+			return getComponent(4);
+		}
+		if (component == 5) {
+			//default format (as is)
+			return getComponent(5);
 		}
 		return null;	
 	}
@@ -338,7 +633,11 @@ public class Field22C extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
+		result.add("Party Prefix 1");
+		result.add("Party Suffix 1");
+		result.add("Reference Code");
+		result.add("Party Prefix 2");
+		result.add("Party Suffix 2");
 		return result;
 	}
 	

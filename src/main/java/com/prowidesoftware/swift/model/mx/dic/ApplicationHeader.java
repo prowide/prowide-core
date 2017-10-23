@@ -28,8 +28,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "crDate",
     "dup"
 })
-public class ApplicationHeader
-    implements CopyableTo<ApplicationHeader>
+public class ApplicationHeader implements CopyableTo<ApplicationHeader>
 {
 
     @XmlElement(name = "From")
@@ -238,20 +237,20 @@ public class ApplicationHeader
     }
 
     public final void copyTo(final ApplicationHeader target) {
-        // debug: does not implement copyTo
-        target.from = from;
-        // debug: does not implement copyTo
-        target.to = to;
-        // debug: does not implement copyTo
+        EntityIdentification fromTarget = new EntityIdentification();
+        from.copyTo(fromTarget);
+        target.from = fromTarget;
+        EntityIdentification toTarget = new EntityIdentification();
+        to.copyTo(toTarget);
+        target.to = toTarget;
         target.svcName = svcName;
-        // debug: does not implement copyTo
         target.msgName = msgName;
-        // debug: does not implement copyTo
         target.msgRef = msgRef;
-        // debug: does not implement copyTo
+        // debug: XMLGregorianCalendar does not implement copyTo
         target.crDate = crDate;
-        // debug: does not implement copyTo
-        target.dup = dup;
+        DuplicateIndication dupTarget = new DuplicateIndication();
+        dup.copyTo(dupTarget);
+        target.dup = dupTarget;
     }
 
 }

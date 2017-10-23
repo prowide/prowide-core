@@ -64,7 +64,7 @@ import com.prowidesoftware.swift.utils.Lib;
  * <br />
  * Notice that support for MX in Prowide Core is limited. Complete model and parser 
  * implementation for each MX message type is implemented into subclasses of 
- * {@link AbstractMX} by <a href="http://www.prowidesoftware.com/integrator.jsp">Prowide Integrator SDK</a>.
+ * {@link AbstractMX} by <a href="http://www.prowidesoftware.com/products/integrator">Prowide Integrator</a>.
  *
  * @since 7.6
  */

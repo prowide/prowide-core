@@ -71,6 +71,9 @@ public class SwiftMessageStatusInfo implements Cloneable {
 	 */
 	public SwiftMessageStatusInfo(String comments, Calendar creationDate, String creationUser, String name) {
 		this(comments, creationUser, name, null);
+		if (creationDate != null) {
+			this.creationDate = creationDate;
+		}
 	}
 	
 	/**
@@ -96,6 +99,9 @@ public class SwiftMessageStatusInfo implements Cloneable {
 	@SuppressWarnings("rawtypes")
 	public SwiftMessageStatusInfo(String comments, Calendar creationDate, String creationUser, Enum name) {
 		this(comments, creationUser, name.name(), null);
+		if (creationDate != null) {
+			this.creationDate = creationDate;
+		}
 	}
 	
 	/**

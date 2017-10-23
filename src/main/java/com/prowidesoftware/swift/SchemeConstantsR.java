@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "R".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -20,14 +20,14 @@ public interface SchemeConstantsR {
     public final static String RTGS = "RTGS";
     public final static String RTND = "RTND";
     public final static String RFDD = "RFDD";
-    public final static String REVO = "REVO";
-    public final static String RELA = "RELA";
     public final static String ROLL = "ROLL";
+    public final static String RELA = "RELA";
     public final static String RODI = "RODI";
     public final static String RCPN = "RCPN";
     public final static String RECP = "RECP";
     public final static String RVAL = "RVAL";
     public final static String REAS = "REAS";
+    public final static String REVO = "REVO";
     public final static String RREG = "RREG";
     public final static String REST = "REST";
     public final static String REGI = "REGI";
@@ -99,16 +99,12 @@ public interface SchemeConstantsR {
     public final static String REVR = "REVR";
     public final static String RECDEL = "RECDEL";
     public final static String RELC = "RELC";
-    public final static String RESI = "RESI";
-    public final static String RECT = "RECT";
     public final static String REMO = "REMO";
     public final static String RHOD = "RHOD";
     public final static String RUTH = "RUTH";
     public final static String REVOCABLE = "REVOCABLE";
     public final static String REVOCABLE_TRANSFERABLE = "REVOCABLE_TRANSFERABLE";
     public final static String REVOCABLE_STANDBY = "REVOCABLE_STANDBY";
-    public final static String REDC = "REDC";
-    public final static String REGM = "REGM";
     public final static String RD = "RD";
     public final static String RC = "RC";
 

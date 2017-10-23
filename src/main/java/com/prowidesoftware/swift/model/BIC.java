@@ -19,6 +19,7 @@ import org.apache.commons.lang.StringUtils;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.utils.IsoUtils;
 
 /**
  * Helper class to process BIC related information.
@@ -150,7 +151,7 @@ public class BIC {
 			return false;
 		}
 		final String country = this.bic8.substring(4,6);
-		if (!ISOCountries.getInstance().isValidCode(country.toUpperCase())) {
+		if (!IsoUtils.getInstance().isValidISOCountry(country)) {
 			this.invalidCause = "Invalid country code " + country;
 			return false;
 		}
@@ -166,7 +167,7 @@ public class BIC {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * It returns the last three that conform the branch or null if branch is not present.
 	 *
@@ -347,6 +348,30 @@ public class BIC {
 	 */
 	public String institution() {
 		return StringUtils.substring(this.bic8, 0, 4);
+	}
+	
+	/**
+	 * Returns the Distinguished Name (DN) for this BIC.
+	 * <br />
+	 * The created DN always includes the BIC8 and "swift" and
+	 * if the branch is present and not "XXX" it will also be included
+	 * as organization unit (ou)
+	 * 
+	 * @return ou=<branch>,o=<bic8>,o=swift
+	 * @since 7.9.3
+	 */
+	public String distinguishedName() {
+		StringBuilder result = new StringBuilder();
+		if (this.branch != null && !this.branch.equals("XXX")) {
+			result.append("ou=").append(StringUtils.lowerCase(this.branch)).append(",");
+		}
+		result.append("o=").append(StringUtils.lowerCase(getBic8())).append(",o=swift");
+		return result.toString();
+	}
+
+	@Override
+	public String toString() {
+		return getBic11();
 	}
 
 }

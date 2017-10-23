@@ -122,7 +122,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	/**
 	 * Compare all tags in taglist from both given blocks.
 	 * 
-	 * <p>This implementation uses {@linkplain Tag#equals(Object) for fields comparison.</p>
+	 * <p>This implementation uses {@link Tag#equals(Object)} for fields comparison.</p>
 	 * 
 	 * <p>NOTE a null or empty block is considered a blank block; then if both are blank this method returns <code>true</code>
 	 * and if one of the blocks is blank and the other is not this method returns <code>false</code></p>

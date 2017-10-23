@@ -22,8 +22,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "type",
     "id"
 })
-public class EntityIdentification
-    implements CopyableTo<EntityIdentification>
+public class EntityIdentification implements CopyableTo<EntityIdentification>
 {
 
     @XmlElement(name = "Type", required = true)
@@ -97,9 +96,7 @@ public class EntityIdentification
     }
 
     public final void copyTo(final EntityIdentification target) {
-        // debug: does not implement copyTo
         target.type = type;
-        // debug: does not implement copyTo
         target.id = id;
     }
 

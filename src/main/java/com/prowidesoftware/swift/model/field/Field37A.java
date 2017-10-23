@@ -16,45 +16,49 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
+import com.prowidesoftware.swift.model.field.AmountResolver;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 37A<br /><br />
+ * <h2>SWIFT MT Field 37A</h2>
+ * Model and parser for field 37A of a SWIFT MT message.
  *
- * validation pattern: &lt;AMOUNT&gt;12[//&lt;DATE2&gt;&lt;DM&gt;3n][/16x]<br />
- * parser pattern: N[//&lt;DATE2&gt;cS][/S]<br />
- * components pattern: NESNS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>Number</code></li> 
- * 		<li>component2: <code>Calendar</code></li> 
- * 		<li>component3: <code>String</code></li> 
- * 		<li>component4: <code>Number</code></li> 
- * 		<li>component5: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>&lt;AMOUNT&gt;12[//&lt;DATE2&gt;&lt;DM&gt;3n][/16x]</code></li>
+ * 		<li>parser pattern: <code>N[//&lt;DATE2&gt;cS][/S]</code></li>
+ * 		<li>components pattern: <code>NESNS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -62,7 +66,7 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -90,6 +94,16 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 	 * Component number for the D/M Mark subfield
 	 */
 	public static final Integer DM_MARK = 3;
+
+	/**
+	 * Component number for the Number of Days/Months subfield
+	 */
+	public static final Integer NUMBER_OF_DAYSMONTHS = 4;
+
+	/**
+	 * Component number for the Information subfield
+	 */
+	public static final Integer INFORMATION = 5;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -125,8 +139,10 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -137,13 +153,13 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 		String toparse = SwiftParseUtils.getTokenSecond(value, "//");
 		if (toparse != null) {
 			if (toparse.length() >= 6) {
-				setComponent2(org.apache.commons.lang.StringUtils.substring(toparse, 0, 6));
+				setComponent2(StringUtils.substring(toparse, 0, 6));
 			}
 			if (toparse.length() >= 7) {
-				setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 6, 7));
+				setComponent3(StringUtils.substring(toparse, 6, 7));
 			}
 			if (toparse.length() > 7) {
-				String toparse2 = org.apache.commons.lang.StringUtils.substring(toparse, 7);
+				String toparse2 = StringUtils.substring(toparse, 7);
 				setComponent4(SwiftParseUtils.getTokenFirst(toparse2, "/"));
 				setComponent5(SwiftParseUtils.getTokenSecondLast(toparse2, "/"));
 			}
@@ -168,22 +184,15 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent2()) || org.apache.commons.lang.StringUtils.isNotEmpty(getComponent3()) || org.apache.commons.lang.StringUtils.isNotEmpty(getComponent4())) {
+		append(result, 1);
+		if (getComponent2() != null || getComponent3() != null || getComponent4() != null) {
 			result.append("//");
-			if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent2())) {
-				result.append(StringUtils.trimToEmpty(getComponent2()));
-			}
-			if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent3())) {
-				result.append(StringUtils.trimToEmpty(getComponent3()));
-			}
-			if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent4())) {
-				result.append(StringUtils.trimToEmpty(getComponent4()));
-			}
+			append(result, 2);
+			append(result, 3);
+			append(result, 4);
 		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent5())) {
-			result.append("/");
-			result.append(StringUtils.trimToEmpty(getComponent5()));
+		if (getComponent5() != null) {
+			result.append("/").append(getComponent5());
 		}
 		return result.toString();
 	}
@@ -368,8 +377,10 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -416,6 +427,22 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
+	 * Get the Number of Days/Months (component4).
+	 * @return the Number of Days/Months from component4
+	 */
+	public String getNumberofDaysMonths() {
+		return getComponent(4);
+	}
+	
+	/**
+	 * Get the Number of Days/Months (component4) as Number
+	 * @return the Number of Days/Months from component4 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getNumberofDaysMonthsAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(4));
+	}
+
+	/**
 	 * Set the component4.
 	 * @param component4 the component4 to set
 	 */
@@ -439,6 +466,25 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 		setComponent(4, SwiftFormatUtils.getNumber(component4));
 		return this;
 	}
+	
+	/**
+	 * Set the Number of Days/Months (component4).
+	 * @param component4 the Number of Days/Months to set
+	 */
+	public Field37A setNumberofDaysMonths(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the Number of Days/Months (component4) from a Number object.
+	 * @see #setComponent4(java.lang.Number)
+	 * @param component4 Number with the Number of Days/Months content to set
+	 */
+	public Field37A setNumberofDaysMonths(java.lang.Number component4) {
+		setComponent4(component4);
+		return this;
+	}
 	/**
 	 * Get the component5
 	 * @return the component5
@@ -449,9 +495,19 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 
 	/**
 	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent5AsString() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Get the Information (component5).
+	 * @return the Information from component5
+	 */
+	public String getInformation() {
 		return getComponent(5);
 	}
 
@@ -463,22 +519,31 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 		setComponent(5, component5);
 		return this;
 	}
+	
+	/**
+	 * Set the Information (component5).
+	 * @param component5 the Information to set
+	 */
+	public Field37A setInformation(String component5) {
+		setComponent(5, component5);
+		return this;
+	}
     
     public List<Calendar> dates() {
-		List<Calendar> result = new java.util.ArrayList<Calendar>();
+		List<Calendar> result = new ArrayList<Calendar>();
 		result.add(SwiftFormatUtils.getDate2(getComponent(2)));
 		return result;
 	}
     
 	/**
-	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 * @see AmountResolver#amounts(Field)
 	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
 	
 	/**
-	 * @see {@linkplain AmountResolver#amount(Field)}
+	 * @see AmountResolver#amount(Field)
 	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
@@ -585,7 +650,7 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field37A> getAll(final SwiftMessage msg) {
+	public static List<Field37A> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -597,13 +662,13 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field37A> getAll(final SwiftTagListBlock block) {
+	public static List<Field37A> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field37A> result = new java.util.ArrayList<Field37A>(arr.length);
+			final ArrayList<Field37A> result = new ArrayList<Field37A>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field37A(f));
 			}
@@ -685,8 +750,8 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 		result.add("Rate");
 		result.add("Date");
 		result.add("D/M Mark");
-		result.add(null);
-		result.add(null);
+		result.add("Number of Days/Months");
+		result.add("Information");
 		return result;
 	}
 	

@@ -16,42 +16,45 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 96D<br /><br />
+ * <h2>SWIFT MT Field 96D</h2>
+ * Model and parser for field 96D of a SWIFT MT message.
  *
- * validation pattern: [[/&lt;DC&gt;][/34x]$]35x[$35x]0-3<br />
- * parser pattern: [[/c][/S]$]S[$S]0-3<br />
- * components pattern: SSSSSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
- * 		<li>component4: <code>String</code></li> 
- * 		<li>component5: <code>String</code></li> 
- * 		<li>component6: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>[[/&lt;DC&gt;][/34x]$]35x[$35x]0-3</code></li>
+ * 		<li>parser pattern: <code>[[/c][/S]$]S[$S]0-3</code></li>
+ * 		<li>components pattern: <code>SSSSSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -59,7 +62,7 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -82,6 +85,11 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 	 * Component number for the Account subfield
 	 */
 	public static final Integer ACCOUNT = 2;
+
+	/**
+	 * Component number for the Name And Address subfield
+	 */
+	public static final Integer NAME_AND_ADDRESS = 3;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -117,32 +125,27 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
 	@Override
 	public void parse(final String value) {
 		init(6);
-		java.util.List<String> lines = SwiftParseUtils.getLines(value);
+		List<String> lines = SwiftParseUtils.getLines(value);
 		if (lines.isEmpty()) {
 			return;
 		}
 		if (lines.get(0).startsWith("/")) {
-			if (lines.get(0).startsWith("//")) {
-				setComponent1("");
-				setComponent2(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(lines.get(0), 2)));
+			String dcMark = SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/");
+			if (StringUtils.isNotEmpty(dcMark) && dcMark.length() == 1) {
+				setComponent1(dcMark);
+				setComponent2(SwiftParseUtils.getTokenSecondLast(StringUtils.substring(lines.get(0), 1), "/"));
 			} else {
-				String t1 = SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/");
-				if (org.apache.commons.lang.StringUtils.isNotEmpty(t1)) {
-					if (t1.length() == 1) {
-						setComponent1(t1);
-						setComponent2(SwiftParseUtils.getTokenSecondLast(org.apache.commons.lang.StringUtils.substring(lines.get(0), 1), "/"));
-					} else {
-						setComponent2(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(lines.get(0), 1)));
-					}
-				}
+				setComponent2(StringUtils.substring(lines.get(0), 1));
 			}
 			SwiftParseUtils.setComponentsFromLines(this, 3, null, 1, lines);
 		} else {
@@ -168,42 +171,13 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		boolean wroteSomething = false;
 		if (getComponent1() != null) {
-			result.append("/" + StringUtils.trimToEmpty(getComponent1()));
-			wroteSomething = true;
+			result.append("/").append(getComponent1());
 		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent2())) {
-			result.append("/" + getComponent2());
-			wroteSomething = true;
+		if (getComponent2() != null) {
+			result.append("/").append(getComponent2());
 		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent3())) {
-			if (wroteSomething) {
-				result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);				
-			}
-			result.append(StringUtils.trimToEmpty(getComponent3()));
-			wroteSomething = true;
-		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent4())) {
-			if (wroteSomething) {
-				result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);				
-			}
-			result.append(StringUtils.trimToEmpty(getComponent4()));
-			wroteSomething = true;
-		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent5())) {
-			if (wroteSomething) {
-				result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);				
-			}
-			result.append(StringUtils.trimToEmpty(getComponent5()));
-			wroteSomething = true;
-		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent6())) {
-			if (wroteSomething) {
-				result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);				
-			}
-			result.append(StringUtils.trimToEmpty(getComponent6()));
-		}
+		appendInLines(result, 3, 6);
 		return result.toString();
 	}
 
@@ -237,8 +211,10 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
@@ -278,8 +254,10 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
 		return getComponent(2);
 	}
@@ -328,10 +306,61 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
+	}
+
+	/**
+	 * Get the Name And Address (component3).
+	 * @return the Name And Address from component3
+	 */
+	public String getNameAndAddressLine1() {
+		return getComponent(3);
+	}
+
+	/**
+	 * Get the Name And Address (component4).
+	 * @return the Name And Address from component4
+	 */
+	public String getNameAndAddressLine2() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Get the Name And Address (component5).
+	 * @return the Name And Address from component5
+	 */
+	public String getNameAndAddressLine3() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Get the Name And Address (component6).
+	 * @return the Name And Address from component6
+	 */
+	public String getNameAndAddressLine4() {
+		return getComponent(6);
+	}
+
+	/**
+	 * Get the Name And Address as a concatenation of component3 to component6.
+	 * @return the Name And Address from components
+	 */
+	public String getNameAndAddress() {
+		StringBuilder result = new StringBuilder();
+		for (int i = 3 ; i < 7 ; i++) {
+			if (StringUtils.isNotBlank(getComponent(i))) {
+				if (result.length() > 0) {
+					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
+				}
+				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			}
+		}
+		return result.toString();
 	}
 
 	/**
@@ -340,6 +369,52 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field96D setComponent3(String component3) {
 		setComponent(3, component3);
+		return this;
+	}
+
+	/**
+	 * Set the Name And Address (component3).
+	 * @param component3 the Name And Address to set
+	 */
+	public Field96D setNameAndAddressLine1(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+
+	/**
+	 * Set the Name And Address (component4).
+	 * @param component4 the Name And Address to set
+	 */
+	public Field96D setNameAndAddressLine2(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+
+	/**
+	 * Set the Name And Address (component5).
+	 * @param component5 the Name And Address to set
+	 */
+	public Field96D setNameAndAddressLine3(String component5) {
+		setComponent(5, component5);
+		return this;
+	}
+
+	/**
+	 * Set the Name And Address (component6).
+	 * @param component6 the Name And Address to set
+	 */
+	public Field96D setNameAndAddressLine4(String component6) {
+		setComponent(6, component6);
+		return this;
+	}
+
+	/**
+	 * Set the Name And Address splitting the parameter lines into components 3 to 6.
+	 * @param value the Name And Address to set, may contain line ends and each line will be set to its correspondent component attribute
+	 */
+	public Field96D setNameAndAddress(String value) {
+		List<String> lines = SwiftParseUtils.getLines(value);
+		SwiftParseUtils.setComponentsFromLines(this, 3, 4, 0, lines);
 		return this;
 	}
 	/**
@@ -352,8 +427,10 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent4AsString() {
 		return getComponent(4);
 	}
@@ -376,8 +453,10 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent5AsString() {
 		return getComponent(5);
 	}
@@ -400,8 +479,10 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(6)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent6AsString() {
 		return getComponent(6);
 	}
@@ -519,7 +600,7 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field96D> getAll(final SwiftMessage msg) {
+	public static List<Field96D> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -531,13 +612,13 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field96D> getAll(final SwiftTagListBlock block) {
+	public static List<Field96D> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field96D> result = new java.util.ArrayList<Field96D>(arr.length);
+			final ArrayList<Field96D> result = new ArrayList<Field96D>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field96D(f));
 			}
@@ -689,10 +770,10 @@ public class Field96D extends Field implements Serializable, com.prowidesoftware
 		List<String> result = new ArrayList<String>();
 		result.add("D/C Mark");
 		result.add("Account");
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Name And Address");
+		result.add("Name And Address 2");
+		result.add("Name And Address 3");
+		result.add("Name And Address 4");
 		return result;
 	}
 	

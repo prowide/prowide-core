@@ -16,40 +16,44 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Currency;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
+import com.prowidesoftware.swift.model.field.CurrencyResolver;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 32Q<br /><br />
+ * <h2>SWIFT MT Field 32Q</h2>
+ * Model and parser for field 32Q of a SWIFT MT message.
  *
- * validation pattern: &lt;CUR&gt;/&lt;CUR&gt;<br />
- * parser pattern: S/S<br />
- * components pattern: CC<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>Currency</code></li> 
+ * 		<li><code>Currency</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>Currency</code></li> 
- * 		<li>component2: <code>Currency</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>&lt;CUR&gt;/&lt;CUR&gt;</code></li>
+ * 		<li>parser pattern: <code>S/S</code></li>
+ * 		<li>components pattern: <code>CC</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -57,7 +61,7 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -70,6 +74,16 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
     public static final String F_32Q = "32Q";
 	public static final String PARSER_PATTERN ="S/S";
 	public static final String COMPONENTS_PATTERN = "CC";
+
+	/**
+	 * Component number for the Currency 1 subfield
+	 */
+	public static final Integer CURRENCY_1 = 1;
+
+	/**
+	 * Component number for the Currency 2 subfield
+	 */
+	public static final Integer CURRENCY_2 = 2;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -105,8 +119,10 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -135,9 +151,9 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
+		append(result, 1);
         result.append("/");
-        result.append(StringUtils.trimToEmpty(getComponent2()));
+        append(result, 2);
 		return result.toString();
 	}
 
@@ -178,6 +194,22 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	}
 
 	/**
+	 * Get the Currency 1 (component1).
+	 * @return the Currency 1 from component1
+	 */
+	public String getCurrency1() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Currency 1 (component1) as Currency
+	 * @return the Currency 1 from component1 converted to Currency or <code>null</code> if cannot be converted
+	 */
+	public java.util.Currency getCurrency1AsCurrency() {
+		return SwiftFormatUtils.getCurrency(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -192,6 +224,25 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	 */
 	public Field32Q setComponent1(java.util.Currency component1) {
 		setComponent(1, SwiftFormatUtils.getCurrency(component1));
+		return this;
+	}
+	
+	/**
+	 * Set the Currency 1 (component1).
+	 * @param component1 the Currency 1 to set
+	 */
+	public Field32Q setCurrency1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Currency 1 (component1) from a Currency object.
+	 * @see #setComponent1(java.util.Currency)
+	 * @param component1 Currency with the Currency 1 content to set
+	 */
+	public Field32Q setCurrency1(java.util.Currency component1) {
+		setComponent1(component1);
 		return this;
 	}
 	/**
@@ -211,6 +262,22 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	}
 
 	/**
+	 * Get the Currency 2 (component2).
+	 * @return the Currency 2 from component2
+	 */
+	public String getCurrency2() {
+		return getComponent(2);
+	}
+	
+	/**
+	 * Get the Currency 2 (component2) as Currency
+	 * @return the Currency 2 from component2 converted to Currency or <code>null</code> if cannot be converted
+	 */
+	public java.util.Currency getCurrency2AsCurrency() {
+		return SwiftFormatUtils.getCurrency(getComponent(2));
+	}
+
+	/**
 	 * Set the component2.
 	 * @param component2 the component2 to set
 	 */
@@ -225,6 +292,25 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	 */
 	public Field32Q setComponent2(java.util.Currency component2) {
 		setComponent(2, SwiftFormatUtils.getCurrency(component2));
+		return this;
+	}
+	
+	/**
+	 * Set the Currency 2 (component2).
+	 * @param component2 the Currency 2 to set
+	 */
+	public Field32Q setCurrency2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Currency 2 (component2) from a Currency object.
+	 * @see #setComponent2(java.util.Currency)
+	 * @param component2 Currency with the Currency 2 content to set
+	 */
+	public Field32Q setCurrency2(java.util.Currency component2) {
+		setComponent2(component2);
 		return this;
 	}
     
@@ -349,7 +435,7 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field32Q> getAll(final SwiftMessage msg) {
+	public static List<Field32Q> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -361,13 +447,13 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field32Q> getAll(final SwiftTagListBlock block) {
+	public static List<Field32Q> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field32Q> result = new java.util.ArrayList<Field32Q>(arr.length);
+			final ArrayList<Field32Q> result = new ArrayList<Field32Q>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field32Q(f));
 			}
@@ -422,8 +508,8 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
+		result.add("Currency 1");
+		result.add("Currency 2");
 		return result;
 	}
 	

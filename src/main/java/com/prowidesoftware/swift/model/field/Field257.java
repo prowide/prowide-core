@@ -16,43 +16,46 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 257<br /><br />
+ * <h2>SWIFT MT Field 257</h2>
+ * Model and parser for field 257 of a SWIFT MT message.
  *
- * validation pattern: &lt;LT&gt;&lt;DATE2&gt;&lt;HHMM&gt;&lt;HHMM&gt;[4!n]<br />
- * parser pattern: &lt;LT&gt;&lt;DATE2&gt;&lt;HHMM&gt;&lt;HHMM&gt;[N]<br />
- * components pattern: ZEHHN<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>LogicalTerminalAddress</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>Number</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>LogicalTerminalAddress</code></li> 
- * 		<li>component2: <code>Calendar</code></li> 
- * 		<li>component3: <code>Calendar</code></li> 
- * 		<li>component4: <code>Calendar</code></li> 
- * 		<li>component5: <code>Number</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>&lt;LT&gt;&lt;DATE2&gt;&lt;HHMM&gt;&lt;HHMM&gt;[4!n]</code></li>
+ * 		<li>parser pattern: <code>&lt;LT&gt;&lt;DATE2&gt;&lt;HHMM&gt;&lt;HHMM&gt;[N]</code></li>
+ * 		<li>components pattern: <code>ZEHHN</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -60,7 +63,7 @@ public class Field257 extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -133,8 +136,10 @@ public class Field257 extends Field implements Serializable, DateContainer {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -143,19 +148,19 @@ public class Field257 extends Field implements Serializable, DateContainer {
 		init(5);
 		if (value != null) {
 			if (value.length() >= 12) {
-				setComponent1(org.apache.commons.lang.StringUtils.substring(value, 0, 12));
+				setComponent1(StringUtils.substring(value, 0, 12));
 			}
 			if (value.length() >= 18) {
-				setComponent2(org.apache.commons.lang.StringUtils.substring(value, 12, 18));
+				setComponent2(StringUtils.substring(value, 12, 18));
 			}
 			if (value.length() >= 22) {
-				setComponent3(org.apache.commons.lang.StringUtils.substring(value, 18, 22));
+				setComponent3(StringUtils.substring(value, 18, 22));
 			}
 			if (value.length() >= 26) {
-				setComponent4(org.apache.commons.lang.StringUtils.substring(value, 22, 26));
+				setComponent4(StringUtils.substring(value, 22, 26));
 			}
 			if (value.length() > 26) {
-				setComponent5(org.apache.commons.lang.StringUtils.substring(value, 26));
+				setComponent5(StringUtils.substring(value, 26));
 			}
 		}
 	}
@@ -178,13 +183,11 @@ public class Field257 extends Field implements Serializable, DateContainer {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		result.append(StringUtils.trimToEmpty(getComponent2()));
-		result.append(StringUtils.trimToEmpty(getComponent3()));
-		result.append(StringUtils.trimToEmpty(getComponent4()));
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent5())) {
-			result.append(StringUtils.trimToEmpty(getComponent5()));
-		}
+		append(result, 1);
+		append(result, 2);
+		append(result, 3);
+		append(result, 4);
+		append(result, 5);
 		return result.toString();
 	}
 
@@ -559,7 +562,7 @@ public class Field257 extends Field implements Serializable, DateContainer {
 	}
     
     public List<Calendar> dates() {
-		List<Calendar> result = new java.util.ArrayList<Calendar>();
+		List<Calendar> result = new ArrayList<Calendar>();
 		result.add(SwiftFormatUtils.getDate2(getComponent(2)));
 		result.add(SwiftFormatUtils.getTime3(getComponent(3)));
 		result.add(SwiftFormatUtils.getTime3(getComponent(4)));
@@ -655,7 +658,7 @@ public class Field257 extends Field implements Serializable, DateContainer {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field257> getAll(final SwiftMessage msg) {
+	public static List<Field257> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -667,13 +670,13 @@ public class Field257 extends Field implements Serializable, DateContainer {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field257> getAll(final SwiftTagListBlock block) {
+	public static List<Field257> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field257> result = new java.util.ArrayList<Field257>(arr.length);
+			final ArrayList<Field257> result = new ArrayList<Field257>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field257(f));
 			}

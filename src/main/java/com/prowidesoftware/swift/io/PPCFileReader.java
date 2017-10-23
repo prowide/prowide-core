@@ -22,7 +22,7 @@ import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 
 /**
- * @deprecated use {@linkplain PPCReader} instead
+ * @deprecated use {@link PPCReader} instead
  * @author www@prowidesoftware.com
  */
 @Deprecated

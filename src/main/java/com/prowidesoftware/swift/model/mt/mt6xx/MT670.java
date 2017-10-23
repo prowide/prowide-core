@@ -80,6 +80,7 @@ Fieldset 95
 Sequence B2 - Other Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 70 E (O) (repetitive)</li>
 <li class="field">Field 22 F (O)</li>
+<li class="field">Field 22 H (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 16 S (M)</li>
@@ -122,7 +123,7 @@ Sequence C - Other Details (O)<ul><li class="field">Field 16 R (M)</li>
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -132,7 +133,7 @@ public class MT670 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT670.class.getName());
 	
@@ -322,6 +323,15 @@ public class MT670 extends AbstractMT implements Serializable {
 	@Deprecated
 	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String PMTH = "PMTH";
+
+	/**
+	* Constant for qualifier with value PREC 
+	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PREC
+	* @see com.prowidesoftware.swift.SchemeConstantsP#PREC
+	*/
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	public static final String PREC = "PREC";
 
 	/**
 	* Constant for qualifier with value PREV 
@@ -1679,7 +1689,7 @@ public class MT670 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceB2List_sru2016(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceB2List_sru2017(this);
 	}
 	/**
 	* Get the list of SequenceB2 delimited by 16R/16S with value specified in SequenceB2#START_END_16RS 
@@ -1705,7 +1715,7 @@ public class MT670 extends AbstractMT implements Serializable {
 		* So we call a special method to resolve this situation until we find a better approach.
 		*
 		*/
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceB2List_sru2016(new MT670().append(parentSequence));
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceB2List_sru2017(new MT670().append(parentSequence));
 
 	} 	
  	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
@@ -1830,7 +1840,7 @@ public class MT670 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceC_sru2016(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceC_sru2017(this);
 	}
 	
 	/**
@@ -1856,7 +1866,7 @@ public class MT670 extends AbstractMT implements Serializable {
 		* The delimiter OTHRDET is not unique across all sequences, this api can not be resolved without considering nested sequences
 		* In Sequence C 
 		*/ 
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceC_sru2016(new MT670().append(parentSequence));
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceC_sru2017(new MT670().append(parentSequence));
 	}
  	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
 

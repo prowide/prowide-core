@@ -561,7 +561,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 *
 	 * @param i the index position of the tag to retrieve
 	 * @return the Tag at the given index
-	 * @throws IndexOutOfBoundsException if the index is invalid
+	 * @throws IndexOutOfBoundsException - if the index is out of range
 	 * @see List#get(int)
 	 */
 	public Tag getTag(final int i) {
@@ -571,7 +571,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	/**
 	 * shortcut to {@link #getTag(int)}.getField()
 	 * @param i
-	 * @throws NullPointerException if the tag with the given index does not exist
+	 * @throws IndexOutOfBoundsException if the index is out of range
 	 */
 	public Field getField(final int i) {
 		return this.tags.get(i).getField();
@@ -880,7 +880,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 /**
 	  * Get all sub blocks using the starting and ending Tags as block boundaries.<br>
 	  * The starting and end tags are included in the resulting sub blocks.
-	  * Tag compare is done using equals (not object references).
+	  * <br />
+	  * Tag compare is done using {@link Tag#equalsIgnoreCR(Tag)} (not object references).
 	  *
 	  * @param start starting tag
 	  * @param end ending tag
@@ -897,13 +898,13 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 			 final Tag t = (Tag)this.tags.get(i);
 			 if (blockFound) {
 				 toAdd.append(t);
-				 if (end != null && end.equals(t)) {
+				 if (end != null && end.equalsIgnoreCR(t)) {
 					 result.add(toAdd);
 					 blockFound = false;
 					 toAdd = null;
 				 }
 			 } else {
-				 if (start.equals(t)) {
+				 if (start.equalsIgnoreCR(t)) {
 					 toAdd = new SwiftTagListBlock();
 					 toAdd.append(t);
 					 blockFound = true;
@@ -1221,27 +1222,60 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 
 	 /**
 	  * Get a subblock after the first tag with the given tagname.
-	  * The given separator tag is included in the result
+	  * <br />
+	  * Creates a new {@link SwiftTagListBlock} that contains all tags after the first instance
+	  * of a tag with the given tagname.
 	  *
 	  * @param tagname the tag that will be used for splitting
-	  * @param includeSeparator include tagname in the returned sequence or not
+	  * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned block
+ 	  * @return a new block with the trimmed content
 	  */
-	 public SwiftTagListBlock getSubBlockAfterFirst(final String tagname, final boolean includeSeparator) {
+	 public SwiftTagListBlock getSubBlockAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
+		 //TODO sep 2017: refactor implementation using indexOf similar to getSubBlockAfterLast
 		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 if (this.tags != null && !this.tags.isEmpty()) {
-			 boolean toggleAdd = false;
-			 for (int i=0;i<this.tags.size() ; i++) {
-				 boolean isSeparator = false;
-				 final Tag t = this.tags.get(i);
+		 boolean boundaryFound = false;
+		 for (int i=0; i<this.tags.size(); i++) {
+			 final Tag t = this.tags.get(i);
+			 if (boundaryFound) {
+				 result.append(t);
+			 } else {
 				 if (StringUtils.equals(tagname, t.getName())) {
-					 toggleAdd = true;
-					 isSeparator = true;
+					 boundaryFound = true;
+					 if (includeBoundaryInResult) {
+						 result.append(t);
+					 }
 				 }
-				 if ((toggleAdd && !isSeparator)
-						 ||
-						 (/* este isSeparator es redundante, esta por claridad */
-								 isSeparator&&includeSeparator)) {
-					 result.append(t);
+			 }
+		 }
+		 return result;
+	 }
+
+	 /**
+	  * Get a subblock after the first tag.
+	  * <br />
+	  * All elements after the first instance of the given tag will be included in the result new block.
+	  * If the separator tag is null or not found in the block, an empty block will be returned.
+	  * <br />
+	  * Tag compare is done using {@link Tag#equalsIgnoreCR(Tag)} (not object references).
+	  * 
+	  * @param tag the tag that will be used for splitting
+	  * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned block
+	  * @return a new block with the trimmed content
+	  * @since 7.9.3
+	  */
+	 public SwiftTagListBlock getSubBlockAfterFirst(final Tag tag, final boolean includeBoundaryInResult) {
+		 final SwiftTagListBlock result = new SwiftTagListBlock();
+		 boolean boundaryFound = false;
+		 for (int i=0; i<this.tags.size(); i++) {
+			 final Tag t = this.tags.get(i);
+			 if (boundaryFound) {
+				 result.append(t);
+			 } else {
+				 if (tag != null && tag.equalsIgnoreCR(t)) {
+					 boundaryFound = true;
+					 if (includeBoundaryInResult) {
+						 result.append(t);
+					 }
 				 }
 			 }
 		 }
@@ -1261,24 +1295,27 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 	 
 	 /**
-	  * get a new list with all the tags found before the first tagname.
-	  * tagname is included if includeSeparator is <code>true</code>
+	  * Get the subblock before the first tag with the given tagname.
+	  * <br />
+	  * Creates a new {@link SwiftTagListBlock} that contains all tags before the first instance
+	  * of a tag with the given tagname.
+	  * 
+	  * @param tagname the tag that will be used for splitting
+	  * @param includeBoundaryInResult if true, the found boundary tag will be the last item in the returned block
+	  * @return a new block with the trimmed content
 	  */
-	 public SwiftTagListBlock getSubBlockBeforeFirst(final String tagname, final boolean includeSeparator) {
+	 public SwiftTagListBlock getSubBlockBeforeFirst(final String tagname, final boolean includeBoundaryInResult) {
 		 final SwiftTagListBlock result = new SwiftTagListBlock();
 		 if (this.tags != null && !this.tags.isEmpty()) {
-			 final Iterator<Tag> it = tags.iterator();
-			 boolean done = false;
-			 while (it.hasNext() && !done) {
-				 final Tag t = it.next();
-				 if (StringUtils.equals(tagname, t.getName())) {
-					 if (includeSeparator) {
-						 result.append(t);
+			 for (int i=0;i<tags.size();i++) {
+				 final Tag tag = this.tags.get(i);
+				 if (StringUtils.equals(tagname, tag.getName())) {
+					 if (includeBoundaryInResult) {
+						 result.append(tag);
 					 }
-					 done = true;
-				 } else {
-					 result.append(t);
+					 return result;
 				 }
+				 result.append(tag);
 			 }
 		 }
 		 return result;
@@ -1505,31 +1542,11 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 
 	 /**
-	  * Creates a new {@link SwiftTagListBlock} that contains all tags after the given tagname.
-	  * tagname is included or not depending on the value of <code>includeBoundaryInResult</code>
-	  *
-	  * @param tagname the tagname to search
-	  * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned list
-	  * @return a new {@link SwiftTagListBlock} with the tags found
-	  * @see #removeAfterFirst(String, boolean)
+	  * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)}
 	  */
+	 @ProwideDeprecated(phase2 = TargetYear._2018)
 	 public SwiftTagListBlock removeUntilFirst(final String tagname, final boolean includeBoundaryInResult) {
-		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 boolean boundaryFound = false;
-		 for (int i=0;i<this.tags.size();i++) {
-			 final Tag t = this.tags.get(i);
-			 if (boundaryFound) {
-				 result.append(t);
-			 } else {
-				 if (StringUtils.equals(tagname, t.getName())) {
-					 boundaryFound = true;
-					 if (includeBoundaryInResult) {
-						 result.append(t);
-					 }
-				 }
-			 }
-		 }
-		 return result;
+		 return getSubBlockAfterFirst(tagname, includeBoundaryInResult);
 	 }
 
 	 /**
@@ -1677,8 +1694,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 
 	 /**
-	  * @see #removeUntilFirst(String, boolean)
+	  * @deprecated use {@link #getSubBlockBeforeFirst(String, boolean)}
 	  */
+	 @ProwideDeprecated(phase2 = TargetYear._2018)
 	 public SwiftTagListBlock removeAfterFirst(final String name, final boolean includeBoundaryInResult) {
 		 final SwiftTagListBlock result = new SwiftTagListBlock();
 		 if (this.tags != null && !this.tags.isEmpty()) {

@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.utils.IsoUtils;
 
 /**
  * Utility class to validate IBAN codes.
@@ -93,7 +94,7 @@ public class IBAN {
 			return false;
 		}
 		final String country = code.substring(0, 2);
-		if (!ISOCountries.getInstance().isValidCode(country)) {
+		if (!IsoUtils.getInstance().isValidISOCountry(country)) {
 			this.invalidCause = "Invalid ISO country code: "+country;
 			return false;
 		}

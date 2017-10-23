@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "B".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -22,11 +22,11 @@ public interface SchemeConstantsB {
     public final static String BERM = "BERM";
     public final static String BINA = "BINA";
     public final static String B = "B";
-    public final static String BUYE = "BUYE";
-    public final static String BENM = "BENM";
     public final static String BLOC = "BLOC";
+    public final static String BENM = "BENM";
     public final static String BBAIRS = "BBAIRS";
     public final static String BUSE = "BUSE";
+    public final static String BUYE = "BUYE";
     public final static String BREF = "BREF";
     public final static String BPAR = "BPAR";
     public final static String BIRT = "BIRT";
@@ -54,13 +54,7 @@ public interface SchemeConstantsB {
     public final static String BENODET = "BENODET";
     public final static String BAGA = "BAGA";
     public final static String BAST = "BAST";
-    public final static String BIMY = "BIMY";
-    public final static String BOTB = "BOTB";
-    public final static String BOBD = "BOBD";
-    public final static String BORE = "BORE";
     public final static String BRIT = "BRIT";
     public final static String BUY = "BUY";
-    public final static String BILL = "BILL";
-    public final static String BICC = "BICC";
 
 }

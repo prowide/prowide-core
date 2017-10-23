@@ -29,7 +29,7 @@ import com.prowidesoftware.swift.model.mt.ServiceIdType;
  * 
  * @author www.prowidesoftware.com
  * @since 6.0
- * @deprecated use {@linkplain ServiceIdType instead}
+ * @deprecated use {@link ServiceIdType instead}
  */
 @ProwideDeprecated(phase3=TargetYear._2018)
 public class SwiftServiceId extends Enum {
@@ -124,7 +124,7 @@ public class SwiftServiceId extends Enum {
 	 *            the name to test as service id, may be <code>null</code>
 	 * @return <code>true</code> if the parameter name is a valid service id
 	 * @since 6.0
-	 * @deprecated use {@linkplain ServiceIdType#valid(String)} instead
+	 * @deprecated use {@link ServiceIdType#valid(String)} instead
 	 */
 	@ProwideDeprecated(phase3=TargetYear._2018)
 	public static boolean contains(String name) {

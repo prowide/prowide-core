@@ -16,71 +16,45 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 72<br /><br />
+ * <h2>SWIFT MT Field 72</h2>
+ * Model and parser for field 72 of a SWIFT MT message.
  *
- * validation pattern: CUSTOM<br />
- * parser pattern: S[$S]0-34<br />
- * components pattern: SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
- * 		<li>component4: <code>String</code></li> 
- * 		<li>component5: <code>String</code></li> 
- * 		<li>component6: <code>String</code></li> 
- * 		<li>component7: <code>String</code></li> 
- * 		<li>component8: <code>String</code></li> 
- * 		<li>component9: <code>String</code></li> 
- * 		<li>component10: <code>String</code></li> 
- * 		<li>component11: <code>String</code></li> 
- * 		<li>component12: <code>String</code></li> 
- * 		<li>component13: <code>String</code></li> 
- * 		<li>component14: <code>String</code></li> 
- * 		<li>component15: <code>String</code></li> 
- * 		<li>component16: <code>String</code></li> 
- * 		<li>component17: <code>String</code></li> 
- * 		<li>component18: <code>String</code></li> 
- * 		<li>component19: <code>String</code></li> 
- * 		<li>component20: <code>String</code></li> 
- * 		<li>component21: <code>String</code></li> 
- * 		<li>component22: <code>String</code></li> 
- * 		<li>component23: <code>String</code></li> 
- * 		<li>component24: <code>String</code></li> 
- * 		<li>component25: <code>String</code></li> 
- * 		<li>component26: <code>String</code></li> 
- * 		<li>component27: <code>String</code></li> 
- * 		<li>component28: <code>String</code></li> 
- * 		<li>component29: <code>String</code></li> 
- * 		<li>component30: <code>String</code></li> 
- * 		<li>component31: <code>String</code></li> 
- * 		<li>component32: <code>String</code></li> 
- * 		<li>component33: <code>String</code></li> 
- * 		<li>component34: <code>String</code></li> 
- * 		<li>component35: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>CUSTOM</code></li>
+ * 		<li>parser pattern: <code>S[$S]0-5</code></li>
+ * 		<li>components pattern: <code>SSSSSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -88,7 +62,7 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -99,8 +73,8 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_72 = "72";
-	public static final String PARSER_PATTERN ="S[$S]0-34";
-	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS";
+	public static final String PARSER_PATTERN ="S[$S]0-5";
+	public static final String COMPONENTS_PATTERN = "SSSSSS";
 
 	/**
 	 * Component number for the Narrative subfield
@@ -111,7 +85,7 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field72() {
-		super(35);
+		super(6);
 	}
 	    					
 	/**
@@ -141,15 +115,17 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
 	@Override
 	public void parse(final String value) {
-		init(35);
-		java.util.List<String> lines = SwiftParseUtils.getLines(value);
+		init(6);
+		List<String> lines = SwiftParseUtils.getLines(value);
 		SwiftParseUtils.setComponentsFromLines(this, 1, null, 0, lines);
 	}
 	
@@ -171,8 +147,7 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		appendInLines(result, 2, 36);
+		appendInLines(result, 1, 6);
 		return result.toString();
 	}
 
@@ -206,8 +181,10 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
@@ -261,244 +238,12 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component7).
-	 * @return the Narrative from component7
-	 */
-	public String getNarrativeLine7() {
-		return getComponent(7);
-	}
-
-	/**
-	 * Get the Narrative (component8).
-	 * @return the Narrative from component8
-	 */
-	public String getNarrativeLine8() {
-		return getComponent(8);
-	}
-
-	/**
-	 * Get the Narrative (component9).
-	 * @return the Narrative from component9
-	 */
-	public String getNarrativeLine9() {
-		return getComponent(9);
-	}
-
-	/**
-	 * Get the Narrative (component10).
-	 * @return the Narrative from component10
-	 */
-	public String getNarrativeLine10() {
-		return getComponent(10);
-	}
-
-	/**
-	 * Get the Narrative (component11).
-	 * @return the Narrative from component11
-	 */
-	public String getNarrativeLine11() {
-		return getComponent(11);
-	}
-
-	/**
-	 * Get the Narrative (component12).
-	 * @return the Narrative from component12
-	 */
-	public String getNarrativeLine12() {
-		return getComponent(12);
-	}
-
-	/**
-	 * Get the Narrative (component13).
-	 * @return the Narrative from component13
-	 */
-	public String getNarrativeLine13() {
-		return getComponent(13);
-	}
-
-	/**
-	 * Get the Narrative (component14).
-	 * @return the Narrative from component14
-	 */
-	public String getNarrativeLine14() {
-		return getComponent(14);
-	}
-
-	/**
-	 * Get the Narrative (component15).
-	 * @return the Narrative from component15
-	 */
-	public String getNarrativeLine15() {
-		return getComponent(15);
-	}
-
-	/**
-	 * Get the Narrative (component16).
-	 * @return the Narrative from component16
-	 */
-	public String getNarrativeLine16() {
-		return getComponent(16);
-	}
-
-	/**
-	 * Get the Narrative (component17).
-	 * @return the Narrative from component17
-	 */
-	public String getNarrativeLine17() {
-		return getComponent(17);
-	}
-
-	/**
-	 * Get the Narrative (component18).
-	 * @return the Narrative from component18
-	 */
-	public String getNarrativeLine18() {
-		return getComponent(18);
-	}
-
-	/**
-	 * Get the Narrative (component19).
-	 * @return the Narrative from component19
-	 */
-	public String getNarrativeLine19() {
-		return getComponent(19);
-	}
-
-	/**
-	 * Get the Narrative (component20).
-	 * @return the Narrative from component20
-	 */
-	public String getNarrativeLine20() {
-		return getComponent(20);
-	}
-
-	/**
-	 * Get the Narrative (component21).
-	 * @return the Narrative from component21
-	 */
-	public String getNarrativeLine21() {
-		return getComponent(21);
-	}
-
-	/**
-	 * Get the Narrative (component22).
-	 * @return the Narrative from component22
-	 */
-	public String getNarrativeLine22() {
-		return getComponent(22);
-	}
-
-	/**
-	 * Get the Narrative (component23).
-	 * @return the Narrative from component23
-	 */
-	public String getNarrativeLine23() {
-		return getComponent(23);
-	}
-
-	/**
-	 * Get the Narrative (component24).
-	 * @return the Narrative from component24
-	 */
-	public String getNarrativeLine24() {
-		return getComponent(24);
-	}
-
-	/**
-	 * Get the Narrative (component25).
-	 * @return the Narrative from component25
-	 */
-	public String getNarrativeLine25() {
-		return getComponent(25);
-	}
-
-	/**
-	 * Get the Narrative (component26).
-	 * @return the Narrative from component26
-	 */
-	public String getNarrativeLine26() {
-		return getComponent(26);
-	}
-
-	/**
-	 * Get the Narrative (component27).
-	 * @return the Narrative from component27
-	 */
-	public String getNarrativeLine27() {
-		return getComponent(27);
-	}
-
-	/**
-	 * Get the Narrative (component28).
-	 * @return the Narrative from component28
-	 */
-	public String getNarrativeLine28() {
-		return getComponent(28);
-	}
-
-	/**
-	 * Get the Narrative (component29).
-	 * @return the Narrative from component29
-	 */
-	public String getNarrativeLine29() {
-		return getComponent(29);
-	}
-
-	/**
-	 * Get the Narrative (component30).
-	 * @return the Narrative from component30
-	 */
-	public String getNarrativeLine30() {
-		return getComponent(30);
-	}
-
-	/**
-	 * Get the Narrative (component31).
-	 * @return the Narrative from component31
-	 */
-	public String getNarrativeLine31() {
-		return getComponent(31);
-	}
-
-	/**
-	 * Get the Narrative (component32).
-	 * @return the Narrative from component32
-	 */
-	public String getNarrativeLine32() {
-		return getComponent(32);
-	}
-
-	/**
-	 * Get the Narrative (component33).
-	 * @return the Narrative from component33
-	 */
-	public String getNarrativeLine33() {
-		return getComponent(33);
-	}
-
-	/**
-	 * Get the Narrative (component34).
-	 * @return the Narrative from component34
-	 */
-	public String getNarrativeLine34() {
-		return getComponent(34);
-	}
-
-	/**
-	 * Get the Narrative (component35).
-	 * @return the Narrative from component35
-	 */
-	public String getNarrativeLine35() {
-		return getComponent(35);
-	}
-
-	/**
-	 * Get the Narrative as a concatenation of component1 to component35.
+	 * Get the Narrative as a concatenation of component1 to component6.
 	 * @return the Narrative from components
 	 */
 	public String getNarrative() {
 		StringBuilder result = new StringBuilder();
-		for (int i = 1 ; i < 36 ; i++) {
+		for (int i = 1 ; i < 7 ; i++) {
 			if (StringUtils.isNotBlank(getComponent(i))) {
 				if (result.length() > 0) {
 					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
@@ -573,273 +318,12 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Set the Narrative (component7).
-	 * @param component7 the Narrative to set
-	 */
-	public Field72 setNarrativeLine7(String component7) {
-		setComponent(7, component7);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component8).
-	 * @param component8 the Narrative to set
-	 */
-	public Field72 setNarrativeLine8(String component8) {
-		setComponent(8, component8);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component9).
-	 * @param component9 the Narrative to set
-	 */
-	public Field72 setNarrativeLine9(String component9) {
-		setComponent(9, component9);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component10).
-	 * @param component10 the Narrative to set
-	 */
-	public Field72 setNarrativeLine10(String component10) {
-		setComponent(10, component10);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component11).
-	 * @param component11 the Narrative to set
-	 */
-	public Field72 setNarrativeLine11(String component11) {
-		setComponent(11, component11);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component12).
-	 * @param component12 the Narrative to set
-	 */
-	public Field72 setNarrativeLine12(String component12) {
-		setComponent(12, component12);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component13).
-	 * @param component13 the Narrative to set
-	 */
-	public Field72 setNarrativeLine13(String component13) {
-		setComponent(13, component13);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component14).
-	 * @param component14 the Narrative to set
-	 */
-	public Field72 setNarrativeLine14(String component14) {
-		setComponent(14, component14);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component15).
-	 * @param component15 the Narrative to set
-	 */
-	public Field72 setNarrativeLine15(String component15) {
-		setComponent(15, component15);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component16).
-	 * @param component16 the Narrative to set
-	 */
-	public Field72 setNarrativeLine16(String component16) {
-		setComponent(16, component16);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component17).
-	 * @param component17 the Narrative to set
-	 */
-	public Field72 setNarrativeLine17(String component17) {
-		setComponent(17, component17);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component18).
-	 * @param component18 the Narrative to set
-	 */
-	public Field72 setNarrativeLine18(String component18) {
-		setComponent(18, component18);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component19).
-	 * @param component19 the Narrative to set
-	 */
-	public Field72 setNarrativeLine19(String component19) {
-		setComponent(19, component19);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component20).
-	 * @param component20 the Narrative to set
-	 */
-	public Field72 setNarrativeLine20(String component20) {
-		setComponent(20, component20);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component21).
-	 * @param component21 the Narrative to set
-	 */
-	public Field72 setNarrativeLine21(String component21) {
-		setComponent(21, component21);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component22).
-	 * @param component22 the Narrative to set
-	 */
-	public Field72 setNarrativeLine22(String component22) {
-		setComponent(22, component22);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component23).
-	 * @param component23 the Narrative to set
-	 */
-	public Field72 setNarrativeLine23(String component23) {
-		setComponent(23, component23);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component24).
-	 * @param component24 the Narrative to set
-	 */
-	public Field72 setNarrativeLine24(String component24) {
-		setComponent(24, component24);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component25).
-	 * @param component25 the Narrative to set
-	 */
-	public Field72 setNarrativeLine25(String component25) {
-		setComponent(25, component25);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component26).
-	 * @param component26 the Narrative to set
-	 */
-	public Field72 setNarrativeLine26(String component26) {
-		setComponent(26, component26);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component27).
-	 * @param component27 the Narrative to set
-	 */
-	public Field72 setNarrativeLine27(String component27) {
-		setComponent(27, component27);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component28).
-	 * @param component28 the Narrative to set
-	 */
-	public Field72 setNarrativeLine28(String component28) {
-		setComponent(28, component28);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component29).
-	 * @param component29 the Narrative to set
-	 */
-	public Field72 setNarrativeLine29(String component29) {
-		setComponent(29, component29);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component30).
-	 * @param component30 the Narrative to set
-	 */
-	public Field72 setNarrativeLine30(String component30) {
-		setComponent(30, component30);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component31).
-	 * @param component31 the Narrative to set
-	 */
-	public Field72 setNarrativeLine31(String component31) {
-		setComponent(31, component31);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component32).
-	 * @param component32 the Narrative to set
-	 */
-	public Field72 setNarrativeLine32(String component32) {
-		setComponent(32, component32);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component33).
-	 * @param component33 the Narrative to set
-	 */
-	public Field72 setNarrativeLine33(String component33) {
-		setComponent(33, component33);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component34).
-	 * @param component34 the Narrative to set
-	 */
-	public Field72 setNarrativeLine34(String component34) {
-		setComponent(34, component34);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component35).
-	 * @param component35 the Narrative to set
-	 */
-	public Field72 setNarrativeLine35(String component35) {
-		setComponent(35, component35);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative splitting the parameter lines into components 1 to 35.
+	 * Set the Narrative splitting the parameter lines into components 1 to 6.
 	 * @param value the Narrative to set, may contain line ends and each line will be set to its correspondent component attribute
 	 */
 	public Field72 setNarrative(String value) {
-		java.util.List<String> lines = SwiftParseUtils.getLines(value);
-		SwiftParseUtils.setComponentsFromLines(this, 1, 35, 0, lines);
+		List<String> lines = SwiftParseUtils.getLines(value);
+		SwiftParseUtils.setComponentsFromLines(this, 1, 6, 0, lines);
 		return this;
 	}
 	/**
@@ -852,8 +336,10 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
 		return getComponent(2);
 	}
@@ -876,8 +362,10 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -900,8 +388,10 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent4AsString() {
 		return getComponent(4);
 	}
@@ -924,8 +414,10 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent5AsString() {
 		return getComponent(5);
 	}
@@ -948,8 +440,10 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 
 	/**
 	 * Same as getComponent(6)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent6AsString() {
 		return getComponent(6);
 	}
@@ -960,702 +454,6 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	 */
 	public Field72 setComponent6(String component6) {
 		setComponent(6, component6);
-		return this;
-	}
-	/**
-	 * Get the component7
-	 * @return the component7
-	 */
-	public String getComponent7() {
-		return getComponent(7);
-	}
-
-	/**
-	 * Same as getComponent(7)
-	 */
-	@Deprecated
-	public java.lang.String getComponent7AsString() {
-		return getComponent(7);
-	}
-
-	/**
-	 * Set the component7.
-	 * @param component7 the component7 to set
-	 */
-	public Field72 setComponent7(String component7) {
-		setComponent(7, component7);
-		return this;
-	}
-	/**
-	 * Get the component8
-	 * @return the component8
-	 */
-	public String getComponent8() {
-		return getComponent(8);
-	}
-
-	/**
-	 * Same as getComponent(8)
-	 */
-	@Deprecated
-	public java.lang.String getComponent8AsString() {
-		return getComponent(8);
-	}
-
-	/**
-	 * Set the component8.
-	 * @param component8 the component8 to set
-	 */
-	public Field72 setComponent8(String component8) {
-		setComponent(8, component8);
-		return this;
-	}
-	/**
-	 * Get the component9
-	 * @return the component9
-	 */
-	public String getComponent9() {
-		return getComponent(9);
-	}
-
-	/**
-	 * Same as getComponent(9)
-	 */
-	@Deprecated
-	public java.lang.String getComponent9AsString() {
-		return getComponent(9);
-	}
-
-	/**
-	 * Set the component9.
-	 * @param component9 the component9 to set
-	 */
-	public Field72 setComponent9(String component9) {
-		setComponent(9, component9);
-		return this;
-	}
-	/**
-	 * Get the component10
-	 * @return the component10
-	 */
-	public String getComponent10() {
-		return getComponent(10);
-	}
-
-	/**
-	 * Same as getComponent(10)
-	 */
-	@Deprecated
-	public java.lang.String getComponent10AsString() {
-		return getComponent(10);
-	}
-
-	/**
-	 * Set the component10.
-	 * @param component10 the component10 to set
-	 */
-	public Field72 setComponent10(String component10) {
-		setComponent(10, component10);
-		return this;
-	}
-	/**
-	 * Get the component11
-	 * @return the component11
-	 */
-	public String getComponent11() {
-		return getComponent(11);
-	}
-
-	/**
-	 * Same as getComponent(11)
-	 */
-	@Deprecated
-	public java.lang.String getComponent11AsString() {
-		return getComponent(11);
-	}
-
-	/**
-	 * Set the component11.
-	 * @param component11 the component11 to set
-	 */
-	public Field72 setComponent11(String component11) {
-		setComponent(11, component11);
-		return this;
-	}
-	/**
-	 * Get the component12
-	 * @return the component12
-	 */
-	public String getComponent12() {
-		return getComponent(12);
-	}
-
-	/**
-	 * Same as getComponent(12)
-	 */
-	@Deprecated
-	public java.lang.String getComponent12AsString() {
-		return getComponent(12);
-	}
-
-	/**
-	 * Set the component12.
-	 * @param component12 the component12 to set
-	 */
-	public Field72 setComponent12(String component12) {
-		setComponent(12, component12);
-		return this;
-	}
-	/**
-	 * Get the component13
-	 * @return the component13
-	 */
-	public String getComponent13() {
-		return getComponent(13);
-	}
-
-	/**
-	 * Same as getComponent(13)
-	 */
-	@Deprecated
-	public java.lang.String getComponent13AsString() {
-		return getComponent(13);
-	}
-
-	/**
-	 * Set the component13.
-	 * @param component13 the component13 to set
-	 */
-	public Field72 setComponent13(String component13) {
-		setComponent(13, component13);
-		return this;
-	}
-	/**
-	 * Get the component14
-	 * @return the component14
-	 */
-	public String getComponent14() {
-		return getComponent(14);
-	}
-
-	/**
-	 * Same as getComponent(14)
-	 */
-	@Deprecated
-	public java.lang.String getComponent14AsString() {
-		return getComponent(14);
-	}
-
-	/**
-	 * Set the component14.
-	 * @param component14 the component14 to set
-	 */
-	public Field72 setComponent14(String component14) {
-		setComponent(14, component14);
-		return this;
-	}
-	/**
-	 * Get the component15
-	 * @return the component15
-	 */
-	public String getComponent15() {
-		return getComponent(15);
-	}
-
-	/**
-	 * Same as getComponent(15)
-	 */
-	@Deprecated
-	public java.lang.String getComponent15AsString() {
-		return getComponent(15);
-	}
-
-	/**
-	 * Set the component15.
-	 * @param component15 the component15 to set
-	 */
-	public Field72 setComponent15(String component15) {
-		setComponent(15, component15);
-		return this;
-	}
-	/**
-	 * Get the component16
-	 * @return the component16
-	 */
-	public String getComponent16() {
-		return getComponent(16);
-	}
-
-	/**
-	 * Same as getComponent(16)
-	 */
-	@Deprecated
-	public java.lang.String getComponent16AsString() {
-		return getComponent(16);
-	}
-
-	/**
-	 * Set the component16.
-	 * @param component16 the component16 to set
-	 */
-	public Field72 setComponent16(String component16) {
-		setComponent(16, component16);
-		return this;
-	}
-	/**
-	 * Get the component17
-	 * @return the component17
-	 */
-	public String getComponent17() {
-		return getComponent(17);
-	}
-
-	/**
-	 * Same as getComponent(17)
-	 */
-	@Deprecated
-	public java.lang.String getComponent17AsString() {
-		return getComponent(17);
-	}
-
-	/**
-	 * Set the component17.
-	 * @param component17 the component17 to set
-	 */
-	public Field72 setComponent17(String component17) {
-		setComponent(17, component17);
-		return this;
-	}
-	/**
-	 * Get the component18
-	 * @return the component18
-	 */
-	public String getComponent18() {
-		return getComponent(18);
-	}
-
-	/**
-	 * Same as getComponent(18)
-	 */
-	@Deprecated
-	public java.lang.String getComponent18AsString() {
-		return getComponent(18);
-	}
-
-	/**
-	 * Set the component18.
-	 * @param component18 the component18 to set
-	 */
-	public Field72 setComponent18(String component18) {
-		setComponent(18, component18);
-		return this;
-	}
-	/**
-	 * Get the component19
-	 * @return the component19
-	 */
-	public String getComponent19() {
-		return getComponent(19);
-	}
-
-	/**
-	 * Same as getComponent(19)
-	 */
-	@Deprecated
-	public java.lang.String getComponent19AsString() {
-		return getComponent(19);
-	}
-
-	/**
-	 * Set the component19.
-	 * @param component19 the component19 to set
-	 */
-	public Field72 setComponent19(String component19) {
-		setComponent(19, component19);
-		return this;
-	}
-	/**
-	 * Get the component20
-	 * @return the component20
-	 */
-	public String getComponent20() {
-		return getComponent(20);
-	}
-
-	/**
-	 * Same as getComponent(20)
-	 */
-	@Deprecated
-	public java.lang.String getComponent20AsString() {
-		return getComponent(20);
-	}
-
-	/**
-	 * Set the component20.
-	 * @param component20 the component20 to set
-	 */
-	public Field72 setComponent20(String component20) {
-		setComponent(20, component20);
-		return this;
-	}
-	/**
-	 * Get the component21
-	 * @return the component21
-	 */
-	public String getComponent21() {
-		return getComponent(21);
-	}
-
-	/**
-	 * Same as getComponent(21)
-	 */
-	@Deprecated
-	public java.lang.String getComponent21AsString() {
-		return getComponent(21);
-	}
-
-	/**
-	 * Set the component21.
-	 * @param component21 the component21 to set
-	 */
-	public Field72 setComponent21(String component21) {
-		setComponent(21, component21);
-		return this;
-	}
-	/**
-	 * Get the component22
-	 * @return the component22
-	 */
-	public String getComponent22() {
-		return getComponent(22);
-	}
-
-	/**
-	 * Same as getComponent(22)
-	 */
-	@Deprecated
-	public java.lang.String getComponent22AsString() {
-		return getComponent(22);
-	}
-
-	/**
-	 * Set the component22.
-	 * @param component22 the component22 to set
-	 */
-	public Field72 setComponent22(String component22) {
-		setComponent(22, component22);
-		return this;
-	}
-	/**
-	 * Get the component23
-	 * @return the component23
-	 */
-	public String getComponent23() {
-		return getComponent(23);
-	}
-
-	/**
-	 * Same as getComponent(23)
-	 */
-	@Deprecated
-	public java.lang.String getComponent23AsString() {
-		return getComponent(23);
-	}
-
-	/**
-	 * Set the component23.
-	 * @param component23 the component23 to set
-	 */
-	public Field72 setComponent23(String component23) {
-		setComponent(23, component23);
-		return this;
-	}
-	/**
-	 * Get the component24
-	 * @return the component24
-	 */
-	public String getComponent24() {
-		return getComponent(24);
-	}
-
-	/**
-	 * Same as getComponent(24)
-	 */
-	@Deprecated
-	public java.lang.String getComponent24AsString() {
-		return getComponent(24);
-	}
-
-	/**
-	 * Set the component24.
-	 * @param component24 the component24 to set
-	 */
-	public Field72 setComponent24(String component24) {
-		setComponent(24, component24);
-		return this;
-	}
-	/**
-	 * Get the component25
-	 * @return the component25
-	 */
-	public String getComponent25() {
-		return getComponent(25);
-	}
-
-	/**
-	 * Same as getComponent(25)
-	 */
-	@Deprecated
-	public java.lang.String getComponent25AsString() {
-		return getComponent(25);
-	}
-
-	/**
-	 * Set the component25.
-	 * @param component25 the component25 to set
-	 */
-	public Field72 setComponent25(String component25) {
-		setComponent(25, component25);
-		return this;
-	}
-	/**
-	 * Get the component26
-	 * @return the component26
-	 */
-	public String getComponent26() {
-		return getComponent(26);
-	}
-
-	/**
-	 * Same as getComponent(26)
-	 */
-	@Deprecated
-	public java.lang.String getComponent26AsString() {
-		return getComponent(26);
-	}
-
-	/**
-	 * Set the component26.
-	 * @param component26 the component26 to set
-	 */
-	public Field72 setComponent26(String component26) {
-		setComponent(26, component26);
-		return this;
-	}
-	/**
-	 * Get the component27
-	 * @return the component27
-	 */
-	public String getComponent27() {
-		return getComponent(27);
-	}
-
-	/**
-	 * Same as getComponent(27)
-	 */
-	@Deprecated
-	public java.lang.String getComponent27AsString() {
-		return getComponent(27);
-	}
-
-	/**
-	 * Set the component27.
-	 * @param component27 the component27 to set
-	 */
-	public Field72 setComponent27(String component27) {
-		setComponent(27, component27);
-		return this;
-	}
-	/**
-	 * Get the component28
-	 * @return the component28
-	 */
-	public String getComponent28() {
-		return getComponent(28);
-	}
-
-	/**
-	 * Same as getComponent(28)
-	 */
-	@Deprecated
-	public java.lang.String getComponent28AsString() {
-		return getComponent(28);
-	}
-
-	/**
-	 * Set the component28.
-	 * @param component28 the component28 to set
-	 */
-	public Field72 setComponent28(String component28) {
-		setComponent(28, component28);
-		return this;
-	}
-	/**
-	 * Get the component29
-	 * @return the component29
-	 */
-	public String getComponent29() {
-		return getComponent(29);
-	}
-
-	/**
-	 * Same as getComponent(29)
-	 */
-	@Deprecated
-	public java.lang.String getComponent29AsString() {
-		return getComponent(29);
-	}
-
-	/**
-	 * Set the component29.
-	 * @param component29 the component29 to set
-	 */
-	public Field72 setComponent29(String component29) {
-		setComponent(29, component29);
-		return this;
-	}
-	/**
-	 * Get the component30
-	 * @return the component30
-	 */
-	public String getComponent30() {
-		return getComponent(30);
-	}
-
-	/**
-	 * Same as getComponent(30)
-	 */
-	@Deprecated
-	public java.lang.String getComponent30AsString() {
-		return getComponent(30);
-	}
-
-	/**
-	 * Set the component30.
-	 * @param component30 the component30 to set
-	 */
-	public Field72 setComponent30(String component30) {
-		setComponent(30, component30);
-		return this;
-	}
-	/**
-	 * Get the component31
-	 * @return the component31
-	 */
-	public String getComponent31() {
-		return getComponent(31);
-	}
-
-	/**
-	 * Same as getComponent(31)
-	 */
-	@Deprecated
-	public java.lang.String getComponent31AsString() {
-		return getComponent(31);
-	}
-
-	/**
-	 * Set the component31.
-	 * @param component31 the component31 to set
-	 */
-	public Field72 setComponent31(String component31) {
-		setComponent(31, component31);
-		return this;
-	}
-	/**
-	 * Get the component32
-	 * @return the component32
-	 */
-	public String getComponent32() {
-		return getComponent(32);
-	}
-
-	/**
-	 * Same as getComponent(32)
-	 */
-	@Deprecated
-	public java.lang.String getComponent32AsString() {
-		return getComponent(32);
-	}
-
-	/**
-	 * Set the component32.
-	 * @param component32 the component32 to set
-	 */
-	public Field72 setComponent32(String component32) {
-		setComponent(32, component32);
-		return this;
-	}
-	/**
-	 * Get the component33
-	 * @return the component33
-	 */
-	public String getComponent33() {
-		return getComponent(33);
-	}
-
-	/**
-	 * Same as getComponent(33)
-	 */
-	@Deprecated
-	public java.lang.String getComponent33AsString() {
-		return getComponent(33);
-	}
-
-	/**
-	 * Set the component33.
-	 * @param component33 the component33 to set
-	 */
-	public Field72 setComponent33(String component33) {
-		setComponent(33, component33);
-		return this;
-	}
-	/**
-	 * Get the component34
-	 * @return the component34
-	 */
-	public String getComponent34() {
-		return getComponent(34);
-	}
-
-	/**
-	 * Same as getComponent(34)
-	 */
-	@Deprecated
-	public java.lang.String getComponent34AsString() {
-		return getComponent(34);
-	}
-
-	/**
-	 * Set the component34.
-	 * @param component34 the component34 to set
-	 */
-	public Field72 setComponent34(String component34) {
-		setComponent(34, component34);
-		return this;
-	}
-	/**
-	 * Get the component35
-	 * @return the component35
-	 */
-	public String getComponent35() {
-		return getComponent(35);
-	}
-
-	/**
-	 * Same as getComponent(35)
-	 */
-	@Deprecated
-	public java.lang.String getComponent35AsString() {
-		return getComponent(35);
-	}
-
-	/**
-	 * Set the component35.
-	 * @param component35 the component35 to set
-	 */
-	public Field72 setComponent35(String component35) {
-		setComponent(35, component35);
 		return this;
 	}
 
@@ -1684,93 +482,6 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
            return true;
        }
        if (component == 6) {
-           return true;
-       }
-       if (component == 7) {
-           return true;
-       }
-       if (component == 8) {
-           return true;
-       }
-       if (component == 9) {
-           return true;
-       }
-       if (component == 10) {
-           return true;
-       }
-       if (component == 11) {
-           return true;
-       }
-       if (component == 12) {
-           return true;
-       }
-       if (component == 13) {
-           return true;
-       }
-       if (component == 14) {
-           return true;
-       }
-       if (component == 15) {
-           return true;
-       }
-       if (component == 16) {
-           return true;
-       }
-       if (component == 17) {
-           return true;
-       }
-       if (component == 18) {
-           return true;
-       }
-       if (component == 19) {
-           return true;
-       }
-       if (component == 20) {
-           return true;
-       }
-       if (component == 21) {
-           return true;
-       }
-       if (component == 22) {
-           return true;
-       }
-       if (component == 23) {
-           return true;
-       }
-       if (component == 24) {
-           return true;
-       }
-       if (component == 25) {
-           return true;
-       }
-       if (component == 26) {
-           return true;
-       }
-       if (component == 27) {
-           return true;
-       }
-       if (component == 28) {
-           return true;
-       }
-       if (component == 29) {
-           return true;
-       }
-       if (component == 30) {
-           return true;
-       }
-       if (component == 31) {
-           return true;
-       }
-       if (component == 32) {
-           return true;
-       }
-       if (component == 33) {
-           return true;
-       }
-       if (component == 34) {
-           return true;
-       }
-       if (component == 35) {
            return true;
        }
        return false;
@@ -1850,7 +561,7 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field72> getAll(final SwiftMessage msg) {
+	public static List<Field72> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -1862,13 +573,13 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field72> getAll(final SwiftTagListBlock block) {
+	public static List<Field72> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field72> result = new java.util.ArrayList<Field72>(arr.length);
+			final ArrayList<Field72> result = new ArrayList<Field72>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field72(f));
 			}
@@ -1885,7 +596,7 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	 */
 	@Override
 	public int componentsSize() {
-		return 35;
+		return 6;
 	}
 	
 	/**
@@ -1978,7 +689,7 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 	 */
 	@Override
 	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 35) {
+		if (component < 1 || component > 6) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 72");
 		}
 		if (component == 1) {
@@ -2005,122 +716,6 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 			//default format (as is)
 			return getComponent(6);
 		}
-		if (component == 7) {
-			//default format (as is)
-			return getComponent(7);
-		}
-		if (component == 8) {
-			//default format (as is)
-			return getComponent(8);
-		}
-		if (component == 9) {
-			//default format (as is)
-			return getComponent(9);
-		}
-		if (component == 10) {
-			//default format (as is)
-			return getComponent(10);
-		}
-		if (component == 11) {
-			//default format (as is)
-			return getComponent(11);
-		}
-		if (component == 12) {
-			//default format (as is)
-			return getComponent(12);
-		}
-		if (component == 13) {
-			//default format (as is)
-			return getComponent(13);
-		}
-		if (component == 14) {
-			//default format (as is)
-			return getComponent(14);
-		}
-		if (component == 15) {
-			//default format (as is)
-			return getComponent(15);
-		}
-		if (component == 16) {
-			//default format (as is)
-			return getComponent(16);
-		}
-		if (component == 17) {
-			//default format (as is)
-			return getComponent(17);
-		}
-		if (component == 18) {
-			//default format (as is)
-			return getComponent(18);
-		}
-		if (component == 19) {
-			//default format (as is)
-			return getComponent(19);
-		}
-		if (component == 20) {
-			//default format (as is)
-			return getComponent(20);
-		}
-		if (component == 21) {
-			//default format (as is)
-			return getComponent(21);
-		}
-		if (component == 22) {
-			//default format (as is)
-			return getComponent(22);
-		}
-		if (component == 23) {
-			//default format (as is)
-			return getComponent(23);
-		}
-		if (component == 24) {
-			//default format (as is)
-			return getComponent(24);
-		}
-		if (component == 25) {
-			//default format (as is)
-			return getComponent(25);
-		}
-		if (component == 26) {
-			//default format (as is)
-			return getComponent(26);
-		}
-		if (component == 27) {
-			//default format (as is)
-			return getComponent(27);
-		}
-		if (component == 28) {
-			//default format (as is)
-			return getComponent(28);
-		}
-		if (component == 29) {
-			//default format (as is)
-			return getComponent(29);
-		}
-		if (component == 30) {
-			//default format (as is)
-			return getComponent(30);
-		}
-		if (component == 31) {
-			//default format (as is)
-			return getComponent(31);
-		}
-		if (component == 32) {
-			//default format (as is)
-			return getComponent(32);
-		}
-		if (component == 33) {
-			//default format (as is)
-			return getComponent(33);
-		}
-		if (component == 34) {
-			//default format (as is)
-			return getComponent(34);
-		}
-		if (component == 35) {
-			//default format (as is)
-			return getComponent(35);
-		}
 		return null;	
 	}
 	
@@ -2140,35 +735,6 @@ public class Field72 extends Field implements Serializable, com.prowidesoftware.
 		result.add("Narrative 4");
 		result.add("Narrative 5");
 		result.add("Narrative 6");
-		result.add("Narrative 7");
-		result.add("Narrative 8");
-		result.add("Narrative 9");
-		result.add("Narrative 10");
-		result.add("Narrative 11");
-		result.add("Narrative 12");
-		result.add("Narrative 13");
-		result.add("Narrative 14");
-		result.add("Narrative 15");
-		result.add("Narrative 16");
-		result.add("Narrative 17");
-		result.add("Narrative 18");
-		result.add("Narrative 19");
-		result.add("Narrative 20");
-		result.add("Narrative 21");
-		result.add("Narrative 22");
-		result.add("Narrative 23");
-		result.add("Narrative 24");
-		result.add("Narrative 25");
-		result.add("Narrative 26");
-		result.add("Narrative 27");
-		result.add("Narrative 28");
-		result.add("Narrative 29");
-		result.add("Narrative 30");
-		result.add("Narrative 31");
-		result.add("Narrative 32");
-		result.add("Narrative 33");
-		result.add("Narrative 34");
-		result.add("Narrative 35");
 		return result;
 	}
 	

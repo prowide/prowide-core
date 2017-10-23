@@ -25,8 +25,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "pstlAdr",
     "othr"
 })
-public class FinancialInstitutionIdentification8
-    implements CopyableTo<FinancialInstitutionIdentification8>
+public class FinancialInstitutionIdentification8 implements CopyableTo<FinancialInstitutionIdentification8>
 {
 
     @XmlElement(name = "BICFI")
@@ -181,16 +180,17 @@ public class FinancialInstitutionIdentification8
     }
 
     public final void copyTo(final FinancialInstitutionIdentification8 target) {
-        // debug: does not implement copyTo
         target.bicfi = bicfi;
-        // debug: does not implement copyTo
-        target.clrSysMmbId = clrSysMmbId;
-        // debug: does not implement copyTo
+        ClearingSystemMemberIdentification2 clrSysMmbIdTarget = new ClearingSystemMemberIdentification2();
+        clrSysMmbId.copyTo(clrSysMmbIdTarget);
+        target.clrSysMmbId = clrSysMmbIdTarget;
         target.nm = nm;
-        // debug: does not implement copyTo
-        target.pstlAdr = pstlAdr;
-        // debug: does not implement copyTo
-        target.othr = othr;
+        PostalAddress6 pstlAdrTarget = new PostalAddress6();
+        pstlAdr.copyTo(pstlAdrTarget);
+        target.pstlAdr = pstlAdrTarget;
+        GenericFinancialIdentification1 othrTarget = new GenericFinancialIdentification1();
+        othr.copyTo(othrTarget);
+        target.othr = othrTarget;
     }
 
 }

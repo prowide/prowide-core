@@ -22,7 +22,7 @@ import com.prowidesoftware.swift.model.mx.MxRead;
 /**
  * For the moment this is only available in the Prowide Integrator version.
  * 
- * To parse XML into the generic MxNode structure, or to parse business headers check {@linkplain MxParser}
+ * To parse XML into the generic MxNode structure, or to parse business headers check {@link MxParser}
  */
 /*
  * 2015.03 miguel

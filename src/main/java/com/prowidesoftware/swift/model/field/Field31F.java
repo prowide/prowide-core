@@ -16,41 +16,44 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 31F<br /><br />
+ * <h2>SWIFT MT Field 31F</h2>
+ * Model and parser for field 31F of a SWIFT MT message.
  *
- * validation pattern: &lt;DATE2&gt;[/&lt;DATE2&gt;][//35x]<br />
- * parser pattern: &lt;DATE2&gt;[/&lt;DATE2&gt;][//S]<br />
- * components pattern: EES<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>Calendar</code></li> 
- * 		<li>component2: <code>Calendar</code></li> 
- * 		<li>component3: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>&lt;DATE2&gt;[/&lt;DATE2&gt;][//35x]</code></li>
+ * 		<li>parser pattern: <code>&lt;DATE2&gt;[/&lt;DATE2&gt;][//S]</code></li>
+ * 		<li>components pattern: <code>EES</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -58,7 +61,7 @@ public class Field31F extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -71,6 +74,21 @@ public class Field31F extends Field implements Serializable, DateContainer {
     public static final String F_31F = "31F";
 	public static final String PARSER_PATTERN ="<DATE2>[/<DATE2>][//S]";
 	public static final String COMPONENTS_PATTERN = "EES";
+
+	/**
+	 * Component number for the Date subfield
+	 */
+	public static final Integer DATE = 1;
+
+	/**
+	 * Component number for the Period Date subfield
+	 */
+	public static final Integer PERIOD_DATE = 2;
+
+	/**
+	 * Component number for the Period Details subfield
+	 */
+	public static final Integer PERIOD_DETAILS = 3;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -106,8 +124,10 @@ public class Field31F extends Field implements Serializable, DateContainer {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -138,14 +158,12 @@ public class Field31F extends Field implements Serializable, DateContainer {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent2())) {
-			result.append("/");
-			result.append(StringUtils.trimToEmpty(getComponent2()));
+		append(result, 1);
+		if (getComponent2() != null) {
+			result.append("/").append(getComponent2());
 		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent3())) {
-			result.append("//");
-			result.append(StringUtils.trimToEmpty(getComponent3()));
+		if (getComponent3() != null) {
+			result.append("//").append(getComponent3());
 		}
 		return result.toString();
 	}
@@ -187,6 +205,22 @@ public class Field31F extends Field implements Serializable, DateContainer {
 	}
 
 	/**
+	 * Get the Date (component1).
+	 * @return the Date from component1
+	 */
+	public String getDate() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Date (component1) as Calendar
+	 * @return the Date from component1 converted to Calendar or <code>null</code> if cannot be converted
+	 */
+	public java.util.Calendar getDateAsCalendar() {
+		return SwiftFormatUtils.getDate2(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -203,6 +237,25 @@ public class Field31F extends Field implements Serializable, DateContainer {
 		setComponent(1, SwiftFormatUtils.getDate2(component1));
 		return this;
 	}
+	
+	/**
+	 * Set the Date (component1).
+	 * @param component1 the Date to set
+	 */
+	public Field31F setDate(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Date (component1) from a Calendar object.
+	 * @see #setComponent1(java.util.Calendar)
+	 * @param component1 Calendar with the Date content to set
+	 */
+	public Field31F setDate(java.util.Calendar component1) {
+		setComponent1(component1);
+		return this;
+	}
 	/**
 	 * Get the component2
 	 * @return the component2
@@ -216,6 +269,22 @@ public class Field31F extends Field implements Serializable, DateContainer {
 	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
+		return SwiftFormatUtils.getDate2(getComponent(2));
+	}
+
+	/**
+	 * Get the Period Date (component2).
+	 * @return the Period Date from component2
+	 */
+	public String getPeriodDate() {
+		return getComponent(2);
+	}
+	
+	/**
+	 * Get the Period Date (component2) as Calendar
+	 * @return the Period Date from component2 converted to Calendar or <code>null</code> if cannot be converted
+	 */
+	public java.util.Calendar getPeriodDateAsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(2));
 	}
 
@@ -236,6 +305,25 @@ public class Field31F extends Field implements Serializable, DateContainer {
 		setComponent(2, SwiftFormatUtils.getDate2(component2));
 		return this;
 	}
+	
+	/**
+	 * Set the Period Date (component2).
+	 * @param component2 the Period Date to set
+	 */
+	public Field31F setPeriodDate(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Period Date (component2) from a Calendar object.
+	 * @see #setComponent2(java.util.Calendar)
+	 * @param component2 Calendar with the Period Date content to set
+	 */
+	public Field31F setPeriodDate(java.util.Calendar component2) {
+		setComponent2(component2);
+		return this;
+	}
 	/**
 	 * Get the component3
 	 * @return the component3
@@ -246,9 +334,19 @@ public class Field31F extends Field implements Serializable, DateContainer {
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
+		return getComponent(3);
+	}
+
+	/**
+	 * Get the Period Details (component3).
+	 * @return the Period Details from component3
+	 */
+	public String getPeriodDetails() {
 		return getComponent(3);
 	}
 
@@ -260,9 +358,18 @@ public class Field31F extends Field implements Serializable, DateContainer {
 		setComponent(3, component3);
 		return this;
 	}
+	
+	/**
+	 * Set the Period Details (component3).
+	 * @param component3 the Period Details to set
+	 */
+	public Field31F setPeriodDetails(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
     
     public List<Calendar> dates() {
-		List<Calendar> result = new java.util.ArrayList<Calendar>();
+		List<Calendar> result = new ArrayList<Calendar>();
 		result.add(SwiftFormatUtils.getDate2(getComponent(1)));
 		result.add(SwiftFormatUtils.getDate2(getComponent(2)));
 		return result;
@@ -363,7 +470,7 @@ public class Field31F extends Field implements Serializable, DateContainer {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field31F> getAll(final SwiftMessage msg) {
+	public static List<Field31F> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -375,13 +482,13 @@ public class Field31F extends Field implements Serializable, DateContainer {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field31F> getAll(final SwiftTagListBlock block) {
+	public static List<Field31F> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field31F> result = new java.util.ArrayList<Field31F>(arr.length);
+			final ArrayList<Field31F> result = new ArrayList<Field31F>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field31F(f));
 			}
@@ -448,9 +555,9 @@ public class Field31F extends Field implements Serializable, DateContainer {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Date");
+		result.add("Period Date");
+		result.add("Period Details");
 		return result;
 	}
 	

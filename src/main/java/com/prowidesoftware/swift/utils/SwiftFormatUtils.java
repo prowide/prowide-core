@@ -659,7 +659,7 @@ public class SwiftFormatUtils {
 	}
 	
 	/**
-	 * @param code string with a LT identifier code (12 chars) composed by the
+	 * @param address string with a LT identifier code (12 chars) composed by the
 	 * BIC, LT identifier and branch.
 	 * @return a LT address initialized from the parameter code
 	 * @since 7.8.8
@@ -671,7 +671,7 @@ public class SwiftFormatUtils {
 	/**
 	 * Gets the code from the parameter LogicalTerminalAddress.
 	 * If the address is not complete, it will be filled with default values
-	 * using {@linkplain LogicalTerminalAddress#getSenderLogicalTerminalAddress()}
+	 * using {@link LogicalTerminalAddress#getSenderLogicalTerminalAddress()}
 	 * @param address LT address to use
 	 * @return the string with the full 12 characters long LT identifier
 	 * @since 7.8.8

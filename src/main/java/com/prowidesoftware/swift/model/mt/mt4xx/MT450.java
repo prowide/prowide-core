@@ -20,13 +20,10 @@ import com.prowidesoftware.Generated;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.internal.*;
-import com.prowidesoftware.swift.internal.SequenceStyle.Type;
 import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.utils.Lib;
@@ -42,7 +39,7 @@ import java.io.IOException;
 <li class="field">Field 25  (O)</li>
 <li class="field">Field 72  (O)</li>
 <li class="sequence">
-Sequence A (M) (repetitive)<ul><li class="field">Field 20  (M)</li>
+Sequence _A (M) (repetitive)<ul><li class="field">Field 20  (M)</li>
 <li class="field">Field 21  (M)</li>
 <li class="field">Field 30  (M)</li>
 <li class="field">Field 32 A (M)</li>
@@ -80,7 +77,7 @@ Sequence A (M) (repetitive)<ul><li class="field">Field 20  (M)</li>
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -90,7 +87,7 @@ public class MT450 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT450.class.getName());
 	
@@ -489,102 +486,6 @@ public class MT450 extends AbstractMT implements Serializable {
 		return result;
 	}
 	
-
-// BaseSequenceCodeGenerator [seq=A]
-	/**
-	* Class for Sequence "A" of MT 450
-	*/
-	public static class SequenceA extends SwiftTagListBlock {
-		private static final long serialVersionUID = 1L;
-		
-		/**
-		 * Constructs an empty sequence
-		 */
-	        private SequenceA() {
-			super(new ArrayList<Tag>());
-		}
-		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
-		private SequenceA(final SwiftTagListBlock content) {
-			super(content.getTags());
-		}
-		/**
-		* First mandatory tagname of the sequence: <em>"20"  </em>.
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		public static final String[] START = { "20"   } ;
-		/**
-		* Last mandatory tagname of the sequence: <em>"32A"  </em>
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		protected static final String[] END = { "32A"   };
-		/**
-		* List of optional tags after the last mandatory tag
-		*/
-		protected static final String[] TAIL = new String[]{ "52A", "52B", "52D"   };
-
-		/**
-		* same as newInstance(0, 0, tags);
-		* see #newInstance(Tag ... )
-		*/
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceA newInstance(final Tag ... tags) {
-			return newInstance(0, 0, tags);
-		}
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceA newInstance(final int start, final int end, final Tag ... tags) {
-			final SequenceA result = new SequenceA();
-
-			result.append(new Tag(START[start], ""));
-
-			if (tags != null && tags.length > 0) {
-				for (final Tag t : tags) {
-					result.append(t);
-				}
-			}
-
-			result.append(new Tag(END[end], ""));
-
-			return result;
-		}
-	}
-	/**
-	* Get the list of SequenceA delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceA> getSequenceAList() {
-		return getSequenceAList(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	* Get the list of SequenceA delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceA within the complete message
-	* @since 7.7
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceA> getSequenceAList(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceA> result = new ArrayList<SequenceA>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceA.START, SequenceA.END, SequenceA.TAIL); 
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceA(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
-	} 
- 
 
 
 

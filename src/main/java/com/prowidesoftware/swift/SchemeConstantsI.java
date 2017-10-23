@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "I".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -17,20 +17,20 @@ import com.prowidesoftware.Generated;
 public interface SchemeConstantsI {
 
     public final static String INTC = "INTC";
-    public final static String INVA = "INVA";
-    public final static String INSI = "INSI";
-    public final static String INSF = "INSF";
-    public final static String INCH = "INCH";
     public final static String ISDACN = "ISDACN";
     public final static String ISDA = "ISDA";
     public final static String ICOM = "ICOM";
     public final static String IFEMA = "IFEMA";
-    public final static String INVE = "INVE";
     public final static String INTE = "INTE";
     public final static String INT2 = "INT2";
     public final static String INTR = "INTR";
+    public final static String INVE = "INVE";
     public final static String ICM_ACT = "ICM/ACT";
     public final static String INT1 = "INT1";
+    public final static String INVA = "INVA";
+    public final static String INSI = "INSI";
+    public final static String INSF = "INSF";
+    public final static String INCH = "INCH";
     public final static String INDC = "INDC";
     public final static String INST = "INST";
     public final static String ISSU = "ISSU";
@@ -63,8 +63,6 @@ public interface SchemeConstantsI {
     public final static String INBA = "INBA";
     public final static String INFA = "INFA";
     public final static String INFO = "INFO";
-    public final static String INRE = "INRE";
-    public final static String INCOME = "INCOME";
     public final static String IRID = "IRID";
     public final static String IRREVOC_TRANS_STANDBY = "IRREVOC_TRANS_STANDBY";
     public final static String IRREVOCABLE = "IRREVOCABLE";
@@ -72,8 +70,5 @@ public interface SchemeConstantsI {
     public final static String IRREVOCABLE_TRANSFERABLE = "IRREVOCABLE_TRANSFERABLE";
     public final static String IRREVOCABLE_STANDBY = "IRREVOCABLE_STANDBY";
     public final static String ISPR = "ISPR";
-    public final static String IIAC = "IIAC";
-    public final static String ICST = "ICST";
-    public final static String IINT = "IINT";
 
 }

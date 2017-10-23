@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "M".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -72,6 +72,5 @@ public interface SchemeConstantsM {
     public final static String MANU = "MANU";
     public final static String MARK = "MARK";
     public final static String MAY_ADD = "MAY_ADD";
-    public final static String MESS = "MESS";
 
 }

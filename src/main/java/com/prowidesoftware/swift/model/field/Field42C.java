@@ -16,39 +16,42 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 42C<br /><br />
+ * <h2>SWIFT MT Field 42C</h2>
+ * Model and parser for field 42C of a SWIFT MT message.
  *
- * validation pattern: 35x[$35x]0-2<br />
- * parser pattern: S[$S]0-2<br />
- * components pattern: SSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>35x[$35x]0-2</code></li>
+ * 		<li>parser pattern: <code>S[$S]0-2</code></li>
+ * 		<li>components pattern: <code>SSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -56,7 +59,7 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -69,6 +72,11 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
     public static final String F_42C = "42C";
 	public static final String PARSER_PATTERN ="S[$S]0-2";
 	public static final String COMPONENTS_PATTERN = "SSS";
+
+	/**
+	 * Component number for the Narrative subfield
+	 */
+	public static final Integer NARRATIVE = 1;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -104,15 +112,17 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
 	@Override
 	public void parse(final String value) {
 		init(3);
-		java.util.List<String> lines = SwiftParseUtils.getLines(value);
+		List<String> lines = SwiftParseUtils.getLines(value);
 		SwiftParseUtils.setComponentsFromLines(this, 1, null, 0, lines);
 	}
 	
@@ -134,8 +144,7 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		appendInLines(result, 2, 4);
+		appendInLines(result, 1, 3);
 		return result.toString();
 	}
 
@@ -169,10 +178,53 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
+	}
+
+	/**
+	 * Get the Narrative (component1).
+	 * @return the Narrative from component1
+	 */
+	public String getNarrativeLine1() {
+		return getComponent(1);
+	}
+
+	/**
+	 * Get the Narrative (component2).
+	 * @return the Narrative from component2
+	 */
+	public String getNarrativeLine2() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Get the Narrative (component3).
+	 * @return the Narrative from component3
+	 */
+	public String getNarrativeLine3() {
+		return getComponent(3);
+	}
+
+	/**
+	 * Get the Narrative as a concatenation of component1 to component3.
+	 * @return the Narrative from components
+	 */
+	public String getNarrative() {
+		StringBuilder result = new StringBuilder();
+		for (int i = 1 ; i < 4 ; i++) {
+			if (StringUtils.isNotBlank(getComponent(i))) {
+				if (result.length() > 0) {
+					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
+				}
+				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			}
+		}
+		return result.toString();
 	}
 
 	/**
@@ -181,6 +233,43 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 	 */
 	public Field42C setComponent1(String component1) {
 		setComponent(1, component1);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component1).
+	 * @param component1 the Narrative to set
+	 */
+	public Field42C setNarrativeLine1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component2).
+	 * @param component2 the Narrative to set
+	 */
+	public Field42C setNarrativeLine2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative (component3).
+	 * @param component3 the Narrative to set
+	 */
+	public Field42C setNarrativeLine3(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+
+	/**
+	 * Set the Narrative splitting the parameter lines into components 1 to 3.
+	 * @param value the Narrative to set, may contain line ends and each line will be set to its correspondent component attribute
+	 */
+	public Field42C setNarrative(String value) {
+		List<String> lines = SwiftParseUtils.getLines(value);
+		SwiftParseUtils.setComponentsFromLines(this, 1, 3, 0, lines);
 		return this;
 	}
 	/**
@@ -193,8 +282,10 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
 		return getComponent(2);
 	}
@@ -217,8 +308,10 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -327,7 +420,7 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field42C> getAll(final SwiftMessage msg) {
+	public static List<Field42C> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -339,13 +432,13 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field42C> getAll(final SwiftTagListBlock block) {
+	public static List<Field42C> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field42C> result = new java.util.ArrayList<Field42C>(arr.length);
+			final ArrayList<Field42C> result = new ArrayList<Field42C>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field42C(f));
 			}
@@ -483,9 +576,9 @@ public class Field42C extends Field implements Serializable, com.prowidesoftware
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Narrative");
+		result.add("Narrative 2");
+		result.add("Narrative 3");
 		return result;
 	}
 	

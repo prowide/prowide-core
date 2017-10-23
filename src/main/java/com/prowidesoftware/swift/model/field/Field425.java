@@ -16,76 +16,79 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 425<br /><br />
+ * <h2>SWIFT MT Field 425</h2>
+ * Model and parser for field 425 of a SWIFT MT message.
  *
- * validation pattern: 20*(2!c/37x)<br />
- * parser pattern: 20*(S/S)<br />
- * components pattern: SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
- * 		<li>component4: <code>String</code></li> 
- * 		<li>component5: <code>String</code></li> 
- * 		<li>component6: <code>String</code></li> 
- * 		<li>component7: <code>String</code></li> 
- * 		<li>component8: <code>String</code></li> 
- * 		<li>component9: <code>String</code></li> 
- * 		<li>component10: <code>String</code></li> 
- * 		<li>component11: <code>String</code></li> 
- * 		<li>component12: <code>String</code></li> 
- * 		<li>component13: <code>String</code></li> 
- * 		<li>component14: <code>String</code></li> 
- * 		<li>component15: <code>String</code></li> 
- * 		<li>component16: <code>String</code></li> 
- * 		<li>component17: <code>String</code></li> 
- * 		<li>component18: <code>String</code></li> 
- * 		<li>component19: <code>String</code></li> 
- * 		<li>component20: <code>String</code></li> 
- * 		<li>component21: <code>String</code></li> 
- * 		<li>component22: <code>String</code></li> 
- * 		<li>component23: <code>String</code></li> 
- * 		<li>component24: <code>String</code></li> 
- * 		<li>component25: <code>String</code></li> 
- * 		<li>component26: <code>String</code></li> 
- * 		<li>component27: <code>String</code></li> 
- * 		<li>component28: <code>String</code></li> 
- * 		<li>component29: <code>String</code></li> 
- * 		<li>component30: <code>String</code></li> 
- * 		<li>component31: <code>String</code></li> 
- * 		<li>component32: <code>String</code></li> 
- * 		<li>component33: <code>String</code></li> 
- * 		<li>component34: <code>String</code></li> 
- * 		<li>component35: <code>String</code></li> 
- * 		<li>component36: <code>String</code></li> 
- * 		<li>component37: <code>String</code></li> 
- * 		<li>component38: <code>String</code></li> 
- * 		<li>component39: <code>String</code></li> 
- * 		<li>component40: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>20*(2!c/37x)</code></li>
+ * 		<li>parser pattern: <code>20*(S/S)</code></li>
+ * 		<li>components pattern: <code>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -93,7 +96,7 @@ public class Field425 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -141,8 +144,10 @@ public class Field425 extends Field implements Serializable {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -158,7 +163,7 @@ public class Field425 extends Field implements Serializable {
 		 * It is not clear how to split one instance to the other between the 12 occurrences
 		 */
 		if (value != null) {
-			String[] tokens = org.apache.commons.lang.StringUtils.split(value, "/");
+			String[] tokens = StringUtils.split(value, "/");
 			final StringBuilder lastComponent = new StringBuilder();
 			for (int i=0; i<tokens.length; i++) {
 				if (i < 40) {
@@ -232,8 +237,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
@@ -256,8 +263,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
 		return getComponent(2);
 	}
@@ -280,8 +289,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -304,8 +315,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent4AsString() {
 		return getComponent(4);
 	}
@@ -328,8 +341,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent5AsString() {
 		return getComponent(5);
 	}
@@ -352,8 +367,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(6)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent6AsString() {
 		return getComponent(6);
 	}
@@ -376,8 +393,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(7)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent7AsString() {
 		return getComponent(7);
 	}
@@ -400,8 +419,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(8)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent8AsString() {
 		return getComponent(8);
 	}
@@ -424,8 +445,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(9)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent9AsString() {
 		return getComponent(9);
 	}
@@ -448,8 +471,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(10)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent10AsString() {
 		return getComponent(10);
 	}
@@ -472,8 +497,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(11)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent11AsString() {
 		return getComponent(11);
 	}
@@ -496,8 +523,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(12)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent12AsString() {
 		return getComponent(12);
 	}
@@ -520,8 +549,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(13)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent13AsString() {
 		return getComponent(13);
 	}
@@ -544,8 +575,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(14)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent14AsString() {
 		return getComponent(14);
 	}
@@ -568,8 +601,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(15)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent15AsString() {
 		return getComponent(15);
 	}
@@ -592,8 +627,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(16)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent16AsString() {
 		return getComponent(16);
 	}
@@ -616,8 +653,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(17)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent17AsString() {
 		return getComponent(17);
 	}
@@ -640,8 +679,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(18)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent18AsString() {
 		return getComponent(18);
 	}
@@ -664,8 +705,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(19)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent19AsString() {
 		return getComponent(19);
 	}
@@ -688,8 +731,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(20)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent20AsString() {
 		return getComponent(20);
 	}
@@ -712,8 +757,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(21)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent21AsString() {
 		return getComponent(21);
 	}
@@ -736,8 +783,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(22)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent22AsString() {
 		return getComponent(22);
 	}
@@ -760,8 +809,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(23)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent23AsString() {
 		return getComponent(23);
 	}
@@ -784,8 +835,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(24)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent24AsString() {
 		return getComponent(24);
 	}
@@ -808,8 +861,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(25)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent25AsString() {
 		return getComponent(25);
 	}
@@ -832,8 +887,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(26)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent26AsString() {
 		return getComponent(26);
 	}
@@ -856,8 +913,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(27)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent27AsString() {
 		return getComponent(27);
 	}
@@ -880,8 +939,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(28)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent28AsString() {
 		return getComponent(28);
 	}
@@ -904,8 +965,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(29)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent29AsString() {
 		return getComponent(29);
 	}
@@ -928,8 +991,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(30)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent30AsString() {
 		return getComponent(30);
 	}
@@ -952,8 +1017,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(31)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent31AsString() {
 		return getComponent(31);
 	}
@@ -976,8 +1043,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(32)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent32AsString() {
 		return getComponent(32);
 	}
@@ -1000,8 +1069,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(33)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent33AsString() {
 		return getComponent(33);
 	}
@@ -1024,8 +1095,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(34)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent34AsString() {
 		return getComponent(34);
 	}
@@ -1048,8 +1121,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(35)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent35AsString() {
 		return getComponent(35);
 	}
@@ -1072,8 +1147,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(36)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent36AsString() {
 		return getComponent(36);
 	}
@@ -1096,8 +1173,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(37)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent37AsString() {
 		return getComponent(37);
 	}
@@ -1120,8 +1199,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(38)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent38AsString() {
 		return getComponent(38);
 	}
@@ -1144,8 +1225,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(39)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent39AsString() {
 		return getComponent(39);
 	}
@@ -1168,8 +1251,10 @@ public class Field425 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(40)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent40AsString() {
 		return getComponent(40);
 	}
@@ -1272,7 +1357,7 @@ public class Field425 extends Field implements Serializable {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field425> getAll(final SwiftMessage msg) {
+	public static List<Field425> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -1284,13 +1369,13 @@ public class Field425 extends Field implements Serializable {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field425> getAll(final SwiftTagListBlock block) {
+	public static List<Field425> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field425> result = new java.util.ArrayList<Field425>(arr.length);
+			final ArrayList<Field425> result = new ArrayList<Field425>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field425(f));
 			}

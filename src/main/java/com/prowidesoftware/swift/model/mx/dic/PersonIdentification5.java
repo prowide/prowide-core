@@ -24,8 +24,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "dtAndPlcOfBirth",
     "othr"
 })
-public class PersonIdentification5
-    implements CopyableTo<PersonIdentification5>
+public class PersonIdentification5 implements CopyableTo<PersonIdentification5>
 {
 
     @XmlElement(name = "DtAndPlcOfBirth")
@@ -103,9 +102,10 @@ public class PersonIdentification5
     }
 
     public final void copyTo(final PersonIdentification5 target) {
-        // debug: does not implement copyTo
-        target.dtAndPlcOfBirth = dtAndPlcOfBirth;
-        // debug: does not implement copyTo
+        DateAndPlaceOfBirth dtAndPlcOfBirthTarget = new DateAndPlaceOfBirth();
+        dtAndPlcOfBirth.copyTo(dtAndPlcOfBirthTarget);
+        target.dtAndPlcOfBirth = dtAndPlcOfBirthTarget;
+        // debug: List<GenericPersonIdentification1> does not implement copyTo
         target.othr = othr;
     }
 

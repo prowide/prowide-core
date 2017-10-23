@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "C".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -27,12 +27,8 @@ public interface SchemeConstantsC {
     public final static String CRTST = "CRTST";
     public final static String CRTS = "CRTS";
     public final static String CRED = "CRED";
-    public final static String COLN = "COLN";
-    public final static String CLOS = "CLOS";
     public final static String C = "C";
     public final static String CANC = "CANC";
-    public final static String CLEU = "CLEU";
-    public final static String CURR = "CURR";
     public final static String CANCEL = "CANCEL";
     public final static String CLOSEOUT = "CLOSEOUT";
     public final static String CLST = "CLST";
@@ -40,11 +36,9 @@ public interface SchemeConstantsC {
     public final static String CONF = "CONF";
     public final static String CASH = "CASH";
     public final static String CODU = "CODU";
-    public final static String CRTR = "CRTR";
-    public final static String CDEA = "CDEA";
     public final static String COPY = "COPY";
-    public final static String CSHPRTY = "CSHPRTY";
     public final static String CINT = "CINT";
+    public final static String CDEA = "CDEA";
     public final static String CONU = "CONU";
     public final static String CHNG = "CHNG";
     public final static String CAPBUYER = "CAPBUYER";
@@ -53,7 +47,10 @@ public interface SchemeConstantsC {
     public final static String COLLARSLLR = "COLLARSLLR";
     public final static String CORRBUYER = "CORRBUYER";
     public final static String CORRSELLER = "CORRSELLER";
+    public final static String CSHPRTY = "CSHPRTY";
     public final static String CNTR = "CNTR";
+    public final static String CLOS = "CLOS";
+    public final static String COLN = "COLN";
     public final static String CADETL = "CADETL";
     public final static String CLAS = "CLAS";
     public final static String COUP = "COUP";
@@ -122,7 +119,6 @@ public interface SchemeConstantsC {
     public final static String CLCI = "CLCI";
     public final static String CONC = "CONC";
     public final static String COLLPRTY = "COLLPRTY";
-    public final static String CLASS = "CLASS";
     public final static String COFF = "COFF";
     public final static String CONP = "CONP";
     public final static String CODE = "CODE";
@@ -169,7 +165,6 @@ public interface SchemeConstantsC {
     public final static String CACF = "CACF";
     public final static String CONB = "CONB";
     public final static String CLPR = "CLPR";
-    public final static String CERTSIGN = "CERTSIGN";
     public final static String CASHACCT = "CASHACCT";
     public final static String CASHDET = "CASHDET";
     public final static String CASHSECDET = "CASHSECDET";
@@ -181,7 +176,5 @@ public interface SchemeConstantsC {
     public final static String CORO = "CORO";
     public final static String CONFIRM = "CONFIRM";
     public final static String CLM = "CLM";
-    public final static String COUR = "COUR";
-    public final static String CUST = "CUST";
 
 }

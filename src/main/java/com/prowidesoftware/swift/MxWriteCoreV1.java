@@ -25,7 +25,7 @@ import com.prowidesoftware.swift.model.mx.MxWrite;
 /**
  * For the moment this is only available in the Prowide Integrator version.
  * 
- * To create the XML from the generic structure check {@linkplain MxNode} and {@linkplain BusinessHeader}
+ * To create the XML from the generic structure check {@link MxNode} and {@link BusinessHeader}
  */
 public class MxWriteCoreV1 implements MxWrite {
 

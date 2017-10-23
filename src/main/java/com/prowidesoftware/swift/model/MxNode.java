@@ -33,7 +33,7 @@ import org.apache.commons.lang.StringUtils;
  * <p>Note than full business model is provided only for the business
  * header, while a complete MX model is implemented in Prowide Integrator.
  * For more information on the full MX model implementation please check:
- * <a href="http://www.prowidesoftware.com/integrator.jsp">http://www.prowidesoftware.com/integrator.jsp</a></p>
+ * <a href="http://www.prowidesoftware.com/products/integrator">Prowide Integrator</a></p>
  *
  * @since 7.6
  */

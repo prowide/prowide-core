@@ -41,7 +41,7 @@ import java.io.IOException;
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 28 E (O)</li>
+<li class="field">Field 28 E (M)</li>
 <li class="field">Field 13 A (O)</li>
 <li class="field">Field 20 C (M)</li>
 <li class="field">Field 23 G (M)</li>
@@ -140,7 +140,7 @@ Fieldset 95
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,C (M)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (M)</li></ul></li><li class="field">Field 25 D (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="field">Field 25 D (O)</li>
 <li class="field">Field 70 E (O)</li>
 <li class="sequence">
 Sequence C2a - Settlement Parties (O)<ul><li class="field">Field 16 R (M)</li>
@@ -191,7 +191,7 @@ Fieldset 95
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -201,7 +201,7 @@ public class MT575 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT575.class.getName());
 	
@@ -1961,7 +1961,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceA1List_sru2016(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceA1List_sru2017(this);
 	}
 	/**
 	* Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS 
@@ -1987,7 +1987,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		* So we call a special method to resolve this situation until we find a better approach.
 		*
 		*/
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceA1List_sru2016(new MT575().append(parentSequence));
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceA1List_sru2017(new MT575().append(parentSequence));
 
 	} 	
  	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
@@ -2507,7 +2507,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceB1a1List_sru2016(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceB1a1List_sru2017(this);
 	}
 	/**
 	* Get the list of SequenceB1a1 delimited by 16R/16S with value specified in SequenceB1a1#START_END_16RS 
@@ -2533,7 +2533,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		* So we call a special method to resolve this situation until we find a better approach.
 		*
 		*/
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceB1a1List_sru2016(new MT575().append(parentSequence));
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceB1a1List_sru2017(new MT575().append(parentSequence));
 
 	} 	
  	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
@@ -2922,7 +2922,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceB1a4List_sru2016(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceB1a4List_sru2017(this);
 	}
 	/**
 	* Get the list of SequenceB1a4 delimited by 16R/16S with value specified in SequenceB1a4#START_END_16RS 
@@ -2948,7 +2948,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		* So we call a special method to resolve this situation until we find a better approach.
 		*
 		*/
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceB1a4List_sru2016(new MT575().append(parentSequence));
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceB1a4List_sru2017(new MT575().append(parentSequence));
 
 	} 	
  	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
@@ -3206,7 +3206,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceC1List_sru2016(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceC1List_sru2017(this);
 	}
 	/**
 	* Get the list of SequenceC1 delimited by 16R/16S with value specified in SequenceC1#START_END_16RS 
@@ -3232,7 +3232,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		* So we call a special method to resolve this situation until we find a better approach.
 		*
 		*/
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceC1List_sru2016(new MT575().append(parentSequence));
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceC1List_sru2017(new MT575().append(parentSequence));
 
 	} 	
  	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
@@ -3490,7 +3490,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceC2aList_sru2016(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceC2aList_sru2017(this);
 	}
 	/**
 	* Get the list of SequenceC2a delimited by 16R/16S with value specified in SequenceC2a#START_END_16RS 
@@ -3516,7 +3516,7 @@ public class MT575 extends AbstractMT implements Serializable {
 		* So we call a special method to resolve this situation until we find a better approach.
 		*
 		*/
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceC2aList_sru2016(new MT575().append(parentSequence));
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT575GetSequenceC2aList_sru2017(new MT575().append(parentSequence));
 
 	} 	
  	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator

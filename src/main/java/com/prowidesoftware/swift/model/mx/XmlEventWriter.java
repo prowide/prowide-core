@@ -17,9 +17,11 @@ package com.prowidesoftware.swift.model.mx;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.logging.Level;
 
 import javax.xml.namespace.NamespaceContext;
+import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLEventWriter;
 import javax.xml.stream.XMLStreamException;
@@ -42,162 +44,132 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  */
 public final class XmlEventWriter implements XMLEventWriter {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(XmlEventWriter.class.getName());
-	private static final Level STEP_LEVEL = Level.FINER;
 	private Writer out;
 	private final StringBuilder indent = new StringBuilder();
 	private StartElement delayedStart = null;
 	private boolean startTagIncomplete = false;
 	private int startElementCount;
-	/*
-	 * Variable para acumular el log del xml que se va generando en modo de debug 
-	 */
-	private final StringBuilder stepOutLog;
-	private String prefix = null;
+	private String defaultPrefix = null;
+	private Map<String, String> peferredPrefixes;
 	private boolean includeXMLDeclaration = true;
 	private String rootElement = null;
 	
 	/**
-	 * 
 	 * @param baos output buffer to write
-	 * @param prefix optional prefix for ns (empty by default)
-	 * @param includeXMLDeclaration true to include the xml declaration (true by default)
+	 * @param defaultPrefix optional prefix (empty by default) to used for all elements that are not binded to a specific prefix
+	 * @param includeXMLDeclaration true to include the XML declaration (true by default)
 	 * @param rootElement local name of the root element of the XML fragment to create, used to declare namespace
+	 * @see #setPeferredPrefixes(Map)
 	 */
-	public XmlEventWriter(Writer baos, final String prefix, boolean includeXMLDeclaration, final String rootElement) {
+	public XmlEventWriter(Writer baos, final String defaultPrefix, boolean includeXMLDeclaration, final String rootElement) {
 		this.out = baos;
-		if (log.isLoggable(STEP_LEVEL)) {
-			this.stepOutLog =  new StringBuilder();
-		} else {
-			this.stepOutLog = null;
-		}
 		this.startElementCount = 0;
-		this.prefix = prefix;
+		this.defaultPrefix = defaultPrefix;
 		this.includeXMLDeclaration = includeXMLDeclaration;
 		this.rootElement = rootElement;
 	}
 
 	public void add(final XMLEvent event) throws XMLStreamException {
 		if (event != null) {
-			log.finest("XmlEventType: " + event.getEventType());
 			try {
 				final int type = event.getEventType();
 				switch (type) {
 				case XMLEvent.START_DOCUMENT:
 					if (this.includeXMLDeclaration) {
-						log.finer(">> START_DOCUMENT");
-						log.finer("START_DOCUMENT XMLEvent " + ToStringBuilder.reflectionToString(event));
-						final String str = "<?xml version=\"1.0\" encoding=\"" + ((StartDocument) event).getCharacterEncodingScheme() + "\"?>";
-						out.write(str);
-						logStep(str);
+						out.write("<?xml version=\"1.0\" encoding=\"" + ((StartDocument) event).getCharacterEncodingScheme() + "\"?>");
 					} else {
-						log.finer("skipping xml declaration");
+						log.finest("skipping xml declaration");
 					}
 					break;
 					
 				case XMLEvent.START_ELEMENT:
 					this.startElementCount++;
 					closeStartTagIfNeeded();
-					log.finer(">> START_ELEMENT");
 					indent.append(' ');
 					final StartElement se = event.asStartElement();
-					@SuppressWarnings("rawtypes")
-                    final Iterator it = se.getNamespaces();
-					while (it.hasNext()) {
-						log.fine("ns: " + it.next());
-					}
-					/*---------------------------------------------------------------------------------------
-					 * 2015.03 miguel
-					 * Cuidado con esta condicion! esto generaba el bug de que no abria el Document anidado dentro del xs:any
-					 * Esto es porque este document delayed solo se completa cuando recibe un namespace, pensado como elemento inicial
-					 * esto DEEEEBEEEEEEEEEEe corregirse cuando se cambie la serializacion, si se cambia
-					 * porque si el document queda dentro de un elemento payload, entonces en count es != 1 y debe revisarse como se identifica el primer 
-					 * document y un document anidado.
-					 *  
+					/*
+					 * the startElementyCount below fixes the bug related to not opening nested Document inside xs:any
 					 */
-					if (StringUtils.equals(se.getName().getLocalPart(), this.rootElement)
-							&& this.startElementCount==1 ) { // 2015.03 miguel: ESTE era el bug de esprow, que aparecian tags anidados de document cerrando que no abria, era porque entraban por aca sin esta condicion de depth count
+					if (StringUtils.equals(se.getName().getLocalPart(), this.rootElement) && this.startElementCount==1) { 
 						delayedStart = se;
-						log.finer("local part is Document, initializing delayed start, startElementCount="+this.startElementCount);
+						log.finest("local part is Document, initializing delayed start, startElementCount="+this.startElementCount);
 					} else {
-						final String s = "\n" + indent + "<" + prefix() + se.getName().getLocalPart() /* + ">" */;
-						out.write(s);
-						
-						logStep(s);
-						
-						/* 2014.11 miguel
-						 * para soportar atributos en lugar de cerrar aca seteamos un flag para indicar 
-						 * que hace falta cerrar el startTag
+						out.write("\n" + indent + "<" + prefix(se.getName()) + se.getName().getLocalPart());
+						/* 
+						 * to support attributes instead of closing here we set a flag and close this later
 						 */
 						startTagIncomplete = true;
-						if (se.isNamespace()) {
-							log.fine("is ns in start XMLEvent " + ToStringBuilder.reflectionToString(event));
-						}
 					}
 					break;
 					
 				case XMLEvent.NAMESPACE:
-					log.finer(">> NAMESPACE");
 					final Namespace ne = (Namespace) event;
+					StringBuilder sb = new StringBuilder();
 					if (delayedStart != null) {
-						final String s = "\n" + indent + "<" + prefix() + delayedStart.getName().getLocalPart() + " "+
-						"xmlns"+ (this.prefix != null? ":"+this.prefix : "") + "=\"" + ne.getValue() + "\" xmlns:xsi=\"" + ne.getName() + "\""+
-						">";
-						out.write(s);
-						logStep(s);
+						sb.append("\n" + indent + "<" + prefix(ne.getName()) + delayedStart.getName().getLocalPart());
 						delayedStart = null;
-					} else {
-						log.fine("NAMESPACE XMLEvent " + ToStringBuilder.reflectionToString(event));
 					}
+					sb.append(namespace(ne));
+					out.write(sb.toString());
+					startTagIncomplete = true;
 					break;
 					
 				case XMLEvent.CHARACTERS:
-					log.finer(">> CHARACTERS");
 					closeStartTagIfNeeded();
 					final Characters ce = event.asCharacters();
 					final char[] arr = ce.getData().toCharArray();
 					out.write(escape(arr));
-					logStep(ce.getData());
 					break;
 					
 				case XMLEvent.END_ELEMENT:
-					log.finer(">> END_ELEMENT");
 					closeStartTagIfNeeded();
 					indent.deleteCharAt(0);
 					final EndElement ee = event.asEndElement();
-					final String str2 = "</" + prefix() + ee.getName().getLocalPart() + ">\n" + indent;
-					out.write(str2);
-					logStep(str2);
+					out.write("</" + prefix(ee.getName()) + ee.getName().getLocalPart() + ">\n" + indent);
 					break;
 					
 				case XMLEvent.END_DOCUMENT:
-					log.finer(">> END_DOCUMENT");
 					closeStartTagIfNeeded();
-					/*  2014.10 miguel
-					 *  No need to do anything while writing to a string 
+					/*  
+					 * No need to do anything while writing to a string 
 					 */
-					log.finer("END_DOCUMENT XMLEvent " + ToStringBuilder.reflectionToString(event));
 					break;
 					
 				case XMLEvent.ATTRIBUTE:
-					log.finer(">> ATTRIBUTE");
 					final Attribute a = (Attribute) event;
-					final String str3 = " " + a.getName() + "=\"" + a.getValue() + "\" ";
-					out.write(str3);
-					log.fine(ToStringBuilder.reflectionToString(a));
-					logStep(str3);
+					out.write(" " + a.getName() + "=\"" + a.getValue() + "\" ");
 					break;
 					
 				default:
-					log.info("getEventType " + event.getEventType());
-					log.info("PW Unhandled XMLEvent " + ToStringBuilder.reflectionToString(event));
+					log.finer("PW Unhandled XMLEvent " + ToStringBuilder.reflectionToString(event));
 					break;
 				}
 			} catch (IOException e) {
-				log.log(Level.SEVERE, "PW I/O error: "+e);
+				log.severe("PW I/O error: " + e.getMessage());
 				log.log(Level.FINER, "PW I/O error: ", e);
 				throw new XMLStreamException(e);
 			}
 		}
+	}
+
+	/**
+	 * Given a namespace event, returns the xmlns declaration with proper prefix
+	 * from the preferred prefix parameter map or default prefix
+	 */
+	private String namespace(final Namespace ne) {
+		StringBuilder sb = new StringBuilder(" xmlns");
+		String prefix = null;
+		if (this.peferredPrefixes != null) {
+			prefix = this.peferredPrefixes.get(ne.getValue());
+		}
+		if (prefix == null && this.defaultPrefix != null) {
+			prefix = this.defaultPrefix;
+		}
+		if (prefix != null) {
+			sb.append(":").append(prefix);
+		}
+		sb.append("=\"").append(ne.getValue()).append("\"");
+		return sb.toString();
 	}
 
 	/**
@@ -242,39 +214,51 @@ public final class XmlEventWriter implements XMLEventWriter {
 		return sb.toString();
 	}
 
-	private String prefix() {
-		if (this.prefix != null) {
-			return this.prefix + ":";
+	/**
+	 * Return the prefix for the current tag checking if there is a parent prefix set, or a default prefix
+	 */
+	private String peferredPrefix(final QName qname) {
+		if (this.peferredPrefixes != null) {
+			String prefix = this.peferredPrefixes.get(qname.getNamespaceURI());
+			if (prefix != null) {
+				return prefix;
+			}
+		}
+		/*
+		 * Sebastian sep 2017: qname prefix must be ignored since closing AppHdr will include unbounded ns2
+		 */
+		//if (!StringUtils.isBlank(qname.getPrefix()) && !StringUtils.equals(qname.getPrefix(), "xmlns")) {
+		//	return qname.getPrefix();
+		if (this.defaultPrefix != null) {
+			return this.defaultPrefix;
+		} else {
+			return null;
+		}
+	}
+	
+	private String prefix(final QName qname) {
+		String prefix = peferredPrefix(qname);
+		if (prefix != null) {
+			return prefix + ":";
 		} else {
 			return "";
 		}
 	}
 	
-	private void logStep(final String str) {
-        if (log.isLoggable(STEP_LEVEL)) {
-        	stepOutLog.append(str);
-        	log.log(STEP_LEVEL, stepOutLog.toString());
-        }
-    }
-
 	private void closeStartTagIfNeeded() throws IOException {
         if (this.startTagIncomplete) {
         	out.write('>');
-        	logStep(">");
         	this.startTagIncomplete = false;
         }
     }
 
 	public void add(XMLEventReader arg0) throws XMLStreamException {
-		log.fine("ADD EventReader: " + ToStringBuilder.reflectionToString(arg0));
 	}
 
 	public void close() throws XMLStreamException {
-		log.fine("close ");
 	}
 
 	public void flush() throws XMLStreamException {
-		log.fine("flush ");
 		try {
             out.flush();
         } catch (IOException e) {
@@ -287,40 +271,105 @@ public final class XmlEventWriter implements XMLEventWriter {
 	}
 
 	public String getPrefix(String arg0) throws XMLStreamException {
-		log.fine("ADD EventReader: " + ToStringBuilder.reflectionToString(arg0));
 		return null;
 	}
 
 	public void setDefaultNamespace(String arg0) throws XMLStreamException {
-		log.fine("ADD EventReader: " + ToStringBuilder.reflectionToString(arg0));
 	}
 
 	public void setNamespaceContext(NamespaceContext arg0) throws XMLStreamException {
-		log.fine("ADD EventReader: " + ToStringBuilder.reflectionToString(arg0));
 	}
 
 	public void setPrefix(String arg0, String arg1) throws XMLStreamException {
-		log.fine("ADD EventReader: " + ToStringBuilder.reflectionToString(arg0) + ", " + ToStringBuilder.reflectionToString(arg1));
 	}
 	
+	/*
+	 * Sebastian sep 2017: esto no se puede usar porque al usarlo funciona en los elements pero 
+	 * no se recibe ningun evento namespace y quedan sin definir en el root
+	 */
 	private static final class ProwideNamespaceContext implements NamespaceContext {
-		private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(ProwideNamespaceContext.class.getName());
-
+		
 		public String getNamespaceURI(String prefix) {
-			log.finest("getNamespaceURI(" + ToStringBuilder.reflectionToString(prefix) + ")");
+			//return XsysNamespaces.namespaceURI(prefix);
 			return null;
 		}
 
 		public String getPrefix(String namespaceURI) {
-			log.finest("getPrefix(" + ToStringBuilder.reflectionToString(namespaceURI) + ")");
+			//return XsysNamespaces.prefix(namespaceURI);
 			return null;
 		}
 
 		@SuppressWarnings("rawtypes")
         public Iterator getPrefixes(String namespaceURI) {
-			log.finest("getPrefixes(" + ToStringBuilder.reflectionToString(namespaceURI) + ")");
+			/*
+			String prefix = XsysNamespaces.prefix(namespaceURI);
+			if (prefix != null) {
+				List<String> result = new ArrayList<String>();
+				result.add(prefix);
+				return result.iterator();
+			}
+			*/
 			return null;
 		}
 	}
 
+	/**
+	 * @since 7.9.3
+	 */
+	public String getDefaultPrefix() {
+		return defaultPrefix;
+	}
+
+	/**
+	 * @since 7.9.3
+	 */
+	public void setDefaultPrefix(String defaultPrefix) {
+		this.defaultPrefix = defaultPrefix;
+	}
+
+	/**
+	 * @since 7.9.3
+	 */
+	public Map<String, String> getPeferredPrefixes() {
+		return peferredPrefixes;
+	}
+
+	/**
+	 * Custom optional prefix configuration, if provided, this prefixes will
+	 * be used regardless of any other context namespaces and prefix configuration.
+	 * @param peferredPrefixes a map with namespaceURIs as keys and prefixes as values
+	 * @since 7.9.3
+	 */
+	public void setPeferredPrefixes(Map<String, String> peferredPrefixes) {
+		this.peferredPrefixes = peferredPrefixes;
+	}
+
+	/**
+	 * @since 7.9.3
+	 */
+	public boolean isIncludeXMLDeclaration() {
+		return includeXMLDeclaration;
+	}
+
+	/**
+	 * @since 7.9.3
+	 */
+	public void setIncludeXMLDeclaration(boolean includeXMLDeclaration) {
+		this.includeXMLDeclaration = includeXMLDeclaration;
+	}
+
+	/**
+	 * @since 7.9.3
+	 */
+	public String getRootElement() {
+		return rootElement;
+	}
+
+	/**
+	 * @since 7.9.3
+	 */
+	public void setRootElement(String rootElement) {
+		this.rootElement = rootElement;
+	}
+	
 }

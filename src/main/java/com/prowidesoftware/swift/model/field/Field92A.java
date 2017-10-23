@@ -16,41 +16,45 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
+import com.prowidesoftware.swift.model.field.AmountResolver;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 92A<br /><br />
+ * <h2>SWIFT MT Field 92A</h2>
+ * Model and parser for field 92A of a SWIFT MT message.
  *
- * validation pattern: :4!c//[&lt;N&gt;]&lt;AMOUNT&gt;15<br />
- * parser pattern: :S//[c]N<br />
- * components pattern: SSN<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>Number</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>Number</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>:4!c//[&lt;N&gt;]&lt;AMOUNT&gt;15</code></li>
+ * 		<li>parser pattern: <code>:S//[c]N</code></li>
+ * 		<li>components pattern: <code>SSN</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -58,7 +62,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, co
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -121,8 +125,10 @@ public class Field92A extends Field implements Serializable, AmountContainer, co
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -154,10 +160,10 @@ public class Field92A extends Field implements Serializable, AmountContainer, co
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
 		result.append(":");
-		result.append(StringUtils.trimToEmpty(getComponent1()));
+		append(result, 1);
 		result.append("//");
-		result.append(StringUtils.trimToEmpty(getComponent2()));
-		result.append(StringUtils.trimToEmpty(getComponent3()));
+		append(result, 2);
+		append(result, 3);
 		return result.toString();
 	}
 
@@ -191,8 +197,10 @@ public class Field92A extends Field implements Serializable, AmountContainer, co
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
@@ -232,8 +240,10 @@ public class Field92A extends Field implements Serializable, AmountContainer, co
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
 		return getComponent(2);
 	}
@@ -340,14 +350,14 @@ public class Field92A extends Field implements Serializable, AmountContainer, co
 	}
     
 	/**
-	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 * @see AmountResolver#amounts(Field)
 	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
 	
 	/**
-	 * @see {@linkplain AmountResolver#amount(Field)}
+	 * @see AmountResolver#amount(Field)
 	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
@@ -480,7 +490,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, co
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field92A> getAll(final SwiftMessage msg) {
+	public static List<Field92A> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -492,13 +502,13 @@ public class Field92A extends Field implements Serializable, AmountContainer, co
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field92A> getAll(final SwiftTagListBlock block) {
+	public static List<Field92A> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field92A> result = new java.util.ArrayList<Field92A>(arr.length);
+			final ArrayList<Field92A> result = new ArrayList<Field92A>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field92A(f));
 			}

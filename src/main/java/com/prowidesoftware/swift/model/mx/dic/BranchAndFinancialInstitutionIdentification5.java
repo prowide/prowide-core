@@ -22,8 +22,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "finInstnId",
     "brnchId"
 })
-public class BranchAndFinancialInstitutionIdentification5
-    implements CopyableTo<BranchAndFinancialInstitutionIdentification5>
+public class BranchAndFinancialInstitutionIdentification5 implements CopyableTo<BranchAndFinancialInstitutionIdentification5>
 {
 
     @XmlElement(name = "FinInstnId", required = true)
@@ -97,10 +96,12 @@ public class BranchAndFinancialInstitutionIdentification5
     }
 
     public final void copyTo(final BranchAndFinancialInstitutionIdentification5 target) {
-        // debug: does not implement copyTo
-        target.finInstnId = finInstnId;
-        // debug: does not implement copyTo
-        target.brnchId = brnchId;
+        FinancialInstitutionIdentification8 finInstnIdTarget = new FinancialInstitutionIdentification8();
+        finInstnId.copyTo(finInstnIdTarget);
+        target.finInstnId = finInstnIdTarget;
+        BranchData2 brnchIdTarget = new BranchData2();
+        brnchId.copyTo(brnchIdTarget);
+        target.brnchId = brnchIdTarget;
     }
 
 }

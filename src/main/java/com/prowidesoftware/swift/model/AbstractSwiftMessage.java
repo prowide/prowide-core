@@ -315,8 +315,7 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	}
     
     /**
-     * {@linkplain #identifier}
-     * @return
+     * {@link #identifier}
      */
 	public String getIdentifier() {
 		return identifier;
@@ -327,8 +326,7 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	}
 	
     /**
-     * {@linkplain #checksum}
-     * @return
+     * {@link #checksum}
      */
 	public String getChecksum() {
 		return checksum;
@@ -398,8 +396,7 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	}
 	
 	/**
-	 * {@linkplain #sender}
-	 * @return
+	 * {@link #sender}
 	 */
 	public String getSender() {
 		return sender;
@@ -410,8 +407,7 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	}
 
 	/**
-	 * {@linkplain #receiver}
-	 * @return
+	 * {@link #receiver}
 	 */
 	public String getReceiver() {
 		return receiver;

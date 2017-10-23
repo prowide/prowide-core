@@ -23,8 +23,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "nm",
     "pstlAdr"
 })
-public class BranchData2
-    implements CopyableTo<BranchData2>
+public class BranchData2 implements CopyableTo<BranchData2>
 {
 
     @XmlElement(name = "Id")
@@ -125,12 +124,11 @@ public class BranchData2
     }
 
     public final void copyTo(final BranchData2 target) {
-        // debug: does not implement copyTo
         target.id = id;
-        // debug: does not implement copyTo
         target.nm = nm;
-        // debug: does not implement copyTo
-        target.pstlAdr = pstlAdr;
+        PostalAddress6 pstlAdrTarget = new PostalAddress6();
+        pstlAdr.copyTo(pstlAdrTarget);
+        target.pstlAdr = pstlAdrTarget;
     }
 
 }

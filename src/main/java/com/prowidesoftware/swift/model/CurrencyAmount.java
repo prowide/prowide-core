@@ -111,8 +111,8 @@ final class CurrencyAmount implements Serializable {
 	
 	/**
 	 * Creates a currency amount from an MT field.<br />
-	 * The field must at least implement the {@linkplain AmountContainer} interface and 
-	 * either have a currency component or implements the {@linkplain CurrencyContainer}
+	 * The field must at least implement the {@link AmountContainer} interface and 
+	 * either have a currency component or implements the {@link CurrencyContainer}
 	 * For some fields like the signed 19A or the 62[F,M] which have a debit/credit mark
 	 * component, the amount will be positive or negative accordingly.
 	 * 

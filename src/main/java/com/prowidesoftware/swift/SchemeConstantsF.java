@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "F".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -18,22 +18,11 @@ public interface SchemeConstantsF {
 
     public final static String FC = "FC";
     public final static String FF = "FF";
-    public final static String FROZ = "FROZ";
-    public final static String FRWD = "FRWD";
-    public final static String FRAU = "FRAU";
     public final static String F = "F";
     public final static String FAXT = "FAXT";
     public final static String FBF = "FBF";
     public final static String FEOMA = "FEOMA";
-    public final static String FXOP = "FXOP";
-    public final static String FORX = "FORX";
     public final static String FLIPPED = "FLIPPED";
-    public final static String FXSETDET = "FXSETDET";
-    public final static String FXPRTY2 = "FXPRTY2";
-    public final static String FXPRTY1 = "FXPRTY1";
-    public final static String FXCO = "FXCO";
-    public final static String FXDET = "FXDET";
-    public final static String FXCR = "FXCR";
     public final static String FIXEDFLOAT = "FIXEDFLOAT";
     public final static String FLOATFIXED = "FLOATFIXED";
     public final static String FRABBA = "FRABBA";
@@ -48,6 +37,9 @@ public interface SchemeConstantsF {
     public final static String FXTR = "FXTR";
     public final static String FXOR = "FXOR";
     public final static String FXORDER = "FXORDER";
+    public final static String FRWD = "FRWD";
+    public final static String FRAU = "FRAU";
+    public final static String FROZ = "FROZ";
     public final static String FIAN = "FIAN";
     public final static String FCOU = "FCOU";
     public final static String FIAC = "FIAC";
@@ -82,7 +74,5 @@ public interface SchemeConstantsF {
     public final static String FOB = "FOB";
     public final static String FCA = "FCA";
     public final static String FRFR = "FRFR";
-    public final static String FORWARDS = "FORWARDS";
-    public final static String FACT = "FACT";
 
 }

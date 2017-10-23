@@ -32,8 +32,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "prty",
     "sgntr"
 })
-public class BusinessApplicationHeader1
-    implements CopyableTo<BusinessApplicationHeader1>
+public class BusinessApplicationHeader1 implements CopyableTo<BusinessApplicationHeader1>
 {
 
     @XmlElement(name = "CharSet")
@@ -350,28 +349,26 @@ public class BusinessApplicationHeader1
     }
 
     public final void copyTo(final BusinessApplicationHeader1 target) {
-        // debug: does not implement copyTo
         target.charSet = charSet;
-        // debug: does not implement copyTo
-        target.fr = fr;
-        // debug: does not implement copyTo
-        target.to = to;
-        // debug: does not implement copyTo
+        Party9Choice frTarget = new Party9Choice();
+        fr.copyTo(frTarget);
+        target.fr = frTarget;
+        Party9Choice toTarget = new Party9Choice();
+        to.copyTo(toTarget);
+        target.to = toTarget;
         target.bizMsgIdr = bizMsgIdr;
-        // debug: does not implement copyTo
         target.msgDefIdr = msgDefIdr;
-        // debug: does not implement copyTo
         target.bizSvc = bizSvc;
-        // debug: does not implement copyTo
+        // debug: XMLGregorianCalendar does not implement copyTo
         target.creDt = creDt;
-        // debug: does not implement copyTo
+        // debug: CopyDuplicate1Code does not implement copyTo
         target.cpyDplct = cpyDplct;
-        // debug: does not implement copyTo
+        // debug: Boolean does not implement copyTo
         target.pssblDplct = pssblDplct;
-        // debug: does not implement copyTo
         target.prty = prty;
-        // debug: does not implement copyTo
-        target.sgntr = sgntr;
+        SignatureEnvelope sgntrTarget = new SignatureEnvelope();
+        sgntr.copyTo(sgntrTarget);
+        target.sgntr = sgntrTarget;
     }
 
 }

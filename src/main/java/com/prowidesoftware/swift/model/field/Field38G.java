@@ -16,40 +16,43 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 38G<br /><br />
+ * <h2>SWIFT MT Field 38G</h2>
+ * Model and parser for field 38G of a SWIFT MT message.
  *
- * validation pattern: 2n1a/2n1a<br />
- * parser pattern: NS/NS<br />
- * components pattern: NSNS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>Number</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>Number</code></li> 
- * 		<li>component4: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>2n1a/2n1a</code></li>
+ * 		<li>parser pattern: <code>NS/NS</code></li>
+ * 		<li>components pattern: <code>NSNS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -57,7 +60,7 @@ public class Field38G extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -70,6 +73,26 @@ public class Field38G extends Field implements Serializable {
     public static final String F_38G = "38G";
 	public static final String PARSER_PATTERN ="NS/NS";
 	public static final String COMPONENTS_PATTERN = "NSNS";
+
+	/**
+	 * Component number for the Number From subfield
+	 */
+	public static final Integer NUMBER_FROM = 1;
+
+	/**
+	 * Component number for the Period From subfield
+	 */
+	public static final Integer PERIOD_FROM = 2;
+
+	/**
+	 * Component number for the Number To subfield
+	 */
+	public static final Integer NUMBER_TO = 3;
+
+	/**
+	 * Component number for the Period To subfield
+	 */
+	public static final Integer PERIOD_TO = 4;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -105,8 +128,10 @@ public class Field38G extends Field implements Serializable {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -138,9 +163,11 @@ public class Field38G extends Field implements Serializable {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		//FIXME serialization NS/NS
-		// @NotImplemented
-		int notImplemented;
+		append(result, 1);
+		append(result, 2);
+		result.append("/");
+		append(result, 3);
+		append(result, 4);
 		return result.toString();
 	}
 
@@ -181,6 +208,22 @@ public class Field38G extends Field implements Serializable {
 	}
 
 	/**
+	 * Get the Number From (component1).
+	 * @return the Number From from component1
+	 */
+	public String getNumberFrom() {
+		return getComponent(1);
+	}
+	
+	/**
+	 * Get the Number From (component1) as Number
+	 * @return the Number From from component1 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getNumberFromAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(1));
+	}
+
+	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
@@ -206,6 +249,25 @@ public class Field38G extends Field implements Serializable {
 		}
 		return this;
 	}
+	
+	/**
+	 * Set the Number From (component1).
+	 * @param component1 the Number From to set
+	 */
+	public Field38G setNumberFrom(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Number From (component1) from a Number object.
+	 * @see #setComponent1(java.lang.Number)
+	 * @param component1 Number with the Number From content to set
+	 */
+	public Field38G setNumberFrom(java.lang.Number component1) {
+		setComponent1(component1);
+		return this;
+	}
 	/**
 	 * Get the component2
 	 * @return the component2
@@ -216,9 +278,19 @@ public class Field38G extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Get the Period From (component2).
+	 * @return the Period From from component2
+	 */
+	public String getPeriodFrom() {
 		return getComponent(2);
 	}
 
@@ -227,6 +299,15 @@ public class Field38G extends Field implements Serializable {
 	 * @param component2 the component2 to set
 	 */
 	public Field38G setComponent2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Period From (component2).
+	 * @param component2 the Period From to set
+	 */
+	public Field38G setPeriodFrom(String component2) {
 		setComponent(2, component2);
 		return this;
 	}
@@ -243,6 +324,22 @@ public class Field38G extends Field implements Serializable {
 	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+
+	/**
+	 * Get the Number To (component3).
+	 * @return the Number To from component3
+	 */
+	public String getNumberTo() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Number To (component3) as Number
+	 * @return the Number To from component3 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getNumberToAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
@@ -272,6 +369,25 @@ public class Field38G extends Field implements Serializable {
 		}
 		return this;
 	}
+	
+	/**
+	 * Set the Number To (component3).
+	 * @param component3 the Number To to set
+	 */
+	public Field38G setNumberTo(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Number To (component3) from a Number object.
+	 * @see #setComponent3(java.lang.Number)
+	 * @param component3 Number with the Number To content to set
+	 */
+	public Field38G setNumberTo(java.lang.Number component3) {
+		setComponent3(component3);
+		return this;
+	}
 	/**
 	 * Get the component4
 	 * @return the component4
@@ -282,9 +398,19 @@ public class Field38G extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent4AsString() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Get the Period To (component4).
+	 * @return the Period To from component4
+	 */
+	public String getPeriodTo() {
 		return getComponent(4);
 	}
 
@@ -293,6 +419,15 @@ public class Field38G extends Field implements Serializable {
 	 * @param component4 the component4 to set
 	 */
 	public Field38G setComponent4(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the Period To (component4).
+	 * @param component4 the Period To to set
+	 */
+	public Field38G setPeriodTo(String component4) {
 		setComponent(4, component4);
 		return this;
 	}
@@ -386,7 +521,7 @@ public class Field38G extends Field implements Serializable {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field38G> getAll(final SwiftMessage msg) {
+	public static List<Field38G> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -398,13 +533,13 @@ public class Field38G extends Field implements Serializable {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field38G> getAll(final SwiftTagListBlock block) {
+	public static List<Field38G> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field38G> result = new java.util.ArrayList<Field38G>(arr.length);
+			final ArrayList<Field38G> result = new ArrayList<Field38G>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field38G(f));
 			}
@@ -475,10 +610,10 @@ public class Field38G extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Number From");
+		result.add("Period From");
+		result.add("Number To");
+		result.add("Period To");
 		return result;
 	}
 	

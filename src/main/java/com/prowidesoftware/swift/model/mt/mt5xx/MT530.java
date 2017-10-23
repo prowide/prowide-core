@@ -75,7 +75,7 @@ Sequence C - Additional Information (O)<ul><li class="field">Field 16 R (M)</li>
 Fieldset 98
  (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="fieldset">
 Fieldset 95
- (O) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li></ul></li><li class="sequence">
+ (O)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li></ul></li><li class="sequence">
 Sequence C1 - Status (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 25 D (M)</li>
 <li class="sequence">
@@ -120,7 +120,7 @@ Sequence C1a - Reason (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -130,7 +130,7 @@ public class MT530 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT530.class.getName());
 	
@@ -187,13 +187,13 @@ public class MT530 extends AbstractMT implements Serializable {
 	public static final String CAND = "CAND";
 
 	/**
-	* Constant for qualifier with value CLASS 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CLASS
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CLASS
+	* Constant for qualifier with value CLAS 
+	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CLAS
+	* @see com.prowidesoftware.swift.SchemeConstantsC#CLAS
 	*/
 	@Deprecated
 	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
-	public static final String CLASS = "CLASS";
+	public static final String CLAS = "CLAS";
 
 	/**
 	* Constant for qualifier with value CODU 

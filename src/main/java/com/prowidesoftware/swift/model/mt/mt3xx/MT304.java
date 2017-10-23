@@ -56,6 +56,11 @@ Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
 <li class="field">Field 17 I (O)</li>
 <li class="field">Field 77 H (O)</li>
 <li class="field">Field 14 C (O)</li>
+<li class="field">Field 32 E (O)</li>
+<li class="field">Field 30 U (O)</li>
+<li class="field">Field 14 S (O) (repetitive)</li>
+<li class="field">Field 21 A (O)</li>
+<li class="field">Field 14 E (O)</li>
 </ul></li>
 <li class="sequence">
 Sequence B (M)<ul><li class="field">Field 15 B (M)</li>
@@ -90,6 +95,7 @@ Sequence C1a (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 </ul></li>
 </ul></li>
 <li class="field">Field 22 U (O)</li>
+<li class="field">Field 35 B (O)</li>
 <li class="field">Field 22 V (O)</li>
 <li class="field">Field 98 D (O)</li>
 <li class="field">Field 98 G (O)</li>
@@ -146,7 +152,7 @@ Sequence E (O)<ul><li class="field">Field 15 E (M)</li>
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -156,7 +162,7 @@ public class MT304 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT304.class.getName());
 	
@@ -193,6 +199,15 @@ public class MT304 extends AbstractMT implements Serializable {
 	@Deprecated
 	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String AMND = "AMND";
+
+	/**
+	* Constant for qualifier with value ANDF 
+	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.ANDF
+	* @see com.prowidesoftware.swift.SchemeConstantsA#ANDF
+	*/
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	public static final String ANDF = "ANDF";
 
 	/**
 	* Constant for qualifier with value ASET 
@@ -1015,6 +1030,60 @@ public class MT304 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return the first one whose name matches 32E, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 32E at MT304 is expected to be the only one.
+	 * 
+	 * @return a Field32E object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field32E getField32E() {
+		final Tag t = tag("32E");
+		if (t != null) {
+			return new Field32E(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 30U, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 30U at MT304 is expected to be the only one.
+	 * 
+	 * @return a Field30U object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field30U getField30U() {
+		final Tag t = tag("30U");
+		if (t != null) {
+			return new Field30U(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 14E, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 14E at MT304 is expected to be the only one.
+	 * 
+	 * @return a Field14E object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field14E getField14E() {
+		final Tag t = tag("14E");
+		if (t != null) {
+			return new Field14E(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15B, 
 	 * or <code>null</code> if none is found.<br />
 	 * The first occurrence of field 15B at MT304 is expected to be the only one.
@@ -1141,24 +1210,6 @@ public class MT304 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 21A, 
-	 * or <code>null</code> if none is found.<br />
-	 * The first occurrence of field 21A at MT304 is expected to be the only one.
-	 * 
-	 * @return a Field21A object or <code>null</code> if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field21A getField21A() {
-		final Tag t = tag("21A");
-		if (t != null) {
-			return new Field21A(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21G, 
 	 * or <code>null</code> if none is found.<br />
 	 * The first occurrence of field 21G at MT304 is expected to be the only one.
@@ -1189,6 +1240,24 @@ public class MT304 extends AbstractMT implements Serializable {
 		final Tag t = tag("22U");
 		if (t != null) {
 			return new Field22U(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 35B, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 35B at MT304 is expected to be the only one.
+	 * 
+	 * @return a Field35B object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field35B getField35B() {
+		final Tag t = tag("35B");
+		if (t != null) {
+			return new Field35B(t.getValue());
 		} else {
 			return null;
 		}
@@ -1375,6 +1444,24 @@ public class MT304 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 14S, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * Multiple occurrences of field 14S at MT304 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field14S objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field14S> getField14S() {
+		final List<Field14S> result = new ArrayList<Field14S>();
+		final Tag[] tags = tags("14S");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field14S(tags[i].getValue()));
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53A, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br />
 	 * Multiple occurrences of field 53A at MT304 are expected at one sequence or across several sequences.
@@ -1532,6 +1619,24 @@ public class MT304 extends AbstractMT implements Serializable {
 		final Tag[] tags = tags("57J");
 		for (int i=0; i<tags.length; i++) {
 			result.add(new Field57J(tags[i].getValue()));
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 21A, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * Multiple occurrences of field 21A at MT304 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field21A objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field21A> getField21A() {
+		final List<Field21A> result = new ArrayList<Field21A>();
+		final Tag[] tags = tags("21A");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field21A(tags[i].getValue()));
 		}
 		return result;
 	}

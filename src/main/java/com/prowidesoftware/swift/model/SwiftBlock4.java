@@ -109,7 +109,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
 	 * 15a are found, the first one will be dropped. Also a 15a at the end of the block will be 
 	 * considered and empty sequence.</p>
 	 *
-	 * @param sequence a block with sequences to filter
+	 * @param b4 a block with sequences to filter
 	 * @return a new block containing all tags that are outside a empty 16R/S or 15a sub-block, or <code>null</code> if the parameter block is null
 	 * @since 7.8.8
 	 */

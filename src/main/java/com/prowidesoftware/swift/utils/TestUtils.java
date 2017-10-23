@@ -62,7 +62,7 @@ public class TestUtils {
 	@ProwideDeprecated(phase3=TargetYear._2018)
 	public static SwiftMessage createMT(final int i, final Tag ... tags ) {
 		DeprecationUtils.phase2(TestUtils.class, "createMT(int, Tag...)", "Use new MTxxx plus the append methods instead.");
-		final com.prowidesoftware.swift.model.SwiftMessage result = createMT(i);
+		final SwiftMessage result = createMT(i);
 		if (tags != null && tags.length>0) {
 			for (final Tag t:tags) {
 				result.getBlock4().append(t);
@@ -76,12 +76,12 @@ public class TestUtils {
 	 */
 	@Deprecated
 	@ProwideDeprecated(phase3=TargetYear._2018)
-	public static SwiftMessage createMT(final int i, final com.prowidesoftware.swift.model.SwiftTagListBlock ... blocks ) {
+	public static SwiftMessage createMT(final int i, final SwiftTagListBlock ... blocks ) {
 		DeprecationUtils.phase2(TestUtils.class, "createMT(int, SwiftTagListBlock...)", "Use new MTxxx plus the append methods instead.");
 		final SwiftMessage result = createMT(i);
 
 		if (blocks != null && blocks.length>0) {
-			for (final com.prowidesoftware.swift.model.SwiftTagListBlock b:blocks) {
+			for (final SwiftTagListBlock b:blocks) {
 				result.getBlock4().getTags().addAll(b.getTags());
 			}
 		}

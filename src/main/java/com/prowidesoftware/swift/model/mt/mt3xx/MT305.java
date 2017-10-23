@@ -54,7 +54,9 @@ Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
 <li class="field">Field 31 G (M)</li>
 <li class="field">Field 31 E (M)</li>
 <li class="field">Field 26 F (M)</li>
+<li class="field">Field 17 F (O)</li>
 <li class="field">Field 14 S (O) (repetitive)</li>
+<li class="field">Field 32 E (O)</li>
 <li class="field">Field 32 B (M)</li>
 <li class="field">Field 36  (M)</li>
 <li class="field">Field 33 B (M)</li>
@@ -88,6 +90,7 @@ Sequence B1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 <li class="field">Field 22 T (O)</li>
 <li class="field">Field 17 E (O)</li>
 <li class="field">Field 22 U (O)</li>
+<li class="field">Field 35 B (O)</li>
 <li class="field">Field 17 H (O)</li>
 <li class="field">Field 17 P (O)</li>
 <li class="field">Field 22 V (O)</li>
@@ -135,7 +138,7 @@ Sequence B1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -145,7 +148,7 @@ public class MT305 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT305.class.getName());
 	
@@ -986,6 +989,42 @@ public class MT305 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return the first one whose name matches 17F, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 17F at MT305 is expected to be the only one.
+	 * 
+	 * @return a Field17F object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field17F getField17F() {
+		final Tag t = tag("17F");
+		if (t != null) {
+			return new Field17F(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 32E, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 32E at MT305 is expected to be the only one.
+	 * 
+	 * @return a Field32E object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field32E getField32E() {
+		final Tag t = tag("32E");
+		if (t != null) {
+			return new Field32E(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32B, 
 	 * or <code>null</code> if none is found.<br />
 	 * The first occurrence of field 32B at MT305 is expected to be the only one.
@@ -1502,6 +1541,24 @@ public class MT305 extends AbstractMT implements Serializable {
 		final Tag t = tag("22U");
 		if (t != null) {
 			return new Field22U(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 35B, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 35B at MT305 is expected to be the only one.
+	 * 
+	 * @return a Field35B object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field35B getField35B() {
+		final Tag t = tag("35B");
+		if (t != null) {
+			return new Field35B(t.getValue());
 		} else {
 			return null;
 		}

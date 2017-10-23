@@ -22,8 +22,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "cd",
     "prtry"
 })
-public class ClearingSystemIdentification2Choice
-    implements CopyableTo<ClearingSystemIdentification2Choice>
+public class ClearingSystemIdentification2Choice implements CopyableTo<ClearingSystemIdentification2Choice>
 {
 
     @XmlElement(name = "Cd")
@@ -97,9 +96,7 @@ public class ClearingSystemIdentification2Choice
     }
 
     public final void copyTo(final ClearingSystemIdentification2Choice target) {
-        // debug: does not implement copyTo
         target.cd = cd;
-        // debug: does not implement copyTo
         target.prtry = prtry;
     }
 

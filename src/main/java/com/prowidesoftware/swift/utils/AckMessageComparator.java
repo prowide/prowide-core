@@ -15,7 +15,7 @@
 package com.prowidesoftware.swift.utils;
 
 /**
- * A {@linkplain SwiftMessageComparator} tailored for typical ACK matching.
+ * A {@link SwiftMessageComparator} tailored for typical ACK matching.
  * 
  * <p>Compares all values from block 1 2 3 and 4, ignoring session and sequence number in block1.
  * The trailer block 5 if present in any of the messages is also ignored. Regarding multiline fields

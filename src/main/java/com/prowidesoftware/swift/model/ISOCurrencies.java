@@ -14,13 +14,21 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.utils.IsoUtils;
 
 /**
  * Helper class to validate ISO Currency codes
  * 
+ * @deprecated use Java Currency instead
+ * @see IsoUtils#isValidISOCurrency(String)
+ * 
  * @author www.prowidesoftware.com
  * @since 3.3
  */
+@Deprecated
+@ProwideDeprecated(phase2=TargetYear._2018)
 public class ISOCurrencies extends PropertyResource {
 	private static final ISOCurrencies instance = new ISOCurrencies();
 	

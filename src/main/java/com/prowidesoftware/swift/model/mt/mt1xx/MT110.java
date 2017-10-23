@@ -44,8 +44,9 @@ import java.io.IOException;
 Sequence _A (M) (repetitive)<ul><li class="field">Field 21  (M)</li>
 <li class="field">Field 30  (M)</li>
 <li class="field">Field 32 A,B (M)</li>
+<li class="field">Field 50 A,F,K (O)</li>
 <li class="field">Field 52 A,B,D (O)</li>
-<li class="field">Field 59  (M)</li>
+<li class="field">Field 59 F,NONE (M)</li>
 </ul></li>
 </ul></div>
 
@@ -79,7 +80,7 @@ Sequence _A (M) (repetitive)<ul><li class="field">Field 21  (M)</li>
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -89,7 +90,7 @@ public class MT110 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT110.class.getName());
 	
@@ -543,6 +544,60 @@ public class MT110 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 50A, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * Multiple occurrences of field 50A at MT110 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field50A objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field50A> getField50A() {
+		final List<Field50A> result = new ArrayList<Field50A>();
+		final Tag[] tags = tags("50A");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field50A(tags[i].getValue()));
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 50F, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * Multiple occurrences of field 50F at MT110 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field50F objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field50F> getField50F() {
+		final List<Field50F> result = new ArrayList<Field50F>();
+		final Tag[] tags = tags("50F");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field50F(tags[i].getValue()));
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 50K, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * Multiple occurrences of field 50K at MT110 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field50K objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field50K> getField50K() {
+		final List<Field50K> result = new ArrayList<Field50K>();
+		final Tag[] tags = tags("50K");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field50K(tags[i].getValue()));
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 52A, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br />
 	 * Multiple occurrences of field 52A at MT110 are expected at one sequence or across several sequences.
@@ -592,6 +647,24 @@ public class MT110 extends AbstractMT implements Serializable {
 		final Tag[] tags = tags("52D");
 		for (int i=0; i<tags.length; i++) {
 			result.add(new Field52D(tags[i].getValue()));
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 59F, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * Multiple occurrences of field 59F at MT110 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field59F objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field59F> getField59F() {
+		final List<Field59F> result = new ArrayList<Field59F>();
+		final Tag[] tags = tags("59F");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field59F(tags[i].getValue()));
 		}
 		return result;
 	}

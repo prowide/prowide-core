@@ -128,7 +128,6 @@ public class DeprecationUtils {
 	/**
 	 * Sets the environment variable PW_DEPRECATED to an empty string, meaning
 	 * all flags corresponding to the deprecation phase will be active by default.
-	 * @see #setEnv(boolean, boolean, boolean)
 	 */
 	public static void clearEnv() {
 		setEnv(PW_DEPRECATED, "");

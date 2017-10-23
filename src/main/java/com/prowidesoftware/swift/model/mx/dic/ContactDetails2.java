@@ -27,8 +27,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "emailAdr",
     "othr"
 })
-public class ContactDetails2
-    implements CopyableTo<ContactDetails2>
+public class ContactDetails2 implements CopyableTo<ContactDetails2>
 {
 
     @XmlElement(name = "NmPrfx")
@@ -237,19 +236,13 @@ public class ContactDetails2
     }
 
     public final void copyTo(final ContactDetails2 target) {
-        // debug: does not implement copyTo
+        // debug: NamePrefix1Code does not implement copyTo
         target.nmPrfx = nmPrfx;
-        // debug: does not implement copyTo
         target.nm = nm;
-        // debug: does not implement copyTo
         target.phneNb = phneNb;
-        // debug: does not implement copyTo
         target.mobNb = mobNb;
-        // debug: does not implement copyTo
         target.faxNb = faxNb;
-        // debug: does not implement copyTo
         target.emailAdr = emailAdr;
-        // debug: does not implement copyTo
         target.othr = othr;
     }
 

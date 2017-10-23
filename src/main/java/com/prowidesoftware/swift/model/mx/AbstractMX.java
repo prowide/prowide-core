@@ -193,7 +193,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument {
 	}
 	
 	/**
-	 * Same as {@linkplain #message(String)} with includeXMLDeclaration set to true
+	 * Same as {@link #message(String)} with includeXMLDeclaration set to true
 	 * @since 7.8
 	 */
 	public String message(final String rootElement) {
@@ -357,7 +357,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument {
 	 * parser in the specific Mx subclass.
 	 * <br />
 	 * IMPORTANT: For the moment this is supported only in Prowide Integrator.
-	 * To parse XML into the generic MxNode structure, or to parse business headers check {@linkplain MxParser}
+	 * To parse XML into the generic MxNode structure, or to parse business headers check {@link MxParser}
 	 * 
 	 * @param xml string a string containing the Document of an MX message in XML format
 	 * @param id optional parameter to indicate the specific MX type to create; autodetected from namespace if null.
@@ -373,7 +373,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument {
 	 * Parses a file content into a specific instance of Mx. 
 	 * <br />
 	 * IMPORTANT: For the moment this is supported only in Prowide Integrator.
-	 * To parse XML into the generic MxNode structure, or to parse business headers check {@linkplain MxParser}
+	 * To parse XML into the generic MxNode structure, or to parse business headers check {@link MxParser}
 	 * 
 	 * @param file a file containing a swift MX message
  	 * @param id optional parameter to indicate the specific MX type to create; autodetected from namespace if null.

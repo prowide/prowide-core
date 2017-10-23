@@ -97,7 +97,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 	 * For other service messages (login, select, quit) this method will return null because 
 	 * there is no MT representation to create.<br />
 	 * If you need to deal with all type of messages (including service, system and user-to-user)
-	 * you can use {@linkplain #nextSwiftMessage()} instead. 
+	 * you can use {@link #nextSwiftMessage()} instead. 
 	 * </p> 
 	 * 
 	 * @return parsed message or null if content is blank

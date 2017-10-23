@@ -92,6 +92,14 @@ public abstract class Field implements PatternContainer {
 	protected Field(final String value) {
 		super();
 		parse(value);
+		/*
+		 * trim empty components to null
+		 */
+		for (int i=0; i<this.components.size(); i++) {
+			if (StringUtils.isEmpty(this.components.get(i))) {
+				this.components.set(i, null);
+			}
+		}
 	}
 	
 	/**
@@ -267,7 +275,7 @@ public abstract class Field implements PatternContainer {
 		}
 		if (position >= 0) {
 			if (position >= this.components.size()) {
-				//TODO deal with this error
+				log.warning("component number "+number+" is out of bound for field "+getName());
 			} else {
 				this.components.set(position, value);
 			}
@@ -496,13 +504,24 @@ public abstract class Field implements PatternContainer {
 	}
 
 	/**
-	 * Serializes the fields' components into the single string value (SWIFT format).
-	 * Must be overwritten by by subclasses.
+	 * Serializes the components into the a plain string value in SWIFT format.
+	 * 
+	 * <p>This method implementation is specific for each field. All not null
+	 * components are appended to the result string with proper components
+	 * separators like ':', slashes and CRLF.</p>
+	 * 
+	 * <p>For any <strong>valid</strong> field this is always true: 
+	 * <code>new Field(v)).getValue() = v</code>
+	 * meaning plain value integrity must be preserved after parsing the value
+	 * into components and serializing it back into the plain value.
+	 * Conversely this may not be true when the parsed field value is invalid 
+	 * because the parser will do a best effort to gather as many valid components
+	 * as possible and the serialization will also do a best effort to generate
+	 * valid content.</p>
+	 *  
 	 * @return SWIFT formatted value
 	 */
-	public String getValue() {
-		return joinComponents();
-	}
+	public abstract String getValue();
 
 	/**
 	 * Returns true if all field's components are blank or null
@@ -981,10 +1000,14 @@ public abstract class Field implements PatternContainer {
 			if (lines.size() >= start) {
 				if (end != null) {
 					if (end >= start) {
+						Integer trimmedEnd = end;
+						if (end > lines.size()) {
+							trimmedEnd = lines.size() - 1;
+						}
 						/*
 						 * return line subset
 						 */
-						return asString(hash, lines.subList(start - 1, end), removeSeparators);
+						return asString(hash, lines.subList(start - 1, trimmedEnd), removeSeparators);
 					} else {
 						log.warning("invalid lines range [" + start + "-" + end
 								+ "] the ending line number (" + end + ") must be greater or equal to the starting line number (" + start + ")");
@@ -1169,6 +1192,23 @@ public abstract class Field implements PatternContainer {
 		}
 	}
 	
+
+	/**
+	 * Appends a not null field component to the builder.
+	 * <br />
+	 * This helper method is used by subclasses implementation of {@link #getValue()}
+	 * 
+	 * @param result string where component content is appended
+	 * @param component component number
+	 * @since 7.9.3
+	 */
+	protected void append(StringBuilder result, int component) {
+		final String value = getComponent(component);
+		if (value != null && result != null) {
+			result.append(value);
+		}
+	}
+	
 	/*
 	 * TO DO: 
 	 * this will take the result of getLabelComponents
@@ -1178,4 +1218,5 @@ public abstract class Field implements PatternContainer {
 	 */
 	//public abstract List<String> getComponentLabels(Locale locale);
 	//public String getComponentLabel(Locale locale);
+	
 }

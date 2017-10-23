@@ -124,7 +124,7 @@ Sequence E (O)<ul><li class="field">Field 15 E (M)</li>
 <li class="sequence">
 Sequence E1 (O)<ul><li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence E1a (M) (repetitive)<ul><li class="field">Field 30 F (M)</li>
+Sequence _E1a (M) (repetitive)<ul><li class="field">Field 30 F (M)</li>
 <li class="field">Field 32 M (O)</li>
 </ul></li>
 <li class="field">Field 17 F (O)</li>
@@ -187,7 +187,7 @@ Sequence H (O)<ul><li class="field">Field 15 H (M)</li>
 Sequence I (O)<ul><li class="field">Field 15 I (M)</li>
 <li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence I1 (M) (repetitive)<ul><li class="field">Field 30 G (M)</li>
+Sequence _I1 (M) (repetitive)<ul><li class="field">Field 30 G (M)</li>
 <li class="field">Field 32 U (M)</li>
 </ul></li>
 <li class="field">Field 14 A (M)</li>
@@ -198,7 +198,7 @@ Sequence I1 (M) (repetitive)<ul><li class="field">Field 30 G (M)</li>
 Sequence J (O)<ul><li class="field">Field 15 J (M)</li>
 <li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence J1 (M) (repetitive)<ul><li class="field">Field 30 G (M)</li>
+Sequence _J1 (M) (repetitive)<ul><li class="field">Field 30 G (M)</li>
 <li class="field">Field 32 U (M)</li>
 </ul></li>
 <li class="field">Field 14 A (M)</li>
@@ -209,7 +209,7 @@ Sequence J1 (M) (repetitive)<ul><li class="field">Field 30 G (M)</li>
 Sequence K (O)<ul><li class="field">Field 15 K (M)</li>
 <li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence K1 (M) (repetitive)<ul><li class="field">Field 22 X (M)</li>
+Sequence _K1 (M) (repetitive)<ul><li class="field">Field 22 X (M)</li>
 <li class="field">Field 30 F (M)</li>
 <li class="field">Field 32 M (M)</li>
 <li class="field">Field 53 A,D (O)</li>
@@ -225,7 +225,7 @@ Sequence K1 (M) (repetitive)<ul><li class="field">Field 22 X (M)</li>
 Sequence L (O)<ul><li class="field">Field 15 L (M)</li>
 <li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence L1 (M) (repetitive)<ul><li class="field">Field 22 X (M)</li>
+Sequence _L1 (M) (repetitive)<ul><li class="field">Field 22 X (M)</li>
 <li class="field">Field 30 F (M)</li>
 <li class="field">Field 32 M (M)</li>
 <li class="field">Field 53 A,D (O)</li>
@@ -241,7 +241,7 @@ Sequence L1 (M) (repetitive)<ul><li class="field">Field 22 X (M)</li>
 Sequence M (O)<ul><li class="field">Field 15 M (M)</li>
 <li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence M1 (M) (repetitive)<ul><li class="field">Field 22 E (M)</li>
+Sequence _M1 (M) (repetitive)<ul><li class="field">Field 22 E (M)</li>
 <li class="field">Field 30 F (M)</li>
 <li class="field">Field 32 M (M)</li>
 </ul></li>
@@ -257,7 +257,7 @@ Sequence M1 (M) (repetitive)<ul><li class="field">Field 22 E (M)</li>
 Sequence N (O)<ul><li class="field">Field 15 N (M)</li>
 <li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence N1 (M) (repetitive)<ul><li class="field">Field 22 E (M)</li>
+Sequence _N1 (M) (repetitive)<ul><li class="field">Field 22 E (M)</li>
 <li class="field">Field 30 F (M)</li>
 <li class="field">Field 32 M (M)</li>
 </ul></li>
@@ -296,6 +296,7 @@ Sequence P1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 <li class="field">Field 22 T (O)</li>
 <li class="field">Field 17 E (O)</li>
 <li class="field">Field 22 U (O)</li>
+<li class="field">Field 35 B (O)</li>
 <li class="field">Field 17 H (O)</li>
 <li class="field">Field 17 P (O)</li>
 <li class="field">Field 22 V (O)</li>
@@ -343,7 +344,7 @@ Sequence P1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -353,7 +354,7 @@ public class MT361 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT361.class.getName());
 	
@@ -2301,6 +2302,24 @@ public class MT361 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return the first one whose name matches 35B, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 35B at MT361 is expected to be the only one.
+	 * 
+	 * @return a Field35B object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field35B getField35B() {
+		final Tag t = tag("35B");
+		if (t != null) {
+			return new Field35B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17H, 
 	 * or <code>null</code> if none is found.<br />
 	 * The first occurrence of field 17H at MT361 is expected to be the only one.
@@ -4239,34 +4258,6 @@ public class MT361 extends AbstractMT implements Serializable {
 	}
  
 
-// BaseSequenceCodeGenerator [seq=E1a]
-	/**
-	* Class for Sequence "E1a" of MT 361
-	*/
-	public static class SequenceE1a extends SwiftTagListBlock {
-		private static final long serialVersionUID = 1L;
-		
-		/**
-		 * Constructs an empty sequence
-		 */
-	        private SequenceE1a() {
-			super(new ArrayList<Tag>());
-		}
-		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
-		private SequenceE1a(final SwiftTagListBlock content) {
-			super(content.getTags());
-		}
-		/**
-		* tagname of the first tag in the sequence which must be mandatory.
-		* may be null if we cannot determine this safely
-		*/
-		public static final String START_NAME =  "30F"  ;
-	}
-
-
 // BaseSequenceCodeGenerator [seq=F]
 	/**
 	* Class for Sequence "F" of MT 361
@@ -4891,102 +4882,6 @@ public class MT361 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=I1]
-	/**
-	* Class for Sequence "I1" of MT 361
-	*/
-	public static class SequenceI1 extends SwiftTagListBlock {
-		private static final long serialVersionUID = 1L;
-		
-		/**
-		 * Constructs an empty sequence
-		 */
-	        private SequenceI1() {
-			super(new ArrayList<Tag>());
-		}
-		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
-		private SequenceI1(final SwiftTagListBlock content) {
-			super(content.getTags());
-		}
-		/**
-		* First mandatory tagname of the sequence: <em>"30G"  </em>.
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		public static final String[] START = { "30G"   } ;
-		/**
-		* Last mandatory tagname of the sequence: <em>"32U"  </em>
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		protected static final String[] END = { "32U"   };
-		/**
-		* List of optional tags after the last mandatory tag
-		*/
-		protected static final String[] TAIL = new String[]{  };
-
-		/**
-		* same as newInstance(0, 0, tags);
-		* see #newInstance(Tag ... )
-		*/
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceI1 newInstance(final Tag ... tags) {
-			return newInstance(0, 0, tags);
-		}
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceI1 newInstance(final int start, final int end, final Tag ... tags) {
-			final SequenceI1 result = new SequenceI1();
-
-			result.append(new Tag(START[start], ""));
-
-			if (tags != null && tags.length > 0) {
-				for (final Tag t : tags) {
-					result.append(t);
-				}
-			}
-
-			result.append(new Tag(END[end], ""));
-
-			return result;
-		}
-	}
-	/**
-	* Get the list of SequenceI1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceI1> getSequenceI1List() {
-		return getSequenceI1List(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	* Get the list of SequenceI1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceI1 within the complete message
-	* @since 7.7
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceI1> getSequenceI1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceI1> result = new ArrayList<SequenceI1>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceI1.START, SequenceI1.END, SequenceI1.TAIL); 
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceI1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
-	} 
- 
-
 // BaseSequenceCodeGenerator [seq=J]
 	/**
 	* Class for Sequence "J" of MT 361
@@ -5092,102 +4987,6 @@ public class MT361 extends AbstractMT implements Serializable {
 		return new SequenceJ();
 	}
 
-
-// BaseSequenceCodeGenerator [seq=J1]
-	/**
-	* Class for Sequence "J1" of MT 361
-	*/
-	public static class SequenceJ1 extends SwiftTagListBlock {
-		private static final long serialVersionUID = 1L;
-		
-		/**
-		 * Constructs an empty sequence
-		 */
-	        private SequenceJ1() {
-			super(new ArrayList<Tag>());
-		}
-		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
-		private SequenceJ1(final SwiftTagListBlock content) {
-			super(content.getTags());
-		}
-		/**
-		* First mandatory tagname of the sequence: <em>"30G"  </em>.
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		public static final String[] START = { "30G"   } ;
-		/**
-		* Last mandatory tagname of the sequence: <em>"32U"  </em>
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		protected static final String[] END = { "32U"   };
-		/**
-		* List of optional tags after the last mandatory tag
-		*/
-		protected static final String[] TAIL = new String[]{  };
-
-		/**
-		* same as newInstance(0, 0, tags);
-		* see #newInstance(Tag ... )
-		*/
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceJ1 newInstance(final Tag ... tags) {
-			return newInstance(0, 0, tags);
-		}
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceJ1 newInstance(final int start, final int end, final Tag ... tags) {
-			final SequenceJ1 result = new SequenceJ1();
-
-			result.append(new Tag(START[start], ""));
-
-			if (tags != null && tags.length > 0) {
-				for (final Tag t : tags) {
-					result.append(t);
-				}
-			}
-
-			result.append(new Tag(END[end], ""));
-
-			return result;
-		}
-	}
-	/**
-	* Get the list of SequenceJ1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceJ1> getSequenceJ1List() {
-		return getSequenceJ1List(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	* Get the list of SequenceJ1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceJ1 within the complete message
-	* @since 7.7
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceJ1> getSequenceJ1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceJ1> result = new ArrayList<SequenceJ1>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceJ1.START, SequenceJ1.END, SequenceJ1.TAIL); 
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceJ1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
-	} 
- 
 
 // BaseSequenceCodeGenerator [seq=K]
 	/**
@@ -5295,102 +5094,6 @@ public class MT361 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=K1]
-	/**
-	* Class for Sequence "K1" of MT 361
-	*/
-	public static class SequenceK1 extends SwiftTagListBlock {
-		private static final long serialVersionUID = 1L;
-		
-		/**
-		 * Constructs an empty sequence
-		 */
-	        private SequenceK1() {
-			super(new ArrayList<Tag>());
-		}
-		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
-		private SequenceK1(final SwiftTagListBlock content) {
-			super(content.getTags());
-		}
-		/**
-		* First mandatory tagname of the sequence: <em>"22X"  </em>.
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		public static final String[] START = { "22X"   } ;
-		/**
-		* Last mandatory tagname of the sequence: <em>"57A", "57D"  </em>
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		protected static final String[] END = { "57A", "57D"   };
-		/**
-		* List of optional tags after the last mandatory tag
-		*/
-		protected static final String[] TAIL = new String[]{  };
-
-		/**
-		* same as newInstance(0, 0, tags);
-		* see #newInstance(Tag ... )
-		*/
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceK1 newInstance(final Tag ... tags) {
-			return newInstance(0, 0, tags);
-		}
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceK1 newInstance(final int start, final int end, final Tag ... tags) {
-			final SequenceK1 result = new SequenceK1();
-
-			result.append(new Tag(START[start], ""));
-
-			if (tags != null && tags.length > 0) {
-				for (final Tag t : tags) {
-					result.append(t);
-				}
-			}
-
-			result.append(new Tag(END[end], ""));
-
-			return result;
-		}
-	}
-	/**
-	* Get the list of SequenceK1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceK1> getSequenceK1List() {
-		return getSequenceK1List(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	* Get the list of SequenceK1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceK1 within the complete message
-	* @since 7.7
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceK1> getSequenceK1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceK1> result = new ArrayList<SequenceK1>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceK1.START, SequenceK1.END, SequenceK1.TAIL); 
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceK1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
-	} 
- 
-
 // BaseSequenceCodeGenerator [seq=L]
 	/**
 	* Class for Sequence "L" of MT 361
@@ -5496,102 +5199,6 @@ public class MT361 extends AbstractMT implements Serializable {
 		return new SequenceL();
 	}
 
-
-// BaseSequenceCodeGenerator [seq=L1]
-	/**
-	* Class for Sequence "L1" of MT 361
-	*/
-	public static class SequenceL1 extends SwiftTagListBlock {
-		private static final long serialVersionUID = 1L;
-		
-		/**
-		 * Constructs an empty sequence
-		 */
-	        private SequenceL1() {
-			super(new ArrayList<Tag>());
-		}
-		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
-		private SequenceL1(final SwiftTagListBlock content) {
-			super(content.getTags());
-		}
-		/**
-		* First mandatory tagname of the sequence: <em>"22X"  </em>.
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		public static final String[] START = { "22X"   } ;
-		/**
-		* Last mandatory tagname of the sequence: <em>"57A", "57D"  </em>
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		protected static final String[] END = { "57A", "57D"   };
-		/**
-		* List of optional tags after the last mandatory tag
-		*/
-		protected static final String[] TAIL = new String[]{  };
-
-		/**
-		* same as newInstance(0, 0, tags);
-		* see #newInstance(Tag ... )
-		*/
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceL1 newInstance(final Tag ... tags) {
-			return newInstance(0, 0, tags);
-		}
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceL1 newInstance(final int start, final int end, final Tag ... tags) {
-			final SequenceL1 result = new SequenceL1();
-
-			result.append(new Tag(START[start], ""));
-
-			if (tags != null && tags.length > 0) {
-				for (final Tag t : tags) {
-					result.append(t);
-				}
-			}
-
-			result.append(new Tag(END[end], ""));
-
-			return result;
-		}
-	}
-	/**
-	* Get the list of SequenceL1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceL1> getSequenceL1List() {
-		return getSequenceL1List(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	* Get the list of SequenceL1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceL1 within the complete message
-	* @since 7.7
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceL1> getSequenceL1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceL1> result = new ArrayList<SequenceL1>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceL1.START, SequenceL1.END, SequenceL1.TAIL); 
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceL1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
-	} 
- 
 
 // BaseSequenceCodeGenerator [seq=M]
 	/**
@@ -5699,102 +5306,6 @@ public class MT361 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=M1]
-	/**
-	* Class for Sequence "M1" of MT 361
-	*/
-	public static class SequenceM1 extends SwiftTagListBlock {
-		private static final long serialVersionUID = 1L;
-		
-		/**
-		 * Constructs an empty sequence
-		 */
-	        private SequenceM1() {
-			super(new ArrayList<Tag>());
-		}
-		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
-		private SequenceM1(final SwiftTagListBlock content) {
-			super(content.getTags());
-		}
-		/**
-		* First mandatory tagname of the sequence: <em>"22E"  </em>.
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		public static final String[] START = { "22E"   } ;
-		/**
-		* Last mandatory tagname of the sequence: <em>"32M"  </em>
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		protected static final String[] END = { "32M"   };
-		/**
-		* List of optional tags after the last mandatory tag
-		*/
-		protected static final String[] TAIL = new String[]{  };
-
-		/**
-		* same as newInstance(0, 0, tags);
-		* see #newInstance(Tag ... )
-		*/
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceM1 newInstance(final Tag ... tags) {
-			return newInstance(0, 0, tags);
-		}
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceM1 newInstance(final int start, final int end, final Tag ... tags) {
-			final SequenceM1 result = new SequenceM1();
-
-			result.append(new Tag(START[start], ""));
-
-			if (tags != null && tags.length > 0) {
-				for (final Tag t : tags) {
-					result.append(t);
-				}
-			}
-
-			result.append(new Tag(END[end], ""));
-
-			return result;
-		}
-	}
-	/**
-	* Get the list of SequenceM1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceM1> getSequenceM1List() {
-		return getSequenceM1List(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	* Get the list of SequenceM1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceM1 within the complete message
-	* @since 7.7
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceM1> getSequenceM1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceM1> result = new ArrayList<SequenceM1>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceM1.START, SequenceM1.END, SequenceM1.TAIL); 
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceM1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
-	} 
- 
-
 // BaseSequenceCodeGenerator [seq=N]
 	/**
 	* Class for Sequence "N" of MT 361
@@ -5900,102 +5411,6 @@ public class MT361 extends AbstractMT implements Serializable {
 		return new SequenceN();
 	}
 
-
-// BaseSequenceCodeGenerator [seq=N1]
-	/**
-	* Class for Sequence "N1" of MT 361
-	*/
-	public static class SequenceN1 extends SwiftTagListBlock {
-		private static final long serialVersionUID = 1L;
-		
-		/**
-		 * Constructs an empty sequence
-		 */
-	        private SequenceN1() {
-			super(new ArrayList<Tag>());
-		}
-		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
-		private SequenceN1(final SwiftTagListBlock content) {
-			super(content.getTags());
-		}
-		/**
-		* First mandatory tagname of the sequence: <em>"22E"  </em>.
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		public static final String[] START = { "22E"   } ;
-		/**
-		* Last mandatory tagname of the sequence: <em>"32M"  </em>
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		protected static final String[] END = { "32M"   };
-		/**
-		* List of optional tags after the last mandatory tag
-		*/
-		protected static final String[] TAIL = new String[]{  };
-
-		/**
-		* same as newInstance(0, 0, tags);
-		* see #newInstance(Tag ... )
-		*/
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceN1 newInstance(final Tag ... tags) {
-			return newInstance(0, 0, tags);
-		}
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceN1 newInstance(final int start, final int end, final Tag ... tags) {
-			final SequenceN1 result = new SequenceN1();
-
-			result.append(new Tag(START[start], ""));
-
-			if (tags != null && tags.length > 0) {
-				for (final Tag t : tags) {
-					result.append(t);
-				}
-			}
-
-			result.append(new Tag(END[end], ""));
-
-			return result;
-		}
-	}
-	/**
-	* Get the list of SequenceN1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceN1> getSequenceN1List() {
-		return getSequenceN1List(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	* Get the list of SequenceN1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceN1 within the complete message
-	* @since 7.7
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceN1> getSequenceN1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceN1> result = new ArrayList<SequenceN1>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceN1.START, SequenceN1.END, SequenceN1.TAIL); 
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceN1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
-	} 
- 
 
 // BaseSequenceCodeGenerator [seq=O]
 	/**

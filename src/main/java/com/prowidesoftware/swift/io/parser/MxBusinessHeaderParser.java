@@ -404,7 +404,7 @@ class MxBusinessHeaderParser {
 		}
 		MxNode Nm = node.findFirst("./Nm");
 		if (Nm != null) {
-			finInstnId.setBICFI(Nm.getValue());
+			finInstnId.setNm(Nm.getValue());
 		}
 		MxNode PstlAdr = node.findFirst("./PstlAdr");
 		if (PstlAdr != null) {

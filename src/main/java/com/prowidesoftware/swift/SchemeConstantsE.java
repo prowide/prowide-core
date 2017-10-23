@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "E".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -23,12 +23,12 @@ public interface SchemeConstantsE {
     public final static String ELEC = "ELEC";
     public final static String E = "E";
     public final static String EURO = "EURO";
-    public final static String EXCH = "EXCH";
     public final static String EXBO = "EXBO";
     public final static String EXA_EXA = "EXA/EXA";
     public final static String EBD_360 = "EBD/360";
     public final static String EMA = "EMA";
     public final static String ESTT = "ESTT";
+    public final static String EXCH = "EXCH";
     public final static String EMAI = "EMAI";
     public final static String EXPI = "EXPI";
     public final static String EXER = "EXER";
@@ -68,9 +68,6 @@ public interface SchemeConstantsE {
     public final static String EXW = "EXW";
     public final static String EUCPURR_LATEST_VERSION = "EUCPURR_LATEST_VERSION";
     public final static String EUCP_LATEST_VERSION = "EUCP_LATEST_VERSION";
-    public final static String EMAL = "EMAL";
-    public final static String EFRE = "EFRE";
-    public final static String EFCT = "EFCT";
     public final static String EC = "EC";
     public final static String ED = "ED";
 

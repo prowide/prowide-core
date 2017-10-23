@@ -392,6 +392,49 @@ public class Tag implements Serializable {
 		return result;
 	}
 
+	/**
+	 * Similar to {@link #equals(Object)} but ignoring carriage returns characters in tag values.
+	 * Meaning CRLF in any of the tags will match both CRLF in the other tag and just LF in the other tag
+	 * @param other another tag to compare
+	 * @return true if both tags are equals despite the CR
+	 * @since 7.9.3
+	 */
+	public boolean equalsIgnoreCR(Tag other) {
+		if (other == null)
+			return false;
+		if (this == other)
+			return true;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (sortKey == null) {
+			if (other.sortKey != null)
+				return false;
+		} else if (!sortKey.equals(other.sortKey))
+			return false;
+		if (unparsedTexts == null) {
+			if (other.unparsedTexts != null)
+				return false;
+		} else if (!unparsedTexts.equals(other.unparsedTexts))
+			return false;
+		if (value == null) {
+			if (other.value != null)
+				return false;
+		} else if (!StringUtils.replace(value, "\r", "").equals(StringUtils.replace(other.value, "\r", "")))
+			return false;
+		return true;
+	}
+	
+	/**
+	 * Notice two tags with multiple lines as value, one using CRLF characters as line feed
+	 * and the other using just a LF character will not be reported as equals.
+	 * <br />
+	 * Beware that depending on the message/tags source the line feeds may or may not be preceded 
+	 * by the carriage return. BTW, for SWIFT the carriage return is mandatory in all tags.
+	 * @see #equalsIgnoreCR(Tag)
+	 */
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

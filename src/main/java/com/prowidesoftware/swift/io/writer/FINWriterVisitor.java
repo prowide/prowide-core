@@ -311,12 +311,13 @@ public class FINWriterVisitor implements IMessageVisitor {
 			return;
 		}
 		
+		final String value = StringUtils.trimToEmpty(t.getValue());
 		if (StringUtils.isNotEmpty(t.getName())) {
 			// we have name
-			write("{" + t.getName() + ":" + t.getValue());
+			write("{" + t.getName() + ":" + value);
 		} else {
 			// no name but value => {<value>}
-			write("{" + t.getValue());
+			write("{" + value);
 		}
 
 		// if tag has unparsed texts, write them down.

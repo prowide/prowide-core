@@ -303,7 +303,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	}
 	
 	/**
-	 * Parses the raw message content into a {@linkplain SwiftMessage} object.
+	 * Parses the raw message content into a {@link SwiftMessage} object.
 	 * @return the parsed message or <code>null</code> if the raw content is not set or cannot be parsed
 	 * @since 7.8.9
 	 */

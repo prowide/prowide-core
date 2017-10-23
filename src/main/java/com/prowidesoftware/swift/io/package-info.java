@@ -5,6 +5,6 @@
  * between Prowide Inc. and its commercial customers and partners.
  *******************************************************************************/
 /**
- * RJE reader and interfaces for conversion between FIN, XML and SwiftMessage.
+ * RJE reader/writer to process batch files with multiple messages.
  */
 package com.prowidesoftware.swift.io;

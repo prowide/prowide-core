@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "D".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -16,9 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsD {
 
-    public final static String DUPL = "DUPL";
-    public final static String DRAW = "DRAW";
     public final static String DERV = "DERV";
+    public final static String DUPL = "DUPL";
     public final static String DAVO = "DAVO";
     public final static String DAVF = "DAVF";
     public final static String DIGI = "DIGI";
@@ -28,6 +27,7 @@ public interface SchemeConstantsD {
     public final static String D = "D";
     public final static String DAAC = "DAAC";
     public final static String DPLO = "DPLO";
+    public final static String DRAW = "DRAW";
     public final static String DBIR = "DBIR";
     public final static String DOMI = "DOMI";
     public final static String DIST = "DIST";
@@ -64,7 +64,6 @@ public interface SchemeConstantsD {
     public final static String DSSE = "DSSE";
     public final static String DISF = "DISF";
     public final static String DLVR = "DLVR";
-    public final static String DOCT = "DOCT";
     public final static String DAF = "DAF";
     public final static String DEQ = "DEQ";
     public final static String DES = "DES";
@@ -73,7 +72,5 @@ public interface SchemeConstantsD {
     public final static String DDU = "DDU";
     public final static String DUCA = "DUCA";
     public final static String DISPAR = "DISPAR";
-    public final static String DIRC = "DIRC";
-    public final static String DELV = "DELV";
 
 }

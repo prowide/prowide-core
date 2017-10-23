@@ -25,8 +25,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "cityOfBirth",
     "ctryOfBirth"
 })
-public class DateAndPlaceOfBirth
-    implements CopyableTo<DateAndPlaceOfBirth>
+public class DateAndPlaceOfBirth implements CopyableTo<DateAndPlaceOfBirth>
 {
 
     @XmlElement(name = "BirthDt", required = true)
@@ -154,13 +153,10 @@ public class DateAndPlaceOfBirth
     }
 
     public final void copyTo(final DateAndPlaceOfBirth target) {
-        // debug: does not implement copyTo
+        // debug: XMLGregorianCalendar does not implement copyTo
         target.birthDt = birthDt;
-        // debug: does not implement copyTo
         target.prvcOfBirth = prvcOfBirth;
-        // debug: does not implement copyTo
         target.cityOfBirth = cityOfBirth;
-        // debug: does not implement copyTo
         target.ctryOfBirth = ctryOfBirth;
     }
 

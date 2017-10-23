@@ -22,8 +22,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "clrSysId",
     "mmbId"
 })
-public class ClearingSystemMemberIdentification2
-    implements CopyableTo<ClearingSystemMemberIdentification2>
+public class ClearingSystemMemberIdentification2 implements CopyableTo<ClearingSystemMemberIdentification2>
 {
 
     @XmlElement(name = "ClrSysId")
@@ -97,9 +96,9 @@ public class ClearingSystemMemberIdentification2
     }
 
     public final void copyTo(final ClearingSystemMemberIdentification2 target) {
-        // debug: does not implement copyTo
-        target.clrSysId = clrSysId;
-        // debug: does not implement copyTo
+        ClearingSystemIdentification2Choice clrSysIdTarget = new ClearingSystemIdentification2Choice();
+        clrSysId.copyTo(clrSysIdTarget);
+        target.clrSysId = clrSysIdTarget;
         target.mmbId = mmbId;
     }
 

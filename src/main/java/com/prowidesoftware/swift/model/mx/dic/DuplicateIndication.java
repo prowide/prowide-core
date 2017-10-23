@@ -22,8 +22,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "ref",
     "info"
 })
-public class DuplicateIndication
-    implements CopyableTo<DuplicateIndication>
+public class DuplicateIndication implements CopyableTo<DuplicateIndication>
 {
 
     @XmlElement(name = "Ref", required = true)
@@ -97,9 +96,7 @@ public class DuplicateIndication
     }
 
     public final void copyTo(final DuplicateIndication target) {
-        // debug: does not implement copyTo
         target.ref = ref;
-        // debug: does not implement copyTo
         target.info = info;
     }
 

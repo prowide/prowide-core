@@ -21,13 +21,13 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * Main annotation to track prowide deprecated items.
  * 
- * See <a href="http://www.prowidesoftware.com/deprecation-policy.jsp">http://www.prowidesoftware.com/deprecation-policy.jsp</a>
+ * See <a href="http://www.prowidesoftware.com/resources/deprecation-policy">Deprecation Policy</a>
  * for more details.
  * 
- * <em>This annotation is intended for internal use of Prowide and 
+ * <p>This annotation is intended for internal use of Prowide and 
  * source code administration. It may suffer incompatible changes 
  * without prior notice.
- * </em>
+ * </p>
  * 
  * @author miguel@prowidesoftware.com
  * @since 7.8.1

@@ -113,7 +113,7 @@ Sequence C (M)<ul><li class="field">Field 32 B (M)</li>
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -123,7 +123,7 @@ public class MT107 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT107.class.getName());
 	
@@ -1248,6 +1248,7 @@ public class MT107 extends AbstractMT implements Serializable {
 	 * @since 7.7
 	 */
 	 //keep in sync with 104.txt
+	@SequenceStyle(Type.CUSTOM)
 	public SequenceC getSequenceC() {
 		if (super.m == null || super.m.getBlock4() == null) {
 			return new SequenceC(SwiftTagListBlock.EMPTY_LIST);

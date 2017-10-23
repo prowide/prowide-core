@@ -16,47 +16,48 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
-import com.prowidesoftware.swift.model.BIC;
-import com.prowidesoftware.swift.model.field.BICContainer;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 102<br /><br />
+ * <h2>SWIFT MT Field 102</h2>
+ * Model and parser for field 102 of a SWIFT MT message.
  *
- * validation pattern: &lt;BIC&gt;<br />
- * parser pattern: S<br />
- * components pattern: B<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>LogicalTerminalAddress</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>BIC</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>&lt;LT&gt;</code></li>
+ * 		<li>parser pattern: <code>S</code></li>
+ * 		<li>components pattern: <code>Z</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
-public class Field102 extends Field implements Serializable, BICContainer {
+public class Field102 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -68,12 +69,12 @@ public class Field102 extends Field implements Serializable, BICContainer {
      */
     public static final String F_102 = "102";
 	public static final String PARSER_PATTERN ="S";
-	public static final String COMPONENTS_PATTERN = "B";
+	public static final String COMPONENTS_PATTERN = "Z";
 
 	/**
-	 * Component number for the BIC subfield
+	 * Component number for the LT Address subfield
 	 */
-	public static final Integer BIC = 1;
+	public static final Integer LT_ADDRESS = 1;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -109,8 +110,10 @@ public class Field102 extends Field implements Serializable, BICContainer {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -138,7 +141,7 @@ public class Field102 extends Field implements Serializable, BICContainer {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
+		append(result, 1);
 		return result.toString();
 	}
 
@@ -171,27 +174,27 @@ public class Field102 extends Field implements Serializable, BICContainer {
 	}
 
 	/**
-	 * Get the component1 as BIC
-	 * @return the component1 converted to BIC or <code>null</code> if cannot be converted
+	 * Get the component1 as LogicalTerminalAddress
+	 * @return the component1 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
 	 */
-	public com.prowidesoftware.swift.model.BIC getComponent1AsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(1));
+	public com.prowidesoftware.swift.model.LogicalTerminalAddress getComponent1AsLogicalTerminalAddress() {
+		return SwiftFormatUtils.getLTAddress(getComponent(1));
 	}
 
 	/**
-	 * Get the BIC (component1).
-	 * @return the BIC from component1
+	 * Get the LT Address (component1).
+	 * @return the LT Address from component1
 	 */
-	public String getBIC() {
+	public String getLTAddress() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the BIC (component1) as BIC
-	 * @return the BIC from component1 converted to BIC or <code>null</code> if cannot be converted
+	 * Get the LT Address (component1) as LogicalTerminalAddress
+	 * @return the LT Address from component1 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
 	 */
-	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(1));
+	public com.prowidesoftware.swift.model.LogicalTerminalAddress getLTAddressAsLogicalTerminalAddress() {
+		return SwiftFormatUtils.getLTAddress(getComponent(1));
 	}
 
 	/**
@@ -204,42 +207,31 @@ public class Field102 extends Field implements Serializable, BICContainer {
 	}
 	
 	/**
-	 * Set the component1 from a BIC object.
-	 * @param component1 the BIC with the component1 content to set
+	 * Set the component1 from a LogicalTerminalAddress object.
+	 * @param component1 the LogicalTerminalAddress with the component1 content to set
 	 */
-	public Field102 setComponent1(com.prowidesoftware.swift.model.BIC component1) {
-		setComponent(1, SwiftFormatUtils.getBIC(component1));
+	public Field102 setComponent1(com.prowidesoftware.swift.model.LogicalTerminalAddress component1) {
+		setComponent(1, SwiftFormatUtils.getLTAddress(component1));
 		return this;
 	}
 	
 	/**
-	 * Set the BIC (component1).
-	 * @param component1 the BIC to set
+	 * Set the LT Address (component1).
+	 * @param component1 the LT Address to set
 	 */
-	public Field102 setBIC(String component1) {
+	public Field102 setLTAddress(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
 	
 	/**
-	 * Set the BIC (component1) from a BIC object.
-	 * @see #setComponent1(com.prowidesoftware.swift.model.BIC)
-	 * @param component1 BIC with the BIC content to set
+	 * Set the LT Address (component1) from a LogicalTerminalAddress object.
+	 * @see #setComponent1(com.prowidesoftware.swift.model.LogicalTerminalAddress)
+	 * @param component1 LogicalTerminalAddress with the LT Address content to set
 	 */
-	public Field102 setBIC(com.prowidesoftware.swift.model.BIC component1) {
+	public Field102 setLTAddress(com.prowidesoftware.swift.model.LogicalTerminalAddress component1) {
 		setComponent1(component1);
 		return this;
-	}
-
-	public List<BIC> bics () {
-		final List<BIC> result = new ArrayList<BIC>();
-		result.add(SwiftFormatUtils.getBIC(getComponent(1)));
-		return result;
-	}
-	public List<String> bicStrings () {
-		final List<String> result = new ArrayList<String>();
-		result.add(getComponent(1));
-		return result;
 	}
 
    /**
@@ -294,7 +286,7 @@ public class Field102 extends Field implements Serializable, BICContainer {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "<BIC>";
+		return "<LT>";
 	}
 
 	/**
@@ -331,7 +323,7 @@ public class Field102 extends Field implements Serializable, BICContainer {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field102> getAll(final SwiftMessage msg) {
+	public static List<Field102> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -343,13 +335,13 @@ public class Field102 extends Field implements Serializable, BICContainer {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field102> getAll(final SwiftTagListBlock block) {
+	public static List<Field102> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field102> result = new java.util.ArrayList<Field102>(arr.length);
+			final ArrayList<Field102> result = new ArrayList<Field102>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field102(f));
 			}
@@ -400,7 +392,7 @@ public class Field102 extends Field implements Serializable, BICContainer {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add("BIC");
+		result.add("LT Address");
 		return result;
 	}
 	

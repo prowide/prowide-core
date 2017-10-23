@@ -14,14 +14,23 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
+import java.util.Locale;
+
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.utils.IsoUtils;
 
 /**
  * Helper class to validate ISO Country codes
  * 
+ * @deprecated: use Java {@link Locale#getISOCountries()} instead
+ * @see IsoUtils#isValidISOCountry(String)
+ * 
  * @author www.prowidesoftware.com
  * @since 3.3
  */
-// TODO make usage of property file optional
+@Deprecated
+@ProwideDeprecated(phase2=TargetYear._2018)
 public class ISOCountries extends PropertyResource {
 	private static final ISOCountries instance = new ISOCountries();
 	

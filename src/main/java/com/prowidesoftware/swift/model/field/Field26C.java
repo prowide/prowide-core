@@ -16,41 +16,44 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 26C<br /><br />
+ * <h2>SWIFT MT Field 26C</h2>
+ * Model and parser for field 26C of a SWIFT MT message.
  *
- * validation pattern: [3!a]/15x/5!a4!a&lt;VAR-SEQU-4&gt;<br />
- * parser pattern: [S]/S/5!a4!aS<br />
- * components pattern: SSSSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
- * 		<li>component4: <code>String</code></li> 
- * 		<li>component5: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>[3!a]/15x/5!a4!a&lt;VAR-SEQU-4&gt;</code></li>
+ * 		<li>parser pattern: <code>[S]/S/5!a4!aS</code></li>
+ * 		<li>components pattern: <code>SSSSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -58,7 +61,7 @@ public class Field26C extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -71,6 +74,31 @@ public class Field26C extends Field implements Serializable {
     public static final String F_26C = "26C";
 	public static final String PARSER_PATTERN ="[S]/S/5!a4!aS";
 	public static final String COMPONENTS_PATTERN = "SSSSS";
+
+	/**
+	 * Component number for the Delivery Details subfield
+	 */
+	public static final Integer DELIVERY_DETAILS = 1;
+
+	/**
+	 * Component number for the Delivery Location subfield
+	 */
+	public static final Integer DELIVERY_LOCATION = 2;
+
+	/**
+	 * Component number for the Allocation subfield
+	 */
+	public static final Integer ALLOCATION = 3;
+
+	/**
+	 * Component number for the Type subfield
+	 */
+	public static final Integer TYPE = 4;
+
+	/**
+	 * Component number for the Denomination Form subfield
+	 */
+	public static final Integer DENOMINATION_FORM = 5;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -106,8 +134,10 @@ public class Field26C extends Field implements Serializable {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -122,16 +152,16 @@ public class Field26C extends Field implements Serializable {
 				setComponent3(toparse);
 			}
 			if (toparse.length() >= 5) {
-				setComponent3(org.apache.commons.lang.StringUtils.substring(toparse, 0, 5));
+				setComponent3(StringUtils.substring(toparse, 0, 5));
 			}
 			if (toparse.length() > 5 && toparse.length() < 9) {
-				setComponent4(org.apache.commons.lang.StringUtils.substring(toparse, 5));
+				setComponent4(StringUtils.substring(toparse, 5));
 			}
 			if (toparse.length() >= 9) {
-				setComponent4(org.apache.commons.lang.StringUtils.substring(toparse, 5, 9));
+				setComponent4(StringUtils.substring(toparse, 5, 9));
 			}
 			if (toparse.length() > 9) {
-				setComponent5(org.apache.commons.lang.StringUtils.substring(toparse, 9));
+				setComponent5(StringUtils.substring(toparse, 9));
 			}
 		}
 	}
@@ -154,13 +184,13 @@ public class Field26C extends Field implements Serializable {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
+		append(result, 1);
 		result.append("/");
-		result.append(StringUtils.trimToEmpty(getComponent2()));
+		append(result, 2);
 		result.append("/");
-		result.append(StringUtils.trimToEmpty(getComponent3()));
-		result.append(StringUtils.trimToEmpty(getComponent4()));
-		result.append(StringUtils.trimToEmpty(getComponent5()));
+		append(result, 3);
+		append(result, 4);
+		append(result, 5);
 		return result.toString();
 	}
 
@@ -194,9 +224,19 @@ public class Field26C extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
+		return getComponent(1);
+	}
+
+	/**
+	 * Get the Delivery Details (component1).
+	 * @return the Delivery Details from component1
+	 */
+	public String getDeliveryDetails() {
 		return getComponent(1);
 	}
 
@@ -205,6 +245,15 @@ public class Field26C extends Field implements Serializable {
 	 * @param component1 the component1 to set
 	 */
 	public Field26C setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Delivery Details (component1).
+	 * @param component1 the Delivery Details to set
+	 */
+	public Field26C setDeliveryDetails(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -218,9 +267,19 @@ public class Field26C extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Get the Delivery Location (component2).
+	 * @return the Delivery Location from component2
+	 */
+	public String getDeliveryLocation() {
 		return getComponent(2);
 	}
 
@@ -229,6 +288,15 @@ public class Field26C extends Field implements Serializable {
 	 * @param component2 the component2 to set
 	 */
 	public Field26C setComponent2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Delivery Location (component2).
+	 * @param component2 the Delivery Location to set
+	 */
+	public Field26C setDeliveryLocation(String component2) {
 		setComponent(2, component2);
 		return this;
 	}
@@ -242,9 +310,19 @@ public class Field26C extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
+		return getComponent(3);
+	}
+
+	/**
+	 * Get the Allocation (component3).
+	 * @return the Allocation from component3
+	 */
+	public String getAllocation() {
 		return getComponent(3);
 	}
 
@@ -253,6 +331,15 @@ public class Field26C extends Field implements Serializable {
 	 * @param component3 the component3 to set
 	 */
 	public Field26C setComponent3(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Allocation (component3).
+	 * @param component3 the Allocation to set
+	 */
+	public Field26C setAllocation(String component3) {
 		setComponent(3, component3);
 		return this;
 	}
@@ -266,9 +353,19 @@ public class Field26C extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent4AsString() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Get the Type (component4).
+	 * @return the Type from component4
+	 */
+	public String getType() {
 		return getComponent(4);
 	}
 
@@ -277,6 +374,15 @@ public class Field26C extends Field implements Serializable {
 	 * @param component4 the component4 to set
 	 */
 	public Field26C setComponent4(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the Type (component4).
+	 * @param component4 the Type to set
+	 */
+	public Field26C setType(String component4) {
 		setComponent(4, component4);
 		return this;
 	}
@@ -290,9 +396,19 @@ public class Field26C extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent5AsString() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Get the Denomination Form (component5).
+	 * @return the Denomination Form from component5
+	 */
+	public String getDenominationForm() {
 		return getComponent(5);
 	}
 
@@ -301,6 +417,15 @@ public class Field26C extends Field implements Serializable {
 	 * @param component5 the component5 to set
 	 */
 	public Field26C setComponent5(String component5) {
+		setComponent(5, component5);
+		return this;
+	}
+	
+	/**
+	 * Set the Denomination Form (component5).
+	 * @param component5 the Denomination Form to set
+	 */
+	public Field26C setDenominationForm(String component5) {
 		setComponent(5, component5);
 		return this;
 	}
@@ -397,7 +522,7 @@ public class Field26C extends Field implements Serializable {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field26C> getAll(final SwiftMessage msg) {
+	public static List<Field26C> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -409,13 +534,13 @@ public class Field26C extends Field implements Serializable {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field26C> getAll(final SwiftTagListBlock block) {
+	public static List<Field26C> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field26C> result = new java.util.ArrayList<Field26C>(arr.length);
+			final ArrayList<Field26C> result = new ArrayList<Field26C>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field26C(f));
 			}
@@ -482,11 +607,11 @@ public class Field26C extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
-		result.add(null);
+		result.add("Delivery Details");
+		result.add("Delivery Location");
+		result.add("Allocation");
+		result.add("Type");
+		result.add("Denomination Form");
 		return result;
 	}
 	

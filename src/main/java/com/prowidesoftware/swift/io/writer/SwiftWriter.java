@@ -125,7 +125,7 @@ public class SwiftWriter {
     /**
      * Write the given block to writer in its native SWIFT format
      * 
-     * @param b1 a not null block 3
+     * @param b3 a not null block 3
      * @param writer
      * @since 7.8.6
      */

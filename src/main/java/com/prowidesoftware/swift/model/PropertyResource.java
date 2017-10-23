@@ -22,12 +22,20 @@ import java.util.logging.Logger;
 
 import org.apache.commons.lang.Validate;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 /**
  * Common code for subclasses.
+ *
+ * @deprecated this class was meant to handle country and currency catalogs and it is no longer needed
+ * in favor of native Java implementations in Currency and Locale 
  * 
  * @author www.prowidesoftware.com
  * @since 3.3
  */
+@Deprecated
+@ProwideDeprecated(phase2=TargetYear._2018)
 public abstract class PropertyResource {
 	private static final Logger log = Logger.getLogger(PropertyResource.class.getName());
 

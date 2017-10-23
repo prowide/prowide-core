@@ -22,8 +22,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "cd",
     "prtry"
 })
-public class PersonIdentificationSchemeName1Choice
-    implements CopyableTo<PersonIdentificationSchemeName1Choice>
+public class PersonIdentificationSchemeName1Choice implements CopyableTo<PersonIdentificationSchemeName1Choice>
 {
 
     @XmlElement(name = "Cd")
@@ -97,9 +96,7 @@ public class PersonIdentificationSchemeName1Choice
     }
 
     public final void copyTo(final PersonIdentificationSchemeName1Choice target) {
-        // debug: does not implement copyTo
         target.cd = cd;
-        // debug: does not implement copyTo
         target.prtry = prtry;
     }
 

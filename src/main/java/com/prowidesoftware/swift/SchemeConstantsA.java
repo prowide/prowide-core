@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "A".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -19,15 +19,13 @@ public interface SchemeConstantsA {
     public final static String AFRI = "AFRI";
     public final static String APAC = "APAC";
     public final static String AUTH = "AUTH";
-    public final static String AMTL = "AMTL";
-    public final static String AMAM = "AMAM";
     public final static String AFB = "AFB";
     public final static String A = "A";
     public final static String AMND = "AMND";
     public final static String AGNT = "AGNT";
-    public final static String AMNA = "AMNA";
     public final static String AFWD = "AFWD";
     public final static String ASET = "ASET";
+    public final static String ANDF = "ANDF";
     public final static String AMEND = "AMEND";
     public final static String AVSO = "AVSO";
     public final static String AMER = "AMER";
@@ -36,17 +34,16 @@ public interface SchemeConstantsA {
     public final static String AVRO = "AVRO";
     public final static String ASIA = "ASIA";
     public final static String AVRF = "AVRF";
-    public final static String ACCW = "ACCW";
-    public final static String ACCOUNT = "ACCOUNT";
-    public final static String ANTO = "ANTO";
-    public final static String APER = "APER";
     public final static String ACT_360 = "ACT/360";
     public final static String ACT_365 = "ACT/365";
     public final static String AFI_365 = "AFI/365";
+    public final static String ACCW = "ACCW";
     public final static String ALTE = "ALTE";
     public final static String ADVC = "ADVC";
     public final static String ADTX = "ADTX";
     public final static String AGRE = "AGRE";
+    public final static String AMTL = "AMTL";
+    public final static String AMAM = "AMAM";
     public final static String ADMT = "ADMT";
     public final static String ADDR = "ADDR";
     public final static String ADDINFO = "ADDINFO";
@@ -63,6 +60,7 @@ public interface SchemeConstantsA {
     public final static String AFFM = "AFFM";
     public final static String ADVI = "ADVI";
     public final static String ALLO = "ALLO";
+    public final static String ANTO = "ANTO";
     public final static String ACCA = "ACCA";
     public final static String AKTI = "AKTI";
     public final static String AUTA = "AUTA";
@@ -85,7 +83,6 @@ public interface SchemeConstantsA {
     public final static String APLI = "APLI";
     public final static String ADEX = "ADEX";
     public final static String ARRE = "ARRE";
-    public final static String ACCL = "ACCL";
     public final static String ACTINFO = "ACTINFO";
     public final static String ACCT = "ACCT";
     public final static String ACTCURR = "ACTCURR";
@@ -96,9 +93,5 @@ public interface SchemeConstantsA {
     public final static String ALUM = "ALUM";
     public final static String ALLOC = "ALLOC";
     public final static String ADDING_OUR_CONFIRMATION = "ADDING_OUR_CONFIRMATION";
-    public final static String ADVP = "ADVP";
-    public final static String APPL = "APPL";
-    public final static String ACTP = "ACTP";
-    public final static String ALTA = "ALTA";
 
 }

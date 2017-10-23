@@ -16,39 +16,42 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 88B<br /><br />
+ * <h2>SWIFT MT Field 88B</h2>
+ * Model and parser for field 88B of a SWIFT MT message.
  *
- * validation pattern: [[/&lt;DC&gt;][/34x]$][35x](****)<br />
- * parser pattern: [[/c][/S]$][S]<br />
- * components pattern: SSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>[[/&lt;DC&gt;][/34x]$][35x](****)</code></li>
+ * 		<li>parser pattern: <code>[[/c][/S]$][S]</code></li>
+ * 		<li>components pattern: <code>SSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -56,7 +59,7 @@ public class Field88B extends Field implements Serializable, com.prowidesoftware
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -119,32 +122,27 @@ public class Field88B extends Field implements Serializable, com.prowidesoftware
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
 	@Override
 	public void parse(final String value) {
 		init(3);
-		java.util.List<String> lines = SwiftParseUtils.getLines(value);
+		List<String> lines = SwiftParseUtils.getLines(value);
 		if (lines.isEmpty()) {
 			return;
 		}
 		if (lines.get(0).startsWith("/")) {
-			if (lines.get(0).startsWith("//")) {
-				setComponent1("");
-				setComponent2(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(lines.get(0), 2)));
+			String dcMark = SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/");
+			if (StringUtils.isNotEmpty(dcMark) && dcMark.length() == 1) {
+				setComponent1(dcMark);
+				setComponent2(SwiftParseUtils.getTokenSecondLast(StringUtils.substring(lines.get(0), 1), "/"));
 			} else {
-				String t1 = SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/");
-				if (org.apache.commons.lang.StringUtils.isNotEmpty(t1)) {
-					if (t1.length() == 1) {
-						setComponent1(t1);
-						setComponent2(SwiftParseUtils.getTokenSecondLast(org.apache.commons.lang.StringUtils.substring(lines.get(0), 1), "/"));
-					} else {
-						setComponent2(org.apache.commons.lang.StringUtils.trimToNull(org.apache.commons.lang.StringUtils.substring(lines.get(0), 1)));
-					}
-				}
+				setComponent2(StringUtils.substring(lines.get(0), 1));
 			}
 			if (lines.size() > 1) {
 				setComponent3(lines.get(1));
@@ -172,20 +170,17 @@ public class Field88B extends Field implements Serializable, com.prowidesoftware
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		boolean wroteSomething = false;
 		if (getComponent1() != null) {
-			result.append("/" + StringUtils.trimToEmpty(getComponent1()));
-			wroteSomething = true;
+			result.append("/").append(getComponent1());
 		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent2())) {
-			result.append("/" + StringUtils.trimToEmpty(getComponent2()));
-			wroteSomething = true;
+		if (getComponent2() != null) {
+			result.append("/").append(getComponent2());
 		}
-		if (org.apache.commons.lang.StringUtils.isNotEmpty(getComponent3())) {
-			if (wroteSomething) {
+		if (getComponent3() != null) {
+			if (result.length() > 0) {
 				result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);				
 			}
-			result.append(StringUtils.trimToEmpty(getComponent3()));
+			result.append(getComponent3());
 		}
 		return result.toString();
 	}
@@ -220,8 +215,10 @@ public class Field88B extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
@@ -261,8 +258,10 @@ public class Field88B extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
 		return getComponent(2);
 	}
@@ -311,8 +310,10 @@ public class Field88B extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -441,7 +442,7 @@ public class Field88B extends Field implements Serializable, com.prowidesoftware
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field88B> getAll(final SwiftMessage msg) {
+	public static List<Field88B> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -453,13 +454,13 @@ public class Field88B extends Field implements Serializable, com.prowidesoftware
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field88B> getAll(final SwiftTagListBlock block) {
+	public static List<Field88B> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field88B> result = new java.util.ArrayList<Field88B>(arr.length);
+			final ArrayList<Field88B> result = new ArrayList<Field88B>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field88B(f));
 			}

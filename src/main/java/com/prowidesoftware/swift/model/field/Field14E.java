@@ -16,81 +16,78 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 23X<br /><br />
+ * <h2>SWIFT MT Field 14E</h2>
+ * Model and parser for field 14E of a SWIFT MT message.
  *
- * validation pattern: 4!c/65x<br />
- * parser pattern: S/S<br />
- * components pattern: SS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>35x</code></li>
+ * 		<li>parser pattern: <code>S</code></li>
+ * 		<li>components pattern: <code>S</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
-public class Field23X extends Field implements Serializable {
+public class Field14E extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 23X
+	 * Constant with the field name 14E
 	 */
-    public static final String NAME = "23X";
+    public static final String NAME = "14E";
     /**
      * same as NAME, intended to be clear when using static imports
      */
-    public static final String F_23X = "23X";
-	public static final String PARSER_PATTERN ="S/S";
-	public static final String COMPONENTS_PATTERN = "SS";
+    public static final String F_14E = "14E";
+	public static final String PARSER_PATTERN ="S";
+	public static final String COMPONENTS_PATTERN = "S";
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Reference subfield
 	 */
-	public static final Integer CODE = 1;
-
-	/**
-	 * Component number for the Additional Information subfield
-	 */
-	public static final Integer ADDITIONAL_INFORMATION = 2;
+	public static final Integer REFERENCE = 1;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
-	public Field23X() {
-		super(2);
+	public Field14E() {
+		super(1);
 	}
 	    					
 	/**
 	 * Creates a new field and initializes its components with content from the parameter value.
 	 * @param value complete field value including separators and CRLF
 	 */
-	public Field23X(final String value) {
+	public Field14E(final String value) {
 		super(value);
 	}
 	
@@ -100,29 +97,30 @@ public class Field23X extends Field implements Serializable {
 	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
 	 * @since 7.8
 	 */
-	public Field23X(final Tag tag) {
+	public Field14E(final Tag tag) {
 		this();
 		if (tag == null) {
 			throw new IllegalArgumentException("tag cannot be null.");
 		}
-		if (!StringUtils.equals(tag.getName(), "23X")) {
-			throw new IllegalArgumentException("cannot create field 23X from tag "+tag.getName()+", tagname must match the name of the field.");
+		if (!StringUtils.equals(tag.getName(), "14E")) {
+			throw new IllegalArgumentException("cannot create field 14E from tag "+tag.getName()+", tagname must match the name of the field.");
 		}
 		parse(tag.getValue());
 	}
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
 	@Override
 	public void parse(final String value) {
-		init(2);
-		setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
-		setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
+		init(1);
+		setComponent1(value);
 	}
 	
 	/**
@@ -131,8 +129,8 @@ public class Field23X extends Field implements Serializable {
 	 * @param source a field instance to copy
 	 * @since 7.7
 	 */
-	public static Field23X newInstance(Field23X source) {
-		Field23X cp = new Field23X();
+	public static Field14E newInstance(Field14E source) {
+		Field14E cp = new Field14E();
 		cp.setComponents(new ArrayList<String>(source.getComponents()));
 		return cp;
 	}
@@ -143,9 +141,7 @@ public class Field23X extends Field implements Serializable {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-        result.append("/");
-        result.append(StringUtils.trimToEmpty(getComponent2()));
+		append(result, 1);
 		return result.toString();
 	}
 
@@ -179,17 +175,19 @@ public class Field23X extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the Code (component1).
-	 * @return the Code from component1
+	 * Get the Reference (component1).
+	 * @return the Reference from component1
 	 */
-	public String getCode() {
+	public String getReference() {
 		return getComponent(1);
 	}
 
@@ -197,58 +195,17 @@ public class Field23X extends Field implements Serializable {
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
-	public Field23X setComponent1(String component1) {
+	public Field14E setComponent1(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
 	
 	/**
-	 * Set the Code (component1).
-	 * @param component1 the Code to set
+	 * Set the Reference (component1).
+	 * @param component1 the Reference to set
 	 */
-	public Field23X setCode(String component1) {
+	public Field14E setReference(String component1) {
 		setComponent(1, component1);
-		return this;
-	}
-	/**
-	 * Get the component2
-	 * @return the component2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Same as getComponent(2)
-	 */
-	@Deprecated
-	public java.lang.String getComponent2AsString() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Get the Additional Information (component2).
-	 * @return the Additional Information from component2
-	 */
-	public String getAdditionalInformation() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Set the component2.
-	 * @param component2 the component2 to set
-	 */
-	public Field23X setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Additional Information (component2).
-	 * @param component2 the Additional Information to set
-	 */
-	public Field23X setAdditionalInformation(String component2) {
-		setComponent(2, component2);
 		return this;
 	}
 
@@ -283,7 +240,7 @@ public class Field23X extends Field implements Serializable {
 
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field23X.NAME
+	 * @return the static value of Field14E.NAME
 	 */
 	@Override
 	public String getName() {
@@ -292,7 +249,7 @@ public class Field23X extends Field implements Serializable {
 	
 	/**
 	 * Returns the field's components pattern
-	 * @return the static value of Field23X.COMPONENTS_PATTERN
+	 * @return the static value of Field14E.COMPONENTS_PATTERN
 	 */
 	@Override
 	public final String componentsPattern() {
@@ -304,7 +261,7 @@ public class Field23X extends Field implements Serializable {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "4!c/65x";
+		return "35x";
 	}
 
 	/**
@@ -312,7 +269,7 @@ public class Field23X extends Field implements Serializable {
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
-	public static Field23X get(final SwiftTagListBlock block) {
+	public static Field14E get(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return null;
 		}
@@ -320,48 +277,48 @@ public class Field23X extends Field implements Serializable {
 		if (t == null) {
 			return null;
 		}
-		return new Field23X(t) ;
+		return new Field14E(t) ;
 	}
 	
 	/**
-	 * Get the first instance of Field23X in the given message.
+	 * Get the first instance of Field14E in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
 	 */
-	public static Field23X get(final SwiftMessage msg) {
+	public static Field14E get(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return null;
 		return get(msg.getBlock4());
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field23X in the given message
+	 * Get a list of all occurrences of the field Field14E in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field23X> getAll(final SwiftMessage msg) {
+	public static List<Field14E> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field23X from the given block
+	 * Get a list of all occurrences of the field Field14E from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field23X> getAll(final SwiftTagListBlock block) {
+	public static List<Field14E> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field23X> result = new java.util.ArrayList<Field23X>(arr.length);
+			final ArrayList<Field14E> result = new ArrayList<Field14E>(arr.length);
 			for (final Tag f : arr) {
-				result.add( new Field23X(f));
+				result.add( new Field14E(f));
 			}
 			return result;
 		}
@@ -376,7 +333,7 @@ public class Field23X extends Field implements Serializable {
 	 */
 	@Override
 	public int componentsSize() {
-		return 2;
+		return 1;
 	}
 
 	/**
@@ -390,16 +347,12 @@ public class Field23X extends Field implements Serializable {
 	 */
 	@Override
 	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 2) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 23X");
+		if (component < 1 || component > 1) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 14E");
 		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
-		}
-		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
 		}
 		return null;	
 	}
@@ -414,8 +367,7 @@ public class Field23X extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
-		result.add("Code");
-		result.add("Additional Information");
+		result.add("Reference");
 		return result;
 	}
 	

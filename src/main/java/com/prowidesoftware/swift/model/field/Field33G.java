@@ -16,43 +16,48 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Currency;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
+import com.prowidesoftware.swift.model.field.CurrencyResolver;
 import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
+import com.prowidesoftware.swift.model.field.AmountResolver;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 33G<br /><br />
+ * <h2>SWIFT MT Field 33G</h2>
+ * Model and parser for field 33G of a SWIFT MT message.
  *
- * validation pattern: &lt;CUR&gt;&lt;AMOUNT&gt;15[5!c]<br />
- * parser pattern: SNS<br />
- * components pattern: CNS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>Currency</code></li> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>Currency</code></li> 
- * 		<li>component2: <code>Number</code></li> 
- * 		<li>component3: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>&lt;CUR&gt;&lt;AMOUNT&gt;15[5!c]</code></li>
+ * 		<li>parser pattern: <code>SNS</code></li>
+ * 		<li>components pattern: <code>CNS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -60,7 +65,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -83,6 +88,11 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	 * Component number for the Amount subfield
 	 */
 	public static final Integer AMOUNT = 2;
+
+	/**
+	 * Component number for the Code subfield
+	 */
+	public static final Integer CODE = 3;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -118,8 +128,10 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -127,7 +139,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	public void parse(final String value) {
 		init(3);
 		setComponent1(SwiftParseUtils.getAlphaPrefix(value));
-		String toparse = getComponent1() == null? value : org.apache.commons.lang.StringUtils.substringAfter(value, getComponent1());
+		String toparse = getComponent1() == null? value : StringUtils.substringAfter(value, getComponent1());
 		setComponent2(SwiftParseUtils.getNumericPrefix(toparse));
 		setComponent3(SwiftParseUtils.getAlphaSuffix(toparse));
 	}
@@ -334,9 +346,19 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
+		return getComponent(3);
+	}
+
+	/**
+	 * Get the Code (component3).
+	 * @return the Code from component3
+	 */
+	public String getCode() {
 		return getComponent(3);
 	}
 
@@ -345,6 +367,15 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	 * @param component3 the component3 to set
 	 */
 	public Field33G setComponent3(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Code (component3).
+	 * @param component3 the Code to set
+	 */
+	public Field33G setCode(String component3) {
 		setComponent(3, component3);
 		return this;
 	}
@@ -382,14 +413,14 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	}
     
 	/**
-	 * @see {@linkplain AmountResolver#amounts(Field)}
+	 * @see AmountResolver#amounts(Field)
 	 */
 	public List<BigDecimal> amounts() {
 		return AmountResolver.amounts(this);
 	}
 	
 	/**
-	 * @see {@linkplain AmountResolver#amount(Field)}
+	 * @see AmountResolver#amount(Field)
 	 */
 	public BigDecimal amount() {
 		return AmountResolver.amount(this);
@@ -484,7 +515,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field33G> getAll(final SwiftMessage msg) {
+	public static List<Field33G> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -496,13 +527,13 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field33G> getAll(final SwiftTagListBlock block) {
+	public static List<Field33G> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field33G> result = new java.util.ArrayList<Field33G>(arr.length);
+			final ArrayList<Field33G> result = new ArrayList<Field33G>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field33G(f));
 			}
@@ -567,7 +598,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 		List<String> result = new ArrayList<String>();
 		result.add("Currency");
 		result.add("Amount");
-		result.add(null);
+		result.add("Code");
 		return result;
 	}
 	

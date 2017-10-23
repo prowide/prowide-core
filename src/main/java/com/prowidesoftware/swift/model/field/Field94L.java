@@ -16,39 +16,42 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 94L<br /><br />
+ * <h2>SWIFT MT Field 94L</h2>
+ * Model and parser for field 94L of a SWIFT MT message.
  *
- * validation pattern: :4!c//18!c2!n<br />
- * parser pattern: :S//SN<br />
- * components pattern: SSN<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>Number</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>Number</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>:4!c//18!c2!n</code></li>
+ * 		<li>parser pattern: <code>:S//SN</code></li>
+ * 		<li>components pattern: <code>SSN</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -56,7 +59,7 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -74,6 +77,16 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 	 * Component number for the Qualifier subfield
 	 */
 	public static final Integer QUALIFIER = 1;
+
+	/**
+	 * Component number for the Legal Entity Identifier Code subfield
+	 */
+	public static final Integer LEGAL_ENTITY_IDENTIFIER_CODE = 2;
+
+	/**
+	 * Component number for the Legal Entity Identifier Number subfield
+	 */
+	public static final Integer LEGAL_ENTITY_IDENTIFIER_NUMBER = 3;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -109,8 +122,10 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -142,10 +157,10 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
         result.append(":");                                         
-        result.append(StringUtils.trimToEmpty(getComponent1()));    
+        append(result, 1);    
         result.append("//");                                        
-        result.append(StringUtils.trimToEmpty(getComponent2()));    
-        result.append(StringUtils.trimToEmpty(getComponent3()));    
+        append(result, 2);    
+        append(result, 3);    
 		return result.toString();
 	}
 
@@ -179,8 +194,10 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
@@ -220,9 +237,19 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Get the Legal Entity Identifier Code (component2).
+	 * @return the Legal Entity Identifier Code from component2
+	 */
+	public String getLegalEntityIdentifierCode() {
 		return getComponent(2);
 	}
 
@@ -231,6 +258,15 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 	 * @param component2 the component2 to set
 	 */
 	public Field94L setComponent2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Legal Entity Identifier Code (component2).
+	 * @param component2 the Legal Entity Identifier Code to set
+	 */
+	public Field94L setLegalEntityIdentifierCode(String component2) {
 		setComponent(2, component2);
 		return this;
 	}
@@ -247,6 +283,22 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+
+	/**
+	 * Get the Legal Entity Identifier Number (component3).
+	 * @return the Legal Entity Identifier Number from component3
+	 */
+	public String getLegalEntityIdentifierNumber() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Legal Entity Identifier Number (component3) as Number
+	 * @return the Legal Entity Identifier Number from component3 converted to Number or <code>null</code> if cannot be converted
+	 */
+	public java.lang.Number getLegalEntityIdentifierNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
@@ -274,6 +326,25 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 		if (component3 != null) {
 			setComponent(3, Integer.toString(component3.intValue()));
 		}
+		return this;
+	}
+	
+	/**
+	 * Set the Legal Entity Identifier Number (component3).
+	 * @param component3 the Legal Entity Identifier Number to set
+	 */
+	public Field94L setLegalEntityIdentifierNumber(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Legal Entity Identifier Number (component3) from a Number object.
+	 * @see #setComponent3(java.lang.Number)
+	 * @param component3 Number with the Legal Entity Identifier Number content to set
+	 */
+	public Field94L setLegalEntityIdentifierNumber(java.lang.Number component3) {
+		setComponent3(component3);
 		return this;
 	}
 
@@ -401,7 +472,7 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field94L> getAll(final SwiftMessage msg) {
+	public static List<Field94L> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -413,13 +484,13 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field94L> getAll(final SwiftTagListBlock block) {
+	public static List<Field94L> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field94L> result = new java.util.ArrayList<Field94L>(arr.length);
+			final ArrayList<Field94L> result = new ArrayList<Field94L>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field94L(f));
 			}
@@ -483,8 +554,8 @@ public class Field94L extends Field implements Serializable, com.prowidesoftware
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
 		result.add("Qualifier");
-		result.add(null);
-		result.add(null);
+		result.add("Legal Entity Identifier Code");
+		result.add("Legal Entity Identifier Number");
 		return result;
 	}
 	

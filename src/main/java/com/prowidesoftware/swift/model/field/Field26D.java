@@ -16,66 +16,69 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 26D<br /><br />
+ * <h2>SWIFT MT Field 26D</h2>
+ * Model and parser for field 26D of a SWIFT MT message.
  *
- * validation pattern: 65x[$65x]0-29<br />
- * parser pattern: S[$S]0-29<br />
- * components pattern: SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
- * 		<li>component4: <code>String</code></li> 
- * 		<li>component5: <code>String</code></li> 
- * 		<li>component6: <code>String</code></li> 
- * 		<li>component7: <code>String</code></li> 
- * 		<li>component8: <code>String</code></li> 
- * 		<li>component9: <code>String</code></li> 
- * 		<li>component10: <code>String</code></li> 
- * 		<li>component11: <code>String</code></li> 
- * 		<li>component12: <code>String</code></li> 
- * 		<li>component13: <code>String</code></li> 
- * 		<li>component14: <code>String</code></li> 
- * 		<li>component15: <code>String</code></li> 
- * 		<li>component16: <code>String</code></li> 
- * 		<li>component17: <code>String</code></li> 
- * 		<li>component18: <code>String</code></li> 
- * 		<li>component19: <code>String</code></li> 
- * 		<li>component20: <code>String</code></li> 
- * 		<li>component21: <code>String</code></li> 
- * 		<li>component22: <code>String</code></li> 
- * 		<li>component23: <code>String</code></li> 
- * 		<li>component24: <code>String</code></li> 
- * 		<li>component25: <code>String</code></li> 
- * 		<li>component26: <code>String</code></li> 
- * 		<li>component27: <code>String</code></li> 
- * 		<li>component28: <code>String</code></li> 
- * 		<li>component29: <code>String</code></li> 
- * 		<li>component30: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>65x[$65x]0-29</code></li>
+ * 		<li>parser pattern: <code>S[$S]0-29</code></li>
+ * 		<li>components pattern: <code>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -83,7 +86,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -136,15 +139,17 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
 	@Override
 	public void parse(final String value) {
 		init(30);
-		java.util.List<String> lines = SwiftParseUtils.getLines(value);
+		List<String> lines = SwiftParseUtils.getLines(value);
 		SwiftParseUtils.setComponentsFromLines(this, 1, null, 0, lines);
 	}
 	
@@ -166,8 +171,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(StringUtils.trimToEmpty(getComponent1()));
-		appendInLines(result, 2, 31);
+		appendInLines(result, 1, 30);
 		return result.toString();
 	}
 
@@ -201,8 +205,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
@@ -748,7 +754,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @param value the Narrative to set, may contain line ends and each line will be set to its correspondent component attribute
 	 */
 	public Field26D setNarrative(String value) {
-		java.util.List<String> lines = SwiftParseUtils.getLines(value);
+		List<String> lines = SwiftParseUtils.getLines(value);
 		SwiftParseUtils.setComponentsFromLines(this, 1, 30, 0, lines);
 		return this;
 	}
@@ -762,8 +768,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
 		return getComponent(2);
 	}
@@ -786,8 +794,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -810,8 +820,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent4AsString() {
 		return getComponent(4);
 	}
@@ -834,8 +846,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent5AsString() {
 		return getComponent(5);
 	}
@@ -858,8 +872,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(6)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent6AsString() {
 		return getComponent(6);
 	}
@@ -882,8 +898,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(7)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent7AsString() {
 		return getComponent(7);
 	}
@@ -906,8 +924,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(8)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent8AsString() {
 		return getComponent(8);
 	}
@@ -930,8 +950,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(9)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent9AsString() {
 		return getComponent(9);
 	}
@@ -954,8 +976,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(10)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent10AsString() {
 		return getComponent(10);
 	}
@@ -978,8 +1002,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(11)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent11AsString() {
 		return getComponent(11);
 	}
@@ -1002,8 +1028,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(12)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent12AsString() {
 		return getComponent(12);
 	}
@@ -1026,8 +1054,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(13)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent13AsString() {
 		return getComponent(13);
 	}
@@ -1050,8 +1080,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(14)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent14AsString() {
 		return getComponent(14);
 	}
@@ -1074,8 +1106,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(15)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent15AsString() {
 		return getComponent(15);
 	}
@@ -1098,8 +1132,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(16)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent16AsString() {
 		return getComponent(16);
 	}
@@ -1122,8 +1158,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(17)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent17AsString() {
 		return getComponent(17);
 	}
@@ -1146,8 +1184,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(18)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent18AsString() {
 		return getComponent(18);
 	}
@@ -1170,8 +1210,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(19)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent19AsString() {
 		return getComponent(19);
 	}
@@ -1194,8 +1236,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(20)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent20AsString() {
 		return getComponent(20);
 	}
@@ -1218,8 +1262,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(21)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent21AsString() {
 		return getComponent(21);
 	}
@@ -1242,8 +1288,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(22)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent22AsString() {
 		return getComponent(22);
 	}
@@ -1266,8 +1314,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(23)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent23AsString() {
 		return getComponent(23);
 	}
@@ -1290,8 +1340,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(24)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent24AsString() {
 		return getComponent(24);
 	}
@@ -1314,8 +1366,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(25)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent25AsString() {
 		return getComponent(25);
 	}
@@ -1338,8 +1392,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(26)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent26AsString() {
 		return getComponent(26);
 	}
@@ -1362,8 +1418,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(27)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent27AsString() {
 		return getComponent(27);
 	}
@@ -1386,8 +1444,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(28)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent28AsString() {
 		return getComponent(28);
 	}
@@ -1410,8 +1470,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(29)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent29AsString() {
 		return getComponent(29);
 	}
@@ -1434,8 +1496,10 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Same as getComponent(30)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent30AsString() {
 		return getComponent(30);
 	}
@@ -1625,7 +1689,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field26D> getAll(final SwiftMessage msg) {
+	public static List<Field26D> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -1637,13 +1701,13 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field26D> getAll(final SwiftTagListBlock block) {
+	public static List<Field26D> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field26D> result = new java.util.ArrayList<Field26D>(arr.length);
+			final ArrayList<Field26D> result = new ArrayList<Field26D>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field26D(f));
 			}

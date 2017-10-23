@@ -41,7 +41,7 @@ import java.io.IOException;
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 28 E (O)</li>
+<li class="field">Field 28 E (M)</li>
 <li class="field">Field 13 A (O)</li>
 <li class="field">Field 20 C (M)</li>
 <li class="field">Field 23 G (M)</li>
@@ -87,7 +87,7 @@ Sequence C1 - Summary by Counterparty (O) (repetitive)<ul><li class="field">Fiel
 Fieldset 13
  (O) (repetitive)<ul><li>FieldsetItem 13 B (O) (repetitive)</li><li>FieldsetItem 13 B (O) (repetitive)</li><li>FieldsetItem 13 B (O) (repetitive)</li><li>FieldsetItem 13 B (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
 Fieldset 19
  (M) (repetitive)<ul><li>FieldsetItem 19 A (M)</li><li>FieldsetItem 19 A (M)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="field">Field 92 A (O)</li>
 <li class="field">Field 25 D (O)</li>
@@ -103,8 +103,10 @@ Fieldset 19
 Fieldset 22
  (O)<ul><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 92
- (O)<ul><li>FieldsetItem 92 D (O)</li><li>FieldsetItem 92 D (O)</li></ul></li><li class="sequence">
-Sequence C1a1 - Valuation Details (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+ (O)<ul><li>FieldsetItem 92 A,C (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="fieldset">
+Fieldset 25
+ (O)<ul><li>FieldsetItem 25 D (O)</li><li>FieldsetItem 25 D (O)</li></ul></li><li class="sequence">
+Sequence C1a1 - Valuation Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 17
  (M)<ul><li>FieldsetItem 17 B (M)</li><li>FieldsetItem 17 B (M)</li></ul></li><li class="field">Field 98 A,C (O)</li>
@@ -178,7 +180,7 @@ Fieldset 95
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -188,7 +190,7 @@ public class MT569 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT569.class.getName());
 	
@@ -702,6 +704,15 @@ public class MT569 extends AbstractMT implements Serializable {
 	@Deprecated
 	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
 	public static final String REPR = "REPR";
+
+	/**
+	* Constant for qualifier with value RSPR 
+	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.RSPR
+	* @see com.prowidesoftware.swift.SchemeConstantsR#RSPR
+	*/
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	public static final String RSPR = "RSPR";
 
 	/**
 	* Constant for qualifier with value SAFE 
@@ -1659,19 +1670,19 @@ public class MT569 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92D, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92C, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br />
-	 * Multiple occurrences of field 92D at MT569 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 92C at MT569 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field92D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field92C objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field92D> getField92D() {
-		final List<Field92D> result = new ArrayList<Field92D>();
-		final Tag[] tags = tags("92D");
+	public List<Field92C> getField92C() {
+		final List<Field92C> result = new ArrayList<Field92C>();
+		final Tag[] tags = tags("92C");
 		for (int i=0; i<tags.length; i++) {
-			result.add(new Field92D(tags[i].getValue()));
+			result.add(new Field92C(tags[i].getValue()));
 		}
 		return result;
 	}

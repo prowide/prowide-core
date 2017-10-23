@@ -47,7 +47,8 @@ public enum MxBusinessProcess {
 	trea("Treasury"),
 	tsin("Trade Services Initiation"),
 	tsmt("Trade Services Management"),
-	tsrv("Trade Services");
+	tsrv("Trade Services"),
+	xsys("System Message");
 
 	private String description = null;
 

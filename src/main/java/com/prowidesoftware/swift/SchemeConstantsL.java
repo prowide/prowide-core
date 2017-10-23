@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "L".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -19,8 +19,8 @@ public interface SchemeConstantsL {
     public final static String L = "L";
     public final static String LC = "LC";
     public final static String LF = "LF";
-    public final static String LINK = "LINK";
     public final static String LDFP = "LDFP";
+    public final static String LINK = "LINK";
     public final static String LDCO = "LDCO";
     public final static String LDCR = "LDCR";
     public final static String LDPRTY2 = "LDPRTY2";
@@ -52,7 +52,5 @@ public interface SchemeConstantsL {
     public final static String LBTY = "LBTY";
     public final static String LOT = "LOT";
     public final static String LIT = "LIT";
-    public final static String LEAS = "LEAS";
-    public final static String LIMT = "LIMT";
 
 }

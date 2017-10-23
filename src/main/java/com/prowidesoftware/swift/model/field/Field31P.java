@@ -16,40 +16,43 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 31P<br /><br />
+ * <h2>SWIFT MT Field 31P</h2>
+ * Model and parser for field 31P of a SWIFT MT message.
  *
- * validation pattern: &lt;DATE2&gt;[29x]<br />
- * parser pattern: &lt;DATE2&gt;[S]<br />
- * components pattern: ES<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>Calendar</code></li> 
- * 		<li>component2: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>&lt;DATE2&gt;[29x]</code></li>
+ * 		<li>parser pattern: <code>&lt;DATE2&gt;[S]</code></li>
+ * 		<li>components pattern: <code>ES</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -57,7 +60,7 @@ public class Field31P extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -75,6 +78,11 @@ public class Field31P extends Field implements Serializable, DateContainer {
 	 * Component number for the Date subfield
 	 */
 	public static final Integer DATE = 1;
+
+	/**
+	 * Component number for the Place subfield
+	 */
+	public static final Integer PLACE = 2;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -110,8 +118,10 @@ public class Field31P extends Field implements Serializable, DateContainer {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -120,10 +130,10 @@ public class Field31P extends Field implements Serializable, DateContainer {
 		init(2);
 		if (value != null) {
 			if (value.length() >= 6) {
-				setComponent1(org.apache.commons.lang.StringUtils.substring(value, 0, 6));
+				setComponent1(StringUtils.substring(value, 0, 6));
 			}
 			if (value.length() > 6) {
-				setComponent2(org.apache.commons.lang.StringUtils.substring(value, 6));
+				setComponent2(StringUtils.substring(value, 6));
 			}
 		}
 	}
@@ -248,9 +258,19 @@ public class Field31P extends Field implements Serializable, DateContainer {
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Get the Place (component2).
+	 * @return the Place from component2
+	 */
+	public String getPlace() {
 		return getComponent(2);
 	}
 
@@ -262,9 +282,18 @@ public class Field31P extends Field implements Serializable, DateContainer {
 		setComponent(2, component2);
 		return this;
 	}
+	
+	/**
+	 * Set the Place (component2).
+	 * @param component2 the Place to set
+	 */
+	public Field31P setPlace(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
     
     public List<Calendar> dates() {
-		List<Calendar> result = new java.util.ArrayList<Calendar>();
+		List<Calendar> result = new ArrayList<Calendar>();
 		result.add(SwiftFormatUtils.getDate2(getComponent(1)));
 		return result;
 	}
@@ -361,7 +390,7 @@ public class Field31P extends Field implements Serializable, DateContainer {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field31P> getAll(final SwiftMessage msg) {
+	public static List<Field31P> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -373,13 +402,13 @@ public class Field31P extends Field implements Serializable, DateContainer {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field31P> getAll(final SwiftTagListBlock block) {
+	public static List<Field31P> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field31P> result = new java.util.ArrayList<Field31P>(arr.length);
+			final ArrayList<Field31P> result = new ArrayList<Field31P>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field31P(f));
 			}
@@ -439,7 +468,7 @@ public class Field31P extends Field implements Serializable, DateContainer {
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
 		result.add("Date");
-		result.add(null);
+		result.add("Place");
 		return result;
 	}
 	

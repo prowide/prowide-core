@@ -103,7 +103,7 @@ Sequence E (O)<ul><li class="field">Field 15 E (M)</li>
 Sequence F (O)<ul><li class="field">Field 15 F (M)</li>
 <li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence F1 (M) (repetitive)<ul><li class="field">Field 30 F (M)</li>
+Sequence _F1 (M) (repetitive)<ul><li class="field">Field 30 F (M)</li>
 <li class="field">Field 32 H (M)</li>
 </ul></li>
 <li class="field">Field 53 A,D,J (O)</li>
@@ -130,6 +130,7 @@ Sequence G1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 <li class="field">Field 22 T (O)</li>
 <li class="field">Field 17 E (O)</li>
 <li class="field">Field 22 U (O)</li>
+<li class="field">Field 35 B (O)</li>
 <li class="field">Field 17 H (O)</li>
 <li class="field">Field 17 P (O)</li>
 <li class="field">Field 22 V (O)</li>
@@ -177,7 +178,7 @@ Sequence G1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 }</style>
 
  *
- * <p>This source code is specific to release <strong>SRU 2016</strong></p> 
+ * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
  * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
  *
  * @author www.prowidesoftware.com
@@ -187,7 +188,7 @@ public class MT340 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT340.class.getName());
 	
@@ -1562,6 +1563,24 @@ public class MT340 extends AbstractMT implements Serializable {
 		final Tag t = tag("22U");
 		if (t != null) {
 			return new Field22U(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 35B, 
+	 * or <code>null</code> if none is found.<br />
+	 * The first occurrence of field 35B at MT340 is expected to be the only one.
+	 * 
+	 * @return a Field35B object or <code>null</code> if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field35B getField35B() {
+		final Tag t = tag("35B");
+		if (t != null) {
+			return new Field35B(t.getValue());
 		} else {
 			return null;
 		}
@@ -3159,102 +3178,6 @@ public class MT340 extends AbstractMT implements Serializable {
 		return new SequenceF();
 	}
 
-
-// BaseSequenceCodeGenerator [seq=F1]
-	/**
-	* Class for Sequence "F1" of MT 340
-	*/
-	public static class SequenceF1 extends SwiftTagListBlock {
-		private static final long serialVersionUID = 1L;
-		
-		/**
-		 * Constructs an empty sequence
-		 */
-	        private SequenceF1() {
-			super(new ArrayList<Tag>());
-		}
-		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
-		private SequenceF1(final SwiftTagListBlock content) {
-			super(content.getTags());
-		}
-		/**
-		* First mandatory tagname of the sequence: <em>"30F"  </em>.
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		public static final String[] START = { "30F"   } ;
-		/**
-		* Last mandatory tagname of the sequence: <em>"32H"  </em>
-		* Array format is for cases when more than one letter options is allowed
-		*/
-		protected static final String[] END = { "32H"   };
-		/**
-		* List of optional tags after the last mandatory tag
-		*/
-		protected static final String[] TAIL = new String[]{  };
-
-		/**
-		* same as newInstance(0, 0, tags);
-		* see #newInstance(Tag ... )
-		*/
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceF1 newInstance(final Tag ... tags) {
-			return newInstance(0, 0, tags);
-		}
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceF1 newInstance(final int start, final int end, final Tag ... tags) {
-			final SequenceF1 result = new SequenceF1();
-
-			result.append(new Tag(START[start], ""));
-
-			if (tags != null && tags.length > 0) {
-				for (final Tag t : tags) {
-					result.append(t);
-				}
-			}
-
-			result.append(new Tag(END[end], ""));
-
-			return result;
-		}
-	}
-	/**
-	* Get the list of SequenceF1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceF1> getSequenceF1List() {
-		return getSequenceF1List(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	* Get the list of SequenceF1 delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard. 
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceF1 within the complete message
-	* @since 7.7
-	*/
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceF1> getSequenceF1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceF1> result = new ArrayList<SequenceF1>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceF1.START, SequenceF1.END, SequenceF1.TAIL); 
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceF1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
-	} 
- 
 
 // BaseSequenceCodeGenerator [seq=G]
 	/**

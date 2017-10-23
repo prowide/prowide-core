@@ -1475,7 +1475,7 @@ public class SwiftMessage implements Serializable {
 	 * <p>If you have a MT102 in a SwiftMessage, this method is the same as invoking
 	 * <code>new MT102(SwiftMessage)</code>.</p>
 	 * <p>For messages with service id 21 = GPA/FIN Message (ACK/NAK/UAK/UNK) it will
-	 * return an instance of {@linkplain AckSystemMessage}.</p>
+	 * return an instance of {@link AckSystemMessage}.</p>
 	 * 
 	 * @return created specific MT object or null if the message type is not set or an error occurs during message creation 
 	 */
@@ -1604,7 +1604,7 @@ public class SwiftMessage implements Serializable {
      * Returns true if message service id is 21 = GPA/FIN Message (ACK/NAK/UAK/UNK)
      * <p>IMPORTANT: Note despite the method name this will NOT return true for FIN system messages (category 0). 
      * It is just useful to detect acknowledges.<br />
-     * To check for system messages use {@link #isCategory(int...)} instead, passing zero as parameter</p>
+     * To check for system messages use {@link #isCategory(MtCategory...)} instead, passing zero as parameter</p>
      * 
      * <p>@deprecated this method is kept for backward compatibility but was replace by {@link #isServiceMessage21()} which
      * reflects what the method returns properly. Notice a "system message" is actually a message with category 0, which is 

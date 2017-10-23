@@ -32,8 +32,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
     "ctry",
     "adrLine"
 })
-public class PostalAddress6
-    implements CopyableTo<PostalAddress6>
+public class PostalAddress6 implements CopyableTo<PostalAddress6>
 {
 
     @XmlElement(name = "AdrTp")
@@ -327,25 +326,17 @@ public class PostalAddress6
     }
 
     public final void copyTo(final PostalAddress6 target) {
-        // debug: does not implement copyTo
+        // debug: AddressType2Code does not implement copyTo
         target.adrTp = adrTp;
-        // debug: does not implement copyTo
         target.dept = dept;
-        // debug: does not implement copyTo
         target.subDept = subDept;
-        // debug: does not implement copyTo
         target.strtNm = strtNm;
-        // debug: does not implement copyTo
         target.bldgNb = bldgNb;
-        // debug: does not implement copyTo
         target.pstCd = pstCd;
-        // debug: does not implement copyTo
         target.twnNm = twnNm;
-        // debug: does not implement copyTo
         target.ctrySubDvsn = ctrySubDvsn;
-        // debug: does not implement copyTo
         target.ctry = ctry;
-        // debug: does not implement copyTo
+        // debug: List<String> does not implement copyTo
         target.adrLine = adrLine;
     }
 

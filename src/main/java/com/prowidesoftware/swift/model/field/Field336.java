@@ -16,39 +16,42 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 336<br /><br />
+ * <h2>SWIFT MT Field 336</h2>
+ * Model and parser for field 336 of a SWIFT MT message.
  *
- * validation pattern: 6!c5!n[36c]<br />
- * parser pattern: 6!S5!NS<br />
- * components pattern: SNS<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>Number</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>Number</code></li> 
- * 		<li>component3: <code>String</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>6!c5!n[36c]</code></li>
+ * 		<li>parser pattern: <code>6!S5!NS</code></li>
+ * 		<li>components pattern: <code>SNS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -56,7 +59,7 @@ public class Field336 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -119,8 +122,10 @@ public class Field336 extends Field implements Serializable {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -129,13 +134,13 @@ public class Field336 extends Field implements Serializable {
 		init(3);
 		if (value != null) {
         	if (value.length() >= 6) {
-				setComponent1(org.apache.commons.lang.StringUtils.substring(value, 0, 6));
+				setComponent1(StringUtils.substring(value, 0, 6));
 			}
         	if (value.length() >= 11) {
-				setComponent2(org.apache.commons.lang.StringUtils.substring(value, 6, 11));
+				setComponent2(StringUtils.substring(value, 6, 11));
 			}
         	if (value.length() > 11) {
-				setComponent3(org.apache.commons.lang.StringUtils.substring(value, 11));
+				setComponent3(StringUtils.substring(value, 11));
 			}
 		}
 	}
@@ -192,8 +197,10 @@ public class Field336 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
@@ -310,8 +317,10 @@ public class Field336 extends Field implements Serializable {
 
 	/**
 	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent3AsString() {
 		return getComponent(3);
 	}
@@ -431,7 +440,7 @@ public class Field336 extends Field implements Serializable {
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field336> getAll(final SwiftMessage msg) {
+	public static List<Field336> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -443,13 +452,13 @@ public class Field336 extends Field implements Serializable {
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field336> getAll(final SwiftTagListBlock block) {
+	public static List<Field336> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field336> result = new java.util.ArrayList<Field336>(arr.length);
+			final ArrayList<Field336> result = new ArrayList<Field336>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field336(f));
 			}

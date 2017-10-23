@@ -16,43 +16,46 @@
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
 
 /**
- * Field 98K<br /><br />
+ * <h2>SWIFT MT Field 98K</h2>
+ * Model and parser for field 98K of a SWIFT MT message.
  *
- * validation pattern: :4!c/8c/34!x//&lt;DATE4&gt;&lt;TIME2&gt;<br />
- * parser pattern: :S/S/S//&lt;DATE4&gt;&lt;TIME2&gt;<br />
- * components pattern: SSSDT<br />
+ * <h4>Subfields (components) Data types</h4>
+ * <ol> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>Calendar</code></li> 
+ * 		<li><code>String</code></li> 
+ * </ol>
  *
- * <h1>Components Data types</h1>
- * <ul> 
- * 		<li>component1: <code>String</code></li> 
- * 		<li>component2: <code>String</code></li> 
- * 		<li>component3: <code>String</code></li> 
- * 		<li>component4: <code>Calendar</code></li> 
- * 		<li>component5: <code>Calendar</code></li> 
+ * <h4>Structure definition</h4>
+ * <ul>
+ * 		<li>validation pattern: <code>:4!c/8c/&lt;DATE4&gt;&lt;TIME2&gt;/34!x(***)</code></li>
+ * 		<li>parser pattern: <code>:S/S/&lt;DATE4&gt;&lt;TIME2&gt;/S</code></li>
+ * 		<li>components pattern: <code>SSDTS</code></li>
  * </ul>
  *		 
- * <em>NOTE: this source code has been generated from template</em>
- *
- * <em>This class complies with standard release SRU2016</em>
- *
+ * <p>This class complies with standard release <strong>SRU2017</strong></p>
+ * <p>NOTE: this source code has been generated from template</p>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -60,7 +63,7 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2016;
+	public static final int SRU = 2017;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -71,8 +74,8 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_98K = "98K";
-	public static final String PARSER_PATTERN =":S/S/S//<DATE4><TIME2>";
-	public static final String COMPONENTS_PATTERN = "SSSDT";
+	public static final String PARSER_PATTERN =":S/S/<DATE4><TIME2>/S";
+	public static final String COMPONENTS_PATTERN = "SSDTS";
 
 	/**
 	 * Component number for the Qualifier subfield
@@ -80,14 +83,24 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	public static final Integer QUALIFIER = 1;
 
 	/**
+	 * Component number for the Data Source Scheme subfield
+	 */
+	public static final Integer DATA_SOURCE_SCHEME = 2;
+
+	/**
 	 * Component number for the Date subfield
 	 */
-	public static final Integer DATE = 4;
+	public static final Integer DATE = 3;
 
 	/**
 	 * Component number for the Time subfield
 	 */
-	public static final Integer TIME = 5;
+	public static final Integer TIME = 4;
+
+	/**
+	 * Component number for the Proprietary Code subfield
+	 */
+	public static final Integer PROPRIETARY_CODE = 5;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -123,8 +136,10 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
+	 * <br />
 	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous components value is overwritten.
+	 * to setting individual components. Previous component values are overwritten.
+	 *
 	 * @param value complete field value including separators and CRLF
 	 * @since 7.8
 	 */
@@ -134,14 +149,14 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 		setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "/"));
 		setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
 		String toparse = SwiftParseUtils.getTokenThirdLast(value, "/");
-		setComponent3(SwiftParseUtils.getTokenFirst(toparse, "//"));
-		String toparse2 = SwiftParseUtils.getTokenSecondLast(toparse, "//");
-	    if (toparse2 != null) {
-			if (toparse2.length() >= 8) {
-				setComponent3(org.apache.commons.lang.StringUtils.substring(toparse2, 0, 8));
+		setComponent5(SwiftParseUtils.getTokenSecondLast(toparse, "/"));
+	    String toparseDateTime = SwiftParseUtils.getTokenFirst(toparse, "/");
+		if (toparseDateTime != null) {
+			if (toparseDateTime.length() >= 8) {
+				setComponent3(StringUtils.substring(toparseDateTime, 0, 8));
 			}
-			if (toparse2.length() > 8) {
-				setComponent4(org.apache.commons.lang.StringUtils.substring(toparse2, 8));
+			if (toparseDateTime.length() > 8) {
+				setComponent4(StringUtils.substring(toparseDateTime, 8));
 			}
 		}
 	}
@@ -165,14 +180,14 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
 		result.append(":");
-		result.append(StringUtils.trimToEmpty(getComponent1()));
+		append(result, 1);
 		result.append("/");
-		result.append(StringUtils.trimToEmpty(getComponent2()));
+		append(result, 2);
 		result.append("/");
-		result.append(StringUtils.trimToEmpty(getComponent3()));
-		result.append("//");
-		result.append(StringUtils.trimToEmpty(getComponent4()));
-		result.append(StringUtils.trimToEmpty(getComponent5()));
+		append(result, 3);
+		append(result, 4);
+		result.append("/");
+		append(result, 5);
 		return result.toString();
 	}
 
@@ -206,8 +221,10 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 
 	/**
 	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent1AsString() {
 		return getComponent(1);
 	}
@@ -247,9 +264,19 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 
 	/**
 	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
 	public java.lang.String getComponent2AsString() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Get the Data Source Scheme (component2).
+	 * @return the Data Source Scheme from component2
+	 */
+	public String getDataSourceScheme() {
 		return getComponent(2);
 	}
 
@@ -258,6 +285,15 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	 * @param component2 the component2 to set
 	 */
 	public Field98K setComponent2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Data Source Scheme (component2).
+	 * @param component2 the Data Source Scheme to set
+	 */
+	public Field98K setDataSourceScheme(String component2) {
 		setComponent(2, component2);
 		return this;
 	}
@@ -270,11 +306,27 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Same as getComponent(3)
+	 * Get the component3 as Calendar
+	 * @return the component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
-	@Deprecated
-	public java.lang.String getComponent3AsString() {
+	public java.util.Calendar getComponent3AsCalendar() {
+		return SwiftFormatUtils.getDate4(getComponent(3));
+	}
+
+	/**
+	 * Get the Date (component3).
+	 * @return the Date from component3
+	 */
+	public String getDate() {
 		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Date (component3) as Calendar
+	 * @return the Date from component3 converted to Calendar or <code>null</code> if cannot be converted
+	 */
+	public java.util.Calendar getDateAsCalendar() {
+		return SwiftFormatUtils.getDate4(getComponent(3));
 	}
 
 	/**
@@ -283,6 +335,34 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	 */
 	public Field98K setComponent3(String component3) {
 		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the component3 from a Calendar object.
+	 * @param component3 the Calendar with the component3 content to set
+	 */
+	public Field98K setComponent3(java.util.Calendar component3) {
+		setComponent(3, SwiftFormatUtils.getDate4(component3));
+		return this;
+	}
+	
+	/**
+	 * Set the Date (component3).
+	 * @param component3 the Date to set
+	 */
+	public Field98K setDate(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Date (component3) from a Calendar object.
+	 * @see #setComponent3(java.util.Calendar)
+	 * @param component3 Calendar with the Date content to set
+	 */
+	public Field98K setDate(java.util.Calendar component3) {
+		setComponent3(component3);
 		return this;
 	}
 	/**
@@ -298,23 +378,23 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	 * @return the component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
-		return SwiftFormatUtils.getDate4(getComponent(4));
+		return SwiftFormatUtils.getTime2(getComponent(4));
 	}
 
 	/**
-	 * Get the Date (component4).
-	 * @return the Date from component4
+	 * Get the Time (component4).
+	 * @return the Time from component4
 	 */
-	public String getDate() {
+	public String getTime() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Date (component4) as Calendar
-	 * @return the Date from component4 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the Time (component4) as Calendar
+	 * @return the Time from component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
-	public java.util.Calendar getDateAsCalendar() {
-		return SwiftFormatUtils.getDate4(getComponent(4));
+	public java.util.Calendar getTimeAsCalendar() {
+		return SwiftFormatUtils.getTime2(getComponent(4));
 	}
 
 	/**
@@ -331,25 +411,25 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	 * @param component4 the Calendar with the component4 content to set
 	 */
 	public Field98K setComponent4(java.util.Calendar component4) {
-		setComponent(4, SwiftFormatUtils.getDate4(component4));
+		setComponent(4, SwiftFormatUtils.getTime2(component4));
 		return this;
 	}
 	
 	/**
-	 * Set the Date (component4).
-	 * @param component4 the Date to set
+	 * Set the Time (component4).
+	 * @param component4 the Time to set
 	 */
-	public Field98K setDate(String component4) {
+	public Field98K setTime(String component4) {
 		setComponent(4, component4);
 		return this;
 	}
 	
 	/**
-	 * Set the Date (component4) from a Calendar object.
+	 * Set the Time (component4) from a Calendar object.
 	 * @see #setComponent4(java.util.Calendar)
-	 * @param component4 Calendar with the Date content to set
+	 * @param component4 Calendar with the Time content to set
 	 */
-	public Field98K setDate(java.util.Calendar component4) {
+	public Field98K setTime(java.util.Calendar component4) {
 		setComponent4(component4);
 		return this;
 	}
@@ -362,27 +442,21 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the component5 as Calendar
-	 * @return the component5 converted to Calendar or <code>null</code> if cannot be converted
+	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
-	public java.util.Calendar getComponent5AsCalendar() {
-		return SwiftFormatUtils.getTime2(getComponent(5));
+	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2018)
+	public java.lang.String getComponent5AsString() {
+		return getComponent(5);
 	}
 
 	/**
-	 * Get the Time (component5).
-	 * @return the Time from component5
+	 * Get the Proprietary Code (component5).
+	 * @return the Proprietary Code from component5
 	 */
-	public String getTime() {
+	public String getProprietaryCode() {
 		return getComponent(5);
-	}
-	
-	/**
-	 * Get the Time (component5) as Calendar
-	 * @return the Time from component5 converted to Calendar or <code>null</code> if cannot be converted
-	 */
-	public java.util.Calendar getTimeAsCalendar() {
-		return SwiftFormatUtils.getTime2(getComponent(5));
 	}
 
 	/**
@@ -395,37 +469,18 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	}
 	
 	/**
-	 * Set the component5 from a Calendar object.
-	 * @param component5 the Calendar with the component5 content to set
+	 * Set the Proprietary Code (component5).
+	 * @param component5 the Proprietary Code to set
 	 */
-	public Field98K setComponent5(java.util.Calendar component5) {
-		setComponent(5, SwiftFormatUtils.getTime2(component5));
-		return this;
-	}
-	
-	/**
-	 * Set the Time (component5).
-	 * @param component5 the Time to set
-	 */
-	public Field98K setTime(String component5) {
+	public Field98K setProprietaryCode(String component5) {
 		setComponent(5, component5);
-		return this;
-	}
-	
-	/**
-	 * Set the Time (component5) from a Calendar object.
-	 * @see #setComponent5(java.util.Calendar)
-	 * @param component5 Calendar with the Time content to set
-	 */
-	public Field98K setTime(java.util.Calendar component5) {
-		setComponent5(component5);
 		return this;
 	}
     
     public List<Calendar> dates() {
-		List<Calendar> result = new java.util.ArrayList<Calendar>();
-		result.add(SwiftFormatUtils.getDate4(getComponent(4)));
-		result.add(SwiftFormatUtils.getTime2(getComponent(5)));
+		List<Calendar> result = new ArrayList<Calendar>();
+		result.add(SwiftFormatUtils.getDate4(getComponent(3)));
+		result.add(SwiftFormatUtils.getTime2(getComponent(4)));
 		return result;
 	}
 
@@ -516,7 +571,7 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	 */
 	@Override
 	public final String validatorPattern() {
-		return ":4!c/8c/34!x//<DATE4><TIME2>";
+		return ":4!c/8c/<DATE4><TIME2>/34!x(***)";
 	}
 
 	/**
@@ -553,7 +608,7 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static java.util.List<Field98K> getAll(final SwiftMessage msg) {
+	public static List<Field98K> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
@@ -565,13 +620,13 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static java.util.List<Field98K> getAll(final SwiftTagListBlock block) {
+	public static List<Field98K> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
 		if (arr != null && arr.length>0) {
-			final java.util.ArrayList<Field98K> result = new java.util.ArrayList<Field98K>(arr.length);
+			final ArrayList<Field98K> result = new ArrayList<Field98K>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field98K(f));
 			}
@@ -614,24 +669,24 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 			return getComponent(2);
 		}
 		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		if (component == 4) {
 			//date
 			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+			java.util.Calendar cal = getComponent3AsCalendar();
+			if (cal != null) {
+				return f.format(cal.getTime());
+			}
+		}
+		if (component == 4) {
+			//time with seconds
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
 			java.util.Calendar cal = getComponent4AsCalendar();
 			if (cal != null) {
 				return f.format(cal.getTime());
 			}
 		}
 		if (component == 5) {
-			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
-			java.util.Calendar cal = getComponent5AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
+			//default format (as is)
+			return getComponent(5);
 		}
 		return null;	
 	}
@@ -647,10 +702,10 @@ public class Field98K extends Field implements Serializable, DateContainer, com.
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<String>();
 		result.add("Qualifier");
-		result.add(null);
-		result.add(null);
+		result.add("Data Source Scheme");
 		result.add("Date");
 		result.add("Time");
+		result.add("Proprietary Code");
 		return result;
 	}
 	

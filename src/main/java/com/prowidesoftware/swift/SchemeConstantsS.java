@@ -7,8 +7,8 @@ import com.prowidesoftware.Generated;
 /**
  * Constants for qualifiers found in MTs starting with "S".
  * <em>WARNING: These constants are automatically generated from SRU information
- * they may change without entering the Prowide Deprecation Policy
- * http://www.prowidesoftware.com/deprecation-policy.jsp</em>
+ * they may change without entering the formal Prowide Deprecation Policy
+ * http://www.prowidesoftware.com/resources/deprecation-policy</em>
  * @since 7.8.1
  * 
  * 
@@ -22,18 +22,18 @@ public interface SchemeConstantsS {
     public final static String SSTD = "SSTD";
     public final static String SPRI = "SPRI";
     public final static String SDVA = "SDVA";
-    public final static String STLD = "STLD";
-    public final static String STOP = "STOP";
     public final static String SKOT = "SKOT";
     public final static String SITR = "SITR";
     public final static String SKIN = "SKIN";
-    public final static String SAFE = "SAFE";
-    public final static String SEME = "SEME";
-    public final static String SELL = "SELL";
     public final static String SETDET = "SETDET";
     public final static String SETT = "SETT";
     public final static String SETPRTY = "SETPRTY";
+    public final static String SAFE = "SAFE";
+    public final static String SEME = "SEME";
     public final static String STRT = "STRT";
+    public final static String SELL = "SELL";
+    public final static String STLD = "STLD";
+    public final static String STOP = "STOP";
     public final static String SNUM = "SNUM";
     public final static String SHAR = "SHAR";
     public final static String SIZE = "SIZE";
@@ -98,15 +98,9 @@ public interface SchemeConstantsS {
     public final static String SAEG = "SAEG";
     public final static String SILV = "SILV";
     public final static String SEE72 = "SEE72";
-    public final static String SPOTS = "SPOTS";
     public final static String SSIDET = "SSIDET";
     public final static String SSIP = "SSIP";
     public final static String SSIR = "SSIR";
     public final static String SUBM = "SUBM";
-    public final static String STND = "STND";
-    public final static String SURT = "SURT";
-    public final static String SPDM = "SPDM";
-    public final static String STLC = "STLC";
-    public final static String SPEC = "SPEC";
 
 }

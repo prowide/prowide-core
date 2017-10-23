@@ -52,7 +52,7 @@ import com.prowidesoftware.swift.utils.Lib;
  * <li>Block 4 may be a non-text block (for example: {4:{101:xx}{102:xx}})</li>
  * <li>Support for unparsed texts (at message, block and tag levels)</li>
  * <li>Support for user defined blocks (for example: {S:{T01:xxx}{T02:yyy}})</li>
- * </ul><br/>
+ * </ul><br/>Field32A
  * This is based in the old SwiftParser2, that is now deprecated.<br />
  *
  * @author www.prowidesoftware.com
@@ -634,21 +634,12 @@ public class SwiftParser {
 				// Note: It is note sufficient to check for a starting colon because for some fields like
 				// 77E for example, it is allowed the field content to have a ':<CR><LF>' as the second line
 				// of its content.
-				else if (c == ':' 
-						&& i < s.length()/* prevent index out of bounds */  ) {
-					// 2015.10 miguel 
-					// check if :xxx matched regexp of field or not, break only if matches valid start of tag
-					if (tagStarts(s.substring(i+1))) {
+				else if (c == ':' && i < s.length()/* prevent index out of bounds */  ) {
+					// check if :xxx matches a new starting tag or not, break only if matches valid start of tag
+					if (tagStarts(s, (i+1))) {
 						i = begin;
 						break;
 					}
-					//TODO evaluate if this is still needed or not
-//					final char z = s.charAt(++start);
-//					if (z != '\r' && z != '\n') {
-//						// found it
-//						start = begin;
-//						break;
-//					}
 				}
 
 				// not matched => skip current char and continue
@@ -675,45 +666,35 @@ public class SwiftParser {
 		return i;
 	}
 
-	private static final boolean tagStarts(final String str) {
-		final int l = str.length();
-		
-		if (l>0 && !Character.isDigit(str.charAt(0))) {
-			return false; 
-		}
-		
-		// OK el primero es digito, el segundo puede ser dos cosas: letra o numero o :final
-		if (l>1) {
-			char c2 = str.charAt(1);
-			if (c2 == ':') {
+	/**
+	 * Evaluates if the string at the given position has the format nn[a]:
+	 * which means it is a proper tag start
+	 * 
+	 * @param s string to evaluate
+	 * @param i starting position in the string to evaluate
+	 * @return true if at the given position there is a tag start
+	 */
+	private static final boolean tagStarts(final String s, int i) {
+		int length = s.length();
+		/*
+		 * at least three characters, where first and second characters must be digits
+		 */
+		if (i+2 < length && Character.isDigit(s.charAt(i)) && Character.isDigit(s.charAt(i+1))) {
+			/*
+			 * third character must be ':' or letter option (A-Z) immediately followed by another character with ':'
+			 */
+			char c3 = s.charAt(i+2);
+			if (c3 == ':') {
 				/*
-				 * 2015.10 miguel
-				 * aceptamos :1: por compatibilidad, pero no es un proper tagname
+				 * no letter option
+				 */
+				return true;
+			} else if (Character.isUpperCase(c3) && (i+3) < length && s.charAt(i+3) == ':') {
+				/*
+				 * with letter option
 				 */
 				return true;
 			}
-
-			/*
-			 * 2015.10 miguel
-			 * idem antes, aceptamos :1A: por compatibilidad, pero no es un proper tagname
-			 */
-			if ( Character.isLetter(c2) && l>2 ) {
-				if ( ':' == str.charAt(2)) {
-					return true;
-				}
-			}
-
-			//  el segundo char debe ser un numero
-			// Cubre caso 11: y 11a:
-			if ( Character.isDigit(c2) && l>2 ) {
-				if ( ':' == str.charAt(2)) {
-					return true;
-				}
-				if (l>3 && ':' == str.charAt(3) && Character.isLetter(str.charAt(2))) {
-					return true;
-				}
-			}
-			
 		}
 		return false;
 	}
@@ -1076,7 +1057,7 @@ public class SwiftParser {
 	}
 
 	/**
-	 * @deprecated use {@link #getConfiguration()#isLenient()} instead
+	 * @deprecated use {@link SwiftParserConfiguration#isLenient()} instead
 	 */
 	@Deprecated
 	@ProwideDeprecated(phase4=TargetYear._2018)
@@ -1086,7 +1067,7 @@ public class SwiftParser {
 	}
 
 	/**
-	 * @deprecated use {@link #getConfiguration()#setLenient(boolean)} instead
+	 * @deprecated use {@link SwiftParserConfiguration#setLenient(boolean)} instead
 	 */
 	@Deprecated
 	@ProwideDeprecated(phase4=TargetYear._2018)
