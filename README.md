@@ -24,6 +24,7 @@ For SWIFT messages validation, extended MX support, GUI application and more, pl
 ### Documentation
 * Documentation site http://www.prowidesoftware.com/resources
 * Javadoc http://api.prowidesoftware.com/core/
+* Changelog http://www.prowidesoftware.com/resources/changelog
 * Code examples https://github.com/prowide/prowide-core-examples
 
 ### Distribution
