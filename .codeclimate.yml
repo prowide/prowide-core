@@ -1,10 +1,5 @@
----
-engines:
-  fixme:
+plugins:
+  sonar-java:
     enabled: true
-  checks:
-    XXX:
-     enabled: false
-ratings:
-  paths: []
-exclude_paths: []
+    config:
+      sonar.java.source: 6
