@@ -3,3 +3,6 @@ plugins:
     enabled: true
     config:
       sonar.java.source: 6
+    checks:
+      squid:S1845:
+        enabled: false
