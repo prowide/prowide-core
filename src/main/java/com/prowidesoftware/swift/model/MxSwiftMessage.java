@@ -143,7 +143,7 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	 * Creates a new message serializing to xml the parameter message object.
 	 * <br />
 	 * If the business header is present, the sender and receiver attributes will be set
-	 * with content from the header; also the internal raw xml will include both
+	 * with content from the header; also the internal raw XML will include both
 	 * AppHdr and Document under a root element tag "<message>", as returned by
 	 * {@link AbstractMX#message(String)}
 	 * <br />
@@ -265,13 +265,13 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 		if (h != null) {
 			final String from = h.from();
 			if (from != null) {
-				super.sender = StringUtils.substring(from, 0, 8);
+				super.sender = bic11(from);
 				updated = true;
 			}
 			
 			final String to = h.to();
 			if (to != null) {
-				super.receiver = StringUtils.substring(to, 0, 8);
+				super.receiver = bic11(to);
 				updated = true;
 			}
 			
@@ -294,12 +294,12 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 		if (groupHeader != null) {
 			MxNode senderBic = groupHeader.findFirst("./InstgAgt/FinInstnId/BIC");
 			if (senderBic != null) {
-				sender = StringUtils.substring(senderBic.getValue(), 0, 8);
+				sender = bic11(senderBic.getValue());
 				updated = true;
 			}
 			MxNode receiverBic = groupHeader.findFirst("./InstdAgt/FinInstnId/BIC");
 			if (receiverBic != null) {
-				receiver = StringUtils.substring(receiverBic.getValue(), 0, 8);
+				receiver = bic11(receiverBic.getValue());
 				updated = true;
 			}
 			MxNode reference = groupHeader.findFirst("./MsgId");
@@ -473,19 +473,14 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	}
 	
 	/**
-	 * copies attributes from this object to the given object
-	 * non inherited copied attributes:
-	 * <ul>
-	 * 		<li>functionality</li>
-	 * 		<li>variant</li>
-	 * 		<li>version</li>
-	 * </ul>
-	 * @param msg
+	 * Creates a full copy of the current message object into another message.
+	 * @param msg target message
 	 * @since 7.7
 	 * @see AbstractSwiftMessage#copyTo(AbstractSwiftMessage)
 	 */
 	public void copyTo(MxSwiftMessage msg) {
 	    super.copyTo((AbstractSwiftMessage)msg);
+	    msg.setBusinessProcess(getBusinessProcess());
 	    msg.setFunctionality(getFunctionality());
 	    msg.setVariant(getVariant());
 	    msg.setVersion(getVersion());

@@ -253,9 +253,12 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 	}
 
 	/**
-	 * Sets the The Logical Terminal address with the parameter as it is given.
+	 * Sets the The Logical Terminal address with the parameter as it is given without any modification.
 	 * 
-	 * @param logicalTerminal it is fixed at 12 characters; it must not have X in position 9 (padded with "X" if no branch is required).
+	 * <p>Beware for an outgoing message the LT identifier cannot be X and the branch code must be padded with XXX if not present in
+	 * the BIC address. The complete logical terminal address must always be a 12 characters length alphanumeric string</p>
+	 * 
+	 * @param logicalTerminal should be a fixed at 12 character length string; with the BIC address, LT identifier and branch code.
 	 */
 	public void setLogicalTerminal(final String logicalTerminal) {
 		this.logicalTerminal = logicalTerminal;
@@ -263,9 +266,11 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 	
 	/**
 	 * Sets the LT address.<br />
+	 * 
+	 * <p>The implementation assumes the message is outgoing, and will tamper the LT identifier if necessary (changing an "X" LT identifier by and "A").</p>
 	 * @see LogicalTerminalAddress#getSenderLogicalTerminalAddress()
 	 * 
-	 * @param logicalTerminal
+	 * @param logicalTerminal the logical terminal address to set
 	 * @since 7.6
 	 */
 	public void setLogicalTerminal(final LogicalTerminalAddress logicalTerminal) {
@@ -273,10 +278,10 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 	}
 	
 	/**
-	 * Creates and sets a full LT address using the parameter BIC code and a default LT identifier.
-	 * 
+	 * Sets the logical terminal address from the parameter BIC code with "A" as default LT identifier and XXX as default branch code.
 	 * @see #setLogicalTerminal(LogicalTerminalAddress)
-	 * @param bic
+	 * 
+	 * @param bic a BIC code
 	 * @since 7.6
 	 */
 	public void setLogicalTerminal(final BIC bic) {
@@ -284,10 +289,12 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 	}
 
 	/**
-	 * Completes if necessary and sets the LT address.<br />
- 	 * The sender addresses will be filled with proper default LT identifier and branch codes if not provided.
-	 * 
+	 * Sets the logical terminal address from the parameter BIC.
+	 * <p>If the LT identifier is not provided, "A" will be set as default. If the branch code is not provided XXX will be used as default.</p>
+	 * <p>The implementation assumes the message is outgoing, and if the full logical terminal address is provided with an "X" as LT identifier, it wil be replaced by and "A".</p>
 	 * @see #setLogicalTerminal(LogicalTerminalAddress)
+	 * 
+	 * @param sender a BIC8, BIC11 or full 12 character length logical terminal address
 	 * @since 6.4
 	 */
 	public void setSender(final String sender) {

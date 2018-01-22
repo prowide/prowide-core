@@ -36,7 +36,8 @@ public class SwiftMessageStatusInfo implements Cloneable {
 	private String creationUser;
 
 	/**
-	 * Additional information regarding messages changes and manipulation through status changes
+	 * Additional information regarding messages changes and manipulation through status changes.
+	 * Intended for example to store JSON output from the process that generated the status. 
 	 */
 	private String data;
 

@@ -14,7 +14,11 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -28,6 +32,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
 import com.prowidesoftware.swift.WifeException;
+import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.Field;
@@ -213,13 +218,64 @@ public class SwiftMessageUtils {
 	}
 
 	/**
-	 * Proprietary checksum for message integrity verification.
-	 * Please notice this is not the SWIFT trailer CHK field.
-	 * @param model
-	 * @return always null (this method is not yet implemented)
+	 * Proprietary checksum for message integrity verification or duplicates detection.
+	 * <p>Please notice <strong>this is not the SWIFT trailer CHK field</strong>.</p>
+	 * <p>The implementation computes an MD5 on the complete message in FIN format. The result hash
+	 * is a 32 character string, you may consider encoding it with base64 on top to have the same 
+	 * information stored in 22 characters.</p>
+	 * @param model the message
+	 * @return computed hash or null if errors occurred during computation or the message is null
 	 */
 	public static String calculateChecksum(final SwiftMessage model) {
-		//TODO missing implementation
+		if (model != null) {
+			final StringWriter writer = new StringWriter();
+			SwiftWriter.writeMessage(model, writer);
+			final String fin = writer.getBuffer().toString();
+			return md5(fin);
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Proprietary checksum for message text block (block 4) integrity verification or duplicates detection
+	 * <p>Please notice <strong>this is not the SWIFT trailer CHK field</strong>.</p>
+	 * <p>The implementation computes an MD5 on the complete message in FIN format. The result hash
+	 * is a 32 character string, you may consider encoding it with base64 on top to have the same 
+	 * information stored in 22 characters.</p>
+	 * @param b4 the message text block
+	 * @return computed hash or null if errors occurred during computation or the block is null
+	 * @since 7.9.5
+	 */
+	public static String calculateChecksum(final SwiftBlock4 b4) {
+		if (b4 != null) {
+			final StringWriter writer = new StringWriter();
+			SwiftWriter.writeBlock4(b4, writer);
+			final String fin = writer.getBuffer().toString();
+			return md5(fin);
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Computes an MD5 hash on the parameter text
+	 * @param text the text to hash
+	 * @return computed hash or null if exceptions are thrown reading bytes or processing the digest
+	 * @since 7.9.5
+	 */
+	//TODO add base 64 encoding on top when upgraded to Java 8
+	private static String md5(final String text) {
+		try {
+			byte[] bytesOfMessage = text.getBytes("UTF-8");
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] thedigest = md.digest(bytesOfMessage);
+			return new String(thedigest, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			log.log(Level.FINEST, e.getMessage(), e);
+		} catch (NoSuchAlgorithmException e) {
+			log.log(Level.FINEST, e.getMessage(), e);
+		}
 		return null;
 	}
 
@@ -313,7 +369,7 @@ public class SwiftMessageUtils {
 
 	/**
 	 * Gets the message reference from field 20 (if present) or from field 20C:SEME if message category is 5.
-	 * For system messages returns the value of the MUR (108) field, if present.
+	 * If no Field20 or 20C are found and MUR is present, returns the MUR value (field 108 from block 3).
 	 * @param m the message where the reference is to be found
 	 * @return found reference or <code>null</code> if the message does not defines a reference, or if the defined reference field is not present in the message
 	 * @since 7.8

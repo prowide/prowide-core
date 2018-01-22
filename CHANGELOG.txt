@@ -1,0 +1,654 @@
+RELEASE 7.9.7-SNAPCHOT
+	* Build migrated to Gradle
+
+RELEASE 7.9.6 - December 2017
+	* Fixed conversion to XML with compressed parameter true in ConversionService
+
+RELEASE 7.9.5 - December 2017
+	* Fixed getValueDisplay in field 50F to strip the starting slash in the account number
+	* Added getLabelForLineNumber(String subfieldNumber) in Field50F to return the labels for the structured line identifiers
+	* Enhanced getComponentLabel(final int number) in Field50F to return proper dynamic labels based on line number identifiers 
+	* Added getCorrespondentBIC to SwiftMessage and AbstractSwiftMessage
+	* Expanded sender/receiver in MtSwiftMessage and MxSwiftMessage from BIC8 to BIC11 in order to keep branch information in those cached attributes
+	* Added checksumBody to AbstractSwiftMessage for proprietary checksum calculated on the body only, as a complement to the existing checksum on the whole message
+	* Fixed AbstractSwiftMessage#copyTo(msg) implementation to perform hard copy of list objects (similar to a copy constructor implementation)
+	* Expanded precision in getValueDisplay for all numeric fields to preserve the decimal digits present in the original value
+	* Implemented SwiftMessage#getUUID and added getUID(Calendar, Long)
+	* Implemented SwiftMessageUtils#calculateChecksum as MD5 hash on whole FIN message content and added new checksum for the text block only
+
+RELEASE 7.9.4 - November 2017
+	Internal Integrator release (no impact in Core)
+
+RELEASE 7.9.3 - October 2017 - LTS version for SRU2017
+
+	JRE requirement increased to Java 1.6
+
+* New API
+	Added API in BIC to return the distinguished name (DN) for a BIC
+	Added equalsIgnoreCR in Tag to compare values regardless of carriage return character being present or not in new lines
+	
+* Fixes
+	Fixed MxParser#parseBusinessApplicationHeaderV01 (it was setting the FinInstnId/Nm as BIC)
+	Removed invalid component in field 86J
+	Fixed order of components in fields 98J and 98K
+	
+* Enhanecements
+	Completed the component labels for all fields
+	Changed field 22C structure into individual components for the <SB-LC> function	
+	Enhanced fields parse/serialization to preserve any whitespace in a component
+
+RELEASE 7.9.2 - August 2017
+
+	Fixed FINWriterVisitor to prevent printing 'null' tag values
+	Deprecated custom resource properties for currency and country codes, in favor of Java nativa API in Currency and Locale
+	Removed package-info.class from target jar to avoid class modifier issue in Java8 runtime
+	Fixed serialization of field 50F to allow the first line without a starting forward slash
+
+RELEASE 7.9.1 - June 2017
+
+	(Issue #5) Enhanced performance in SwiftParser
+	Removed sequence API for inner loops (non sequence) in MTs 306, 320, 340, 360, 361, 362, 410, 412, 420, 422, 450, 456
+
+RELEASE 7.9 - May 2017
+
+	SWIFT Standard release update 2017 (live 19 November 2017 for MT and 18 November for MX)
+	
+	(Issue #2) maven build issues 
+	(Issue #3) Field61 component 5 treated as amount
+	(Issue #4) Field72 structure fixed to allow 6 components at most
+	Field99A implements AmountContainer
+	Field95L implements BICContainer
+
+RELEASE 7.8.9 - May 2017 - LTS maintenance version for current SRU (2016)
+
+	Yearly revision of deprecation phase (see http://www.prowidesoftware.com/resources/deprecation-policy)
+	Added convenient isType(int) to SwiftMessage
+	Fixed amounts() in AmountContainer fields
+
+RELEASE 7.8.8 - March 2017
+
+* New API
+	Added hashcode and equals to MxId
+	Added MUR generation in block 3
+	Added a multi-purpose SwiftMessageComparator for MT, as an abstraction of the existing AckMessageComparator 
+	Added helper API to remove empty sequences in block 4
+	Added ACK/NAK identifier constants and API in AbstractSwiftMessage
+	Added getDateAsCalendar in MIR/MOR
+	Added MtCategory enum for MT message categories and convenient category API in SwiftMessage
+	Added support for system and service messages in metadata gathered from SwiftMesasge in MtSwiftMessage
+	Added isServiceMessage in SwiftMessage
+	Added static factory method parse to SwiftMessage
+	Added new fields in AbstractSwiftMessage to hold main currency and amount, automatically set for most MTs from fields 32a, 33a, 34a, 19a and 62a  
+	Added conversion to and from LT address in SwiftFormatUtils
+	(CR #10) Added comprehensive implementation of MT and Field classes for system messages (category 0)
+	Added custom name for internal loop sequences in MTs 110, 360, 361, 604, 605, 609, 824, 920, 935, 940, 942, 971 and 973
+	Added more options to retrieve information from the status trail in AbstractSwiftMessage
+
+* Fixes
+	Reduced visibility from public to protected for MTs inner sequence classes mutable fields; START, END, TAIL.
+	Fixed analyze and strip API in MxParser to support nested Document elements
+	Fixed MT500 removed invalid fields after GENL linkage sequence
+	Fixed AckMessageComparator to cover all fields in block 2 input and output
+	Fixed getSender and getReceiver for service messages in SwiftMessage
+	Fixed MT600, removed invalid fields 26F, 34G, 31C in sequence A
+	Fixed parse for DATE1 (MMDD) to handle properly leap years
+	Fixed RJEWriter to avoid writing the split character '$' and the end of the file, afterwards the last message
+
+* Enhancements
+	Expanded helper API in AckSystemMessage
+	TagListBlock tags field made private instead of package protected
+	Enabled mutability of LogicalTerminalAddress objects, allowing setting the branch from superclass BIC
+	Enhanced parser for fields 11R, 11S and 37H (NPE prevention)
+	Removed invalid generated code for internal loops (non-sequence) in MTs: 110, 201, 360, 361, 559, 604, 605, 609, 824, 920, 935, 940, 942, 971, 973 
+	Enhanced from() and to() methods in BusinessHeader to catch more options
+
+RELEASE 7.8.7 - December 2016
+
+Fixed MT schemes:
+	* Fixed getMessageType in MT103_STP, MT102_STP, MT103_REMIT, MT202COV and MT205COV to return the number without the validation flag (as expected per javadoc definition)
+	* MT518 fixed fieldset for Field 70
+	* MT330 fixed qualifier in Field 22
+	* MT513 and MT514 Field 11 moved outside previous fieldset
+	* MT541 to MT547 Field 90[A,B] changed to fieldset.
+	* MT564 fixed fieldset items in Field93[B,C]
+	* MT565 to MT567 Sequence D, fixed field 13
+	* MT609 and MT798_763 fixed qualifiers in Field 29
+Enhancements
+	* When creating MT instances, the validation flag (STP, REMIT, COV) will be automatically created as block 3 field 119 when applies for the created MT 
+	* Log warning when creating MTnnn objects from invalid message types, for example calling MT103.parse(fin) and passing FIN content for an MT 202
+	* Ignore validation flag (STP, REMIT, COV) if it is not valid for the message type, when creating MT object from SwiftMessage (to avoid ClassNotFoundException)
+	* Enhanced semantic in AckMessageComparator when a blocks are null or empty (see javadoc for details on how blank blocks are handled in comparison)
+
+RELEASE 7.8.6 - November 2016
+
+* Fixes
+	MxParser; IOB exception prevention in strip methods when XML has empty header or document
+	Prevention for IOB exception in ensureEOLS when converting MT message from model into FIN text
+* Enhancements
+	Expanded API in SwiftParser with static parse methods for each MT block
+	Expanded API in SwiftWriter to serialize any MT block into its native SWIFT representation, also made visit API in SwiftMessage static
+
+
+RELEASE 7.8.5 - October 2016 - LTS version for SRU2016
+
+* New API
+	Added getSubBlockByTagNames and getSubBlocksByTagNames in SwiftTagListBlock to retrieve subblocks based on comprehensive list or tag names
+	Added API in BusinessHeader to create valid BAH from simple parameters
+	Added API in BIC to get the branch and institution
+	Added API to match message identifier by regex, for example fin.*STP
+	Added API to strip header and document portion of Mx message in XML format
+	Added analizeMessage in MxParser, lightweight API to retrieve structure information from an MX messages
+	Added enumerations for message priority and delivery monitoring in MT block 2
+	Added json() to AbstractMT
+	Added getComponentLabel(int) in Field classes
+	Added updateFrom AbstractMT to MtSwiftMessage
+	Added reference as class attribute in AbstractSwiftMessage (set by subclasses)
+	Added FileFormat attribute to AbstractSwiftMessage for clear identification of content in implementing subclasses
+	Added constructor of MxSwiftMessage from AbstracMX
+	Added API to get BIC codes from DN in Mx messages
+	Added MtId class, analogous to the existing MxId for MX messages
+	SwiftParser parsing of block 4 published as static public method
+	Added AbstractMessage as base class for specific MTnnn and MXmmm model hierarchy
+	Added MessageStandardType with MT and MX values and ServiceIdType for header service id values
+	Added nextSwiftMessage in RJE/PPC readers for system messages support
+	Added valuesNumeric to MT enumeration MtType
+	Added getValueDisplay with optional locale parameter to display formatted field and individual components values
+	Added MTVariant enum and getVariant API in swift messages
+	Added CONDITIONAL_QUALIFIER component number as static class field for all generic fields (fields implementing the GenericField interface)
+	Added BusinessHeader serialization into xml and Element objects
+	Added business header parse from Element object in MxParser
+	Added RJEReader and RJEWriter to create MT message files in RJE format
+	Added PPCWriter to create MT message files in DOS-PPC format (also enhanced API for the existing PPCFileReader)
+	Added path() API in MxNode
+	Added MtType, an enumeration of all available MTnnn implementations
+	Added parse to Field classes to update field components from full value
+	Added append lists of Tag or Field to TagListBlock
+	Added support for attributes in MxNode
+	Added generic setters for attributes in header blocks 1 and 2 using qualified names (#setField)
+	Added write XML method for MX business header
+	Added validName as static method in Field, to validate field names
+	Added getField static API in Field to create new instances with reflection given the field name and value
+	Added reference(msg) to SwiftMessageUtils to get the sender reference from messages that contain a reference field
+	Added SwiftMessageRevision to the swift messages model, to hold and track changes in swift messages
+* Fixes
+	Fixed parser for field 98F
+	Fixed field 61 parse allowing EC and ED as credit/debit mark subfield
+	Fixed from() and to() methods in BusinessHeader to return the BIC code for both possible header types
+	FIxed serialization of component 1 in field 50F
+	Fixed parser and serialization in Field98F
+	Fixed SwiftMessage.toJson single quote to double quote in timestamp field
+	Fixed getLabel when used with the parameters combination of a valid mt and a null sequence
+	Fixed getValue in Field61, 
+	Added proper implementation for isOptional(component) in Field61
+	Fixed components trim to null in parser for several fields when the component value is not present
+	Fixed separators trim in getLine API
+	Fixed setComponentN(Number) when component is not a SWIFT amount, Number is now serialized as an integer (without decimal separator)
+	Fixed MT parser to allow additional lines in a field start with colon ':'
+	Fixed field 32R second component changed from currency to string to allow codewords ’FOZ’, ’GOZ’, ’GRM’, ’KLO’, ‘LIT’, ’LOT’, ‘OTH’, ‘PND’, ’TAL’, ’TOL’, ‘TON’, ‘TOZ’, ’UNT’
+	Fixed field 33B first component changed from currency to string to allow codeword ’PCT’ used in MT601
+	Fixed API inconsistencies in MtSwiftMessage when updating from SwiftMessage objects.
+	Bugfix MT506 added mandatory field 28E	
+* Enhancements
+	Added missing getters for Sequence E1 in MT300
+	Changed MX messages detection in MxParser to lighter implementation using Stax
+	Normalized Input/Output Outgoing/Incoming API in AbstractMT and SwiftMessage
+	SwiftMessage.toJson changed timestamp format to the recommended ISO 8601
+	MxSwiftMessage meta-data (sender, receiver, reference, identifier) read and set from raw XML content 
+	Added support in XmlParser for the field version of Core proprietary XML format for MTs, the parser now reads both formats seamlessly 
+	Better header API in MxSwiftMessage to support both ISO and SWIFT business headers
+	Elaborated identifier in MtSwiftMessage, using fin.<msgtype>[.<mug|variant>] instead of just the message type
+	Added comprehensive sequence names into pw_swift_label property files
+	Added translations of pw_swift_label property files to FR, DE and IT (complementing the existent EN, ES and RU files)
+	Completed pw_swift_label property files for all field + mt + sequence combinations 
+	Complete application header parsing in MxParser
+	Better application header detection in MxParser based on namespaces
+	Added component labels for field 13K
+	Fields 11R and 11S component 3 split into two independent components.
+	In Field61, component 6 was splitted into two independent components to hold the "transaction type" and the "identification code" as stated in the standard definition for function <SUB-6>
+	Added SwiftParserConfiguration to encapsulate several parsing options, allowing fast parsing of AbstractMT by reading the text block in raw format
+
+RELEASE 7.7
+
+* New API
+	valueDate in SwiftMessageUtils
+	isType(int...) in SwiftMessage
+	Enhanced the getSequence API in MT classes with support to nested sequences, allowing for ex: getSequenceE1(getSequenceEList().get(n))
+	getLine API for FieldNN classes based on semantic lines number identification
+	Copy constructors for FieldNN classes, performing a deep copy of the components' list
+	MxParser message detection
+	New generic XML model and API, as backbone for MX messages.
+	Headers Blocks: new generic getters in blocks 1 and 2 to retrieve attributes using full qualified names from enums; for example getField(SwiftBlock1Field.LogicalTerminal)
+	Static labels for subfields in FieldNN classes to allow for example getComponent(Field93B.BALANCE)
+	BIC: API to check for live and non-live bics
+	MxParser: parseApplicationHeader and constructors from several sources
+	Added missing labels' API to fields: 36E, 69A, 69C, 69D, 70C, 70D, 70G, 90F, 90J, 92D, 92L, 92M, 92N, 92R
+	Added the ApplicationHeader attribute to AbstractMX
+	Added API to search nodes or content by path or name in the MxNode tree returned by the MxParser
+	Added json() and xml() methods to MT classes
+	Added write to file and output streams to AbstractMT and AbstractMX
+	Added consistent constructors from String, File or InputStream to MTnnn classes
+	Added static parse methods to create MTnnn objects from String, File, InputStream or MtSwiftMessage 
+	Added consistent constructors from String, File or InputStream to AbstractSwiftMessage and subclasses MtSwiftMessage and MxSwiftMessage
+	Added static parse methods to create MtSwiftMessage and MxSwiftMessage objects from String, File or InputStream 
+	Lib: added read from input streams
+* Fixes
+	NPE prevention in SwiftFormatUtils.getCurrency
+	Fixed getSender and getReceiver for MTxxx to return accurate information regardless the message being of type input or output (also to be consistent with analogous methods in SwiftMessage) 
+	Added CR and LF to charset z and x at SwiftcharsetUtils
+	Fixed validation of fields 70F, 77S and 77T that unnecessary restricted the allowed amount of lines (not it is unlimited because charset Z allows CRLF).
+	Fixed OutOfBound exception at MxNode findFirst implementation when a node has multiple children 
+	Fixed getDescription for Field35B, now returning component 3 instead of 2 
+* Enhancements
+	Better API consistency between MT and MX implementations, with common ways to parse and build.
+	Changed sender and receiver attributes for MtSwiftMessage to hold BIC8 instead of full LT identifiers.
+	Deprecated the use of model message inside MtSwiftMessage
+	Simplified distribution zip with -sources and -javadoc jars
+ 
+RELEASE 7.6 - October 2014
+
+* New BIC API
+	* isTestAndTraining()
+	* getLogicalTerminalIdentifier()
+	* bic8() and bic11()
+* New model for LT addresses, and its related API in header classes
+* New SwiftMessage API
+	* AbstractMT toMT() 
+* New AbstractMT API
+	* getSequence(name) 
+	* getSequenceList(name) 
+* MTs API
+	* Added builder API: constructors and append methods to add content with chaining support
+* Added missing getValue() implementations to field classes. Example: Field26C
+* Added annotations to MTNNN classes to identify sequence split strategy involved (more traceable code)
+* SRU 2014. Affected MTs: 300, 304, 305, 306, 340, 341, 360, 361, 380, 381, 502, 506, 508, 509, 513, 514, 515, 518, 527, 530, 536, 537, 538, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 558, 564, 565, 566, 567, 568, 569, 575, 600, 601, 942
+* Added description and release javadoc comments to MT classes
+* Added MX Generic model support
+* Added MX parse
+* Added MT300.getSequenceE()
+* Minor fix in MT300 sequences structure, B1 and B2 inside B, and named D's subsequence as D1
+* SwiftTagListBlock implements Iterable<Tag> 
+* Bugfix SwitTagListBlock.countTagsStarsWith(string,string) was ignoring tagnames in count 
+
+RELEASE 7.5 - August 2014
+
+* New API
+	Added toJson in SwiftMessage and SwiftTagListBlock, SwiftBlock1 and 2
+	Added to SwiftTagListBlock  getFieldByName(String, being)
+	Added to SwiftTagListBlock  getFieldByName(String, being, component2)
+	Added to SwiftTagListBlock  getFieldByNumber(int , being) 
+	Added START_TAG and END_TAG constant to Sequence inner classes
+	Added Sequence.newInstance() method
+	Added static method Field.emptyTag()
+	Added to SwiftTagListBlock append(SwiftTagListBlock)
+* Fixes
+	Changed SwiftFormatUtils.getNumber(Number) to allow variable amount of decimal parts without the previous limit of two
+	Added support for national clearing system codes in party identifier components: example 52A starting with //AT123
+	JSON serialization: fixed missing quotes escaping and newline
+	in some occasions, getSequenceA() incorrectly returned null instead of empty sequence as stated in javadoc
+* Enhancements
+	Refactored Field77A to include 20 independent components instead of just one (current implementation is similar to Field79)
+	Deprecated isAnyOf(String ... names) and added isNameAnyOf(String ... names) semantics of method more clear with its name
+	Changed the semantic of getAccount methods to remove starting slashes if any
+	Some javadoc for BICRecord
+	Added serialization timestamp to JSON generation
+	In Field* void set changed to Class set so we can support the code style new Field().setThis().setThat().setThatToo()
+	Added Field.asTag()
+	Added option in XMLWriterVisitor to serialize field instead of tag
+	
+RELEASE 7.4 - March 2014
+
+* New API 
+	In BIC added subtype attribute and getBranch method
+ 	ReaderIterator to read a file from a classpath resource and split its content by the '$' symbol
+	In SwiftMessage new API to check and get linkages sequences
+	In AbstractSwiftMessage new constructor using MTSwiftMessage as parameter
+	In MTSwiftMessage updateFromModel and updateFromFIN using internal attributes
+	Several helper methods to parse field content using SwiftParseUtils
+	Field classes implementation for fields belonging to System and Service Messages (i.e. 451)
+	Resource bundle labels for System and Service Messages fields
+	MOR class to represent the message output reference (inherited from the MIR)
+	SwiftParseUtils: getTokenSecond and getTokenSecondLast with prefix
+	getAll(SwiftMessage) in every FieldNN class 
+	getAll(SwiftTagListBlock) in every FieldNN class
+	New constant in Field suitable for import static
+	In SwiftTagListBlock
+		constructors made public
+		added filterByNameOrdered(String ...)
+		added getFieldsByNumber(int)
+		added removeSubBlock(String)
+		deprecated int getTagCount(String)
+		added int countByName(String)
+		deprecated int getTagCount()
+		added int countAll()		
+		added method boolean containsAllOf(String...)
+* Enhancements:
+	Improved toString in SwiftTagListBlock and Tag
+	Javadoc improvements
+* Fixes
+	Fixed SwiftBlock1 constructor to allow LTs missing the optional A, B or C identifier (11 characters length); ex. FOOOAR22XXX 
+	Fixed getStatusInfo and getPreviousStatus in messages base class that was causing IOB exceptions
+	Issue 39: missing trimToEmpty in getComponent2 in 50H
+	MT207: fixed maximum repetitions of sequence B from 1 to unlimited
+
+RELEASE 7.3 - January 2014
+
+* removed log4j.properties 
+* New API
+	com.prowidesoftware.swift.model.field.Field.isAnyOf(String...)
+	many methods in SwiftTagListBlock in resemblance to String manipulation API
+	SwiftTagListBlock
+		Added 
+			getTagsByNumber(int)
+			SwiftTagListBlock removeAfterFirst(String, boolean)
+	Tag.startsWith
+	Tag.contains
+	com.prowidesoftware.swift.io.PPCFileReader iterator to read and split pc connect files	
+		
+RELEASE 7.2 - September 2013
+
+* New API
+	Field.letterOption
+	SwiftTagListBlock.getSubBlockBeforeFirst
+	SwiftTagListBlock.filterByName
+* Fixes
+	Field.appendInLines that was causing the getValue of several fields (ex 35B) to start with unexpected EOL
+    NPE in XMLParser with null value in tags
+    Avoid usage of double in amount resolver
+
+RELEASE 7.0 - August 2013
+
+ENHACENMENTS:
+* Enhanced messages model with base support for MX messages.
+* New messages meta-data model to handle additional information 
+	- Status history
+	- User notes 
+	- Properties list.
+* Useful API to SwiftMessage to get: direction, PDE, PDM, UUID, MIR, MUR and getTypeInt
+* Complete FieldNN implementation classes
+* Complete MT helper classes, covering all message types
+* Added model and API to handle Sequences at MT classes, covering all sequences based on 16R/16S boundaries.
+* New API to handle sub blocks: 
+	- SwiftTagListBlock.removeUntilFirst
+	- SwiftTagListBlock.containsAnyOf
+* Ensuring of SWIFT EOL at ConversionService.getFIN
+FIXES:
+* Fixed getValue of several fields to prevent printing of null
+* Fixed getValue of several fields with missing slash separator on optional components
+* Added missing field getters for MT classes with fieldsets: for example 93B at MT564.
+* getValue for Field35B. Thanks to Raghu rathorr@users.sf.net
+* getCalendar bug related to unused format parameter
+* Changed Field26C parser and subfields structure to split the string before the VAR-SEQU into independent components
+OTHERS:
+* Removed deprecated net.sourceforge classes
+* Removed unimplemented method amounts() in AmountContainer 
+
+RELEASE 6.4 - March 2013
+
+* Added visitor API on tag list block
+* New interface to identify and use generic fields (notice DSS methods are not part of non-generic fields)
+* Added API on MT classes to simplify messages creation
+* Comprehensive getters and setter API for field classes using functional names
+* Added PatternContainer interface and implemented in field
+* Better CurrencyContainer API
+* Added API to SwiftFormatUtils to get String components from Calendar using different SWIFT date/time formats
+* Implemented API for CurrencyContainer for all Fields
+* Added MT helper classes for MTs: 518, 549, 800, 801, 802, 824, 600, 601, 604, 605, 606, 607, 608, 609
+* Added Field implementations for 33G, 35U, 86B, 68A, 68B, 68C, 94C, 31F, 37a, 34J, 35H, 31X
+* Added API to simplify messages creation; defaults for header blocks attributes, addField to Block4, setSender at Block1
+
+RELEASE 6.3 - October 2012
+
+* Added MT helper classes for MTs: 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 565
+* Fixed getAsCalendar for year component of field 77H
+* Fixed parsing of field 50F
+* Added field class for: 26C
+* Support to identify which sequence a tag belongs to
+* Added API to FieldNN classes to get the DSS field
+* Added API to FieldNN classes to get the qualifier and conditional qualifier components
+* Added API to FieldNN classes to determine if field is generic or non generic
+* Field class made abstract
+* FieldNN isOptional: method to check if a given component is optional for the field
+* Field getLabel: support for label exceptions per mt and sequence
+* SwiftParser changes to distinguish the presence of brackets when they are block boundaries or part of an invalid field value
+* Improved parsing of Field35B, first and second components are set only if "ISIN " is present
+* SR2012 update: deprecated fields 23C, 23F. Updated MT300, MT304, MT305 with field changes.
+* Added serialization for: 20E, 29G, 31G, 36E, 50G, 50H, 69B, 69D, 69F, 77H, 90F, 90J, 90K, 92D, 92L, 92M, 92N, 94D, 94G, 95T, 98F
+* Fixed serialization of field 59A
+
+RELEASE 6.2 - June 2012
+
+* Purged and some tunning of parser log
+* Added getField* API con block4
+* Added Tag API: public boolean contains(String ... values) 
+* Added more API to get subblocks based on tag number boundaries regardless of letter options
+* Fixed Tag.isNumber to consider the whole number and not just the prefix, isNumber(58) returns true to 58A but not to 5
+* Added Tag.getNumber() API
+* Fixed build to include MTs and FieldNN source codes in the package
+* Fixed parser for fields: 94D, 50H, 50G and 52G
+* Added MT helper classes for MTs: 567, 900, 910, 920, 935, 941, 970, 971, 972, 973, 985, 986
+* Added API for getLabel at Field objects, to retrieve business oriented names from resource bundles
+
+RELEASE 6.1 - March 2012
+
+* Added BICContainer interface
+* Added MT helper classes for MTs: 360, 361, 362, 364, 365, 381, n90, n92, n95, n96, n98, 420, 422, 430, 450, 455, 456, 701, 705, 711, 720, 721, 732, 734, 740, 742, 747, 750, 752, 754, 756, 768
+* Added getValue for Field13E
+* Fixed getValue for Field31R (2nd component is optional)
+
+RELEASE 6.0 - February 2012
+
+* Merged patches from Walter Birch
+* SwiftParser: fix for parse error with malformed tag 72
+* Implemented getValue for Fields: 19B, 31D, 31P, 31R, 39P, 40B, 41D, 92F, 93B, 98E and others with the same parser pattern	
+* Changed packages in Hibernate mappings from sourceforge to prowidesoftware
+* Added SwiftMessageUtils class 
+* Added date container interface to Fields to better support higher level model expressions
+* Added currency container interface to Fields to better support higher level model expressions
+* SWIFT standard update (Nov 2011)
+* Fixed field parser for 35B
+* Changed SwiftParser log level
+* Build system modifications:
+    + Release.name in all wife.jar
+    + Standard -sources and -javadocs jar files
+    + Consistent and explicit release name in all three jars.
+    + Default release name is current date (not hardocoded value)
+    + Include dependent jars in standard lib directory in release bundle
+* API to create FieldNN objects from Tag objects
+* Fixed field parser for 35B when first component is an ISIN number
+* Added DATE1 support for fields parser (fixes Field61)
+* SwiftMessage API to get sender and receiver addresses from message headers
+* Added MT helper classes for MTs: 101, 104, 105, 107, 110, 111, 112, 200, 201, 204, 205, 205COV, 207, 256, 300, 305, 306, 307, 330, 340, 341, 350, 540, 541, 542, 543, 564, 566
+* MT helper classes 102_not_STP and 103_not_STP with inheritance from defaults MT103 and MT102 classes
+* Added Field implementations for 36E, 69B, 69D, 69F, 90F, 90J, 93B, 93C, 94G, 95T, 95S, 98E, 98F, 98L, 67A, 77J, 92E, 98D, 95S, 50G, 50H, 52G, 31G, 77H
+* TIME3 implementation to format utils
+* Suppress warnings for unused imports in eclipse
+
+RELEASE 6.0-RC5 - August 2011
+
+* Fixed parser for Field20E
+* Added Field implementations for 90K, 92D, 92L, 92M, 92N
+
+RELEASE 6.0-RC4 - July 2011
+
+* Added MT helper classes for MTs (SCORE): 798<743>, 798<745>, 798<760>, 798<761>, 798<762>, 798<763>, 798<764>, 798<766>, 798<767>, 798<769>, 798<779>, 798<788>, 798<789>, 798<790>, 798<791>, 798<793>, 798<794>, 798<799>
+* Added MT helper classes for MTs: 191, 291, 391, 399, 491, 535, 591, 691, 699, 707, 760, 767, 769, 790, 791, 891, 991, 999
+* Added Field implementations for 13E, 20E, 22L, 23X, 24E, 27A, 29D, 29G, 29S, 31R, 39D, 39P, 49H, 49J, 50M, 72C, 77C, 77E, 78B
+
+RELEASE 6.0-RC3 - April 2011
+
+* Added MT helper classes for MTs: 304, 320, 321, 210, 599
+* Added Field implementations for 19B, 32H, 32R, 34E, 37G, 37M, 37R, 38J, 92F, 62A, 62B
+
+RELEASE 6.0-RC2 - February 2011
+
+* Added Field implementation for 15 (A,B,C,D,E,F,G,H,I,J,K,L,M,N)
+* Added MT helper classes for MTs: 300, 400, 410, 412, 416, 499, 544, 545, 546, 547, 548, 700, 710, 730, 799
+* Added Field implementations for 31D, 31P, 40B, 41A, 41D, 45A, 45B, 46A, 46B, 47A, 47B
+* field serialization from components values into SWIFT single string value
+* Removed log4.properties from distribution jar
+* MTs API: fixed field mutiplicity when a field becomes repetitive being present on multiple sequences or at repetitive sequences.
+* Hibernate mappings: removed confusing/commented blocktype mappings at SwiftBlock.hbm.xml
+* Hibernate mappings: package rename
+
+RELEASE 6.0-RC1 - October 2010
+
+* Migrated src code to java 1.5 (binary distribution is still 1.4 compatible by means of http://retroweaver.sourceforge.net/)
+* Java 1.4 compatibility changes
+* normalization of linefeeds to CRLF at Tag creation from XML parsing
+* Removed deprecated API
+* Added new package io with subpackages parser and writer; added new package utils.
+* Renamed all packages to com.prowidesoftware (backward compatibility maintained with facades)
+* Added implementation for MTs 102 not STP, 102 STP, 103 not STP, 103 STP, 195, 199, 202, 202COV, 203, 295, 299, 940, 942, 950
+* Added new SWIFT MT high level generated API, with classes for specific message types
+* New source package for generated swift model
+* Merged project "prowide SWIFT Fields" into "WIFE"
+* Added comparison options to AckMessageComparator
+* Removed old and incorrect charset validator class net.sourceforge.wife.swift.MessageValidator
+* BUGFIX in remove user block method, thanks to Herman's contribution and patience
+* Parser API for (new SwiftParser()).parse(messageToParse);
+* Replaced commons-lang-2.3 -> 2.4
+* Fixed message writer: system messages' block4 generated with inline tags
+* SwiftMessage API to check if it's Straight Through Processing (STP), based on the content of the User Header
+* SwiftMessage API to check if it's a cover payment (COV), based on the content of the User Header
+* SwiftTagListBlock API to check if contains a specific Tag 
+* Removed unimplemented and confusing package net.sourceforge.wife.validation
+* Deprecated old and unused validation-related classes
+* Added AckMessageComparator which is useful of identify the ack of a given message.
+* SwiftTagListBlock API to get a sub block given its name or its starting and ending Tag
+* SwiftTagListBlock API to get tags by content, given its exact or partial value
+* Helper methods from Block4 moved to SwiftTagListBlock
+* SwiftTagListBlock is no longer abstract, so it can be used to create instances for subblocks
+* Required JVM upgrade to 1.5
+* Initial update of upload-sf target for release to sourceforge
+* .cvsignore update 
+
+RELEASE 5.2 - February 2009
+
+* Added missing hashcode and equals
+* Javadocs improvements
+* Revised and tested hibernate mappings
+* Added getBlockType
+* Added length to unparsed text persistence mappings
+* Fixed persistence mapping for block2 inheritance
+* Updated hibernate libs to version 3.2.6
+* Added isOutput
+* isInput made concrete, not abstract
+* Added abstract isInput() method to SwiftBlock2 for safer casting subblocks when input/output is unknown
+
+RELEASE 5.1 - July 2007
+
+* Migrated logging to java logging api
+* Removed SwiftBlock's deprecated methods. 
+* Moved some common methods in SwiftBlock2Input/SwiftBlock2Output to parent class SwiftBlock2.
+* Upgraded commons-lang to version 2.3
+* Improved persistence mapping.
+* Move persistence (helper) package to wife-test project.
+* Minor javadoc fixes.
+* Fixed some warnings.
+
+RELEASE 5.0 - June 2007
+
+* Improved Hibernate mapping for simplified and more efficient data base schema.
+* Added support for unparsed text to model, persistence mapping and conversion services (needed for some MT0xx for example).
+* XML to SwiftMessage parsing methods moved from ConversionService to XMLParser in "parser" package.
+* New package created for parser classes "net.sourceforge.wife.swift.parser".
+* Made abstract intermediate classes of blocks object hierarchy.
+* Added support for user custom blocks in model, persistence mapping and conversion services.
+* Improved overall test cases coverage and source/resources structure.
+* Fixed some warnings.
+* Swift Parser enhancements; don't throw exception on unrecognized data, but preserve an internal list of errors.
+* Added reference to current message in parser, so it can take decisions based on parsed data.
+* Added constant for possible values for application id to SwiftBlock1.
+* Updated dependency: hsqldb 1.8.0.4 -> hsqldb 1.8.0.7.
+* Updated dependency: hibernate 3.1.3 -> hibernate 3.2.3.ga.
+	
+RELEASE 4.0 - April 2007
+
+* Moving to junit 4 - some new tests are being written with junit4, this should make testing some features singificantly easier.
+* Move size and isEmpty methods to subclasses.
+* Improved deprecated exception messages and javadoc.
+* Added useful getter for the MIR field in Block 2 output.
+* Added support for optional fields in Block 2 input.
+* Method specific to each block moved to each block class, when possible compatibility methods were left in old places, marked as deprecated to provide a smoother migration path.
+* Removed deprecated API in SwiftBlock.
+* Adapted parser to new model refactor.
+* More javadoc in parser.
+* Improved xml writer (more clean tabs and EOL).
+* Refactored and fixed XML parsing for blocks 3 and 5.
+* Fixed build.xml to include resources in generated jar files.
+* Improved javadoc and validations in fin writer.
+* Completed basic internal XML parsing.
+* Added more tests for XML conversion.
+* Implemented XML conversion parsing for all blocks (except 4).
+* Updated passing test in conversion service.
+
+RELEASE 3.4 - March 2007
+
+* Added license header to source files.
+* Minor fixes in build system.
+* Enhanced IBAN validation routine.
+* Added numerous tests for IBAN validation.
+* Added JSValidationUnit backed by Rhino, to support easy extension of validations.
+* Made all loggers private static transient final.
+* Enhanced overview documentation.
+* Javadoc updates.
+* Code clean up.
+* Added many tag specific validation units targeting MT103 validation.
+* Removed ant junit fork since it broke in ant 1.7.
+
+RELEASE 3.3 - January 2007
+
+* Initiated MT103 validation rule.
+* Validation framework core classes written.
+* Utility classes for validation.
+* Removed old and deprecated/replaces writer component.
+* Dependencies clean up, ant downloads less libs now.
+* Added Currency ISO Codes (needed for validations).
+* VF: implemented TagExists and ConditionalTagPresence validation units.
+* Started implementation of validation units.
+* Initial implementation of BIC validation.
+* Initial implementation of IBAN validation.
+* Added ISO Countries for IBAN validation.
+* Fixed issue in writer with block5 as mentioned in bug 1601122.
+* Fixed issue 1595631.
+
+RELEASE 3.2
+
+* Parser logging information cleanup.
+* Migrating to log4j 1.2.8 for better compatibility (issued with trace method on some servers).
+* Fixed build to properly include current timestamp in dist target when property release.name is not set.
+* Fixed bug in parser/writer integration which included double block number when using the writer with an object of a just parsed message(1595589).
+* Updated code to fix issue mentioned in https://sourceforge.net/forum/message.php?msg_id=4001538.
+
+RELEASE 3.1.1
+
+* Small fixes for java 1.4 compatibility.
+
+RELEASE 3.1
+
+* Fixes to compile for java 1.4 by default.
+* Fixed test for bug 1540294, typo in block number.
+* Use system EOL in XML writer.
+* Added compile timestamp to manifest in created jars.
+
+RELEASE 3.0-RC2
+
+* Build: Added release.name property to manifest.
+	
+RELEASE 3.0-RC1
+ 
+* Build: added selection of tests known to fail and those known to pass.
+* Fixed persistence mapping.
+* Improved build and added control to exclude tests that are know to fail.
+* Model simplification: SwiftBlockN classes are being removed in favor of base class SwiftBlock	removed list of blocks in message which was confusing when not all blocks present.
+* SwiftBlock (base class) and subclasses are mapped and persisted ok, either the base class or the subclasses.
+* Added many tests for hiberante persistence of SwiftMessage hierarchy.
+* Added XML Visitor to write a swift message to an XML representation.
+* Added ConversionService class which encapsulates many services conveniently.
+
+RELEASE 2.0
+
+* New parser component highly tested on production and unit tests.
+* Writer component usable. while it has many limitations, it can be used as it is now.
+* Work in progress swift message persistence mapping.
+* Work in progress swift expression <-> regular expression conversion.

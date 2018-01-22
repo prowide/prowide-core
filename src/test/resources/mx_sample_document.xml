@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Doc:Document xmlns:Doc="urn:swift:xsd:camt.003.001.04"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Doc:GetAcct>
+		<Doc:MsgId>
+			<Doc:Id>1</Doc:Id>
+		</Doc:MsgId>
+	</Doc:GetAcct>
+</Doc:Document>

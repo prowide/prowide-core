@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Saa:DataPDU xmlns:Saa="urn:swift:xsd:saa.mxs.01">
+	<Saa:Message>
+		<Saa:MessageFormat>MX</Saa:MessageFormat>
+		<Saa:MessageSubFormat>Input</Saa:MessageSubFormat>
+		<Saa:Sender>
+			<Saa:X1>SAASBEBBXXX</Saa:X1>
+			FOOO
+		</Saa:Sender>
+		<Saa:Receiver>
+			<Saa:FullName>
+				<Saa:X1>SAATBEBBXXX</Saa:X1>
+			</Saa:FullName>
+		</Saa:Receiver>
+		<Saa:MessageNature>FinancialNature</Saa:MessageNature>
+		<Saa:MessageLPI>
+			<Saa:NetworkAttribute>
+				<Saa:SWIFTNetRequestAttribute>
+					<Saa:RequestorDN>o=saasbebb,o=swift</Saa:RequestorDN>
+					<Saa:ResponderDN>cn=beso,cn=tg229,o=saatbebb,o=swift
+					</Saa:ResponderDN>
+					<Saa:Service>swift.cashrepv1</Saa:Service>
+					<Saa:RequestType>getaccount</Saa:RequestType>
+				</Saa:SWIFTNetRequestAttribute>
+			</Saa:NetworkAttribute>
+		</Saa:MessageLPI>
+		<Saa:MessageTPI>
+			<Saa:NetworkPriority>Normal</Saa:NetworkPriority>
+		</Saa:MessageTPI>
+		<Saa:MessageSRI>
+			<Saa:UserReference>REF-1-0123455678</Saa:UserReference>
+		</Saa:MessageSRI>
+		<Saa:MessageText>
+			<Ah:AppHdr xmlns:Ah="urn:swift:xsd:$ahV10">
+				<Ah:MsgRef>SCRRQ01</Ah:MsgRef>
+				<Ah:CrDate>2006-09-18T17:11:28.359</Ah:CrDate>
+			</Ah:AppHdr>
+			<Doc:Document xmlns:Doc="urn:swift:xsd:swift.cashrepv1$getaccount"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				<Doc:getaccount>
+					<Doc:NstrAcctSchCrit>
+						<Doc:AcctId>
+							<Doc:DmstAcct>123DA123</Doc:DmstAcct>
+						</Doc:AcctId>
+						<Doc:BalTp>ABCD</Doc:BalTp>
+					</Doc:NstrAcctSchCrit>
+					<Doc:QryPrcg>
+						<Doc:QryRef>
+							<Doc:Ref>ABCDE01</Doc:Ref>
+						</Doc:QryRef>
+					</Doc:QryPrcg>
+				</Doc:getaccount>
+			</Doc:Document>
+		</Saa:MessageText>
+	</Saa:Message>
+</Saa:DataPDU>

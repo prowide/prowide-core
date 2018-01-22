@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppHdr xmlns:Ah="urn:swift:xsd$ahV10">
+	<From>
+		<Type>DN</Type>
+		<Id>cn=funds,ou=abcdchzz,o=swift</Id>
+	</From>
+	<To>
+		<Type>DN</Type>
+		<Id>cn=funds,ou=dcbadeff,o=swift</Id>
+	</To>
+	<MsgRef>11308917</MsgRef>
+	<CrDate>2013-12-23T15:50:00</CrDate>
+</AppHdr>

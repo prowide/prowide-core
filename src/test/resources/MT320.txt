@@ -1,0 +1,26 @@
+{1:F01CECAESMMA0170000000000}{2:I320CAAMES2AXXXXN}{4:
+:15A:
+:20:00005586-090224
+:22A:NEWT
+:22B:CONF
+:22C:CAAM2A0001CECAMM
+:82A:CECAESMM017
+:87A:CAAMES2AXXX
+:15B:
+:17R:L
+:30T:20090224
+:30V:20090224
+:30P:20090225
+:32B:EUR111,00
+:30X:20090225
+:34E:NEUR0,00
+:37G:1,
+:14D:ACT/360
+:15C:
+:53A:CECAESMM017
+:58A:CAAMES2AXXX
+:15D:
+:57A:CECAESMM017
+-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   !
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             !
+                                                      
