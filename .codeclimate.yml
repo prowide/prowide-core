@@ -1,3 +1,5 @@
+version "2"
+
 plugins:
   sonar-java:
     enabled: true
@@ -6,3 +8,10 @@ plugins:
     checks:
       squid:S1845:
         enabled: false
+
+exclude_patterns:
+  - ".gradle/"
+  - ".idea/"
+  - "build/"
+  - "bin/"
+  - ".setting/"
