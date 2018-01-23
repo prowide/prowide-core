@@ -2,6 +2,7 @@ apply plugin: 'java-library-distribution'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
+apply plugin: 'jacoco'
 
 archivesBaseName = 'pw-swift-core'
 
@@ -42,12 +43,13 @@ def formattedDate() {
 }
 
 javadoc {
+	failOnError false
 	options.overview = "src/main/java/overview.html"
 	options.header = "${version}"
 	options.windowTitle = "Prowide Core API Reference"
 	options.footer="SRU${SRU}, generated ${formattedDate()}"
+	options.addBooleanOption("-allow-script-in-comments", true)
 	options.bottom = '<script src="//static.getclicky.com/js"></script><script>try{ clicky.init(101039278); }catch(e){}</script>'
-	
 	exclude "**/internal/**"
 }
 
@@ -127,4 +129,18 @@ distTar.enabled = false
 
 distZip {
     dependsOn writePom
+}
+
+test {
+	jacoco {
+		append = false
+	}
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled false
+    }
 }
