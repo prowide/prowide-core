@@ -19,6 +19,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.logging.Level;
 
 import org.apache.commons.lang.Validate;
 
@@ -27,6 +28,7 @@ import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.parser.XMLParser;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
+import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
 import com.prowidesoftware.swift.model.SwiftMessage;
 
 
@@ -52,9 +54,8 @@ public class ConversionService implements IConversionService {
 	 */
 	public String getFIN(final SwiftMessage msg) {
 		Validate.notNull(msg);
-		final SwiftWriter w = new SwiftWriter();
 		final StringWriter writer = new StringWriter();
-		w.writeMessage(msg, writer);
+		SwiftWriter.writeMessage(msg, writer);
 		final String fin = writer.getBuffer().toString();
 		return ensureEols(fin);
 	}
@@ -112,7 +113,9 @@ public class ConversionService implements IConversionService {
 	 */
 	public String getXml(final SwiftMessage msg, final boolean useField) {
 		Validate.notNull(msg);
-		return msg.toXml();
+		final StringWriter w = new StringWriter();
+		msg.visit(new XMLWriterVisitor(w, useField));
+		return w.getBuffer().toString();
 	}
 
 	/**

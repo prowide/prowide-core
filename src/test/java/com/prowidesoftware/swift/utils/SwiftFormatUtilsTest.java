@@ -1,0 +1,160 @@
+/* 
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ */
+package com.prowidesoftware.swift.utils;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import java.math.BigDecimal;
+import java.util.Calendar;
+
+import org.junit.Test;
+
+/**
+ * Test for SwiftFormatUtils.
+ * 
+ * @author www.prowidesoftware.com
+ * @since 6.0
+ */
+public class SwiftFormatUtilsTest {
+
+	@Test
+	public void testGetNumber() throws Exception {
+		assertNotNull(SwiftFormatUtils.getNumber("123"));
+		assertEquals(123, (SwiftFormatUtils.getNumber("123").intValue()));
+
+		assertNotNull(SwiftFormatUtils.getNumber("123,"));
+		assertEquals(new BigDecimal(123), new BigDecimal(SwiftFormatUtils.getNumber("123,").doubleValue()));
+		
+		//this test does not work but this format is not used
+		//assertNotNull(SwiftFormatUtils.getNumber(",12"));
+		//assertEquals(new BigDecimal(0.12), new BigDecimal(SwiftFormatUtils.getNumber(",12").doubleValue()));
+
+		assertNotNull(SwiftFormatUtils.getNumber("1,2"));
+		assertEquals(new Double(1.2), new Double(SwiftFormatUtils.getNumber("1,2").doubleValue()));
+		
+		assertNotNull(SwiftFormatUtils.getNumber("12,34"));
+		assertEquals(new Double(12.34), new Double(SwiftFormatUtils.getNumber("12,34").doubleValue()));
+		
+		assertNotNull(SwiftFormatUtils.getNumber("12,3456"));
+		assertEquals(new Double(12.3456), new Double(SwiftFormatUtils.getNumber("12,3456").doubleValue()));
+
+		assertNotNull(SwiftFormatUtils.getNumber("0,"));
+		assertEquals(new Double(0), new Double(SwiftFormatUtils.getNumber("0,").doubleValue()));
+
+		assertNotNull(SwiftFormatUtils.getNumber("299000,34"));
+		assertEquals(new Double(299000.34), new Double(SwiftFormatUtils.getNumber("299000,34").doubleValue()));		
+	}
+	
+	@Test
+	public void testGetNumberWriter() throws Exception {
+		assertEquals("12,", SwiftFormatUtils.getNumber(new BigDecimal(12)));
+		assertEquals("12,34", SwiftFormatUtils.getNumber(new BigDecimal(12.34)));
+		assertEquals("12,", SwiftFormatUtils.getNumber(new BigDecimal(12.0)));
+		assertEquals("123,", SwiftFormatUtils.getNumber(new BigDecimal(123)));
+		assertEquals("1,2", SwiftFormatUtils.getNumber(new BigDecimal(1.2)));
+		assertEquals("0,7", SwiftFormatUtils.getNumber(new BigDecimal(0.7)));
+		assertEquals("12,345", SwiftFormatUtils.getNumber(new BigDecimal(12.345)));
+		assertEquals("12,", SwiftFormatUtils.getNumber(12));
+		assertEquals("12,3", SwiftFormatUtils.getNumber(12.3));
+		assertEquals("12,34", SwiftFormatUtils.getNumber(12.34));
+		assertEquals("12,345", SwiftFormatUtils.getNumber(12.345));
+		assertEquals("12,3456", SwiftFormatUtils.getNumber(new BigDecimal(12.3456)));
+		assertEquals("12,34567", SwiftFormatUtils.getNumber(new BigDecimal(12.34567)));
+		assertEquals("12,345678", SwiftFormatUtils.getNumber(new BigDecimal(12.345678)));
+		assertEquals("12,3456789", SwiftFormatUtils.getNumber(new BigDecimal(12.3456789)));
+	}
+	
+	@Test
+	public void testIsHHMM() throws Exception {
+		assertNotNull(SwiftFormatUtils.getHhmm("0000"));
+		assertEquals(0, SwiftFormatUtils.getHhmm("0000").get(Calendar.HOUR_OF_DAY));
+		assertEquals(0, SwiftFormatUtils.getHhmm("0000").get(Calendar.MINUTE));
+		
+		assertNotNull(SwiftFormatUtils.getHhmm("1245"));
+		assertEquals(12, SwiftFormatUtils.getHhmm("1245").get(Calendar.HOUR_OF_DAY));
+		assertEquals(45, SwiftFormatUtils.getHhmm("1245").get(Calendar.MINUTE));
+		
+		assertNotNull(SwiftFormatUtils.getHhmm("1359"));
+		assertEquals(13, SwiftFormatUtils.getHhmm("1359").get(Calendar.HOUR_OF_DAY));
+		assertEquals(59, SwiftFormatUtils.getHhmm("1359").get(Calendar.MINUTE));
+
+		assertNull(SwiftFormatUtils.getHhmm("0060"));
+		assertNull(SwiftFormatUtils.getHhmm("2400"));
+	}
+	
+	@Test
+	public void testIsOffset() throws Exception {
+		assertNotNull(SwiftFormatUtils.getOffset("0000"));
+		assertNotNull(SwiftFormatUtils.getOffset("1245"));
+		assertNotNull(SwiftFormatUtils.getOffset("1300"));
+		assertNotNull(SwiftFormatUtils.getOffset("1301"));
+		assertNotNull(SwiftFormatUtils.getOffset("1359"));
+		assertNull(SwiftFormatUtils.getOffset("0060"));
+		assertNull(SwiftFormatUtils.getOffset("2400"));
+	}
+	
+	@Test
+	public void testIsDate2() throws Exception {
+		// TODO add test for specific values to be parsed correctly
+		assertNotNull(SwiftFormatUtils.getDate2("070131"));
+		assertNotNull(SwiftFormatUtils.getDate2("070228"));
+		assertNotNull(SwiftFormatUtils.getDate2("070430"));
+		
+		assertNull(SwiftFormatUtils.getDate2("070229"));
+		assertNull(SwiftFormatUtils.getDate2("070132"));
+	}
+	
+	@Test
+	public void testLeapYear() {
+		assertTrue(SwiftFormatUtils.isLeapYear(2016));
+		assertFalse(SwiftFormatUtils.isLeapYear(2017));
+	}
+	
+	@Test
+	public void testIsDate1_Leap() throws Exception {
+		if (SwiftFormatUtils.isLeapYear()) {
+			assertNotNull(SwiftFormatUtils.getDate1("0229"));
+		} else {
+			assertNull(SwiftFormatUtils.getDate1("0229"));
+		}
+	}
+
+	@Test
+	public void testDecimalsInAmount() throws Exception {
+		assertEquals(0, SwiftFormatUtils.decimalsInAmount((String)null));
+		assertEquals(0, SwiftFormatUtils.decimalsInAmount(""));
+		assertEquals(0, SwiftFormatUtils.decimalsInAmount("1"));
+		assertEquals(0, SwiftFormatUtils.decimalsInAmount("1,"));
+		assertEquals(0, SwiftFormatUtils.decimalsInAmount("1127892189"));
+		
+		assertEquals(1, SwiftFormatUtils.decimalsInAmount("112789218,9"));
+		assertEquals(1, SwiftFormatUtils.decimalsInAmount("112789,218,9"));
+		assertEquals(1, SwiftFormatUtils.decimalsInAmount("112789,,,218,9"));
+	}
+	@Test
+	public void testDecimalsInAmountBigDecimal() throws Exception {
+		assertEquals(0, SwiftFormatUtils.decimalsInAmount((BigDecimal)null));
+		assertEquals(0, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1")));
+		assertEquals(0, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1.00")));
+		assertEquals(0, SwiftFormatUtils.decimalsInAmount("new BigDecimal(1127892189"));
+		
+		assertEquals(5, SwiftFormatUtils.decimalsInAmount(new BigDecimal("11278.92189")));
+		assertEquals(1, SwiftFormatUtils.decimalsInAmount(new BigDecimal("112789218.9")));
+		assertEquals(4, SwiftFormatUtils.decimalsInAmount(new BigDecimal("112789.2189")));
+	}
+	
+}

@@ -29,6 +29,7 @@ public enum MxBusinessProcess {
 	camt("Cash Management"),
 	catm("Terminal Management"),
 	catp("ATM Card Transactions"),
+	cbrf(""),
 	colr("Collateral Management"),
 	fxtr("Foreign Exchange Trade"),
 	defp("Derivatives"),

@@ -1,0 +1,73 @@
+package com.prowidesoftware.swift.model.mt.mt5xx;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.prowidesoftware.swift.model.SwiftTagListBlock;
+import com.prowidesoftware.swift.model.field.Field22H;
+import com.prowidesoftware.swift.model.field.Field95C;
+import com.prowidesoftware.swift.model.mt.mt5xx.MT537;
+
+
+public class MT537Test {
+
+//	assertEquals(MT537.SequenceB.START_END_16RS, MT537.SequenceC3.START_END_16RS);
+	
+//	assertEquals(MT537.SequenceB1.START_END_16RS, MT537.SequenceC3a.START_END_16RS);
+	
+	@Test
+	public void test1() {
+		MT537 m = new MT537();
+		m.append(MT537.SequenceA1.newInstance());
+		assertTrue(m.getSequenceB2aList().isEmpty());
+		assertTrue(m.getSequenceC1List().isEmpty());
+	}
+	
+	@Test
+	public void test2() {
+		MT537 m = new MT537();
+		m.append(MT537.SequenceB2a.newInstance());
+		assertTrue(m.getSequenceA1List().isEmpty());
+		assertTrue(m.getSequenceC1List().isEmpty());
+	}
+	
+	@Test
+	public void test3() {
+		MT537 m = new MT537();
+		m.append(MT537.SequenceC1.newInstance());
+		assertTrue(m.getSequenceA1List().isEmpty());
+		assertTrue(m.getSequenceB2aList().isEmpty());
+	}
+	
+	@Test
+	public void testC2a() {
+		MT537 m = new MT537();
+		m.append(MT537.SequenceC.newInstance(MT537.SequenceC2.newInstance(MT537.SequenceC2a.newInstance())));
+		assertEquals(1, MT537.getSequenceCList(m.getSwiftMessage().getBlock4()).size());
+		assertEquals(1, MT537.getSequenceC2List(m.getSwiftMessage().getBlock4()).size());
+		assertEquals(1, MT537.getSequenceC2aList(m.getSwiftMessage().getBlock4()).size());
+		
+	}
+
+	@Test
+	public void testC2a_from_S285() throws Exception {
+		SwiftTagListBlock C2_contents = new SwiftTagListBlock()
+				.append(Field22H.tag(":REDE//DELI"))
+				.append(MT537.SequenceC2a.newInstance(Field95C.tag(":DEAG")));
+		MT537 m = new MT537()
+				.append(MT537.SequenceC.newInstance(
+								MT537.SequenceC2.newInstance(C2_contents)
+						))
+				;
+		assertEquals(1, MT537.getSequenceCList(m.getSwiftMessage().getBlock4()).size());
+		assertEquals(1, MT537.getSequenceC2List(m.getSwiftMessage().getBlock4()).size());
+		assertEquals(1, MT537.getSequenceC2aList(m.getSwiftMessage().getBlock4()).size());
+		
+		assertEquals(1, m.getSequenceCList().size());
+		assertEquals(1, m.getSequenceC2List().size());
+		assertEquals(1, m.getSequenceC2aList().size());
+
+	}
+	
+}

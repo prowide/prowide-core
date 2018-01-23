@@ -15,7 +15,6 @@
 package com.prowidesoftware.swift.model;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -32,7 +31,6 @@ import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.parser.SwiftParserConfiguration;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.ServiceIdType;
-import com.prowidesoftware.swift.utils.Lib;
 
 
 /**
@@ -46,31 +44,10 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MtSwiftMessage.class.getName());
 	private static final long serialVersionUID = -5972656648349958815L;
 
-	/**
-	 * Possible Duplicate Emission.
-	 */
 	private String pde;
-
-	/**
-	 * Possible Duplicate Message.
-	 */
 	private String pdm;
-
-	/**
-	 * Message Input Reference
-	 */
 	private String mir;
-
-	/**
-	 * The MUR is a free-format field in which users may specify their own reference
-	 * of up to 16 characters of the permitted character set, and it is contained
-	 * in a 108 field at the message user header (block 3).
-	 */
 	private String mur;
-
-	/**
-	 * User Unique Message Identifier
-	 */
 	private String uuid;
 
 	public MtSwiftMessage() {
@@ -80,15 +57,16 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	/**
 	 * Creates a new message reading the message the content from a string.
 	 * Performs a fast parsing of the header and trailer blocks to identify the message
-	 * and gather metadata information for the object attributes.<br />
+	 * and gather metadata information for the object attributes.
 	 *
-	 * If the string contains several messages, the whole passed content will be
+	 * <p>If the string contains several messages, the whole passed content will be
 	 * save in the message attribute but identification and metadata will be parser
-	 * from the first one found only.
-	 * Notice that if an ACK/NAK followed by the original
-	 * message is passed, this object will represent the ACK/NAK.
-	 * <br />
-	 * File format is set to {@link FileFormat#FIN}
+	 * from the first one found only.</p>
+	 * 
+	 * <p>Notice that if an ACK/NAK followed by the original
+	 * message is passed, this object will represent the ACK/NAK.</p>
+	 * 
+	 * <p>File format is set to {@link FileFormat#FIN}</p>
 	 *
 	 * @see AbstractSwiftMessage#AbstractSwiftMessage(String)
 	 */
@@ -198,14 +176,14 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 				 */
 				final SwiftMessage original = model.getUnparsedTexts().getTextAsMessage(0);
 				if (original != null) {
-					super.receiver = StringUtils.substring(original.getReceiver(), 0, 8);
+					super.receiver = bic11(original.getReceiver());
 					setDirection(original.getDirection());
 					setReference(SwiftMessageUtils.reference(original));
 				}
 			}
 		} else if (model.getBlock1() != null && model.getBlock1().getServiceIdType() == ServiceIdType._01) {
-			super.identifier = model.getMtId().id();
-			super.receiver = StringUtils.substring(model.getReceiver(), 0, 8);
+			setIdentifier(model.getMtId().id());
+			setReceiver(bic11(model.getReceiver()));
 			setDirection(model.getDirection());
 			setReference(SwiftMessageUtils.reference(model));
 			CurrencyAmount currencyAmount = SwiftMessageUtils.currencyAmount(model);
@@ -214,8 +192,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 				setAmount(currencyAmount.getAmount());
 			}
 		}
-		super.sender = StringUtils.substring(model.getSender(), 0, 8);
+		setSender(bic11(model.getSender()));
 		setChecksum(SwiftMessageUtils.calculateChecksum(model));
+		setChecksumBody(SwiftMessageUtils.calculateChecksum(model.getBlock4()));
 		setPde(model.getPDE());
 		setPdm(model.getPDM());
 		setMir(model.getMIR());
@@ -412,42 +391,104 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 		return sb.toString();
 	}
 
+	/**
+	 * Gets PDE (Possible Duplicate Emission) flag from the trailer block or null if the trailer or the PDE field is not present
+	 * @return the PDE flag or null
+	 */
 	public String getPde() {
 		return pde;
 	}
-
+	
+	/**
+	 * Sets the PDE attribute.
+	 * This field is automatically updated on message update from FIN or model
+	 * @see #updateFromFIN(String)
+	 * @see #updateFromModel(AbstractMT)
+	 * @see #updateFromModel(SwiftMessage)
+	 * @param pde the PDE flag to set
+	 */
 	public void setPde(final String pde) {
 		this.pde = pde;
 	}
 
+	/**
+ 	 * Gets PDM from the trailer block or null if the trailer or the PDM field is not present
+	 * @return PDM flag or null
+	 */
 	public String getPdm() {
 		return pdm;
 	}
 
+	/**
+	 * Sets the PDM attribute.
+	 * This field is automatically updated on message update from FIN or model
+	 * @see #updateFromFIN(String)
+	 * @see #updateFromModel(AbstractMT)
+	 * @see #updateFromModel(SwiftMessage)
+	 * @param pde the PDM flag to set
+	 */
 	public void setPdm(final String pdm) {
 		this.pde = pdm;
 	}
 
+	/**
+	 * Gets the MIR (Message Input Reference)
+	 * @see SwiftMessage#getMIR()
+	 */
 	public String getMir() {
 		return mir;
 	}
 
+	/**
+	 * Sets the MIR attribute.
+	 * This field is automatically updated on message update from FIN or model
+	 * @see #updateFromFIN(String)
+	 * @see #updateFromModel(AbstractMT)
+	 * @see #updateFromModel(SwiftMessage)
+	 * @param mir the MIR to set
+	 */
 	public void setMir(final String mir) {
 		this.mir = mir;
 	}
 
+	/**
+	 * Gets the MUR (Message User Reference) from block 3
+	 * @see SwiftMessage#getMUR()
+	 * @return the MUR or null if not present in the message
+	 */
 	public String getMur() {
 		return mur;
 	}
 
+	/**
+	 * Sets the MUR attribute.
+	 * This field is automatically updated on message update from FIN or model
+	 * @see #updateFromFIN(String)
+	 * @see #updateFromModel(AbstractMT)
+	 * @see #updateFromModel(SwiftMessage)
+	 * @param mur the MUR to set
+	 */
 	public void setMur(final String mur) {
 		this.mur = mur;
 	}
 
+	/**
+	 * Gets a UUID (User Unique Identifier)
+	 * @see SwiftMessage#getUUID()
+	 */
 	public String getUuid() {
 		return uuid;
 	}
 
+	/**
+	 * Sets a UUID
+ 	 * This field is automatically updated on message update from FIN or model
+	 * @see #updateFromFIN(String)
+	 * @see #updateFromModel(AbstractMT)
+	 * @see #updateFromModel(SwiftMessage)
+
+	 * @param uuid
+	 */
 	public void setUuid(final String uuid) {
 		this.uuid = uuid;
 	}
@@ -468,8 +509,6 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
 		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
@@ -510,32 +549,18 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	@ProwideDeprecated(phase4=TargetYear._2018)
 	public MtSwiftMessage readFile(final File file) throws IOException {
 		DeprecationUtils.phase3(getClass(), "readFile(File)", "Use the constructor MtSwiftMessage(File) instead.");
-		final MtSwiftMessage result = new MtSwiftMessage();
-		result.setModelMessage(new SwiftParser(new FileInputStream(file)).message());
-		result.setMessage(Lib.readFile(file));
-		return result;
+		return new MtSwiftMessage(file);
 	}
 
 	/**
-	 * copies attributes from this object to the given object
-	 * non inherited copied attributes:
-	 * <ul>
-	 * 		<li>mir</li>
-	 * 		<li>modelMessage</li>
-	 * 		<li>mur</li>
-	 * 		<li>pde</li>
-	 * 		<li>pdm</li>
-	 * 		<li>uuid</li>
-	 * </ul>
-	 * @param msg
+	 * Creates a full copy of the current message object into another message.
+	 * @param msg target message
 	 * @since 7.7
 	 * @see AbstractSwiftMessage#copyTo(AbstractSwiftMessage)
 	 */
 	public void copyTo(final MtSwiftMessage msg) {
 		super.copyTo((AbstractSwiftMessage) msg);
-		// TODO Auto-generated method stub
 		msg.setMir(getMir());
-		msg.setModelMessage(getModelMessage()); // FIXME revisar vigencia de este atributo
 		msg.setMur(getMur());
 		msg.setPde(getPde());
 		msg.setPdm(getPdm());

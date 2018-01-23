@@ -69,97 +69,24 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	 * Unique identifier (used for ORM mapped to the table record id)
 	 */
 	private Long id;
-	/**
-	 * Raw message content. FIN for MTS, and xml for MX.
-	 */
 	private String message;
-	/**
-	 * Message type identification as specify by SWIFT.
-	 * <ul>
-	 * 	<li>For MT: fin.<msgtype>[.<mug|variant>] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
-	 * 	<li>For MX: <bus.area>.<msgtype>.<variant>.<version> for example: camt.034.001.02, ifds.001.001.01</li>
-	 * 	<li>For acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
-	 * 	<li>For non-acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
-	 * 	<li>For other service messages the identifier is left <code>null</code></li>
-	 * </ul>
-	 */
 	protected String identifier;
-	/**
-	 * Senders BIC8 code.<br />
-	 * For MT messages this is the BIC8 portion of the sender logical terminal; for outgoing messages the LT at block 1 
-	 * is used, and for incoming messages it is the LT at the MIR of block 2.
-	 * For MX messages this is the (capitalized) BIC information in the "From" tag of the Application Header.
-	 */
 	protected String sender;
-	/**
-	 * Receivers BIC8 code.<br />
-	 * For MT messages this is the BIC8 portion of the receiver logical terminal; for outgoing messages the LT at 
-	 * block 2 is used, and for incoming messages it is the LT at block 1.
-	 * For MX messages this is the (capitalized) BIC information in the "To" tag of the Application Header.
-	 */
 	protected String receiver;
-	/**
-	 * Direction from application perspective;
-	 * message is sent to SWIFT are outgoing and
-	 * messages received from SWIFT are incoming.
-	 */
 	private MessageIOType direction;
-	/**
-	 * Proprietary checksum calculated with the raw message for integrity checks.
-	 */
 	private String checksum;
-	/**
-	 * Last modification date and time.
-	 */
+	private String checksumBody;
 	private Calendar lastModified = Calendar.getInstance();
-	/**
-	 * Creation date and time.
-	 */
 	private Calendar creationDate = Calendar.getInstance();
-	/**
-	 * Status history for this message.
-	 * current status is the last one in the list.
-	 */
 	private List<SwiftMessageStatusInfo> statusTrail = new ArrayList<SwiftMessageStatusInfo>();
-	/**
-	 * Current status name
-	 */
 	private String status;
-	/**
-	 * User notes history attached to this message.
-	 */
 	private List<SwiftMessageNote> notes = new ArrayList<SwiftMessageNote>();
-	/**
-	 * Flexible property container to extend message metadata.
-	 */
 	private Map<String, String> properties = new HashMap<String, String>();
-	/**
-	 * Original filename if applies.
-	 */
 	private String filename;
-	/**
-	 * Original file format if applies. 
-	 */
 	private FileFormat fileFormat;
-	/**
-	 * Message reference
-	 */
 	private String reference;
-	/**
-	 * Main currency
-	 * @since 7.8.8
-	 */
 	private String currency;
-	/**
-	 * Main amount
-	 * @since 7.8.8
-	 */
 	private BigDecimal amount;
-
-	/**
-	 * Snapshots of message content used to track its changes history
-	 * @since 7.8
-	 */
 	private List<SwiftMessageRevision> revisions = new ArrayList<SwiftMessageRevision>();
 
 	/**
@@ -285,7 +212,7 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	}
 	
 	/**
-	 * Same as {{@link #message()}}
+	 * Raw message content. FIN for MTS, and XML for MX.
 	 */
 	public String getMessage() {
 		return message;
@@ -293,6 +220,7 @@ public abstract class AbstractSwiftMessage implements Serializable {
 
 	/**
 	 * Returns the internal swift message in its original raw format.
+	 * Same as {@link #getMessage()}
 	 * 
 	 * @return raw content of the message
 	 * @since 7.7
@@ -305,7 +233,12 @@ public abstract class AbstractSwiftMessage implements Serializable {
      * Set the raw content of the message.
      * <p>
      * IMPORTANT: this will not automatically update the metadata attributes.
-     * Consider using one of the specific update methods from the specific subclass instead.
+     * Consider using one of the specific subclass <strong>update</strong> methods.
+     * @see MtSwiftMessage#updateFromFIN(String)}
+     * @see MtSwiftMessage#updateFromModel(com.prowidesoftware.swift.model.mt.AbstractMT)}
+     * @see MtSwiftMessage#updateFromModel(SwiftMessage)} 
+     * @see MxSwiftMessage#updateFromXML(String)}
+     * @see MxSwiftMessage#updateFromModel(com.prowidesoftware.swift.model.mx.AbstractMX)
      * </p>
      * 
      * @param message raw content of the message
@@ -314,67 +247,144 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		this.message = message;
 	}
     
-    /**
-     * {@link #identifier}
-     */
+	/**
+	 * Message type identification as specify by SWIFT.
+	 * <ul>
+	 * 	<li>For MT: fin.<msgtype>[.<mug|variant>] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
+	 * 	<li>For MX: <bus.area>.<msgtype>.<variant>.<version> for example: camt.034.001.02, ifds.001.001.01</li>
+	 * 	<li>For acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
+	 * 	<li>For non-acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
+	 * 	<li>For other service messages the identifier is left <code>null</code></li>
+	 * </ul>
+	 */
 	public String getIdentifier() {
 		return identifier;
 	}
 	
+	/**
+ 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param identifier
+	 */
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
 	}
 	
-    /**
-     * {@link #checksum}
-     */
+	/**
+	 * Proprietary checksum computed for the whole raw message content, helpful for integrity verification or duplicates detection.
+	 * 
+	 * <p>At the moment this is only implemented for MT messages</p>
+	 * @see SwiftMessageUtils#calculateChecksum(SwiftMessage)
+	 */
+	//TODO implement the same for MX, computing hash on XSLT normalized version of the XML
 	public String getChecksum() {
 		return checksum;
 	}
 	
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * <p>At the moment this is only implemented for MT messages</p>
+	 * @see SwiftMessageUtils#calculateChecksum(SwiftMessage)
+	 * @param checksum
+	 */
 	public void setChecksum(String checksum) {
 		this.checksum = checksum;
 	}
 	
+	/**
+ 	 * Gets the proprietary checksum calculated for the text block (block 4) only in MT or Document only in MX, helpful for integrity verification or duplicates detection.
+ 	 * 
+ 	 * <p>At the moment this is only implemented for MT messages</p>
+	 * @see SwiftMessageUtils#calculateChecksum(SwiftBlock4)
+	 * @since 7.9.5
+	 */
+	//TODO implement the same for MX, computing hash on XSLT normalized version of the XML
+	public String getChecksumBody() {
+		return checksumBody;
+	}
+
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param checksumBlock4 the checksum to set
+	 * @since 7.9.5
+	 */
+	public void setChecksumBody(String checksumBody) {
+		this.checksumBody = checksumBody;
+	}
+	
+	/**
+	 * Last modification date and time.
+	 */
 	@XmlTransient
 	public Calendar getLastModified() {
 		return lastModified;
 	}
 	
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param lastModified
+	 */
 	public void setLastModified(Calendar lastModified) {
 		this.lastModified = lastModified;
 	}
 	
+	/**
+	 * Creation date and time.
+	 */
 	@XmlTransient
 	public Calendar getCreationDate() {
 		return creationDate;
 	}
 	
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param creationDate
+	 */
 	public void setCreationDate(Calendar creationDate) {
 		this.creationDate = creationDate;
 	}
-	
+
+	/**
+	 * User comments attached to this message.
+	 */
 	public List<SwiftMessageNote> getNotes() {
 		return notes;
 	}
 	
+	/**
+	 * @see #addNote(SwiftMessageNote)
+	 */
 	public void setNotes(List<SwiftMessageNote> notes) {
 		this.notes = notes;
 	}
 	
+	/**
+	 * Flexible property container to extend message metadata.
+	 */
 	@XmlTransient
 	public Map<String, String> getProperties() {
 		return properties;
 	}
 	
+	/**
+	 * @see #setProperty(Enum, String)
+	 * @see #setProperty(String, String)
+	 */
 	public void setProperties(Map<String, String> properties) {
 		this.properties = properties;
 	}
 	
+	/**
+	 * Status history for this message.
+	 * current status is the last one in the list.
+	 */
 	public List<SwiftMessageStatusInfo> getStatusTrail() {
 		return statusTrail;
 	}
 	
+	/**
+	 * @see #addStatus(SwiftMessageStatusInfo)
+	 * @param statusTrail
+	 */
 	public void setStatusTrail(List<SwiftMessageStatusInfo> statusTrail) {
 		this.statusTrail = statusTrail;
 	}
@@ -396,39 +406,69 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	}
 	
 	/**
-	 * {@link #sender}
+	 * Senders BIC11 code.<br />
+	 * For MT messages this is the BIC11 portion of the sender logical terminal; for outgoing messages the LT at block 1 
+	 * is used, and for incoming messages it is the LT at the MIR of block 2.
+	 * For MX messages this is the (capitalized) BIC information in the "From" tag of the Application Header.
 	 */
 	public String getSender() {
 		return sender;
 	}
 
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param sender
+	 */
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
 
 	/**
-	 * {@link #receiver}
+	 * Receivers BIC11 code.<br />
+	 * For MT messages this is the BIC11 portion of the receiver logical terminal; for outgoing messages the LT at 
+	 * block 2 is used, and for incoming messages it is the LT at block 1.
+	 * For MX messages this is the (capitalized) BIC information in the "To" tag of the Application Header.
 	 */
 	public String getReceiver() {
 		return receiver;
 	}
 
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param receiver
+	 */
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
 
+	/**
+	 * Direction from application perspective;
+	 * message is sent to SWIFT are outgoing and
+	 * messages received from SWIFT are incoming.
+	 */
 	public MessageIOType getDirection() {
 		return direction;
 	}
 
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param direction
+	 */
 	public void setDirection(MessageIOType direction) {
 		this.direction = direction;
 	}
 	
+	/**
+	 * Original filename if applies.
+	 */
 	public String getFilename() {
 		return filename;
 	}
 
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param filename
+	 */
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
@@ -622,6 +662,9 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		return "";
 	}
 	
+	/**
+	 * Same as {@link #getLastData(String...)} passing a null array parameter
+	 */
 	public String getLastData() {
 		return getLastData((String[])null);
 	}
@@ -780,17 +823,21 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
 		result = prime * result + ((checksum == null) ? 0 : checksum.hashCode());
+		result = prime * result + ((checksumBody == null) ? 0 : checksumBody.hashCode());
 		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
+		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		result = prime * result + ((direction == null) ? 0 : direction.hashCode());
+		result = prime * result + ((fileFormat == null) ? 0 : fileFormat.hashCode());
 		result = prime * result + ((filename == null) ? 0 : filename.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
 		result = prime * result + ((lastModified == null) ? 0 : lastModified.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + ((notes == null) ? 0 : notes.hashCode());
 		result = prime * result + ((properties == null) ? 0 : properties.hashCode());
 		result = prime * result + ((receiver == null) ? 0 : receiver.hashCode());
+		result = prime * result + ((reference == null) ? 0 : reference.hashCode());
 		result = prime * result + ((revisions == null) ? 0 : revisions.hashCode());
 		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -807,27 +854,39 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		AbstractSwiftMessage other = (AbstractSwiftMessage) obj;
+		if (amount == null) {
+			if (other.amount != null)
+				return false;
+		} else if (!amount.equals(other.amount))
+			return false;
 		if (checksum == null) {
 			if (other.checksum != null)
 				return false;
 		} else if (!checksum.equals(other.checksum))
+			return false;
+		if (checksumBody == null) {
+			if (other.checksumBody != null)
+				return false;
+		} else if (!checksumBody.equals(other.checksumBody))
 			return false;
 		if (creationDate == null) {
 			if (other.creationDate != null)
 				return false;
 		} else if (!creationDate.equals(other.creationDate))
 			return false;
+		if (currency == null) {
+			if (other.currency != null)
+				return false;
+		} else if (!currency.equals(other.currency))
+			return false;
 		if (direction != other.direction)
+			return false;
+		if (fileFormat != other.fileFormat)
 			return false;
 		if (filename == null) {
 			if (other.filename != null)
 				return false;
 		} else if (!filename.equals(other.filename))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
 			return false;
 		if (identifier == null) {
 			if (other.identifier != null)
@@ -858,6 +917,11 @@ public abstract class AbstractSwiftMessage implements Serializable {
 			if (other.receiver != null)
 				return false;
 		} else if (!receiver.equals(other.receiver))
+			return false;
+		if (reference == null) {
+			if (other.reference != null)
+				return false;
+		} else if (!reference.equals(other.reference))
 			return false;
 		if (revisions == null) {
 			if (other.revisions != null)
@@ -890,45 +954,58 @@ public abstract class AbstractSwiftMessage implements Serializable {
     public abstract AbstractSwiftMessage readFile(File file) throws IOException;
 
 	/**
-	 * Copies attributes from the current object to msg.
-	 * Attributes:
-	 * <ul>
-	 * 		<li>checksum</li>
-	 * 		<li>creationDate</li>
-	 * 		<li>direction</li>
-	 * 		<li>filename</li>
-	 * 		<li>id</li>
-	 * 		<li>identifier</li>
-	 * 		<li>lastModified</li>
-	 * 		<li>message</li>
-	 * 		<li>notes</li>
-	 * 		<li>properties</li>
-	 * 		<li>receiver</li>
-	 * 		<li>sender</li>
-	 * 		<li>status</li>
-	 * 		<li>statusTrail</li>
-	 * </ul>
-	 * @param msg
+	 * Creates a full copy of the current message object into another message.
+	 * <p>The implementation works as a copy constructor. All attributes are replicated into
+	 * new instances in the target message. The only fields that are not copied are the Long id
+	 * because they are intended for ORM (persistence) autogeneration. Preexisting data in the
+	 * target message will be overwritten.</p>
+	 * @param msg target message
 	 * @since 7.7
 	 */
 	public void copyTo(AbstractSwiftMessage msg) {
-		msg.setChecksum(getChecksum());
-		msg.setCreationDate(getCreationDate());
-		msg.setDirection(getDirection());
-		msg.setFilename(getFilename());
-		msg.setId(getId());
-		msg.setIdentifier(getIdentifier());
-		msg.setLastModified(getLastModified());
 		msg.setMessage(getMessage());
-		msg.setNotes(getNotes());
-		msg.setProperties(getProperties());
-		msg.setReceiver(getReceiver());
+		msg.setIdentifier(getIdentifier());
 		msg.setSender(getSender());
+		msg.setReceiver(getReceiver());
+		msg.setDirection(getDirection());
+		msg.setChecksum(getChecksum());
+		msg.setChecksumBody(getChecksumBody());
+		msg.setLastModified(getLastModified());
+		msg.setCreationDate(getCreationDate());
+		
+		msg.setStatusTrail(null);
+		for (SwiftMessageStatusInfo status : getStatusTrail()) {
+			msg.addStatus(new SwiftMessageStatusInfo(status.getComments(), status.getCreationDate(), status.getCreationUser(), status.getName(), status.getData()));
+		}
 		msg.setStatus(getStatus());
-		msg.setStatusTrail(getStatusTrail());
+		
+		msg.setNotes(null);
+		for (SwiftMessageNote note : getNotes()) {
+			SwiftMessageNote copy = new SwiftMessageNote(note.getCreationUser(), note.getText());
+			copy.setCreationDate(note.getCreationDate());
+			msg.addNote(copy);
+		}
+
+		msg.setProperties(getProperties());
+		msg.setFilename(getFilename());
+		msg.setFileFormat(getFileFormat());
+		msg.setReference(getReference());
+		msg.setCurrency(getCurrency());
+		msg.setAmount(getAmount());
+		
+		msg.setRevisions(null);
+		for (SwiftMessageRevision rev : getRevisions()) {
+			SwiftMessageRevision copy = new SwiftMessageRevision();
+			copy.setCreationDate(rev.getCreationDate());
+			copy.setCreationUser(rev.getCreationUser());
+			copy.setMessage(rev.getMessage());
+			copy.setJson(rev.getJson());
+			msg.addRevision(copy);
+		}
     }
 
 	/**
+	 * Snapshots of message content used to track its changes history
 	 * @since 7.8
 	 * @return this message revisions or empty list if none is set
 	 */
@@ -999,6 +1076,7 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	}
 	
 	/**
+	 * Original file format if applies. 
 	 * @since 7.8.4
 	 * @return this message file format if any is set
 	 */
@@ -1007,7 +1085,7 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	}
 
 	/**
-	 * This should mostly be set automatically by update API in implementing subclasses
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
 	 * @since 7.8.4
 	 * @param fileFormat
 	 */
@@ -1015,15 +1093,23 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		this.fileFormat = fileFormat;
 	}
 
+	/**
+	 * Message reference
+	 */
 	public String getReference() {
 		return reference;
 	}
 
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param reference
+	 */
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
 	
 	/**
+	 * Main currency
 	 * @return the main currency or <code>null</code> if non is present or does not apply for this message type
 	 * @since 7.8.8
 	 */
@@ -1031,11 +1117,16 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		return currency;
 	}
 
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param currency
+	 */
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
 
 	/**
+	 * Main amount
 	 * @return the main amount or <code>null</code> if non is present or does not apply for this message type
 	 * @since 7.8.8
 	 */
@@ -1043,6 +1134,10 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		return amount;
 	}
 
+	/**
+	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+	 * @param amount
+	 */
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
@@ -1131,5 +1226,43 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	public boolean identifiedAsNAK() {
 		return StringUtils.equals(this.identifier, IDENTIFIER_NAK);
 	}
+	
+	/**
+	 * Creates a BIC11 from the given address. 
+	 * If the address contains a logical terminal it wil be dropped.
+	 * If the address does not contain a branch, the default XXX will be used
+	 * @param address a BIC8, BIC11 or full logical terminal address (BIC12)
+	 * @return
+	 * @since 7.9.5
+	 * @see BIC#getBic11()
+	 */
+	protected String bic11(String address) {
+		if (address != null) {
+			return (new BIC(address)).getBic11();
+		}
+		return null;
+	}
 
+	/**
+	 * Returns the correspondent BIC code from the headers.<br />
+	 * For an outgoing message, the BIC address identifies the receiver of the message. Where for an incoming message it identifies the sender of the message.
+	 * @return the correspondent BIC code or null if headers are not properly set
+	 * @since 7.9.5
+	 */
+	public BIC getCorrespondentBIC() {
+		if (isOutgoing()) {
+			final String receiver = getReceiver();
+			if (receiver != null) {
+				return new BIC(receiver);
+			}
+		}
+		if (isIncoming()) {
+			final String sender = getSender();
+			if (sender != null) {
+				return new BIC(sender);
+			}
+		}
+		return null;
+	}
+	
 }

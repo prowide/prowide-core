@@ -1,0 +1,4 @@
+/*
+ * The settings file is used to specify which projects to include in the build.
+ */
+rootProject.name = 'prowide-core'

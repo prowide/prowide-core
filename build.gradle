@@ -1,0 +1,130 @@
+apply plugin: 'java-library-distribution'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+archivesBaseName = 'pw-swift-core'
+
+def SRU = "2017"
+
+version "SRU${SRU}-7.9.7-SNAPSHOT"
+group 'com.prowidesoftware'
+	
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
+	
+tasks.withType(JavaCompile) {
+	options.fork = true
+	if (project.hasProperty('JDK6_HOME')) {
+		options.forkOptions.executable = "$JDK6_HOME/bin/javac"
+	} else {
+		println "*** Compiling with newer version of Java, this is just fine for development; for releases a proper JDK6_HOME variable must be set in gradle.properties ***"
+	}
+	options.forkOptions.setMemoryMaximumSize("6g")
+	options.encoding = 'UTF-8'
+}
+	
+repositories {
+    mavenCentral()
+	jcenter()
+}
+	
+dependencies {
+	implementation 'commons-lang:commons-lang:2.6'
+    testImplementation 'junit:junit:4.12', 'xmlunit:xmlunit:1.6'
+}
+
+sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']
+
+
+def formattedDate() { 
+	new Date().format('dd MMM yyyy') 
+}
+
+javadoc {
+	options.overview = "src/main/java/overview.html"
+	options.header = "${version}"
+	options.windowTitle = "Prowide Core API Reference"
+	options.footer="SRU${SRU}, generated ${formattedDate()}"
+	options.bottom = '<script src="//static.getclicky.com/js"></script><script>try{ clicky.init(101039278); }catch(e){}</script>'
+	
+	exclude "**/internal/**"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+tasks.withType(Jar) {
+	manifest.attributes(
+		'Specification-Title': 'Prowide Core',
+		'Specification-Version': project.version,
+		'Specification-Vendor': "SRU${SRU}",
+		'Implementation-Title': 'Prowide Core',
+		'Implementation-Version': project.version,
+		'Implementation-Vendor': 'www.prowidesoftware.com',
+		'Built-OS': System.getProperty('os.name'),
+		'Source-Compatibility': project.sourceCompatibility,
+		'Target-Compatibility': project.targetCompatibility,
+		'Built-Date': new Date().format("yyyy-MM-dd")
+	)
+}
+
+task writePom {
+	doLast {
+		pom {
+			project {
+				groupId "com.prowidesoftware"
+				artifactId "${rootProject.name}"
+				version "${version}"
+
+				inceptionYear '2006'
+				licenses {
+					license {
+						name 'GNU Library or Lesser General Public License version 3.0 (LGPLv3)'
+						url 'https://www.gnu.org/licenses/lgpl-3.0.en.html'
+						distribution 'repo'
+					}
+				}
+				developers {
+					developer {
+						id 'zubri'
+						name 'Sebastian Zubrinic'
+						email 'sebastian@prowidesoftware.com'
+					}
+				}
+				organization {
+					name 'Prowide'
+					url 'http://www.prowidesoftware.com'
+				}
+			}
+		}.writeTo("$buildDir/pom.xml")
+	}
+}
+
+
+distributions {
+	main {
+		contents {
+			from javadocJar
+			from sourcesJar
+			into ('lib') {
+				from (project.configurations.runtime)
+			}
+			from files('LICENSE.txt', 'CHANGELOG.txt')
+			from files("$buildDir/pom.xml")
+		}
+	}
+}
+
+distTar.enabled = false
+
+distZip {
+    dependsOn writePom
+}

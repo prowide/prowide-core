@@ -36,7 +36,6 @@ public class ReaderIterator extends RJEReader {
 	}
 	
 	public static ReaderIterator fromResource(String string) {
-		//InputStream s = Thread.currentThread().getContextClassLoader().getResourceAsStream(string);
 		InputStream s = ReaderIterator.class.getClassLoader().getResourceAsStream(string);
 		if (s!=null) {
 			return new ReaderIterator(new InputStreamReader(s));

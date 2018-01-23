@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.01"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Fr>
+		<FIId>
+			<FinInstnId>
+				<BICFI>FOOCUS3NXXX</BICFI>
+				<ClrSysMmbId>
+					<ClrSysId>
+						<Prtry>T2S</Prtry>
+					</ClrSysId>
+					<MmbId>ADMNUSERLUXCSDT1</MmbId>
+				</ClrSysMmbId>
+				<Othr>
+					<Id>FOOTXE2SXXX</Id>
+				</Othr>
+			</FinInstnId>
+		</FIId>
+	</Fr>
+	<To>
+		<FIId>
+			<FinInstnId>
+				<BICFI>ABICUS33</BICFI>
+				<Othr>
+					<Id>AARBDE5W100</Id>
+				</Othr>
+			</FinInstnId>
+		</FIId>
+	</To>
+	<BizMsgIdr>2012111915360885</BizMsgIdr>
+	<MsgDefIdr>seev.031.002.03</MsgDefIdr>
+	<BizSvc>CSD</BizSvc>
+	<CreDt>2015-08-27T08:59:00Z</CreDt>
+</AppHdr> 
