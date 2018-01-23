@@ -21,7 +21,6 @@ tasks.withType(JavaCompile) {
 	} else {
 		println "*** Compiling with newer version of Java, this is just fine for development; for releases a proper JDK6_HOME variable must be set in gradle.properties ***"
 	}
-	options.forkOptions.setMemoryMaximumSize("6g")
 	options.encoding = 'UTF-8'
 }
 	
@@ -48,7 +47,10 @@ javadoc {
 	options.header = "${version}"
 	options.windowTitle = "Prowide Core API Reference"
 	options.footer="SRU${SRU}, generated ${formattedDate()}"
+	
+	// this will fail when the option is not available (older JDK)
 	options.addBooleanOption("-allow-script-in-comments", true)
+    
 	options.bottom = '<script src="//static.getclicky.com/js"></script><script>try{ clicky.init(101039278); }catch(e){}</script>'
 	exclude "**/internal/**"
 }
@@ -131,16 +133,32 @@ distZip {
     dependsOn writePom
 }
 
-test {
-	jacoco {
-		append = false
-	}
-}
-
 jacocoTestReport {
     reports {
         xml.enabled true
         csv.enabled false
         html.enabled false
     }
+    
+	// exclude generated code
+	afterEvaluate {
+		classDirectories = files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: [
+				'**/SchemeConstants**',
+				'**/mt0xx/**',
+				'**/mt1xx/**',
+				'**/mt2xx/**',
+				'**/mt3xx/**',
+				'**/mt4xx/**',
+				'**/mt5xx/**',
+				'**/mt6xx/**',
+				'**/mt7xx/**',
+				'**/mt8xx/**',
+				'**/mt9xx/**',
+				'**/dic/**'
+			])
+		})
+	}
 }
+
+test.finalizedBy jacocoTestReport
