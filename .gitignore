@@ -3,3 +3,4 @@ gradle.properties
 build
 bin
 .idea/workspace.xml
+prowide-core.iws
