@@ -39,6 +39,11 @@ public class IsoUtilsTest {
 		assertFalse(IsoUtils.getInstance().isValidISOCurrency("usd"));
 		assertFalse(IsoUtils.getInstance().isValidISOCurrency(""));
 		assertFalse(IsoUtils.getInstance().isValidISOCurrency(null));
+		assertFalse(IsoUtils.getInstance().isValidISOCurrency("XYZ"));
+
+		IsoUtils.getInstance().getCurrencies().add("XYZ");
+		assertTrue(IsoUtils.getInstance().isValidISOCurrency("XYZ"));
+		IsoUtils.getInstance().getCurrencies().remove("XYZ");
 	}
 	
 	@Test
@@ -57,6 +62,8 @@ public class IsoUtilsTest {
 		assertFalse(IsoUtils.getInstance().isValidISOCountry(""));
 		assertFalse(IsoUtils.getInstance().isValidISOCountry(null));
 		assertFalse(IsoUtils.getInstance().isValidISOCountry("XX"));
+		assertFalse(IsoUtils.getInstance().isValidISOCountry("ZZ"));
+		assertFalse(IsoUtils.getInstance().isValidISOCountry("ar"));
 	}
 
 }
