@@ -10,7 +10,7 @@ The project (previously known as WIFE) is active since 2006, production ready an
 
 ### What's included?
 
-* Java model for ISO 15022 MT (ex: MT103 and Field32A classes, for all MT message categories)
+* Java model for ISO 15022 MT (for example: MT103 and Field32A classes, for all MT message categories)
 * Parser from SWIFT (FIN or RJE) into Java
 * Builder API from Java to SWIFT (FIN or RJE)
 * Conversion to JSON and proprietary XML
