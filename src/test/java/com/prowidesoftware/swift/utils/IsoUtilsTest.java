@@ -12,10 +12,10 @@
  */
 package com.prowidesoftware.swift.utils;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
 
 /**
  * test cases for {@link IsoUtils}
@@ -54,6 +54,7 @@ public class IsoUtilsTest {
 		assertTrue(IsoUtils.getInstance().isValidISOCountry("US"));
 		assertTrue(IsoUtils.getInstance().isValidISOCountry("AR"));
 		assertTrue(IsoUtils.getInstance().isValidISOCountry("BR"));
+		assertTrue(IsoUtils.getInstance().isValidISOCountry("XK")); //Kosovo, not currently in ISO
 		/*
 		 * invalid
 		 */
@@ -64,6 +65,60 @@ public class IsoUtilsTest {
 		assertFalse(IsoUtils.getInstance().isValidISOCountry("XX"));
 		assertFalse(IsoUtils.getInstance().isValidISOCountry("ZZ"));
 		assertFalse(IsoUtils.getInstance().isValidISOCountry("ar"));
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testAddCountry_1() {
+		IsoUtils.getInstance().addCountry(null);
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testAddCountry_2() {
+		IsoUtils.getInstance().addCountry("33");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testAddCountry_3() {
+		IsoUtils.getInstance().addCountry("aa");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testAddCountry_4() {
+		IsoUtils.getInstance().addCountry("AAA");
+	}
+
+	@Test
+	public void testAddCountry_5() {
+		IsoUtils.getInstance().addCountry("SZ");
+		assertTrue(IsoUtils.getInstance().isValidISOCountry("SZ"));
+		IsoUtils.getInstance().getCountries().remove("SZ");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testAddCurrency_1() {
+		IsoUtils.getInstance().addCurrency(null);
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testAddCurrency_2() {
+		IsoUtils.getInstance().addCurrency("333");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testAddCurrency_3() {
+		IsoUtils.getInstance().addCurrency("aaa");
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testAddCurrency_4() {
+		IsoUtils.getInstance().addCurrency("AAAA");
+	}
+
+	@Test
+	public void testAddCurrency_5() {
+		IsoUtils.getInstance().addCurrency("DSZ");
+		assertTrue(IsoUtils.getInstance().isValidISOCurrency("DSZ"));
+		IsoUtils.getInstance().getCurrencies().remove("DSZ");
 	}
 
 }
