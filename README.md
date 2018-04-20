@@ -16,6 +16,7 @@ The project (previously known as WIFE) is active since 2006, production ready an
 * Conversion to JSON and proprietary XML
 * Complementary model suited for persistence
 * Generic support for ISO 20022 MX
+* IBAN validation
 
 ![alt tag](http://www.prowidesoftware.com/images/infografias/coreModelLayers.png)
 
