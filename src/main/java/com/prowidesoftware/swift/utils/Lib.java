@@ -14,15 +14,9 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.utils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-
 import org.apache.commons.lang.StringUtils;
+
+import java.io.*;
 
 /**
  * Miscellaneous helper functions.
@@ -54,7 +48,7 @@ public class Lib {
 	 * Read the content of the given file into a string.
 	 *
 	 * @param file the file to be read
-	 * @param encoding encoding to use
+	 * @param encoding encoding to use, may be null in which case UTF-8 is used as default
 	 * @return the file contents or null if file is null or does not exist, or can't be read, or is not a file
 	 * @throws IOException if an error occurs during read
 	 */
@@ -78,7 +72,7 @@ public class Lib {
 	/**
 	 * Read a resource from classpath using the context classloader
 	 * @param resource the resource name to read, must not be null
-	 * @param encoding optional, may be null in chich case UTF-8 is used
+	 * @param encoding optional, may be null in which case UTF-8 is used as default
 	 * @return read content or empty string if resource cannot be loaded
 	 * @throws IOException
 	 * @since 7.7
@@ -107,7 +101,7 @@ public class Lib {
 	 * Read the content of the given stream into a string.
 	 *
 	 * @param stream the contents to read
-	 * @param enconding optional encoding to use, if null "UTF-8" is used as default
+	 * @param enconding encoding to use, , may be null in which case UTF-8 is used as default
 	 * @return the read content
 	 * @throws IOException
 	 * @since 7.7

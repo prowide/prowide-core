@@ -17,8 +17,8 @@ import com.prowidesoftware.Generated;
 public interface SchemeConstantsH {
 
     public final static String HOLD = "HOLD";
-    public final static String HOLS = "HOLS";
     public final static String HOLP = "HOLP";
+    public final static String HOLS = "HOLS";
     public final static String HEAR = "HEAR";
 
 }

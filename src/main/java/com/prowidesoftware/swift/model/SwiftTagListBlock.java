@@ -14,25 +14,19 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.logging.Level;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.model.field.GenericField;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.model.field.Field;
+import java.io.Serializable;
+import java.util.*;
+import java.util.logging.Level;
 
 /**
  * Base class for SWIFT blocks that contain and arbitrary <b>set of fields</b> (3, 4, 5 and user blocks).<br>
@@ -42,8 +36,10 @@ import com.prowidesoftware.swift.model.field.Field;
  * @since 4.0
  */
 public class SwiftTagListBlock extends SwiftBlock implements Serializable, Iterable<Tag> {
-	private static final long serialVersionUID = -3753513588165638610L;
+    private static final long serialVersionUID = -3753513588165638610L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftTagListBlock.class.getName());
+	private static final String TAG_VALIDATION_MESSAGE = "parameter 'tag' cannot not be null";
+	private static final String NAME_VALIDATION_MESSAGE = "parameter 'name' cannot not be null";
 	/**
 	 * <em>Immutable</em>empty instance of this class.
 	 */
@@ -82,7 +78,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	}
 
 	/**
-	 * Empty iterator to be used when an API that returns an Iterator does not return <code>null</code>.
+	 * Empty iterator to be used when an API that returns an Iterator does not return null.
 	 */
 	private static final class EmptyItr implements Iterator<Tag> {
 		public boolean hasNext() {
@@ -99,165 +95,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	}
 
 	/**
-	 * Tells if this block contains a tag with the given name.
-	 * <p><em>exact tagname match only</em></p>
-	 * <p>This method iterates throw tags and checks the name to be matched against the given tagname.
-	 * Thus, it will not distinguish between tags that appear only one time and tags that appear
-	 * in multiple instances.</p>
-	 *
-	 *
-	 * @param tagName fieldname to search, like "32A" or "58"
-	 * @return <code>true</code> if the given field has been set on this block
-	 *         or <code>false</code> in other case
-	 * @throws IllegalArgumentException if parameter tagName is <code>null</code>
-	 */
-	public boolean containsTag(final String tagName) {
-		// sanity check
-		Validate.notNull(tagName, "parameter 'tagName' cannot not be null");
-
-		for (final Iterator<Tag> it = tags.iterator(); it.hasNext();) {
-			final Tag t = (Tag)it.next();
-			if (t.getName() != null && t.getName().equals(tagName)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Gets the value of the given tag or <code>null</code> if that tagname is not found.<br>
-	 * NOTE: if the tag is present more than once, then this method retrieves the value of the first occurrence
-	 *
-	 * @param key name of the tag, example: 13C (case sensitive)
-	 * @return a String containing the value <code>null</code> if the tag is not set
-	 * @throws IllegalArgumentException if parameter key is <code>null</code>
-	 */
-	public String getTagValue(final String key) {
-		// sanity check
-		Validate.notNull(key, "parameter 'key' cannot not be null");
-
-		// just try to get the tag (containsTag => getTagByName runs the list twice)
-		final Tag tag = this.getTagByName(key);
-		return tag != null ? tag.getValue() : null;
-	}
-
-	/**
-	 * Iterate through tags in this block and return the first tag whose name matches key,
-	 * or <code>null</code> if none is found.
-	 * <em>NOTE: exact naming only, <b>'a' syntax not supported here</b></em>
-	 *
-	 * @param key name of the tag to search
-	 * @return the tag containing the given key or <code>null</code> if it is not found
-	 * @throws IllegalArgumentException if parameter key is <code>null</code>
-	 */
-	public Tag getTagByName(final String key) {
-		// sanity check
-		Validate.notNull(key, "parameter 'key' cannot not be null");
-
-		// scan the list
-		for (final Iterator<Tag> it = tags.iterator(); it.hasNext();) {
-			final Tag f = (Tag) it.next();
-			if ((f.getName()!=null) && f.getName().equals(key)) {
-				return f;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Similar to #getFieldByName(String, String) except that it also adds the check of matching component2
-	 * @see #getFieldByName(String, String)
-	 * @since 7.5
-	 */
-	public Field getFieldByName(final String fieldname, final String being, final String component2) {
-		Validate.notNull(fieldname, "parameter 'fieldname' cannot not be null");
-
-		// scan the list
-		for (final Iterator<Tag> it = tags.iterator(); it.hasNext();) {
-			final Tag t = (Tag) it.next();
-			if ((t.getName()!=null) && t.getName().equals(fieldname)) {
-				final Field f = t.getField();
-				if (f.is(being) && StringUtils.equals(f.getComponent(2), component2)) {
-					return f;
-				}
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 * Get the first field with the given name, matching the given values
-	 * for components 1 and 2.<br />
-	 * This is particularly helpful to find generic field by its qualifier.
-	 * 
-	 * @param fieldname <em>EXACT name only</em>. 'a' notation <em>NOT SUPPORTED</em>
-	 * @param component1 the string to match as component 1.
-	 * @param component2 the string to match as component 2.
-	 * @return the first tag found or <code>null</code> if none found
-	 * 
-	 * @since 7.8
-	 */
-	public Tag getTagByName(final String fieldname, final String component1, final String component2) {
-		Validate.notNull(fieldname, "parameter 'fieldname' cannot not be null");
-		for (final Tag t : tags) {
-			if ((t.getName()!=null) && t.getName().equals(fieldname)) {
-				final Field f = t.getField();
-				if (f != null && f.is(component1) && StringUtils.equals(f.getComponent(2), component2)) {
-					return t;
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Get the first field with the given name whose component 1 matched 'being'.
-	 * This is particularly helpful to find generic field by its qualifier.
-	 *
-	 * @param fieldname <em>EXACT name only</em>. 'a' notation <em>NOT SUPPORTED</em>
-	 * @param component1 the string to match as component 1, may be <code>null</code>.
-	 * @return the first field found or <code>null</code> if none found
-	 *
-	 * @since 7.5
-	 * @see Field#is(String)
-	 * @throws {@link IllegalArgumentException} if key is <code>null</code>
-	 */
-	public Field getFieldByName(final String fieldname, final String component1) {
-		Validate.notNull(fieldname, "parameter 'fieldname' cannot not be null");
-		for (final Tag t : tags) {
-			if ((t.getName()!=null) && t.getName().equals(fieldname)) {
-				final Field f = t.getField();
-				if (f != null && f.is(component1)) {
-					return f;
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Iterate through tags in this block and return the first tag whose name matches key,
-	 * or <code>null</code> if none is found.
-	 * <em>NOTE: exact naming only, <b>'a' syntax not supported here</b></em>
-	 *
-	 * Same as doing <code>{@link #getTagByName(String)}.getField()</code>.
-	 *
-	 * @param key name of the tag to search
-	 * @return the tag containing the given key or <code>null</code> if it is not found
-	 * @throws IllegalArgumentException if parameter key is <code>null</code>
-	 *
-	 * @see #getTagByName(String)
-	 */
-	public Field getFieldByName(final String key) {
-		final Tag r = getTagByName(key);
-		if (r!=null) {
-			return r.getField();
-		}
-		return null;
-	}
-
-	/**
 	 * Gets the internal List of tags in block.
 	 * @return a List of Tag
 	 * @see Tag
@@ -267,10 +104,438 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	}
 
 	/**
+	 * Iterate through tags in this block and return the first tag whose name matches the parameter.
+	 *
+	 * @param name the tag name to search, for example "32A" or "58" (letter option wildcard 'a' is not supported)
+	 * @return the first tag with the given name or null if none is found
+	 * @throws IllegalArgumentException if the name parameter is null
+	 */
+	public Tag getTagByName(final String name) {
+		Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+		for (Tag tag : this.tags) {
+			if (StringUtils.equals(tag.getName(),  name)) {
+				return tag;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets the Tag at the given index in this block.
+	 *
+	 * @param index the index position of the tag to retrieve (zero based)
+	 * @return the Tag at the given index
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 * @see List#get(int)
+	 */
+	public Tag getTag(final int index) {
+		return (Tag) this.tags.get(index);
+	}
+
+	/**
+	 * Tells if this block contains at least one tag with the given name.
+	 *
+	 * @see #getTagByName(String)
+	 * @param name the tag name to search, for example "32A" or "58" (letter option wildcard 'a' is not supported)
+	 * @return true if a tag matching the given name is found
+	 * @throws IllegalArgumentException if the name parameter is null
+	 */
+	public boolean containsTag(final String name) {
+		return getTagByName(name) != null;	
+	}
+
+	/**
+	 * Tells if this block contains at least one tag with the given number (ignoring the letter option).
+	 * For example: <code>containsTag(59)</code> will return true if there is any variant of 59, 59A, 59F, etc...
+	 *
+	 * @see #getTagByNumber(int)
+	 * @param tagNumber the tag number to search
+	 * @return true if there is a tag with the given number regardless of the letter option
+	 */
+	public boolean containsTag(final int tagNumber) {
+		return getTagByNumber(tagNumber) != null;
+	}
+	 
+	/**
+	 * Gets the value of the given tag or null if that tag is not found.<br>
+	 * If the tag is present more than once, then this method retrieves the value of the first occurrence.
+	 *
+	 * @see #getTagByName(String)
+	 * @param name the tag name to search, for example "32A" or "58" (letter option wildcard 'a' is not supported)
+	 * @return a String containing the value null if the tag is not found
+	 * @throws IllegalArgumentException if the name parameter is null
+	 */
+	public String getTagValue(final String name) {
+		final Tag tag = this.getTagByName(name);
+		return tag != null ? tag.getValue() : null;
+	}
+
+	/**
+	 * Gets all tags with the given name.
+	 * If name is null all tags that contain block data will be returned.
+	 * 
+	 * @param name the tags name to search, for example "32A" or "58" (letter option wildcard 'a' is not supported)
+	 * @return an array of tags or an empty array if no tags are found
+	 * @throws IllegalArgumentException if the name parameter is null
+	 */
+	public Tag[] getTagsByName(final String name) {
+		Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+		final List<Tag> l = new ArrayList<Tag>();
+		for (Tag tag : this.tags) {
+			if (StringUtils.equals(tag.getName(), name)) {
+				l.add(tag);
+			}
+		}
+		return (Tag[]) l.toArray(new Tag[l.size()]);
+	}
+
+	/**
+	 * Get the first field with the given name, matching the given values for components 1 and 2.
+	 * 
+	 * @param name the tag name to search, for example "32A" or "58" (letter option wildcard 'a' is not supported)
+	 * @param component1 the string to match as component 1.
+	 * @param component2 the string to match as component 2.
+	 * @return the first tag found matching the name and components values or null if none is found
+	 * @throws IllegalArgumentException if the name parameter is null
+	 * @since 7.8
+	 */
+	public Tag getTagByName(final String name, final String component1, final String component2) {
+		for (final Tag tag : getTagsByName(name)) {
+			final Field f = tag.getField();
+			if (f != null && f.is(component1) && StringUtils.equals(f.getComponent(2), component2)) {
+				return tag;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Search and retrieve the first tag with the given number.
+	 * For example: For 59 will return any of 59, 59A, 59F, etc...
+ 	 * 
+ 	 * @param tagNumber the tags number to search
+ 	 * @return the first tag with the given number or null if no tag is found.
+	 */
+	public Tag getTagByNumber(final int tagNumber) {
+		for (Tag tag : this.tags) {
+			if (tag.isNumber(tagNumber)) {
+				return tag;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Get all tags with a given number, regardless of the letter options.
+	 * 
+ 	 * @param tagNumber the tags number to search
+	 * @return the tags matching the given number or an empty list if none is found.	 
+	 */
+	public List<Tag> getTagsByNumber(final int tagNumber) {
+		final List<Tag> result = new ArrayList<Tag>();
+		for (Tag tag : this.tags) {
+			if (tag.isNumber(tagNumber)) {
+				result.add(tag);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Returns the tags having the exact specified content as value, regardless of the tag name.<br />
+	 * For example the field :98A::XDTE//20090818 will be included for parameter :XDTE//20090818
+	 *
+	 * @param value the value of tags to find
+	 * @return an list of tags or an empty list if none is found
+	 * @see for partial match see {@link #getTagsByContent(String)}
+	 * @since 6.0
+	 */
+	public List<Tag> getTagsByValue(final String value) {
+		final List<Tag> result = new ArrayList<Tag>();
+		for (Tag tag : this.tags) {
+			if (StringUtils.equals(tag.getValue(), value)) {
+				result.add(tag);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Returns the tags having the specified content as part of its value, regardless of the tag name.<br />
+	 * For example the field :98A::XDTE//20090818 will be included for parameter XDTE
+	 *
+	 * @param content partial value of the tags to find
+	 * @return an list of tags or an empty list if none is found
+	 * @see for exact value match see {@link #getTagsByValue(String)}
+	 * @since 6.0
+	 */
+	public List<Tag> getTagsByContent(final String content) {
+		final List<Tag> result = new ArrayList<Tag>();
+		for (Tag tag : this.tags) {
+			if (StringUtils.contains(tag.getValue(), content)) {
+				result.add(tag);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Gets the values for all tags matching the given name. 
+	 * The tag list is searched in order, the value of all tag matching the name are added to the result.
+	 * @see #getTagsByName(String)
+	 * 
+	 * @param name the tag name to search, for example "32A" or "58" (letter option wildcard 'a' is not supported)
+	 * @return and array containing the values of all the matching tags or an empty array if none is found
+	 * @throws IllegalArgumentException if the name parameter is null
+	 */
+	public String[] getTagValues(final String name) {
+		Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+		final ArrayList<String> result = new ArrayList<String>();
+		for (Tag tag : getTagsByName(name)) {
+			result.add(tag.getValue());
+		}
+		return result.toArray(new String[result.size()]);
+	}
+
+	/**
+	 * Gets a Map that contains the the tag names as keys and the values as map value.
+	 * If a field is present more than once, then the first instance is processed and the rest is ignored.
+	 *
+	 * @return a Map for the tags name and values
+	 */
+	public Map<String, String> getTagMap() {
+		final Map<String, String> map = new HashMap<String, String>(this.tags.size());
+		for (Tag tag : this.tags) {
+			if (!map.containsKey(tag.getName())) {
+				map.put(tag.getName(), tag.getValue());
+			}
+		}
+		return map;
+	}
+
+	/**
+	 * Gets the first field matching the given name.
+	 *
+	 * @param name the name of the field to match, may end with 'a' as wildcard to select any letter option, for example 50a will match both 50A and 50B
+	 * @return the found field instance or null if none is found with the given name
+	 * @throws IllegalArgumentException if the name parameter is null
+	 */
+	public Field getFieldByName(final String name) {
+		return getFieldByName(name, null);
+	}
+
+	/**
+	 * Gets all fields matching the given name.
+	 * 
+	 * @param name the name of the field to match, may end with 'a' as wildcard to select any letter option, for example 50a will match both 50A and 50B
+	 * @return an array of matched fields or an empty array if none is found
+	 * @throws IllegalArgumentException if the name parameter is null
+	 */
+	public Field[] getFieldsByName(final String name) {
+		final List<? extends Field> fields = getFieldsByName(name, null);
+		return (Field[]) fields.toArray(new Field[fields.size()]);
+	}
+
+	/**
+	 * Gets the first field matching the given name and first component value.
+	 * This is particularly helpful to find generic field by its qualifier.
+	 *
+	 * @param name the name of the field to match, may end with 'a' as wildcard to select any letter option, for example 50a will match both 50A and 50B
+	 * @param componentValue expected value for component 1 in the matched field, or null to return the first field matching the name
+	 * @return the first matching field or null if none is found
+	 *
+	 * @since 7.5
+	 * @throws IllegalArgumentException if name parameter is null
+	 */
+	public Field getFieldByName(final String name, final String componentValue) {
+		Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+		
+		final boolean wildcard = name.endsWith("a");
+		for (Tag tag : this.tags) {
+			if (matchesName(wildcard, tag.getName(), name)) {
+				final Field field = tag.getField();
+				if (field == null) {
+					log.warning("Could not create field instance of "+tag);
+				} else if (componentValue == null || field.is(componentValue)) {
+					return field;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Gets all fields matching the given name and first component value.
+	 * 
+	 * @param name the name of the field to match, may end with 'a' as wildcard to select any letter option, for example 50a will match both 50A and 50B
+	 * @param componentValue expected value for component 1 in the matched fields, or null to return all fields matching the name
+	 * @return a list of matching fields or an empty list if none is found
+	 * @since 7.6
+	 * @throws IllegalArgumentException if name parameter is null
+	 */
+	public List<? extends Field> getFieldsByName(final String name, final String componentValue) {
+		Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+		
+		final boolean wildcard = name.endsWith("a");
+		final List<Field> l = new ArrayList<Field>();
+		for (Tag tag : this.tags) {
+			if (matchesName(wildcard, tag.getName(), name)) {
+				final Field field = tag.getField();
+				if (field == null) {
+					log.warning("Could not create field instance of "+tag);
+				} else if (componentValue == null || field.is(componentValue)) {
+					l.add(field);
+				}
+			}
+		}
+		return l;
+	}
+
+	/**
+	 * Returns true if the found fieldname matches the expected name
+	 * @param wildcard if true the match will ignore letter options
+	 * @param found current field name
+	 * @param expected the expected value
+	 * @return true if matches considering the optional wildcard
+	 * @since 7.9.7
+	 */
+	private boolean matchesName(boolean wildcard, final String found, final String expected) {
+		if (wildcard) {
+			return StringUtils.startsWith(found, expected.substring(0, expected.length()-1));
+		} else {
+			return StringUtils.equals(found, expected);
+		}
+	}
+	
+	/**
+	 * Shortcut to {@link #getTag(int)}.getField()
+	 * @see #getTag(int)
+	 * 
+	 * @param index the index position of the field to retrieve (zero based)
+	 * @return the field at the given index
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 */
+	public Field getField(final int index) {
+		final Tag tag = getTag(index);
+		if (tag != null) {
+			return tag.getField();
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets all fields matching the given name, matching also the first and second component values.<br />
+	 * For example, for parameters 22F, OPTF and FOO it will match 22F::OPTF/FOO/QCAS but not 22F::OPTF//QCAS
+	 * 
+	 * @see #getFieldByQualifiers(String, String, String)
+	 * @param name the name of the field to match, may end with 'a' as wildcard to select any letter option, for example 50a will match both 50A and 50B
+	 * @param component1 the expected value for the component 1 of the matched field
+	 * @param component2 the expected value for the component 2 of the matched field
+	 * @return the first matching field or null if none is found with the given name and component values
+	 * @since 7.5
+	 */
+	public Field getFieldByName(final String name, final String component1, final String component2) {
+		for (Field field : getFieldsByName(name, component1)) {
+			if (StringUtils.equals(field.getComponent(2), component2)) {
+				return field;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets all generic fields matching the given name and qualifiers.<br />
+	 * For example, for parameters 22F, OPTF and QCAS it will match 22F::OPTF//QCAS or 22F::OPTF/DSS/QCAS
+	 * 
+	 * @see #getFieldByName(String, String)
+	 * @see GenericField
+	 * @param name the name of the field to match, may end with 'a' as wildcard to select any letter option, for example 50a will match both 50A and 50B
+	 * @param qualifier the expected value for the component 1 of the matched field
+	 * @param conditionalQualifier the expected value for the conditional qualifier component (usually 2 or 3) of the matched field
+	 * @return the first matching field or null if none is found with the given name and expected component values
+	 */
+	public Field getFieldByQualifiers(final String name, final String qualifier, final String conditionalQualifier) {
+		for (Field field : getFieldsByName(name, qualifier)) {
+			if (field instanceof GenericField) {
+				if (StringUtils.equals(((GenericField)field).getConditionalQualifier(), conditionalQualifier)) {
+					return field;
+				}
+			}
+		}
+		return null;
+	}	
+	
+	/**
+	 * Search and retrieve the first Field with the given number.
+	 * For example: for 59 will return any of 59, 59A, 59F, etc...
+	 * 
+	 * @param fieldNumber the field number to search
+	 * @return the first instance of the given field in the message or null if none is found
+	 * @see #getTagByNumber(int)
+	 */
+	public Field getFieldByNumber(final int fieldNumber) {
+		final Tag t = getTagByNumber(fieldNumber);
+		if (t != null) {
+			return t.getField();
+		}
+		return null;
+	}
+
+	/**
+	 * Get all Fields of a given number.<br />
+	 * For example: for 59 will return any of 59, 59A, 59F, etc...
+	 * 
+	 * @param fieldNumber the field number to search
+	 * @return the fields matching the given number or an empty list if none is found.
+	 *
+	 * @see #getTagsByNumber(int)
+	 */
+	public List<? extends Field> getFieldsByNumber(final int fieldNumber) {
+		final List<Field> result = new ArrayList<Field>();
+		for (Tag tag : getTagsByNumber(fieldNumber)) {
+			final Field f = tag.getField();
+			if (f == null) {
+				throw new IllegalArgumentException("Unable to create field for tagname "+tag.getName());
+			} else {
+				result.add(f);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Gets the first field matching the given number and component value.
+	 * For example: for 59 will return any of 59, 59A, 59F, etc...
+	 *
+	 * @param fieldNumber the field number to search
+ 	 * @param componentValue expected value for component 1 in the matched field
+	 * @return the first matching field or null if none is found
+	 */
+	public Field getFieldByNumber(final int fieldNumber, final String componentValue) {
+		for(Field field : getFieldsByNumber(fieldNumber)) {
+			if (field.is(componentValue)) {
+				return field;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Tell if this block contains at least a field with the given name
+	 * @param name the name of the field to match, may end with 'a' as wildcard to select any letter option, for example 50a will match both 50A and 50B
+	 * @return true if this field exists at lease once, false in other case
+	 * @see #getFieldsByName(String)
+	 */
+	public boolean containsField(final String name) {
+		final Field[] arr = getFieldsByName(name);
+		return (arr != null) && arr.length > 0;
+	}
+
+	/**
 	 * @deprecated use {@link #append(Tag)} instead of this
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase3 = TargetYear._2018)
 	public void addTag(final Tag t) {
 		DeprecationUtils.phase2(getClass(), "addTag(Tag)", "use append(Tag) instead.");
 		// sanity check
@@ -288,7 +553,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * @deprecated use {@link #append(Field)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase3 = TargetYear._2018)
 	public void add(final Field f) {
 		DeprecationUtils.phase2(getClass(), "add(Field)", "use append(Field) instead.");
 		append(new Tag(f.getName(), f.getValue()));
@@ -298,7 +563,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * @deprecated renamed to {@link #countByName(String)}
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase3 = TargetYear._2018)
 	public int getTagCount(final String key) {
 		DeprecationUtils.phase2(getClass(), "getTagCount(String)", "Use countByName(String) instead.");
 		return countByName(key);
@@ -309,49 +574,17 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 *
 	 * @param tagname the name of the tag
 	 * @return the amount of tags with the given name in the block
-	 * @throws IllegalArgumentException if tagname key is <code>null</code>
+	 * @throws IllegalArgumentException if tagname key is null
 	 */
-	public int countByName(final String tagname) {
-		// sanity check
-		Validate.notNull(tagname, "parameter 'tagname' cannot not be null");
-
-		// count the matches
+	public int countByName(final String name) {
+		Validate.notNull(name, NAME_VALIDATION_MESSAGE);
 		int count = 0;
-		if (this.tags != null) {
-			for (final Iterator<Tag> it = tags.iterator(); it.hasNext();) {
-				final Tag f = (Tag) it.next();
-				if (f.getName().equals(tagname)) {
-					count++;
-				}
+		for (final Tag tag : this.tags) {
+			if (StringUtils.equals(tag.getName(), name)) {
+				count++;
 			}
 		}
 		return count;
-	}
-
-	/**
-	 * Gets all values for a given tagname. The tag list is searched in order, all tag
-	 * values matching the name of the given key are added to the resulting array.
-	 * <em>NOTE:</em> the resulting array may be empty if no tagname is matched.
-	 *
-	 * @param key name of the tag to be searched, case sensitive
-	 * @return and array containing the values of all the instances of the tag
-	 * @throws IllegalArgumentException if parameter key is <code>null</code>
-	 */
-	public String[] getTagValues(final String key) {
-		// sanity check
-		Validate.notNull(key, "parameter 'key' cannot not be null");
-
-		final ArrayList<String> ret = new ArrayList<String>();
-		if (this.tags != null) {
-			for (final Iterator<Tag> it = tags.iterator(); it.hasNext();) {
-				final Tag f = it.next();
-				if (f.getName().equals(key)) {
-					ret.add(f.getValue());
-				}
-			}
-		}
-
-		return ret.toArray(new String[ret.size()]);
 	}
 
 	/**
@@ -366,50 +599,26 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	}
 
 	/**
-	 * Gets a Map that contains the the fields names as keys and the values as map value.
-	 * If a field is present more than once, then the first instance is processed and the rest is ignored.
-	 *
-	 * @return a Map with tagname as key and values or <code>null</code> if there are not tags in the block
-	 */
-	public Map<String, String> getTagMap() {
-		if (this.tags != null) {
-			final Map<String, String> m = new HashMap<String, String>(tags.size());
-			for (final Iterator<Tag> it = tags.iterator(); it.hasNext();) {
-				final Tag f = (Tag) it.next();
-				if (!m.containsKey(f.getName())) {
-					m.put(f.getName(), f.getValue());
-				}
-			}
-			return m;
-		}
-		return null;
-	}
-
-	/**
 	 * Remove the tag with the given name in the block.
 	 * If more than one instance of the given name is
 	 * found the first instance is removed while the
 	 * rest remains untouched.
 	 *
-	 * @param tag name of the tag to remove must not be null
+	 * @param name the name of the tag to remove must not be null
 	 * @return the value of the removed tag
-	 * @throws IllegalArgumentException if parameter tag is <code>null</code>
+	 * @throws IllegalArgumentException if parameter name is null
 	 * @see #removeAll(String)
 	 */
-	public String removeTag(final String tag) {
-		// sanity check
-		Validate.notNull(tag, "parameter 'tag' cannot not be null");
-
-		if (this.tags != null) {
-			int i = 0;
-			for (final Iterator<Tag> it = tags.iterator(); it.hasNext();) {
-				final Tag t = (Tag) it.next();
-				if (t.getName() != null && t.getName().equals(tag)) {
-					final Tag r = tags.remove(i);
-					return r.getValue();
-				}
-				i++;
+	public String removeTag(final String name) {
+		Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+		int i = 0;
+		for (final Iterator<Tag> it = tags.iterator(); it.hasNext();) {
+			final Tag t = (Tag) it.next();
+			if (StringUtils.equals(t.getName(), name)) {
+				final Tag r = tags.remove(i);
+				return r.getValue();
 			}
+			i++;
 		}
 		return null;
 	}
@@ -420,13 +629,12 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * to tell if a tag was present or not. for quering the block for existing tags
 	 * {@link #containsTag(String)} must be used.
 	 *
-	 * @param name the name of the tag to remove. may be <code>null</code> in which case the tags containing 'block data' will be removed
+	 * @param name the name of the tag to remove. may be null in which case the tags containing 'block data' will be removed
 	 * @return the amount of tags removed
-	 * @throws IllegalArgumentException if parameter name is <code>null</code>
+	 * @throws IllegalArgumentException if parameter name is null
 	 * @see #removeTag(String)
 	 */
 	public int removeAll(final String name) {
-		// sanity check
 		Validate.notNull(name, "parameter 'name' cannot not be null");
 
 		int removed = 0;
@@ -439,109 +647,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	}
 
 	/**
-	 * Get a reference to tags in the block that match the given tag name.
-	 * If name is <code>null</code> all tags that contain block data will be returned.
-	 * If no tag is found an empty array is returned.
-	 *
-	 * @param name the name of the tag to search in this block
-	 * @return an array of tags or an empty array if no tags are found
-	 * @throws IllegalArgumentException if parameter name is <code>null</code>
-	 */
-	public Tag[] getTagsByName(final String name) {
-		// sanity check
-		Validate.notNull(name, "parameter 'name' cannot not be null");
-
-		final List<Tag> l = new ArrayList<Tag>();
-		for (final Iterator<Tag> it = this.tags.iterator(); it.hasNext();) {
-			final Tag t = (Tag) it.next();
-			if (t.getName() == null && name == null) {
-				l.add(t);
-			}
-			if (t.getName() != null && name != null && t.getName().equals(name)) {
-				l.add(t);
-			}
-		}
-		return (Tag[]) l.toArray(new Tag[l.size()]);
-	}
-
-	/**
-	 * Similar to {@link #getTagsByName(String)}
-	 * <em>NOTE: supports 'a' wildcard. If 95a is given, all 95, 95K, 95J fields will be returned.</em>.
-	 * This is case sensitive.
-	 * @throws IllegalArgumentException if name is null
-	 * @return an array of matched fields or an empty array if none found
-	 */
-	public Field[] getFieldsByName(final String name) {
-		// sanity check
-		Validate.notNull(name, "parameter 'name' cannot not be null");
-
-		final boolean wildcard;
-		final String search;
-		if (name.endsWith("a")) {
-			wildcard = true;
-			search = name.substring(0, name.length()-1);
-		} else {
-			wildcard = false;
-			search = name;
-		}
-		final List<Field> l = new ArrayList<Field>();
-		for (final Iterator<Tag> it = this.tags.iterator(); it.hasNext();) {
-			final Tag t = (Tag) it.next();
-			if ((wildcard && StringUtils.startsWith(t.getName(), search))
-					|| StringUtils.equals(t.getName(), name)) {
-				final Field field = t.getField();
-				if (field == null) {
-					log.warning("Could not create field instance of "+t);
-				} else {
-					l.add(field);
-				}
-			}
-		}
-		// returns correctly empty array - see test testEmptyArrayReturn
-		return (Field[]) l.toArray(new Field[l.size()]);
-	}
-
-	/**
-	 * Get all the fields that match the given name and whose first component is <em>being</em>.
-	 * @param name the name of the field to match, may end with 'a' as wildcard. When name ends with 'a' it is removed from the search and the field is matched with startsWith instead of equals
-	 * @param being value to match in {@link Field#is(String)} which compares the value of component 1
-	 * @return a list of matching fields or an empty list if none found
-	 * @since 7.6
-	 */
-	public List<? extends Field> getFieldsByName(final String name, final String being) {
-		// sanity check
-		Validate.notNull(name, "parameter 'name' cannot not be null");
-		Validate.notNull(being, "parameter 'being' cannot not be null");
-
-		final boolean wildcard;
-		final String search;
-		if (name.endsWith("a")) {
-			wildcard = true;
-			search = name.substring(0, name.length()-1);
-		} else {
-			wildcard = false;
-			search = name;
-		}
-		final List<Field> l = new ArrayList<Field>();
-		for (final Iterator<Tag> it = this.tags.iterator(); it.hasNext();) {
-			final Tag t = (Tag) it.next();
-			if ((wildcard && StringUtils.startsWith(t.getName(), search)) || StringUtils.equals(t.getName(), name)) {
-				final Field field = t.getField();
-				if (field == null) {
-					log.warning("Could not create field instance of "+t);
-				} else {
-					// Excepto por este if es igual a getFieldsByName y devuelve list
-					if (field.is(being)) {
-						l.add(field);
-					}
-				}
-			}
-		}
-		return l;
-	}
-
-	/**
-	 * Gets a Iterator for the tags in this block or <code>null</code> if no tags are present on the block an empty iterator is returned.
+	 * Gets a Iterator for the tags in this block or null if no tags are present on the block an empty iterator is returned.
 	 *
 	 * @return an Iterator that may or may not contain objects of type Tag
 	 * @see Tag
@@ -557,30 +663,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	}
 
 	/**
-	 * Gets the Tag of the given index in this block, the position is zero-based.
-	 *
-	 * @param i the index position of the tag to retrieve
-	 * @return the Tag at the given index
-	 * @throws IndexOutOfBoundsException - if the index is out of range
-	 * @see List#get(int)
-	 */
-	public Tag getTag(final int i) {
-		return (Tag) this.tags.get(i);
-	}
-
-	/**
-	 * shortcut to {@link #getTag(int)}.getField()
-	 * @param i
-	 * @throws IndexOutOfBoundsException if the index is out of range
-	 */
-	public Field getField(final int i) {
-		return this.tags.get(i).getField();
-	}
-
-	/**
 	 * Add all tags in the List argument to the current blocks. Current tags will not be removed.
 	 * @param tags the list of tags to add
-	 * @throws IllegalArgumentException if parameter name is <code>null</code>
+	 * @throws IllegalArgumentException if parameter name is null
 	 */
 	public void addTags(final List<Tag> tags) {
 		// sanity check
@@ -589,6 +674,21 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 
 		thisTagsNotNull().addAll(tags);
 	}
+
+    /**
+     * Adds a tag at the specified position in this tag list.
+	 * Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+     * @param tag the tag to add
+     * @param index index at which the specified tag is to be inserted (zero based)
+     * @throws IllegalArgumentException if parameter name is null
+	 * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())
+	 * @since 7.9.7
+     */
+    public void addTag(int index, final Tag tag) {
+        // sanity check
+        Validate.notNull(tag, TAG_VALIDATION_MESSAGE);
+        thisTagsNotNull().add(index,tag);
+    }
 
 	/**
 	 * returns this.tags checking before if it is null, and then creating a new arraylist for it
@@ -604,7 +704,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * @deprecated use {@link #countAll()} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase2 = TargetYear._2018)
 	public int getTagCount() {
 		return countAll();
 	}
@@ -617,38 +717,49 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 
 	 /**
-	  * Set the list of tags of this block.
-	  * NOTE that the order of the tags in the list is the order that really matters.
-	  *
-	  * @param tags the tags of the block, may be <code>null</code> to remove all the tags of the block
-	  * @throws IllegalArgumentException if parameter tags is not <code>null</code> and contains elements of class other than Tag
+	  * Replaces the tag at the specified position in this tag list with the specified tag.
+      *
+      * @param index index of the tag to replace (zero based)
+      * @param tag tag to be stored at the specified position
+      * @return the tag previously at the specified position
+	  * @throws IllegalArgumentException if parameter name is null
+	  * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())
+      * @since 7.9.7
 	  */
-	 public void setTags(final List<Tag> tags) {
-		 // sanity check
-		 if (tags != null) {
-			 Validate.allElementsOfType(tags, Tag.class, "parameter 'tags' may only have Tag elements");
-		 }
-		 this.tags = tags;
+	 public Tag setTag(int index, Tag tag) {
+         // sanity check
+         Validate.notNull(tag, TAG_VALIDATION_MESSAGE);
+		 return this.tags.set(index,tag);
 	 }
+
+    /**
+     * Set tag in the list of tags of this block.
+     *
+     * @param tags the tags of the block, may be null to remove all the tags of the block
+     * @throws IllegalArgumentException if parameter tags is not null and contains elements of class other than Tag
+     */
+    public void setTags(final List<Tag> tags) {
+        // sanity check
+        if (tags != null) {
+            Validate.allElementsOfType(tags, Tag.class, "parameter 'tags' may only have Tag elements");
+        }
+        this.tags = tags;
+    }
 
 	 /**
 	  * @param tags tags to set
 	  * @see #setTags(List)
 	  */
 	 public void setTags(final Tag[] tags) {
-		 /*
-		  * create new list to avoid fixed-size list backed by array
-		  */
 		 List<Tag> list = new ArrayList<Tag>();
 		 list.addAll(Arrays.asList(tags));
-		 
 		 setTags(list);
 	 }
 
 	 /**
 	  * Tells if the block contains at least one Tag.
 	  *
-	  * @return <code>true</code> if the block contains at least one Tag and <code>false</code> in other case
+	  * @return true if the block contains at least one Tag and false in other case
 	  */
 	 public boolean isEmpty() {
 		 return (this.tags == null || this.tags.isEmpty());
@@ -694,190 +805,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 
 	 /**
-	  * Iterates the internal list of tags and returns true if there is at least one tag with the given number <code>i</code>
-	  * This method is useful to search any variant of a tag
-	  * <code>containsTag(58)</code> will return <code>true</code> if there is any variant of 58A, 58D, or so.
-	  *
-	  * @param i the tag number to search in tags
-	  * @return <code>true</code> if there is a tag with the given number, no matter if the tag is or not a letter option (letter option may be any or empty)
-	  */
-	 public boolean containsTag(final int i) {
-		 if (this.tags == null || this.tags.isEmpty()) {
-			 return false;
-		 }
-		 for (final Iterator<Tag> it = tags.iterator() ; it.hasNext() ; ) {
-			 final Tag t = (Tag) it.next();
-			 if (t.isNumber(i)) {
-				 return true;
-			 }
-		 }
-		 return false;
-	 }
-
-	 /**
-	  * Search and retrieve the first tag with the given number.
-	  * <em>NOTE: requesting tag 58 will return either 58, 58A or 58D if present</em>
-	  *
-	  * @param i the tagname to search
-	  * @return the first tag with the given number or <code>null</code> if no tag is found.
-	  * @see #containsTag(int)
-	  */
-	 public Tag getTagByNumber(final int i) {
-		 if (this.tags != null && !this.tags.isEmpty()) {
-			 for (final Iterator<Tag> it = tags.iterator() ; it.hasNext() ; ) {
-				 final Tag t = (Tag) it.next();
-				 if (t.isNumber(i)) {
-					 return t;
-				 }
-			 }
-		 }
-		 return null;
-	 }
-
-	 /**
-	  * Search and retrieve the first Field with the given number.
-	  * <em>NOTE: requesting tag 58 will return either 58, 58A or 58D if present</em>
-	  * @param num the field number to search
-	  * @return the first instance of the given field in the message or null if none is found
-	  * @see #getTagByNumber(int)
-	  */
-	 public Field getFieldByNumber(final int num) {
-		 final Tag t = getTagByNumber(num);
-		 if (t != null) {
-			 return t.getField();
-		 }
-		 return null;
-	 }
-
-	 /**
-	  * get all tags of a given number.
-	  * Useful to deal with 95a type or requests.
-	  *
-	  * @return the tags matching the given number or an <em>empty list</em> if none found.
-	  *
-	  * @see #getTagByNumber(int)
-	  * @see Tag#getNumber()
-	  */
-	 public List<Tag> getTagsByNumber(final int i) {
-		 if (this.tags == null || this.tags.isEmpty()) {
-			 return Collections.emptyList();
-		 }
-
-		 final List<Tag> result = new ArrayList<Tag>();
-		 for (final Iterator<Tag> it = tags.iterator() ; it.hasNext() ; ) {
-			 final Tag t = (Tag) it.next();
-			 if (t.isNumber(i)) {
-				 result.add(t);
-			 }
-		 }
-		 return result;
-	 }
-
-
-	 /**
-	  * get all Fields of a given number.
-	  * Useful to deal with 95a type or requests.
-	  *
-	  * @return the fields matching the given number or an <em>empty list</em> if none found.
-	  *
-	  * @see #getTagByNumber(int)
-	  * @see Tag#getNumber()
-	  * @see Tag#isNumber(int)
-	  */
-	 public List<? extends Field> getFieldsByNumber(final int i) {
-		 if (this.tags == null || this.tags.isEmpty()) {
-			 return Collections.emptyList();
-		 }
-
-		 final List<Field> result = new ArrayList<Field>();
-		 for (final Iterator<Tag> it = tags.iterator() ; it.hasNext() ; ) {
-			 final Tag t = (Tag) it.next();
-			 if (t.isNumber(i)) {
-				 final Field f = t.getField();
-				 if (f == null) {
-					 throw new IllegalArgumentException("Unable to create field for tagname "+t.getName()); /// TODO poner link a articulo online de api de sru generica vs especifica 
-				 } else {
-					 result.add(f);
-				 }
-			 }
-		 }
-		 return result;
-	 }
-
-	 /**
-	  * Get the first field with the given number and that {@link Field#is(String)} the value in <em>being</em>.
-	  * This is intended to match calling
-	  * <code>getFieldByNumber(95, "FOO")</code> will match all these:
-	  * <ul>
-	  * 	<li>95:FOO</li>
-	  * 	<li>95A:FOO</li>
-	  * 	<li>95K:FOO</li>
-	  * </ul>
-	  *
-	  * @return the first matching field or <code>null</code> if none is found
-	  */
-	 public Field getFieldByNumber(final int number, final String being) {
-		 if (this.tags == null || this.tags.isEmpty()) {
-			 return null;
-		 }
-
-		 for (final Iterator<Tag> it = tags.iterator() ; it.hasNext() ; ) {
-			 final Tag t = (Tag) it.next();
-			 if (t.isNumber(number)) {
-				 final Field f = t.getField();
-				 if (f == null) {
-					 throw new IllegalArgumentException("Unable to create field for tagname "+t.getName());
-				 } else {
-					 if (f.is(being)) {
-						 return f;
-					 }
-				 }
-			 }
-		 }
-		 return null;
-	 }
-
-	 /**
-	  * Returns the tags having the exact specified content as value.<br />
-	  * For example the field :98A::XDTE//20090818 will be included for parameter :XDTE//20090818
-	  *
-	  * @param value value of tags to find
-	  * @return an list of tags or an empty list if no tags are found
-	  *
-	  * @since 6.0
-	  */
-	 public List<Tag> getTagsByValue(final String value) {
-		 final List<Tag> result = new ArrayList<Tag>();
-		 for (int i=0;i<this.tags.size();i++) {
-			 final Tag t = (Tag)this.tags.get(i);
-			 if (StringUtils.equals(value, t.getValue())) {
-				 result.add(t);
-			 }
-		 }
-		 return result;
-	 }
-
-	 /**
-	  * Returns the tags having the specified content as part of its value.<br />
-	  * For example the field :98A::XDTE//20090818 will be included for parameter XDTE
-	  *
-	  * @param value value of tags to find
-	  * @return an list of tags or an empty list if no tags are found
-	  *
-	  * @since 6.0
-	  */
-	 public List<Tag> getTagsByContent(final String value) {
-		 final List<Tag> result = new ArrayList<Tag>();
-		 for (int i=0;i<this.tags.size();i++) {
-			 final Tag t = (Tag)this.tags.get(i);
-			 if (StringUtils.contains(t.getValue(), value)) {
-				 result.add(t);
-			 }
-		 }
-		 return result;
-	 }
-
-	 /**
 	  * Get all sub blocks using the starting and ending Tags as block boundaries.<br>
 	  * The starting and end tags are included in the resulting sub blocks.
 	  * <br />
@@ -919,25 +846,20 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 return result;
 	 }
 
-	 /**
-	  * Get all tags between the first occurrence of the starting Tag and the first occurrence of an optional ending Tag.
-	  * If the ending Tag is <code>null</code> or not found after the starting Tag, it returns all tags until end of block.
-	  * The starting and end tags are included in the resulting block.
-	  *
-	  * @param start starting tag
-	  * @param end ending tag or <code>null</code>
-	  * @return a new block containing the found tags (the block can be empty if no tags are found)
-	  *
-	  * @since 6.0
-	  */
-	 public SwiftTagListBlock getSubBlock(final Tag start, final Tag end) {
-		 final List<SwiftTagListBlock> l = getSubBlocks(start, end);
-		 if (l.isEmpty()) {
-			 return new SwiftTagListBlock();
-		 } else {
-			 return l.get(0);
-		 }
-	 }
+    /**
+     * Gets all sub blocks with a specific name, using ISO 15022 FIN block structure definitions.
+     * It searches for a starting 16R field (with blockName as value) and its correspondent 16S
+     * field (with blockName as value) as block boundaries.
+     *
+     * @param blockName block name, used for block
+     * @return a list containing the found tags (the list can be empty if no tags are found)
+     * @see #getSubBlocks(Tag, Tag)
+     *
+     * @since 6.0
+     */
+     public List<SwiftTagListBlock> getSubBlocks(final String blockName) {
+        return getSubBlocks(new Tag("16R", blockName), new Tag("16S", blockName));
+     }
 
 	 /**
 	  * Get all sub blocks using the starting and ending Tag names as block boundaries (Tag values are ignored).
@@ -1001,142 +923,362 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 return _getSubBlocks(startTagNumber, null, end.getNumber(), end.getLetterOption());
 	 }
 
-	 /**
-	  * Helper method to get subblocks on different boundaries combinations
-	  * @param startTagNumber mandatory starting tag number paramenter
-	  * @param startTagLetter optional starting tag letter option
-	  * @param endTagNumber mandatory ending tag number paramenter
-	  * @param endTagLetter optional ending tag letter option
-	  * @return the found subblocks
-	  */
-	 private List<SwiftTagListBlock> _getSubBlocks(final int startTagNumber, final String startTagLetter, final int endTagNumber, final String endTagLetter) {
-		 final List<SwiftTagListBlock> result = new ArrayList<SwiftTagListBlock>();
+    /**
+     * Helper method to get subblocks on different boundaries combinations
+     * @param startTagNumber mandatory starting tag number paramenter
+     * @param startTagLetter optional starting tag letter option
+     * @param endTagNumber mandatory ending tag number paramenter
+     * @param endTagLetter optional ending tag letter option
+     * @return the found subblocks
+     */
+    private List<SwiftTagListBlock> _getSubBlocks(final int startTagNumber, final String startTagLetter, final int endTagNumber, final String endTagLetter) {
+        final List<SwiftTagListBlock> result = new ArrayList<SwiftTagListBlock>();
 
-		 SwiftTagListBlock toAdd = null;
-		 boolean blockFound = false;
-		 for (int i=0;i<this.tags.size();i++) {
-			 final Tag t = (Tag)this.tags.get(i);
-			 if (blockFound) {
-				 toAdd.append(t);
-				 if ((endTagLetter != null && StringUtils.equals(t.getName(), endTagNumber+endTagLetter)) ||
-						 (endTagLetter == null && t.isNumber(endTagNumber))) {
-					 result.add(toAdd);
-					 blockFound = false;
-					 toAdd = null;
-				 }
-			 } else {
-				 if ((startTagLetter != null && StringUtils.equals(t.getName(), startTagNumber+startTagLetter)) ||
-						 (startTagLetter == null && t.isNumber(startTagNumber))) {
-					 toAdd = new SwiftTagListBlock();
-					 toAdd.append(t);
-					 blockFound = true;
-				 }
-			 }
-		 }
-		 //if necessary, we add the last found sub block
-		 if (toAdd != null) {
-			 result.add(toAdd);
-		 }
+        SwiftTagListBlock toAdd = null;
+        boolean blockFound = false;
+        for (int i=0;i<this.tags.size();i++) {
+            final Tag t = (Tag)this.tags.get(i);
+            if (blockFound) {
+                toAdd.append(t);
+                if ((endTagLetter != null && StringUtils.equals(t.getName(), endTagNumber+endTagLetter)) ||
+                        (endTagLetter == null && t.isNumber(endTagNumber))) {
+                    result.add(toAdd);
+                    blockFound = false;
+                    toAdd = null;
+                }
+            } else {
+                if ((startTagLetter != null && StringUtils.equals(t.getName(), startTagNumber+startTagLetter)) ||
+                        (startTagLetter == null && t.isNumber(startTagNumber))) {
+                    toAdd = new SwiftTagListBlock();
+                    toAdd.append(t);
+                    blockFound = true;
+                }
+            }
+        }
+        //if necessary, we add the last found sub block
+        if (toAdd != null) {
+            result.add(toAdd);
+        }
 
-		 return result;
-	 }
+        return result;
+    }
 
-	 /**
-	  * Get the block containing the list of tags between the given indexes.<br />
-	  * The implementation uses subList so the resulting List of tags will containing elements from
-	  * the original List startIndex to endIndex - 1.
-	  *
-	  * @param startIndex
-	  * @param endIndex
-	  * @since 6.5
-	  * @see #getTagIndex(String, String[])
-	  */
-	 public SwiftTagListBlock getSubBlockByIndex(final Integer startIndex, final Integer endIndex) {
-		 return new SwiftTagListBlock(this.tags.subList(startIndex==null?0:startIndex, endIndex==null?this.tags.size():endIndex));
-	 }
+    /**
+     * Get all tags between the first occurrence of the starting Tag name and the first occurrence of an optional ending Tag name.
+     * If the ending Tag name is null or not found after the starting Tag name, it returns all tags until end of block.
+     * The starting and end tags are included in the resulting block.
+     *
+     * @param startTagName starting tag name
+     * @param endTagName ending tag name or null
+     * @return a new block containing the found tags (the block can be empty if no tags are found)
+     *
+     * @since 6.0
+     */
+    public SwiftTagListBlock getSubBlock(final String startTagName, final String endTagName) {
+        final List<SwiftTagListBlock> l = getSubBlocks(startTagName, endTagName);
+        if (l.isEmpty()) {
+            return new SwiftTagListBlock();
+        } else {
+            return l.get(0);
+        }
+    }
 
-	 /**
-	  * Get the index of the given tag in the list.
-	  *
-	  * @param startTagNumber the number of the tag, without any letter option
-	  * @param letterOptions list of letter options to search, an empty string is accepted to search no letter option
-	  * @return the index inside the internal list of the given tag, <code>null</code> if the tag is not  found
-	  * @since 6.5
-	  */
-	 public Integer getTagIndex(final String startTagNumber, final String [] letterOptions) {
+    /**
+     * Gets all tags of a specific sub block, searching for the first occurrence of the starting 16R field (with blockName as value)
+     * and its correspondent 16S field (with blockName as value).
+     *
+     * @param blockName block name, used for block
+     * @return a new block containing the found tags (the block can be empty if no tags are found)
+     * @see #getSubBlock(Tag, Tag)
+     *
+     * @since 6.0
+     */
+    public SwiftTagListBlock getSubBlock(final String blockName) {
+        return getSubBlock(new Tag("16R", blockName), new Tag("16S", blockName));
+    }
 
-		 for (int i=0;i<this.tags.size();i++) {
-			 final Tag t = (Tag)this.tags.get(i);
-			 if (StringUtils.startsWith(t.getName(), startTagNumber)) {
-				 // check letter options
-				 if (letterOptions == null || letterOptions.length<1) {
-					 return i;
-				 } else {
-					 for (final String l:letterOptions) {
-						 if (StringUtils.equals(t.getName(), startTagNumber+l)) {
-							 return i;
-						 }
-					 }
-				 }
-			 }
-		 }
-		 return null;
-	 }
-	 
-	 /**
-	  * Get all tags between the first occurrence of the starting Tag name and the first occurrence of an optional ending Tag name.
-	  * If the ending Tag name is <code>null</code> or not found after the starting Tag name, it returns all tags until end of block.
-	  * The starting and end tags are included in the resulting block.
-	  *
-	  * @param startTagName starting tag name
-	  * @param endTagName ending tag name or <code>null</code>
-	  * @return a new block containing the found tags (the block can be empty if no tags are found)
-	  *
-	  * @since 6.0
-	  */
-	 public SwiftTagListBlock getSubBlock(final String startTagName, final String endTagName) {
-		 final List<SwiftTagListBlock> l = getSubBlocks(startTagName, endTagName);
-		 if (l.isEmpty()) {
-			 return new SwiftTagListBlock();
-		 } else {
-			 return l.get(0);
-		 }
-	 }
+    /**
+     * Get all tags between the first occurrence of the starting Tag and the first occurrence of an optional ending Tag.
+     * If the ending Tag is null or not found after the starting Tag, it returns all tags until end of block.
+     * The starting and end tags are included in the resulting block.
+     *
+     * @param start starting tag
+     * @param end ending tag or null
+     * @return a new block containing the found tags (the block can be empty if no tags are found)
+     *
+     * @since 6.0
+     */
+    public SwiftTagListBlock getSubBlock(final Tag start, final Tag end) {
+        final List<SwiftTagListBlock> l = getSubBlocks(start, end);
+        if (l.isEmpty()) {
+            return new SwiftTagListBlock();
+        } else {
+            return l.get(0);
+        }
+    }
 
-	 /**
-	  * Gets all sub blocks with a specific name, using ISO 15022 FIN block structure definitions.
-	  * It searches for a starting 16R field (with blockName as value) and its correspondent 16S
-	  * field (with blockName as value) as block boundaries.
-	  *
-	  * @param blockName block name, used for block
-	  * @return a list containing the found tags (the list can be empty if no tags are found)
-	  * @see #getSubBlocks(Tag, Tag)
-	  *
-	  * @since 6.0
-	  */
-	 public List<SwiftTagListBlock> getSubBlocks(final String blockName) {
-		 return getSubBlocks(new Tag("16R", blockName), new Tag("16S", blockName));
-	 }
+    /**
+	 * Creates a new block containing the list of tags between the given indexes: from, inclusive, and to, exclusive.<br />
+     * Similar to the substring method of String, but for a list of Tag instead of an array of characters.
+     * For getting a 'view' only sublist use {@link List#subList(int, int)}
+	 * For a new block containing both boundary elements included use {@link #sublist(Integer, Integer)}
+     *
+     * @param from may be null in which case is equivalent to zero
+     * @param to may be null or larger than the list size, in which case is equivalent to the index of the last available item.
+     * @return a <em>new</em> list with the tags found between given indexes in this tag list
+     * @throws IllegalArgumentException if from is bigger than to.
+     * @see List#subList(int, int)
+     */
+    public SwiftTagListBlock getSubBlock(final Integer from, final Integer to) {
+        final int f = from == null ? 0 : from;
+        final int t = to == null || to >this.tags.size()-1 ? this.tags.size() : to;
+        if (f > t) {
+            throw new IllegalArgumentException("from index ("+f+") cannot be bigger than to index ("+t+")");
+        }
+        final SwiftTagListBlock result = new SwiftTagListBlock();
+        result.addTags(this.tags.subList(f, t));
+        return result;
+    }
 
-	 /**
-	  * Gets all tags of a specific sub block, searching for the first occurrence of the starting 16R field (with blockName as value)
-	  * and its correspondent 16S field (with blockName as value).
-	  *
-	  * @param blockName block name, used for block
-	  * @return a new block containing the found tags (the block can be empty if no tags are found)
-	  * @see #getSubBlock(Tag, Tag)
-	  *
-	  * @since 6.0
-	  */
-	 public SwiftTagListBlock getSubBlock(final String blockName) {
-		 return getSubBlock(new Tag("16R", blockName), new Tag("16S", blockName));
-	 }
+    /**
+	 * @since 6.5
+	 * @deprecated use #getSubBlock(Integer, Integer) instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
+	public SwiftTagListBlock getSubBlockByIndex(final Integer startIndex, final Integer endIndex) {
+		return getSubBlock(startIndex, endIndex);
+	}
+
+	/**
+	 * Get a new list with the elements contained between start and end, both inclusive.
+	 * Both start and end <em>may be null</em>.
+	 * For a new block excluding the end index use {@link #getSubBlock(Integer, Integer)}
+	 *
+	 * @param start start index, zero based. if null = zero
+	 * @param end last index, zero based, null means last element
+	 */
+	public SwiftTagListBlock sublist(final Integer start, final Integer end) {
+		if (tags == null || tags.isEmpty()) {
+			throw new IllegalStateException("No tags in this list");
+		}
+		if ((start!=null && start<0) || (end != null && (end+1)>this.tags.size()) || (start!=null && end!=null && start>end)) {
+			throw new IllegalArgumentException("start: "+start+", end: "+end+", size="+this.tags.size());
+		}
+		final SwiftTagListBlock result = new SwiftTagListBlock();
+		final int s = start == null ? 0 : start;
+		final int e = end == null ? this.tags.size()-1 : end;
+		for (int i=s; i<=e ; i++) {
+			result.append(this.tags.get(i));
+		}
+		return result;
+	}
+
+	/**
+	 * To indicate which part of the data is selected
+	 */
+	private enum SearchSelection {
+		BEFORE,
+		AFTER
+	}
+
+	/**
+	 * To indicate how the boundary to find
+	 */
+	private enum SearchBoundary {
+		/*
+		 * search using tag name
+		 */
+		FIRST_TAG_NAME,
+		/*
+		 * search using tag and ignore CR method
+		 */
+		FIRST_TAG_IGNORE_CR,
+		/*
+		 * search using tag name
+		 */
+		LAST_TAG_NAME
+	}
+
+	/**
+	 * Helper method to get subblocks on different search criteria
+	 * @param tag mandatory tag paramenter
+	 * @param includeDelimiterInResult if true, the found boundary tag will be the first item in the returned block
+	 * @param searchSelection mandatory search selection criteria.
+	 * @param searchBoundary mandatory limit search criteria.
+	 * @return the found subblocks
+	 */
+    private SwiftTagListBlock _searchSubBlockByCriteria(final Tag tag, final boolean includeDelimiterInResult, SearchSelection searchSelection, SearchBoundary searchBoundary) {
+
+        SwiftTagListBlock result = new SwiftTagListBlock();
+
+        int index = getIndexByCriteria(searchBoundary, tag);
+
+        if (index >= 0) {
+        	//boundary tag found
+            if (includeDelimiterInResult) {
+            	if (searchSelection == SearchSelection.AFTER){
+                    result = getSubBlock(index, null);
+                } else {
+                    result = getSubBlock(null, index+1);
+                }
+            } else {
+
+                boolean hasDelimiterCriteria = (searchSelection == SearchSelection.AFTER && index<this.tags.size()-1) || (searchSelection == SearchSelection.BEFORE && index<this.tags.size());
+
+                if (hasDelimiterCriteria) {
+                    if (searchSelection == SearchSelection.AFTER){
+                        result = getSubBlock(index+1, null);
+                    } else {
+                        if (index != 0){
+                            result = getSubBlock(null, index);
+                        }
+                    }
+                }
+            }
+        } else if (searchSelection == SearchSelection.BEFORE) {
+        	result.addTags(this.tags);
+        }
+
+        return result;
+    }
+
+     /**
+     * Get the index by search criteria tag or -1 if not found or precondition is not meet
+     * @param criteria mandatory search criteria see (FIRST, FIRST_IGNORE_CR or LAST).
+     * @param tag the tag that will be used to calculate the index of the list of tags.
+	 * @return a 0-based index of the found tag or -1 if not found
+     */
+    private int getIndexByCriteria(SearchBoundary criteria, final Tag tag){
+		switch(criteria) {
+			case FIRST_TAG_NAME:
+				return indexOfFirst(tag.name);
+			case FIRST_TAG_IGNORE_CR:
+				return indexOfFirstIgnoreCR(tag);
+			case LAST_TAG_NAME:
+				return indexOfLast(tag.name);
+			default:
+				return -1;
+		}
+    }
+
+    /**
+     * Gets a subblock after the first tag with the given tagname.
+     * The given separator tag is included in the result
+     * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)} instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear._2018)
+    public SwiftTagListBlock getSubBlockAfterFirst(final String tagname) {
+        return getSubBlockAfterFirst(tagname, true);
+    }
+
+	/**
+	 * Gets a subblock after the first tag with the given name.
+	 * <br />
+	 * Creates a new {@link SwiftTagListBlock} that contains all tags after the first instance
+	 * of a tag with the given tagname.
+	 *
+	 * @param tagname the tag that will be used for splitting
+	 * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned block
+	 * @return a new block with the trimmed content
+	 */
+	public SwiftTagListBlock getSubBlockAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
+		final Tag tag = new Tag(tagname, "");
+		return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.AFTER, SearchBoundary.FIRST_TAG_NAME);
+	}
+
+	/**
+	 * Gets the subblock after the first instance of a given tag boundary.
+	 * <br />
+	 * All elements after the first instance of the given tag will be included in the result.
+	 * If the boundary tag is null or not found in the block, an empty block will be returned.
+	 * <br />
+	 * Tag compare is done using {@link Tag#equalsIgnoreCR(Tag)} (not object references).
+	 *
+	 * @param tag the tag that will be used for splitting
+	 * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned block
+	 * @return a new block with the trimmed content
+	 * @since 7.9.3
+	 */
+	public SwiftTagListBlock getSubBlockAfterFirst(final Tag tag, final boolean includeBoundaryInResult) {
+		return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.AFTER, SearchBoundary.FIRST_TAG_IGNORE_CR);
+	}
+
+	/**
+	 * Gets the subblock after the last tag with the given name.
+	 * <br />
+	 * All elements after the last instance of a tag with the given name will be included in the result.
+	 * If the tag name is null or no tag with the given name is found in the block, an empty block will be returned.
+	 *
+	 * @param tagname the name of the tag that will be used for for splitting
+	 * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned block
+	 * @return a new block with the trimmed content
+	 */
+	public SwiftTagListBlock getSubBlockAfterLast(final String tagname, final boolean includeBoundaryInResult) {
+		final Tag tag = new Tag(tagname, "");
+		return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.AFTER, SearchBoundary.LAST_TAG_NAME);
+	}
+
+	/**
+     * Gets the subblock before the first tag with the given tagname.
+     * <br />
+     * Creates a new {@link SwiftTagListBlock} that contains all tags before the first instance
+     * of a tag with the given tagname.
+     *
+     * @param tagname the name of the tag that will be used for splitting
+     * @param includeBoundaryInResult if true, the found boundary tag will be the last item in the returned block
+     * @return a new block with the trimmed content
+     */
+    public SwiftTagListBlock getSubBlockBeforeFirst(final String tagname, final boolean includeBoundaryInResult) {
+		final Tag tag = new Tag(tagname, "");
+        return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.BEFORE, SearchBoundary.FIRST_TAG_NAME);
+    }
+
+    /**
+     * Gets the subblock with all tags until tha last tag with the given name
+     *
+     * @param tagname the name of the tag that will be used for splitting
+	 * @param includeBoundaryInResult if true, the found boundary tag will be the last item in the returned block
+     * @return the tags contained until the first instance of tagname
+     */
+    public SwiftTagListBlock getSubBlockBeforeLast(final String tagname, final boolean includeBoundaryInResult) {
+		final Tag tag = new Tag(tagname, "");
+        return  _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.BEFORE, SearchBoundary.LAST_TAG_NAME);
+    }
+
+    /**
+     * Get the index of the given tag in the list.
+     *
+     * @param startTagNumber the number of the tag, without any letter option
+     * @param letterOptions list of letter options to search, an empty string is accepted to search no letter option
+     * @return the index inside the internal list of the given tag, null if the tag is not  found
+     * @since 6.5
+     */
+    public Integer getTagIndex(final String startTagNumber, final String [] letterOptions) {
+        for (int i=0; i<this.tags.size(); i++) {
+            final Tag t = (Tag)this.tags.get(i);
+            if (StringUtils.startsWith(t.getName(), startTagNumber)) {
+                // check letter options
+                if (letterOptions == null || letterOptions.length < 1) {
+                    return i;
+                } else {
+                    for (final String l:letterOptions) {
+                        if (StringUtils.equals(t.getName(), startTagNumber+l)) {
+                            return i;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
 
 	 /**
 	  * Iterates the internal list of tags and returns true if there is at least one tag equals to the given one.
 	  *
 	  * @param t the tag to search in tags
-	  * @return <code>true</code> if tag is found
+	  * @return true if tag is found
 	  * @since 6.0
 	  */
 	 public boolean containsTag(final Tag t) {
@@ -1149,34 +1291,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 			 }
 		 }
 		 return false;
-	 }
-
-	 public String getName() {
-		 //unused
-		 return null;
-	 }
-
-	 public Integer getNumber() {
-		 //unused
-		 return null;
-	 }
-
-	 protected void setBlockName(final String blockName) {
-		 //unused
-	 }
-
-	 protected void setBlockNumber(final Integer blockNumber) {
-		 //unused
-	 }
-
-	 public void visit(final TagVisitor visitor) {
-		 if (visitor != null) {
-			 if (this.tags != null && !this.tags.isEmpty()) {
-				 for (final Tag t : this.tags) {
-					 visitor.onTag(t);
-				 }
-			 }
-		 }
 	 }
 
 	 /**
@@ -1209,157 +1323,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 return result;
 	 }
 
-	 /**
-	  * Tell if this block contains a field with the given name supporting 'a' notation ie: 56a
-	  * @param name field name to search, supporting the 'a' notation
-	  * @return true if this field exists at lease once, false in other case
-	  * @see #getFieldsByName(String)
-	  */
-	 public boolean containsField(final String name) {
-		 final Field[] arr = getFieldsByName(name);
-		 return (arr != null) && arr.length>0;
-	 }
-
-	 /**
-	  * Get a subblock after the first tag with the given tagname.
-	  * <br />
-	  * Creates a new {@link SwiftTagListBlock} that contains all tags after the first instance
-	  * of a tag with the given tagname.
-	  *
-	  * @param tagname the tag that will be used for splitting
-	  * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned block
- 	  * @return a new block with the trimmed content
-	  */
-	 public SwiftTagListBlock getSubBlockAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
-		 //TODO sep 2017: refactor implementation using indexOf similar to getSubBlockAfterLast
-		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 boolean boundaryFound = false;
-		 for (int i=0; i<this.tags.size(); i++) {
-			 final Tag t = this.tags.get(i);
-			 if (boundaryFound) {
-				 result.append(t);
-			 } else {
-				 if (StringUtils.equals(tagname, t.getName())) {
-					 boundaryFound = true;
-					 if (includeBoundaryInResult) {
-						 result.append(t);
-					 }
-				 }
-			 }
-		 }
-		 return result;
-	 }
-
-	 /**
-	  * Get a subblock after the first tag.
-	  * <br />
-	  * All elements after the first instance of the given tag will be included in the result new block.
-	  * If the separator tag is null or not found in the block, an empty block will be returned.
-	  * <br />
-	  * Tag compare is done using {@link Tag#equalsIgnoreCR(Tag)} (not object references).
-	  * 
-	  * @param tag the tag that will be used for splitting
-	  * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned block
-	  * @return a new block with the trimmed content
-	  * @since 7.9.3
-	  */
-	 public SwiftTagListBlock getSubBlockAfterFirst(final Tag tag, final boolean includeBoundaryInResult) {
-		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 boolean boundaryFound = false;
-		 for (int i=0; i<this.tags.size(); i++) {
-			 final Tag t = this.tags.get(i);
-			 if (boundaryFound) {
-				 result.append(t);
-			 } else {
-				 if (tag != null && tag.equalsIgnoreCR(t)) {
-					 boundaryFound = true;
-					 if (includeBoundaryInResult) {
-						 result.append(t);
-					 }
-				 }
-			 }
-		 }
-		 return result;
-	 }
-	 
-	 /**
-	  * Get a subblock after the first tag with the given tagname.
-	  * The given separator tag is included in the result
-	  * replace with <code>getSubBlockAfterFirst(tagname, true);</code>
-	  * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)}
-	  */
-	 @Deprecated
-	 @ProwideDeprecated(phase2=TargetYear._2018)
-	 public SwiftTagListBlock getSubBlockAfterFirst(final String tagname) {
-		 return getSubBlockAfterFirst(tagname, true);
-	 }
-	 
-	 /**
-	  * Get the subblock before the first tag with the given tagname.
-	  * <br />
-	  * Creates a new {@link SwiftTagListBlock} that contains all tags before the first instance
-	  * of a tag with the given tagname.
-	  * 
-	  * @param tagname the tag that will be used for splitting
-	  * @param includeBoundaryInResult if true, the found boundary tag will be the last item in the returned block
-	  * @return a new block with the trimmed content
-	  */
-	 public SwiftTagListBlock getSubBlockBeforeFirst(final String tagname, final boolean includeBoundaryInResult) {
-		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 if (this.tags != null && !this.tags.isEmpty()) {
-			 for (int i=0;i<tags.size();i++) {
-				 final Tag tag = this.tags.get(i);
-				 if (StringUtils.equals(tagname, tag.getName())) {
-					 if (includeBoundaryInResult) {
-						 result.append(tag);
-					 }
-					 return result;
-				 }
-				 result.append(tag);
-			 }
-		 }
-		 return result;
-	 }
-	 
-	 /**
-	  * Get a new list with tags between the last instance of tag with tagname name found or null if the tag was not found
-	  */
-	 public SwiftTagListBlock getSubBlockAfterLast(final String tagname, final boolean includeDelimiterInResult) {
-		 final int i = indexOfLast(tagname);
-		 if (i>=0) {
-			 if (includeDelimiterInResult) {
-				 return getSubBlock(i, null);
-			 } else {
-				 if (i<this.tags.size()) {
-					 return getSubBlock(i+1, null);
-				 }
-			 }
-		 }
-		 return null;
-	 }
-
-	 /**
-	  * Analog to substring from to.
-	  * for getting a 'view' only sublist use {@link List#subList(int, int)}
-	  * <em>a larger <code>to</code> value is equivalent to the list size</em>
-	  *
-	  * @param from may be null in which case is equivalent to zero
-	  * @param to may be null in which case is equivalent to the index of the last item.
-	  * @return a <em>new</em> list with tags compromised between given indexes in the list
-	  * @throws IllegalArgumentException if from is equal or bigger than to.
-	  * @see List#subList(int, int)
-	  */
-	 public SwiftTagListBlock getSubBlock(final Integer from, final Integer to) {
-		 final int f = from == null ? 0 : from;
-		 final int t = to == null || to >this.tags.size()-1 ? this.tags.size() : to;
-		 if (f>=t) {
-			 throw new IllegalArgumentException("from ("+f+") is equal or bigger than to ("+t+")");
-		 }
-		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 result.addTags(this.tags.subList(f, t));
-		 return result;
-	 }
-	 
 	 /**
 	  * Get the index of the last tagname in the list or -1 if not found or any precondition is not met
 	  * @return a 0-based index of the found tag or -1 if not found
@@ -1433,46 +1396,76 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 	 
 	 /**
-	  * Get the index of the first tagname in the list or -1 if not found or any precondition is not met
+	  * Gets the index of the first tag with the same name and value of in th list ignoring carriage returns characters in tag values, or -1 if not found or any precondition is not met
 	  * @return a 0-based index of the found tag or -1 if not found
 	  */
-	 public int indexOfFirst(final String tagname) {
+	 private int indexOfFirstIgnoreCR(final Tag tag) {
 		 if (this.tags != null && !this.tags.isEmpty()) {
 
-			 for (int i=0;i<this.tags.size();i++) {
-				 if (StringUtils.equals(tagname, this.tags.get(i).getName())) {
+		     for (int i=0;i<this.tags.size();i++) {
+				 if (this.tags.get(i).equalsIgnoreCR(tag)) {
 					 return i;
 				 }
 			 }
 		 }
 		 return -1;
 	 }
+
+	/**
+	 * Gets the index of the first tag with the given name in this tag list
+	 * @return a 0-based index of the found tag or -1 if not found
+	 */
+	public int indexOfFirst(final String tagname) {
+		if (this.tags != null && !this.tags.isEmpty()) {
+
+			for (int i=0;i<this.tags.size();i++) {
+				if (StringUtils.equals(tagname, this.tags.get(i).getName())) {
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
 	 
 	 /**
-	  * Get the index of the first tagname in the list with the given value or -1 if not found or any precondition is not met (current tag list is null or empty)
+	  * Gets the index of the first tag in this tag list, with the given name and value
+	  * @param tagname the name of the tag to find
+	  * @param value the value of the tag to find
 	  * @return a 0-based index of the found tag or -1 if not found
 	  * @since 7.8
 	  */
 	 public int indexOfFirstValue(final String tagname, final String value) {
-		 if (this.tags != null && !this.tags.isEmpty()) {
-			 
-			 for (int i=0;i<this.tags.size();i++) {
-				 if (StringUtils.equals(tagname, this.tags.get(i).getName())
-						 && StringUtils.equals(value, this.tags.get(i).getValue())
-						 ) {
-					 return i;
-				 }
-			 }
-		 }
-		 return -1;
+	 	return indexOfFirstValue(tagname, value, false);
 	 }
-	 
-	 /**
-	  * Get the index of the first of any tagnames in the list or -1 if not found or any precondition is not met
+
+	/**
+	 * Gets the index of the first tag in this tag list, with the given name and value
+	 * @param tagname the name of the tag to find
+	 * @param value the value of the tag to find
+	 * @param ignoreCR if true the compare will ignore combination of CR and LF when comparing the value
+	 * @return a 0-based index of the found tag or -1 if not found
+	 * @since 7.9.7
+	 */
+	private int indexOfFirstValue(final String tagname, final String value, boolean ignoreCR) {
+		if (this.tags != null && !this.tags.isEmpty()) {
+			for (int i=0; i<this.tags.size(); i++) {
+				final Tag t = this.tags.get(i);
+				if ((ignoreCR && t.equalsIgnoreCR(new Tag(tagname, value))) ||
+						(!ignoreCR && StringUtils.equals(tagname, t.getName()) && StringUtils.equals(value, t.getValue()))) {
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
+
+	/**
+	  * Gets the index of the first tag matching any of the given names
+	  * @return a 0-based index of the found tag or -1 if not found
 	  */
 	 public int indexOfAnyFirst(final String ... tagnames) {
 		 if (this.tags != null && !this.tags.isEmpty()) {
-			 for (int i=0;i<this.tags.size();i++) {
+			 for (int i=0; i<this.tags.size(); i++) {
 				 for (final String tn : tagnames) {
 					 if (StringUtils.equals(tn, this.tags.get(i).getName())) {
 						 return i;
@@ -1484,11 +1477,12 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 
 	 /**
-	  * Get the index of the first of any tagnames after the given index in the list or -1 if not found or any precondition is not met
+	  * Gets the index of the first tag matching any of the given names after the given index in the tag list
+	  * @return a 0-based index of the found tag or -1 if not found
 	  */
 	 public int indexOfAnyFirstAfterIndex(final int index, final String ... tagnames) {
 		 if (this.tags != null && !this.tags.isEmpty()) {
-			 for (int i=index;i<this.tags.size();i++) {
+			 for (int i=index; i<this.tags.size(); i++) {
 				 for (final String tn : tagnames) {
 					 if (StringUtils.equals(tn, this.tags.get(i).getName())) {
 						 return i;
@@ -1499,68 +1493,27 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 return -1;
 	 }
 
-	 /**
-	  * Get a new list with all tags until tagname is found, included or not depending on the value of <code>includeDelimiterInResult</code>
-	  *
-	  * @param tagname the tag to search
-	  * @param includeDelimiterInResult flag to include delimiter in the result
-	  * @return the tags contained until the first instance of tagname
-	  */
-	 public SwiftTagListBlock getSubBlockBeforeLast(final String tagname, final boolean includeDelimiterInResult) {
-		 final int i = indexOfLast(tagname);
-		 if (includeDelimiterInResult && i>0) {
-			 return getSubBlock(null, i+1);
-		 } else if ((!includeDelimiterInResult) && i>0) {
-			 return getSubBlock(null, i);
-		 }
-		 return null;
+    /**
+     * @deprecated use {@link #getSubBlockBeforeFirst(String, boolean)}
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear._2019)
+	public SwiftTagListBlock trimAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
+		return getSubBlockBeforeFirst(tagname, includeBoundaryInResult);
 	 }
 
-	 /**
-	  * Get a subblock with all tags in this blocks until the first occurrence of a tag with tagname.
-	  *
-	  * @param tagname
-	  * @param includeBoundaryInResult
-	  */
-	 public SwiftTagListBlock trimAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
-		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 boolean boundaryFound = false;
-		 for (int i=0;i<this.tags.size();i++) {
-			 final Tag t = this.tags.get(i);
-			 final boolean currentTagIsBoundary;
-			 if (StringUtils.equals(tagname, t.getName())) {
-				 boundaryFound = true;
-				 currentTagIsBoundary = true;
-			 } else {
-				 currentTagIsBoundary = false;
-			 }
-			 if ( (!boundaryFound) ||  (currentTagIsBoundary && includeBoundaryInResult)) {
-				 result.append(t);
-			 }
-		 }
-		 return result;
-	 }
-
-	 /**
-	  * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)}
-	  */
-	 @ProwideDeprecated(phase2 = TargetYear._2018)
-	 public SwiftTagListBlock removeUntilFirst(final String tagname, final boolean includeBoundaryInResult) {
-		 return getSubBlockAfterFirst(tagname, includeBoundaryInResult);
-	 }
-
-	 /**
-	  * Get a sub block with all tags but the ones in the first occurrence of the given sub block.<br />
-	  * It searches for a starting 16R field (with blockName as value) and its correspondent 16S
-	  * field (with blockName as value) as block boundaries and removes those fields from the result.
-	  * If the searched block is not found (starting field 16R not present) the result will be just
-	  * a copy from this block. If the end boundary is not found (ending field field 16S not present),
-	  * it trims all fields after the start boundary 16R.
-	  *
-	  * @param blockName block name, used for block
-	  *
-	  * @since 7.4
-	  */
+    /**
+     * Get a sub block with all tags but the ones in the first occurrence of the given sub block.<br />
+	 * It searches for a starting 16R field (with blockName as value) and its correspondent 16S
+	 * field (with blockName as value) as block boundaries and removes those fields from the result.
+	 * If the searched block is not found (starting field 16R not present) the result will be just
+	 * a copy from this block. If the end boundary is not found (ending field field 16S not present),
+	 * it trims all fields after the start boundary 16R.
+	 *
+	 * @param blockName block name, used for block
+	 *
+	 * @since 7.4
+     */
 	 public SwiftTagListBlock removeSubBlock(final String blockName) {
 		 final SwiftTagListBlock result = new SwiftTagListBlock();
 		 boolean startBoundaryFound = false;
@@ -1586,7 +1539,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 /**
 	  * Tell if this block contains any of the given name tags.
 	  * this is a shorthand for avoiding repeated calls to {@link #containsTag(String)}.
-	  * @param name the list of tags to check, if <code>null</code> or empty this method will return false without further action
+	  * @param name the list of tags to check, if null or empty this method will return false without further action
 	  * @since 7.0
 	  * @see #containsTag(String)
 	  * @see #containsAllOf(String...)
@@ -1605,7 +1558,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 /**
 	  * Tell if this block contains all of the given name tags.
 	  * this is a shorthand for avoiding repeated calls to {@link #containsTag(String)}.
-	  * @param name the list of tags to check, if <code>null</code> or empty this method will return false without further action
+	  * @param name the list of tags to check, if null or empty this method will return false without further action
 	  * @since 7.4
 	  * @see #containsTag(String)
 	  * @see #containsAnyOf(String...)
@@ -1623,12 +1576,12 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 
 	 /**
-	  * Returns a new block that includes (<code>true</code>) or excludes (<code>false</code>), depending on <code>includeOrExclude</code> flag
+	  * Returns a new block that includes (true) or excludes (false), depending on <code>includeOrExclude</code> flag
 	  * all tags with names matching any of the parameter names.<br />
 	  * Once a tagname is matched, it is removed from the list of tags to be matched, causing to be only included/excluded the first instance of every tagname.<br />
 	  * For example: 1, 2, 3, 4, 5, 6 filter by names 2, 4, 5 will return 1, 3, 6.
 	  *
-	  * @param include if <code>true</code> include all tags with given names, if <code>false</code> include all tags with a name <em>not</em> in names
+	  * @param include if true include all tags with given names, if false include all tags with a name <em>not</em> in names
 	  * @param names list of tagnames to match
 	  * @return a new list, an empty list if empty message, preconditions not met or nothing found
 	  * @since 7.2
@@ -1697,22 +1650,17 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	  * @deprecated use {@link #getSubBlockBeforeFirst(String, boolean)}
 	  */
 	 @ProwideDeprecated(phase2 = TargetYear._2018)
-	 public SwiftTagListBlock removeAfterFirst(final String name, final boolean includeBoundaryInResult) {
-		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 if (this.tags != null && !this.tags.isEmpty()) {
-			 for (int i=0;i<tags.size();i++) {
-				 final Tag tag = this.tags.get(i);
-				 if (StringUtils.equals(name, tag.getName())) {
-					 if (includeBoundaryInResult) {
-						 result.append(tag);
-					 }
-					 return result;
-				 }
-				 result.append(tag);
-			 }
-		 }
-		 return result;
+	 public SwiftTagListBlock removeAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
+		 return getSubBlockBeforeFirst(tagname, includeBoundaryInResult);
 	 }
+
+    /**
+     * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)}
+     */
+    @ProwideDeprecated(phase2 = TargetYear._2018)
+    public SwiftTagListBlock removeUntilFirst(final String tagname, final boolean includeBoundaryInResult) {
+        return getSubBlockAfterFirst(tagname, includeBoundaryInResult);
+    }
 
 	 /**
 	  * Get all subblocks in message that start with tag with tagname, end with tag named endName and optionally, may be null, have optionalTail tag names at the end of the secuence
@@ -1881,29 +1829,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 }
 		 return null;
 	 }
-
-	 /**
-	  * Get a new list with the elements contained between start and end, both inclusive.
-	  * Both start and end <em>may be <code>null</code></em>.
-	  *
-	  * @param start start index, zero based. if null = zero
-	  * @param end last index, zero based, null means last element
-	  */
-	 public SwiftTagListBlock sublist(final Integer start, final Integer end) {
-		 if (tags == null || tags.isEmpty()) {
-			 throw new IllegalStateException("No tags in this list");
-		 }
-		 if ((start!=null && start<0) || (end != null && (end+1)>this.tags.size()) || (start!=null && end!=null && start>end)) {
-			 throw new IllegalArgumentException("start: "+start+", end: "+end+", size="+this.tags.size());
-		 }
-		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 final int s = start == null ? 0 : start;
-		 final int e = end == null ? this.tags.size()-1 : end;
-		 for (int i=s; i<=e ; i++) {
-			 result.append(this.tags.get(i));
-		 }
-		 return result;
-	 }
 	 
 	 /**
 	  * Search a secuence of optional tags. inside each row, only one is matched.
@@ -1967,8 +1892,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 			 }
 		 }
 		 return result;
-
-
 	 }
 	 
 	 public List<String> tagNamesList() {
@@ -2067,7 +1990,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 /**
 	  * Appends all blocks to the end of this one.
 	  * 
-	  * @param blocks may be <code>null</code> or empty, if so nothing happens 
+	  * @param blocks may be null or empty, if so nothing happens 
 	  * @return the current updated list
 	  * @since 7.8
 	  */
@@ -2082,7 +2005,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 
 	 /**
 	  * Add the given tag to the end of the list
-	  * @param tag the tag to add, must not be <code>null</code>
+	  * @param tag the tag to add, must not be null
 	  * @return <code>this</code>
 	  * @throws IllegalArgumentException if tag is null
 	  * @since 7.7
@@ -2095,7 +2018,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 
 	 /**
 	  * Appends all tags to the current block
-	  * @param tags the tags to append. may be <code>null</code> in which case nothing happens
+	  * @param tags the tags to append. may be null in which case nothing happens
 	  * @return <code>this</code>
 	  * @since 7.8
 	  */
@@ -2114,7 +2037,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	  * of the Field object, and this created value is use for the internal Tag actually set into
 	  * the block.
 	  * 
-	  * @param field the field to add, must not be <code>null</code>
+	  * @param field the field to add, must not be null
 	  * @return <code>this</code>
 	  * @throws IllegalArgumentException if field is null
 	  * @since 7.7
@@ -2127,7 +2050,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 
 	 /**
 	  * Appends all fields to the current block
-	  * @param fields the fields to append. may be <code>null</code> in which case nothing happens
+	  * @param fields the fields to append. may be null in which case nothing happens
 	  * @return <code>this</code>
 	  * @since 7.8
 	  */
@@ -2177,4 +2100,33 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 }
 		 return this;
 	 }
+
+     public String getName() {
+        //unused
+        return null;
+    }
+
+     public Integer getNumber() {
+        //unused
+        return null;
+    }
+
+     protected void setBlockName(final String blockName) {
+        //unused
+    }
+
+     protected void setBlockNumber(final Integer blockNumber) {
+        //unused
+    }
+
+     public void visit(final TagVisitor visitor) {
+        if (visitor != null) {
+            if (this.tags != null && !this.tags.isEmpty()) {
+                for (final Tag t : this.tags) {
+                    visitor.onTag(t);
+                }
+            }
+        }
+    }
+
 }

@@ -20,10 +20,10 @@ public interface SchemeConstantsQ {
     public final static String QSEC = "QSEC";
     public final static String QFIN = "QFIN";
     public final static String Q = "Q";
-    public final static String QINT = "QINT";
     public final static String QTSO = "QTSO";
-    public final static String QINS = "QINS";
+    public final static String QINT = "QINT";
     public final static String QCAS = "QCAS";
+    public final static String QINS = "QINS";
     public final static String QAGE = "QAGE";
 
 }

@@ -36,7 +36,9 @@ import java.util.logging.Logger;
 public class RJEReader extends AbstractReader {
 	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(RJEReader.class.getName());
-	public static final char SPLITCHAR = '$'; 
+	public static final char SPLITCHAR = '$';
+
+	private char splitChar = SPLITCHAR;
 	
 	/**
 	 * Constructs a RJEReader to read messages from a given Reader instance
@@ -91,7 +93,7 @@ public class RJEReader extends AbstractReader {
 			int c;
 			StringBuilder sb = new StringBuilder();
 			try {
-				while ((c=reader.read())!=-1 && (c!=SPLITCHAR)) {
+				while ((c=reader.read())!=-1 && (c!=splitChar)) {
 					sb.append((char)c);
 				}
 				if (c==-1) {
@@ -104,4 +106,14 @@ public class RJEReader extends AbstractReader {
 		}
 		return null;
 	}
+
+	/**
+	 * Ovewrites the default standard split char {@link #SPLITCHAR}
+	 * @param c a character to use as message separator
+	 * @since 7.9.7
+	 */
+	public void setSplitChar(final char c) {
+		this.splitChar = splitChar;
+	}
+
 }

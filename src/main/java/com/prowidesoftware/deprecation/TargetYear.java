@@ -24,7 +24,7 @@ package com.prowidesoftware.deprecation;
  */
 public enum TargetYear {
 	@Deprecated
-	_2017,
+	_2017, //delete in SRU2018 reprecation cycle
 	_2018,
 	_2019,
 	_2020,
