@@ -64,7 +64,8 @@ Sequence B - Statement by Status/Reason and/or by Financial Instrument (O) (repe
 <li class="field">Field 25 D (O)</li>
 <li class="fieldset">
 Fieldset 24
- (O) (repetitive)<ul><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (O) (repetitive)<ul><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li><li>FieldsetItem 24 B (O) (repetitive)</li></ul></li><li class="field">Field 35 B (O) (repetitive)</li>
+<li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence C - By Instruction Reference (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -1248,6 +1249,24 @@ public class MT549 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * Multiple occurrences of field 35B at MT549 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field35B> getField35B() {
+		final List<Field35B> result = new ArrayList<Field35B>();
+		final Tag[] tags = tags("35B");
+		for (int i=0; i<tags.length; i++) {
+			result.add(new Field35B(tags[i].getValue()));
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95Q, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br />
 	 * Multiple occurrences of field 95Q at MT549 are expected at one sequence or across several sequences.
@@ -1386,7 +1405,7 @@ public class MT549 extends AbstractMT implements Serializable {
 		s.setTags(parentSequence.getSubBlock(SequenceA.START_END_16RS).getTags());
 		return s;
 	}
- 	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
+ 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
 
 
 // BaseSequenceCodeGenerator [seq=A1]
@@ -1517,7 +1536,7 @@ public class MT549 extends AbstractMT implements Serializable {
 		return Collections.emptyList();
 
 	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
+ 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
 
 
 // BaseSequenceCodeGenerator [seq=B]
@@ -1648,7 +1667,7 @@ public class MT549 extends AbstractMT implements Serializable {
 		return Collections.emptyList();
 
 	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
+ 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
 
 
 // BaseSequenceCodeGenerator [seq=C]
@@ -1779,7 +1798,7 @@ public class MT549 extends AbstractMT implements Serializable {
 		return Collections.emptyList();
 
 	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
+ 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
 
 
 // BaseSequenceCodeGenerator [seq=D]
@@ -1902,7 +1921,7 @@ public class MT549 extends AbstractMT implements Serializable {
 		s.setTags(parentSequence.getSubBlock(SequenceD.START_END_16RS).getTags());
 		return s;
 	}
- 	// Slice debug: com.prowidesoftware.swift.codegen.DelimitedSequenceCodeGenerator
+ 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
 
 
 

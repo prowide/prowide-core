@@ -20,12 +20,12 @@ public interface SchemeConstantsU {
     public final static String URGP = "URGP";
     public final static String UNWEIGHT = "UNWEIGHT";
     public final static String UNDE = "UNDE";
-    public final static String UNKNOWN = "UNKNOWN";
     public final static String UNT = "UNT";
-    public final static String UNCO = "UNCO";
-    public final static String UNBA = "UNBA";
+    public final static String UNKNOWN = "UNKNOWN";
     public final static String UNAF = "UNAF";
+    public final static String UNBA = "UNBA";
     public final static String USECU = "USECU";
+    public final static String UNCO = "UNCO";
     public final static String UNFR = "UNFR";
     public final static String UNDL = "UNDL";
     public final static String UNALL = "UNALL";

@@ -20,14 +20,14 @@ public interface SchemeConstantsG {
     public final static String GROSS = "GROSS";
     public final static String GUAR = "GUAR";
     public final static String GIUP = "GIUP";
-    public final static String GUPA = "GUPA";
     public final static String GRSS = "GRSS";
+    public final static String GUPA = "GUPA";
     public final static String GCST = "GCST";
     public final static String GCOS = "GCOS";
     public final static String GETS = "GETS";
-    public final static String GOZ = "GOZ";
     public final static String GOLD = "GOLD";
     public final static String GRM = "GRM";
     public final static String GECU = "GECU";
+    public final static String GOZ = "GOZ";
 
 }

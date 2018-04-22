@@ -1265,4 +1265,36 @@ public abstract class AbstractSwiftMessage implements Serializable {
 		return null;
 	}
 	
+	/**
+	 * The year when the message was created, extracted from the {@link #getCreationDate()}
+	 * Helper read-only property useful for faceting search
+	 * @return the year in YYYY format
+	 * @since 7.9.7
+	 */
+	public String getCreationYear() {
+		return String.valueOf(creationDate.get(Calendar.YEAR));
+	}
+	
+	/**
+	 * The month when the message was created, extracted from the {@link #getCreationDate()}
+	 * Helper read-only property useful for faceting search
+	 * @return the month number, 1 based and padded with zero, such as 01, 02, 12
+	 * @since 7.9.7
+	 */
+	public String getCreationMonth() {
+		int imonth = creationDate.get(Calendar.MONTH) + 1;
+		return (imonth < 10 ? "0" : "") + String.valueOf(imonth);
+	}
+	
+	/**
+	 * The day of month when the message was created, extracted from the {@link #getCreationDate()}
+	 * Helper read-only property useful for faceting search
+	 * @return the day of month, padded with zero, such as 01, 02, 31
+	 * @since 7.9.7
+	 */
+	public String getCreationDayOfMonth() {
+		int iday = creationDate.get(Calendar.DAY_OF_MONTH);
+        return (iday < 10 ? "0" : "") + String.valueOf(iday);
+	}
+	
 }

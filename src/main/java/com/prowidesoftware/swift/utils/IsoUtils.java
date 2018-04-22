@@ -12,11 +12,9 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import java.util.Arrays;
-import java.util.Currency;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+import org.apache.commons.lang.Validate;
+
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,6 +55,9 @@ public final class IsoUtils {
         }
     	
     	countries = new HashSet<String> (Arrays.asList(Locale.getISOCountries()));
+
+    	// Add country code for Kosovo, not yet in ISO but used by SWIFT
+    	addCountry("XK");
     }
     
     public static synchronized IsoUtils getInstance(){
@@ -103,5 +104,31 @@ public final class IsoUtils {
     public boolean isValidISOCountry(String countryCode) {
         return countries.contains(countryCode);
     }
-    
+
+    /**
+     * Adds the given country code to the current list of codes, verifying that it does not exist previously.
+     * @param countryCode a two capital letters country code, for example: XK
+     * @throws IllegalArgumentException if the parameter code is null or not two uppercase letters
+     * @since 7.9.7
+     */
+    public void addCountry(final String countryCode) {
+        Validate.isTrue(countryCode != null && countryCode.length() == 2 && countryCode.matches("[A-Z]*"), "The country code must by indicated with two uppercase letters");
+        if (!countries.contains(countryCode)) {
+            countries.add(countryCode);
+        }
+    }
+
+    /**
+     * Adds the given currency code to the current list of codes, verifying that it does not exist previously.
+     * @param currencyCode a three capital letters currency code, for example: ARS
+     * @throws IllegalArgumentException if the parameter code is null or not three uppercase letters
+     * @since 7.9.7
+     */
+    public void addCurrency(final String currencyCode) {
+        Validate.isTrue(currencyCode != null && currencyCode.length() == 3 && currencyCode.matches("[A-Z]*"), "The currency code must by indicated with three uppercase letters");
+        if (!currencies.contains(currencyCode)) {
+            currencies.add(currencyCode);
+        }
+    }
+
 }
