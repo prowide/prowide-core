@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fe228dc1-fb1f-4734-bdfe-32033d2ee9e2" name="Default" comment="Merge branch 'develop'&#10;&#10;# Conflicts:&#10;#&#9;.gitignore&#10;#&#9;prowide-core.iml&#10;#&#9;prowide-core.ipr&#10;#&#9;prowide-core.iws&#10;#&#9;prowide-core_main.iml&#10;#&#9;prowide-core_test.iml">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/BbanEntryType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/BbanStructureDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/BbanStructureEntryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/BbanStructureValidations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/IbanValidationResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/IbanValidationUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/SwiftCharset.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/SwiftCharsetUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/BbanStructureValidations.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/SwiftCharsetUtilsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.codeclimate.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.codeclimate.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsH.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsK.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsU.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsW.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsW.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsY.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstantsY.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstants_0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstants_0.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstants_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstants_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstants_9.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/SchemeConstants_9.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT306.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT306.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT321.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT321.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT370.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT370.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT380.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT380.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT381.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt3xx/MT381.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT500.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT500.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT501.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT501.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT502.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT502.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT503.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT503.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT504.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT504.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT505.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT505.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT506.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT506.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT507.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT507.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT508.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT508.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT509.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT509.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT510.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT510.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT513.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT513.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT514.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT514.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT515.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT515.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT517.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT517.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT518.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT518.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT519.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT519.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT524.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT524.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT527.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT527.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT530.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT530.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT535.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT535.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT536.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT536.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT537.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT537.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT538.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT538.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT540.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT540.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT541.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT541.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT542.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT542.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT543.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT543.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT544.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT544.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT545.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT545.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT546.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT546.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT547.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT547.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT548.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT548.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT549.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT549.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT558.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT558.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT564.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT564.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT565.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT565.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT566.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT566.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT567.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT567.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT568.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT568.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT569.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT569.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT575.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT575.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT576.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT576.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT578.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT578.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT586.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt5xx/MT586.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt6xx/MT670.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt6xx/MT670.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt6xx/MT671.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mt/mt6xx/MT671.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mx/dic/SignatureEnvelope.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/prowidesoftware/swift/model/mx/dic/SignatureEnvelope.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/deprecation/TargetYear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/deprecation/TargetYear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/SequenceName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/SequenceName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/io/RJEReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/io/RJEReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/io/RJEWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/io/RJEWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/AbstractSwiftMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/AbstractSwiftMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/IBAN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/IBAN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/MxSwiftMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/MxSwiftMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/SwiftTagListBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/SwiftTagListBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/field/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/field/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/field/SwiftParseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/model/field/SwiftParseUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/utils/IsoUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/utils/IsoUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/utils/Lib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prowidesoftware/swift/utils/Lib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pw_swift_labels_ru.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pw_swift_labels_ru.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/IBANTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/IBANTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/IsoUtilsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/SwiftTagListBlockTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/SwiftTagListBlockTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/field/FieldTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/field/FieldTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/mt/AbstractMTTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/model/mt/AbstractMTTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/utils/IsoUtilsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/prowidesoftware/swift/utils/IsoUtilsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/MT320.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/MT320.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/SWIFTMT300_0000039099_0002.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/SWIFTMT300_0000039099_0002.txt" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.gradle/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+    <option name="REVERSE_PATCH" value="false" />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="prowide-core.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/prowide-core.iml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prowide-core.iws" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/prowide-core.iws">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="myGradleHomes">
+      <map>
+        <entry key="$PROJECT_DIR$" value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6" />
+      </map>
+    </option>
+    <option name="myGradleVersions">
+      <map>
+        <entry key="$PROJECT_DIR$" value="4.6" />
+      </map>
+    </option>
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="prowide-core" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="prowide-core" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="availableTasks">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the sub-projects of root project 'prowide-core'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="projects" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Gradle wrapper files." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Verifies code coverage metrics based on specified rules for the test task." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="jacocoTestCoverageVerification" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="sourcesJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates the Eclipse classpath file." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="eclipseClasspath" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a jar archive containing the main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="jar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the configuration model of root project 'prowide-core'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="model" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes main resources." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the tasks runnable from root project 'prowide-core'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="tasks" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the main distributions" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assembleDist" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="writePom" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Initializes a new Gradle build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="init" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the unit tests." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles main Java source." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="javadocJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all dependencies declared in root project 'prowide-core'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates all Eclipse files." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="eclipse" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes test resources." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates the Eclipse JDT settings file." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="eclipseJdt" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs the 'archives' artifacts into the local Maven repository." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="install" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates the Eclipse project file." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="eclipseProject" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Bundles the project as a distribution." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="distTar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Bundles the project as a distribution." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="distZip" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the components produced by root project 'prowide-core'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="components" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="cleanEclipseClasspath" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Cleans all Eclipse files." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="cleanEclipse" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="classes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the dependent components of components in root project 'prowide-core'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependentComponents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'prowide-core'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildEnvironment" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="cleanEclipseProject" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles test classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="testClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Javadoc API documentation for the main source code." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="javadoc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs the project as a distribution as-is." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="installDist" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="cleanEclipseJdt" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the insight into a specific dependency in root project 'prowide-core'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependencyInsight" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates code coverage report for the test task." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="jacocoTestReport" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the outputs of this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles test Java source." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays a help message." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="help" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the properties of root project 'prowide-core'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="properties" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$" value="7606854054000" />
+        <entry key="$PROJECT_DIR$/.gradle" value="0" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="363677871" />
+        <entry key="$PROJECT_DIR$/gradle.properties" value="3938216453" />
+        <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="1781704101" />
+        <entry key="$PROJECT_DIR$/settings.gradle" value="3373741282" />
+      </map>
+    </option>
+    <option name="projectBuildClasspath">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <ExternalProjectBuildClasspathPojo>
+              <option name="modulesBuildClasspath">
+                <map>
+                  <entry key="$PROJECT_DIR$">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="path" value="$PROJECT_DIR$" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="name" value="prowide-core" />
+              <option name="projectBuildClasspath">
+                <list>
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-launcher-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-runtime-api-info-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/groovy-all-2.4.12.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-kotlin-dsl-0.15.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-core-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-process-services-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-kotlin-dsl-tooling-builders-0.15.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-messaging-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-native-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-build-cache-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-resources-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-installation-beacon-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-core-api-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-tooling-api-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-base-services-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-model-groovy-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-jvm-services-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-persistent-cache-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/ant-1.9.9.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-wrapper-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-docs-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-cli-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/ant-launcher-1.9.9.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-logging-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-model-core-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-base-services-groovy-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-build-option-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/gradle-kotlin-dsl-tooling-models-0.15.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-platform-play-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-version-control-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-language-java-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-build-init-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-publish-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-javascript-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-ear-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-announce-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-dependency-management-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-resources-s3-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-testing-native-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-language-native-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-testing-junit-platform-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-workers-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-test-kit-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-composite-builds-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-platform-base-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-build-comparison-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-language-jvm-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-plugin-development-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-diagnostics-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-code-quality-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-jacoco-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-maven-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-plugins-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-reporting-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-build-cache-http-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-language-groovy-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/ivy-2.2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-scala-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-plugin-use-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-language-scala-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-ide-native-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-ivy-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-signing-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-platform-native-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-ide-play-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-osgi-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-testing-base-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-testing-jvm-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-platform-jvm-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-antlr-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-ide-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-resources-http-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-resources-sftp-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-resources-gcs-4.6.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/lib/plugins/gradle-tooling-api-builders-4.6.jar" />
+                  <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
+                  <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
+                </list>
+              </option>
+            </ExternalProjectBuildClasspathPojo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="ModuleEditorState">
+    <option name="LAST_EDITED_MODULE_NAME" />
+    <option name="LAST_EDITED_TAB_NAME" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="108" />
+    <option name="y" value="128" />
+    <option name="width" value="1596" />
+    <option name="height" value="835" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state />
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <autoscrollFromSource ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="prowide-core" type="b2602c69:ProjectViewProjectNode" />
+              <item name="prowide-core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="prowide-core" type="b2602c69:ProjectViewProjectNode" />
+              <item name="prowide-core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method>
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage" enabled="false" merge="false" />
+      <method>
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <patterns />
+      <method>
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method>
+        <option name="BuildArtifacts" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration" maxAnnotateRevisions="500">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="UPDATE_RUN_STATUS" value="false" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="DETECT_NESTED_COPIES" value="true" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fe228dc1-fb1f-4734-bdfe-32033d2ee9e2" name="Default" comment="" />
+      <created>1524431186214</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1524431186214</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Idea conf">
+      <created>1524431309018</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1524431309018</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="-4" width="1600" height="851" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.8263889" />
+      <window_info id="Designer" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24967825" />
+      <window_info anchor="bottom" id="Build" weight="0.32916668" />
+      <window_info id="Learn" />
+      <window_info anchor="right" id="Gradle" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <MESSAGE value="Idea conf" />
+    <option name="LAST_COMMIT_MESSAGE" value="Idea conf" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/prowide-core.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prowide-core.iws">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+</project>
