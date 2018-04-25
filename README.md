@@ -38,4 +38,9 @@ SRU updates are made available on October (one month before SWIFT production dat
 
 LGPL v3
 
-SWIFT is a trademark of S.W.I.F.T. SCRL. (www.swift.com )
+SWIFT is a trademark of S.W.I.F.T. SCRL. (www.swift.com)
+
+### Build
+
+* run "./gradlew eclipse" or "./gradlew idea" to generate your local IDE setup
+* run "./gradlew build" to build the library
