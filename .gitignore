@@ -4,3 +4,6 @@ build
 bin
 .idea/workspace.xml
 *.iws
+*.iml
+.settings
+.classpath
