@@ -21,10 +21,10 @@ public interface SchemeConstantsW {
     public final static String WRTS = "WRTS";
     public final static String WITH = "WITH";
     public final static String WTS = "WTS";
-    public final static String WTHD = "WTHD";
     public final static String WAPA = "WAPA";
-    public final static String WEBB = "WEBB";
+    public final static String WTHD = "WTHD";
     public final static String WITL = "WITL";
+    public final static String WEBB = "WEBB";
     public final static String WUCO = "WUCO";
     public final static String WITHOUT = "WITHOUT";
     public final static String WITHOUT_OUR_CONFIRMATION = "WITHOUT_OUR_CONFIRMATION";

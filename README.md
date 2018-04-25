@@ -6,16 +6,17 @@
 The project (previously known as WIFE) is active since 2006, production ready and commercially supported.
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2005f830d80c4db4a5c26e4380eb8d23)](https://www.codacy.com/app/prowide/prowide-core?utm_source=github.com&utm_medium=referral&utm_content=prowide/prowide-core&utm_campaign=badger)
-<a href="https://codeclimate.com/github/prowide/prowide-core"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg" /></a>
+<a href="https://codeclimate.com/github/prowide/prowide-core/maintainability"><img src="https://api.codeclimate.com/v1/badges/5f64e32b42dc0a4742b1/maintainability" /></a>
 
 ### What's included?
 
-* Java model for ISO 15022 MT (ex: MT103 and Field32A classes, for all MT message categories)
+* Java model for ISO 15022 MT (for example: MT103 and Field32A classes, for all MT message categories)
 * Parser from SWIFT (FIN or RJE) into Java
 * Builder API from Java to SWIFT (FIN or RJE)
 * Conversion to JSON and proprietary XML
 * Complementary model suited for persistence
 * Generic support for ISO 20022 MX
+* IBAN validation
 
 ![alt tag](http://www.prowidesoftware.com/images/infografias/coreModelLayers.png)
 

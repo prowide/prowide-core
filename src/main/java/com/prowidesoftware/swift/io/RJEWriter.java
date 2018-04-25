@@ -35,7 +35,9 @@ import com.prowidesoftware.swift.model.mt.AbstractMT;
 public class RJEWriter extends AbstractWriter {
 
 	private int count = 0;
-	
+
+	private char splitChar = RJEReader.SPLITCHAR;
+
 	/**
 	 * Constructs a RJEWriter to write content into a given Writer instance.
 	 * @param writer
@@ -93,7 +95,7 @@ public class RJEWriter extends AbstractWriter {
     	Validate.notNull(msg, "message to write cannot be null");
     	if (count > 0) {
         	writer.write(FINWriterVisitor.SWIFT_EOL);
-        	writer.write(RJEReader.SPLITCHAR);
+        	writer.write(splitChar);
         	writer.write(FINWriterVisitor.SWIFT_EOL);
     	}
     	writer.write(msg);
@@ -117,7 +119,8 @@ public class RJEWriter extends AbstractWriter {
 	 * <p>IMPORTANT: this method will always append a trailing CRLF and $ at the end which
 	 * in some platforms can be rejected as an invalid RJE file. For a more compliant version
 	 * use the non static implementation of the write calls, to ensure the split separator
-	 * is present only between messages but not afterwards the last one.</p>
+	 * is present only between messages but not after the last one. Also notice this method
+	 * implementation cannot use custom split separator chars.</p>
 	 * 
 	 * @param msg SWIFT MT content to write
 	 * @param writer
@@ -131,5 +134,14 @@ public class RJEWriter extends AbstractWriter {
     	writer.write(RJEReader.SPLITCHAR);
     	writer.write(FINWriterVisitor.SWIFT_EOL);
     }
+
+	/**
+	 * Ovewrites the default standard split char {@link RJEReader#SPLITCHAR}
+	 * @param c a character to use as message separator
+	 * @since 7.9.7
+	 */
+	public void setSplitChar(final char c) {
+		this.splitChar = splitChar;
+	}
 
 }

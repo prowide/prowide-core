@@ -453,6 +453,7 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	 * @deprecated use #getBusinessHeader() instead 
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2019)
 	public ApplicationHeader getApplicationHeader() {
 		MxParser parser = new MxParser(this.message());
 		BusinessHeader h = parser.parseBusinessHeader();
@@ -468,6 +469,7 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	 * @deprecated @see #getApplicationHeader()
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2019)
 	public void setApplicationHeader(ApplicationHeader applicationHeader) {
 		log.warning("Obsolete API call. The application header is no longer stored as class attribute in "+getClass().getName());
 	}

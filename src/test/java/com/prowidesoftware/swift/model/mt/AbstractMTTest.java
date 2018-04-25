@@ -7,12 +7,15 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.List;
 
+import com.prowidesoftware.swift.model.field.Field35B;
+import com.prowidesoftware.swift.model.mt.mt5xx.MT549;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field32A;
+import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT102;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103_STP;
@@ -156,7 +159,18 @@ public class AbstractMTTest {
 		assertEquals("fin.103.STP", new MT103_STP().getMtId().id());
 		assertEquals("fin.103", new MT103().getMtId().id());
 	}
-	
+
+	@Test
+	public void testRetrieveFields() throws Exception {
+		MT549 mt = new MT549();
+		mt.append(new Tag("35B", "ISIN DE000A0AAA09"));
+		mt.append(new Tag("35B", "ISIN LU000B0BBB09"));
+		for (Tag tag : mt.tags("35B")) {
+			Field35B field = (Field35B) tag.asField();
+			assertEquals(field.getComponent1(), "ISIN");
+		}
+	}
+
 	/*
 	@Test 
 	public void testRemoveInnerSequences1() {

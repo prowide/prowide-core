@@ -14,11 +14,18 @@
  *******************************************************************************/
 package com.prowidesoftware.swift;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 /**
  * Interface for naming sequences 
  * @author miguel@prowidesoftware.com
  * @since 7.8.1
+ *
+ * @deprecated usage of this interface as enum is discouraged, create custom and specific enum as necessary
  */
+@Deprecated
+@ProwideDeprecated(phase2= TargetYear._2019)
 public interface SequenceName {
 	String A = "A";
 	String A1 = "A1";

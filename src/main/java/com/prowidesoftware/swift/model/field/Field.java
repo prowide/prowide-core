@@ -14,24 +14,6 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model.field;
 
-import java.lang.reflect.Constructor;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Currency;
-import java.util.List;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-import java.util.UUID;
-import java.util.logging.Level;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.time.DateFormatUtils;
-
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
@@ -39,6 +21,16 @@ import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.time.DateFormatUtils;
+
+import java.lang.reflect.Constructor;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.*;
+import java.util.logging.Level;
 
 
 /**
@@ -60,6 +52,7 @@ public abstract class Field implements PatternContainer {
 	 * @deprecated usar {@link #Field(int)}
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2019)
 	protected Field() {}
 
 	/**
@@ -829,6 +822,7 @@ public abstract class Field implements PatternContainer {
 	 * Moved to GenericField Interface
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2019)
 	public String getDSS() {
 		return null;
 	}
@@ -837,6 +831,7 @@ public abstract class Field implements PatternContainer {
 	 * Moved to GenericField Interface
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2019)
 	public boolean isDSSPresent() {
 		return false;
 	}
@@ -845,6 +840,7 @@ public abstract class Field implements PatternContainer {
 	 * Moved to GenericField Interface
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2=TargetYear._2019)
 	public String getConditionalQualifier() {
 		return null;
 	}
@@ -884,6 +880,7 @@ public abstract class Field implements PatternContainer {
 	 * @see #isNameAnyOf(String...)
 	 */
 	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2018)
 	public boolean isAnyOf(final String ... names) {
 		Validate.isTrue(names != null && names.length>0, "name list must have at least one element");
 		for (final String n:names) {
@@ -913,24 +910,55 @@ public abstract class Field implements PatternContainer {
 	}
 
 	/**
-	 * Compare the value of the component1 of this field with <code>compare</code>
+	 * Compares this field component 1 with the parameter value
+	 * <br />
 	 * Same as <code>is(1, compare)</code>
+	 * <br />
+	 * If the field has only one component this is the same as comparing against field value
+	 * @param compare string to compare
+	 * @return true if the first component is equal to the parameter
 	 */
 	public boolean is(final String compare) {
 		return StringUtils.equals(compare, getComponent(1));
 	}
 	/**
-	 * Compare the value of the component <code>componentNumber</code>  of this field with <code>compare</code>
+	 * Compares a specific component with the parameter value
+	 * @param componentNumber component number 1-based
+	 * @param compare string to compare
+	 * @return true if the indicated component value is equal to the parameter
 	 */
 	public boolean is(final int componentNumber, final String compare) {
 		return StringUtils.equals(compare, getComponent(componentNumber));
 	}
 
 	/**
-	 * Compare the value of the component1 of this field with <code>compare1</code> and the value of component2 with <code>compare2</code>
+	 * Compares this field components 1 and 2 with the parameter values.
+	 * @param compare1 string to compare with component 1
+	 * @param compare2 string to compare with component 2
+	 * @return true if components 1 and 2 are equal the parameter values respectively
 	 */
 	public boolean is(final String compare1, final String compare2) {
 		return StringUtils.equals(compare1, getComponent(1)) && StringUtils.equals(compare2, getComponent(2));
+	}
+
+	/**
+	 * Compares this field component 1 with the parameter values.
+	 * <br />
+	 * If the field has only one component this is the same as comparing against the field value
+	 * @param values the values to compare
+	 * @return true if the first component is equal to any of the given values
+	 * @since 7.9.7
+	 */
+	public boolean is(final String ... values) {
+		final String comp1 = getComponent(1);
+		if (values != null) {
+			for (String value : values) {
+				if (StringUtils.equals(comp1, value)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**

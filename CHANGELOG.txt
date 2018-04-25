@@ -1,10 +1,25 @@
-RELEASE 7.9.7-SNAPCHOT
-	* Build migrated to Gradle
+RELEASE 7.9.7 - April 2017 - LTS maintenance version for current SRU (2017)
+
+  Dependencies: added gson 2.8.2
+
+  * Added full IBAN validation including control digits and custom account numbers per country
+  * Added SwiftCharset and SwiftCharsetUtils helper API to validate SWIFT related charsets.
+  * Added SwiftTagListBlock#getFieldByQualifiers(name, qualifier, conditionalQualifier) to gather generic fields based on qualifiers content
+  * Added addTag(index, tag) and setTag(index, tag) in SwiftTagListBlock to insert new field in specific positions
+  * Added Field#is(String ...) to test component 1 of fields against a list of possible values
+  * Added non-ISO country code XK (Kosovo) to IsoUtils
+  * Added API in IsoUtils to add custom codes for countries and currencies
+  * Added read-only properties in AbstractSwiftMessage for the message creation year, month and day of moth
+  * Added support for custom split char in RJE reader/writer
+  * Fixed missing repetitive 35B in MT549
+  * Build migrated to Gradle
 
 RELEASE 7.9.6 - December 2017
+
 	* Fixed conversion to XML with compressed parameter true in ConversionService
 
 RELEASE 7.9.5 - December 2017
+
 	* Fixed getValueDisplay in field 50F to strip the starting slash in the account number
 	* Added getLabelForLineNumber(String subfieldNumber) in Field50F to return the labels for the structured line identifiers
 	* Enhanced getComponentLabel(final int number) in Field50F to return proper dynamic labels based on line number identifiers 
@@ -17,7 +32,8 @@ RELEASE 7.9.5 - December 2017
 	* Implemented SwiftMessageUtils#calculateChecksum as MD5 hash on whole FIN message content and added new checksum for the text block only
 
 RELEASE 7.9.4 - November 2017
-	Internal Integrator release (no impact in Core)
+
+	Internal code maintenance release
 
 RELEASE 7.9.3 - October 2017 - LTS version for SRU2017
 

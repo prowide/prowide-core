@@ -11,19 +11,18 @@
 */
 package com.prowidesoftware.swift.model;
 
-import static org.junit.Assert.*;
+import com.prowidesoftware.swift.io.ConversionService;
+import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.model.field.Field19A;
+import com.prowidesoftware.swift.model.field.Field93B;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.prowidesoftware.swift.io.ConversionService;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.field.Field19A;
-import com.prowidesoftware.swift.model.field.Field93B;
+import static org.junit.Assert.*;
 
 /**
  * Tag list block tests.
@@ -453,18 +452,15 @@ public class SwiftTagListBlockTest {
 
 		SwiftTagListBlock sb3 = sbs.get(2);
 		assertEquals(5, sb3.size());
-		
 	}
 	
 	@Test
 	public void testSplitByNonexisting() {
 		b.append(new Tag("99:foo"));
-		
 		b.append(new Tag("1:start"));
 		b.append(new Tag("2:val2"));
 		b.append(new Tag("3:end"));
 		b.append(new Tag("88:foo"));
-		
 		
 		List<SwiftTagListBlock> sbs = b.splitByTagName("XX");
 		
@@ -749,7 +745,6 @@ public class SwiftTagListBlockTest {
 		b.append(new Tag("95C", "foo2"));
 		fieldsByName = b.getFieldsByName("95a");
 		assertEquals(2, fieldsByName.length);
-
 	}
 	
 	@Test
@@ -766,7 +761,6 @@ public class SwiftTagListBlockTest {
 		b.append(new Tag("95C", "foo2"));
 		assertEquals(2, b.getFieldsByName("95a", "foo").size());
 		assertEquals(3, b.getFieldsByName("95a", "foo2").size());
-		
 	}
 
 	@Test
@@ -910,34 +904,6 @@ public class SwiftTagListBlockTest {
 		assertEquals("val2", sb.getTag(3).getValue());
 	}
 
-
-	@Test
-	public void testGetSubBlock() throws Exception {
-		b.append(new Tag("1:val1"));
-		b.append(new Tag("2:val2"));
-		b.append(new Tag("3K:val3"));
-		b.append(new Tag("2:val2"));
-		b.append(new Tag("5:val5"));
-		SwiftTagListBlock sb = b.getSubBlock(1, 2);
-		assertEquals(1, sb.size());
-		assertEquals("val2", sb.getTag(0).getValue());
-		
-		sb = b.getSubBlock(1, 1+4);
-		assertEquals(4, sb.size());
-		assertEquals("val3", sb.getTag(1).getValue());
-		
-		sb = b.getSubBlock(null, 1);
-		assertEquals(1, sb.size());
-		assertEquals("val1", sb.getTag(0).getValue());
-		
-		sb = b.getSubBlock(4, null);
-		assertEquals(1, sb.size());
-		assertEquals("val5", sb.getTag(0).getValue());
-		
-
-		sb = b.getSubBlock(0, 100);
-		assertEquals(5, sb.size());
-	}
 	@Test
 	public void testIndexOfLast() throws Exception {
 		b.append(new Tag("1:val1"));
@@ -951,9 +917,7 @@ public class SwiftTagListBlockTest {
 		assertEquals(0, b.indexOfLast("1"));
 		
 		assertEquals(4, b.indexOfLast("5"));
-
 	}
-
 
 	@Test
 	public void testGetSubBlockAfterLast() throws Exception {
@@ -1068,7 +1032,6 @@ public class SwiftTagListBlockTest {
 		assertEquals("val1", sb.getTag(0).getValue());
 		assertEquals("val3", sb.getTag(2).getValue());
 	}
-	
 
 	@Test
 	public void testRemove() throws Exception {
@@ -1082,7 +1045,6 @@ public class SwiftTagListBlockTest {
 		assertEquals(4, b.size());
 	}
 
-	
 	/**
 	 * Test for subblocks API with real case message
 	 */
@@ -1220,12 +1182,9 @@ public class SwiftTagListBlockTest {
 		assertEquals("val2", result.getTag(1).getValue());
 	}
 
-
 	@Test
 	public void testGetOptionalLists() throws Exception {
-
 		appends(b, 1, 8);
-
 		appends(b, 1, 8);
 		
 		List<SwiftTagListBlock> result = b.getOptionalLists( new String[][]{{"1a", "1b", "1"},{"2e", "2c"}, {"2", "3"}} );
@@ -1236,7 +1195,6 @@ public class SwiftTagListBlockTest {
 
 	@Test
 	public void testGetSubBlockDelimitedWithOptionalTail() throws Exception {
-
 		appends(b, 1, 8);
 		
 		String[] start = new String[]{"1"};
@@ -1249,7 +1207,6 @@ public class SwiftTagListBlockTest {
 	
 	@Test
 	public void testGetSubBlocksDelimitedWithOptionalTail() throws Exception {
-
 		appends(b, 1, 8);
 		appends(b, 1, 8);
 		
@@ -1271,7 +1228,6 @@ public class SwiftTagListBlockTest {
 	
 	@Test
 	public void testGetSubBlockDelimitedWithOptionalTail_304bugNPE() throws Exception {
-
 		appends(b, 1, 4);
 		
 		String[] start = new String[]{"1"};
@@ -1285,7 +1241,6 @@ public class SwiftTagListBlockTest {
 	
 	@Test
 	public void testGetSubBlockDelimitedWithOptionalTail_Bug1() throws Exception {
-		
 		appends(b, 1, 9);
 		
 		String[] start = new String[]{"1"};
@@ -1296,10 +1251,42 @@ public class SwiftTagListBlockTest {
 		assertNotNull(result);
 		assertEquals("returned: "+result.tagNamesList(), 3, result.size());
 	}
-	
+
+	/*
+	 * The getSubBlock includes the starting element in the result but excludes the ending one
+	 */
+	@Test
+	public void testGetSubBlock() throws Exception {
+		b.append(new Tag("1:val1"));
+		b.append(new Tag("2:val2"));
+		b.append(new Tag("3K:val3"));
+		b.append(new Tag("2:val2"));
+		b.append(new Tag("5:val5"));
+		SwiftTagListBlock sb = b.getSubBlock(1, 2);
+		assertEquals(1, sb.size());
+		assertEquals("val2", sb.getTag(0).getValue());
+
+		sb = b.getSubBlock(1, 1+4);
+		assertEquals(4, sb.size());
+		assertEquals("val3", sb.getTag(1).getValue());
+
+		sb = b.getSubBlock(null, 1);
+		assertEquals(1, sb.size());
+		assertEquals("val1", sb.getTag(0).getValue());
+
+		sb = b.getSubBlock(4, null);
+		assertEquals(1, sb.size());
+		assertEquals("val5", sb.getTag(0).getValue());
+
+		sb = b.getSubBlock(0, 100);
+		assertEquals(5, sb.size());
+	}
+
+	/*
+	 * The sublist method includes both the starting and ending elements in the result
+	 */
 	@Test
 	public void testSublist() throws Exception {
-		
 		appends(b, 1, 10);
 		
 		SwiftTagListBlock sl = b.sublist(0, 1);
@@ -1625,4 +1612,69 @@ public class SwiftTagListBlockTest {
 		assertEquals(1, result.get(1).size());
 		assertEquals("5", result.get(1).getTag(0).getName());
 	}
+
+	@Test
+	public void testAdd_1() {
+		b.append(new Tag("1:val1"));
+		b.append(new Tag("2:val2"));
+		b.append(new Tag("3:val3"));
+
+		b.addTag(2,(new Tag("4:val4")));
+
+		assertEquals(4, b.getTags().size());
+		assertEquals("val1", b.getTag(0).getValue());
+		assertEquals("val2", b.getTag(1).getValue());
+		assertEquals("val4", b.getTag(2).getValue());
+		assertEquals("val3", b.getTag(3).getValue());
+
+		assertEquals((int)2, (int)b.getTagIndex("4", null));
+        assertEquals((int)3, (int)b.getTagIndex("3", null));
+	}
+
+	@Test
+	public void testAdd_2() {
+		b.addTag(0, new Tag("1:val1"));
+		b.addTag(1, new Tag("2:val2"));
+		b.addTag(2, new Tag("3:val3"));
+
+		assertEquals(3, b.getTags().size());
+		assertEquals("val1", b.getTag(0).getValue());
+		assertEquals("val2", b.getTag(1).getValue());
+		assertEquals("val3", b.getTag(2).getValue());
+	}
+
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testAdd_3() {
+		b.addTag(1, new Tag("1:val1"));
+	}
+
+	@Test
+    public void testSet() {
+        b.append(new Tag("1:val1"));
+        b.append(new Tag("2:val2"));
+        b.append(new Tag("3:val3"));
+        b.setTag(2,(new Tag("15", "15")));
+        assertEquals((int)2, (int)b.getTagIndex("15", null));
+        assertNull(b.getTagIndex("3", null));
+    }
+
+	@Test
+	public void testFieldByQualifiers() {
+		// conditional qualifier is component 3
+		b.append(new Tag("22F", ":AAAA//BBBB"));
+		assertNotNull(b.getFieldByQualifiers("22F", "AAAA", "BBBB"));
+		
+		// DSS is ignored
+		b.append(new Tag("22F", ":AAAA/DSS/CCCC"));
+		assertNotNull(b.getFieldByQualifiers("22F", "AAAA", "CCCC"));
+		
+		// conditional qualifier is component 2
+		b.append(new Tag("12C", ":AAAA//BBBB"));
+		assertNotNull(b.getFieldByQualifiers("12C", "AAAA", "BBBB"));
+		
+		// not generic field
+		b.append(new Tag("22K", "AAAA/BBBB"));
+		assertNull(b.getFieldByQualifiers("22K", "AAAA", "BBBB"));
+	}
+	
 }

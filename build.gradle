@@ -8,7 +8,7 @@ archivesBaseName = 'pw-swift-core'
 
 def SRU = "2017"
 
-version "SRU${SRU}-7.9.7-SNAPSHOT"
+version "SRU${SRU}-7.9.7"
 group 'com.prowidesoftware'
 	
 sourceCompatibility = '1.6'
@@ -31,6 +31,7 @@ repositories {
 	
 dependencies {
 	implementation 'commons-lang:commons-lang:2.6'
+	implementation 'com.google.code.gson:gson:2.8.2'
     testImplementation 'junit:junit:4.12', 'xmlunit:xmlunit:1.6'
 }
 

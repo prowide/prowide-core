@@ -190,6 +190,7 @@ Sequence _L1 (O) (repetitive)<ul><li class="field">Field 30 F (M)</li>
 <li class="field">Field 53 A,D,J (O)</li>
 <li class="field">Field 86 A,D,J (O)</li>
 <li class="field">Field 56 A,D,J (O)</li>
+<li class="field">Field 57 A,D,J (O)</li>
 </ul></li>
 <li class="sequence">
 Sequence M (O)<ul><li class="field">Field 15 M (M)</li>
