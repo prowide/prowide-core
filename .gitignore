@@ -2,7 +2,7 @@
 gradle.properties
 build
 bin
-.idea/workspace.xml
+.idea
 *.iws
 *.iml
 *.ipr
