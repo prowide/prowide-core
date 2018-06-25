@@ -16,6 +16,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import java.util.List;
+import java.util.ArrayList;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
@@ -49,4 +53,5 @@ public class SwiftBlock3Test {
 		b.append(new Tag("119", "STP"));
 		assertTrue(b.isSTP());
 	}
+
 }

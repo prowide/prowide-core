@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 98F</h2>
@@ -201,7 +205,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -219,7 +223,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Qualifier (component1).
+	 * Gets the Qualifier (component1).
 	 * @return the Qualifier from component1
 	 */
 	public String getQualifier() {
@@ -244,7 +248,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -262,7 +266,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Data Source Scheme (component2).
+	 * Gets the Data Source Scheme (component2).
 	 * @return the Data Source Scheme from component2
 	 */
 	public String getDataSourceScheme() {
@@ -287,7 +291,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -305,7 +309,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Code (component3).
+	 * Gets the Code (component3).
 	 * @return the Code from component3
 	 */
 	public String getCode() {
@@ -330,7 +334,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -338,7 +342,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the component4 as Calendar
+	 * Gets the component4 as Calendar
 	 * @return the component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
@@ -346,7 +350,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Time (component4).
+	 * Gets the Time (component4).
 	 * @return the Time from component4
 	 */
 	public String getTime() {
@@ -354,7 +358,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the Time (component4) as Calendar
+	 * Gets the Time (component4) as Calendar
 	 * @return the Time from component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getTimeAsCalendar() {
@@ -492,7 +496,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -508,7 +512,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the first instance of Field98F in the given message.
+	 * Gets the first instance of Field98F in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -520,7 +524,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field98F in the given message
+	 * Gets a list of all occurrences of the field Field98F in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -532,7 +536,7 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field98F from the given block
+	 * Gets a list of all occurrences of the field Field98F from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -615,6 +619,45 @@ public class Field98F extends Field implements Serializable, com.prowidesoftware
 		result.add("Code");
 		result.add("Time");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "qualifier");
+		result.put(2, "dataSourceScheme");
+		result.put(3, "code");
+		result.put(4, "time");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field98F object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field98F fromJson(final String json) {
+		Field98F field = new Field98F();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("qualifier") != null) {
+			field.setComponent1(jsonObject.get("qualifier").getAsString());
+		}
+		if (jsonObject.get("dataSourceScheme") != null) {
+			field.setComponent2(jsonObject.get("dataSourceScheme").getAsString());
+		}
+		if (jsonObject.get("code") != null) {
+			field.setComponent3(jsonObject.get("code").getAsString());
+		}
+		if (jsonObject.get("time") != null) {
+			field.setComponent4(jsonObject.get("time").getAsString());
+		}
+		return field;
 	}
 	
 

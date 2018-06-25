@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 422</h2>
@@ -212,7 +216,7 @@ public class Field422 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -228,7 +232,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -254,7 +258,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -270,7 +274,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -296,7 +300,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -312,7 +316,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -338,7 +342,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -354,7 +358,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -380,7 +384,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component9
+	 * Gets the component9
 	 * @return the component9
 	 */
 	public String getComponent9() {
@@ -396,7 +400,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component10
+	 * Gets the component10
 	 * @return the component10
 	 */
 	public String getComponent10() {
@@ -422,7 +426,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component11
+	 * Gets the component11
 	 * @return the component11
 	 */
 	public String getComponent11() {
@@ -438,7 +442,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component12
+	 * Gets the component12
 	 * @return the component12
 	 */
 	public String getComponent12() {
@@ -464,7 +468,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component13
+	 * Gets the component13
 	 * @return the component13
 	 */
 	public String getComponent13() {
@@ -480,7 +484,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component14
+	 * Gets the component14
 	 * @return the component14
 	 */
 	public String getComponent14() {
@@ -506,7 +510,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component15
+	 * Gets the component15
 	 * @return the component15
 	 */
 	public String getComponent15() {
@@ -522,7 +526,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component16
+	 * Gets the component16
 	 * @return the component16
 	 */
 	public String getComponent16() {
@@ -548,7 +552,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component17
+	 * Gets the component17
 	 * @return the component17
 	 */
 	public String getComponent17() {
@@ -564,7 +568,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component18
+	 * Gets the component18
 	 * @return the component18
 	 */
 	public String getComponent18() {
@@ -590,7 +594,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component19
+	 * Gets the component19
 	 * @return the component19
 	 */
 	public String getComponent19() {
@@ -606,7 +610,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component20
+	 * Gets the component20
 	 * @return the component20
 	 */
 	public String getComponent20() {
@@ -632,7 +636,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component21
+	 * Gets the component21
 	 * @return the component21
 	 */
 	public String getComponent21() {
@@ -648,7 +652,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component22
+	 * Gets the component22
 	 * @return the component22
 	 */
 	public String getComponent22() {
@@ -674,7 +678,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component23
+	 * Gets the component23
 	 * @return the component23
 	 */
 	public String getComponent23() {
@@ -690,7 +694,7 @@ public class Field422 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component24
+	 * Gets the component24
 	 * @return the component24
 	 */
 	public String getComponent24() {
@@ -772,7 +776,7 @@ public class Field422 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -788,7 +792,7 @@ public class Field422 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the first instance of Field422 in the given message.
+	 * Gets the first instance of Field422 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -800,7 +804,7 @@ public class Field422 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field422 in the given message
+	 * Gets a list of all occurrences of the field Field422 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -812,7 +816,7 @@ public class Field422 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field422 from the given block
+	 * Gets a list of all occurrences of the field Field422 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -991,6 +995,29 @@ public class Field422 extends Field implements Serializable {
 		result.add(null);
 		result.add(null);
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field422 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field422 fromJson(final String json) {
+		Field422 field = new Field422();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		return field;
 	}
 	
 

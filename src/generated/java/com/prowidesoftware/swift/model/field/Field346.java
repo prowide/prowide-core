@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 346</h2>
@@ -222,7 +226,7 @@ public class Field346 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -240,7 +244,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch1 (component1).
+	 * Gets the Branch1 (component1).
 	 * @return the Branch1 from component1
 	 */
 	public String getBranch1() {
@@ -265,7 +269,7 @@ public class Field346 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -283,7 +287,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch2 (component2).
+	 * Gets the Branch2 (component2).
 	 * @return the Branch2 from component2
 	 */
 	public String getBranch2() {
@@ -308,7 +312,7 @@ public class Field346 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -326,7 +330,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch3 (component3).
+	 * Gets the Branch3 (component3).
 	 * @return the Branch3 from component3
 	 */
 	public String getBranch3() {
@@ -351,7 +355,7 @@ public class Field346 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -369,7 +373,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch4 (component4).
+	 * Gets the Branch4 (component4).
 	 * @return the Branch4 from component4
 	 */
 	public String getBranch4() {
@@ -394,7 +398,7 @@ public class Field346 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -412,7 +416,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch5 (component5).
+	 * Gets the Branch5 (component5).
 	 * @return the Branch5 from component5
 	 */
 	public String getBranch5() {
@@ -437,7 +441,7 @@ public class Field346 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -455,7 +459,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch6 (component6).
+	 * Gets the Branch6 (component6).
 	 * @return the Branch6 from component6
 	 */
 	public String getBranch6() {
@@ -480,7 +484,7 @@ public class Field346 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -498,7 +502,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch7 (component7).
+	 * Gets the Branch7 (component7).
 	 * @return the Branch7 from component7
 	 */
 	public String getBranch7() {
@@ -523,7 +527,7 @@ public class Field346 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -541,7 +545,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch8 (component8).
+	 * Gets the Branch8 (component8).
 	 * @return the Branch8 from component8
 	 */
 	public String getBranch8() {
@@ -566,7 +570,7 @@ public class Field346 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component9
+	 * Gets the component9
 	 * @return the component9
 	 */
 	public String getComponent9() {
@@ -584,7 +588,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch9 (component9).
+	 * Gets the Branch9 (component9).
 	 * @return the Branch9 from component9
 	 */
 	public String getBranch9() {
@@ -609,7 +613,7 @@ public class Field346 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component10
+	 * Gets the component10
 	 * @return the component10
 	 */
 	public String getComponent10() {
@@ -627,7 +631,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Branch10 (component10).
+	 * Gets the Branch10 (component10).
 	 * @return the Branch10 from component10
 	 */
 	public String getBranch10() {
@@ -708,7 +712,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -724,7 +728,7 @@ public class Field346 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the first instance of Field346 in the given message.
+	 * Gets the first instance of Field346 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -736,7 +740,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field346 in the given message
+	 * Gets a list of all occurrences of the field Field346 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -748,7 +752,7 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field346 from the given block
+	 * Gets a list of all occurrences of the field Field346 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -857,6 +861,69 @@ public class Field346 extends Field implements Serializable {
 		result.add("Branch9");
 		result.add("Branch10");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "branch1");
+		result.put(2, "branch2");
+		result.put(3, "branch3");
+		result.put(4, "branch4");
+		result.put(5, "branch5");
+		result.put(6, "branch6");
+		result.put(7, "branch7");
+		result.put(8, "branch8");
+		result.put(9, "branch9");
+		result.put(10, "branch10");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field346 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field346 fromJson(final String json) {
+		Field346 field = new Field346();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("branch1") != null) {
+			field.setComponent1(jsonObject.get("branch1").getAsString());
+		}
+		if (jsonObject.get("branch2") != null) {
+			field.setComponent2(jsonObject.get("branch2").getAsString());
+		}
+		if (jsonObject.get("branch3") != null) {
+			field.setComponent3(jsonObject.get("branch3").getAsString());
+		}
+		if (jsonObject.get("branch4") != null) {
+			field.setComponent4(jsonObject.get("branch4").getAsString());
+		}
+		if (jsonObject.get("branch5") != null) {
+			field.setComponent5(jsonObject.get("branch5").getAsString());
+		}
+		if (jsonObject.get("branch6") != null) {
+			field.setComponent6(jsonObject.get("branch6").getAsString());
+		}
+		if (jsonObject.get("branch7") != null) {
+			field.setComponent7(jsonObject.get("branch7").getAsString());
+		}
+		if (jsonObject.get("branch8") != null) {
+			field.setComponent8(jsonObject.get("branch8").getAsString());
+		}
+		if (jsonObject.get("branch9") != null) {
+			field.setComponent9(jsonObject.get("branch9").getAsString());
+		}
+		if (jsonObject.get("branch10") != null) {
+			field.setComponent10(jsonObject.get("branch10").getAsString());
+		}
+		return field;
 	}
 	
 

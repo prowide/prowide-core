@@ -14,20 +14,18 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * SWIFT character sets named after the User Handbook.
  *
  * @author www.prowidesoftware.com
  */
 public enum SwiftCharset {
-	@SerializedName("n")n,
-	@SerializedName("a")a,
-	@SerializedName("A")A,
-	@SerializedName("x")x,
-	@SerializedName("y")y,
-	@SerializedName("z")z,
-	@SerializedName("c")c,
-	@SerializedName("B")B
+	n,
+	a,
+	A,
+	x,
+	y,
+	z,
+	c,
+	B
 }

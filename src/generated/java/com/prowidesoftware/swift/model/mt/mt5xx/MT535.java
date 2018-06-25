@@ -1219,7 +1219,21 @@ public class MT535 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT535 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT535 message
+	 * @return a new instance of MT535
+	 * @since 7.10.2
+	 */
+	public final static MT535 fromJson(String json) {
+		return (MT535) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 28E, 
 	 * or <code>null</code> if none is found.<br />

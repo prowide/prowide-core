@@ -17,6 +17,10 @@ package com.prowidesoftware.swift.model;
 import java.io.Serializable;
 
 import org.apache.commons.lang.Validate;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 /**
  * Base class for SWIFT <b>Application Header Block (block 2)
@@ -106,6 +110,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 	 */
 	public SwiftBlock2Output(final String messageType, final String senderInputTime, final String MIRDate, final String MIRLogicalTerminal, final String MIRSessionNumber, final String MIRSequenceNumber, final String receiverOutputDate, final String receiverOutputTime, final String messagePriority) {
 		super();
+		this.output = true;
 		this.messageType = messageType;
 		this.senderInputTime = senderInputTime;
 		this.MIRDate = MIRDate;
@@ -520,7 +525,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
         		}
     		}
     		offset++; // skip the output mark
-    
+
     		// separate value fragments
     		int len = 3;
     		this.setMessageType(this.getValuePart(value, offset, len));
@@ -622,11 +627,18 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	/**
-	 * @since 7.5
+	 * Legacy (version 1) json representation of this object.
+	 *
+	 * <p>This implementation has been replaced by version 2, based on Gson.</p>
+	 *
+	 * @deprecated use {@link #toJson()} instead
+	 * @since 7.9.8
 	 */
-	public String toJson() {
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
+	public String toJsonV1() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("{ \n");
 
@@ -710,5 +722,16 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 				setReceiverOutputTime(value);
 				break;
 		}
+	}
+
+	/**
+	 * This method deserializes the JSON data into an incoming (output) block 2 object.
+	 * @see #toJson()
+	 * @since 7.9.8
+	 */
+	public static SwiftBlock2Output fromJson(String json){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.fromJson(json, SwiftBlock2Output.class);
 	}
 }

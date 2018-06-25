@@ -319,7 +319,21 @@ public class MT790 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT790 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT790 message
+	 * @return a new instance of MT790
+	 * @since 7.10.2
+	 */
+	public final static MT790 fromJson(String json) {
+		return (MT790) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
 	 * or <code>null</code> if none is found.<br />

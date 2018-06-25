@@ -312,7 +312,21 @@ public class MT096 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT096 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT096 message
+	 * @return a new instance of MT096
+	 * @since 7.10.2
+	 */
+	public final static MT096 fromJson(String json) {
+		return (MT096) AbstractMT.fromJson(json);
+	}
+
 
 
 

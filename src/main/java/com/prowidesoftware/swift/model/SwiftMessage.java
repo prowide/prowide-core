@@ -28,6 +28,9 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.logging.Level;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.prowidesoftware.JsonSerializable;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -61,12 +64,12 @@ import com.prowidesoftware.swift.utils.IMessageVisitor;
  *
  * @author www.prowidesoftware.com
  */
-public class SwiftMessage implements Serializable {
+public class SwiftMessage implements Serializable, JsonSerializable {
 	private static final long serialVersionUID = 8094995269559985432L;
 
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftMessage.class.getName());
 
-	private static final int JSON_VERSION = 1;
+	static final int JSON_VERSION = 2;
 
 	/**
 	 * Block 1
@@ -1395,58 +1398,26 @@ public class SwiftMessage implements Serializable {
 	}
 
 	/**
-	 * Get a json representation of this object.
-	 * <br />
-	 * Generated JSON string will contain additional properties with
-	 * version number and timestamp, while the actual SwiftMessage
-	 * serialization is put into a data element.<br />
-	 * 
-	 * Example:<br />
-	 * <pre>
-	 * { "version" : 1, "timestamp" : "2016-08-26T23:57:36Z", data" : { 
-	 * "block1" :
-	 * {
-	 * "applicationId" : "F",
-	 * "serviceId" : "01",
-	 * "logicalTerminal" : "FOOSEDR0AXXX",
-	 * "sessionNumber" : "0000",
-	 * "sequenceNumber" : "000000"
-	 * } ,
-	 * "block2" :
-	 * {
-	 *  "messageType" : "103",
-	 *  "receiverAddress" : "FOORECV0XXXX",
-	 *  "messagePriority" : "N",
-	 *  "deliveryMonitoring" : "null",
-	 *  "obsolescencePeriod" : "null"
-	 *  } ,
-	 *  "block3" :
-	 *  { },
-	 *  "block4" :
-	 *  [ 
-	 *  { "20" : "REFERENCE" },
-	 *  { "23B" : "CRED" },
-	 *  { "32A" : "130204USD1234567,89" },
-	 *  { "50K" : "/12345678901234567890\nFOOBANKXXXXX" },
-	 *  { "59" : "/12345678901234567890\nJOE DOE" },
-	 *  { "71A" : "OUR" }
-	 *  ]
-	 *  ,"block5" : 
-	 *  { }
-	 *  }
-	 *  }
-	 *  </pre>
-	 * 
-	 * @since 7.5
+	 * Legacy (version 1) json representation of this object.
+	 *
+	 * <p>This implementation has been replaced by version 2, based on Gson.
+	 * The main difference is in block4 where the new version serializes the list
+	 * of Tag under a field named "tags", and in block 2 where the direction (I/O)
+     * has been explicitly added.</p>
+	 *
+	 * @deprecated use {@link #toJson()} instead
+	 * @since 7.9.8
 	 */
-	public String toJson() {
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
+	public String toJsonV1() {
 		/*
 		 * Return an ISO 8601 combined date and time string for current timestamp
 		 */
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
 		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 		final String ts = dateFormat.format(Calendar.getInstance().getTime());
-		
+
 		final StringBuilder sb = new StringBuilder();
 		sb.append("{ \"version\" : ").append(JSON_VERSION).append(",\n");
 
@@ -1496,7 +1467,70 @@ public class SwiftMessage implements Serializable {
 
 		return sb.toString();
 	}
-	
+
+	/**
+	 * Get a json representation of this object.
+	 * <br />
+	 * Generated JSON string will contain additional properties with
+	 * version number and timestamp, while the actual SwiftMessage
+	 * serialization is put into a data element.<br />
+	 * 
+	 * Example:<br />
+	 * <pre>
+	 * { "version": 2, "timestamp": "2016-08-26T23:57:36Z", data": {
+	 * "block1": {
+	 * 		"applicationId": "F",
+	 * 		"serviceId": "01",
+	 * 		"logicalTerminal": "FOOSEDR0AXXX",
+	 * 		"sessionNumber": "0000",
+	 * 		"sequenceNumber": "000000"
+	 * } ,
+	 * "block2": {
+	 *  	"messageType": "103",
+	 *  	"receiverAddress": "FOORECV0XXXX",
+	 *  	"messagePriority": "N",
+	 *  	"deliveryMonitoring": "null",
+	 *  	"obsolescencePeriod": "null"
+	 *  }
+	 *  "block4": {
+	 *  	"tags": [
+	 *  		{ "20": "REFERENCE" },
+	 *  		{ "23B": "CRED" },
+	 *  		{ "32A": "130204USD1234567,89" },
+	 *  		{ "50K": "/12345678901234567890\nFOOBANKXXXXX" },
+	 *  		{ "59": "/12345678901234567890\nJOE DOE" },
+	 *  		{ "71A": "OUR" }
+	 *  		]
+	 *  	}
+	 *  }
+	 *  </pre>
+	 * 
+	 * @since 7.5
+	 */
+	@Override
+	public String toJson() {
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(SwiftMessage.class, new SwiftMessageAdapter());
+		gsonBuilder.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter());
+		gsonBuilder.setPrettyPrinting();
+		final Gson gson = gsonBuilder.create();
+		return gson.toJson(this);
+	}
+
+	/**
+	 * This method deserializes the JSON data into a message object.
+	 *
+	 * @see #toJson()
+	 * @since 7.9.8
+	 */
+	public static SwiftMessage fromJson(String json){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(SwiftMessage.class, new SwiftMessageAdapter());
+		gsonBuilder.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter());
+		final Gson gson = gsonBuilder.create();
+		return gson.fromJson(json,SwiftMessage.class);
+	}
+
 	/**
 	 * Gets a proprietary XML representation of this message.<br />
  	 * Notice: it is neither a standard nor the MX version of this MT.

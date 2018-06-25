@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Currency;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
 import com.prowidesoftware.swift.model.field.CurrencyResolver;
@@ -37,6 +39,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 32M</h2>
@@ -179,7 +183,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -187,7 +191,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the component1 as Currency
+	 * Gets the component1 as Currency
 	 * @return the component1 converted to Currency or <code>null</code> if cannot be converted
 	 */
 	public java.util.Currency getComponent1AsCurrency() {
@@ -195,7 +199,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the Currency (component1).
+	 * Gets the Currency (component1).
 	 * @return the Currency from component1
 	 */
 	public String getCurrency() {
@@ -203,7 +207,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Get the Currency (component1) as Currency
+	 * Gets the Currency (component1) as Currency
 	 * @return the Currency from component1 converted to Currency or <code>null</code> if cannot be converted
 	 */
 	public java.util.Currency getCurrencyAsCurrency() {
@@ -254,7 +258,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -262,7 +266,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the component2 as Number
+	 * Gets the component2 as Number
 	 * @return the component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
@@ -270,7 +274,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the Amount (component2).
+	 * Gets the Amount (component2).
 	 * @return the Amount from component2
 	 */
 	public String getAmount() {
@@ -278,7 +282,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Get the Amount (component2) as Number
+	 * Gets the Amount (component2) as Number
 	 * @return the Amount from component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
@@ -431,7 +435,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -447,7 +451,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Get the first instance of Field32M in the given message.
+	 * Gets the first instance of Field32M in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -459,7 +463,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field32M in the given message
+	 * Gets a list of all occurrences of the field Field32M in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -471,7 +475,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field32M from the given block
+	 * Gets a list of all occurrences of the field Field32M from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -545,6 +549,37 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 		result.add("Currency");
 		result.add("Amount");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "currency");
+		result.put(2, "amount");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field32M object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field32M fromJson(final String json) {
+		Field32M field = new Field32M();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("currency") != null) {
+			field.setComponent1(jsonObject.get("currency").getAsString());
+		}
+		if (jsonObject.get("amount") != null) {
+			field.setComponent2(jsonObject.get("amount").getAsString());
+		}
+		return field;
 	}
 	
 

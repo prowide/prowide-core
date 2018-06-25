@@ -18,6 +18,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
@@ -40,6 +42,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
 	 * Default constructor
 	 */
 	public SwiftBlock4() {
+		super();
 	}
 
 	/**
@@ -146,4 +149,16 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
 		}
         return new SwiftBlock4(new ArrayList<Tag>(stack));
 	}
+
+	/**
+	 * This method deserializes the JSON data into an block 4 object.
+	 * @see #toJson()
+	 * @since 7.9.8
+	 */
+	public static SwiftBlock4 fromJson(String json){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.fromJson(json, SwiftBlock4.class);
+	}
+
 }

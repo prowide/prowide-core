@@ -16,6 +16,8 @@ package com.prowidesoftware.swift.model;
 
 import java.io.Serializable;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.apache.commons.lang.Validate;
 
@@ -319,5 +321,16 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 		} else if (!sortKey.equals(other.sortKey))
 			return false;
 		return true;
+	}
+
+	/**
+	 * This method deserializes the JSON data into an user block object.
+	 * @see #toJson()
+	 * @since 7.9.8
+	 */
+	public static SwiftBlockUser fromJson(String json){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.fromJson(json, SwiftBlockUser.class);
 	}
 }

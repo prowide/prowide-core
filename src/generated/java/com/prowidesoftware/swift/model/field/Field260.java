@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
@@ -33,6 +35,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 260</h2>
@@ -212,7 +216,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -220,7 +224,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component1 as LogicalTerminalAddress
+	 * Gets the component1 as LogicalTerminalAddress
 	 * @return the component1 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getComponent1AsLogicalTerminalAddress() {
@@ -228,7 +232,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the LT Address (component1).
+	 * Gets the LT Address (component1).
 	 * @return the LT Address from component1
 	 */
 	public String getLTAddress() {
@@ -236,7 +240,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the LT Address (component1) as LogicalTerminalAddress
+	 * Gets the LT Address (component1) as LogicalTerminalAddress
 	 * @return the LT Address from component1 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getLTAddressAsLogicalTerminalAddress() {
@@ -280,7 +284,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -288,7 +292,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component2 as Calendar
+	 * Gets the component2 as Calendar
 	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
@@ -296,7 +300,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Date (component2).
+	 * Gets the Date (component2).
 	 * @return the Date from component2
 	 */
 	public String getDate() {
@@ -304,7 +308,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Date (component2) as Calendar
+	 * Gets the Date (component2) as Calendar
 	 * @return the Date from component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
@@ -348,7 +352,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -356,7 +360,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component3 as Calendar
+	 * Gets the component3 as Calendar
 	 * @return the component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent3AsCalendar() {
@@ -364,7 +368,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Start Time (component3).
+	 * Gets the Start Time (component3).
 	 * @return the Start Time from component3
 	 */
 	public String getStartTime() {
@@ -372,7 +376,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Start Time (component3) as Calendar
+	 * Gets the Start Time (component3) as Calendar
 	 * @return the Start Time from component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getStartTimeAsCalendar() {
@@ -416,7 +420,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -424,7 +428,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component4 as Calendar
+	 * Gets the component4 as Calendar
 	 * @return the component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
@@ -432,7 +436,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the End Time (component4).
+	 * Gets the End Time (component4).
 	 * @return the End Time from component4
 	 */
 	public String getEndTime() {
@@ -440,7 +444,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the End Time (component4) as Calendar
+	 * Gets the End Time (component4) as Calendar
 	 * @return the End Time from component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getEndTimeAsCalendar() {
@@ -484,7 +488,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -492,7 +496,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component5 as Number
+	 * Gets the component5 as Number
 	 * @return the component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
@@ -500,7 +504,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Session Number (component5).
+	 * Gets the Session Number (component5).
 	 * @return the Session Number from component5
 	 */
 	public String getSessionNumber() {
@@ -508,7 +512,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Session Number (component5) as Number
+	 * Gets the Session Number (component5) as Number
 	 * @return the Session Number from component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getSessionNumberAsNumber() {
@@ -625,7 +629,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -641,7 +645,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the first instance of Field260 in the given message.
+	 * Gets the first instance of Field260 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -653,7 +657,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field260 in the given message
+	 * Gets a list of all occurrences of the field Field260 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -665,7 +669,7 @@ public class Field260 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field260 from the given block
+	 * Gets a list of all occurrences of the field Field260 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -766,6 +770,49 @@ public class Field260 extends Field implements Serializable, DateContainer {
 		result.add("End Time");
 		result.add("Session Number");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "lTAddress");
+		result.put(2, "date");
+		result.put(3, "startTime");
+		result.put(4, "endTime");
+		result.put(5, "sessionNumber");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field260 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field260 fromJson(final String json) {
+		Field260 field = new Field260();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("lTAddress") != null) {
+			field.setComponent1(jsonObject.get("lTAddress").getAsString());
+		}
+		if (jsonObject.get("date") != null) {
+			field.setComponent2(jsonObject.get("date").getAsString());
+		}
+		if (jsonObject.get("startTime") != null) {
+			field.setComponent3(jsonObject.get("startTime").getAsString());
+		}
+		if (jsonObject.get("endTime") != null) {
+			field.setComponent4(jsonObject.get("endTime").getAsString());
+		}
+		if (jsonObject.get("sessionNumber") != null) {
+			field.setComponent5(jsonObject.get("sessionNumber").getAsString());
+		}
+		return field;
 	}
 	
 

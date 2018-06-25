@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 78</h2>
@@ -178,7 +182,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -196,7 +200,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component1).
+	 * Gets the Narrative (component1).
 	 * @return the Narrative from component1
 	 */
 	public String getNarrativeLine1() {
@@ -204,7 +208,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component2).
+	 * Gets the Narrative (component2).
 	 * @return the Narrative from component2
 	 */
 	public String getNarrativeLine2() {
@@ -212,7 +216,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component3).
+	 * Gets the Narrative (component3).
 	 * @return the Narrative from component3
 	 */
 	public String getNarrativeLine3() {
@@ -220,7 +224,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component4).
+	 * Gets the Narrative (component4).
 	 * @return the Narrative from component4
 	 */
 	public String getNarrativeLine4() {
@@ -228,7 +232,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component5).
+	 * Gets the Narrative (component5).
 	 * @return the Narrative from component5
 	 */
 	public String getNarrativeLine5() {
@@ -236,7 +240,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component6).
+	 * Gets the Narrative (component6).
 	 * @return the Narrative from component6
 	 */
 	public String getNarrativeLine6() {
@@ -244,7 +248,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component7).
+	 * Gets the Narrative (component7).
 	 * @return the Narrative from component7
 	 */
 	public String getNarrativeLine7() {
@@ -252,7 +256,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component8).
+	 * Gets the Narrative (component8).
 	 * @return the Narrative from component8
 	 */
 	public String getNarrativeLine8() {
@@ -260,7 +264,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component9).
+	 * Gets the Narrative (component9).
 	 * @return the Narrative from component9
 	 */
 	public String getNarrativeLine9() {
@@ -268,7 +272,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component10).
+	 * Gets the Narrative (component10).
 	 * @return the Narrative from component10
 	 */
 	public String getNarrativeLine10() {
@@ -276,7 +280,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component11).
+	 * Gets the Narrative (component11).
 	 * @return the Narrative from component11
 	 */
 	public String getNarrativeLine11() {
@@ -284,7 +288,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative (component12).
+	 * Gets the Narrative (component12).
 	 * @return the Narrative from component12
 	 */
 	public String getNarrativeLine12() {
@@ -292,7 +296,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the Narrative as a concatenation of component1 to component12.
+	 * Gets the Narrative as a concatenation of component1 to component12.
 	 * @return the Narrative from components
 	 */
 	public String getNarrative() {
@@ -435,7 +439,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -461,7 +465,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -487,7 +491,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -513,7 +517,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -539,7 +543,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -565,7 +569,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -591,7 +595,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -617,7 +621,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component9
+	 * Gets the component9
 	 * @return the component9
 	 */
 	public String getComponent9() {
@@ -643,7 +647,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component10
+	 * Gets the component10
 	 * @return the component10
 	 */
 	public String getComponent10() {
@@ -669,7 +673,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component11
+	 * Gets the component11
 	 * @return the component11
 	 */
 	public String getComponent11() {
@@ -695,7 +699,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		return this;
 	}
 	/**
-	 * Get the component12
+	 * Gets the component12
 	 * @return the component12
 	 */
 	public String getComponent12() {
@@ -810,7 +814,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -826,7 +830,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 	
 	/**
-	 * Get the first instance of Field78 in the given message.
+	 * Gets the first instance of Field78 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -838,7 +842,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field78 in the given message
+	 * Gets a list of all occurrences of the field Field78 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -850,7 +854,7 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field78 from the given block
+	 * Gets a list of all occurrences of the field Field78 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -1048,6 +1052,77 @@ public class Field78 extends Field implements Serializable, com.prowidesoftware.
 		result.add("Narrative 11");
 		result.add("Narrative 12");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "narrative");
+		result.put(2, "narrative2");
+		result.put(3, "narrative3");
+		result.put(4, "narrative4");
+		result.put(5, "narrative5");
+		result.put(6, "narrative6");
+		result.put(7, "narrative7");
+		result.put(8, "narrative8");
+		result.put(9, "narrative9");
+		result.put(10, "narrative10");
+		result.put(11, "narrative11");
+		result.put(12, "narrative12");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field78 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field78 fromJson(final String json) {
+		Field78 field = new Field78();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("narrative") != null) {
+			field.setComponent1(jsonObject.get("narrative").getAsString());
+		}
+		if (jsonObject.get("narrative2") != null) {
+			field.setComponent2(jsonObject.get("narrative2").getAsString());
+		}
+		if (jsonObject.get("narrative3") != null) {
+			field.setComponent3(jsonObject.get("narrative3").getAsString());
+		}
+		if (jsonObject.get("narrative4") != null) {
+			field.setComponent4(jsonObject.get("narrative4").getAsString());
+		}
+		if (jsonObject.get("narrative5") != null) {
+			field.setComponent5(jsonObject.get("narrative5").getAsString());
+		}
+		if (jsonObject.get("narrative6") != null) {
+			field.setComponent6(jsonObject.get("narrative6").getAsString());
+		}
+		if (jsonObject.get("narrative7") != null) {
+			field.setComponent7(jsonObject.get("narrative7").getAsString());
+		}
+		if (jsonObject.get("narrative8") != null) {
+			field.setComponent8(jsonObject.get("narrative8").getAsString());
+		}
+		if (jsonObject.get("narrative9") != null) {
+			field.setComponent9(jsonObject.get("narrative9").getAsString());
+		}
+		if (jsonObject.get("narrative10") != null) {
+			field.setComponent10(jsonObject.get("narrative10").getAsString());
+		}
+		if (jsonObject.get("narrative11") != null) {
+			field.setComponent11(jsonObject.get("narrative11").getAsString());
+		}
+		if (jsonObject.get("narrative12") != null) {
+			field.setComponent12(jsonObject.get("narrative12").getAsString());
+		}
+		return field;
 	}
 	
 

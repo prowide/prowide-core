@@ -328,7 +328,21 @@ public class MT430 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT430 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT430 message
+	 * @return a new instance of MT430
+	 * @since 7.10.2
+	 */
+	public final static MT430 fromJson(String json) {
+		return (MT430) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 59, 
 	 * or <code>null</code> if none is found.<br />

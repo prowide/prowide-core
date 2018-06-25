@@ -312,7 +312,21 @@ public class MT035 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT035 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT035 message
+	 * @return a new instance of MT035
+	 * @since 7.10.2
+	 */
+	public final static MT035 fromJson(String json) {
+		return (MT035) AbstractMT.fromJson(json);
+	}
+
 
 
 

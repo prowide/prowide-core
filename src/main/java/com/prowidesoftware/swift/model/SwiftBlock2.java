@@ -14,11 +14,15 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.prowidesoftware.JsonSerializable;
+import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import java.io.Serializable;
 import java.util.logging.Level;
 
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
  * Base class for SWIFT <b>Application Header Block (block 2)</b>.<br>
@@ -35,7 +39,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * @author www.prowidesoftware.com
  * @since 4.0
  */
-public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializable {
+public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializable, JsonSerializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock2.class.getName());
 	private static final long serialVersionUID = 7994472954593732477L;
 
@@ -216,15 +220,21 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 			return false;
 		return true;
 	}
-	
+
 	/**
-	 * intended to be overwritten
-	 * @since 7.5
+	 * Specific serialization is provided for block 2 input and output
+	 *
+	 * @since 7.9.8 current block 2 implementation, based on Gson (method signature with null implementation is available since 7.5)
 	 */
-	public String toJson() {
-		return null;		
+	@Override
+	public String toJson(){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter());
+		gsonBuilder.setPrettyPrinting();
+		final Gson gson = gsonBuilder.create();
+		return gson.toJson(this,SwiftBlock2.class);
 	}
-	
+
 	/**
 	 * Generic getter for block attributes based on qualified names from {@link SwiftBlock2Field}
 	 * @param field field to get

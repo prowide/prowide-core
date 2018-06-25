@@ -323,7 +323,21 @@ public class MT094 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT094 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT094 message
+	 * @return a new instance of MT094
+	 * @since 7.10.2
+	 */
+	public final static MT094 fromJson(String json) {
+		return (MT094) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 135, 
 	 * or <code>null</code> if none is found.<br />

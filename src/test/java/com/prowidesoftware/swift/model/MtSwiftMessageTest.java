@@ -1,9 +1,13 @@
 package com.prowidesoftware.swift.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * Test for {@link MtSwiftMessage} model API
@@ -55,4 +59,5 @@ public class MtSwiftMessageTest {
 		m.updateFromModel(sm);
 		assertEquals("fin.202", m.getIdentifier());
 	}
+
 }

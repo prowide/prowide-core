@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
@@ -33,6 +35,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 69B</h2>
@@ -218,7 +222,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -236,7 +240,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the Qualifier (component1).
+	 * Gets the Qualifier (component1).
 	 * @return the Qualifier from component1
 	 */
 	public String getQualifier() {
@@ -261,7 +265,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -269,7 +273,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the component2 as Calendar
+	 * Gets the component2 as Calendar
 	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
@@ -277,7 +281,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the Start Date (component2).
+	 * Gets the Start Date (component2).
 	 * @return the Start Date from component2
 	 */
 	public String getStartDate() {
@@ -285,7 +289,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 	
 	/**
-	 * Get the Start Date (component2) as Calendar
+	 * Gets the Start Date (component2) as Calendar
 	 * @return the Start Date from component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getStartDateAsCalendar() {
@@ -329,7 +333,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -337,7 +341,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the component3 as Calendar
+	 * Gets the component3 as Calendar
 	 * @return the component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent3AsCalendar() {
@@ -345,7 +349,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the Start Time (component3).
+	 * Gets the Start Time (component3).
 	 * @return the Start Time from component3
 	 */
 	public String getStartTime() {
@@ -353,7 +357,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 	
 	/**
-	 * Get the Start Time (component3) as Calendar
+	 * Gets the Start Time (component3) as Calendar
 	 * @return the Start Time from component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getStartTimeAsCalendar() {
@@ -397,7 +401,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -405,7 +409,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the component4 as Calendar
+	 * Gets the component4 as Calendar
 	 * @return the component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
@@ -413,7 +417,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the End Date (component4).
+	 * Gets the End Date (component4).
 	 * @return the End Date from component4
 	 */
 	public String getEndDate() {
@@ -421,7 +425,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 	
 	/**
-	 * Get the End Date (component4) as Calendar
+	 * Gets the End Date (component4) as Calendar
 	 * @return the End Date from component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getEndDateAsCalendar() {
@@ -465,7 +469,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -473,7 +477,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the component5 as Calendar
+	 * Gets the component5 as Calendar
 	 * @return the component5 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent5AsCalendar() {
@@ -481,7 +485,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the End Time (component5).
+	 * Gets the End Time (component5).
 	 * @return the End Time from component5
 	 */
 	public String getEndTime() {
@@ -489,7 +493,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 	
 	/**
-	 * Get the End Time (component5) as Calendar
+	 * Gets the End Time (component5) as Calendar
 	 * @return the End Time from component5 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getEndTimeAsCalendar() {
@@ -633,7 +637,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -649,7 +653,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 	
 	/**
-	 * Get the first instance of Field69B in the given message.
+	 * Gets the first instance of Field69B in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -661,7 +665,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field69B in the given message
+	 * Gets a list of all occurrences of the field Field69B in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -673,7 +677,7 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field69B from the given block
+	 * Gets a list of all occurrences of the field Field69B from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -773,6 +777,49 @@ public class Field69B extends Field implements Serializable, DateContainer, com.
 		result.add("End Date");
 		result.add("End Time");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "qualifier");
+		result.put(2, "startDate");
+		result.put(3, "startTime");
+		result.put(4, "endDate");
+		result.put(5, "endTime");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field69B object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field69B fromJson(final String json) {
+		Field69B field = new Field69B();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("qualifier") != null) {
+			field.setComponent1(jsonObject.get("qualifier").getAsString());
+		}
+		if (jsonObject.get("startDate") != null) {
+			field.setComponent2(jsonObject.get("startDate").getAsString());
+		}
+		if (jsonObject.get("startTime") != null) {
+			field.setComponent3(jsonObject.get("startTime").getAsString());
+		}
+		if (jsonObject.get("endDate") != null) {
+			field.setComponent4(jsonObject.get("endDate").getAsString());
+		}
+		if (jsonObject.get("endTime") != null) {
+			field.setComponent5(jsonObject.get("endTime").getAsString());
+		}
+		return field;
 	}
 	
 

@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 94E</h2>
@@ -190,7 +194,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -208,7 +212,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Qualifier (component1).
+	 * Gets the Qualifier (component1).
 	 * @return the Qualifier from component1
 	 */
 	public String getQualifier() {
@@ -233,7 +237,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -251,7 +255,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component2).
+	 * Gets the Address (component2).
 	 * @return the Address from component2
 	 */
 	public String getAddressLine1() {
@@ -259,7 +263,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component3).
+	 * Gets the Address (component3).
 	 * @return the Address from component3
 	 */
 	public String getAddressLine2() {
@@ -267,7 +271,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component4).
+	 * Gets the Address (component4).
 	 * @return the Address from component4
 	 */
 	public String getAddressLine3() {
@@ -275,7 +279,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component5).
+	 * Gets the Address (component5).
 	 * @return the Address from component5
 	 */
 	public String getAddressLine4() {
@@ -283,7 +287,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component6).
+	 * Gets the Address (component6).
 	 * @return the Address from component6
 	 */
 	public String getAddressLine5() {
@@ -291,7 +295,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component7).
+	 * Gets the Address (component7).
 	 * @return the Address from component7
 	 */
 	public String getAddressLine6() {
@@ -299,7 +303,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component8).
+	 * Gets the Address (component8).
 	 * @return the Address from component8
 	 */
 	public String getAddressLine7() {
@@ -307,7 +311,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component9).
+	 * Gets the Address (component9).
 	 * @return the Address from component9
 	 */
 	public String getAddressLine8() {
@@ -315,7 +319,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component10).
+	 * Gets the Address (component10).
 	 * @return the Address from component10
 	 */
 	public String getAddressLine9() {
@@ -323,7 +327,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address (component11).
+	 * Gets the Address (component11).
 	 * @return the Address from component11
 	 */
 	public String getAddressLine10() {
@@ -331,7 +335,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Address as a concatenation of component2 to component11.
+	 * Gets the Address as a concatenation of component2 to component11.
 	 * @return the Address from components
 	 */
 	public String getAddress() {
@@ -456,7 +460,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -482,7 +486,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -508,7 +512,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -534,7 +538,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -560,7 +564,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -586,7 +590,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -612,7 +616,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component9
+	 * Gets the component9
 	 * @return the component9
 	 */
 	public String getComponent9() {
@@ -638,7 +642,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component10
+	 * Gets the component10
 	 * @return the component10
 	 */
 	public String getComponent10() {
@@ -664,7 +668,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component11
+	 * Gets the component11
 	 * @return the component11
 	 */
 	public String getComponent11() {
@@ -808,7 +812,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -824,7 +828,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the first instance of Field94E in the given message.
+	 * Gets the first instance of Field94E in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -836,7 +840,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field94E in the given message
+	 * Gets a list of all occurrences of the field Field94E in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -848,7 +852,7 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field94E from the given block
+	 * Gets a list of all occurrences of the field Field94E from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -1041,6 +1045,73 @@ public class Field94E extends Field implements Serializable, com.prowidesoftware
 		result.add("Address 9");
 		result.add("Address 10");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "qualifier");
+		result.put(2, "address");
+		result.put(3, "address2");
+		result.put(4, "address3");
+		result.put(5, "address4");
+		result.put(6, "address5");
+		result.put(7, "address6");
+		result.put(8, "address7");
+		result.put(9, "address8");
+		result.put(10, "address9");
+		result.put(11, "address10");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field94E object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field94E fromJson(final String json) {
+		Field94E field = new Field94E();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("qualifier") != null) {
+			field.setComponent1(jsonObject.get("qualifier").getAsString());
+		}
+		if (jsonObject.get("address") != null) {
+			field.setComponent2(jsonObject.get("address").getAsString());
+		}
+		if (jsonObject.get("address2") != null) {
+			field.setComponent3(jsonObject.get("address2").getAsString());
+		}
+		if (jsonObject.get("address3") != null) {
+			field.setComponent4(jsonObject.get("address3").getAsString());
+		}
+		if (jsonObject.get("address4") != null) {
+			field.setComponent5(jsonObject.get("address4").getAsString());
+		}
+		if (jsonObject.get("address5") != null) {
+			field.setComponent6(jsonObject.get("address5").getAsString());
+		}
+		if (jsonObject.get("address6") != null) {
+			field.setComponent7(jsonObject.get("address6").getAsString());
+		}
+		if (jsonObject.get("address7") != null) {
+			field.setComponent8(jsonObject.get("address7").getAsString());
+		}
+		if (jsonObject.get("address8") != null) {
+			field.setComponent9(jsonObject.get("address8").getAsString());
+		}
+		if (jsonObject.get("address9") != null) {
+			field.setComponent10(jsonObject.get("address9").getAsString());
+		}
+		if (jsonObject.get("address10") != null) {
+			field.setComponent11(jsonObject.get("address10").getAsString());
+		}
+		return field;
 	}
 	
 

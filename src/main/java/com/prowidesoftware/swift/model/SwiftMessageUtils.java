@@ -270,7 +270,18 @@ public class SwiftMessageUtils {
 			byte[] bytesOfMessage = text.getBytes("UTF-8");
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] thedigest = md.digest(bytesOfMessage);
-			return new String(thedigest, "UTF-8");
+
+			//Converting the bytes to a Hex string
+			StringBuilder buff = new StringBuilder();
+			for (byte b : thedigest) {
+				String conversion = Integer.toString(b & 0xFF,16);
+				while (conversion.length() < 2) {
+					conversion = "0" + conversion;
+				}
+				buff.append(conversion);
+			}
+
+			return buff.toString();
 		} catch (UnsupportedEncodingException e) {
 			log.log(Level.FINEST, e.getMessage(), e);
 		} catch (NoSuchAlgorithmException e) {

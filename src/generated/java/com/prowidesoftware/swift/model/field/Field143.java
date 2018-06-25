@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 143</h2>
@@ -166,7 +170,7 @@ public class Field143 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -174,7 +178,7 @@ public class Field143 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the component1 as Calendar
+	 * Gets the component1 as Calendar
 	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
@@ -182,7 +186,7 @@ public class Field143 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the End Date Time (component1).
+	 * Gets the End Date Time (component1).
 	 * @return the End Date Time from component1
 	 */
 	public String getEndDateTime() {
@@ -190,7 +194,7 @@ public class Field143 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the End Date Time (component1) as Calendar
+	 * Gets the End Date Time (component1) as Calendar
 	 * @return the End Date Time from component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getEndDateTimeAsCalendar() {
@@ -290,7 +294,7 @@ public class Field143 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -306,7 +310,7 @@ public class Field143 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the first instance of Field143 in the given message.
+	 * Gets the first instance of Field143 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -318,7 +322,7 @@ public class Field143 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field143 in the given message
+	 * Gets a list of all occurrences of the field Field143 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -330,7 +334,7 @@ public class Field143 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field143 from the given block
+	 * Gets a list of all occurrences of the field Field143 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -399,6 +403,33 @@ public class Field143 extends Field implements Serializable {
 		List<String> result = new ArrayList<String>();
 		result.add("End Date Time");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "endDateTime");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field143 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field143 fromJson(final String json) {
+		Field143 field = new Field143();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("endDateTime") != null) {
+			field.setComponent1(jsonObject.get("endDateTime").getAsString());
+		}
+		return field;
 	}
 	
 

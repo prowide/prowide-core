@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Currency;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
 import com.prowidesoftware.swift.model.field.CurrencyResolver;
@@ -37,6 +39,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 92J</h2>
@@ -156,10 +160,10 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	@Override
 	public void parse(final String value) {
 		init(6);
-		setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "/"));
+        setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "/"));
 		setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
 		String toparse = SwiftParseUtils.getTokenThirdLast(value, "/");
-		setComponent3(SwiftParseUtils.getTokenFirst(toparse, null, "/"));		
+		setComponent3(SwiftParseUtils.getTokenFirst(toparse, null, "/"));
 		String toparse2 = SwiftParseUtils.getTokenSecond(toparse, "/");
 		setComponent6(SwiftParseUtils.getTokenThirdLast(toparse, "/"));
 		setComponent4(SwiftParseUtils.getAlphaPrefix(toparse2));
@@ -184,10 +188,10 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(":");
+        result.append(":");
 		append(result, 1);
 		result.append("/");
-		append(result, 2);		
+		append(result, 2);
 		result.append("/");
 		append(result, 3);
 		result.append("/");
@@ -220,7 +224,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -238,7 +242,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the Qualifier (component1).
+	 * Gets the Qualifier (component1).
 	 * @return the Qualifier from component1
 	 */
 	public String getQualifier() {
@@ -263,7 +267,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -281,7 +285,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the Data Source Scheme (component2).
+	 * Gets the Data Source Scheme (component2).
 	 * @return the Data Source Scheme from component2
 	 */
 	public String getDataSourceScheme() {
@@ -306,7 +310,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -324,7 +328,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the Code (component3).
+	 * Gets the Code (component3).
 	 * @return the Code from component3
 	 */
 	public String getCode() {
@@ -349,7 +353,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -357,7 +361,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the component4 as Currency
+	 * Gets the component4 as Currency
 	 * @return the component4 converted to Currency or <code>null</code> if cannot be converted
 	 */
 	public java.util.Currency getComponent4AsCurrency() {
@@ -365,7 +369,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the Currency (component4).
+	 * Gets the Currency (component4).
 	 * @return the Currency from component4
 	 */
 	public String getCurrency() {
@@ -373,7 +377,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Get the Currency (component4) as Currency
+	 * Gets the Currency (component4) as Currency
 	 * @return the Currency from component4 converted to Currency or <code>null</code> if cannot be converted
 	 */
 	public java.util.Currency getCurrencyAsCurrency() {
@@ -424,7 +428,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -432,7 +436,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the component5 as Number
+	 * Gets the component5 as Number
 	 * @return the component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
@@ -440,7 +444,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the Amount (component5).
+	 * Gets the Amount (component5).
 	 * @return the Amount from component5
 	 */
 	public String getAmount() {
@@ -448,7 +452,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Get the Amount (component5) as Number
+	 * Gets the Amount (component5) as Number
 	 * @return the Amount from component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
@@ -499,7 +503,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -517,7 +521,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the Narrative (component6).
+	 * Gets the Narrative (component6).
 	 * @return the Narrative from component6
 	 */
 	public String getNarrative() {
@@ -685,7 +689,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -701,7 +705,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Get the first instance of Field92J in the given message.
+	 * Gets the first instance of Field92J in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -713,7 +717,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field92J in the given message
+	 * Gets a list of all occurrences of the field Field92J in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -725,7 +729,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field92J from the given block
+	 * Gets a list of all occurrences of the field Field92J from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -819,6 +823,53 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		result.add("Amount");
 		result.add("Narrative");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "qualifier");
+		result.put(2, "dataSourceScheme");
+		result.put(3, "code");
+		result.put(4, "currency");
+		result.put(5, "amount");
+		result.put(6, "narrative");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field92J object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field92J fromJson(final String json) {
+		Field92J field = new Field92J();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("qualifier") != null) {
+			field.setComponent1(jsonObject.get("qualifier").getAsString());
+		}
+		if (jsonObject.get("dataSourceScheme") != null) {
+			field.setComponent2(jsonObject.get("dataSourceScheme").getAsString());
+		}
+		if (jsonObject.get("code") != null) {
+			field.setComponent3(jsonObject.get("code").getAsString());
+		}
+		if (jsonObject.get("currency") != null) {
+			field.setComponent4(jsonObject.get("currency").getAsString());
+		}
+		if (jsonObject.get("amount") != null) {
+			field.setComponent5(jsonObject.get("amount").getAsString());
+		}
+		if (jsonObject.get("narrative") != null) {
+			field.setComponent6(jsonObject.get("narrative").getAsString());
+		}
+		return field;
 	}
 	
 

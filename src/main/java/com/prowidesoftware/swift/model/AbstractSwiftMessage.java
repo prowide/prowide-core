@@ -14,27 +14,23 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.prowidesoftware.JsonSerializable;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.utils.Lib;
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
+
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import javax.xml.bind.annotation.XmlTransient;
-
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
-
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.utils.Lib;
+import java.util.*;
 
 /**
  * Base class for common attributes of MT and MX SWIFT messages intended for messages persistence.<br />
@@ -49,7 +45,7 @@ import com.prowidesoftware.swift.utils.Lib;
  * @author www.prowidesoftware.com
  * @since 7.0
  */
-public abstract class AbstractSwiftMessage implements Serializable {
+public abstract class AbstractSwiftMessage implements Serializable, JsonSerializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
 	private static final long serialVersionUID = 3769865560736793606L;
 	
@@ -1295,6 +1291,19 @@ public abstract class AbstractSwiftMessage implements Serializable {
 	public String getCreationDayOfMonth() {
 		int iday = creationDate.get(Calendar.DAY_OF_MONTH);
         return (iday < 10 ? "0" : "") + String.valueOf(iday);
+	}
+
+	/**
+	 * Gets a JSON representation of this message.
+     *
+	 * @since 7.10.2
+	 */
+	@Override
+	public String toJson() {
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();
+		final Gson gson = gsonBuilder.create();
+		return gson.toJson(this);
 	}
 	
 }

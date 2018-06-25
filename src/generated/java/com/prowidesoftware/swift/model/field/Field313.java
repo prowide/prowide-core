@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 313</h2>
@@ -166,7 +170,7 @@ public class Field313 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -174,7 +178,7 @@ public class Field313 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the component1 as Number
+	 * Gets the component1 as Number
 	 * @return the component1 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
@@ -182,7 +186,7 @@ public class Field313 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Count (component1).
+	 * Gets the Count (component1).
 	 * @return the Count from component1
 	 */
 	public String getCount() {
@@ -190,7 +194,7 @@ public class Field313 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the Count (component1) as Number
+	 * Gets the Count (component1) as Number
 	 * @return the Count from component1 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getCountAsNumber() {
@@ -299,7 +303,7 @@ public class Field313 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -315,7 +319,7 @@ public class Field313 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the first instance of Field313 in the given message.
+	 * Gets the first instance of Field313 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -327,7 +331,7 @@ public class Field313 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field313 in the given message
+	 * Gets a list of all occurrences of the field Field313 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -339,7 +343,7 @@ public class Field313 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field313 from the given block
+	 * Gets a list of all occurrences of the field Field313 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -408,6 +412,33 @@ public class Field313 extends Field implements Serializable {
 		List<String> result = new ArrayList<String>();
 		result.add("Count");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "count");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field313 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field313 fromJson(final String json) {
+		Field313 field = new Field313();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("count") != null) {
+			field.setComponent1(jsonObject.get("count").getAsString());
+		}
+		return field;
 	}
 	
 

@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 59F</h2>
@@ -236,7 +240,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -254,7 +258,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Account (component1) removing its starting slashes if any.
+	 * Gets the Account (component1) removing its starting slashes if any.
 	 * @return the Account from component1
 	 */
 	public String getAccount() {
@@ -288,7 +292,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -296,7 +300,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the component2 as Number
+	 * Gets the component2 as Number
 	 * @return the component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
@@ -304,7 +308,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Number 1 (component2).
+	 * Gets the Number 1 (component2).
 	 * @return the Number 1 from component2
 	 */
 	public String getNumber1() {
@@ -312,7 +316,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the Number 1 (component2) as Number
+	 * Gets the Number 1 (component2) as Number
 	 * @return the Number 1 from component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getNumber1AsNumber() {
@@ -365,7 +369,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -383,7 +387,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Name And Address 1 (component3).
+	 * Gets the Name And Address 1 (component3).
 	 * @return the Name And Address 1 from component3
 	 */
 	public String getNameAndAddress1() {
@@ -408,7 +412,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -416,7 +420,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the component4 as Number
+	 * Gets the component4 as Number
 	 * @return the component4 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
@@ -424,7 +428,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Number 2 (component4).
+	 * Gets the Number 2 (component4).
 	 * @return the Number 2 from component4
 	 */
 	public String getNumber2() {
@@ -432,7 +436,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the Number 2 (component4) as Number
+	 * Gets the Number 2 (component4) as Number
 	 * @return the Number 2 from component4 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getNumber2AsNumber() {
@@ -485,7 +489,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -503,7 +507,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Name And Address 2 (component5).
+	 * Gets the Name And Address 2 (component5).
 	 * @return the Name And Address 2 from component5
 	 */
 	public String getNameAndAddress2() {
@@ -528,7 +532,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -536,7 +540,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the component6 as Number
+	 * Gets the component6 as Number
 	 * @return the component6 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent6AsNumber() {
@@ -544,7 +548,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Number 3 (component6).
+	 * Gets the Number 3 (component6).
 	 * @return the Number 3 from component6
 	 */
 	public String getNumber3() {
@@ -552,7 +556,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the Number 3 (component6) as Number
+	 * Gets the Number 3 (component6) as Number
 	 * @return the Number 3 from component6 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getNumber3AsNumber() {
@@ -605,7 +609,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -623,7 +627,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Name And Address 3 (component7).
+	 * Gets the Name And Address 3 (component7).
 	 * @return the Name And Address 3 from component7
 	 */
 	public String getNameAndAddress3() {
@@ -648,7 +652,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -656,7 +660,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the component8 as Number
+	 * Gets the component8 as Number
 	 * @return the component8 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent8AsNumber() {
@@ -664,7 +668,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Number 4 (component8).
+	 * Gets the Number 4 (component8).
 	 * @return the Number 4 from component8
 	 */
 	public String getNumber4() {
@@ -672,7 +676,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the Number 4 (component8) as Number
+	 * Gets the Number 4 (component8) as Number
 	 * @return the Number 4 from component8 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getNumber4AsNumber() {
@@ -725,7 +729,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component9
+	 * Gets the component9
 	 * @return the component9
 	 */
 	public String getComponent9() {
@@ -743,7 +747,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Name And Address 4 (component9).
+	 * Gets the Name And Address 4 (component9).
 	 * @return the Name And Address 4 from component9
 	 */
 	public String getNameAndAddress4() {
@@ -845,7 +849,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -861,7 +865,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the first instance of Field59F in the given message.
+	 * Gets the first instance of Field59F in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -873,7 +877,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field59F in the given message
+	 * Gets a list of all occurrences of the field Field59F in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -885,7 +889,7 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field59F from the given block
+	 * Gets a list of all occurrences of the field Field59F from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -1088,6 +1092,65 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		result.add("Number 4");
 		result.add("Name And Address 4");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "account");
+		result.put(2, "number1");
+		result.put(3, "nameAndAddress1");
+		result.put(4, "number2");
+		result.put(5, "nameAndAddress2");
+		result.put(6, "number3");
+		result.put(7, "nameAndAddress3");
+		result.put(8, "number4");
+		result.put(9, "nameAndAddress4");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field59F object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field59F fromJson(final String json) {
+		Field59F field = new Field59F();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("account") != null) {
+			field.setComponent1(jsonObject.get("account").getAsString());
+		}
+		if (jsonObject.get("number1") != null) {
+			field.setComponent2(jsonObject.get("number1").getAsString());
+		}
+		if (jsonObject.get("nameAndAddress1") != null) {
+			field.setComponent3(jsonObject.get("nameAndAddress1").getAsString());
+		}
+		if (jsonObject.get("number2") != null) {
+			field.setComponent4(jsonObject.get("number2").getAsString());
+		}
+		if (jsonObject.get("nameAndAddress2") != null) {
+			field.setComponent5(jsonObject.get("nameAndAddress2").getAsString());
+		}
+		if (jsonObject.get("number3") != null) {
+			field.setComponent6(jsonObject.get("number3").getAsString());
+		}
+		if (jsonObject.get("nameAndAddress3") != null) {
+			field.setComponent7(jsonObject.get("nameAndAddress3").getAsString());
+		}
+		if (jsonObject.get("number4") != null) {
+			field.setComponent8(jsonObject.get("number4").getAsString());
+		}
+		if (jsonObject.get("nameAndAddress4") != null) {
+			field.setComponent9(jsonObject.get("nameAndAddress4").getAsString());
+		}
+		return field;
 	}
 	
 

@@ -318,7 +318,21 @@ public class MT711 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT711 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT711 message
+	 * @return a new instance of MT711
+	 * @since 7.10.2
+	 */
+	public final static MT711 fromJson(String json) {
+		return (MT711) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 27, 
 	 * or <code>null</code> if none is found.<br />

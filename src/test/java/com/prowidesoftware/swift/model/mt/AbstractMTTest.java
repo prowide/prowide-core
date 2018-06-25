@@ -1,12 +1,11 @@
 package com.prowidesoftware.swift.model.mt;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.List;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.prowidesoftware.swift.model.MtSwiftMessage;
 import com.prowidesoftware.swift.model.field.Field35B;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT549;
 import org.apache.commons.lang.StringUtils;
@@ -23,6 +22,8 @@ import com.prowidesoftware.swift.model.mt.mt2xx.MT202;
 import com.prowidesoftware.swift.model.mt.mt2xx.MT202COV;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT547;
 import com.prowidesoftware.swift.utils.TestUtils;
+
+import static org.junit.Assert.*;
 
 public class AbstractMTTest {
 
@@ -219,4 +220,5 @@ public class AbstractMTTest {
 		assertEquals(new Tag("16S", "ABC"), s2.getTag(3));
 	}
 	*/
+
 }

@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
@@ -496,6 +498,17 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("MxSwiftMessage id=").append(getId()).append(" message=").append(getMessage());
 		return sb.toString();
+	}
+
+	/**
+	 * This method deserializes the JSON data into an MX message object.
+	 * @see #toJson()
+	 * @since 7.10.2
+	 */
+	public static MxSwiftMessage fromJson(String json){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.fromJson(json, MxSwiftMessage.class);
 	}
 
 }

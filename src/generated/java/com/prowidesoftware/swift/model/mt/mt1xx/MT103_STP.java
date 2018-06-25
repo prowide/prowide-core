@@ -446,7 +446,21 @@ public class MT103_STP extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT103_STP messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT103_STP message
+	 * @return a new instance of MT103_STP
+	 * @since 7.10.2
+	 */
+	public final static MT103_STP fromJson(String json) {
+		return (MT103_STP) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
 	 * or <code>null</code> if none is found.<br />

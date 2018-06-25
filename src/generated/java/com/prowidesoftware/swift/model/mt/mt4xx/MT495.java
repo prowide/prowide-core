@@ -318,7 +318,21 @@ public class MT495 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT495 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT495 message
+	 * @return a new instance of MT495
+	 * @since 7.10.2
+	 */
+	public final static MT495 fromJson(String json) {
+		return (MT495) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
 	 * or <code>null</code> if none is found.<br />

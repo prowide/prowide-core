@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 330</h2>
@@ -215,7 +219,7 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -223,7 +227,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the component1 as Number
+	 * Gets the component1 as Number
 	 * @return the component1 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
@@ -231,7 +235,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the Session Number (component1).
+	 * Gets the Session Number (component1).
 	 * @return the Session Number from component1
 	 */
 	public String getSessionNumber() {
@@ -239,7 +243,7 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the Session Number (component1) as Number
+	 * Gets the Session Number (component1) as Number
 	 * @return the Session Number from component1 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getSessionNumberAsNumber() {
@@ -292,7 +296,7 @@ public class Field330 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -300,7 +304,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the component2 as Number
+	 * Gets the component2 as Number
 	 * @return the component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
@@ -308,7 +312,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the ISN (component2).
+	 * Gets the ISN (component2).
 	 * @return the ISN from component2
 	 */
 	public String getISN() {
@@ -316,7 +320,7 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the ISN (component2) as Number
+	 * Gets the ISN (component2) as Number
 	 * @return the ISN from component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getISNAsNumber() {
@@ -369,7 +373,7 @@ public class Field330 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -377,7 +381,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the component3 as Number
+	 * Gets the component3 as Number
 	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
@@ -385,7 +389,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the ISN NAK (component3).
+	 * Gets the ISN NAK (component3).
 	 * @return the ISN NAK from component3
 	 */
 	public String getISNNAK() {
@@ -393,7 +397,7 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the ISN NAK (component3) as Number
+	 * Gets the ISN NAK (component3) as Number
 	 * @return the ISN NAK from component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getISNNAKAsNumber() {
@@ -446,7 +450,7 @@ public class Field330 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -454,7 +458,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the component4 as Number
+	 * Gets the component4 as Number
 	 * @return the component4 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
@@ -462,7 +466,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the OSN (component4).
+	 * Gets the OSN (component4).
 	 * @return the OSN from component4
 	 */
 	public String getOSN() {
@@ -470,7 +474,7 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the OSN (component4) as Number
+	 * Gets the OSN (component4) as Number
 	 * @return the OSN from component4 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getOSNAsNumber() {
@@ -523,7 +527,7 @@ public class Field330 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -531,7 +535,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the component5 as Number
+	 * Gets the component5 as Number
 	 * @return the component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
@@ -539,7 +543,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the OSN NAK (component5).
+	 * Gets the OSN NAK (component5).
 	 * @return the OSN NAK from component5
 	 */
 	public String getOSNNAK() {
@@ -547,7 +551,7 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the OSN NAK (component5) as Number
+	 * Gets the OSN NAK (component5) as Number
 	 * @return the OSN NAK from component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getOSNNAKAsNumber() {
@@ -600,7 +604,7 @@ public class Field330 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -608,7 +612,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the component6 as Number
+	 * Gets the component6 as Number
 	 * @return the component6 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent6AsNumber() {
@@ -616,7 +620,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the ACK Replay Indicator (component6).
+	 * Gets the ACK Replay Indicator (component6).
 	 * @return the ACK Replay Indicator from component6
 	 */
 	public String getACKReplayIndicator() {
@@ -624,7 +628,7 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the ACK Replay Indicator (component6) as Number
+	 * Gets the ACK Replay Indicator (component6) as Number
 	 * @return the ACK Replay Indicator from component6 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getACKReplayIndicatorAsNumber() {
@@ -733,7 +737,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -749,7 +753,7 @@ public class Field330 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the first instance of Field330 in the given message.
+	 * Gets the first instance of Field330 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -761,7 +765,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field330 in the given message
+	 * Gets a list of all occurrences of the field Field330 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -773,7 +777,7 @@ public class Field330 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field330 from the given block
+	 * Gets a list of all occurrences of the field Field330 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -892,6 +896,53 @@ public class Field330 extends Field implements Serializable {
 		result.add("OSN NAK");
 		result.add("ACK Replay Indicator");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "sessionNumber");
+		result.put(2, "iSN");
+		result.put(3, "iSNNAK");
+		result.put(4, "oSN");
+		result.put(5, "oSNNAK");
+		result.put(6, "aCKReplayIndicator");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field330 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field330 fromJson(final String json) {
+		Field330 field = new Field330();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("sessionNumber") != null) {
+			field.setComponent1(jsonObject.get("sessionNumber").getAsString());
+		}
+		if (jsonObject.get("iSN") != null) {
+			field.setComponent2(jsonObject.get("iSN").getAsString());
+		}
+		if (jsonObject.get("iSNNAK") != null) {
+			field.setComponent3(jsonObject.get("iSNNAK").getAsString());
+		}
+		if (jsonObject.get("oSN") != null) {
+			field.setComponent4(jsonObject.get("oSN").getAsString());
+		}
+		if (jsonObject.get("oSNNAK") != null) {
+			field.setComponent5(jsonObject.get("oSNNAK").getAsString());
+		}
+		if (jsonObject.get("aCKReplayIndicator") != null) {
+			field.setComponent6(jsonObject.get("aCKReplayIndicator").getAsString());
+		}
+		return field;
 	}
 	
 

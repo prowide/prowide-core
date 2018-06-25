@@ -11,10 +11,10 @@
 */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.swift.SchemeConstantsS;
 import com.prowidesoftware.swift.io.ConversionService;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.field.Field19A;
-import com.prowidesoftware.swift.model.field.Field93B;
+import com.prowidesoftware.swift.io.parser.SwiftParser;
+import com.prowidesoftware.swift.model.field.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -1385,6 +1385,58 @@ public class SwiftTagListBlockTest {
 		SwiftTagListBlock sb = b.removeSubBlock("TEST");
 		assertEquals(1, sb.size());
 		assertEquals("val1", sb.getTag(0).getValue());
+	}
+
+	/*
+	 * https://github.com/prowide/prowide-core/issues/13
+	 */
+	@Test
+	public void testRemoveSubBlock_7() throws Exception {
+		b.append(Field20.tag("before"));
+
+		// first sub-block
+		b.append(Field16R.tag("SUBBAL"));
+		b.append(Field20.tag("first block"));
+		b.append(Field16S.tag("SUBBAL"));
+		// second sub-block
+		b.append(Field16R.tag("SUBBAL"));
+		b.append(Field20.tag("second block"));
+		b.append(Field16S.tag("SUBBAL"));
+
+		b.append(Field20.tag("after"));
+
+		SwiftTagListBlock sb = b.removeSubBlock("SUBBAL");
+		assertEquals("before", sb.getTag(0).getValue());
+		assertEquals("SUBBAL", sb.getTag(1).getValue());
+		assertEquals("second block", sb.getTag(2).getValue());
+		assertEquals("SUBBAL", sb.getTag(3).getValue());
+		assertEquals("after", sb.getTag(4).getValue());
+		assertEquals(5, sb.size());
+	}
+
+	/*
+	 * https://github.com/prowide/prowide-core/issues/13
+	 */
+	@Test
+	public void testRemoveSubBlocks() throws Exception {
+		b.append(Field20.tag("before"));
+
+		// first sub-block
+		b.append(Field16R.tag("SUBBAL"));
+		b.append(Field20.tag("first block"));
+		b.append(Field16S.tag("SUBBAL"));
+		// second sub-block
+		b.append(Field16R.tag("SUBBAL"));
+		b.append(Field20.tag("second block"));
+		b.append(Field16S.tag("SUBBAL"));
+
+		b.append(Field20.tag("after"));
+
+		// remove all subblocks
+		SwiftTagListBlock sb = b.removeSubBlocks("SUBBAL");
+		assertEquals("before", sb.getTag(0).getValue());
+		assertEquals("after", sb.getTag(1).getValue());
+		assertEquals(2, sb.size());
 	}
 
 	@Test

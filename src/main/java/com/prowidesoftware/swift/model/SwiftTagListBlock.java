@@ -14,12 +14,16 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.prowidesoftware.JsonSerializable;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.model.field.Field16R;
+import com.prowidesoftware.swift.model.field.Field16S;
 import com.prowidesoftware.swift.model.field.GenericField;
-
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
@@ -35,7 +39,7 @@ import java.util.logging.Level;
  * @author www.prowidesoftware.com
  * @since 4.0
  */
-public class SwiftTagListBlock extends SwiftBlock implements Serializable, Iterable<Tag> {
+public class SwiftTagListBlock extends SwiftBlock implements Serializable, Iterable<Tag>, JsonSerializable {
     private static final long serialVersionUID = -3753513588165638610L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftTagListBlock.class.getName());
 	private static final String TAG_VALIDATION_MESSAGE = "parameter 'tag' cannot not be null";
@@ -1503,38 +1507,64 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 
     /**
-     * Get a sub block with all tags but the ones in the first occurrence of the given sub block.<br />
-	 * It searches for a starting 16R field (with blockName as value) and its correspondent 16S
+     * Removes a sub block using fields 16R and 16S with the given block name as boundary.
+	 *
+	 * <p>It searches for a starting 16R field (with blockName as value) and its correspondent 16S
 	 * field (with blockName as value) as block boundaries and removes those fields from the result.
-	 * If the searched block is not found (starting field 16R not present) the result will be just
+	 * <p>If the searched block is not found (starting field 16R not present) the result will be just
 	 * a copy from this block. If the end boundary is not found (ending field field 16S not present),
-	 * it trims all fields after the start boundary 16R.
+	 * trims all fields after the start boundary 16R.
+	 * <p>If several instances of the searched block are present, only the first one will be removed.
+	 * <p>The boundary fields 16R and 16S are also removed from the result.
 	 *
-	 * @param blockName block name, used for block
-	 *
+	 * @param blockName block name, for example "SUBBAL" to search for 16R:SUBBAL and 16S:SUBBAL as boundaries
+	 * @return a new block with the trimmed content
 	 * @since 7.4
      */
-	 public SwiftTagListBlock removeSubBlock(final String blockName) {
-		 final SwiftTagListBlock result = new SwiftTagListBlock();
-		 boolean startBoundaryFound = false;
-		 boolean endBoundaryFound = false;
-		 for (int i=0; i<this.tags.size(); i++) {
-			 boolean isEndBoundaryFound = false;
-			 final Tag t = this.tags.get(i);
-			 if (StringUtils.equals(blockName, t.getValue())) {
-				 if (StringUtils.equals("16R", t.getName())) {
-					 startBoundaryFound = true;
-				 } else if (StringUtils.equals("16S", t.getName())) {
-					 endBoundaryFound = true;
-					 isEndBoundaryFound = true;
-				 }
-			 }
-			 if ( !startBoundaryFound || (endBoundaryFound && !isEndBoundaryFound)) {
-				 result.append(t);
-			 }
-		 }
-		 return result;
-	 }
+	public SwiftTagListBlock removeSubBlock(final String blockName) {
+		return removeSubBlock(blockName, false);
+	}
+
+	/**
+	 * Remove all sub blocks with the given name (using fields 16R and 16S as boundaries).
+	 * <p>
+	 * The implementation is similar to {@link #removeSubBlock(String)} but will remove all found
+	 * instances of the sub block.
+	 *
+	 * @see #removeSubBlock(String)
+	 * @param blockName block name, for example "SUBBAL" to search for 16R:SUBBAL and 16S:SUBBAL as boundaries
+	 * @return a new block with the trimmed content
+	 * @since 7.10.3
+	 */
+	public SwiftTagListBlock removeSubBlocks(final String blockName) {
+		return removeSubBlock(blockName, true);
+	}
+
+	private SwiftTagListBlock removeSubBlock(final String blockName, boolean removeAll) {
+		final SwiftTagListBlock result = new SwiftTagListBlock();
+		boolean inBlock = false;
+		boolean blockRemoved = false;
+		for (Tag t : this.tags) {
+			if (blockRemoved && !removeAll) {
+		 		// sub block already removed, keep all remaining tags
+		 		result.append(t);
+			} else {
+				if (Field16R.tag(blockName).equals(t) && !inBlock) {
+					// start boundary found
+					inBlock = true;
+				} else if (Field16S.tag(blockName).equals(t) && inBlock) {
+					// end boundary found
+					inBlock = false;
+					// we are done
+					blockRemoved = true;
+				} else if (!inBlock) {
+					// keep all tags but the one in the searched block
+					result.append(t);
+				}
+			}
+		}
+		return result;
+	}
 
 	 /**
 	  * Tell if this block contains any of the given name tags.
@@ -1947,26 +1977,34 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 return new SwiftTagListBlock(tags);
 	 }
 
-	 /**
-	  * @since 7.5
-	  */
-	 public String toJson() {
-		 final StringBuilder sb = new StringBuilder();
-		 sb.append("[ \n");
-		 if (this.tags != null && !this.tags.isEmpty()) {
-			 for (int i=0;i<this.tags.size();i++) {
-				 final Tag t = this.tags.get(i);
-				 sb.append("{ \"").append(t.getName()).append("\" : \"").append(escapeJson(t.getValue())).append("\" }");
-				 if (i+1<this.tags.size()) {
-					 sb.append(',');
-				 }
-				 sb.append('\n');
-			 }
-
-		 }
-		 sb.append("]");
-		 return sb.toString();
-	 }
+	/**
+	 * Legacy (version 1) json representation of this object.
+	 *
+	 * <p>This implementation has been replaced by version 2, based on Gson.
+	 * The main difference is the list of tags in the new version is serialized
+	 * as a named field "tags".</p>
+	 *
+	 * @deprecated use {@link #toJson()} instead
+	 * @since 7.9.8
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
+	public String toJsonV1() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append("[ \n");
+		if (this.tags != null && !this.tags.isEmpty()) {
+			for (int i=0;i<this.tags.size();i++) {
+				final Tag t = this.tags.get(i);
+				sb.append("{ \"").append(t.getName()).append("\" : \"").append(escapeJson(t.getValue())).append("\" }");
+				if (i+1<this.tags.size()) {
+					sb.append(',');
+				}
+				sb.append('\n');
+			}
+		}
+		sb.append("]");
+		return sb.toString();
+	}
 	 
 	 private String escapeJson(final String value) {
 		 String tmp = StringUtils.replace(value, "\n", "\\n");
@@ -1974,6 +2012,34 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 tmp = StringUtils.remove(tmp, "\r");
 		 return tmp;
 	 }
+
+	/**
+	 * Get a json representation of this block.
+	 *
+	 * Example:<br />
+	 * <pre>
+	 *{
+	 *  "tags": [
+	 *  {
+	 *  "name": "113",
+	 *  "value": "SEPA"
+	 *  },
+	 *  {
+	 *  "name": "20",
+	 *  "value": "REFERENCE"
+	 *  }
+	 *  ]
+	 *}
+	 *  </pre>
+	 *
+	 * @since 7.9.8
+	 */
+	@Override
+	public String toJson() {
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.toJson(this);
+	}
 
 	 /**
 	  * Appends all tags in block to the contents of this block

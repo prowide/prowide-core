@@ -14,26 +14,9 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model.mx;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.StringReader;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.stream.StreamSource;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.prowidesoftware.JsonSerializable;
 import com.prowidesoftware.swift.Resolver;
 import com.prowidesoftware.swift.io.parser.MxParser;
 import com.prowidesoftware.swift.model.AbstractMessage;
@@ -41,6 +24,21 @@ import com.prowidesoftware.swift.model.MessageStandardType;
 import com.prowidesoftware.swift.model.MxId;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.utils.Lib;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.stream.StreamSource;
+import java.io.*;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -68,7 +66,7 @@ import com.prowidesoftware.swift.utils.Lib;
  * @since 7.6
  * @see AbstractMT
  */
-public abstract class AbstractMX extends AbstractMessage implements IDocument {
+public abstract class AbstractMX extends AbstractMessage implements IDocument, JsonSerializable {
 	private static final transient Logger log = Logger.getLogger(AbstractMX.class.getName());
 
 	protected AbstractMX() {
@@ -385,5 +383,49 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument {
 	public static AbstractMX parse(final File file, MxId id) throws IOException {
 		return parse(Lib.readFile(file), id);
 	}
-	
+
+	/**
+	 * Get a JSON representation of this MX	message.
+	 * @since 7.10.2
+	 */
+	@Override
+	public String toJson() {
+		final Gson gson = new GsonBuilder()
+				.registerTypeAdapter(AbstractMX.class, new AbstractMXAdapter())
+				.registerTypeAdapter(XMLGregorianCalendar.class, new XMLGregorianCalendarAdapter())
+				.setPrettyPrinting()
+				.create();
+		// we use AbstractMX and not this.getClass() in order to force usage of the adapter
+		return gson.toJson(this, AbstractMX.class);
+	}
+
+	/**
+	 * Used by subclasses to implement JSON deserialization.
+	 * @param json a JSON representation of an MX message
+	 * @param classOfT the specific MX subclass
+	 * @return a specific deserialized MX message object
+	 * @since 7.10.2
+	 */
+	protected static <T> T fromJson(String json, Class<T> classOfT) {
+		final Gson gson = new GsonBuilder()
+				.registerTypeAdapter(AbstractMX.class, new AbstractMXAdapter())
+				.registerTypeAdapter(XMLGregorianCalendar.class, new XMLGregorianCalendarAdapter())
+				.create();
+		return gson.fromJson(json, classOfT);
+	}
+
+	/**
+	 * Creates an MX messages from its JSON representation.
+	 * @param json a JSON representation of an MX message
+	 * @return a specific deserialized MX message object, for example MxPain00100108
+	 * @since 7.10.2
+	 */
+	public static AbstractMX fromJson(String json) {
+		final Gson gson = new GsonBuilder()
+				.registerTypeAdapter(AbstractMX.class, new AbstractMXAdapter())
+				.registerTypeAdapter(XMLGregorianCalendar.class, new XMLGregorianCalendarAdapter())
+				.create();
+		return gson.fromJson(json, AbstractMX.class);
+	}
+
 }

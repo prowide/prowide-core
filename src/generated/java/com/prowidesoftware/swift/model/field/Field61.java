@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.AmountResolver;
@@ -34,6 +36,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 61</h2>
@@ -240,7 +244,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -248,7 +252,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the component1 as Calendar
+	 * Gets the component1 as Calendar
 	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
@@ -256,7 +260,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the Value Date (component1).
+	 * Gets the Value Date (component1).
 	 * @return the Value Date from component1
 	 */
 	public String getValueDate() {
@@ -264,7 +268,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 	
 	/**
-	 * Get the Value Date (component1) as Calendar
+	 * Gets the Value Date (component1) as Calendar
 	 * @return the Value Date from component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getValueDateAsCalendar() {
@@ -315,7 +319,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -323,7 +327,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the component2 as Calendar
+	 * Gets the component2 as Calendar
 	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
@@ -331,7 +335,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the Entry Date (component2).
+	 * Gets the Entry Date (component2).
 	 * @return the Entry Date from component2
 	 */
 	public String getEntryDate() {
@@ -339,7 +343,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 	
 	/**
-	 * Get the Entry Date (component2) as Calendar
+	 * Gets the Entry Date (component2) as Calendar
 	 * @return the Entry Date from component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getEntryDateAsCalendar() {
@@ -390,7 +394,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -408,7 +412,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the D/C Mark (component3).
+	 * Gets the D/C Mark (component3).
 	 * @return the D/C Mark from component3
 	 */
 	public String getDCMark() {
@@ -433,7 +437,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -451,7 +455,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the Funds Code (component4).
+	 * Gets the Funds Code (component4).
 	 * @return the Funds Code from component4
 	 */
 	public String getFundsCode() {
@@ -476,7 +480,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -484,7 +488,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the component5 as Number
+	 * Gets the component5 as Number
 	 * @return the component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
@@ -492,7 +496,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the Amount (component5).
+	 * Gets the Amount (component5).
 	 * @return the Amount from component5
 	 */
 	public String getAmount() {
@@ -500,7 +504,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 	
 	/**
-	 * Get the Amount (component5) as Number
+	 * Gets the Amount (component5) as Number
 	 * @return the Amount from component5 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
@@ -551,7 +555,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -569,7 +573,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the Transaction Type (component6).
+	 * Gets the Transaction Type (component6).
 	 * @return the Transaction Type from component6
 	 */
 	public String getTransactionType() {
@@ -594,7 +598,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -612,7 +616,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the Identification Code (component7).
+	 * Gets the Identification Code (component7).
 	 * @return the Identification Code from component7
 	 */
 	public String getIdentificationCode() {
@@ -637,7 +641,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -655,7 +659,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the Reference For The Account Owner (component8).
+	 * Gets the Reference For The Account Owner (component8).
 	 * @return the Reference For The Account Owner from component8
 	 */
 	public String getReferenceForTheAccountOwner() {
@@ -680,7 +684,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		return this;
 	}
 	/**
-	 * Get the component9
+	 * Gets the component9
 	 * @return the component9
 	 */
 	public String getComponent9() {
@@ -698,7 +702,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the Reference Of The Account Servicing Institution (component9).
+	 * Gets the Reference Of The Account Servicing Institution (component9).
 	 * @return the Reference Of The Account Servicing Institution from component9
 	 */
 	public String getReferenceOfTheAccountServicingInstitution() {
@@ -723,7 +727,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		return this;
 	}
 	/**
-	 * Get the component10
+	 * Gets the component10
 	 * @return the component10
 	 */
 	public String getComponent10() {
@@ -741,7 +745,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the Supplementary Details (component10).
+	 * Gets the Supplementary Details (component10).
 	 * @return the Supplementary Details from component10
 	 */
 	public String getSupplementaryDetails() {
@@ -848,7 +852,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -864,7 +868,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 	
 	/**
-	 * Get the first instance of Field61 in the given message.
+	 * Gets the first instance of Field61 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -876,7 +880,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field61 in the given message
+	 * Gets a list of all occurrences of the field Field61 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -888,7 +892,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field61 from the given block
+	 * Gets a list of all occurrences of the field Field61 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -1089,6 +1093,69 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		result.add("Reference Of The Account Servicing Institution");
 		result.add("Supplementary Details");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "valueDate");
+		result.put(2, "entryDate");
+		result.put(3, "dCMark");
+		result.put(4, "fundsCode");
+		result.put(5, "amount");
+		result.put(6, "transactionType");
+		result.put(7, "identificationCode");
+		result.put(8, "referenceForTheAccountOwner");
+		result.put(9, "referenceOfTheAccountServicingInstitution");
+		result.put(10, "supplementaryDetails");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field61 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field61 fromJson(final String json) {
+		Field61 field = new Field61();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("valueDate") != null) {
+			field.setComponent1(jsonObject.get("valueDate").getAsString());
+		}
+		if (jsonObject.get("entryDate") != null) {
+			field.setComponent2(jsonObject.get("entryDate").getAsString());
+		}
+		if (jsonObject.get("dCMark") != null) {
+			field.setComponent3(jsonObject.get("dCMark").getAsString());
+		}
+		if (jsonObject.get("fundsCode") != null) {
+			field.setComponent4(jsonObject.get("fundsCode").getAsString());
+		}
+		if (jsonObject.get("amount") != null) {
+			field.setComponent5(jsonObject.get("amount").getAsString());
+		}
+		if (jsonObject.get("transactionType") != null) {
+			field.setComponent6(jsonObject.get("transactionType").getAsString());
+		}
+		if (jsonObject.get("identificationCode") != null) {
+			field.setComponent7(jsonObject.get("identificationCode").getAsString());
+		}
+		if (jsonObject.get("referenceForTheAccountOwner") != null) {
+			field.setComponent8(jsonObject.get("referenceForTheAccountOwner").getAsString());
+		}
+		if (jsonObject.get("referenceOfTheAccountServicingInstitution") != null) {
+			field.setComponent9(jsonObject.get("referenceOfTheAccountServicingInstitution").getAsString());
+		}
+		if (jsonObject.get("supplementaryDetails") != null) {
+			field.setComponent10(jsonObject.get("supplementaryDetails").getAsString());
+		}
+		return field;
 	}
 	
 

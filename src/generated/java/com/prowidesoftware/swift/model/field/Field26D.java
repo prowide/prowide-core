@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 26D</h2>
@@ -196,7 +200,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -214,7 +218,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component1).
+	 * Gets the Narrative (component1).
 	 * @return the Narrative from component1
 	 */
 	public String getNarrativeLine1() {
@@ -222,7 +226,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component2).
+	 * Gets the Narrative (component2).
 	 * @return the Narrative from component2
 	 */
 	public String getNarrativeLine2() {
@@ -230,7 +234,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component3).
+	 * Gets the Narrative (component3).
 	 * @return the Narrative from component3
 	 */
 	public String getNarrativeLine3() {
@@ -238,7 +242,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component4).
+	 * Gets the Narrative (component4).
 	 * @return the Narrative from component4
 	 */
 	public String getNarrativeLine4() {
@@ -246,7 +250,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component5).
+	 * Gets the Narrative (component5).
 	 * @return the Narrative from component5
 	 */
 	public String getNarrativeLine5() {
@@ -254,7 +258,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component6).
+	 * Gets the Narrative (component6).
 	 * @return the Narrative from component6
 	 */
 	public String getNarrativeLine6() {
@@ -262,7 +266,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component7).
+	 * Gets the Narrative (component7).
 	 * @return the Narrative from component7
 	 */
 	public String getNarrativeLine7() {
@@ -270,7 +274,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component8).
+	 * Gets the Narrative (component8).
 	 * @return the Narrative from component8
 	 */
 	public String getNarrativeLine8() {
@@ -278,7 +282,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component9).
+	 * Gets the Narrative (component9).
 	 * @return the Narrative from component9
 	 */
 	public String getNarrativeLine9() {
@@ -286,7 +290,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component10).
+	 * Gets the Narrative (component10).
 	 * @return the Narrative from component10
 	 */
 	public String getNarrativeLine10() {
@@ -294,7 +298,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component11).
+	 * Gets the Narrative (component11).
 	 * @return the Narrative from component11
 	 */
 	public String getNarrativeLine11() {
@@ -302,7 +306,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component12).
+	 * Gets the Narrative (component12).
 	 * @return the Narrative from component12
 	 */
 	public String getNarrativeLine12() {
@@ -310,7 +314,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component13).
+	 * Gets the Narrative (component13).
 	 * @return the Narrative from component13
 	 */
 	public String getNarrativeLine13() {
@@ -318,7 +322,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component14).
+	 * Gets the Narrative (component14).
 	 * @return the Narrative from component14
 	 */
 	public String getNarrativeLine14() {
@@ -326,7 +330,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component15).
+	 * Gets the Narrative (component15).
 	 * @return the Narrative from component15
 	 */
 	public String getNarrativeLine15() {
@@ -334,7 +338,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component16).
+	 * Gets the Narrative (component16).
 	 * @return the Narrative from component16
 	 */
 	public String getNarrativeLine16() {
@@ -342,7 +346,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component17).
+	 * Gets the Narrative (component17).
 	 * @return the Narrative from component17
 	 */
 	public String getNarrativeLine17() {
@@ -350,7 +354,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component18).
+	 * Gets the Narrative (component18).
 	 * @return the Narrative from component18
 	 */
 	public String getNarrativeLine18() {
@@ -358,7 +362,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component19).
+	 * Gets the Narrative (component19).
 	 * @return the Narrative from component19
 	 */
 	public String getNarrativeLine19() {
@@ -366,7 +370,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component20).
+	 * Gets the Narrative (component20).
 	 * @return the Narrative from component20
 	 */
 	public String getNarrativeLine20() {
@@ -374,7 +378,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component21).
+	 * Gets the Narrative (component21).
 	 * @return the Narrative from component21
 	 */
 	public String getNarrativeLine21() {
@@ -382,7 +386,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component22).
+	 * Gets the Narrative (component22).
 	 * @return the Narrative from component22
 	 */
 	public String getNarrativeLine22() {
@@ -390,7 +394,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component23).
+	 * Gets the Narrative (component23).
 	 * @return the Narrative from component23
 	 */
 	public String getNarrativeLine23() {
@@ -398,7 +402,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component24).
+	 * Gets the Narrative (component24).
 	 * @return the Narrative from component24
 	 */
 	public String getNarrativeLine24() {
@@ -406,7 +410,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component25).
+	 * Gets the Narrative (component25).
 	 * @return the Narrative from component25
 	 */
 	public String getNarrativeLine25() {
@@ -414,7 +418,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component26).
+	 * Gets the Narrative (component26).
 	 * @return the Narrative from component26
 	 */
 	public String getNarrativeLine26() {
@@ -422,7 +426,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component27).
+	 * Gets the Narrative (component27).
 	 * @return the Narrative from component27
 	 */
 	public String getNarrativeLine27() {
@@ -430,7 +434,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component28).
+	 * Gets the Narrative (component28).
 	 * @return the Narrative from component28
 	 */
 	public String getNarrativeLine28() {
@@ -438,7 +442,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component29).
+	 * Gets the Narrative (component29).
 	 * @return the Narrative from component29
 	 */
 	public String getNarrativeLine29() {
@@ -446,7 +450,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative (component30).
+	 * Gets the Narrative (component30).
 	 * @return the Narrative from component30
 	 */
 	public String getNarrativeLine30() {
@@ -454,7 +458,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the Narrative as a concatenation of component1 to component30.
+	 * Gets the Narrative as a concatenation of component1 to component30.
 	 * @return the Narrative from components
 	 */
 	public String getNarrative() {
@@ -759,7 +763,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -785,7 +789,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -811,7 +815,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -837,7 +841,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -863,7 +867,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -889,7 +893,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -915,7 +919,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -941,7 +945,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component9
+	 * Gets the component9
 	 * @return the component9
 	 */
 	public String getComponent9() {
@@ -967,7 +971,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component10
+	 * Gets the component10
 	 * @return the component10
 	 */
 	public String getComponent10() {
@@ -993,7 +997,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component11
+	 * Gets the component11
 	 * @return the component11
 	 */
 	public String getComponent11() {
@@ -1019,7 +1023,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component12
+	 * Gets the component12
 	 * @return the component12
 	 */
 	public String getComponent12() {
@@ -1045,7 +1049,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component13
+	 * Gets the component13
 	 * @return the component13
 	 */
 	public String getComponent13() {
@@ -1071,7 +1075,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component14
+	 * Gets the component14
 	 * @return the component14
 	 */
 	public String getComponent14() {
@@ -1097,7 +1101,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component15
+	 * Gets the component15
 	 * @return the component15
 	 */
 	public String getComponent15() {
@@ -1123,7 +1127,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component16
+	 * Gets the component16
 	 * @return the component16
 	 */
 	public String getComponent16() {
@@ -1149,7 +1153,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component17
+	 * Gets the component17
 	 * @return the component17
 	 */
 	public String getComponent17() {
@@ -1175,7 +1179,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component18
+	 * Gets the component18
 	 * @return the component18
 	 */
 	public String getComponent18() {
@@ -1201,7 +1205,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component19
+	 * Gets the component19
 	 * @return the component19
 	 */
 	public String getComponent19() {
@@ -1227,7 +1231,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component20
+	 * Gets the component20
 	 * @return the component20
 	 */
 	public String getComponent20() {
@@ -1253,7 +1257,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component21
+	 * Gets the component21
 	 * @return the component21
 	 */
 	public String getComponent21() {
@@ -1279,7 +1283,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component22
+	 * Gets the component22
 	 * @return the component22
 	 */
 	public String getComponent22() {
@@ -1305,7 +1309,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component23
+	 * Gets the component23
 	 * @return the component23
 	 */
 	public String getComponent23() {
@@ -1331,7 +1335,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component24
+	 * Gets the component24
 	 * @return the component24
 	 */
 	public String getComponent24() {
@@ -1357,7 +1361,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component25
+	 * Gets the component25
 	 * @return the component25
 	 */
 	public String getComponent25() {
@@ -1383,7 +1387,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component26
+	 * Gets the component26
 	 * @return the component26
 	 */
 	public String getComponent26() {
@@ -1409,7 +1413,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component27
+	 * Gets the component27
 	 * @return the component27
 	 */
 	public String getComponent27() {
@@ -1435,7 +1439,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component28
+	 * Gets the component28
 	 * @return the component28
 	 */
 	public String getComponent28() {
@@ -1461,7 +1465,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component29
+	 * Gets the component29
 	 * @return the component29
 	 */
 	public String getComponent29() {
@@ -1487,7 +1491,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 	/**
-	 * Get the component30
+	 * Gets the component30
 	 * @return the component30
 	 */
 	public String getComponent30() {
@@ -1656,7 +1660,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -1672,7 +1676,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 	
 	/**
-	 * Get the first instance of Field26D in the given message.
+	 * Gets the first instance of Field26D in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -1684,7 +1688,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field26D in the given message
+	 * Gets a list of all occurrences of the field Field26D in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -1696,7 +1700,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field26D from the given block
+	 * Gets a list of all occurrences of the field Field26D from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -1984,6 +1988,149 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 		result.add("Narrative 29");
 		result.add("Narrative 30");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "narrative");
+		result.put(2, "narrative2");
+		result.put(3, "narrative3");
+		result.put(4, "narrative4");
+		result.put(5, "narrative5");
+		result.put(6, "narrative6");
+		result.put(7, "narrative7");
+		result.put(8, "narrative8");
+		result.put(9, "narrative9");
+		result.put(10, "narrative10");
+		result.put(11, "narrative11");
+		result.put(12, "narrative12");
+		result.put(13, "narrative13");
+		result.put(14, "narrative14");
+		result.put(15, "narrative15");
+		result.put(16, "narrative16");
+		result.put(17, "narrative17");
+		result.put(18, "narrative18");
+		result.put(19, "narrative19");
+		result.put(20, "narrative20");
+		result.put(21, "narrative21");
+		result.put(22, "narrative22");
+		result.put(23, "narrative23");
+		result.put(24, "narrative24");
+		result.put(25, "narrative25");
+		result.put(26, "narrative26");
+		result.put(27, "narrative27");
+		result.put(28, "narrative28");
+		result.put(29, "narrative29");
+		result.put(30, "narrative30");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field26D object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field26D fromJson(final String json) {
+		Field26D field = new Field26D();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("narrative") != null) {
+			field.setComponent1(jsonObject.get("narrative").getAsString());
+		}
+		if (jsonObject.get("narrative2") != null) {
+			field.setComponent2(jsonObject.get("narrative2").getAsString());
+		}
+		if (jsonObject.get("narrative3") != null) {
+			field.setComponent3(jsonObject.get("narrative3").getAsString());
+		}
+		if (jsonObject.get("narrative4") != null) {
+			field.setComponent4(jsonObject.get("narrative4").getAsString());
+		}
+		if (jsonObject.get("narrative5") != null) {
+			field.setComponent5(jsonObject.get("narrative5").getAsString());
+		}
+		if (jsonObject.get("narrative6") != null) {
+			field.setComponent6(jsonObject.get("narrative6").getAsString());
+		}
+		if (jsonObject.get("narrative7") != null) {
+			field.setComponent7(jsonObject.get("narrative7").getAsString());
+		}
+		if (jsonObject.get("narrative8") != null) {
+			field.setComponent8(jsonObject.get("narrative8").getAsString());
+		}
+		if (jsonObject.get("narrative9") != null) {
+			field.setComponent9(jsonObject.get("narrative9").getAsString());
+		}
+		if (jsonObject.get("narrative10") != null) {
+			field.setComponent10(jsonObject.get("narrative10").getAsString());
+		}
+		if (jsonObject.get("narrative11") != null) {
+			field.setComponent11(jsonObject.get("narrative11").getAsString());
+		}
+		if (jsonObject.get("narrative12") != null) {
+			field.setComponent12(jsonObject.get("narrative12").getAsString());
+		}
+		if (jsonObject.get("narrative13") != null) {
+			field.setComponent13(jsonObject.get("narrative13").getAsString());
+		}
+		if (jsonObject.get("narrative14") != null) {
+			field.setComponent14(jsonObject.get("narrative14").getAsString());
+		}
+		if (jsonObject.get("narrative15") != null) {
+			field.setComponent15(jsonObject.get("narrative15").getAsString());
+		}
+		if (jsonObject.get("narrative16") != null) {
+			field.setComponent16(jsonObject.get("narrative16").getAsString());
+		}
+		if (jsonObject.get("narrative17") != null) {
+			field.setComponent17(jsonObject.get("narrative17").getAsString());
+		}
+		if (jsonObject.get("narrative18") != null) {
+			field.setComponent18(jsonObject.get("narrative18").getAsString());
+		}
+		if (jsonObject.get("narrative19") != null) {
+			field.setComponent19(jsonObject.get("narrative19").getAsString());
+		}
+		if (jsonObject.get("narrative20") != null) {
+			field.setComponent20(jsonObject.get("narrative20").getAsString());
+		}
+		if (jsonObject.get("narrative21") != null) {
+			field.setComponent21(jsonObject.get("narrative21").getAsString());
+		}
+		if (jsonObject.get("narrative22") != null) {
+			field.setComponent22(jsonObject.get("narrative22").getAsString());
+		}
+		if (jsonObject.get("narrative23") != null) {
+			field.setComponent23(jsonObject.get("narrative23").getAsString());
+		}
+		if (jsonObject.get("narrative24") != null) {
+			field.setComponent24(jsonObject.get("narrative24").getAsString());
+		}
+		if (jsonObject.get("narrative25") != null) {
+			field.setComponent25(jsonObject.get("narrative25").getAsString());
+		}
+		if (jsonObject.get("narrative26") != null) {
+			field.setComponent26(jsonObject.get("narrative26").getAsString());
+		}
+		if (jsonObject.get("narrative27") != null) {
+			field.setComponent27(jsonObject.get("narrative27").getAsString());
+		}
+		if (jsonObject.get("narrative28") != null) {
+			field.setComponent28(jsonObject.get("narrative28").getAsString());
+		}
+		if (jsonObject.get("narrative29") != null) {
+			field.setComponent29(jsonObject.get("narrative29").getAsString());
+		}
+		if (jsonObject.get("narrative30") != null) {
+			field.setComponent30(jsonObject.get("narrative30").getAsString());
+		}
+		return field;
 	}
 	
 

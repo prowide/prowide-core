@@ -16,6 +16,10 @@ package com.prowidesoftware.swift.model;
 
 import java.io.Serializable;
 import java.util.logging.Level;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.apache.commons.lang.Validate;
 
@@ -87,6 +91,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
 	 * According to SWIFT documentation, this value is ignored by the system
 	 */
 	public SwiftBlock2Input(final String messageType, final String receiverAddress, final String messagePriority, final String deliveryMonitoring, final String obsolescencePeriod) {
+		this.input = true;
 		this.messageType = messageType;
 		this.receiverAddress = receiverAddress;
 		this.messagePriority = messagePriority;
@@ -399,7 +404,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
         		}
     		}
     		offset++; // skip the input mark
-    
+
     		// separate value fragments
     		int len = 3;
     		this.setMessageType(this.getValuePart(value, offset, len));
@@ -509,12 +514,18 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * @since 7.5
-	 * @return the block content serialized into JSON
+	 * Legacy (version 1) json representation of this object.
+	 *
+	 * <p>This implementation has been replaced by version 2, based on Gson.</p>
+	 *
+	 * @deprecated use {@link #toJson()} instead
+	 * @since 7.9.8
 	 */
-	public String toJson() {
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
+	public String toJsonV1() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("{ \n");
 
@@ -598,5 +609,16 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
 		public String getLabel() {
 			return this.label;
 		}
+	}
+
+	/**
+	 * This method deserializes the JSON data into an outgoing (input) block 2 object.
+	 * @see #toJson()
+	 * @since 7.9.8
+	 */
+	public static SwiftBlock2Input fromJson(String json){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.fromJson(json, SwiftBlock2Input.class);
 	}
 }

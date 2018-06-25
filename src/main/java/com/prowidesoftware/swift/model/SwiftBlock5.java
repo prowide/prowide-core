@@ -16,6 +16,8 @@ package com.prowidesoftware.swift.model;
 
 import java.io.Serializable;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.apache.commons.lang.Validate;
 
@@ -37,7 +39,7 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
 	 * Default constructor
 	 */
 	public SwiftBlock5() {
-
+		super();
 	}
 
 	/**
@@ -96,4 +98,16 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
 	public String getName() {
 		return "5";
 	}
+
+	/**
+	 * This method deserializes the JSON data into a block 5 object.
+	 * @see #toJson()
+	 * @since 7.9.8
+	 */
+	public static SwiftBlock5 fromJson(String json){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.fromJson(json, SwiftBlock5.class);
+	}
+
 }

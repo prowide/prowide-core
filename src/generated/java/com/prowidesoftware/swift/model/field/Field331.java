@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
@@ -33,6 +35,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 331</h2>
@@ -255,7 +259,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -263,7 +267,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component1 as Number
+	 * Gets the component1 as Number
 	 * @return the component1 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
@@ -271,7 +275,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Session Number (component1).
+	 * Gets the Session Number (component1).
 	 * @return the Session Number from component1
 	 */
 	public String getSessionNumber() {
@@ -279,7 +283,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Session Number (component1) as Number
+	 * Gets the Session Number (component1) as Number
 	 * @return the Session Number from component1 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getSessionNumberAsNumber() {
@@ -332,7 +336,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -340,7 +344,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component2 as Calendar
+	 * Gets the component2 as Calendar
 	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
@@ -348,7 +352,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Date Session Opened (component2).
+	 * Gets the Date Session Opened (component2).
 	 * @return the Date Session Opened from component2
 	 */
 	public String getDateSessionOpened() {
@@ -356,7 +360,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Date Session Opened (component2) as Calendar
+	 * Gets the Date Session Opened (component2) as Calendar
 	 * @return the Date Session Opened from component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateSessionOpenedAsCalendar() {
@@ -400,7 +404,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -408,7 +412,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component3 as Calendar
+	 * Gets the component3 as Calendar
 	 * @return the component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent3AsCalendar() {
@@ -416,7 +420,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Time Session Opened (component3).
+	 * Gets the Time Session Opened (component3).
 	 * @return the Time Session Opened from component3
 	 */
 	public String getTimeSessionOpened() {
@@ -424,7 +428,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Time Session Opened (component3) as Calendar
+	 * Gets the Time Session Opened (component3) as Calendar
 	 * @return the Time Session Opened from component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getTimeSessionOpenedAsCalendar() {
@@ -468,7 +472,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -476,7 +480,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component4 as Calendar
+	 * Gets the component4 as Calendar
 	 * @return the component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
@@ -484,7 +488,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Date Session Closed (component4).
+	 * Gets the Date Session Closed (component4).
 	 * @return the Date Session Closed from component4
 	 */
 	public String getDateSessionClosed() {
@@ -492,7 +496,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Date Session Closed (component4) as Calendar
+	 * Gets the Date Session Closed (component4) as Calendar
 	 * @return the Date Session Closed from component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateSessionClosedAsCalendar() {
@@ -536,7 +540,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -544,7 +548,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component5 as Calendar
+	 * Gets the component5 as Calendar
 	 * @return the component5 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent5AsCalendar() {
@@ -552,7 +556,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Time Session Closed (component5).
+	 * Gets the Time Session Closed (component5).
 	 * @return the Time Session Closed from component5
 	 */
 	public String getTimeSessionClosed() {
@@ -560,7 +564,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Time Session Closed (component5) as Calendar
+	 * Gets the Time Session Closed (component5) as Calendar
 	 * @return the Time Session Closed from component5 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getTimeSessionClosedAsCalendar() {
@@ -604,7 +608,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -612,7 +616,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component6 as Number
+	 * Gets the component6 as Number
 	 * @return the component6 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent6AsNumber() {
@@ -620,7 +624,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Reason For Closure (component6).
+	 * Gets the Reason For Closure (component6).
 	 * @return the Reason For Closure from component6
 	 */
 	public String getReasonForClosure() {
@@ -628,7 +632,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Reason For Closure (component6) as Number
+	 * Gets the Reason For Closure (component6) as Number
 	 * @return the Reason For Closure from component6 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getReasonForClosureAsNumber() {
@@ -681,7 +685,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -689,7 +693,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component7 as Number
+	 * Gets the component7 as Number
 	 * @return the component7 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent7AsNumber() {
@@ -697,7 +701,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Quantity Of Messages Sent (component7).
+	 * Gets the Quantity Of Messages Sent (component7).
 	 * @return the Quantity Of Messages Sent from component7
 	 */
 	public String getQuantityOfMessagesSent() {
@@ -705,7 +709,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Quantity Of Messages Sent (component7) as Number
+	 * Gets the Quantity Of Messages Sent (component7) as Number
 	 * @return the Quantity Of Messages Sent from component7 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getQuantityOfMessagesSentAsNumber() {
@@ -758,7 +762,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -766,7 +770,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component8 as Number
+	 * Gets the component8 as Number
 	 * @return the component8 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent8AsNumber() {
@@ -774,7 +778,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Quantity Of Messages Received (component8).
+	 * Gets the Quantity Of Messages Received (component8).
 	 * @return the Quantity Of Messages Received from component8
 	 */
 	public String getQuantityOfMessagesReceived() {
@@ -782,7 +786,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Quantity Of Messages Received (component8) as Number
+	 * Gets the Quantity Of Messages Received (component8) as Number
 	 * @return the Quantity Of Messages Received from component8 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getQuantityOfMessagesReceivedAsNumber() {
@@ -835,7 +839,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component9
+	 * Gets the component9
 	 * @return the component9
 	 */
 	public String getComponent9() {
@@ -843,7 +847,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component9 as Number
+	 * Gets the component9 as Number
 	 * @return the component9 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent9AsNumber() {
@@ -851,7 +855,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the First Input Sequence Number (component9).
+	 * Gets the First Input Sequence Number (component9).
 	 * @return the First Input Sequence Number from component9
 	 */
 	public String getFirstInputSequenceNumber() {
@@ -859,7 +863,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the First Input Sequence Number (component9) as Number
+	 * Gets the First Input Sequence Number (component9) as Number
 	 * @return the First Input Sequence Number from component9 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getFirstInputSequenceNumberAsNumber() {
@@ -912,7 +916,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component10
+	 * Gets the component10
 	 * @return the component10
 	 */
 	public String getComponent10() {
@@ -920,7 +924,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component10 as Number
+	 * Gets the component10 as Number
 	 * @return the component10 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent10AsNumber() {
@@ -928,7 +932,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Last Input Sequence Number (component10).
+	 * Gets the Last Input Sequence Number (component10).
 	 * @return the Last Input Sequence Number from component10
 	 */
 	public String getLastInputSequenceNumber() {
@@ -936,7 +940,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Last Input Sequence Number (component10) as Number
+	 * Gets the Last Input Sequence Number (component10) as Number
 	 * @return the Last Input Sequence Number from component10 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getLastInputSequenceNumberAsNumber() {
@@ -989,7 +993,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component11
+	 * Gets the component11
 	 * @return the component11
 	 */
 	public String getComponent11() {
@@ -997,7 +1001,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component11 as Number
+	 * Gets the component11 as Number
 	 * @return the component11 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent11AsNumber() {
@@ -1005,7 +1009,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the First Output Sequence Number (component11).
+	 * Gets the First Output Sequence Number (component11).
 	 * @return the First Output Sequence Number from component11
 	 */
 	public String getFirstOutputSequenceNumber() {
@@ -1013,7 +1017,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the First Output Sequence Number (component11) as Number
+	 * Gets the First Output Sequence Number (component11) as Number
 	 * @return the First Output Sequence Number from component11 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getFirstOutputSequenceNumberAsNumber() {
@@ -1066,7 +1070,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component12
+	 * Gets the component12
 	 * @return the component12
 	 */
 	public String getComponent12() {
@@ -1074,7 +1078,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component12 as Number
+	 * Gets the component12 as Number
 	 * @return the component12 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent12AsNumber() {
@@ -1082,7 +1086,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Last Output Sequence Number (component12).
+	 * Gets the Last Output Sequence Number (component12).
 	 * @return the Last Output Sequence Number from component12
 	 */
 	public String getLastOutputSequenceNumber() {
@@ -1090,7 +1094,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Last Output Sequence Number (component12) as Number
+	 * Gets the Last Output Sequence Number (component12) as Number
 	 * @return the Last Output Sequence Number from component12 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getLastOutputSequenceNumberAsNumber() {
@@ -1208,7 +1212,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -1224,7 +1228,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the first instance of Field331 in the given message.
+	 * Gets the first instance of Field331 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -1236,7 +1240,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field331 in the given message
+	 * Gets a list of all occurrences of the field Field331 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -1248,7 +1252,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field331 from the given block
+	 * Gets a list of all occurrences of the field Field331 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -1423,6 +1427,77 @@ public class Field331 extends Field implements Serializable, DateContainer {
 		result.add("First Output Sequence Number");
 		result.add("Last Output Sequence Number");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "sessionNumber");
+		result.put(2, "dateSessionOpened");
+		result.put(3, "timeSessionOpened");
+		result.put(4, "dateSessionClosed");
+		result.put(5, "timeSessionClosed");
+		result.put(6, "reasonForClosure");
+		result.put(7, "quantityOfMessagesSent");
+		result.put(8, "quantityOfMessagesReceived");
+		result.put(9, "firstInputSequenceNumber");
+		result.put(10, "lastInputSequenceNumber");
+		result.put(11, "firstOutputSequenceNumber");
+		result.put(12, "lastOutputSequenceNumber");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field331 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field331 fromJson(final String json) {
+		Field331 field = new Field331();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("sessionNumber") != null) {
+			field.setComponent1(jsonObject.get("sessionNumber").getAsString());
+		}
+		if (jsonObject.get("dateSessionOpened") != null) {
+			field.setComponent2(jsonObject.get("dateSessionOpened").getAsString());
+		}
+		if (jsonObject.get("timeSessionOpened") != null) {
+			field.setComponent3(jsonObject.get("timeSessionOpened").getAsString());
+		}
+		if (jsonObject.get("dateSessionClosed") != null) {
+			field.setComponent4(jsonObject.get("dateSessionClosed").getAsString());
+		}
+		if (jsonObject.get("timeSessionClosed") != null) {
+			field.setComponent5(jsonObject.get("timeSessionClosed").getAsString());
+		}
+		if (jsonObject.get("reasonForClosure") != null) {
+			field.setComponent6(jsonObject.get("reasonForClosure").getAsString());
+		}
+		if (jsonObject.get("quantityOfMessagesSent") != null) {
+			field.setComponent7(jsonObject.get("quantityOfMessagesSent").getAsString());
+		}
+		if (jsonObject.get("quantityOfMessagesReceived") != null) {
+			field.setComponent8(jsonObject.get("quantityOfMessagesReceived").getAsString());
+		}
+		if (jsonObject.get("firstInputSequenceNumber") != null) {
+			field.setComponent9(jsonObject.get("firstInputSequenceNumber").getAsString());
+		}
+		if (jsonObject.get("lastInputSequenceNumber") != null) {
+			field.setComponent10(jsonObject.get("lastInputSequenceNumber").getAsString());
+		}
+		if (jsonObject.get("firstOutputSequenceNumber") != null) {
+			field.setComponent11(jsonObject.get("firstOutputSequenceNumber").getAsString());
+		}
+		if (jsonObject.get("lastOutputSequenceNumber") != null) {
+			field.setComponent12(jsonObject.get("lastOutputSequenceNumber").getAsString());
+		}
+		return field;
 	}
 	
 

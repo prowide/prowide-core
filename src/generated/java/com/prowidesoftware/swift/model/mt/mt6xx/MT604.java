@@ -942,7 +942,21 @@ public class MT604 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT604 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT604 message
+	 * @return a new instance of MT604
+	 * @since 7.10.2
+	 */
+	public final static MT604 fromJson(String json) {
+		return (MT604) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 26C, 
 	 * or <code>null</code> if none is found.<br />

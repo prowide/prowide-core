@@ -312,7 +312,21 @@ public class MT043 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT043 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT043 message
+	 * @return a new instance of MT043
+	 * @since 7.10.2
+	 */
+	public final static MT043 fromJson(String json) {
+		return (MT043) AbstractMT.fromJson(json);
+	}
+
 
 
 

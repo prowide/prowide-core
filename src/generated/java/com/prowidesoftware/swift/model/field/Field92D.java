@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.AmountResolver;
@@ -34,6 +36,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 92D</h2>
@@ -189,7 +193,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -207,7 +211,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 
 	/**
-	 * Get the Qualifier (component1).
+	 * Gets the Qualifier (component1).
 	 * @return the Qualifier from component1
 	 */
 	public String getQualifier() {
@@ -232,7 +236,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -240,7 +244,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 
 	/**
-	 * Get the component2 as Number
+	 * Gets the component2 as Number
 	 * @return the component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
@@ -248,7 +252,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 
 	/**
-	 * Get the Quantity1 (component2).
+	 * Gets the Quantity1 (component2).
 	 * @return the Quantity1 from component2
 	 */
 	public String getQuantity1() {
@@ -256,7 +260,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 	
 	/**
-	 * Get the Quantity1 (component2) as Number
+	 * Gets the Quantity1 (component2) as Number
 	 * @return the Quantity1 from component2 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getQuantity1AsNumber() {
@@ -307,7 +311,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -315,7 +319,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 
 	/**
-	 * Get the component3 as Number
+	 * Gets the component3 as Number
 	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
@@ -323,7 +327,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 
 	/**
-	 * Get the Quantity2 (component3).
+	 * Gets the Quantity2 (component3).
 	 * @return the Quantity2 from component3
 	 */
 	public String getQuantity2() {
@@ -331,7 +335,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 	
 	/**
-	 * Get the Quantity2 (component3) as Number
+	 * Gets the Quantity2 (component3) as Number
 	 * @return the Quantity2 from component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getQuantity2AsNumber() {
@@ -487,7 +491,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -503,7 +507,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 	
 	/**
-	 * Get the first instance of Field92D in the given message.
+	 * Gets the first instance of Field92D in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -515,7 +519,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field92D in the given message
+	 * Gets a list of all occurrences of the field Field92D in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -527,7 +531,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field92D from the given block
+	 * Gets a list of all occurrences of the field Field92D from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -611,6 +615,41 @@ public class Field92D extends Field implements Serializable, AmountContainer, co
 		result.add("Quantity1");
 		result.add("Quantity2");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "qualifier");
+		result.put(2, "quantity1");
+		result.put(3, "quantity2");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field92D object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field92D fromJson(final String json) {
+		Field92D field = new Field92D();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("qualifier") != null) {
+			field.setComponent1(jsonObject.get("qualifier").getAsString());
+		}
+		if (jsonObject.get("quantity1") != null) {
+			field.setComponent2(jsonObject.get("quantity1").getAsString());
+		}
+		if (jsonObject.get("quantity2") != null) {
+			field.setComponent3(jsonObject.get("quantity2").getAsString());
+		}
+		return field;
 	}
 	
 

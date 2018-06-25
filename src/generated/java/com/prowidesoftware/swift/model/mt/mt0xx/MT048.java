@@ -312,7 +312,21 @@ public class MT048 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT048 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT048 message
+	 * @return a new instance of MT048
+	 * @since 7.10.2
+	 */
+	public final static MT048 fromJson(String json) {
+		return (MT048) AbstractMT.fromJson(json);
+	}
+
 
 
 

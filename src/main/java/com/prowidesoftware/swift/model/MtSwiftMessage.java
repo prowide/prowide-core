@@ -20,6 +20,8 @@ import java.io.InputStream;
 import java.util.Calendar;
 import java.util.logging.Level;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
@@ -565,5 +567,16 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 		msg.setPde(getPde());
 		msg.setPdm(getPdm());
 		msg.setUuid(getUuid());
+	}
+
+	/**
+	 * This method deserializes the JSON data into an MT message object.
+	 *
+	 * @since 7.10.2
+	 */
+	public static MtSwiftMessage fromJson(String json){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.fromJson(json, MtSwiftMessage.class);
 	}
 }

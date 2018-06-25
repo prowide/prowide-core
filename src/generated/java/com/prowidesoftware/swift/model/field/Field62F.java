@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import java.math.BigDecimal;
@@ -36,6 +38,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 62F</h2>
@@ -194,7 +198,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -212,7 +216,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
-	 * Get the D/C Mark (component1).
+	 * Gets the D/C Mark (component1).
 	 * @return the D/C Mark from component1
 	 */
 	public String getDCMark() {
@@ -237,7 +241,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -245,7 +249,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
-	 * Get the component2 as Calendar
+	 * Gets the component2 as Calendar
 	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
@@ -253,7 +257,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
-	 * Get the Date (component2).
+	 * Gets the Date (component2).
 	 * @return the Date from component2
 	 */
 	public String getDate() {
@@ -261,7 +265,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 	
 	/**
-	 * Get the Date (component2) as Calendar
+	 * Gets the Date (component2) as Calendar
 	 * @return the Date from component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
@@ -312,7 +316,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -330,7 +334,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
-	 * Get the Currency (component3).
+	 * Gets the Currency (component3).
 	 * @return the Currency from component3
 	 */
 	public String getCurrency() {
@@ -355,7 +359,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -363,7 +367,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
-	 * Get the component4 as Number
+	 * Gets the component4 as Number
 	 * @return the component4 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
@@ -371,7 +375,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
-	 * Get the Amount (component4).
+	 * Gets the Amount (component4).
 	 * @return the Amount from component4
 	 */
 	public String getAmount() {
@@ -379,7 +383,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 	
 	/**
-	 * Get the Amount (component4) as Number
+	 * Gets the Amount (component4) as Number
 	 * @return the Amount from component4 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
@@ -509,7 +513,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -525,7 +529,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 	
 	/**
-	 * Get the first instance of Field62F in the given message.
+	 * Gets the first instance of Field62F in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -537,7 +541,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field62F in the given message
+	 * Gets a list of all occurrences of the field Field62F in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -549,7 +553,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field62F from the given block
+	 * Gets a list of all occurrences of the field Field62F from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -637,6 +641,45 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 		result.add("Currency");
 		result.add("Amount");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "dCMark");
+		result.put(2, "date");
+		result.put(3, "currency");
+		result.put(4, "amount");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field62F object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field62F fromJson(final String json) {
+		Field62F field = new Field62F();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("dCMark") != null) {
+			field.setComponent1(jsonObject.get("dCMark").getAsString());
+		}
+		if (jsonObject.get("date") != null) {
+			field.setComponent2(jsonObject.get("date").getAsString());
+		}
+		if (jsonObject.get("currency") != null) {
+			field.setComponent3(jsonObject.get("currency").getAsString());
+		}
+		if (jsonObject.get("amount") != null) {
+			field.setComponent4(jsonObject.get("amount").getAsString());
+		}
+		return field;
 	}
 	
 

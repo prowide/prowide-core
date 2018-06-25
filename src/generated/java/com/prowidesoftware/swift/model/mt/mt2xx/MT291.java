@@ -319,7 +319,21 @@ public class MT291 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT291 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT291 message
+	 * @return a new instance of MT291
+	 * @since 7.10.2
+	 */
+	public final static MT291 fromJson(String json) {
+		return (MT291) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
 	 * or <code>null</code> if none is found.<br />

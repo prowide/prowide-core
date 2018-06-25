@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
@@ -33,6 +35,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 333</h2>
@@ -235,7 +239,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -243,7 +247,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component1 as Calendar
+	 * Gets the component1 as Calendar
 	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
@@ -251,7 +255,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Date Last Session Opened (component1).
+	 * Gets the Date Last Session Opened (component1).
 	 * @return the Date Last Session Opened from component1
 	 */
 	public String getDateLastSessionOpened() {
@@ -259,7 +263,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Date Last Session Opened (component1) as Calendar
+	 * Gets the Date Last Session Opened (component1) as Calendar
 	 * @return the Date Last Session Opened from component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateLastSessionOpenedAsCalendar() {
@@ -303,7 +307,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -311,7 +315,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component2 as Calendar
+	 * Gets the component2 as Calendar
 	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
@@ -319,7 +323,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Time Last Session Opened (component2).
+	 * Gets the Time Last Session Opened (component2).
 	 * @return the Time Last Session Opened from component2
 	 */
 	public String getTimeLastSessionOpened() {
@@ -327,7 +331,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Time Last Session Opened (component2) as Calendar
+	 * Gets the Time Last Session Opened (component2) as Calendar
 	 * @return the Time Last Session Opened from component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getTimeLastSessionOpenedAsCalendar() {
@@ -371,7 +375,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -379,7 +383,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component3 as Number
+	 * Gets the component3 as Number
 	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
@@ -387,7 +391,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Session Number (component3).
+	 * Gets the Session Number (component3).
 	 * @return the Session Number from component3
 	 */
 	public String getSessionNumber() {
@@ -395,7 +399,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Session Number (component3) as Number
+	 * Gets the Session Number (component3) as Number
 	 * @return the Session Number from component3 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getSessionNumberAsNumber() {
@@ -448,7 +452,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -456,7 +460,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component4 as Calendar
+	 * Gets the component4 as Calendar
 	 * @return the component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
@@ -464,7 +468,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Date Last Session Closed (component4).
+	 * Gets the Date Last Session Closed (component4).
 	 * @return the Date Last Session Closed from component4
 	 */
 	public String getDateLastSessionClosed() {
@@ -472,7 +476,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Date Last Session Closed (component4) as Calendar
+	 * Gets the Date Last Session Closed (component4) as Calendar
 	 * @return the Date Last Session Closed from component4 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateLastSessionClosedAsCalendar() {
@@ -516,7 +520,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -524,7 +528,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component5 as Calendar
+	 * Gets the component5 as Calendar
 	 * @return the component5 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent5AsCalendar() {
@@ -532,7 +536,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Time Last Session Closed (component5).
+	 * Gets the Time Last Session Closed (component5).
 	 * @return the Time Last Session Closed from component5
 	 */
 	public String getTimeLastSessionClosed() {
@@ -540,7 +544,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Time Last Session Closed (component5) as Calendar
+	 * Gets the Time Last Session Closed (component5) as Calendar
 	 * @return the Time Last Session Closed from component5 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getTimeLastSessionClosedAsCalendar() {
@@ -584,7 +588,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -592,7 +596,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component6 as Number
+	 * Gets the component6 as Number
 	 * @return the component6 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent6AsNumber() {
@@ -600,7 +604,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Reason For Closure (component6).
+	 * Gets the Reason For Closure (component6).
 	 * @return the Reason For Closure from component6
 	 */
 	public String getReasonForClosure() {
@@ -608,7 +612,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Reason For Closure (component6) as Number
+	 * Gets the Reason For Closure (component6) as Number
 	 * @return the Reason For Closure from component6 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getReasonForClosureAsNumber() {
@@ -661,7 +665,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -669,7 +673,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component7 as Number
+	 * Gets the component7 as Number
 	 * @return the component7 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent7AsNumber() {
@@ -677,7 +681,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Last Input Sequence Number Received (component7).
+	 * Gets the Last Input Sequence Number Received (component7).
 	 * @return the Last Input Sequence Number Received from component7
 	 */
 	public String getLastInputSequenceNumberReceived() {
@@ -685,7 +689,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Last Input Sequence Number Received (component7) as Number
+	 * Gets the Last Input Sequence Number Received (component7) as Number
 	 * @return the Last Input Sequence Number Received from component7 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getLastInputSequenceNumberReceivedAsNumber() {
@@ -738,7 +742,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -746,7 +750,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component8 as Number
+	 * Gets the component8 as Number
 	 * @return the component8 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getComponent8AsNumber() {
@@ -754,7 +758,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Last Output Sequence Number Sent (component8).
+	 * Gets the Last Output Sequence Number Sent (component8).
 	 * @return the Last Output Sequence Number Sent from component8
 	 */
 	public String getLastOutputSequenceNumberSent() {
@@ -762,7 +766,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Last Output Sequence Number Sent (component8) as Number
+	 * Gets the Last Output Sequence Number Sent (component8) as Number
 	 * @return the Last Output Sequence Number Sent from component8 converted to Number or <code>null</code> if cannot be converted
 	 */
 	public java.lang.Number getLastOutputSequenceNumberSentAsNumber() {
@@ -880,7 +884,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -896,7 +900,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the first instance of Field333 in the given message.
+	 * Gets the first instance of Field333 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -908,7 +912,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field333 in the given message
+	 * Gets a list of all occurrences of the field Field333 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -920,7 +924,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field333 from the given block
+	 * Gets a list of all occurrences of the field Field333 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -1055,6 +1059,61 @@ public class Field333 extends Field implements Serializable, DateContainer {
 		result.add("Last Input Sequence Number Received");
 		result.add("Last Output Sequence Number Sent");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "dateLastSessionOpened");
+		result.put(2, "timeLastSessionOpened");
+		result.put(3, "sessionNumber");
+		result.put(4, "dateLastSessionClosed");
+		result.put(5, "timeLastSessionClosed");
+		result.put(6, "reasonForClosure");
+		result.put(7, "lastInputSequenceNumberReceived");
+		result.put(8, "lastOutputSequenceNumberSent");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field333 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field333 fromJson(final String json) {
+		Field333 field = new Field333();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("dateLastSessionOpened") != null) {
+			field.setComponent1(jsonObject.get("dateLastSessionOpened").getAsString());
+		}
+		if (jsonObject.get("timeLastSessionOpened") != null) {
+			field.setComponent2(jsonObject.get("timeLastSessionOpened").getAsString());
+		}
+		if (jsonObject.get("sessionNumber") != null) {
+			field.setComponent3(jsonObject.get("sessionNumber").getAsString());
+		}
+		if (jsonObject.get("dateLastSessionClosed") != null) {
+			field.setComponent4(jsonObject.get("dateLastSessionClosed").getAsString());
+		}
+		if (jsonObject.get("timeLastSessionClosed") != null) {
+			field.setComponent5(jsonObject.get("timeLastSessionClosed").getAsString());
+		}
+		if (jsonObject.get("reasonForClosure") != null) {
+			field.setComponent6(jsonObject.get("reasonForClosure").getAsString());
+		}
+		if (jsonObject.get("lastInputSequenceNumberReceived") != null) {
+			field.setComponent7(jsonObject.get("lastInputSequenceNumberReceived").getAsString());
+		}
+		if (jsonObject.get("lastOutputSequenceNumberSent") != null) {
+			field.setComponent8(jsonObject.get("lastOutputSequenceNumberSent").getAsString());
+		}
+		return field;
 	}
 	
 

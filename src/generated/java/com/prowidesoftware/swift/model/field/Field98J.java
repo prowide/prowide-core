@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.BIC;
@@ -35,6 +37,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 98J</h2>
@@ -205,7 +209,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -223,7 +227,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the Qualifier (component1).
+	 * Gets the Qualifier (component1).
 	 * @return the Qualifier from component1
 	 */
 	public String getQualifier() {
@@ -248,7 +252,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -256,7 +260,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the component2 as Calendar
+	 * Gets the component2 as Calendar
 	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
@@ -264,7 +268,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the Date (component2).
+	 * Gets the Date (component2).
 	 * @return the Date from component2
 	 */
 	public String getDate() {
@@ -272,7 +276,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 	
 	/**
-	 * Get the Date (component2) as Calendar
+	 * Gets the Date (component2) as Calendar
 	 * @return the Date from component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
@@ -316,7 +320,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -324,7 +328,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the component3 as Calendar
+	 * Gets the component3 as Calendar
 	 * @return the component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent3AsCalendar() {
@@ -332,7 +336,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the Time (component3).
+	 * Gets the Time (component3).
 	 * @return the Time from component3
 	 */
 	public String getTime() {
@@ -340,7 +344,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 	
 	/**
-	 * Get the Time (component3) as Calendar
+	 * Gets the Time (component3) as Calendar
 	 * @return the Time from component3 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getTimeAsCalendar() {
@@ -384,7 +388,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -392,7 +396,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the component4 as BIC
+	 * Gets the component4 as BIC
 	 * @return the component4 converted to BIC or <code>null</code> if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getComponent4AsBIC() {
@@ -400,7 +404,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the BIC (component4).
+	 * Gets the BIC (component4).
 	 * @return the BIC from component4
 	 */
 	public String getBIC() {
@@ -408,7 +412,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 	
 	/**
-	 * Get the BIC (component4) as BIC
+	 * Gets the BIC (component4) as BIC
 	 * @return the BIC from component4 converted to BIC or <code>null</code> if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
@@ -561,7 +565,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -577,7 +581,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 	
 	/**
-	 * Get the first instance of Field98J in the given message.
+	 * Gets the first instance of Field98J in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -589,7 +593,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field98J in the given message
+	 * Gets a list of all occurrences of the field Field98J in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -601,7 +605,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field98J from the given block
+	 * Gets a list of all occurrences of the field Field98J from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -688,6 +692,45 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 		result.add("Time");
 		result.add("BIC");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "qualifier");
+		result.put(2, "date");
+		result.put(3, "time");
+		result.put(4, "bIC");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field98J object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field98J fromJson(final String json) {
+		Field98J field = new Field98J();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("qualifier") != null) {
+			field.setComponent1(jsonObject.get("qualifier").getAsString());
+		}
+		if (jsonObject.get("date") != null) {
+			field.setComponent2(jsonObject.get("date").getAsString());
+		}
+		if (jsonObject.get("time") != null) {
+			field.setComponent3(jsonObject.get("time").getAsString());
+		}
+		if (jsonObject.get("bIC") != null) {
+			field.setComponent4(jsonObject.get("bIC").getAsString());
+		}
+		return field;
 	}
 	
 

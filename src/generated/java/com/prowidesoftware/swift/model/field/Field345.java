@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -31,6 +33,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 345</h2>
@@ -222,7 +226,7 @@ public class Field345 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -230,7 +234,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT1 (component1).
+	 * Gets the MT1 (component1).
 	 * @return the MT1 from component1
 	 */
 	public String getMT1() {
@@ -255,7 +259,7 @@ public class Field345 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -263,7 +267,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT2 (component2).
+	 * Gets the MT2 (component2).
 	 * @return the MT2 from component2
 	 */
 	public String getMT2() {
@@ -288,7 +292,7 @@ public class Field345 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -296,7 +300,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT3 (component3).
+	 * Gets the MT3 (component3).
 	 * @return the MT3 from component3
 	 */
 	public String getMT3() {
@@ -321,7 +325,7 @@ public class Field345 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component4
+	 * Gets the component4
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -329,7 +333,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT4 (component4).
+	 * Gets the MT4 (component4).
 	 * @return the MT4 from component4
 	 */
 	public String getMT4() {
@@ -354,7 +358,7 @@ public class Field345 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component5
+	 * Gets the component5
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -362,7 +366,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT5 (component5).
+	 * Gets the MT5 (component5).
 	 * @return the MT5 from component5
 	 */
 	public String getMT5() {
@@ -387,7 +391,7 @@ public class Field345 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component6
+	 * Gets the component6
 	 * @return the component6
 	 */
 	public String getComponent6() {
@@ -395,7 +399,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT6 (component6).
+	 * Gets the MT6 (component6).
 	 * @return the MT6 from component6
 	 */
 	public String getMT6() {
@@ -420,7 +424,7 @@ public class Field345 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component7
+	 * Gets the component7
 	 * @return the component7
 	 */
 	public String getComponent7() {
@@ -428,7 +432,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT7 (component7).
+	 * Gets the MT7 (component7).
 	 * @return the MT7 from component7
 	 */
 	public String getMT7() {
@@ -453,7 +457,7 @@ public class Field345 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component8
+	 * Gets the component8
 	 * @return the component8
 	 */
 	public String getComponent8() {
@@ -461,7 +465,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT8 (component8).
+	 * Gets the MT8 (component8).
 	 * @return the MT8 from component8
 	 */
 	public String getMT8() {
@@ -486,7 +490,7 @@ public class Field345 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component9
+	 * Gets the component9
 	 * @return the component9
 	 */
 	public String getComponent9() {
@@ -494,7 +498,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT9 (component9).
+	 * Gets the MT9 (component9).
 	 * @return the MT9 from component9
 	 */
 	public String getMT9() {
@@ -519,7 +523,7 @@ public class Field345 extends Field implements Serializable {
 		return this;
 	}
 	/**
-	 * Get the component10
+	 * Gets the component10
 	 * @return the component10
 	 */
 	public String getComponent10() {
@@ -527,7 +531,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the MT10 (component10).
+	 * Gets the MT10 (component10).
 	 * @return the MT10 from component10
 	 */
 	public String getMT10() {
@@ -608,7 +612,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -624,7 +628,7 @@ public class Field345 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Get the first instance of Field345 in the given message.
+	 * Gets the first instance of Field345 in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -636,7 +640,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field345 in the given message
+	 * Gets a list of all occurrences of the field Field345 in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -648,7 +652,7 @@ public class Field345 extends Field implements Serializable {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field345 from the given block
+	 * Gets a list of all occurrences of the field Field345 from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -757,6 +761,69 @@ public class Field345 extends Field implements Serializable {
 		result.add("MT9");
 		result.add("MT10");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "mT1");
+		result.put(2, "mT2");
+		result.put(3, "mT3");
+		result.put(4, "mT4");
+		result.put(5, "mT5");
+		result.put(6, "mT6");
+		result.put(7, "mT7");
+		result.put(8, "mT8");
+		result.put(9, "mT9");
+		result.put(10, "mT10");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field345 object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field345 fromJson(final String json) {
+		Field345 field = new Field345();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("mT1") != null) {
+			field.setComponent1(jsonObject.get("mT1").getAsString());
+		}
+		if (jsonObject.get("mT2") != null) {
+			field.setComponent2(jsonObject.get("mT2").getAsString());
+		}
+		if (jsonObject.get("mT3") != null) {
+			field.setComponent3(jsonObject.get("mT3").getAsString());
+		}
+		if (jsonObject.get("mT4") != null) {
+			field.setComponent4(jsonObject.get("mT4").getAsString());
+		}
+		if (jsonObject.get("mT5") != null) {
+			field.setComponent5(jsonObject.get("mT5").getAsString());
+		}
+		if (jsonObject.get("mT6") != null) {
+			field.setComponent6(jsonObject.get("mT6").getAsString());
+		}
+		if (jsonObject.get("mT7") != null) {
+			field.setComponent7(jsonObject.get("mT7").getAsString());
+		}
+		if (jsonObject.get("mT8") != null) {
+			field.setComponent8(jsonObject.get("mT8").getAsString());
+		}
+		if (jsonObject.get("mT9") != null) {
+			field.setComponent9(jsonObject.get("mT9").getAsString());
+		}
+		if (jsonObject.get("mT10") != null) {
+			field.setComponent10(jsonObject.get("mT10").getAsString());
+		}
+		return field;
 	}
 	
 

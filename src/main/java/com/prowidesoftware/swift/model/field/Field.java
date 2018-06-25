@@ -14,6 +14,10 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model.field;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.prowidesoftware.JsonSerializable;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
@@ -26,6 +30,7 @@ import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.time.DateFormatUtils;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -39,7 +44,7 @@ import java.util.logging.Level;
  * @author www.prowidesoftware.com
  * @since 6.0
  */
-public abstract class Field implements PatternContainer {
+public abstract class Field implements PatternContainer, JsonSerializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field.class.getName());
 
 	/**
@@ -564,7 +569,6 @@ public abstract class Field implements PatternContainer {
 			log.log(Level.WARNING, "An error occured while creating an instance of " + name, e);			
 		}
 		return (Field) r;
-
 	}
 
 	/**
@@ -1207,6 +1211,29 @@ public abstract class Field implements PatternContainer {
 	}
 
 	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected abstract Map<Integer, String> getComponentMap();
+
+	/**
+	 * Returns english label for the component in camel case format.
+	 * <br />
+	 * @param number one-based index of component, first component of a field should be number one
+	 * @return found label or <code>null</code> if it is not defined
+	 * @since 7.10.2
+	 */
+	private String getComponentLabelCamelCase(final int number) {
+		final Map<Integer, String> labels = getComponentMap();
+		if (labels != null) {
+			if (number >= 0) {
+				return labels.get(number);
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Ensures a not-null locale parameter.
 	 * @param locale a locale or <code>null</code>
 	 * @return the parameter locale if it is not <code>null</code> or the default locale
@@ -1246,5 +1273,59 @@ public abstract class Field implements PatternContainer {
 	 */
 	//public abstract List<String> getComponentLabels(Locale locale);
 	//public String getComponentLabel(Locale locale);
-	
+
+	/**
+	 * Get a json representation of this message with expanded fields content.
+	 * <p>
+	 * The JSON representation for fields contains the field name and the components with camel case labels, for example:
+	 * <pre>{"name":"32A","date":"010203","currency":"USD","amount":"123"}</pre>
+	 *
+	 * @since 7.10.2
+	 */
+	@Override
+	public String toJson() {
+		JsonObject field = new JsonObject();
+		field.addProperty("name", this.getName());
+		for (int i=1; i<=this.getComponents().size(); i++){
+			if (this.getComponent(i) != null) {
+				String label = this.getComponentLabelCamelCase(i);
+				if (label == null) {
+					label = "value";
+				}
+				field.addProperty(label, this.getComponent(i));
+			}
+		}
+		return field.toString();
+	}
+
+	/**
+	 * Creates a specific field instance from its JSON representation.
+	 *
+	 * <p>The implementation reads the "name" property in the JSON data, then calls the fromJson method in the specific
+	 * Field subclass
+	 *
+	 * @return a specific field, for example Field32A, or null if the JSON data is not well-formed or contains an unrecognized field name
+	 * @see #toJson()
+	 */
+	public static Field fromJson(final String json) {
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		JsonElement nameElement = jsonObject.get("name");
+		if (nameElement != null) {
+			String name = nameElement.getAsString();
+			Object r = null;
+			try {
+				final Class<?> c = Class.forName("com.prowidesoftware.swift.model.field.Field" + name);
+				Method method = c.getMethod("fromJson", String.class);
+				return (Field) method.invoke(null, json);
+			} catch (final ClassNotFoundException e) {
+				log.log(Level.WARNING, "Field class for Field" + name + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.", e);
+			} catch (final Exception e) {
+				log.log(Level.WARNING, "An error occured while creating an instance of " + name, e);
+			}
+			return (Field) r;
+		}
+		return null;
+	}
+
 }

@@ -14,12 +14,14 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model;
 
-import java.io.Serializable;
-import java.util.logging.Level;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.prowidesoftware.JsonSerializable;
+import com.prowidesoftware.swift.model.mt.ServiceIdType;
 import org.apache.commons.lang.Validate;
 
-import com.prowidesoftware.swift.model.mt.ServiceIdType;
+import java.io.Serializable;
+import java.util.logging.Level;
 
 /**
  * Base class for SWIFT <b>Basic Header Block (block 1)</b>.
@@ -35,7 +37,7 @@ import com.prowidesoftware.swift.model.mt.ServiceIdType;
  * @since 4.0
  */
 //TODO: add parameter checks (Validate.*) and complete javadocs 
-public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
+public class SwiftBlock1 extends SwiftValueBlock implements Serializable, JsonSerializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock1.class.getName());
 	private static final long serialVersionUID = 4229511645041690763L;
 
@@ -568,21 +570,40 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 		return true;
 	}
 
-	/**
-	 * @since 7.5
-	 */
+    /**
+     * Get a json representation of this object.
+     *
+     * Example:<br />
+     * <pre>
+     *{
+     * "applicationId": "F",
+     * "serviceId": "01",
+     * "logicalTerminal": "FOOSEDR0AXXX",
+     * "sessionNumber": "0000",
+     * "sequenceNumber": "000000"
+     *}
+     *  </pre>
+     *
+     * @since 7.5
+     */
+    @Override
 	public String toJson() {
-		final StringBuilder sb = new StringBuilder();
-		sb.append("{ \n");
-		sb.append( "\"applicationId\" : ").append("\"").append(applicationId).append("\", \n");
-		sb.append( "\"serviceId\" : ").append("\"").append(serviceId).append("\", \n");
-		sb.append( "\"logicalTerminal\" : \"").append(logicalTerminal).append("\", \n");
-		sb.append( "\"sessionNumber\" : \"").append(sessionNumber).append("\", \n");
-		sb.append( "\"sequenceNumber\" : \"").append(sequenceNumber).append("\" \n");
-		sb.append("} ");
-		return sb.toString();
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.toJson(this);
 	}
-	
+
+    /**
+     * This method deserializes the JSON data into an block 1 object.
+	 * @see #toJson()
+     * @since 7.9.8
+     */
+    public static SwiftBlock1 fromJson(String json){
+        final GsonBuilder gsonBuilder = new GsonBuilder();
+        final Gson gson = gsonBuilder.create();
+        return gson.fromJson(json,SwiftBlock1.class);
+    }
+
 	/**
 	 * Generic getter for block attributes based on qualified names from {@link SwiftBlock1Field}
 	 * @param field field to get

@@ -1,4 +1,12 @@
-RELEASE 7.9.7 - April 2017 - LTS maintenance version for current SRU (2017)
+SNAPSHOT
+  * Added SwifttagListBlock#removeSubBlocks to remove all instances of a given subblock
+  * (Issue #13) Fixed SwifttagListBlock#removeSubBlock
+  * Added JsonSerializable interface to all model classes implementing toJson()
+  * Added toJson and fromJson to MT and Field classes
+  * Added toJson and fromJson to the MtSwiftMessage and MxSwiftMessage model
+  * Revamped the JSON API implementation using Gson, added missing fromJson methods
+
+RELEASE 7.9.7 - April 2018 - LTS maintenance version for current SRU (2017)
 
   Dependencies: added gson 2.8.2
 

@@ -18,6 +18,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.apache.commons.lang.Validate;
 
@@ -119,4 +121,16 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
 			append(new Tag("108", MUR));
 		}
 	}
+
+	/**
+	 * This method deserializes the JSON data into an block 3 object.
+	 * @see #toJson()
+	 * @since 7.9.8
+	 */
+	public static SwiftBlock3 fromJson(String json){
+		final GsonBuilder gsonBuilder = new GsonBuilder();
+		final Gson gson = gsonBuilder.create();
+		return gson.fromJson(json, SwiftBlock3.class);
+	}
+
 }

@@ -524,7 +524,21 @@ public class MT341 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT341 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT341 message
+	 * @return a new instance of MT341
+	 * @since 7.10.2
+	 */
+	public final static MT341 fromJson(String json) {
+		return (MT341) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15A, 
 	 * or <code>null</code> if none is found.<br />

@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
@@ -33,6 +35,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 31X</h2>
@@ -194,7 +198,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -202,7 +206,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component1 as Calendar
+	 * Gets the component1 as Calendar
 	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
@@ -210,7 +214,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Date (component1).
+	 * Gets the Date (component1).
 	 * @return the Date from component1
 	 */
 	public String getDate() {
@@ -218,7 +222,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Date (component1) as Calendar
+	 * Gets the Date (component1) as Calendar
 	 * @return the Date from component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
@@ -262,7 +266,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component2
+	 * Gets the component2
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -270,7 +274,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component2 as Calendar
+	 * Gets the component2 as Calendar
 	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
@@ -278,7 +282,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Time (component2).
+	 * Gets the Time (component2).
 	 * @return the Time from component2
 	 */
 	public String getTime() {
@@ -286,7 +290,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Time (component2) as Calendar
+	 * Gets the Time (component2) as Calendar
 	 * @return the Time from component2 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getTimeAsCalendar() {
@@ -330,7 +334,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 		return this;
 	}
 	/**
-	 * Get the component3
+	 * Gets the component3
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -348,7 +352,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Code (component3).
+	 * Gets the Code (component3).
 	 * @return the Code from component3
 	 */
 	public String getCode() {
@@ -439,7 +443,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -455,7 +459,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the first instance of Field31X in the given message.
+	 * Gets the first instance of Field31X in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -467,7 +471,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field31X in the given message
+	 * Gets a list of all occurrences of the field Field31X in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -479,7 +483,7 @@ public class Field31X extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field31X from the given block
+	 * Gets a list of all occurrences of the field Field31X from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -561,6 +565,41 @@ public class Field31X extends Field implements Serializable, DateContainer {
 		result.add("Time");
 		result.add("Code");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "date");
+		result.put(2, "time");
+		result.put(3, "code");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field31X object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field31X fromJson(final String json) {
+		Field31X field = new Field31X();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("date") != null) {
+			field.setComponent1(jsonObject.get("date").getAsString());
+		}
+		if (jsonObject.get("time") != null) {
+			field.setComponent2(jsonObject.get("time").getAsString());
+		}
+		if (jsonObject.get("code") != null) {
+			field.setComponent3(jsonObject.get("code").getAsString());
+		}
+		return field;
 	}
 	
 

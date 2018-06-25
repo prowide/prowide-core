@@ -233,6 +233,24 @@ public class MT700 extends AbstractMT implements Serializable {
 	public static final String REVOCABLE = "REVOCABLE";
 
 	/**
+	* Constant for qualifier with value REVOCABLE_STANDBY 
+	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REVOCABLE_STANDBY
+	* @see com.prowidesoftware.swift.SchemeConstantsR#REVOCABLE_STANDBY
+	*/
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	public static final String REVOCABLE_STANDBY = "REVOCABLE_STANDBY";
+
+	/**
+	* Constant for qualifier with value REVOCABLE_TRANSFERABLE 
+	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REVOCABLE_TRANSFERABLE
+	* @see com.prowidesoftware.swift.SchemeConstantsR#REVOCABLE_TRANSFERABLE
+	*/
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	public static final String REVOCABLE_TRANSFERABLE = "REVOCABLE_TRANSFERABLE";
+
+	/**
 	* Constant for qualifier with value UCPURR_LATEST_VERSION 
 	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsU.UCPURR_LATEST_VERSION
 	* @see com.prowidesoftware.swift.SchemeConstantsU#UCPURR_LATEST_VERSION
@@ -484,7 +502,21 @@ public class MT700 extends AbstractMT implements Serializable {
 		super.append(fields);
 		return this;
 	}
-	
+
+    /**
+	 * Creates an MT700 messages from its JSON representation.
+	 * <p>
+	 * For generic conversion of JSON into the corresopnding MT instance
+	 * see {@link AbstractMT#fromJson(String)}
+	 *
+	 * @param json a JSON representation of an MT700 message
+	 * @return a new instance of MT700
+	 * @since 7.10.2
+	 */
+	public final static MT700 fromJson(String json) {
+		return (MT700) AbstractMT.fromJson(json);
+	}
+
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 27, 
 	 * or <code>null</code> if none is found.<br />

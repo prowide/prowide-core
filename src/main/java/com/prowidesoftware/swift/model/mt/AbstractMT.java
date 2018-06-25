@@ -14,19 +14,9 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.model.mt;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.prowidesoftware.JsonSerializable;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
@@ -34,20 +24,18 @@ import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
-import com.prowidesoftware.swift.model.AbstractMessage;
-import com.prowidesoftware.swift.model.BIC;
-import com.prowidesoftware.swift.model.MessageStandardType;
-import com.prowidesoftware.swift.model.MtId;
-import com.prowidesoftware.swift.model.MtSwiftMessage;
-import com.prowidesoftware.swift.model.SwiftBlock1;
-import com.prowidesoftware.swift.model.SwiftBlock2;
-import com.prowidesoftware.swift.model.SwiftBlock2Input;
-import com.prowidesoftware.swift.model.SwiftBlock4;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.SwiftTagListBlock;
-import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.utils.Lib;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
+
+import java.io.*;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -57,7 +45,7 @@ import com.prowidesoftware.swift.utils.Lib;
  * @author www.prowidesoftware.com
  * @since 6.0
  */
-public abstract class AbstractMT extends AbstractMessage {
+public abstract class AbstractMT extends AbstractMessage implements JsonSerializable {
 	private static final transient Logger log = Logger.getLogger(AbstractMT.class.getName());
 	protected SwiftMessage m;
 	
@@ -70,18 +58,6 @@ public abstract class AbstractMT extends AbstractMessage {
 	}
 	
 	/**
-	 * @param m swift message to model as a particular MT
-	 * @deprecated use constructor from subclasses instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2018)	
-	public AbstractMT(MtSwiftMessage m) {
-		super(MessageStandardType.MT);
-		this.m = m.modelMessage();
-		DeprecationUtils.phase3(getClass(), "AbstractMT(MtSwiftMessage)", "Use a constructor from the specific MT subclasses instead.");
-	}
-
-	/**
 	 * Creates a particular MT initialized with a new SwiftMessage.
 	 * All blocks are initialized.
 	 */
@@ -92,11 +68,11 @@ public abstract class AbstractMT extends AbstractMessage {
 			this.m.getBlock2().setMessageType(getMessageType());
 		}
 	}
-	
+
 	/**
 	 * Create an input message for the given type setting TEST BICS as sender and receiver.<br/>
-	 * All mandatory header attributes are completed with default values. 
-	 * 
+	 * All mandatory header attributes are completed with default values.
+	 *
 	 * @param messageType
 	 * @see #AbstractMT(int, String, String)
 	 * @since 7.6
@@ -104,7 +80,19 @@ public abstract class AbstractMT extends AbstractMessage {
 	public AbstractMT( final int messageType ) {
 		this(messageType, BIC.TEST8, BIC.TEST8);
 	}
-	
+
+	/**
+	 * @param m swift message to model as a particular MT
+	 * @deprecated use constructor from subclasses instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear._2018)
+	public AbstractMT(MtSwiftMessage m) {
+		super(MessageStandardType.MT);
+		this.m = m.modelMessage();
+		DeprecationUtils.phase3(getClass(), "AbstractMT(MtSwiftMessage)", "Use a constructor from the specific MT subclasses instead.");
+	}
+
 	/**
 	 * Creates a new input message for the given type setting the given sender and receiver.<br />
 	 * All mandatory header attributes are completed with default values. 
@@ -756,10 +744,11 @@ public abstract class AbstractMT extends AbstractMessage {
 	
 	/**
 	 * Returns the JSON representation of the SwiftMessage attribute
-	 * @see SwiftMessage#toJson()
-	 * 
-	 * @since 7.7
+	 * @deprecated use {@link #toJson()} instead
+	 * @see #toJson()
 	 */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2019)
 	public String json() {
 		Validate.notNull(this.m, "the message cannot be null");
 		return this.m.toJson();
@@ -862,4 +851,32 @@ public abstract class AbstractMT extends AbstractMessage {
 			return _m.getBlock4().getTagsByName(tagName);
 		}
 	}
+
+	/**
+	 * Get a json representation of this message with expanded fields content.
+	 * @since 7.10.2
+	 */
+	@Override
+	public String toJson() {
+		final Gson gson = new GsonBuilder()
+			.registerTypeAdapter(AbstractMT.class, new AbstractMTAdapter())
+			.setPrettyPrinting()
+			.create();
+		return gson.toJson(this,AbstractMT.class);
+	}
+
+	/**
+	 * This method deserializes the JSON data into a specific MT object.
+	 * @param json a JSON representation of an MT message
+	 * @return a specific deserialized MT message object, for example MT103
+	 * @since 7.10.2
+	 */
+	public static AbstractMT fromJson(String json) {
+		final Gson gson = new GsonBuilder()
+				.registerTypeAdapter(AbstractMT.class, new AbstractMTAdapter())
+				.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter())
+				.create();
+		return gson.fromJson(json, AbstractMT.class);
+	}
+
 }

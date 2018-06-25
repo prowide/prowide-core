@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
@@ -33,6 +35,8 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * <h2>SWIFT MT Field 31C</h2>
@@ -168,7 +172,7 @@ public class Field31C extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the component1
+	 * Gets the component1
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -176,7 +180,7 @@ public class Field31C extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the component1 as Calendar
+	 * Gets the component1 as Calendar
 	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
@@ -184,7 +188,7 @@ public class Field31C extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the Date (component1).
+	 * Gets the Date (component1).
 	 * @return the Date from component1
 	 */
 	public String getDate() {
@@ -192,7 +196,7 @@ public class Field31C extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the Date (component1) as Calendar
+	 * Gets the Date (component1) as Calendar
 	 * @return the Date from component1 converted to Calendar or <code>null</code> if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
@@ -298,7 +302,7 @@ public class Field31C extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get the first occurrence form the tag list or null if not found.
+	 * Gets the first occurrence form the tag list or null if not found.
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
@@ -314,7 +318,7 @@ public class Field31C extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Get the first instance of Field31C in the given message.
+	 * Gets the first instance of Field31C in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
@@ -326,7 +330,7 @@ public class Field31C extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field31C in the given message
+	 * Gets a list of all occurrences of the field Field31C in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
@@ -338,7 +342,7 @@ public class Field31C extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Get a list of all occurrences of the field Field31C from the given block
+	 * Gets a list of all occurrences of the field Field31C from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
@@ -406,6 +410,33 @@ public class Field31C extends Field implements Serializable, DateContainer {
 		List<String> result = new ArrayList<String>();
 		result.add("Date");
 		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.2
+	 */
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "date");
+		return result;
+	}
+
+	/**
+	 * This method deserializes the JSON data into a Field31C object.
+	 * @param json JSON structure including tuples with label and value for all field components
+	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+	 * @since 7.10.2
+	 * @see Field#fromJson(String)
+	 */
+	public static Field31C fromJson(final String json) {
+		Field31C field = new Field31C();
+		JsonParser parser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("date") != null) {
+			field.setComponent1(jsonObject.get("date").getAsString());
+		}
+		return field;
 	}
 	
 
