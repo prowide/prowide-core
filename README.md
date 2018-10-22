@@ -1,4 +1,4 @@
-![alt tag](http://www.prowidesoftware.com/images/logo/prowideLogoHorizontal-800x253-300dpi.jpg)
+![alt tag](http://www.prowidesoftware.com/img/logoPW_800x253-300dpi.jpg)
 
 
 **Prowide Core** is an open source Java framework for managing SWIFT messages.
@@ -18,7 +18,7 @@ The project (previously known as WIFE) is active since 2006, production ready an
 * Generic support for ISO 20022 MX
 * IBAN validation
 
-![alt tag](http://www.prowidesoftware.com/images/infografias/coreModelLayers.png)
+![alt tag](https://www.prowidesoftware.com/img/infografias/coreModelLayers.png)
 
 For SWIFT messages validation, extended MX support, GUI application and more, please check our complementary commercial offerings at http://www.prowidesoftware.com/
 
@@ -36,7 +36,7 @@ SRU updates are made available on October (one month before SWIFT production dat
 
 ### License
 
-LGPL v3
+Apache License 2.0
 
 SWIFT is a trademark of S.W.I.F.T. SCRL. (www.swift.com)
 
