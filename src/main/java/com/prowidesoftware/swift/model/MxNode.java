@@ -1,19 +1,22 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.prowidesoftware.swift.model;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -23,17 +26,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
-import org.apache.commons.lang.StringUtils;
-
 /**
  * <p>This class represents a node element within a tree of MX message.
  * It is basically a generic <b>XML node</b> structure used to provide basic 
- * parsing functionallity for MX messages in Prowide Core.</p>
+ * parsing functionallity for MX messages in Prowide Core.
  * 
  * <p>Note than full business model is provided only for the business
  * header, while a complete MX model is implemented in Prowide Integrator.
  * For more information on the full MX model implementation please check:
- * <a href="http://www.prowidesoftware.com/products/integrator">Prowide Integrator</a></p>
+ * <a href="http://www.prowidesoftware.com/products/integrator">Prowide Integrator</a>
  *
  * @since 7.6
  */
@@ -49,7 +50,7 @@ public class MxNode {
 
 	public MxNode() {
 		this.parent = null;
-		this.children = new ArrayList<MxNode>();
+		this.children = new ArrayList<>();
 		this.value = null;
 	}
 
@@ -80,7 +81,7 @@ public class MxNode {
 
 	/**
 	 * Given a basic path, find the first instance of a node matching the
-	 * path parameter.<br />
+	 * path parameter.<br>
 	 *
 	 * If the path starts with '/' it will search from the root element,
 	 * else it will search from this node.
@@ -99,7 +100,7 @@ public class MxNode {
 	}
 
 	/**
-	 * Given a basic path, find all nodes matching the path parameter.<br />
+	 * Given a basic path, find all nodes matching the path parameter.<br>
 	 *
 	 * If the path starts with '/' it will search from the root element,
 	 * else it will search from this node.
@@ -116,9 +117,9 @@ public class MxNode {
 
 	private List<MxNode> _find2(int index, final String[] segments, final MxNode node) {
 		if (index > segments.length) {
-			return null;
+			return new ArrayList<>();
 		}
-		final List<MxNode> result = new ArrayList<MxNode>();
+		final List<MxNode> result = new ArrayList<>();
 		final String segment = segments[index];
 		int nextIndex = index + 1;
 		
@@ -259,7 +260,7 @@ public class MxNode {
 	 */
 	public void addAttribute(final String name, final String value) {
 		if (this.attributes == null) {
-			this.attributes = new HashMap<String, String>();
+			this.attributes = new HashMap<>();
 		}
 		this.attributes.remove(name);
 		this.attributes.put(name, value);

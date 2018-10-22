@@ -1,37 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io.writer;
+
+import com.prowidesoftware.ProwideException;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.utils.IMessageVisitor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.logging.Level;
-
-import org.apache.commons.lang.StringUtils;
-
-import com.prowidesoftware.swift.WifeException;
-import com.prowidesoftware.swift.model.SwiftBlock;
-import com.prowidesoftware.swift.model.SwiftBlock1;
-import com.prowidesoftware.swift.model.SwiftBlock2;
-import com.prowidesoftware.swift.model.SwiftBlock3;
-import com.prowidesoftware.swift.model.SwiftBlock4;
-import com.prowidesoftware.swift.model.SwiftBlock5;
-import com.prowidesoftware.swift.model.SwiftBlockUser;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.model.UnparsedTextList;
-import com.prowidesoftware.swift.utils.IMessageVisitor;
 
 /**
  * Main class for writing SwiftMessage objects into SWIFT FIN message text.
@@ -74,7 +65,8 @@ public class FINWriterVisitor implements IMessageVisitor {
 		// if b1 not empty
 		if (b1 != null && StringUtils.isNotEmpty(b1.getValue())) {
 			// check for app id and service id
-			if (!StringUtils.equals(b1.getApplicationId(), "F") || !StringUtils.equals(b1.getServiceId(), "01")) {
+			boolean isAppIdOrServiceId = !StringUtils.equals(b1.getApplicationId(), "F") || !StringUtils.equals(b1.getServiceId(), "01");
+			if (isAppIdOrServiceId) {
 				// if app identifier NOT 'F' OR service identifier NOT '01' => USE TAG-BLOCK syntax
 				this.block4asText = Boolean.FALSE;
 			}
@@ -310,14 +302,14 @@ public class FINWriterVisitor implements IMessageVisitor {
 		if (StringUtils.isEmpty(t.getName()) && StringUtils.isEmpty(t.getValue())) {
 			return;
 		}
-		
-		final String value = StringUtils.trimToEmpty(t.getValue());
+
+		// we don't trim the value to preserve trailing spaces, but we avoid printing null
 		if (StringUtils.isNotEmpty(t.getName())) {
 			// we have name
-			write("{" + t.getName() + ":" + value);
+			write("{" + t.getName() + ":" + notNullValue(t));
 		} else {
 			// no name but value => {<value>}
-			write("{" + value);
+			write("{" + notNullValue(t));
 		}
 
 		// if tag has unparsed texts, write them down.
@@ -332,11 +324,24 @@ public class FINWriterVisitor implements IMessageVisitor {
 		// write closing braquets
 		write("}");
 	}
-	
+
+	/*
+	 * When printing tag values, we put empty string when null but we do not trim
+	 * Don't replace this with StringUtils.trimToEmpty
+	 */
+	private String notNullValue(Tag t) {
+		if (t.getValue() == null) {
+			return "";
+		} else {
+			return t.getValue();
+		}
+	}
+
 	private final void appendTextTag(Tag t) {
 		// this goes: ":<tag>:<value>[CRLF]" (quotes not included)
 		if (StringUtils.isNotEmpty(t.getName())) {
-			write(":" + t.getName() + ":" + StringUtils.trimToEmpty(t.getValue()) + SWIFT_EOL);
+			// we don't trim the value to preserve trailing spaces, but we avoid printing null
+			write(":" + t.getName() + ":" + notNullValue(t) + SWIFT_EOL);
 		}
 
 		// if tag has unparsed texts, write them down
@@ -384,7 +389,7 @@ public class FINWriterVisitor implements IMessageVisitor {
 			writer.write(s);
 		} catch (IOException e) {
 			log.log(Level.SEVERE, "Caught exception in FINWriterVisitor, method write", e);
-			throw new WifeException(e);
+			throw new ProwideException(e);
 		}
 	}
 

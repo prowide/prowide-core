@@ -1,10 +1,41 @@
-SNAPSHOT
-  * Added SwifttagListBlock#removeSubBlocks to remove all instances of a given subblock
+RELEASE 7.10.3 - October 2018 - LTS version for SRU2018
+  * License changed from LGPL to the more permissive Apache License 2.0
+  * Fixed serialization of field 48
+  * Completed SwiftMessageUtils#currencyAmount for missing MTs
+  * Fixed NPE in SwiftBlock4.removeEmptySequences with fields 15A as sequence boundary
+  * (Issue #15) MxParser.java typo analiseMessage -> analyseMessage
+  * Added getFields() to MT classes
+  * Added bean validation annotations for BIC, IBAN, ISO country and currency
+  * Enhanced the BIC internal model to allow accessor for all subfields
+  * Enhanced the BIC validation with enum to report the specific validation problem found
+  * Changed the default SwiftParser behavior to lenient, meaning by default it will not throw any IllegalArgumentException when headers size is invalid
+  * Fixed FIN writer to preserve trailing spaces in tag value
+  * Added JPA annotations to the SWIFT model intended for persistence (AbstractSwiftMessage and subclasses)
+  * Removed the old Hibernate XML mapping AbstractSwiftMessage.hbm.xml (in favor of generic JPA annotations in model)
+  * Added SwiftTagListBlock#removeSubBlocks to remove all instances of a given subblock
   * (Issue #13) Fixed SwifttagListBlock#removeSubBlock
   * Added JsonSerializable interface to all model classes implementing toJson()
   * Added toJson and fromJson to MT and Field classes
   * Added toJson and fromJson to the MtSwiftMessage and MxSwiftMessage model
+  * Added field 434 in SwiftBlock3Builder
+
+RELEASE 7.10.2 - May 2018
   * Revamped the JSON API implementation using Gson, added missing fromJson methods
+
+RELEASE 7.10.1 - April 2018
+  * FIN writer: reverted the trim in tag values introduced in 7.8.9
+
+RELEASE 7.10.0 - April 2018
+
+  SWIFT Standard release update 2018
+  JRE requirement increased to Java 1.7
+  Dependencies: updated apache commons-lang from 2.6 to 3.7
+
+  * Yearly revision of deprecation phase (see http://www.prowidesoftware.com/resources/deprecation-policy)
+  * Added API in SwiftMessage for the SWIFT gpi service: getters and setters for the service type identifier and UETR
+  * Added an automatically generated UETR when creating new MT instances for 103, 103 STP, 103 REMIT, 202, 202 COV, 205, or 205 COV
+  * Added API in SwiftMessage to set the variant (STP, REMIT, COV)
+  * New helper API for block 3 (SwiftBlock3Builder) to ensure only expected fields are added and in proper order
 
 RELEASE 7.9.7 - April 2018 - LTS maintenance version for current SRU (2017)
 

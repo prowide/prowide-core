@@ -1,44 +1,65 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
+import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Objects;
+
+import static javax.persistence.FetchType.LAZY;
 
 /**
- * Status tracking record for application only usage (not part of the standard).<br />
+ * Status tracking record for application only usage (not part of the standard).<br>
  * The status name identifier is modeled with plain String, nevertheless 
  * the usage of an application specific enumeration is encourage; 
  * constructors and methods with raw Enum parameters are provided.
+ *
+ * <p>XML metadata may be used to override or augment these JPA annotations.
  * 
  * @author www.prowidesoftware.com
  * @since 7.0
  */
+@Entity
+@Table(name="swift_msg_status")
 public class SwiftMessageStatusInfo implements Cloneable {
 	@SuppressWarnings("unused")
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftMessageStatusInfo.class.getName());
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(length = 50)
 	private String name;
+
+	@Column(length = 200)
 	private String comments;
-	private Calendar creationDate;
+
+	@Column(name = "creation_date")
+	private Calendar creationDate = Calendar.getInstance();
+
+	@Column(length = 40, name="creation_user")
 	private String creationUser;
 
 	/**
 	 * Additional information regarding messages changes and manipulation through status changes.
 	 * Intended for example to store JSON output from the process that generated the status. 
 	 */
+	@Lob
+	@Basic(fetch=LAZY)
 	private String data;
 
 	/**
@@ -114,6 +135,22 @@ public class SwiftMessageStatusInfo implements Cloneable {
 		this(comments, Calendar.getInstance(), creationUser, name.name(), data);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		SwiftMessageStatusInfo that = (SwiftMessageStatusInfo) o;
+		return Objects.equals(name, that.name) &&
+				Objects.equals(comments, that.comments) &&
+				Objects.equals(creationDate, that.creationDate) &&
+				Objects.equals(creationUser, that.creationUser);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, comments, creationDate, creationUser);
+	}
+
 	/**
 	 * @see #SwiftMessageStatusInfo(String, Calendar, String, String) 
 	 * with Enum..name(), creationDate initialized to now (Calendar.getInstance()) and null data.
@@ -135,40 +172,45 @@ public class SwiftMessageStatusInfo implements Cloneable {
 		return name;
 	}
 
-	public void setName(String name) {
+	public SwiftMessageStatusInfo setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	public String getComments() {
 		return comments;
 	}
 
-	public void setComments(String comments) {
+	public SwiftMessageStatusInfo setComments(String comments) {
 		this.comments = comments;
+		return this;
 	}
 
 	public Calendar getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(Calendar creationDate) {
+	public SwiftMessageStatusInfo setCreationDate(Calendar creationDate) {
 		this.creationDate = creationDate;
+		return this;
 	}
 
 	public String getCreationUser() {
 		return creationUser;
 	}
 
-	public void setCreationUser(String creationUser) {
+	public SwiftMessageStatusInfo setCreationUser(String creationUser) {
 		this.creationUser = creationUser;
+		return this;
 	}
 
 	public String getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public SwiftMessageStatusInfo setData(String data) {
 		this.data = data;
+		return this;
 	}
 
 	@Override
@@ -188,59 +230,4 @@ public class SwiftMessageStatusInfo implements Cloneable {
 		return result;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
-		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
-		result = prime * result + ((creationUser == null) ? 0 : creationUser.hashCode());
-		result = prime * result + ((data == null) ? 0 : data.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SwiftMessageStatusInfo other = (SwiftMessageStatusInfo) obj;
-		if (comments == null) {
-			if (other.comments != null)
-				return false;
-		} else if (!comments.equals(other.comments))
-			return false;
-		if (creationDate == null) {
-			if (other.creationDate != null)
-				return false;
-		} else if (!creationDate.equals(other.creationDate))
-			return false;
-		if (creationUser == null) {
-			if (other.creationUser != null)
-				return false;
-		} else if (!creationUser.equals(other.creationUser))
-			return false;
-		if (data == null) {
-			if (other.data != null)
-				return false;
-		} else if (!data.equals(other.data))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
-	}
-	
 }

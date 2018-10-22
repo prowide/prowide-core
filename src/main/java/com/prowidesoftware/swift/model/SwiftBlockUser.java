@@ -1,42 +1,46 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
+
+import org.apache.commons.lang3.Validate;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.apache.commons.lang.Validate;
-
 /**
- * Base class for SWIFT <b>User "ad-hoc" Blocks</b> (blocks with number other than 1-5 or names).<br />
- * <br />
+ * Base class for SWIFT <b>User "ad-hoc" Blocks</b> (blocks with number other than 1-5 or names).<br>
+ * <br>
  * The assumption is that these User Defined Blocks are used and defined as tag blocks (meaning
- * that these blocks behave like a block 3 or 5).<br />
- * <br />
+ * that these blocks behave like a block 3 or 5).<br>
+ * <br>
  * <b>NOTE:</b> this is not part of SWIFT standard, but seems to be common practice for
  * users to append some locally defined blocks to annotate messages in a semi-compatible
- * way (for example: add block 9 for some local information or block "S" for system reference).<br />
- * <br />
+ * way (for example: add block 9 for some local information or block "S" for system reference).<br>
+ * <br>
  * 
  * @author www.prowidesoftware.com
  * @since 5.0
  */
 public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 	private static final long serialVersionUID = -6506492203870561424L;
+	private static final String MESSAGE_VALIDATOR = "parameter 'blockNumber' cannot be null";
 
 	/**
 	 * Indicates the position of this user block in a message when persisted.
@@ -67,13 +71,13 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 	/**
 	 * Constructor for empty numbered user block
 	 * @param blockNumber the block number to initialize
-	 * @throws IllegalArgumentException if parameter blockNumber is <code>null</code>
+	 * @throws IllegalArgumentException if parameter blockNumber is null
 	 * @throws IllegalArgumentException if parameter blockNumber is not a valid User Defined Block number (values 6..9)
 	 * @since 5.0
 	 */
 	public SwiftBlockUser(Integer blockNumber) {
 		// sanity check
-		Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
+		Validate.notNull(blockNumber, MESSAGE_VALIDATOR);
 		Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), "'blockNumber' is not a valid User Defined Block number");
 
 		this.setBlockNumber(blockNumber);
@@ -83,16 +87,15 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 	 * Constructor for numbered user block with tag initialization
 	 * @param blockNumber the block number to initialize
 	 * @param tags the list of tags to initialize
-	 * @throws IllegalArgumentException if parameter blockNumber or tags are <code>null</code>
+	 * @throws IllegalArgumentException if parameter blockNumber or tags are null
 	 * @throws IllegalArgumentException if parameter blockNumber is not a valid User Defined Block number (values 6..9)
 	 * @throws IllegalArgumentException if parameter tags is not composed of Strings
 	 * @since 5.0
 	 */
 	public SwiftBlockUser(Integer blockNumber, List<Tag> tags) {
 		// sanity check
-		Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
+		Validate.notNull(blockNumber, MESSAGE_VALIDATOR);
 		Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), "'blockNumber' is not a valid User Defined Block number");
-		Validate.allElementsOfType(tags, Tag.class, "parameter 'tags' may only have Tag elements");
 
 		this.setBlockNumber(blockNumber);
 		this.addTags(tags);
@@ -101,7 +104,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 	/**
 	 * Constructor for named user block
 	 * @param blockName the block name to initialize
-	 * @throws IllegalArgumentException if parameter blockName is <code>null</code>
+	 * @throws IllegalArgumentException if parameter blockName is null
 	 * @throws IllegalArgumentException if parameter blockName is not a valid User Defined Block name (single letter)
 	 * @since 5.0
 	 */
@@ -117,7 +120,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 	 * Constructor for named user block with tag initialization
 	 * @param blockName the block name to initialize
 	 * @param tags the list of tags to initialize
-	 * @throws IllegalArgumentException if parameter blockName or tags are <code>null</code>
+	 * @throws IllegalArgumentException if parameter blockName or tags are null
 	 * @throws IllegalArgumentException if parameter blockName is not a valid User Defined Block name (single letter)
 	 * @throws IllegalArgumentException if parameter tags is not composed of Strings
 	 * @since 5.0
@@ -126,7 +129,6 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 		// sanity check
 		Validate.notNull(blockName, "parameter 'blockName' cannot be null");
 		Validate.isTrue(SwiftBlockUser.isValidName(blockName).booleanValue(), "'blockName' is not a valid User Defined Block name");
-		Validate.allElementsOfType(tags, Tag.class, "parameter 'tags' may only have Tag elements");
 
 		this.setBlockName(blockName);
 		this.addTags(tags);
@@ -166,22 +168,22 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 	/**
 	 * Sets the block number. This really sets <code>{@link #blockName}</code>
 	 * @param blockNumber the block number to set
-	 * @throws IllegalArgumentException if parameter blockNumber is <code>null</code>
+	 * @throws IllegalArgumentException if parameter blockNumber is null
 	 * @throws IllegalArgumentException if parameter blockNumber is not a valid User Defined Block number (values 6..9)
 	 * @since 5.0
 	 */
 	protected void setBlockNumber(Integer blockNumber) {
 		// sanity check
-		Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
+		Validate.notNull(blockNumber, MESSAGE_VALIDATOR);
 		Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), "'" + blockNumber + "' is not a valid User Defined Block number");
 
-        this.blockName = blockNumber.toString();
+        this.blockName = blockNumber != null ? blockNumber.toString() : null;
 	}
 
 	/**
 	 * Sets the block name.
 	 * @param blockName the block name to set
-	 * @throws IllegalArgumentException if parameter blockName is <code>null</code>
+	 * @throws IllegalArgumentException if parameter blockName is null
 	 * @throws IllegalArgumentException if parameter blockName is not a valid User Defined Block name (single letter)
 	 * @since 5.0
 	 */
@@ -292,35 +294,19 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 		this.sortKey = sortKey;
 	}
 
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((blockName == null) ? 0 : blockName.hashCode());
-		result = prime * result + ((sortKey == null) ? 0 : sortKey.hashCode());
-		return result;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		SwiftBlockUser tags = (SwiftBlockUser) o;
+		return Objects.equals(sortKey, tags.sortKey) &&
+				Objects.equals(blockName, tags.blockName);
 	}
 
-	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		final SwiftBlockUser other = (SwiftBlockUser) obj;
-		if (blockName == null) {
-			if (other.blockName != null)
-				return false;
-		} else if (!blockName.equals(other.blockName))
-			return false;
-		if (sortKey == null) {
-			if (other.sortKey != null)
-				return false;
-		} else if (!sortKey.equals(other.sortKey))
-			return false;
-		return true;
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), sortKey, blockName);
 	}
 
 	/**
@@ -329,8 +315,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 	 * @since 7.9.8
 	 */
 	public static SwiftBlockUser fromJson(String json){
-		final GsonBuilder gsonBuilder = new GsonBuilder();
-		final Gson gson = gsonBuilder.create();
+		final Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, SwiftBlockUser.class);
 	}
 }

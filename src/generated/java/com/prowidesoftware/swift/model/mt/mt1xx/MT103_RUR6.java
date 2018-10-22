@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mt.mt1xx;
 
 
@@ -21,7 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.*;
@@ -32,9 +33,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <h1>MT 103_RUR6 - Single Customer Credit Transfer</h1>
- * <h3>SWIFT MT103_RUR6 (ISO 15022) message structure:</h3>
+ * <strong>MT 103_RUR6 - Single Customer Credit Transfer</strong>
  *
+ * <p>
+ * SWIFT MT103_RUR6 (ISO 15022) message structure:
+ * <br>
  <div class="scheme"><ul>
 <li class="field">Field 20  (M)</li>
 <li class="field">Field 23 B (M)</li>
@@ -57,47 +60,18 @@ import java.io.IOException;
 <li class="field">Field 77 B (O)</li>
 </ul></div>
 
- <style>
-.scheme, .scheme ul, .scheme li {
-     position: relative;
-}
-.scheme ul {
-    list-style: none;
-    padding-left: 32px;
-}
-.scheme li::before, .scheme li::after {
-    content: "";
-    position: absolute;
-    left: -12px;
-}
-.scheme li::before {
-    border-top: 1px solid #000;
-    top: 9px;
-    width: 8px;
-    height: 0;
-}
-.scheme li::after {
-    border-left: 1px solid #000;
-    height: 100%;
-    width: 0px;
-    top: 2px;
-}
-.scheme ul > li:last-child::after {
-    height: 8px;
-}</style>
-
  *
- * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
- * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
- *
- * @author www.prowidesoftware.com
+ * <p>
+ * This source code is specific to release <strong>SRU 2018</strong>
+ * <p>
+ * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
 @Generated
 public class MT103_RUR6 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT103_RUR6.class.getName());
 	
@@ -110,182 +84,142 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 
 	/**
 	* Constant for qualifier with value BEN 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsB.BEN
-	* @see com.prowidesoftware.swift.SchemeConstantsB#BEN
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String BEN = "BEN";
 
 	/**
 	* Constant for qualifier with value CHQB 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CHQB
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CHQB
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CHQB = "CHQB";
 
 	/**
 	* Constant for qualifier with value CORT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CORT
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CORT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CORT = "CORT";
 
 	/**
 	* Constant for qualifier with value CRED 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CRED
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CRED
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CRED = "CRED";
 
 	/**
 	* Constant for qualifier with value CRTS 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CRTS
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CRTS
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CRTS = "CRTS";
 
 	/**
 	* Constant for qualifier with value HOLD 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsH.HOLD
-	* @see com.prowidesoftware.swift.SchemeConstantsH#HOLD
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String HOLD = "HOLD";
 
 	/**
 	* Constant for qualifier with value INTC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsI.INTC
-	* @see com.prowidesoftware.swift.SchemeConstantsI#INTC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String INTC = "INTC";
 
 	/**
 	* Constant for qualifier with value OUR 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsO.OUR
-	* @see com.prowidesoftware.swift.SchemeConstantsO#OUR
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String OUR = "OUR";
 
 	/**
 	* Constant for qualifier with value PHOB 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PHOB
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PHOB
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PHOB = "PHOB";
 
 	/**
 	* Constant for qualifier with value PHOI 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PHOI
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PHOI
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PHOI = "PHOI";
 
 	/**
 	* Constant for qualifier with value PHON 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PHON
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PHON
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PHON = "PHON";
 
 	/**
 	* Constant for qualifier with value REPA 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REPA
-	* @see com.prowidesoftware.swift.SchemeConstantsR#REPA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String REPA = "REPA";
 
 	/**
 	* Constant for qualifier with value SDVA 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SDVA
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SDVA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SDVA = "SDVA";
 
 	/**
 	* Constant for qualifier with value SHA 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SHA
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SHA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SHA = "SHA";
 
 	/**
 	* Constant for qualifier with value SPAY 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SPAY
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SPAY
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SPAY = "SPAY";
 
 	/**
 	* Constant for qualifier with value SPRI 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SPRI
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SPRI
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SPRI = "SPRI";
 
 	/**
 	* Constant for qualifier with value SSTD 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SSTD
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SSTD
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SSTD = "SSTD";
 
 	/**
 	* Constant for qualifier with value TELB 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsT.TELB
-	* @see com.prowidesoftware.swift.SchemeConstantsT#TELB
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String TELB = "TELB";
 
 	/**
 	* Constant for qualifier with value TELE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsT.TELE
-	* @see com.prowidesoftware.swift.SchemeConstantsT#TELE
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String TELE = "TELE";
 
 	/**
 	* Constant for qualifier with value TELI 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsT.TELI
-	* @see com.prowidesoftware.swift.SchemeConstantsT#TELI
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String TELI = "TELI";
 
 // end qualifiers constants	
@@ -301,20 +235,18 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 
 	/**
 	 * Creates an MT103_RUR6 initialized with the parameter MtSwiftMessage.
-	 * @param m swift message with the MT103_RUR6 content, the parameter can not be <code>null</code>
+	 * @param m swift message with the MT103_RUR6 content, the parameter can not be null
 	 * @see #MT103_RUR6(String)
 	 */
 	public MT103_RUR6(MtSwiftMessage m) {
-		this();
-		super.m = super.getSwiftMessageNotNullOrException();
-		sanityCheck(super.m);
+		this(m.message());
 	}
 	
 	/**
 	 * Creates an MT103_RUR6 initialized with the parameter MtSwiftMessage.
 	 *
 	 * @param m swift message with the MT103_RUR6 content
-	 * @return the created object or <code>null</code> if the parameter is <code>null</code>
+	 * @return the created object or null if the parameter is null
 	 * @see #MT103_RUR6(String)
 	 * @since 7.7
 	 */
@@ -322,11 +254,11 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 		if (m == null) {
 			return null;
 		}
-		return new MT103_RUR6(m.message());
+		return new MT103_RUR6(m);
 	}
 	
 	/**
-	 * Creates and initializes a new MT103_RUR6 input message setting TEST BICS as sender and receiver.<br />
+	 * Creates and initializes a new MT103_RUR6 input message setting TEST BICS as sender and receiver.<br>
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -336,7 +268,7 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT103_RUR6 input message from sender to receiver.<br />
+	 * Creates and initializes a new MT103_RUR6 input message from sender to receiver.<br>
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -347,27 +279,32 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	 */
 	public MT103_RUR6(final String sender, final String receiver) {
 		super(103, sender, receiver);
+        // initialize the SWIFT gpi service unique end to end transaction reference
+        m.setUETR();
 	}
 	
 	/**
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* 
+	*
+	* @param messageType the message type number
+    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
+	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
 	* @see #MT103_RUR6(String, String)
 	* @deprecated Use instead <code>new MT103_RUR6(sender, receiver)</code> instead
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public MT103_RUR6(final int messageType, final String sender, final String receiver) {
 		super(103, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT103_RUR6(int, String, String)", "Use the constructor MT103_RUR6(sender, receiver) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT103_RUR6(int, String, String)", "Use the constructor MT103_RUR6(sender, receiver) instead.");
 	}
 	
 	/**
-	 * Creates a new MT103_RUR6 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT103_RUR6 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -393,12 +330,12 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
     }
 	
 	/**
-	 * Creates a new MT103_RUR6 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT103_RUR6 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter cannot be parsed, the returned MT103_RUR6 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br />
+	 * initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
-	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be <code>null</code> in which case this method returns null</em>
+	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
 	 * @return a new instance of MT103_RUR6 or null if fin is null 
 	 * @since 7.7
 	 */
@@ -410,12 +347,13 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT103_RUR6 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT103_RUR6 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public MT103_RUR6(final InputStream stream) throws IOException {
@@ -423,11 +361,12 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT103_RUR6 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT103_RUR6 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
 	 * @return a new instance of MT103_RUR6 or null if stream is null or the message cannot be parsed 
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public static MT103_RUR6 parse(final InputStream stream) throws IOException {
@@ -438,12 +377,13 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT103_RUR6 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT103_RUR6 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public MT103_RUR6(final File file) throws IOException {
@@ -451,11 +391,12 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT103_RUR6 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT103_RUR6 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
 	 * @return a new instance of MT103_RUR6 or null if; file is null, does not exist, can't be read, is not a file or the message cannot be parsed
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public static MT103_RUR6 parse(final File file) throws IOException {
@@ -474,7 +415,23 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	public String getMessageType() {
 		return "103";
 	}
-	
+
+    /**
+	 * Gets the Unique End to End Transaction Reference (field 121 from block 3).
+	 * <p>
+	 * This field is used by the SWIFT gpi service to track payments messages.
+	 *
+	 * @return the UETR value or null if block3 or field 121 in block3 are not present
+	 * @since 7.10.0
+	 */
+	public String getUETR() {
+	    if (this.getSwiftMessage() == null) {
+        	return null;
+        } else {
+            return this.getSwiftMessage().getUETR();
+        }
+	}
+
 	/**
 	 * Add all tags from block to the end of the block4.
 	 *
@@ -522,7 +479,7 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	 *
 	 * @param json a JSON representation of an MT103_RUR6 message
 	 * @return a new instance of MT103_RUR6
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	public final static MT103_RUR6 fromJson(String json) {
 		return (MT103_RUR6) AbstractMT.fromJson(json);
@@ -530,10 +487,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 20 at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field20 object or <code>null</code> if the field is not found
+	 * @return a Field20 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -548,10 +505,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 23B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 23B at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field23B object or <code>null</code> if the field is not found
+	 * @return a Field23B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -566,10 +523,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 26T, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 26T at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field26T object or <code>null</code> if the field is not found
+	 * @return a Field26T object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -584,10 +541,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 32A at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field32A object or <code>null</code> if the field is not found
+	 * @return a Field32A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -602,10 +559,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 33B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 33B at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field33B object or <code>null</code> if the field is not found
+	 * @return a Field33B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -620,10 +577,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 36, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 36 at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field36 object or <code>null</code> if the field is not found
+	 * @return a Field36 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -638,10 +595,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 50A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 50A at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field50A object or <code>null</code> if the field is not found
+	 * @return a Field50A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -656,10 +613,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 50F, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 50F at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field50F object or <code>null</code> if the field is not found
+	 * @return a Field50F object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -674,10 +631,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 50K, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 50K at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field50K object or <code>null</code> if the field is not found
+	 * @return a Field50K object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -692,10 +649,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 52A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 52A at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field52A object or <code>null</code> if the field is not found
+	 * @return a Field52A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -710,10 +667,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 52D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 52D at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field52D object or <code>null</code> if the field is not found
+	 * @return a Field52D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -728,10 +685,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 53B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 53B at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field53B object or <code>null</code> if the field is not found
+	 * @return a Field53B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -746,10 +703,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 56A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 56A at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field56A object or <code>null</code> if the field is not found
+	 * @return a Field56A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -764,10 +721,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 56D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 56D at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field56D object or <code>null</code> if the field is not found
+	 * @return a Field56D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -782,10 +739,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57A at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field57A object or <code>null</code> if the field is not found
+	 * @return a Field57A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -800,10 +757,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57D at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field57D object or <code>null</code> if the field is not found
+	 * @return a Field57D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -818,10 +775,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 59, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 59 at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field59 object or <code>null</code> if the field is not found
+	 * @return a Field59 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -836,10 +793,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 70, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 70 at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field70 object or <code>null</code> if the field is not found
+	 * @return a Field70 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -854,10 +811,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 71A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 71A at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field71A object or <code>null</code> if the field is not found
+	 * @return a Field71A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -872,10 +829,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 71G, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 71G at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field71G object or <code>null</code> if the field is not found
+	 * @return a Field71G object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -890,10 +847,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 72, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 72 at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field72 object or <code>null</code> if the field is not found
+	 * @return a Field72 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -908,10 +865,10 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 77B at MT103_RUR6 is expected to be the only one.
 	 * 
-	 * @return a Field77B object or <code>null</code> if the field is not found
+	 * @return a Field77B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -926,7 +883,7 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 23E, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 23E at MT103_RUR6 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field23E objects or <code>Collections.emptyList()</code> if none is not found
@@ -934,17 +891,19 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field23E> getField23E() {
-		final List<Field23E> result = new ArrayList<Field23E>();
+		final List<Field23E> result = new ArrayList<>();
 		final Tag[] tags = tags("23E");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field23E(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field23E(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 71F, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 71F at MT103_RUR6 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field71F objects or <code>Collections.emptyList()</code> if none is not found
@@ -952,10 +911,12 @@ public class MT103_RUR6 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field71F> getField71F() {
-		final List<Field71F> result = new ArrayList<Field71F>();
+		final List<Field71F> result = new ArrayList<>();
 		final Tag[] tags = tags("71F");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field71F(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field71F(tag.getValue()));
+            }
 		}
 		return result;
 	}

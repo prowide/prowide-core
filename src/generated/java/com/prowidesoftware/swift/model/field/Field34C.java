@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -28,13 +29,11 @@ import java.util.HashMap;
 import java.util.Currency;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
 import com.prowidesoftware.swift.model.field.CurrencyResolver;
-import java.util.Calendar;
-import com.prowidesoftware.swift.model.field.DateContainer;
 import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.AmountResolver;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -45,73 +44,80 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 33P</h2>
- * Model and parser for field 33P of a SWIFT MT message.
+ * <strong>SWIFT MT Field 34C</strong>
+ * <p>
+ * Model and parser for field 34C of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
- * 		<li><code>Calendar</code></li> 
+ * 		<li><code>String</code></li> 
+ * 		<li><code>String</code></li> 
  * 		<li><code>Currency</code></li> 
  * 		<li><code>Number</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>&lt;DATE2&gt;&lt;CUR&gt;&lt;AMOUNT&gt;15</code></li>
- * 		<li>parser pattern: <code>&lt;DATE2&gt;SN</code></li>
- * 		<li>components pattern: <code>ECN</code></li>
+ * 		<li>validation pattern: <code>4!c/[&lt;N&gt;]&lt;CUR&gt;&lt;AMOUNT&gt;15</code></li>
+ * 		<li>parser pattern: <code>S/[c]&lt;CUR&gt;N</code></li>
+ * 		<li>components pattern: <code>SSCN</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
-public class Field33P extends Field implements Serializable, CurrencyContainer, DateContainer, AmountContainer {
+public class Field34C extends Field implements Serializable, CurrencyContainer, AmountContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 33P
+	 * Constant with the field name 34C
 	 */
-    public static final String NAME = "33P";
+    public static final String NAME = "34C";
     /**
      * same as NAME, intended to be clear when using static imports
      */
-    public static final String F_33P = "33P";
-	public static final String PARSER_PATTERN ="<DATE2>SN";
-	public static final String COMPONENTS_PATTERN = "ECN";
+    public static final String F_34C = "34C";
+	public static final String PARSER_PATTERN ="S/[c]<CUR>N";
+	public static final String COMPONENTS_PATTERN = "SSCN";
 
 	/**
-	 * Component number for the Date subfield
+	 * Component number for the Commission Type subfield
 	 */
-	public static final Integer DATE = 1;
+	public static final Integer COMMISSION_TYPE = 1;
+
+	/**
+	 * Component number for the Sign subfield
+	 */
+	public static final Integer SIGN = 2;
 
 	/**
 	 * Component number for the Currency subfield
 	 */
-	public static final Integer CURRENCY = 2;
+	public static final Integer CURRENCY = 3;
 
 	/**
 	 * Component number for the Amount subfield
 	 */
-	public static final Integer AMOUNT = 3;
+	public static final Integer AMOUNT = 4;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
-	public Field33P() {
-		super(3);
+	public Field34C() {
+		super(4);
 	}
 	    					
 	/**
 	 * Creates a new field and initializes its components with content from the parameter value.
 	 * @param value complete field value including separators and CRLF
 	 */
-	public Field33P(final String value) {
+	public Field34C(final String value) {
 		super(value);
 	}
 	
@@ -121,20 +127,20 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
 	 * @since 7.8
 	 */
-	public Field33P(final Tag tag) {
+	public Field34C(final Tag tag) {
 		this();
 		if (tag == null) {
 			throw new IllegalArgumentException("tag cannot be null.");
 		}
-		if (!StringUtils.equals(tag.getName(), "33P")) {
-			throw new IllegalArgumentException("cannot create field 33P from tag "+tag.getName()+", tagname must match the name of the field.");
+		if (!StringUtils.equals(tag.getName(), "34C")) {
+			throw new IllegalArgumentException("cannot create field 34C from tag "+tag.getName()+", tagname must match the name of the field.");
 		}
 		parse(tag.getValue());
 	}
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -143,15 +149,19 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	 */
 	@Override
 	public void parse(final String value) {
-		init(3);
-		if (value != null) {
-			if (value.length() >= 6) {
-				setComponent1(StringUtils.substring(value, 0, 6));
+		init(4);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
+		String toparse = SwiftParseUtils.getTokenSecond(value, "/");
+		String prefix = SwiftParseUtils.getAlphaPrefix(toparse);
+		if (prefix != null) {
+			if (prefix.length() > 3) {
+				setComponent2(StringUtils.substring(prefix, 0, 1));
+				setComponent3(StringUtils.substring(prefix, 1, prefix.length()));
+			} else {
+				setComponent3(prefix);
 			}
-			String toparse = StringUtils.substring(value, 6);
-			setComponent2(SwiftParseUtils.getAlphaPrefix(toparse));
-			setComponent3(SwiftParseUtils.getNumericSuffix(toparse));
 		}
+		setComponent4(SwiftParseUtils.getNumericSuffix(value));
 	}
 	
 	/**
@@ -160,9 +170,9 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	 * @param source a field instance to copy
 	 * @since 7.7
 	 */
-	public static Field33P newInstance(Field33P source) {
-		Field33P cp = new Field33P();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+	public static Field34C newInstance(Field34C source) {
+		Field34C cp = new Field34C();
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -172,7 +182,11 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		result.append(joinComponents());
+		append(result, 1);
+		result.append("/");
+		append(result, 2);
+		append(result, 3);
+		append(result, 4);
 		return result.toString();
 	}
 
@@ -205,70 +219,39 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Gets the component1 as Calendar
-	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
+	 * Same as getComponent(1)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
-	public java.util.Calendar getComponent1AsCalendar() {
-		return SwiftFormatUtils.getDate2(getComponent(1));
+	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2019)
+	public java.lang.String getComponent1AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Date (component1).
-	 * @return the Date from component1
+	 * Gets the Commission Type (component1).
+	 * @return the Commission Type from component1
 	 */
-	public String getDate() {
+	public String getCommissionType() {
 		return getComponent(1);
-	}
-	
-	/**
-	 * Gets the Date (component1) as Calendar
-	 * @return the Date from component1 converted to Calendar or <code>null</code> if cannot be converted
-	 */
-	public java.util.Calendar getDateAsCalendar() {
-		return SwiftFormatUtils.getDate2(getComponent(1));
 	}
 
 	/**
 	 * Set the component1.
 	 * @param component1 the component1 to set
 	 */
-	public Field33P setComponent1(String component1) {
+	public Field34C setComponent1(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
 	
 	/**
-	 * Set the component1 from a Calendar object.
-	 * <br />
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -> 1234,</li>
-	 * 	<li>Example: 1234 -> 1234,</li>
-	 * 	<li>Example: 1234.56 -> 1234,56</li>
-	 * </ul>
-	 * @param component1 the Calendar with the component1 content to set
+	 * Set the Commission Type (component1).
+	 * @param component1 the Commission Type to set
 	 */
-	public Field33P setComponent1(java.util.Calendar component1) {
-		setComponent(1, SwiftFormatUtils.getDate2(component1));
-		return this;
-	}
-	
-	/**
-	 * Set the Date (component1).
-	 * @param component1 the Date to set
-	 */
-	public Field33P setDate(String component1) {
+	public Field34C setCommissionType(String component1) {
 		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Date (component1) from a Calendar object.
-	 * @see #setComponent1(java.util.Calendar)
-	 * @param component1 Calendar with the Date content to set
-	 */
-	public Field33P setDate(java.util.Calendar component1) {
-		setComponent1(component1);
 		return this;
 	}
 	/**
@@ -280,70 +263,39 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Gets the component2 as Currency
-	 * @return the component2 converted to Currency or <code>null</code> if cannot be converted
+	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
 	 */
-	public java.util.Currency getComponent2AsCurrency() {
-		return SwiftFormatUtils.getCurrency(getComponent(2));
+	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2019)
+	public java.lang.String getComponent2AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Currency (component2).
-	 * @return the Currency from component2
+	 * Gets the Sign (component2).
+	 * @return the Sign from component2
 	 */
-	public String getCurrency() {
+	public String getSign() {
 		return getComponent(2);
-	}
-	
-	/**
-	 * Gets the Currency (component2) as Currency
-	 * @return the Currency from component2 converted to Currency or <code>null</code> if cannot be converted
-	 */
-	public java.util.Currency getCurrencyAsCurrency() {
-		return SwiftFormatUtils.getCurrency(getComponent(2));
 	}
 
 	/**
 	 * Set the component2.
 	 * @param component2 the component2 to set
 	 */
-	public Field33P setComponent2(String component2) {
+	public Field34C setComponent2(String component2) {
 		setComponent(2, component2);
 		return this;
 	}
 	
 	/**
-	 * Set the component2 from a Currency object.
-	 * <br />
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -> 1234,</li>
-	 * 	<li>Example: 1234 -> 1234,</li>
-	 * 	<li>Example: 1234.56 -> 1234,56</li>
-	 * </ul>
-	 * @param component2 the Currency with the component2 content to set
+	 * Set the Sign (component2).
+	 * @param component2 the Sign to set
 	 */
-	public Field33P setComponent2(java.util.Currency component2) {
-		setComponent(2, SwiftFormatUtils.getCurrency(component2));
-		return this;
-	}
-	
-	/**
-	 * Set the Currency (component2).
-	 * @param component2 the Currency to set
-	 */
-	public Field33P setCurrency(String component2) {
+	public Field34C setSign(String component2) {
 		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Currency (component2) from a Currency object.
-	 * @see #setComponent2(java.util.Currency)
-	 * @param component2 Currency with the Currency content to set
-	 */
-	public Field33P setCurrency(java.util.Currency component2) {
-		setComponent2(component2);
 		return this;
 	}
 	/**
@@ -355,70 +307,145 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Gets the component3 as Number
-	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
+	 * Get the component3 as Currency
+	 * @return the component3 converted to Currency or null if cannot be converted
 	 */
-	public java.lang.Number getComponent3AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(3));
+	public java.util.Currency getComponent3AsCurrency() {
+		return SwiftFormatUtils.getCurrency(getComponent(3));
 	}
 
 	/**
-	 * Gets the Amount (component3).
-	 * @return the Amount from component3
+	 * Gets the Currency (component3).
+	 * @return the Currency from component3
 	 */
-	public String getAmount() {
+	public String getCurrency() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Gets the Amount (component3) as Number
-	 * @return the Amount from component3 converted to Number or <code>null</code> if cannot be converted
+	 * Get the Currency (component3) as Currency
+	 * @return the Currency from component3 converted to Currency or null if cannot be converted
 	 */
-	public java.lang.Number getAmountAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(3));
+	public java.util.Currency getCurrencyAsCurrency() {
+		return SwiftFormatUtils.getCurrency(getComponent(3));
 	}
 
 	/**
 	 * Set the component3.
 	 * @param component3 the component3 to set
 	 */
-	public Field33P setComponent3(String component3) {
+	public Field34C setComponent3(String component3) {
 		setComponent(3, component3);
 		return this;
 	}
 	
 	/**
-	 * Set the component3 from a Number object.
-	 * <br />
+	 * Set the component3 from a Currency object.
+	 * <br>
 	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
 	 * <ul>
-	 * 	<li>Example: 1234.00 -> 1234,</li>
-	 * 	<li>Example: 1234 -> 1234,</li>
-	 * 	<li>Example: 1234.56 -> 1234,56</li>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
 	 * </ul>
-	 * @param component3 the Number with the component3 content to set
+	 * @param component3 the Currency with the component3 content to set
 	 */
-	public Field33P setComponent3(java.lang.Number component3) {
-		setComponent(3, SwiftFormatUtils.getNumber(component3));
+	public Field34C setComponent3(java.util.Currency component3) {
+		setComponent(3, SwiftFormatUtils.getCurrency(component3));
 		return this;
 	}
 	
 	/**
-	 * Set the Amount (component3).
-	 * @param component3 the Amount to set
+	 * Set the Currency (component3).
+	 * @param component3 the Currency to set
 	 */
-	public Field33P setAmount(String component3) {
+	public Field34C setCurrency(String component3) {
 		setComponent(3, component3);
 		return this;
 	}
 	
 	/**
-	 * Set the Amount (component3) from a Number object.
-	 * @see #setComponent3(java.lang.Number)
-	 * @param component3 Number with the Amount content to set
+	 * Set the Currency (component3) from a Currency object.
+	 * @see #setComponent3(java.util.Currency)
+	 * @param component3 Currency with the Currency content to set
 	 */
-	public Field33P setAmount(java.lang.Number component3) {
+	public Field34C setCurrency(java.util.Currency component3) {
 		setComponent3(component3);
+		return this;
+	}
+	/**
+	 * Gets the component4
+	 * @return the component4
+	 */
+	public String getComponent4() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Get the component4 as Number
+	 * @return the component4 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getComponent4AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(4));
+	}
+
+	/**
+	 * Gets the Amount (component4).
+	 * @return the Amount from component4
+	 */
+	public String getAmount() {
+		return getComponent(4);
+	}
+	
+	/**
+	 * Get the Amount (component4) as Number
+	 * @return the Amount from component4 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getAmountAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(4));
+	}
+
+	/**
+	 * Set the component4.
+	 * @param component4 the component4 to set
+	 */
+	public Field34C setComponent4(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the component4 from a Number object.
+	 * <br>
+	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+	 * <ul>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
+	 * </ul>
+	 * @param component4 the Number with the component4 content to set
+	 */
+	public Field34C setComponent4(java.lang.Number component4) {
+		setComponent(4, SwiftFormatUtils.getNumber(component4));
+		return this;
+	}
+	
+	/**
+	 * Set the Amount (component4).
+	 * @param component4 the Amount to set
+	 */
+	public Field34C setAmount(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the Amount (component4) from a Number object.
+	 * @see #setComponent4(java.lang.Number)
+	 * @param component4 Number with the Amount content to set
+	 */
+	public Field34C setAmount(java.lang.Number component4) {
+		setComponent4(component4);
 		return this;
 	}
     
@@ -431,7 +458,7 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 		if (l.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
-		final ArrayList<Currency> result = new ArrayList<Currency>();
+		final List<Currency> result = new ArrayList<>();
 		for (String s: l) {
 			result.add(Currency.getInstance(s));
 		}
@@ -454,12 +481,6 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 		CurrencyResolver.resolveSetCurrency(this, cur);
 	}
     
-    public List<Calendar> dates() {
-		List<Calendar> result = new ArrayList<Calendar>();
-		result.add(SwiftFormatUtils.getDate2(getComponent(1)));
-		return result;
-	}
-    
 	/**
 	 * @see AmountResolver#amounts(Field)
 	 */
@@ -476,7 +497,7 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -486,6 +507,9 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
     */
    @Override
    public boolean isOptional(int component) {   
+       if (component == 2) {
+           return true;
+       }
        return false;
    }
 
@@ -505,7 +529,7 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field33P.NAME
+	 * @return the static value of Field34C.NAME
 	 */
 	@Override
 	public String getName() {
@@ -514,7 +538,7 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	
 	/**
 	 * Returns the field's components pattern
-	 * @return the static value of Field33P.COMPONENTS_PATTERN
+	 * @return the static value of Field34C.COMPONENTS_PATTERN
 	 */
 	@Override
 	public final String componentsPattern() {
@@ -526,7 +550,7 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "<DATE2><CUR><AMOUNT>15";
+		return "4!c/[<N>]<CUR><AMOUNT>15";
 	}
 
 	/**
@@ -534,7 +558,7 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	 * @return null if not found o block is null or empty
 	 * @param block may be null or empty 
 	 */
-	public static Field33P get(final SwiftTagListBlock block) {
+	public static Field34C get(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return null;
 		}
@@ -542,48 +566,48 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 		if (t == null) {
 			return null;
 		}
-		return new Field33P(t) ;
+		return new Field34C(t) ;
 	}
 	
 	/**
-	 * Gets the first instance of Field33P in the given message.
+	 * Gets the first instance of Field34C in the given message.
 	 * @param msg may be empty or null
 	 * @return null if not found or msg is empty or null
 	 * @see #get(SwiftTagListBlock)
 	 */
-	public static Field33P get(final SwiftMessage msg) {
+	public static Field34C get(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return null;
 		return get(msg.getBlock4());
 	}
 
 	/**
-	 * Gets a list of all occurrences of the field Field33P in the given message
+	 * Gets a list of all occurrences of the field Field34C in the given message
 	 * an empty list is returned if none found.
 	 * @param msg may be empty or null in which case an empty list is returned
 	 * @see #getAll(SwiftTagListBlock)
 	 */ 
-	public static List<Field33P> getAll(final SwiftMessage msg) {
+	public static List<Field34C> getAll(final SwiftMessage msg) {
 		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
 			return java.util.Collections.emptyList();
 		return getAll(msg.getBlock4());
 	}
 
 	/**
-	 * Gets a list of all occurrences of the field Field33P from the given block
+	 * Gets a list of all occurrences of the field Field34C from the given block
 	 * an empty list is returned if none found.
 	 *
 	 * @param block may be empty or null in which case an empty list is returned 
 	 */ 
-	public static List<Field33P> getAll(final SwiftTagListBlock block) {
+	public static List<Field34C> getAll(final SwiftTagListBlock block) {
 		if (block == null || block.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field33P> result = new ArrayList<Field33P>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field34C> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
-				result.add( new Field33P(f));
+				result.add( new Field34C(f));
 			}
 			return result;
 		}
@@ -598,7 +622,7 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	 */
 	@Override
 	public int componentsSize() {
-		return 3;
+		return 4;
 	}
 
 	/**
@@ -612,26 +636,26 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	 */
 	@Override
 	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 3) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 33P");
+		if (component < 1 || component > 4) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 34C");
 		}
 		if (component == 1) {
-			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
-			java.util.Calendar cal = getComponent1AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
+			//default format (as is)
+			return getComponent(1);
 		}
 		if (component == 2) {
 			//default format (as is)
 			return getComponent(2);
 		}
 		if (component == 3) {
+			//default format (as is)
+			return getComponent(3);
+		}
+		if (component == 4) {
 			//number, amount, rate
 			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
 			f.setMaximumFractionDigits(13);
-    		Number n = getComponent3AsNumber();
+    		Number n = getComponent4AsNumber();
 			if (n != null) {
 				return f.format(n);
 			}
@@ -641,15 +665,16 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
-		result.add("Date");
+		List<String> result = new ArrayList<>();
+		result.add("Commission Type");
+		result.add("Sign");
 		result.add("Currency");
 		result.add("Amount");
 		return result;
@@ -657,35 +682,39 @@ public class Field33P extends Field implements Serializable, CurrencyContainer, 
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "date");
-		result.put(2, "currency");
-		result.put(3, "amount");
+		result.put(1, "commissionType");
+		result.put(2, "sign");
+		result.put(3, "currency");
+		result.put(4, "amount");
 		return result;
 	}
 
 	/**
-	 * This method deserializes the JSON data into a Field33P object.
+	 * This method deserializes the JSON data into a Field34C object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
-	public static Field33P fromJson(final String json) {
-		Field33P field = new Field33P();
+	public static Field34C fromJson(final String json) {
+		Field34C field = new Field34C();
 		JsonParser parser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("date") != null) {
-			field.setComponent1(jsonObject.get("date").getAsString());
+		if (jsonObject.get("commissionType") != null) {
+			field.setComponent1(jsonObject.get("commissionType").getAsString());
+		}
+		if (jsonObject.get("sign") != null) {
+			field.setComponent2(jsonObject.get("sign").getAsString());
 		}
 		if (jsonObject.get("currency") != null) {
-			field.setComponent2(jsonObject.get("currency").getAsString());
+			field.setComponent3(jsonObject.get("currency").getAsString());
 		}
 		if (jsonObject.get("amount") != null) {
-			field.setComponent3(jsonObject.get("amount").getAsString());
+			field.setComponent4(jsonObject.get("amount").getAsString());
 		}
 		return field;
 	}

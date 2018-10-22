@@ -1,14 +1,18 @@
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
 import java.io.IOException;
@@ -30,15 +34,14 @@ import com.prowidesoftware.swift.io.writer.SwiftWriter;
 
 /**
  * Conversion services test.
- * 
- * @author www.prowidesoftware.com
+ *
  * @since 4.0
  */
 public class ConversionServiceTest extends XMLTestCase {
 
 	private IConversionService srv;
 	private SwiftMessage msg;
-	private String fin = "{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" + 
+	private String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" +
 			":20:AMLX985338-D4E5E\n" + 
 			":23B:CRED\n" + 
 			":32A:051018EUR66969,52\n" + 
@@ -46,7 +49,7 @@ public class ConversionServiceTest extends XMLTestCase {
 			":50K:FOO SA\n" + 
 			":53A:DEUTDEFF\n" + 
 			":54A://RT\n" + 
-			"BICFOOYY\n" + 
+			"FOOBARYY\n" +
 			":59:/-\n" + 
 			"Tressis SA\n" + 
 			":70:/CS BD ST EUR B\n" + 
@@ -73,13 +76,13 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test 
 	public void testGetFINFromObj() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("113:NOMT"));
 		msg.getBlock3().append(new Tag("108", "P22VUXC43C6J3NLD"));
 		String fin = srv.getFIN(msg);
-		assertEquals("{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}", fin);
+		assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}", fin);
 	}
 
 	/**
@@ -88,12 +91,12 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetFINFromObj2() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("108", "P22VUXC43C6J3NLD"));
 		String fin = srv.getFIN(msg);
-		assertEquals("{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}", fin);
+		assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}", fin);
 	}
 
 
@@ -103,7 +106,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetFINFromObj3_unparsedText() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("113:NOMT"));
@@ -112,7 +115,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		msg.setUnparsedTexts(this.unparsedTexts);
 		
 		String fin = srv.getFIN(msg);
-		assertEquals("{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}" + this.someMsgText, fin);
+		assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}" + this.someMsgText, fin);
 	}
 
 	/**
@@ -121,7 +124,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetFINFromObj4_unparsedText() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("113:NOMT"));
@@ -130,7 +133,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		msg.getBlock3().setUnparsedTexts(this.unparsedTexts);
 		
 		String fin = srv.getFIN(msg);
-		assertEquals("{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}" + this.someMsgText + "}", fin);
+		assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}" + this.someMsgText + "}", fin);
 	}
 	
 	/**
@@ -139,7 +142,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetFINFromObj5_unparsedText() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("113:NOMT"));
@@ -148,7 +151,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		msg.getBlock3().getTagByName("113").setUnparsedTexts(this.unparsedTexts);
 		
 		String fin = srv.getFIN(msg);
-		assertEquals("{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT" + this.someMsgText + "}{108:P22VUXC43C6J3NLD}}" , fin);		
+		assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT" + this.someMsgText + "}{108:P22VUXC43C6J3NLD}}" , fin);
 	}
 
 	/**
@@ -157,7 +160,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetFINThroughXML() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("108:P22VUXC43C6J3NLD"));
@@ -165,7 +168,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		String xml = SwiftWriter.getInternalXml(msg);
 		assertNotNull(xml);
 		String fin = srv.getFIN(xml);
-		assertEquals("{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}", fin);
+		assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}", fin);
 	}
 
 	/**
@@ -174,7 +177,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetFINThroughXML_2() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("113:NOMT"));
@@ -183,7 +186,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		String xml = SwiftWriter.getInternalXml(msg);
 		assertNotNull(xml);
 		String fin = srv.getFIN(xml);
-		assertEquals("{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}", fin);
+		assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}", fin);
 	}
 
 	/**
@@ -192,7 +195,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetFINThroughXML_3() {	
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlockUser("Z"));
 		msg.getUserBlock("Z").append(new Tag("1:val1"));
@@ -201,7 +204,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		String xml = SwiftWriter.getInternalXml(msg);
 		assertNotNull(xml);
 		String fin = srv.getFIN(xml);
-		assertEquals("{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{Z:{1:val1}{2:val2}}", fin);
+		assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{Z:{1:val1}{2:val2}}", fin);
 	}
 	
 	/**
@@ -312,7 +315,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetObjThroughXML() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("108:P22VUXC43C6J3NLD"));
@@ -324,7 +327,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		assertNotNull(m.getBlock2());
 		assertNotNull(m.getBlock3());
 
-		assertEquals("F01BICFOOYYAXXX8669486759", m.getBlock1().getBlockValue());
+		assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
 		assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
 		assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTag(0).getValue());
 		assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTagValue("108"));
@@ -336,7 +339,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetObjThroughXML_2() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlockUser("Z"));
 		msg.getUserBlock("Z").append(new Tag("1:val1"));
@@ -348,7 +351,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		assertNotNull(m.getBlock2());
 		assertNotNull(m.getUserBlock("Z"));
 
-		assertEquals("F01BICFOOYYAXXX8669486759", m.getBlock1().getBlockValue());
+		assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
 		assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
 		assertEquals("val1", m.getUserBlock("Z").getTag(0).getValue());
 		assertEquals("val1", m.getUserBlock("Z").getTagValue("1"));
@@ -360,7 +363,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetObjThroughXML3_MsgUnparsedText() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("108:P22VUXC43C6J3NLD"));
@@ -373,7 +376,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		assertNotNull(m.getBlock1());
 		assertNotNull(m.getBlock2());
 		assertNotNull(m.getBlock3());
-		assertEquals("F01BICFOOYYAXXX8669486759", m.getBlock1().getBlockValue());
+		assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
 		assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
 		assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTag(0).getValue());
 		assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTagValue("108"));
@@ -388,7 +391,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetObjThroughXML4_BlockUnparsedText() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("108:P22VUXC43C6J3NLD"));
@@ -405,7 +408,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		assertNotNull(m.getBlock2());
 		assertNotNull(m.getBlock3());
 
-		assertEquals("F01BICFOOYYAXXX8669486759", m.getBlock1().getBlockValue());
+		assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
 		assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
 		assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTag(0).getValue());
 		assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTagValue("108"));
@@ -429,7 +432,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetObjThroughXML5_TagUnparsedText() {
 		msg.clear();
-		msg.addBlock(new SwiftBlock1("F01BICFOOYYAXXX8669486759"));
+		msg.addBlock(new SwiftBlock1("F01FOOBARYYAXXX8669486759"));
 		msg.addBlock(new SwiftBlock2Output("O1030831051017CRESLULLCXXX10194697810510170831N"));
 		msg.addBlock(new SwiftBlock3());
 		msg.getBlock3().append(new Tag("108:P22VUXC43C6J3NLD"));
@@ -443,7 +446,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		assertNotNull(m.getBlock2());
 		assertNotNull(m.getBlock3());
 
-		assertEquals("F01BICFOOYYAXXX8669486759", m.getBlock1().getBlockValue());
+		assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
 		assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
 		assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTag(0).getValue());
 		assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTagValue("108"));
@@ -467,7 +470,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		assertNotNull(m.getBlock4());
 		assertNotNull(m.getBlock5());
 		
-		assertEquals("F01BICFOOYYAXXX8669486759", m.getBlock1().getBlockValue());
+		assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
 		SwiftBlock4 b = m.getBlock4();
 		assertEquals(10, b.countAll());
 		assertEquals("AMLX985338-D4E5E", b.getTagValue("20"));
@@ -478,14 +481,14 @@ public class ConversionServiceTest extends XMLTestCase {
 	
 	@Test
 	public void testBug1539324() throws SAXException, IOException, ParserConfigurationException {
-		String fin = "{1:F01BICFOOYYAXXX8669486759}{3:{108:P22VUXC43C6J3NLD}}";
+		String fin = "{1:F01FOOBARYYAXXX8669486759}{3:{108:P22VUXC43C6J3NLD}}";
 		String xml = srv.getXml(fin);
 		XMLUnit.setIgnoreWhitespace(true);
 		String expected = "<message>\n" +
 				"\n<block1>" +
 				"\n\t<applicationId>F</applicationId>" +
 				"\n\t<serviceId>01</serviceId>" +
-				"\n\t<logicalTerminal>BICFOOYYAXXX</logicalTerminal>" +
+				"\n\t<logicalTerminal>FOOBARYYAXXX</logicalTerminal>" +
 				"\n\t<sessionNumber>8669</sessionNumber>" +
 				"\n\t<sequenceNumber>486759</sequenceNumber>" +
 				"\n</block1>" + 
@@ -518,7 +521,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	@Test
 	public void testGetObjFromFIN() {
 		ConversionService srv;
-		String fin = "{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" + 
+		String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" +
 				":20:AMLX985338-D4E5E\n" + 
 				":23B:CRED\n" + 
 				":32A:051018EUR66969,52\n" + 
@@ -526,7 +529,7 @@ public class ConversionServiceTest extends XMLTestCase {
 				":50K:Tressis SA\n" + 
 				":53A:DEUTDEFF\n" + 
 				":54A://RT\n" + 
-				"BICFOOYY\n" + 
+				"FOOBARYY\n" +
 				":59:/-\n" + 
 				"Tressis SA\n" + 
 				":70:/CS BD ST EUR B\n" + 
@@ -546,7 +549,7 @@ public class ConversionServiceTest extends XMLTestCase {
 		assertNotNull(m.getBlock4());
 		assertNotNull(m.getBlock5());
 		
-		assertEquals("F01BICFOOYYAXXX8669486759", m.getBlock1().getBlockValue());
+		assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
 		assertEquals(2, m.getBlock5().countAll());
 		
 		assertEquals("MAC", m.getBlock5().getTag(0).getName());
@@ -641,9 +644,9 @@ public class ConversionServiceTest extends XMLTestCase {
 
 	@Test
 	public void testBackAndForthXMLConversion1() {
-		final String fin = "{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:" + FINWriterVisitor.SWIFT_EOL + 
+		final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:" + FINWriterVisitor.SWIFT_EOL +
 				":57A:/123456789" + FINWriterVisitor.SWIFT_EOL +
-				"BICFOOYY" + FINWriterVisitor.SWIFT_EOL +
+				"FOOBARYY" + FINWriterVisitor.SWIFT_EOL +
 				"-}";
 		final String xml = srv.getXml(fin);
 		final String fin2 = srv.getFIN(xml);
@@ -652,9 +655,9 @@ public class ConversionServiceTest extends XMLTestCase {
 	
 	@Test
 	public void testBackAndForthXMLConversion2() {
-		final String fin = "{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:" + FINWriterVisitor.SWIFT_EOL + 
+		final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:" + FINWriterVisitor.SWIFT_EOL +
 				":57A:/D/123456789" + FINWriterVisitor.SWIFT_EOL +
-				"BICFOOYY" + FINWriterVisitor.SWIFT_EOL +
+				"FOOBARYY" + FINWriterVisitor.SWIFT_EOL +
 				"-}";
 		final String xml = srv.getXml(fin);
 		final String fin2 = srv.getFIN(xml);

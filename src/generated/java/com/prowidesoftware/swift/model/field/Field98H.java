@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -37,10 +38,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 98H</h2>
+ * <strong>SWIFT MT Field 98H</strong>
+ * <p>
  * Model and parser for field 98H of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
  * 		<li><code>Calendar</code></li> 
  * 		<li><code>Number</code></li> 
@@ -48,15 +50,15 @@ import com.google.gson.JsonParser;
  * 		<li><code>Calendar</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;TIME2&gt;[,3n][/[&lt;N&gt;]&lt;TIME3&gt;]</code></li>
  * 		<li>parser pattern: <code>&lt;TIME2&gt;[,S][/[c]&lt;TIME3&gt;]</code></li>
  * 		<li>components pattern: <code>TNCW</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -64,7 +66,7 @@ public class Field98H extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -132,7 +134,7 @@ public class Field98H extends Field implements Serializable {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -180,7 +182,7 @@ public class Field98H extends Field implements Serializable {
 	 */
 	public static Field98H newInstance(Field98H source) {
 		Field98H cp = new Field98H();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -231,8 +233,8 @@ public class Field98H extends Field implements Serializable {
 	}
 
 	/**
-	 * Gets the component1 as Calendar
-	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the component1 as Calendar
+	 * @return the component1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getTime2(getComponent(1));
@@ -247,8 +249,8 @@ public class Field98H extends Field implements Serializable {
 	}
 	
 	/**
-	 * Gets the Time (component1) as Calendar
-	 * @return the Time from component1 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the Time (component1) as Calendar
+	 * @return the Time from component1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getTimeAsCalendar() {
 		return SwiftFormatUtils.getTime2(getComponent(1));
@@ -299,8 +301,8 @@ public class Field98H extends Field implements Serializable {
 	}
 
 	/**
-	 * Gets the component2 as Number
-	 * @return the component2 converted to Number or <code>null</code> if cannot be converted
+	 * Get the component2 as Number
+	 * @return the component2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
@@ -315,8 +317,8 @@ public class Field98H extends Field implements Serializable {
 	}
 	
 	/**
-	 * Gets the Number (component2) as Number
-	 * @return the Number from component2 converted to Number or <code>null</code> if cannot be converted
+	 * Get the Number (component2) as Number
+	 * @return the Number from component2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
@@ -333,7 +335,7 @@ public class Field98H extends Field implements Serializable {
 	
 	/**
 	 * Set the component2 from a Number object.
-	 * <br />
+	 * <br>
 	 * <em>If the component being set is a fixed length number, the argument will not be 
 	 * padded.</em> It is recommended for these cases to use the setComponent2(String) 
 	 * method.
@@ -376,8 +378,8 @@ public class Field98H extends Field implements Serializable {
 	}
 
 	/**
-	 * Gets the component3 as Currency
-	 * @return the component3 converted to Currency or <code>null</code> if cannot be converted
+	 * Get the component3 as Currency
+	 * @return the component3 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getComponent3AsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(3));
@@ -392,8 +394,8 @@ public class Field98H extends Field implements Serializable {
 	}
 	
 	/**
-	 * Gets the N (component3) as Currency
-	 * @return the N from component3 converted to Currency or <code>null</code> if cannot be converted
+	 * Get the N (component3) as Currency
+	 * @return the N from component3 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getNAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(3));
@@ -444,8 +446,8 @@ public class Field98H extends Field implements Serializable {
 	}
 
 	/**
-	 * Gets the component4 as Calendar
-	 * @return the component4 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the component4 as Calendar
+	 * @return the component4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(4));
@@ -460,8 +462,8 @@ public class Field98H extends Field implements Serializable {
 	}
 	
 	/**
-	 * Gets the Time 2 (component4) as Calendar
-	 * @return the Time 2 from component4 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the Time 2 (component4) as Calendar
+	 * @return the Time 2 from component4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getTime2AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(4));
@@ -506,7 +508,7 @@ public class Field98H extends Field implements Serializable {
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -616,8 +618,8 @@ public class Field98H extends Field implements Serializable {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field98H> result = new ArrayList<Field98H>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field98H> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field98H(f));
 			}
@@ -685,14 +687,14 @@ public class Field98H extends Field implements Serializable {
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		result.add("Time");
 		result.add("Number");
 		result.add("N");
@@ -702,7 +704,7 @@ public class Field98H extends Field implements Serializable {
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
@@ -717,7 +719,7 @@ public class Field98H extends Field implements Serializable {
 	 * This method deserializes the JSON data into a Field98H object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
 	public static Field98H fromJson(final String json) {

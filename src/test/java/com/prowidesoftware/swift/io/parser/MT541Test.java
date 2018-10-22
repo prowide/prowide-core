@@ -1,14 +1,18 @@
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io.parser;
 
 import static org.junit.Assert.assertEquals;
@@ -23,15 +27,14 @@ import com.prowidesoftware.swift.model.Tag;
 
 /**
  * MT541 tests
- * 
- * @author www.prowidesoftware.com
+ *
  * @since 4.0
  */
 public class MT541Test extends BaseMessageTestcase {
 	
 	@Test 
 	public void test541_1() {
-		messageToParse = "{1:F01MYBICBICXXXX1234123456}{2:I541FOOOFRPPXXXXN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX1234123456}{2:I541FOOOFRPPXXXXN}{4:\n" +
 			":16R:GENL\n" +
 			":20C::SEME//2005080800000944\n" +
 			":23G:NEWM\n" +
@@ -70,10 +73,10 @@ public class MT541Test extends BaseMessageTestcase {
 		assertEquals("541", (parseMessage(messageToParse)).getType());
 		
 		//check b1
-		assertEquals("F01MYBICBICXXXX1234123456", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX1234123456", b1.getBlockValue());
 		assertEquals("F", b1.getApplicationId());
 		assertEquals("01", b1.getServiceId());
-		assertEquals("MYBICBICXXXX", b1.getLogicalTerminal());
+		assertEquals("FOOBARXXXXXX", b1.getLogicalTerminal());
 		assertEquals("1234", b1.getSessionNumber());
 		assertEquals("123456", b1.getSequenceNumber());
 		
@@ -221,7 +224,7 @@ public class MT541Test extends BaseMessageTestcase {
 	
 	@Test 
 	public void test541_2() {
-		messageToParse = "{1:F01MYBICBICXXXX0000000000}{2:I541FOOOFRPPXXXXN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX0000000000}{2:I541FOOOFRPPXXXXN}{4:\n" +
 			":16R:GENL\n" +
 			":20C::SEME//2002071500000614\n" +
 			":23G:NEWM\n" +
@@ -257,14 +260,14 @@ public class MT541Test extends BaseMessageTestcase {
 			":16S:SETDET\n" +
 			"-}";
 		assertEquals("541", (parseMessage(messageToParse)).getType());
-		assertEquals("F01MYBICBICXXXX0000000000", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
 		assertEquals("I541FOOOFRPPXXXXN", b2.getBlockValue());
 		assertEquals(32, b4.countAll());
 	}
 	
 	@Test 
 	public void test541_3() {
-		messageToParse = "{1:F01MYBICBICXXXX4321654321}{2:I541FOOOARPPXXXXN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX4321654321}{2:I541FOOOARPPXXXXN}{4:\n" +
 			":16R:GENL\n" +
 			":20C::SEME//2007071800000923\n" +
 			":23G:NEWM\n" +
@@ -300,14 +303,14 @@ public class MT541Test extends BaseMessageTestcase {
 			":16S:SETDET\n" +
 			"-}";
 		assertEquals("541", (parseMessage(messageToParse)).getType());
-		assertEquals("F01MYBICBICXXXX4321654321", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX4321654321", b1.getBlockValue());
 		assertEquals("I541FOOOARPPXXXXN", b2.getBlockValue());
 		assertEquals(32, b4.countAll());
 	}
 	
 	@Test 
 	public void test541_4() {
-		messageToParse = "{1:F01MYBICBICXXXX1234123456}{2:I541FOOODEFFXCUSN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX1234123456}{2:I541FOOODEFFXCUSN}{4:\n" +
 			":16R:GENL\n" +
 			":20C::SEME//2001071800001228\n" +
 			":23G:NEWM\n" +
@@ -341,14 +344,14 @@ public class MT541Test extends BaseMessageTestcase {
 			":16S:SETDET\n" +
 			"-}";
 		assertEquals("541", (parseMessage(messageToParse)).getType());
-		assertEquals("F01MYBICBICXXXX1234123456", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX1234123456", b1.getBlockValue());
 		assertEquals("I541FOOODEFFXCUSN", b2.getBlockValue());
 		assertEquals(30, b4.countAll());
 	}
 	
 	@Test 
 	public void test541_5() {
-		messageToParse = "{1:F01MYBICBICXXXX0000000000}{2:I541FOOOUS33XASTN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX0000000000}{2:I541FOOOUS33XASTN}{4:\n" +
 			":16R:GENL\n" +
 			":20C::SEME//2005071300000248\n" +
 			":23G:NEWM\n" +
@@ -383,7 +386,7 @@ public class MT541Test extends BaseMessageTestcase {
 			":16S:SETDET\n" +
 			"-}";
 		assertEquals("541", (parseMessage(messageToParse)).getType());
-		assertEquals("F01MYBICBICXXXX0000000000", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
 		assertEquals("I541FOOOUS33XASTN", b2.getBlockValue());
 		assertEquals(31, b4.countAll());
 	}

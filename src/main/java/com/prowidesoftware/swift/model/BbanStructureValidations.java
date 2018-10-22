@@ -1,24 +1,25 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as
- *     published by the Free Software Foundation, either version 3 of the
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.prowidesoftware.swift.utils.Lib;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -33,7 +34,7 @@ import java.util.logging.Level;
  *
  * <p>BBAN is short for Basic Bank Account Number. It represents a country-specific bank account number.
  * The BBAN is the last part of the IBAN when used for international funds transfers.
- * Every country has it's specific BBAN format and length depending on it's own standards.</p>
+ * Every country has it's specific BBAN format and length depending on it's own standards.
  *
  * @since 7.9.7
  * @author psantamarina
@@ -49,9 +50,9 @@ public class BbanStructureValidations {
     private List<BbanStructureDTO> bbanStructures = null;
 
     private BbanStructureValidations() {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(BbanEntryType.class, new BbanEntryTypeDeserializer());
-        Gson gson = gsonBuilder.create();
+        Gson gson = new GsonBuilder()
+            .registerTypeAdapter(BbanEntryType.class, new BbanEntryTypeDeserializer())
+            .create();
         String reader = null;
         try {
             reader = Lib.readResource(JSON_FILE,null);
@@ -119,7 +120,7 @@ public class BbanStructureValidations {
      * Gets the list of countries configured for BBAN validation
      */
     public List<String> supportedCountries() {
-        final List<String> countryCodes = new ArrayList<String>(bbanStructures.size());
+        final List<String> countryCodes = new ArrayList<>(bbanStructures.size());
         for (BbanStructureDTO structure : this.bbanStructures){
             countryCodes.add(structure.getCountry_coode());
         }

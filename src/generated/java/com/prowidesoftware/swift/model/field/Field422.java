@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -37,10 +38,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 422</h2>
+ * <strong>SWIFT MT Field 422</strong>
+ * <p>
  * Model and parser for field 422 of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
  * 		<li><code>Character</code></li> 
  * 		<li><code>String</code></li> 
@@ -68,15 +70,15 @@ import com.google.gson.JsonParser;
  * 		<li><code>String</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>12*(1!c/38x)</code></li>
  * 		<li>parser pattern: <code>12*(S/S)</code></li>
  * 		<li>components pattern: <code>cScScScScScScScScScScScS</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -84,7 +86,7 @@ public class Field422 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -132,7 +134,7 @@ public class Field422 extends Field implements Serializable {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -179,7 +181,7 @@ public class Field422 extends Field implements Serializable {
 	 */
 	public static Field422 newInstance(Field422 source) {
 		Field422 cp = new Field422();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -244,8 +246,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent2AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(2);
 	}
 
@@ -286,8 +289,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent4AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(4);
 	}
 
@@ -328,8 +332,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent6AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(6);
 	}
 
@@ -370,8 +375,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent8AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent8AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(8);
 	}
 
@@ -412,8 +418,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent10AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent10AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(10);
 	}
 
@@ -454,8 +461,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent12AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent12AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(12);
 	}
 
@@ -496,8 +504,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent14AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent14AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(14);
 	}
 
@@ -538,8 +547,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent16AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent16AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(16);
 	}
 
@@ -580,8 +590,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent18AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent18AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(18);
 	}
 
@@ -622,8 +633,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent20AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent20AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(20);
 	}
 
@@ -664,8 +676,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent22AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent22AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(22);
 	}
 
@@ -706,8 +719,9 @@ public class Field422 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent24AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent24AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(24);
 	}
 
@@ -722,7 +736,7 @@ public class Field422 extends Field implements Serializable {
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -826,8 +840,8 @@ public class Field422 extends Field implements Serializable {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field422> result = new ArrayList<Field422>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field422> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field422(f));
 			}
@@ -962,14 +976,14 @@ public class Field422 extends Field implements Serializable {
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		result.add(null);
 		result.add(null);
 		result.add(null);
@@ -999,7 +1013,7 @@ public class Field422 extends Field implements Serializable {
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
@@ -1010,7 +1024,7 @@ public class Field422 extends Field implements Serializable {
 	 * This method deserializes the JSON data into a Field422 object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
 	public static Field422 fromJson(final String json) {

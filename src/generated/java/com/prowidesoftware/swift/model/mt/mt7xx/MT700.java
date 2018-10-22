@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mt.mt7xx;
 
 
@@ -19,7 +20,7 @@ package com.prowidesoftware.swift.model.mt.mt7xx;
 import com.prowidesoftware.Generated;
 import java.io.Serializable;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.*;
@@ -30,15 +31,17 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <h1>MT 700 - Issue of a Documentary Credit</h1>
- * <h3>SWIFT MT700 (ISO 15022) message structure:</h3>
+ * <strong>MT 700 - Issue of a Documentary Credit</strong>
  *
+ * <p>
+ * SWIFT MT700 (ISO 15022) message structure:
+ * <br>
  <div class="scheme"><ul>
 <li class="field">Field 27  (M)</li>
 <li class="field">Field 40 A (M)</li>
 <li class="field">Field 20  (M)</li>
 <li class="field">Field 23  (O)</li>
-<li class="field">Field 31 C (O)</li>
+<li class="field">Field 31 C (M)</li>
 <li class="field">Field 40 E (M)</li>
 <li class="field">Field 31 D (M)</li>
 <li class="field">Field 51 A,D (O)</li>
@@ -46,7 +49,6 @@ import java.io.IOException;
 <li class="field">Field 59  (M)</li>
 <li class="field">Field 32 B (M)</li>
 <li class="field">Field 39 A (O)</li>
-<li class="field">Field 39 B (O)</li>
 <li class="field">Field 39 C (O)</li>
 <li class="field">Field 41 A,D (M)</li>
 <li class="field">Field 42 C (O)</li>
@@ -64,56 +66,30 @@ import java.io.IOException;
 <li class="field">Field 45 A (O)</li>
 <li class="field">Field 46 A (O)</li>
 <li class="field">Field 47 A (O)</li>
-<li class="field">Field 71 B (O)</li>
+<li class="field">Field 49 G (O)</li>
+<li class="field">Field 49 H (O)</li>
+<li class="field">Field 71 D (O)</li>
 <li class="field">Field 48  (O)</li>
 <li class="field">Field 49  (M)</li>
+<li class="field">Field 58 A,D (O)</li>
 <li class="field">Field 53 A,D (O)</li>
 <li class="field">Field 78  (O)</li>
 <li class="field">Field 57 A,B,D (O)</li>
-<li class="field">Field 72  (O)</li>
+<li class="field">Field 72 Z (O)</li>
 </ul></div>
 
- <style>
-.scheme, .scheme ul, .scheme li {
-     position: relative;
-}
-.scheme ul {
-    list-style: none;
-    padding-left: 32px;
-}
-.scheme li::before, .scheme li::after {
-    content: "";
-    position: absolute;
-    left: -12px;
-}
-.scheme li::before {
-    border-top: 1px solid #000;
-    top: 9px;
-    width: 8px;
-    height: 0;
-}
-.scheme li::after {
-    border-left: 1px solid #000;
-    height: 100%;
-    width: 0px;
-    top: 2px;
-}
-.scheme ul > li:last-child::after {
-    height: 8px;
-}</style>
-
  *
- * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
- * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
- *
- * @author www.prowidesoftware.com
+ * <p>
+ * This source code is specific to release <strong>SRU 2018</strong>
+ * <p>
+ * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
 @Generated
 public class MT700 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT700.class.getName());
 	
@@ -125,156 +101,115 @@ public class MT700 extends AbstractMT implements Serializable {
 // begin qualifiers constants	
 
 	/**
-	* Constant for qualifier with value CONFIRM 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CONFIRM
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CONFIRM
+	* Constant for qualifier with value ALLOWED 
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
+	public static final String ALLOWED = "ALLOWED";
+
+	/**
+	* Constant for qualifier with value CONDITIONAL 
+	*/
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
+	public static final String CONDITIONAL = "CONDITIONAL";
+
+	/**
+	* Constant for qualifier with value CONFIRM 
+	*/
+	@Deprecated
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CONFIRM = "CONFIRM";
 
 	/**
 	* Constant for qualifier with value EUCPURR_LATEST_VERSION 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsE.EUCPURR_LATEST_VERSION
-	* @see com.prowidesoftware.swift.SchemeConstantsE#EUCPURR_LATEST_VERSION
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String EUCPURR_LATEST_VERSION = "EUCPURR_LATEST_VERSION";
 
 	/**
 	* Constant for qualifier with value EUCP_LATEST_VERSION 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsE.EUCP_LATEST_VERSION
-	* @see com.prowidesoftware.swift.SchemeConstantsE#EUCP_LATEST_VERSION
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String EUCP_LATEST_VERSION = "EUCP_LATEST_VERSION";
 
 	/**
 	* Constant for qualifier with value IRREVOCABLE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsI.IRREVOCABLE
-	* @see com.prowidesoftware.swift.SchemeConstantsI#IRREVOCABLE
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String IRREVOCABLE = "IRREVOCABLE";
 
 	/**
 	* Constant for qualifier with value IRREVOCABLE_STANDBY 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsI.IRREVOCABLE_STANDBY
-	* @see com.prowidesoftware.swift.SchemeConstantsI#IRREVOCABLE_STANDBY
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String IRREVOCABLE_STANDBY = "IRREVOCABLE_STANDBY";
 
 	/**
 	* Constant for qualifier with value IRREVOCABLE_TRANSFERABLE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsI.IRREVOCABLE_TRANSFERABLE
-	* @see com.prowidesoftware.swift.SchemeConstantsI#IRREVOCABLE_TRANSFERABLE
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String IRREVOCABLE_TRANSFERABLE = "IRREVOCABLE_TRANSFERABLE";
 
 	/**
 	* Constant for qualifier with value IRREVOC_TRANS_STANDBY 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsI.IRREVOC_TRANS_STANDBY
-	* @see com.prowidesoftware.swift.SchemeConstantsI#IRREVOC_TRANS_STANDBY
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String IRREVOC_TRANS_STANDBY = "IRREVOC_TRANS_STANDBY";
 
 	/**
 	* Constant for qualifier with value ISP_LATEST_VERSION 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsI.ISP_LATEST_VERSION
-	* @see com.prowidesoftware.swift.SchemeConstantsI#ISP_LATEST_VERSION
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ISP_LATEST_VERSION = "ISP_LATEST_VERSION";
 
 	/**
 	* Constant for qualifier with value MAY_ADD 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.MAY_ADD
-	* @see com.prowidesoftware.swift.SchemeConstantsM#MAY_ADD
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String MAY_ADD = "MAY_ADD";
 
 	/**
-	* Constant for qualifier with value NOT_EXCEEDING 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsN.NOT_EXCEEDING
-	* @see com.prowidesoftware.swift.SchemeConstantsN#NOT_EXCEEDING
+	* Constant for qualifier with value NOT_ALLOWED 
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
-	public static final String NOT_EXCEEDING = "NOT_EXCEEDING";
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
+	public static final String NOT_ALLOWED = "NOT_ALLOWED";
 
 	/**
 	* Constant for qualifier with value OTHR 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsO.OTHR
-	* @see com.prowidesoftware.swift.SchemeConstantsO#OTHR
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String OTHR = "OTHR";
 
 	/**
-	* Constant for qualifier with value REVOCABLE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REVOCABLE
-	* @see com.prowidesoftware.swift.SchemeConstantsR#REVOCABLE
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
-	public static final String REVOCABLE = "REVOCABLE";
-
-	/**
-	* Constant for qualifier with value REVOCABLE_STANDBY 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REVOCABLE_STANDBY
-	* @see com.prowidesoftware.swift.SchemeConstantsR#REVOCABLE_STANDBY
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
-	public static final String REVOCABLE_STANDBY = "REVOCABLE_STANDBY";
-
-	/**
-	* Constant for qualifier with value REVOCABLE_TRANSFERABLE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REVOCABLE_TRANSFERABLE
-	* @see com.prowidesoftware.swift.SchemeConstantsR#REVOCABLE_TRANSFERABLE
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
-	public static final String REVOCABLE_TRANSFERABLE = "REVOCABLE_TRANSFERABLE";
-
-	/**
 	* Constant for qualifier with value UCPURR_LATEST_VERSION 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsU.UCPURR_LATEST_VERSION
-	* @see com.prowidesoftware.swift.SchemeConstantsU#UCPURR_LATEST_VERSION
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String UCPURR_LATEST_VERSION = "UCPURR_LATEST_VERSION";
 
 	/**
 	* Constant for qualifier with value UCP_LATEST_VERSION 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsU.UCP_LATEST_VERSION
-	* @see com.prowidesoftware.swift.SchemeConstantsU#UCP_LATEST_VERSION
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String UCP_LATEST_VERSION = "UCP_LATEST_VERSION";
 
 	/**
 	* Constant for qualifier with value WITHOUT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsW.WITHOUT
-	* @see com.prowidesoftware.swift.SchemeConstantsW#WITHOUT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String WITHOUT = "WITHOUT";
 
 // end qualifiers constants	
@@ -290,20 +225,18 @@ public class MT700 extends AbstractMT implements Serializable {
 
 	/**
 	 * Creates an MT700 initialized with the parameter MtSwiftMessage.
-	 * @param m swift message with the MT700 content, the parameter can not be <code>null</code>
+	 * @param m swift message with the MT700 content, the parameter can not be null
 	 * @see #MT700(String)
 	 */
 	public MT700(MtSwiftMessage m) {
-		this();
-		super.m = super.getSwiftMessageNotNullOrException();
-		sanityCheck(super.m);
+		this(m.message());
 	}
 	
 	/**
 	 * Creates an MT700 initialized with the parameter MtSwiftMessage.
 	 *
 	 * @param m swift message with the MT700 content
-	 * @return the created object or <code>null</code> if the parameter is <code>null</code>
+	 * @return the created object or null if the parameter is null
 	 * @see #MT700(String)
 	 * @since 7.7
 	 */
@@ -311,11 +244,11 @@ public class MT700 extends AbstractMT implements Serializable {
 		if (m == null) {
 			return null;
 		}
-		return new MT700(m.message());
+		return new MT700(m);
 	}
 	
 	/**
-	 * Creates and initializes a new MT700 input message setting TEST BICS as sender and receiver.<br />
+	 * Creates and initializes a new MT700 input message setting TEST BICS as sender and receiver.<br>
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -325,7 +258,7 @@ public class MT700 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT700 input message from sender to receiver.<br />
+	 * Creates and initializes a new MT700 input message from sender to receiver.<br>
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -342,21 +275,24 @@ public class MT700 extends AbstractMT implements Serializable {
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* 
+	*
+	* @param messageType the message type number
+    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
+	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
 	* @see #MT700(String, String)
 	* @deprecated Use instead <code>new MT700(sender, receiver)</code> instead
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public MT700(final int messageType, final String sender, final String receiver) {
 		super(700, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT700(int, String, String)", "Use the constructor MT700(sender, receiver) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT700(int, String, String)", "Use the constructor MT700(sender, receiver) instead.");
 	}
 	
 	/**
-	 * Creates a new MT700 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT700 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -382,12 +318,12 @@ public class MT700 extends AbstractMT implements Serializable {
     }
 	
 	/**
-	 * Creates a new MT700 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT700 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter cannot be parsed, the returned MT700 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br />
+	 * initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
-	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be <code>null</code> in which case this method returns null</em>
+	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
 	 * @return a new instance of MT700 or null if fin is null 
 	 * @since 7.7
 	 */
@@ -399,12 +335,13 @@ public class MT700 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT700 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT700 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public MT700(final InputStream stream) throws IOException {
@@ -412,11 +349,12 @@ public class MT700 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT700 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT700 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
 	 * @return a new instance of MT700 or null if stream is null or the message cannot be parsed 
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public static MT700 parse(final InputStream stream) throws IOException {
@@ -427,12 +365,13 @@ public class MT700 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT700 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT700 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public MT700(final File file) throws IOException {
@@ -440,11 +379,12 @@ public class MT700 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT700 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT700 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
 	 * @return a new instance of MT700 or null if; file is null, does not exist, can't be read, is not a file or the message cannot be parsed
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public static MT700 parse(final File file) throws IOException {
@@ -463,7 +403,7 @@ public class MT700 extends AbstractMT implements Serializable {
 	public String getMessageType() {
 		return "700";
 	}
-	
+
 	/**
 	 * Add all tags from block to the end of the block4.
 	 *
@@ -511,7 +451,7 @@ public class MT700 extends AbstractMT implements Serializable {
 	 *
 	 * @param json a JSON representation of an MT700 message
 	 * @return a new instance of MT700
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	public final static MT700 fromJson(String json) {
 		return (MT700) AbstractMT.fromJson(json);
@@ -519,10 +459,10 @@ public class MT700 extends AbstractMT implements Serializable {
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 27, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 27 at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field27 object or <code>null</code> if the field is not found
+	 * @return a Field27 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -537,10 +477,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 40A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 40A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field40A object or <code>null</code> if the field is not found
+	 * @return a Field40A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -555,10 +495,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 20 at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field20 object or <code>null</code> if the field is not found
+	 * @return a Field20 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -573,10 +513,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 23, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 23 at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field23 object or <code>null</code> if the field is not found
+	 * @return a Field23 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -591,10 +531,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 31C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 31C at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field31C object or <code>null</code> if the field is not found
+	 * @return a Field31C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -609,10 +549,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 40E, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 40E at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field40E object or <code>null</code> if the field is not found
+	 * @return a Field40E object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -627,10 +567,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 31D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 31D at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field31D object or <code>null</code> if the field is not found
+	 * @return a Field31D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -645,10 +585,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 51A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 51A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field51A object or <code>null</code> if the field is not found
+	 * @return a Field51A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -663,10 +603,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 51D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 51D at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field51D object or <code>null</code> if the field is not found
+	 * @return a Field51D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -681,10 +621,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 50, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 50 at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field50 object or <code>null</code> if the field is not found
+	 * @return a Field50 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -699,10 +639,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 59, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 59 at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field59 object or <code>null</code> if the field is not found
+	 * @return a Field59 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -717,10 +657,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 32B at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field32B object or <code>null</code> if the field is not found
+	 * @return a Field32B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -735,10 +675,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 39A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 39A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field39A object or <code>null</code> if the field is not found
+	 * @return a Field39A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -752,29 +692,11 @@ public class MT700 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 39B, 
-	 * or <code>null</code> if none is found.<br />
-	 * The first occurrence of field 39B at MT700 is expected to be the only one.
-	 * 
-	 * @return a Field39B object or <code>null</code> if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field39B getField39B() {
-		final Tag t = tag("39B");
-		if (t != null) {
-			return new Field39B(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 39C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 39C at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field39C object or <code>null</code> if the field is not found
+	 * @return a Field39C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -789,10 +711,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 41A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 41A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field41A object or <code>null</code> if the field is not found
+	 * @return a Field41A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -807,10 +729,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 41D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 41D at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field41D object or <code>null</code> if the field is not found
+	 * @return a Field41D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -825,10 +747,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 42C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 42C at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field42C object or <code>null</code> if the field is not found
+	 * @return a Field42C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -843,10 +765,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 42A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 42A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field42A object or <code>null</code> if the field is not found
+	 * @return a Field42A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -861,10 +783,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 42D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 42D at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field42D object or <code>null</code> if the field is not found
+	 * @return a Field42D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -879,10 +801,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 42M, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 42M at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field42M object or <code>null</code> if the field is not found
+	 * @return a Field42M object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -897,10 +819,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 42P, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 42P at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field42P object or <code>null</code> if the field is not found
+	 * @return a Field42P object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -915,10 +837,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 43P, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 43P at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field43P object or <code>null</code> if the field is not found
+	 * @return a Field43P object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -933,10 +855,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 43T, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 43T at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field43T object or <code>null</code> if the field is not found
+	 * @return a Field43T object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -951,10 +873,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 44A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 44A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field44A object or <code>null</code> if the field is not found
+	 * @return a Field44A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -969,10 +891,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 44E, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 44E at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field44E object or <code>null</code> if the field is not found
+	 * @return a Field44E object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -987,10 +909,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 44F, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 44F at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field44F object or <code>null</code> if the field is not found
+	 * @return a Field44F object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1005,10 +927,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 44B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 44B at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field44B object or <code>null</code> if the field is not found
+	 * @return a Field44B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1023,10 +945,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 44C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 44C at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field44C object or <code>null</code> if the field is not found
+	 * @return a Field44C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1041,10 +963,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 44D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 44D at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field44D object or <code>null</code> if the field is not found
+	 * @return a Field44D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1059,10 +981,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 45A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 45A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field45A object or <code>null</code> if the field is not found
+	 * @return a Field45A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1077,10 +999,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 46A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 46A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field46A object or <code>null</code> if the field is not found
+	 * @return a Field46A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1095,10 +1017,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 47A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 47A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field47A object or <code>null</code> if the field is not found
+	 * @return a Field47A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1112,18 +1034,54 @@ public class MT700 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 71B, 
-	 * or <code>null</code> if none is found.<br />
-	 * The first occurrence of field 71B at MT700 is expected to be the only one.
+	 * Iterates through block4 fields and return the first one whose name matches 49G, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 49G at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field71B object or <code>null</code> if the field is not found
+	 * @return a Field49G object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field71B getField71B() {
-		final Tag t = tag("71B");
+	public Field49G getField49G() {
+		final Tag t = tag("49G");
 		if (t != null) {
-			return new Field71B(t.getValue());
+			return new Field49G(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 49H, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 49H at MT700 is expected to be the only one.
+	 * 
+	 * @return a Field49H object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field49H getField49H() {
+		final Tag t = tag("49H");
+		if (t != null) {
+			return new Field49H(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 71D, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 71D at MT700 is expected to be the only one.
+	 * 
+	 * @return a Field71D object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field71D getField71D() {
+		final Tag t = tag("71D");
+		if (t != null) {
+			return new Field71D(t.getValue());
 		} else {
 			return null;
 		}
@@ -1131,10 +1089,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 48, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 48 at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field48 object or <code>null</code> if the field is not found
+	 * @return a Field48 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1149,10 +1107,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 49, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 49 at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field49 object or <code>null</code> if the field is not found
+	 * @return a Field49 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1166,11 +1124,47 @@ public class MT700 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return the first one whose name matches 58A, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 58A at MT700 is expected to be the only one.
+	 * 
+	 * @return a Field58A object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field58A getField58A() {
+		final Tag t = tag("58A");
+		if (t != null) {
+			return new Field58A(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 58D, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 58D at MT700 is expected to be the only one.
+	 * 
+	 * @return a Field58D object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field58D getField58D() {
+		final Tag t = tag("58D");
+		if (t != null) {
+			return new Field58D(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Iterates through block4 fields and return the first one whose name matches 53A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 53A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field53A object or <code>null</code> if the field is not found
+	 * @return a Field53A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1185,10 +1179,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 53D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 53D at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field53D object or <code>null</code> if the field is not found
+	 * @return a Field53D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1203,10 +1197,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 78, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 78 at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field78 object or <code>null</code> if the field is not found
+	 * @return a Field78 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1221,10 +1215,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57A at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field57A object or <code>null</code> if the field is not found
+	 * @return a Field57A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1239,10 +1233,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57B at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field57B object or <code>null</code> if the field is not found
+	 * @return a Field57B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1257,10 +1251,10 @@ public class MT700 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57D at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field57D object or <code>null</code> if the field is not found
+	 * @return a Field57D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1274,18 +1268,18 @@ public class MT700 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 72, 
-	 * or <code>null</code> if none is found.<br />
-	 * The first occurrence of field 72 at MT700 is expected to be the only one.
+	 * Iterates through block4 fields and return the first one whose name matches 72Z, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 72Z at MT700 is expected to be the only one.
 	 * 
-	 * @return a Field72 object or <code>null</code> if the field is not found
+	 * @return a Field72Z object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field72 getField72() {
-		final Tag t = tag("72");
+	public Field72Z getField72Z() {
+		final Tag t = tag("72Z");
 		if (t != null) {
-			return new Field72(t.getValue());
+			return new Field72Z(t.getValue());
 		} else {
 			return null;
 		}

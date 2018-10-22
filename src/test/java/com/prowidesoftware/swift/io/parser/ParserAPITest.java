@@ -1,14 +1,18 @@
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io.parser;
 
 import static org.junit.Assert.assertEquals;
@@ -22,15 +26,14 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 
 /**
  * Test for SwiftParser main API and functions.
- * 
- * @author www.prowidesoftware.com
+ *
  * @since 4.0
  */
 public class ParserAPITest {
 	
 	@Test 
 	public void test103_1() {
-		String messageToParse = "{1:F01BICFOOYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" + 
+		String messageToParse = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" +
 					":20:D051026EUR100057\n" + 
 					":13C:/RNCTIME/0802+0000\n" + 
 					":23B:CRED\n" + 
@@ -38,7 +41,7 @@ public class ParserAPITest {
 					":33B:EUR6740,91\n" + 
 					":50A:SSSSESMMXXX\n" + 
 					":53A:BBBBESMMXXX\n" + 
-					":57A:BICFOOYYXXX\n" + 
+					":57A:FOOBARYYXXX\n" +
 					":59:/ES0123456789012345671234\n" + 
 					"FOOOOO 1000 FOOBAR S.A.\n" + 
 					":70:REDEMPTS. TRADEDATE 2222-10-26\n" + 
@@ -64,10 +67,10 @@ public class ParserAPITest {
 		assertEquals("103", m.getType());
 
 		//check b1
-		assertEquals("F01BICFOOYYAXXX1234123456", m.getBlock1().getBlockValue());
+		assertEquals("F01FOOBARYYAXXX1234123456", m.getBlock1().getBlockValue());
 		assertEquals("F", m.getBlock1().getApplicationId());
 		assertEquals("01", m.getBlock1().getServiceId());
-		assertEquals("BICFOOYYAXXX", m.getBlock1().getLogicalTerminal());
+		assertEquals("FOOBARYYAXXX", m.getBlock1().getLogicalTerminal());
 		assertEquals("1234", m.getBlock1().getSessionNumber());
 		assertEquals("123456", m.getBlock1().getSequenceNumber());
 
@@ -99,7 +102,7 @@ public class ParserAPITest {
 		assertEquals("EUR6740,91", m.getBlock4().getTagValue("33B"));
 		assertEquals("SSSSESMMXXX", m.getBlock4().getTagValue("50A"));
 		assertEquals("BBBBESMMXXX", m.getBlock4().getTagValue("53A"));
-		assertEquals("BICFOOYYXXX", m.getBlock4().getTagValue("57A"));
+		assertEquals("FOOBARYYXXX", m.getBlock4().getTagValue("57A"));
 		assertEquals("/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.", m.getBlock4().getTagValue("59"));
 		assertEquals("REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR", m.getBlock4().getTagValue("70"));
 		assertEquals("SHA", m.getBlock4().getTagValue("71A"));
@@ -112,7 +115,7 @@ public class ParserAPITest {
 	
 	@Test 
 	public void test103_2() {
-		String messageToParse = "{1:F01BICFOOYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" + 
+		String messageToParse = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" +
 					":20:D051026EUR100057\n" + 
 					":13C:/RNCTIME/0802+0000\n" + 
 					":23B:CRED\n" + 
@@ -120,7 +123,7 @@ public class ParserAPITest {
 					":33B:EUR6740,91\n" + 
 					":50A:SSSSESMMXXX\n" + 
 					":53A:BBBBESMMXXX\n" + 
-					":57A:BICFOOYYXXX\n" + 
+					":57A:FOOBARYYXXX\n" +
 					":59:/ES0123456789012345671234\n" + 
 					"FOOOOO 1000 FOOBAR S.A.\n" + 
 					":70:REDEMPTS. TRADEDATE 2222-10-26\n" + 
@@ -139,10 +142,10 @@ public class ParserAPITest {
 		assertEquals("103", m.getType());
 
 		//check b1
-		assertEquals("F01BICFOOYYAXXX1234123456", m.getBlock1().getBlockValue());
+		assertEquals("F01FOOBARYYAXXX1234123456", m.getBlock1().getBlockValue());
 		assertEquals("F", m.getBlock1().getApplicationId());
 		assertEquals("01", m.getBlock1().getServiceId());
-		assertEquals("BICFOOYYAXXX", m.getBlock1().getLogicalTerminal());
+		assertEquals("FOOBARYYAXXX", m.getBlock1().getLogicalTerminal());
 		assertEquals("1234", m.getBlock1().getSessionNumber());
 		assertEquals("123456", m.getBlock1().getSequenceNumber());
 
@@ -174,7 +177,7 @@ public class ParserAPITest {
 		assertEquals("EUR6740,91", m.getBlock4().getTagValue("33B"));
 		assertEquals("SSSSESMMXXX", m.getBlock4().getTagValue("50A"));
 		assertEquals("BBBBESMMXXX", m.getBlock4().getTagValue("53A"));
-		assertEquals("BICFOOYYXXX", m.getBlock4().getTagValue("57A"));
+		assertEquals("FOOBARYYXXX", m.getBlock4().getTagValue("57A"));
 		assertEquals("/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.", m.getBlock4().getTagValue("59"));
 		assertEquals("REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR", m.getBlock4().getTagValue("70"));
 		assertEquals("SHA", m.getBlock4().getTagValue("71A"));

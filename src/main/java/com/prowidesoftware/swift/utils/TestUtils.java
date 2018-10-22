@@ -1,24 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.utils;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
 
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
@@ -27,6 +22,11 @@ import com.prowidesoftware.swift.model.SwiftBlock2Input;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.Tag;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility methods for test cases
@@ -53,15 +53,17 @@ public class TestUtils {
 		return result;
 	}
 
+	private static final String MTXXXMESSAGE = "Use new MTxxx plus the append methods instead.";
+
 	/**
 	 * create a message of given type, initialize blocks and add in order tags param in block 4
 	 *
 	 * @deprecated use new MTxxx instead of this
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public static SwiftMessage createMT(final int i, final Tag ... tags ) {
-		DeprecationUtils.phase2(TestUtils.class, "createMT(int, Tag...)", "Use new MTxxx plus the append methods instead.");
+		DeprecationUtils.phase3(TestUtils.class, "createMT(int, Tag...)", MTXXXMESSAGE);
 		final SwiftMessage result = createMT(i);
 		if (tags != null && tags.length>0) {
 			for (final Tag t:tags) {
@@ -75,9 +77,9 @@ public class TestUtils {
 	 * @deprecated use new MTxxx instead of this
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public static SwiftMessage createMT(final int i, final SwiftTagListBlock ... blocks ) {
-		DeprecationUtils.phase2(TestUtils.class, "createMT(int, SwiftTagListBlock...)", "Use new MTxxx plus the append methods instead.");
+		DeprecationUtils.phase3(TestUtils.class, "createMT(int, SwiftTagListBlock...)", MTXXXMESSAGE);
 		final SwiftMessage result = createMT(i);
 
 		if (blocks != null && blocks.length>0) {
@@ -122,9 +124,9 @@ public class TestUtils {
 	 * @deprecated use new MTnnn instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public static SwiftMessage createMTwithEmptyTags(final int i, final String ... tags) {
-		DeprecationUtils.phase2(TestUtils.class, "createMTwithEmptyTags(int, String...)", "Use new MTxxx plus the append methods instead.");
+		DeprecationUtils.phase3(TestUtils.class, "createMTwithEmptyTags(int, String...)", MTXXXMESSAGE);
 		final SwiftMessage r = createMT(i, (Tag[])null);
 		if (tags != null && tags.length>0) {
 			for (final String n : tags) {
@@ -142,10 +144,10 @@ public class TestUtils {
 	 * @deprecated use directly MTXXX.SequenceX.newInstance(Tag ...)
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public static Tag[] newSeq(final String startEnd16rs, final Tag ... tags ) {
-		DeprecationUtils.phase2(TestUtils.class, "newSeq(String, Tag...)", "Use new MTxxx plus the append methods instead.");
-		final ArrayList<Tag> result = new ArrayList<Tag>();
+		DeprecationUtils.phase3(TestUtils.class, "newSeq(String, Tag...)", MTXXXMESSAGE);
+		final ArrayList<Tag> result = new ArrayList<>();
 		result.add(new Tag("16R", startEnd16rs));
 		if (tags != null && tags.length>0) {
 			for (final Tag t : tags) {
@@ -164,10 +166,10 @@ public class TestUtils {
 	 * @deprecated use directly MTXXX.SequenceX.newInstance(Tag ...)
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public static Tag[] newSeq(final String startEnd16rs, final String ... tagnames ) {
-		DeprecationUtils.phase2(TestUtils.class, "newSeq(String, String...)", "Use new MTxxx plus the append methods instead.");
-		final ArrayList<Tag> result = new ArrayList<Tag>();
+		DeprecationUtils.phase3(TestUtils.class, "newSeq(String, String...)", MTXXXMESSAGE);
+		final ArrayList<Tag> result = new ArrayList<>();
 		result.add(new Tag("16R", startEnd16rs));
 		if (tagnames != null && tagnames.length>0) {
 			for (final String name : tagnames) {

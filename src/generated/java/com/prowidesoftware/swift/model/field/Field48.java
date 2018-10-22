@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -37,34 +38,33 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 48</h2>
+ * <strong>SWIFT MT Field 48</strong>
+ * <p>
  * Model and parser for field 48 of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
+ * 		<li><code>Number</code></li> 
  * 		<li><code>String</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>35x[$35x]0-3</code></li>
- * 		<li>parser pattern: <code>S[$S]0-3</code></li>
- * 		<li>components pattern: <code>SSSS</code></li>
+ * 		<li>validation pattern: <code>3n[/35x]</code></li>
+ * 		<li>parser pattern: <code>S[/S]</code></li>
+ * 		<li>components pattern: <code>NS</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
-public class Field48 extends Field implements Serializable, com.prowidesoftware.swift.model.field.MultiLineField {
+public class Field48 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -75,19 +75,24 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_48 = "48";
-	public static final String PARSER_PATTERN ="S[$S]0-3";
-	public static final String COMPONENTS_PATTERN = "SSSS";
+	public static final String PARSER_PATTERN ="S[/S]";
+	public static final String COMPONENTS_PATTERN = "NS";
+
+	/**
+	 * Component number for the Days subfield
+	 */
+	public static final Integer DAYS = 1;
 
 	/**
 	 * Component number for the Narrative subfield
 	 */
-	public static final Integer NARRATIVE = 1;
+	public static final Integer NARRATIVE = 2;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field48() {
-		super(4);
+		super(2);
 	}
 	    					
 	/**
@@ -117,7 +122,7 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -126,9 +131,9 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	 */
 	@Override
 	public void parse(final String value) {
-		init(4);
-		List<String> lines = SwiftParseUtils.getLines(value);
-		SwiftParseUtils.setComponentsFromLines(this, 1, null, 0, lines);
+		init(2);
+		setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
+		setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
 	}
 	
 	/**
@@ -139,7 +144,7 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	 */
 	public static Field48 newInstance(Field48 source) {
 		Field48 cp = new Field48();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -149,7 +154,10 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
-		appendInLines(result, 1, 4);
+		append(result, 1);
+		if (getComponent2() != null) {
+			result.append("/").append(getComponent2());
+		}
 		return result.toString();
 	}
 
@@ -182,62 +190,27 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	}
 
 	/**
-	 * Same as getComponent(1)
-	 * @deprecated use {@link #getComponent(int)} instead
+	 * Get the component1 as Number
+	 * @return the component1 converted to Number or null if cannot be converted
 	 */
-	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
-	public java.lang.String getComponent1AsString() {
+	public java.lang.Number getComponent1AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(1));
+	}
+
+	/**
+	 * Gets the Days (component1).
+	 * @return the Days from component1
+	 */
+	public String getDays() {
 		return getComponent(1);
 	}
-
+	
 	/**
-	 * Gets the Narrative (component1).
-	 * @return the Narrative from component1
+	 * Get the Days (component1) as Number
+	 * @return the Days from component1 converted to Number or null if cannot be converted
 	 */
-	public String getNarrativeLine1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Narrative (component2).
-	 * @return the Narrative from component2
-	 */
-	public String getNarrativeLine2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Gets the Narrative (component3).
-	 * @return the Narrative from component3
-	 */
-	public String getNarrativeLine3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Gets the Narrative (component4).
-	 * @return the Narrative from component4
-	 */
-	public String getNarrativeLine4() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Gets the Narrative as a concatenation of component1 to component4.
-	 * @return the Narrative from components
-	 */
-	public String getNarrative() {
-		StringBuilder result = new StringBuilder();
-		for (int i = 1 ; i < 5 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
-			}
-		}
-		return result.toString();
+	public java.lang.Number getDaysAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
@@ -248,50 +221,41 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 		setComponent(1, component1);
 		return this;
 	}
-
+	
 	/**
-	 * Set the Narrative (component1).
-	 * @param component1 the Narrative to set
+	 * Set the component1 from a Number object.
+	 * <br>
+	 * <em>If the component being set is a fixed length number, the argument will not be 
+	 * padded.</em> It is recommended for these cases to use the setComponent1(String) 
+	 * method.
+	 * 
+	 * @see #setComponent1(String)
+	 *
+	 * @param component1 the Number with the component1 content to set
 	 */
-	public Field48 setNarrativeLine1(String component1) {
+	public Field48 setComponent1(java.lang.Number component1) {
+		if (component1 != null) {
+			setComponent(1, Integer.toString(component1.intValue()));
+		}
+		return this;
+	}
+	
+	/**
+	 * Set the Days (component1).
+	 * @param component1 the Days to set
+	 */
+	public Field48 setDays(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
-
+	
 	/**
-	 * Set the Narrative (component2).
-	 * @param component2 the Narrative to set
+	 * Set the Days (component1) from a Number object.
+	 * @see #setComponent1(java.lang.Number)
+	 * @param component1 Number with the Days content to set
 	 */
-	public Field48 setNarrativeLine2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component3).
-	 * @param component3 the Narrative to set
-	 */
-	public Field48 setNarrativeLine3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component4).
-	 * @param component4 the Narrative to set
-	 */
-	public Field48 setNarrativeLine4(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative splitting the parameter lines into components 1 to 4.
-	 * @param value the Narrative to set, may contain line ends and each line will be set to its correspondent component attribute
-	 */
-	public Field48 setNarrative(String value) {
-		List<String> lines = SwiftParseUtils.getLines(value);
-		SwiftParseUtils.setComponentsFromLines(this, 1, 4, 0, lines);
+	public Field48 setDays(java.lang.Number component1) {
+		setComponent1(component1);
 		return this;
 	}
 	/**
@@ -307,8 +271,17 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent2AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(2);
+	}
+
+	/**
+	 * Gets the Narrative (component2).
+	 * @return the Narrative from component2
+	 */
+	public String getNarrative() {
 		return getComponent(2);
 	}
 
@@ -320,62 +293,19 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 		setComponent(2, component2);
 		return this;
 	}
+	
 	/**
-	 * Gets the component3
-	 * @return the component3
+	 * Set the Narrative (component2).
+	 * @param component2 the Narrative to set
 	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Same as getComponent(3)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
-	public java.lang.String getComponent3AsString() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Set the component3.
-	 * @param component3 the component3 to set
-	 */
-	public Field48 setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	/**
-	 * Gets the component4
-	 * @return the component4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Same as getComponent(4)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
-	public java.lang.String getComponent4AsString() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Set the component4.
-	 * @param component4 the component4 to set
-	 */
-	public Field48 setComponent4(String component4) {
-		setComponent(4, component4);
+	public Field48 setNarrative(String component2) {
+		setComponent(2, component2);
 		return this;
 	}
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -386,12 +316,6 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
    @Override
    public boolean isOptional(int component) {   
        if (component == 2) {
-           return true;
-       }
-       if (component == 3) {
-           return true;
-       }
-       if (component == 4) {
            return true;
        }
        return false;
@@ -434,7 +358,7 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "35x[$35x]0-3";
+		return "3n[/35x]";
 	}
 
 	/**
@@ -488,8 +412,8 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field48> result = new ArrayList<Field48>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field48> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field48(f));
 			}
@@ -506,87 +430,8 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	 */
 	@Override
 	public int componentsSize() {
-		return 4;
+		return 2;
 	}
-	
-	/**
-	 * Returns a specific line from the field's value.<br>
-	 *
-	 * @see MultiLineField#getLine(int)
-	 * @param line a reference to a specific line in the field, first line being 1
-	 * @return line content or null if not present or if line number is above the expected
-	 * @since 7.7
-	 */
-	public String getLine(int line) {
-		return getLine(line, 0);
-	}
-	
-	/**
-	 * Returns a specific line from the field's value.<br>
-	 * 
-	 * @see MultiLineField#getLine(int, int)
-	 * @param line a reference to a specific line in the field, first line being 1
-	 * @param offset an optional component number used as offset when counting lines
-	 * @return line content or null if not present or if line number is above the expected
-	 * @since 7.7
-	 */
-	public String getLine(int line, int offset) {
-		Field48 cp = newInstance(this);
-		return getLine(cp, line, null, offset);
-	}
-	
-	/**
-	 * Returns the field value split into lines.<br>
-	 *
-	 * @see MultiLineField#getLines()
-	 * @return lines content or empty list if field's value is empty
-	 * @since 7.7
-	 */
-	public List<String> getLines() {
-		return SwiftParseUtils.getLines(getValue());
-	}
-
-	/**
-	 * Returns the field value starting at the offset component, split into lines.<br>
-	 *
-	 * @see MultiLineField#getLines(int)
-	 * @param offset an optional component number used as offset when counting lines
-	 * @return found lines or empty list if lines are not present or the offset is invalid
-	 * @since 7.7
-	 */
-	public List<String> getLines(int offset) {
-		Field48 cp = newInstance(this);
-		return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
-	}
-	
-	/**
-	 * Returns a specific subset of lines from the field's value, given a range.<br>
-	 *
-	 * @see MultiLineField#getLinesBetween(int, int )
-	 * @param start a reference to a specific line in the field, first line being 1
-	 * @param end a reference to a specific line in the field, must be greater than start
-	 * @return found lines or empty list if value is empty
-	 * @since 7.7
-	 */
-	public List<String> getLinesBetween(int start, int end) {
-		return getLinesBetween(start, end, 0);
-	}
-
-	/**
-	 * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
-	 *
-	 * @see MultiLineField#getLinesBetween(int start, int end, int offset)
-	 * @param start a reference to a specific line in the field, first line being 1
-	 * @param end a reference to a specific line in the field, must be greater than start
-	 * @param offset an optional component number used as offset when counting lines
-	 * @return found lines or empty list if lines are not present or the offset is invalid
-	 * @since 7.7
-	 */
-	public List<String> getLinesBetween(int start, int end, int offset) {
-		Field48 cp = newInstance(this);
-		return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
-	}
-	
 
 	/**
 	 * Returns a localized suitable for showing to humans string of a field component.<br>
@@ -599,55 +444,48 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	 */
 	@Override
 	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 4) {
+		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 48");
 		}
 		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent1AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
 		}
 		if (component == 2) {
 			//default format (as is)
 			return getComponent(2);
-		}
-		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		if (component == 4) {
-			//default format (as is)
-			return getComponent(4);
 		}
 		return null;	
 	}
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
+		result.add("Days");
 		result.add("Narrative");
-		result.add("Narrative 2");
-		result.add("Narrative 3");
-		result.add("Narrative 4");
 		return result;
 	}
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "narrative");
-		result.put(2, "narrative2");
-		result.put(3, "narrative3");
-		result.put(4, "narrative4");
+		result.put(1, "days");
+		result.put(2, "narrative");
 		return result;
 	}
 
@@ -655,24 +493,18 @@ public class Field48 extends Field implements Serializable, com.prowidesoftware.
 	 * This method deserializes the JSON data into a Field48 object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
 	public static Field48 fromJson(final String json) {
 		Field48 field = new Field48();
 		JsonParser parser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("days") != null) {
+			field.setComponent1(jsonObject.get("days").getAsString());
+		}
 		if (jsonObject.get("narrative") != null) {
-			field.setComponent1(jsonObject.get("narrative").getAsString());
-		}
-		if (jsonObject.get("narrative2") != null) {
-			field.setComponent2(jsonObject.get("narrative2").getAsString());
-		}
-		if (jsonObject.get("narrative3") != null) {
-			field.setComponent3(jsonObject.get("narrative3").getAsString());
-		}
-		if (jsonObject.get("narrative4") != null) {
-			field.setComponent4(jsonObject.get("narrative4").getAsString());
+			field.setComponent2(jsonObject.get("narrative").getAsString());
 		}
 		return field;
 	}

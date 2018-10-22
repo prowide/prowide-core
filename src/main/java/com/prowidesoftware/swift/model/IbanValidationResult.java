@@ -1,20 +1,21 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as
- *     published by the Free Software Foundation, either version 3 of the
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.lang.text.StrSubstitutor;
+import org.apache.commons.lang3.text.StrSubstitutor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ import java.util.Map;
  * @author psantamarina
  */
 public enum IbanValidationResult {
-    OK("IBAN is ok"),
+    OK("The IBAN is valid"),
 
     IBAN_IS_NULL("The IBAN is null"),
     IBAN_IS_EMPTY("The IBAN is empty"),
@@ -57,12 +58,14 @@ public enum IbanValidationResult {
     }
 
     private String message;
-    private Map<String, String> vars = new HashMap<String, String>();
+    private Map<String, String> vars = new HashMap<>();
 
     /**
      * Validation problem description including expected and found content when necessary
      */
     public String message() {
+        // this legacy class has been migrated to apache commons-text
+        // we avoid adding the new dependency until it is further required
         final StrSubstitutor sub = new StrSubstitutor(this.vars);
         return sub.replace(this.message);
     }

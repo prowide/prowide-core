@@ -1,18 +1,22 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,9 +24,6 @@ import java.util.List;
 import java.util.Stack;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
 
 /**
  * Base class for SWIFT <b>Body Block (block 4)</b>.<br>
@@ -48,14 +49,13 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
 	/**
 	 * Constructor with tag initialization
 	 * @param tags the list of tags to initialize
-	 * @throws IllegalArgumentException if parameter tags is <code>null</code>
+	 * @throws IllegalArgumentException if parameter tags is null
 	 * @throws IllegalArgumentException if parameter tags is not composed of Strings
 	 * @since 5.0
 	 */
 	public SwiftBlock4(List<Tag> tags) {
 		// sanity check
 		Validate.notNull(tags, "parameter 'tags' cannot be null");
-		Validate.allElementsOfType(tags, Tag.class, "parameter 'tags' may only have Tag elements");
 
 		this.addTags(tags);
 	}
@@ -104,16 +104,16 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
 
 	/**
 	 * Creates a new block with all empty sequences removed.
-	 * <br />
+	 * <br>
 	 * <p>The implementation uses as sequence boundaries the fields: 16R, 16S and 15a.
 	 * Two consecutive 16R (start of sequence) and 16S (end of sequence) with the same qualifier 
 	 * are considered an empty sequence so both boundary fields 16R and 16S will be dropped. 
 	 * For field 15a (start of sequence) there is no end of sequence boundary so if two consecutive
 	 * 15a are found, the first one will be dropped. Also a 15a at the end of the block will be 
-	 * considered and empty sequence.</p>
+	 * considered and empty sequence.
 	 *
 	 * @param b4 a block with sequences to filter
-	 * @return a new block containing all tags that are outside a empty 16R/S or 15a sub-block, or <code>null</code> if the parameter block is null
+	 * @return a new block containing all tags that are outside a empty 16R/S or 15a sub-block, or null if the parameter block is null
 	 * @since 7.8.8
 	 */
 	public static SwiftBlock4 removeEmptySequences(final SwiftBlock4 b4) {
@@ -130,7 +130,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
 				 * found an empty 16R 16S pair
 				 */
 				stack.pop();
-			} else if (t.isNumber(15) && stack.peek().isNumber(15)) {
+			} else if (t.isNumber(15) && !stack.isEmpty() && stack.peek().isNumber(15)) {
 				/*
 				 * found two consecutive 15a
 				 */
@@ -147,7 +147,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
 			 */
 			stack.pop();
 		}
-        return new SwiftBlock4(new ArrayList<Tag>(stack));
+        return new SwiftBlock4(new ArrayList<>(stack));
 	}
 
 	/**
@@ -156,8 +156,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
 	 * @since 7.9.8
 	 */
 	public static SwiftBlock4 fromJson(String json){
-		final GsonBuilder gsonBuilder = new GsonBuilder();
-		final Gson gson = gsonBuilder.create();
+		final Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, SwiftBlock4.class);
 	}
 

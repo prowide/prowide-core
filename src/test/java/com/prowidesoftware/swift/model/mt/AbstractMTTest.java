@@ -1,27 +1,41 @@
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.prowidesoftware.swift.model.mt;
-
-import java.io.IOException;
-import java.util.List;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.prowidesoftware.swift.model.MtSwiftMessage;
-import com.prowidesoftware.swift.model.field.Field35B;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT549;
-import org.apache.commons.lang.StringUtils;
-import org.junit.Test;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
-import com.prowidesoftware.swift.model.field.Field32A;
 import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.model.field.Field32A;
+import com.prowidesoftware.swift.model.field.Field35B;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT102;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103_STP;
 import com.prowidesoftware.swift.model.mt.mt2xx.MT202;
 import com.prowidesoftware.swift.model.mt.mt2xx.MT202COV;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT547;
+import com.prowidesoftware.swift.model.mt.mt5xx.MT549;
+import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
 import com.prowidesoftware.swift.utils.TestUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.List;
+import com.prowidesoftware.swift.model.field.Field;
 
 import static org.junit.Assert.*;
 
@@ -220,5 +234,53 @@ public class AbstractMTTest {
 		assertEquals(new Tag("16S", "ABC"), s2.getTag(3));
 	}
 	*/
+	@Test
+	public void testGetFields() throws IOException {
+		final String msg = "{1:F21OMFNCIABAXXX6368087500}{4:{177:1511041614}{451:0}}{1:F01OMFNCIABAXXX6368087500}{2:O1031542151104BCAOSNDPAXXX22438129121511041542N}{3:{113:0030}{108:001RTGS153030005}}{4:\n" +
+				":20:1234567890\n" +
+				":23B:CRED\n" +
+				":23E:SDVA\n" +
+				":26T:001\n" +
+				":32A:151104XOF27000000,\n" +
+				":50K:/0020121503484101\n" +
+				"FOO VORYEAUGEIS\n" +
+				":53A:/D/D00030901\n" +
+				"ECOCMLBA\n" +
+				":57A:/C/A00031061\n" +
+				"OMFNCIAB\n" +
+				":59:/010010100100014010010160\n" +
+				"FOO VOYAGES\n" +
+				":70:TRANSFERT\n" +
+				":71A:SHA\n" +
+				":72:/CODTYPTR/001\n" +
+				"//REGLEMENT\n" +
+				"-}{5:{MAC:00000000}{CHK:0AF226411593}}{S:{SPD:}{SAC:}{COP:P}}";
 
+		AbstractMT asm = AbstractMT.parse(msg);
+		List<Field> fields = asm.getFields();
+		assertNotNull(asm);
+		assertTrue(fields.size() == 2);
+	}
+
+	@Test
+	public void testMTClassParse() {
+		MT940 mt = MT940.parse("{1:F01ANASCH20AXXX0000000000}{2:I940BSCHGB2LXEQUN}{3:{108:FOOB3926BE868XXX}}{4:\n" +
+				":20:123456\n" +
+				":25:123-304958\n" +
+				":28C:123/1\n" +
+				":60F:C980622USD395212311,71\n" +
+				":61:980623C50000000,NTRFNONREF//8951234\n" +
+				"ORDER BK OF NYC WESTERN CASH RESERVE\n" +
+				":61:980625C5700000,NFEX036960//8954321\n" +
+				":61:980626C200000,NDIVNONREF//8846543\n" +
+				":86:DIVIDEND LORAL CORP\n" +
+				"PREFERRED STOCK 1ST QUARTER 1998\n" +
+				":62F:C980623USD451112311,71\n" +
+				":64:C980623USD445212311,71\n" +
+				":65:C980625USD450912311,71\n" +
+				":65:C980626USD451112311,71\n" +
+				":86:PRIME RATE AS OF TODAY 11 PCT\n" +
+				"-}{5:{CHK:3916EF336FF7}}");
+		assertEquals(ServiceIdType._01, mt.getSwiftMessage().getBlock1().getServiceIdType());
+	}
 }

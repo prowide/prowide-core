@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mt.mt3xx;
 
 
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.internal.*;
@@ -35,9 +36,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <h1>MT 320 - Fixed Loan/Deposit Confirmation</h1>
- * <h3>SWIFT MT320 (ISO 15022) message structure:</h3>
+ * <strong>MT 320 - Fixed Loan/Deposit Confirmation</strong>
  *
+ * <p>
+ * SWIFT MT320 (ISO 15022) message structure:
+ * <br>
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
@@ -67,6 +70,7 @@ Sequence B (M)<ul><li class="field">Field 15 B (M)</li>
 <li class="field">Field 14 D (M)</li>
 <li class="field">Field 30 F (O)</li>
 <li class="field">Field 38 J (O)</li>
+<li class="field">Field 39 M (O)</li>
 </ul></li>
 <li class="sequence">
 Sequence C (M)<ul><li class="field">Field 15 C (M)</li>
@@ -117,6 +121,7 @@ Sequence H (O)<ul><li class="field">Field 15 H (M)</li>
 <li class="field">Field 71 F (O)</li>
 <li class="field">Field 26 H (O)</li>
 <li class="field">Field 21 G (O)</li>
+<li class="field">Field 34 C (O) (repetitive)</li>
 <li class="field">Field 72  (O)</li>
 </ul></li>
 <li class="sequence">
@@ -133,47 +138,18 @@ Sequence _I1 (O) (repetitive)<ul><li class="field">Field 30 F (M)</li>
 </ul></li>
 </ul></div>
 
- <style>
-.scheme, .scheme ul, .scheme li {
-     position: relative;
-}
-.scheme ul {
-    list-style: none;
-    padding-left: 32px;
-}
-.scheme li::before, .scheme li::after {
-    content: "";
-    position: absolute;
-    left: -12px;
-}
-.scheme li::before {
-    border-top: 1px solid #000;
-    top: 9px;
-    width: 8px;
-    height: 0;
-}
-.scheme li::after {
-    border-left: 1px solid #000;
-    height: 100%;
-    width: 0px;
-    top: 2px;
-}
-.scheme ul > li:last-child::after {
-    height: 8px;
-}</style>
-
  *
- * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
- * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
- *
- * @author www.prowidesoftware.com
+ * <p>
+ * This source code is specific to release <strong>SRU 2018</strong>
+ * <p>
+ * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
 @Generated
 public class MT320 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT320.class.getName());
 	
@@ -186,191 +162,149 @@ public class MT320 extends AbstractMT implements Serializable {
 
 	/**
 	* Constant for qualifier with value 30E/360 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstants_3._30E_360
-	* @see com.prowidesoftware.swift.SchemeConstants_3#_30E_360
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String _30E_360 = "30E/360";
 
 	/**
 	* Constant for qualifier with value 360/360 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstants_3._360_360
-	* @see com.prowidesoftware.swift.SchemeConstants_3#_360_360
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String _360_360 = "360/360";
 
 	/**
 	* Constant for qualifier with value ACT/360 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.ACT_360
-	* @see com.prowidesoftware.swift.SchemeConstantsA#ACT_360
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ACT_360 = "ACT/360";
 
 	/**
 	* Constant for qualifier with value ACT/365 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.ACT_365
-	* @see com.prowidesoftware.swift.SchemeConstantsA#ACT_365
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ACT_365 = "ACT/365";
 
 	/**
 	* Constant for qualifier with value AFI/365 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.AFI_365
-	* @see com.prowidesoftware.swift.SchemeConstantsA#AFI_365
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String AFI_365 = "AFI/365";
 
 	/**
 	* Constant for qualifier with value AGNT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.AGNT
-	* @see com.prowidesoftware.swift.SchemeConstantsA#AGNT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String AGNT = "AGNT";
 
 	/**
 	* Constant for qualifier with value AMND 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.AMND
-	* @see com.prowidesoftware.swift.SchemeConstantsA#AMND
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String AMND = "AMND";
 
 	/**
 	* Constant for qualifier with value B 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsB.B
-	* @see com.prowidesoftware.swift.SchemeConstantsB#B
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String B = "B";
 
 	/**
 	* Constant for qualifier with value BILA 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsB.BILA
-	* @see com.prowidesoftware.swift.SchemeConstantsB#BILA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String BILA = "BILA";
 
 	/**
 	* Constant for qualifier with value BROK 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsB.BROK
-	* @see com.prowidesoftware.swift.SchemeConstantsB#BROK
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String BROK = "BROK";
 
 	/**
 	* Constant for qualifier with value CANC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CANC
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CANC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CANC = "CANC";
 
 	/**
 	* Constant for qualifier with value CONF 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CONF
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CONF
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CONF = "CONF";
 
 	/**
 	* Constant for qualifier with value D 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsD.D
-	* @see com.prowidesoftware.swift.SchemeConstantsD#D
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String D = "D";
 
 	/**
 	* Constant for qualifier with value DUPL 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsD.DUPL
-	* @see com.prowidesoftware.swift.SchemeConstantsD#DUPL
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String DUPL = "DUPL";
 
 	/**
 	* Constant for qualifier with value ELEC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsE.ELEC
-	* @see com.prowidesoftware.swift.SchemeConstantsE#ELEC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ELEC = "ELEC";
 
 	/**
 	* Constant for qualifier with value L 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsL.L
-	* @see com.prowidesoftware.swift.SchemeConstantsL#L
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String L = "L";
 
 	/**
 	* Constant for qualifier with value M 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.M
-	* @see com.prowidesoftware.swift.SchemeConstantsM#M
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String M = "M";
 
 	/**
 	* Constant for qualifier with value MATU 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.MATU
-	* @see com.prowidesoftware.swift.SchemeConstantsM#MATU
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String MATU = "MATU";
 
 	/**
 	* Constant for qualifier with value NEWT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsN.NEWT
-	* @see com.prowidesoftware.swift.SchemeConstantsN#NEWT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String NEWT = "NEWT";
 
 	/**
 	* Constant for qualifier with value PHON 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PHON
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PHON
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PHON = "PHON";
 
 	/**
 	* Constant for qualifier with value ROLL 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.ROLL
-	* @see com.prowidesoftware.swift.SchemeConstantsR#ROLL
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ROLL = "ROLL";
 
 // end qualifiers constants	
@@ -386,20 +320,18 @@ public class MT320 extends AbstractMT implements Serializable {
 
 	/**
 	 * Creates an MT320 initialized with the parameter MtSwiftMessage.
-	 * @param m swift message with the MT320 content, the parameter can not be <code>null</code>
+	 * @param m swift message with the MT320 content, the parameter can not be null
 	 * @see #MT320(String)
 	 */
 	public MT320(MtSwiftMessage m) {
-		this();
-		super.m = super.getSwiftMessageNotNullOrException();
-		sanityCheck(super.m);
+		this(m.message());
 	}
 	
 	/**
 	 * Creates an MT320 initialized with the parameter MtSwiftMessage.
 	 *
 	 * @param m swift message with the MT320 content
-	 * @return the created object or <code>null</code> if the parameter is <code>null</code>
+	 * @return the created object or null if the parameter is null
 	 * @see #MT320(String)
 	 * @since 7.7
 	 */
@@ -407,11 +339,11 @@ public class MT320 extends AbstractMT implements Serializable {
 		if (m == null) {
 			return null;
 		}
-		return new MT320(m.message());
+		return new MT320(m);
 	}
 	
 	/**
-	 * Creates and initializes a new MT320 input message setting TEST BICS as sender and receiver.<br />
+	 * Creates and initializes a new MT320 input message setting TEST BICS as sender and receiver.<br>
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -421,7 +353,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT320 input message from sender to receiver.<br />
+	 * Creates and initializes a new MT320 input message from sender to receiver.<br>
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -438,21 +370,24 @@ public class MT320 extends AbstractMT implements Serializable {
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* 
+	*
+	* @param messageType the message type number
+    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
+	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
 	* @see #MT320(String, String)
 	* @deprecated Use instead <code>new MT320(sender, receiver)</code> instead
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public MT320(final int messageType, final String sender, final String receiver) {
 		super(320, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT320(int, String, String)", "Use the constructor MT320(sender, receiver) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT320(int, String, String)", "Use the constructor MT320(sender, receiver) instead.");
 	}
 	
 	/**
-	 * Creates a new MT320 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT320 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -478,12 +413,12 @@ public class MT320 extends AbstractMT implements Serializable {
     }
 	
 	/**
-	 * Creates a new MT320 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT320 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter cannot be parsed, the returned MT320 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br />
+	 * initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
-	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be <code>null</code> in which case this method returns null</em>
+	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
 	 * @return a new instance of MT320 or null if fin is null 
 	 * @since 7.7
 	 */
@@ -495,12 +430,13 @@ public class MT320 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT320 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT320 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public MT320(final InputStream stream) throws IOException {
@@ -508,11 +444,12 @@ public class MT320 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT320 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT320 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
 	 * @return a new instance of MT320 or null if stream is null or the message cannot be parsed 
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public static MT320 parse(final InputStream stream) throws IOException {
@@ -523,12 +460,13 @@ public class MT320 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT320 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT320 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public MT320(final File file) throws IOException {
@@ -536,11 +474,12 @@ public class MT320 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT320 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT320 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
 	 * @return a new instance of MT320 or null if; file is null, does not exist, can't be read, is not a file or the message cannot be parsed
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public static MT320 parse(final File file) throws IOException {
@@ -559,7 +498,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	public String getMessageType() {
 		return "320";
 	}
-	
+
 	/**
 	 * Add all tags from block to the end of the block4.
 	 *
@@ -607,7 +546,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 *
 	 * @param json a JSON representation of an MT320 message
 	 * @return a new instance of MT320
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	public final static MT320 fromJson(String json) {
 		return (MT320) AbstractMT.fromJson(json);
@@ -615,10 +554,10 @@ public class MT320 extends AbstractMT implements Serializable {
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 15A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field15A object or <code>null</code> if the field is not found
+	 * @return a Field15A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -633,10 +572,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 20 at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field20 object or <code>null</code> if the field is not found
+	 * @return a Field20 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -651,10 +590,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 21 at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field21 object or <code>null</code> if the field is not found
+	 * @return a Field21 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -669,10 +608,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 22A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field22A object or <code>null</code> if the field is not found
+	 * @return a Field22A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -687,10 +626,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 94A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 94A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field94A object or <code>null</code> if the field is not found
+	 * @return a Field94A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -705,10 +644,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 22B at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field22B object or <code>null</code> if the field is not found
+	 * @return a Field22B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -723,10 +662,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 22C at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field22C object or <code>null</code> if the field is not found
+	 * @return a Field22C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -741,10 +680,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21N, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 21N at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field21N object or <code>null</code> if the field is not found
+	 * @return a Field21N object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -759,10 +698,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 82A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field82A object or <code>null</code> if the field is not found
+	 * @return a Field82A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -777,10 +716,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 82D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field82D object or <code>null</code> if the field is not found
+	 * @return a Field82D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -795,10 +734,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82J, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 82J at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field82J object or <code>null</code> if the field is not found
+	 * @return a Field82J object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -813,10 +752,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 87A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 87A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field87A object or <code>null</code> if the field is not found
+	 * @return a Field87A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -831,10 +770,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 87D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 87D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field87D object or <code>null</code> if the field is not found
+	 * @return a Field87D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -849,10 +788,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 87J, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 87J at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field87J object or <code>null</code> if the field is not found
+	 * @return a Field87J object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -867,10 +806,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 83A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field83A object or <code>null</code> if the field is not found
+	 * @return a Field83A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -885,10 +824,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 83D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field83D object or <code>null</code> if the field is not found
+	 * @return a Field83D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -903,10 +842,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83J, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 83J at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field83J object or <code>null</code> if the field is not found
+	 * @return a Field83J object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -921,10 +860,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 77D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field77D object or <code>null</code> if the field is not found
+	 * @return a Field77D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -939,10 +878,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 15B at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field15B object or <code>null</code> if the field is not found
+	 * @return a Field15B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -957,10 +896,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17R, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 17R at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field17R object or <code>null</code> if the field is not found
+	 * @return a Field17R object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -975,10 +914,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30T, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 30T at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field30T object or <code>null</code> if the field is not found
+	 * @return a Field30T object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -993,10 +932,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30V, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 30V at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field30V object or <code>null</code> if the field is not found
+	 * @return a Field30V object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1011,10 +950,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30P, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 30P at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field30P object or <code>null</code> if the field is not found
+	 * @return a Field30P object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1029,10 +968,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 32B at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field32B object or <code>null</code> if the field is not found
+	 * @return a Field32B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1047,10 +986,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30X, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 30X at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field30X object or <code>null</code> if the field is not found
+	 * @return a Field30X object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1065,10 +1004,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 34E, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 34E at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field34E object or <code>null</code> if the field is not found
+	 * @return a Field34E object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1083,10 +1022,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37G, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 37G at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field37G object or <code>null</code> if the field is not found
+	 * @return a Field37G object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1101,10 +1040,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 14D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 14D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field14D object or <code>null</code> if the field is not found
+	 * @return a Field14D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1119,10 +1058,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 38J, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 38J at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field38J object or <code>null</code> if the field is not found
+	 * @return a Field38J object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1136,11 +1075,29 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return the first one whose name matches 39M, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 39M at MT320 is expected to be the only one.
+	 * 
+	 * @return a Field39M object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field39M getField39M() {
+		final Tag t = tag("39M");
+		if (t != null) {
+			return new Field39M(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 15C at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field15C object or <code>null</code> if the field is not found
+	 * @return a Field15C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1155,10 +1112,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 15D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field15D object or <code>null</code> if the field is not found
+	 * @return a Field15D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1173,10 +1130,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15E, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 15E at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field15E object or <code>null</code> if the field is not found
+	 * @return a Field15E object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1191,10 +1148,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15F, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 15F at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field15F object or <code>null</code> if the field is not found
+	 * @return a Field15F object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1209,10 +1166,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15G, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 15G at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field15G object or <code>null</code> if the field is not found
+	 * @return a Field15G object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1227,10 +1184,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37L, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 37L at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field37L object or <code>null</code> if the field is not found
+	 * @return a Field37L object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1245,10 +1202,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 33B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 33B at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field33B object or <code>null</code> if the field is not found
+	 * @return a Field33B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1263,10 +1220,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 36, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 36 at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field36 object or <code>null</code> if the field is not found
+	 * @return a Field36 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1281,10 +1238,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 33E, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 33E at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field33E object or <code>null</code> if the field is not found
+	 * @return a Field33E object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1299,10 +1256,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15H, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 15H at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field15H object or <code>null</code> if the field is not found
+	 * @return a Field15H object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1317,10 +1274,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 29A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 29A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field29A object or <code>null</code> if the field is not found
+	 * @return a Field29A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1335,10 +1292,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 24D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 24D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field24D object or <code>null</code> if the field is not found
+	 * @return a Field24D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1353,10 +1310,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 84A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 84A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field84A object or <code>null</code> if the field is not found
+	 * @return a Field84A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1371,10 +1328,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 84B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 84B at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field84B object or <code>null</code> if the field is not found
+	 * @return a Field84B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1389,10 +1346,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 84D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 84D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field84D object or <code>null</code> if the field is not found
+	 * @return a Field84D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1407,10 +1364,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 84J, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 84J at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field84J object or <code>null</code> if the field is not found
+	 * @return a Field84J object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1425,10 +1382,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 85A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 85A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field85A object or <code>null</code> if the field is not found
+	 * @return a Field85A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1443,10 +1400,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 85B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 85B at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field85B object or <code>null</code> if the field is not found
+	 * @return a Field85B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1461,10 +1418,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 85D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 85D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field85D object or <code>null</code> if the field is not found
+	 * @return a Field85D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1479,10 +1436,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 85J, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 85J at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field85J object or <code>null</code> if the field is not found
+	 * @return a Field85J object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1497,10 +1454,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 88A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 88A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field88A object or <code>null</code> if the field is not found
+	 * @return a Field88A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1515,10 +1472,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 88D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 88D at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field88D object or <code>null</code> if the field is not found
+	 * @return a Field88D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1533,10 +1490,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 88J, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 88J at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field88J object or <code>null</code> if the field is not found
+	 * @return a Field88J object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1551,10 +1508,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 71F, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 71F at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field71F object or <code>null</code> if the field is not found
+	 * @return a Field71F object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1569,10 +1526,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 26H, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 26H at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field26H object or <code>null</code> if the field is not found
+	 * @return a Field26H object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1587,10 +1544,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21G, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 21G at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field21G object or <code>null</code> if the field is not found
+	 * @return a Field21G object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1605,10 +1562,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 72, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 72 at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field72 object or <code>null</code> if the field is not found
+	 * @return a Field72 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1623,10 +1580,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15I, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 15I at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field15I object or <code>null</code> if the field is not found
+	 * @return a Field15I object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1641,10 +1598,10 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 18A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 18A at MT320 is expected to be the only one.
 	 * 
-	 * @return a Field18A object or <code>null</code> if the field is not found
+	 * @return a Field18A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1659,7 +1616,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 53A at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field53A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1667,17 +1624,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field53A> getField53A() {
-		final List<Field53A> result = new ArrayList<Field53A>();
+		final List<Field53A> result = new ArrayList<>();
 		final Tag[] tags = tags("53A");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field53A(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field53A(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 53D at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field53D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1685,17 +1644,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field53D> getField53D() {
-		final List<Field53D> result = new ArrayList<Field53D>();
+		final List<Field53D> result = new ArrayList<>();
 		final Tag[] tags = tags("53D");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field53D(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field53D(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 53J at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field53J objects or <code>Collections.emptyList()</code> if none is not found
@@ -1703,17 +1664,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field53J> getField53J() {
-		final List<Field53J> result = new ArrayList<Field53J>();
+		final List<Field53J> result = new ArrayList<>();
 		final Tag[] tags = tags("53J");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field53J(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field53J(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 86A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 86A at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field86A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1721,17 +1684,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field86A> getField86A() {
-		final List<Field86A> result = new ArrayList<Field86A>();
+		final List<Field86A> result = new ArrayList<>();
 		final Tag[] tags = tags("86A");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field86A(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field86A(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 86D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 86D at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field86D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1739,17 +1704,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field86D> getField86D() {
-		final List<Field86D> result = new ArrayList<Field86D>();
+		final List<Field86D> result = new ArrayList<>();
 		final Tag[] tags = tags("86D");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field86D(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field86D(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 86J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 86J at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field86J objects or <code>Collections.emptyList()</code> if none is not found
@@ -1757,17 +1724,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field86J> getField86J() {
-		final List<Field86J> result = new ArrayList<Field86J>();
+		final List<Field86J> result = new ArrayList<>();
 		final Tag[] tags = tags("86J");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field86J(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field86J(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 56A at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field56A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1775,17 +1744,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field56A> getField56A() {
-		final List<Field56A> result = new ArrayList<Field56A>();
+		final List<Field56A> result = new ArrayList<>();
 		final Tag[] tags = tags("56A");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field56A(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field56A(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 56D at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field56D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1793,17 +1764,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field56D> getField56D() {
-		final List<Field56D> result = new ArrayList<Field56D>();
+		final List<Field56D> result = new ArrayList<>();
 		final Tag[] tags = tags("56D");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field56D(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field56D(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 56J at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field56J objects or <code>Collections.emptyList()</code> if none is not found
@@ -1811,17 +1784,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field56J> getField56J() {
-		final List<Field56J> result = new ArrayList<Field56J>();
+		final List<Field56J> result = new ArrayList<>();
 		final Tag[] tags = tags("56J");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field56J(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field56J(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 57A at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field57A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1829,17 +1804,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field57A> getField57A() {
-		final List<Field57A> result = new ArrayList<Field57A>();
+		final List<Field57A> result = new ArrayList<>();
 		final Tag[] tags = tags("57A");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field57A(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field57A(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 57D at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field57D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1847,17 +1824,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field57D> getField57D() {
-		final List<Field57D> result = new ArrayList<Field57D>();
+		final List<Field57D> result = new ArrayList<>();
 		final Tag[] tags = tags("57D");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field57D(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field57D(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 57J at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field57J objects or <code>Collections.emptyList()</code> if none is not found
@@ -1865,17 +1844,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field57J> getField57J() {
-		final List<Field57J> result = new ArrayList<Field57J>();
+		final List<Field57J> result = new ArrayList<>();
 		final Tag[] tags = tags("57J");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field57J(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field57J(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 58A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 58A at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field58A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1883,17 +1864,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field58A> getField58A() {
-		final List<Field58A> result = new ArrayList<Field58A>();
+		final List<Field58A> result = new ArrayList<>();
 		final Tag[] tags = tags("58A");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field58A(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field58A(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 58D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 58D at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field58D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1901,17 +1884,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field58D> getField58D() {
-		final List<Field58D> result = new ArrayList<Field58D>();
+		final List<Field58D> result = new ArrayList<>();
 		final Tag[] tags = tags("58D");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field58D(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field58D(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 58J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 58J at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field58J objects or <code>Collections.emptyList()</code> if none is not found
@@ -1919,17 +1904,39 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field58J> getField58J() {
-		final List<Field58J> result = new ArrayList<Field58J>();
+		final List<Field58J> result = new ArrayList<>();
 		final Tag[] tags = tags("58J");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field58J(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field58J(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 34C, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 34C at MT320 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field34C objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field34C> getField34C() {
+		final List<Field34C> result = new ArrayList<>();
+		final Tag[] tags = tags("34C");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field34C(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 30F, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 30F at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field30F objects or <code>Collections.emptyList()</code> if none is not found
@@ -1937,17 +1944,19 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field30F> getField30F() {
-		final List<Field30F> result = new ArrayList<Field30F>();
+		final List<Field30F> result = new ArrayList<>();
 		final Tag[] tags = tags("30F");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field30F(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field30F(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 32H, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 32H at MT320 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field32H objects or <code>Collections.emptyList()</code> if none is not found
@@ -1955,10 +1964,12 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field32H> getField32H() {
-		final List<Field32H> result = new ArrayList<Field32H>();
+		final List<Field32H> result = new ArrayList<>();
 		final Tag[] tags = tags("32H");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field32H(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field32H(tag.getValue()));
+            }
 		}
 		return result;
 	}
@@ -1966,8 +1977,8 @@ public class MT320 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=A]
 	/**
-	* Class for Sequence "A" of MT 320
-	*/
+	 * Class to model Sequence "A" in MT 320
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceA extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -1975,91 +1986,88 @@ public class MT320 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceA() {
+	    private SequenceA() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceA(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		public static final Tag START_TAG = Field15A.emptyTag();
 		/**
 		* Creates a new instance of this sequence with the given tags inside.
 		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		* @return a new instance of the sequence, initialized with the parameter tags
 		* @since 7.7
 		*/
 		@SequenceStyle(Type.SPLIT_BY_15)
 		public static SequenceA newInstance(final Tag ... tags) {
 			final SequenceA result = new SequenceA();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
-
 			return result;
 		}
+
 		/**
 		* Create an empty $sequenceClassname.
 		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		* @return a new instance of the sequence
 		* @since 7.7
 		*/
 		public static SequenceA newInstance() {
 			final SequenceA result = new SequenceA();
-
 			result.append(START_TAG);
-
 			return result;
 		}
+
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.7
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.7
+		 */
 		public static SequenceA newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceA result = new SequenceA();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			return result;
-
 		}
-
 
 	}
 	/**
-	* Get the single occurrence of SequenceA using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceA using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceA getSequenceA() {
 		return getSequenceA(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceA using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceA within the complete message
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceA using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @param parentSequence an optional parent sequence or null to find SequenceA within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceA getSequenceA(SwiftTagListBlock parentSequence) {
 		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);
@@ -2072,8 +2080,8 @@ public class MT320 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=B]
 	/**
-	* Class for Sequence "B" of MT 320
-	*/
+	 * Class to model Sequence "B" in MT 320
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceB extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -2081,91 +2089,88 @@ public class MT320 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceB() {
+	    private SequenceB() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceB(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		public static final Tag START_TAG = Field15B.emptyTag();
 		/**
 		* Creates a new instance of this sequence with the given tags inside.
 		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		* @return a new instance of the sequence, initialized with the parameter tags
 		* @since 7.7
 		*/
 		@SequenceStyle(Type.SPLIT_BY_15)
 		public static SequenceB newInstance(final Tag ... tags) {
 			final SequenceB result = new SequenceB();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
-
 			return result;
 		}
+
 		/**
 		* Create an empty $sequenceClassname.
 		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		* @return a new instance of the sequence
 		* @since 7.7
 		*/
 		public static SequenceB newInstance() {
 			final SequenceB result = new SequenceB();
-
 			result.append(START_TAG);
-
 			return result;
 		}
+
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.7
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.7
+		 */
 		public static SequenceB newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceB result = new SequenceB();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			return result;
-
 		}
-
 
 	}
 	/**
-	* Get the single occurrence of SequenceB using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceB using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceB getSequenceB() {
 		return getSequenceB(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceB using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceB within the complete message
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceB using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @param parentSequence an optional parent sequence or null to find SequenceB within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceB getSequenceB(SwiftTagListBlock parentSequence) {
 		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);
@@ -2178,8 +2183,8 @@ public class MT320 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=C]
 	/**
-	* Class for Sequence "C" of MT 320
-	*/
+	 * Class to model Sequence "C" in MT 320
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceC extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -2187,91 +2192,88 @@ public class MT320 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceC() {
+	    private SequenceC() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceC(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		public static final Tag START_TAG = Field15C.emptyTag();
 		/**
 		* Creates a new instance of this sequence with the given tags inside.
 		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		* @return a new instance of the sequence, initialized with the parameter tags
 		* @since 7.7
 		*/
 		@SequenceStyle(Type.SPLIT_BY_15)
 		public static SequenceC newInstance(final Tag ... tags) {
 			final SequenceC result = new SequenceC();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
-
 			return result;
 		}
+
 		/**
 		* Create an empty $sequenceClassname.
 		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		* @return a new instance of the sequence
 		* @since 7.7
 		*/
 		public static SequenceC newInstance() {
 			final SequenceC result = new SequenceC();
-
 			result.append(START_TAG);
-
 			return result;
 		}
+
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.7
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.7
+		 */
 		public static SequenceC newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceC result = new SequenceC();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			return result;
-
 		}
-
 
 	}
 	/**
-	* Get the single occurrence of SequenceC using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceC using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceC getSequenceC() {
 		return getSequenceC(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceC using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceC within the complete message
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceC using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @param parentSequence an optional parent sequence or null to find SequenceC within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceC getSequenceC(SwiftTagListBlock parentSequence) {
 		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);
@@ -2284,8 +2286,8 @@ public class MT320 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=D]
 	/**
-	* Class for Sequence "D" of MT 320
-	*/
+	 * Class to model Sequence "D" in MT 320
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceD extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -2293,91 +2295,88 @@ public class MT320 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceD() {
+	    private SequenceD() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceD(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		public static final Tag START_TAG = Field15D.emptyTag();
 		/**
 		* Creates a new instance of this sequence with the given tags inside.
 		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		* @return a new instance of the sequence, initialized with the parameter tags
 		* @since 7.7
 		*/
 		@SequenceStyle(Type.SPLIT_BY_15)
 		public static SequenceD newInstance(final Tag ... tags) {
 			final SequenceD result = new SequenceD();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
-
 			return result;
 		}
+
 		/**
 		* Create an empty $sequenceClassname.
 		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		* @return a new instance of the sequence
 		* @since 7.7
 		*/
 		public static SequenceD newInstance() {
 			final SequenceD result = new SequenceD();
-
 			result.append(START_TAG);
-
 			return result;
 		}
+
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.7
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.7
+		 */
 		public static SequenceD newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceD result = new SequenceD();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			return result;
-
 		}
-
 
 	}
 	/**
-	* Get the single occurrence of SequenceD using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceD using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceD getSequenceD() {
 		return getSequenceD(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceD using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceD within the complete message
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceD using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @param parentSequence an optional parent sequence or null to find SequenceD within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceD getSequenceD(SwiftTagListBlock parentSequence) {
 		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);
@@ -2390,8 +2389,8 @@ public class MT320 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=E]
 	/**
-	* Class for Sequence "E" of MT 320
-	*/
+	 * Class to model Sequence "E" in MT 320
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceE extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -2399,91 +2398,88 @@ public class MT320 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceE() {
+	    private SequenceE() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceE(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		public static final Tag START_TAG = Field15E.emptyTag();
 		/**
 		* Creates a new instance of this sequence with the given tags inside.
 		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		* @return a new instance of the sequence, initialized with the parameter tags
 		* @since 7.7
 		*/
 		@SequenceStyle(Type.SPLIT_BY_15)
 		public static SequenceE newInstance(final Tag ... tags) {
 			final SequenceE result = new SequenceE();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
-
 			return result;
 		}
+
 		/**
 		* Create an empty $sequenceClassname.
 		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		* @return a new instance of the sequence
 		* @since 7.7
 		*/
 		public static SequenceE newInstance() {
 			final SequenceE result = new SequenceE();
-
 			result.append(START_TAG);
-
 			return result;
 		}
+
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.7
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.7
+		 */
 		public static SequenceE newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceE result = new SequenceE();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			return result;
-
 		}
-
 
 	}
 	/**
-	* Get the single occurrence of SequenceE using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceE using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceE getSequenceE() {
 		return getSequenceE(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceE using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceE within the complete message
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceE using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @param parentSequence an optional parent sequence or null to find SequenceE within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceE getSequenceE(SwiftTagListBlock parentSequence) {
 		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);
@@ -2496,8 +2492,8 @@ public class MT320 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=F]
 	/**
-	* Class for Sequence "F" of MT 320
-	*/
+	 * Class to model Sequence "F" in MT 320
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceF extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -2505,91 +2501,88 @@ public class MT320 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceF() {
+	    private SequenceF() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceF(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		public static final Tag START_TAG = Field15F.emptyTag();
 		/**
 		* Creates a new instance of this sequence with the given tags inside.
 		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		* @return a new instance of the sequence, initialized with the parameter tags
 		* @since 7.7
 		*/
 		@SequenceStyle(Type.SPLIT_BY_15)
 		public static SequenceF newInstance(final Tag ... tags) {
 			final SequenceF result = new SequenceF();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
-
 			return result;
 		}
+
 		/**
 		* Create an empty $sequenceClassname.
 		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		* @return a new instance of the sequence
 		* @since 7.7
 		*/
 		public static SequenceF newInstance() {
 			final SequenceF result = new SequenceF();
-
 			result.append(START_TAG);
-
 			return result;
 		}
+
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.7
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.7
+		 */
 		public static SequenceF newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceF result = new SequenceF();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			return result;
-
 		}
-
 
 	}
 	/**
-	* Get the single occurrence of SequenceF using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceF using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceF getSequenceF() {
 		return getSequenceF(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceF using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceF within the complete message
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceF using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @param parentSequence an optional parent sequence or null to find SequenceF within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceF getSequenceF(SwiftTagListBlock parentSequence) {
 		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);
@@ -2602,8 +2595,8 @@ public class MT320 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=G]
 	/**
-	* Class for Sequence "G" of MT 320
-	*/
+	 * Class to model Sequence "G" in MT 320
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceG extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -2611,91 +2604,88 @@ public class MT320 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceG() {
+	    private SequenceG() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceG(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		public static final Tag START_TAG = Field15G.emptyTag();
 		/**
 		* Creates a new instance of this sequence with the given tags inside.
 		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		* @return a new instance of the sequence, initialized with the parameter tags
 		* @since 7.7
 		*/
 		@SequenceStyle(Type.SPLIT_BY_15)
 		public static SequenceG newInstance(final Tag ... tags) {
 			final SequenceG result = new SequenceG();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
-
 			return result;
 		}
+
 		/**
 		* Create an empty $sequenceClassname.
 		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		* @return a new instance of the sequence
 		* @since 7.7
 		*/
 		public static SequenceG newInstance() {
 			final SequenceG result = new SequenceG();
-
 			result.append(START_TAG);
-
 			return result;
 		}
+
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.7
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.7
+		 */
 		public static SequenceG newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceG result = new SequenceG();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			return result;
-
 		}
-
 
 	}
 	/**
-	* Get the single occurrence of SequenceG using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceG using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceG getSequenceG() {
 		return getSequenceG(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceG using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceG within the complete message
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceG using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @param parentSequence an optional parent sequence or null to find SequenceG within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceG getSequenceG(SwiftTagListBlock parentSequence) {
 		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);
@@ -2708,8 +2698,8 @@ public class MT320 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=H]
 	/**
-	* Class for Sequence "H" of MT 320
-	*/
+	 * Class to model Sequence "H" in MT 320
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceH extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -2717,91 +2707,88 @@ public class MT320 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceH() {
+	    private SequenceH() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceH(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		public static final Tag START_TAG = Field15H.emptyTag();
 		/**
 		* Creates a new instance of this sequence with the given tags inside.
 		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		* @return a new instance of the sequence, initialized with the parameter tags
 		* @since 7.7
 		*/
 		@SequenceStyle(Type.SPLIT_BY_15)
 		public static SequenceH newInstance(final Tag ... tags) {
 			final SequenceH result = new SequenceH();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
-
 			return result;
 		}
+
 		/**
 		* Create an empty $sequenceClassname.
 		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		* @return a new instance of the sequence
 		* @since 7.7
 		*/
 		public static SequenceH newInstance() {
 			final SequenceH result = new SequenceH();
-
 			result.append(START_TAG);
-
 			return result;
 		}
+
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.7
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.7
+		 */
 		public static SequenceH newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceH result = new SequenceH();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			return result;
-
 		}
-
 
 	}
 	/**
-	* Get the single occurrence of SequenceH using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceH using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceH getSequenceH() {
 		return getSequenceH(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceH using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceH within the complete message
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceH using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @param parentSequence an optional parent sequence or null to find SequenceH within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceH getSequenceH(SwiftTagListBlock parentSequence) {
 		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);
@@ -2814,8 +2801,8 @@ public class MT320 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=I]
 	/**
-	* Class for Sequence "I" of MT 320
-	*/
+	 * Class to model Sequence "I" in MT 320
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceI extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -2823,91 +2810,88 @@ public class MT320 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceI() {
+	    private SequenceI() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceI(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		public static final Tag START_TAG = Field15I.emptyTag();
 		/**
 		* Creates a new instance of this sequence with the given tags inside.
 		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		* @return a new instance of the sequence, initialized with the parameter tags
 		* @since 7.7
 		*/
 		@SequenceStyle(Type.SPLIT_BY_15)
 		public static SequenceI newInstance(final Tag ... tags) {
 			final SequenceI result = new SequenceI();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
-
 			return result;
 		}
+
 		/**
 		* Create an empty $sequenceClassname.
 		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		* @return a new instance of the sequence
 		* @since 7.7
 		*/
 		public static SequenceI newInstance() {
 			final SequenceI result = new SequenceI();
-
 			result.append(START_TAG);
-
 			return result;
 		}
+
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.7
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.7
+		 */
 		public static SequenceI newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceI result = new SequenceI();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			return result;
-
 		}
-
 
 	}
 	/**
-	* Get the single occurrence of SequenceI using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceI using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceI getSequenceI() {
 		return getSequenceI(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceI using field field 15 as sequence boundary.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceI within the complete message
-	* @since 7.7
-	* @return a new sequence that may be empty, <em>never returns null</em>
-	*/
+	 * Get the single occurrence of SequenceI using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 *
+	 * @param parentSequence an optional parent sequence or null to find SequenceI within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public SequenceI getSequenceI(SwiftTagListBlock parentSequence) {
 		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);

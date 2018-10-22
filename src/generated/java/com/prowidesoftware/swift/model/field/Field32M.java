@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -32,7 +33,7 @@ import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.AmountResolver;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -43,24 +44,25 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 32M</h2>
+ * <strong>SWIFT MT Field 32M</strong>
+ * <p>
  * Model and parser for field 32M of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
  * 		<li><code>Currency</code></li> 
  * 		<li><code>Number</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;CUR&gt;&lt;AMOUNT&gt;15</code></li>
  * 		<li>parser pattern: <code>SN</code></li>
  * 		<li>components pattern: <code>CN</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -68,7 +70,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -126,7 +128,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -148,7 +150,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	 */
 	public static Field32M newInstance(Field32M source) {
 		Field32M cp = new Field32M();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -191,8 +193,8 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Gets the component1 as Currency
-	 * @return the component1 converted to Currency or <code>null</code> if cannot be converted
+	 * Get the component1 as Currency
+	 * @return the component1 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getComponent1AsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(1));
@@ -207,8 +209,8 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Gets the Currency (component1) as Currency
-	 * @return the Currency from component1 converted to Currency or <code>null</code> if cannot be converted
+	 * Get the Currency (component1) as Currency
+	 * @return the Currency from component1 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getCurrencyAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(1));
@@ -225,12 +227,12 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	
 	/**
 	 * Set the component1 from a Currency object.
-	 * <br />
+	 * <br>
 	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
 	 * <ul>
-	 * 	<li>Example: 1234.00 -> 1234,</li>
-	 * 	<li>Example: 1234 -> 1234,</li>
-	 * 	<li>Example: 1234.56 -> 1234,56</li>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
 	 * </ul>
 	 * @param component1 the Currency with the component1 content to set
 	 */
@@ -266,8 +268,8 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Gets the component2 as Number
-	 * @return the component2 converted to Number or <code>null</code> if cannot be converted
+	 * Get the component2 as Number
+	 * @return the component2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
@@ -282,8 +284,8 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Gets the Amount (component2) as Number
-	 * @return the Amount from component2 converted to Number or <code>null</code> if cannot be converted
+	 * Get the Amount (component2) as Number
+	 * @return the Amount from component2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
@@ -300,12 +302,12 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	
 	/**
 	 * Set the component2 from a Number object.
-	 * <br />
+	 * <br>
 	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
 	 * <ul>
-	 * 	<li>Example: 1234.00 -> 1234,</li>
-	 * 	<li>Example: 1234 -> 1234,</li>
-	 * 	<li>Example: 1234.56 -> 1234,56</li>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
 	 * </ul>
 	 * @param component2 the Number with the component2 content to set
 	 */
@@ -342,7 +344,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 		if (l.isEmpty()) {
 			return java.util.Collections.emptyList();
 		}
-		final ArrayList<Currency> result = new ArrayList<Currency>();
+		final List<Currency> result = new ArrayList<>();
 		for (String s: l) {
 			result.add(Currency.getInstance(s));
 		}
@@ -381,7 +383,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -485,8 +487,8 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field32M> result = new ArrayList<Field32M>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field32M> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field32M(f));
 			}
@@ -538,14 +540,14 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		result.add("Currency");
 		result.add("Amount");
 		return result;
@@ -553,7 +555,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
@@ -566,7 +568,7 @@ public class Field32M extends Field implements Serializable, CurrencyContainer, 
 	 * This method deserializes the JSON data into a Field32M object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
 	public static Field32M fromJson(final String json) {

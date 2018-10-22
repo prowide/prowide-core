@@ -1,3 +1,19 @@
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.prowidesoftware.swift.model;
 
 import static org.junit.Assert.assertEquals;
@@ -10,9 +26,9 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import org.apache.commons.lang3.StringUtils;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,9 +39,9 @@ public class MxSwiftMessageTest {
     @Test
     public void testRead() throws IOException {
         File f = File.createTempFile("mx_", ".xml");
-        f.deleteOnExit();
         MxSwiftMessage mx = new MxSwiftMessage(f);
         Assert.assertEquals(mx.getMessage(), "");
+        f.deleteOnExit();
     }
 
     @Test
@@ -35,9 +51,9 @@ public class MxSwiftMessageTest {
         fos.write("<?xml version=\"1.0\" ?>".getBytes());
         fos.write("<Document/>".getBytes());
         fos.close();
-        f.deleteOnExit();
         MxSwiftMessage mx = new MxSwiftMessage(f);
         Assert.assertTrue(StringUtils.contains(mx.getMessage(), "Document"));
+        f.deleteOnExit();
     }
 	
 	@Test

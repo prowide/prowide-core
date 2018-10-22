@@ -1,34 +1,36 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Base class for a generic SWIFT block.<br> 
  * This is an <b>abstract</b> class so specific block classes for each block (block 1, 2, 3, etc...)
- * should be instantiated.<br />
- * <br />
+ * should be instantiated.<br>
+ * <br>
  * Instances of this class may have a list of unparsed texts (UnparsedTextList).
  * For easy access, methods have been created that first ensure the lists exists (the
- * real object is created and then call the base method).<br />
+ * real object is created and then call the base method).<br>
  * However, not all the base list methods have been implemented. If you need to use not
- * exposed functionality, retrieve the underlying list with (see getUnparsedTexts method)<br />
+ * exposed functionality, retrieve the underlying list with (see getUnparsedTexts method)<br>
  *
  * @author www.prowidesoftware.com
  */
@@ -56,13 +58,26 @@ public abstract class SwiftBlock implements Serializable {
 	 */
 	protected Boolean output;
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		SwiftBlock that = (SwiftBlock) o;
+		return Objects.equals(unparsedTexts, that.unparsedTexts);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(unparsedTexts);
+	}
+
 	/**
 	 * helper for hibernate mapping
 	 */
 	protected String blockType;
 	
 	/**
-	 * @return a string identifying block type or <code>null</code> if not implemented
+	 * @return a string identifying block type or null if not implemented
 	 */
 	public String getBlockType() {
 		return blockType;
@@ -125,7 +140,7 @@ public abstract class SwiftBlock implements Serializable {
 	public abstract String getName();
 
 	/**
-	 * Get the unique identifier of this block or <code>null</code> if it is not set
+	 * Get the unique identifier of this block or null if it is not set
 	 * @return the unique identifier 
 	 */
 	public Long getId() {
@@ -146,7 +161,7 @@ public abstract class SwiftBlock implements Serializable {
 
 	/**
 	 * Tell if this block is a block that contains a list of tags (3-5) or is a block with fixed length value (1-2)
-	 * @return <code>true</code> if this object contains a list of tags (which may be empty or <code>null</code>
+	 * @return <code>true</code> if this object contains a list of tags (which may be empty or null
 	 */
 	public boolean isTagBlock() {
 		return this instanceof SwiftTagListBlock;
@@ -195,7 +210,7 @@ public abstract class SwiftBlock implements Serializable {
 	 * decides if a specific text (by index) is likely a SWIFT FIN message. Exceptions are inherited from
 	 * base implementation methods.
 	 * @param index the unparsed text number
-	 * @throws IllegalArgumentException if parameter index is <code>null</code>
+	 * @throws IllegalArgumentException if parameter index is null
 	 * @throws IndexOutOfBoundsException if parameter index is out of bounds
 	 * @return true if the unparsed text at position index is a full SWIFT Message
 	 */
@@ -209,7 +224,7 @@ public abstract class SwiftBlock implements Serializable {
 	 * get an unparsed text
 	 * @param index the unparsed text number
 	 * @return the requested text
-	 * @throws IllegalArgumentException if parameter index is <code>null</code>
+	 * @throws IllegalArgumentException if parameter index is null
 	 * @throws IndexOutOfBoundsException if parameter index is out of bounds
 	 */
 	public String unparsedTextGetText(final Integer index) {
@@ -221,7 +236,7 @@ public abstract class SwiftBlock implements Serializable {
 	/**
 	 * get an unparsed text as a parsed swift message
 	 * @param index the unparsed text number
-	 * @throws IllegalArgumentException if parameter index is <code>null</code> 
+	 * @throws IllegalArgumentException if parameter index is null
 	 * @return the blocks unparsed text at position index, parsed into a SwiftMessage object
 	 */
 	public SwiftMessage unparsedTextGetAsMessage(final Integer index) {
@@ -233,7 +248,7 @@ public abstract class SwiftBlock implements Serializable {
 	/**
 	 * adds a new unparsed text
 	 * @param text the unparsed text to append
-	 * @throws IllegalArgumentException if parameter text is <code>null</code> 
+	 * @throws IllegalArgumentException if parameter text is null
 	 */
 	public void unparsedTextAddText(final String text) {
 		// create the list if needed
@@ -244,40 +259,12 @@ public abstract class SwiftBlock implements Serializable {
 	/**
 	 * adds a new unparsed text from a message
 	 * @param message the message to be appended
-	 * @throws IllegalArgumentException if parameter message is <code>null</code> 
+	 * @throws IllegalArgumentException if parameter message is null
 	 */
 	public void unparsedTextAddText(final SwiftMessage message) {
 		// create the list if needed
 		unparsedTextVerify();
 		this.unparsedTexts.addText(message);
-	}
-
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((unparsedTexts == null) ? 0 : unparsedTexts.hashCode());
-		return result;
-	}
-
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final SwiftBlock other = (SwiftBlock) obj;
-		if (unparsedTexts == null) {
-			if (other.unparsedTexts != null) {
-				return false;
-			}
-		} else if (!unparsedTexts.equals(other.unparsedTexts)) {
-			return false;
-		}
-		return true;
 	}
 
 	/**

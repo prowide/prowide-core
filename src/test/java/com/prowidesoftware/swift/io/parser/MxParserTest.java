@@ -1,14 +1,18 @@
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io.parser;
 
 import java.io.IOException;
@@ -30,7 +34,6 @@ import com.prowidesoftware.swift.model.mx.dic.BusinessApplicationHeaderV01;
 /**
  * Test cases for {@link MxParser} header parsing, message detection, analysis and strip API.
  *
- * @author www.prowidesoftware.com
  * @since 7.6
  */
 public class MxParserTest extends XMLTestCase {
@@ -198,7 +201,7 @@ public class MxParserTest extends XMLTestCase {
 	public void testAnalizeMessage() throws IOException {
 		final String xml ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 				+ "<Doc:Document xmlns:Doc=\"urn:swift:xsd:camt.003.001.04\"></Doc:Document>";
-		MxStructureInfo info = new MxParser(xml).analizeMessage();
+		MxStructureInfo info = new MxParser(xml).analyzeMessage();
 		assertNull(info.getException());
 		assertTrue(info.containsDocument());
 		assertFalse(info.containsHeader());
@@ -213,7 +216,7 @@ public class MxParserTest extends XMLTestCase {
 	public void testAnalizeMessage2() throws IOException {
 		final String xml ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 				+ "<Document xmlns=\"urn:swift:xsd:camt.003.001.04\"></Document>";
-		MxStructureInfo info = new MxParser(xml).analizeMessage();
+		MxStructureInfo info = new MxParser(xml).analyzeMessage();
 		assertNull(info.getException());
 		assertTrue(info.containsDocument());
 		assertFalse(info.containsHeader());
@@ -228,7 +231,7 @@ public class MxParserTest extends XMLTestCase {
 	public void testAnalizeMessage3() throws IOException {
 		final String xml ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 				+ "<AppHdr xmlns=\"urn:iso:std:iso:20022:tech:xsd:head.001.001.01\"><From></From></AppHdr>";
-		MxStructureInfo info = new MxParser(xml).analizeMessage();
+		MxStructureInfo info = new MxParser(xml).analyzeMessage();
 		assertNull(info.getException());
 		assertFalse(info.containsDocument());
 		assertTrue(info.containsHeader());
@@ -243,7 +246,7 @@ public class MxParserTest extends XMLTestCase {
 	public void testAnalizeMessage4() throws IOException {
 		final String xml ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 				+ "<h:AppHdr xmlns:h=\"urn:iso:std:iso:20022:tech:xsd:head.001.001.01\"><From></From></h:AppHdr>";
-		MxStructureInfo info = new MxParser(xml).analizeMessage();
+		MxStructureInfo info = new MxParser(xml).analyzeMessage();
 		assertNull(info.getException());
 		assertFalse(info.containsDocument());
 		assertTrue(info.containsHeader());
@@ -261,7 +264,7 @@ public class MxParserTest extends XMLTestCase {
 		+ "<h:AppHdr xmlns:h=\"urn:iso:std:iso:20022:tech:xsd:head.001.001.01\"><From></From></h:AppHdr>"
 		+ "<Doc:Document xmlns:Doc=\"urn:swift:xsd:camt.003.001.04\"></Doc:Document>"
 		+ "</message>";
-		MxStructureInfo info = new MxParser(xml).analizeMessage();
+		MxStructureInfo info = new MxParser(xml).analyzeMessage();
 		assertNull(info.getException());
 		assertTrue(info.containsDocument());
 		assertTrue(info.containsHeader());
@@ -276,14 +279,14 @@ public class MxParserTest extends XMLTestCase {
 	public void testAnalizeMessage6() throws IOException {
 		final String xml ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 		+ "<Doc:Document xmlns:Doc=\"urn:swift:xsd:camt.003.001.04\"></foo>";
-		MxStructureInfo info = new MxParser(xml).analizeMessage();
+		MxStructureInfo info = new MxParser(xml).analyzeMessage();
 		assertNotNull(info.getException());
 	}
 	
 	@Test
 	public void testAnalizeMessage7() throws IOException {
 		final String xml ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-		MxStructureInfo info = new MxParser(xml).analizeMessage();
+		MxStructureInfo info = new MxParser(xml).analyzeMessage();
 		assertNotNull(info.getException());
 	}
 	
@@ -379,7 +382,7 @@ public class MxParserTest extends XMLTestCase {
 		
 		MxParser p = new MxParser(xml);
 		assertEquals(new MxId("seev.036.002.07"), p.detectMessage());
-		MxStructureInfo info = p.analizeMessage();
+		MxStructureInfo info = p.analyzeMessage();
 		assertTrue(info.containsDocument());
 		assertTrue(info.containsHeader());
 		assertTrue(info.containsWrapper());

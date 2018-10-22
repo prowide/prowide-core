@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mx;
 
 import java.io.StringWriter;
@@ -32,7 +33,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 import javax.xml.transform.dom.DOMResult;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -68,6 +69,7 @@ public class BusinessHeader {
 	
     public static final transient String NAMESPACE_AH = "urn:swift:xsd:$ahV10";
     public static final transient String NAMESPACE_BAH = "urn:iso:std:iso:20022:tech:xsd:head.001.001.01";
+	private static final String APPHDR = "AppHdr";
 
 	/**
 	 * Creates an empty header
@@ -128,13 +130,13 @@ public class BusinessHeader {
 
 	/**
 	 * Gets the sender BIC code.
-	 * <br />
+	 * <br>
 	 * If the header is a BAH, tries to gets the BIC code from this elements in the following order:
 	 * <ol>
 	 * 	<li>BusinessApplicationHeaderV01/Fr/FIId/FinInstnId/BICFI</li>
 	 *  <li>BusinessApplicationHeaderV01/Fr/OrgId/Id/OrgId/Id/AnyBIC</li>
 	 * </ol>
-	 * <br />
+	 * <br>
 	 * If the header is an AH, gets the same from ApplicationHeader/From/Type+Id where if Type
 	 * is BIC the Id is returned as is, otherwise the domain name is parsed using {@link MxParser#getBICFromDN(String)}
 	 * 
@@ -168,13 +170,13 @@ public class BusinessHeader {
 
 	/**
 	 * Gets the receiver BIC code
-	 * <br />
+	 * <br>
 	 * If the header is a BAH, tries to gets the BIC code from this elements in the following order:
 	 * <ol>
 	 * 	<li>BusinessApplicationHeaderV01/To/FIId/FinInstnId/BICFI</li>
 	 *  <li>BusinessApplicationHeaderV01/To/OrgId/Id/OrgId/Id/AnyBIC</li>
 	 * </ol>
-	 * <br />
+	 * <br>
 	 * If the header is an AH, gets the same from ApplicationHeader/To/Type+Id where if Type
 	 * is BIC the Id is returned as is, otherwise the domain name is parsed using {@link MxParser#getBICFromDN(String)}
 	 * 
@@ -278,7 +280,7 @@ public class BusinessHeader {
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			 
 			final StringWriter sw = new StringWriter();
-			marshaller.marshal(_element(header), new XmlEventWriter(sw, prefix, includeXMLDeclaration, "AppHdr"));
+			marshaller.marshal(_element(header), new XmlEventWriter(sw, prefix, includeXMLDeclaration, APPHDR));
 			return sw.getBuffer().toString();
 			
 		} catch (JAXBException e) {
@@ -321,9 +323,9 @@ public class BusinessHeader {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private JAXBElement _element(final Object header) {
 		if (header instanceof BusinessApplicationHeaderV01) {
-			return (JAXBElement<BusinessApplicationHeaderV01>) new JAXBElement(new QName(NAMESPACE_BAH, "AppHdr"), header.getClass(), null, header);
+			return (JAXBElement<BusinessApplicationHeaderV01>) new JAXBElement(new QName(NAMESPACE_BAH, APPHDR), header.getClass(), null, header);
 		} else if (header instanceof ApplicationHeader) {
-			return (JAXBElement<ApplicationHeader>) new JAXBElement(new QName(NAMESPACE_AH, "AppHdr"), header.getClass(), null, header);
+			return (JAXBElement<ApplicationHeader>) new JAXBElement(new QName(NAMESPACE_AH, APPHDR), header.getClass(), null, header);
 		} else {
 			return null;
 		}
@@ -334,14 +336,14 @@ public class BusinessHeader {
 	 * <br>
 	 * The created header will be of type {@link BusinessApplicationHeaderV01}.
 	 * Creation date will be set to current time.
-	 * <br />
+	 * <br>
 	 * All parameters are optional but in order for the header to be valid the
 	 * sender, receiver and reference must be set.
 	 * 
-	 * @param sender optional sender BIC for the Fr element or <code>null</code> to leave not set
-	 * @param receiver optional receiver BIC for the To element or <code>null</code> to leave not set
-	 * @param reference optional reference for the BizMsgIdr (business message identifier) or <code>null</code> to leave not set
-	 * @param id optional MX identification for the MsgDefIdr (message definition identifier) element or <code>null</code> to leave not set
+	 * @param sender optional sender BIC for the Fr element or null to leave not set
+	 * @param receiver optional receiver BIC for the To element or null to leave not set
+	 * @param reference optional reference for the BizMsgIdr (business message identifier) or null to leave not set
+	 * @param id optional MX identification for the MsgDefIdr (message definition identifier) element or null to leave not set
 	 * @return new header initialized from parameters.
 	 * @since 7.8.5
 	 */

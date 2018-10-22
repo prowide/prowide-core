@@ -1,28 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.prowidesoftware.JsonSerializable;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.Lib;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.File;
 import java.io.IOException;
@@ -33,18 +33,35 @@ import java.text.NumberFormat;
 import java.util.*;
 
 /**
- * Base class for common attributes of MT and MX SWIFT messages intended for messages persistence.<br />
+ * Base class for common attributes of MT and MX SWIFT messages intended for messages persistence.
  * 
- * This class hierarchy is designed as a container of the raw message contents (xml for MX and FIN for MT)
+ * <p>This class hierarchy is designed as a container of the raw message contents (xml for MX and FIN for MT)
  * plus minimal message metadata. The extra data contains several common attributes for all messages, and
- * the subclasses add additional information mainly to identify the specific message type.<br />
+ * the subclasses add additional information mainly to identify the specific message type.
  * 
- * This minimal abstraction make this model optimal for an ORM mapping (ex: for Hibernate) to store
+ * <p>This minimal abstraction make this model optimal for an ORM mapping (ex: for Hibernate) to store
  * all messages in a single and simple table.
+ *
+ * <p>XML metadata may be used to override or augment these JPA annotations.
  * 
  * @author www.prowidesoftware.com
  * @since 7.0
  */
+@Entity
+@Table(
+	name = "swift_msg",
+	indexes = {
+		//MT and MX
+		@Index(name = "x_chk", columnList = "checksum"),
+		@Index(name = "x_chkbody", columnList = "checksum_body"),
+		@Index(name = "x_cd", columnList = "checksum_body"),
+		//MT only
+		@Index(name = "x_mir", columnList = "checksum"),
+		@Index(name = "x_mur", columnList = "checksum_body"),
+		@Index(name = "x_uuid", columnList = "checksum_body")
+	})
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", length = 2)
 public abstract class AbstractSwiftMessage implements Serializable, JsonSerializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
 	private static final long serialVersionUID = 3769865560736793606L;
@@ -64,26 +81,77 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
 	 * Unique identifier (used for ORM mapped to the table record id)
 	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Lob
 	private String message;
+
+	@Column(length = 40)
 	protected String identifier;
+
+	@Column(length = 12)
 	protected String sender;
+
+	@Column(length = 12)
 	protected String receiver;
+
+	@Enumerated(EnumType.STRING)
+	@Column(length = 8)
 	private MessageIOType direction;
+
+	@Column(length = 32, name = "checksum")
 	private String checksum;
+
+	@Column(length = 32, name = "checksum_body")
 	private String checksumBody;
+
+	@Column(name = "last_modified")
 	private Calendar lastModified = Calendar.getInstance();
+
+	@Column(name = "creation_date")
 	private Calendar creationDate = Calendar.getInstance();
-	private List<SwiftMessageStatusInfo> statusTrail = new ArrayList<SwiftMessageStatusInfo>();
+
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+	@JoinColumn(name = "msg_id", nullable = false)
+	@OrderColumn(name = "sort_key")
+	private List<SwiftMessageStatusInfo> statusTrail = new ArrayList<>();
+
+	@Column(length = 50)
 	private String status;
+
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+	@JoinColumn(name = "msg_id", nullable = false)
+	@OrderColumn(name = "sort_key")
 	private List<SwiftMessageNote> notes = new ArrayList<SwiftMessageNote>();
-	private Map<String, String> properties = new HashMap<String, String>();
+
+	@ElementCollection
+	//@Fetch(FetchMode.SELECT)
+	@CollectionTable(name = "swift_msg_properties", joinColumns = @JoinColumn(name = "id"))
+	@MapKeyColumn(name = "property_key", length = 200)
+	@Column(name = "property_value")
+	@Lob //only applies to the value
+	private Map<String, String> properties = new HashMap<>();
+
+	@Column(length = 100)
 	private String filename;
+
+	@Transient
 	private FileFormat fileFormat;
+
+	@Column(length = 35)
 	private String reference;
+
+	@Column(length = 3)
 	private String currency;
+
 	private BigDecimal amount;
-	private List<SwiftMessageRevision> revisions = new ArrayList<SwiftMessageRevision>();
+
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+	@JoinColumn(name = "msg_id", nullable = false)
+	@OrderColumn(name = "sort_key")
+	private List<SwiftMessageRevision> revisions = new ArrayList<>();
 
 	/**
 	 * Empty constructor provided for ORM persistence.
@@ -96,7 +164,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * Creates a new message reading the message the content from a string. 
-	 * Uses abstract method @link {{@link #updateFromMessage()}} to fill the specific metadata attributes.<br />
+	 * Uses abstract method @link {{@link #updateFromMessage()}} to fill the specific metadata attributes.<br>
 	 * 
 	 * The complete string content will be read and set as raw message content, but if the stringt contains 
 	 * multiple messages, only the first one will be used for metadata and message identification.
@@ -113,8 +181,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
 	 * @see AbstractSwiftMessage#AbstractSwiftMessage(String)
 	 * @since 7.8.4
-	 * @param content
-	 * @param fileFormat
+	 * @param content the raw message content
+	 * @param fileFormat the content specific format
 	 */
 	protected AbstractSwiftMessage(final String content, final FileFormat fileFormat) {
 		super();
@@ -125,12 +193,12 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * Creates a new message reading the message the content from an input stream, using UTF-8 as encoding.
-	 * Uses abstract method {{@link #updateFromMessage()}} to fill the specific metadata attributes.<br />
+	 * Uses abstract method {{@link #updateFromMessage()}} to fill the specific metadata attributes.<br>
 	 * 
 	 * The complete stream content will be read and set as raw message content, but if the stream contains 
 	 * multiple messages, only the first one will be used for metadata and message identification.
 	 *  
-	 * @param stream
+	 * @param stream a stream with the raw mesasge content to read
 	 * @since 7.7
 	 */
 	protected AbstractSwiftMessage(final InputStream stream) throws IOException {
@@ -141,9 +209,9 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * @see #AbstractSwiftMessage(InputStream) 
-	 * @param stream
-	 * @param fileFormat
-	 * @throws IOException
+	 * @param stream a stream with the raw mesasge content to read
+	 * @param fileFormat the specific content format
+	 * @throws IOException if an error occur reading the stream
 	 * @since 7.8.4
 	 */
 	protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat) throws IOException {
@@ -155,7 +223,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * Creates a new message reading the message the content from a file. 
-	 * Uses abstract method {{@link #updateFromMessage()}} to fill the specific metadata attributes.<br />
+	 * Uses abstract method {{@link #updateFromMessage()}} to fill the specific metadata attributes.<br>
 	 * 
 	 * The complete file content will be read and set as raw message content, but if the file contains 
 	 * multiple messages, only the first one will be used for metadata and message identification.
@@ -172,9 +240,9 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * @see #AbstractSwiftMessage(File)
-	 * @param file
-	 * @param fileFormat
-	 * @throws IOException
+	 * @param file a file with the raw mesasge content to read
+	 * @param fileFormat the specific file content format
+	 * @throws IOException if an error occur reading the file
 	 * @since 7.8.4
 	 */
 	protected AbstractSwiftMessage(final File file, final FileFormat fileFormat) throws IOException {
@@ -235,7 +303,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @see MtSwiftMessage#updateFromModel(SwiftMessage)} 
      * @see MxSwiftMessage#updateFromXML(String)}
      * @see MxSwiftMessage#updateFromModel(com.prowidesoftware.swift.model.mx.AbstractMX)
-     * </p>
+     *
      * 
      * @param message raw content of the message
      */
@@ -246,8 +314,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
 	 * Message type identification as specify by SWIFT.
 	 * <ul>
-	 * 	<li>For MT: fin.<msgtype>[.<mug|variant>] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
-	 * 	<li>For MX: <bus.area>.<msgtype>.<variant>.<version> for example: camt.034.001.02, ifds.001.001.01</li>
+	 * 	<li>For MT: fin.&lt;msgtype&gt;[.&lt;mug|variant&gt;] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
+	 * 	<li>For MX: &lt;bus.area>.&lt;msgtype&gt;.&lt;variant&gt;.&lt;version&gt; for example: camt.034.001.02, ifds.001.001.01</li>
 	 * 	<li>For acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
 	 * 	<li>For non-acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
 	 * 	<li>For other service messages the identifier is left <code>null</code></li>
@@ -259,7 +327,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
  	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param identifier
+	 * @param identifier the message identifier such as fin.103
 	 */
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
@@ -268,7 +336,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
 	 * Proprietary checksum computed for the whole raw message content, helpful for integrity verification or duplicates detection.
 	 * 
-	 * <p>At the moment this is only implemented for MT messages</p>
+	 * <p>At the moment this is only implemented for MT messages
 	 * @see SwiftMessageUtils#calculateChecksum(SwiftMessage)
 	 */
 	//TODO implement the same for MX, computing hash on XSLT normalized version of the XML
@@ -278,9 +346,9 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * <p>At the moment this is only implemented for MT messages</p>
+	 * <p>At the moment this is only implemented for MT messages
 	 * @see SwiftMessageUtils#calculateChecksum(SwiftMessage)
-	 * @param checksum
+	 * @param checksum the calculated checksum to set
 	 */
 	public void setChecksum(String checksum) {
 		this.checksum = checksum;
@@ -289,7 +357,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
  	 * Gets the proprietary checksum calculated for the text block (block 4) only in MT or Document only in MX, helpful for integrity verification or duplicates detection.
  	 * 
- 	 * <p>At the moment this is only implemented for MT messages</p>
+ 	 * <p>At the moment this is only implemented for MT messages
 	 * @see SwiftMessageUtils#calculateChecksum(SwiftBlock4)
 	 * @since 7.9.5
 	 */
@@ -300,7 +368,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param checksumBlock4 the checksum to set
+	 * @param checksumBody the checksum to set
 	 * @since 7.9.5
 	 */
 	public void setChecksumBody(String checksumBody) {
@@ -317,7 +385,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param lastModified
+	 * @param lastModified the last modification timestamp to set
 	 */
 	public void setLastModified(Calendar lastModified) {
 		this.lastModified = lastModified;
@@ -333,7 +401,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param creationDate
+	 * @param creationDate the creation timestamp to set
 	 */
 	public void setCreationDate(Calendar creationDate) {
 		this.creationDate = creationDate;
@@ -379,7 +447,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * @see #addStatus(SwiftMessageStatusInfo)
-	 * @param statusTrail
+	 * @param statusTrail a list with statuses information
 	 */
 	public void setStatusTrail(List<SwiftMessageStatusInfo> statusTrail) {
 		this.statusTrail = statusTrail;
@@ -395,14 +463,14 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
 	 * Sets the status attribute. Notice that this method does not update the status trail.
 	 * @see #addStatus(SwiftMessageStatusInfo)
-	 * @param status
+	 * @param status the current message status name
 	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
 	
 	/**
-	 * Senders BIC11 code.<br />
+	 * Senders BIC11 code.<br>
 	 * For MT messages this is the BIC11 portion of the sender logical terminal; for outgoing messages the LT at block 1 
 	 * is used, and for incoming messages it is the LT at the MIR of block 2.
 	 * For MX messages this is the (capitalized) BIC information in the "From" tag of the Application Header.
@@ -413,14 +481,14 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param sender
+	 * @param sender the sender address
 	 */
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
 
 	/**
-	 * Receivers BIC11 code.<br />
+	 * Receivers BIC11 code.<br>
 	 * For MT messages this is the BIC11 portion of the receiver logical terminal; for outgoing messages the LT at 
 	 * block 2 is used, and for incoming messages it is the LT at block 1.
 	 * For MX messages this is the (capitalized) BIC information in the "To" tag of the Application Header.
@@ -431,7 +499,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param receiver
+	 * @param receiver the receiver address
 	 */
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
@@ -448,7 +516,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param direction
+	 * @param direction the direction (either incoming or outgoing)
 	 */
 	public void setDirection(MessageIOType direction) {
 		this.direction = direction;
@@ -463,7 +531,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param filename
+	 * @param filename the name of the file read to create this message instance
 	 */
 	public void setFilename(String filename) {
 		this.filename = filename;
@@ -533,7 +601,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 		
 	/**
 	 * Returns true if the current status is equals to the parameter status
-	 * @param status
+	 * @param status a status name
 	 */
 	public boolean isStatus(String status) {
 		return StringUtils.equals(status, getStatus());
@@ -541,7 +609,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * Returns true if the current status is equals to the parameter status
-	 * @param status
+	 * @param status a status enum key
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean isStatus(Enum status) {
@@ -615,7 +683,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * Tell if this message has any of the given statuses as <b>current</b> status
-	 * @param statuses
+	 * @param statuses a list of status names to check
 	 */
 	public boolean isStatus(String ... statuses) {
 		for (String s : statuses) {
@@ -628,7 +696,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * Tell if this message has any of the given statuses as <b>current</b> status
-	 * @param statuses
+	 * @param statuses a list of status enum keys to check
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean isStatus(Enum ... statuses) {
@@ -815,146 +883,12 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 		return StringUtils.leftPad(id, 10, "0");
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
-		result = prime * result + ((checksum == null) ? 0 : checksum.hashCode());
-		result = prime * result + ((checksumBody == null) ? 0 : checksumBody.hashCode());
-		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
-		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
-		result = prime * result + ((direction == null) ? 0 : direction.hashCode());
-		result = prime * result + ((fileFormat == null) ? 0 : fileFormat.hashCode());
-		result = prime * result + ((filename == null) ? 0 : filename.hashCode());
-		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
-		result = prime * result + ((lastModified == null) ? 0 : lastModified.hashCode());
-		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		result = prime * result + ((notes == null) ? 0 : notes.hashCode());
-		result = prime * result + ((properties == null) ? 0 : properties.hashCode());
-		result = prime * result + ((receiver == null) ? 0 : receiver.hashCode());
-		result = prime * result + ((reference == null) ? 0 : reference.hashCode());
-		result = prime * result + ((revisions == null) ? 0 : revisions.hashCode());
-		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((statusTrail == null) ? 0 : statusTrail.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AbstractSwiftMessage other = (AbstractSwiftMessage) obj;
-		if (amount == null) {
-			if (other.amount != null)
-				return false;
-		} else if (!amount.equals(other.amount))
-			return false;
-		if (checksum == null) {
-			if (other.checksum != null)
-				return false;
-		} else if (!checksum.equals(other.checksum))
-			return false;
-		if (checksumBody == null) {
-			if (other.checksumBody != null)
-				return false;
-		} else if (!checksumBody.equals(other.checksumBody))
-			return false;
-		if (creationDate == null) {
-			if (other.creationDate != null)
-				return false;
-		} else if (!creationDate.equals(other.creationDate))
-			return false;
-		if (currency == null) {
-			if (other.currency != null)
-				return false;
-		} else if (!currency.equals(other.currency))
-			return false;
-		if (direction != other.direction)
-			return false;
-		if (fileFormat != other.fileFormat)
-			return false;
-		if (filename == null) {
-			if (other.filename != null)
-				return false;
-		} else if (!filename.equals(other.filename))
-			return false;
-		if (identifier == null) {
-			if (other.identifier != null)
-				return false;
-		} else if (!identifier.equals(other.identifier))
-			return false;
-		if (lastModified == null) {
-			if (other.lastModified != null)
-				return false;
-		} else if (!lastModified.equals(other.lastModified))
-			return false;
-		if (message == null) {
-			if (other.message != null)
-				return false;
-		} else if (!message.equals(other.message))
-			return false;
-		if (notes == null) {
-			if (other.notes != null)
-				return false;
-		} else if (!notes.equals(other.notes))
-			return false;
-		if (properties == null) {
-			if (other.properties != null)
-				return false;
-		} else if (!properties.equals(other.properties))
-			return false;
-		if (receiver == null) {
-			if (other.receiver != null)
-				return false;
-		} else if (!receiver.equals(other.receiver))
-			return false;
-		if (reference == null) {
-			if (other.reference != null)
-				return false;
-		} else if (!reference.equals(other.reference))
-			return false;
-		if (revisions == null) {
-			if (other.revisions != null)
-				return false;
-		} else if (!revisions.equals(other.revisions))
-			return false;
-		if (sender == null) {
-			if (other.sender != null)
-				return false;
-		} else if (!sender.equals(other.sender))
-			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
-			return false;
-		if (statusTrail == null) {
-			if (other.statusTrail != null)
-				return false;
-		} else if (!statusTrail.equals(other.statusTrail))
-			return false;
-		return true;
-	}
-
-	/**
-	 * @deprecated use the constructor {@link #AbstractSwiftMessage(File)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2018)
-    public abstract AbstractSwiftMessage readFile(File file) throws IOException;
-
 	/**
 	 * Creates a full copy of the current message object into another message.
 	 * <p>The implementation works as a copy constructor. All attributes are replicated into
 	 * new instances in the target message. The only fields that are not copied are the Long id
 	 * because they are intended for ORM (persistence) autogeneration. Preexisting data in the
-	 * target message will be overwritten.</p>
+	 * target message will be overwritten.
 	 * @param msg target message
 	 * @since 7.7
 	 */
@@ -1011,7 +945,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * @since 7.8
-	 * @param revisions
+	 * @param revisions a list of message modification revisions
 	 */
 	public void setRevisions(List<SwiftMessageRevision> revisions) {
 		this.revisions = revisions;
@@ -1083,7 +1017,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
 	 * @since 7.8.4
-	 * @param fileFormat
+	 * @param fileFormat the file format read
 	 */
 	public void setFileFormat(FileFormat fileFormat) {
 		this.fileFormat = fileFormat;
@@ -1098,7 +1032,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param reference
+	 * @param reference the message reference
 	 */
 	public void setReference(String reference) {
 		this.reference = reference;
@@ -1115,7 +1049,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param currency
+	 * @param currency the message main currency
 	 */
 	public void setCurrency(String currency) {
 		this.currency = currency;
@@ -1132,7 +1066,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param amount
+	 * @param amount the message main amount
 	 */
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
@@ -1144,12 +1078,12 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 * <p>
 	 * Notice the identifier will contain:
 	 * <ul>
-	 * <li>For MT: fin.<msgtype>[.<mug|variant>] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
-	 * <li>For MX: <bus.area>.<msgtype>.<variant>.<version> for example: camt.034.001.02, ifds.001.001.01</li>
+	 * <li>For MT: fin.&lt;msgtype&gt;[.&lt;mug|variant&gt;] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
+	 * <li>For MX: &lt;bus.area&gt;.&lt;msgtype&gt;.&lt;variant&gt;.&lt;version&gt; for example: camt.034.001.02, ifds.001.001.01</li>
 	 * </ul>
 	 * So for example <code>fin.*</code> matches all MT messages, <code>fin.*STP</code> matches all STP MT messages
 	 * and <code>camt.*</code> matches all MX messages in the category camt. 
-	 * </p>
+	 *
 	 * 
 	 * @since 7.8.4
 	 * @param regex to match
@@ -1194,11 +1128,11 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
 	 * Returns true if this message identifier is {@link #IDENTIFIER_ACK}
 	 * 
-	 * <p>The implementation does not check the inner content of the message.</p>
+	 * <p>The implementation does not check the inner content of the message.
 	 * 
 	 * <p>It is safe to use this method to check if message is effectively 
 	 * and acknowledge only when the API is used with the provided subclasses
-	 * for MT and MX and when the identifier has not been altered by the accesor.</p>
+	 * for MT and MX and when the identifier has not been altered by the accesor.
 	 *  
 	 * @return true if the identifier is {@link #IDENTIFIER_ACK} false otherwise
 	 * @since 7.8.8
@@ -1206,15 +1140,46 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	public boolean identifiedAsACK() {
 		return StringUtils.equals(this.identifier, IDENTIFIER_ACK);
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		AbstractSwiftMessage that = (AbstractSwiftMessage) o;
+		return Objects.equals(message, that.message) &&
+				Objects.equals(identifier, that.identifier) &&
+				Objects.equals(sender, that.sender) &&
+				Objects.equals(receiver, that.receiver) &&
+				direction == that.direction &&
+				Objects.equals(checksum, that.checksum) &&
+				Objects.equals(checksumBody, that.checksumBody) &&
+				Objects.equals(lastModified, that.lastModified) &&
+				Objects.equals(creationDate, that.creationDate) &&
+				Objects.equals(statusTrail, that.statusTrail) &&
+				Objects.equals(status, that.status) &&
+				Objects.equals(notes, that.notes) &&
+				Objects.equals(properties, that.properties) &&
+				Objects.equals(filename, that.filename) &&
+				fileFormat == that.fileFormat &&
+				Objects.equals(reference, that.reference) &&
+				Objects.equals(currency, that.currency) &&
+				Objects.equals(amount, that.amount) &&
+				Objects.equals(revisions, that.revisions);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(message, identifier, sender, receiver, direction, checksum, checksumBody, lastModified, creationDate, statusTrail, status, notes, properties, filename, fileFormat, reference, currency, amount, revisions);
+	}
+
 	/**
 	 * Returns true if this message identifier is {@link #IDENTIFIER_NAK}
 	 * 
-	 * <p>The implementation does not check the inner content of the message.</p>
+	 * <p>The implementation does not check the inner content of the message.
 	 * 
 	 * <p>It is safe to use this method to check if message is effectively 
 	 * and non-acknowledge only when the API is used with the provided subclasses
-	 * for MT and MX and when the identifier has not been altered by the accesor.</p>
+	 * for MT and MX and when the identifier has not been altered by the accesor.
 	 *  
 	 * @return true if the identifier is {@link #IDENTIFIER_NAK} false otherwise
 	 * @since 7.8.8
@@ -1228,7 +1193,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 * If the address contains a logical terminal it wil be dropped.
 	 * If the address does not contain a branch, the default XXX will be used
 	 * @param address a BIC8, BIC11 or full logical terminal address (BIC12)
-	 * @return
+	 * @return the bic11 or null if address is null
 	 * @since 7.9.5
 	 * @see BIC#getBic11()
 	 */
@@ -1240,7 +1205,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	}
 
 	/**
-	 * Returns the correspondent BIC code from the headers.<br />
+	 * Returns the correspondent BIC code from the headers.<br>
 	 * For an outgoing message, the BIC address identifies the receiver of the message. Where for an incoming message it identifies the sender of the message.
 	 * @return the correspondent BIC code or null if headers are not properly set
 	 * @since 7.9.5
@@ -1296,13 +1261,13 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
 	 * Gets a JSON representation of this message.
      *
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	@Override
 	public String toJson() {
-		final GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setPrettyPrinting();
-		final Gson gson = gsonBuilder.create();
+		final Gson gson = new GsonBuilder()
+			.setPrettyPrinting()
+			.create();
 		return gson.toJson(this);
 	}
 	

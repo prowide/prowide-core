@@ -1,4 +1,20 @@
 
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.prowidesoftware.swift;
 
 import com.prowidesoftware.Generated;
@@ -64,6 +80,7 @@ public interface SchemeConstantsR {
     public final static String RMOD = "RMOD";
     public final static String RCAP = "RCAP";
     public final static String REMI = "REMI";
+    public final static String RSCH = "RSCH";
     public final static String REFPRICE = "REFPRICE";
     public final static String REFD = "REFD";
     public final static String RSTR = "RSTR";
@@ -102,9 +119,13 @@ public interface SchemeConstantsR {
     public final static String REMO = "REMO";
     public final static String RHOD = "RHOD";
     public final static String RUTH = "RUTH";
-    public final static String REVOCABLE = "REVOCABLE";
-    public final static String REVOCABLE_TRANSFERABLE = "REVOCABLE_TRANSFERABLE";
-    public final static String REVOCABLE_STANDBY = "REVOCABLE_STANDBY";
+    public final static String REPALL = "REPALL";
+    public final static String RETD = "RETD";
+    public final static String REFE = "REFE";
+    public final static String REQISSUE = "REQISSUE";
+    public final static String REQAMEND = "REQAMEND";
+    public final static String REIMBURS = "REIMBURS";
+    public final static String REQFINAN = "REQFINAN";
     public final static String RC = "RC";
     public final static String RD = "RD";
 

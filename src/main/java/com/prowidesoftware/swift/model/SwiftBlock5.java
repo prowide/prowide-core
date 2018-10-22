@@ -1,33 +1,34 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
+
+import org.apache.commons.lang3.Validate;
 
 import java.io.Serializable;
 import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.apache.commons.lang.Validate;
-
 /**
- * Base class for SWIFT <b>Trailer Block (block 5)</b>.<br>
- * Each SWIFT message has one or more trailers as required by 
+ * Base class for SWIFT <b>Trailer Block (block 5)</b>.
+ *
+ * <p>Each SWIFT message has one or more trailers as required by
  * the message exchange and security requirements. 
  * System trailers, if applicable, follow user trailers.<br>
  * 
- * @author www.prowidesoftware.com
  * @since 4.0
  */
 public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
@@ -45,14 +46,13 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
 	/**
 	 * Constructor with tag initialization
 	 * @param tags the list of tags to initialize
-	 * @throws IllegalArgumentException if parameter tags is <code>null</code>
+	 * @throws IllegalArgumentException if parameter tags is null
 	 * @throws IllegalArgumentException if parameter tags is not composed of Strings
 	 * @since 5.0
 	 */
 	public SwiftBlock5(final List<Tag> tags) {
 		// sanity check
 		Validate.notNull(tags, "parameter 'tags' cannot be null");
-		Validate.allElementsOfType(tags, Tag.class, "parameter 'tags' may only have Tag elements");
 
 		this.addTags(tags);
 	}
@@ -105,8 +105,7 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
 	 * @since 7.9.8
 	 */
 	public static SwiftBlock5 fromJson(String json){
-		final GsonBuilder gsonBuilder = new GsonBuilder();
-		final Gson gson = gsonBuilder.create();
+		final Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, SwiftBlock5.class);
 	}
 

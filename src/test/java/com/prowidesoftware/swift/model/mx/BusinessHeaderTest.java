@@ -1,3 +1,19 @@
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.prowidesoftware.swift.model.mx;
 
 import static org.junit.Assert.assertEquals;
@@ -95,11 +111,11 @@ public class BusinessHeaderTest {
 		
 		h.getApplicationHeader().setFrom(new EntityIdentification());
 		h.getApplicationHeader().getFrom().setType("BIC");
-		h.getApplicationHeader().getFrom().setId("BICFOOXX");
+		h.getApplicationHeader().getFrom().setId("FOOBARXX");
 		h.getApplicationHeader().setTo(new EntityIdentification());
 		h.getApplicationHeader().getTo().setType("BIC");
 		h.getApplicationHeader().getTo().setId("ABCFOOXX");
-		assertEquals("BICFOOXX", h.from());
+		assertEquals("FOOBARXX", h.from());
 		assertEquals("ABCFOOXX", h.to());
 		
 		h.getApplicationHeader().getFrom().setType("DN");
@@ -118,12 +134,12 @@ public class BusinessHeaderTest {
 		h.getBusinessApplicationHeader().setFr(new Party9Choice());
 		h.getBusinessApplicationHeader().getFr().setFIId(new BranchAndFinancialInstitutionIdentification5());
 		h.getBusinessApplicationHeader().getFr().getFIId().setFinInstnId(new FinancialInstitutionIdentification8());
-		h.getBusinessApplicationHeader().getFr().getFIId().getFinInstnId().setBICFI("BICFOOXX");
+		h.getBusinessApplicationHeader().getFr().getFIId().getFinInstnId().setBICFI("FOOBARXX");
 		h.getBusinessApplicationHeader().setTo(new Party9Choice());
 		h.getBusinessApplicationHeader().getTo().setFIId(new BranchAndFinancialInstitutionIdentification5());
 		h.getBusinessApplicationHeader().getTo().getFIId().setFinInstnId(new FinancialInstitutionIdentification8());
 		h.getBusinessApplicationHeader().getTo().getFIId().getFinInstnId().setBICFI("ABCFOOXX");
-		assertEquals("BICFOOXX", h.from());
+		assertEquals("FOOBARXX", h.from());
 		assertEquals("ABCFOOXX", h.to());
 	}
 

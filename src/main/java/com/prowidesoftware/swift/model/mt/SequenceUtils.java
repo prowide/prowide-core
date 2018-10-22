@@ -1,40 +1,32 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mt;
 
-import static com.prowidesoftware.swift.model.SwiftMessageUtils.join;
+import com.prowidesoftware.swift.model.SwiftTagListBlock;
+import com.prowidesoftware.swift.model.field.Field16S;
+import com.prowidesoftware.swift.model.mt.mt5xx.*;
+import com.prowidesoftware.swift.model.mt.mt5xx.MT537.SequenceB;
+import com.prowidesoftware.swift.model.mt.mt6xx.MT670;
+import com.prowidesoftware.swift.model.mt.mt6xx.MT671;
+import org.apache.commons.lang3.Validate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.Validate;
-
-import com.prowidesoftware.swift.model.SwiftTagListBlock;
-import com.prowidesoftware.swift.model.field.Field16S;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT536;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT537;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT537.SequenceB;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT538;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT564;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT566;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT575;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT576;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT586;
-import com.prowidesoftware.swift.model.mt.mt6xx.MT670;
-import com.prowidesoftware.swift.model.mt.mt6xx.MT671;
+import static com.prowidesoftware.swift.model.SwiftMessageUtils.join;
 
 
 /**
@@ -43,7 +35,7 @@ import com.prowidesoftware.swift.model.mt.mt6xx.MT671;
  * These are intended to solve some sequence access code required from MT classes.
  * Use those MTxxx.getSequenceX directly instead of these.
  *
- * @author miguel@prowidesoftware.com
+ * @author miguel
  * @since 7.8
  *
  */
@@ -54,9 +46,9 @@ public class SequenceUtils {
 		throw new AssertionError();
 	}
 
-	public static List<MT535.SequenceB1b1> resolveMT535GetSequenceB1b1List_sru2017(final MT535 mt535) {
+	public static List<MT535.SequenceB1b1> resolveMT535GetSequenceB1b1List_sru2018(final MT535 mt535) {
 		Validate.notNull(mt535);
-		final List<MT535.SequenceB1b1> result = new ArrayList<MT535.SequenceB1b1>();
+		final List<MT535.SequenceB1b1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt535.getSequenceB1bList()).getSubBlocks(MT535.SequenceB1b1.START_END_16RS)) {
 			final MT535.SequenceB1b1 s = MT535.SequenceB1b1.newInstance();
 			s.clear().append(seq);
@@ -64,9 +56,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT535.SequenceB1c> resolveMT535GetSequenceB1cList_sru2017(final MT535 mt535) {
+	public static List<MT535.SequenceB1c> resolveMT535GetSequenceB1cList_sru2018(final MT535 mt535) {
 		Validate.notNull(mt535);
-		final List<MT535.SequenceB1c> result = new ArrayList<MT535.SequenceB1c>();
+		final List<MT535.SequenceB1c> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt535.getSequenceB1List()).getSubBlocks(MT535.SequenceB1c.START_END_16RS)) {
 			final MT535.SequenceB1c s = MT535.SequenceB1c.newInstance();
 			s.clear().append(seq);
@@ -75,9 +67,9 @@ public class SequenceUtils {
 		return result;
 	}
 
-	public static List<MT536.SequenceA1> resolveMT536GetSequenceA1List_sru2017(final MT536 mt536) {
+	public static List<MT536.SequenceA1> resolveMT536GetSequenceA1List_sru2018(final MT536 mt536) {
 		Validate.notNull(mt536);
-		final List<MT536.SequenceA1> result = new ArrayList<MT536.SequenceA1>();
+		final List<MT536.SequenceA1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : mt536.getSequenceA().getSubBlocks(MT536.SequenceA1.START_END_16RS)) {
 			final MT536.SequenceA1 s = MT536.SequenceA1.newInstance();
 			s.clear().append(seq);
@@ -85,9 +77,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT536.SequenceB1a1> resolveMT536GetSequenceB1a1List_sru2017(final MT536 mt536) {
+	public static List<MT536.SequenceB1a1> resolveMT536GetSequenceB1a1List_sru2018(final MT536 mt536) {
 		Validate.notNull(mt536);
-		final List<MT536.SequenceB1a1> result = new ArrayList<MT536.SequenceB1a1>();
+		final List<MT536.SequenceB1a1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt536.getSequenceBList()).getSubBlocks(MT536.SequenceB1a1.START_END_16RS)) {
 			final MT536.SequenceB1a1 s = MT536.SequenceB1a1.newInstance();
 			s.clear().append(seq);
@@ -96,9 +88,9 @@ public class SequenceUtils {
 		return result;
 	}
 
-	public static List<MT537.SequenceA1> resolveMT537GetSequenceA1List_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceA1> resolveMT537GetSequenceA1List_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceA1> result = new ArrayList<MT537.SequenceA1>();
+		final List<MT537.SequenceA1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : mt537.getSequenceA().getSubBlocks(MT537.SequenceA1.START_END_16RS)) {
 			final MT537.SequenceA1 s = MT537.SequenceA1.newInstance();
 			s.clear().append(seq);
@@ -106,13 +98,13 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2017(final MT537 mt537) {
-		return resolveMT537GetSequenceBList_sru2017(mt537.getSwiftMessage().getBlock4());
+	public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2018(final MT537 mt537) {
+		return resolveMT537GetSequenceBList_sru2018(mt537.getSwiftMessage().getBlock4());
 
 	}
-	public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2017(final SwiftTagListBlock mt537 /* block 4 */) {
+	public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2018(final SwiftTagListBlock mt537 /* block 4 */) {
 		Validate.notNull(mt537);
-		final List<SequenceB> result = new ArrayList<MT537.SequenceB>();
+		final List<SequenceB> result = new ArrayList<>();
 		/*
 		 * B delimiter overlaps with C3 delimiter, everything after and including C and use
 		 * standard getter for B
@@ -130,9 +122,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceB1> resolveMT537GetSequenceB1List_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceB1> resolveMT537GetSequenceB1List_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceB1> result = new ArrayList<MT537.SequenceB1>();
+		final List<MT537.SequenceB1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt537.getSequenceBList()).getSubBlocks(MT537.SequenceB1.START_END_16RS)) {
 			final MT537.SequenceB1 s = MT537.SequenceB1.newInstance();
 			s.clear().append(seq);
@@ -140,9 +132,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceB2a> resolveMT537GetSequenceB2aList_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceB2a> resolveMT537GetSequenceB2aList_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceB2a> result = new ArrayList<MT537.SequenceB2a>();
+		final List<MT537.SequenceB2a> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt537.getSequenceB2List()).getSubBlocks(MT537.SequenceB2a.START_END_16RS)) {
 			final MT537.SequenceB2a s = MT537.SequenceB2a.newInstance();
 			s.clear().append(seq);
@@ -150,9 +142,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceB2b1> resolveMT537GetSequenceB2b1List_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceB2b1> resolveMT537GetSequenceB2b1List_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceB2b1> result = new ArrayList<MT537.SequenceB2b1>();
+		final List<MT537.SequenceB2b1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt537.getSequenceB2List()).getSubBlocks(MT537.SequenceB2b1.START_END_16RS)) {
 			final MT537.SequenceB2b1 s = MT537.SequenceB2b1.newInstance();
 			s.clear().append(seq);
@@ -160,9 +152,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceC1> resolveMT537GetSequenceC1List_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceC1> resolveMT537GetSequenceC1List_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceC1> result = new ArrayList<MT537.SequenceC1>();
+		final List<MT537.SequenceC1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt537.getSequenceCList()).getSubBlocks(MT537.SequenceC1.START_END_16RS)) {
 			final MT537.SequenceC1 s = MT537.SequenceC1.newInstance();
 			s.clear().append(seq);
@@ -170,9 +162,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceC2> resolveMT537GetSequenceC2List_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceC2> resolveMT537GetSequenceC2List_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceC2> result = new ArrayList<MT537.SequenceC2>();
+		final List<MT537.SequenceC2> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt537.getSequenceCList()).getSubBlocks(MT537.SequenceC2.START_END_16RS)) {
 			final MT537.SequenceC2 s = MT537.SequenceC2.newInstance();
 			s.clear().append(seq);
@@ -180,9 +172,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceC2a> resolveMT537GetSequenceC2aList_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceC2a> resolveMT537GetSequenceC2aList_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceC2a> result = new ArrayList<MT537.SequenceC2a>();
+		final List<MT537.SequenceC2a> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt537.getSequenceC2List()).getSubBlocks(MT537.SequenceC2a.START_END_16RS)) {
 			final MT537.SequenceC2a s = MT537.SequenceC2a.newInstance();
 			s.clear().append(seq);
@@ -190,9 +182,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceC3> resolveMT537GetSequenceC3List_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceC3> resolveMT537GetSequenceC3List_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceC3> result = new ArrayList<MT537.SequenceC3>();
+		final List<MT537.SequenceC3> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt537.getSequenceCList()).getSubBlocks(MT537.SequenceC3.START_END_16RS)) {
 			final MT537.SequenceC3 s = MT537.SequenceC3.newInstance();
 			s.clear().append(seq);
@@ -200,9 +192,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceC3a> resolveMT537GetSequenceC3aList_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceC3a> resolveMT537GetSequenceC3aList_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceC3a> result = new ArrayList<MT537.SequenceC3a>();
+		final List<MT537.SequenceC3a> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt537.getSequenceC3List()).getSubBlocks(MT537.SequenceC3a.START_END_16RS)) {
 			final MT537.SequenceC3a s = MT537.SequenceC3a.newInstance();
 			s.clear().append(seq);
@@ -210,9 +202,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT537.SequenceB2b> resolveMT537GetSequenceB2bList_sru2017(final MT537 mt537) {
+	public static List<MT537.SequenceB2b> resolveMT537GetSequenceB2bList_sru2018(final MT537 mt537) {
 		Validate.notNull(mt537);
-		final List<MT537.SequenceB2b> result = new ArrayList<MT537.SequenceB2b>();
+		final List<MT537.SequenceB2b> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt537.getSequenceB2List()).getSubBlocks(MT537.SequenceB2b.START_END_16RS)) {
 			final MT537.SequenceB2b s = MT537.SequenceB2b.newInstance();
 			s.clear().append(seq);
@@ -221,9 +213,9 @@ public class SequenceUtils {
 		return result;
 	}
 
-	public static List<MT538.SequenceA1> resolveMT538GetSequenceA1List_sru2017(final MT538 mt538) {
+	public static List<MT538.SequenceA1> resolveMT538GetSequenceA1List_sru2018(final MT538 mt538) {
 		Validate.notNull(mt538);
-		final List<MT538.SequenceA1> result = new ArrayList<MT538.SequenceA1>();
+		final List<MT538.SequenceA1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : mt538.getSequenceA().getSubBlocks(MT538.SequenceA1.START_END_16RS)) {
 			final MT538.SequenceA1 s = MT538.SequenceA1.newInstance();
 			s.clear().append(seq);
@@ -231,9 +223,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT538.SequenceB2a1> resolveMT538GetSequenceB2a1List_sru2017(final MT538 mt538) {
+	public static List<MT538.SequenceB2a1> resolveMT538GetSequenceB2a1List_sru2018(final MT538 mt538) {
 		Validate.notNull(mt538);
-		final List<MT538.SequenceB2a1> result = new ArrayList<MT538.SequenceB2a1>();
+		final List<MT538.SequenceB2a1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt538.getSequenceBList()).getSubBlocks(MT538.SequenceB2a1.START_END_16RS)) {
 			final MT538.SequenceB2a1 s = MT538.SequenceB2a1.newInstance();
 			s.clear().append(seq);
@@ -242,15 +234,15 @@ public class SequenceUtils {
 		return result;
 	}
 
-	public static MT564.SequenceB1 resolveMT564GetSequenceB1_sru2017(final MT564 mt564) {
+	public static MT564.SequenceB1 resolveMT564GetSequenceB1_sru2018(final MT564 mt564) {
 		Validate.notNull(mt564);
 		final MT564.SequenceB1 result = MT564.SequenceB1.newInstance();
 		result.clear().append(mt564.getSequenceB().getSubBlock(MT564.SequenceB1.START_END_16RS));
 		return result;
 	}
-	public static List<MT564.SequenceE1a> resolveMT564GetSequenceE1aList_sru2017(final MT564 mt564) {
+	public static List<MT564.SequenceE1a> resolveMT564GetSequenceE1aList_sru2018(final MT564 mt564) {
 		Validate.notNull(mt564);
-		final List<MT564.SequenceE1a> result = new ArrayList<MT564.SequenceE1a>();
+		final List<MT564.SequenceE1a> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt564.getSequenceEList()).getSubBlocks(MT564.SequenceE1a.START_END_16RS)) {
 			final MT564.SequenceE1a s = MT564.SequenceE1a.newInstance();
 			s.clear().append(seq);
@@ -259,9 +251,9 @@ public class SequenceUtils {
 		return result;
 	}
 
-	public static List<MT566.SequenceB1> resolveMT566GetSequenceB1List_sru2017(final MT566 mt566) {
+	public static List<MT566.SequenceB1> resolveMT566GetSequenceB1List_sru2018(final MT566 mt566) {
 		Validate.notNull(mt566);
-		final List<MT566.SequenceB1> result = new ArrayList<MT566.SequenceB1>();
+		final List<MT566.SequenceB1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : mt566.getSequenceB().getSubBlocks(MT566.SequenceB1.START_END_16RS)) {
 			final MT566.SequenceB1 s = MT566.SequenceB1.newInstance();
 			s.clear().append(seq);
@@ -269,9 +261,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT566.SequenceD1a> resolveMT566GetSequenceD1aList_sru2017(final MT566 mt566) {
+	public static List<MT566.SequenceD1a> resolveMT566GetSequenceD1aList_sru2018(final MT566 mt566) {
 		Validate.notNull(mt566);
-		final List<MT566.SequenceD1a> result = new ArrayList<MT566.SequenceD1a>();
+		final List<MT566.SequenceD1a> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : mt566.getSequenceD().getSubBlocks(MT566.SequenceD1a.START_END_16RS)) {
 			final MT566.SequenceD1a s = MT566.SequenceD1a.newInstance();
 			s.clear().append(seq);
@@ -280,9 +272,9 @@ public class SequenceUtils {
 		return result;
 	}
 
-	public static List<MT575.SequenceA1> resolveMT575GetSequenceA1List_sru2017(final MT575 mt575) {
+	public static List<MT575.SequenceA1> resolveMT575GetSequenceA1List_sru2018(final MT575 mt575) {
 		Validate.notNull(mt575);
-		final List<MT575.SequenceA1> result = new ArrayList<MT575.SequenceA1>();
+		final List<MT575.SequenceA1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : mt575.getSequenceA().getSubBlocks(MT575.SequenceA1.START_END_16RS)) {
 			final MT575.SequenceA1 s = MT575.SequenceA1.newInstance();
 			s.clear().append(seq);
@@ -290,9 +282,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT575.SequenceB1a1> resolveMT575GetSequenceB1a1List_sru2017(final MT575 mt575) {
+	public static List<MT575.SequenceB1a1> resolveMT575GetSequenceB1a1List_sru2018(final MT575 mt575) {
 		Validate.notNull(mt575);
-		final List<MT575.SequenceB1a1> result = new ArrayList<MT575.SequenceB1a1>();
+		final List<MT575.SequenceB1a1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt575.getSequenceB1aList()).getSubBlocks(MT575.SequenceB1a1.START_END_16RS)) {
 			final MT575.SequenceB1a1 s = MT575.SequenceB1a1.newInstance();
 			s.clear().append(seq);
@@ -300,9 +292,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT575.SequenceB1a4> resolveMT575GetSequenceB1a4List_sru2017(final MT575 mt575) {
+	public static List<MT575.SequenceB1a4> resolveMT575GetSequenceB1a4List_sru2018(final MT575 mt575) {
 		Validate.notNull(mt575);
-		final List<MT575.SequenceB1a4> result = new ArrayList<MT575.SequenceB1a4>();
+		final List<MT575.SequenceB1a4> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt575.getSequenceB1aList()).getSubBlocks(MT575.SequenceB1a4.START_END_16RS)) {
 			final MT575.SequenceB1a4 s = MT575.SequenceB1a4.newInstance();
 			s.clear().append(seq);
@@ -310,9 +302,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT575.SequenceC1> resolveMT575GetSequenceC1List_sru2017(final MT575 mt575) {
+	public static List<MT575.SequenceC1> resolveMT575GetSequenceC1List_sru2018(final MT575 mt575) {
 		Validate.notNull(mt575);
-		final List<MT575.SequenceC1> result = new ArrayList<MT575.SequenceC1>();
+		final List<MT575.SequenceC1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt575.getSequenceCList()).getSubBlocks(MT575.SequenceC1.START_END_16RS)) {
 			final MT575.SequenceC1 s = MT575.SequenceC1.newInstance();
 			s.clear().append(seq);
@@ -320,9 +312,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT575.SequenceC2a> resolveMT575GetSequenceC2aList_sru2017(final MT575 mt575) {
+	public static List<MT575.SequenceC2a> resolveMT575GetSequenceC2aList_sru2018(final MT575 mt575) {
 		Validate.notNull(mt575);
-		final List<MT575.SequenceC2a> result = new ArrayList<MT575.SequenceC2a>();
+		final List<MT575.SequenceC2a> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt575.getSequenceC2List()).getSubBlocks(MT575.SequenceC2a.START_END_16RS)) {
 			final MT575.SequenceC2a s = MT575.SequenceC2a.newInstance();
 			s.clear().append(seq);
@@ -331,9 +323,9 @@ public class SequenceUtils {
 		return result;
 	}
 
-	public static List<MT576.SequenceA1> resolveMT576GetSequenceA1List_sru2017(final MT576 mt576) {
+	public static List<MT576.SequenceA1> resolveMT576GetSequenceA1List_sru2018(final MT576 mt576) {
 		Validate.notNull(mt576);
-		final List<MT576.SequenceA1> result = new ArrayList<MT576.SequenceA1>();
+		final List<MT576.SequenceA1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : mt576.getSequenceA().getSubBlocks(MT576.SequenceA1.START_END_16RS)) {
 			final MT576.SequenceA1 s = MT576.SequenceA1.newInstance();
 			s.clear().append(seq);
@@ -341,9 +333,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT576.SequenceB2a> resolveMT576GetSequenceB2aList_sru2017(final MT576 mt576) {
+	public static List<MT576.SequenceB2a> resolveMT576GetSequenceB2aList_sru2018(final MT576 mt576) {
 		Validate.notNull(mt576);
-		final List<MT576.SequenceB2a> result = new ArrayList<MT576.SequenceB2a>();
+		final List<MT576.SequenceB2a> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt576.getSequenceBList()).getSubBlocks(MT576.SequenceB2a.START_END_16RS)) {
 			final MT576.SequenceB2a s = MT576.SequenceB2a.newInstance();
 			s.clear().append(seq);
@@ -352,9 +344,9 @@ public class SequenceUtils {
 		return result;
 	}
 
-	public static List<MT586.SequenceA1> resolveMT586GetSequenceA1List_sru2017(final MT586 mt586) {
+	public static List<MT586.SequenceA1> resolveMT586GetSequenceA1List_sru2018(final MT586 mt586) {
 		Validate.notNull(mt586);
-		final List<MT586.SequenceA1> result = new ArrayList<MT586.SequenceA1>();
+		final List<MT586.SequenceA1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : mt586.getSequenceA().getSubBlocks(MT586.SequenceA1.START_END_16RS)) {
 			final MT586.SequenceA1 s = MT586.SequenceA1.newInstance();
 			s.clear().append(seq);
@@ -362,9 +354,9 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static List<MT586.SequenceB1> resolveMT586GetSequenceB1List_sru2017(final MT586 mt586) {
+	public static List<MT586.SequenceB1> resolveMT586GetSequenceB1List_sru2018(final MT586 mt586) {
 		Validate.notNull(mt586);
-		final List<MT586.SequenceB1> result = new ArrayList<MT586.SequenceB1>();
+		final List<MT586.SequenceB1> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt586.getSequenceBList()).getSubBlocks(MT586.SequenceB1.START_END_16RS)) {
 			final MT586.SequenceB1 s = MT586.SequenceB1.newInstance();
 			s.clear().append(seq);
@@ -373,9 +365,9 @@ public class SequenceUtils {
 		return result;
 	}
 
-	public static List<MT670.SequenceB2> resolveMT670GetSequenceB2List_sru2017(final MT670 mt670) {
+	public static List<MT670.SequenceB2> resolveMT670GetSequenceB2List_sru2018(final MT670 mt670) {
 		Validate.notNull(mt670);
-		final List<MT670.SequenceB2> result = new ArrayList<MT670.SequenceB2>();
+		final List<MT670.SequenceB2> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt670.getSequenceBList()).getSubBlocks(MT670.SequenceB2.START_END_16RS)) {
 			final MT670.SequenceB2 s = MT670.SequenceB2.newInstance();
 			s.clear().append(seq);
@@ -383,16 +375,16 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static MT670.SequenceC resolveMT670GetSequenceC_sru2017(final MT670 mt670) {
+	public static MT670.SequenceC resolveMT670GetSequenceC_sru2018(final MT670 mt670) {
 		Validate.notNull(mt670);
 		final MT670.SequenceC result = MT670.SequenceC.newInstance();
 		result.clear().append(getMT670_1_C(mt670.getSwiftMessage().getBlock4(), MT670.SequenceB.START_END_16RS));
 		return result;
 	}
 
-	public static List<MT671.SequenceB2> resolveMT671GetSequenceB2List_sru2017(final MT671 mt671) {
+	public static List<MT671.SequenceB2> resolveMT671GetSequenceB2List_sru2018(final MT671 mt671) {
 		Validate.notNull(mt671);
-		final List<MT671.SequenceB2> result = new ArrayList<MT671.SequenceB2>();
+		final List<MT671.SequenceB2> result = new ArrayList<>();
 		for (final SwiftTagListBlock seq : join(mt671.getSequenceBList()).getSubBlocks(MT671.SequenceB2.START_END_16RS)) {
 			final MT671.SequenceB2 s = MT671.SequenceB2.newInstance();
 			s.clear().append(seq);
@@ -400,7 +392,7 @@ public class SequenceUtils {
 		}
 		return result;
 	}
-	public static MT671.SequenceC resolveMT671GetSequenceC_sru2017(final MT671 mt671) {
+	public static MT671.SequenceC resolveMT671GetSequenceC_sru2018(final MT671 mt671) {
 		Validate.notNull(mt671);
 		final MT671.SequenceC result = MT671.SequenceC.newInstance();
 		result.clear().append(getMT670_1_C(mt671.getSwiftMessage().getBlock4(), MT671.SequenceB.START_END_16RS));

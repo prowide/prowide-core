@@ -1,29 +1,25 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.Writer;
-
-import org.apache.commons.lang.Validate;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
+import org.apache.commons.lang3.Validate;
+
+import java.io.*;
 
 /**
  * Helper API to write MT messages into RJE files.
@@ -37,6 +33,10 @@ public class RJEWriter extends AbstractWriter {
 	private int count = 0;
 
 	private char splitChar = RJEReader.SPLITCHAR;
+
+	private static final String MESSAGE_TO_WRITE_CONDITION = "message to write cannot be null";
+	private static final String WRITER_MESSAGE = "writer has not been initialized";
+
 
 	/**
 	 * Constructs a RJEWriter to write content into a given Writer instance.
@@ -91,8 +91,8 @@ public class RJEWriter extends AbstractWriter {
     }
 
     private void _write(final String msg, final Writer writer) throws IOException {
-    	Validate.notNull(writer, "writer has not been initialized");
-    	Validate.notNull(msg, "message to write cannot be null");
+    	Validate.notNull(writer, WRITER_MESSAGE);
+    	Validate.notNull(msg, MESSAGE_TO_WRITE_CONDITION);
     	if (count > 0) {
         	writer.write(FINWriterVisitor.SWIFT_EOL);
         	writer.write(splitChar);
@@ -109,7 +109,7 @@ public class RJEWriter extends AbstractWriter {
      * @throws IOException if an I/O error occurs
      */
     public static void write(final AbstractMT msg, final Writer writer) throws IOException {
-    	Validate.notNull(msg, "message to write cannot be null");
+    	Validate.notNull(msg, MESSAGE_TO_WRITE_CONDITION);
     	write(msg.message(), writer);
     }
     
@@ -120,15 +120,15 @@ public class RJEWriter extends AbstractWriter {
 	 * in some platforms can be rejected as an invalid RJE file. For a more compliant version
 	 * use the non static implementation of the write calls, to ensure the split separator
 	 * is present only between messages but not after the last one. Also notice this method
-	 * implementation cannot use custom split separator chars.</p>
+	 * implementation cannot use custom split separator chars.
 	 * 
 	 * @param msg SWIFT MT content to write
 	 * @param writer
 	 * @throws IOException if an I/O error occurs
 	 */
     public static void write(final String msg, final Writer writer) throws IOException {
-    	Validate.notNull(writer, "writer has not been initialized");
-    	Validate.notNull(msg, "message to write cannot be null");
+    	Validate.notNull(writer, WRITER_MESSAGE);
+    	Validate.notNull(msg, MESSAGE_TO_WRITE_CONDITION);
     	writer.write(msg);
     	writer.write(FINWriterVisitor.SWIFT_EOL);
     	writer.write(RJEReader.SPLITCHAR);

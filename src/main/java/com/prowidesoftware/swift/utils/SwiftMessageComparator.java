@@ -1,18 +1,24 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.utils;
+
+import com.prowidesoftware.ProwideException;
+import com.prowidesoftware.swift.model.*;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,32 +28,22 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.UnhandledException;
-import org.apache.commons.lang.Validate;
-
-import com.prowidesoftware.swift.model.SwiftBlock1;
-import com.prowidesoftware.swift.model.SwiftBlock2;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.SwiftTagListBlock;
-import com.prowidesoftware.swift.model.Tag;
-
 /**
  * An MT message comparator that compares all values from block 1 2 3, 4 and 5.
  * 
  * <p>By default the messages must be an exact match in order to be considered equal.
  * This can be tailored for example to ignore EOLS in multiline fiels, to ignore
  * header sequence and session numbers or to ignore the trailer block. Specific
- * text block fields can also indicated to be ignore when comparing the messages</p>
+ * text block fields can also indicated to be ignore when comparing the messages.
  * 
  * <p>This implementation can be overwritten to add special compare implementations
- * for each of the blocks or to setup the parameters in different ways</p>
+ * for each of the blocks or to setup the parameters in different ways.
  * 
  * <p>Despite implementing the Comparator interface this class is useful to find a 
  * message 'almost equal' to another one but it is not intended to <strong>sort</strong>
  * messages, since it does not provide ordering information of any kind.
  * 
- * <p>NOTE: when both blocks being compared are null they are considered equals, even when they're actually empty</p>
+ * <p>NOTE: when both blocks being compared are null they are considered equals, even when they're actually empty.
  * 
  * @author sebastian
  * @since 7.8.8
@@ -67,14 +63,15 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	 * List of tagnames to ignore in comparison.
 	 * tagnames will be matched using tag.getName()
 	 */
-	private List<String> tagnamesToIgnore = new ArrayList<String>();
+	private List<String> tagnamesToIgnore = new ArrayList<>();
 	
 	/**
 	 * Compare the two given messages. Message parameters cannot be null.
 	 * 
 	 * <p>This implementation calls the specific comparator methods for
 	 * blocks 1 and 2, and the generic tag list block comparator for other
-	 * blocks</p>
+	 * blocks
+	 *
 	 * @see #compareB1(SwiftBlock1, SwiftBlock1)
 	 * @see #compareB2(SwiftBlock2, SwiftBlock2)
 	 * @see #compareTagListBlock(SwiftTagListBlock, SwiftTagListBlock) 
@@ -93,7 +90,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 
 	/**
 	 * Compares all elements of block2.
-	 * <br />
+	 * <br>
 	 * If both blocks null will return <code>true</code> and one null and the other one not null will return <code>false</code>
 	 * 
 	 * @param o1
@@ -122,10 +119,10 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	/**
 	 * Compare all tags in taglist from both given blocks.
 	 * 
-	 * <p>This implementation uses {@link Tag#equals(Object)} for fields comparison.</p>
+	 * <p>This implementation uses {@link Tag#equals(Object)} for fields comparison.
 	 * 
 	 * <p>NOTE a null or empty block is considered a blank block; then if both are blank this method returns <code>true</code>
-	 * and if one of the blocks is blank and the other is not this method returns <code>false</code></p>
+	 * and if one of the blocks is blank and the other is not this method returns <code>false</code>
 	 * 
 	 * @param o1 first block to compare
 	 * @param o2 second block to compare
@@ -216,7 +213,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 						return true;
 					}
 				} catch (final IOException e) {
-					throw new UnhandledException(e);
+					throw new ProwideException(e);
 				}
 			}
 		} else {
@@ -242,7 +239,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	 * 
 	 * @param b1 block to compare
 	 * @param b2 block to compare
-	 * @return true if b1 equals b2 (except mentioned fields) and none is <code>null</code> false in any other case
+	 * @return true if b1 equals b2 (except mentioned fields) and none is null false in any other case
 	 */
 	public boolean compareB1(final SwiftBlock1 b1, final SwiftBlock1 b2) {
 		if (b1 == null && b2 == null) {

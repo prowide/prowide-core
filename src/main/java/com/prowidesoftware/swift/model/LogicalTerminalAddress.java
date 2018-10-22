@@ -1,25 +1,30 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
+
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Objects;
 
 /**
  * Identifies a logical channel connection to SWIFT, and the network uses it
  * for addressing. It is composed by the BIC code, an optional terminal
  * identifier (A, B or C) if the institution has more than one terminal,
  * and the branch (padded with "X" if no branch is used). 
- * For example BFOOARBSAXXX or BFOOARBSXXX.<br />
+ * For example BFOOARBSAXXX or BFOOARBSXXX.<br>
  * 
  * A sender LT address cannot have 'X' as LT identifier, conversely a
  * receiver LT address must have an 'X' as LT identifier.
@@ -32,12 +37,13 @@ public class LogicalTerminalAddress extends BIC {
 	
 	/**
 	 * Creates an LT address from its string value.
+	 * <p>If the string contains a BIC8 or BIC11 the LT identifier will be set with a default value.
 	 * 
-	 * @param code a 12 characters string containing the full LT address code
+	 * @param code a full LT address code (12 characters) or a BIC8 or BIC11
 	 */
 	public LogicalTerminalAddress(final String code) {
 		super(code);
-		if (code.length() == 12) {
+		if (code != null && code.length() >=12) {
 			this.LTIdentifier = code.charAt(8);
 		}
 	}
@@ -50,71 +56,51 @@ public class LogicalTerminalAddress extends BIC {
 		LTIdentifier = lTIdentifier;
 	}
 
-	public void setBranch(final String branch) {
-		super.branch = branch;
-	}
-
 	/**
 	 * Returns a proper LT address for the sender of a message, assuring
-	 * the returned code has 12 characters and with no "X" in the 9th position.<br />
+	 * the returned code has 12 characters and with no "X" in the 9th position.
 	 * 
-	 * If the terminal identifier is not set or if it is set to "X", then 
-	 * the default identifier "A" will be used.<br />
+	 * <p>If the terminal identifier is not set or if it is set to "X", then
+	 * the default identifier "A" will be used.
 	 * 
-	 * The branch code is padded with "XXX" if not present. 
+	 * <p>The branch code is padded with "XXX" if not present.
 	 * 
 	 * @return the 12 characters address or null if the BIC has less than 8 characters
 	 */
 	public String getSenderLogicalTerminalAddress() {
 		Character LT = (this.LTIdentifier == null || this.LTIdentifier.equals('X'))? 'A' : this.LTIdentifier;
-		String branch = getBranch() != null? getBranch() : "XXX";
 		if (getBic8() != null) {
-			return getBic8() + LT + branch;
+			return getBic8() + LT + getBranchOrDefault();
 		}
 		return null;
 	}
 	
 	/**
 	 * Returns a proper LT address for the receiver of a message, assuring
-	 * the returned code has 12 characters and with a fixed "X" in the 9th position.<br />
+	 * the returned code has 12 characters and with a fixed "X" in the 9th position.
 	 * 
-	 * The branch code is padded with "XXX" if not present. 
+	 * <p>The branch code is padded with "XXX" if not present.
 	 * 
 	 * @return the 12 characters address or null if the BIC has less than 8 characters
 	 */
 	public String getReceiverLogicalTerminalAddress() {
-		String branch = getBranch() != null? getBranch() : "XXX";
 		if (getBic8() != null) {
-			return getBic8() + "X" + branch;
+			return getBic8() + "X" + getBranchOrDefault();
 		}
 		return null;
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((LTIdentifier == null) ? 0 : LTIdentifier.hashCode());
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		LogicalTerminalAddress that = (LogicalTerminalAddress) o;
+		return Objects.equals(LTIdentifier, that.LTIdentifier);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		LogicalTerminalAddress other = (LogicalTerminalAddress) obj;
-		if (LTIdentifier == null) {
-			if (other.LTIdentifier != null)
-				return false;
-		} else if (!LTIdentifier.equals(other.LTIdentifier))
-			return false;
-		return true;
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), LTIdentifier);
 	}
-
 }

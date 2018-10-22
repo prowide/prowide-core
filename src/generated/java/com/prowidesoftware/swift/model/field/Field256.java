@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -28,7 +29,7 @@ import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -39,10 +40,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 256</h2>
+ * <strong>SWIFT MT Field 256</strong>
+ * <p>
  * Model and parser for field 256 of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
  * 		<li><code>LogicalTerminalAddress</code></li> 
  * 		<li><code>Number</code></li> 
@@ -52,15 +54,15 @@ import com.google.gson.JsonParser;
  * 		<li><code>Calendar</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;LT&gt;4!n1!n&lt;DATE2&gt;[&lt;HHMM&gt;&lt;HHMM&gt;]</code></li>
  * 		<li>parser pattern: <code>&lt;LT&gt;4!Nc&lt;DATE2&gt;[&lt;HHMM&gt;&lt;HHMM&gt;]</code></li>
  * 		<li>components pattern: <code>ZNNEHH</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -68,7 +70,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -146,7 +148,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -186,7 +188,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	 */
 	public static Field256 newInstance(Field256 source) {
 		Field256 cp = new Field256();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -234,8 +236,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Gets the component1 as LogicalTerminalAddress
-	 * @return the component1 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
+	 * Get the component1 as LogicalTerminalAddress
+	 * @return the component1 converted to LogicalTerminalAddress or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getComponent1AsLogicalTerminalAddress() {
 		return SwiftFormatUtils.getLTAddress(getComponent(1));
@@ -250,8 +252,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Gets the LT Address (component1) as LogicalTerminalAddress
-	 * @return the LT Address from component1 converted to LogicalTerminalAddress or <code>null</code> if cannot be converted
+	 * Get the LT Address (component1) as LogicalTerminalAddress
+	 * @return the LT Address from component1 converted to LogicalTerminalAddress or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getLTAddressAsLogicalTerminalAddress() {
 		return SwiftFormatUtils.getLTAddress(getComponent(1));
@@ -302,8 +304,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Gets the component2 as Number
-	 * @return the component2 converted to Number or <code>null</code> if cannot be converted
+	 * Get the component2 as Number
+	 * @return the component2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
@@ -318,8 +320,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Gets the Session Number (component2) as Number
-	 * @return the Session Number from component2 converted to Number or <code>null</code> if cannot be converted
+	 * Get the Session Number (component2) as Number
+	 * @return the Session Number from component2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getSessionNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
@@ -336,7 +338,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	
 	/**
 	 * Set the component2 from a Number object.
-	 * <br />
+	 * <br>
 	 * <em>If the component being set is a fixed length number, the argument will not be 
 	 * padded.</em> It is recommended for these cases to use the setComponent2(String) 
 	 * method.
@@ -379,8 +381,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Gets the component3 as Number
-	 * @return the component3 converted to Number or <code>null</code> if cannot be converted
+	 * Get the component3 as Number
+	 * @return the component3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
@@ -395,8 +397,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Gets the Message Category (component3) as Number
-	 * @return the Message Category from component3 converted to Number or <code>null</code> if cannot be converted
+	 * Get the Message Category (component3) as Number
+	 * @return the Message Category from component3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getMessageCategoryAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
@@ -413,7 +415,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	
 	/**
 	 * Set the component3 from a Number object.
-	 * <br />
+	 * <br>
 	 * <em>If the component being set is a fixed length number, the argument will not be 
 	 * padded.</em> It is recommended for these cases to use the setComponent3(String) 
 	 * method.
@@ -456,8 +458,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Gets the component4 as Calendar
-	 * @return the component4 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the component4 as Calendar
+	 * @return the component4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(4));
@@ -472,8 +474,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Gets the Date (component4) as Calendar
-	 * @return the Date from component4 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the Date (component4) as Calendar
+	 * @return the Date from component4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(4));
@@ -524,8 +526,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Gets the component5 as Calendar
-	 * @return the component5 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the component5 as Calendar
+	 * @return the component5 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent5AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));
@@ -540,8 +542,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Gets the Start Time (component5) as Calendar
-	 * @return the Start Time from component5 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the Start Time (component5) as Calendar
+	 * @return the Start Time from component5 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getStartTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));
@@ -592,8 +594,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Gets the component6 as Calendar
-	 * @return the component6 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the component6 as Calendar
+	 * @return the component6 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent6AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(6));
@@ -608,8 +610,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Gets the End Time (component6) as Calendar
-	 * @return the End Time from component6 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the End Time (component6) as Calendar
+	 * @return the End Time from component6 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getEndTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(6));
@@ -653,7 +655,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	}
     
     public List<Calendar> dates() {
-		List<Calendar> result = new ArrayList<Calendar>();
+		List<Calendar> result = new ArrayList<>();
 		result.add(SwiftFormatUtils.getDate2(getComponent(4)));
 		result.add(SwiftFormatUtils.getTime3(getComponent(5)));
 		result.add(SwiftFormatUtils.getTime3(getComponent(6)));
@@ -662,7 +664,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -766,8 +768,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field256> result = new ArrayList<Field256>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field256> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field256(f));
 			}
@@ -852,14 +854,14 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		result.add("LT Address");
 		result.add("Session Number");
 		result.add("Message Category");
@@ -871,7 +873,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
@@ -888,7 +890,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	 * This method deserializes the JSON data into a Field256 object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
 	public static Field256 fromJson(final String json) {

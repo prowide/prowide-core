@@ -1,59 +1,42 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io.parser;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-
+import com.prowidesoftware.ProwideException;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.WifeException;
-import com.prowidesoftware.swift.model.SwiftBlock;
-import com.prowidesoftware.swift.model.SwiftBlock1;
-import com.prowidesoftware.swift.model.SwiftBlock2;
-import com.prowidesoftware.swift.model.SwiftBlock2Input;
-import com.prowidesoftware.swift.model.SwiftBlock2Output;
-import com.prowidesoftware.swift.model.SwiftBlock3;
-import com.prowidesoftware.swift.model.SwiftBlock4;
-import com.prowidesoftware.swift.model.SwiftBlock5;
-import com.prowidesoftware.swift.model.SwiftBlockUser;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.SwiftTagListBlock;
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.model.UnparsedTextList;
+import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.Lib;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * FIN Parser. This implementation now properly supports all system messages (i.e: messages for MT 0xx) and
- * service messages (for example: ACK).<br />
- * As part of this, the following is now also accepted:<br />
+ * service messages (for example: ACK).<br>
+ * As part of this, the following is now also accepted:<br>
  * <ul>
  * <li>Block 4 may be a non-text block (for example: {4:{101:xx}{102:xx}})</li>
  * <li>Support for unparsed texts (at message, block and tag levels)</li>
  * <li>Support for user defined blocks (for example: {S:{T01:xxx}{T02:yyy}})</li>
- * </ul><br/>Field32A
- * This is based in the old SwiftParser2, that is now deprecated.<br />
+ * </ul><br>Field32A
+ * This is based in the old SwiftParser2, that is now deprecated.<br>
  *
  * @author www.prowidesoftware.com
  */
@@ -80,14 +63,11 @@ public class SwiftParser {
 	/**
 	 * Errors found while parsing the message.
 	 */
-	@SuppressWarnings("rawtypes")
-	private final List errors = new ArrayList();
+	private final List<String> errors = new ArrayList<>();
 
 	private int lastBlockStartOffset = 0;
 
 	/**
-	 * Indicates whether the parser is permissive or not.
-	 * Has particular impact on parsing the headers blocks 1 and 2. Defaults to false.
 	 * @since 7.8
 	 */
 	private SwiftParserConfiguration configuration = new SwiftParserConfiguration();
@@ -118,7 +98,7 @@ public class SwiftParser {
 	}
 
 	/**
-	 * default constructor.<br />
+	 * default constructor.<br>
 	 * <b>NOTE</b>: If this constructor is called, setReader must be called to use the parser
 	 */
 	public SwiftParser() {
@@ -136,7 +116,7 @@ public class SwiftParser {
 	}
 
 	/**
-	 * sets the input reader.<br />
+	 * sets the input reader.<br>
 	 * <b>NOTE</b>: this resets the internal buffer
 	 * @param r the reader to use
 	 */
@@ -154,7 +134,13 @@ public class SwiftParser {
 	}
 
 	/**
-	 * Parse a SWIFT message into a data structure
+	 * Parse a SWIFT message into a data structure.
+	 *
+	 * The implementation uses the default parser behaviour which is lenient and will do a best effort to
+	 * read as much from the message content as possible regardless of the content and block boundaries
+	 * beeing valid or not. For instance, it will read the headers even if the value length is incorrect,
+	 * and it will read the text block (block 4) even if it is missing the closing hyphen and bracket. For
+	 * more options check {@link #setConfiguration(SwiftParserConfiguration)}
 	 *
 	 * @return the parsed swift message object
 	 * @throws IOException
@@ -188,15 +174,10 @@ public class SwiftParser {
 	}
 
 	/**
-	 * Sets the parameter string as this parser data and returns the parsed object.
-	 *
-	 * @param message the String with the swift message to parse
-	 * @return the parsed swift message object
-	 * @throws IOException
-	 *
-	 * @since 6.0
+	 * @deprecated use {@link SwiftMessage#parse(String)} instead
 	 */
-	//TODO hacer este metodo static
+	@Deprecated
+    @ProwideDeprecated(phase2=TargetYear._2019)
 	public SwiftMessage parse(final String message) throws IOException {
 		setData(message);
 		return message();
@@ -206,9 +187,9 @@ public class SwiftParser {
 	 * @deprecated use {@link #consumeBlock(UnparsedTextList)} instead of this, <code>consumeBlock(null)</code> is acceptable
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	protected SwiftBlock consumeBlock() throws IOException {
-		DeprecationUtils.phase2(getClass(), "consumeBlock()", "Use consumeBlock(UnparsedTextList) instead of this, consumeBlock(null) is acceptable.");
+		DeprecationUtils.phase3(getClass(), "consumeBlock()", "Use consumeBlock(UnparsedTextList) instead of this, consumeBlock(null) is acceptable.");
 		return consumeBlock(null);
 	}
 	
@@ -217,9 +198,9 @@ public class SwiftParser {
 	 * This methods seeks to a block start, then identifies the block
 	 * and calls the proper method to consume the block type
 	 * that is coming, not all blocks are parsed in the same manner.
-	 * @param unparsedReceiver may be <code>null</code>, the unparsedTextList that will receive the chunks that can not be identified sas part of the message
+	 * @param unparsedReceiver may be null, the unparsedTextList that will receive the chunks that can not be identified sas part of the message
 	 *
-	 * @return the next block in the reader or <code>null</code> if none was found (i.e: end of input)
+	 * @return the next block in the reader or null if none was found (i.e: end of input)
 	 * @throws IOException if an error occurred during read
 	 */
 	protected SwiftBlock consumeBlock(final UnparsedTextList unparsedReceiver) throws IOException {
@@ -286,50 +267,11 @@ public class SwiftParser {
 		if (blockId == ' ') {
 			// block cannot be identified
 			log.severe("unidentified block:" + s);
-			throw new WifeException("The block " + s + " could not be identified");
+			throw new ProwideException("The block " + s + " could not be identified");
 		}
 
 		// create the block object
-		switch (blockId) {
-		case '1': // block 1 (single valued)
-			b = new SwiftBlock1(s, this.configuration.isLenient());
-			break;
-		case '2': // block 2 (single valued)
-			if (isInput(s)) {
-				b = new SwiftBlock2Input(s, this.configuration.isLenient());
-			} else {
-				b = new SwiftBlock2Output(s, this.configuration.isLenient());
-			}
-			break;
-		case '3': // block 3 (tag list)
-			b = tagListBlockConsume(new SwiftBlock3(), s);
-			break;
-		case '4': // block 4
-			if (this.configuration.isParseTextBlock()) {
-				if (isTextBlock(s)) {
-					b = block4Consume(new SwiftBlock4(), s);
-				} else {
-					b = tagListBlockConsume(new SwiftBlock4(), s);
-				}
-			} else {
-				b = new SwiftBlock4();
-			}
-			break;
-		case '5': // block 5 (tag list)
-			if (this.configuration.isParseTrailerBlock()) {
-				b = tagListBlockConsume(new SwiftBlock5(), s);
-			} else {
-				b = new SwiftBlock5();
-			}
-			break;
-		default: // user defined block (tag list)
-			if (this.configuration.isParseUserBlock()) {
-				b = tagListBlockConsume(new SwiftBlockUser(Character.toString(blockId)), s);
-			} else {
-				b = new SwiftBlockUser();
-			}
-			break;
-		}
+		b = createBlock(blockId, s);
 
 		if (unparsed.length()>0) {
 			if (unparsedReceiver == null) {
@@ -339,6 +281,110 @@ public class SwiftParser {
 			}
 		}		
 		return b;
+	}
+
+	/**
+	 * Creates the specific block instance consuming the extracted content
+	 * @param blockId the block identifier, example: 1, 2, 3, 4, 5
+	 * @param s the block content
+	 * @return a specific block instance with the parsed content
+	 */
+	private SwiftBlock createBlock(final char blockId, final String s) throws IOException {
+		SwiftBlock b = null;
+
+		// create the block object
+		switch (blockId) {
+			case '1': // block 1 (single valued)
+				b = createBlock1(s);
+				break;
+			case '2': // block 2 (single valued)
+				if (isInput(s)) {
+					b = createBlock2Input(s);
+				} else {
+					b = createBlock2Output(s);
+				}
+				break;
+			case '3': // block 3 (tag list)
+				b = tagListBlockConsume(new SwiftBlock3(), s);
+				break;
+			case '4': // block 4
+				if (this.configuration.isParseTextBlock()) {
+					if (isTextBlock(s)) {
+						b = block4Consume(new SwiftBlock4(), s);
+					} else {
+						b = tagListBlockConsume(new SwiftBlock4(), s);
+					}
+				} else {
+					b = new SwiftBlock4();
+				}
+				break;
+			case '5': // block 5 (tag list)
+				if (this.configuration.isParseTrailerBlock()) {
+					b = tagListBlockConsume(new SwiftBlock5(), s);
+				} else {
+					b = new SwiftBlock5();
+				}
+				break;
+			default: // user defined block (tag list)
+				if (this.configuration.isParseUserBlock()) {
+					b = tagListBlockConsume(new SwiftBlockUser(Character.toString(blockId)), s);
+				} else {
+					b = new SwiftBlockUser();
+				}
+				break;
+		}
+		return b;
+	}
+
+	/**
+	 * Creates the block 1, dealing with the {@link IllegalArgumentException} in case of lenient mode
+	 */
+	private SwiftBlock1 createBlock1(final String s) {
+		try {
+			return new SwiftBlock1(s, false);
+		} catch (IllegalArgumentException e) {
+			if (this.configuration.isLenient()) {
+				// if configuration is lenient we record the default strict parsing error and try again in lenient mode
+				this.errors.add(e.getMessage());
+				return new SwiftBlock1(s, true);
+			} else {
+				throw e;
+			}
+		}
+	}
+
+	/**
+	 * Creates the block 2, dealing with the {@link IllegalArgumentException} in case of lenient mode
+	 */
+	private SwiftBlock2Input createBlock2Input(final String s) {
+		try {
+			return new SwiftBlock2Input(s, false);
+		} catch (IllegalArgumentException e) {
+			if (this.configuration.isLenient()) {
+				// if configuration is lenient we record the default strict parsing error and try again in lenient mode
+				this.errors.add(e.getMessage());
+				return new SwiftBlock2Input(s, true);
+			} else {
+				throw e;
+			}
+		}
+	}
+
+	/**
+	 * Creates the block 2, dealing with the {@link IllegalArgumentException} in case of lenient mode
+	 */
+	private SwiftBlock2Output createBlock2Output(final String s) {
+		try {
+			return new SwiftBlock2Output(s, false);
+		} catch (IllegalArgumentException e) {
+			if (this.configuration.isLenient()) {
+				// if configuration is lenient we record the default strict parsing error and try again in lenient mode
+				this.errors.add(e.getMessage());
+				return new SwiftBlock2Output(s, true);
+			} else {
+				throw e;
+			}
+		}
 	}
 
 	/**
@@ -412,12 +458,12 @@ public class SwiftParser {
 
 	/**
 	 * Parses a block 4 from an input string. This method supports the two possible formats of
-	 * a swift block 4:<br />
+	 * a swift block 4:<br>
 	 * <ul>
 	 * <li><b>Text mode</b>: this is the common block 4 for categories 1 to 9.</li>
 	 * <li><b>Tag mode</b>: this is the same format as for blocks 3 and 5. This format is used by
 	 * service messages (for example: ACK) and system messages (category 0).</li>
-	 * </ul><br />
+	 * </ul><br>
 	 *
 	 * @param b the block to set up tags into
 	 * @param s the block data to process
@@ -467,7 +513,7 @@ public class SwiftParser {
 				}
 			}
 
-			// check if we skipped an block unparsed text
+			// check if we skipped a block unparsed text
 			String unparsedText = s.substring(begin, start - ignore - 1).trim();
 			if (!"".equals(unparsedText)) {
 				b.unparsedTextAddText(unparsedText);
@@ -484,7 +530,7 @@ public class SwiftParser {
 			String tagUnparsedText = null;
 			switch (c) {
 			case '}':
-				// force termination only if  ending string is -}
+				// force termination only if ending string is -}
 				if ((isTextBlock && ignore==1) || !isTextBlock) {
 					start = s.length();
 				}
@@ -577,8 +623,8 @@ public class SwiftParser {
 	}
 
 	/**
-	 * finds the end of a text tag (i.e: ":TAG:VALUE"). This is used to parse block 4.<br />
-	 * The function search the string looking for the occurrence of any of the sequences:<br />
+	 * finds the end of a text tag (i.e: ":TAG:VALUE"). This is used to parse block 4.<br>
+	 * The function search the string looking for the occurrence of any of the sequences:<br>
 	 * <ul>
 	 * <li>"[LBR]:[X]"</li>
 	 * <li>"[LBR]}"</li>
@@ -586,9 +632,9 @@ public class SwiftParser {
 	 * <li>"}"</li>
 	 * </ul>
 	 * where "[LBR]" stands for any of: "[CR]", "[LF]" or "[CR][LF]"
-	 * and "[X]" is any character other than [CR] and [LF].<br />
-	 * Then considers the end of the tag as <b>NOT</b> containing the found sequence.<br />
-	 * <b>NOTE</b>: the condition "-}" cannot happen because the terminating dash is already removed.<br />
+	 * and "[X]" is any character other than [CR] and [LF].<br>
+	 * Then considers the end of the tag as <b>NOT</b> containing the found sequence.<br>
+	 * <b>NOTE</b>: the condition "-}" cannot happen because the terminating dash is already removed.<br>
 	 *
 	 * renamed to state clearly that this search is only used in block4Consume
 	 *
@@ -700,7 +746,7 @@ public class SwiftParser {
 	}
 
 	/**
-	 * Finds the end of a block tag (i.e: "{TAG:VALUE}"). This is used to parse blocks other than 4.<br />
+	 * Finds the end of a block tag (i.e: "{TAG:VALUE}"). This is used to parse blocks other than 4.<br>
 	 * The function search the string looking for the occurrence of the sequence "}". It is important to
 	 * note that curly braces are balanced along the search.
 	 * @param s the FIN input text
@@ -726,12 +772,12 @@ public class SwiftParser {
 	}
 
 	/**
-	 * Process the input as a tag. That is: split name and value (and possibly unparsed texts).<br />
+	 * Process the input as a tag. That is: split name and value (and possibly unparsed texts).<br>
 	 * The received buffer contains only the pertinent data for the tag (name and value). Trailing
 	 * [CR][LF] on the text <b>MUST</b> not be present.
 	 *
 	 * @param buffer the buffer containing the tag
-	 * @param unparsedText the unparsed text to assign (use <code>null</code> if none is wanted).
+	 * @param unparsedText the unparsed text to assign (use null if none is wanted).
 	 * This single text is fragmented in multiple texts if there are more than one message.
 	 * @return a swift Tag
 	 * @throws IOException
@@ -781,7 +827,7 @@ public class SwiftParser {
 			t.setValue(value);
 		} else {
 			log.severe("Avoiding tag with null name and value "+value);
-			throw new IllegalArgumentException("Null name and value");
+			throw new IllegalArgumentException("Field cannot have a null tag name");
 		}
 
 		// if there is unparsed text => process it
@@ -796,8 +842,8 @@ public class SwiftParser {
 	 * this method receives a string that is a sequence of unparsed text and splits it into
 	 * different unparsed texts. The algorithm is to split on message begin (i.e: "{1:" and
 	 * balance curly braces). This last thing ensures that a single message with unparsed text
-	 * inner messages is treated as one single unparsed text.<br />
-	 * That is:<br />
+	 * inner messages is treated as one single unparsed text.<br>
+	 * That is:<br>
 	 *
 	 * <pre>
 	 * {1:...}                 -- message block 1
@@ -879,13 +925,13 @@ public class SwiftParser {
 	 *
 	 * <p>This method assumes that the starting block character was consumed
 	 * because that is required in order to identify the start of a block, and
-	 * call this method which reads until this block ends.</p>
+	 * call this method which reads until this block ends.
 	 *
 	 * @return a string with the block contents
 	 * @throws IOException
 	 */
 	protected String readUntilBlockEnds() throws IOException {
-		final int start = buffer==null?0:buffer.length();
+		final int start = buffer==null? 0 : buffer.length();
 		int len = 0;
 		int c;
 
@@ -902,6 +948,8 @@ public class SwiftParser {
 		boolean done = false;
 		int count=0;
 		Boolean isTextBlock = null;
+
+		//iterate until proper block end or EOF
 		while (!done) {
 			c = getChar();
 			// check if we can set the textblock flag first
@@ -913,6 +961,17 @@ public class SwiftParser {
 			}
 			// found EOF?
 			if (c == -1) {
+				// if we have read something and we reach the end of file without a proper closing bracket
+				if (len > 0) {
+					final String error = "Missing or invalid closing bracket in block " + buffer.charAt(start);
+					if (configuration.isLenient()) {
+						// if the configuration is lenient we report the error and continue
+						this.errors.add(error);
+					} else {
+						// if the configuration is not lenient, we abort the parsing with exception
+						throw new IllegalArgumentException(error);
+					}
+				}
 				done = true;
 			} else {
 				if (checkNested && isBlockStart((char) c)) {
@@ -947,6 +1006,7 @@ public class SwiftParser {
 		}
 		return false;
 	}
+
 	/**
 	 * Determines if the given string is the start of a textblock
 	 */
@@ -981,7 +1041,9 @@ public class SwiftParser {
 		return false;
 	}
 
-
+	/**
+	 * @return true if current char is } or for text block buffer is [LF]-}
+	 */
 	private final boolean isBlockEnd(final Boolean isTextBlock, final int curChar) {
 		// check buffer
 		if (isBlockEnd((char) curChar)) {
@@ -998,6 +1060,9 @@ public class SwiftParser {
 		return false;
 	}
 
+	/**
+	 * @return true if parameter char is a closing bracket
+	 */
 	private static final boolean isBlockEnd(final char c) {
 		return c == '}';
 	}
@@ -1046,34 +1111,13 @@ public class SwiftParser {
 	}
 
 	/**
-	 * Get a copy of the errors found.
-	 * users can manipulate this copy without affecting the original.
+	 * Get a copy of the errors found during the parsing of the message.
+	 * <p>You can manipulate this copy without affecting the original list.
 	 *
-	 * @return the list of errors found
+	 * @return a copy of the list of errors found
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List getErrors() {
+	public List<String> getErrors() {
 		return new ArrayList(this.errors);
-	}
-
-	/**
-	 * @deprecated use {@link SwiftParserConfiguration#isLenient()} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2018)
-	public boolean isLenient() {
-		DeprecationUtils.phase3(getClass(), "isLenient()", "Use getConfiguration()#isLenient() instead.");
-		return this.configuration.isLenient();
-	}
-
-	/**
-	 * @deprecated use {@link SwiftParserConfiguration#setLenient(boolean)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2018)
-	public void setLenient(final boolean lenient) {
-		DeprecationUtils.phase3(getClass(), "setLenient(boolean)", "Use getConfiguration()#setLenient(boolean) instead.");
-		this.configuration.setLenient(lenient);
 	}
 
 	/**
@@ -1155,7 +1199,8 @@ public class SwiftParser {
 	/**
 	 * Parses a string containing an MT message block 2 content.
 	 * <p>Will return either a {@link SwiftBlock2Input} or {@link SwiftBlock2Output} depending
-	 * on the parameter block content.</p>
+	 * on the parameter block content.
+	 *
 	 * @param s block content starting with "{2:" and ending with "}"
 	 * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
 	 * @throws IOException
@@ -1171,7 +1216,8 @@ public class SwiftParser {
 	
 	/**
 	 * Parses a string containing an MT message block 2 input content (outgoing message sent to SWIFT).
-	 * <p>If you don't know the container message direction, user {@link #parseBlock2(String)} instead</p>
+	 * <p>If you don't know the container message direction, user {@link #parseBlock2(String)} instead.
+	 *
 	 * @param s block content starting with "{2:I" and ending with "}"
 	 * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
 	 * @throws IOException
@@ -1183,7 +1229,8 @@ public class SwiftParser {
 
 	/**
 	 * Parses a string containing an MT message block 2 output content (incoming message received from SWIFT).
-	 * <p>If you don't know the container message direction, user {@link #parseBlock2(String)} instead</p>
+	 * <p>If you don't know the container message direction, user {@link #parseBlock2(String)} instead.
+	 *
 	 * @param s block content starting with "{2:O" and ending with "}"
 	 * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
 	 * @throws IOException

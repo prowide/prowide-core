@@ -1,30 +1,32 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Class for identification of MX messages.<br >
  * Composed by the business process (business area), functionality (message type), variant and version.
  *
- * @author miguel@prowidesoftware.com
+ * @author miguel
  * @since 7.7
  */
 public class MxId {
@@ -171,51 +173,20 @@ public class MxId {
 	public String toString() {
 		return id();
 	}
-	
-	/**
-	 * @since 7.8.8
-	 */
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		MxId mxId = (MxId) o;
+		return businessProcess == mxId.businessProcess &&
+				Objects.equals(functionality, mxId.functionality) &&
+				Objects.equals(variant, mxId.variant) &&
+				Objects.equals(version, mxId.version);
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((businessProcess == null) ? 0 : businessProcess.hashCode());
-		result = prime * result + ((functionality == null) ? 0 : functionality.hashCode());
-		result = prime * result + ((variant == null) ? 0 : variant.hashCode());
-		result = prime * result + ((version == null) ? 0 : version.hashCode());
-		return result;
+		return Objects.hash(businessProcess, functionality, variant, version);
 	}
-
-	/**
-	 * @since 7.8.8
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MxId other = (MxId) obj;
-		if (businessProcess != other.businessProcess)
-			return false;
-		if (functionality == null) {
-			if (other.functionality != null)
-				return false;
-		} else if (!functionality.equals(other.functionality))
-			return false;
-		if (variant == null) {
-			if (other.variant != null)
-				return false;
-		} else if (!variant.equals(other.variant))
-			return false;
-		if (version == null) {
-			if (other.version != null)
-				return false;
-		} else if (!version.equals(other.version))
-			return false;
-		return true;
-	}
-
 }

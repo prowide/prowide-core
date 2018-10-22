@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.field;
 
 import com.google.gson.JsonElement;
@@ -25,9 +26,9 @@ import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.time.DateFormatUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -48,7 +49,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field.class.getName());
 
 	/**
-	 * Zero based list of field components in String format.<br />
+	 * Zero based list of field components in String format.<br>
 	 * For example: for field content ":FOO//EUR1234 will be components[0]=FOO, components[1]=EUR and components[1]=1234
 	 */
 	protected List<String> components;
@@ -71,12 +72,12 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	}
 
 	/**
-	 * Initialize the list of components to the indicated size and sets all values to <code>null</code>
+	 * Initialize the list of components to the indicated size and sets all values to null
 	 * @param components the number of components to initialize
 	 * @since 7.8
 	 */
 	protected void init(final int components) {
-		this.components = new ArrayList<String>(components);
+		this.components = new ArrayList<>(components);
 		for (int i=0;i<components;i++) {
 			this.components.add(null);
 		}
@@ -127,7 +128,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 */
 	@Override
 	public String toString() {
-		return org.apache.commons.lang.builder.ToStringBuilder.reflectionToString(this);
+		return org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString(this);
 	}
 
 	/**
@@ -135,7 +136,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 */
 	@Override
 	public boolean equals(final Object obj) {
-		return org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals(this, obj);
+		return org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 	/**
@@ -143,7 +144,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 */
 	@Override
 	public int hashCode() {
-		return org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode(this);
+		return org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	/**
@@ -182,8 +183,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
 	/**
 	 * A formatted account with a fixed format nnnn-nnnnn-nnn-n
-	 * @param a string with an account number or <code>null</code>
-	 * @return the formatted account or an empty String if param is <code>null</code>
+	 * @param a string with an account number or null
+	 * @return the formatted account or an empty String if param is null
 	 */
 	// TODO support user formatting masks from property file
 	protected static String formatAccount(final String a) {
@@ -269,7 +270,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 		final int position = number - 1;
 
 		if (this.components == null) {
-			this.components = new ArrayList<String>();
+			this.components = new ArrayList<>();
 		}
 		if (position >= 0) {
 			if (position >= this.components.size()) {
@@ -285,7 +286,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	/**
 	 * Gets a specific component from the components list.
 	 * @param number one-based index of component, first component of a field should be number one
-	 * @return found component or <code>null</code>
+	 * @return found component or null
 	 */
 	public String getComponent(final int number) {
 		//internal position index is zero based
@@ -400,7 +401,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 */
 	public String joinComponents(final int start, final boolean skipLast) {
 		// FIXME para que se crea el list intermedio toAdd? no le veo razon de ser, se podria iterar en el segundo loop directo sobre this.components
-		final List<String> toAdd = new ArrayList<String>();
+		final List<String> toAdd = new ArrayList<>();
 		for (int i = start; i < this.componentsSize(); i++) {
 			if (StringUtils.isNotEmpty(this.components.get(i))) {
 				toAdd.add(this.components.get(i));
@@ -465,7 +466,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	}
 
 	/**
-	 * Returns the first component starting with the given prefix value or <code>null</code> if not found.
+	 * Returns the first component starting with the given prefix value or null if not found.
 	 * @param prefix
 	 * @return s
 	 */
@@ -481,16 +482,16 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
 	/**
 	 * Finds the first component starting with the given codeword between slashes, and returns the component subvalue.
-	 * For example, for the following field value<br />
-	 * /ACC/BLABLABLA CrLf<br />
-	 * //BLABLABLA CrLf<br />
-	 * /INS/CITIUS33MIA CrLf<br />
-	 * //BLABLABLA CrLf<br />
+	 * For example, for the following field value<br>
+	 * /ACC/BLABLABLA CrLf<br>
+	 * //BLABLABLA CrLf<br>
+	 * /INS/CITIUS33MIA CrLf<br>
+	 * //BLABLABLA CrLf<br>
 	 * A call to this method with parameter "INS" will return "CITIUS33MIA"
 	 *
 	 * @param codeword
 	 * @see #findComponentStartingWith(String)
-	 * @return the found value or <code>null</code> if not found
+	 * @return the found value or null if not found
 	 */
 	public String getValueByCodeword(final String codeword) {
 		final String key = "/"+codeword+"/";
@@ -506,7 +507,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * 
 	 * <p>This method implementation is specific for each field. All not null
 	 * components are appended to the result string with proper components
-	 * separators like ':', slashes and CRLF.</p>
+	 * separators like ':', slashes and CRLF.
 	 * 
 	 * <p>For any <strong>valid</strong> field this is always true: 
 	 * <code>new Field(v)).getValue() = v</code>
@@ -515,7 +516,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Conversely this may not be true when the parsed field value is invalid 
 	 * because the parser will do a best effort to gather as many valid components
 	 * as possible and the serialization will also do a best effort to generate
-	 * valid content.</p>
+	 * valid content.
 	 *  
 	 * @return SWIFT formatted value
 	 */
@@ -538,7 +539,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Creates a Field instance for the given Tag object, using reflection.
 	 * The created object is populated with parsed components data from the Tag.
 	 * @param t a tag with proper name and value content
-	 * @return a specific field object, ex: Field32A. Or <code>null</code> if exceptions occur during object creation.
+	 * @return a specific field object, ex: Field32A. Or null if exceptions occur during object creation.
 	 */
 	static public Field getField(final Tag t) {
 		return getField(t.getName(), t.getValue());
@@ -548,8 +549,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Creates a Field instance for the given it's name and and optional value, using reflection.
 	 * 
 	 * @param name a proper field name, ex: 32A, 22F, 20
-	 * @param value an optional field value or <code>null</code> to create the field with no initial content
-	 * @return a specific field object, ex: Field32A. Or <code>null</code> if exceptions occur during object creation.
+	 * @param value an optional field value or null to create the field with no initial content
+	 * @return a specific field object, ex: Field32A. Or null if exceptions occur during object creation.
 	 * @since 7.8
 	 */
 	static public Field getField(final String name, final String value) {
@@ -575,9 +576,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
  	 * @deprecated field labels varies depending on the specific MT and sequence, label should be retrieve using {@link #getLabel(String, String, String, Locale)} with proper MT and sequence identifiers
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public String getLabel() {
-		DeprecationUtils.phase2(Field.class, "getLabel()", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale.getDefault())} with proper MT and sequence identifiers instead.");
+		DeprecationUtils.phase3(Field.class, "getLabel()", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale.getDefault())} with proper MT and sequence identifiers instead.");
 		return getLabel(Locale.getDefault());
 	}
 
@@ -585,9 +586,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * @deprecated field labels varies depending on the specific MT and sequence, label should be retrieve using {@link #getLabel(String, String, String, Locale)} with proper MT and sequence identifiers
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public String getLabel(final Locale locale) {
-		DeprecationUtils.phase2(Field.class, "getLabel(Locale)", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale)} with proper MT and sequence identifiers instead.");
+		DeprecationUtils.phase3(Field.class, "getLabel(Locale)", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale)} with proper MT and sequence identifiers instead.");
 		return getLabel(getName(), locale);
 	}
 
@@ -595,9 +596,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * @deprecated field labels varies depending on the specific MT and sequence, label should be retrieve using {@link #getLabel(String, String, String, Locale)} with proper MT and sequence identifiers
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	static public String getLabel(final String fieldName, final Locale locale) {
-		DeprecationUtils.phase2(Field.class, "getLabel(String, Locale)", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale)} with proper MT and sequence identifiers instead.");
+		DeprecationUtils.phase3(Field.class, "getLabel(String, Locale)", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale)} with proper MT and sequence identifiers instead.");
 		return _getLabel(fieldName, null, null, locale);
 	}
 	
@@ -614,7 +615,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * variations per MT and in several cases per sequence.
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	static private String _getLabel(final String fieldName, final String mt, final String sequence, final Locale locale) {
 		final String bundle = "deprecated_labels";
 		String key = null;
@@ -673,7 +674,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Field names may be generic for all usages, or may differ for particular letter option, message type
 	 * or even sequence of a message type. The property supports all this kind of definitions with generic
 	 * labels and specific ones. The following example illustrate the precedence of bundle keys that are checked for
-	 * field 50:<br />
+	 * field 50:<br>
 	 * <ul>
 	 * <li>50K[103][B]</li>
 	 * <li>50a[103][B]</li>
@@ -686,8 +687,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * 
 	 * @param fieldName field name of the field to retrieve its label, if the combination of number and letter option
 	 * is provided then a specific label is returned; is the letter option is omitted then a more generic label is returned.
-	 * @param mt optional indication of message type or <code>null</code>.
-	 * @param sequence optional indication of sequence or <code>null</code> if does not apply for the specific MT and field.
+	 * @param mt optional indication of message type or null.
+	 * @param sequence optional indication of sequence or null if does not apply for the specific MT and field.
 	 * @param locale the locale for which a resource bundle is desired
 	 *
 	 * @return a resource bundle based label for the given locale or the tag name, or the resource key if not found
@@ -775,7 +776,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Helper implementation of getString from bundle without throwing exception
 	 * @param labels
 	 * @param key
-	 * @return the found resource or <code>null</code> if not found for the given key
+	 * @return the found resource or null if not found for the given key
 	 */
 	private static String getString(final ResourceBundle labels, final String key) {
 		try {
@@ -851,7 +852,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
 	// FIXME debido a esto: el nombre del field deberia ser validado y eliminado como atributo dinamico
 	/**
-	 * Return the letter option of this field as given by it classname or <code>null</code> if this field has no letter option
+	 * Return the letter option of this field as given by it classname or null if this field has no letter option
 	 */
 	public Character letterOption() {
 		final String cn = getClass().getName();
@@ -875,33 +876,20 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	}
 
 	/**
-	 *
-	 * @param names must not be null nor empty
-	 * @return <code>true</code> if this field names equals one in the list of names and <code>false</code>
-	 *  in other case
-	 * @throws IllegalArgumentException if names is null or empty
 	 * @deprecated confusing name, use {@link #isNameAnyOf(String...)} instead
-	 * @see #isNameAnyOf(String...)
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public boolean isAnyOf(final String ... names) {
-		Validate.isTrue(names != null && names.length>0, "name list must have at least one element");
-		for (final String n:names) {
-			if (StringUtils.equals(getName(), n)) {
-				return true;
-			}
-		}
-		return false;
+		DeprecationUtils.phase2(getClass(), "isAnyOf(String...)", "Use isNameAnyOf(String...) instead.");
+		return isNameAnyOf(names);
 	}
 
 	/**
-	 *
+	 * Compares the this fields's name with a list of names to check
 	 * @param names must not be null nor empty
-	 * @return <code>true</code> if this field names equals one in the list of names and <code>false</code>
-	 *  in other case
+	 * @return true if this field names equals one in the list of names and false otherwise
 	 * @throws IllegalArgumentException if names is null or empty
-	 *
 	 */
 	public boolean isNameAnyOf(final String ... names) {
 		Validate.isTrue(names != null && names.length>0, "name list must have at least one element");
@@ -915,9 +903,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
 	/**
 	 * Compares this field component 1 with the parameter value
-	 * <br />
+	 * <br>
 	 * Same as <code>is(1, compare)</code>
-	 * <br />
+	 * <br>
 	 * If the field has only one component this is the same as comparing against field value
 	 * @param compare string to compare
 	 * @return true if the first component is equal to the parameter
@@ -947,7 +935,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
 	/**
 	 * Compares this field component 1 with the parameter values.
-	 * <br />
+	 * <br>
 	 * If the field has only one component this is the same as comparing against the field value
 	 * @param values the values to compare
 	 * @return true if the first component is equal to any of the given values
@@ -1017,7 +1005,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 		/*
 		 * get all meaningful lines from value
 		 */
-		final List<String> lines = new ArrayList<String>();
+		final List<String> lines = new ArrayList<>();
 		for (final String l : SwiftParseUtils.getLines(cp.getValue())) {
 			if (StringUtils.isNotEmpty(l) && !onlySlashes(l)) {
 				lines.add(l);
@@ -1184,7 +1172,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
@@ -1193,9 +1181,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
 	/**
 	 * Returns english label for the component.
-	 * <br />
+	 * <br>
 	 * @param number one-based index of component, first component of a field should be number one
-	 * @return found label or <code>null</code> if it is not defined
+	 * @return found label or null if it is not defined
 	 * @since 7.8.4
 	 */
 	public String getComponentLabel(final int number) {
@@ -1212,16 +1200,16 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected abstract Map<Integer, String> getComponentMap();
 
 	/**
 	 * Returns english label for the component in camel case format.
-	 * <br />
+	 * <br>
 	 * @param number one-based index of component, first component of a field should be number one
 	 * @return found label or <code>null</code> if it is not defined
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	private String getComponentLabelCamelCase(final int number) {
 		final Map<Integer, String> labels = getComponentMap();
@@ -1235,8 +1223,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
 	/**
 	 * Ensures a not-null locale parameter.
-	 * @param locale a locale or <code>null</code>
-	 * @return the parameter locale if it is not <code>null</code> or the default locale
+	 * @param locale a locale or null
+	 * @return the parameter locale if it is not null or the default locale
 	 * @since 7.8.8
 	 */
 	protected final Locale notNull(final Locale locale) {
@@ -1250,7 +1238,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
 	/**
 	 * Appends a not null field component to the builder.
-	 * <br />
+	 * <br>
 	 * This helper method is used by subclasses implementation of {@link #getValue()}
 	 * 
 	 * @param result string where component content is appended
@@ -1280,7 +1268,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * The JSON representation for fields contains the field name and the components with camel case labels, for example:
 	 * <pre>{"name":"32A","date":"010203","currency":"USD","amount":"123"}</pre>
 	 *
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	@Override
 	public String toJson() {

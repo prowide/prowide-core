@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -37,23 +38,25 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 434</h2>
+ * <strong>SWIFT MT Field 434</strong>
+ * <p>
  * Model and parser for field 434 of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
+ * 		<li><code>String</code></li> 
  * 		<li><code>String</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>150z</code></li>
- * 		<li>parser pattern: <code>S</code></li>
- * 		<li>components pattern: <code>S</code></li>
+ * 		<li>validation pattern: <code>/3!a/[20x]</code></li>
+ * 		<li>parser pattern: <code>/S/S</code></li>
+ * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -61,7 +64,7 @@ public class Field434 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -72,14 +75,24 @@ public class Field434 extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_434 = "434";
-	public static final String PARSER_PATTERN ="S";
-	public static final String COMPONENTS_PATTERN = "S";
+	public static final String PARSER_PATTERN ="/S/S";
+	public static final String COMPONENTS_PATTERN = "SS";
+
+	/**
+	 * Component number for the Code Word subfield
+	 */
+	public static final Integer CODE_WORD = 1;
+
+	/**
+	 * Component number for the Additional Information subfield
+	 */
+	public static final Integer ADDITIONAL_INFORMATION = 2;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field434() {
-		super(1);
+		super(2);
 	}
 	    					
 	/**
@@ -109,7 +122,7 @@ public class Field434 extends Field implements Serializable {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -118,8 +131,9 @@ public class Field434 extends Field implements Serializable {
 	 */
 	@Override
 	public void parse(final String value) {
-		init(1);
-		setComponent1(value);
+		init(2);
+		setComponent1(SwiftParseUtils.getTokenFirst(value, "/", "/"));
+		setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/", "/"));
 	}
 	
 	/**
@@ -130,7 +144,7 @@ public class Field434 extends Field implements Serializable {
 	 */
 	public static Field434 newInstance(Field434 source) {
 		Field434 cp = new Field434();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -140,7 +154,10 @@ public class Field434 extends Field implements Serializable {
 	@Override
 	public String getValue() {
 		final StringBuilder result = new StringBuilder();
+		result.append("/");
 		append(result, 1);
+		result.append("/");
+		append(result, 2);
 		return result.toString();
 	}
 
@@ -177,8 +194,17 @@ public class Field434 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent1AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(1);
+	}
+
+	/**
+	 * Gets the Code Word (component1).
+	 * @return the Code Word from component1
+	 */
+	public String getCodeWord() {
 		return getComponent(1);
 	}
 
@@ -190,10 +216,63 @@ public class Field434 extends Field implements Serializable {
 		setComponent(1, component1);
 		return this;
 	}
+	
+	/**
+	 * Set the Code Word (component1).
+	 * @param component1 the Code Word to set
+	 */
+	public Field434 setCodeWord(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	/**
+	 * Gets the component2
+	 * @return the component2
+	 */
+	public String getComponent2() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase3=TargetYear._2019)
+	public java.lang.String getComponent2AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(2);
+	}
+
+	/**
+	 * Gets the Additional Information (component2).
+	 * @return the Additional Information from component2
+	 */
+	public String getAdditionalInformation() {
+		return getComponent(2);
+	}
+
+	/**
+	 * Set the component2.
+	 * @param component2 the component2 to set
+	 */
+	public Field434 setComponent2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Additional Information (component2).
+	 * @param component2 the Additional Information to set
+	 */
+	public Field434 setAdditionalInformation(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -243,7 +322,7 @@ public class Field434 extends Field implements Serializable {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "150z";
+		return "/3!a/[20x]";
 	}
 
 	/**
@@ -297,8 +376,8 @@ public class Field434 extends Field implements Serializable {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field434> result = new ArrayList<Field434>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field434> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field434(f));
 			}
@@ -315,7 +394,7 @@ public class Field434 extends Field implements Serializable {
 	 */
 	@Override
 	public int componentsSize() {
-		return 1;
+		return 2;
 	}
 
 	/**
@@ -329,36 +408,43 @@ public class Field434 extends Field implements Serializable {
 	 */
 	@Override
 	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 1) {
+		if (component < 1 || component > 2) {
 			throw new IllegalArgumentException("invalid component number "+component+" for field 434");
 		}
 		if (component == 1) {
 			//default format (as is)
 			return getComponent(1);
 		}
+		if (component == 2) {
+			//default format (as is)
+			return getComponent(2);
+		}
 		return null;	
 	}
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
-		result.add(null);
+		List<String> result = new ArrayList<>();
+		result.add("Code Word");
+		result.add("Additional Information");
 		return result;
 	}
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
+		result.put(1, "codeWord");
+		result.put(2, "additionalInformation");
 		return result;
 	}
 
@@ -366,13 +452,19 @@ public class Field434 extends Field implements Serializable {
 	 * This method deserializes the JSON data into a Field434 object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
 	public static Field434 fromJson(final String json) {
 		Field434 field = new Field434();
 		JsonParser parser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("codeWord") != null) {
+			field.setComponent1(jsonObject.get("codeWord").getAsString());
+		}
+		if (jsonObject.get("additionalInformation") != null) {
+			field.setComponent2(jsonObject.get("additionalInformation").getAsString());
+		}
 		return field;
 	}
 	

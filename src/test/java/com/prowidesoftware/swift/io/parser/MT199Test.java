@@ -1,3 +1,19 @@
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.prowidesoftware.swift.io.parser;
 
 import static org.junit.Assert.assertEquals;
@@ -14,7 +30,7 @@ public class MT199Test extends BaseMessageTestcase {
 
 	@Test
 	public void test199_01() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199BICPDVSAXXXXN}{4:\n" +
+		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:24986614073\n" +
 					":79:TO.   HSBC INTERNATIONAL TRUSTEE LIMITED\n" +
 					"ATTN. FOO LAM / FOO CHENG - FAX NO. 11112222\n" +
@@ -62,7 +78,7 @@ public class MT199Test extends BaseMessageTestcase {
 
 	@Test
 	public void test199_02() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199BICPDVSAXXXXN}{4:\n" +
+		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:628735BKRU3X\n" +
 					":79:TO.   CITIBANK NA (NEW YORK)\n" +
 					"ATTN. ANTHONY FOO/BONI FOO - ABC OPERATIONS\n" +
@@ -96,7 +112,7 @@ public class MT199Test extends BaseMessageTestcase {
 	
 	@Test
 	public void test199_03() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199BICPDVSAXXXXN}{4:\n" +
+		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:628735BKRU3X\n" +
 					":79:TO.   FOO NA (HONG KONG)\n" +
 					"FOO\n" +
@@ -111,7 +127,7 @@ public class MT199Test extends BaseMessageTestcase {
 	
 	@Test
 	public void test199_04() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199BICPDVSAXXXXN}{4:\n" +
+		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:628735BKRU3X\n" +
 					":79:foo\n" +
 					"}\n" +				//invalid character
@@ -123,7 +139,7 @@ public class MT199Test extends BaseMessageTestcase {
 
 	@Test
 	public void test199_05() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199BICPDVSAXXXXN}{4:\n" +
+		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:628735BKRU3X\n" +
 					":79:foo\n" +
 					"}\n" +				//invalid character

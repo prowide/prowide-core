@@ -1,29 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io.parser;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.util.logging.Level;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
 
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
@@ -37,6 +27,11 @@ import com.prowidesoftware.swift.model.mx.MxSimpleDocument;
 import com.prowidesoftware.swift.model.mx.dic.ApplicationHeader;
 import com.prowidesoftware.swift.model.mx.dic.BusinessApplicationHeaderV01;
 import com.prowidesoftware.swift.utils.Lib;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+
+import java.io.*;
+import java.util.logging.Level;
 
 /**
  * Basic parser for MX messages.
@@ -44,8 +39,8 @@ import com.prowidesoftware.swift.utils.Lib;
  * and a message payload or document with the actual specific MX message. 
  * The name of the envelope element that binds a Header to the message 
  * to which it applies is <b>implementation/network specific</b> and not
- * part of the scope of the parser.</p>
- * <br />
+ * part of the scope of the parser.
+ * <br>
  * This parser has three main utilities;
  * <ol>
  * <li>The first one to <em>convert the message into an MxNode tree</em>. 
@@ -58,10 +53,10 @@ import com.prowidesoftware.swift.utils.Lib;
  * the specific message, and two versions are supported; the legacy SWIFT 
  * {@link ApplicationHeader} and the ISO {@link BusinessApplicationHeaderV01}.</li>
  * <li>The third one is to provide convenient API to detect the specific Mx message
- * type, to analize the payload structure and to strip the document or header portions
+ * type, to analyze the payload structure and to strip the document or header portions
  * from the XML in a lightweight and efficient way.</li>
  * </ol>
- * <br />
+ * <br>
  * Notice that support for MX in Prowide Core is limited. Complete model and parser 
  * implementation for each MX message type is implemented into subclasses of 
  * {@link AbstractMX} by <a href="http://www.prowidesoftware.com/products/integrator">Prowide Integrator</a>.
@@ -81,17 +76,6 @@ public class MxParser {
 	
 	private String buffer = null;
 	private MxStructureInfo info = null;
-
-	/**
-	 * @deprecated the generic constructor is discouraged, use a constructor with
-	 *             specific source parameter instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2018)
-	public MxParser() {
-		super();
-		DeprecationUtils.phase3(getClass(), "MxParser()", "The generic constructor is discouraged, use a constructor with specific source parameter instead.");
-	}
 
 	/**
 	 * Construct a parser for a file containing a single MX message
@@ -129,7 +113,7 @@ public class MxParser {
 	 * @since 7.6
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public MxNode parse(final InputStream stream) {
 		DeprecationUtils.phase3(getClass(), "parse(stream)", "Initialize the parser with the stream instead an call the generic parse() method.");
 		try {
@@ -144,22 +128,7 @@ public class MxParser {
 	}
 
 	/**
-	 * Initializes the parser with the given reader, and returns its parsed
-	 * content.
-	 * 
-	 * @deprecated initialize the parser with the reader instead an call the generic {@link #parse()} method
-	 * @since 7.6
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2018)
-	public MxNode parse(final Reader reader) throws IOException {
-		DeprecationUtils.phase3(getClass(), "parse(reader)", "Initialize the parser with the reader instead an call the generic parse() method.");
-		this.buffer = Lib.readReader(reader);
-		return parse();
-	}
-
-	/**
-	 * Non-namespace aware parse.<br />
+	 * Non-namespace aware parse.<br>
 	 * Parses the complete message content into an {@link MxNode} tree structure.
 	 * The parser should be initialized with a valid source.
 	 *
@@ -186,11 +155,11 @@ public class MxParser {
 	 * @deprecated use {@link #stripDocument()} and {@link #stripHeader()} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public MxPayload payload() {
-		DeprecationUtils.phase2(getClass(), "payload()", "In order to get the payload of a wrapped MX, use stripDocument() and stripHeader() instead.");
+		DeprecationUtils.phase3(getClass(), "payload()", "In order to get the payload of a wrapped MX, use stripDocument() and stripHeader() instead.");
 		final MxId id = detectMessage();
-		log.fine("Detected message " + id);
+		log.fine("Detected message {}" + id);
 		final MxPayload result = new MxPayload();
 
 		result.setHeader(parseBusinessHeader());
@@ -204,7 +173,7 @@ public class MxParser {
 	 * <br>
 	 * By default ISO Business Application Header is expected and assumed for the AppHdr tag.
 	 * 
-	 * @return parsed header or <code>null</code> if the content cannot be parsed or the header is not present in the XML
+	 * @return parsed header or null if the content cannot be parsed or the header is not present in the XML
 	 */
 	public BusinessHeader parseBusinessHeader() {
 		final BusinessHeader bh = new BusinessHeader();
@@ -240,9 +209,9 @@ public class MxParser {
 
 	/**
 	 * Parses the application header (SWIFT legacy) from the internal message source.
-	 * <br />
+	 * <br>
 	 * @see #parseBusinessHeader()
-	 * @return parsed header or <code>null</code> if the content cannot be parsed or the header is not present in the XML
+	 * @return parsed header or null if the content cannot be parsed or the header is not present in the XML
 	 */
 	public ApplicationHeader parseApplicationHeader() {
 		return parseApplicationHeader(parse());
@@ -250,9 +219,9 @@ public class MxParser {
 	
 	/**
 	 * Parses the application header (SWIFT legacy) from the parameter node.
-	 * <br />
+	 * <br>
 	 * @see #parseBusinessHeader()
-	 * @return parsed header or <code>null</code> if the content cannot be parsed or the header is not present in the XML
+	 * @return parsed header or null if the content cannot be parsed or the header is not present in the XML
 	 */
 	public static ApplicationHeader parseApplicationHeader(final MxNode tree) {
 		return MxBusinessHeaderParser.parseApplicationHeader(tree);
@@ -260,9 +229,9 @@ public class MxParser {
 
 	/**
 	 * Parses the application header (ISO) from the internal message source.
-	 * <br />
+	 * <br>
 	 * @see #parseBusinessHeader()
-	 * @return parsed header or <code>null</code> if the content cannot be parsed or the header is not present in the XML
+	 * @return parsed header or null if the content cannot be parsed or the header is not present in the XML
 	 */
 	public BusinessApplicationHeaderV01 parseBusinessApplicationHeaderV01() {
 		return parseBusinessApplicationHeaderV01(parse());
@@ -270,9 +239,9 @@ public class MxParser {
 	
 	/**
 	 * Parses the application header (ISO) from the parameter node.
-	 * <br />
+	 * <br>
 	 * @see #parseBusinessHeader()
-	 * @return parsed header or <code>null</code> if the content cannot be parsed or the header is not present in the XML
+	 * @return parsed header or null if the content cannot be parsed or the header is not present in the XML
 	 */
 	public static BusinessApplicationHeaderV01 parseBusinessApplicationHeaderV01(final MxNode tree) {
 		return MxBusinessHeaderParser.parseBusinessApplicationHeaderV01(tree);
@@ -283,10 +252,12 @@ public class MxParser {
 	 * parsing just the namespace from the Document element. If the Document
 	 * element is not present, or without the namespace or if the namespace url
 	 * contains invalid content it will return null.
-	 * <br><br>
+	 *
+     * <p>
 	 * Example of a recognizable Document element:<br>
-	 * <Doc:Document xmlns:Doc="urn:swift:xsd:camt.003.001.04" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	 * <br>
+	 * &lt;Doc:Document xmlns:Doc="urn:swift:xsd:camt.003.001.04" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+	 *
+     * <p>
 	 * The implementation is intended to be lightweight and efficient, based on {@link javax.xml.stream.XMLStreamReader} 
 	 *
 	 * @return id with the detected MX message type or null if it cannot be determined.
@@ -324,23 +295,33 @@ public class MxParser {
 	}
 	
 	/**
+	 * @deprecated use {@link #analyzeMessage()} instead
+	 * @since 7.8.4
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
+	public MxStructureInfo analizeMessage() {
+		return analyzeMessage();
+	}
+
+	/**
 	 * Convenient API to get structure information from an MX message.
 	 * <p>This can be helpful when the actual content of an XML is unknown and 
 	 * some preprocessing of the XML must be done in order to parse or
-	 * validate its content properly.</p>
-	 * <p>The implementation is intended to be lightweight and efficient, based on {@link javax.xml.stream.XMLStreamReader}</p>
+	 * validate its content properly.
+	 * <p>The implementation is intended to be lightweight and efficient, based on {@link javax.xml.stream.XMLStreamReader}
 	 * <p>If the message contains more than one Document element, the first one will be picked. The same applies for
-	 * the header, only the first AppHdr will be picked</p>
-	 *  
-	 * @since 7.8.4
+	 * the header, only the first AppHdr will be picked
+	 *
+	 * @since 7.10.3
 	 */
-	public MxStructureInfo analizeMessage() {
+	public MxStructureInfo analyzeMessage() {
 		if (this.info != null) {
 			return this.info;
 		}
 		this.info = new MxStructureInfo();
 		if (StringUtils.isBlank(this.buffer)) {
-			log.log(Level.WARNING, "cannot analize message from null or empty content");
+			log.log(Level.WARNING, "cannot analyze message from null or empty content");
 			return this.info;
 		}
 		final javax.xml.stream.XMLInputFactory xif = javax.xml.stream.XMLInputFactory.newInstance();
@@ -391,7 +372,7 @@ public class MxParser {
 	}
 		
 	/**
-	 * Helper bean used by {@link MxParser#analizeMessage()} to return 
+	 * Helper bean used by {@link MxParser#analyzeMessage()} to return 
 	 * structure information from an MX message
 	 * 
 	 * @since 7.8.4
@@ -440,7 +421,7 @@ public class MxParser {
 	}
 	
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public MxPayload mx() {
 		DeprecationUtils.phase3(getClass(), "mx()", "In order to get the payload of a wrapped MX, use stripDocument() and stripHeader() instead.");
 		return null;
@@ -448,7 +429,7 @@ public class MxParser {
 	
 	/**
 	 * Distinguished Name structure: cn=name,ou=payment,o=bank,o=swift
-	 * <br />
+	 * <br>
 	 * Example: o=spxainjj,o=swift
 	 * 
 	 * @param dn the DN element content
@@ -472,11 +453,11 @@ public class MxParser {
 	 * Helper API to strip Document portion of message XML.
 	 * 
 	 * <p>This API is convenient when only the Document element of an MX message
-	 * is needed and the wrapper/payload structure is unknown.</p>
+	 * is needed and the wrapper/payload structure is unknown.
 	 *
 	 * <p>This implementation is intended to be lightweight and efficient so it actually
 	 * does a simple substring operation on the XML using information provided
-	 * by the result of {@link #analizeMessage()}. The XML is not converted into DOM.
+	 * by the result of {@link #analyzeMessage()}. The XML is not converted into DOM.
 	 * <br >
 	 * If the message contains more than one Document element the expected result is as follows:
 	 * <ul>
@@ -485,13 +466,12 @@ public class MxParser {
 	 * will be returned.</li>
 	 * <li>If the documents are not-nested (weird situation) the result might be not well-formed</li>
 	 * </ul>
-	 * </p>
 	 *  
 	 * @since 7.8.4
 	 * @return XML with Document element of the Mx message or null if message is blank or invalid
 	 */
 	public String stripDocument() {
-		analizeMessage();
+		analyzeMessage();
 		final String tag = this.info.getDocumentPrefix() != null? this.info.getDocumentPrefix() + ":" + MxParser.DOCUMENT_LOCALNAME : MxParser.DOCUMENT_LOCALNAME;
 		int beginIndex = this.buffer.indexOf("<" + tag);
 		int endIndex = this.buffer.lastIndexOf("</" + tag);
@@ -528,26 +508,25 @@ public class MxParser {
 	 * Helper API to strip AppHdr portion of message XML.
 	 * 
 	 * <p>This API is convenient when only the header element of an MX message
-	 * is needed and the wrapper/payload structure is unknown.</p>
+	 * is needed and the wrapper/payload structure is unknown.
 	 * 
-	 * <p>To gather the header already parsed into objects see {@link #parseBusinessHeader()}</p>
+	 * <p>To gather the header already parsed into objects see {@link #parseBusinessHeader()}
 	 * 
 	 * <p>This implementation is intended to be lightweight and efficient so it actually
 	 * does a simple substring operation on the XML using information provided
-	 * by the result of {@link #analizeMessage()}. The XML is not converted into DOM.
+	 * by the result of {@link #analyzeMessage()}. The XML is not converted into DOM.
 	 * <br >
 	 * If the message contains more than one AppHdr element the expected result is as follows:
 	 * <ul>
 	 * <li>If the headers are not nested, the first one will be returned.</li>
 	 * <li>If the headers are nested (weird situation) the result might be not well-formed</li>
 	 * </ul>
-	 * </p>
 	 * 
 	 * @since 7.8.4
 	 * @return XML with AppHdr element of the Mx message or null if not found
 	 */
 	public String stripHeader() {
-		analizeMessage();
+		analyzeMessage();
 		if (this.info.containsHeader()) {
 			final String tag = this.info.getHeaderPrefix() != null? this.info.getHeaderPrefix() + ":" + MxParser.HEADER_LOCALNAME : MxParser.HEADER_LOCALNAME;
 			int beginIndex = this.buffer.indexOf("<" + tag);

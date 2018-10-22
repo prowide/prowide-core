@@ -1,3 +1,18 @@
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.field;
 
 import static org.junit.Assert.assertEquals;
@@ -8,15 +23,15 @@ import org.junit.Test;
 /**
  * Test for fields that define a special usage overriding the
  * default structure definition.
- * <br />
+ * <br>
  * The first two components with pattern [/DC][/account] are used to
  * define a national clearing system code with a starting double slash //NCS
  * and this information must be kept inside the object after parsing it
  * (meaning the double slash presence cannot be lost after parse)
- * <br />
+ * <br>
  * This behavior has been found in the standard for fields: 
  * 52(ACD), 56(ACD), 57(ACD), 58(AD), and 59a.
- * <br />
+ * <br>
  * This test mainly verify that a starting double slash is preserved 
  * after serialization
  * 

@@ -1,84 +1,103 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.lang.StringUtils;
-
-import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.IsoUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Objects;
 
 /**
- * Helper class to process BIC related information.
+ * Helper class to process BIC information.
  *
- * @author www.prowidesoftware.com
+ * <p>Bank Identifier Codes (also known as SWIFT-BIC, BIC, SWIFT ID or SWIFT code) is a unique identification code for
+ * both financial and non-financial institutions. When assigned to a non-financial institution, the code may also be
+ * known as a Business Entity Identifier or BEI.
+ *
+ * <p>It is composed by:
+ * <ul>
+ * 	<li>4 letters: institution code or bank code.
+ * 	<li>2 letters: ISO 3166-1 alpha-2 country code
+ * 	<li>2 letters or digits: location code
+ * 	<li>3 letters: branch code
+ * </ul>
+ *
  * @since 3.3
  */
 public class BIC {
 	/**
-	 * Fake "test & training" BIC of 8 chars for testing
+	 * Fake "test &amp; training" BIC with 8 chars for testing
 	 * @since 7.6
 	 */
 	public static final transient String TEST8 = "TESTUS00";
+
 	/**
 	 * Fake Logical terminal address for testing,
-	 * consisting of a fake "test & training" BIC of 12 chars
+	 * consisting of a fake "test &amp; training" BIC of 12 chars
 	 * (including the terminal identification)
 	 *
 	 * @since 7.6
 	 * @see SwiftBlock1#getLogicalTerminal()
 	 */
 	public static final transient String TEST12 = "TESTAR00AXXX";
+
 	/**
 	 * Constant value with which all partner bics start 
 	 * @since 7.8
 	 */
 	public static final String PARTNER_PREFIX = "PTS";
 
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	private String invalidCause = null;
-	private String bic8 = null;
+
+	private String institution = null;
+	private String country = null;
+	private String location = null;
 	protected String branch = null;
 	private String subtype = null;
 
 	/**
-	 * Constructor with BIC code.
-	 * It accepts a BIC8, BIC11 or a logical terminal address (12 characters) in which
-	 * case the LT identifier at position 9 will be dropped.
-	 * @see LogicalTerminalAddress subclass to deal with 12 characters length LT identifiers
+	 * Constructor with a BIC8 or BIC11 code.
 	 *
-	 * @param bic the BIC code to use in this BIC
+	 * <p>For BIC codes with 12 characters (meaning it includes the logical terminal identifier) use
+	 * {@link LogicalTerminalAddress} instead. This implementation will drop the LT identifier if a
+	 * 12 characters full logical terminal addess is passed as parameter.
+	 *
+	 * <p>If the code is longer than 11 characters, the remainder will be store as part of the branch code.
+	 *
+	 * @param bic the BIC code to use in this BIC (8 or 11 chars)
 	 */
 	public BIC(final String bic) {
 		super();
 		parse(bic);
 	}
 
-	/**
-	 * Parse the given string into the corresponding object attributes.
-	 * Important: the LT identifier character is loss if parameter is 12 characters long
-	 *
-	 * @param bic
-	 */
 	protected void parse(final String bic) {
 		if (bic != null) {
-			if (bic.length() >= 8) {
-				this.bic8 = bic.substring(0, 8);
-			}
-			if (bic.length() == 11 || bic.length() == 12) {
-				this.branch = bic.substring(bic.length() - 3, bic.length());
+			this.institution = StringUtils.trimToNull(StringUtils.substring(bic,0, 4));
+			this.country = StringUtils.trimToNull(StringUtils.substring(bic,4, 6));
+			this.location = StringUtils.trimToNull(StringUtils.substring(bic,6, 8));
+			if (bic.length() >= 12) {
+				// drop LT identifier
+				this.branch = StringUtils.trimToNull(StringUtils.substring(bic, 9));
+			} else {
+				this.branch = StringUtils.trimToNull(StringUtils.substring(bic, 8));
 			}
 		}
 	}
@@ -87,81 +106,111 @@ public class BIC {
 	 * Default constructor
 	 */
 	public BIC() {
+		super();
 	}
 
 	/**
-	 * Get the BIC code of this BIC.
-	 * This method does not guarantee that the BIC is valid. use {@link #isValid()}
-	 *
-	 * @return a string with the code
-	 * @deprecated use getBic8 or getBic11 instead
+	 * Get a string with information about why the BIC was found invalid
+	 * @return a human readable (english) string
+	 * @deprecated use the {@link #validate()} method to get a detailed result of the validation problem found
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2018)
-	public String getBic() {
-		DeprecationUtils.phase3(getClass(), "getBic()", "Use getBic8() or getBic11() instead.");
-		final StringBuilder sb = new StringBuilder();
-		if (this.bic8 != null) {
-			sb.append(this.bic8);
-		}
-		if (this.branch != null) {
-			sb.append(this.branch);
-		}
-		return sb.toString();
-	}
-
-	/**
-	 * @param bic the BIC code
-	 * @deprecated use the constructor passing the string as parameter
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2018)
-	public void setBic(final String bic) {
-		DeprecationUtils.phase3(getClass(), "getBic()", "Use the constructor instead, passing the BIC value as String parameter.");
-		parse(bic);
-	}
-
-	/**
-	 * Get a human readable (english) string that gives information about why the BIC was found invalid.
-	 * @return a string or <code>null</code> if there's no invalid cause set
-	 */
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public String getInvalidCause() {
 		return invalidCause;
 	}
 
 	/**
-	 * Validates a BIC structure.
-	 * It only checks that length is 8 or 11 and that the country code is valid.
-	 * This method does not validate against any BIC directory.
+	 * Validates the BIC structure.
 	 *
-	 * @return <code>true</code> if the BIC is found to be valid and <code>false</code> in other case
-	 * @throws IllegalStateException if BIC is <code>null</code>
+	 * <p>If the code is not valid a text description of the invalid cause is set in {@link #getInvalidCause()}
+	 *
+	 * @see #validate() for details regarding the validation checks or if you need structured details of the validation
+	 * problem found.
+	 *
+	 * @return true if the BIC is valid and false otherwise
 	 */
 	public boolean isValid() {
-		if (this.bic8==null) {
-			this.invalidCause = "BIC is null";
+		BicValidationResult result = validate();
+		if (result == BicValidationResult.OK) {
+			return true;
+		} else {
+			this.invalidCause = result.message();
 			return false;
 		}
-		if (this.bic8.length() != 8) {
-			this.invalidCause = "Expected 8 characters for the institution and country code and found " + this.bic8.length() + " in " + this.bic8;
-			return false;
+	}
+
+	/**
+	 * Validates the BIC structure.
+	 *
+	 * <p>Checks the syntax of the BIC, verifying: the total length is 8, 11 or 12 (LT identifier), the country is a
+	 * valid ISO country code using {@link IsoUtils}, the institution is composed by upper case letters and the
+	 * location and branch are composed by upper case letter or digits.
+	 *
+	 * <p>This method does not validate against any BIC directory.
+	 *
+	 * @return BicValidationResult with detailed information of the validation problem found
+	 * @since 7.10.3
+	 */
+	public BicValidationResult validate() {
+		if (this.institution == null || this.country == null || this.location == null) {
+			return BicValidationResult.INVALID_LENGTH;
+		}
+		if (this.institution.length() != 4) {
+			BicValidationResult result = BicValidationResult.INVALID_INSTITUTION_LENGTH;
+			result.setFound(this.institution);
+			return result;
+		}
+		if (this.country.length() != 2) {
+			BicValidationResult result = BicValidationResult.INVALID_COUNTRY_LENGTH;
+			result.setFound(this.country);
+			return result;
+		}
+		if (this.location.length() != 2) {
+			BicValidationResult result = BicValidationResult.INVALID_LOCATION_LENGTH;
+			result.setFound(this.location);
+			return result;
 		}
 		if (this.branch != null && this.branch.length() != 3) {
-			this.invalidCause = "Expected 3 characters for branch and found " + this.branch.length() + " in " + this.branch;
-			return false;
+			BicValidationResult result = BicValidationResult.INVALID_BRANCH_LENGTH;
+			result.setFound(this.branch);
+			return result;
 		}
-		final String country = this.bic8.substring(4,6);
-		if (!IsoUtils.getInstance().isValidISOCountry(country)) {
-			this.invalidCause = "Invalid country code " + country;
-			return false;
+		if (!isUpperCase(this.institution)) {
+			BicValidationResult result = BicValidationResult.INVALID_INSTITUTION_CHARSET;
+			result.setFound(this.institution);
+			return result;
 		}
-		final String b11 = getBic11();
-		for (int i = 0; i < b11.length(); i++) {
-			final char c = b11.charAt(i);
-			final boolean digit = Character.isDigit(c);
-			final boolean uppercase = Character.isUpperCase(c);
-			if (!digit && !uppercase) {
-				this.invalidCause = "BIC characters must be alphanumeric uppercase";
+		if (!IsoUtils.getInstance().isValidISOCountry(this.country)) {
+			BicValidationResult result = BicValidationResult.INVALID_COUNTRY;
+			result.setFound(this.country);
+			return result;
+		}
+		if (!isUpperCaseOrDigit(this.location)) {
+			BicValidationResult result = BicValidationResult.INVALID_LOCATION_CHARSET;
+			result.setFound(this.location);
+			return result;
+		}
+		if (this.branch != null && !isUpperCaseOrDigit(this.branch)) {
+			BicValidationResult result = BicValidationResult.INVALID_BRANCH_CHARSET;
+			result.setFound(this.branch);
+			return result;
+		}
+		return BicValidationResult.OK;
+	}
+
+	private boolean isUpperCase(final String text) {
+		for (int i = 0; i < text.length(); i++) {
+			if (!Character.isUpperCase(text.charAt(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean isUpperCaseOrDigit(final String text) {
+		for (int i = 0; i < text.length(); i++) {
+			if (!Character.isUpperCase(text.charAt(i)) && !Character.isDigit(text.charAt(i))) {
 				return false;
 			}
 		}
@@ -179,6 +228,17 @@ public class BIC {
 	}
 
 	/**
+	 * Returns the branch code or XXX as default
+	 * @since 7.10.3
+	 * @return
+	 */
+	public String getBranchOrDefault() {
+		return this.branch != null? this.branch : "XXX";
+	}
+
+	/**
+	 * Returns ths subtype code.
+	 * Notice this information is not part of the BIC code, it must be explicitly set with {@link #setSubtype(String)}
 	 * @since 7.4
 	 */
 	public String getSubtype() {
@@ -186,6 +246,7 @@ public class BIC {
 	}
 
 	/**
+	 * Sets a subtype code
 	 * @since 7.4
 	 */
 	public void setSubtype(final String subtype) {
@@ -193,171 +254,139 @@ public class BIC {
 	}
 
 	/**
-	 * Returns true if the BIC is a Test & Training BIC code.
-	 * In SWIFT’s FIN messaging system, a BIC with a zero
-	 * in the 8th position is a Test & Training BIC, and as
+	 * Returns true if the BIC is a Test &amp; Training BIC code.
+	 * <p>In SWIFT’s FIN messaging system, a BIC with a zero in the 8th position is a Test &amp; Training BIC, and as
 	 * such it cannot be used in production FIN messages.
 	 *
-	 * @return true if it is a T&T BIC, false if is not or if the condition cannot be determined
+	 * @return true if it is a Test &amp; Training BIC, false if is not or if the condition cannot be determined
 	 * @since 7.6
 	 */
 	public boolean isTestAndTraining() {
-		if (this.bic8 != null && this.bic8.length() >= 8) {
-			return this.bic8.charAt(7) == '0';
+		if (this.location != null) {
+			return this.location.charAt(1) == '0';
 		}
 		return false;
 	}
 
 	/**
 	 * Returns true if the BIC is not live (not connected) on the network.
-	 * <br />
-	 * BICs can identify not only financial institutions but also non-financial ones 
+	 *
+	 * <p>BICs can identify not only financial institutions but also non-financial ones
 	 * either connected or not connected to the SWIFT network.
-	 * <br /> 
-	 * A BIC of an institution which is <strong>not connected</strong> to the SWIFT network 
+	 *
+	 * <p>A BIC of an institution which is <strong>not connected</strong> to the SWIFT network
 	 * still has a location code with the digit 1 at the end (for instance AFSEUS31). 
 	 * BICs like that are called non-SWIFT BICs (or BIC 1).
-	 * <br />
-	 * In SWIFT’s FIN messaging system, a BIC with a one in the 8th position is a Non-Live BIC.
-	 * <br />
-	 * Note this is not the opposite of {@link #isLive()}
+	 *
+	 * <p>In SWIFT’s FIN messaging system, a BIC with a one in the 8th position is a Non-Live BIC.
+	 *
+	 * <p>Note this is not the opposite of {@link #isLive()}
 	 * 
 	 * @return true if it is a Non-Live BIC, false if is not or if the condition cannot be determined
 	 * @since 7.7
 	 */
 	public boolean isNonLive() {
-		if (this.bic8 != null && this.bic8.length() >= 8) {
-			return this.bic8.charAt(7) == '1';
+		if (this.location != null) {
+			return this.location.charAt(1) == '1';
 		}
 		return false;
 	}
 
 	/**
-	 * Returns true if the BIC is live (connected and not test & training) on the network.
+	 * Returns true if the BIC is live (connected and not test &amp; training) on the network.
 	 * 
-	 * BICs can identify not only financial institutions but also non-financial ones 
+	 * <p>BICs can identify not only financial institutions but also non-financial ones
 	 * either connected or not connected to the SWIFT network.
-	 * <br />
-	 * In SWIFT’s FIN messaging system, a BIC with a character
-	 * different than zero (that would be T&T) or one (that would be non-connected) 
-	 * in the 8th position is a Live BIC.
-	 * <br />
-	 * Note this is not the opposite of {@link #isNonLive()}
+	 *
+	 * <p>In SWIFT’s FIN messaging system, a BIC with a character different than zero (that would be Test &amp;
+	 * Training) or one (that would be non-connected) in the 8th position is a Live BIC.
+	 *
+	 * <p>Note this is not the opposite of {@link #isNonLive()}
 	 *
 	 * @return true if it is a Non-Live BIC, false if is not or if the condition cannot be determined
 	 * @since 7.7
 	 */
 	public boolean isLive() {
-		if (this.bic8 != null && this.bic8.length() >= 8) {
-			return this.bic8.charAt(7) != '0' && this.bic8.charAt(7) != '1';
+		if (this.location != null) {
+			return this.location.charAt(1) != '0' && this.location.charAt(1) != '1';
 		}
 		return false;
 	}
 
 	/**
-	 * Returns the first 8 characters of the BIC code.
+	 * Returns the first 8 characters of the BIC code, composed by the institution code, country and location.
 	 *
 	 * @return the bic8 or null if the BIC has less than 8 characters
 	 * @since 7.6
 	 */
 	public String getBic8() {
-		return this.bic8;
+		if (this.institution != null && this.country != null && this.location != null) {
+			return this.institution + this.country + this.location;
+		} else {
+			return null;
+		}
 	}
 
-	/**
-	 * Returns the BIC code with 11 characters composed by the first 8 characters of the BIC code,
-	 * plus the branch code, dropping the logical terminal identifier at position 9 if present, and
-	 * also padding with a default XXX branch if necessary.
-	 *
-	 * @return the bic8 or null if the BIC has less than 8 characters
-	 * @since 7.6
-	 */
-	public String getBic11() {
-		final String branch = this.branch != null? this.branch : "XXX";
-		if (this.bic8 != null) {
-			return bic8 + branch;
-		}
-		return null;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		BIC bic = (BIC) o;
+		return Objects.equals(institution, bic.institution) &&
+				Objects.equals(country, bic.country) &&
+				Objects.equals(location, bic.location) &&
+				Objects.equals(branch, bic.branch) &&
+				Objects.equals(subtype, bic.subtype);
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((bic8 == null) ? 0 : bic8.hashCode());
-		result = prime * result + ((branch == null) ? 0 : branch.hashCode());
-		result = prime * result + ((invalidCause == null) ? 0 : invalidCause.hashCode());
-		result = prime * result + ((subtype == null) ? 0 : subtype.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final BIC other = (BIC) obj;
-		if (bic8 == null) {
-			if (other.bic8 != null) {
-				return false;
-			}
-		} else if (!bic8.equals(other.bic8)) {
-			return false;
-		}
-		if (branch == null) {
-			if (other.branch != null) {
-				return false;
-			}
-		} else if (!branch.equals(other.branch)) {
-			return false;
-		}
-		if (invalidCause == null) {
-			if (other.invalidCause != null) {
-				return false;
-			}
-		} else if (!invalidCause.equals(other.invalidCause)) {
-			return false;
-		}
-		if (subtype == null) {
-			if (other.subtype != null) {
-				return false;
-			}
-		} else if (!subtype.equals(other.subtype)) {
-			return false;
-		}
-		return true;
+		return Objects.hash(institution, country, location, branch, subtype);
 	}
 
 	/**
-	 * Gets the 2 chars country code of the BIC, which are the 5th and 6th characters
+	 * Returns the BIC code with 11 characters composed by institution code, country, location and branch.
+	 * <p>If the branch is not present, then XXX will be used as default branch.
+	 *
+	 * @return the bic11 or null if the BIC has less than 8 characters
+	 * @since 7.6
+	 */
+	public String getBic11() {
+		final String bic8 = getBic8();
+		if (bic8 != null) {
+			return bic8 + getBranchOrDefault();
+		}
+		return null;
+	}
+
+	/**
 	 * @since 7.7
+	 * @deprecated use {@link #getCountry()} instead
 	 */
+	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@Deprecated
 	public String country() {
-		return StringUtils.substring(this.bic8, 4, 6);
+		return getCountry();
 	}
 
 	/**
-	 * Gets the first 4 characters of the BIC; corresponding to the institution code
 	 * @since 7.8.5
+	 * @deprecated use {@link #getInstitution()} instead
 	 */
+	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@Deprecated
 	public String institution() {
-		return StringUtils.substring(this.bic8, 0, 4);
+		return getInstitution();
 	}
 	
 	/**
 	 * Returns the Distinguished Name (DN) for this BIC.
-	 * <br />
-	 * The created DN always includes the BIC8 and "swift" and
+	 *
+	 * <p>The created DN always includes the BIC8 and "swift" and
 	 * if the branch is present and not "XXX" it will also be included
 	 * as organization unit (ou)
 	 * 
-	 * @return ou=<branch>,o=<bic8>,o=swift
+	 * @return ou=&lt;branch&gt;,o=&lt;bic8&gt;,o=swift
 	 * @since 7.9.3
 	 */
 	public String distinguishedName() {
@@ -372,6 +401,62 @@ public class BIC {
 	@Override
 	public String toString() {
 		return getBic11();
+	}
+
+	/**
+	 * @since 7.10.3
+	 * @return the institution identifier part of the BIC
+	 */
+	public String getInstitution() {
+		return institution;
+	}
+
+	/**
+	 * @since 7.10.3
+	 * @param institution the institution identifier part of the BIC
+	 */
+	public void setInstitution(String institution) {
+		this.institution = institution;
+	}
+
+	/**
+	 * @since 7.10.3
+	 * @return the country part of the BIC
+	 */
+	public String getCountry() {
+		return country;
+	}
+
+	/**
+	 * @since 7.10.3
+	 * @param country the country part of the BIC
+	 */
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	/**
+	 * @since 7.10.3
+	 * @return the location part of the BIC
+	 */
+	public String getLocation() {
+		return location;
+	}
+
+	/**
+	 * @since 7.10.3
+	 * @param location the location part of the BIC
+	 */
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	/**
+	 * @since 7.10.3
+	 * @param branch the branch part of the BIC
+	 */
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
 
 }

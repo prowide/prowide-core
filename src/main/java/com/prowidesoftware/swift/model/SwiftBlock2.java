@@ -1,45 +1,45 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.prowidesoftware.JsonSerializable;
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.logging.Level;
 
-
 /**
- * Base class for SWIFT <b>Application Header Block (block 2)</b>.<br>
- * The Application Header contains information about the 
- * message type and the destination of the message.<br><br>
+ * Base class for SWIFT <b>Application Header Block (block 2)</b>
+ *
+ * <p>The Application Header contains information about the
+ * message type and the destination of the message.
  * 
  * <p>There are two types of application headers: Input and Output.
  * Both, input and output block 2 flavors are fixed-length and continuous with no field delimiters. 
  * The fields that conform the blocks's value are represented in the subclasses
- * as individual attributes for easier management.</p>
+ * as individual attributes for easier management.
  * 
- * <p>This is an <b>abstract</b> class so specific block 2 subclasses should be instantiated.<p>
- * 
- * @author www.prowidesoftware.com
+ * <p>This is an <b>abstract</b> class so specific block 2 subclasses should be instantiated.
+ *
  * @since 4.0
  */
-public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializable, JsonSerializable {
+public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock2.class.getName());
 	private static final long serialVersionUID = 7994472954593732477L;
 
@@ -190,35 +190,19 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 		messageType = null;
 	}
 
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((messagePriority == null) ? 0 : messagePriority.hashCode());
-		result = prime * result + ((messageType == null) ? 0 : messageType.hashCode());
-		return result;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		SwiftBlock2 that = (SwiftBlock2) o;
+		return Objects.equals(messagePriority, that.messagePriority) &&
+				Objects.equals(messageType, that.messageType);
 	}
 
-	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SwiftBlock2 other = (SwiftBlock2) obj;
-		if (messagePriority == null) {
-			if (other.messagePriority != null)
-				return false;
-		} else if (!messagePriority.equals(other.messagePriority))
-			return false;
-		if (messageType == null) {
-			if (other.messageType != null)
-				return false;
-		} else if (!messageType.equals(other.messageType))
-			return false;
-		return true;
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), messagePriority, messageType);
 	}
 
 	/**
@@ -226,19 +210,18 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 	 *
 	 * @since 7.9.8 current block 2 implementation, based on Gson (method signature with null implementation is available since 7.5)
 	 */
-	@Override
 	public String toJson(){
-		final GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter());
-		gsonBuilder.setPrettyPrinting();
-		final Gson gson = gsonBuilder.create();
+		final Gson gson = new GsonBuilder()
+			.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter())
+			.setPrettyPrinting()
+			.create();
 		return gson.toJson(this,SwiftBlock2.class);
 	}
 
 	/**
 	 * Generic getter for block attributes based on qualified names from {@link SwiftBlock2Field}
 	 * @param field field to get
-	 * @return field value or <code>null</code> if attribute is not set
+	 * @return field value or null if attribute is not set
 	 * @since 7.7
 	 */
 	public String field(SwiftBlock2Field field) {
@@ -247,8 +230,9 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 				return getMessageType();
 			case MessagePriority:
 				return getMessagePriority();
+			default:
+				return null;
 		}
-		return null;
 	}
 	
 	/**
@@ -265,6 +249,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 			case MessagePriority:
 				setMessagePriority(value);
 				break;
+			default:break;
 		}
 	}
 	

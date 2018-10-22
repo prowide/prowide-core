@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.utils;
 
 import com.prowidesoftware.swift.model.SwiftBlock1;
@@ -30,24 +31,21 @@ import com.prowidesoftware.swift.model.Tag;
  *
  * <ol>
  * <li><code>startMessage</code></li>
- * <li><code>startBlock1 -> value -> endBlock1</code> (if block 1 exists)</li>
- * <li><code>startBlock2 -> value -> endBlock2</code> (if block 2 exists)</li>
- * <li><code>startBlock3 -> tag (for every tag) -> endBlock3</code> (if block 3 exists)</li>
- * <li><code>startBlock4 -> tag (for every tag) -> endBlock4</code> (if block 4 exists)</li>
- * <li><code>startBlock5 -> tag (for every tag) -> endBlock5</code> (if block 5 exists)</li>
- * <li><code>startBlockUser -> tag (for every tag) -> endBlockUser</code> (for every user defined block and every tag of that block)</li>
+ * <li><code>startBlock1 -&gt; value -&gt; endBlock1</code> (if block 1 exists)</li>
+ * <li><code>startBlock2 -&gt; value -&gt; endBlock2</code> (if block 2 exists)</li>
+ * <li><code>startBlock3 -&gt; tag (for every tag) -&gt; endBlock3</code> (if block 3 exists)</li>
+ * <li><code>startBlock4 -&gt; tag (for every tag) -&gt; endBlock4</code> (if block 4 exists)</li>
+ * <li><code>startBlock5 -&gt; tag (for every tag) -&gt; endBlock5</code> (if block 5 exists)</li>
+ * <li><code>startBlockUser -&gt; tag (for every tag) -&gt; endBlockUser</code> (for every user defined block and every tag of that block)</li>
  * <li><code>endMessage</code></li>
  * </ol>
  *
  * <p>Notice that the <code>tag</code> and <code>value</code> methods are overloaded for every type of SwiftBlock
- * derived class.</p>
+ * derived class.
  * 
  * <p><b>NOTE</b>: this API has changed since 4.0 with SwiftBlocks 1-5 in each start/end 
- * method pairs.</p> 
- * 
- * @author www.prowidesoftware.com
+ * method pairs.
  */
-//TODO: complete javadocs
 public interface IMessageVisitor {
 
 	/**

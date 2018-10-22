@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
@@ -35,7 +36,7 @@ public interface IConversionService {
 	 * @param msg an object containing the message to convert
 	 * @return a string with the FIN format representation of the message
 	 * 
-	 * @throws IllegalArgumentException if msg is <code>null</code>
+	 * @throws IllegalArgumentException if msg is null
 	 */
 	public abstract String getFIN(SwiftMessage msg);
 
@@ -46,7 +47,7 @@ public interface IConversionService {
 	 * @param xml the string with the internal XML message to read
 	 * @return a string with the FIN format representation of the message
 	 * 
-	 * @throws IllegalArgumentException if XML is <code>null</code>
+	 * @throws IllegalArgumentException if XML is null
 	 */
 	public abstract String getFIN(String xml);
 
@@ -57,7 +58,7 @@ public interface IConversionService {
 	 * @param msg an object containing the message to convert
 	 * @return a string with the internal XML representation of the message
 	 * 
-	 * @throws IllegalArgumentException if msg is <code>null</code>
+	 * @throws IllegalArgumentException if msg is null
 	 */
 	public abstract String getXml(SwiftMessage msg);
 
@@ -68,7 +69,7 @@ public interface IConversionService {
 	 * @param fin a string containing the FIN message to convert
 	 * @return a string with the internal XML representation of the message
 	 * 
-	 * @throws IllegalArgumentException if fin is <code>null</code>
+	 * @throws IllegalArgumentException if fin is null
 	 */
 	public abstract String getXml(String fin);
 
@@ -79,7 +80,7 @@ public interface IConversionService {
 	 * @param fin a string containing the FIN message to convert
 	 * @return a swift object containing the message data
 	 * 
-	 * @throws IllegalArgumentException if fin is <code>null</code>
+	 * @throws IllegalArgumentException if fin is null
 	 */
 	public abstract SwiftMessage getMessageFromFIN(String fin);
 
@@ -90,7 +91,7 @@ public interface IConversionService {
 	 * @param xml the string with the internal XML message to read
 	 * @return a swift object containing the message data
 	 * 
-	 * @throws IllegalArgumentException if XML is <code>null</code>
+	 * @throws IllegalArgumentException if XML is null
 	 */
 	public abstract SwiftMessage getMessageFromXML(String xml);
 

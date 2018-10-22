@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
 import java.io.Serializable;
@@ -34,7 +35,7 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
 	 * present only for subclasses
 	 */
 	protected SwiftValueBlock() {
-
+		super();
 	}
 
 	/**
@@ -80,7 +81,7 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
 	 * Tells if the block contains at least one field.
 	 * This method must be called on specific subclasses, calling it for SwiftValueBlock will throw 
 	 * a <code>java.lang.UnsupportedOperationException</code>
-	 * @return <code>true</code> if getValue returns a non <code>null</code> object
+	 * @return <code>true</code> if getValue returns a non null object
 	 */
 	public boolean isEmpty() {
 		return (this.getValue() == null);
@@ -99,12 +100,12 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
 	}
 
 	/**
-	 * returns a fragment of the block value received (or <code>null</code> if value is not large enough).<br />
+	 * returns a fragment of the block value received (or null if value is not large enough).<br>
 	 * This method is used in derived classes to get value fragments. 
 	 * @param value the full block value
 	 * @param start the starting point of the fragment in the big block value
 	 * @param size the fragment size
-	 * @return the value fragment or <code>null</code> if value is not large enough
+	 * @return the value fragment or null if value is not large enough
 	 */
 	protected String getValuePart(final String value, final int start, int size) {
 		// prepare the result
@@ -134,12 +135,12 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
 
 	/**
 	 * Returns a fragment of the block value received from a starting index until the end of value
-	 * (or <code>null</code> if value is not large enough).<br />
+	 * (or null if value is not large enough).<br>
 	 * 
 	 * This method is used in derived classes to get value fragments. 
 	 * @param value the full block value
 	 * @param start the starting point of the fragment in the big block value
-	 * @return the value fragment or <code>null</code> if value is not large enough
+	 * @return the value fragment or null if value is not large enough
 	 * @since 7.7
 	 */
 	protected String getValuePart(final String value, final int start) {

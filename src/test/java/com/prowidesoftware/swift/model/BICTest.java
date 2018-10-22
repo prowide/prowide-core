@@ -1,13 +1,17 @@
 /*
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
+ * Copyright 2006-2018 Prowide
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.prowidesoftware.swift.model;
 
@@ -21,28 +25,80 @@ import org.junit.Test;
 /**
  * BIC model testing
  *
- * @author www.prowidesoftware.com
- *
  */
 public class BICTest {
+
+	@Test
+	public void testParse() {
+		BIC b = new BIC(null);
+		assertNull(b.getInstitution());
+		assertNull(b.getCountry());
+		assertNull(b.getLocation());
+		assertNull(b.getBranch());
+		b = new BIC("");
+		assertNull(b.getInstitution());
+		assertNull(b.getCountry());
+		assertNull(b.getLocation());
+		assertNull(b.getBranch());
+		b = new BIC("I");
+		assertEquals("I", b.getInstitution());
+		assertNull(b.getCountry());
+		assertNull(b.getLocation());
+		assertNull(b.getBranch());
+		b = new BIC("IIII");
+		assertEquals("IIII", b.getInstitution());
+		assertNull(b.getCountry());
+		assertNull(b.getLocation());
+		assertNull(b.getBranch());
+		b = new BIC("IIIIC");
+		assertEquals("IIII", b.getInstitution());
+		assertEquals("C", b.getCountry());
+		assertNull(b.getLocation());
+		assertNull(b.getBranch());
+		b = new BIC("IIIICC");
+		assertEquals("IIII", b.getInstitution());
+		assertEquals("CC", b.getCountry());
+		assertNull(b.getLocation());
+		assertNull(b.getBranch());
+		b = new BIC("IIIICCL");
+		assertEquals("IIII", b.getInstitution());
+		assertEquals("CC", b.getCountry());
+		assertEquals("L", b.getLocation());
+		assertNull(b.getBranch());
+		b = new BIC("IIIICCLL");
+		assertEquals("IIII", b.getInstitution());
+		assertEquals("CC", b.getCountry());
+		assertEquals("LL", b.getLocation());
+		assertNull(b.getBranch());
+		b = new BIC("IIIICCLLB");
+		assertEquals("IIII", b.getInstitution());
+		assertEquals("CC", b.getCountry());
+		assertEquals("LL", b.getLocation());
+		assertEquals("B", b.getBranch());
+		b = new BIC("IIIICCLLBBBBBB");
+		assertEquals("IIII", b.getInstitution());
+		assertEquals("CC", b.getCountry());
+		assertEquals("LL", b.getLocation());
+		assertEquals("BBBBB", b.getBranch()); //one B is dropped as LT identifier
+	}
 
 	@Test 
 	public void testIsValid() {
 		final BIC b = new BIC("foo");
-		final boolean valid = b.isValid();
-		assertFalse(valid);
+		assertFalse(b.isValid());
+		assertEquals(BicValidationResult.INVALID_LENGTH, b.validate());
 	}
 
 	@Test 
 	public void testIsValid2() {
 		final BIC b = new BIC("FOOOESHU");
-		final boolean valid = b.isValid();
-		assertTrue(valid);
+		assertTrue(b.isValid());
+		assertEquals(BicValidationResult.OK, b.validate());
 	}
 
 	@Test
 	public void testIsValid3() {
-		final BIC b = new BIC("CARBVEC0XX");
+		final BIC b = new BIC("FOOBAR22XXX");
 		final boolean valid = b.isValid();
 		assertTrue(valid);
 	}
@@ -50,52 +106,24 @@ public class BICTest {
 	@Test 
 	public void testIsValidBadCountry() {
 		final BIC b = new BIC("FOOOAAHU");
-		final boolean valid = b.isValid();
-		assertFalse(valid);
+		assertFalse(b.isValid());
+		assertEquals(BicValidationResult.INVALID_COUNTRY, b.validate());
 	}
 
 	@Test
 	public void testIsValidAlphanumeric() {
 		final BIC b = new BIC("FO-OAR11");
-		final boolean valid = b.isValid();
-		assertFalse(valid);
+		assertFalse(b.isValid());
+		assertEquals(BicValidationResult.INVALID_INSTITUTION_CHARSET, b.validate());
 	}
 
 	@Test
 	public void testIsValidUppercase() {
 		final BIC b = new BIC("FOoOAR12");
-		final boolean valid = b.isValid();
-		assertFalse(valid);
+		assertFalse(b.isValid());
+		assertEquals(BicValidationResult.INVALID_INSTITUTION_CHARSET, b.validate());
 	}
 
-	@Test 
-	public void testGetBranch1() {
-		final BIC b = new BIC("FOOOOOHU");
-		assertNull(b.getBranch());
-	}
-
-	@Test 
-	public void testGetBranch2() {
-		final BIC b = new BIC("FOOOOOHUABC");
-		assertEquals("ABC", b.getBranch());
-	}
-
-	@Test 
-	public void testGetBranch3() {
-		final BIC b = new BIC("FOOOOOHUAB");
-		assertNull(b.getBranch());
-	}
-
-	/*
-	 * bic de 12 con LT
-	 */
-	@Test 
-	public void testGetBranchBIC12() {
-		final BIC b = new BIC("FOOOOOHUABCD");
-		assertEquals("BCD", b.getBranch());
-		assertEquals("FOOOOOHUBCD", b.getBic11());
-	}
-	
 	@Test 
 	public void testTestAndTraining() {
 		assertTrue(new BIC("FOOOOO00AB").isTestAndTraining());
@@ -113,15 +141,10 @@ public class BICTest {
 
 	@Test 
 	public void testBIC11() {
-		assertEquals("FOOOOOHUXXX", new BIC("FOOOOOHUAXXX").getBic11());
+		assertEquals("FOOOOOHUXXX", new BIC("FOOOOOHUAXXX").getBic11()); //LT is picked up as part of the branch
 		assertEquals("FOOOOOHUXXX", new BIC("FOOOOOHUXXX").getBic11());
 		assertEquals("FOOOOOHUXXX", new BIC("FOOOOOHU").getBic11());
 		assertNull(new BIC("FOO").getBic8());
-	}
-
-	@Test
-	public void testCountry() {
-		assertEquals("AR", new BIC("BACOARB10BE").country());
 	}
 
 	@Test

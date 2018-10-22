@@ -1,14 +1,18 @@
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
 import static org.junit.Assert.assertEquals;
@@ -103,6 +107,25 @@ public class SwiftBlock4Test {
 		assertEquals(b.getTag(0), clean.getTag(0));
 		assertEquals(b.getTag(2), clean.getTag(1));
 		assertEquals(b.getTag(3), clean.getTag(2));
+	}
+
+	@Test
+	public void testRemoveEmptySequences15a_2() {
+		SwiftBlock4 b = new SwiftBlock4();
+		b.append(new Tag("15A", ""));
+		b.append(new Tag("20", "FOO"));
+		b.append(new Tag("15B", ""));
+		b.append(new Tag("15C", ""));
+		b.append(new Tag("15D", ""));
+		b.append(new Tag("15E", ""));
+		b.append(new Tag("17W", "Y"));
+		SwiftBlock4 clean = SwiftBlock4.removeEmptySequences(b);
+		assertFalse(comp.compareTagListBlock(b, clean));
+		assertEquals("15A", clean.getTag(0).getName());
+		assertEquals("20", clean.getTag(1).getName());
+		assertEquals("15E", clean.getTag(2).getName());
+		assertEquals("17W", clean.getTag(3).getName());
+		assertEquals(4, clean.size());
 	}
 
 }

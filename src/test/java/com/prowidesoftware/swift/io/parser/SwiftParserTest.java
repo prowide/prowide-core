@@ -1,13 +1,17 @@
 /*
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
+ * Copyright 2006-2018 Prowide
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.prowidesoftware.swift.io.parser;
 
@@ -40,10 +44,12 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
 
 /**
- * Swift parser tests
+ * Swift parser tests using the default lenient (permissive) mode.
  *
- * @author www.prowidesoftware.com
- * @since 4.0
+ * <p>In this configuration the parser will apply a best effort heuristic
+ * to read all blocks content. For instance it will read the block 4 regardless
+ * of the proper closing boundary -} and also will read the headers even if
+ * some fields are not present and the overall header size is incorrect.
  */
 public class SwiftParserTest {
 	protected VisibleParser parser;
@@ -121,11 +127,8 @@ public class SwiftParserTest {
 		assertEquals(6, b4.size());
 		assertEquals("16R", b4.getTag(0).getName());
 		assertEquals("98A", b4.getTag(2).getName());
-
 		assertEquals("GENL", b4.getTag(0).getValue());
 		assertEquals(":PREP//20050711", b4.getTag(2).getValue());
-
-		// TODO add tests for getTagByName
 	}
 
 	@Test
@@ -247,7 +250,6 @@ public class SwiftParserTest {
 		assertEquals("4:bar{feellike{codingtoday}", s);
 	}
 
-
 	@Test
 	public void testReadBlock4WithStartingBraquetInFieldValue() throws IOException {
 		parser.setData("4:" + FINWriterVisitor.SWIFT_EOL +
@@ -268,7 +270,6 @@ public class SwiftParserTest {
 				":16S:SETDET\r\n" +
 				"-", m);
 	}
-
 
 	@Test
 	public void testReadBlock4WithClosingBraquetInFieldValue() throws IOException {
@@ -302,11 +303,11 @@ public class SwiftParserTest {
 
 	@Test
 	public void testConsumeBock2() throws IOException {
-		parser.setData("{1:F01MYBICBICXXXX0000000000}{2:I100BANKDEFFXXXXU3003}");
+		parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003}");
 		final SwiftBlock1 b = (SwiftBlock1) parser.consumeBlock(null);
 		assertNotNull(b);
 		assertEquals(1, b.getNumber().intValue());
-		assertEquals("F01MYBICBICXXXX0000000000", b.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX0000000000", b.getBlockValue());
 
 		final SwiftBlock2 b2 = (SwiftBlock2) parser.consumeBlock(null);
 		assertNotNull(b2);
@@ -316,7 +317,7 @@ public class SwiftParserTest {
 
 	@Test
 	public void testConsumeBock3() throws IOException {
-		parser.setData("{1:F01MYBICBICXXXX0000000000}{2:I541CITIGB2LXXXXN}{4:\r\n" +
+		parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I541CITIGB2LXXXXN}{4:\r\n" +
 				":16R:GENL\r\n" +
 				":20C::SEME//2005070600000006\r\n" +
 				":23G:NEWM\r\n" +
@@ -353,7 +354,7 @@ public class SwiftParserTest {
 		final SwiftBlock1 b1 = (SwiftBlock1) parser.consumeBlock(null);
 		assertNotNull(b1);
 		assertEquals(1, b1.getNumber().intValue());
-		assertEquals("F01MYBICBICXXXX0000000000", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
 
 		final SwiftBlock2 b2 = (SwiftBlock2) parser.consumeBlock(null);
 		assertNotNull(b2);
@@ -497,7 +498,7 @@ public class SwiftParserTest {
 
 	@Test
 	public void testTag77Exceptions_1() throws Exception {
-		final String m = "{1:F01BICFOOYYAXXX1234123456}{2:O1030811060227FOOBBSMMAXXX55529746000602270811N}{3:{113:NOMF}{108:0602021485081594}{119:STP}}{4:^M\r\n" +
+		final String m = "{1:F01FOOBARYYAXXX1234123456}{2:O1030811060227FOOBBSMMAXXX55529746000602270811N}{3:{113:NOMF}{108:0602021485081594}{119:STP}}{4:^M\r\n" +
 				":77E:  \r\n" +
 				"ABCDEFG\r\n" +
 				"-}{5:{MAC:80C69B21}{CHK:63035B4672E0}}\r\n" +
@@ -510,7 +511,7 @@ public class SwiftParserTest {
 
 	@Test
 	public void testTag77Exceptions_2() throws Exception {
-		final String m = "{1:F01BICFOOYYAXXX1234123456}{2:O1030811060227FOOBBSMMAXXX55529746000602270811N}{3:{113:NOMF}{108:0602021485081594}{119:STP}}{4:\r\n" +
+		final String m = "{1:F01FOOBARYYAXXX1234123456}{2:O1030811060227FOOBBSMMAXXX55529746000602270811N}{3:{113:NOMF}{108:0602021485081594}{119:STP}}{4:\r\n" +
 				":77E:\r\n" +
 				"ABCDEFG\r\n" +
 				"-}{5:{MAC:80C69B21}{CHK:63035B4672E0}}\r\n" +
@@ -523,7 +524,7 @@ public class SwiftParserTest {
 
 	@Test
 	public void testTag77Exceptions_3() throws Exception {
-		final String m = "{1:F01BICFOOYYAXXX1234123456}{2:O1030811060227FOOBBSMMAXXX55529746000602270811N}{3:{113:NOMF}{108:0602021485081594}{119:STP}}{4:\r\n" +
+		final String m = "{1:F01FOOBARYYAXXX1234123456}{2:O1030811060227FOOBBSMMAXXX55529746000602270811N}{3:{113:NOMF}{108:0602021485081594}{119:STP}}{4:\r\n" +
 				":77E::\r\n" +
 				":\r\n" +
 				"QWERTYU\r\n" +
@@ -537,7 +538,7 @@ public class SwiftParserTest {
 
 	@Test
 	public void testTag77Exceptions_4() throws Exception {
-		final String m = "{1:F01BICFOOYYAXXX1234123456}{2:O1030811060227FOOBBSMMAXXX55529746000602270811N}{3:{113:NOMF}{108:0602021485081594}{119:STP}}{4:\r\n" +
+		final String m = "{1:F01FOOBARYYAXXX1234123456}{2:O1030811060227FOOBBSMMAXXX55529746000602270811N}{3:{113:NOMF}{108:0602021485081594}{119:STP}}{4:\r\n" +
 				":77E:-\r\n" +
 				":\r\n" +
 				"ZXCVBNM\r\n" +
@@ -638,7 +639,6 @@ public class SwiftParserTest {
 		assertNotNull(msg);
 	}
 
-
 	@Test
 	public void testPatchWalterBirch() throws IOException {
 		final String fin = "{1:F01VONTCHZZAXXX7586415286}{2:I202CHASUS33XXXXN}{3:{108:129324618/1XXXXX}}{4:" + FINWriterVisitor.SWIFT_EOL +
@@ -714,7 +714,6 @@ public class SwiftParserTest {
 	public void testParserConfigurationCompare() throws IOException {
 		final SwiftParserConfiguration faster = new SwiftParserConfiguration();
 		faster.setParseTextBlock(false);
-		faster.setLenient(true);
 		final long t1a = parse(new SwiftParserConfiguration(), 1000);
 		final long t2a = parse(faster, 1000);
 		assertTrue(t1a > t2a);
@@ -747,7 +746,7 @@ public class SwiftParserTest {
 	}
 
 	String sample_535 =
-			"{1:F01ZZZZZZZZZZZG0387240778}{2:O5350029060914XXXXXXXXXXXX03549878070609140029N}{4:\n" +
+			"{1:F01FOOBARXXAXXX0387240778}{2:O5350029060914FOOBARXXXXXX03549878070609140029N}{4:\n" +
 					// sequence A - General Information
 					":16R:GENL\n" +
 					":28E:00005/MORE\n" +
@@ -1203,16 +1202,6 @@ public class SwiftParserTest {
 					"-}{5:{MAC:E19445CF}{CHK:D625798DFC51}}";
 
 	@Test
-	public void testLenientAck() throws Exception {
-		SwiftParser p = new SwiftParser();
-		final SwiftParserConfiguration config = new SwiftParserConfiguration();
-		config.setLenient(true);
-		config.setParseTextBlock(false);
-		config.setParseUserBlock(false);
-		p.setConfiguration(config);
-	}
-	
-	@Test
 	public void testFieldStartingWithColon() throws Exception {
 		final String val = "/PY/OSA PAYMENT/BN/FOO LIMITED/BN1/6/F,HONGCHANG PLAZA,N\n" +
 				":6542670O2001,/BN2/SHENNAN ROAD EAST,LUOHU DIST,/BN3/SHENZHEN,CHINA/BI/12\n" +
@@ -1363,8 +1352,7 @@ public class SwiftParserTest {
 				":72:/ACC/UR LIZO BBBB ))))))))::::::\n"+
 				"-}foo";
 		SwiftParser p = new SwiftParser(fin);
-		p.getConfiguration().setLenient(true);
-		SwiftMessage m = p. message();
+		SwiftMessage m = p.message();
 		assertFalse(m.getUnparsedTextsSize()==0);
 	}
 	
@@ -1392,7 +1380,6 @@ public class SwiftParserTest {
 			":72:/ACC/UR LIZO BBBB ))))))))::::::\n"+
 			"-}}}}}";
 		SwiftParser p = new SwiftParser(fin);
-		p.getConfiguration().setLenient(true);
 		SwiftMessage m = p. message();
 		assertFalse(m.getUnparsedTextsSize()==0);
 	}

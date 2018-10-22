@@ -1,68 +1,59 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.prowidesoftware.JsonSerializable;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.io.parser.SwiftParser;
+import com.prowidesoftware.swift.io.parser.SwiftParserConfiguration;
+import com.prowidesoftware.swift.io.parser.XMLParser;
+import com.prowidesoftware.swift.io.writer.SwiftWriter;
+import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
+import com.prowidesoftware.swift.model.field.*;
+import com.prowidesoftware.swift.model.mt.*;
+import com.prowidesoftware.swift.utils.IMessageVisitor;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.*;
 import java.util.logging.Level;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.prowidesoftware.JsonSerializable;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.builder.ToStringBuilder;
-
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.io.parser.SwiftParser;
-import com.prowidesoftware.swift.io.parser.XMLParser;
-import com.prowidesoftware.swift.io.writer.SwiftWriter;
-import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.mt.AbstractMT;
-import com.prowidesoftware.swift.model.mt.AckSystemMessage;
-import com.prowidesoftware.swift.model.mt.MTVariant;
-import com.prowidesoftware.swift.model.mt.MtCategory;
-import com.prowidesoftware.swift.model.mt.ServiceIdType;
-import com.prowidesoftware.swift.utils.IMessageVisitor;
-
 /**
- * <p>Base class for swift messages.<br />
- * This class is a generic data structure container for SWIFT messages.</p>
+ * Base class for swift messages.
+ *
+ * <p>This class is a generic data structure container for SWIFT messages.
  *
  * <p><em>This is a low level java representation of an MT. If you are looking for
- * a class more suitable to be persisted see {@link MtSwiftMessage}</em></p>
+ * a class more suitable to be persisted see {@link MtSwiftMessage}</em>
  *
  * <p>Instances of this class may have a list of unparsed texts (UnparsedTextList).
  * For easy access, methods have been created that first ensure the lists exists (the
- * real object is created and then call the base method).<br />
+ * real object is created and then call the base method).<br>
  * However, not all the base list methods have been implemented. If you need to use not
- * exposed functionality, retrieve the underlying list with (see getUnparsedTexts method).</p>
- *
- * @author www.prowidesoftware.com
+ * exposed functionality, retrieve the underlying list with (see getUnparsedTexts method).
  */
 public class SwiftMessage implements Serializable, JsonSerializable {
 	private static final long serialVersionUID = 8094995269559985432L;
@@ -70,6 +61,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftMessage.class.getName());
 
 	static final int JSON_VERSION = 2;
+	private static final String INVALID_NAME_BLOCK = "Invalid name for User Defined Blocks (";
+	private static final String MESSAGE_IS_NOT_A_FRAGMENT = "message is not a fragment";
 
 	/**
 	 * Block 1
@@ -90,6 +83,25 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * Block 4
 	 */
 	private SwiftBlock4 block4;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		SwiftMessage that = (SwiftMessage) o;
+		return Objects.equals(block1, that.block1) &&
+				Objects.equals(block2, that.block2) &&
+				Objects.equals(block3, that.block3) &&
+				Objects.equals(block4, that.block4) &&
+				Objects.equals(block5, that.block5) &&
+				Objects.equals(userBlocks, that.userBlocks) &&
+				Objects.equals(unparsedTexts, that.unparsedTexts);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(block1, block2, block3, block4, block5, userBlocks, unparsedTexts);
+	}
 
 	/**
 	 * Block 5
@@ -130,24 +142,23 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Constructor that initializes blocks
-	 * TODO document hibernate didn't work
-	 * @param initBlocks when <code>false</code> the message will not have any blocks when constructed, if <code>true</code> blocks are created, just like with default constructor
+	 * @param initBlocks when false the message will not have any blocks when constructed, if true blocks are created, just like with default constructor
 	 */
 	public SwiftMessage(final boolean initBlocks) {
 		super();
 		if (initBlocks) {
-			addBlock(new SwiftBlock1());
-			addBlock(new SwiftBlock2Input());
-			addBlock(new SwiftBlock3());
-			addBlock(new SwiftBlock4());
-			addBlock(new SwiftBlock5());
-			this.userBlocks = new ArrayList<SwiftBlockUser>();
+			this.block1 = new SwiftBlock1();
+			this.block2 = new SwiftBlock2Input();
+			this.block3 = new SwiftBlock3();
+			this.block4 = new SwiftBlock4();
+			this.block5 = new SwiftBlock5();
+			this.userBlocks = new ArrayList<>();
 		}
 	}
 
 	/**
 	 * Constructor for an unparsed text list that initializes blocks
-	 * @param initBlocks when <code>false</code> the message will not have any blocks when constructed, if <code>true</code> blocks are created, just like with default consturctor
+	 * @param initBlocks when false the message will not have any blocks when constructed, if true blocks are created, just like with default consturctor
 	 * @param unparsedText the list of unparsed texts
 	 * @see SwiftMessage#SwiftMessage()
 	 */
@@ -176,10 +187,17 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Parses a the string content into a SwiftMessage. 
-	 * If the file contains more than a message it will parse the first one. 
+	 *
+	 * <p>If the file contains more than a message it will parse the first one.
 	 * If the string is empty, does not contain any MT message, the message type is not set or 
 	 * an error occurs reading and parsing the message content; this method returns null.
-	 * 
+	 *
+	 * <p>The implementation uses the default parser behaviour which is lenient and will do a best effort to
+	 * read as much from the message content as possible regardless of the content and block boundaries
+	 * beeing valid or not. For instance, it will read the headers even if the value length is incorrect,
+	 * and it will read the text block (block 4) even if it is missing the closing hyphen and bracket. For
+	 * more options check {@link SwiftParser#setConfiguration(SwiftParserConfiguration)}
+	 *
 	 * @param fin string a string containing a swift MT message
 	 * @return parser message or null if string content could not be parsed
 	 * @throws IOException
@@ -230,15 +248,12 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * Add a block to this message.
 	 * <p>Notes: on user blocks, no checks are done, on swift blocks, block number
-	 * must be non null and have a value from 1-5 both inclusive</p>
+	 * must be non null and have a value from 1-5 both inclusive
 	 *
-	 * @param b the block to add, may be <code>null</code> in which case nothing happens
-	 * @throws IllegalArgumentException <code>b</code> is <code>null</code> or the method getInt in the block returns a value out of range (non user blocks)
+	 * @param b the block to add, may be null in which case nothing happens
+	 * @throws IllegalArgumentException b is null or the method getInt in the block returns a value out of range (non user blocks)
 	 */
 	public void addBlock(final SwiftBlock b) {
-		if (log.isLoggable(Level.FINEST)) {
-			log.finest("Add block " + b);
-		}
 		Validate.notNull(b);
 
 		// support for user blocks in this method is useful for XML parser and other code that
@@ -276,32 +291,32 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * Attempt to identify the current message type (MT).
 	 *
 	 * @param type must be a valid registered handler id
-	 * @return <code>true</code> if this message is successfully identified as the given MT and <code>false</code> in other case	 *
-	 * @throws IllegalArgumentException if parameter type is <code>null</code> or not a valid type (i.e: 3 chars len)
+	 * @return true if this message is successfully identified as the given MT and false in other case	 *
+	 * @throws IllegalArgumentException if parameter type is null or not a valid type (i.e: 3 chars len)
 	 * @see SwiftBlock2#getMessageType()
 	 * @see #getType()
 	 * 
 	 * @deprecated this method has been deprecated in favor of {@link #isType(int)} which provides a safer API just passing an int number for the message type
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear._2018)
+    @ProwideDeprecated(phase3=TargetYear._2019)
 	public boolean isMT(final String type) {
+		DeprecationUtils.phase2(getClass(), "isMT(String)", "Use isType(int) instead.");
 		// sanity check
 		Validate.notNull(type);
 		Validate.isTrue(type.length() == 3, "The string must be exactly 3 chars size (type=" + type + ")");
-
 		return getType() != null && getType().equals(type);
 	}
 
 	/**
 	 * Tell the message type associated with this object if a block 2 is present.
 	 *
-	 * @return a String containing the SWIFT numeric code for the message types or <code>null</code> if the message does not have a block 2.
+	 * @return a String containing the SWIFT numeric code for the message types or null if the message does not have a block 2.
 	 * @see SwiftBlock2#getMessageType()
 	 */
 	public String getType() {
-		if (getBlock2() != null) {
-			return getBlock2().getMessageType();
+		if (this.block2 != null) {
+			return this.block2.getMessageType();
 		} else {
 			return null;
 		}
@@ -312,7 +327,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * This is a simple implementation of the visitor pattern.
 	 *
 	 * @param visitor the visitor to use
-	 * @throws IllegalArgumentException if parameter visitor is <code>null</code>
+	 * @throws IllegalArgumentException if parameter visitor is null
 	 * @see SwiftWriter#writeMessage(SwiftMessage, java.io.Writer)
 	 */
 	public void visit(final IMessageVisitor visitor) {
@@ -322,7 +337,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		visitor.startMessage(this);
 
 		// visit block 1 and value
-		final SwiftBlock1 b1 = getBlock1();
+		final SwiftBlock1 b1 = this.block1;
 		if (b1 != null) {
 			visitor.startBlock1(b1);
 			visitor.value(b1, b1.getValue());
@@ -330,28 +345,28 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		}
 
 		// visit block 2 and value
-		final SwiftBlock2 b2 = getBlock2();
+		final SwiftBlock2 b2 = this.block2;
 		if (b2 != null) {
 			visitor.startBlock2(b2);
 			visitor.value(b2, b2.getValue());
 			visitor.endBlock2(b2);
 		}
 
-		final SwiftBlock3 b3 = getBlock3();
+		final SwiftBlock3 b3 = this.block3;
 		if (b3 != null) {
 			visitor.startBlock3(b3);
 			visit(b3, visitor);
 			visitor.endBlock3(b3);
 		}
 
-		final SwiftBlock4 b4 = getBlock4();
+		final SwiftBlock4 b4 = this.block4;
 		if (b4 != null) {
 			visitor.startBlock4(b4);
 			visit(b4, visitor);
 			visitor.endBlock4(b4);
 		}
 
-		final SwiftBlock5 b5 = getBlock5();
+		final SwiftBlock5 b5 = this.block5;
 		if (b5 != null) {
 			visitor.startBlock5(b5);
 			visit(b5, visitor);
@@ -364,7 +379,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 			// visit every user defined block
 			for (int i = 0; i < this.userBlocks.size(); i++) {
 
-				final SwiftBlockUser userBlock = (SwiftBlockUser) this.userBlocks.get(i);
+				final SwiftBlockUser userBlock = this.userBlocks.get(i);
 				if (userBlock != null) {
 					visitor.startBlockUser(userBlock);
 					visit(userBlock, visitor);
@@ -381,11 +396,11 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * Visit a Block 3 (SwiftBlock3), i.e: call the tag method for block 3
 	 * This method is called from {@link #visit(IMessageVisitor)} but may be used independently, in such case,
 	 * the startBlockX and endBlockX in the visitor will not be called.
-	 * <p>To serialize in SWIFT native format with block boundaries check {@link SwiftWriter#writeBlock3(SwiftBlock3, java.io.Writer)}</p>
+	 * <p>To serialize in SWIFT native format with block boundaries check {@link SwiftWriter#writeBlock3(SwiftBlock3, java.io.Writer)}
 	 *
 	 * @param block the block containing the tags to visit
 	 * @param visitor the visitor to use
-	 * @throws IllegalArgumentException if parameter block or visitor are <code>null</code>
+	 * @throws IllegalArgumentException if parameter block or visitor are null
 	 *
 	 * @since 5.0
 	 */
@@ -404,11 +419,11 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * Visit a Block 4 (SwiftBlock4), i.e: call the tag method for block 4
 	 * This method is called from {@link #visit(IMessageVisitor)} but may be used independently, in such case,
 	 * the startBlockX and endBlockX in the visitor will not be called.
-	 * <p>To serialize in SWIFT native format with block boundaries check {@link SwiftWriter#writeBlock4(SwiftBlock4, java.io.Writer)}</p>
+	 * <p>To serialize in SWIFT native format with block boundaries check {@link SwiftWriter#writeBlock4(SwiftBlock4, java.io.Writer)}
 	 *
 	 * @param block the block containing the tags to visit
 	 * @param visitor the visitor to use
-	 * @throws IllegalArgumentException if parameter block or visitor are <code>null</code>
+	 * @throws IllegalArgumentException if parameter block or visitor are null
 	 *
 	 * @since 5.0
 	 */
@@ -419,7 +434,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 		// iterate thru tags
 		for (final Iterator<Tag> it = block.tagIterator(); it.hasNext();) {
-			final Tag t = (Tag) it.next();
+			final Tag t = it.next();
 			visitor.tag(block, t);
 		}
 	}
@@ -428,11 +443,11 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * Visit a Block 5 (SwiftBlock5), i.e: call the tag method for block 4
 	 * This method is called from {@link #visit(IMessageVisitor)} but may be used independently, in such case,
 	 * the startBlockX and endBlockX in the visitor will not be called.
-	 * <p>To serialize in SWIFT native format with block boundaries check {@link SwiftWriter#writeBlock5(SwiftBlock5, java.io.Writer)}</p>
+	 * <p>To serialize in SWIFT native format with block boundaries check {@link SwiftWriter#writeBlock5(SwiftBlock5, java.io.Writer)}
 	 *
 	 * @param block the block containing the tags to visit
 	 * @param visitor the visitor to use
-	 * @throws IllegalArgumentException if parameter block or visitor are <code>null</code>
+	 * @throws IllegalArgumentException if parameter block or visitor are null
 	 *
 	 * @since 5.0
 	 */
@@ -443,7 +458,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 		// iterate thru tags
 		for (final Iterator<Tag> it = block.tagIterator(); it.hasNext();) {
-			final Tag t = (Tag) it.next();
+			final Tag t = it.next();
 			visitor.tag(block, t);
 		}
 	}
@@ -455,7 +470,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 *
 	 * @param block the block containing the tags to visit
 	 * @param visitor the visitor to use
-	 * @throws IllegalArgumentException if parameter block or visitor are <code>null</code>
+	 * @throws IllegalArgumentException if parameter block or visitor are null
 	 *
 	 * @since 5.0
 	 */
@@ -467,7 +482,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		// iterate thru tags
 		for (final Iterator<Tag> it = block.tagIterator(); it.hasNext();) {
 
-			final Tag t = (Tag) it.next();
+			final Tag t = it.next();
 			visitor.tag(block, t);
 		}
 	}
@@ -500,7 +515,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Get the number of blocks in this message, optionally including the user blocks.<br>
-	 * A block is summed if it is not <code>null</code> and is not empty.
+	 * A block is summed if it is not null and is not empty.
 	 * <b><em>NOTE: that isEmpty() will be called in each block, the behavior of isEmpty is block
 	 * dependent</em></b>
 	 *
@@ -517,19 +532,19 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 		// count the basic blocks
 		int count = 0;
-		if (this.block1 != null && !getBlock1().isEmpty()) {
+		if (this.block1 != null && !this.block1.isEmpty()) {
 			count++;
 		}
-		if (this.block2 != null && !getBlock2().isEmpty()) {
+		if (this.block2 != null && !this.block2.isEmpty()) {
 			count++;
 		}
-		if (this.block3 != null && !getBlock3().isEmpty()) {
+		if (this.block3 != null && !this.block3.isEmpty()) {
 			count++;
 		}
-		if (this.block4 != null && !getBlock4().isEmpty()) {
+		if (this.block4 != null && !this.block4.isEmpty()) {
 			count++;
 		}
-		if (this.block5 != null && !getBlock5().isEmpty()) {
+		if (this.block5 != null && !this.block5.isEmpty()) {
 			count++;
 		}
 
@@ -542,8 +557,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * Get block number 1 of this message, may be <code>null</code> if not set
-	 * @return the block 1 of the message or <code>null</code>
+	 * Get block number 1 of this message, may be null if not set
+	 * @return the block 1 of the message or null
 	 */
 	public SwiftBlock1 getBlock1() {
 		return this.block1;
@@ -558,8 +573,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * Get block number 2 of this message, may be <code>null</code> if not set
-	 * @return the block 2 of the message or <code>null</code>
+	 * Get block number 2 of this message, may be null if not set
+	 * @return the block 2 of the message or null
 	 */
 	public SwiftBlock2 getBlock2() {
 		return this.block2;
@@ -574,8 +589,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * Get block number 3 of this message, may be <code>null</code> if not set
-	 * @return the block 3 of the message or <code>null</code>
+	 * Get block number 3 of this message, may be null if not set
+	 * @return the block 3 of the message or null
 	 */
 	public SwiftBlock3 getBlock3() {
 		return this.block3;
@@ -590,8 +605,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * Get block number 4 of this message, may be <code>null</code> if not set
-	 * @return the block 4 of the message or <code>null</code>
+	 * Get block number 4 of this message, may be null if not set
+	 * @return the block 4 of the message or null
 	 */
 	public SwiftBlock4 getBlock4() {
 		return this.block4;
@@ -606,8 +621,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * Get block number 5 of this message, may be <code>null</code> if not set
-	 * @return the block 5 of the message or <code>null</code>
+	 * Get block number 5 of this message, may be null if not set
+	 * @return the block 5 of the message or null
 	 */
 	public SwiftBlock5 getBlock5() {
 		return this.block5;
@@ -624,7 +639,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * Finds the position of a given User Defined Block in the internal list
 	 * @param blockName the block name to find may be empty or null, in which case this method does nothing
-	 * @return the position or <code>-1</code> if not found
+	 * @return the position or -1 if not found
 	 *
 	 * @since 5.0
 	 */
@@ -648,7 +663,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Get the list of List of {@link SwiftBlockUser} user defined blocks.
-	 * The requested object may be <code>null</code> if the message was cleared or not initialized.
+	 * The requested object may be null if the message was cleared or not initialized.
 	 *
 	 * @return the list or user blocks or null
 	 * @since 5.0
@@ -662,7 +677,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * This method is mainly needed for persistence services.
 	 *
 	 * @param userBlocks the new list of user defined blocks
-	 * @throws IllegalArgumentException if parameter userBlocks is <code>null</code>
+	 * @throws IllegalArgumentException if parameter userBlocks is null
 	 * @throws IllegalArgumentException if parameter userBlocks has elements of class other than SwiftBlockUser
 	 * @since 5.0
 	 * @see SwiftBlockUser
@@ -670,18 +685,17 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	protected void setUserBlocks(final List<SwiftBlockUser> userBlocks) {
 		// sanity check
 		Validate.notNull(userBlocks, "parameter 'userBlocks' cannot be null");
-		Validate.allElementsOfType(userBlocks, SwiftBlockUser.class, "parameter 'userBlocks' may only have SwiftBlockUser elements");
 
 		// setup the new list
 		this.userBlocks = userBlocks;
 	}
 
 	/**
-	 * Get a user defined block by name, may be <code>null</code> if not set
+	 * Get a user defined block by name, may be null if not set
 	 *
 	 * @param blockName the name of the block to find
-	 * @return the requested user defined block or <code>null</code>
-	 * @throws IllegalArgumentException if parameter blockName is <code>null</code>
+	 * @return the requested user defined block or null
+	 * @throws IllegalArgumentException if parameter blockName is null
 	 * @throws IllegalArgumentException if parameter blockName has an invalid block name
 	 * @since 5.0
 	 */
@@ -692,18 +706,18 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		// find the block position
 		final int pos = getUserBlockPosition(blockName);
 		if (pos != -1) {
-			return (SwiftBlockUser) this.userBlocks.get(pos);
+			return this.userBlocks.get(pos);
 		}
 
 		return null;
 	}
 
 	/**
-	 * Get a user defined block by number, may be <code>null</code> if not set
+	 * Get a user defined block by number, may be null if not set
 	 *
 	 * @param blockNumber the number of the block to find
-	 * @return the requested user defined block or <code>null</code>
-	 * @throws IllegalArgumentException if parameter userBlock is <code>null</code>
+	 * @return the requested user defined block or null
+	 * @throws IllegalArgumentException if parameter userBlock is null
 	 * @throws IllegalArgumentException if parameter userBlock has an invalid block name
 	 *
 	 * @since 5.0
@@ -718,14 +732,14 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * Add a user defined block to the message (if the block already exists, it is replaced)
 	 * @param userBlock the user defined block
-	 * @throws IllegalArgumentException if parameter userBlock is <code>null</code>
+	 * @throws IllegalArgumentException if parameter userBlock is null
 	 * @throws IllegalArgumentException if parameter userBlock has an invalid block name
 	 * @since 5.0
 	 */
 	public void addUserBlock(final SwiftBlockUser userBlock) {
 		// sanity check
 		Validate.notNull(userBlock);
-		Validate.isTrue(userBlock.isValidName().booleanValue(), "Invalid name for User Defined Blocks (" + userBlock.getName() + ")");
+		Validate.isTrue(userBlock.isValidName().booleanValue(), INVALID_NAME_BLOCK + userBlock.getName() + ")");
 
 		if (this.userBlocks == null) {
 			this.userBlocks = new ArrayList<SwiftBlockUser>();
@@ -743,7 +757,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * removes a user defined block to the message (if the block does not exists, nothing is done)
 	 * @param blockNumber the block number to remove
-	 * @throws IllegalArgumentException if parameter blockNumber is <code>null</code>
+	 * @throws IllegalArgumentException if parameter blockNumber is null
 	 * @throws IllegalArgumentException if parameter blockNumber is invalid
 	 * @since 5.0
 	 * @see SwiftBlockUser#isValidName(Integer)
@@ -751,7 +765,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	public void removeUserBlock(final Integer blockNumber) {
 		// sanity check
 		Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-		Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), "Invalid name for User Defined Blocks (" + blockNumber.toString() + ")");
+		Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), INVALID_NAME_BLOCK + blockNumber.toString() + ")");
 
 		this.removeUserBlock(blockNumber.toString());
 	}
@@ -759,14 +773,14 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * removes a user defined block to the message (if the block does not exists, nothing is done)
 	 * @param blockName the block name to remove
-	 * @throws IllegalArgumentException if parameter blockName is <code>null</code>
+	 * @throws IllegalArgumentException if parameter blockName is null
 	 * @throws IllegalArgumentException if parameter blockName is invalid
 	 * @since 5.0
 	 */
 	public void removeUserBlock(final String blockName) {
 		// sanity check
 		Validate.notNull(blockName, "parameter 'blockName' cannot be null");
-		Validate.isTrue(SwiftBlockUser.isValidName(blockName).booleanValue(), "Invalid name for User Defined Blocks (" + blockName + ")");
+		Validate.isTrue(SwiftBlockUser.isValidName(blockName).booleanValue(), INVALID_NAME_BLOCK + blockName + ")");
 
 		// find the block position (if it's there)
 		final int pos = getUserBlockPosition(blockName);
@@ -798,7 +812,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 */
 	public Boolean isFragment() {
 		// get the block 4 (if exists)
-		final SwiftBlock4 b4 = this.getBlock4();
+		final SwiftBlock4 b4 = this.block4;
 		if (b4 != null) {
 			final String t202 = b4.getTagValue("202");
 			final String t203 = b4.getTagValue("203");
@@ -841,15 +855,14 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		}
 
 		// get the block 4 and tag 203 (they BOTH exists here)
-		final SwiftBlock4 b4 = this.getBlock4();
-		final String t203 = b4.getTagValue("203");
+		final String t203 = this.block4.getTagValue("203");
 
 		// process the number
 		Integer _t203;
 		try {
 			_t203 = new Integer(Integer.parseInt(t203, 10));
 		} catch (final NumberFormatException nfe) {
-			throw new UnsupportedOperationException("message is not a fragment");
+			throw new UnsupportedOperationException(MESSAGE_IS_NOT_A_FRAGMENT);
 		}
 
 		return _t203;
@@ -865,19 +878,18 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	public Integer fragmentNumber() {
 		// if this is not a fragment => 0
 		if (!this.isFragment().booleanValue()) {
-			throw new UnsupportedOperationException("message is not a fragment");
+			throw new UnsupportedOperationException(MESSAGE_IS_NOT_A_FRAGMENT);
 		}
 
 		// get the block 4 and tag 203 (they BOTH exists here)
-		final SwiftBlock4 b4 = this.getBlock4();
-		final String t202 = b4.getTagValue("202");
+		final String t202 = this.block4.getTagValue("202");
 
 		// process the number
 		Integer _t202;
 		try {
 			_t202 = new Integer(Integer.parseInt(t202, 10));
 		} catch (final NumberFormatException nfe) {
-			throw new UnsupportedOperationException("message is not a fragment");
+			throw new UnsupportedOperationException(MESSAGE_IS_NOT_A_FRAGMENT);
 		}
 
 		return _t202;
@@ -927,7 +939,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * base implementation methods.
 	 * @param index the unparsed text number
 	 * @return true if the unparsed text at position index is a full SWIFT message
-	 * @throws IllegalArgumentException if parameter index is <code>null</code>
+	 * @throws IllegalArgumentException if parameter index is null
 	 * @throws IndexOutOfBoundsException if parameter index is out of bounds
 	 */
 	public Boolean unparsedTextIsMessage(final Integer index) {
@@ -940,7 +952,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * get an unparsed text
 	 * @param index the unparsed text number
 	 * @return the requested text
-	 * @throws IllegalArgumentException if parameter index is <code>null</code>
+	 * @throws IllegalArgumentException if parameter index is null
 	 * @throws IndexOutOfBoundsException if parameter index is out of bounds
 	 */
 	public String unparsedTextGetText(final Integer index) {
@@ -953,7 +965,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * get an unparsed text as a parsed swift message
 	 * @param index the unparsed text number
 	 * @return the unparsed text at position index parsed into a SwiftMessage object
-	 * @throws IllegalArgumentException if parameter index is <code>null</code>
+	 * @throws IllegalArgumentException if parameter index is null
 	 */
 	public SwiftMessage unparsedTextGetAsMessage(final Integer index) {
 		// create the list if needed
@@ -964,7 +976,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * adds a new unparsed text
 	 * @param text the unparsed text to append
-	 * @throws IllegalArgumentException if parameter text is <code>null</code>
+	 * @throws IllegalArgumentException if parameter text is null
 	 */
 	public void unparsedTextAddText(final String text) {
 		// create the list if needed
@@ -975,7 +987,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * adds a new unparsed text from a message
 	 * @param message the message to be appended
-	 * @throws IllegalArgumentException if parameter message is <code>null</code>
+	 * @throws IllegalArgumentException if parameter message is null
 	 */
 	public void unparsedTextAddText(final SwiftMessage message) {
 		// create the list if needed
@@ -983,97 +995,36 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		this.unparsedTexts.addText(message);
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((block1 == null) ? 0 : block1.hashCode());
-		result = prime * result + ((block2 == null) ? 0 : block2.hashCode());
-		result = prime * result + ((block3 == null) ? 0 : block3.hashCode());
-		result = prime * result + ((block4 == null) ? 0 : block4.hashCode());
-		result = prime * result + ((block5 == null) ? 0 : block5.hashCode());
-		result = prime * result + ((unparsedTexts == null) ? 0 : unparsedTexts.hashCode());
-		result = prime * result + ((userBlocks == null) ? 0 : userBlocks.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SwiftMessage other = (SwiftMessage) obj;
-		if (block1 == null) {
-			if (other.block1 != null)
-				return false;
-		} else if (!block1.equals(other.block1))
-			return false;
-		if (block2 == null) {
-			if (other.block2 != null)
-				return false;
-		} else if (!block2.equals(other.block2))
-			return false;
-		if (block3 == null) {
-			if (other.block3 != null)
-				return false;
-		} else if (!block3.equals(other.block3))
-			return false;
-		if (block4 == null) {
-			if (other.block4 != null)
-				return false;
-		} else if (!block4.equals(other.block4))
-			return false;
-		if (block5 == null) {
-			if (other.block5 != null)
-				return false;
-		} else if (!block5.equals(other.block5))
-			return false;
-		if (unparsedTexts == null) {
-			if (other.unparsedTexts != null)
-				return false;
-		} else if (!unparsedTexts.equals(other.unparsedTexts))
-			return false;
-		if (userBlocks == null) {
-			if (other.userBlocks != null)
-				return false;
-		} else if (!userBlocks.equals(other.userBlocks))
-			return false;
-		return true;
-	}
-
 	/**
 	 * Checks if the message is a cover payment, based on the content of the User Header (block3).
-	 * @return <code>true</code> if 119:COV is found at User Header (block3)
+	 * @return true if 119:COV is found at User Header (block3)
 	 */
 	public boolean isCOV() {
 		if (this.block3 != null) {
-			return this.block3.containsTag(new Tag("119", "COV"));
+			return this.block3.containsTag(Field119.tag(MTVariant.COV.name()));
 		}
 		return false;
 	}
 
 	/**
 	 * Checks if the message is Straight Through Processing (STP), based on the content of the User Header (block3).
-	 * @return <code>true</code> if 119:STP is found at User Header (block3)
+	 * @return true if 119:STP is found at User Header (block3)
 	 */
 	public boolean isSTP() {
 		if (this.block3 != null) {
-			return this.block3.containsTag(new Tag("119", "STP"));
+			return this.block3.containsTag(Field119.tag(MTVariant.STP.name()));
 		}
 		return false;
 	}
 
 	/**
 	 * Checks if the message is a remit, based on the content of the User Header (block3).
-	 * @return <code>true</code> if 119:REMIT is found at User Header (block3)
+	 * @return true if 119:REMIT is found at User Header (block3)
 	 * @since 7.7
 	 */
 	public boolean isREMIT() {
 		if (this.block3 != null) {
-			return this.block3.containsTag(new Tag("119", "REMIT"));
+			return this.block3.containsTag(Field119.tag(MTVariant.REMIT.name()));
 		}
 		return false;
 	}
@@ -1081,18 +1032,18 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * Gets the message sender BIC from the message headers.
 	 * <p>For outgoing messages this is the the logical terminal at block 1,
-	 * and for incoming messages this is logical terminal at the MIR of block 2.</p>
-	 * <p>for service message (example acknowledges) always returns the logical terminal from block1</p>
+	 * and for incoming messages this is logical terminal at the MIR of block 2.
+	 * <p>for service message (example acknowledges) always returns the logical terminal from block1
 	 *
-	 * @return the proper sender address or <code>null</code> if blocks 1 or 2 are not found or incomplete
+	 * @return the proper sender address or null if blocks 1 or 2 are not found or incomplete
 	 */
 	public String getSender() {
 		try {
 			if (isServiceMessage() || getDirection() == MessageIOType.outgoing) {
-				return getBlock1() == null ? null : getBlock1().getLogicalTerminal();
+				return this.block1 == null ? null : this.block1.getLogicalTerminal();
 			} else if (getDirection() == MessageIOType.incoming) {
-				if (getBlock2() != null) {
-					return ((SwiftBlock2Output) getBlock2()).getMIRLogicalTerminal();
+				if (this.block2 != null) {
+					return ((SwiftBlock2Output) this.block2).getMIRLogicalTerminal();
 				}
 			}
 		} catch (final Exception e) {
@@ -1104,19 +1055,19 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * Gets the message receiver BIC from the message headers.
 	 * <p>For outgoing messages this is the receiver address at block 2,
-	 * and for incoming messages this is logical terminal at block 1.</p>
-	 * <p>for service message (example acknowledges) always returns null</p>
+	 * and for incoming messages this is logical terminal at block 1.
+	 * <p>for service message (example acknowledges) always returns null
 	 * 
-	 * @return the proper receiver address or <code>null</code> if blocks 1 or 2 are not found or incomplete
+	 * @return the proper receiver address or null if blocks 1 or 2 are not found or incomplete
 	 */
 	public String getReceiver() {
 		try {
 			if (isServiceMessage()) {
 				return null;
 			} else if (getDirection() == MessageIOType.incoming) {
-				return getBlock1().getLogicalTerminal();
+				return this.block1.getLogicalTerminal();
 			} else if (getDirection() == MessageIOType.outgoing) {
-				return ((SwiftBlock2Input) getBlock2()).getReceiverAddress();
+				return ((SwiftBlock2Input) this.block2).getReceiverAddress();
 			} else {
 				return null;
 			}
@@ -1132,13 +1083,13 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 *
 	 * @param names list of names to add in fields to search
 	 * @return a list with fields matching the given names. an empty list if none found
-	 * @throws IllegalArgumentException if names is <code>null</code>
+	 * @throws IllegalArgumentException if names is null
 	 */
 	public List<Field> fields (final String ... names) {
 		Validate.notNull(names, "names is null");
-		final List<Field>result = new ArrayList<Field>();
+		final List<Field>result = new ArrayList<>();
 		for (final String n:names) {
-			final Tag[] tl = getBlock4().getTagsByName(n);
+			final Tag[] tl = this.block4.getTagsByName(n);
 			if (tl != null && tl.length>0) {
 				for (final Tag t:tl) {
 					result.add(t.getField());
@@ -1153,25 +1104,25 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 6.4
 	 */
 	public void removeEmptyBlocks() {
-		if (this.block1 != null && getBlock1().isEmpty()) {
+		if (this.block1 != null && this.block1.isEmpty()) {
 			this.block1 = null;
 		}
-		if (this.block2 != null && getBlock2().isEmpty()) {
+		if (this.block2 != null && this.block2.isEmpty()) {
 			this.block2 = null;
 		}
-		if (this.block3 != null && getBlock3().isEmpty()) {
+		if (this.block3 != null && this.block3.isEmpty()) {
 			this.block3 = null;
 		}
-		if (this.block4 != null && getBlock4().isEmpty()) {
+		if (this.block4 != null && this.block4.isEmpty()) {
 			this.block4 = null;
 		}
-		if (this.block5 != null && getBlock5().isEmpty()) {
+		if (this.block5 != null && this.block5.isEmpty()) {
 			this.block5 = null;
 		}
 	}
 
 	/**
-	 * get message type as an int or -1 if an error occurs or it is not set
+	 * Gets message type as an int or -1 if an error occurs or it is not set
 	 * @return the message type number or -1 if the message type is invalid or block 2 not present (for instance if the message is a service message)
 	 * @since 6.4.1
 	 */
@@ -1250,7 +1201,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 7.0
 	 */
 	public String getPDE() {
-		return getBlock5() != null? getBlock5().getTagValue("PDE") : null;
+		return this.block5 != null? this.block5.getTagValue("PDE") : null;
 	}
 
 	/**
@@ -1258,7 +1209,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 7.0
 	 */
 	public String getPDM() {
-		return getBlock5() != null? getBlock5().getTagValue("PDM") : null;
+		return this.block5 != null? this.block5.getTagValue("PDM") : null;
 	}
 
 	/**
@@ -1269,9 +1220,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 7.0
 	 */
 	public String getMIR() {
-		if (getBlock2() != null && getBlock2().isOutput()) {
-			final SwiftBlock2Output b2 = (SwiftBlock2Output) getBlock2();
-			return b2.getMIR();
+		if (this.block2 != null && this.block2.isOutput()) {
+			return ((SwiftBlock2Output) this.block2).getMIR();
 		} else {
 			return null;
 		}
@@ -1282,11 +1232,11 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * The MUR is the Message User Reference used by applications for reconciliation with ACK.
 	 * <p>The MUR is a free-format field in which users may specify their own reference
 	 * of up to 16 characters of the permitted character set, and it is contained
-	 * in a 108 field at the message user header (block 3).</p>
+	 * in a 108 field at the message user header (block 3).
 	 * @since 7.0
 	 */
 	public String getMUR() {
-		return getBlock3() != null? getBlock3().getTagValue("108") : null;
+		return this.block3 != null? this.block3.getTagValue(Field108.NAME) : null;
 	}
 
 	/**
@@ -1301,7 +1251,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * 
 	 * <p>Notice despite the name this identifier is unique only in the context of a specific message management platform,
 	 * since all its values could be repeated from one installation to another. To make it completely unique in your
-	 * application context, consider using {@link #getUUID(Calendar, Long)}</p>
+	 * application context, consider using {@link #getUID(Calendar, Long)}
 	 * @since 7.0
 	 */
 	public String getUUID() {
@@ -1325,7 +1275,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * 
 	 * <p>The suffix is a system-generated value that can help uniquely identify a message. The suffix generated by this method is similar to the suffix
 	 * used by SWIFT Alliance Lite. The first part is the creation date of the message in YYMMDD format, a six-digit number. The second part consists of 
-	 * 1-10 left padded digit number generated from the container application/system incremental identifier.</p>
+	 * 1-10 left padded digit number generated from the container application/system incremental identifier.
 	 * 
 	 * @param created optional creation date, if provided, the YYMMDD will be appended as first part of the suffix
 	 * @param id optional incremental identifier number from the application, if provided it will be appended as second part of the suffix
@@ -1356,10 +1306,10 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * return first results of fields() or <code>null</code> if none
+	 * return first results of fields() or null if none
 	 * @param name
 	 * @see #fields(String...)
-	 * @return <code>null</code> if not found
+	 * @return null if not found
 	 */
 	public Field field(final String name) {
 		final List<Field> l = fields(name);
@@ -1371,28 +1321,26 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Checks if the message is linked to other message based on the presence of a LINK sequence.
-	 * @return true if the message has a LINK sequence, false if it hasn't, and <code>null</code> if cannot determine
+	 * @return true if the message has a LINK sequence, false if it hasn't, and null if cannot determine
 	 *
 	 * @since 7.4
 	 */
 	public Boolean isLinked() {
-		final SwiftBlock4 b4 = this.getBlock4();
-		if (b4 != null) {
-			return !b4.getSubBlock("LINK").isEmpty();
+		if (this.block4 != null) {
+			return !this.block4.getSubBlock("LINK").isEmpty();
 		}
 		return null;
 	}
 
 	/**
 	 * Return the message's LINK sequences if any.
-	 * @return a block containing the found linkage sequences or <code>null</code> if cannot determine
+	 * @return a block containing the found linkage sequences or null if cannot determine
 	 *
 	 * @since 7.4
 	 */
 	public List<SwiftTagListBlock> getLinkages() {
-		final SwiftBlock4 b4 = this.getBlock4();
-		if (b4 != null) {
-			return b4.getSubBlocks("LINK");
+		if (this.block4 != null) {
+			return this.block4.getSubBlocks("LINK");
 		}
 		return null;
 	}
@@ -1403,7 +1351,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * <p>This implementation has been replaced by version 2, based on Gson.
 	 * The main difference is in block4 where the new version serializes the list
 	 * of Tag under a field named "tags", and in block 2 where the direction (I/O)
-     * has been explicitly added.</p>
+	 * has been explicitly added.
 	 *
 	 * @deprecated use {@link #toJson()} instead
 	 * @since 7.9.8
@@ -1470,12 +1418,12 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Get a json representation of this object.
-	 * <br />
+	 * <br>
 	 * Generated JSON string will contain additional properties with
 	 * version number and timestamp, while the actual SwiftMessage
-	 * serialization is put into a data element.<br />
+	 * serialization is put into a data element.<br>
 	 * 
-	 * Example:<br />
+	 * Example:<br>
 	 * <pre>
 	 * { "version": 2, "timestamp": "2016-08-26T23:57:36Z", data": {
 	 * "block1": {
@@ -1509,11 +1457,11 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 */
 	@Override
 	public String toJson() {
-		final GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(SwiftMessage.class, new SwiftMessageAdapter());
-		gsonBuilder.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter());
-		gsonBuilder.setPrettyPrinting();
-		final Gson gson = gsonBuilder.create();
+		final Gson gson = new GsonBuilder()
+			.registerTypeAdapter(SwiftMessage.class, new SwiftMessageAdapter())
+			.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter())
+			.setPrettyPrinting()
+			.create();
 		return gson.toJson(this);
 	}
 
@@ -1524,15 +1472,15 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 7.9.8
 	 */
 	public static SwiftMessage fromJson(String json){
-		final GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(SwiftMessage.class, new SwiftMessageAdapter());
-		gsonBuilder.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter());
-		final Gson gson = gsonBuilder.create();
+		final Gson gson = new GsonBuilder()
+			.registerTypeAdapter(SwiftMessage.class, new SwiftMessageAdapter())
+			.registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter())
+			.create();
 		return gson.fromJson(json,SwiftMessage.class);
 	}
 
 	/**
-	 * Gets a proprietary XML representation of this message.<br />
+	 * Gets a proprietary XML representation of this message.<br>
  	 * Notice: it is neither a standard nor the MX version of this MT.
 	 * @see XMLWriterVisitor
 	 * @see XMLParser
@@ -1562,9 +1510,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * Get the MTxxx instance that corresponds to the current message type.
 	 * <p>If you have a MT102 in a SwiftMessage, this method is the same as invoking
-	 * <code>new MT102(SwiftMessage)</code>.</p>
+	 * <code>new MT102(SwiftMessage)</code>.
 	 * <p>For messages with service id 21 = GPA/FIN Message (ACK/NAK/UAK/UNK) it will
-	 * return an instance of {@link AckSystemMessage}.</p>
+	 * return an instance of {@link AckSystemMessage}.
 	 * 
 	 * @return created specific MT object or null if the message type is not set or an error occurs during message creation 
 	 */
@@ -1612,11 +1560,12 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * <p>Returns true if the message type is equal to the given number.</p>
+	 * <p>Returns true if the message type is equal to the given number.
 	 * <p>Notice this method only checks the message type number but can be combined with any
 	 * message variant check such as {@link #isSTP()}, {@link #isREMIT()} or {@link #isCOV()}
-	 * to determine the message kind precisely.</p>
-	 * <p>The implementation uses {@link #getTypeInt()}</p>
+	 * to determine the message kind precisely.
+	 * <p>The implementation uses {@link #getTypeInt()}
+	 *
 	 * @param type message type number to check
 	 * @return true if message type matches, false if does not match or cannot be determined because the message content is invalid
 	 * @since 7.8.9
@@ -1661,7 +1610,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * Returns the message category from the message type.
 	 * This implementation uses {@link #getType()} to retrieve the message type of the message.
-	 * @return the category found as the first digit of the message type or <code>null</code> if block 2 is not found or the message type is not category number
+	 * @return the category found as the first digit of the message type or null if block 2 is not found or the message type is not category number
 	 */
 	public final MtCategory getCategory() {
 		final String type = getType();
@@ -1683,27 +1632,29 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @since 7.8.8
      */
     public final boolean isServiceMessage() {
-    	if (getBlock1() == null) {
+    	if (this.block1 == null) {
     		return false;
     	}
-    	return getBlock1().getServiceIdType() != ServiceIdType._01;
+    	return this.block1.getServiceIdType() != ServiceIdType._01;
     }
 
 	/**
      * Returns true if message service id is 21 = GPA/FIN Message (ACK/NAK/UAK/UNK)
-     * <p>IMPORTANT: Note despite the method name this will NOT return true for FIN system messages (category 0). 
-     * It is just useful to detect acknowledges.<br />
-     * To check for system messages use {@link #isCategory(MtCategory...)} instead, passing zero as parameter</p>
+	 *
+     * <p>IMPORTANT: Note despite the method name this will NOT return true for FIN system messages (category 0).
+     * It is just useful to detect acknowledges.<br>
+     * To check for system messages use {@link #isCategory(MtCategory...)} instead, passing zero as parameter
      * 
      * <p>@deprecated this method is kept for backward compatibility but was replace by {@link #isServiceMessage21()} which
      * reflects what the method returns properly. Notice a "system message" is actually a message with category 0, which is 
-     * not the same as a "service message".</p>
+     * not the same as a "service message".
      * 
      * @since 7.8
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear._2018)
+    @ProwideDeprecated(phase3=TargetYear._2019)
     public boolean isSystemMessage() {
+    	DeprecationUtils.phase2(getClass(), "isSystemMessage()", "Despite the method name this will NOT return true for FIN system messages (category 0), use isServiceMessage21() instead.");
     	return isServiceMessage21();
     }
 
@@ -1713,10 +1664,10 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @since 7.8.9
      */
     public boolean isServiceMessage21() {
-    	if (getBlock1() == null) {
+    	if (this.block1 == null) {
     		return false;
     	}
-    	return getBlock1().getServiceIdType() == ServiceIdType._21;
+    	return this.block1.getServiceIdType() == ServiceIdType._21;
     }
     
     /**
@@ -1728,14 +1679,10 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
 	public boolean isAck() {
 		if (isServiceMessage21()) {
-			if (getBlock4() == null) {
+			if (this.block4 == null) {
 				return false;
 			}
-			final Tag _451 = getBlock4().getTagByNumber(451);
-			if (_451 == null) {
-				return false;
-			}
-			return StringUtils.equals(_451.getValue(), "0");
+			return StringUtils.equals(this.block4.getTagValue(Field451.NAME), "0");
 		}
 		return false;
 	}
@@ -1749,14 +1696,10 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 */
 	public boolean isNack() {
 		if (isServiceMessage21()) {
-			if (getBlock4() == null) {
+			if (this.block4 == null) {
 				return false;
 			}
-			final Tag _451 = getBlock4().getTagByNumber(451);
-			if (_451 == null) {
-				return false;
-			}
-			return StringUtils.equals(_451.getValue(), "1");
+			return StringUtils.equals(this.block4.getTagValue(Field451.NAME), "1");
 		}
 		return false;
 	}
@@ -1778,15 +1721,15 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	
 	/**
 	 * Get a list of unique tagname contained in this message
-	 * @return the list of tagnames or an empty list, does not return <code>null</code> ever
+	 * @return the list of tagnames or an empty list, does not return null ever
 	 * @since 7.8
 	 */
 	public List<String> getTagNames() {
-		if (getBlock4() == null || getBlock4().isEmpty()) {
+		if (this.block4 == null || this.block4.isEmpty()) {
 			return Collections.emptyList();
 		}
-		final List<String> result = new ArrayList<String>();
-		for (final Tag t : getBlock4().getTags()) {
+		final List<String> result = new ArrayList<>();
+		for (final Tag t : this.block4.getTags()) {
 			if (!result.contains(t.getName())) {
 				result.add(t.getName());
 			}
@@ -1799,7 +1742,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * Composed by the business process, message type and variant.
 	 * Example: fin.103.STP
 	 *
-	 * @return the constructed message id or <code>null</code> if message is a service message
+	 * @return the constructed message id or null if message is a service message
 	 * @since 7.8.4
 	 */
 	public MtId getMtId() {
@@ -1811,7 +1754,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 	
 	/**
-	 * Returns the correspondent BIC code from the headers.<br />
+	 * Returns the correspondent BIC code from the headers.<br>
 	 * For an outgoing message, the BIC address identifies the receiver of the message. Where for an incoming message it identifies the sender of the message.
 	 * @return the correspondent BIC code or null if headers are not properly set
 	 * @since 7.9.5
@@ -1831,5 +1774,99 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		}
 		return null;
 	}
-	
+
+	/**
+	 * Gets the Service Type Identifier (field 111 from block 3).
+	 * <p>This field is used by the SWIFT gpi service to track payments messages (category 1 and 2).
+	 *
+	 * @return the Service Type Identifier value or null if block3 or field 111 in block3 are not present
+	 * @since 7.10.0
+	 */
+	public String getServiceTypeIdentifier() {
+		return this.block3 != null? this.block3.getTagValue(Field111.NAME) : null;
+	}
+
+	/**
+	 * Sets or updates the Service Type Identifier (field 111 in block 3).
+	 * <p>If the field already exists, its value will be updated; otherwise a new field will be created
+	 * <p>This field is used by the SWIFT gpi service to track payments messages (category 1 and 2).
+	 *
+	 * @param serviceTypeIdentifier the value for field 111
+	 * @since 7.10.0
+	 */
+	public void setServiceTypeIdentifier(final String serviceTypeIdentifier) {
+		if (this.block3 == null) {
+			this.block3 = new SwiftBlock3();
+		}
+		this.block3.builder().setField111(new Field111(serviceTypeIdentifier));
+	}
+
+	/**
+	 * Gets the Unique End to End Transaction Reference (field 121 from block 3).
+	 * <p>This field is used by the SWIFT gpi service to track payments messages (category 1 and 2).
+	 * @return the UETR value or null if block3 or field 121 in block3 are not present
+	 *
+	 * @since 7.10.0
+	 */
+	public String getUETR() {
+		return this.block3 != null? this.block3.getTagValue(Field121.NAME) : null;
+	}
+
+	/**
+	 * Sets or updates the Unique End to End Transaction Reference (field 121 in block 3).
+	 * <p>If the field already exists, its value will be updated; otherwise a new field will be created
+	 * <p>This field is used by the SWIFT gpi service to track payments messages (category 1 and 2).
+	 * @param uniqueEndToEndTransactionReference the value for field 121
+	 * @since 7.10.0
+	 */
+	public void setUETR(final String uniqueEndToEndTransactionReference) {
+		if (this.block3 == null) {
+			this.block3 = new SwiftBlock3();
+		}
+		this.block3.builder().setField121(new Field121(uniqueEndToEndTransactionReference));
+	}
+
+	/**
+	 * Creates and sets the Unique End to End Transaction Reference (field 121 in block 3).
+	 * <p>If the field already exists, its value will be updated
+	 * <p>This field is used by the SWIFT gpi service to track payments messages (category 1 and 2).
+	 *
+	 * @return the UETR created (new value of field 121 in block3 after the operation)
+	 * @since 7.10.0
+	 */
+	public String setUETR() {
+		UUID uuid = UUID.randomUUID();
+		String uuid36 = uuid.toString();
+		setUETR(uuid36);
+		return uuid36;
+	}
+
+	/**
+	 * Sets or updates a variant (STP, REMIT, COV) in field 119 in block 3.
+	 * <p>If the field already exists, its value will be updated; otherwise a new field will be created
+	 *
+	 * @param variant the variant (validation flag) to set in field 119
+	 * @since 7.10.0
+	 */
+	public void setVariant(final MTVariant variant) {
+		if (!variant.isValidationFlag()) {
+			log.warning("Field " + Field199.NAME + " should be used only for validation flags and not for " + variant.name());
+		}
+		if (this.block3 == null) {
+			this.block3 = new SwiftBlock3();
+		}
+		this.block3.builder().setField119(new Field119(variant.name()));
+	}
+
+	/**
+	 * Returns true if the message is part of the Global Payments Initiative (gpi) and
+	 * thus requires the mandatory UETR for tracking within SWIFT gpi service.
+	 * @return true if the message type is 103, 202 or 205 in any variant
+	 * @since 7.10.0
+	 * @see #setUETR()
+	 */
+	public boolean isGpi() {
+		return isType(103, 202, 205);
+	}
+
 }

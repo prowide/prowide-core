@@ -1,34 +1,46 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
+import javax.persistence.*;
 import java.util.Calendar;
 
 /**
  * Comments associated to a message for application only usage (not part of the standard).
+ *
+ * <p>XML metadata may be used to override or augment these JPA annotations.
  * 
  * @author www.prowidesoftware.com
  * @since 7.0
  */
+@Entity
+@Table(name="swift_msg_note")
 public class SwiftMessageNote {
-	@SuppressWarnings("unused")
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftMessageNote.class.getName());
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(name = "creation_date")
 	private Calendar creationDate;
+
+	@Column(length = 40, name="creation_user")
 	private String creationUser;
+
+	@Lob
 	private String text;
 
 	public SwiftMessageNote() {

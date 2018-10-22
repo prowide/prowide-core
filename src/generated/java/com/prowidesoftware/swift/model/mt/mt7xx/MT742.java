@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mt.mt7xx;
 
 
@@ -19,7 +20,7 @@ package com.prowidesoftware.swift.model.mt.mt7xx;
 import com.prowidesoftware.Generated;
 import java.io.Serializable;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.*;
@@ -30,9 +31,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <h1>MT 742 - Reimbursement Claim</h1>
- * <h3>SWIFT MT742 (ISO 15022) message structure:</h3>
+ * <strong>MT 742 - Reimbursement Claim</strong>
  *
+ * <p>
+ * SWIFT MT742 (ISO 15022) message structure:
+ * <br>
  <div class="scheme"><ul>
 <li class="field">Field 20  (M)</li>
 <li class="field">Field 21  (M)</li>
@@ -40,54 +43,25 @@ import java.io.IOException;
 <li class="field">Field 52 A,D (M)</li>
 <li class="field">Field 32 B (M)</li>
 <li class="field">Field 33 B (O)</li>
-<li class="field">Field 71 B (O)</li>
+<li class="field">Field 71 D (O)</li>
 <li class="field">Field 34 A,B (M)</li>
 <li class="field">Field 57 A,B,D (O)</li>
 <li class="field">Field 58 A,D (O)</li>
-<li class="field">Field 72  (O)</li>
+<li class="field">Field 72 Z (O)</li>
 </ul></div>
 
- <style>
-.scheme, .scheme ul, .scheme li {
-     position: relative;
-}
-.scheme ul {
-    list-style: none;
-    padding-left: 32px;
-}
-.scheme li::before, .scheme li::after {
-    content: "";
-    position: absolute;
-    left: -12px;
-}
-.scheme li::before {
-    border-top: 1px solid #000;
-    top: 9px;
-    width: 8px;
-    height: 0;
-}
-.scheme li::after {
-    border-left: 1px solid #000;
-    height: 100%;
-    width: 0px;
-    top: 2px;
-}
-.scheme ul > li:last-child::after {
-    height: 8px;
-}</style>
-
  *
- * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
- * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
- *
- * @author www.prowidesoftware.com
+ * <p>
+ * This source code is specific to release <strong>SRU 2018</strong>
+ * <p>
+ * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
 @Generated
 public class MT742 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT742.class.getName());
 	
@@ -111,20 +85,18 @@ public class MT742 extends AbstractMT implements Serializable {
 
 	/**
 	 * Creates an MT742 initialized with the parameter MtSwiftMessage.
-	 * @param m swift message with the MT742 content, the parameter can not be <code>null</code>
+	 * @param m swift message with the MT742 content, the parameter can not be null
 	 * @see #MT742(String)
 	 */
 	public MT742(MtSwiftMessage m) {
-		this();
-		super.m = super.getSwiftMessageNotNullOrException();
-		sanityCheck(super.m);
+		this(m.message());
 	}
 	
 	/**
 	 * Creates an MT742 initialized with the parameter MtSwiftMessage.
 	 *
 	 * @param m swift message with the MT742 content
-	 * @return the created object or <code>null</code> if the parameter is <code>null</code>
+	 * @return the created object or null if the parameter is null
 	 * @see #MT742(String)
 	 * @since 7.7
 	 */
@@ -132,11 +104,11 @@ public class MT742 extends AbstractMT implements Serializable {
 		if (m == null) {
 			return null;
 		}
-		return new MT742(m.message());
+		return new MT742(m);
 	}
 	
 	/**
-	 * Creates and initializes a new MT742 input message setting TEST BICS as sender and receiver.<br />
+	 * Creates and initializes a new MT742 input message setting TEST BICS as sender and receiver.<br>
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -146,7 +118,7 @@ public class MT742 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT742 input message from sender to receiver.<br />
+	 * Creates and initializes a new MT742 input message from sender to receiver.<br>
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -163,21 +135,24 @@ public class MT742 extends AbstractMT implements Serializable {
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* 
+	*
+	* @param messageType the message type number
+    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
+	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
 	* @see #MT742(String, String)
 	* @deprecated Use instead <code>new MT742(sender, receiver)</code> instead
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public MT742(final int messageType, final String sender, final String receiver) {
 		super(742, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT742(int, String, String)", "Use the constructor MT742(sender, receiver) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT742(int, String, String)", "Use the constructor MT742(sender, receiver) instead.");
 	}
 	
 	/**
-	 * Creates a new MT742 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT742 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -203,12 +178,12 @@ public class MT742 extends AbstractMT implements Serializable {
     }
 	
 	/**
-	 * Creates a new MT742 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT742 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter cannot be parsed, the returned MT742 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br />
+	 * initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
-	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be <code>null</code> in which case this method returns null</em>
+	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
 	 * @return a new instance of MT742 or null if fin is null 
 	 * @since 7.7
 	 */
@@ -220,12 +195,13 @@ public class MT742 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT742 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT742 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public MT742(final InputStream stream) throws IOException {
@@ -233,11 +209,12 @@ public class MT742 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT742 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT742 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
 	 * @return a new instance of MT742 or null if stream is null or the message cannot be parsed 
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public static MT742 parse(final InputStream stream) throws IOException {
@@ -248,12 +225,13 @@ public class MT742 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT742 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT742 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public MT742(final File file) throws IOException {
@@ -261,11 +239,12 @@ public class MT742 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT742 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT742 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
 	 * @return a new instance of MT742 or null if; file is null, does not exist, can't be read, is not a file or the message cannot be parsed
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public static MT742 parse(final File file) throws IOException {
@@ -284,7 +263,7 @@ public class MT742 extends AbstractMT implements Serializable {
 	public String getMessageType() {
 		return "742";
 	}
-	
+
 	/**
 	 * Add all tags from block to the end of the block4.
 	 *
@@ -332,7 +311,7 @@ public class MT742 extends AbstractMT implements Serializable {
 	 *
 	 * @param json a JSON representation of an MT742 message
 	 * @return a new instance of MT742
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	public final static MT742 fromJson(String json) {
 		return (MT742) AbstractMT.fromJson(json);
@@ -340,10 +319,10 @@ public class MT742 extends AbstractMT implements Serializable {
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 20 at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field20 object or <code>null</code> if the field is not found
+	 * @return a Field20 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -358,10 +337,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 21 at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field21 object or <code>null</code> if the field is not found
+	 * @return a Field21 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -376,10 +355,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 31C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 31C at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field31C object or <code>null</code> if the field is not found
+	 * @return a Field31C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -394,10 +373,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 52A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 52A at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field52A object or <code>null</code> if the field is not found
+	 * @return a Field52A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -412,10 +391,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 52D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 52D at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field52D object or <code>null</code> if the field is not found
+	 * @return a Field52D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -430,10 +409,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 32B at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field32B object or <code>null</code> if the field is not found
+	 * @return a Field32B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -448,10 +427,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 33B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 33B at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field33B object or <code>null</code> if the field is not found
+	 * @return a Field33B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -465,18 +444,18 @@ public class MT742 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 71B, 
-	 * or <code>null</code> if none is found.<br />
-	 * The first occurrence of field 71B at MT742 is expected to be the only one.
+	 * Iterates through block4 fields and return the first one whose name matches 71D, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 71D at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field71B object or <code>null</code> if the field is not found
+	 * @return a Field71D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field71B getField71B() {
-		final Tag t = tag("71B");
+	public Field71D getField71D() {
+		final Tag t = tag("71D");
 		if (t != null) {
-			return new Field71B(t.getValue());
+			return new Field71D(t.getValue());
 		} else {
 			return null;
 		}
@@ -484,10 +463,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 34A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 34A at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field34A object or <code>null</code> if the field is not found
+	 * @return a Field34A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -502,10 +481,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 34B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 34B at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field34B object or <code>null</code> if the field is not found
+	 * @return a Field34B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -520,10 +499,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57A at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field57A object or <code>null</code> if the field is not found
+	 * @return a Field57A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -538,10 +517,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57B at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field57B object or <code>null</code> if the field is not found
+	 * @return a Field57B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -556,10 +535,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57D at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field57D object or <code>null</code> if the field is not found
+	 * @return a Field57D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -574,10 +553,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 58A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 58A at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field58A object or <code>null</code> if the field is not found
+	 * @return a Field58A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -592,10 +571,10 @@ public class MT742 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 58D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 58D at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field58D object or <code>null</code> if the field is not found
+	 * @return a Field58D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -609,18 +588,18 @@ public class MT742 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 72, 
-	 * or <code>null</code> if none is found.<br />
-	 * The first occurrence of field 72 at MT742 is expected to be the only one.
+	 * Iterates through block4 fields and return the first one whose name matches 72Z, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 72Z at MT742 is expected to be the only one.
 	 * 
-	 * @return a Field72 object or <code>null</code> if the field is not found
+	 * @return a Field72Z object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field72 getField72() {
-		final Tag t = tag("72");
+	public Field72Z getField72Z() {
+		final Tag t = tag("72Z");
 		if (t != null) {
-			return new Field72(t.getValue());
+			return new Field72Z(t.getValue());
 		} else {
 			return null;
 		}

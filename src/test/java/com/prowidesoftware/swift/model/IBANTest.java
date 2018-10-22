@@ -1,13 +1,17 @@
 /*
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
+ * Copyright 2006-2018 Prowide
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.prowidesoftware.swift.model;
 
@@ -142,18 +146,18 @@ public class IBANTest {
         IBAN iban = new IBAN("AT32010000000173363");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_LENGTH);
-        System.out.println(result.message());
+        //System.out.println(result.message());
     }
 
     @Test public void testErrorCountry() {
         IBAN iban = new IBAN("aa17002001280000001200527600");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.INVALID_COUNTRY_CODE_CHARSET);
-        System.out.println(result.message());
+        //System.out.println(result.message());
         iban = new IBAN("ZZ17002001280000001200527600");
         result = iban.validate();
         assertTrue(result == IbanValidationResult.INVALID_COUNTRY_CODE);
-        System.out.println(result.message());
+        //System.out.println(result.message());
     }
 
     @Test public void testValidateCheckDigitPresence() {
@@ -172,14 +176,14 @@ public class IBANTest {
         IBAN iban = new IBAN("GI75NWBK00000000709t453");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_DIGITS_OR_LETTERS);
-        System.out.println(result.message());
+        //System.out.println(result.message());
     }
 
     @Test public void testValidateBbanInvalidUpperCaseLetters() {
         IBAN iban = new IBAN("GI75nWBK000000007099453");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_UPPER_CASE_LETTERS);
-        System.out.println(result.message());
+        //System.out.println(result.message());
     }
 
     @Test public void testSomeValidCodes() {

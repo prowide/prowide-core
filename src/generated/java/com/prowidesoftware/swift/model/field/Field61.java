@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -29,7 +30,7 @@ import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.AmountResolver;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -40,10 +41,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 61</h2>
+ * <strong>SWIFT MT Field 61</strong>
+ * <p>
  * Model and parser for field 61 of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
  * 		<li><code>Calendar</code></li> 
  * 		<li><code>Calendar</code></li> 
@@ -57,15 +59,15 @@ import com.google.gson.JsonParser;
  * 		<li><code>String</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>CUSTOM</code></li>
  * 		<li>parser pattern: <code>CUSTOM</code></li>
  * 		<li>components pattern: <code>EJSSNSSSSS</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -73,7 +75,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -171,7 +173,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -193,7 +195,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	 */
 	public static Field61 newInstance(Field61 source) {
 		Field61 cp = new Field61();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -252,8 +254,8 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Gets the component1 as Calendar
-	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the component1 as Calendar
+	 * @return the component1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(1));
@@ -268,8 +270,8 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 	
 	/**
-	 * Gets the Value Date (component1) as Calendar
-	 * @return the Value Date from component1 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the Value Date (component1) as Calendar
+	 * @return the Value Date from component1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getValueDateAsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(1));
@@ -286,12 +288,12 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	
 	/**
 	 * Set the component1 from a Calendar object.
-	 * <br />
+	 * <br>
 	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
 	 * <ul>
-	 * 	<li>Example: 1234.00 -> 1234,</li>
-	 * 	<li>Example: 1234 -> 1234,</li>
-	 * 	<li>Example: 1234.56 -> 1234,56</li>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
 	 * </ul>
 	 * @param component1 the Calendar with the component1 content to set
 	 */
@@ -327,8 +329,8 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Gets the component2 as Calendar
-	 * @return the component2 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the component2 as Calendar
+	 * @return the component2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getMonthDay(getComponent(2));
@@ -343,8 +345,8 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 	
 	/**
-	 * Gets the Entry Date (component2) as Calendar
-	 * @return the Entry Date from component2 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the Entry Date (component2) as Calendar
+	 * @return the Entry Date from component2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getEntryDateAsCalendar() {
 		return SwiftFormatUtils.getMonthDay(getComponent(2));
@@ -361,12 +363,12 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	
 	/**
 	 * Set the component2 from a Calendar object.
-	 * <br />
+	 * <br>
 	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
 	 * <ul>
-	 * 	<li>Example: 1234.00 -> 1234,</li>
-	 * 	<li>Example: 1234 -> 1234,</li>
-	 * 	<li>Example: 1234.56 -> 1234,56</li>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
 	 * </ul>
 	 * @param component2 the Calendar with the component2 content to set
 	 */
@@ -406,8 +408,9 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent3AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(3);
 	}
 
@@ -449,8 +452,9 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent4AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(4);
 	}
 
@@ -488,8 +492,8 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 
 	/**
-	 * Gets the component5 as Number
-	 * @return the component5 converted to Number or <code>null</code> if cannot be converted
+	 * Get the component5 as Number
+	 * @return the component5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
@@ -504,8 +508,8 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	}
 	
 	/**
-	 * Gets the Amount (component5) as Number
-	 * @return the Amount from component5 converted to Number or <code>null</code> if cannot be converted
+	 * Get the Amount (component5) as Number
+	 * @return the Amount from component5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
@@ -522,12 +526,12 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	
 	/**
 	 * Set the component5 from a Number object.
-	 * <br />
+	 * <br>
 	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
 	 * <ul>
-	 * 	<li>Example: 1234.00 -> 1234,</li>
-	 * 	<li>Example: 1234 -> 1234,</li>
-	 * 	<li>Example: 1234.56 -> 1234,56</li>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
 	 * </ul>
 	 * @param component5 the Number with the component5 content to set
 	 */
@@ -567,8 +571,9 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent6AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(6);
 	}
 
@@ -610,8 +615,9 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent7AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent7AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(7);
 	}
 
@@ -653,8 +659,9 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent8AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent8AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(8);
 	}
 
@@ -696,8 +703,9 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent9AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent9AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(9);
 	}
 
@@ -739,8 +747,9 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent10AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent10AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(10);
 	}
 
@@ -786,7 +795,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -902,8 +911,8 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field61> result = new ArrayList<Field61>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field61> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field61(f));
 			}
@@ -1074,14 +1083,14 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		result.add("Value Date");
 		result.add("Entry Date");
 		result.add("D/C Mark");
@@ -1097,7 +1106,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
@@ -1118,7 +1127,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	 * This method deserializes the JSON data into a Field61 object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
 	public static Field61 fromJson(final String json) {
@@ -1162,16 +1171,18 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 	/**
 	 * Custom parser for Field61.
 	 *
-	 * <p>Uses semantic information to split components 3 and 4 (assuming component 3 can only be D, C, RD, RC).
-	 * It also splits VAR-SEQU-1 into components 7 and 8.</p>
+	 * <p>
+	 * Uses semantic information to split components 3 and 4 (assuming component 3 can only be D, C, RD, RC).
+	 * It also splits VAR-SEQU-1 into components 7 and 8.
 	 *
-	 * <p>MT=940, 942<br />
-	 * <DATE2>[<DATE1>]2a[1a]<NUMBER>15<SUB-6><VAR-SEQU-1>[’CRLF’<ERI-F61>]
-	 * </p>
+	 * <p>MT=940, 942
+	 * <br>
+	 * &lt;DATE2&gt;[&lt;DATE1&gt;]2a[1a]&lt;NUMBER&gt;15&lt;SUB-6&gt;&lt;VAR-SEQU-1&gt;[’CRLF’&lt;ERI-F61&gt;]
 	 *
-	 * <p>MT=other, i.e. : 608, 950, 970, 972, n92, n95, n96<br /> 
-	 * <DATE2>[<DATE1>]2a[1a]<NUMBER>15<SUB-6><VAR-SEQU-1>[’CRLF’34x](**)
-	 * </p>
+	 * <p>
+	 * MT=other, i.e. : 608, 950, 970, 972, n92, n95, n96
+	 * <br>
+	 * &lt;DATE2&gt;[&lt;DATE1&gt;]2a[1a]&lt;NUMBER&gt;15&lt;SUB-6&gt;&lt;VAR-SEQU-1&gt;[’CRLF’34x](**)
 	 */
 	protected void parseCustom(String value) {
 		//thanks to Mark Karatovic for his contribution on this implementation.
@@ -1185,12 +1196,12 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		String dates = SwiftParseUtils.getNumericPrefix(lines.get(0));
 		int dates_length = dates != null ? dates.length() : 0;
 		if (dates_length >= 6) {
-			setComponent1(org.apache.commons.lang.StringUtils.substring(dates, 0, 6));
+			setComponent1(org.apache.commons.lang3.StringUtils.substring(dates, 0, 6));
 		}
 		if (dates_length >= 10) {
-			setComponent2(org.apache.commons.lang.StringUtils.substring(dates, 6));
+			setComponent2(org.apache.commons.lang3.StringUtils.substring(dates, 6));
 		}
-		String toparse = org.apache.commons.lang.StringUtils.substring(lines.get(0), dates_length);
+		String toparse = org.apache.commons.lang3.StringUtils.substring(lines.get(0), dates_length);
 			
 		/*
 		 * parse component 3 and 4 (DC mark and optional funds code)
@@ -1205,10 +1216,10 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		         RD Reversal of Debit (credit entry)
 		        */
 	    		if (comp3and4.length() >= 2) {
-	    			setComponent3(org.apache.commons.lang.StringUtils.substring(comp3and4, 0, 2));
+	    			setComponent3(org.apache.commons.lang3.StringUtils.substring(comp3and4, 0, 2));
 	    		}
 	    		if (comp3and4.length() >= 3) {
-	    			setComponent4(org.apache.commons.lang.StringUtils.substring(comp3and4, 2));
+	    			setComponent4(org.apache.commons.lang3.StringUtils.substring(comp3and4, 2));
 	    		}
 	    	} else{
 	    		/*
@@ -1216,14 +1227,14 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 		         D  Debit
 		        */
 	    		if (comp3and4.length() >= 1) {
-	    			setComponent3(org.apache.commons.lang.StringUtils.substring(comp3and4, 0, 1));
+	    			setComponent3(org.apache.commons.lang3.StringUtils.substring(comp3and4, 0, 1));
 	    		}
 	    		if (comp3and4.length() >= 2) {
-	    			setComponent4(org.apache.commons.lang.StringUtils.substring(comp3and4, 1));
+	    			setComponent4(org.apache.commons.lang3.StringUtils.substring(comp3and4, 1));
 	    		}
 	    	}
 	    		
-			String toparse2 = org.apache.commons.lang.StringUtils.substring(toparse, comp3and4.length());
+			String toparse2 = org.apache.commons.lang3.StringUtils.substring(toparse, comp3and4.length());
 				
 			/*
 			 * parse component 5
@@ -1235,19 +1246,19 @@ public class Field61 extends Field implements Serializable, AmountContainer, com
 			/*
 			 * parse <SUB-6> into components 6 and 7
 			 */
-			String toparse3 = org.apache.commons.lang.StringUtils.substring(toparse2, comp5_length);
-			String toParseTxnCode = org.apache.commons.lang.StringUtils.substring(toparse3, 0, 4);
-			setComponent6(org.apache.commons.lang.StringUtils.substring(toParseTxnCode, 0, 1));
-			setComponent7(org.apache.commons.lang.StringUtils.substring(toParseTxnCode, 1));
+			String toparse3 = org.apache.commons.lang3.StringUtils.substring(toparse2, comp5_length);
+			String toParseTxnCode = org.apache.commons.lang3.StringUtils.substring(toparse3, 0, 4);
+			setComponent6(org.apache.commons.lang3.StringUtils.substring(toParseTxnCode, 0, 1));
+			setComponent7(org.apache.commons.lang3.StringUtils.substring(toParseTxnCode, 1));
 
 			int toParseTxnCodeLength = toParseTxnCode != null ? toParseTxnCode.length() : 0;
-			String toparse4 = org.apache.commons.lang.StringUtils.substring(toparse3, toParseTxnCodeLength);
+			String toparse4 = org.apache.commons.lang3.StringUtils.substring(toparse3, toParseTxnCodeLength);
 				
 			/*
 			 * parse <VAR-SEQU-1> into components 8 and 9
 			 */
-			setComponent8(org.apache.commons.lang.StringUtils.substringBefore(toparse4, "//"));
-			setComponent9(org.apache.commons.lang.StringUtils.substringAfter(toparse4, "//")); 
+			setComponent8(org.apache.commons.lang3.StringUtils.substringBefore(toparse4, "//"));
+			setComponent9(org.apache.commons.lang3.StringUtils.substringAfter(toparse4, "//"));
 		}
 		
 		if (lines.size() > 1) {

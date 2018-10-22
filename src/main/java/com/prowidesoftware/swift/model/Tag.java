@@ -1,46 +1,41 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.swift.model.field.Field;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.logging.Level;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-
-import com.prowidesoftware.swift.model.field.Field;
-
 /**
- * Representation of a swift tag (also 'field' in computer terms) in a message.
- * 
- * <h4>NOTE</h4>
- * This class is also used inside SwiftBlock to store the value of a block that 
- * is not associated with a particular field, in this case, the Tag name attribute 
- * is set to <code>null</code>;
- * <h4>IMPORTANT NOTE ABOUT MULTILINE TAGS</h4>
- * <p>Multiline tags are read with readline, so while swift defines \r\n to be the
- * line terminator, the parser accepts a more wide range of line terminations. The 
- * values are stored in swift line terminators, that is always \r\n, so be aware that 
- * if a multiline field is separated with \n parse will be successfully but the returned
- * value will be separated by \r\n</p>
+ * Representation of a swift field in a message.
+ *
+ * <p>The "Tag" naming is used in the SWIFT standard to refer the fields identifiers
+ * composed by a number and an optional letter option, for example 32A. This class
+ * is used to model the complete field structure including both the field name ("Tag")
+ * and the field value.
  * 
  * <p>Instances of this class may have a list of unparsed texts (UnparsedTextList).
  * For easy access, methods have been created that first ensure the lists exists (the
- * real object is created and then call the base method).<br />
+ * real object is created and then call the base method).<br>
  * However, not all the base list methods have been implemented. If you need to use not
- * exposed functionality, retrieve the underlying list with (see getUnparsedTexts method)</p>
+ * exposed functionality, retrieve the underlying list with (see {@link #getUnparsedTexts()})
  *  
  * @author www.prowidesoftware.com
  */
@@ -64,7 +59,7 @@ public class Tag implements Serializable {
 	
 	/**
 	 * Name of the tag, usually a number that may be followed by a letter.
-	 * This value may be <code>null</code>.
+	 * This value may be null.
 	 */
 	protected String name;
 
@@ -91,23 +86,23 @@ public class Tag implements Serializable {
 
 	/**
 	 * Create a tag from the value in inner.
-	 * If inner contains one : character, the 
-	 * string before is set as the tagname and the rest as the value.
-	 * If inner contains more than one :, then the first value is used
-	 * as previously described.
-	 * If no : is contained, then all string is put in value and name remains <code>null</code> (useful for bloc data)
+	 * <p>
+	 * If inner contains one ':' character, the string before is set as the tag name and the rest as the value.
+	 * If inner contains more than one ':' characters, then the first value is used as previously described.
+	 * If no ':' character is found the whole string is set as the tag value and the tag name is kept null (useful for bloc data)
 	 * 
-	 * <br/>
+	 * <p>
 	 * Maps:
-	 * <code><pre>
-	 * "" -> name=null, value=null
-	 * "foo" -> name=null, value=foo
-	 * ":foo" -> name=null, value=foo
-	 * "foo:" -> name=foo, value=null
-	 * "foo:bar" -> name=foo, value=bar
-	 * </pre></code>
+	 * <pre>
+	 * "" -&gt; name=null, value=null
+	 * "foo" -&gt; name=null, value=foo
+	 * ":foo" -&gt; name=null, value=foo
+	 * "foo:" -&gt; name=foo, value=null
+	 * "foo:bar" -&gt; name=foo, value=bar
+	 * </pre>
+	 *
 	 * @param inner the string to build the tag
-	 * @throws IllegalArgumentException if inner is <code>null</code>
+	 * @throws IllegalArgumentException if inner is null
 	 */
 	public Tag(String inner) {
 		
@@ -133,7 +128,7 @@ public class Tag implements Serializable {
 	 * Create a tag with the given tagname and value
 	 * @param tagname name of this tag
 	 * @param value the value of this tag
-	 * @throws IllegalArgumentException if parameter tagname or value are <code>null</code>
+	 * @throws IllegalArgumentException if parameter tagname or value are null
 	 */
 	public Tag(String tagname, String value) {
 
@@ -163,7 +158,7 @@ public class Tag implements Serializable {
 	 * Constructor for tag encoded value and an unparsed text list
 	 * @param inner the string to build the tag
 	 * @param unparsedText the list of unparsed texts
-	 * @throws IllegalArgumentException if parameter inner is <code>null</code>
+	 * @throws IllegalArgumentException if parameter inner is null
 	 * @see Tag#Tag(String)
 	 */
 	public Tag(String inner, UnparsedTextList unparsedText) {
@@ -180,7 +175,7 @@ public class Tag implements Serializable {
 	 * @param tagname name of this tag
 	 * @param value the value of this tag
 	 * @param unparsedText the list of unparsed texts
-	 * @throws IllegalArgumentException if parameter tagname or value are <code>null</code>
+	 * @throws IllegalArgumentException if parameter tagname or value are null
 	 * @see Tag#Tag(String,String)
 	 */
 	public Tag(String tagname, String value, UnparsedTextList unparsedText) {
@@ -203,7 +198,7 @@ public class Tag implements Serializable {
 	/**
 	 * Set the tag name
 	 * @param name the name of the tag to be set
-	 * @throws IllegalArgumentException if parameter name is <code>null</code>
+	 * @throws IllegalArgumentException if parameter name is null
 	 */
 	public void setName(String name) {
 
@@ -220,16 +215,16 @@ public class Tag implements Serializable {
 	 * {5:{CHK:F9351591947F}{SYS:1610010606VNDZBET2AXXX0019000381}{DLM:}}
 	 *
 	 * 
-	 * @return a string with the value of the tag or <code>null</code> if the value was not set
+	 * @return a string with the value of the tag or null if the value was not set
 	 */
-	//TODO review parser implementation and check if always <code>null</code> is set or empty string
+	//TODO review parser implementation and check if always null is set or empty string
 	public String getValue() {
 		return value;
 	}
 
 	/**
 	 * Sets the value of this tag.
-	 * @param value the value for the tag, may be <code>null</code>
+	 * @param value the value for the tag, may be null
 	 */
 	public void setValue(String value) {
 		this.value = value;
@@ -241,7 +236,7 @@ public class Tag implements Serializable {
 
 	/**
 	 * Get the unique identifier of the tag if it is persisted
-	 * @return the unique id or <code>null</code> if it is not a persistent object
+	 * @return the unique id or null if it is not a persistent object
 	 */
 	public Long getId() {
 		return id;
@@ -321,7 +316,7 @@ public class Tag implements Serializable {
 	 * base implementation methods.
 	 * @param index the unparsed text number
 	 * @return true if the unparsed text at position index is a full SWIFT message
-	 * @throws IllegalArgumentException if parameter index is <code>null</code>
+	 * @throws IllegalArgumentException if parameter index is null
 	 * @throws IndexOutOfBoundsException if parameter index is out of bounds
 	 */
 	public Boolean unparsedTextIsMessage(Integer index) {
@@ -335,7 +330,7 @@ public class Tag implements Serializable {
 	 * get an unparsed text
 	 * @param index the unparsed text number
 	 * @return the requested text
-	 * @throws IllegalArgumentException if parameter index is <code>null</code>
+	 * @throws IllegalArgumentException if parameter index is null
 	 * @throws IndexOutOfBoundsException if parameter index is out of bounds
 	 */
 	public String unparsedTextGetText(Integer index) {
@@ -349,7 +344,7 @@ public class Tag implements Serializable {
 	 * get an unparsed text as a parsed swift message
 	 * @param index the unparsed text number
 	 * @return the unparsed text at position index parsed into a SwiftMessage object
-	 * @throws IllegalArgumentException if parameter index is <code>null</code> 
+	 * @throws IllegalArgumentException if parameter index is null
 	 */
 	public SwiftMessage unparsedTextGetAsMessage(Integer index) {
 
@@ -361,7 +356,7 @@ public class Tag implements Serializable {
 	/**
 	 * adds a new unparsed text
 	 * @param text the unparsed text to append
-	 * @throws IllegalArgumentException if parameter text is <code>null</code> 
+	 * @throws IllegalArgumentException if parameter text is null
 	 */
 	public void unparsedTextAddText(String text) {
 
@@ -373,7 +368,7 @@ public class Tag implements Serializable {
 	/**
 	 * adds a new unparsed text from a message
 	 * @param message the message to be appended
-	 * @throws IllegalArgumentException if parameter message is <code>null</code> 
+	 * @throws IllegalArgumentException if parameter message is null
 	 */
 	public void unparsedTextAddText(SwiftMessage message) {
 
@@ -382,14 +377,21 @@ public class Tag implements Serializable {
 		this.unparsedTexts.addText(message);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Tag tag = (Tag) o;
+		return Objects.equals(sortKey, tag.sortKey) &&
+				Objects.equals(name, tag.name) &&
+				Objects.equals(value, tag.value) &&
+				Objects.equals(unparsedTexts, tag.unparsedTexts) &&
+				Objects.equals(sequence, tag.sequence);
+	}
+
+	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((sortKey == null) ? 0 : sortKey.hashCode());
-		result = prime * result + ((unparsedTexts == null) ? 0 : unparsedTexts.hashCode());
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
-		return result;
+		return Objects.hash(sortKey, name, value, unparsedTexts, sequence);
 	}
 
 	/**
@@ -426,45 +428,6 @@ public class Tag implements Serializable {
 			return false;
 		return true;
 	}
-	
-	/**
-	 * Notice two tags with multiple lines as value, one using CRLF characters as line feed
-	 * and the other using just a LF character will not be reported as equals.
-	 * <br />
-	 * Beware that depending on the message/tags source the line feeds may or may not be preceded 
-	 * by the carriage return. BTW, for SWIFT the carriage return is mandatory in all tags.
-	 * @see #equalsIgnoreCR(Tag)
-	 */
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		final Tag other = (Tag) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (sortKey == null) {
-			if (other.sortKey != null)
-				return false;
-		} else if (!sortKey.equals(other.sortKey))
-			return false;
-		if (unparsedTexts == null) {
-			if (other.unparsedTexts != null)
-				return false;
-		} else if (!unparsedTexts.equals(other.unparsedTexts))
-			return false;
-		if (value == null) {
-			if (other.value != null)
-				return false;
-		} else if (!value.equals(other.value))
-			return false;
-		return true;
-	}
 
 	/**
 	 * Attempt to parse the tag name as an integer.
@@ -493,7 +456,7 @@ public class Tag implements Serializable {
 	/**
 	 * Iterate the current tagname and return only number as told by {@link Character#isDigit(char)}
 	 * 
-	 * @return an integer containing the numeric of the tagname or <code>null</code> if no digits are found
+	 * @return an integer containing the numeric of the tagname or null if no digits are found
 	 * @since 6.2
 	 */
 	public Integer getNumber() {
@@ -515,7 +478,7 @@ public class Tag implements Serializable {
 	/**
 	 * Iterate the current tagname and return only letters as told by {@link Character#isLetter(char)}
 	 * 
-	 * @return a string containing only letter characters of the tagname or <code>null</code> if no letters are found
+	 * @return a string containing only letter characters of the tagname or null if no letters are found
 	 */
 	public String getLetterOption() {
 		if (this.name!=null) {
@@ -543,7 +506,6 @@ public class Tag implements Serializable {
 	/**
 	 * Tell if this tag value contains any of the given values.
 	 * This method is case sensitive. It handles null values.
-	 * Actual test is delegated to {@link StringUtils#contains(String,String)}
 	 * @param values variable list of values to test
 	 * @return <code>true</code> if the value of this tag is one of the given values. 
 	 * returns <code>false</code> in any other case, including a null or empty list of values
@@ -572,14 +534,13 @@ public class Tag implements Serializable {
 
 	/**
 	 * equivalent to StringUtils.startsWith(tag.getValue(), prefix)
-	 * @see StringUtils#startsWith(String, String)
 	 */
 	public boolean startsWith(String prefix) {
 		return StringUtils.startsWith(getValue(), prefix);
 	}
+
 	/**
 	 * equivalent to StringUtils.contains(tag.getValue(), searchStr)
-	 * @see StringUtils#contains(String, String)
 	 */
 	public boolean contains(String searchStr) {
 		return StringUtils.contains(getValue(), searchStr);
@@ -587,7 +548,7 @@ public class Tag implements Serializable {
 	
 	/**
 	 * 
-	 * @return this Tag as a FieldNN instance or <code>null</code> if an error occurs
+	 * @return this Tag as a FieldNN instance or null if an error occurs
 	 */
 	public Field asField() {
 		try {

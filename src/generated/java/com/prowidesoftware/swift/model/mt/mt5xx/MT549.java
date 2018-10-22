@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mt.mt5xx;
 
 
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.internal.*;
@@ -35,9 +36,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <h1>MT 549 - Request for Statement/Status Advice</h1>
- * <h3>SWIFT MT549 (ISO 15022) message structure:</h3>
+ * <strong>MT 549 - Request for Statement/Status Advice</strong>
  *
+ * <p>
+ * SWIFT MT549 (ISO 15022) message structure:
+ * <br>
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
@@ -80,47 +83,18 @@ Fieldset 95
 </ul></li>
 </ul></div>
 
- <style>
-.scheme, .scheme ul, .scheme li {
-     position: relative;
-}
-.scheme ul {
-    list-style: none;
-    padding-left: 32px;
-}
-.scheme li::before, .scheme li::after {
-    content: "";
-    position: absolute;
-    left: -12px;
-}
-.scheme li::before {
-    border-top: 1px solid #000;
-    top: 9px;
-    width: 8px;
-    height: 0;
-}
-.scheme li::after {
-    border-left: 1px solid #000;
-    height: 100%;
-    width: 0px;
-    top: 2px;
-}
-.scheme ul > li:last-child::after {
-    height: 8px;
-}</style>
-
  *
- * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
- * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
- *
- * @author www.prowidesoftware.com
+ * <p>
+ * This source code is specific to release <strong>SRU 2018</strong>
+ * <p>
+ * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
 @Generated
 public class MT549 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT549.class.getName());
 	
@@ -133,569 +107,443 @@ public class MT549 extends AbstractMT implements Serializable {
 
 	/**
 	* Constant for qualifier with value ACOW 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.ACOW
-	* @see com.prowidesoftware.swift.SchemeConstantsA#ACOW
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ACOW = "ACOW";
 
 	/**
 	* Constant for qualifier with value ADDINFO 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.ADDINFO
-	* @see com.prowidesoftware.swift.SchemeConstantsA#ADDINFO
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ADDINFO = "ADDINFO";
 
 	/**
 	* Constant for qualifier with value AFFM 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.AFFM
-	* @see com.prowidesoftware.swift.SchemeConstantsA#AFFM
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String AFFM = "AFFM";
 
 	/**
 	* Constant for qualifier with value ALOC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.ALOC
-	* @see com.prowidesoftware.swift.SchemeConstantsA#ALOC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ALOC = "ALOC";
 
 	/**
 	* Constant for qualifier with value ALTE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsA.ALTE
-	* @see com.prowidesoftware.swift.SchemeConstantsA#ALTE
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ALTE = "ALTE";
 
 	/**
 	* Constant for qualifier with value BASK 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsB.BASK
-	* @see com.prowidesoftware.swift.SchemeConstantsB#BASK
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String BASK = "BASK";
 
 	/**
 	* Constant for qualifier with value BYSTAREA 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsB.BYSTAREA
-	* @see com.prowidesoftware.swift.SchemeConstantsB#BYSTAREA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String BYSTAREA = "BYSTAREA";
 
 	/**
 	* Constant for qualifier with value CACK 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CACK
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CACK
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CACK = "CACK";
 
 	/**
 	* Constant for qualifier with value CALL 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CALL
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CALL
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CALL = "CALL";
 
 	/**
 	* Constant for qualifier with value CANC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CANC
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CANC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CANC = "CANC";
 
 	/**
 	* Constant for qualifier with value CAND 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CAND
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CAND
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CAND = "CAND";
 
 	/**
 	* Constant for qualifier with value CANP 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CANP
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CANP
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CANP = "CANP";
 
 	/**
 	* Constant for qualifier with value CGEN 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CGEN
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CGEN
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CGEN = "CGEN";
 
 	/**
 	* Constant for qualifier with value CODE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CODE
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CODE
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CODE = "CODE";
 
 	/**
 	* Constant for qualifier with value CODU 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CODU
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CODU
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CODU = "CODU";
 
 	/**
 	* Constant for qualifier with value COMM 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.COMM
-	* @see com.prowidesoftware.swift.SchemeConstantsC#COMM
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String COMM = "COMM";
 
 	/**
 	* Constant for qualifier with value COPY 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.COPY
-	* @see com.prowidesoftware.swift.SchemeConstantsC#COPY
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String COPY = "COPY";
 
 	/**
 	* Constant for qualifier with value CORP 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CORP
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CORP
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CORP = "CORP";
 
 	/**
 	* Constant for qualifier with value CPRC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CPRC
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CPRC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CPRC = "CPRC";
 
 	/**
 	* Constant for qualifier with value DEND 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsD.DEND
-	* @see com.prowidesoftware.swift.SchemeConstantsD#DEND
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String DEND = "DEND";
 
 	/**
 	* Constant for qualifier with value DUPL 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsD.DUPL
-	* @see com.prowidesoftware.swift.SchemeConstantsD#DUPL
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String DUPL = "DUPL";
 
 	/**
 	* Constant for qualifier with value EPRC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsE.EPRC
-	* @see com.prowidesoftware.swift.SchemeConstantsE#EPRC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String EPRC = "EPRC";
 
 	/**
 	* Constant for qualifier with value ESTA 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsE.ESTA
-	* @see com.prowidesoftware.swift.SchemeConstantsE#ESTA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String ESTA = "ESTA";
 
 	/**
 	* Constant for qualifier with value GENL 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsG.GENL
-	* @see com.prowidesoftware.swift.SchemeConstantsG#GENL
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String GENL = "GENL";
 
 	/**
 	* Constant for qualifier with value INDX 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsI.INDX
-	* @see com.prowidesoftware.swift.SchemeConstantsI#INDX
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String INDX = "INDX";
 
 	/**
 	* Constant for qualifier with value INMH 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsI.INMH
-	* @see com.prowidesoftware.swift.SchemeConstantsI#INMH
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String INMH = "INMH";
 
 	/**
 	* Constant for qualifier with value IPRC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsI.IPRC
-	* @see com.prowidesoftware.swift.SchemeConstantsI#IPRC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String IPRC = "IPRC";
 
 	/**
 	* Constant for qualifier with value LINK 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsL.LINK
-	* @see com.prowidesoftware.swift.SchemeConstantsL#LINK
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String LINK = "LINK";
 
 	/**
 	* Constant for qualifier with value LIST 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsL.LIST
-	* @see com.prowidesoftware.swift.SchemeConstantsL#LIST
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String LIST = "LIST";
 
 	/**
 	* Constant for qualifier with value MAST 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.MAST
-	* @see com.prowidesoftware.swift.SchemeConstantsM#MAST
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String MAST = "MAST";
 
 	/**
 	* Constant for qualifier with value MEOR 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.MEOR
-	* @see com.prowidesoftware.swift.SchemeConstantsM#MEOR
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String MEOR = "MEOR";
 
 	/**
 	* Constant for qualifier with value MERE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.MERE
-	* @see com.prowidesoftware.swift.SchemeConstantsM#MERE
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String MERE = "MERE";
 
 	/**
 	* Constant for qualifier with value MITI 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.MITI
-	* @see com.prowidesoftware.swift.SchemeConstantsM#MITI
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String MITI = "MITI";
 
 	/**
 	* Constant for qualifier with value MOPN 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.MOPN
-	* @see com.prowidesoftware.swift.SchemeConstantsM#MOPN
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String MOPN = "MOPN";
 
 	/**
 	* Constant for qualifier with value MTCH 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.MTCH
-	* @see com.prowidesoftware.swift.SchemeConstantsM#MTCH
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String MTCH = "MTCH";
 
 	/**
 	* Constant for qualifier with value NAFI 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsN.NAFI
-	* @see com.prowidesoftware.swift.SchemeConstantsN#NAFI
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String NAFI = "NAFI";
 
 	/**
 	* Constant for qualifier with value NEWM 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsN.NEWM
-	* @see com.prowidesoftware.swift.SchemeConstantsN#NEWM
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String NEWM = "NEWM";
 
 	/**
 	* Constant for qualifier with value NMAT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsN.NMAT
-	* @see com.prowidesoftware.swift.SchemeConstantsN#NMAT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String NMAT = "NMAT";
 
 	/**
 	* Constant for qualifier with value PACK 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PACK
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PACK
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PACK = "PACK";
 
 	/**
 	* Constant for qualifier with value PCTI 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PCTI
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PCTI
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PCTI = "PCTI";
 
 	/**
 	* Constant for qualifier with value PEND 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PEND
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PEND
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PEND = "PEND";
 
 	/**
 	* Constant for qualifier with value PENF 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PENF
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PENF
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PENF = "PENF";
 
 	/**
 	* Constant for qualifier with value POOL 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.POOL
-	* @see com.prowidesoftware.swift.SchemeConstantsP#POOL
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String POOL = "POOL";
 
 	/**
 	* Constant for qualifier with value PPRC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PPRC
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PPRC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PPRC = "PPRC";
 
 	/**
 	* Constant for qualifier with value PREV 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PREV
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PREV
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PREV = "PREV";
 
 	/**
 	* Constant for qualifier with value PROG 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PROG
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PROG
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PROG = "PROG";
 
 	/**
 	* Constant for qualifier with value REF 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REF
-	* @see com.prowidesoftware.swift.SchemeConstantsR#REF
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String REF = "REF";
 
 	/**
 	* Constant for qualifier with value REJT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REJT
-	* @see com.prowidesoftware.swift.SchemeConstantsR#REJT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String REJT = "REJT";
 
 	/**
 	* Constant for qualifier with value RELA 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.RELA
-	* @see com.prowidesoftware.swift.SchemeConstantsR#RELA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String RELA = "RELA";
 
 	/**
 	* Constant for qualifier with value REPR 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REPR
-	* @see com.prowidesoftware.swift.SchemeConstantsR#REPR
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String REPR = "REPR";
 
 	/**
 	* Constant for qualifier with value REQU 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REQU
-	* @see com.prowidesoftware.swift.SchemeConstantsR#REQU
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String REQU = "REQU";
 
 	/**
 	* Constant for qualifier with value RERC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.RERC
-	* @see com.prowidesoftware.swift.SchemeConstantsR#RERC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String RERC = "RERC";
 
 	/**
 	* Constant for qualifier with value REST 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.REST
-	* @see com.prowidesoftware.swift.SchemeConstantsR#REST
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String REST = "REST";
 
 	/**
 	* Constant for qualifier with value RPRC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.RPRC
-	* @see com.prowidesoftware.swift.SchemeConstantsR#RPRC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String RPRC = "RPRC";
 
 	/**
 	* Constant for qualifier with value SAFE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SAFE
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SAFE
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SAFE = "SAFE";
 
 	/**
 	* Constant for qualifier with value SEME 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SEME
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SEME
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SEME = "SEME";
 
 	/**
 	* Constant for qualifier with value SETT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SETT
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SETT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SETT = "SETT";
 
 	/**
 	* Constant for qualifier with value SFRE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SFRE
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SFRE
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SFRE = "SFRE";
 
 	/**
 	* Constant for qualifier with value STAT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.STAT
-	* @see com.prowidesoftware.swift.SchemeConstantsS#STAT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String STAT = "STAT";
 
 	/**
 	* Constant for qualifier with value STBA 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.STBA
-	* @see com.prowidesoftware.swift.SchemeConstantsS#STBA
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String STBA = "STBA";
 
 	/**
 	* Constant for qualifier with value STTY 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.STTY
-	* @see com.prowidesoftware.swift.SchemeConstantsS#STTY
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String STTY = "STTY";
 
 	/**
 	* Constant for qualifier with value TPRC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsT.TPRC
-	* @see com.prowidesoftware.swift.SchemeConstantsT#TPRC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String TPRC = "TPRC";
 
 	/**
 	* Constant for qualifier with value TRRF 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsT.TRRF
-	* @see com.prowidesoftware.swift.SchemeConstantsT#TRRF
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String TRRF = "TRRF";
 
 // end qualifiers constants	
@@ -711,20 +559,18 @@ public class MT549 extends AbstractMT implements Serializable {
 
 	/**
 	 * Creates an MT549 initialized with the parameter MtSwiftMessage.
-	 * @param m swift message with the MT549 content, the parameter can not be <code>null</code>
+	 * @param m swift message with the MT549 content, the parameter can not be null
 	 * @see #MT549(String)
 	 */
 	public MT549(MtSwiftMessage m) {
-		this();
-		super.m = super.getSwiftMessageNotNullOrException();
-		sanityCheck(super.m);
+		this(m.message());
 	}
 	
 	/**
 	 * Creates an MT549 initialized with the parameter MtSwiftMessage.
 	 *
 	 * @param m swift message with the MT549 content
-	 * @return the created object or <code>null</code> if the parameter is <code>null</code>
+	 * @return the created object or null if the parameter is null
 	 * @see #MT549(String)
 	 * @since 7.7
 	 */
@@ -732,11 +578,11 @@ public class MT549 extends AbstractMT implements Serializable {
 		if (m == null) {
 			return null;
 		}
-		return new MT549(m.message());
+		return new MT549(m);
 	}
 	
 	/**
-	 * Creates and initializes a new MT549 input message setting TEST BICS as sender and receiver.<br />
+	 * Creates and initializes a new MT549 input message setting TEST BICS as sender and receiver.<br>
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -746,7 +592,7 @@ public class MT549 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT549 input message from sender to receiver.<br />
+	 * Creates and initializes a new MT549 input message from sender to receiver.<br>
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -763,21 +609,24 @@ public class MT549 extends AbstractMT implements Serializable {
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* 
+	*
+	* @param messageType the message type number
+    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
+	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
 	* @see #MT549(String, String)
 	* @deprecated Use instead <code>new MT549(sender, receiver)</code> instead
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public MT549(final int messageType, final String sender, final String receiver) {
 		super(549, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT549(int, String, String)", "Use the constructor MT549(sender, receiver) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT549(int, String, String)", "Use the constructor MT549(sender, receiver) instead.");
 	}
 	
 	/**
-	 * Creates a new MT549 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT549 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -803,12 +652,12 @@ public class MT549 extends AbstractMT implements Serializable {
     }
 	
 	/**
-	 * Creates a new MT549 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT549 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter cannot be parsed, the returned MT549 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br />
+	 * initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
-	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be <code>null</code> in which case this method returns null</em>
+	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
 	 * @return a new instance of MT549 or null if fin is null 
 	 * @since 7.7
 	 */
@@ -820,12 +669,13 @@ public class MT549 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT549 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT549 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public MT549(final InputStream stream) throws IOException {
@@ -833,11 +683,12 @@ public class MT549 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT549 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT549 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
 	 * @return a new instance of MT549 or null if stream is null or the message cannot be parsed 
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public static MT549 parse(final InputStream stream) throws IOException {
@@ -848,12 +699,13 @@ public class MT549 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT549 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT549 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public MT549(final File file) throws IOException {
@@ -861,11 +713,12 @@ public class MT549 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT549 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT549 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
 	 * @return a new instance of MT549 or null if; file is null, does not exist, can't be read, is not a file or the message cannot be parsed
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public static MT549 parse(final File file) throws IOException {
@@ -884,7 +737,7 @@ public class MT549 extends AbstractMT implements Serializable {
 	public String getMessageType() {
 		return "549";
 	}
-	
+
 	/**
 	 * Add all tags from block to the end of the block4.
 	 *
@@ -932,7 +785,7 @@ public class MT549 extends AbstractMT implements Serializable {
 	 *
 	 * @param json a JSON representation of an MT549 message
 	 * @return a new instance of MT549
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	public final static MT549 fromJson(String json) {
 		return (MT549) AbstractMT.fromJson(json);
@@ -940,10 +793,10 @@ public class MT549 extends AbstractMT implements Serializable {
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 23G, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 23G at MT549 is expected to be the only one.
 	 * 
-	 * @return a Field23G object or <code>null</code> if the field is not found
+	 * @return a Field23G object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -958,10 +811,10 @@ public class MT549 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 98A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 98A at MT549 is expected to be the only one.
 	 * 
-	 * @return a Field98A object or <code>null</code> if the field is not found
+	 * @return a Field98A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -976,10 +829,10 @@ public class MT549 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 98C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 98C at MT549 is expected to be the only one.
 	 * 
-	 * @return a Field98C object or <code>null</code> if the field is not found
+	 * @return a Field98C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -994,10 +847,10 @@ public class MT549 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 69A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 69A at MT549 is expected to be the only one.
 	 * 
-	 * @return a Field69A object or <code>null</code> if the field is not found
+	 * @return a Field69A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1012,10 +865,10 @@ public class MT549 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 69B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 69B at MT549 is expected to be the only one.
 	 * 
-	 * @return a Field69B object or <code>null</code> if the field is not found
+	 * @return a Field69B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1030,10 +883,10 @@ public class MT549 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 97A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 97A at MT549 is expected to be the only one.
 	 * 
-	 * @return a Field97A object or <code>null</code> if the field is not found
+	 * @return a Field97A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1048,10 +901,10 @@ public class MT549 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 97B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 97B at MT549 is expected to be the only one.
 	 * 
-	 * @return a Field97B object or <code>null</code> if the field is not found
+	 * @return a Field97B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1066,7 +919,7 @@ public class MT549 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95P, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 95P at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95P objects or <code>Collections.emptyList()</code> if none is not found
@@ -1074,17 +927,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field95P> getField95P() {
-		final List<Field95P> result = new ArrayList<Field95P>();
+		final List<Field95P> result = new ArrayList<>();
 		final Tag[] tags = tags("95P");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field95P(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95P(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95R, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 95R at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95R objects or <code>Collections.emptyList()</code> if none is not found
@@ -1092,17 +947,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field95R> getField95R() {
-		final List<Field95R> result = new ArrayList<Field95R>();
+		final List<Field95R> result = new ArrayList<>();
 		final Tag[] tags = tags("95R");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field95R(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95R(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95L, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 95L at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95L objects or <code>Collections.emptyList()</code> if none is not found
@@ -1110,17 +967,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field95L> getField95L() {
-		final List<Field95L> result = new ArrayList<Field95L>();
+		final List<Field95L> result = new ArrayList<>();
 		final Tag[] tags = tags("95L");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field95L(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95L(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22F, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 22F at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field22F objects or <code>Collections.emptyList()</code> if none is not found
@@ -1128,17 +987,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field22F> getField22F() {
-		final List<Field22F> result = new ArrayList<Field22F>();
+		final List<Field22F> result = new ArrayList<>();
 		final Tag[] tags = tags("22F");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field22F(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field22F(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 16R, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 16R at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field16R objects or <code>Collections.emptyList()</code> if none is not found
@@ -1146,17 +1007,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field16R> getField16R() {
-		final List<Field16R> result = new ArrayList<Field16R>();
+		final List<Field16R> result = new ArrayList<>();
 		final Tag[] tags = tags("16R");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field16R(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field16R(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 13A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 13A at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field13A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1164,17 +1027,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field13A> getField13A() {
-		final List<Field13A> result = new ArrayList<Field13A>();
+		final List<Field13A> result = new ArrayList<>();
 		final Tag[] tags = tags("13A");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field13A(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field13A(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 13B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 13B at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field13B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1182,17 +1047,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field13B> getField13B() {
-		final List<Field13B> result = new ArrayList<Field13B>();
+		final List<Field13B> result = new ArrayList<>();
 		final Tag[] tags = tags("13B");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field13B(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field13B(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 20C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 20C at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field20C objects or <code>Collections.emptyList()</code> if none is not found
@@ -1200,17 +1067,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field20C> getField20C() {
-		final List<Field20C> result = new ArrayList<Field20C>();
+		final List<Field20C> result = new ArrayList<>();
 		final Tag[] tags = tags("20C");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field20C(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field20C(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 16S, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 16S at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field16S objects or <code>Collections.emptyList()</code> if none is not found
@@ -1218,17 +1087,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field16S> getField16S() {
-		final List<Field16S> result = new ArrayList<Field16S>();
+		final List<Field16S> result = new ArrayList<>();
 		final Tag[] tags = tags("16S");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field16S(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field16S(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 25D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 25D at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field25D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1236,17 +1107,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field25D> getField25D() {
-		final List<Field25D> result = new ArrayList<Field25D>();
+		final List<Field25D> result = new ArrayList<>();
 		final Tag[] tags = tags("25D");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field25D(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field25D(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 24B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 24B at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field24B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1254,17 +1127,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field24B> getField24B() {
-		final List<Field24B> result = new ArrayList<Field24B>();
+		final List<Field24B> result = new ArrayList<>();
 		final Tag[] tags = tags("24B");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field24B(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field24B(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 35B at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1272,17 +1147,19 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field35B> getField35B() {
-		final List<Field35B> result = new ArrayList<Field35B>();
+		final List<Field35B> result = new ArrayList<>();
 		final Tag[] tags = tags("35B");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field35B(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field35B(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95Q, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 95Q at MT549 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95Q objects or <code>Collections.emptyList()</code> if none is not found
@@ -1290,10 +1167,12 @@ public class MT549 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field95Q> getField95Q() {
-		final List<Field95Q> result = new ArrayList<Field95Q>();
+		final List<Field95Q> result = new ArrayList<>();
 		final Tag[] tags = tags("95Q");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field95Q(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95Q(tag.getValue()));
+            }
 		}
 		return result;
 	}
@@ -1301,8 +1180,8 @@ public class MT549 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=A]
 	/**
-	* Class for Sequence "A" of MT 549
-	*/
+	 * Class to model Sequence "A" in MT 549
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceA extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -1310,78 +1189,73 @@ public class MT549 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceA() {
+	    private SequenceA() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceA(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		/**
-		* Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>GENL</em>
-		*/
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>GENL</em>
+		 */
 		public static final String START_END_16RS = "GENL";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceA newInstance(final Tag ... tags) {
 			final SequenceA result = new SequenceA();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @since 7.6
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
 		public static SequenceA newInstance() {
 			final SequenceA result = new SequenceA();
-
 			result.append(START_TAG);
-			
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.6
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
 		public static SequenceA newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceA result = new SequenceA();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
-
 		}
 
 		@SequenceStyle(Type.GENERATED_16RS)
@@ -1391,28 +1265,27 @@ public class MT549 extends AbstractMT implements Serializable {
 				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
 			}
 		}
+
 	}
 	/**
-	* Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* <em>NOTE: this method never returns <code>null</code>. If the sequence is not found an empty instance
-	* of <code>SequenceA</code> is returned</em>
-	* @see SequenceA#START_END_16RS
-	*/
+	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
+	 * @see SequenceA#START_END_16RS
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public SequenceA getSequenceA() {
 		return new SequenceA(super.getSwiftMessageNotNullOrException());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* <em>NOTE: this method never returns <code>null</code>. If the sequence is not found an empty instance
-	* of <code>SequenceA</code> is returned</em>  
-	* @see SequenceA#START_END_16RS
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceA within the complete message
-	* @since 7.7
-	*/
+	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @see SequenceA#START_END_16RS
+	 * @param parentSequence an optional parent sequence or null to find SequenceA within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static SequenceA getSequenceA(SwiftTagListBlock parentSequence) {
 		final SequenceA s = new SequenceA();
@@ -1424,8 +1297,8 @@ public class MT549 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=A1]
 	/**
-	* Class for Sequence "A1" of MT 549
-	*/
+	 * Class to model Sequence "A1" in MT 549
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceA1 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -1433,78 +1306,73 @@ public class MT549 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceA1() {
+	    private SequenceA1() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceA1(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		/**
-		* Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>LINK</em>
-		*/
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>LINK</em>
+		 */
 		public static final String START_END_16RS = "LINK";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceA1 newInstance(final Tag ... tags) {
 			final SequenceA1 result = new SequenceA1();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @since 7.6
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
 		public static SequenceA1 newInstance() {
 			final SequenceA1 result = new SequenceA1();
-
 			result.append(START_TAG);
-			
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.6
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
 		public static SequenceA1 newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceA1 result = new SequenceA1();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
-
 		}
 
 		@SequenceStyle(Type.GENERATED_16RS)
@@ -1514,31 +1382,32 @@ public class MT549 extends AbstractMT implements Serializable {
 				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
 			}
 		}
+
 	}
 
 	/**
-	* Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS 
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard.
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SequenceA1#START_END_16RS 
-	*/
+	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceA1#START_END_16RS
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceA1> getSequenceA1List() {
 		return getSequenceA1List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	* Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS 
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard.
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SequenceA1#START_END_16RS 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceA1 within the complete message
-	* @since 7.7
-	*/
+	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceA1#START_END_16RS
+	 * @param parentSequence an optional parent sequence or null to find SequenceA1 within the complete message
+	 * @return the found sequences or an empty list if none is found
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceA1> getSequenceA1List(final SwiftTagListBlock parentSequence) {
 		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceA1.START_END_16RS);
 		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceA1> result = new ArrayList<SequenceA1>(blocks.size());
+			final List<SequenceA1> result = new ArrayList<>(blocks.size());
 			for (final SwiftTagListBlock b:blocks) {
 				final SequenceA1 s = new SequenceA1();
 				s.setTags(b.getSubBlock(SequenceA1.START_END_16RS).getTags());
@@ -1555,8 +1424,8 @@ public class MT549 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=B]
 	/**
-	* Class for Sequence "B" of MT 549
-	*/
+	 * Class to model Sequence "B" in MT 549
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -1564,78 +1433,73 @@ public class MT549 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceB() {
+	    private SequenceB() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceB(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		/**
-		* Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>BYSTAREA</em>
-		*/
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>BYSTAREA</em>
+		 */
 		public static final String START_END_16RS = "BYSTAREA";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceB newInstance(final Tag ... tags) {
 			final SequenceB result = new SequenceB();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @since 7.6
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
 		public static SequenceB newInstance() {
 			final SequenceB result = new SequenceB();
-
 			result.append(START_TAG);
-			
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.6
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
 		public static SequenceB newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceB result = new SequenceB();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
-
 		}
 
 		@SequenceStyle(Type.GENERATED_16RS)
@@ -1645,31 +1509,32 @@ public class MT549 extends AbstractMT implements Serializable {
 				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
 			}
 		}
+
 	}
 
 	/**
-	* Get the list of SequenceB delimited by 16R/16S with value specified in SequenceB#START_END_16RS 
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard.
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SequenceB#START_END_16RS 
-	*/
+	 * Get the list of SequenceB delimited by 16R/16S with value specified in SequenceB#START_END_16RS
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceB#START_END_16RS
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceB> getSequenceBList() {
 		return getSequenceBList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	* Get the list of SequenceB delimited by 16R/16S with value specified in SequenceB#START_END_16RS 
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard.
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SequenceB#START_END_16RS 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceB within the complete message
-	* @since 7.7
-	*/
+	 * Get the list of SequenceB delimited by 16R/16S with value specified in SequenceB#START_END_16RS
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceB#START_END_16RS
+	 * @param parentSequence an optional parent sequence or null to find SequenceB within the complete message
+	 * @return the found sequences or an empty list if none is found
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceB> getSequenceBList(final SwiftTagListBlock parentSequence) {
 		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB.START_END_16RS);
 		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceB> result = new ArrayList<SequenceB>(blocks.size());
+			final List<SequenceB> result = new ArrayList<>(blocks.size());
 			for (final SwiftTagListBlock b:blocks) {
 				final SequenceB s = new SequenceB();
 				s.setTags(b.getSubBlock(SequenceB.START_END_16RS).getTags());
@@ -1686,8 +1551,8 @@ public class MT549 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=C]
 	/**
-	* Class for Sequence "C" of MT 549
-	*/
+	 * Class to model Sequence "C" in MT 549
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceC extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -1695,78 +1560,73 @@ public class MT549 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceC() {
+	    private SequenceC() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceC(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		/**
-		* Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>REF</em>
-		*/
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>REF</em>
+		 */
 		public static final String START_END_16RS = "REF";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceC newInstance(final Tag ... tags) {
 			final SequenceC result = new SequenceC();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @since 7.6
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
 		public static SequenceC newInstance() {
 			final SequenceC result = new SequenceC();
-
 			result.append(START_TAG);
-			
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.6
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
 		public static SequenceC newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceC result = new SequenceC();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
-
 		}
 
 		@SequenceStyle(Type.GENERATED_16RS)
@@ -1776,31 +1636,32 @@ public class MT549 extends AbstractMT implements Serializable {
 				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
 			}
 		}
+
 	}
 
 	/**
-	* Get the list of SequenceC delimited by 16R/16S with value specified in SequenceC#START_END_16RS 
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard.
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SequenceC#START_END_16RS 
-	*/
+	 * Get the list of SequenceC delimited by 16R/16S with value specified in SequenceC#START_END_16RS
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC#START_END_16RS
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceC> getSequenceCList() {
 		return getSequenceCList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	* Get the list of SequenceC delimited by 16R/16S with value specified in SequenceC#START_END_16RS 
-	* The presence of this methods indicates that this sequence can occur more than once according to the Standard.
-	* If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	* @see SequenceC#START_END_16RS 
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceC within the complete message
-	* @since 7.7
-	*/
+	 * Get the list of SequenceC delimited by 16R/16S with value specified in SequenceC#START_END_16RS
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceC#START_END_16RS
+	 * @param parentSequence an optional parent sequence or null to find SequenceC within the complete message
+	 * @return the found sequences or an empty list if none is found
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceC> getSequenceCList(final SwiftTagListBlock parentSequence) {
 		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC.START_END_16RS);
 		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceC> result = new ArrayList<SequenceC>(blocks.size());
+			final List<SequenceC> result = new ArrayList<>(blocks.size());
 			for (final SwiftTagListBlock b:blocks) {
 				final SequenceC s = new SequenceC();
 				s.setTags(b.getSubBlock(SequenceC.START_END_16RS).getTags());
@@ -1817,8 +1678,8 @@ public class MT549 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=D]
 	/**
-	* Class for Sequence "D" of MT 549
-	*/
+	 * Class to model Sequence "D" in MT 549
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceD extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
@@ -1826,78 +1687,73 @@ public class MT549 extends AbstractMT implements Serializable {
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceD() {
+	    private SequenceD() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceD(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		/**
-		* Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>ADDINFO</em>
-		*/
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>ADDINFO</em>
+		 */
 		public static final String START_END_16RS = "ADDINFO";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceD newInstance(final Tag ... tags) {
 			final SequenceD result = new SequenceD();
-
 			result.append(START_TAG);
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @since 7.6
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
 		public static SequenceD newInstance() {
 			final SequenceD result = new SequenceD();
-
 			result.append(START_TAG);
-			
 			result.append(END_TAG);
-
 			return result;
 		}
 
 		/**
-		* Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
-		* Mainly intended to create a sequence by adding subsequences
-		* @since 7.6
-		*/
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
 		public static SequenceD newInstance(final SwiftTagListBlock ... sequences) {
 			final SequenceD result = new SequenceD();
-
 			result.append(START_TAG);
-
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
 					result.addTags(s.getTags());
 				}
 			}
-
 			result.append(END_TAG);
-
 			return result;
-
 		}
 
 		@SequenceStyle(Type.GENERATED_16RS)
@@ -1907,28 +1763,27 @@ public class MT549 extends AbstractMT implements Serializable {
 				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
 			}
 		}
+
 	}
 	/**
-	* Get the single occurrence of SequenceD delimited by 16R/16S the value of SequenceD#START_END_16RS.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* <em>NOTE: this method never returns <code>null</code>. If the sequence is not found an empty instance
-	* of <code>SequenceD</code> is returned</em>
-	* @see SequenceD#START_END_16RS
-	*/
+	 * Get the single occurrence of SequenceD delimited by 16R/16S the value of SequenceD#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
+	 * @see SequenceD#START_END_16RS
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public SequenceD getSequenceD() {
 		return new SequenceD(super.getSwiftMessageNotNullOrException());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceD delimited by 16R/16S the value of SequenceD#START_END_16RS.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* <em>NOTE: this method never returns <code>null</code>. If the sequence is not found an empty instance
-	* of <code>SequenceD</code> is returned</em>  
-	* @see SequenceD#START_END_16RS
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceD within the complete message
-	* @since 7.7
-	*/
+	 * Get the single occurrence of SequenceD delimited by 16R/16S the value of SequenceD#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @see SequenceD#START_END_16RS
+	 * @param parentSequence an optional parent sequence or null to find SequenceD within the complete message
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static SequenceD getSequenceD(SwiftTagListBlock parentSequence) {
 		final SequenceD s = new SequenceD();

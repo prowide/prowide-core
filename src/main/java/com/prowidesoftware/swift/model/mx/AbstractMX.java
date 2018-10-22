@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mx;
 
 import com.google.gson.Gson;
@@ -24,8 +25,8 @@ import com.prowidesoftware.swift.model.MessageStandardType;
 import com.prowidesoftware.swift.model.MxId;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.utils.Lib;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -42,27 +43,26 @@ import java.util.logging.Logger;
 
 
 /**
- * Base class for specific MX messages.<br />
+ * Base class for specific MX messages.<br>
  *
  * IMPORTANT: An MX message is conformed by a set of optional headers 
  * and a message payload or document with the actual specific MX message. 
  * The name of the envelope element that binds a Header to the message 
  * to which it applies is <b>implementation/network specific</b> and not
  * part of the scope of this model. 
- * <br/>
- * This class provides the base container model for MX messages including
+ *
+ * <p>This class provides the base container model for MX messages including
  * an attribute for the header. Further it supports both versions for the
  * header; the SWIFT Application Header (legacy) and the ISO Business
  * Application Header.
- * <br />
- * Subclasses in Prowide Integrator SDK implement the Document portion 
+ *
+ * <p>Subclasses in Prowide Integrator SDK implement the Document portion
  * of each specific MX message type.
- * <br />
- * Serialization of this model into XML text can be done for the with or without
+ *
+ * <p>Serialization of this model into XML text can be done for the with or without
  * the header portion. When the header is set and included into the serialization, 
  * the container root element must be provided.
  *
- * @author www.prowidesoftware.com
  * @since 7.6
  * @see AbstractMT
  */
@@ -254,7 +254,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	 * Convenience method to get this message XML as javax.xml.transform.Source.
 	 * Notice this method will return only the document element of the message (headers not included).
 	 * 
-	 * @return <code>null</code> if message() returns <code>null</code> or StreamSource in other case
+	 * @return null if message() returns null or StreamSource in other case
 	 * @since 7.7
 	 * @see #message()
 	 */
@@ -289,6 +289,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
  	 * Writes the message document content into a file in XML format, encoding content in UTF-8 (headers not included).
 	 *
 	 * @param stream a non null stream to write
+	 * @throws IOException if the stream cannot be written
 	 * @since 7.7
 	 */
 	public void write(final OutputStream stream) throws IOException {
@@ -328,7 +329,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	}
 
 	public Element element() {
-		final HashMap<String, String> properties = new HashMap<String, String>();
+		final HashMap<String, String> properties = new HashMap<>();
 		// it didn't work as expected
 		// properties.put(JAXBRIContext.DEFAULT_NAMESPACE_REMAP, namespace);
 		try {
@@ -347,13 +348,13 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	
 	/**
 	 * Parses the XML string containing the Document element of an MX message into a specific instance of MX message object.
-	 * <br />
+	 * <br>
 	 * If the string is empty, does not contain an MX document, the message type cannot be 
 	 * detected or an error occur reading and parsing the message content; this method returns null.
-	 * <br />
+	 * <br>
 	 * The implementation detects the message type and uses reflection to call the
 	 * parser in the specific Mx subclass.
-	 * <br />
+	 * <br>
 	 * IMPORTANT: For the moment this is supported only in Prowide Integrator.
 	 * To parse XML into the generic MxNode structure, or to parse business headers check {@link MxParser}
 	 * 
@@ -369,13 +370,14 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	
 	/**
 	 * Parses a file content into a specific instance of Mx. 
-	 * <br />
+	 * <br>
 	 * IMPORTANT: For the moment this is supported only in Prowide Integrator.
 	 * To parse XML into the generic MxNode structure, or to parse business headers check {@link MxParser}
 	 * 
 	 * @param file a file containing a swift MX message
  	 * @param id optional parameter to indicate the specific MX type to create; autodetected from namespace if null.
 	 * @return parser message or null if file content could not be parsed
+	 * @throws IOException if the file cannot be written
 	 * @see #parse(String, MxId)
 	 * 
 	 * @since 7.8.4
@@ -386,7 +388,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 
 	/**
 	 * Get a JSON representation of this MX	message.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	@Override
 	public String toJson() {
@@ -404,7 +406,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	 * @param json a JSON representation of an MX message
 	 * @param classOfT the specific MX subclass
 	 * @return a specific deserialized MX message object
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected static <T> T fromJson(String json, Class<T> classOfT) {
 		final Gson gson = new GsonBuilder()
@@ -418,7 +420,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	 * Creates an MX messages from its JSON representation.
 	 * @param json a JSON representation of an MX message
 	 * @return a specific deserialized MX message object, for example MxPain00100108
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	public static AbstractMX fromJson(String json) {
 		final Gson gson = new GsonBuilder()

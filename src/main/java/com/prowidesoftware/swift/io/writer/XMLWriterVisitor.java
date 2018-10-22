@@ -1,41 +1,30 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io.writer;
+
+import com.prowidesoftware.ProwideException;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.utils.IMessageVisitor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
 import java.util.logging.Level;
-
-import org.apache.commons.lang.StringUtils;
-
-import com.prowidesoftware.swift.WifeException;
-import com.prowidesoftware.swift.model.SwiftBlock;
-import com.prowidesoftware.swift.model.SwiftBlock1;
-import com.prowidesoftware.swift.model.SwiftBlock2;
-import com.prowidesoftware.swift.model.SwiftBlock2Input;
-import com.prowidesoftware.swift.model.SwiftBlock2Output;
-import com.prowidesoftware.swift.model.SwiftBlock3;
-import com.prowidesoftware.swift.model.SwiftBlock4;
-import com.prowidesoftware.swift.model.SwiftBlock5;
-import com.prowidesoftware.swift.model.SwiftBlockUser;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.model.UnparsedTextList;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.utils.IMessageVisitor;
 
 /**
  * Main class for XML generation, that is called from {@link SwiftMessage#visit(IMessageVisitor)}.
@@ -434,7 +423,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
 			writer.write(s);
 		} catch (IOException e) {
 			log.log(Level.SEVERE, "Caught exception in XMLWriterVisitor, method write", e);
-			throw new WifeException(e);
+			throw new ProwideException(e);
 		}
 	}
 }

@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -37,10 +38,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 26D</h2>
+ * <strong>SWIFT MT Field 26D</strong>
+ * <p>
  * Model and parser for field 26D of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
  * 		<li><code>String</code></li> 
  * 		<li><code>String</code></li> 
@@ -74,15 +76,15 @@ import com.google.gson.JsonParser;
  * 		<li><code>String</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>65x[$65x]0-29</code></li>
  * 		<li>parser pattern: <code>S[$S]0-29</code></li>
  * 		<li>components pattern: <code>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -90,7 +92,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -143,7 +145,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -165,7 +167,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 */
 	public static Field26D newInstance(Field26D source) {
 		Field26D cp = new Field26D();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -212,8 +214,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent1AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(1);
 	}
 
@@ -775,8 +778,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent2AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(2);
 	}
 
@@ -801,8 +805,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent3AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(3);
 	}
 
@@ -827,8 +832,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent4AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(4);
 	}
 
@@ -853,8 +859,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent5AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent5AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(5);
 	}
 
@@ -879,8 +886,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent6AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(6);
 	}
 
@@ -905,8 +913,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent7AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent7AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(7);
 	}
 
@@ -931,8 +940,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent8AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent8AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(8);
 	}
 
@@ -957,8 +967,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent9AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent9AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(9);
 	}
 
@@ -983,8 +994,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent10AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent10AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(10);
 	}
 
@@ -1009,8 +1021,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent11AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent11AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(11);
 	}
 
@@ -1035,8 +1048,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent12AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent12AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(12);
 	}
 
@@ -1061,8 +1075,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent13AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent13AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(13);
 	}
 
@@ -1087,8 +1102,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent14AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent14AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(14);
 	}
 
@@ -1113,8 +1129,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent15AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent15AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(15);
 	}
 
@@ -1139,8 +1156,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent16AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent16AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(16);
 	}
 
@@ -1165,8 +1183,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent17AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent17AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(17);
 	}
 
@@ -1191,8 +1210,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent18AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent18AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(18);
 	}
 
@@ -1217,8 +1237,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent19AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent19AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(19);
 	}
 
@@ -1243,8 +1264,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent20AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent20AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(20);
 	}
 
@@ -1269,8 +1291,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent21AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent21AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(21);
 	}
 
@@ -1295,8 +1318,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent22AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent22AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(22);
 	}
 
@@ -1321,8 +1345,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent23AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent23AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(23);
 	}
 
@@ -1347,8 +1372,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent24AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent24AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(24);
 	}
 
@@ -1373,8 +1399,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent25AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent25AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(25);
 	}
 
@@ -1399,8 +1426,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent26AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent26AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(26);
 	}
 
@@ -1425,8 +1453,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent27AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent27AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(27);
 	}
 
@@ -1451,8 +1480,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent28AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent28AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(28);
 	}
 
@@ -1477,8 +1507,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent29AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent29AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(29);
 	}
 
@@ -1503,8 +1534,9 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent30AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent30AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(30);
 	}
 
@@ -1519,7 +1551,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -1710,8 +1742,8 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field26D> result = new ArrayList<Field26D>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field26D> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field26D(f));
 			}
@@ -1949,14 +1981,14 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		result.add("Narrative");
 		result.add("Narrative 2");
 		result.add("Narrative 3");
@@ -1992,7 +2024,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
@@ -2033,7 +2065,7 @@ public class Field26D extends Field implements Serializable, com.prowidesoftware
 	 * This method deserializes the JSON data into a Field26D object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
 	public static Field26D fromJson(final String json) {

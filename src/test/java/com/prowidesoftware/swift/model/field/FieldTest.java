@@ -1,33 +1,28 @@
 /*
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
+ * Copyright 2006-2018 Prowide
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import com.prowidesoftware.swift.model.Tag;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.Locale;
 
-import org.apache.commons.lang.StringUtils;
-import org.junit.Test;
-
-import com.prowidesoftware.deprecation.DeprecationUtils.EnvironmentVariableKey;
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.swift.model.Tag;
+import static org.junit.Assert.*;
 
 /**
  * Test for base class Field.
@@ -165,16 +160,6 @@ public class FieldTest {
 	@Test
 	public void testLabel2() {
 		assertEquals("Currency", Field.getLabel("11A", "500", "B1", new Locale("en")));
-	}
-
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testLabel3_Legacy() {
-		DeprecationUtils.setEnv(EnvironmentVariableKey.NODELAY);
-		String text = (new Field20()).getLabel();
-		assertTrue(StringUtils.contains(text, "Referen"));
-		//assertEquals("Sender's Reference", (new Field20()).getLabel());
-		DeprecationUtils.clearEnv();
 	}
 
 	@Test

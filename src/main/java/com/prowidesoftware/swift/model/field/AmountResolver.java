@@ -1,30 +1,30 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.field;
+
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 /**
  * Helper API to detect amount component in fields.
@@ -36,9 +36,9 @@ public class AmountResolver {
 	 * @deprecated use {@link #amounts(Field)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public static List<BigDecimal> amounts(final Field f, final int ... component) {
-		DeprecationUtils.phase2(AmountResolver.class, "amounts(File, int ...)", "Use amounts(Field) instead.");
+		DeprecationUtils.phase3(AmountResolver.class, "amounts(File, int ...)", "Use amounts(Field) instead.");
 		return amounts(f);
 	}
 	
@@ -60,7 +60,7 @@ public class AmountResolver {
 	 */
 	public static List<BigDecimal> amounts(final Field f) {
 		Validate.notNull(f);
-		List<BigDecimal> amounts = new ArrayList<BigDecimal>();
+		List<BigDecimal> amounts = new ArrayList<>();
 		int i = StringUtils.indexOf(f.componentsPattern(), 'N');
 		while (i >= 0) {
 			BigDecimal amount = amount(f, i+1);
@@ -80,7 +80,7 @@ public class AmountResolver {
 	 *
 	 * @param f the field where to extract the amount, must not be null
 	 *
-	 * @return a BigDecimal with the number found in the first numeric component or <code>null</code> if there is 
+	 * @return a BigDecimal with the number found in the first numeric component or null if there is
 	 * 	no numeric component in the field. It may also return null if Field.getComponent(index,Number.class) fails
 	 * 	for that component
 	 * 
@@ -100,7 +100,7 @@ public class AmountResolver {
 	 * Returns the indicated component as BigDecimal
 	 * @param f the field
 	 * @param component a component number (1 based)
-	 * @return the BigDecimal for the amount or <code>null</code> if component is not found or is not a Number
+	 * @return the BigDecimal for the amount or null if component is not found or is not a Number
 	 * @since 7.8.9
 	 */
 	private static BigDecimal amount(final Field f, int component) {

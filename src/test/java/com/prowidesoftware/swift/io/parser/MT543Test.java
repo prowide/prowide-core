@@ -1,36 +1,18 @@
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io.parser;
 
 import static org.junit.Assert.assertEquals;
@@ -45,15 +27,14 @@ import com.prowidesoftware.swift.model.Tag;
 
 /**
  * MT543 tests
- * 
- * @author www.prowidesoftware.com
+ *
  * @since 4.0
  */
 public class MT543Test extends BaseMessageTestcase {
 	
 	@Test 
 	public void test543_1() {
-		messageToParse = "{1:F01MYBICBICXXXX0000000000}{2:I543FOOODEFFXCUSN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX0000000000}{2:I543FOOODEFFXCUSN}{4:\n" +
 			":16R:GENL\n" +
 			":20C::SEME//2008101900002890\n" +
 			":23G:NEWM\n" +
@@ -92,10 +73,10 @@ public class MT543Test extends BaseMessageTestcase {
 		assertEquals("543", (parseMessage(messageToParse)).getType());
 		
 		//check b1
-		assertEquals("F01MYBICBICXXXX0000000000", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
 		assertEquals("F", b1.getApplicationId());
 		assertEquals("01", b1.getServiceId());
-		assertEquals("MYBICBICXXXX", b1.getLogicalTerminal());
+		assertEquals("FOOBARXXXXXX", b1.getLogicalTerminal());
 		assertEquals("0000", b1.getSessionNumber());
 		assertEquals("000000", b1.getSequenceNumber());
 		
@@ -135,7 +116,7 @@ public class MT543Test extends BaseMessageTestcase {
 	
 	@Test 
 	public void test543_2() {
-		messageToParse = "{1:F01MYBICBICXXXX0000000000}{2:I543FOOOUKPPXXXXN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX0000000000}{2:I543FOOOUKPPXXXXN}{4:\n" +
 		":16R:GENL\n" +
 		":20C::SEME//2004080300000523\n" +
 		":23G:NEWM\n" +
@@ -171,14 +152,14 @@ public class MT543Test extends BaseMessageTestcase {
 		":16S:SETDET\n" +
 		"-}";
 		assertEquals("543", (parseMessage(messageToParse)).getType());
-		assertEquals("F01MYBICBICXXXX0000000000", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
 		assertEquals("I543FOOOUKPPXXXXN", b2.getBlockValue());
 		assertEquals(32, b4.countAll());
 	}
 	
 	@Test 
 	public void test543_3() {
-		messageToParse = "{1:F01MYBICBICXXXX0000000000}{2:I543FOOOARPPXXXXN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX0000000000}{2:I543FOOOARPPXXXXN}{4:\n" +
 		":16R:GENL\n" +
 		":20C::SEME//2005071100000156\n" +
 		":23G:NEWM\n" +
@@ -214,14 +195,14 @@ public class MT543Test extends BaseMessageTestcase {
 		":16S:SETDET\n" +
 		"-}";
 		assertEquals("543", (parseMessage(messageToParse)).getType());
-		assertEquals("F01MYBICBICXXXX0000000000", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
 		assertEquals("I543FOOOARPPXXXXN", b2.getBlockValue());
 		assertEquals(32, b4.countAll());
 	}
 	
 	@Test 
 	public void test543_4() {
-		messageToParse = "{1:F01MYBICBICXXXX0000000000}{2:I543FOOOPRPPXXXXN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX0000000000}{2:I543FOOOPRPPXXXXN}{4:\n" +
 		":16R:GENL\n" +
 		":20C::SEME//2005071400000574\n" +
 		":23G:NEWM\n" +
@@ -257,14 +238,14 @@ public class MT543Test extends BaseMessageTestcase {
 		":16S:SETDET\n" +
 		"-}";
 		assertEquals("543", (parseMessage(messageToParse)).getType());
-		assertEquals("F01MYBICBICXXXX0000000000", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
 		assertEquals("I543FOOOPRPPXXXXN", b2.getBlockValue());
 		assertEquals(32, b4.countAll());
 	}
 	
 	@Test 
 	public void test543_5() {
-		messageToParse = "{1:F01MYBICBICXXXX0000000000}{2:I543FOOOUS33XASTN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXXXXX0000000000}{2:I543FOOOUS33XASTN}{4:\n" +
 		":16R:GENL\n" +
 		":20C::SEME//B070905000173\n" +
 		":23G:NEWM\n" +
@@ -298,7 +279,7 @@ public class MT543Test extends BaseMessageTestcase {
 		":16S:SETDET\n" +
 		"-}";
 		assertEquals("543", (parseMessage(messageToParse)).getType());
-		assertEquals("F01MYBICBICXXXX0000000000", b1.getBlockValue());
+		assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
 		assertEquals("I543FOOOUS33XASTN", b2.getBlockValue());
 		assertEquals(30, b4.countAll());
 	}

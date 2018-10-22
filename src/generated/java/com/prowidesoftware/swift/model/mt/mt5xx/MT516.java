@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mt.mt5xx;
 
 
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.internal.*;
@@ -35,9 +36,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <h1>MT 516 - Securities Loan Confirmation</h1>
- * <h3>SWIFT MT516 (ISO 15022) message structure:</h3>
+ * <strong>MT 516 - Securities Loan Confirmation</strong>
  *
+ * <p>
+ * SWIFT MT516 (ISO 15022) message structure:
+ * <br>
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A (M)<ul><li class="field">Field 20  (M)</li>
@@ -72,47 +75,18 @@ Sequence C (O)<ul><li class="field">Field 77 D (O)</li>
 </ul></li>
 </ul></div>
 
- <style>
-.scheme, .scheme ul, .scheme li {
-     position: relative;
-}
-.scheme ul {
-    list-style: none;
-    padding-left: 32px;
-}
-.scheme li::before, .scheme li::after {
-    content: "";
-    position: absolute;
-    left: -12px;
-}
-.scheme li::before {
-    border-top: 1px solid #000;
-    top: 9px;
-    width: 8px;
-    height: 0;
-}
-.scheme li::after {
-    border-left: 1px solid #000;
-    height: 100%;
-    width: 0px;
-    top: 2px;
-}
-.scheme ul > li:last-child::after {
-    height: 8px;
-}</style>
-
  *
- * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
- * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
- *
- * @author www.prowidesoftware.com
+ * <p>
+ * This source code is specific to release <strong>SRU 2018</strong>
+ * <p>
+ * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
 @Generated
 public class MT516 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT516.class.getName());
 	
@@ -125,146 +99,114 @@ public class MT516 extends AbstractMT implements Serializable {
 
 	/**
 	* Constant for qualifier with value BON 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsB.BON
-	* @see com.prowidesoftware.swift.SchemeConstantsB#BON
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String BON = "BON";
 
 	/**
 	* Constant for qualifier with value CER 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CER
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CER
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CER = "CER";
 
 	/**
 	* Constant for qualifier with value CPN 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsC.CPN
-	* @see com.prowidesoftware.swift.SchemeConstantsC#CPN
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String CPN = "CPN";
 
 	/**
 	* Constant for qualifier with value FMT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsF.FMT
-	* @see com.prowidesoftware.swift.SchemeConstantsF#FMT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String FMT = "FMT";
 
 	/**
 	* Constant for qualifier with value MSC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsM.MSC
-	* @see com.prowidesoftware.swift.SchemeConstantsM#MSC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String MSC = "MSC";
 
 	/**
 	* Constant for qualifier with value OPC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsO.OPC
-	* @see com.prowidesoftware.swift.SchemeConstantsO#OPC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String OPC = "OPC";
 
 	/**
 	* Constant for qualifier with value OPS 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsO.OPS
-	* @see com.prowidesoftware.swift.SchemeConstantsO#OPS
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String OPS = "OPS";
 
 	/**
 	* Constant for qualifier with value PCT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PCT
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PCT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PCT = "PCT";
 
 	/**
 	* Constant for qualifier with value PRC 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PRC
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PRC
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PRC = "PRC";
 
 	/**
 	* Constant for qualifier with value PRS 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsP.PRS
-	* @see com.prowidesoftware.swift.SchemeConstantsP#PRS
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String PRS = "PRS";
 
 	/**
 	* Constant for qualifier with value RTE 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.RTE
-	* @see com.prowidesoftware.swift.SchemeConstantsR#RTE
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String RTE = "RTE";
 
 	/**
 	* Constant for qualifier with value RTS 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsR.RTS
-	* @see com.prowidesoftware.swift.SchemeConstantsR#RTS
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String RTS = "RTS";
 
 	/**
 	* Constant for qualifier with value SHS 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsS.SHS
-	* @see com.prowidesoftware.swift.SchemeConstantsS#SHS
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String SHS = "SHS";
 
 	/**
 	* Constant for qualifier with value UNKNOWN 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsU.UNKNOWN
-	* @see com.prowidesoftware.swift.SchemeConstantsU#UNKNOWN
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String UNKNOWN = "UNKNOWN";
 
 	/**
 	* Constant for qualifier with value UNT 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsU.UNT
-	* @see com.prowidesoftware.swift.SchemeConstantsU#UNT
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String UNT = "UNT";
 
 	/**
 	* Constant for qualifier with value WTS 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsW.WTS
-	* @see com.prowidesoftware.swift.SchemeConstantsW#WTS
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String WTS = "WTS";
 
 // end qualifiers constants	
@@ -280,20 +222,18 @@ public class MT516 extends AbstractMT implements Serializable {
 
 	/**
 	 * Creates an MT516 initialized with the parameter MtSwiftMessage.
-	 * @param m swift message with the MT516 content, the parameter can not be <code>null</code>
+	 * @param m swift message with the MT516 content, the parameter can not be null
 	 * @see #MT516(String)
 	 */
 	public MT516(MtSwiftMessage m) {
-		this();
-		super.m = super.getSwiftMessageNotNullOrException();
-		sanityCheck(super.m);
+		this(m.message());
 	}
 	
 	/**
 	 * Creates an MT516 initialized with the parameter MtSwiftMessage.
 	 *
 	 * @param m swift message with the MT516 content
-	 * @return the created object or <code>null</code> if the parameter is <code>null</code>
+	 * @return the created object or null if the parameter is null
 	 * @see #MT516(String)
 	 * @since 7.7
 	 */
@@ -301,11 +241,11 @@ public class MT516 extends AbstractMT implements Serializable {
 		if (m == null) {
 			return null;
 		}
-		return new MT516(m.message());
+		return new MT516(m);
 	}
 	
 	/**
-	 * Creates and initializes a new MT516 input message setting TEST BICS as sender and receiver.<br />
+	 * Creates and initializes a new MT516 input message setting TEST BICS as sender and receiver.<br>
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -315,7 +255,7 @@ public class MT516 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT516 input message from sender to receiver.<br />
+	 * Creates and initializes a new MT516 input message from sender to receiver.<br>
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -332,21 +272,24 @@ public class MT516 extends AbstractMT implements Serializable {
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* 
+	*
+	* @param messageType the message type number
+    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
+	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
 	* @see #MT516(String, String)
 	* @deprecated Use instead <code>new MT516(sender, receiver)</code> instead
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public MT516(final int messageType, final String sender, final String receiver) {
 		super(516, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT516(int, String, String)", "Use the constructor MT516(sender, receiver) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT516(int, String, String)", "Use the constructor MT516(sender, receiver) instead.");
 	}
 	
 	/**
-	 * Creates a new MT516 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT516 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -372,12 +315,12 @@ public class MT516 extends AbstractMT implements Serializable {
     }
 	
 	/**
-	 * Creates a new MT516 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT516 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter cannot be parsed, the returned MT516 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br />
+	 * initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
-	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be <code>null</code> in which case this method returns null</em>
+	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
 	 * @return a new instance of MT516 or null if fin is null 
 	 * @since 7.7
 	 */
@@ -389,12 +332,13 @@ public class MT516 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT516 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT516 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public MT516(final InputStream stream) throws IOException {
@@ -402,11 +346,12 @@ public class MT516 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT516 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT516 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
 	 * @return a new instance of MT516 or null if stream is null or the message cannot be parsed 
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public static MT516 parse(final InputStream stream) throws IOException {
@@ -417,12 +362,13 @@ public class MT516 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT516 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT516 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public MT516(final File file) throws IOException {
@@ -430,11 +376,12 @@ public class MT516 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT516 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT516 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
 	 * @return a new instance of MT516 or null if; file is null, does not exist, can't be read, is not a file or the message cannot be parsed
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public static MT516 parse(final File file) throws IOException {
@@ -453,7 +400,7 @@ public class MT516 extends AbstractMT implements Serializable {
 	public String getMessageType() {
 		return "516";
 	}
-	
+
 	/**
 	 * Add all tags from block to the end of the block4.
 	 *
@@ -501,7 +448,7 @@ public class MT516 extends AbstractMT implements Serializable {
 	 *
 	 * @param json a JSON representation of an MT516 message
 	 * @return a new instance of MT516
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	public final static MT516 fromJson(String json) {
 		return (MT516) AbstractMT.fromJson(json);
@@ -509,10 +456,10 @@ public class MT516 extends AbstractMT implements Serializable {
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 20 at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field20 object or <code>null</code> if the field is not found
+	 * @return a Field20 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -527,10 +474,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 21 at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field21 object or <code>null</code> if the field is not found
+	 * @return a Field21 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -545,10 +492,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 23, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 23 at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field23 object or <code>null</code> if the field is not found
+	 * @return a Field23 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -563,10 +510,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 31P, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 31P at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field31P object or <code>null</code> if the field is not found
+	 * @return a Field31P object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -581,10 +528,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 83C at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field83C object or <code>null</code> if the field is not found
+	 * @return a Field83C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -599,10 +546,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 35A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 35A at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field35A object or <code>null</code> if the field is not found
+	 * @return a Field35A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -617,10 +564,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 31L, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 31L at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field31L object or <code>null</code> if the field is not found
+	 * @return a Field31L object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -635,10 +582,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 31X, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 31X at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field31X object or <code>null</code> if the field is not found
+	 * @return a Field31X object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -653,10 +600,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 30 at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field30 object or <code>null</code> if the field is not found
+	 * @return a Field30 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -671,10 +618,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 31F, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 31F at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field31F object or <code>null</code> if the field is not found
+	 * @return a Field31F object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -689,10 +636,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 35N, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 35N at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field35N object or <code>null</code> if the field is not found
+	 * @return a Field35N object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -707,10 +654,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 33T, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 33T at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field33T object or <code>null</code> if the field is not found
+	 * @return a Field33T object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -725,10 +672,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37J, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 37J at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field37J object or <code>null</code> if the field is not found
+	 * @return a Field37J object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -743,10 +690,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 26H, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 26H at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field26H object or <code>null</code> if the field is not found
+	 * @return a Field26H object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -761,10 +708,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 33S, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 33S at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field33S object or <code>null</code> if the field is not found
+	 * @return a Field33S object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -779,10 +726,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 32A at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field32A object or <code>null</code> if the field is not found
+	 * @return a Field32A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -797,10 +744,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 32B at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field32B object or <code>null</code> if the field is not found
+	 * @return a Field32B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -815,10 +762,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 37A at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field37A object or <code>null</code> if the field is not found
+	 * @return a Field37A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -833,10 +780,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 37B at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field37B object or <code>null</code> if the field is not found
+	 * @return a Field37B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -851,10 +798,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37C, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 37C at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field37C object or <code>null</code> if the field is not found
+	 * @return a Field37C object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -869,10 +816,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 37D at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field37D object or <code>null</code> if the field is not found
+	 * @return a Field37D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -887,10 +834,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37E, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 37E at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field37E object or <code>null</code> if the field is not found
+	 * @return a Field37E object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -905,10 +852,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37F, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 37F at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field37F object or <code>null</code> if the field is not found
+	 * @return a Field37F object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -923,10 +870,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57A, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57A at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field57A object or <code>null</code> if the field is not found
+	 * @return a Field57A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -941,10 +888,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57B, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57B at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field57B object or <code>null</code> if the field is not found
+	 * @return a Field57B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -959,10 +906,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 57D at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field57D object or <code>null</code> if the field is not found
+	 * @return a Field57D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -977,10 +924,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 35S, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 35S at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field35S object or <code>null</code> if the field is not found
+	 * @return a Field35S object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -995,10 +942,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77D, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 77D at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field77D object or <code>null</code> if the field is not found
+	 * @return a Field77D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1013,10 +960,10 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 72, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 72 at MT516 is expected to be the only one.
 	 * 
-	 * @return a Field72 object or <code>null</code> if the field is not found
+	 * @return a Field72 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -1031,7 +978,7 @@ public class MT516 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 35B at MT516 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1039,17 +986,19 @@ public class MT516 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field35B> getField35B() {
-		final List<Field35B> result = new ArrayList<Field35B>();
+		final List<Field35B> result = new ArrayList<>();
 		final Tag[] tags = tags("35B");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field35B(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field35B(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 87A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 87A at MT516 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field87A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1057,17 +1006,19 @@ public class MT516 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field87A> getField87A() {
-		final List<Field87A> result = new ArrayList<Field87A>();
+		final List<Field87A> result = new ArrayList<>();
 		final Tag[] tags = tags("87A");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field87A(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field87A(tag.getValue()));
+            }
 		}
 		return result;
 	}
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 87D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br />
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 87D at MT516 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field87D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1075,10 +1026,12 @@ public class MT516 extends AbstractMT implements Serializable {
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
 	public List<Field87D> getField87D() {
-		final List<Field87D> result = new ArrayList<Field87D>();
+		final List<Field87D> result = new ArrayList<>();
 		final Tag[] tags = tags("87D");
-		for (int i=0; i<tags.length; i++) {
-			result.add(new Field87D(tags[i].getValue()));
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field87D(tag.getValue()));
+            }
 		}
 		return result;
 	}
@@ -1086,83 +1039,99 @@ public class MT516 extends AbstractMT implements Serializable {
 
 // BaseSequenceCodeGenerator [seq=A]
 	/**
-	* Class for Sequence "A" of MT 516
-	*/
+	 * Class to model Sequence "A" in MT 516
+	 */
 	public static class SequenceA extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
 		 * Constructs an empty sequence
 		 */
-	        private SequenceA() {
+	    private SequenceA() {
 			super(new ArrayList<Tag>());
 		}
+
 		/**
-		* Creates a sequence with the given content.
-		* @see SwiftTagListBlock
-		*/
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
 		private SequenceA(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
+
 		/**
-		* First mandatory tagname of the sequence: <em>"20"  </em>.
-		* Array format is for cases when more than one letter options is allowed
-		*/
+		 * First mandatory tag name of the sequence: <em>"20"  </em>.
+		 * Array format is for cases when more than one letter options is allowed
+		 */
 		public static final String[] START = { "20"   } ;
+
 		/**
-		* Last mandatory tagname of the sequence: <em>"30"  </em>
-		* Array format is for cases when more than one letter options is allowed
-		*/
+		 * Last mandatory tag name of the sequence: <em>"30"  </em>
+		 * Array format is for cases when more than one letter options is allowed
+		 */
 		protected static final String[] END = { "30"   };
+
 		/**
-		* List of optional tags after the last mandatory tag
-		*/
+		 * List of optional tags after the last mandatory tag
+		 */
 		protected static final String[] TAIL = new String[]{ "31F", "87A", "87D", "35N", "33T"   };
 
 		/**
-		* same as newInstance(0, 0, tags);
-		* see #newInstance(Tag ... )
-		*/
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes
+		 * @param tags the list of tags to set as sequence content
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 		public static SequenceA newInstance(final Tag ... tags) {
 			return newInstance(0, 0, tags);
 		}
+
+		/**
+		 * Creates a sequence with starting and ending tags set to the indicated tags in from the
+		 * {@link #START} and {@link #END} lists of mandatory fields, and with the content between
+		 * the starting and ending tag initialized with the given optional tags.
+		 *
+		 * @param start a zero-based index within the list of mandatory starting tags in the sequence
+		 * @param end a zero-based index within the list of mandatory ending tags in the sequence
+		 * @param tags the list of tags to set as sequence content
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 		public static SequenceA newInstance(final int start, final int end, final Tag ... tags) {
 			final SequenceA result = new SequenceA();
-
 			result.append(new Tag(START[start], ""));
-
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-
 			result.append(new Tag(END[end], ""));
-
 			return result;
 		}
 	}
  	/**
-	* Get the single occurrence of SequenceA delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* If block 4 is empty this method returns <code>null</code>.
-	* @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
-	*/ 
+	 * Get the single occurrence of SequenceA delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * If block 4 is empty this method returns null.
+	 *
+	 * @return the found sequence or an empty sequence if none is found
+	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
+	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceA getSequenceA() {
 		return getSequenceA(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	* Get the single occurrence of SequenceA delimited by leading tag and end, with an optional tail.
-	* The presence of this methods indicates that this sequence can occur only once according to the Standard.
-	* If block 4 is empty this method returns <code>null</code>.
-	* @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
-	* @param parentSequence an optional parent sequence or <code>null</code> to find SequenceA within the complete message
-	* @since 7.7
-	*/ 
+	 * Get the single occurrence of SequenceA delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * If block 4 is empty this method returns null.
+	 *
+	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
+	 * @param parentSequence an optional parent sequence or null to find SequenceA within the complete message
+	 * @return the found sequence or an empty sequence if none is found
+	 * @since 7.7
+	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceA getSequenceA(SwiftTagListBlock parentSequence) {
 		if (parentSequence != null && !parentSequence.isEmpty()) {

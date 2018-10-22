@@ -1,14 +1,18 @@
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift;
 
 
@@ -26,14 +30,13 @@ import com.prowidesoftware.swift.model.UnparsedTextList;
 /**
  * Conversion services test.
  * 
- * @author www.prowidesoftware.com
  * @since 4.0
  */
 public class GeneralAPITest extends XMLTestCase {
 
 	private IConversionService srv;
 	private SwiftMessage msg;
-	private String fin = "{1:F01BICFOOYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" + 
+	private String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" +
 			":20:AMLX985338-D4E5E\n" + 
 			":23B:CRED\n" + 
 			":32A:051018EUR66969,52\n" + 
@@ -41,7 +44,7 @@ public class GeneralAPITest extends XMLTestCase {
 			":50K:Foo SA\n" + 
 			":53A:DEUTDEFF\n" + 
 			":54A://RT\n" + 
-			"BICFOOYY\n" + 
+			"FOOBARYY\n" +
 			":59:/-\n" + 
 			"Tressis SA\n" + 
 			":70:/CS BD ST EUR B\n" + 

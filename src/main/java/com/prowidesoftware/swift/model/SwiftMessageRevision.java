@@ -1,33 +1,69 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
+import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Objects;
+
+import static javax.persistence.FetchType.LAZY;
 
 /**
  * A revision is a snapshot of message content and is used to track the history of changes in a message.
  * Applications may use to store revisions each time a message is edited.
+ *
+ * <p>XML metadata may be used to override or augment these JPA annotations.
  * 
  * @author sebastian@prowidesoftware.com
  * @since 7.8
  */
+@Entity
+@Table(name="swift_msg_revision")
 public class SwiftMessageRevision {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(name = "creation_date")
 	private Calendar creationDate = Calendar.getInstance();
+
+	@Column(length = 40, name="creation_user")
 	private String creationUser;
+
+	@Lob
 	private String message;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		SwiftMessageRevision that = (SwiftMessageRevision) o;
+		return Objects.equals(creationDate, that.creationDate) &&
+				Objects.equals(creationUser, that.creationUser) &&
+				Objects.equals(message, that.message);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(creationDate, creationUser, message);
+	}
+
+	@Lob
+	@Basic(fetch=LAZY)
 	private String json;
 
 	public SwiftMessageRevision() {
@@ -92,46 +128,4 @@ public class SwiftMessageRevision {
 		this.json = json;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
-		result = prime * result + ((creationUser == null) ? 0 : creationUser.hashCode());
-		result = prime * result + ((json == null) ? 0 : json.hashCode());
-		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SwiftMessageRevision other = (SwiftMessageRevision) obj;
-		if (creationDate == null) {
-			if (other.creationDate != null)
-				return false;
-		} else if (!creationDate.equals(other.creationDate))
-			return false;
-		if (creationUser == null) {
-			if (other.creationUser != null)
-				return false;
-		} else if (!creationUser.equals(other.creationUser))
-			return false;
-		if (json == null) {
-			if (other.json != null)
-				return false;
-		} else if (!json.equals(other.json))
-			return false;
-		if (message == null) {
-			if (other.message != null)
-				return false;
-		} else if (!message.equals(other.message))
-			return false;
-		return true;
-	}
 }

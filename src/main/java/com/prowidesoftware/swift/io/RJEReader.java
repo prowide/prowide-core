@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io;
 
 import java.io.File;
@@ -23,11 +24,11 @@ import java.util.logging.Logger;
 
 /**
  * Helper class to read RJE files.
- * <br />
+ * <br>
  * File content is splitted, and the iterator returns the raw message content of
  * each SWIFT message found in the file. API is also provided to read each message 
  * parsed into an MT..
- * <br /> 
+ * <br>
  * The reader can be initialized with a File, Stream or String.
  * 
  * @author sebastian@prowidesoftware.com
@@ -38,7 +39,7 @@ public class RJEReader extends AbstractReader {
 	private static final Logger log = Logger.getLogger(RJEReader.class.getName());
 	public static final char SPLITCHAR = '$';
 
-	private char splitChar = SPLITCHAR;
+	private char splitChar_ = SPLITCHAR;
 	
 	/**
 	 * Constructs a RJEReader to read messages from a given Reader instance
@@ -55,7 +56,11 @@ public class RJEReader extends AbstractReader {
 	}
 
 	/**
-	 * Constructs a RJEReader to read messages from a stream
+	 * Constructs a RJEReader to read messages from a stream using the default encoding
+	 *
+	 * <p>If you need to read the stream with a different encoding you can use
+	 * {@link com.prowidesoftware.swift.utils.Lib#readStream(InputStream, String)}
+	 * with the constructor receiving the String content
 	 */
 	public RJEReader(final InputStream stream) {
 		super(stream);
@@ -93,7 +98,7 @@ public class RJEReader extends AbstractReader {
 			int c;
 			StringBuilder sb = new StringBuilder();
 			try {
-				while ((c=reader.read())!=-1 && (c!=splitChar)) {
+				while ((c=reader.read())!=-1 && (c!= splitChar_)) {
 					sb.append((char)c);
 				}
 				if (c==-1) {
@@ -112,8 +117,8 @@ public class RJEReader extends AbstractReader {
 	 * @param c a character to use as message separator
 	 * @since 7.9.7
 	 */
-	public void setSplitChar(final char c) {
-		this.splitChar = splitChar;
+	public void setSplitChar_(final char c) {
+		this.splitChar_ = splitChar_;
 	}
 
 }

@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.mt.mt0xx;
 
 
@@ -19,7 +20,7 @@ package com.prowidesoftware.swift.model.mt.mt0xx;
 import com.prowidesoftware.Generated;
 import java.io.Serializable;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.*;
@@ -30,9 +31,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <h1>MT 061 - Select Status Report for FIN</h1>
- * <h3>SWIFT MT061 (ISO 15022) message structure:</h3>
+ * <strong>MT 061 - Select Status Report for FIN</strong>
  *
+ * <p>
+ * SWIFT MT061 (ISO 15022) message structure:
+ * <br>
  <div class="scheme"><ul>
 <li class="field">Field 202  (M)</li>
 <li class="field">Field 203  (M)</li>
@@ -48,47 +51,18 @@ Sequence _A - Logical terminal destination (O)<ul><li class="field">Field 305  (
 </ul></li>
 </ul></div>
 
- <style>
-.scheme, .scheme ul, .scheme li {
-     position: relative;
-}
-.scheme ul {
-    list-style: none;
-    padding-left: 32px;
-}
-.scheme li::before, .scheme li::after {
-    content: "";
-    position: absolute;
-    left: -12px;
-}
-.scheme li::before {
-    border-top: 1px solid #000;
-    top: 9px;
-    width: 8px;
-    height: 0;
-}
-.scheme li::after {
-    border-left: 1px solid #000;
-    height: 100%;
-    width: 0px;
-    top: 2px;
-}
-.scheme ul > li:last-child::after {
-    height: 8px;
-}</style>
-
  *
- * <p>This source code is specific to release <strong>SRU 2017</strong></p> 
- * <p>For additional resources check <a href="http://www.prowidesoftware.com/resources">http://www.prowidesoftware.com/resources</a></p>
- *
- * @author www.prowidesoftware.com
+ * <p>
+ * This source code is specific to release <strong>SRU 2018</strong>
+ * <p>
+ * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
 @Generated
 public class MT061 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT061.class.getName());
 	
@@ -101,74 +75,58 @@ public class MT061 extends AbstractMT implements Serializable {
 
 	/**
 	* Constant for qualifier with value L 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsL.L
-	* @see com.prowidesoftware.swift.SchemeConstantsL#L
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String L = "L";
 
 	/**
 	* Constant for qualifier with value N 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsN.N
-	* @see com.prowidesoftware.swift.SchemeConstantsN#N
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String N = "N";
 
 	/**
 	* Constant for qualifier with value NN 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsN.NN
-	* @see com.prowidesoftware.swift.SchemeConstantsN#NN
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String NN = "NN";
 
 	/**
 	* Constant for qualifier with value NY 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsN.NY
-	* @see com.prowidesoftware.swift.SchemeConstantsN#NY
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String NY = "NY";
 
 	/**
 	* Constant for qualifier with value O 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsO.O
-	* @see com.prowidesoftware.swift.SchemeConstantsO#O
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String O = "O";
 
 	/**
 	* Constant for qualifier with value Y 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsY.Y
-	* @see com.prowidesoftware.swift.SchemeConstantsY#Y
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String Y = "Y";
 
 	/**
 	* Constant for qualifier with value YN 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsY.YN
-	* @see com.prowidesoftware.swift.SchemeConstantsY#YN
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String YN = "YN";
 
 	/**
 	* Constant for qualifier with value YY 
-	* @deprecated use instead com.prowidesoftware.swift.SchemeConstantsY.YY
-	* @see com.prowidesoftware.swift.SchemeConstantsY#YY
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public static final String YY = "YY";
 
 // end qualifiers constants	
@@ -184,20 +142,18 @@ public class MT061 extends AbstractMT implements Serializable {
 
 	/**
 	 * Creates an MT061 initialized with the parameter MtSwiftMessage.
-	 * @param m swift message with the MT061 content, the parameter can not be <code>null</code>
+	 * @param m swift message with the MT061 content, the parameter can not be null
 	 * @see #MT061(String)
 	 */
 	public MT061(MtSwiftMessage m) {
-		this();
-		super.m = super.getSwiftMessageNotNullOrException();
-		sanityCheck(super.m);
+		this(m.message());
 	}
 	
 	/**
 	 * Creates an MT061 initialized with the parameter MtSwiftMessage.
 	 *
 	 * @param m swift message with the MT061 content
-	 * @return the created object or <code>null</code> if the parameter is <code>null</code>
+	 * @return the created object or null if the parameter is null
 	 * @see #MT061(String)
 	 * @since 7.7
 	 */
@@ -205,11 +161,11 @@ public class MT061 extends AbstractMT implements Serializable {
 		if (m == null) {
 			return null;
 		}
-		return new MT061(m.message());
+		return new MT061(m);
 	}
 	
 	/**
-	 * Creates and initializes a new MT061 input message setting TEST BICS as sender and receiver.<br />
+	 * Creates and initializes a new MT061 input message setting TEST BICS as sender and receiver.<br>
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -219,7 +175,7 @@ public class MT061 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT061 input message from sender to receiver.<br />
+	 * Creates and initializes a new MT061 input message from sender to receiver.<br>
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -236,21 +192,24 @@ public class MT061 extends AbstractMT implements Serializable {
 	* <em>DO NOT USE THIS METHOD</em>
 	* It is kept for compatibility but will be removed very soon, since the
 	* <code>messageType</code> parameter is actually ignored.
-	* 
+	*
+	* @param messageType the message type number
+    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
+	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
 	* @see #MT061(String, String)
 	* @deprecated Use instead <code>new MT061(sender, receiver)</code> instead
 	*/
 	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear._2018)
+	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
 	public MT061(final int messageType, final String sender, final String receiver) {
 		super(61, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "MT061(int, String, String)", "Use the constructor MT061(sender, receiver) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT061(int, String, String)", "Use the constructor MT061(sender, receiver) instead.");
 	}
 	
 	/**
-	 * Creates a new MT061 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT061 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -276,12 +235,12 @@ public class MT061 extends AbstractMT implements Serializable {
     }
 	
 	/**
-	 * Creates a new MT061 by parsing a String with the message content in its swift FIN format.<br />
+	 * Creates a new MT061 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter cannot be parsed, the returned MT061 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br />
+	 * initialized (blocks will be created) but empty.<br>
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
-	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be <code>null</code> in which case this method returns null</em>
+	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
 	 * @return a new instance of MT061 or null if fin is null 
 	 * @since 7.7
 	 */
@@ -293,12 +252,13 @@ public class MT061 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT061 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT061 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public MT061(final InputStream stream) throws IOException {
@@ -306,11 +266,12 @@ public class MT061 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT061 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br />
+	 * Creates a new MT061 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
 	 * @return a new instance of MT061 or null if stream is null or the message cannot be parsed 
+	 * @throws IOException if the stream data cannot be read
 	 * @since 7.7
 	 */
 	public static MT061 parse(final InputStream stream) throws IOException {
@@ -321,12 +282,13 @@ public class MT061 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT061 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT061 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br />
+	 * will be initialized (blocks will be created) but empty.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public MT061(final File file) throws IOException {
@@ -334,11 +296,12 @@ public class MT061 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT061 by parsing a file with the message content in its swift FIN format.<br />
+	 * Creates a new MT061 by parsing a file with the message content in its swift FIN format.<br>
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
 	 * @return a new instance of MT061 or null if; file is null, does not exist, can't be read, is not a file or the message cannot be parsed
+	 * @throws IOException if the file content cannot be read
 	 * @since 7.7
 	 */
 	public static MT061 parse(final File file) throws IOException {
@@ -357,7 +320,7 @@ public class MT061 extends AbstractMT implements Serializable {
 	public String getMessageType() {
 		return "061";
 	}
-	
+
 	/**
 	 * Add all tags from block to the end of the block4.
 	 *
@@ -405,7 +368,7 @@ public class MT061 extends AbstractMT implements Serializable {
 	 *
 	 * @param json a JSON representation of an MT061 message
 	 * @return a new instance of MT061
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	public final static MT061 fromJson(String json) {
 		return (MT061) AbstractMT.fromJson(json);
@@ -413,10 +376,10 @@ public class MT061 extends AbstractMT implements Serializable {
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 202, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 202 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field202 object or <code>null</code> if the field is not found
+	 * @return a Field202 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -431,10 +394,10 @@ public class MT061 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 203, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 203 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field203 object or <code>null</code> if the field is not found
+	 * @return a Field203 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -449,10 +412,10 @@ public class MT061 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 206, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 206 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field206 object or <code>null</code> if the field is not found
+	 * @return a Field206 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -467,10 +430,10 @@ public class MT061 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 348, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 348 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field348 object or <code>null</code> if the field is not found
+	 * @return a Field348 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -485,10 +448,10 @@ public class MT061 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 305, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 305 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field305 object or <code>null</code> if the field is not found
+	 * @return a Field305 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -503,10 +466,10 @@ public class MT061 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 337, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 337 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field337 object or <code>null</code> if the field is not found
+	 * @return a Field337 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -521,10 +484,10 @@ public class MT061 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 208, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 208 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field208 object or <code>null</code> if the field is not found
+	 * @return a Field208 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -539,10 +502,10 @@ public class MT061 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 338, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 338 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field338 object or <code>null</code> if the field is not found
+	 * @return a Field338 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -557,10 +520,10 @@ public class MT061 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 116, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 116 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field116 object or <code>null</code> if the field is not found
+	 * @return a Field116 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
@@ -575,10 +538,10 @@ public class MT061 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 118, 
-	 * or <code>null</code> if none is found.<br />
+	 * or null if none is found.<br>
 	 * The first occurrence of field 118 at MT061 is expected to be the only one.
 	 * 
-	 * @return a Field118 object or <code>null</code> if the field is not found
+	 * @return a Field118 object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */

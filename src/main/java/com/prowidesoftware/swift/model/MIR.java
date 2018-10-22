@@ -1,20 +1,22 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
@@ -29,7 +31,7 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
  * <p>MIR and MOR are messages unique identifiers containing the date, 
  * logical terminal (including branch code), session and sequence numbers. 
  * Nevertheless this identifiers can be confusing sometimes because they must 
- * be thought from SWIFT perspective.</p>
+ * be thought from SWIFT perspective.
  * 
  * <p>A message created by the sender user/application is considered an 
  * INPUT message, because it gets into the SWIFT network. When the message 
@@ -38,16 +40,15 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
  * headers of the received message at the destination party. Analogous the 
  * headers of a message that the receiving user/application gets from SWIFT 
  * are not exactly the same as the headers when the message was created and 
- * sent by the sending party.</p>
+ * sent by the sending party.
  *  
  * <p>The usage of MIR and MOR are clear when analyzing system messages. 
  * A non delivery warning for example, includes the original MIR of the 
  * sent message, but not the MOR because the message was not delivered yet. 
  * But a delivery confirmation on the other hand, includes both, the sender’s MIR 
- * and the receiver’s MOR.<br />
- * System messages provide MIR/MOR information using fields 106 and 107 respectively.</p>
- * 
- * @author www.prowidesoftware.com
+ * and the receiver’s MOR.<br>
+ * System messages provide MIR/MOR information using fields 106 and 107 respectively.
+ *
  * @since 6.0
  */
 public class MIR {
@@ -192,7 +193,7 @@ public class MIR {
 	 * session and sequence:<br>
 	 * for example YYMMDDBANKBEBBAXXX2222123456<br>
 	 * 
-	 * @return a String with MIR, returns <code>null</code> if all MIR components are <code>null</code> 
+	 * @return a String with MIR, returns null if all MIR components are null
 	 */
 	public String getMIR() {
 		if (date == null && logicalTerminal == null && sessionNumber == null && sequenceNumber == null) {
@@ -215,55 +216,25 @@ public class MIR {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result
-				+ ((logicalTerminal == null) ? 0 : logicalTerminal.hashCode());
-		result = prime * result
-				+ ((sequenceNumber == null) ? 0 : sequenceNumber.hashCode());
-		result = prime * result
-				+ ((sessionNumber == null) ? 0 : sessionNumber.hashCode());
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		MIR mir = (MIR) o;
+		return Objects.equals(date, mir.date) &&
+				Objects.equals(logicalTerminal, mir.logicalTerminal) &&
+				Objects.equals(sessionNumber, mir.sessionNumber) &&
+				Objects.equals(sequenceNumber, mir.sequenceNumber);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MIR other = (MIR) obj;
-		if (date == null) {
-			if (other.date != null)
-				return false;
-		} else if (!date.equals(other.date))
-			return false;
-		if (logicalTerminal == null) {
-			if (other.logicalTerminal != null)
-				return false;
-		} else if (!logicalTerminal.equals(other.logicalTerminal))
-			return false;
-		if (sequenceNumber == null) {
-			if (other.sequenceNumber != null)
-				return false;
-		} else if (!sequenceNumber.equals(other.sequenceNumber))
-			return false;
-		if (sessionNumber == null) {
-			if (other.sessionNumber != null)
-				return false;
-		} else if (!sessionNumber.equals(other.sessionNumber))
-			return false;
-		return true;
+	public int hashCode() {
+		return Objects.hash(date, logicalTerminal, sessionNumber, sequenceNumber);
 	}
-	
+
 	/**
 	 * Returns this MIR date as Calendar.
 	 * This implementation uses {@link SwiftFormatUtils#getDate2(String)}
-	 * @return the parsed date or <code>null</code> if MIR date is invalid or not set
+	 * @return the parsed date or null if MIR date is invalid or not set
 	 * @since 7.8.8
 	 */
 	public final Calendar getDateAsCalendar() {

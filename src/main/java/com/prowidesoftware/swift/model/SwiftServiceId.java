@@ -1,23 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
-
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.enums.Enum;
 
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
@@ -31,8 +27,8 @@ import com.prowidesoftware.swift.model.mt.ServiceIdType;
  * @since 6.0
  * @deprecated use {@link ServiceIdType instead}
  */
-@ProwideDeprecated(phase3=TargetYear._2018)
-public class SwiftServiceId extends Enum {
+@ProwideDeprecated(phase4=TargetYear._2019)
+public class SwiftServiceId {
 	private static final long serialVersionUID = 3435194171796145884L;
 
 	/**
@@ -112,8 +108,7 @@ public class SwiftServiceId extends Enum {
 	 * @param name
 	 */
 	protected SwiftServiceId(String name) {
-		super(name);
-		DeprecationUtils.phase2(getClass(), null, "Use the enumeration ServiceIdType instead.");
+		DeprecationUtils.phase3(getClass(), null, "Use the enumeration ServiceIdType instead.");
 	}
 
 	/**
@@ -121,22 +116,14 @@ public class SwiftServiceId extends Enum {
 	 * case. This method is null-safe.
 	 * 
 	 * @param name
-	 *            the name to test as service id, may be <code>null</code>
+	 *            the name to test as service id, may be null
 	 * @return <code>true</code> if the parameter name is a valid service id
 	 * @since 6.0
 	 * @deprecated use {@link ServiceIdType#valid(String)} instead
 	 */
-	@ProwideDeprecated(phase3=TargetYear._2018)
+	@ProwideDeprecated(phase4=TargetYear._2019)
 	public static boolean contains(String name) {
-		DeprecationUtils.phase2(SwiftServiceId.class, "contains(String)", "Use the enumeration ServiceIdType instead.");
-		if (StringUtils.isNotEmpty(name)) {
-			List values = getEnumList(SwiftServiceId.class);
-			for (int i = 0; i < values.size(); i++) {
-				if (StringUtils.equals(((Enum) values.get(i)).getName(), name)) {
-					return true;
-				}
-			}
-		}
+		DeprecationUtils.phase3(SwiftServiceId.class, "contains(String)", "Use the enumeration ServiceIdType instead.");
 		return false;
 	}
 

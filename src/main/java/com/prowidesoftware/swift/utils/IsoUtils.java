@@ -1,18 +1,22 @@
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- * 
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.prowidesoftware.swift.utils;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -23,7 +27,7 @@ import java.util.logging.Logger;
  * 
  * <p>The list of valid currency and country codes can be manipulated after initialization in order to
  * change or add new values. This can be particularly helpful when the application is not running on 
- * the latest Java version and a currency change or addition has not yet been updated in the used JRE.</p>
+ * the latest Java version and a currency change or addition has not yet been updated in the used JRE.
  * 
  * @author sebastian
  * @since 7.9.2
@@ -93,7 +97,10 @@ public final class IsoUtils {
      * @return true if currency code is valid, false if it is blank or not valid
      */
     public boolean isValidISOCurrency(String currencyCode) {
-    	return currencies.contains(currencyCode);
+        if (StringUtils.length(currencyCode) == 3) {
+            return currencies.contains(currencyCode);
+        }
+        return false;
     }
 
     /**
@@ -102,7 +109,10 @@ public final class IsoUtils {
      * @return true if country code is valid, false if it is blank or not valid
      */
     public boolean isValidISOCountry(String countryCode) {
-        return countries.contains(countryCode);
+        if (StringUtils.length(countryCode) == 2) {
+            return countries.contains(countryCode);
+        }
+        return false;
     }
 
     /**

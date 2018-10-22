@@ -1,35 +1,30 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.logging.Level;
-
-import org.apache.commons.lang.Validate;
-
-import com.prowidesoftware.swift.WifeException;
+import com.prowidesoftware.ProwideException;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.parser.XMLParser;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
 import com.prowidesoftware.swift.model.SwiftMessage;
+import org.apache.commons.lang3.Validate;
+
+import java.io.*;
 
 
 /**
@@ -39,10 +34,8 @@ import com.prowidesoftware.swift.model.SwiftMessage;
  *  <li><b>XML</b>: WIFE's XML representation of SWIFT messages.</li>
  *  <li><b>SwiftMessage</b>: WIFE's java object model of SWIFT messages.</li>
  * </ul>
- * <p>This class may be used as a serializer.</p>
- * <p>All methods in this class are <b>threadsafe</b>.</p>
- *
- * @author www.prowidesoftware.com
+ * <p>This class may be used as a serializer.
+ * <p>All methods in this class are <b>threadsafe</b>.
  */
 public class ConversionService implements IConversionService {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(ConversionService.class.getName());
@@ -93,7 +86,7 @@ public class ConversionService implements IConversionService {
 		Validate.notNull(xml);
 		final SwiftMessage msg = getMessageFromXML(xml);
 		if (msg == null) {
-			throw new WifeException("parsed SwiftMessage from XML is null");
+			throw new ProwideException("parsed SwiftMessage from XML is null");
 		}
 		return getFIN(msg);
 	}
@@ -150,7 +143,7 @@ public class ConversionService implements IConversionService {
 		try {
 			return p.message();
 		} catch (final IOException e) {
-			throw new WifeException(e+" during parse of message");
+			throw new ProwideException(e+" during parse of message");
 		}
 	}
 

@@ -1,14 +1,18 @@
-/* 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
-*/
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io.parser;
 
 import static org.junit.Assert.assertEquals;
@@ -21,15 +25,14 @@ import com.prowidesoftware.swift.model.SwiftBlock2Input;
 
 /**
  * MT950 tests
- * 
- * @author www.prowidesoftware.com
+ *
  * @since 4.0
  */
 public class MT950Test extends BaseMessageTestcase {
 	
 	@Test 
 	public void test535_1() {
-		messageToParse = "{1:F01ABCDEFGHIJKX3227607589}{2:I950ABCDEFGXXXXXN}{4:\n" +
+		messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I950FOOBARXXXXXXN}{4:\n" +
 					":20:12345678070403\n" +
 					":25:12345678\n" +
 					":28C:93/1\n" +
@@ -42,17 +45,17 @@ public class MT950Test extends BaseMessageTestcase {
 		assertEquals("950", (parseMessage(messageToParse)).getType());
 		
 		//check b1
-		assertEquals("F01ABCDEFGHIJKX3227607589", b1.getBlockValue());
+		assertEquals("F01FOOBARXXAXXX3227607589", b1.getBlockValue());
 		assertEquals("F", b1.getApplicationId());
 		assertEquals("01", b1.getServiceId());
-		assertEquals("ABCDEFGHIJKX", b1.getLogicalTerminal());
+		assertEquals("FOOBARXXAXXX", b1.getLogicalTerminal());
 		assertEquals("3227", b1.getSessionNumber());
 		assertEquals("607589", b1.getSequenceNumber());
 		
 		//check b2
-		assertEquals("I950ABCDEFGXXXXXN", b2.getBlockValue());
+		assertEquals("I950FOOBARXXXXXXN", b2.getBlockValue());
 		assertEquals("950", ((SwiftBlock2Input)b2).getMessageType());
-		assertEquals("ABCDEFGXXXXX", ((SwiftBlock2Input)b2).getReceiverAddress());	
+		assertEquals("FOOBARXXXXXX", ((SwiftBlock2Input)b2).getReceiverAddress());
 		assertEquals("N", ((SwiftBlock2Input)b2).getMessagePriority());
 		assertNull(((SwiftBlock2Input)b2).getDeliveryMonitoring());
 		assertNull(((SwiftBlock2Input)b2).getObsolescencePeriod());

@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
  package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
 import com.prowidesoftware.swift.model.field.Field;
@@ -37,10 +38,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <h2>SWIFT MT Field 281</h2>
+ * <strong>SWIFT MT Field 281</strong>
+ * <p>
  * Model and parser for field 281 of a SWIFT MT message.
  *
- * <h4>Subfields (components) Data types</h4>
+ * <p>Subfields (components) Data types
  * <ol> 
  * 		<li><code>Calendar</code></li> 
  * 		<li><code>MOR</code></li> 
@@ -48,15 +50,15 @@ import com.google.gson.JsonParser;
  * 		<li><code>String</code></li> 
  * </ol>
  *
- * <h4>Structure definition</h4>
+ * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;HHMM&gt;&lt;MOR&gt;1!a[3!c]</code></li>
  * 		<li>parser pattern: <code>&lt;HHMM&gt;&lt;MOR&gt;cS</code></li>
  * 		<li>components pattern: <code>HVLS</code></li>
  * </ul>
  *		 
- * <p>This class complies with standard release <strong>SRU2017</strong></p>
- * <p>NOTE: this source code has been generated from template</p>
+ * <p>
+ * This class complies with standard release <strong>SRU2018</strong>
  */
 @SuppressWarnings("unused") 
 @Generated
@@ -64,7 +66,7 @@ public class Field281 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2017;
+	public static final int SRU = 2018;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -132,7 +134,7 @@ public class Field281 extends Field implements Serializable {
 	
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br />
+	 * <br>
 	 * Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
@@ -166,7 +168,7 @@ public class Field281 extends Field implements Serializable {
 	 */
 	public static Field281 newInstance(Field281 source) {
 		Field281 cp = new Field281();
-		cp.setComponents(new ArrayList<String>(source.getComponents()));
+		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
 	
@@ -209,8 +211,8 @@ public class Field281 extends Field implements Serializable {
 	}
 
 	/**
-	 * Gets the component1 as Calendar
-	 * @return the component1 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the component1 as Calendar
+	 * @return the component1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(1));
@@ -225,8 +227,8 @@ public class Field281 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Gets the Output Time (component1) as Calendar
-	 * @return the Output Time from component1 converted to Calendar or <code>null</code> if cannot be converted
+	 * Get the Output Time (component1) as Calendar
+	 * @return the Output Time from component1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getOutputTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(1));
@@ -277,8 +279,8 @@ public class Field281 extends Field implements Serializable {
 	}
 
 	/**
-	 * Gets the component2 as MOR
-	 * @return the component2 converted to MOR or <code>null</code> if cannot be converted
+	 * Get the component2 as MOR
+	 * @return the component2 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getComponent2AsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(2));
@@ -293,8 +295,8 @@ public class Field281 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Gets the MOR (component2) as MOR
-	 * @return the MOR from component2 converted to MOR or <code>null</code> if cannot be converted
+	 * Get the MOR (component2) as MOR
+	 * @return the MOR from component2 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getMORAsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(2));
@@ -345,8 +347,8 @@ public class Field281 extends Field implements Serializable {
 	}
 
 	/**
-	 * Gets the component3 as Boolean
-	 * @return the component3 converted to Boolean or <code>null</code> if cannot be converted
+	 * Get the component3 as Boolean
+	 * @return the component3 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getComponent3AsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(3));
@@ -361,8 +363,8 @@ public class Field281 extends Field implements Serializable {
 	}
 	
 	/**
-	 * Gets the Accepted (component3) as Boolean
-	 * @return the Accepted from component3 converted to Boolean or <code>null</code> if cannot be converted
+	 * Get the Accepted (component3) as Boolean
+	 * @return the Accepted from component3 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getAcceptedAsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(3));
@@ -417,8 +419,9 @@ public class Field281 extends Field implements Serializable {
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2018)
+	@ProwideDeprecated(phase3=TargetYear._2019)
 	public java.lang.String getComponent4AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(4);
 	}
 
@@ -450,7 +453,7 @@ public class Field281 extends Field implements Serializable {
 
    /**
     * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br />
+    * regardless of the field being mandatory in a particular message.<br>
     * Being the field's value conformed by a composition of one or several 
     * internal component values, the field may be present in a message with
     * a proper value but with some of its internal components not set.
@@ -554,8 +557,8 @@ public class Field281 extends Field implements Serializable {
 			return java.util.Collections.emptyList();
 		}
 		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length>0) {
-			final ArrayList<Field281> result = new ArrayList<Field281>(arr.length);
+		if (arr != null && arr.length > 0) {
+			final List<Field281> result = new ArrayList<>(arr.length);
 			for (final Tag f : arr) {
 				result.add( new Field281(f));
 			}
@@ -614,14 +617,14 @@ public class Field281 extends Field implements Serializable {
 	
 	/**
 	 * Returns english label for components.
-	 * <br />
+	 * <br>
 	 * The index in the list is in sync with specific field component structure.
 	 * @see #getComponentLabel(int)
 	 * @since 7.8.4
 	 */
 	@Override
 	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		result.add("Output Time");
 		result.add("MOR");
 		result.add("Accepted");
@@ -631,7 +634,7 @@ public class Field281 extends Field implements Serializable {
 
 	/**
 	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 */
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
@@ -646,7 +649,7 @@ public class Field281 extends Field implements Serializable {
 	 * This method deserializes the JSON data into a Field281 object.
 	 * @param json JSON structure including tuples with label and value for all field components
 	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.2
+	 * @since 7.10.3
 	 * @see Field#fromJson(String)
 	 */
 	public static Field281 fromJson(final String json) {

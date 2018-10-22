@@ -1,4 +1,20 @@
 
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.prowidesoftware.swift;
 
 import com.prowidesoftware.Generated;
@@ -57,7 +73,6 @@ public interface SchemeConstantsN {
     public final static String NEWD = "NEWD";
     public final static String NEWO = "NEWO";
     public final static String NSER = "NSER";
-    public final static String NRES = "NRES";
     public final static String NELP = "NELP";
     public final static String NSIS = "NSIS";
     public final static String NTAX = "NTAX";
@@ -66,7 +81,7 @@ public interface SchemeConstantsN {
     public final static String NSOV = "NSOV";
     public final static String NBUF = "NBUF";
     public final static String NOBL = "NOBL";
-    public final static String NOT_EXCEEDING = "NOT_EXCEEDING";
+    public final static String NOT_ALLOWED = "NOT_ALLOWED";
     public final static String NOTURR = "NOTURR";
     public final static String NONE = "NONE";
 

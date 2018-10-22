@@ -1,35 +1,65 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of private license agreements
- * between Prowide Inc. and its commercial customers and partners.
- *******************************************************************************/
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
+import com.prowidesoftware.ProwideException;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
-// FIXME 2015.10 miguel: how come is returns int??? should be boolean
 /**
- * Helper class to validate SWIFT char sets.
- * Character sets are named after the SWIFT User Handbook.
- * 
- * @author www.prowidesoftware.com
+ * Helper class to validate SWIFT char sets (named after the SWIFT User Handbook).
+ *
+ * <p>Note that when a SWIFT character set refers to a set of letters, lowercase or uppercase, it means only letters in
+ * English. Therefore this implementation does not use the Character API as being Character.isLetter because that would
+ * accept letters with internationalization. Instead, the integer values of the characters are used to compare them with
+ * the set of allowed characters in each case.
  */
 public class SwiftCharsetUtils {
-	static public int OK = -1;
+	private static char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+	private static char[] AZ = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+	private static char[] azLowerCase = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	private static char[] specialCharacters_x = {'/', '-', '?', ':', '(', ')', '.', ',', '\'', '+', ' ', '\n', '\r'};
+	private static char[] specialCharacters_y = {' ', '.', ',', '-', '(', ')', '/', '=', '\'', '+', ':', '?', '!', '"', '%', '&', '*', ';', '<', '>'};
+	private static char[] specialCharacters_z = {'.', ',', '-', '(', ')', '/', '=', '\'', '+', ':', '?', '@', '#', ' ', '{', '!', '"', '%', '&', '*', ';', '<', '>', '_', '\n', '\r'};
+
+	public static int OK = -1;
 	
 	// Suppress default constructor for noninstantiability
 	private SwiftCharsetUtils() {
 		throw new AssertionError();
 	}
 
+	private static boolean isNumber(char character) {
+		return (character >= '0') && (character <= '9');
+	}
+
+	private static boolean isLowercaseLetter(char character) {
+		return (character >= 'a') && (character <= 'z');
+	}
+
+	private static boolean isUppercaseLetter(char character) {
+		return (character >= 'A') && (character <= 'Z');
+	}
+
 	/**
-	 * Returns true if the parameter char is part of the n character set.
-	 * @see #get_n()
+	 * Returns true if the parameter char is part of the n character set;
+	 * numeric digits (0 through 9) only
 	 */
-	static public boolean is_n(final char c) {
-		return is(c, get_n());
+	public static boolean is_n(final char character) {
+		return isNumber(character);
 	}
 	
 	/**
@@ -37,16 +67,16 @@ public class SwiftCharsetUtils {
 	 * Otherwise returns the position (zero based) of the first invalid character found.
 	 * @see #get_n()
 	 */
-	static public int is_n(final String s) {
-		return is(s, get_n());
+	public static int is_n(final String s) {
+		return is(s, SwiftCharset.n);
 	}
 
 	/**
-	 * Returns true if the parameter char is part of the a character set.
-	 * @see #get_a()
+	 * Returns true if the parameter char is part of the a character set;
+	 * alphabetic capital letters (A through Z), upper case only
 	 */
-	static public boolean is_a(final char c) {
-		return is(c, get_a());
+	public static boolean is_a(final char character) {
+		return isUppercaseLetter(character);
 	}
 	
 	/**
@@ -54,16 +84,16 @@ public class SwiftCharsetUtils {
 	 * Otherwise returns the position (zero based) of the first invalid character found.
 	 * @see #get_a()
 	 */
-	static public int is_a(final String s) {
-		return is(s, get_a());
+	public static int is_a(final String s) {
+		return is(s, SwiftCharset.a);
 	}
 		
 	/**
-	 * Returns true if the parameter char is part of the x character set.
-	 * @see #get_x()
+	 * Returns true if the parameter char is part of the x character set;
+	 * any character of the X permitted set (General FIN application set)  upper case and lower case allowed
 	 */
-	static public boolean is_x(final char c) {
-		return is(c, get_x());
+	public static boolean is_x(final char character) {
+		return isLowercaseLetter(character) || isUppercaseLetter(character) || isNumber(character) || is(character, specialCharacters_x);
 	}
 	
 	/**
@@ -71,16 +101,16 @@ public class SwiftCharsetUtils {
 	 * Otherwise returns the position (zero based) of the first invalid character found.
 	 * @see #get_x()
 	 */
-	static public int is_x(final String s) {
-		return is(s, get_x());
+	public static int is_x(final String s) {
+		return is(s, SwiftCharset.x);
 	}
 	
 	/**
-	 * Returns true if the parameter char is part of the y character set.
-	 * @see #get_y()
+	 * Returns true if the parameter char is part of the y character set;
+	 * any character of the Y permitted set (EDI service specific set), upper case only
 	 */
-	static public boolean is_y(final char c) {
-		return is(c, get_y());
+	public static boolean is_y(final char character) {
+		return isUppercaseLetter(character) || isNumber(character) || is(character, specialCharacters_y);
 	}
 	
 	/**
@@ -88,16 +118,16 @@ public class SwiftCharsetUtils {
 	 * Otherwise returns the position (zero based) of the first invalid character found.
 	 * @see #get_y()
 	 */
-	static public int is_y(final String s) {
-		return is(s, get_y());
+	public static int is_y(final String s) {
+		return is(s, SwiftCharset.y);
 	}
 	
 	/**
-	 * Returns true if the parameter char is part of the z character set.
-	 * @see #get_z()
+	 * Returns true if the parameter char is part of the z character set;
+	 * all characters included in the X and Y sets, plus a couple of special characters
 	 */
-	static public boolean is_z(final char c) {
-		return is(c, get_z());
+	public static boolean is_z(final char character) {
+		return isLowercaseLetter(character) || isUppercaseLetter(character) || isNumber(character) || is(character, specialCharacters_z);
 	}
 	
 	/**
@@ -105,16 +135,16 @@ public class SwiftCharsetUtils {
 	 * Otherwise returns the position (zero based) of the first invalid character found.
 	 * @see #get_z()
 	 */
-	static public int is_z(final String s) {
-		return is(s, get_z());
+	public static int is_z(final String s) {
+		return is(s, SwiftCharset.z);
 	}
-	
+
 	/**
-	 * Returns true if the parameter char is part of the c character set.
-	 * @see #get_c()
+	 * Returns true if the parameter char is part of the c character set;
+	 * alpha-numeric capital letters (upper case), and digits only
 	 */
-	static public boolean is_c(final char c) {
-		return is(c, get_c());
+	public static boolean is_c(final char character) {
+		return isUppercaseLetter(character) || isNumber(character);
 	}
 	
 	/**
@@ -122,16 +152,16 @@ public class SwiftCharsetUtils {
 	 * Otherwise returns the position (zero based) of the first invalid character found.
 	 * @see #get_c()
 	 */
-	static public int is_c(final String s) {
-		return is(s, get_c());
+	public static int is_c(final String s) {
+		return is(s, SwiftCharset.c);
 	}
 	
 	/**
-	 * Returns true if the parameter char is part of the A character set.
-	 * @see #get_A()
+	 * Returns true if the parameter char is part of the A character set;
+	 * alphabetic, upper case or lower case A through Z, a through z
 	 */
-	static public boolean is_A(final char c) {
-		return is(c, get_A());
+	public static boolean is_A(final char character) {
+		return isLowercaseLetter(character) || isUppercaseLetter(character);
 	}
 	
 	/**
@@ -139,16 +169,16 @@ public class SwiftCharsetUtils {
 	 * Otherwise returns the position (zero based) of the first invalid character found.
 	 * @see #get_A()
 	 */
-	static public int is_A(final String s) {
-		return is(s, get_A());
+	public static int is_A(final String s) {
+		return is(s, SwiftCharset.A);
 	}
 
 	/**
-	 * Returns true if the parameter char is part of the B character set.
-	 * @see #get_B()
+	 * Returns true if the parameter char is part of the B character set;
+	 * alphanumeric upper case or lower case A through Z, a through z and digits
 	 */
-	static public boolean is_B(final char c) {
-		return is(c, get_B());
+	public static boolean is_B(final char character) {
+		return isLowercaseLetter(character) || isUppercaseLetter(character) || isNumber(character);
 	}
 	
 	/**
@@ -156,117 +186,123 @@ public class SwiftCharsetUtils {
 	 * Otherwise returns the position (zero based) of the first invalid character found.
 	 * @see #get_B()
 	 */
-	static public int is_B(final String s) {
-		return is(s, get_B());
+	public static int is_B(final String s) {
+		return is(s, SwiftCharset.B);
 	}
 	
 	/**
-	 * Returns this.OK (-1) if all characters of parameter string are part of the parameter character set.
-	 * Otherwise returns the position (zero based) of the first invalid character found.
+	 * Checks if the string character belogs to a given SWIFT charset
+	 * @return Returns this.OK (-1) if all characters in the string matches a char defined in the charset or
+	 * the position (zero based) of the first invalid character found
 	 */
-	static private int is(final String s, final char[] charset) {
-	    if (StringUtils.isNotEmpty(s)) {
-		for (int i = 0; i < s.length(); i++) {
-			if (!is(s.charAt(i), charset)) {
-				return i;
+	public static int is(final String s, SwiftCharset charset) {
+		if (StringUtils.isNotEmpty(s)) {
+			for (int i = 0; i < s.length(); i++) {
+				if (!is(s.charAt(i), charset)) {
+					return i;
+				}
 			}
 		}
-	    }
-	    return OK;
+		return OK;
 	}
-	
+
 	/**
-	 * @see #is(String, char[])
+	 * Checks if the character belogs to a given SWIFT charset
+	 * @return true if character matches a char defined in the charset
 	 */
-	static public int is(final String s, SwiftCharset charset) {
-		if (SwiftCharset.n.equals(charset)) {
-			return is_n(s);
-		} else if (SwiftCharset.a.equals(charset)) {
-			return is_a(s);			
-		} else if (SwiftCharset.A.equals(charset)) {
-			return is_A(s);
-		} else if (SwiftCharset.x.equals(charset)) {
-			return is_x(s);
-		} else if (SwiftCharset.y.equals(charset)) {
-			return is_y(s);
-		} else if (SwiftCharset.z.equals(charset)) {
-			return is_z(s);
-		} else if (SwiftCharset.c.equals(charset)) {
-			return is_c(s);
-		} else if (SwiftCharset.B.equals(charset)) {
-			return is_B(s);
-		} else {
-			throw new RuntimeException("unexpected charset enum");
+	public static boolean is(final char c, SwiftCharset charset) {
+		switch (charset) {
+			case n: {
+				return is_n(c);
+			}
+			case a: {
+				return is_a(c);
+			}
+			case A: {
+				return is_A(c);
+			}
+			case x: {
+				return is_x(c);
+			}
+			case y: {
+				return is_y(c);
+			}
+			case z: {
+				return is_z(c);
+			}
+			case c: {
+				return is_c(c);
+			}
+			case B: {
+				return is_B(c);
+			}
+			default: {
+				throw new ProwideException("Unexpected charset value "+charset);
+			}
 		}
 	}
 	
 	/**
-	 * @see #is(String, char[])
+	 * Returns a human-friendly description of the charset
+	 * @param charset a list of character defining a charset
+	 * @return a string describing the charset
 	 */
-	static public boolean is(final char c, SwiftCharset charset) {
-		if (SwiftCharset.n.equals(charset)) {
-			return is_n(c);
-		} else if (SwiftCharset.a.equals(charset)) {
-			return is_a(c);			
-		} else if (SwiftCharset.A.equals(charset)) {
-			return is_A(c);
-		} else if (SwiftCharset.x.equals(charset)) {
-			return is_x(c);
-		} else if (SwiftCharset.y.equals(charset)) {
-			return is_y(c);
-		} else if (SwiftCharset.z.equals(charset)) {
-			return is_z(c);
-		} else if (SwiftCharset.c.equals(charset)) {
-			return is_c(c);
-		} else if (SwiftCharset.B.equals(charset)) {
-			return is_B(c);
-		} else {
-			throw new RuntimeException("unexpected charset enum");
-		}
-	}
-	
-	/**
-	 * @see #getAsString(char[])
-	 */
-	static public String getAsString(SwiftCharset charset) {
+	public static String getAsString(SwiftCharset charset) {
 		String result = null;
-		if (SwiftCharset.n.equals(charset)) {
-			result = getAsString(get_n());
-		} else if (SwiftCharset.a.equals(charset)) {
-			result = getAsString(get_a());
-		} else if (SwiftCharset.A.equals(charset)) {
-			result = getAsString(get_A());
-		} else if (SwiftCharset.x.equals(charset)) {
-			result = getAsString(get_x());
-		} else if (SwiftCharset.y.equals(charset)) {
-			result = getAsString(get_y());
-		} else if (SwiftCharset.z.equals(charset)) {
-			result = getAsString(get_z());
-		} else if (SwiftCharset.c.equals(charset)) {
-			result = getAsString(get_c());
-		} else if (SwiftCharset.B.equals(charset)) {
-			result = getAsString(get_B());
-		} else {
-			throw new RuntimeException("unexpected charset enum");
+		switch (charset) {
+			case n: {
+				result = getAsString(get_n());
+				break;
+			}
+			case a: {
+				result = getAsString(get_a());
+				break;
+			}
+			case A: {
+				result = getAsString(get_A());
+				break;
+			}
+			case x: {
+				result = getAsString(get_x());
+				break;
+			}
+			case y: {
+				result = getAsString(get_y());
+				break;
+			}
+			case z: {
+				result = getAsString(get_z());
+				break;
+			}
+			case c: {
+				result = getAsString(get_c());
+				break;
+			}
+			case B: {
+				result = getAsString(get_B());
+				break;
+			}
+			default: {
+				throw new ProwideException("Unexpected charset value "+charset);
+			}
 		}
 		result = StringUtils.replace(result, getAsString(get_n()), "[0-9]");
 		result = StringUtils.replace(result, getAsString(get_a()), "[A-Z]");
-		result = StringUtils.replace(result, getAsString(_get_az()), "[a-z]");
+		result = StringUtils.replace(result, getAsString(azLowerCase), "[a-z]");
 		return result;
 	}
 	
 	/**
 	 * Returns true if the parameter char is part of the parameter character set
 	 */
-	static private boolean is(final char c, final char[] charset) {
+	private static boolean is(final char c, final char[] charset) {
 		return ArrayUtils.contains(charset, c);
 	}
 	
 	/**
 	 * Gets SWIFT n charset; numeric digits (0 through 9) only.
 	 */
-	//TODO sebastian feb 2016: meter estos arrays en bloque de iniciailzacion static en vez de en metodos
-	static public char[] get_n() {
+	public static char[] get_n() {
 		char[] result = {'0','1','2','3','4','5','6','7','8','9'};
 		return result;
 	}
@@ -274,23 +310,23 @@ public class SwiftCharsetUtils {
 	/**
 	 * Gets SWIFT a charset; alphabetic capital letters (A through Z), upper case only.
 	 */
-	static public char[] get_a() {
+	public static char[] get_a() {
 		char[] result = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+		return result;
+	}
+
+	/**
+	 * Lower case a to z.
+	 */
+	private static char[] _get_az() {
+		char[] result = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 		return result;
 	}
 		
 	/**
-	 * Lower case a to z.
-	 */
-	static private char[] _get_az() {
-		char[] result = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-		return result;
-	}
-	
-	/**
 	 * Gets SWIFT A charset; alphabetic, upper case or lower case A through Z, a through z.
 	 */
-	static public char[] get_A() {
+	public static char[] get_A() {
 		char[] result = get_a();
 		return ArrayUtils.addAll(result, _get_az());
 	}
@@ -298,8 +334,8 @@ public class SwiftCharsetUtils {
 	/**
 	 * Gets SWIFT x charset; any character of the X permitted set (General FIN application set)  upper case and lower case allowed.
 	 */
-	static public char[] get_x() {
-		char[] result = {'/', '-', '?', ':', '(', ')', '.', ',', '\'', '+', ' ', '\n', '\r'};
+	public static char[] get_x() {
+		char[] result = specialCharacters_x;
 		result = ArrayUtils.addAll(result, get_A());
 		result = ArrayUtils.addAll(result, get_n());
 		return result;
@@ -308,8 +344,8 @@ public class SwiftCharsetUtils {
 	/**
 	 * Gets SWIFT y charset; any character of the Y permitted set (EDI service specific set), upper case only.
 	 */
-	static public char[] get_y() {
-		char[] result = {' ', '.', ',', '-', '(', ')', '/', '=', '\'', '+', ':', '?', '!', '"', '%', '&', '*', ';', '<', '>'};
+	public static char[] get_y() {
+		char[] result = specialCharacters_y;
 		result = ArrayUtils.addAll(result, get_a());
 		result = ArrayUtils.addAll(result, get_n());
 		return result;
@@ -318,8 +354,8 @@ public class SwiftCharsetUtils {
 	/**
 	 * Gets SWIFT z charset; all characters included in the X and Y sets, plus a couple of special characters.
 	 */
-	static public char[] get_z() {
-		char[] result = {'.', ',', '-', '(', ')', '/', '=', '\'', '+', ':', '?', '@', '#', ' ', '{', '!', '"', '%', '&', '*', ';', '<', '>', '_', '\n', '\r'};
+	public static char[] get_z() {
+		char[] result = specialCharacters_z;
 		result = ArrayUtils.addAll(result, get_A());
 		result = ArrayUtils.addAll(result, get_n());
 		return result;
@@ -328,7 +364,7 @@ public class SwiftCharsetUtils {
 	/**
 	 * Gets SWIFT c charset; alpha-numeric capital letters (upper case), and digits only.
 	 */
-	static public char[] get_c() {
+	public static char[] get_c() {
 		char[] result = get_a();
 		return ArrayUtils.addAll(result, get_n());
 	}
@@ -336,12 +372,17 @@ public class SwiftCharsetUtils {
 	/**
 	 * Gets SWIFT B charset; alphanumeric upper case or lower case A through Z, a through z and 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
 	 */
-	static public char[] get_B() {
+	public static char[] get_B() {
 		char[] result = get_A();
 		return ArrayUtils.addAll(result, get_n());
 	}
 
-	static public String getAsString(char[] charset) {
+	/**
+	 * Returns a human-friendly description of the charset
+	 * @param charset a list of character defining a charset
+	 * @return a string describing the charset
+	 */
+	public static String getAsString(char[] charset) {
 		StringBuffer result = new StringBuffer();
 		for (int i=0; i<charset.length; i++) {
 			String ch = null;
@@ -361,11 +402,11 @@ public class SwiftCharsetUtils {
 	
 	/**
 	 * Returns a new string removing all characters that not belong to the parameter charset
-	 * @param s
-	 * @param charset
-	 * @return
+	 * @param s the string to filter
+	 * @param charset a charset to match
+	 * @return a new string with non matching characters removed
 	 */
-	static public String filter(String s, SwiftCharset charset) {
+	public static String filter(String s, SwiftCharset charset) {
 		StringBuilder result = new StringBuilder();
 		for (int i=0; i<s.length(); i++) {
 			if (is(s.charAt(i), charset)) {
@@ -374,4 +415,5 @@ public class SwiftCharsetUtils {
 		}
 		return result.toString();
 	}
+
 }

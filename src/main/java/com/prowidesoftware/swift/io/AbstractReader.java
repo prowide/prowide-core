@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.io;
 
 import java.io.ByteArrayInputStream;
@@ -26,8 +27,8 @@ import java.io.StringReader;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.model.SwiftMessage;
@@ -52,7 +53,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 	
 	/**
 	 * Constructs a reader to read messages from a string
-	 * @throws IllegalArgumentException if string is <code>null</code>
+	 * @throws IllegalArgumentException if string is null
 	 */
 	public AbstractReader(final String string) {
 		Validate.notNull(string, "string must not be null");
@@ -61,7 +62,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 
 	/**
 	 * Constructs a reader to read messages from a stream
-	 * @throws IllegalArgumentException if stream is <code>null</code>
+	 * @throws IllegalArgumentException if stream is null
 	 */
 	public AbstractReader(final InputStream stream) {
 		Validate.notNull(stream, "stream must not be null");
@@ -70,7 +71,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 
 	/**
 	 * Constructs a reader to read messages from a file
-	 * @throws IllegalArgumentException if file is <code>null</code>
+	 * @throws IllegalArgumentException if file is null
 	 */
 	public AbstractReader(final File file) throws FileNotFoundException {
 		Validate.notNull(file, "file must not be null");
@@ -84,21 +85,21 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 
 	public abstract String next();
 
+	@Override
 	public void remove() {
 		throw new UnsupportedOperationException("remove not avaiable in this implementation");
 	}
 	
 	/**
 	 * Reads the next raw content from the iterator and returns the message parsed into an MT.
-	 * <p>IMPORTANT:<br />
+	 * <p>IMPORTANT:<br>
 	 * Since MTnnn model classes are implemented only for system and user-to-user messages 
 	 * (categories 0 to 9) if an ACK/NAK (service id 21) message is found, the MT following 
-	 * the system message is returned (not the ACK/NAK).<br /> 
+	 * the system message is returned (not the ACK/NAK).<br>
 	 * For other service messages (login, select, quit) this method will return null because 
-	 * there is no MT representation to create.<br />
+	 * there is no MT representation to create.<br>
 	 * If you need to deal with all type of messages (including service, system and user-to-user)
-	 * you can use {@link #nextSwiftMessage()} instead. 
-	 * </p> 
+	 * you can use {@link #nextSwiftMessage()} instead.
 	 * 
 	 * @return parsed message or null if content is blank
 	 * @throws IOException if the message content cannot be parsed into an MT

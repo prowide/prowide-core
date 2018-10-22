@@ -1,41 +1,42 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as
- *     published by the Free Software Foundation, either version 3 of the
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.logging.Level;
 
 /**
  * Utility class to validate IBAN codes.
- *
+ * <p>
  * The IBAN consists of a ISO 3166-1 alpha-2 country code, followed by two check
  * digits (represented by kk in the examples below), and up to thirty alphanumeric
  * characters for the domestic bank account number, called the BBAN (Basic Bank
  * Account Number).
- *
- * <h1>Exampe usage scenario</h1>
- * <code><pre>IBAN iban = new IBAN("ES2153893489");
+ * <p>
+ * Exampe usage scenario<br>
+ * <pre>IBAN iban = new IBAN("ES2153893489");
  * if (iban.isValid())
  * 		System.out.println("ok");
  * else
  * 		System.out.println("problem with iban: "+iban.getInvalidCause());
- * </pre></code>
+ * </pre>
  *
  * @since 3.3
  */
@@ -53,6 +54,7 @@ public class IBAN {
     private static final int CHECK_DIGIT_INDEX = COUNTRY_CODE_LENGTH;
     static final int CHECK_DIGIT_LENGTH = 2;
     private static final int BBAN_INDEX = CHECK_DIGIT_INDEX + CHECK_DIGIT_LENGTH;
+    private static final String INVALIDA_IBAN_LENGTH = "Invalid IBAN length in";
 
     /**
      * Get the IBAN
@@ -81,7 +83,7 @@ public class IBAN {
 
     /**
      * Checks if the IBAN number is valid.
-     * <p>If the number is not valid a text description of the invalid cause is set in {@link #getInvalidCause()}</p>
+     * <p>If the number is not valid a text description of the invalid cause is set in {@link #getInvalidCause()}
      *
      * @see #validate() for details regarding the validation checks or if you need structured details of the validation
      * problem found.
@@ -104,7 +106,7 @@ public class IBAN {
      * <p>Validates that the length is at least 5 chars: composed by a valid 2 letters ISO country code,
      * 2 verifying digits, and 1 BBAN. The verification digits are also computed and verified.
      * For the BBAN validation the specific per country structure must be defined either in the
-     * BbanStructureValidations.json file or by API in the {@link BbanStructureValidations} instance.</p>
+     * BbanStructureValidations.json file or by API in the {@link BbanStructureValidations} instance.
      *
      * @return IbanFormatStatus with detailed information of the validation problem found
      */
@@ -172,7 +174,7 @@ public class IBAN {
      * @deprecated use {@link IBAN#translateChars(StringBuilder)}
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear._2018)
+    @ProwideDeprecated(phase3=TargetYear._2019)
     public String translateChars(final StringBuffer bban) {
         DeprecationUtils.phase2(getClass(), "translateChars(StringBuffer)", "Use translateChars(StringBuilder) instead.");
         return translateChars(new StringBuilder(bban));
@@ -235,7 +237,7 @@ public class IBAN {
             try {
                 return getBban(this.iban);
             } catch (IndexOutOfBoundsException e) {
-                log.log(Level.FINER, "Invalid IBAN length in " + this.iban, e);
+                log.log(Level.FINER, INVALIDA_IBAN_LENGTH + this.iban, e);
             }
         }
         return null;
@@ -246,7 +248,7 @@ public class IBAN {
      *
      * @param iban a well-formed IBAN
      * @return the custom account part of the IBAN
-     * @throws {@link IndexOutOfBoundsException} if the IBAN length is wrong
+     * @throws IndexOutOfBoundsException if the IBAN length is wrong
      * @since 7.9.7
      * @author psantamarina
      */
@@ -265,7 +267,7 @@ public class IBAN {
             try {
                 return getCheckDigits(this.iban);
             } catch (IndexOutOfBoundsException e) {
-                log.log(Level.FINER, "Invalid IBAN length in " + this.iban, e);
+                log.log(Level.FINER, INVALIDA_IBAN_LENGTH + this.iban, e);
             }
         }
         return null;
@@ -276,7 +278,7 @@ public class IBAN {
      *
      * @param iban a well-formed IBAN
      * @return the check digits (two digits as String)
-     * @throws {@link IndexOutOfBoundsException} if the IBAN length is wrong
+     * @throws IndexOutOfBoundsException if the IBAN length is wrong
      * @since 7.9.7
      * @author psantamarina
      */
@@ -295,7 +297,7 @@ public class IBAN {
             try {
                 return getCountryCode(this.iban);
             } catch (IndexOutOfBoundsException e) {
-                log.log(Level.FINER, "Invalid IBAN length in " + this.iban, e);
+                log.log(Level.FINER, INVALIDA_IBAN_LENGTH + this.iban, e);
             }
         }
         return null;
@@ -306,7 +308,7 @@ public class IBAN {
      *
      * @param iban a well-formed IBAN
      * @return the two letters ISO country code
-     * @throws {@link IndexOutOfBoundsException} if the IBAN length is wrong
+     * @throws IndexOutOfBoundsException if the IBAN length is wrong
      * @since 7.9.7
      * @author psantamarina
      */

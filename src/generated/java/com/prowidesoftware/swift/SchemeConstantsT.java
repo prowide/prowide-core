@@ -1,4 +1,20 @@
 
+/*
+ * Copyright 2006-2018 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.prowidesoftware.swift;
 
 import com.prowidesoftware.Generated;
@@ -87,6 +103,7 @@ public interface SchemeConstantsT {
     public final static String TAXC = "TAXC";
     public final static String TXFR = "TXFR";
     public final static String TXIN = "TXIN";
+    public final static String TNDP = "TNDP";
     public final static String TDTA = "TDTA";
     public final static String TRAT = "TRAT";
     public final static String TSDT = "TSDT";
@@ -110,5 +127,7 @@ public interface SchemeConstantsT {
     public final static String TOZ = "TOZ";
     public final static String TINA = "TINA";
     public final static String TAL = "TAL";
+    public final static String TTNA = "TTNA";
+    public final static String TRANSFER = "TRANSFER";
 
 }

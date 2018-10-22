@@ -1,27 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+/*
+ * Copyright 2006-2018 Prowide
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.field;
+
+import com.prowidesoftware.ProwideException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.UnhandledException;
 
 
 
@@ -52,7 +53,7 @@ public class SwiftParseUtils {
 	 * @return a list of String with the found components or an empty list if none is found
 	 */
 	public static List<String> splitComponents(final String line, final String starting, final String separator) {
-		final ArrayList<String> result = new ArrayList<String>();
+		final ArrayList<String> result = new ArrayList<>();
 
 		if (StringUtils.isNotBlank(line)) {
 			String lineNoPrefix = removePrefix(line, starting);
@@ -74,14 +75,14 @@ public class SwiftParseUtils {
 
 	/**
 	 * Split components of a line with an optional starting string and a component separator
-	 * and returns the first token found or <code>null</code> if the string without starting substring
-	 * is empty or <code>null</code>.<br />
+	 * and returns the first token found or null if the string without starting substring
+	 * is empty or null.<br>
 	 * This method does not validate the starting string presence, it just strips it if present.
 	 *
 	 * @param line
 	 * @param starting
 	 * @param separator
-	 * @return the first token found or <code>null</code>
+	 * @return the first token found or null
 	 */
 	public static String getTokenFirst(String line, final String starting, final String separator) {
 		String result = null;
@@ -119,8 +120,8 @@ public class SwiftParseUtils {
 	}
 
 	/**
-	 * Split components of a line using the parameter separator and returns the second token found or <code>null</code> if
-	 * second component is missing. Two adjacent separators are NOT treated as one.<br />
+	 * Split components of a line using the parameter separator and returns the second token found or null if
+	 * second component is missing. Two adjacent separators are NOT treated as one.<br>
 	 * Examples with slash as separator:<ul>
 	 * 		<li>for the literal "abc//def/ghi" will return null.</li>
 	 * 		<li>for the literal "abc/foo/def" will return "foo".</li>
@@ -138,9 +139,9 @@ public class SwiftParseUtils {
 	}
 
 	/**
-	 * Split components of a line using the parameter separator and returns the second token found or <code>null</code> if
+	 * Split components of a line using the parameter separator and returns the second token found or null if
 	 * second component is missing. Two adjacent separators are NOT treated as one. The second component is assumed as the
-	 * last one so its content may have additional separators if present.<br />
+	 * last one so its content may have additional separators if present.<br>
 	 * Examples with slash as separator:<ul>
 	 * 		<li>for the literal "abc//def/ghi" will return null.</li>
 	 * 		<li>for the literal "abc/foo" will return "foo".</li>
@@ -161,14 +162,14 @@ public class SwiftParseUtils {
 
 	/**
 	 * Split components of a line with an optional starting string and a component separator
-	 * and returns the second token found or <code>null</code> if the string without starting substring
-	 * is empty or <code>null</code>.<br />
+	 * and returns the second token found or null if the string without starting substring
+	 * is empty or null.<br>
 	 * This method does not validate the starting string presence, it just strips it if present.
 	 *
 	 * @param line
 	 * @param starting
 	 * @param separator
-	 * @return the second token found or <code>null</code>
+	 * @return the second token found or null
 	 * @since 7.4
 	 */
 	public static String getTokenSecond(final String line, final String starting, final String separator) {
@@ -177,17 +178,17 @@ public class SwiftParseUtils {
 
 	/**
 	 * Split components of a line with an optional starting string and a component separator
-	 * and returns the second token found or <code>null</code> if the string without starting substring
-	 * is empty or <code>null</code>.
-	 * <br />
+	 * and returns the second token found or null if the string without starting substring
+	 * is empty or null.
+	 * <br>
 	 * Two adjacent separators are NOT treated as one. The second component is assumed as the
-	 * last one so its content may have additional separators if present.<br />
+	 * last one so its content may have additional separators if present.<br>
 	 * This method does not validate the starting string presence, it just strips it if present.
 	 *
 	 * @param line
 	 * @param starting
 	 * @param separator
-	 * @return the second token found or <code>null</code>
+	 * @return the second token found or null
 	 * @since 7.4
 	 */
 	public static String getTokenSecondLast(final String line, final String starting, final String separator) {
@@ -195,8 +196,8 @@ public class SwiftParseUtils {
 	}
 
 	/**
-	 * Split components of a line using the parameter separator and returns the third token found or <code>null</code> if
-	 * third component is missing. Two adjacent separators are NOT treated as one.<br />
+	 * Split components of a line using the parameter separator and returns the third token found or null if
+	 * third component is missing. Two adjacent separators are NOT treated as one.<br>
 	 * Examples with slash as separator:<ul>
 	 * 		<li>for the literal "abc/def//ghi" will return null.</li>
 	 * 		<li>for the literal "abc/foo" will return "null".</li>
@@ -214,9 +215,9 @@ public class SwiftParseUtils {
 	}
 
 	/**
-	 * Split components of a line using the parameter separator and returns the third token found or <code>null</code> if
+	 * Split components of a line using the parameter separator and returns the third token found or null if
 	 * third component is missing. Two adjacent separators are NOT treated as one. The third component is assumed as the
-	 * last one so its content may have additional separators if present.<br />
+	 * last one so its content may have additional separators if present.<br>
 	 * Examples with slash as separator:<ul>
 	 * 		<li>for the literal "abc/def//ghi" will return null.</li>
 	 * 		<li>for the literal "abc/foo" will return "null".</li>
@@ -241,8 +242,8 @@ public class SwiftParseUtils {
 	}
 
 	/**
-	 * Split components of a line using the parameter separator and returns the forth token found or <code>null</code> if
-	 * forth component is missing. Two adjacent separators are NOT treated as one.<br />
+	 * Split components of a line using the parameter separator and returns the forth token found or null if
+	 * forth component is missing. Two adjacent separators are NOT treated as one.<br>
 	 * Examples with slash as separator:<ul>
 	 * 		<li>for the literal "abc/def/ghi//ghi" will return null.</li>
 	 * 		<li>for the literal "abc/foo/ghi" will return "null".</li>
@@ -260,9 +261,9 @@ public class SwiftParseUtils {
 	}
 
 	/**
-	 * Split components of a line using the parameter separator and returns the forth token found or <code>null</code> if
+	 * Split components of a line using the parameter separator and returns the forth token found or null if
 	 * forth component is missing. Two adjacent separators are NOT treated as one. The forth component is assumed as the
-	 * last one so its content may have additional separators if present.<br />
+	 * last one so its content may have additional separators if present.<br>
 	 * Examples with slash as separator:<ul>
 	 * 		<li>for the literal "abc/def/ghi//ghi" will return null.</li>
 	 * 		<li>for the literal "abc/foo/ghi" will return "null".</li>
@@ -289,9 +290,9 @@ public class SwiftParseUtils {
 	/**
 	 * Returns the alphabetic starting substring of the value.
 	 * The split is made when the first numeric character is found.
-	 * For example:<br />
-	 * ABCD2345,33 will be return ABCD<br />
-	 * If the value does not contain any alphabetic character <code>null</code> is returned.
+	 * For example:<br>
+	 * ABCD2345,33 will be return ABCD<br>
+	 * If the value does not contain any alphabetic character null is returned.
 	 *
 	 * @param value
 	 * @return s
@@ -312,9 +313,9 @@ public class SwiftParseUtils {
 	/**
 	 * Returns the numeric starting substring of the value.
 	 * The split is made when the first alpha character (not number or comma) is found.
-	 * For example:<br />
-	 * 2345,33ABCD will be return 2345,33<br />
-	 * If the value does not contain any numeric or comma character <code>null</code> is returned.
+	 * For example:<br>
+	 * 2345,33ABCD will be return 2345,33<br>
+	 * If the value does not contain any numeric or comma character null is returned.
 	 *
 	 * @param value
 	 * @return s
@@ -335,9 +336,9 @@ public class SwiftParseUtils {
 	/**
 	 * Returns the numeric suffix of the value.
 	 * The split is made when the first numeric character is found.
-	 * For example:<br />
-	 * ABCD2345,33 will be return 2345,33<br />
-	 * If the value does not contain any numeric character <code>null</code> is returned.
+	 * For example:<br>
+	 * ABCD2345,33 will be return 2345,33<br>
+	 * If the value does not contain any numeric character null is returned.
 	 *
 	 * @param value
 	 * @return s
@@ -358,9 +359,9 @@ public class SwiftParseUtils {
 	/**
 	 * Returns the alpha suffix of the value.
 	 * The split is made when the first alpha (not numetic or comma) character is found.
-	 * For example:<br />
-	 * 2345,33ABCD will be return ABCD<br />
-	 * If the value does not contain any alpha character <code>null</code> is returned.
+	 * For example:<br>
+	 * 2345,33ABCD will be return ABCD<br>
+	 * If the value does not contain any alpha character null is returned.
 	 *
 	 * @param value
 	 * @return s
@@ -385,7 +386,7 @@ public class SwiftParseUtils {
 	 * @return list of found lines
 	 */
 	public static List<String> getLines(final String value) {
-		final List<String> result = new ArrayList<String>();
+		final List<String> result = new ArrayList<>();
 		if (value != null) {
 			final BufferedReader br = new BufferedReader(new StringReader(value));
 			try {
@@ -395,7 +396,7 @@ public class SwiftParseUtils {
 					l = br.readLine();
 				}
 			} catch (final IOException e) {
-				throw new UnhandledException(e);
+				throw new ProwideException(e);
 			}
 		}
 		return result;

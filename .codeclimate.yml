@@ -4,13 +4,7 @@ plugins:
   sonar-java:
     enabled: true
     config:
-      sonar.java.source: 6
-    checks:
-      squid:S1845:
-        enabled: false
-    # try-with-resources is not available in Java6 (enable after upgrade to 7)
-      squid:S2095:
-        enabled: false
+      sonar.java.source: 7
 
 exclude_patterns:
   - ".gradle/"
