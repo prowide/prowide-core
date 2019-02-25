@@ -19,7 +19,7 @@ tasks.withType(JavaCompile) {
 	if (project.hasProperty('JDK7_HOME')) {
 		options.forkOptions.executable = "$JDK7_HOME/bin/javac"
 	} else {
-		println "*** Compiling with newer version of Java, this is just fine for development; for releases a proper JDK6_HOME variable must be set in gradle.properties ***"
+		println "*** Compiling with newer version of Java, this is just fine for development; for releases a proper JDK7_HOME variable must be set in gradle.properties ***"
 	}
 	options.encoding = 'UTF-8'
 }
