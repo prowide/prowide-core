@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.field.Field;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -46,7 +48,10 @@ public class Tag implements Serializable {
 
 	/**
 	 * Unique identified when this tag is a persisted element
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	protected Long id;
 	
 	/**
@@ -54,7 +59,10 @@ public class Tag implements Serializable {
 	 * This value is used to remember the positions of the tags inside 
 	 * a block when persisted. This value may not be set when persistence
 	 * is not used and should not be used by clients.
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@Deprecated
 	protected Integer sortKey;
 	
 	/**
@@ -75,7 +83,10 @@ public class Tag implements Serializable {
 
 	/**
 	 * Reference to the sequence node, if any, that this tags belongs to.
+	 * @deprecated to retrieve fields in sequences use the AbstractMT model
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	protected transient SequenceNode sequence = null;
 	
 	/**
@@ -237,7 +248,10 @@ public class Tag implements Serializable {
 	/**
 	 * Get the unique identifier of the tag if it is persisted
 	 * @return the unique id or null if it is not a persistent object
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public Long getId() {
 		return id;
 	}
@@ -246,7 +260,10 @@ public class Tag implements Serializable {
 	 * Set the unique identifier of the tag if it is persisted
 	 * @param id the id to be set
 	 * @see #sortKey
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public void setId(Long id) {
 
 		this.id = id;
@@ -256,7 +273,10 @@ public class Tag implements Serializable {
 	 * get the sortkey of this tag
 	 * @return an integer with the current sortkey
 	 * @see #sortKey
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public Integer getSortKey() {
 		return sortKey;
 	}
@@ -266,7 +286,10 @@ public class Tag implements Serializable {
 	 * This value may be changed by clients when persistence is used and the order of the tags
 	 * in a message are being modified.
 	 * @param sortKey the new sortkey
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public void setSortKey(Integer sortKey) {
 		this.sortKey = sortKey;
 	}
@@ -497,8 +520,10 @@ public class Tag implements Serializable {
 	}
 	
 	/**
-	 * @see Field#getField(Tag)
+	 * @deprecated use {@link #asField()} instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public Field getField() {
 		return Field.getField(this);
 	}
@@ -547,16 +572,12 @@ public class Tag implements Serializable {
 	}
 	
 	/**
-	 * 
-	 * @return this Tag as a FieldNN instance or null if an error occurs
+	 * Creates a Field instance for the given Tag object.
+	 * @return a specific field object (example: Field32A) or null if exceptions occur during object creation.
+	 * @see Field#getField(Tag)
 	 */
 	public Field asField() {
-		try {
-			return Field.getField(this);
-		} catch (Exception e) {
-			log.log(Level.WARNING, "cannot build Field object for Tag "+this, e);
-		}
-		return null;
+		return Field.getField(this);
 	}
 	
 }

@@ -47,6 +47,7 @@ public class ConversionService implements IConversionService {
 	 */
 	public String getFIN(final SwiftMessage msg) {
 		Validate.notNull(msg);
+		msg.removeEmptyBlocks();
 		final StringWriter writer = new StringWriter();
 		SwiftWriter.writeMessage(msg, writer);
 		final String fin = writer.getBuffer().toString();

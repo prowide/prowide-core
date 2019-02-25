@@ -550,7 +550,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * 
 	 * @param name a proper field name, ex: 32A, 22F, 20
 	 * @param value an optional field value or null to create the field with no initial content
-	 * @return a specific field object, ex: Field32A. Or null if exceptions occur during object creation.
+	 * @return a specific field object (example: Field32A) or null if exceptions occur during object creation.
 	 * @since 7.8
 	 */
 	static public Field getField(final String name, final String value) {
@@ -1013,9 +1013,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 		}
 
 		/*
-		 * if the query includes a component offset, we remove meaningless prefix separators from result.
+		 * if the query includes a component offset above 1, we remove meaningless prefix separators from result.
 		 */
-		boolean removeSeparators = offset > 0;
+		boolean removeSeparators = offset > 1;
 		if (start != null) {
 			if (lines.size() >= start) {
 				if (end != null) {

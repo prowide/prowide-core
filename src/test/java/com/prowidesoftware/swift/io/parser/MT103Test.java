@@ -16,7 +16,12 @@
 package com.prowidesoftware.swift.io.parser;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import org.junit.Test;
 
 import com.prowidesoftware.swift.model.SwiftBlock2Output;

@@ -29,6 +29,7 @@ import java.util.Calendar;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
@@ -1419,4 +1420,49 @@ public class SwiftParserTest {
 		assertEquals("DG942_171206-004", msg.getBlock4().getFieldByName("20").getValue());
 	}
 
+	/**
+	 * Test parsing nested blocks as tags
+	 * @throws Exception
+	 */
+	@Ignore
+	public void testNestedBlocks() throws Exception {
+		String fin = "{1:F01OURSGB33AXXX0000000000}{2:O0961625170421ABLRXXXXGXXX00000000001704201625N}{3:{103:CLH}{108:SWIFTBICAXXX0000890}}{4:{1:F01PTY1US33AXXX0000000000}{2:I300PTY2GB33AXXXU3003}{3:{103:ABC}}{4:\n" +
+				":15A:\n" +
+				":20:R317703\n" +
+				":22A:NEWT\n" +
+				"-}{5:{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}}}";
+
+		// parse with SwiftMessage
+		SwiftMessage sm = SwiftMessage.parse(fin);
+		if (sm.isType(96)) {
+			SwiftBlock4 nested = sm.getBlock4();
+			SwiftMessage mt = new SwiftMessage();
+			if (nested.getTagByNumber(1) != null) {
+				mt.addBlock(SwiftParser.parseBlock1(nested.getTagByNumber(1).getValue()));
+			}
+			if (nested.getTagByNumber(2) != null) {
+				mt.addBlock(SwiftParser.parseBlock2(nested.getTagByNumber(2).getValue()));
+			}
+			if (nested.getTagByNumber(3) != null) {
+				//System.out.println(nested.getTagByNumber(3).getValue());
+				mt.addBlock(SwiftParser.parseBlock3(nested.getTagByNumber(3).getValue()));
+			}
+			if (nested.getTagByNumber(4) != null) {
+				mt.addBlock(SwiftParser.parseBlock4(nested.getTagByNumber(4).getValue()));
+			}
+			if (nested.getTagByNumber(5) != null) {
+				mt.addBlock(SwiftParser.parseBlock5(nested.getTagByNumber(5).getValue()));
+			}
+			assertNotNull(mt.getBlock1());
+			assertNotNull(mt.getBlock2());
+			assertNotNull(mt.getBlock3());
+			assertNotNull(mt.getBlock4());
+			assertNotNull(mt.getBlock5());
+			assertEquals("F01PTY1US33AXXX0000000000", nested.getTagValue("1"));
+			assertEquals("I300PTY2GB33AXXXU3003", nested.getTagValue("2"));
+			assertEquals("{103:ABC}", nested.getTagValue("3"));
+			assertEquals("\\n" + ":15A:\\n" + ":20:R317703\\n" + ":22A:NEWT\\n" + "-", nested.getTagValue("4"));
+			assertEquals("{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}", nested.getTagValue("5"));
+		}
+	}
 }

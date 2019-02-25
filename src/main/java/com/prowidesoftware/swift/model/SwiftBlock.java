@@ -18,6 +18,8 @@ package com.prowidesoftware.swift.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -41,7 +43,10 @@ public abstract class SwiftBlock implements Serializable {
 	/**
 	 * Unique identifier of the swift block.
 	 * Mainly used for persistence services.
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	protected Long id;
 
 	/**
@@ -142,7 +147,10 @@ public abstract class SwiftBlock implements Serializable {
 	/**
 	 * Get the unique identifier of this block or null if it is not set
 	 * @return the unique identifier 
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public Long getId() {
 		return id;
 	}
@@ -150,7 +158,10 @@ public abstract class SwiftBlock implements Serializable {
 	/**
 	 * Sets the unique identifier of this block
 	 * @param id the unique identifier to set.
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public void setId(final Long id) {
 		this.id = id;
 	}

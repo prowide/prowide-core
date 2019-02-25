@@ -1,3 +1,11 @@
+SNAPSHOT 7.10.4
+  * Fixed negative index bug in AbstractSwiftMessage#getPreviousStatusInfo when message has less than two statuses in the trail
+  * Fixed getLines API in Fields that in some cases was trimming the first line starting slash from the result
+  * Fixed eventual NPE produced in MxSwiftMessage#updateFromMessage() when creating MxSwiftMessage from XML document
+  * Fixed column length for "variant" in MxSwiftMessage persistence mapping
+  * Added a fields() method in SwiftTagListBlock to get all block Tag objects as Field objects
+  * Added API to field 50F and 59F to get structured content for the line numbers
+
 RELEASE 7.10.3 - October 2018 - LTS version for SRU2018
   * License changed from LGPL to the more permissive Apache License 2.0
   * Fixed serialization of field 48

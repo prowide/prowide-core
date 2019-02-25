@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- package com.prowidesoftware.swift.model.field;
+package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
@@ -1160,5 +1160,52 @@ public class Field59F extends Field implements Serializable, com.prowidesoftware
 		return field;
 	}
 	
+    /**
+     * Get the details (right part of the line) based on the line identification number.
+     * This API is specific for the structured field 59F.
+     * @param lineIdentifier a line number in the range of 1 to 3
+     * @return the details for the found lines or empty list if non is found or the line number is incorrect
+     * @since 7.10.4
+     */
+    public List<String> detailsByNumber(int lineIdentifier) {
+		List<String> result = new ArrayList<>();
+		String number = String.valueOf(lineIdentifier);
+		if (StringUtils.equals(number, getComponent2()) && StringUtils.isNotBlank(getComponent3())) {
+			result.add(getComponent3());
+		}
+		if (StringUtils.equals(number, getComponent4()) && StringUtils.isNotBlank(getComponent5())) {
+			result.add(getComponent5());
+		}
+		if (StringUtils.equals(number, getComponent6()) && StringUtils.isNotBlank(getComponent7())) {
+			result.add(getComponent7());
+		}
+		if (StringUtils.equals(number, getComponent8()) && StringUtils.isNotBlank(getComponent9())) {
+			result.add(getComponent9());
+		}
+		return result;
+	}
 
+    /**
+     * Check if the line identified by a given number is present.
+     * This API is specific for the structured field 59F.
+     * @param lineIdentifier a line number in the range of 1 to 3
+     * @return true if the structured content includes the line identified by the given number
+     * @since 7.10.4
+     */
+    public boolean contains(int lineIdentifier) {
+		String number = String.valueOf(lineIdentifier);
+		if (StringUtils.equals(number, getComponent2()) && StringUtils.isNotBlank(getComponent3())) {
+			return true;
+		}
+		if (StringUtils.equals(number, getComponent4()) && StringUtils.isNotBlank(getComponent5())) {
+            return true;
+		}
+		if (StringUtils.equals(number, getComponent6()) && StringUtils.isNotBlank(getComponent7())) {
+			return true;
+		}
+		if (StringUtils.equals(number, getComponent8()) && StringUtils.isNotBlank(getComponent9())) {
+			return true;
+		}
+		return false;
+	}
 }

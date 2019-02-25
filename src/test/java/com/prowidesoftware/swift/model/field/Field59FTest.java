@@ -15,9 +15,9 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Test for Field59F and similar fields.
@@ -52,14 +52,27 @@ public class Field59FTest extends AbstractFieldTest {
 				"2/GZIRA\n" +
 				"3/MT/MALTA");
 		assertEquals("MT27SBMT59999999026977001", f.getComponent1());
+
+		assertTrue(f.contains(1));
 		assertEquals("1", f.getComponent2());
 		assertEquals("FOO LTD", f.getComponent3());
+		assertEquals("FOO LTD", f.detailsByNumber(1).get(0));
+
+		assertTrue(f.contains(2));
 		assertEquals("2", f.getComponent4());
 		assertEquals("99 FOO RD", f.getComponent5());
+		assertEquals("99 FOO RD", f.detailsByNumber(2).get(0));
 		assertEquals("2", f.getComponent6());
 		assertEquals("GZIRA", f.getComponent7());
+		assertEquals("GZIRA", f.detailsByNumber(2).get(1));
+		assertEquals(2, f.detailsByNumber(2).size());
+
+		assertTrue(f.contains(3));
 		assertEquals("3", f.getComponent8());
 		assertEquals("MT/MALTA", f.getComponent9());
+		assertEquals("MT/MALTA", f.detailsByNumber(3).get(0));
+
+		assertFalse(f.contains(4));
 	}
 	
 	@Test

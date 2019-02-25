@@ -15,12 +15,11 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import org.junit.Test;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+
+import static org.junit.Assert.*;
 
 /**
  * Test for Field50F and similar fields.
@@ -302,6 +301,27 @@ public class Field50FTest extends AbstractFieldTest {
 		assertEquals("Party Identifier", f.getComponentLabel(1));
 		assertEquals("Name of the Ordering Customer", f.getComponentLabel(3));
 		assertEquals("Customer Identification Number", f.getComponentLabel(5));
+	}
+
+	@Test
+	public void testAddedAPI() {
+		final String value = "/1234567890\r\n" +
+				"1/JOHN SMITH\r\n" +
+				"2/HIGH STREET 6, APT 6C\r\n" +
+				"3/BE/BRUSSELS";
+		Field50F f = new Field50F(value);
+
+		assertTrue(f.contains(1));
+		assertEquals("JOHN SMITH", f.detailsByNumber(1).get(0));
+		assertTrue(f.contains(2));
+		assertEquals("HIGH STREET 6, APT 6C", f.detailsByNumber(2).get(0));
+		assertTrue(f.contains(3));
+		assertEquals("BE/BRUSSELS", f.detailsByNumber(3).get(0));
+		assertFalse(f.contains(4));
+		assertFalse(f.contains(5));
+		assertFalse(f.contains(6));
+		assertFalse(f.contains(7));
+		assertFalse(f.contains(8));
 	}
 	
 }

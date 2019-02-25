@@ -432,7 +432,6 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 	 * @since 7.7
 	 */
 	public String message() {
-		this.m.removeEmptyBlocks();
 		IConversionService srv = new ConversionService();
 		return srv.getFIN(this.m);
 	}

@@ -28,6 +28,7 @@ import com.prowidesoftware.swift.model.mt.ServiceIdType;
  * @deprecated use {@link ServiceIdType instead}
  */
 @ProwideDeprecated(phase4=TargetYear._2019)
+@Deprecated
 public class SwiftServiceId {
 	private static final long serialVersionUID = 3435194171796145884L;
 

@@ -65,7 +65,7 @@ import java.util.*;
 public abstract class AbstractSwiftMessage implements Serializable, JsonSerializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
 	private static final long serialVersionUID = 3769865560736793606L;
-	
+
 	/**
 	 * Identifier constant for acknowledge service messages
 	 * @since 7.8.8
@@ -625,7 +625,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 */
 	public SwiftMessageStatusInfo getStatusInfo() {
 		List<SwiftMessageStatusInfo> l = getStatusTrail();
-		if ((l!=null) && !l.isEmpty()) {
+		if (l != null && !l.isEmpty()) {
 			return l.get(l.size()-1);
 		}
 		return null;
@@ -636,7 +636,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 */
 	public SwiftMessageStatusInfo getPreviousStatusInfo() {
 		List<SwiftMessageStatusInfo> l = getStatusTrail();
-		if ((l!=null) && !l.isEmpty()) {
+		if (l != null && l.size() >= 2) {
 			return l.get(l.size() -2);
 		}
 		return null;
@@ -1260,14 +1260,22 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * Gets a JSON representation of this message.
-     *
 	 * @since 7.10.3
 	 */
 	@Override
 	public String toJson() {
+		return toJsonImpl();
+	}
+
+	/**
+	 * Isolated Json implementation, useful for mocked test
+	 * @return json serialization using Gson
+	 * @since 7.10.6
+	 */
+	protected String toJsonImpl(){
 		final Gson gson = new GsonBuilder()
-			.setPrettyPrinting()
-			.create();
+				.setPrettyPrinting()
+				.create();
 		return gson.toJson(this);
 	}
 	

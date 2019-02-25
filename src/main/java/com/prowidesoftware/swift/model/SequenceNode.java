@@ -15,6 +15,9 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +27,10 @@ import java.util.List;
  * These structures are modeled here as a tree.
  * 
  * @since 6.3
+ * @deprecated to retrieve fields in sequences use the AbstractMT model
  */
+@Deprecated
+@ProwideDeprecated(phase2 = TargetYear._2019)
 public class SequenceNode {
 	private final String name;
 	private final List<SequenceNode> children = new ArrayList<>();

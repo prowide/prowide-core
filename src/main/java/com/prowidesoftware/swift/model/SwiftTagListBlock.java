@@ -180,6 +180,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * @param name the tags name to search, for example "32A" or "58" (letter option wildcard 'a' is not supported)
 	 * @return an array of tags or an empty array if no tags are found
 	 * @throws IllegalArgumentException if the name parameter is null
+     * @see #getTagsByName(String, String) to find tags with letter option wildcard
 	 */
 	public Tag[] getTagsByName(final String name) {
 		Validate.notNull(name, NAME_VALIDATION_MESSAGE);
@@ -204,7 +205,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 */
 	public Tag getTagByName(final String name, final String component1, final String component2) {
 		for (final Tag tag : getTagsByName(name)) {
-			final Field f = tag.getField();
+			final Field f = tag.asField();
 			if (f != null && f.is(component1) && StringUtils.equals(f.getComponent(2), component2)) {
 				return tag;
 			}
@@ -356,7 +357,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		final boolean wildcard = name.endsWith("a");
 		for (Tag tag : this.tags) {
 			if (matchesName(wildcard, tag.getName(), name)) {
-				final Field field = tag.getField();
+				final Field field = tag.asField();
 				if (field == null) {
 					log.warning("Could not create field instance of "+tag);
 				} else if (componentValue == null || field.is(componentValue)) {
@@ -383,12 +384,41 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		final List<Field> l = new ArrayList<>();
 		for (Tag tag : this.tags) {
 			if (matchesName(wildcard, tag.getName(), name)) {
-				final Field field = tag.getField();
+				final Field field = tag.asField();
 				if (field == null) {
 					log.warning("Could not create field instance of "+tag);
 				} else if (componentValue == null || field.is(componentValue)) {
 					l.add(field);
 				}
+			}
+		}
+		return l;
+	}
+
+    /**
+     * Gets all tag instances matching the given name and first component value.
+     *
+     * @param name the name of the field to match, may end with 'a' as wildcard to select any letter option, for example 50a will match both 50A and 50B
+     * @param componentValue expected value for component 1 in the matched fields, or null to return all fields matching the name
+     * @return a list of matching tags or an empty list if none is found
+     * @since 7.10.6
+     * @throws IllegalArgumentException if name parameter is null
+     */
+	public List<Tag> getTagsByName(final String name, final String componentValue) {
+        Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+
+        final boolean wildcard = name.endsWith("a");
+		final List<Tag> l = new ArrayList<>();
+		for (Tag tag : this.tags) {
+			if (matchesName(wildcard, tag.getName(), name)) {
+			    if (componentValue == null) {
+			        l.add(tag);
+                } else {
+                    final Field field = tag.asField();
+                    if (field != null && field.is(componentValue)) {
+                        l.add(tag);
+                    }
+                }
 			}
 		}
 		return l;
@@ -421,7 +451,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	public Field getField(final int index) {
 		final Tag tag = getTag(index);
 		if (tag != null) {
-			return tag.getField();
+			return tag.asField();
 		}
 		return null;
 	}
@@ -479,7 +509,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	public Field getFieldByNumber(final int fieldNumber) {
 		final Tag t = getTagByNumber(fieldNumber);
 		if (t != null) {
-			return t.getField();
+			return t.asField();
 		}
 		return null;
 	}
@@ -496,7 +526,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	public List<? extends Field> getFieldsByNumber(final int fieldNumber) {
 		final List<Field> result = new ArrayList<>();
 		for (Tag tag : getTagsByNumber(fieldNumber)) {
-			final Field f = tag.getField();
+			final Field f = tag.asField();
 			if (f == null) {
 				throw new IllegalArgumentException("Unable to create field for tagname "+tag.getName());
 			} else {
@@ -2176,5 +2206,21 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
             }
         }
     }
+
+	/**
+	 * Return the list of fields in this block.
+	 * <p>THe implementation iterates the existing Tag objects and for each
+	 * calls the {@link Tag#asField()} method to create the corresponding
+	 * Field instance
+	 * @return a list of fields in this block or an empty list if the block is empty
+	 * @since 7.10.4
+	 */
+	public List<Field> fields() {
+		List<Field> fields = new ArrayList<>();
+	 	for (Tag tag : this.tags) {
+	 		fields.add(tag.asField());
+		}
+	 	return fields;
+	}
 
 }

@@ -274,12 +274,12 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	 * inconsistencies between the raw format and the parsed data. To parse the internal raw
 	 * format into a model object use {@link #modelMessage()} instead of this getter.
 	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public SwiftMessage getModelMessage() {
-		DeprecationUtils.phase3(getClass(), "getModelMessage()", "Use modelMessage() instead.");
-		return modelMessage();
-	}
+//	@Deprecated
+//	@ProwideDeprecated(phase4=TargetYear._2019)
+//	public SwiftMessage getModelMessage() {
+//		DeprecationUtils.phase3(getClass(), "getModelMessage()", "Use modelMessage() instead.");
+//		return modelMessage();
+//	}
 	
 	/**
 	 * Parses the raw message content into a {@link SwiftMessage} object.

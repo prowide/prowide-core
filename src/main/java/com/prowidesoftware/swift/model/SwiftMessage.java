@@ -110,7 +110,10 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Placeholder for the root of the sequences parsed in this message
+	 * @deprecated to retrieve fields in sequences use the AbstractMT model
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	private SequenceNode parsedSequences;
 
 	/**
@@ -128,7 +131,10 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Identification of the message when persisted
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	protected Long id;
 
 	/**
@@ -491,7 +497,10 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * Get the unique identifier of this message
 	 * @return the message id
 	 * @see #id
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public Long getId() {
 		return this.id;
 	}
@@ -500,7 +509,10 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * Set the unique identifier of this message
 	 * @param id the id to be set
 	 * @see #id
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public void setId(final Long id) {
 		this.id = id;
 	}
@@ -1092,7 +1104,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 			final Tag[] tl = this.block4.getTagsByName(n);
 			if (tl != null && tl.length>0) {
 				for (final Tag t:tl) {
-					result.add(t.getField());
+					result.add(t.asField());
 				}
 			}
 		}

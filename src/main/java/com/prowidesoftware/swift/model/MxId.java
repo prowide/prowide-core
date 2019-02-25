@@ -43,8 +43,10 @@ public class MxId {
 		this.version = StringUtils.EMPTY;
 	}
 	/**
-	 * Creates a new object getting data from a targetnamespace
-	 * @param namespace
+	 * Creates a new object getting data from an MX message namespace.
+	 * <p>The implementation parses the namespace using a regex to detect the message type part.
+	 *
+	 * @param namespace a complete or partial namespace such as "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" or just "pain.001.001.03"
 	 * @throws IllegalArgumentException if namespace parameter cannot be parsed as MX identification
 	 */
 	public MxId(final String namespace) {
@@ -79,8 +81,10 @@ public class MxId {
 	public MxBusinessProcess getBusinessProcess() {
 		return businessProcess;
 	}
-	public void setBusinessProcess(final MxBusinessProcess businessProcess) {
+
+	public MxId setBusinessProcess(final MxBusinessProcess businessProcess) {
 		this.businessProcess = businessProcess;
+		return this;
 	}
 	
 	/**
@@ -90,20 +94,28 @@ public class MxId {
 	public String getFunctionality() {
 		return functionality;
 	}
-	public void setFunctionality(final String functionality) {
+
+	public MxId setFunctionality(final String functionality) {
 		this.functionality = functionality;
+		return this;
 	}
+
 	public String getVariant() {
 		return variant;
 	}
-	public void setVariant(final String variant) {
+
+	public MxId setVariant(final String variant) {
 		this.variant = variant;
+		return this;
 	}
+
 	public String getVersion() {
 		return version;
 	}
-	public void setVersion(final String version) {
+
+	public MxId setVersion(final String version) {
 		this.version = version;
+		return this;
 	}
 
 	public String camelized() {
@@ -141,7 +153,7 @@ public class MxId {
 
 	/**
 	 * Get a string in the form of businessprocess.functionality.variant.version
-	 * @return a string with the MX message type identification
+	 * @return a string with the MX message type identification or null if any of the properties is null
 	 * @since 7.7
 	 */
 	public String id() {
@@ -189,4 +201,45 @@ public class MxId {
 	public int hashCode() {
 		return Objects.hash(businessProcess, functionality, variant, version);
 	}
+
+	/**
+	 * Check if this identification matches the given namespace.
+	 *
+	 * <p>This is particularly useful if this identifier is not completely filled, for example: if the business process
+	 * is set to "pain" and the functionality is set to "002" but the variant and version are left null, then this
+	 * identifier will match any namespace containing pain.002.*.* where the wildcard could be any number.
+	 * <br>new MxId("pain", "002", null, null).matches("pain.002.001.03") will be true.
+	 *
+	 * @param namespace a complete or partial namespace such as "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" or just "pain.001.001.03"
+	 * @return true if this id matches the parameter
+	 * @throws IllegalArgumentException if namespace parameter cannot be parsed as MX identification
+	 * @since 7.10.7
+	 */
+	public boolean matches(String namespace) {
+		return matches(new MxId(namespace));
+	}
+
+	/**
+	 * Check if this identification matches another one.
+	 *
+	 * <p>This is particularly useful if this identifier is not completely filled, for example: if the business process
+	 * is set to "pain" and the functionality is set to "002" but the variant and version are left null, then this
+	 * identifier will match for example both pain.002.001.03 and pain.002.002.04.
+	 *
+	 * <p>The difference between this implementation and {@link #equals(Object)} is that here null and empty properties
+	 * are treated as equals. Meaning it is not sensible to null versus blank properties, thus pain.001.001.null will
+	 * match pain.001.001.empty. </p>
+	 *
+	 * @param other an identification to compare
+	 * @return true if this id matches the parameter
+	 * @throws IllegalArgumentException if namespace parameter cannot be parsed as MX identification
+	 * @since 7.10.7
+	 */
+	public boolean matches(MxId other) {
+		return this.businessProcess == other.getBusinessProcess() &&
+				(StringUtils.isBlank(this.functionality) || StringUtils.isBlank(other.getFunctionality()) || StringUtils.equals(this.functionality, other.getFunctionality())) &&
+				(StringUtils.isBlank(this.variant) || StringUtils.isBlank(other.getVariant()) || StringUtils.equals(this.variant, other.getVariant())) &&
+				(StringUtils.isBlank(this.version) || StringUtils.isBlank(other.getVersion()) || StringUtils.equals(this.version, other.getVersion()));
+	}
+
 }

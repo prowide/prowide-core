@@ -84,7 +84,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 		final boolean b3 = compareTagListBlock(m1.getBlock3(), m2.getBlock3());
 		final boolean b4 = compareTagListBlock(m1.getBlock4(), m2.getBlock4());
 		final boolean b5 = this.ignoreTrailer || compareTagListBlock(m1.getBlock5(), m2.getBlock5());
-		log.info("b1="+b1+", b2="+b2+", b3="+b3+", b4="+b4+", b5="+b5);
+		log.finest("b1="+b1+", b2="+b2+", b3="+b3+", b4="+b4+", b5="+b5);
 		return (b1 && b2 && b3 && b4 && b5) ? 0 : 1;
 	}
 

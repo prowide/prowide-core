@@ -765,6 +765,22 @@ public class SwiftTagListBlockTest {
 	}
 
 	@Test
+	public void testTagsByNameBeing() {
+		b.append(new Tag("95C", "foo"));
+		assertEquals(1, b.getTagsByName("95a", "foo").size());
+
+		b.append(new Tag("93", "bar"));
+		assertEquals(1, b.getTagsByName("95a", "foo").size());
+
+		b.append(new Tag("95C", "foo"));
+		b.append(new Tag("95C", "foo2"));
+		b.append(new Tag("95C", "foo2"));
+		b.append(new Tag("95C", "foo2"));
+		assertEquals(2, b.getTagsByName("95a", "foo").size());
+		assertEquals(3, b.getTagsByName("95a", "foo2").size());
+	}
+
+	@Test
 	public void testGetTagIndex() {
 		b.append(new Tag("1:val1"));
 		b.append(new Tag("2:val2"));

@@ -66,7 +66,7 @@ public class SwiftMessageUtils {
 			if (b4 != null && !b4.isEmpty()) {
 				final ArrayList<String> curs = new ArrayList<>();
 				for(final Tag t: b4.getTags()) {
-					final Field f = t.getField();
+					final Field f = t.asField();
 					if (f instanceof CurrencyContainer) {
 						final CurrencyContainer cc = (CurrencyContainer) f;
 						curs.addAll(cc.currencyStrings());
@@ -236,7 +236,7 @@ public class SwiftMessageUtils {
 					t = b4.getTagByName("61");
 				}
 				if (t != null) {
-					f = t.getField();
+					f = t.asField();
 				}
 				if (f != null && f instanceof DateContainer) {
 					return ((DateContainer) f).dates().get(0);

@@ -173,7 +173,7 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
         JsonArray fields = new JsonArray();
         JsonParser parser = new JsonParser();
         for (Tag tag : tags) {
-            String json = tag.getField().toJson();
+            String json = tag.asField().toJson();
             JsonObject jsonObj = parser.parse(json).getAsJsonObject();
             fields.add(jsonObj);
         }

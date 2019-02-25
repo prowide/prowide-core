@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- package com.prowidesoftware.swift.model.field;
+package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;

@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.ConversionService;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -78,7 +80,10 @@ public class UnparsedTextList implements Serializable {
 	/**
 	 * Unique identifier of the unparsed texts list.
 	 * Mainly used for persistence services.
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	private Long id;
 
 	/**
@@ -110,7 +115,10 @@ public class UnparsedTextList implements Serializable {
 	/**
 	 * Get the unique identifier of this unparsed text list or null if it is not set
 	 * @return the unique identifier 
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public Long getId() {
 		return id;
 	}
@@ -118,7 +126,10 @@ public class UnparsedTextList implements Serializable {
 	/**
 	 * Sets the unique identifier of this unparsed text list
 	 * @param id the unique identifier to set.
+	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear._2019)
 	public void setId(final Long id) {
 		this.id = id;
 	}

@@ -404,4 +404,36 @@ public class AbstractMtJsonTest {
         assertTrue(comp.compare(original, mt3.getSwiftMessage()) == 0);
     }
 
+    /**
+     * https://github.com/prowide/prowide-core/issues/21
+     */
+    @Test
+    public void testJsonSlashPreserveField59() {
+        String fin = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" +
+                ":20:D051026EUR100057\n" +
+                ":13C:/RNCTIME/0802+0000\n" +
+                ":23B:CRED\n" +
+                ":32A:051028EUR6740,91\n" +
+                ":33B:EUR6740,91\n" +
+                ":50A:SSSSESMMXXX\n" +
+                ":53A:BBBBESMMXXX\n" +
+                ":57A:FOOBARYYXXX\n" +
+                ":59:/ES0123456789012345671234\n" +
+                "FOOOOO 1000 FOOBAR S.A.\n" +
+                ":70:REDEMPTS. TRADEDATE 2222-10-26\n" +
+                "/123123123: FOOVIMAR 2000 FOOBAR\n" +
+                ":71A:SHA" +
+                "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
+
+        SwiftMessage m = MT103.parse(fin).getSwiftMessage();
+
+        String toJsonV1SwiftMessage = m.toJson();
+
+        JsonParser parser = new JsonParser();
+        JsonObject o = parser.parse(toJsonV1SwiftMessage).getAsJsonObject();
+
+        assertNotNull(o);
+        assertEquals("/ES0123456789012345671234\nFOOOOO 1000 FOOBAR S.A.", o.get("data").getAsJsonObject().get("block4").getAsJsonObject().getAsJsonArray("tags").get(8).getAsJsonObject().get("value").getAsString());
+    }
+
 }

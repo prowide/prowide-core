@@ -78,7 +78,7 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	@Column(length = 3)
 	private String functionality;
 
-	@Column(length = 2)
+	@Column(length = 3)
 	private String variant;
 
 	@Column(length = 2)
@@ -306,7 +306,7 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	 */
 	private boolean _update(MxNode n) {
 		boolean updated = false;
-		final MxNode groupHeader = n.findFirstByName("GrpHdr");
+		final MxNode groupHeader = n != null? n.findFirstByName("GrpHdr") : null;
 		if (groupHeader != null) {
 			MxNode senderBic = groupHeader.findFirst("./InstgAgt/FinInstnId/BIC");
 			if (senderBic != null) {

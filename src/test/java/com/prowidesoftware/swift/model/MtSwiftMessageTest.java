@@ -16,12 +16,7 @@
 
 package com.prowidesoftware.swift.model;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
