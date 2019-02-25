@@ -15,26 +15,23 @@
  */
 package com.prowidesoftware.swift.model.mt;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.MtSwiftMessage;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.utils.Lib;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.commons.lang3.Validate;
-
-import com.prowidesoftware.swift.model.MtSwiftMessage;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.utils.Lib;
-
 /**
- * Generic MT representation for <strong>service messages</strong> with service id 21 = GPA/FIN Message (ACK/NAK/UAK/UNK).
- * It can hold both a positive or negative acknowledge.
- * <br>
- * For system messages, category 0, see the MT0xx classes.
- * 
+ * Use {@link ServiceMessage21 instead}
  * @since 7.8
  */
-public class AckSystemMessage extends AbstractMT {
+@Deprecated
+@ProwideDeprecated(phase2 = TargetYear._2020)
+public class AckSystemMessage extends ServiceMessage21 {
 
 	/**
 	 * @param aMessage
@@ -42,7 +39,6 @@ public class AckSystemMessage extends AbstractMT {
 	 */
 	public AckSystemMessage(final SwiftMessage aMessage) {
 		super(aMessage);
-		Validate.isTrue(aMessage.isServiceMessage21());
 	}
 
 	/**
@@ -135,14 +131,7 @@ public class AckSystemMessage extends AbstractMT {
 	 * @since 7.8.9
 	 */
 	public AckSystemMessage(final String fin) {
-		super();
-		if (fin != null) {
-			final SwiftMessage parsed = read(fin);
-			if (parsed != null) {
-				super.m = parsed;
-				Validate.isTrue(parsed.isServiceMessage21());
-			}
-		}
+		super(fin);
     }
 
 	/**
@@ -159,59 +148,6 @@ public class AckSystemMessage extends AbstractMT {
 			return null;
 		}
 		return new AckSystemMessage(fin);
-	}
-	
-	/**
-	 * Will always return null because service messages do not contain a message type.
-	 */
-	@Override
-	public String getMessageType() {
-		return null;
-	}
-
-    /**
-     * Returns true if this message is an ACK (positive acknowledge).
-     * This is determined by testing if the value of field 451 is 0.
-	 * If Field 451 is not present, returns false.
-     * 
-     * @since 7.8.8
-     */
-	public final boolean isAck() {
-		return this.m.isAck();
-	}
-
-	/**
-	 * Returns true if this message is an NACK (negative acknowledge).
-	 * This is determined by testing if the value of field 451 is 1.
-	 * If Field 451 is not present, returns false.
-	 * 
-	 * @since 7.8.8
-	 */
-	public final boolean isNack() {
-		return this.m.isNack();
-	}
-	
-	/**
-	 * Returns the error code present in NAK messages in field 405
-	 * @return error code found or null if the error code field is not present
-	 */
-	public String getErrorCode() {
-		final Tag t = super.m.getBlock4().getTagByName("405");
-		if (t == null) {
-			return null;
-		}
-		return t.asField().getComponent(1);
-	}
-	
-	/**
-	 * Returns the error line present in NAK messages in field 405
-	 * @return error code found or null if the error code field is not present
-	 */
-	public String getErrorLine() {
-		final Tag t = super.m.getBlock4().getTagByName("405");
-		if (t == null)
-			return null;
-		return t.asField().getComponent(2);
 	}
 	
 }

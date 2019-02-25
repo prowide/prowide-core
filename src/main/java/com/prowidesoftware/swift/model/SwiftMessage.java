@@ -1524,7 +1524,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * <p>If you have a MT102 in a SwiftMessage, this method is the same as invoking
 	 * <code>new MT102(SwiftMessage)</code>.
 	 * <p>For messages with service id 21 = GPA/FIN Message (ACK/NAK/UAK/UNK) it will
-	 * return an instance of {@link AckSystemMessage}.
+	 * return an instance of {@link ServiceMessage21}.
 	 * 
 	 * @return created specific MT object or null if the message type is not set or an error occurs during message creation 
 	 */
@@ -1532,7 +1532,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		final String type = getType();
 		if (type == null) {
 			if (isServiceMessage21()) {
-				return AckSystemMessage.newInstance(this);
+				return ServiceMessage21.newInstance(this);
 			}
 			log.warning("Cannot determine the message type from application header (block 2)");
 		} else {

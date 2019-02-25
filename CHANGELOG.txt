@@ -1,4 +1,5 @@
 SNAPSHOT 7.10.4
+  * Deprecated AckSystemMessage in favor of ServiceMessage21
   * Fixed negative index bug in AbstractSwiftMessage#getPreviousStatusInfo when message has less than two statuses in the trail
   * Fixed getLines API in Fields that in some cases was trimming the first line starting slash from the result
   * Fixed eventual NPE produced in MxSwiftMessage#updateFromMessage() when creating MxSwiftMessage from XML document
