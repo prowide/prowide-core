@@ -723,7 +723,7 @@ public class SwiftParser {
 	 * @return true if at the given position there is a tag start
 	 * @since 7.10.4
 	 */
-	protected final boolean tagStarts(final String s, int i) {
+	protected boolean tagStarts(final String s, int i) {
 		int length = s.length();
 		/*
 		 * at least three characters, where first and second characters must be digits
