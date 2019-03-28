@@ -457,7 +457,7 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	 * @see AbstractSwiftMessage#copyTo(AbstractSwiftMessage)
 	 */
 	public void copyTo(MxSwiftMessage msg) {
-	    super.copyTo((AbstractSwiftMessage)msg);
+	    super.copyTo(msg);
 	    msg.setBusinessProcess(getBusinessProcess());
 	    msg.setFunctionality(getFunctionality());
 	    msg.setVariant(getVariant());
@@ -482,6 +482,15 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	public static MxSwiftMessage fromJson(String json){
 		final Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, MxSwiftMessage.class);
+	}
+
+	/**
+	 * Returns this message MX identification
+	 * @return the identification object for this message
+	 * @since 7.10.4
+	 */
+	public MxId getMxId() {
+		return new MxId(this.businessProcess, this.functionality, this.variant, this.version);
 	}
 
 }

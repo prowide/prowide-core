@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.utils;
 
 import org.junit.Test;
 
+import java.util.Currency;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -36,6 +38,8 @@ public class IsoUtilsTest {
 		assertTrue(IsoUtils.getInstance().isValidISOCurrency("EUR"));
 		assertTrue(IsoUtils.getInstance().isValidISOCurrency("USD"));
 		assertTrue(IsoUtils.getInstance().isValidISOCurrency("ARS"));
+		assertTrue(IsoUtils.getInstance().isValidISOCurrency("BYN"));
+		assertTrue(IsoUtils.getInstance().isValidISOCurrency("NGN"));
 		/*
 		 * invalid
 		 */

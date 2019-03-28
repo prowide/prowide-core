@@ -16,6 +16,11 @@
 
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.swift.model.mt.MTVariant;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103_STP;
+import com.prowidesoftware.swift.model.mt.mt2xx.MT202;
+import com.prowidesoftware.swift.model.mt.mt2xx.MT202COV;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -69,6 +74,84 @@ public class MtSwiftMessageTest {
 		sm.getBlock2().setMessageType("202");
 		m.updateFromModel(sm);
 		assertEquals("fin.202", m.getIdentifier());
+	}
+
+	@Test
+	public void testIdentifier() {
+		MtSwiftMessage m = new MtSwiftMessage();
+		assertNull(m.getIdentifier());
+
+		m = new MtSwiftMessage(new MT103().getSwiftMessage());
+		assertEquals("fin.103", m.getIdentifier());
+
+		m = new MtSwiftMessage(new MT103_STP().getSwiftMessage());
+		assertEquals("fin.103.STP", m.getIdentifier());
+
+		m = new MtSwiftMessage(new MT202().getSwiftMessage());
+		assertEquals("fin.202", m.getIdentifier());
+
+		m = new MtSwiftMessage(new MT202COV().getSwiftMessage());
+		assertEquals("fin.202.COV", m.getIdentifier());
+	}
+
+	@Test
+	public void testIdentifierAndIsType() {
+		MtSwiftMessage m = new MtSwiftMessage();
+		assertNull(m.getIdentifier());
+		assertFalse(m.isType(103));
+
+		m = new MtSwiftMessage(new MT103().getSwiftMessage());
+		assertTrue(m.isType(103));
+		assertFalse(m.isType(202));
+
+		m = new MtSwiftMessage(new MT103_STP().getSwiftMessage());
+		assertTrue(m.isType(103));
+		assertFalse(m.isType(202));
+
+		m = new MtSwiftMessage(new MT202().getSwiftMessage());
+		assertFalse(m.isType(103));
+		assertTrue(m.isType(202));
+
+		m = new MtSwiftMessage(new MT202COV().getSwiftMessage());
+		assertFalse(m.isType(103));
+		assertTrue(m.isType(202));
+	}
+
+	@Test
+	public void testVariant() {
+		MtSwiftMessage m = new MtSwiftMessage();
+		assertNull(m.getVariant());
+
+		m = new MtSwiftMessage(new MT103().getSwiftMessage());
+		assertNull(m.getVariant());
+
+		m = new MtSwiftMessage(new MT103_STP().getSwiftMessage());
+		assertEquals(MTVariant.STP, m.getVariant());
+
+		m = new MtSwiftMessage(new MT202().getSwiftMessage());
+		assertNull(m.getVariant());
+
+		m = new MtSwiftMessage(new MT202COV().getSwiftMessage());
+		assertEquals(MTVariant.COV, m.getVariant());
+	}
+
+	@Test
+	public void testMtId() {
+		MtSwiftMessage m = new MtSwiftMessage();
+		assertNull(m.getMtId().getMessageType());
+		assertNull(m.getMtId().getVariant());
+
+		m = new MtSwiftMessage(new MT103().getSwiftMessage());
+		assertEquals(new MtId("103"), m.getMtId());
+
+		m = new MtSwiftMessage(new MT103_STP().getSwiftMessage());
+		assertEquals(new MtId("103", "STP"), m.getMtId());
+
+		m = new MtSwiftMessage(new MT202().getSwiftMessage());
+		assertEquals(new MtId("202"), m.getMtId());
+
+		m = new MtSwiftMessage(new MT202COV().getSwiftMessage());
+		assertEquals(new MtId("202", "COV"), m.getMtId());
 	}
 
 }

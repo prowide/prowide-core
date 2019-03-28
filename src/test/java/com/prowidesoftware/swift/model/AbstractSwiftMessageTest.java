@@ -23,7 +23,6 @@ import static org.junit.Assert.*;
 /**
  * Test for {@link AbstractSwiftMessage} model API
  * 
- * @author sebastian@prowidesoftware.com
  * @since 7.8.4
  */
 public class AbstractSwiftMessageTest {
@@ -33,17 +32,42 @@ public class AbstractSwiftMessageTest {
 		MtSwiftMessage msg = new MtSwiftMessage();
 		assertFalse(msg.match(""));
 		assertFalse(msg.match(null));
+
 		msg.setIdentifier("");
 		assertFalse(msg.match(""));
 		assertFalse(msg.match(null));
+
 		msg.setIdentifier("fin.103");
 		assertFalse(msg.match(""));
 		assertFalse(msg.match(null));
 		assertTrue(msg.match("fin.103"));
 		assertTrue(msg.match("fin.*"));
 		assertFalse(msg.match("fin.*STP"));
+
 		msg.setIdentifier("camt.002.002.01");
 		assertTrue(msg.match("camt.*"));
 		assertTrue(msg.match("camt.*01"));
 	}
+
+	@Test
+	public void category() {
+		MtSwiftMessage mt = new MtSwiftMessage();
+		assertEquals("", mt.category());
+
+		mt.setIdentifier("");
+		assertEquals("", mt.category());
+
+		mt.setIdentifier("fin.103");
+		assertEquals("1", mt.category());
+
+		MxSwiftMessage mx = new MxSwiftMessage();
+		assertEquals("", mx.category());
+
+		mx.setIdentifier("");
+		assertEquals("", mx.category());
+
+		mx.setIdentifier("camt.002.002.01");
+		assertEquals("camt", mx.category());
+	}
+
 }

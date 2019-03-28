@@ -714,13 +714,16 @@ public class SwiftParser {
 
 	/**
 	 * Evaluates if the string at the given position has the format nn[a]:
-	 * which means it is a proper tag start
+	 * which means it is a proper tag start.
+	 * <p>This method could be overwritten by a subclass to provide more permissive
+	 * tag identifiers (for example, to parse non-compliant messages).
 	 * 
 	 * @param s string to evaluate
 	 * @param i starting position in the string to evaluate
 	 * @return true if at the given position there is a tag start
+	 * @since 7.10.4
 	 */
-	private static final boolean tagStarts(final String s, int i) {
+	protected final boolean tagStarts(final String s, int i) {
 		int length = s.length();
 		/*
 		 * at least three characters, where first and second characters must be digits

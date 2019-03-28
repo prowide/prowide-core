@@ -20,6 +20,7 @@ import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.model.field.Field30T;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -136,15 +137,15 @@ public class SwiftMessageUtils {
 	}
 
 	/**
-	 * Gets the value date of a message.<br><br>
+	 * Gets the value date of a message.
 	 *
-	 * The value date is meaningful and defined by the standard only for a subset of message types.
+	 * <p>The value date is meaningful and defined by the standard only for a subset of message types.
 	 * In most of the cases it is contained in the date subfield of field 32A (for example MT103)
-	 * or field 30 (for example MT101).<br>
+	 * or field 30 (for example MT101).
 	 *
-	 * Notice a lot of messages do not define a value date.<br>
+	 * <p>Notice a lot of messages do not define a value date.
 	 *
-	 * Also a few define several fields as value date, or the value date can be repeated.
+	 * <p>Also a few define several fields as value date, or the value date can be repeated.
 	 * for those messages the first one is returned as follows:<br>
 	 * <ul>
 	 * <li>For MT450 returns the first value date occurrence of field 32A</li>
@@ -196,7 +197,7 @@ public class SwiftMessageUtils {
 					if (seq != null) {
 						f = seq.getFieldByNumber(98, "SETT");
 					}
-				} else if (m.isType(541, 543, 544, 545, 546, 547, 586)) {
+				} else if (m.isType(540, 541, 542, 543, 544, 545, 546, 547, 586)) {
 					final SwiftTagListBlock seq = b4.getSubBlock("TRADDET");
 					if (seq != null) {
 						f = seq.getFieldByNumber(98, "SETT");
@@ -237,6 +238,36 @@ public class SwiftMessageUtils {
 				}
 				if (t != null) {
 					f = t.asField();
+				}
+				if (f != null && f instanceof DateContainer) {
+					return ((DateContainer) f).dates().get(0);
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the trade date of a message.
+	 *
+	 * <p>The implementation tries first to get the trade date from field 30T (present in many
+	 * category 3 messages) and if not found it tries to get the trade date from field 98a::TRAD
+	 * (present in many category 5 messages).
+	 *
+	 * <p>Notice a lot of messages do not define a trade date.
+	 *
+	 * @param m the message where the value date is to be found
+	 * @return found date or null if the message does not defines a trade date, or if the defined trade date field is not present in the message
+	 * @since 7.10.4
+	 */
+	public static Calendar tradeDate(final SwiftMessage m) {
+		if (m != null) {
+			final SwiftBlock4 b4 = m.getBlock4();
+			if (b4 != null && !b4.isEmpty()) {
+
+				Field f = m.getBlock4().getFieldByName(Field30T.NAME);
+				if (f == null) {
+					f = m.getBlock4().getFieldByNumber(98, "TRAD");
 				}
 				if (f != null && f instanceof DateContainer) {
 					return ((DateContainer) f).dates().get(0);

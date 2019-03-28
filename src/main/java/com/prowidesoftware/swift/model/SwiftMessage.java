@@ -908,6 +908,69 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
+	 * Gets the signature of the message (looks for an S block then the MDG tag)
+	 *
+	 * @return the signature of the message (or null if none exists)
+	 * @since 7.10.4
+	 */
+	public String getSignature() {
+
+		// prepare the result
+		String signature = null;
+
+		// get the S block (create if it does not exist in the message)
+		SwiftBlockUser sBlock = getUserBlock("S");
+		if (sBlock != null) {
+
+			// get the MDG tag from the block
+			Tag mdg = sBlock.getTagByName("MDG");
+			if (mdg != null) {
+
+				// get the signature from the tag
+				signature = mdg.getValue();
+			}
+		}
+
+		return signature;
+	}
+
+	/**
+	 * Sets the signature for the message (adds an S block with the MDG tag)
+	 *
+	 * @param signature the signature to set in block S
+	 * @return <code>this</code>
+	 * @since 7.10.4
+	 */
+	public SwiftMessage setSignature(String signature) {
+
+		// get the S block (create if it does not exist in the message)
+		SwiftBlockUser sBlock = getUserBlock("S");
+		if (sBlock == null) {
+
+			// create the block
+			sBlock = new SwiftBlockUser("S");
+
+			// add the block to the message
+			addUserBlock(sBlock);
+		}
+
+		// remove any MDG tag from the block (if present)
+		Tag mdg = sBlock.getTagByName("MDG");
+		if (mdg == null) {
+
+			// create the tag
+			mdg = new Tag();
+			mdg.setName("MDG");
+			sBlock.append(mdg);
+		}
+
+		// set the signature on the tag
+		mdg.setValue(signature);
+
+		return this;
+	}
+
+	/**
 	 * verifies that the unparsed text list exists
 	 */
 	protected void unparsedTextVerify() {
@@ -1241,14 +1304,33 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Gets MUR (Message User Reference) from the user header block or null if the user header or MUR are not present.
-	 * The MUR is the Message User Reference used by applications for reconciliation with ACK.
-	 * <p>The MUR is a free-format field in which users may specify their own reference
-	 * of up to 16 characters of the permitted character set, and it is contained
-	 * in a 108 field at the message user header (block 3).
+	 * <p>The MUR is the Message User Reference used by applications for reconciliation with ACK.
+	 * It is a free-format field in which users may specify their own reference of up to 16 characters
+	 * of the permitted character set, and it is contained in a 108 field at the message user header (block 3).
 	 * @since 7.0
 	 */
 	public String getMUR() {
 		return this.block3 != null? this.block3.getTagValue(Field108.NAME) : null;
+	}
+
+	/**
+	 * Sets the MUR (Message User Reference) in the user header block.
+	 * <p>If a MUR field is present, its value will be overwritten.
+	 * <p>The MUR is the Message User Reference used by applications for reconciliation with ACK.
+	 * It is a free-format field in which users may specify their own reference of up to 16 characters
+	 * of the permitted character set, and it is contained in a 108 field at the message user header (block 3).
+	 * @param mur a non blank MUR value to set, if value is blank this method does nothing
+	 * @return this
+	 * @since 7.10.4
+	 */
+	public SwiftMessage setMUR(String mur) {
+		if (StringUtils.isNotBlank(mur)) {
+			if (this.block3 == null) {
+				this.block3 = new SwiftBlock3();
+			}
+			this.block3.builder().setField108(new Field108(mur));
+		}
+		return this;
 	}
 
 	/**

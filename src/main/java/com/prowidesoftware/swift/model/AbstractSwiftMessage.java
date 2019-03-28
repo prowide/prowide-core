@@ -124,7 +124,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "msg_id", nullable = false)
 	@OrderColumn(name = "sort_key")
-	private List<SwiftMessageNote> notes = new ArrayList<SwiftMessageNote>();
+	private List<SwiftMessageNote> notes = new ArrayList<>();
 
 	@ElementCollection
 	//@Fetch(FetchMode.SELECT)
@@ -152,6 +152,18 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	@JoinColumn(name = "msg_id", nullable = false)
 	@OrderColumn(name = "sort_key")
 	private List<SwiftMessageRevision> revisions = new ArrayList<>();
+
+	/**
+	 * @since 7.10.8
+	 */
+	@Temporal(TemporalType.DATE)
+	private java.util.Calendar valueDate;
+
+	/**
+	 * @since 7.10.8
+	 */
+	@Temporal(TemporalType.DATE)
+	private java.util.Calendar tradeDate;
 
 	/**
 	 * Empty constructor provided for ORM persistence.
@@ -609,7 +621,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * Returns true if the current status is equals to the parameter status
-	 * @param status a status enum key
+	 * @param status a status enum keyFget
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean isStatus(Enum status) {
@@ -792,7 +804,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 */
 	public void addNote(SwiftMessageNote n) {
 	    if (notes==null) {
-	    	notes = new ArrayList<SwiftMessageNote>();
+	    	notes = new ArrayList<>();
 	    }
 	    notes.add(n);
 	}
@@ -824,9 +836,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 * Get the value of the property under the given key or <code>null</code> if the key is not found or its value is empty
 	 */
 	public String getProperty(String key) {
-		Map<String, String> p = getProperties();
-		if (p != null && p.containsKey(key) && StringUtils.isNotBlank(p.get(key))) {
-			return p.get(key);
+		if (this.properties != null) {
+			return StringUtils.trimToNull(this.properties.get(key));
 		}
 		return null;
 	}
@@ -843,11 +854,11 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 * Sets a property using the given key and value, if the key exists the value is overwritten.
 	 */
 	public void setProperty(String key, String value) {
-		if (getProperties() == null) {
-			setProperties(new HashMap<String, String>());
+		if (this.properties == null) {
+			this.properties = new HashMap<>();
 		}
 		if (StringUtils.isNotBlank(value)) {
-			getProperties().put(key, value);
+			this.properties.put(key, value);
 		}
 	}
 
@@ -863,7 +874,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 * Returns true if the message has a property with the given key name and value "true"
 	 */
 	public boolean getPropertyBoolean(final String key) {
-		return StringUtils.equals("true", getProperty(key));
+		return propertyEquals("true", key);
 	}
 	
 	/**
@@ -873,7 +884,36 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	public boolean getPropertyBoolean(final Enum key) {
 		return getPropertyBoolean(key.name());
 	}
-	
+
+	/**
+	 * Checks if a given property has a specific value
+	 * @param key the property key to check
+	 * @param expectedValue the expected value
+	 * @return true if the property is set and the value matches, false otherwise
+	 * @since 7.10.4
+	 */
+	public boolean propertyEquals(String key, String expectedValue) {
+		return StringUtils.equals(expectedValue, getProperty(key));
+	}
+
+	/**
+	 * @see #propertyEquals(String, String)
+	 * @since 7.10.4
+	 */
+	@SuppressWarnings("rawtypes")
+	public boolean propertyEquals(Enum key, String expectedValue) {
+		return propertyEquals(key.name(), expectedValue);
+	}
+
+	/**
+	 * @see #propertyEquals(String, String)
+	 * @since 7.10.4
+	 */
+	@SuppressWarnings("rawtypes")
+	public boolean propertyEquals(Enum key, Enum expectedValue) {
+		return propertyEquals(key.name(), expectedValue.name());
+	}
+
 	/**
 	 * Returns the internal unique id as fixed length string, padded with zeros.
 	 * @return string with 10 characters with this message identifier
@@ -922,6 +962,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 		msg.setReference(getReference());
 		msg.setCurrency(getCurrency());
 		msg.setAmount(getAmount());
+		msg.setValueDate(getValueDate());
+		msg.setTradeDate(getTradeDate());
 		
 		msg.setRevisions(null);
 		for (SwiftMessageRevision rev : getRevisions()) {
@@ -958,7 +1000,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 */
 	public void addRevision(SwiftMessageRevision revision) {
 		if (this.revisions == null) {
-			this.revisions = new ArrayList<SwiftMessageRevision>();
+			this.revisions = new ArrayList<>();
 		}
 		this.revisions.add(revision);
 	}
@@ -973,6 +1015,34 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 		SwiftMessageRevision rev = new SwiftMessageRevision(this);
 		addRevision(rev);
 		return rev;
+	}
+
+	/**
+	 * @since 7.10.8
+	 */
+	public Calendar getValueDate() {
+		return valueDate;
+	}
+
+	/**
+	 * @since 7.10.8
+	 */
+	public void setValueDate(Calendar valueDate) {
+		this.valueDate = valueDate;
+	}
+
+	/**
+	 * @since 7.10.8
+	 */
+	public Calendar getTradeDate() {
+		return tradeDate;
+	}
+
+	/**
+	 * @since 7.10.8
+	 */
+	public void setTradeDate(Calendar tradeDate) {
+		this.tradeDate = tradeDate;
 	}
 
 	/**
@@ -1164,12 +1234,14 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 				Objects.equals(reference, that.reference) &&
 				Objects.equals(currency, that.currency) &&
 				Objects.equals(amount, that.amount) &&
-				Objects.equals(revisions, that.revisions);
+				Objects.equals(revisions, that.revisions) &&
+				Objects.equals(valueDate, that.valueDate) &&
+				Objects.equals(tradeDate, that.tradeDate);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(message, identifier, sender, receiver, direction, checksum, checksumBody, lastModified, creationDate, statusTrail, status, notes, properties, filename, fileFormat, reference, currency, amount, revisions);
+		return Objects.hash(message, identifier, sender, receiver, direction, checksum, checksumBody, lastModified, creationDate, statusTrail, status, notes, properties, filename, fileFormat, reference, currency, amount, revisions, valueDate, tradeDate);
 	}
 
 	/**
@@ -1278,5 +1350,39 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 				.create();
 		return gson.toJson(this);
 	}
-	
+
+	/**
+	 * For MT messages returns the category number and for MX messages return the business process.
+	 * For example for MT103 returns 1 and for pacs.004.001.06 returns pacs
+	 * @return a string with the category or empty if the identifier is invalid or not present
+	 * @since 7.10.4
+	 */
+	public String category() {
+		if (StringUtils.isBlank(this.identifier)) {
+			return "";
+		}
+		if (isMT())	{
+			return (new MtId(this.identifier)).category();
+		} else {
+			MxBusinessProcess proc = (new MxId(this.identifier)).getBusinessProcess();
+			if (proc != null) {
+				return proc.name();
+			}
+		}
+		return "";
+	}
+
+	/**
+	 * Get the message type.<br>
+	 * For MTs this is the MT type number present in the identifier attribute. For example for fin.103.STP returns 103
+	 * For MX returns the same as #getIdentifier()
+	 */
+	public String getMessageType() {
+		if (this.identifier != null && isMT()) {
+			return this.identifier.replaceAll("\\D+","");
+		} else {
+			return getIdentifier();
+		}
+	}
+
 }

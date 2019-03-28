@@ -568,7 +568,39 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 	public String toString() {
 		return "AbstractMT [m=" + m + "]";
 	}
-	
+
+	/**
+	 * Sets the signature to the message
+	 *
+	 * @param signature the signature to set in block S
+	 * @return <code>this</code>
+	 * @throws IllegalStateException if the internal SwiftMessage object is null
+	 * @since 7.10.4
+	 */
+	public AbstractMT setSignature(String signature) {
+
+		// sanity check
+		if (getSwiftMessage() == null) {
+			throw new IllegalStateException("SwiftMessage was not initialized");
+		}
+
+		// set the signature
+		getSwiftMessage().setSignature(signature);
+
+		return(this);
+	}
+
+	/**
+	 * Gets the signature of the message (looks for an S block then the MDG tag)
+	 *
+	 * @return the signature of the message (or null if none exists)
+	 * @since 7.10.4
+	 */
+	public String getSignature() {
+
+		return(getSwiftMessage() != null ? getSwiftMessage().getSignature() : null);
+	}
+
 	/**
 	 * Create a blank message for the given category setting TEST bics as sender and receiver
 	 * @param messageType the message type

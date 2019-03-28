@@ -254,6 +254,8 @@ public class SwiftFormatUtils {
 	}
 
 	/**
+	 * Converts the given time into a Calendar.
+	 * Only the time information is set, the date will be the default 1/1/70
 	 * @param hhmm hour and minutes
 	 * @return a Calendar set with the given hour and minutes
 	 */
@@ -292,6 +294,8 @@ public class SwiftFormatUtils {
 	}
 
 	/**
+	 * Converts the given time into a Calendar.
+	 * Only the time information is set, the date will be the default 1/1/70
 	 * @param hhmmss hour, minutes and seconds
 	 * @return a Calendar set with the given hour, minutes and seconds
 	 */
@@ -314,6 +318,8 @@ public class SwiftFormatUtils {
 	}
 
 	/**
+	 * Converts the given time into a Calendar.
+	 * Only the time information is set, the date will be the default 1/1/70
 	 * @param hhmmss hour, minutes and seconds
 	 * @return a Calendar set with the given hour, or and hour and minutes
 	 */
@@ -518,6 +524,7 @@ public class SwiftFormatUtils {
 
 	/**
 	 * Parses a MONTHDAY string (accepts dates in MMDD format) into a Calendar object.
+	 * Only the month information is set, the date and year will be the Calendar default
 	 * @param strDate string to parse
 	 * @return parsed date or null if the argument did not matched the expected date format
 	 * @since 7.4

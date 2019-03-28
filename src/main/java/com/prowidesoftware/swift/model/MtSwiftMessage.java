@@ -22,7 +22,9 @@ import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
+import com.prowidesoftware.swift.model.mt.MTVariant;
 import com.prowidesoftware.swift.model.mt.ServiceIdType;
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
@@ -40,8 +42,6 @@ import java.util.logging.Level;
 /**
  * Container of raw representations of an MT (ISO 15022) SWIFT message, intended for message persistence.
  * The class holds the full FIN message content plus minimal message identification metadata.<br>
- *
- * @author www.prowidesoftware.com
  * @since 7.0
  */
 @Entity(name = "mt")
@@ -202,6 +202,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 				setCurrency(currencyAmount.getCurrency());
 				setAmount(currencyAmount.getAmount());
 			}
+			setValueDate(SwiftMessageUtils.valueDate(model));
+			setTradeDate(SwiftMessageUtils.tradeDate(model));
 		}
 		setSender(bic11(model.getSender()));
 		setChecksum(SwiftMessageUtils.calculateChecksum(model));
@@ -270,18 +272,6 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	}
 
 	/**
-	 * @deprecated The internal model message is no longer kept as class attribute to avoid 
-	 * inconsistencies between the raw format and the parsed data. To parse the internal raw
-	 * format into a model object use {@link #modelMessage()} instead of this getter.
-	 */
-//	@Deprecated
-//	@ProwideDeprecated(phase4=TargetYear._2019)
-//	public SwiftMessage getModelMessage() {
-//		DeprecationUtils.phase3(getClass(), "getModelMessage()", "Use modelMessage() instead.");
-//		return modelMessage();
-//	}
-	
-	/**
 	 * Parses the raw message content into a {@link SwiftMessage} object.
 	 * @return the parsed message or null if the raw content is not set or cannot be parsed
 	 * @since 7.8.9
@@ -307,19 +297,6 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	public void setModelMessage(final SwiftMessage modelMessage) {
 		DeprecationUtils.phase3(getClass(), "setModelMessage(SwiftMessage)", "Use updateFromModel(SwiftMessage) instead.");
 		updateFromModel(modelMessage);
-	}
-
-	/**
-	 * Get the message type.<br>
-	 * For MTs this is the MT type number present in the identifier attribute. For example for fin.103.STP returns 103
-	 * For MX returns the same as #getIdentifier()
-	 */
-	public String getMessageType() {
-		if (this.identifier != null && isMT()) {
-			return this.identifier.replaceAll("\\D+","");
-		} else {
-			return getIdentifier();
-		}
 	}
 
 	/**
@@ -371,15 +348,11 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	 * @return <code>true</code> if this message type is the <code>type</code> given, or <code>false</code> in any other case
 	 */
 	public boolean isType(final int type) {
-		String compare;
-		if (type<10) {
-			compare = "00"+type;
-		} else if (type<100) {
-			compare = "0"+type;
-		} else {
-			compare = StringUtils.EMPTY+type;
+		Integer typeInt = getMessageTypeInt();
+		if (typeInt != null) {
+			return typeInt == type;
 		}
-		return StringUtils.equals(compare, getMessageType());
+		return false;
 	}
 
 	@Override
@@ -516,7 +489,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	 * @see AbstractSwiftMessage#copyTo(AbstractSwiftMessage)
 	 */
 	public void copyTo(final MtSwiftMessage msg) {
-		super.copyTo((AbstractSwiftMessage) msg);
+		super.copyTo(msg);
 		msg.setMir(getMir());
 		msg.setMur(getMur());
 		msg.setPde(getPde());
@@ -533,4 +506,27 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 		final Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, MtSwiftMessage.class);
 	}
+
+	/**
+	 * Returns the message type variant
+	 * @return the variant or null if the message has no variant
+	 * @since 7.10.4
+	 */
+	public MTVariant getVariant() {
+		String s = StringUtils.substringAfterLast(this.identifier, ".");
+		if (EnumUtils.isValidEnum(MTVariant.class, s)) {
+			return MTVariant.valueOf(s);
+		}
+		return null;
+	}
+
+	/**
+	 * Returns this message MT identification
+	 * @return the identification object for this message
+	 * @since 7.10.4
+	 */
+	public MtId getMtId() {
+		return new MtId(getMessageType(), getVariant());
+	}
+
 }

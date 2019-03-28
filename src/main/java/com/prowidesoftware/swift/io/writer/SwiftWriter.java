@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
+import java.io.BufferedReader;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 
@@ -35,7 +37,7 @@ import com.prowidesoftware.swift.model.SwiftMessage;
  * previous to using the writer.
  */
 public class SwiftWriter {
-    //private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftWriter.class.getName());
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftWriter.class.getName());
 
 	private static final String WRITER_MESSAGE = "writer cannot be null";
 
@@ -205,5 +207,32 @@ public class SwiftWriter {
     	StringWriter w = new StringWriter();
     	writeBlock5(b5, w);
     	return w.toString();
-    }    
+    }
+
+	/**
+	 * Makes sure all EOLs are swift compatible by replacing any line break in the parameter String with CRLF
+	 *
+	 * @param content the complete or partial FIN text to process
+	 * @return the source parameter with CRLF for all line breaks or an empty or incomplete string if an error occurs
+	 * @since 7.10.4
+	 */
+	public static String ensureEols(final String content) {
+		final StringBuilder buf = new StringBuilder();
+		try {
+			final BufferedReader r = new BufferedReader(new StringReader(content));
+			String l;
+			while ((l=r.readLine()) != null) {
+				buf.append(l).append(FINWriterVisitor.SWIFT_EOL);
+			}
+		} catch (final Exception e) {
+			log.severe("Error in EOL correction: "+e);
+		}
+		if (buf.length() > 0) {
+			//remove the last EOL inserted
+			return buf.substring(0, buf.length()-FINWriterVisitor.SWIFT_EOL.length());
+		} else {
+			return "";
+		}
+	}
+
 }

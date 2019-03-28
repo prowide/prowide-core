@@ -26,6 +26,10 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103_STP;
+import com.prowidesoftware.swift.model.mt.mt2xx.MT202;
+import com.prowidesoftware.swift.model.mt.mt2xx.MT202COV;
 import org.apache.commons.lang3.StringUtils;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -128,5 +132,19 @@ public class MxSwiftMessageTest {
 		MxSwiftMessage mx = new MxSwiftMessage(xml);
         assertNotNull(mx);
 	}
+
+    @Test
+    public void testMxId() {
+        MxSwiftMessage m = new MxSwiftMessage();
+        assertNull(m.getMxId().getBusinessProcess());
+        assertNull(m.getMxId().getFunctionality());
+        assertNull(m.getMxId().getVariant());
+        assertNull(m.getMxId().getVersion());
+
+        String xml = "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.six-interbank-clearing.com/de/pacs.008.001.02.ch.01 pacs.008.001.02.ch.01.xsd\"></Document>";
+        m = new MxSwiftMessage(xml);
+
+        assertEquals(new MxId(MxBusinessProcess.pacs, "008", "001", "02"), m.getMxId());
+    }
 
 }

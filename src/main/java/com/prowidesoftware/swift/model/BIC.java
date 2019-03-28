@@ -44,7 +44,7 @@ public class BIC {
 	 * Fake "test &amp; training" BIC with 8 chars for testing
 	 * @since 7.6
 	 */
-	public static final transient String TEST8 = "TESTUS00";
+	public static final transient String TEST8 = "TESTARZZ";
 
 	/**
 	 * Fake Logical terminal address for testing,
@@ -54,7 +54,7 @@ public class BIC {
 	 * @since 7.6
 	 * @see SwiftBlock1#getLogicalTerminal()
 	 */
-	public static final transient String TEST12 = "TESTAR00AXXX";
+	public static final transient String TEST12 = "TESTARZZAXXX";
 
 	/**
 	 * Constant value with which all partner bics start 

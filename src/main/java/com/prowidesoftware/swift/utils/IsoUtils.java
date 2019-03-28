@@ -41,27 +41,25 @@ public final class IsoUtils {
     private static IsoUtils instance;
     
     private IsoUtils() {
-    	/*
-    	 * load currencies from all available locale instances
-    	 * 
-    	 * TODO This should be replaced by Currency.getAvailableCurrencies() once Prowide Core in migrated to Java7
-    	 */
-    	currencies = new HashSet<String>();
-    	for(Locale locale : Locale.getAvailableLocales()) {
-            try {
-                String val = Currency.getInstance(locale).getCurrencyCode();
-                if (!currencies.contains(val)) {
-                	currencies.add(val);
-                }
-            } catch(Exception e) {
-            	log.log(Level.FINEST, "error loading currencies from locale "+locale, e);
+    	currencies = new HashSet<>();
+    	for(Currency currency : Currency.getAvailableCurrencies()) {
+            String val = currency.getCurrencyCode();
+            if (!currencies.contains(val)) {
+                currencies.add(val);
             }
         }
-    	
-    	countries = new HashSet<String> (Arrays.asList(Locale.getISOCountries()));
+        // Jul 2016: Belorussia changed currency from 974 (BYR) to 933 (BYN)
+        if (!currencies.contains("BYN")) {
+            currencies.add("BYN");
+        }
 
+    	countries = new HashSet<> (Arrays.asList(Locale.getISOCountries()));
     	// Add country code for Kosovo, not yet in ISO but used by SWIFT
-    	addCountry("XK");
+        if (!countries.contains("XK")) {
+            countries.add("XK");
+        }
+
+        log.info("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size() + " country codes");
     }
     
     public static synchronized IsoUtils getInstance(){

@@ -16,6 +16,7 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.model.mt.MTVariant;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 
@@ -37,7 +38,7 @@ public class MtId {
 
 	/**
 	 * Creates an identification given the message type, with no variant. 
-	 * @param messageType the message type number
+	 * @param messageType the message type number (optionally prefixed with "fin.")
 	 * @since 7.8.6
 	 */
 	public MtId(String messageType) {
@@ -45,12 +46,16 @@ public class MtId {
 	}
 	
 	/**
-	 * @param messageType the message type number
+	 * @param messageType the message type number (optionally prefixed with "fin.")
 	 * @param variant An MT variant (STP, REMIT, COV), a MUG identifier or null if none applies
 	 */
 	public MtId(String messageType, String variant) {
 		super();
-		this.messageType = messageType;
+		if (StringUtils.startsWith(messageType, "fin.")) {
+			this.messageType = StringUtils.substringAfter(messageType, "fin.");
+		} else {
+			this.messageType = messageType;
+		}
 		this.variant = variant;
 	}
 
@@ -128,4 +133,21 @@ public class MtId {
 	public int hashCode() {
 		return Objects.hash(businessProcess, messageType, variant);
 	}
+
+	/**
+	 * Returns the first number in the message type, representing the message category.
+	 * For example for 103 returns 1
+	 * @return the message category number or empty if the message type is invalid or not present
+	 * @since 7.10.4
+	 */
+	public String category() {
+		if (messageType != null && messageType.length() > 0) {
+			char cat = messageType.charAt(0);
+			if (Character.isDigit(cat)) {
+				return String.valueOf(cat);
+			}
+		}
+		return "";
+	}
+
 }

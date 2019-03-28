@@ -67,11 +67,15 @@ public class MxId {
 		}
 	}
 
-	public MxId(final String bpString, final String funString, final String varString, final String verString) {
-		this.businessProcess = MxBusinessProcess.valueOf(bpString);
+	public MxId(final MxBusinessProcess businessProcess, final String funString, final String varString, final String verString) {
+		this.businessProcess = businessProcess;
 		this.functionality = funString;
 		this.variant = varString;
 		this.version = verString;
+	}
+
+	public MxId(final String bpString, final String funString, final String varString, final String verString) {
+		this(MxBusinessProcess.valueOf(bpString), funString, varString, verString);
 	}
 
 	/**

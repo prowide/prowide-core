@@ -42,6 +42,7 @@ public class ConversionService implements IConversionService {
 
 	/**
 	 * Given a SwiftMessage object returns a String containing its SWIFT message representation.
+	 * Ensures all line breaks use CRLF
 	 *
 	 * @see com.prowidesoftware.swift.io.IConversionService#getFIN(com.prowidesoftware.swift.model.SwiftMessage)
 	 */
@@ -51,30 +52,7 @@ public class ConversionService implements IConversionService {
 		final StringWriter writer = new StringWriter();
 		SwiftWriter.writeMessage(msg, writer);
 		final String fin = writer.getBuffer().toString();
-		return ensureEols(fin);
-	}
-
-	/**
-	 * Make sure all EOLs are swift compatible
-	 * @return an empty or incomplete string if an error occurs
-	 */
-	private static String ensureEols(final String result) {
-		final StringBuilder buf = new StringBuilder();
-		try {
-			final BufferedReader r = new BufferedReader(new StringReader(result));
-			String l;
-			while ((l=r.readLine()) != null) {
-				buf.append(l).append(FINWriterVisitor.SWIFT_EOL);
-			}
-		} catch (final Exception e) {
-			log.severe("Error in EOL correction: "+e);
-		}
-		if (buf.length() > 0) {
-			//remove the last EOL inserted
-			return buf.substring(0, buf.length()-FINWriterVisitor.SWIFT_EOL.length());
-		} else {
-			return "";
-		}
+		return SwiftWriter.ensureEols(fin);
 	}
 
 	/**

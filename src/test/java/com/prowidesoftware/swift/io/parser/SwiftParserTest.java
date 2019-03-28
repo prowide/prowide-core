@@ -1258,6 +1258,11 @@ public class SwiftParserTest {
 		assertTrue(tagStarts("20C::foo"));
 	}
 	
+	private static final boolean tagStarts(final String str) {
+		SwiftParser p = new SwiftParser();
+		return p.tagStarts(str, 0);
+	}
+	
 	@Test
 	public void testTagStartsFalse() throws Exception {
 		assertFalse(tagStarts("20foo"));
@@ -1267,16 +1272,7 @@ public class SwiftParserTest {
 		assertFalse(tagStarts(":20foo"));
 		assertFalse(tagStarts("20foo"));
 		assertFalse(tagStarts(":/ account stuff:"));
-	}
-	
-	private static final boolean tagStarts(final String str) {
-		try {
-			Method method = SwiftParser.class.getDeclaredMethod("tagStarts", String.class, int.class);
-			method.setAccessible(true);
-			return (Boolean) method.invoke(null, str, 0);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		assertFalse(tagStarts(":905:"));
 	}
 	
 	@Test
