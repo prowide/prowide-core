@@ -1745,5 +1745,42 @@ public class SwiftTagListBlockTest {
 		b.append(new Tag("22K", "AAAA/BBBB"));
 		assertNull(b.getFieldByQualifiers("22K", "AAAA", "BBBB"));
 	}
+
+	@Test
+	public void testSplitByTagName() {
+		b.append(new Tag("20:foo"));
+		b.append(new Tag("21:foo"));
+		assertTrue(b.splitByTagName(22, null).isEmpty());
+		assertTrue(b.splitByTagName(22, "L").isEmpty());
+
+		b.append(new Tag("22L:foo"));
+		assertTrue(b.splitByTagName(22, "M").isEmpty());
+		assertEquals(1, b.splitByTagName(22, null).size());
+		assertEquals(1, b.splitByTagName(22, "L").size());
+
+		b.append(new Tag("32A:foo"));
+		b.append(new Tag("22L:foo"));
+		assertEquals(2, b.splitByTagName(22, null).size());
+		assertEquals(2, b.splitByTagName(22, "L").size());
+
+		b.append(new Tag("22M:foo"));
+		b.append(new Tag("95P:foo"));
+		assertEquals(3, b.splitByTagName(22, null).size());
+		assertEquals(2, b.splitByTagName(22, "L").size());
+
+		List<SwiftTagListBlock> list1 = b.splitByTagName(22, null);
+		assertEquals("22L", list1.get(0).getTag(0).getName());
+		assertEquals("32A", list1.get(0).getTag(1).getName());
+		assertEquals("22L", list1.get(1).getTag(0).getName());
+		assertEquals("22M", list1.get(2).getTag(0).getName());
+		assertEquals("95P", list1.get(2).getTag(1).getName());
+
+		List<SwiftTagListBlock> list2 = b.splitByTagName(22, "L");
+		assertEquals("22L", list2.get(0).getTag(0).getName());
+		assertEquals("32A", list2.get(0).getTag(1).getName());
+		assertEquals("22L", list2.get(1).getTag(0).getName());
+		assertEquals("22M", list2.get(1).getTag(1).getName());
+		assertEquals("95P", list2.get(1).getTag(2).getName());
+	}
 	
 }

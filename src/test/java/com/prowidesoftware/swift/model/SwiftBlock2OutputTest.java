@@ -318,4 +318,35 @@ public class SwiftBlock2OutputTest {
 		assertNull(nout.getMessagePriority());
 	}
 
+	@Test
+	public void testSetMIR() {
+		SwiftBlock2Output b = new SwiftBlock2Output();
+		b.setMIR("010103BANKBEBBAXXX2222123456", true);
+		assertEquals("010103BANKBEBBAXXX2222123456", b.getMIR());
+		MIR mir = new MIR(b.getMIR());
+		assertEquals("010103", mir.getDate());
+		assertEquals("BANKBEBBAXXX", mir.getLogicalTerminal());
+		assertEquals("2222", mir.getSessionNumber());
+		assertEquals("123456", mir.getSequenceNumber());
+
+		b.setMIR("010103BANKBEBBAXXX2222", true);
+		assertEquals("010103BANKBEBBAXXX2222", b.getMIR());
+
+		b.setMIR("010103BANKBEBBAXXX", true);
+		assertEquals("010103BANKBEBBAXXX", b.getMIR());
+
+		b.setMIR("010103", true);
+		assertEquals("010103", b.getMIR());
+
+		b.setMIR("FOO", true);
+		assertEquals("FOO", b.getMIR());
+	}
+
+	@Test
+	public void testCopyConstructor() {
+		SwiftBlock2Output a = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
+		SwiftBlock2Output b = new SwiftBlock2Output(a);
+		assertEquals(a.getValue(), b.getValue());
+	}
+
 }

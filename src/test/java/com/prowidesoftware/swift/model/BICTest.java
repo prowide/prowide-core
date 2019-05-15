@@ -103,6 +103,13 @@ public class BICTest {
 		assertTrue(valid);
 	}
 
+	@Test
+	public void testIsValid4() {
+		final BIC b = new BIC("AZADAEKWXXX");
+		BicValidationResult result = b.validate();
+		assertEquals(BicValidationResult.OK, result);
+	}
+
 	@Test 
 	public void testIsValidBadCountry() {
 		final BIC b = new BIC("FOOOAAHU");

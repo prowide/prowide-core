@@ -52,22 +52,22 @@ public class AbstractSwiftMessageTest {
 	@Test
 	public void category() {
 		MtSwiftMessage mt = new MtSwiftMessage();
-		assertEquals("", mt.category());
+		assertEquals("", mt.getCategory());
 
 		mt.setIdentifier("");
-		assertEquals("", mt.category());
+		assertEquals("", mt.getCategory());
 
 		mt.setIdentifier("fin.103");
-		assertEquals("1", mt.category());
+		assertEquals("1", mt.getCategory());
 
 		MxSwiftMessage mx = new MxSwiftMessage();
-		assertEquals("", mx.category());
+		assertEquals("", mx.getCategory());
 
 		mx.setIdentifier("");
-		assertEquals("", mx.category());
+		assertEquals("", mx.getCategory());
 
 		mx.setIdentifier("camt.002.002.01");
-		assertEquals("camt", mx.category());
+		assertEquals("camt", mx.getCategory());
 	}
 
 }

@@ -1240,20 +1240,7 @@ public class MT107 extends AbstractMT implements Serializable {
 	/**
 	 * Get the list of SequenceB delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	 *
-	 * @return the found sequences or an empty list if none is found
-	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 */
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceB> getSequenceBList() {
-		return getSequenceBList(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	 * Get the list of SequenceB delimited by leading tag and end, with an optional tail.
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * If message is empty or nor sequences are found <em>an empty list</em> is returned.
+	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
 	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
 	 * @param parentSequence an optional parent sequence or null to find SequenceB within the complete message
@@ -1264,7 +1251,7 @@ public class MT107 extends AbstractMT implements Serializable {
 	public static List<SequenceB> getSequenceBList(final SwiftTagListBlock parentSequence) {
 		if (parentSequence != null && !parentSequence.isEmpty()) {
 			final List<SequenceB> result = new ArrayList<>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceB.START, SequenceB.END, SequenceB.TAIL); 
+			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceB.START, SequenceB.END, SequenceB.TAIL);
 			if (bs != null && !bs.isEmpty()) {
 				for (final SwiftTagListBlock s : bs) {
 					result.add(new SequenceB(s));
@@ -1274,7 +1261,20 @@ public class MT107 extends AbstractMT implements Serializable {
 		}
 		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
-	} 
+	}
+	
+	/**
+	 * Get the list of SequenceB delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
+	 *
+	 * @return the found sequences or an empty list if none is found
+	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
+	 */
+	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+	public List<SequenceB> getSequenceBList() {
+		return getSequenceBList(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
  
 
 // BaseSequenceCodeGenerator [seq=C]

@@ -178,6 +178,15 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param block an existing block1 to copy
+	 * @since 7.10.4
+	 */
+	public SwiftBlock1(SwiftBlock1 block) {
+		this(block.getApplicationId(), block.getServiceId(), block.getLogicalTerminal(), block.getSessionNumber(), block.getSequenceNumber());
+	}
+
+	/**
 	 * Sets the block number.
 	 * @param blockNumber the block number to set
 	 * @throws IllegalArgumentException if parameter blockName is not the integer 1

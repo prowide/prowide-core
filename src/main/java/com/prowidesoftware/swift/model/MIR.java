@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -139,10 +140,19 @@ public class MIR {
 	}
 
 	/**
-	 * @param date
+	 * @param date a date formatted as YYMMDD
 	 */
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	/**
+	 * Sets a date from a calendar, formatting it as YYMMDD
+	 * @param date a date
+	 * @since 7.10.4
+	 */
+	public void setDate(Calendar date) {
+		this.date = SwiftFormatUtils.getDate2(date);
 	}
 
 	/**

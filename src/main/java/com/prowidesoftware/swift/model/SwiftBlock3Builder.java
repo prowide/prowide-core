@@ -18,6 +18,8 @@ package com.prowidesoftware.swift.model;
 import com.prowidesoftware.swift.model.field.*;
 import org.apache.commons.lang3.Validate;
 
+import java.util.List;
+
 /**
  * Helper class to fill a User Header block 3 ensuring only expected
  * fields are set and fields are set in proper order.
@@ -29,6 +31,8 @@ import org.apache.commons.lang3.Validate;
  * @since 7.10.0
  */
 public class SwiftBlock3Builder {
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock3Builder.class.getName());
+
     private Tag field103 = null;
     private Tag field113 = null;
     private Tag field108 = null;
@@ -200,6 +204,71 @@ public class SwiftBlock3Builder {
         if (field434 != null) {
             b3.getTags().add(field434);
         }
+    }
+
+    /**
+     * Adds the list of fields to the block, dropping any unexpected field
+     * @param fields the fields to add
+     * @since 7.10.9
+     */
+    public SwiftBlock3Builder setFields(List<Field> fields) {
+        for (Field field : fields) {
+            setField(field);
+        }
+        return this;
+    }
+
+    /**
+     * If the field is expected, it is added to the block
+     * @param field the field to add
+     * @since 7.10.9
+     */
+    public SwiftBlock3Builder setField(Field field) {
+        switch (field.getName()) {
+            case Field103.NAME: {
+                return setField103((Field103) field);
+            }
+            case Field113.NAME: {
+                return setField113((Field113) field);
+            }
+            case Field108.NAME: {
+                return setField108((Field108) field);
+            }
+            case Field119.NAME: {
+                return setField119((Field119) field);
+            }
+            case Field423.NAME: {
+                return setField423((Field423) field);
+            }
+            case Field106.NAME: {
+                return setField106((Field106) field);
+            }
+            case Field424.NAME: {
+                return setField424((Field424) field);
+            }
+            case Field111.NAME: {
+                return setField111((Field111) field);
+            }
+            case Field121.NAME: {
+                return setField121((Field121) field);
+            }
+            case Field115.NAME: {
+                return setField115((Field115) field);
+            }
+            case Field165.NAME: {
+                return setField165((Field165) field);
+            }
+            case Field433.NAME: {
+                return setField433((Field433) field);
+            }
+            case Field434.NAME: {
+                return setField434((Field434) field);
+            }
+            default: {
+                log.warning("Unexpected field " + field.getName() + " passed to the block 3 builder");
+            }
+        }
+        return this;
     }
 
 }

@@ -93,7 +93,7 @@ public class Lib {
 		if (is == null) {
 			return StringUtils.EMPTY;
 		}
-		return readStream(is, null);
+		return readStream(is, encoding);
 	}
 
 	/**

@@ -308,4 +308,11 @@ public class SwiftBlock2InputTest {
 		assertNull(nin.getObsolescencePeriod());
 	}
 
+	@Test
+	public void testCopyConstructor() {
+		SwiftBlock2Input a = new SwiftBlock2Input("I103BANKDEFFXXXXU3003");
+		SwiftBlock2Input b = new SwiftBlock2Input(a);
+		assertEquals(a.getValue(), b.getValue());
+	}
+
 }

@@ -159,6 +159,15 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param block an existing block2 to copy
+	 * @since 7.10.4
+	 */
+	public SwiftBlock2Output(SwiftBlock2Output block) {
+		this(block.getMessageType(), block.getSenderInputTime(), block.getMIRDate(), block.getMIRLogicalTerminal(), block.getMIRSessionNumber(), block.getMIRSequenceNumber(), block.getReceiverOutputDate(), block.getReceiverOutputTime(), block.getMessagePriority());
+	}
+
+	/**
 	 * Sets the input time with respect to the sender
 	 * 
 	 * @param senderInputTime 4 numbers HHMM
@@ -352,29 +361,27 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
     		Validate.isTrue(mir.length() == 28, "expected a 28 characters string for MIR value and found a " + mir.length() + " string:" + mir);
 		}
 		if (mir != null) {
-    		final StringBuilder sb = new StringBuilder(mir);
-    
     		int offset = 0;
     		int len;
     
     		len = 6;
-    		this.setMIRDate(String.valueOf(sb.subSequence(offset, offset + len)));
+    		this.setMIRDate(getValuePart(mir, offset, len));
     		offset += len;
     
     		len = 12;
-    		this.setMIRLogicalTerminal(String.valueOf(sb.subSequence(offset, offset + len)));
+    		this.setMIRLogicalTerminal(getValuePart(mir, offset, len));
     		offset += len;
     
     		len = 4;
-    		this.setMIRSessionNumber(String.valueOf(sb.subSequence(offset, offset + len)));
+    		this.setMIRSessionNumber(getValuePart(mir, offset, len));
     		offset += len;
     
     		if (lenient) {
         		//get all remaining text
-    			this.setMIRSequenceNumber(String.valueOf(sb.subSequence(offset, mir.length())));
+    			this.setMIRSequenceNumber(getValuePart(mir, offset, mir.length()));
         	} else {
         		len = 6;
-        		this.setMIRSequenceNumber(String.valueOf(sb.subSequence(offset, offset + len)));
+        		this.setMIRSequenceNumber(getValuePart(mir, offset, len));
         	}
 		}
 	}

@@ -38,6 +38,7 @@ import com.prowidesoftware.swift.model.mt.AbstractMT;
  * TODO: Use SwiftMessageFactory to create and prepend the ACK here
  */
 public class PPCWriter extends AbstractWriter {
+	private static int SECTOR = 512;
 
 	/**
 	 * Constructs a PPCWriter to write content into a given Writer instance.
@@ -118,14 +119,23 @@ public class PPCWriter extends AbstractWriter {
     	writer.write(PPCReader.BEGIN);
     	writer.write(msg);
     	writer.write(PPCReader.END);
-    	/*
-    	 * pad to fill sector length
-    	 */
+
+    	// pad to fill sector length
     	int length = msg.length() + 2; 
-    	int pad = length > 512? length % 512 : 512 - length;
+    	int pad = requiredPadding(length);
     	for (int i=0; i<pad; i++) {
     		writer.write(PPCReader.EMPTY);
     	}  
     }
+
+	/**
+	 * Computes the padding to match the sector multiple
+	 * Thanks https://github.com/safet-habibija for the fix
+	 * @param length current message length
+	 * @return number of empty characters to append as padding
+	 */
+	private static int requiredPadding(int length) {
+		return (SECTOR - (length % SECTOR)) % SECTOR;
+	}
 
 }

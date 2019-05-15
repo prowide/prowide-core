@@ -38,7 +38,7 @@ public class DeprecationUtilTest {
 		DeprecationUtils.phase2(this.getClass(), "method", "phase 2 message");
 		long t1 = System.currentTimeMillis();
 		long diff = t1-t0;
-		assertTrue(diff >= 4000);
+		assertTrue(diff >= 3990);
 	}
 	
 	/**

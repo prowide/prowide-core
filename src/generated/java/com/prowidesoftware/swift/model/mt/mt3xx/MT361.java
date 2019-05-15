@@ -5774,20 +5774,7 @@ public class MT361 extends AbstractMT implements Serializable {
 	/**
 	 * Get the list of SequenceP1a delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	 *
-	 * @return the found sequences or an empty list if none is found
-	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 */
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceP1a> getSequenceP1aList() {
-		return getSequenceP1aList(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	 * Get the list of SequenceP1a delimited by leading tag and end, with an optional tail.
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * If message is empty or nor sequences are found <em>an empty list</em> is returned.
+	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
 	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
 	 * @param parentSequence an optional parent sequence or null to find SequenceP1a within the complete message
@@ -5798,7 +5785,7 @@ public class MT361 extends AbstractMT implements Serializable {
 	public static List<SequenceP1a> getSequenceP1aList(final SwiftTagListBlock parentSequence) {
 		if (parentSequence != null && !parentSequence.isEmpty()) {
 			final List<SequenceP1a> result = new ArrayList<>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceP1a.START, SequenceP1a.END, SequenceP1a.TAIL); 
+			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceP1a.START, SequenceP1a.END, SequenceP1a.TAIL);
 			if (bs != null && !bs.isEmpty()) {
 				for (final SwiftTagListBlock s : bs) {
 					result.add(new SequenceP1a(s));
@@ -5808,7 +5795,33 @@ public class MT361 extends AbstractMT implements Serializable {
 		}
 		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
-	} 
+	}
+	
+	/**
+	 * Get the list of SequenceP1a1 delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
+	 *
+	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
+	 * @param parentSequence an optional parent sequence or null to find SequenceP1a1 within the complete message
+	 * @return the found sequences or an empty list if none is found
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+	public static List<SequenceP1a1> getSequenceP1a1List(final SwiftTagListBlock parentSequence) {
+		if (parentSequence != null && !parentSequence.isEmpty()) {
+			final List<SequenceP1a1> result = new ArrayList<>();
+			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceP1a1.START, SequenceP1a1.END, SequenceP1a1.TAIL);
+			if (bs != null && !bs.isEmpty()) {
+				for (final SwiftTagListBlock s : bs) {
+					result.add(new SequenceP1a1(s));
+				}
+			}
+			return result;
+		}
+		// TODO if is is mandatory issue a warning log
+		return Collections.emptyList();
+	}
  
 
 // BaseSequenceCodeGenerator [seq=P1a1]
@@ -5883,10 +5896,24 @@ public class MT361 extends AbstractMT implements Serializable {
 			return result;
 		}
 	}
+
+	/**
+	 * Get the list of SequenceP1a delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
+	 *
+	 * @return the found sequences or an empty list if none is found
+	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
+	 */
+	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+	public List<SequenceP1a> getSequenceP1aList() {
+		return getSequenceP1aList(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	
 	/**
 	 * Get the list of SequenceP1a1 delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * If message is empty or nor sequences are found <em>an empty list</em> is returned.
+	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
 	 * @return the found sequences or an empty list if none is found
 	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
@@ -5895,32 +5922,6 @@ public class MT361 extends AbstractMT implements Serializable {
 	public List<SequenceP1a1> getSequenceP1a1List() {
 		return getSequenceP1a1List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
-	
-	/**
-	 * Get the list of SequenceP1a1 delimited by leading tag and end, with an optional tail.
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * If message is empty or nor sequences are found <em>an empty list</em> is returned.
-	 *
-	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence an optional parent sequence or null to find SequenceP1a1 within the complete message
-	 * @return the found sequences or an empty list if none is found
-	 * @since 7.7
-	 */
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceP1a1> getSequenceP1a1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceP1a1> result = new ArrayList<>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceP1a1.START, SequenceP1a1.END, SequenceP1a1.TAIL); 
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceP1a1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
-	} 
  
 
 

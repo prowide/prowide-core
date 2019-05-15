@@ -249,4 +249,11 @@ public class SwiftBlock1Test {
 		assertNull(bb.getSequenceNumber());
 	}
 
+	@Test
+	public void testCopyConstructor() {
+		SwiftBlock1 a = new SwiftBlock1("F01BANKBEBBAXXX1234567890");
+		SwiftBlock1 b = new SwiftBlock1(a);
+		assertEquals(a.getValue(), b.getValue());
+	}
+
 }

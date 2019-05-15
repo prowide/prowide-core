@@ -1301,11 +1301,12 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 
 	 /**
 	  * Split the given list with the given tagname.
-	  * the tag with the given tagname is provided in the start of earch chunk.
-	  * if the tagname is not found the entire list is returned.
+	  * Beware if the tagname is not found the entire list of tags is returned.
 	  *
-	  * @param tagName a field name
+	  * @deprecated use {@link #splitByTagName(int, String)} instead where the result is empty when the boundary field is not found
 	  */
+	 @Deprecated
+	 @ProwideDeprecated(phase2 = TargetYear._2020)
 	 public List<SwiftTagListBlock> splitByTagName(final String tagName) {
 		 final List<SwiftTagListBlock> result = new ArrayList<>();
 		 if (this.tags.isEmpty() || !containsTag(tagName)) {
@@ -1754,17 +1755,14 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 List<SwiftTagListBlock> result = new ArrayList<>();
 		 int start = startIndex != null? startIndex : 0;
 		 while (start < tags.size()) {
-			 SwiftTagListBlock found = getSubBlockByTagNames(start, searchTags);
+			 SwiftTagListBlock found = new SwiftTagListBlock();
+			 start = getSubBlockByTagNames(found, start, searchTags);
+			 // continue on the tag following the last found
+			 start++;
 			 if (found.isEmpty()) {
 				 break;
 			 } else {
 				 result.add(found);
-				 /*
-				  * increment start index up to the last matched tag
-				  */
-				 Tag last = found.getTag(found.size()-1);
-				 int index = tags.indexOf(last);
-				 start =+ index+1;
 			 }
 		 }
 		 return result;
@@ -1786,9 +1784,23 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	  * @since 7.8.5
 	  */
 	 public SwiftTagListBlock getSubBlockByTagNames(final Integer startIndex, final String ... searchTags) {
+		 SwiftTagListBlock block = new SwiftTagListBlock();
+		 getSubBlockByTagNames(block, startIndex, searchTags);
+		 return block;
+	 }
+
+	/**
+	 * Implementation for {@link #getSubBlockByTagNames(Integer, String...)} and {@link #getSubBlocksByTagNames(Integer, String...)}
+	 * @param target a not null block where found fields will be appended
+	 * @param startIndex optional starting offset, defaults to zero to search from the beginning of the block
+	 * @param searchTags a list of tags to search, in order, for example: 20, 59A, 50K, 72
+	 * @return the tag index of the last field added to the target block, useful to get multiple blocks
+	 * @since 7.10.4
+	 */
+	 private int getSubBlockByTagNames(final SwiftTagListBlock target, final Integer startIndex, final String ... searchTags) {
 		 int tagsIndex = startIndex != null? startIndex : 0;
 		 int searchIndex = 0;
-		 final SwiftTagListBlock found = new SwiftTagListBlock();
+		 int lastAddedIndex = tagsIndex;
 		 /*
 		  * this loops does a linear iteration on message tags and
 		  * several iterations on the search tags.
@@ -1804,8 +1816,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 					 /*
 					  * save matched tag
 					  */
-					 found.append(candidate);
+					 target.append(candidate);
 					 searchIndex = j;
+					 lastAddedIndex = tagsIndex;
 					 break;
 				 }
 			 }
@@ -1814,8 +1827,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 				  * if we finished iteration on search and matched something, 
 				  * break loop and return matched sub block.
 				  */
-				 if (!found.isEmpty()) {
-					 return found;
+				 if (!target.isEmpty()) {
+					 return lastAddedIndex;
 				 } else {
 					 /*
 					  * initialize iteration on search tags
@@ -1825,7 +1838,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 			 }
 			 tagsIndex++;
 		 }
-		 return found;
+		 return lastAddedIndex;
 	 }
 
 	 /**
@@ -2221,6 +2234,39 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 		fields.add(tag.asField());
 		}
 	 	return fields;
+	}
+
+	/**
+	 * Helper method to retrieve all sequences starting with the parameter field.
+	 * The boundary field can be indicated with or without the letter option. For example if number 15
+	 * is passed with null letter option, this is like splitting by 15a (15A, 15B, 15C, etc..), each time
+	 * a field 15 is found a new split is done regardless of the letter option. Converselly if a specific
+	 * letter option is passed, the split is done when that particular number and letter combination is found.
+	 * If the boundary field is nor present, the result will be empty.
+	 * @param tagNumber the tag number
+	 * @param letterOption optional letter option, if null, split is done by tag number for any letter option
+	 * @return found subsequences or an empty list if boundary tag is not found
+	 * @since 7.10.4
+	 */
+	public List<SwiftTagListBlock> splitByTagName(int tagNumber, String letterOption) {
+		if (letterOption != null) {
+			Validate.isTrue(StringUtils.length(letterOption) == 1, "letter option must be only one character");
+		}
+		final List<SwiftTagListBlock> result = new ArrayList<>();
+		SwiftTagListBlock currentBlock = null;
+		for (final Tag t : this.tags) {
+			if (t.getNumber() == tagNumber) {
+				final String letter = t.getLetterOption();
+				if (letterOption == null || letterOption.equals(letter)) {
+					currentBlock = new SwiftTagListBlock();
+					result.add(currentBlock);
+				}
+			}
+			if (currentBlock != null) {
+				currentBlock.append(t);
+			}
+		}
+		return result;
 	}
 
 }

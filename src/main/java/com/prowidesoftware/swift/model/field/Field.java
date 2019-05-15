@@ -567,7 +567,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 			log.log(Level.WARNING, "Field class for Field" + name
 			        + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.", e);			
 		} catch (final Exception e) {
-			log.log(Level.WARNING, "An error occured while creating an instance of " + name, e);			
+			log.log(Level.WARNING, "An error occurred while creating an instance of " + name, e);
 		}
 		return (Field) r;
 	}

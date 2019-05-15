@@ -15,34 +15,20 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
-import java.io.StringReader;
-import java.lang.reflect.Method;
-import java.util.Calendar;
-
-import javax.xml.parsers.ParserConfigurationException;
-
+import com.prowidesoftware.swift.Constants;
+import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import com.prowidesoftware.swift.model.*;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import com.prowidesoftware.swift.Constants;
-import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-import com.prowidesoftware.swift.model.SwiftBlock;
-import com.prowidesoftware.swift.model.SwiftBlock1;
-import com.prowidesoftware.swift.model.SwiftBlock2;
-import com.prowidesoftware.swift.model.SwiftBlock3;
-import com.prowidesoftware.swift.model.SwiftBlock4;
-import com.prowidesoftware.swift.model.SwiftBlock5;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.Tag;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.Calendar;
+
+import static org.junit.Assert.*;
 
 /**
  * Swift parser tests using the default lenient (permissive) mode.

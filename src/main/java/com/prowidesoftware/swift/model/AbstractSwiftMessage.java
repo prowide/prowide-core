@@ -1357,7 +1357,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 * @return a string with the category or empty if the identifier is invalid or not present
 	 * @since 7.10.4
 	 */
-	public String category() {
+	public String getCategory() {
 		if (StringUtils.isBlank(this.identifier)) {
 			return "";
 		}

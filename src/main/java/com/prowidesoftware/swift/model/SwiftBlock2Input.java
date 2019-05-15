@@ -140,6 +140,15 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param block an existing block2 to copy
+	 * @since 7.10.4
+	 */
+	public SwiftBlock2Input(SwiftBlock2Input block) {
+		this(block.getMessageType(), block.getReceiverAddress(), block.getMessagePriority(), block.getDeliveryMonitoring(), block.getObsolescencePeriod());
+	}
+
+	/**
 	 * Sets the Message Type (MT) as classified and numbered by SWIFT.
 	 * Three-digit FIN message type, example: 103
 	 * 
