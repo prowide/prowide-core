@@ -59,7 +59,7 @@ import com.google.gson.JsonParser;
  */
 @SuppressWarnings("unused") 
 @Generated
-public class Field49M extends Field implements Serializable {
+public class Field49M extends Field implements Serializable, com.prowidesoftware.swift.model.field.MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -342,6 +342,85 @@ public class Field49M extends Field implements Serializable {
 	public int componentsSize() {
 		return 1;
 	}
+	
+	/**
+	 * Returns a specific line from the field's value.<br>
+	 *
+	 * @see MultiLineField#getLine(int)
+	 * @param line a reference to a specific line in the field, first line being 1
+	 * @return line content or null if not present or if line number is above the expected
+	 * @since 7.7
+	 */
+	public String getLine(int line) {
+		return getLine(line, 0);
+	}
+	
+	/**
+	 * Returns a specific line from the field's value.<br>
+	 * 
+	 * @see MultiLineField#getLine(int, int)
+	 * @param line a reference to a specific line in the field, first line being 1
+	 * @param offset an optional component number used as offset when counting lines
+	 * @return line content or null if not present or if line number is above the expected
+	 * @since 7.7
+	 */
+	public String getLine(int line, int offset) {
+		Field49M cp = newInstance(this);
+		return getLine(cp, line, null, offset);
+	}
+	
+	/**
+	 * Returns the field value split into lines.<br>
+	 *
+	 * @see MultiLineField#getLines()
+	 * @return lines content or empty list if field's value is empty
+	 * @since 7.7
+	 */
+	public List<String> getLines() {
+		return SwiftParseUtils.getLines(getValue());
+	}
+
+	/**
+	 * Returns the field value starting at the offset component, split into lines.<br>
+	 *
+	 * @see MultiLineField#getLines(int)
+	 * @param offset an optional component number used as offset when counting lines
+	 * @return found lines or empty list if lines are not present or the offset is invalid
+	 * @since 7.7
+	 */
+	public List<String> getLines(int offset) {
+		Field49M cp = newInstance(this);
+		return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
+	}
+	
+	/**
+	 * Returns a specific subset of lines from the field's value, given a range.<br>
+	 *
+	 * @see MultiLineField#getLinesBetween(int, int )
+	 * @param start a reference to a specific line in the field, first line being 1
+	 * @param end a reference to a specific line in the field, must be greater than start
+	 * @return found lines or empty list if value is empty
+	 * @since 7.7
+	 */
+	public List<String> getLinesBetween(int start, int end) {
+		return getLinesBetween(start, end, 0);
+	}
+
+	/**
+	 * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+	 *
+	 * @see MultiLineField#getLinesBetween(int start, int end, int offset)
+	 * @param start a reference to a specific line in the field, first line being 1
+	 * @param end a reference to a specific line in the field, must be greater than start
+	 * @param offset an optional component number used as offset when counting lines
+	 * @return found lines or empty list if lines are not present or the offset is invalid
+	 * @since 7.7
+	 */
+	public List<String> getLinesBetween(int start, int end, int offset) {
+		Field49M cp = newInstance(this);
+		return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
+	}
+	
 
 	/**
 	 * Returns a localized suitable for showing to humans string of a field component.<br>

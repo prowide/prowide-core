@@ -1,3 +1,6 @@
+SNAPSHOT 7.10.5
+  * Added MultiLineField implementation to 45D, 49G, 49M and 49N
+
 RELEASE 7.10.4 - May 2019 - LTS maintenance version for current SRU (2018)
 
   * Updated dependencies: apache-commons-lang 3.7 -> 3.8.1
