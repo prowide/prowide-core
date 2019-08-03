@@ -701,9 +701,9 @@ public class SwiftParserTest {
 	public void testParserConfigurationCompare() throws IOException {
 		final SwiftParserConfiguration faster = new SwiftParserConfiguration();
 		faster.setParseTextBlock(false);
-		final long t1a = parse(new SwiftParserConfiguration(), 1000);
-		final long t2a = parse(faster, 1000);
-		assertTrue(t1a > t2a);
+		final long t1a = parse(new SwiftParserConfiguration(), 2000);
+		final long t2a = parse(faster, 2000);
+		assertTrue(t1a >= t2a);
 	}
 
 	private long parse(final SwiftParserConfiguration config, final int repetitions) throws IOException {
