@@ -59,7 +59,7 @@ public final class IsoUtils {
             countries.add("XK");
         }
 
-        log.info("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size() + " country codes");
+        log.fine("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size() + " country codes");
     }
     
     public static synchronized IsoUtils getInstance(){
