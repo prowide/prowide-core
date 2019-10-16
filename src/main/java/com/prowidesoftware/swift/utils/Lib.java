@@ -81,7 +81,8 @@ public class Lib {
 	}
 
 	/**
-	 * Read a resource from classpath using the context classloader
+	 * Read a resource from classpath using the current thread classloader
+	 * @see #readResource(String, String, Class)
 	 * @param resource the resource name to read, must not be null
 	 * @param encoding optional, may be null in which case UTF-8 is used as default
 	 * @return read content or empty string if resource cannot be loaded
@@ -89,7 +90,29 @@ public class Lib {
 	 * @since 7.7
 	 */
 	public static String readResource(final String resource, final String encoding) throws IOException {
-		final InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
+		return readResource(resource, encoding, null);
+	}
+
+	/**
+	 * Read a resource from classpath.
+	 *
+	 * <p>The implementation will attempt first to use the current thread classloader, and if the resource is not found
+	 * it will use the classloader from the parameter class. This class parameter should be the class that is calling
+	 * this method.
+	 *
+	 * @param resource the resource name to read, must not be null
+	 * @param encoding optional, may be null in which case UTF-8 is used as default
+	 * @param clazz optional parameter with the loading object class, for the fallback attempt
+	 * @return read content or empty string if resource cannot be loaded
+	 * @throws IOException if the resource stream cannot be read
+	 * @since 8.0.3
+	 */
+	public static String readResource(final String resource, final String encoding, Class clazz) throws IOException {
+		InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
+		if (is == null && clazz != null) {
+			// if not found we fallback with this loading object classloader
+			is = clazz.getClassLoader().getResourceAsStream(resource);
+		}
 		if (is == null) {
 			return StringUtils.EMPTY;
 		}

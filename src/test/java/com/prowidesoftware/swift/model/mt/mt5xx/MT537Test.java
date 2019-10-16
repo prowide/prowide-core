@@ -28,29 +28,40 @@ import com.prowidesoftware.swift.model.mt.mt5xx.MT537;
 
 public class MT537Test {
 
-//	assertEquals(MT537.SequenceB.START_END_16RS, MT537.SequenceC3.START_END_16RS);
-	
-//	assertEquals(MT537.SequenceB1.START_END_16RS, MT537.SequenceC3a.START_END_16RS);
-	
+	/**
+	 * Sequence A1, B2a and C1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test1() {
 		MT537 m = new MT537();
 		m.append(MT537.SequenceA1.newInstance());
+		m.append(MT537.SequenceB2.newInstance());
+		m.append(MT537.SequenceC.newInstance());
 		assertTrue(m.getSequenceB2aList().isEmpty());
 		assertTrue(m.getSequenceC1List().isEmpty());
 	}
-	
+
+	/**
+	 * Sequence A1, B2a and C1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test2() {
 		MT537 m = new MT537();
+		m.append(MT537.SequenceA.newInstance());
 		m.append(MT537.SequenceB2a.newInstance());
+		m.append(MT537.SequenceC.newInstance());
 		assertTrue(m.getSequenceA1List().isEmpty());
 		assertTrue(m.getSequenceC1List().isEmpty());
 	}
-	
+
+	/**
+	 * Sequence A1, B2a and C1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test3() {
 		MT537 m = new MT537();
+		m.append(MT537.SequenceA.newInstance());
+		m.append(MT537.SequenceB2.newInstance());
 		m.append(MT537.SequenceC1.newInstance());
 		assertTrue(m.getSequenceA1List().isEmpty());
 		assertTrue(m.getSequenceB2aList().isEmpty());
@@ -83,7 +94,6 @@ public class MT537Test {
 		assertEquals(1, m.getSequenceCList().size());
 		assertEquals(1, m.getSequenceC2List().size());
 		assertEquals(1, m.getSequenceC2aList().size());
-
 	}
 	
 }

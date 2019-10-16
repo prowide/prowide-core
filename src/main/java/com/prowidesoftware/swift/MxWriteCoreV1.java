@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.MxNode;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.model.mx.BusinessHeader;
@@ -29,16 +26,6 @@ import com.prowidesoftware.swift.model.mx.MxWrite;
  * To create the XML from the generic structure check {@link MxNode} and {@link BusinessHeader}
  */
 public class MxWriteCoreV1 implements MxWrite {
-
-	/**
-	 * @deprecated use {@link #message(String, AbstractMX, Class[], String, boolean)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public String message(String namespace, AbstractMX obj, @SuppressWarnings("rawtypes") Class[] classes) {
-		DeprecationUtils.phase3(getClass(), "message(String, AbstractMX, Class[])", "Use message(String, AbstractMX, Class[], String, boolean) instead.");
-		throw new UnsupportedOperationException("For the moment this is only available in the integrator version");
-	}
 
 	public String message(String namespace, AbstractMX obj, @SuppressWarnings("rawtypes") Class[] classes, String prefix, boolean includeXMLDeclaration) {
 		throw new UnsupportedOperationException("For the moment this is only available in the integrator version");

@@ -26,8 +26,10 @@ import java.util.logging.Level;
 
 /**
  * Main class for writing SwiftMessage objects into SWIFT FIN message text.
- * 
- * @author www.prowidesoftware.com
+ *
+ * <p>The implementation preserves the EOLS as they are found in the message object. This is particularly important for
+ * block 4 where fields can have multiple lines.
+ * To serialize into a compliant FIN text you can apply {@link SwiftWriter#ensureEols(String)} to the result.
  */
 public class FINWriterVisitor implements IMessageVisitor {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(FINWriterVisitor.class.getName());

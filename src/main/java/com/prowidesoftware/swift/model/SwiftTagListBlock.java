@@ -565,44 +565,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	}
 
 	/**
-	 * @deprecated use {@link #append(Tag)} instead of this
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public void addTag(final Tag t) {
-		DeprecationUtils.phase3(getClass(), "addTag(Tag)", "Use append(Tag) instead.");
-		// sanity check
-		Validate.notNull(t, "parameter 't' cannot not be null");
-
-		if (log.isLoggable(Level.FINEST)) {
-			log.finest("Adding Tag [" + t + "]");
-		}
-		if (this.tags == null) {
-			this.tags = new ArrayList<>();
-		}
-		this.tags.add(t);
-	}
-	/**
-	 * @deprecated use {@link #append(Field)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public void add(final Field f) {
-		DeprecationUtils.phase3(getClass(), "add(Field)", "Use append(Field) instead.");
-		append(new Tag(f.getName(), f.getValue()));
-	}
-
-	/**
-	 * @deprecated renamed to {@link #countByName(String)}
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public int getTagCount(final String key) {
-		DeprecationUtils.phase3(getClass(), "getTagCount(String)", "Use countByName(String) instead.");
-		return countByName(key);
-	}
-
-	/**
 	 * Counts how many tags with the given name are present in the block.
 	 *
 	 * @param name the name of the tag
@@ -731,9 +693,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * @deprecated use {@link #countAll()} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
 	public int getTagCount() {
-		DeprecationUtils.phase2(getClass(), "getTagCount()", "Use countAll() instead." );
+		DeprecationUtils.phase3(getClass(), "getTagCount()", "Use countAll() instead." );
 		return countAll();
 	}
 	
@@ -1050,8 +1012,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * @deprecated use #getSubBlock(Integer, Integer) instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public SwiftTagListBlock getSubBlockByIndex(final Integer startIndex, final Integer endIndex) {
+		DeprecationUtils.phase2(getClass(), "getSubBlockByIndex(Integer, Integer", "use getSubBlock(Integer, Integer) instead");
 		return getSubBlock(startIndex, endIndex);
 	}
 
@@ -1173,9 +1136,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear._2019)
+    @ProwideDeprecated(phase4=TargetYear.SRU2020)
     public SwiftTagListBlock getSubBlockAfterFirst(final String tagname) {
-    	DeprecationUtils.phase2(getClass(), "getSubBlockAfterFirst(String)", "Use getSubBlockAfterFirst(String, boolean) instead.");
+    	DeprecationUtils.phase3(getClass(), "getSubBlockAfterFirst(String)", "Use getSubBlockAfterFirst(String, boolean) instead.");
         return getSubBlockAfterFirst(tagname, true);
     }
 
@@ -1306,7 +1269,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	  * @deprecated use {@link #splitByTagName(int, String)} instead where the result is empty when the boundary field is not found
 	  */
 	 @Deprecated
-	 @ProwideDeprecated(phase2 = TargetYear._2020)
+	 @ProwideDeprecated(phase2 = TargetYear.SRU2020)
 	 public List<SwiftTagListBlock> splitByTagName(final String tagName) {
 		 final List<SwiftTagListBlock> result = new ArrayList<>();
 		 if (this.tags.isEmpty() || !containsTag(tagName)) {
@@ -1501,11 +1464,12 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 }
 
     /**
-     * @deprecated use {@link #getSubBlockBeforeFirst(String, boolean)}
+     * @deprecated use {@link #getSubBlockBeforeFirst(String, boolean)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear._2019)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public SwiftTagListBlock trimAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
+    	DeprecationUtils.phase2(getClass(), "trimAfterFirst(String, boolean)", "use getSubBlockBeforeFirst(String, boolean) instead");
 		return getSubBlockBeforeFirst(tagname, includeBoundaryInResult);
 	 }
 
@@ -1681,18 +1645,18 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	/**
 	 * @deprecated use {@link #getSubBlockBeforeFirst(String, boolean)}
 	 */
-	@ProwideDeprecated(phase3=TargetYear._2019)
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
 	public SwiftTagListBlock removeAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
-		DeprecationUtils.phase2(getClass(), "removeAfterFirst(String, boolean)", "Use getSubBlockBeforeFirst(String, boolean) instead.");
+		DeprecationUtils.phase3(getClass(), "removeAfterFirst(String, boolean)", "Use getSubBlockBeforeFirst(String, boolean) instead.");
 		return getSubBlockBeforeFirst(tagname, includeBoundaryInResult);
 	}
 
     /**
      * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)}
      */
-	@ProwideDeprecated(phase3=TargetYear._2019)
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
     public SwiftTagListBlock removeUntilFirst(final String tagname, final boolean includeBoundaryInResult) {
-		DeprecationUtils.phase2(getClass(), "removeUntilFirst(String, boolean)", "Use getSubBlockAfterFirst(String, boolean) instead.");
+		DeprecationUtils.phase3(getClass(), "removeUntilFirst(String, boolean)", "Use getSubBlockAfterFirst(String, boolean) instead.");
 		return getSubBlockAfterFirst(tagname, includeBoundaryInResult);
 	}
 
@@ -2014,8 +1978,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return a string with the message content serialized as JSON
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public String toJsonV1() {
+		DeprecationUtils.phase2(getClass(), "toJsonV1()", "use toJson() instead");
 		final StringBuilder sb = new StringBuilder();
 		sb.append("[ \n");
 		if (this.tags != null && !this.tags.isEmpty()) {

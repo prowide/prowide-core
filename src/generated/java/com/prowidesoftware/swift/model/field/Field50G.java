@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import java.util.Map;
 import java.util.HashMap;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.field.BICContainer;
+import com.prowidesoftware.swift.model.field.MultiLineField;
+
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -45,9 +47,9 @@ import com.google.gson.JsonParser;
  * Model and parser for field 50G of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>String</code></li> 
- * 		<li><code>BIC</code></li> 
+ * <ol>
+ * 		<li><code>String</code></li>
+ * 		<li><code>BIC</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -56,17 +58,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>/S$S</code></li>
  * 		<li>components pattern: <code>SB</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
-public class Field50G extends Field implements Serializable, BICContainer, com.prowidesoftware.swift.model.field.MultiLineField {
+public class Field50G extends OptionGPartyField implements Serializable, BICContainer, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -77,24 +79,12 @@ public class Field50G extends Field implements Serializable, BICContainer, com.p
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_50G = "50G";
-	public static final String PARSER_PATTERN ="/S$S";
-	public static final String COMPONENTS_PATTERN = "SB";
-
-	/**
-	 * Component number for the Account subfield
-	 */
-	public static final Integer ACCOUNT = 1;
-
-	/**
-	 * Component number for the BIC subfield
-	 */
-	public static final Integer BIC = 2;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field50G() {
-		super(2);
+        super();
 	}
 	    					
 	/**
@@ -121,28 +111,7 @@ public class Field50G extends Field implements Serializable, BICContainer, com.p
 		}
 		parse(tag.getValue());
 	}
-	
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(2);
-		List<String> lines = SwiftParseUtils.getLines(value);
-		if (!lines.isEmpty()) {
-			setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), "/", null));
-			if (lines.size() > 1) {
-				setComponent2(lines.get(1));
-			}
-		} 
-	}
-	
+
 	/**
 	 * Copy constructor.<br>
 	 * Initializes the components list with a deep copy of the source components list.
@@ -154,79 +123,31 @@ public class Field50G extends Field implements Serializable, BICContainer, com.p
 		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
-	
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		result.append("/");
-		append(result, 1);
-		if (getComponent2() != null) {
-			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL).append(getComponent2());
-		}
-		return result.toString();
-	}
 
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
 	public static Tag tag(final String value) {
 		return new Tag(NAME, value);
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
 	public static Tag emptyTag() {
 		return new Tag(NAME, "");
 	}
-	
-	/**
-	 * Gets the component1
-	 * @return the component1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
+
+
 
 	/**
-	 * Same as getComponent(1)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Account (component1) removing its starting slashes if any.
-	 * @return the Account from component1
-	 */
-	public String getAccount() {
-		String c = getComponent(1);
-		if (c != null) {
-			for (int i=0; i<c.length(); i++) {
-				if (c.charAt(i) != '/') {
-					return c.substring(i);
-				}
-			}
-			return "";
-		}
-		return null;
-	}
-
-	/**
-	 * Set the component1.
+	 * Set the component1 (Account).
 	 * @param component1 the component1 to set
 	 */
 	public Field50G setComponent1(String component1) {
@@ -242,40 +163,9 @@ public class Field50G extends Field implements Serializable, BICContainer, com.p
 		setComponent(1, component1);
 		return this;
 	}
-	/**
-	 * Gets the component2
-	 * @return the component2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
 
 	/**
-	 * Get the component2 as BIC
-	 * @return the component2 converted to BIC or null if cannot be converted
-	 */
-	public com.prowidesoftware.swift.model.BIC getComponent2AsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(2));
-	}
-
-	/**
-	 * Gets the BIC (component2).
-	 * @return the BIC from component2
-	 */
-	public String getBIC() {
-		return getComponent(2);
-	}
-	
-	/**
-	 * Get the BIC (component2) as BIC
-	 * @return the BIC from component2 converted to BIC or null if cannot be converted
-	 */
-	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(2));
-	}
-
-	/**
-	 * Set the component2.
+	 * Set the component2 (BIC).
 	 * @param component2 the component2 to set
 	 */
 	public Field50G setComponent2(String component2) {
@@ -311,46 +201,7 @@ public class Field50G extends Field implements Serializable, BICContainer, com.p
 		return this;
 	}
 
-	public List<BIC> bics () {
-		final List<BIC> result = new ArrayList<>();
-		result.add(SwiftFormatUtils.getBIC(getComponent(2)));
-		return result;
-	}
-	public List<String> bicStrings () {
-		final List<String> result = new ArrayList<>();
-		result.add(getComponent(2));
-		return result;
-	}
-
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       return false;
-   }
-
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return false;
-   }
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field50G.NAME
@@ -358,23 +209,6 @@ public class Field50G extends Field implements Serializable, BICContainer, com.p
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field50G.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "/34x$<BIC>";
 	}
 
 	/**
@@ -436,17 +270,6 @@ public class Field50G extends Field implements Serializable, BICContainer, com.p
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 2;
 	}
 	
 	/**
@@ -525,58 +348,6 @@ public class Field50G extends Field implements Serializable, BICContainer, com.p
 	public List<String> getLinesBetween(int start, int end, int offset) {
 		Field50G cp = newInstance(this);
 		return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
-	}
-	
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 2) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 50G");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Account");
-		result.add("BIC");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "account");
-		result.put(2, "bIC");
-		return result;
 	}
 
 	/**

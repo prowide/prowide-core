@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
@@ -43,11 +44,11 @@ import com.google.gson.JsonParser;
  * Model and parser for field 38H of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>String</code></li> 
+ * <ol>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -56,17 +57,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>NS/NS</code></li>
  * 		<li>components pattern: <code>NSNS</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
 public class Field38H extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -131,11 +132,44 @@ public class Field38H extends Field implements Serializable {
 		}
 		parse(tag.getValue());
 	}
-	
+
+	/**
+	 * Copy constructor.<br>
+	 * Initializes the components list with a deep copy of the source components list.
+	 * @param source a field instance to copy
+	 * @since 7.7
+	 */
+	public static Field38H newInstance(Field38H source) {
+		Field38H cp = new Field38H();
+		cp.setComponents(new ArrayList<>(source.getComponents()));
+		return cp;
+	}
+
+	/**
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag tag(final String value) {
+		return new Tag(NAME, value);
+	}
+
+	/**
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag emptyTag() {
+		return new Tag(NAME, "");
+	}
+
+
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
+	 *
+	 * <p>Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
 	 * @param value complete field value including separators and CRLF
@@ -150,19 +184,6 @@ public class Field38H extends Field implements Serializable {
 		setComponent3(SwiftParseUtils.getNumericPrefix(toparse));
 		setComponent4(SwiftParseUtils.getAlphaSuffix(toparse));
 	}
-	
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field38H newInstance(Field38H source) {
-		Field38H cp = new Field38H();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
-	
 	/**
 	 * Serializes the fields' components into the single string value (SWIFT format)
 	 */
@@ -176,29 +197,141 @@ public class Field38H extends Field implements Serializable {
 		append(result, 4);
 		return result.toString();
 	}
-
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
+	 * Returns a localized suitable for showing to humans string of a field component.<br>
+	 *
+	 * @param component number of the component to display
+	 * @param locale optional locale to format date and amounts, if null, the default locale is used
+	 * @return formatted component value or null if component number is invalid or not present
+	 * @throws IllegalArgumentException if component number is invalid for the field
+	 * @since 7.8
+	 */
+	@Override
+	public String getValueDisplay(int component, Locale locale) {
+		if (component < 1 || component > 4) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 38H");
+		}
+		if (component == 1) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent1AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 2) {
+			//default format (as is)
+			return getComponent(2);
+		}
+		if (component == 3) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent3AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 4) {
+			//default format (as is)
+			return getComponent(4);
+		}
+		return null;
+	}
+	/**
+	 * Returns the field components pattern
+	 * @return the static value of Field38H.COMPONENTS_PATTERN
+	 */
+	@Override
+	public final String componentsPattern() {
+		return COMPONENTS_PATTERN;
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
-	
+     * Returns the field parser pattern
+     * @return the static value of Field38H.PARSER_PATTERN
+     */
+	@Override
+	public final String parserPattern() {
+        return PARSER_PATTERN;
+    }
+
 	/**
-	 * Gets the component1
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "2n1a/2n1a";
+	}
+
+    /**
+     * Given a component number it returns true if the component is optional,
+     * regardless of the field being mandatory in a particular message.<br>
+     * Being the field's value conformed by a composition of one or several
+     * internal component values, the field may be present in a message with
+     * a proper value but with some of its internal components not set.
+     *
+     * @param component component number, first component of a field is referenced as 1
+     * @return true if the component is optional for this field, false otherwise
+     */
+    @Override
+    public boolean isOptional(int component) {
+        return false;
+    }
+
+    /**
+     * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     * @return true if the field is generic, false otherwise
+     */
+    @Override
+    public boolean isGeneric() {
+        return false;
+    }
+
+	/**
+	 * Returns the defined amount of components.<br>
+	 * This is not the amount of components present in the field instance, but the total amount of components
+	 * that this field accepts as defined.
+	 * @since 7.7
+	 */
+	@Override
+	public int componentsSize() {
+		return 4;
+	}
+
+	/**
+	 * Returns english label for components.
+	 * <br>
+	 * The index in the list is in sync with specific field component structure.
+	 * @see #getComponentLabel(int)
+	 * @since 7.8.4
+	 */
+	@Override
+	protected List<String> getComponentLabels() {
+		List<String> result = new ArrayList<>();
+		result.add("Number From");
+		result.add("Period From");
+		result.add("Number To");
+		result.add("Period To");
+		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.3
+	 */
+	@Override
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<>();
+		result.put(1, "numberFrom");
+		result.put(2, "periodFrom");
+		result.put(3, "numberTo");
+		result.put(4, "periodTo");
+		return result;
+	}
+	/**
+	 * Gets the component1 (Number From).
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -228,9 +361,93 @@ public class Field38H extends Field implements Serializable {
 	public java.lang.Number getNumberFromAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
+	/**
+	 * Gets the component2 (Period From).
+	 * @return the component2
+	 */
+	public String getComponent2() {
+		return getComponent(2);
+	}
 
 	/**
-	 * Set the component1.
+	 * Same as getComponent(2)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent2AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(2);
+	}
+
+	/**
+	 * Gets the Period From (component2).
+	 * @return the Period From from component2
+	 */
+	public String getPeriodFrom() {
+		return getComponent(2);
+	}
+	/**
+	 * Gets the component3 (Number To).
+	 * @return the component3
+	 */
+	public String getComponent3() {
+		return getComponent(3);
+	}
+
+	/**
+	 * Get the component3 as Number
+	 * @return the component3 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getComponent3AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+
+	/**
+	 * Gets the Number To (component3).
+	 * @return the Number To from component3
+	 */
+	public String getNumberTo() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Number To (component3) as Number
+	 * @return the Number To from component3 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getNumberToAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+	/**
+	 * Gets the component4 (Period To).
+	 * @return the component4
+	 */
+	public String getComponent4() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent4AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(4);
+	}
+
+	/**
+	 * Gets the Period To (component4).
+	 * @return the Period To from component4
+	 */
+	public String getPeriodTo() {
+		return getComponent(4);
+	}
+
+
+	/**
+	 * Set the component1 (Number From).
 	 * @param component1 the component1 to set
 	 */
 	public Field38H setComponent1(String component1) {
@@ -274,35 +491,9 @@ public class Field38H extends Field implements Serializable {
 		setComponent1(component1);
 		return this;
 	}
-	/**
-	 * Gets the component2
-	 * @return the component2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
 
 	/**
-	 * Same as getComponent(2)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent2AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(2);
-	}
-
-	/**
-	 * Gets the Period From (component2).
-	 * @return the Period From from component2
-	 */
-	public String getPeriodFrom() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Set the component2.
+	 * Set the component2 (Period From).
 	 * @param component2 the component2 to set
 	 */
 	public Field38H setComponent2(String component2) {
@@ -318,40 +509,9 @@ public class Field38H extends Field implements Serializable {
 		setComponent(2, component2);
 		return this;
 	}
-	/**
-	 * Gets the component3
-	 * @return the component3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent3AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(3));
-	}
-
-	/**
-	 * Gets the Number To (component3).
-	 * @return the Number To from component3
-	 */
-	public String getNumberTo() {
-		return getComponent(3);
-	}
-	
-	/**
-	 * Get the Number To (component3) as Number
-	 * @return the Number To from component3 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumberToAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(3));
-	}
-
-	/**
-	 * Set the component3.
+	 * Set the component3 (Number To).
 	 * @param component3 the component3 to set
 	 */
 	public Field38H setComponent3(String component3) {
@@ -395,35 +555,9 @@ public class Field38H extends Field implements Serializable {
 		setComponent3(component3);
 		return this;
 	}
-	/**
-	 * Gets the component4
-	 * @return the component4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
 
 	/**
-	 * Same as getComponent(4)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent4AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(4);
-	}
-
-	/**
-	 * Gets the Period To (component4).
-	 * @return the Period To from component4
-	 */
-	public String getPeriodTo() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Set the component4.
+	 * Set the component4 (Period To).
 	 * @param component4 the component4 to set
 	 */
 	public Field38H setComponent4(String component4) {
@@ -440,35 +574,7 @@ public class Field38H extends Field implements Serializable {
 		return this;
 	}
 
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       return false;
-   }
-
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return false;
-   }
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field38H.NAME
@@ -476,23 +582,6 @@ public class Field38H extends Field implements Serializable {
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field38H.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "2n1a/2n1a";
 	}
 
 	/**
@@ -554,90 +643,6 @@ public class Field38H extends Field implements Serializable {
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 4;
-	}
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 4) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 38H");
-		}
-		if (component == 1) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent1AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
-		}
-		if (component == 3) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent3AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 4) {
-			//default format (as is)
-			return getComponent(4);
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Number From");
-		result.add("Period From");
-		result.add("Number To");
-		result.add("Period To");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "numberFrom");
-		result.put(2, "periodFrom");
-		result.put(3, "numberTo");
-		result.put(4, "periodTo");
-		return result;
 	}
 
 	/**

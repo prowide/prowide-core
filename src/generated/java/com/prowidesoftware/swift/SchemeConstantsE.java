@@ -1,20 +1,4 @@
 
-/*
- * Copyright 2006-2018 Prowide
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.prowidesoftware.swift;
 
 import com.prowidesoftware.Generated;
@@ -35,6 +19,7 @@ public interface SchemeConstantsE {
     public final static String EEAR = "EEAR";
     public final static String EUZN = "EUZN";
     public final static String EQUI = "EQUI";
+    public final static String EAMT = "EAMT";
     public final static String ELEC = "ELEC";
     public final static String EXOP = "EXOP";
     public final static String E = "E";
@@ -66,8 +51,8 @@ public interface SchemeConstantsE {
     public final static String ELIG = "ELIG";
     public final static String EFFD = "EFFD";
     public final static String ESET = "ESET";
-    public final static String EXVA = "EXVA";
     public final static String EXSE = "EXSE";
+    public final static String EXVA = "EXVA";
     public final static String ESTA = "ESTA";
     public final static String EPRC = "EPRC";
     public final static String ETYP = "ETYP";

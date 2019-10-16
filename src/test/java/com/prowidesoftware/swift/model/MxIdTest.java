@@ -41,6 +41,15 @@ public class MxIdTest {
 	}
 
 	@Test
+	public void testNamespaceConstructor3() {
+		MxId mid = new MxId("pain.001.001.03");
+		assertEquals(MxBusinessProcess.pain, mid.getBusinessProcess());
+		assertEquals("001", mid.getFunctionality());
+		assertEquals("001", mid.getVariant());
+		assertEquals("03", mid.getVersion());
+	}
+
+	@Test
 	public void testMatches() {
 		assertTrue(new MxId().equals(new MxId()));
 

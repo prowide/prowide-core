@@ -125,25 +125,7 @@ public class MT900_RUR6 extends AbstractMT implements Serializable {
 	public MT900_RUR6(final String sender, final String receiver) {
 		super(900, sender, receiver);
 	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT900_RUR6(String, String)
-	* @deprecated Use instead <code>new MT900_RUR6(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT900_RUR6(final int messageType, final String sender, final String receiver) {
-		super(900, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT900_RUR6(int, String, String)", "Use the constructor MT900_RUR6(sender, receiver) instead.");
-	}
-	
+
 	/**
 	 * Creates a new MT900_RUR6 by parsing a String with the message content in its swift FIN format.<br>
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object

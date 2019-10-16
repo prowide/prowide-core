@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ Fieldset 95
  (O)<ul><li>FieldsetItem 95 P,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B (M)</li>
 <li class="fieldset">
 Fieldset 17
- (M) (repetitive)<ul><li>FieldsetItem 17 B (M)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (M)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 17 B (M)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (M)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence B - Sub-safekeeping account (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -159,13 +159,14 @@ Sequence C - Additional Information (O) (repetitive)<ul><li class="field">Field 
 Fieldset 95
  (O)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li></ul></li><li class="fieldset">
 Fieldset 19
- (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="field">Field 70 H (O)</li>
+<li class="field">Field 16 S (M)</li>
 </ul></li>
 </ul></div>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2018</strong>
+ * This source code is specific to release <strong>SRU 2019</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -174,7 +175,7 @@ public class MT535 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT535.class.getName());
 	
@@ -182,619 +183,6 @@ public class MT535 extends AbstractMT implements Serializable {
 	* Constant for MT name, this is part of the classname, after <code>MT</code>
 	*/
 	public static final String NAME = "535";
-	
-// begin qualifiers constants	
-
-	/**
-	* Constant for qualifier with value ACOW 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ACOW = "ACOW";
-
-	/**
-	* Constant for qualifier with value ACRU 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ACRU = "ACRU";
-
-	/**
-	* Constant for qualifier with value ACTI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ACTI = "ACTI";
-
-	/**
-	* Constant for qualifier with value ADDINFO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ADDINFO = "ADDINFO";
-
-	/**
-	* Constant for qualifier with value AGGR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AGGR = "AGGR";
-
-	/**
-	* Constant for qualifier with value ALTE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ALTE = "ALTE";
-
-	/**
-	* Constant for qualifier with value AUDT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AUDT = "AUDT";
-
-	/**
-	* Constant for qualifier with value AVAI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AVAI = "AVAI";
-
-	/**
-	* Constant for qualifier with value BOOK 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BOOK = "BOOK";
-
-	/**
-	* Constant for qualifier with value BREAK 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BREAK = "BREAK";
-
-	/**
-	* Constant for qualifier with value CALD 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CALD = "CALD";
-
-	/**
-	* Constant for qualifier with value CALL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CALL = "CALL";
-
-	/**
-	* Constant for qualifier with value CANC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CANC = "CANC";
-
-	/**
-	* Constant for qualifier with value CAOP 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CAOP = "CAOP";
-
-	/**
-	* Constant for qualifier with value CFRE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CFRE = "CFRE";
-
-	/**
-	* Constant for qualifier with value CLAS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CLAS = "CLAS";
-
-	/**
-	* Constant for qualifier with value CODE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CODE = "CODE";
-
-	/**
-	* Constant for qualifier with value CODU 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CODU = "CODU";
-
-	/**
-	* Constant for qualifier with value COLA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String COLA = "COLA";
-
-	/**
-	* Constant for qualifier with value CONS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CONS = "CONS";
-
-	/**
-	* Constant for qualifier with value COPY 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String COPY = "COPY";
-
-	/**
-	* Constant for qualifier with value COUP 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String COUP = "COUP";
-
-	/**
-	* Constant for qualifier with value COVA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String COVA = "COVA";
-
-	/**
-	* Constant for qualifier with value CUFC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CUFC = "CUFC";
-
-	/**
-	* Constant for qualifier with value DAAC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DAAC = "DAAC";
-
-	/**
-	* Constant for qualifier with value DDTE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DDTE = "DDTE";
-
-	/**
-	* Constant for qualifier with value DENO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DENO = "DENO";
-
-	/**
-	* Constant for qualifier with value DUPL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DUPL = "DUPL";
-
-	/**
-	* Constant for qualifier with value EXCH 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EXCH = "EXCH";
-
-	/**
-	* Constant for qualifier with value EXER 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EXER = "EXER";
-
-	/**
-	* Constant for qualifier with value EXPI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EXPI = "EXPI";
-
-	/**
-	* Constant for qualifier with value FCOU 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FCOU = "FCOU";
-
-	/**
-	* Constant for qualifier with value FIA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FIA = "FIA";
-
-	/**
-	* Constant for qualifier with value FIAN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FIAN = "FIAN";
-
-	/**
-	* Constant for qualifier with value FIN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FIN = "FIN";
-
-	/**
-	* Constant for qualifier with value FORM 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FORM = "FORM";
-
-	/**
-	* Constant for qualifier with value FRNF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FRNF = "FRNF";
-
-	/**
-	* Constant for qualifier with value FRNR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FRNR = "FRNR";
-
-	/**
-	* Constant for qualifier with value GENL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String GENL = "GENL";
-
-	/**
-	* Constant for qualifier with value HOLD 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String HOLD = "HOLD";
-
-	/**
-	* Constant for qualifier with value HOLP 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String HOLP = "HOLP";
-
-	/**
-	* Constant for qualifier with value HOLS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String HOLS = "HOLS";
-
-	/**
-	* Constant for qualifier with value INDC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String INDC = "INDC";
-
-	/**
-	* Constant for qualifier with value INDX 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String INDX = "INDX";
-
-	/**
-	* Constant for qualifier with value INTR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String INTR = "INTR";
-
-	/**
-	* Constant for qualifier with value ISSU 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ISSU = "ISSU";
-
-	/**
-	* Constant for qualifier with value LAST 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String LAST = "LAST";
-
-	/**
-	* Constant for qualifier with value LINK 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String LINK = "LINK";
-
-	/**
-	* Constant for qualifier with value LOTS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String LOTS = "LOTS";
-
-	/**
-	* Constant for qualifier with value MATU 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MATU = "MATU";
-
-	/**
-	* Constant for qualifier with value MEOR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MEOR = "MEOR";
-
-	/**
-	* Constant for qualifier with value MERE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MERE = "MERE";
-
-	/**
-	* Constant for qualifier with value MICO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MICO = "MICO";
-
-	/**
-	* Constant for qualifier with value MINO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MINO = "MINO";
-
-	/**
-	* Constant for qualifier with value MORE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MORE = "MORE";
-
-	/**
-	* Constant for qualifier with value MRKT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MRKT = "MRKT";
-
-	/**
-	* Constant for qualifier with value NAVL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NAVL = "NAVL";
-
-	/**
-	* Constant for qualifier with value NEWM 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NEWM = "NEWM";
-
-	/**
-	* Constant for qualifier with value NWFC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NWFC = "NWFC";
-
-	/**
-	* Constant for qualifier with value NXRT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NXRT = "NXRT";
-
-	/**
-	* Constant for qualifier with value ONLY 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ONLY = "ONLY";
-
-	/**
-	* Constant for qualifier with value OPST 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OPST = "OPST";
-
-	/**
-	* Constant for qualifier with value OPTI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OPTI = "OPTI";
-
-	/**
-	* Constant for qualifier with value PAYS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PAYS = "PAYS";
-
-	/**
-	* Constant for qualifier with value PFRE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PFRE = "PFRE";
-
-	/**
-	* Constant for qualifier with value PLED 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PLED = "PLED";
-
-	/**
-	* Constant for qualifier with value PLIS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PLIS = "PLIS";
-
-	/**
-	* Constant for qualifier with value POOL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String POOL = "POOL";
-
-	/**
-	* Constant for qualifier with value PREP 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PREP = "PREP";
-
-	/**
-	* Constant for qualifier with value PREV 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PREV = "PREV";
-
-	/**
-	* Constant for qualifier with value PRFC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PRFC = "PRFC";
-
-	/**
-	* Constant for qualifier with value PRIC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PRIC = "PRIC";
-
-	/**
-	* Constant for qualifier with value PUTT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PUTT = "PUTT";
-
-	/**
-	* Constant for qualifier with value RELA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String RELA = "RELA";
-
-	/**
-	* Constant for qualifier with value SAFE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SAFE = "SAFE";
-
-	/**
-	* Constant for qualifier with value SEME 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SEME = "SEME";
-
-	/**
-	* Constant for qualifier with value SFRE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SFRE = "SFRE";
-
-	/**
-	* Constant for qualifier with value SIZE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SIZE = "SIZE";
-
-	/**
-	* Constant for qualifier with value STAT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String STAT = "STAT";
-
-	/**
-	* Constant for qualifier with value STBA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String STBA = "STBA";
-
-	/**
-	* Constant for qualifier with value STTY 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String STTY = "STTY";
-
-	/**
-	* Constant for qualifier with value SUBB 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SUBB = "SUBB";
-
-	/**
-	* Constant for qualifier with value SUBBAL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SUBBAL = "SUBBAL";
-
-	/**
-	* Constant for qualifier with value SUBSAFE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SUBSAFE = "SUBSAFE";
-
-	/**
-	* Constant for qualifier with value TOVA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TOVA = "TOVA";
-
-	/**
-	* Constant for qualifier with value VAHA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String VAHA = "VAHA";
-
-	/**
-	* Constant for qualifier with value YTMR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String YTMR = "YTMR";
-
-// end qualifiers constants	
 
 	/**
 	 * Creates an MT535 initialized with the parameter SwiftMessage
@@ -851,24 +239,6 @@ public class MT535 extends AbstractMT implements Serializable {
 	 */
 	public MT535(final String sender, final String receiver) {
 		super(535, sender, receiver);
-	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT535(String, String)
-	* @deprecated Use instead <code>new MT535(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT535(final int messageType, final String sender, final String receiver) {
-		super(535, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT535(int, String, String)", "Use the constructor MT535(sender, receiver) instead.");
 	}
 	
 	/**
@@ -1891,8 +1261,27 @@ public class MT535 extends AbstractMT implements Serializable {
 		return result;
 	}
 	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 70H, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 70H at MT535 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field70H objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field70H> getField70H() {
+		final List<Field70H> result = new ArrayList<>();
+		final Tag[] tags = tags("70H");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field70H(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
 
-// BaseSequenceCodeGenerator [seq=A]
 	/**
 	 * Class to model Sequence "A" in MT 535
 	 */
@@ -1996,20 +1385,20 @@ public class MT535 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceA#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceA within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceA within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static SequenceA getSequenceA(SwiftTagListBlock parentSequence) {
 		final SequenceA s = new SequenceA();
-		s.setTags(parentSequence.getSubBlock(SequenceA.START_END_16RS).getTags());
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceA.START_END_16RS).getTags());
+		}
 		return s;
 	}
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
+ 
 
-
-// BaseSequenceCodeGenerator [seq=A1]
 	/**
 	 * Class to model Sequence "A1" in MT 535
 	 */
@@ -2100,8 +1489,9 @@ public class MT535 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceA1#START_END_16RS
 	 */
@@ -2110,33 +1500,32 @@ public class MT535 extends AbstractMT implements Serializable {
 		return getSequenceA1List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceA1#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceA1 within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceA1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceA1> getSequenceA1List(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceA1.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceA1> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceA1 s = new SequenceA1();
-				s.setTags(b.getSubBlock(SequenceA1.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceA1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceA1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceA1 s = new SequenceA1();
+                    s.setTags(b.getSubBlock(SequenceA1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=B]
 	/**
 	 * Class to model Sequence "B" in MT 535
 	 */
@@ -2227,8 +1616,9 @@ public class MT535 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB delimited by 16R/16S with value specified in SequenceB#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB delimited by 16R/16S with value specified in {@link SequenceB#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB#START_END_16RS
 	 */
@@ -2237,33 +1627,32 @@ public class MT535 extends AbstractMT implements Serializable {
 		return getSequenceBList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	 * Get the list of SequenceB delimited by 16R/16S with value specified in SequenceB#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB delimited by 16R/16S with value specified in {@link SequenceB#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceB within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceB within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceB> getSequenceBList(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceB> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceB s = new SequenceB();
-				s.setTags(b.getSubBlock(SequenceB.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceB> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceB s = new SequenceB();
+                    s.setTags(b.getSubBlock(SequenceB.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=B1]
 	/**
 	 * Class to model Sequence "B1" in MT 535
 	 */
@@ -2354,8 +1743,9 @@ public class MT535 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in SequenceB1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB1#START_END_16RS
 	 */
@@ -2364,33 +1754,32 @@ public class MT535 extends AbstractMT implements Serializable {
 		return getSequenceB1List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in SequenceB1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB1#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceB1 within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceB1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceB1> getSequenceB1List(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceB1> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceB1 s = new SequenceB1();
-				s.setTags(b.getSubBlock(SequenceB1.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceB1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceB1 s = new SequenceB1();
+                    s.setTags(b.getSubBlock(SequenceB1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=B1a]
 	/**
 	 * Class to model Sequence "B1a" in MT 535
 	 */
@@ -2481,8 +1870,9 @@ public class MT535 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB1a delimited by 16R/16S with value specified in SequenceB1a#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB1a delimited by 16R/16S with value specified in {@link SequenceB1a#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB1a#START_END_16RS
 	 */
@@ -2491,33 +1881,32 @@ public class MT535 extends AbstractMT implements Serializable {
 		return getSequenceB1aList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	 * Get the list of SequenceB1a delimited by 16R/16S with value specified in SequenceB1a#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB1a delimited by 16R/16S with value specified in {@link SequenceB1a#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB1a#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceB1a within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceB1a within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceB1a> getSequenceB1aList(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1a.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceB1a> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceB1a s = new SequenceB1a();
-				s.setTags(b.getSubBlock(SequenceB1a.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1a.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceB1a> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceB1a s = new SequenceB1a();
+                    s.setTags(b.getSubBlock(SequenceB1a.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=B1b]
 	/**
 	 * Class to model Sequence "B1b" in MT 535
 	 */
@@ -2608,8 +1997,9 @@ public class MT535 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB1b delimited by 16R/16S with value specified in SequenceB1b#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB1b delimited by 16R/16S with value specified in {@link SequenceB1b#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB1b#START_END_16RS
 	 */
@@ -2618,38 +2008,37 @@ public class MT535 extends AbstractMT implements Serializable {
 		return getSequenceB1bList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	 * Get the list of SequenceB1b delimited by 16R/16S with value specified in SequenceB1b#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB1b delimited by 16R/16S with value specified in {@link SequenceB1b#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB1b#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceB1b within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceB1b within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceB1b> getSequenceB1bList(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1b.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceB1b> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceB1b s = new SequenceB1b();
-				s.setTags(b.getSubBlock(SequenceB1b.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1b.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceB1b> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceB1b s = new SequenceB1b();
+                    s.setTags(b.getSubBlock(SequenceB1b.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=B1b1]
 	/**
 	 * Class to model Sequence "B1b1" in MT 535
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	@com.prowidesoftware.swift.internal.NonUniqueSeparator
+	@NonUniqueSeparator
 	public static class SequenceB1b1 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
@@ -2680,7 +2069,7 @@ public class MT535 extends AbstractMT implements Serializable {
 		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
-	@com.prowidesoftware.swift.internal.NonUniqueSeparator
+	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceB1b1 newInstance(final Tag ... tags) {
 			final SequenceB1b1 result = new SequenceB1b1();
@@ -2737,19 +2126,18 @@ public class MT535 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB1b1 delimited by 16R/16S with value specified in SequenceB1b1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-    *
-    * <div><em>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-    * present inside its parent sequences</em>
-    * </div>
-    *
-    * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+	 * Get the list of SequenceB1b1 delimited by 16R/16S with value specified in {@link SequenceB1b1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB1b1#START_END_16RS
 	 */
-	@com.prowidesoftware.swift.internal.NonUniqueSeparator
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceB1b1> getSequenceB1b1List() {
   	    /*
@@ -2760,43 +2148,45 @@ public class MT535 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT535GetSequenceB1b1List_sru2018(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT535GetSequenceB1b1List_sru2019(this);
 	}
 	/**
-	 * Get the list of SequenceB1b1 delimited by 16R/16S with value specified in SequenceB1b1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-    *
-    * <div><em>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-    * present inside its parent sequences</em>
-    * </div>
-    *
-    * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+	 * Get the list of SequenceB1b1 delimited by 16R/16S with value specified in {@link SequenceB1b1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
 	 * @see SequenceB1b1#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceB1b1 within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceB1b1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
-	@com.prowidesoftware.swift.internal.NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceB1b1> getSequenceB1b1List(final SwiftTagListBlock parentSequence) {
-  		/*
-		 * The delimiter BREAK is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence B1b1.
-		 * So we call a special method to resolve this situation until we find a better approach.
-		 */
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT535GetSequenceB1b1List_sru2018(new MT535().append(parentSequence));
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1b1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceB1b1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceB1b1 s = new SequenceB1b1();
+                    s.setTags(b.getSubBlock(SequenceB1b1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=B1c]
 	/**
 	 * Class to model Sequence "B1c" in MT 535
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	@com.prowidesoftware.swift.internal.NonUniqueSeparator
+	@NonUniqueSeparator
 	public static class SequenceB1c extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
@@ -2827,7 +2217,7 @@ public class MT535 extends AbstractMT implements Serializable {
 		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
-	@com.prowidesoftware.swift.internal.NonUniqueSeparator
+	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceB1c newInstance(final Tag ... tags) {
 			final SequenceB1c result = new SequenceB1c();
@@ -2884,19 +2274,18 @@ public class MT535 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB1c delimited by 16R/16S with value specified in SequenceB1c#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-    *
-    * <div><em>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-    * present inside its parent sequences</em>
-    * </div>
-    *
-    * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+	 * Get the list of SequenceB1c delimited by 16R/16S with value specified in {@link SequenceB1c#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB1c#START_END_16RS
 	 */
-	@com.prowidesoftware.swift.internal.NonUniqueSeparator
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceB1c> getSequenceB1cList() {
   	    /*
@@ -2907,38 +2296,40 @@ public class MT535 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT535GetSequenceB1cList_sru2018(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT535GetSequenceB1cList_sru2019(this);
 	}
 	/**
-	 * Get the list of SequenceB1c delimited by 16R/16S with value specified in SequenceB1c#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-    *
-    * <div><em>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-    * present inside its parent sequences</em>
-    * </div>
-    *
-    * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+	 * Get the list of SequenceB1c delimited by 16R/16S with value specified in {@link SequenceB1c#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
 	 * @see SequenceB1c#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceB1c within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceB1c within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
-	@com.prowidesoftware.swift.internal.NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceB1c> getSequenceB1cList(final SwiftTagListBlock parentSequence) {
-  		/*
-		 * The delimiter BREAK is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence B1c.
-		 * So we call a special method to resolve this situation until we find a better approach.
-		 */
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT535GetSequenceB1cList_sru2018(new MT535().append(parentSequence));
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1c.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceB1c> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceB1c s = new SequenceB1c();
+                    s.setTags(b.getSubBlock(SequenceB1c.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=C]
 	/**
 	 * Class to model Sequence "C" in MT 535
 	 */
@@ -3029,8 +2420,9 @@ public class MT535 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceC delimited by 16R/16S with value specified in SequenceC#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceC delimited by 16R/16S with value specified in {@link SequenceC#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceC#START_END_16RS
 	 */
@@ -3039,31 +2431,31 @@ public class MT535 extends AbstractMT implements Serializable {
 		return getSequenceCList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	 * Get the list of SequenceC delimited by 16R/16S with value specified in SequenceC#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceC delimited by 16R/16S with value specified in {@link SequenceC#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceC#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceC within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceC within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceC> getSequenceCList(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceC> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceC s = new SequenceC();
-				s.setTags(b.getSubBlock(SequenceC.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC s = new SequenceC();
+                    s.setTags(b.getSubBlock(SequenceC.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
-
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
+	}
+ 
 
 
 

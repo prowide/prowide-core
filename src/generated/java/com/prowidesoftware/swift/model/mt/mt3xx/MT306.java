@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -236,7 +236,7 @@ Sequence M1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2018</strong>
+ * This source code is specific to release <strong>SRU 2019</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -245,7 +245,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT306.class.getName());
 	
@@ -253,465 +253,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	* Constant for MT name, this is part of the classname, after <code>MT</code>
 	*/
 	public static final String NAME = "306";
-	
-// begin qualifiers constants	
-
-	/**
-	* Constant for qualifier with value A 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String A = "A";
-
-	/**
-	* Constant for qualifier with value AD 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AD = "AD";
-
-	/**
-	* Constant for qualifier with value AFB 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AFB = "AFB";
-
-	/**
-	* Constant for qualifier with value AGNT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AGNT = "AGNT";
-
-	/**
-	* Constant for qualifier with value AMER 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AMER = "AMER";
-
-	/**
-	* Constant for qualifier with value AMND 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AMND = "AMND";
-
-	/**
-	* Constant for qualifier with value ASIA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ASIA = "ASIA";
-
-	/**
-	* Constant for qualifier with value AVRF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AVRF = "AVRF";
-
-	/**
-	* Constant for qualifier with value AVRO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AVRO = "AVRO";
-
-	/**
-	* Constant for qualifier with value AVSF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AVSF = "AVSF";
-
-	/**
-	* Constant for qualifier with value AVSO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AVSO = "AVSO";
-
-	/**
-	* Constant for qualifier with value B 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String B = "B";
-
-	/**
-	* Constant for qualifier with value BERM 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BERM = "BERM";
-
-	/**
-	* Constant for qualifier with value BILA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BILA = "BILA";
-
-	/**
-	* Constant for qualifier with value BINA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BINA = "BINA";
-
-	/**
-	* Constant for qualifier with value BROK 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BROK = "BROK";
-
-	/**
-	* Constant for qualifier with value C 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String C = "C";
-
-	/**
-	* Constant for qualifier with value CALL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CALL = "CALL";
-
-	/**
-	* Constant for qualifier with value CANC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CANC = "CANC";
-
-	/**
-	* Constant for qualifier with value CLST 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CLST = "CLST";
-
-	/**
-	* Constant for qualifier with value CONF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CONF = "CONF";
-
-	/**
-	* Constant for qualifier with value DAVF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DAVF = "DAVF";
-
-	/**
-	* Constant for qualifier with value DAVO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DAVO = "DAVO";
-
-	/**
-	* Constant for qualifier with value DBTR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DBTR = "DBTR";
-
-	/**
-	* Constant for qualifier with value DERV 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DERV = "DERV";
-
-	/**
-	* Constant for qualifier with value DIGI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DIGI = "DIGI";
-
-	/**
-	* Constant for qualifier with value DKIN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DKIN = "DKIN";
-
-	/**
-	* Constant for qualifier with value DKOT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DKOT = "DKOT";
-
-	/**
-	* Constant for qualifier with value ELEC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ELEC = "ELEC";
-
-	/**
-	* Constant for qualifier with value EURO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EURO = "EURO";
-
-	/**
-	* Constant for qualifier with value F 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String F = "F";
-
-	/**
-	* Constant for qualifier with value FAXT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FAXT = "FAXT";
-
-	/**
-	* Constant for qualifier with value FBF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FBF = "FBF";
-
-	/**
-	* Constant for qualifier with value FEOMA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FEOMA = "FEOMA";
-
-	/**
-	* Constant for qualifier with value FLIPPED 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FLIPPED = "FLIPPED";
-
-	/**
-	* Constant for qualifier with value ICOM 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ICOM = "ICOM";
-
-	/**
-	* Constant for qualifier with value IFEMA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String IFEMA = "IFEMA";
-
-	/**
-	* Constant for qualifier with value ISDA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ISDA = "ISDA";
-
-	/**
-	* Constant for qualifier with value ISDACN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ISDACN = "ISDACN";
-
-	/**
-	* Constant for qualifier with value KIKO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String KIKO = "KIKO";
-
-	/**
-	* Constant for qualifier with value KNIN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String KNIN = "KNIN";
-
-	/**
-	* Constant for qualifier with value KNOT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String KNOT = "KNOT";
-
-	/**
-	* Constant for qualifier with value KOKI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String KOKI = "KOKI";
-
-	/**
-	* Constant for qualifier with value N 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String N = "N";
-
-	/**
-	* Constant for qualifier with value NETCASH 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NETCASH = "NETCASH";
-
-	/**
-	* Constant for qualifier with value NEWT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NEWT = "NEWT";
-
-	/**
-	* Constant for qualifier with value NORMAL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NORMAL = "NORMAL";
-
-	/**
-	* Constant for qualifier with value NOTO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NOTO = "NOTO";
-
-	/**
-	* Constant for qualifier with value O 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String O = "O";
-
-	/**
-	* Constant for qualifier with value OTHER 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OTHER = "OTHER";
-
-	/**
-	* Constant for qualifier with value OTHR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OTHR = "OTHR";
-
-	/**
-	* Constant for qualifier with value P 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String P = "P";
-
-	/**
-	* Constant for qualifier with value PC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PC = "PC";
-
-	/**
-	* Constant for qualifier with value PHON 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PHON = "PHON";
-
-	/**
-	* Constant for qualifier with value PRINCIPAL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PRINCIPAL = "PRINCIPAL";
-
-	/**
-	* Constant for qualifier with value PUTO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PUTO = "PUTO";
-
-	/**
-	* Constant for qualifier with value S 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String S = "S";
-
-	/**
-	* Constant for qualifier with value SITR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SITR = "SITR";
-
-	/**
-	* Constant for qualifier with value SKIN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SKIN = "SKIN";
-
-	/**
-	* Constant for qualifier with value SKOT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SKOT = "SKOT";
-
-	/**
-	* Constant for qualifier with value TELX 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TELX = "TELX";
-
-	/**
-	* Constant for qualifier with value TRIG 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TRIG = "TRIG";
-
-	/**
-	* Constant for qualifier with value U 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String U = "U";
-
-	/**
-	* Constant for qualifier with value VANI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String VANI = "VANI";
-
-	/**
-	* Constant for qualifier with value Y 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String Y = "Y";
-
-// end qualifiers constants	
 
 	/**
 	 * Creates an MT306 initialized with the parameter SwiftMessage
@@ -768,24 +309,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	 */
 	public MT306(final String sender, final String receiver) {
 		super(306, sender, receiver);
-	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT306(String, String)
-	* @deprecated Use instead <code>new MT306(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT306(final int messageType, final String sender, final String receiver) {
-		super(306, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT306(int, String, String)", "Use the constructor MT306(sender, receiver) instead.");
 	}
 	
 	/**
@@ -3773,7 +3296,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 
-// BaseSequenceCodeGenerator [seq=A]
 	/**
 	 * Class to model Sequence "A" in MT 306
 	 */
@@ -3862,7 +3384,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceA using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceA within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceA within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -3876,7 +3398,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=B]
 	/**
 	 * Class to model Sequence "B" in MT 306
 	 */
@@ -3965,7 +3486,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceB using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceB within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceB within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -3979,7 +3500,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=C]
 	/**
 	 * Class to model Sequence "C" in MT 306
 	 */
@@ -4068,7 +3588,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceC using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceC within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceC within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -4082,7 +3602,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=D]
 	/**
 	 * Class to model Sequence "D" in MT 306
 	 */
@@ -4171,7 +3690,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceD using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceD within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceD within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -4185,7 +3704,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=E]
 	/**
 	 * Class to model Sequence "E" in MT 306
 	 */
@@ -4274,7 +3792,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceE using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceE within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceE within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -4288,7 +3806,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=F]
 	/**
 	 * Class to model Sequence "F" in MT 306
 	 */
@@ -4377,7 +3894,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceF using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceF within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceF within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -4391,7 +3908,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=F1]
 	/**
 	 * Class to model Sequence "F1" in MT 306
 	 */
@@ -4468,55 +3984,40 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
-	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence an optional parent sequence or null to find SequenceF1 within the complete message
 	 * @return the found sequences or an empty list if none is found
-	 * @since 7.7
+	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceF1> getSequenceF1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceF1> result = new ArrayList<>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceF1.START, SequenceF1.END, SequenceF1.TAIL);
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceF1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
+	public List<SequenceF1> getSequenceF1List() {
+		return getSequenceF1List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	 * Get the list of SequenceM1a delimited by leading tag and end, with an optional tail.
+	 * Get the list of SequenceF1 delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
 	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence an optional parent sequence or null to find SequenceM1a within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceF1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceM1a> getSequenceM1aList(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceM1a> result = new ArrayList<>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceM1a.START, SequenceM1a.END, SequenceM1a.TAIL);
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceM1a(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
+	public static List<SequenceF1> getSequenceF1List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceF1.START, SequenceF1.END, SequenceF1.TAIL);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceF1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    result.add(new SequenceF1(b));
+                }
+                return result;
+            }
+        }
+        return Collections.emptyList();
 	}
  
 
-// BaseSequenceCodeGenerator [seq=G]
 	/**
 	 * Class to model Sequence "G" in MT 306
 	 */
@@ -4605,25 +4106,26 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the list of SequenceG using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceG within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a no null parent sequence to find SequenceG within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static List<SequenceG> getSequenceGList(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> ret = SwiftMessageUtils.splitByField15(parentSequence, "G");
-		if (ret != null && !ret.isEmpty()) {
-			final List<SequenceG> result = new ArrayList<>(ret.size());
-			for (final SwiftTagListBlock b : ret) {
-				result.add(new SequenceG(b));
-			}
-			return result;
-		}
-		return java.util.Collections.emptyList();
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = SwiftMessageUtils.splitByField15(parentSequence, "G");
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceG> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    result.add(new SequenceG(b));
+                }
+                return result;
+            }
+        }
+		return Collections.emptyList();
 	}
 
 
-// BaseSequenceCodeGenerator [seq=H]
 	/**
 	 * Class to model Sequence "H" in MT 306
 	 */
@@ -4712,7 +4214,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceH using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceH within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceH within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -4726,7 +4228,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=I]
 	/**
 	 * Class to model Sequence "I" in MT 306
 	 */
@@ -4815,7 +4316,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceI using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceI within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceI within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -4829,7 +4330,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=J]
 	/**
 	 * Class to model Sequence "J" in MT 306
 	 */
@@ -4918,7 +4418,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceJ using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceJ within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceJ within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -4932,7 +4432,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=K]
 	/**
 	 * Class to model Sequence "K" in MT 306
 	 */
@@ -5021,7 +4520,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceK using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceK within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceK within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -5035,7 +4534,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=L]
 	/**
 	 * Class to model Sequence "L" in MT 306
 	 */
@@ -5124,7 +4622,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceL using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceL within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceL within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -5138,7 +4636,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=M]
 	/**
 	 * Class to model Sequence "M" in MT 306
 	 */
@@ -5227,7 +4724,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceM using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceM within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceM within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -5241,7 +4738,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=M1]
 	/**
 	 * Class to model Sequence "M1" in MT 306
 	 */
@@ -5271,7 +4767,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=M1a]
 	/**
 	 * Class to model Sequence "M1a" in MT 306
 	 */
@@ -5343,48 +4838,45 @@ public class MT306 extends AbstractMT implements Serializable {
 			return result;
 		}
 	}
-
 	/**
-	 * Get the list of SequenceM1a1 delimited by leading tag and end, with an optional tail.
+	 * Get the list of SequenceM1a delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
-	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence an optional parent sequence or null to find SequenceM1a1 within the complete message
 	 * @return the found sequences or an empty list if none is found
-	 * @since 7.7
+	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceM1a1> getSequenceM1a1List(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceM1a1> result = new ArrayList<>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceM1a1.START, SequenceM1a1.END, SequenceM1a1.TAIL);
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceM1a1(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
+	public List<SequenceM1a> getSequenceM1aList() {
+		return getSequenceM1aList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	 * Get the list of SequenceF1 delimited by leading tag and end, with an optional tail.
+	 * Get the list of SequenceM1a delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
-	 * @return the found sequences or an empty list if none is found
 	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
+	 * @param parentSequence a not null parent sequence to find SequenceM1a within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceF1> getSequenceF1List() {
-		return getSequenceF1List(super.getSwiftMessageNotNullOrException().getBlock4());
+	public static List<SequenceM1a> getSequenceM1aList(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceM1a.START, SequenceM1a.END, SequenceM1a.TAIL);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceM1a> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    result.add(new SequenceM1a(b));
+                }
+                return result;
+            }
+        }
+        return Collections.emptyList();
 	}
  
 
-// BaseSequenceCodeGenerator [seq=M1a1]
 	/**
 	 * Class to model Sequence "M1a1" in MT 306
 	 */
@@ -5456,20 +4948,6 @@ public class MT306 extends AbstractMT implements Serializable {
 			return result;
 		}
 	}
-
-	/**
-	 * Get the list of SequenceM1a delimited by leading tag and end, with an optional tail.
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
-	 *
-	 * @return the found sequences or an empty list if none is found
-	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 */
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceM1a> getSequenceM1aList() {
-		return getSequenceM1aList(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
 	/**
 	 * Get the list of SequenceM1a1 delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
@@ -5481,6 +4959,31 @@ public class MT306 extends AbstractMT implements Serializable {
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public List<SequenceM1a1> getSequenceM1a1List() {
 		return getSequenceM1a1List(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	
+	/**
+	 * Get the list of SequenceM1a1 delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
+	 *
+	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
+	 * @param parentSequence a not null parent sequence to find SequenceM1a1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+	public static List<SequenceM1a1> getSequenceM1a1List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceM1a1.START, SequenceM1a1.END, SequenceM1a1.TAIL);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceM1a1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    result.add(new SequenceM1a1(b));
+                }
+                return result;
+            }
+        }
+        return Collections.emptyList();
 	}
  
 

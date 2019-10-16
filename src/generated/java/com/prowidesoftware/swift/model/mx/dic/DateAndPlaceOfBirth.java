@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 import com.prowidesoftware.CopyableTo;
+import com.prowidesoftware.Generated;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -25,6 +26,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
     "cityOfBirth",
     "ctryOfBirth"
 })
+@Generated
 public class DateAndPlaceOfBirth implements CopyableTo<DateAndPlaceOfBirth>
 {
 

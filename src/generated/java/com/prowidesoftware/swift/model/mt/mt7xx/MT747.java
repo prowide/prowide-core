@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ import java.io.IOException;
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2018</strong>
+ * This source code is specific to release <strong>SRU 2019</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -61,7 +61,7 @@ public class MT747 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT747.class.getName());
 	
@@ -69,10 +69,6 @@ public class MT747 extends AbstractMT implements Serializable {
 	* Constant for MT name, this is part of the classname, after <code>MT</code>
 	*/
 	public static final String NAME = "747";
-	
-// begin qualifiers constants	
-
-// end qualifiers constants	
 
 	/**
 	 * Creates an MT747 initialized with the parameter SwiftMessage
@@ -129,24 +125,6 @@ public class MT747 extends AbstractMT implements Serializable {
 	 */
 	public MT747(final String sender, final String receiver) {
 		super(747, sender, receiver);
-	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT747(String, String)
-	* @deprecated Use instead <code>new MT747(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT747(final int messageType, final String sender, final String receiver) {
-		super(747, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT747(int, String, String)", "Use the constructor MT747(sender, receiver) instead.");
 	}
 	
 	/**

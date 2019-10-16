@@ -16,42 +16,42 @@
 package com.prowidesoftware.swift.io;
 
 import com.prowidesoftware.ProwideException;
-import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.parser.XMLParser;
-import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import org.apache.commons.lang3.Validate;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.StringWriter;
 
 
 /**
  * This interface provides a general conversion service between three different formats:
  * <ul>
- * 	<li><b>FIN</b>: SWIFT message format as used by SWIFTNet (ISO 15022 compliance).</li>
- *  <li><b>XML</b>: WIFE's XML representation of SWIFT messages.</li>
- *  <li><b>SwiftMessage</b>: WIFE's java object model of SWIFT messages.</li>
+ * 	<li><b>FIN</b>: SWIFT raw format for MT messages (ISO 15022).</li>
+ *  <li><b>XML</b>: A proprietary XML representation of SWIFT MT messages.</li>
+ *  <li><b>SwiftMessage</b>: Java model of SWIFT MT messages.</li>
  * </ul>
  * <p>This class may be used as a serializer.
  * <p>All methods in this class are <b>threadsafe</b>.
  */
 public class ConversionService implements IConversionService {
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(ConversionService.class.getName());
 
 	/**
 	 * Given a SwiftMessage object returns a String containing its SWIFT message representation.
-	 * Ensures all line breaks use CRLF
+	 * <p>The implementation ensures all line breaks use CRLF, and ignores all empty blocks.
 	 *
 	 * @see com.prowidesoftware.swift.io.IConversionService#getFIN(com.prowidesoftware.swift.model.SwiftMessage)
 	 */
 	public String getFIN(final SwiftMessage msg) {
 		Validate.notNull(msg);
-		msg.removeEmptyBlocks();
+
 		final StringWriter writer = new StringWriter();
-		SwiftWriter.writeMessage(msg, writer);
+		SwiftWriter.writeMessage(msg, writer, true);
 		final String fin = writer.getBuffer().toString();
+
+		// ensure EOLs in the result
 		return SwiftWriter.ensureEols(fin);
 	}
 
@@ -118,9 +118,8 @@ public class ConversionService implements IConversionService {
 	 */
 	public SwiftMessage getMessageFromFIN(final String fin) {
 		Validate.notNull(fin);
-		final SwiftParser p = new SwiftParser(new ByteArrayInputStream(fin.getBytes()));
 		try {
-			return p.message();
+			return SwiftMessage.parse(fin);
 		} catch (final IOException e) {
 			throw new ProwideException(e+" during parse of message");
 		}

@@ -1,5 +1,18 @@
-SNAPSHOT 7.10.5
+RELEASE 8.0.1 - October 2019 - LTS version for SRU2019
+  * Added SwiftMessageUtils#currencyAmount to retrieve the main currency and amount from a message
+  * (CR #192) Fixed ConversionService#getFIN(SwiftMessage) to avoid altering the message parameter when removing empty blocks
+  * Added an optional SwiftWriter#writeMessage with ignoreEmptyBlocks parameter
+  * SwiftMessage#setUserBlocks(List) made public
+  * Removed the trim to field values in the XML to enable consistent round trip conversion between FIN and XML
+  * Explicit UTF-8 encoding was added where necessary to ensure portability
   * Added MultiLineField implementation to 45D, 49G, 49M and 49N
+
+RELEASE 8.0.0 - May 2019
+  JRE requirement increased to Java 1.8
+  SWIFT Standard release update 2019 (live 17 November 2019)
+
+  * Yearly revision of deprecation phase (see http://www.prowidesoftware.com/resources/deprecation-policy)
+  * Added common hierarchy for option J party fields
 
 RELEASE 7.10.4 - May 2019 - LTS maintenance version for current SRU (2018)
 

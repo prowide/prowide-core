@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ import java.io.IOException;
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2018</strong>
+ * This source code is specific to release <strong>SRU 2019</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -61,7 +61,7 @@ public class MT074 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT074.class.getName());
 	
@@ -69,66 +69,6 @@ public class MT074 extends AbstractMT implements Serializable {
 	* Constant for MT name, this is part of the classname, after <code>MT</code>
 	*/
 	public static final String NAME = "074";
-	
-// begin qualifiers constants	
-
-	/**
-	* Constant for qualifier with value AFRI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AFRI = "AFRI";
-
-	/**
-	* Constant for qualifier with value APAC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String APAC = "APAC";
-
-	/**
-	* Constant for qualifier with value CEEE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CEEE = "CEEE";
-
-	/**
-	* Constant for qualifier with value CLAM 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CLAM = "CLAM";
-
-	/**
-	* Constant for qualifier with value EEAR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EEAR = "EEAR";
-
-	/**
-	* Constant for qualifier with value EUZN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EUZN = "EUZN";
-
-	/**
-	* Constant for qualifier with value MIDE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MIDE = "MIDE";
-
-	/**
-	* Constant for qualifier with value NAMR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NAMR = "NAMR";
-
-// end qualifiers constants	
 
 	/**
 	 * Creates an MT074 initialized with the parameter SwiftMessage
@@ -185,24 +125,6 @@ public class MT074 extends AbstractMT implements Serializable {
 	 */
 	public MT074(final String sender, final String receiver) {
 		super(74, sender, receiver);
-	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT074(String, String)
-	* @deprecated Use instead <code>new MT074(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT074(final int messageType, final String sender, final String receiver) {
-		super(74, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT074(int, String, String)", "Use the constructor MT074(sender, receiver) instead.");
 	}
 	
 	/**

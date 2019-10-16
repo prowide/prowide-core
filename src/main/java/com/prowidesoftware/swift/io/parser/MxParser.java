@@ -15,22 +15,22 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.MxId;
 import com.prowidesoftware.swift.model.MxNode;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.model.mx.BusinessHeader;
-import com.prowidesoftware.swift.model.mx.MxPayload;
-import com.prowidesoftware.swift.model.mx.MxSimpleDocument;
 import com.prowidesoftware.swift.model.mx.dic.ApplicationHeader;
 import com.prowidesoftware.swift.model.mx.dic.BusinessApplicationHeaderV01;
 import com.prowidesoftware.swift.utils.Lib;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.util.logging.Level;
 
 /**
@@ -106,28 +106,6 @@ public class MxParser {
 	}
 
 	/**
-	 * Initializes the parser with the given stream, and returns its parsed
-	 * content.
-	 * 
-	 * @deprecated initialize the parser with the stream instead an call the generic {@link #parse()} method
-	 * @since 7.6
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public MxNode parse(final InputStream stream) {
-		DeprecationUtils.phase3(getClass(), "parse(stream)", "Initialize the parser with the stream instead an call the generic parse() method.");
-		try {
-			this.buffer = Lib.readStream(stream);
-			return parse();
-		} catch (UnsupportedEncodingException e) {
-			log.log(Level.SEVERE, "error reading stream", e);
-		} catch (IOException e) {
-			log.log(Level.SEVERE, "error reading stream", e);
-		}
-		return null;
-	}
-
-	/**
 	 * Non-namespace aware parse.<br>
 	 * Parses the complete message content into an {@link MxNode} tree structure.
 	 * The parser should be initialized with a valid source.
@@ -149,22 +127,6 @@ public class MxParser {
 			log.log(Level.SEVERE, "Error parsing: ", e);
 		}
 		return null;
-	}
-
-	/**
-	 * @deprecated use {@link #stripDocument()} and {@link #stripHeader()} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public MxPayload payload() {
-		DeprecationUtils.phase3(getClass(), "payload()", "In order to get the payload of a wrapped MX, use stripDocument() and stripHeader() instead.");
-		final MxId id = detectMessage();
-		log.fine("Detected message {}" + id);
-		final MxPayload result = new MxPayload();
-
-		result.setHeader(parseBusinessHeader());
-		result.setDocument(new MxSimpleDocument());
-		return result;
 	}
 
 	/**
@@ -299,7 +261,7 @@ public class MxParser {
 	 * @since 7.8.4
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public MxStructureInfo analizeMessage() {
 		return analyzeMessage();
 	}
@@ -418,13 +380,6 @@ public class MxParser {
 					+ ", documentPrefix=" + documentPrefix + ", headerNamespace=" + headerNamespace + ", headerPrefix="
 					+ headerPrefix + "]";
 		}
-	}
-	
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public MxPayload mx() {
-		DeprecationUtils.phase3(getClass(), "mx()", "In order to get the payload of a wrapped MX, use stripDocument() and stripHeader() instead.");
-		return null;
 	}
 	
 	/**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ Sequence B (M) (repetitive)<ul><li class="field">Field 35 B (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2018</strong>
+ * This source code is specific to release <strong>SRU 2019</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -71,7 +71,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT526.class.getName());
 	
@@ -79,108 +79,6 @@ public class MT526 extends AbstractMT implements Serializable {
 	* Constant for MT name, this is part of the classname, after <code>MT</code>
 	*/
 	public static final String NAME = "526";
-	
-// begin qualifiers constants	
-
-	/**
-	* Constant for qualifier with value BON 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BON = "BON";
-
-	/**
-	* Constant for qualifier with value CER 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CER = "CER";
-
-	/**
-	* Constant for qualifier with value CPN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CPN = "CPN";
-
-	/**
-	* Constant for qualifier with value FMT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String FMT = "FMT";
-
-	/**
-	* Constant for qualifier with value MSC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MSC = "MSC";
-
-	/**
-	* Constant for qualifier with value OPC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OPC = "OPC";
-
-	/**
-	* Constant for qualifier with value OPS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OPS = "OPS";
-
-	/**
-	* Constant for qualifier with value PRC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PRC = "PRC";
-
-	/**
-	* Constant for qualifier with value PRS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PRS = "PRS";
-
-	/**
-	* Constant for qualifier with value RTE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String RTE = "RTE";
-
-	/**
-	* Constant for qualifier with value RTS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String RTS = "RTS";
-
-	/**
-	* Constant for qualifier with value SHS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SHS = "SHS";
-
-	/**
-	* Constant for qualifier with value UNT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String UNT = "UNT";
-
-	/**
-	* Constant for qualifier with value WTS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String WTS = "WTS";
-
-// end qualifiers constants	
 
 	/**
 	 * Creates an MT526 initialized with the parameter SwiftMessage
@@ -237,24 +135,6 @@ public class MT526 extends AbstractMT implements Serializable {
 	 */
 	public MT526(final String sender, final String receiver) {
 		super(526, sender, receiver);
-	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT526(String, String)
-	* @deprecated Use instead <code>new MT526(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT526(final int messageType, final String sender, final String receiver) {
-		super(526, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT526(int, String, String)", "Use the constructor MT526(sender, receiver) instead.");
 	}
 	
 	/**
@@ -674,7 +554,6 @@ public class MT526 extends AbstractMT implements Serializable {
 	}
 	
 
-// BaseSequenceCodeGenerator [seq=A]
 	/**
 	 * Class to model Sequence "A" in MT 526
 	 */
@@ -746,7 +625,7 @@ public class MT526 extends AbstractMT implements Serializable {
 			return result;
 		}
 	}
- 	/**
+	/**
 	 * Get the single occurrence of SequenceA delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * If block 4 is empty this method returns null.
@@ -765,8 +644,8 @@ public class MT526 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence an optional parent sequence or null to find SequenceA within the complete message
-	 * @return the found sequence or an empty sequence if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceA within it
+	 * @return the found sequence or an empty sequence if none is found, or null if the parent sequence is null or empty
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
@@ -790,7 +669,6 @@ public class MT526 extends AbstractMT implements Serializable {
 	}
  
 
-// BaseSequenceCodeGenerator [seq=B]
 	/**
 	 * Class to model Sequence "B" in MT 526
 	 */

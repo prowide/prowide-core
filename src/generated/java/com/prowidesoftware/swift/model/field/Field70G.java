@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import com.prowidesoftware.swift.model.field.GenericField;
+import com.prowidesoftware.swift.model.field.MultiLineField;
+
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,18 +46,18 @@ import com.google.gson.JsonParser;
  * Model and parser for field 70G of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>String</code></li> 
+ * <ol>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -63,17 +66,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>:S//S[$S]0-9</code></li>
  * 		<li>components pattern: <code>SSSSSSSSSSS</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
-public class Field70G extends Field implements Serializable, com.prowidesoftware.swift.model.field.GenericField, com.prowidesoftware.swift.model.field.MultiLineField {
+public class Field70G extends Field implements Serializable, GenericField, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -128,11 +131,44 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 		}
 		parse(tag.getValue());
 	}
-	
+
+	/**
+	 * Copy constructor.<br>
+	 * Initializes the components list with a deep copy of the source components list.
+	 * @param source a field instance to copy
+	 * @since 7.7
+	 */
+	public static Field70G newInstance(Field70G source) {
+		Field70G cp = new Field70G();
+		cp.setComponents(new ArrayList<>(source.getComponents()));
+		return cp;
+	}
+
+	/**
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag tag(final String value) {
+		return new Tag(NAME, value);
+	}
+
+	/**
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag emptyTag() {
+		return new Tag(NAME, "");
+	}
+
+
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
+	 *
+	 * <p>Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
 	 * @param value complete field value including separators and CRLF
@@ -148,19 +184,6 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 		}
 		SwiftParseUtils.setComponentsFromLines(this, 3, null, 1, lines);
 	}
-	
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field70G newInstance(Field70G source) {
-		Field70G cp = new Field70G();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
-	
 	/**
 	 * Serializes the fields' components into the single string value (SWIFT format)
 	 */
@@ -174,29 +197,200 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 		appendInLines(result, 3, 11);
 		return result.toString();
 	}
-
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
+	 * Returns a localized suitable for showing to humans string of a field component.<br>
+	 *
+	 * @param component number of the component to display
+	 * @param locale optional locale to format date and amounts, if null, the default locale is used
+	 * @return formatted component value or null if component number is invalid or not present
+	 * @throws IllegalArgumentException if component number is invalid for the field
+	 * @since 7.8
+	 */
+	@Override
+	public String getValueDisplay(int component, Locale locale) {
+		if (component < 1 || component > 11) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 70G");
+		}
+		if (component == 1) {
+			//default format (as is)
+			return getComponent(1);
+		}
+		if (component == 2) {
+			//default format (as is)
+			return getComponent(2);
+		}
+		if (component == 3) {
+			//default format (as is)
+			return getComponent(3);
+		}
+		if (component == 4) {
+			//default format (as is)
+			return getComponent(4);
+		}
+		if (component == 5) {
+			//default format (as is)
+			return getComponent(5);
+		}
+		if (component == 6) {
+			//default format (as is)
+			return getComponent(6);
+		}
+		if (component == 7) {
+			//default format (as is)
+			return getComponent(7);
+		}
+		if (component == 8) {
+			//default format (as is)
+			return getComponent(8);
+		}
+		if (component == 9) {
+			//default format (as is)
+			return getComponent(9);
+		}
+		if (component == 10) {
+			//default format (as is)
+			return getComponent(10);
+		}
+		if (component == 11) {
+			//default format (as is)
+			return getComponent(11);
+		}
+		return null;
+	}
+	/**
+	 * Returns the field components pattern
+	 * @return the static value of Field70G.COMPONENTS_PATTERN
+	 */
+	@Override
+	public final String componentsPattern() {
+		return COMPONENTS_PATTERN;
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
-	
+     * Returns the field parser pattern
+     * @return the static value of Field70G.PARSER_PATTERN
+     */
+	@Override
+	public final String parserPattern() {
+        return PARSER_PATTERN;
+    }
+
 	/**
-	 * Gets the component1
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return ":4!c//35z[$35z]0-9";
+	}
+
+    /**
+     * Given a component number it returns true if the component is optional,
+     * regardless of the field being mandatory in a particular message.<br>
+     * Being the field's value conformed by a composition of one or several
+     * internal component values, the field may be present in a message with
+     * a proper value but with some of its internal components not set.
+     *
+     * @param component component number, first component of a field is referenced as 1
+     * @return true if the component is optional for this field, false otherwise
+     */
+    @Override
+    public boolean isOptional(int component) {
+        if (component == 3) {
+            return true;
+        }
+        if (component == 4) {
+            return true;
+        }
+        if (component == 5) {
+            return true;
+        }
+        if (component == 6) {
+            return true;
+        }
+        if (component == 7) {
+            return true;
+        }
+        if (component == 8) {
+            return true;
+        }
+        if (component == 9) {
+            return true;
+        }
+        if (component == 10) {
+            return true;
+        }
+        if (component == 11) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     * @return true if the field is generic, false otherwise
+     */
+    @Override
+    public boolean isGeneric() {
+        return true;
+    }
+
+	/**
+	 * Returns the defined amount of components.<br>
+	 * This is not the amount of components present in the field instance, but the total amount of components
+	 * that this field accepts as defined.
+	 * @since 7.7
+	 */
+	@Override
+	public int componentsSize() {
+		return 11;
+	}
+
+	/**
+	 * Returns english label for components.
+	 * <br>
+	 * The index in the list is in sync with specific field component structure.
+	 * @see #getComponentLabel(int)
+	 * @since 7.8.4
+	 */
+	@Override
+	protected List<String> getComponentLabels() {
+		List<String> result = new ArrayList<>();
+		result.add("Qualifier");
+		result.add("Narrative");
+		result.add("Narrative 2");
+		result.add("Narrative 3");
+		result.add("Narrative 4");
+		result.add("Narrative 5");
+		result.add("Narrative 6");
+		result.add("Narrative 7");
+		result.add("Narrative 8");
+		result.add("Narrative 9");
+		result.add("Narrative 10");
+		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.3
+	 */
+	@Override
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<>();
+		result.put(1, "qualifier");
+		result.put(2, "narrative");
+		result.put(3, "narrative2");
+		result.put(4, "narrative3");
+		result.put(5, "narrative4");
+		result.put(6, "narrative5");
+		result.put(7, "narrative6");
+		result.put(8, "narrative7");
+		result.put(9, "narrative8");
+		result.put(10, "narrative9");
+		result.put(11, "narrative10");
+		return result;
+	}
+	/**
+	 * Gets the component1 (Qualifier).
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -208,9 +402,9 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
 	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(1);
 	}
 
@@ -221,26 +415,8 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 	public String getQualifier() {
 		return getComponent(1);
 	}
-
 	/**
-	 * Set the component1.
-	 * @param component1 the component1 to set
-	 */
-	public Field70G setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Qualifier (component1).
-	 * @param component1 the Qualifier to set
-	 */
-	public Field70G setQualifier(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	/**
-	 * Gets the component2
+	 * Gets the component2 (Narrative).
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -252,9 +428,9 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
 	public java.lang.String getComponent2AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(2);
 	}
 
@@ -354,9 +530,190 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 		}
 		return result.toString();
 	}
+	/**
+	 * Gets the component3 (Narrative).
+	 * @return the component3
+	 */
+	public String getComponent3() {
+		return getComponent(3);
+	}
 
 	/**
-	 * Set the component2.
+	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent3AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(3);
+	}
+	/**
+	 * Gets the component4 (Narrative).
+	 * @return the component4
+	 */
+	public String getComponent4() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Same as getComponent(4)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent4AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(4);
+	}
+	/**
+	 * Gets the component5 (Narrative).
+	 * @return the component5
+	 */
+	public String getComponent5() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent5AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent5AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(5);
+	}
+	/**
+	 * Gets the component6 (Narrative).
+	 * @return the component6
+	 */
+	public String getComponent6() {
+		return getComponent(6);
+	}
+
+	/**
+	 * Same as getComponent(6)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent6AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(6);
+	}
+	/**
+	 * Gets the component7 (Narrative).
+	 * @return the component7
+	 */
+	public String getComponent7() {
+		return getComponent(7);
+	}
+
+	/**
+	 * Same as getComponent(7)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent7AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent7AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(7);
+	}
+	/**
+	 * Gets the component8 (Narrative).
+	 * @return the component8
+	 */
+	public String getComponent8() {
+		return getComponent(8);
+	}
+
+	/**
+	 * Same as getComponent(8)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent8AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent8AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(8);
+	}
+	/**
+	 * Gets the component9 (Narrative).
+	 * @return the component9
+	 */
+	public String getComponent9() {
+		return getComponent(9);
+	}
+
+	/**
+	 * Same as getComponent(9)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent9AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent9AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(9);
+	}
+	/**
+	 * Gets the component10 (Narrative).
+	 * @return the component10
+	 */
+	public String getComponent10() {
+		return getComponent(10);
+	}
+
+	/**
+	 * Same as getComponent(10)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent10AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent10AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(10);
+	}
+	/**
+	 * Gets the component11 (Narrative).
+	 * @return the component11
+	 */
+	public String getComponent11() {
+		return getComponent(11);
+	}
+
+	/**
+	 * Same as getComponent(11)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent11AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent11AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(11);
+	}
+
+
+	/**
+	 * Set the component1 (Qualifier).
+	 * @param component1 the component1 to set
+	 */
+	public Field70G setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Qualifier (component1).
+	 * @param component1 the Qualifier to set
+	 */
+	public Field70G setQualifier(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+
+	/**
+	 * Set the component2 (Narrative).
 	 * @param component2 the component2 to set
 	 */
 	public Field70G setComponent2(String component2) {
@@ -463,243 +820,81 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 		SwiftParseUtils.setComponentsFromLines(this, 2, 10, 0, lines);
 		return this;
 	}
-	/**
-	 * Gets the component3
-	 * @return the component3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
 
 	/**
-	 * Same as getComponent(3)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent3AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(3);
-	}
-
-	/**
-	 * Set the component3.
+	 * Set the component3 (Narrative).
 	 * @param component3 the component3 to set
 	 */
 	public Field70G setComponent3(String component3) {
 		setComponent(3, component3);
 		return this;
 	}
-	/**
-	 * Gets the component4
-	 * @return the component4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
 
 	/**
-	 * Same as getComponent(4)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent4AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(4);
-	}
-
-	/**
-	 * Set the component4.
+	 * Set the component4 (Narrative).
 	 * @param component4 the component4 to set
 	 */
 	public Field70G setComponent4(String component4) {
 		setComponent(4, component4);
 		return this;
 	}
-	/**
-	 * Gets the component5
-	 * @return the component5
-	 */
-	public String getComponent5() {
-		return getComponent(5);
-	}
 
 	/**
-	 * Same as getComponent(5)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent5AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent5AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(5);
-	}
-
-	/**
-	 * Set the component5.
+	 * Set the component5 (Narrative).
 	 * @param component5 the component5 to set
 	 */
 	public Field70G setComponent5(String component5) {
 		setComponent(5, component5);
 		return this;
 	}
-	/**
-	 * Gets the component6
-	 * @return the component6
-	 */
-	public String getComponent6() {
-		return getComponent(6);
-	}
 
 	/**
-	 * Same as getComponent(6)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent6AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(6);
-	}
-
-	/**
-	 * Set the component6.
+	 * Set the component6 (Narrative).
 	 * @param component6 the component6 to set
 	 */
 	public Field70G setComponent6(String component6) {
 		setComponent(6, component6);
 		return this;
 	}
-	/**
-	 * Gets the component7
-	 * @return the component7
-	 */
-	public String getComponent7() {
-		return getComponent(7);
-	}
 
 	/**
-	 * Same as getComponent(7)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent7AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent7AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(7);
-	}
-
-	/**
-	 * Set the component7.
+	 * Set the component7 (Narrative).
 	 * @param component7 the component7 to set
 	 */
 	public Field70G setComponent7(String component7) {
 		setComponent(7, component7);
 		return this;
 	}
-	/**
-	 * Gets the component8
-	 * @return the component8
-	 */
-	public String getComponent8() {
-		return getComponent(8);
-	}
 
 	/**
-	 * Same as getComponent(8)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent8AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent8AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(8);
-	}
-
-	/**
-	 * Set the component8.
+	 * Set the component8 (Narrative).
 	 * @param component8 the component8 to set
 	 */
 	public Field70G setComponent8(String component8) {
 		setComponent(8, component8);
 		return this;
 	}
-	/**
-	 * Gets the component9
-	 * @return the component9
-	 */
-	public String getComponent9() {
-		return getComponent(9);
-	}
 
 	/**
-	 * Same as getComponent(9)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent9AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent9AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(9);
-	}
-
-	/**
-	 * Set the component9.
+	 * Set the component9 (Narrative).
 	 * @param component9 the component9 to set
 	 */
 	public Field70G setComponent9(String component9) {
 		setComponent(9, component9);
 		return this;
 	}
-	/**
-	 * Gets the component10
-	 * @return the component10
-	 */
-	public String getComponent10() {
-		return getComponent(10);
-	}
 
 	/**
-	 * Same as getComponent(10)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent10AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent10AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(10);
-	}
-
-	/**
-	 * Set the component10.
+	 * Set the component10 (Narrative).
 	 * @param component10 the component10 to set
 	 */
 	public Field70G setComponent10(String component10) {
 		setComponent(10, component10);
 		return this;
 	}
-	/**
-	 * Gets the component11
-	 * @return the component11
-	 */
-	public String getComponent11() {
-		return getComponent(11);
-	}
 
 	/**
-	 * Same as getComponent(11)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent11AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent11AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(11);
-	}
-
-	/**
-	 * Set the component11.
+	 * Set the component11 (Narrative).
 	 * @param component11 the component11 to set
 	 */
 	public Field70G setComponent11(String component11) {
@@ -707,57 +902,6 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       if (component == 3) {
-           return true;
-       }
-       if (component == 4) {
-           return true;
-       }
-       if (component == 5) {
-           return true;
-       }
-       if (component == 6) {
-           return true;
-       }
-       if (component == 7) {
-           return true;
-       }
-       if (component == 8) {
-           return true;
-       }
-       if (component == 9) {
-           return true;
-       }
-       if (component == 10) {
-           return true;
-       }
-       if (component == 11) {
-           return true;
-       }
-       return false;
-   }
-
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return true;
-   }
 
    /**
     * Returns the issuer code (or Data Source Scheme or DSS).
@@ -794,10 +938,6 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
        return getComponent(CONDITIONAL_QUALIFIER);
    }
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field70G.NAME
@@ -805,23 +945,6 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field70G.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return ":4!c//35z[$35z]0-9";
 	}
 
 	/**
@@ -883,17 +1006,6 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 11;
 	}
 	
 	/**
@@ -972,112 +1084,6 @@ public class Field70G extends Field implements Serializable, com.prowidesoftware
 	public List<String> getLinesBetween(int start, int end, int offset) {
 		Field70G cp = newInstance(this);
 		return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
-	}
-	
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 11) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 70G");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
-		}
-		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		if (component == 4) {
-			//default format (as is)
-			return getComponent(4);
-		}
-		if (component == 5) {
-			//default format (as is)
-			return getComponent(5);
-		}
-		if (component == 6) {
-			//default format (as is)
-			return getComponent(6);
-		}
-		if (component == 7) {
-			//default format (as is)
-			return getComponent(7);
-		}
-		if (component == 8) {
-			//default format (as is)
-			return getComponent(8);
-		}
-		if (component == 9) {
-			//default format (as is)
-			return getComponent(9);
-		}
-		if (component == 10) {
-			//default format (as is)
-			return getComponent(10);
-		}
-		if (component == 11) {
-			//default format (as is)
-			return getComponent(11);
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Qualifier");
-		result.add("Narrative");
-		result.add("Narrative 2");
-		result.add("Narrative 3");
-		result.add("Narrative 4");
-		result.add("Narrative 5");
-		result.add("Narrative 6");
-		result.add("Narrative 7");
-		result.add("Narrative 8");
-		result.add("Narrative 9");
-		result.add("Narrative 10");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "qualifier");
-		result.put(2, "narrative");
-		result.put(3, "narrative2");
-		result.put(4, "narrative3");
-		result.put(5, "narrative4");
-		result.put(6, "narrative5");
-		result.put(7, "narrative6");
-		result.put(8, "narrative7");
-		result.put(9, "narrative8");
-		result.put(10, "narrative9");
-		result.put(11, "narrative10");
-		return result;
 	}
 
 	/**

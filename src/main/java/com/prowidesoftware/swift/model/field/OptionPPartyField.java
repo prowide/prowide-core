@@ -1,0 +1,274 @@
+package com.prowidesoftware.swift.model.field;
+
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.BIC;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+
+import java.util.*;
+
+/**
+ * Party
+ *
+ * <p>Subfields (components) Data types
+ * <ol>
+ * 		<li><code>String</code></li>
+ * 		<li><code>BIC</code></li>
+ * </ol>
+ *
+ * <p>Structure definition
+ * <ul>
+ * 		<li>validation pattern: <code>:4!c//&lt;BIC&gt;</code></li>
+ * 		<li>parser pattern: <code>:S//S</code></li>
+ * 		<li>components pattern: <code>SB</code></li>
+ * </ul>
+ *
+ * @since 7.11.0
+ */
+public class OptionPPartyField extends Field {
+    public static final String PARSER_PATTERN =":S//S";
+    public static final String COMPONENTS_PATTERN = "SB";
+
+    /**
+     * Component number for the Qualifier subfield
+     */
+    public static final Integer QUALIFIER = 1;
+
+    /**
+     * Component number for the BIC subfield
+     */
+    public static final Integer BIC = 2;
+
+    /**
+     * Default constructor. Creates a new field setting all components to null.
+     */
+    public OptionPPartyField() {
+        super(2);
+    }
+
+    /**
+     * Creates a new field and initializes its components with content from the parameter value.
+     * @param value complete field value including separators and CRLF
+     */
+    public OptionPPartyField(final String value) {
+        super(value);
+    }
+
+    /**
+     * Parses the parameter value into the internal components structure.
+     *
+     * <p>Used to update all components from a full new value, as an alternative
+     * to setting individual components. Previous component values are overwritten.
+     *
+     * @param value complete field value including separators and CRLF
+     * @since 7.8
+     */
+    @Override
+    public void parse(final String value) {
+        init(2);
+        setComponent(1, SwiftParseUtils.getTokenFirst(value, ":", "//"));
+        setComponent(2, SwiftParseUtils.getTokenSecondLast(value, "//"));
+    }
+
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        result.append(":");
+        append(result, 1);
+        result.append("//");
+        append(result, 2);
+        return result.toString();
+    }
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param component number of the component to display
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component number is invalid or not present
+     * @throws IllegalArgumentException if component number is invalid for the field
+     * @since 7.8
+     */
+    @Override
+    public String getValueDisplay(int component, Locale locale) {
+        if (component < 1 || component > 2) {
+            throw new IllegalArgumentException("invalid component number "+component+" for field 95P");
+        }
+        if (component == 1) {
+            //default format (as is)
+            return getComponent(1);
+        }
+        if (component == 2) {
+            //default format (as is)
+            return getComponent(2);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the field components pattern
+     * @return the static value of Field95P.COMPONENTS_PATTERN
+     */
+    @Override
+    public final String componentsPattern() {
+        return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field parser pattern
+     * @return the static value of Field95P.PARSER_PATTERN
+     */
+    @Override
+    public final String parserPattern() {
+        return PARSER_PATTERN;
+    }
+
+    /**
+     * Returns the field validator pattern
+     */
+    @Override
+    public final String validatorPattern() {
+        return ":4!c//<BIC>";
+    }
+
+    /**
+     * Given a component number it returns true if the component is optional,
+     * regardless of the field being mandatory in a particular message.<br>
+     * Being the field's value conformed by a composition of one or several
+     * internal component values, the field may be present in a message with
+     * a proper value but with some of its internal components not set.
+     *
+     * @param component component number, first component of a field is referenced as 1
+     * @return true if the component is optional for this field, false otherwise
+     */
+    @Override
+    public boolean isOptional(int component) {
+        return false;
+    }
+
+    /**
+     * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     * @return true if the field is generic, false otherwise
+     */
+    @Override
+    public boolean isGeneric() {
+        return true;
+    }
+
+    /**
+     * Returns the defined amount of components.<br>
+     * This is not the amount of components present in the field instance, but the total amount of components
+     * that this field accepts as defined.
+     * @since 7.7
+     */
+    @Override
+    public int componentsSize() {
+        return 2;
+    }
+
+    /**
+     * Returns english label for components.
+     * <br>
+     * The index in the list is in sync with specific field component structure.
+     * @see #getComponentLabel(int)
+     * @since 7.8.4
+     */
+    @Override
+    protected List<String> getComponentLabels() {
+        List<String> result = new ArrayList<>();
+        result.add("Qualifier");
+        result.add("BIC");
+        return result;
+    }
+
+    /**
+     * Returns a mapping between component numbers and their label in camel case format.
+     * @since 7.10.3
+     */
+    @Override
+    protected Map<Integer, String> getComponentMap() {
+        Map<Integer, String> result = new HashMap<>();
+        result.put(1, "qualifier");
+        result.put(2, "bIC");
+        return result;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    /**
+     * Gets the component1 (Qualifier).
+     * @return the component1
+     */
+    public String getComponent1() {
+        return getComponent(1);
+    }
+
+    /**
+     * Same as getComponent(1)
+     * @deprecated use {@link #getComponent(int)} instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase4= TargetYear.SRU2020)
+    public java.lang.String getComponent1AsString() {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
+        return getComponent(1);
+    }
+
+    /**
+     * Gets the Qualifier (component1).
+     * @return the Qualifier from component1
+     */
+    public String getQualifier() {
+        return getComponent(1);
+    }
+    /**
+     * Gets the component2 (BIC).
+     * @return the component2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
+
+    /**
+     * Get the component2 as BIC
+     * @return the component2 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getComponent2AsBIC() {
+        return SwiftFormatUtils.getBIC(getComponent(2));
+    }
+
+    /**
+     * Gets the BIC (component2).
+     * @return the BIC from component2
+     */
+    public String getBIC() {
+        return getComponent(2);
+    }
+
+    /**
+     * Get the BIC (component2) as BIC
+     * @return the BIC from component2 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+        return SwiftFormatUtils.getBIC(getComponent(2));
+    }
+
+    public List<com.prowidesoftware.swift.model.BIC> bics () {
+        final List<BIC> result = new ArrayList<>();
+        result.add(SwiftFormatUtils.getBIC(getComponent(2)));
+        return result;
+    }
+
+    public List<String> bicStrings () {
+        final List<String> result = new ArrayList<>();
+        result.add(getComponent(2));
+        return result;
+    }
+
+}

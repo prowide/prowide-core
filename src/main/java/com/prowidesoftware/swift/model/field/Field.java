@@ -55,11 +55,13 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	protected List<String> components;
 
 	/**
-	 * @deprecated usar {@link #Field(int)}
+	 * @deprecated use {@link #Field(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2019)
-	protected Field() {}
+	@ProwideDeprecated(phase3=TargetYear.SRU2020)
+	protected Field() {
+		DeprecationUtils.phase2(getClass(), "Field() no args constructor", "Use the constructor Field(int) with the number of components parameter instead");
+	}
 
 	/**
 	 * Creates a field with the list of components initialized to the given number of components.
@@ -573,95 +575,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	}
 
 	/**
- 	 * @deprecated field labels varies depending on the specific MT and sequence, label should be retrieve using {@link #getLabel(String, String, String, Locale)} with proper MT and sequence identifiers
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public String getLabel() {
-		DeprecationUtils.phase3(Field.class, "getLabel()", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale.getDefault())} with proper MT and sequence identifiers instead.");
-		return getLabel(Locale.getDefault());
-	}
-
-	/**
-	 * @deprecated field labels varies depending on the specific MT and sequence, label should be retrieve using {@link #getLabel(String, String, String, Locale)} with proper MT and sequence identifiers
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public String getLabel(final Locale locale) {
-		DeprecationUtils.phase3(Field.class, "getLabel(Locale)", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale)} with proper MT and sequence identifiers instead.");
-		return getLabel(getName(), locale);
-	}
-
-	/**
-	 * @deprecated field labels varies depending on the specific MT and sequence, label should be retrieve using {@link #getLabel(String, String, String, Locale)} with proper MT and sequence identifiers
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	static public String getLabel(final String fieldName, final Locale locale) {
-		DeprecationUtils.phase3(Field.class, "getLabel(String, Locale)", "This method uses deprecated label property files. Use getLabel(String, String, String, Locale)} with proper MT and sequence identifiers instead.");
-		return _getLabel(fieldName, null, null, locale);
-	}
-	
-	/*
-	 * @deprecated Legacy implementation for backward compatibility
-	 * This method is used only by deprecated label API, to maintain the old version of labels.
-	 * 
-	 * The usage of this deprecated bundle and labels API is discourage because labels are context dependent, meaning
-	 * the proper label for a field depends on the MT at least, and in some occasions also depends on the particular 
-	 * sequence.
-	 * 
-	 * The new bundles include proper names for each combination of field name, MT and sequences as needed. There are
-	 * small subset of fields sharing the same naming cross MTs and cross sequences, but most of the new labels include
-	 * variations per MT and in several cases per sequence.
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	static private String _getLabel(final String fieldName, final String mt, final String sequence, final Locale locale) {
-		final String bundle = "deprecated_labels";
-		String key = null;
-		String result = null;
-		//try {
-		final ResourceBundle labels = ResourceBundle.getBundle(bundle, locale);
-		if (labels != null) {
-			if ((sequence != null) && (mt != null)) {
-				key = "field" + fieldName + "["+mt+"]["+sequence+"].name";
-				result = getString(labels, key);
-				if (result == null) {
-					key = "field" + getNumber(fieldName) + "a["+mt+"]["+sequence+"].name";
-					result = getString(labels, key);
-				}
-			}
-			if ((result == null) && (mt != null)) {
-				key = "field" + fieldName + "["+mt+"]["+sequence+"].name";
-				result = getString(labels, key);
-				if (result == null) {
-					key = "field" + getNumber(fieldName) + "a["+mt+"].name";
-					result = getString(labels, key);
-				}
-			}
-			if (result == null) {
-				key = "field" + fieldName + ".name";
-				result = getString(labels, key);
-				if (result == null) {
-					key = "field" + getNumber(fieldName) + "a.name";
-					result = getString(labels, key);
-				}
-			}
-			if (result == null) {
-				key = "field" + getNumber(fieldName) + ".name";
-				result = getString(labels, key);
-			}
-		}
-		//} catch (MissingResourceException e) {
-		//	e.printStackTrace();
-		//}
-		if (result != null) {
-			return result;
-		}
-		return key;
-	}
-
-	/**
 	 * Same as {@link #getLabel(String, String, String, Locale)} using default locale
 	 * @since 7.8
 	 */
@@ -827,7 +740,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Moved to GenericField Interface
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2019)
+	@ProwideDeprecated(phase3=TargetYear.SRU2020)
 	public String getDSS() {
 		return null;
 	}
@@ -836,7 +749,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Moved to GenericField Interface
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2019)
+	@ProwideDeprecated(phase3=TargetYear.SRU2020)
 	public boolean isDSSPresent() {
 		return false;
 	}
@@ -845,7 +758,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Moved to GenericField Interface
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2019)
+	@ProwideDeprecated(phase3=TargetYear.SRU2020)
 	public String getConditionalQualifier() {
 		return null;
 	}
@@ -879,9 +792,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * @deprecated confusing name, use {@link #isNameAnyOf(String...)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
 	public boolean isAnyOf(final String ... names) {
-		DeprecationUtils.phase2(getClass(), "isAnyOf(String...)", "Use isNameAnyOf(String...) instead.");
+		DeprecationUtils.phase3(getClass(), "isAnyOf(String...)", "Use isNameAnyOf(String...) instead.");
 		return isNameAnyOf(names);
 	}
 

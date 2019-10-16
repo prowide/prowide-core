@@ -25,15 +25,24 @@ import com.prowidesoftware.swift.model.mt.mt5xx.MT538;
 
 public class MT538Test {
 
+	/**
+	 * Sequence A1 and B2a1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test1() {
 		MT538 m = new MT538();
 		m.append(MT538.SequenceA1.newInstance());
+		m.append(MT538.SequenceB2a.newInstance());
 		assertTrue(m.getSequenceB2a1List().isEmpty());
 	}
+
+	/**
+	 * Sequence A1 and B2a1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test2() {
 		MT538 m = new MT538();
+		m.append(MT538.SequenceA.newInstance());
 		m.append(MT538.SequenceB2a1.newInstance());
 		assertTrue(m.getSequenceA1List().isEmpty());
 	}

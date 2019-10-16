@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -140,7 +140,7 @@ Sequence _I1 (O) (repetitive)<ul><li class="field">Field 30 F (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2018</strong>
+ * This source code is specific to release <strong>SRU 2019</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -149,7 +149,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT320.class.getName());
 	
@@ -157,157 +157,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	* Constant for MT name, this is part of the classname, after <code>MT</code>
 	*/
 	public static final String NAME = "320";
-	
-// begin qualifiers constants	
-
-	/**
-	* Constant for qualifier with value 30E/360 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String _30E_360 = "30E/360";
-
-	/**
-	* Constant for qualifier with value 360/360 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String _360_360 = "360/360";
-
-	/**
-	* Constant for qualifier with value ACT/360 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ACT_360 = "ACT/360";
-
-	/**
-	* Constant for qualifier with value ACT/365 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ACT_365 = "ACT/365";
-
-	/**
-	* Constant for qualifier with value AFI/365 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AFI_365 = "AFI/365";
-
-	/**
-	* Constant for qualifier with value AGNT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AGNT = "AGNT";
-
-	/**
-	* Constant for qualifier with value AMND 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String AMND = "AMND";
-
-	/**
-	* Constant for qualifier with value B 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String B = "B";
-
-	/**
-	* Constant for qualifier with value BILA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BILA = "BILA";
-
-	/**
-	* Constant for qualifier with value BROK 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BROK = "BROK";
-
-	/**
-	* Constant for qualifier with value CANC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CANC = "CANC";
-
-	/**
-	* Constant for qualifier with value CONF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CONF = "CONF";
-
-	/**
-	* Constant for qualifier with value D 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String D = "D";
-
-	/**
-	* Constant for qualifier with value DUPL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DUPL = "DUPL";
-
-	/**
-	* Constant for qualifier with value ELEC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ELEC = "ELEC";
-
-	/**
-	* Constant for qualifier with value L 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String L = "L";
-
-	/**
-	* Constant for qualifier with value M 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String M = "M";
-
-	/**
-	* Constant for qualifier with value MATU 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MATU = "MATU";
-
-	/**
-	* Constant for qualifier with value NEWT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NEWT = "NEWT";
-
-	/**
-	* Constant for qualifier with value PHON 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PHON = "PHON";
-
-	/**
-	* Constant for qualifier with value ROLL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ROLL = "ROLL";
-
-// end qualifiers constants	
 
 	/**
 	 * Creates an MT320 initialized with the parameter SwiftMessage
@@ -364,24 +213,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	 */
 	public MT320(final String sender, final String receiver) {
 		super(320, sender, receiver);
-	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT320(String, String)
-	* @deprecated Use instead <code>new MT320(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT320(final int messageType, final String sender, final String receiver) {
-		super(320, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT320(int, String, String)", "Use the constructor MT320(sender, receiver) instead.");
 	}
 	
 	/**
@@ -1975,7 +1806,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 	
 
-// BaseSequenceCodeGenerator [seq=A]
 	/**
 	 * Class to model Sequence "A" in MT 320
 	 */
@@ -2064,7 +1894,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceA using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceA within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceA within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -2078,7 +1908,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=B]
 	/**
 	 * Class to model Sequence "B" in MT 320
 	 */
@@ -2167,7 +1996,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceB using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceB within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceB within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -2181,7 +2010,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=C]
 	/**
 	 * Class to model Sequence "C" in MT 320
 	 */
@@ -2270,7 +2098,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceC using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceC within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceC within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -2284,7 +2112,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=D]
 	/**
 	 * Class to model Sequence "D" in MT 320
 	 */
@@ -2373,7 +2200,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceD using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceD within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceD within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -2387,7 +2214,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=E]
 	/**
 	 * Class to model Sequence "E" in MT 320
 	 */
@@ -2476,7 +2302,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceE using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceE within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceE within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -2490,7 +2316,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=F]
 	/**
 	 * Class to model Sequence "F" in MT 320
 	 */
@@ -2579,7 +2404,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceF using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceF within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceF within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -2593,7 +2418,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=G]
 	/**
 	 * Class to model Sequence "G" in MT 320
 	 */
@@ -2682,7 +2506,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceG using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceG within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceG within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -2696,7 +2520,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=H]
 	/**
 	 * Class to model Sequence "H" in MT 320
 	 */
@@ -2785,7 +2608,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceH using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceH within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceH within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
@@ -2799,7 +2622,6 @@ public class MT320 extends AbstractMT implements Serializable {
 	}
 
 
-// BaseSequenceCodeGenerator [seq=I]
 	/**
 	 * Class to model Sequence "I" in MT 320
 	 */
@@ -2888,7 +2710,7 @@ public class MT320 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceI using field field 15 as sequence boundary.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence an optional parent sequence or null to find SequenceI within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceI within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */

@@ -274,7 +274,7 @@ public class SwiftMessageTest {
 					":20:TESTREF1\n"+
 					":79:This is text line 1\n"+
 					"-}{5:{CHK:7602B010CF31}{TNG:}}";
-		SwiftMessage m = new SwiftParser().parse(msg);
+		SwiftMessage m = SwiftMessage.parse(msg);
 		assertTrue(m.isAck());
 		assertFalse(m.isNack());
 	}

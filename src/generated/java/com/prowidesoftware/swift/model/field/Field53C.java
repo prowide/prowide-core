@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
@@ -43,8 +44,8 @@ import com.google.gson.JsonParser;
  * Model and parser for field 53C of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>String</code></li> 
+ * <ol>
+ * 		<li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -53,17 +54,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>/S</code></li>
  * 		<li>components pattern: <code>S</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
-public class Field53C extends Field implements Serializable {
+public class Field53C extends OptionCPartyField implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -74,19 +75,12 @@ public class Field53C extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_53C = "53C";
-	public static final String PARSER_PATTERN ="/S";
-	public static final String COMPONENTS_PATTERN = "S";
-
-	/**
-	 * Component number for the Account subfield
-	 */
-	public static final Integer ACCOUNT = 1;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field53C() {
-		super(1);
+        super();
 	}
 	    					
 	/**
@@ -113,22 +107,7 @@ public class Field53C extends Field implements Serializable {
 		}
 		parse(tag.getValue());
 	}
-	
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(1);
-		setComponent1(SwiftParseUtils.getTokenFirst(value, "/", null));
-	}
-	
+
 	/**
 	 * Copy constructor.<br>
 	 * Initializes the components list with a deep copy of the source components list.
@@ -140,76 +119,31 @@ public class Field53C extends Field implements Serializable {
 		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
-	
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		result.append("/");
-		append(result, 1);
-		return result.toString();
-	}
 
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
 	public static Tag tag(final String value) {
 		return new Tag(NAME, value);
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
 	public static Tag emptyTag() {
 		return new Tag(NAME, "");
 	}
-	
-	/**
-	 * Gets the component1
-	 * @return the component1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
+
+
 
 	/**
-	 * Same as getComponent(1)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Account (component1) removing its starting slashes if any.
-	 * @return the Account from component1
-	 */
-	public String getAccount() {
-		String c = getComponent(1);
-		if (c != null) {
-			for (int i=0; i<c.length(); i++) {
-				if (c.charAt(i) != '/') {
-					return c.substring(i);
-				}
-			}
-			return "";
-		}
-		return null;
-	}
-
-	/**
-	 * Set the component1.
+	 * Set the component1 (Account).
 	 * @param component1 the component1 to set
 	 */
 	public Field53C setComponent1(String component1) {
@@ -226,35 +160,7 @@ public class Field53C extends Field implements Serializable {
 		return this;
 	}
 
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       return false;
-   }
-
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return false;
-   }
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field53C.NAME
@@ -262,23 +168,6 @@ public class Field53C extends Field implements Serializable {
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field53C.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "/34x";
 	}
 
 	/**
@@ -340,62 +229,6 @@ public class Field53C extends Field implements Serializable {
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 1;
-	}
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 1) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 53C");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Account");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "account");
-		return result;
 	}
 
 	/**

@@ -30,14 +30,13 @@ import com.prowidesoftware.swift.model.field.Field;
 /**
  * A simple POJO to represent money, an amount associated with a currency.
  * <br>
- * This might someday be replaced by an implementation of Java Money: https://java.net/projects/javamoney/pages/Home
+ * This might someday be replaced by an implementation of https://javamoney.github.io/api.html
  * 
- * @author www.prowidesoftware.com
- * @since 7.8.8
+ * @since 8.0.1
  */
-final class CurrencyAmount implements Serializable {
+public final class Money implements Serializable {
 	private static final long serialVersionUID = -7552352742105490377L;
-	private static final transient Logger log = Logger.getLogger(CurrencyAmount.class.getName());
+	private static final transient Logger log = Logger.getLogger(Money.class.getName());
 
 	private final String currency;
 	private final BigDecimal amount;
@@ -46,7 +45,7 @@ final class CurrencyAmount implements Serializable {
 	 * @param currency a not null currency
 	 * @param amount the value for the amount, may be null
 	 */
-	CurrencyAmount(final Currency currency, final BigDecimal amount) {
+	public Money(final Currency currency, final BigDecimal amount) {
 		this(currency.getCurrencyCode(), amount);
 	}
 
@@ -54,7 +53,7 @@ final class CurrencyAmount implements Serializable {
 	 * @param currency a not null currency code
 	 * @param amount the value for the amount, may be null
 	 */
-	CurrencyAmount(final String currency, final BigDecimal amount) {
+	public Money(final String currency, final BigDecimal amount) {
 		super();
 		Validate.notNull(currency, "currency can not be null");
 		this.currency = currency;
@@ -67,17 +66,17 @@ final class CurrencyAmount implements Serializable {
 
 	/**
 	 * @param currency a not null currency
-	 * @param value the value for the amount, may be null
+	 * @param amount the value for the amount, may be null
 	 */
-	CurrencyAmount(final Currency currency, Number amount) {
+	public Money(final Currency currency, Number amount) {
 		this(currency.getCurrencyCode(), amount);
 	}
 	
 	/**
 	 * @param currency a not null currency code
-	 * @param value the value for the amount, may be null
+	 * @param amount the value for the amount, may be null
 	 */
-	CurrencyAmount(final String currency, Number amount) {
+	public Money(final String currency, Number amount) {
 		super();
 		this.currency = currency;
 		if (amount==null) {
@@ -124,7 +123,7 @@ final class CurrencyAmount implements Serializable {
 	 * Do not use API from MTs and Field classes here to avoid cyclic dependency in code generation
 	 * Component numbers do not normally change, although keep code below in sync with fields 62FM, 19A and 33B. 
 	 */
-	static CurrencyAmount of(Field field) {
+	static Money of(Field field) {
 		if (field != null && field instanceof AmountContainer) {
 			/*
 			 * amount from interface
@@ -164,17 +163,17 @@ final class CurrencyAmount implements Serializable {
 			if (negative) {
 				amount = amount.negate();
 			}
-			return new CurrencyAmount(currency, amount);
+			return new Money(currency, amount);
 		}
 		return null;
 	}
 	
 	/**
 	 * Creates a currency amount from the first found field in the block
-	 * @param fields
+	 * @param fieldNames a list of field names to extract the money from
 	 * @return
 	 */
-	static CurrencyAmount ofAny(SwiftTagListBlock block, String ... fieldNames) {
+	static Money ofAny(SwiftTagListBlock block, String ... fieldNames) {
 		for (String fieldName : fieldNames) {
 			Field field = block.getFieldByName(fieldName);
 			if (field != null) {
@@ -190,31 +189,32 @@ final class CurrencyAmount implements Serializable {
 	 * @param fields fields to sum, currency must be the same for all
 	 * @return total or null if cannot create amount from any field or if not all fields currency match
 	 */
-	static CurrencyAmount ofSum(Field ... fields) {
+	static Money ofSum(Field ... fields) {
 		if (fields == null || fields.length == 0) {
 			return null;
 		}
 		BigDecimal total = null;
 		String currency = null;
 		for (Field field : fields) {
-			CurrencyAmount ca = of(field);
-			if (ca == null) {
+			Money money = of(field);
+			if (money == null) {
 				return null;
 			}
 			if (total == null) {
-				total = ca.getAmount();
-				currency = ca.getCurrency();
-			} else if (StringUtils.equals(currency, ca.getCurrency())) {
-				total = total.add(ca.getAmount());
+				total = money.getAmount();
+				currency = money.getCurrency();
+			} else if (StringUtils.equals(currency, money.getCurrency())) {
+				total = total.add(money.getAmount());
 			} else {
-				log.warning("cannot sum amounts with different currencies, expected "+currency+" and found "+ca.getCurrency()+" in field "+field.getName()+":"+field.getValue());
+				log.warning("cannot sum amounts with different currencies, expected "+currency+" and found "+money.getCurrency()+" in field "+field.getName()+":"+field.getValue());
 				return null;
 			}
 		}
 		if (total != null && currency != null) {
-			return new CurrencyAmount(currency, total);
+			return new Money(currency, total);
 		} else {
 			return null;
 		}
 	}
+
 }

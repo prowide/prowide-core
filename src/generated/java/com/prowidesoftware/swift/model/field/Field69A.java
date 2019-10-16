@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
+import com.prowidesoftware.swift.model.field.GenericField;
+
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -45,10 +47,10 @@ import com.google.gson.JsonParser;
  * Model and parser for field 69A of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>String</code></li> 
- * 		<li><code>Calendar</code></li> 
- * 		<li><code>Calendar</code></li> 
+ * <ol>
+ * 		<li><code>String</code></li>
+ * 		<li><code>Calendar</code></li>
+ * 		<li><code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -57,17 +59,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>:S//S/S</code></li>
  * 		<li>components pattern: <code>SDD</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
-public class Field69A extends Field implements Serializable, DateContainer, com.prowidesoftware.swift.model.field.GenericField {
+public class Field69A extends Field implements Serializable, DateContainer, GenericField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -127,11 +129,44 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 		}
 		parse(tag.getValue());
 	}
-	
+
+	/**
+	 * Copy constructor.<br>
+	 * Initializes the components list with a deep copy of the source components list.
+	 * @param source a field instance to copy
+	 * @since 7.7
+	 */
+	public static Field69A newInstance(Field69A source) {
+		Field69A cp = new Field69A();
+		cp.setComponents(new ArrayList<>(source.getComponents()));
+		return cp;
+	}
+
+	/**
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag tag(final String value) {
+		return new Tag(NAME, value);
+	}
+
+	/**
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag emptyTag() {
+		return new Tag(NAME, "");
+	}
+
+
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
+	 *
+	 * <p>Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
 	 * @param value complete field value including separators and CRLF
@@ -145,19 +180,6 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 		setComponent2(SwiftParseUtils.getTokenFirst(toparse, "/"));
 		setComponent3(SwiftParseUtils.getTokenSecondLast(toparse, "/"));
 	}
-	
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field69A newInstance(Field69A source) {
-		Field69A cp = new Field69A();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
-	
 	/**
 	 * Serializes the fields' components into the single string value (SWIFT format)
 	 */
@@ -172,29 +194,133 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 		append(result, 3);
 		return result.toString();
 	}
-
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
+	 * Returns a localized suitable for showing to humans string of a field component.<br>
+	 *
+	 * @param component number of the component to display
+	 * @param locale optional locale to format date and amounts, if null, the default locale is used
+	 * @return formatted component value or null if component number is invalid or not present
+	 * @throws IllegalArgumentException if component number is invalid for the field
+	 * @since 7.8
+	 */
+	@Override
+	public String getValueDisplay(int component, Locale locale) {
+		if (component < 1 || component > 3) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 69A");
+		}
+		if (component == 1) {
+			//default format (as is)
+			return getComponent(1);
+		}
+		if (component == 2) {
+			//date
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+			java.util.Calendar cal = getComponent2AsCalendar();
+			if (cal != null) {
+				return f.format(cal.getTime());
+			}
+		}
+		if (component == 3) {
+			//date
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+			java.util.Calendar cal = getComponent3AsCalendar();
+			if (cal != null) {
+				return f.format(cal.getTime());
+			}
+		}
+		return null;
+	}
+	/**
+	 * Returns the field components pattern
+	 * @return the static value of Field69A.COMPONENTS_PATTERN
+	 */
+	@Override
+	public final String componentsPattern() {
+		return COMPONENTS_PATTERN;
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
-	
+     * Returns the field parser pattern
+     * @return the static value of Field69A.PARSER_PATTERN
+     */
+	@Override
+	public final String parserPattern() {
+        return PARSER_PATTERN;
+    }
+
 	/**
-	 * Gets the component1
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return ":4!c//<DATE4>/<DATE4>";
+	}
+
+    /**
+     * Given a component number it returns true if the component is optional,
+     * regardless of the field being mandatory in a particular message.<br>
+     * Being the field's value conformed by a composition of one or several
+     * internal component values, the field may be present in a message with
+     * a proper value but with some of its internal components not set.
+     *
+     * @param component component number, first component of a field is referenced as 1
+     * @return true if the component is optional for this field, false otherwise
+     */
+    @Override
+    public boolean isOptional(int component) {
+        return false;
+    }
+
+    /**
+     * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     * @return true if the field is generic, false otherwise
+     */
+    @Override
+    public boolean isGeneric() {
+        return true;
+    }
+
+	/**
+	 * Returns the defined amount of components.<br>
+	 * This is not the amount of components present in the field instance, but the total amount of components
+	 * that this field accepts as defined.
+	 * @since 7.7
+	 */
+	@Override
+	public int componentsSize() {
+		return 3;
+	}
+
+	/**
+	 * Returns english label for components.
+	 * <br>
+	 * The index in the list is in sync with specific field component structure.
+	 * @see #getComponentLabel(int)
+	 * @since 7.8.4
+	 */
+	@Override
+	protected List<String> getComponentLabels() {
+		List<String> result = new ArrayList<>();
+		result.add("Qualifier");
+		result.add("Date1");
+		result.add("Date2");
+		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.3
+	 */
+	@Override
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<>();
+		result.put(1, "qualifier");
+		result.put(2, "date1");
+		result.put(3, "date2");
+		return result;
+	}
+	/**
+	 * Gets the component1 (Qualifier).
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -206,9 +332,9 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
 	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(1);
 	}
 
@@ -219,26 +345,8 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 	public String getQualifier() {
 		return getComponent(1);
 	}
-
 	/**
-	 * Set the component1.
-	 * @param component1 the component1 to set
-	 */
-	public Field69A setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Qualifier (component1).
-	 * @param component1 the Qualifier to set
-	 */
-	public Field69A setQualifier(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	/**
-	 * Gets the component2
+	 * Gets the component2 (Date1).
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -268,9 +376,66 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 	public java.util.Calendar getDate1AsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(2));
 	}
+	/**
+	 * Gets the component3 (Date2).
+	 * @return the component3
+	 */
+	public String getComponent3() {
+		return getComponent(3);
+	}
 
 	/**
-	 * Set the component2.
+	 * Get the component3 as Calendar
+	 * @return the component3 converted to Calendar or null if cannot be converted
+	 */
+	public java.util.Calendar getComponent3AsCalendar() {
+		return SwiftFormatUtils.getDate4(getComponent(3));
+	}
+
+	/**
+	 * Gets the Date2 (component3).
+	 * @return the Date2 from component3
+	 */
+	public String getDate2() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Date2 (component3) as Calendar
+	 * @return the Date2 from component3 converted to Calendar or null if cannot be converted
+	 */
+	public java.util.Calendar getDate2AsCalendar() {
+		return SwiftFormatUtils.getDate4(getComponent(3));
+	}
+    
+    public List<Calendar> dates() {
+		List<Calendar> result = new ArrayList<>();
+		result.add(SwiftFormatUtils.getDate4(getComponent(2)));
+		result.add(SwiftFormatUtils.getDate4(getComponent(3)));
+		return result;
+	}
+
+
+	/**
+	 * Set the component1 (Qualifier).
+	 * @param component1 the component1 to set
+	 */
+	public Field69A setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Qualifier (component1).
+	 * @param component1 the Qualifier to set
+	 */
+	public Field69A setQualifier(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+
+	/**
+	 * Set the component2 (Date1).
 	 * @param component2 the component2 to set
 	 */
 	public Field69A setComponent2(String component2) {
@@ -305,40 +470,9 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 		setComponent2(component2);
 		return this;
 	}
-	/**
-	 * Gets the component3
-	 * @return the component3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
 
 	/**
-	 * Get the component3 as Calendar
-	 * @return the component3 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getComponent3AsCalendar() {
-		return SwiftFormatUtils.getDate4(getComponent(3));
-	}
-
-	/**
-	 * Gets the Date2 (component3).
-	 * @return the Date2 from component3
-	 */
-	public String getDate2() {
-		return getComponent(3);
-	}
-	
-	/**
-	 * Get the Date2 (component3) as Calendar
-	 * @return the Date2 from component3 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getDate2AsCalendar() {
-		return SwiftFormatUtils.getDate4(getComponent(3));
-	}
-
-	/**
-	 * Set the component3.
+	 * Set the component3 (Date2).
 	 * @param component3 the component3 to set
 	 */
 	public Field69A setComponent3(String component3) {
@@ -373,38 +507,7 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 		setComponent3(component3);
 		return this;
 	}
-    
-    public List<Calendar> dates() {
-		List<Calendar> result = new ArrayList<>();
-		result.add(SwiftFormatUtils.getDate4(getComponent(2)));
-		result.add(SwiftFormatUtils.getDate4(getComponent(3)));
-		return result;
-	}
 
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       return false;
-   }
-
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return true;
-   }
 
    /**
     * Returns the issuer code (or Data Source Scheme or DSS).
@@ -441,10 +544,6 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
        return getComponent(CONDITIONAL_QUALIFIER);
    }
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field69A.NAME
@@ -452,23 +551,6 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field69A.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return ":4!c//<DATE4>/<DATE4>";
 	}
 
 	/**
@@ -530,82 +612,6 @@ public class Field69A extends Field implements Serializable, DateContainer, com.
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 3;
-	}
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 3) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 69A");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
-			java.util.Calendar cal = getComponent2AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		if (component == 3) {
-			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
-			java.util.Calendar cal = getComponent3AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Qualifier");
-		result.add("Date1");
-		result.add("Date2");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "qualifier");
-		result.put(2, "date1");
-		result.put(3, "date2");
-		return result;
 	}
 
 	/**

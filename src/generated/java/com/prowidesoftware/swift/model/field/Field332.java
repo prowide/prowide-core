@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
@@ -43,9 +44,9 @@ import com.google.gson.JsonParser;
  * Model and parser for field 332 of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>Number</code></li> 
+ * <ol>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>Number</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -54,17 +55,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>6!N6!N</code></li>
  * 		<li>components pattern: <code>NN</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
 public class Field332 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -119,11 +120,44 @@ public class Field332 extends Field implements Serializable {
 		}
 		parse(tag.getValue());
 	}
-	
+
+	/**
+	 * Copy constructor.<br>
+	 * Initializes the components list with a deep copy of the source components list.
+	 * @param source a field instance to copy
+	 * @since 7.7
+	 */
+	public static Field332 newInstance(Field332 source) {
+		Field332 cp = new Field332();
+		cp.setComponents(new ArrayList<>(source.getComponents()));
+		return cp;
+	}
+
+	/**
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag tag(final String value) {
+		return new Tag(NAME, value);
+	}
+
+	/**
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag emptyTag() {
+		return new Tag(NAME, "");
+	}
+
+
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
+	 *
+	 * <p>Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
 	 * @param value complete field value including separators and CRLF
@@ -141,19 +175,6 @@ public class Field332 extends Field implements Serializable {
 			}
 		}
 	}
-	
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field332 newInstance(Field332 source) {
-		Field332 cp = new Field332();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
-	
 	/**
 	 * Serializes the fields' components into the single string value (SWIFT format)
 	 */
@@ -163,29 +184,129 @@ public class Field332 extends Field implements Serializable {
 		result.append(joinComponents());
 		return result.toString();
 	}
-
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
+	 * Returns a localized suitable for showing to humans string of a field component.<br>
+	 *
+	 * @param component number of the component to display
+	 * @param locale optional locale to format date and amounts, if null, the default locale is used
+	 * @return formatted component value or null if component number is invalid or not present
+	 * @throws IllegalArgumentException if component number is invalid for the field
+	 * @since 7.8
+	 */
+	@Override
+	public String getValueDisplay(int component, Locale locale) {
+		if (component < 1 || component > 2) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 332");
+		}
+		if (component == 1) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent1AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 2) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent2AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		return null;
+	}
+	/**
+	 * Returns the field components pattern
+	 * @return the static value of Field332.COMPONENTS_PATTERN
+	 */
+	@Override
+	public final String componentsPattern() {
+		return COMPONENTS_PATTERN;
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
-	
+     * Returns the field parser pattern
+     * @return the static value of Field332.PARSER_PATTERN
+     */
+	@Override
+	public final String parserPattern() {
+        return PARSER_PATTERN;
+    }
+
 	/**
-	 * Gets the component1
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "6!n6!n";
+	}
+
+    /**
+     * Given a component number it returns true if the component is optional,
+     * regardless of the field being mandatory in a particular message.<br>
+     * Being the field's value conformed by a composition of one or several
+     * internal component values, the field may be present in a message with
+     * a proper value but with some of its internal components not set.
+     *
+     * @param component component number, first component of a field is referenced as 1
+     * @return true if the component is optional for this field, false otherwise
+     */
+    @Override
+    public boolean isOptional(int component) {
+        return false;
+    }
+
+    /**
+     * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     * @return true if the field is generic, false otherwise
+     */
+    @Override
+    public boolean isGeneric() {
+        return false;
+    }
+
+	/**
+	 * Returns the defined amount of components.<br>
+	 * This is not the amount of components present in the field instance, but the total amount of components
+	 * that this field accepts as defined.
+	 * @since 7.7
+	 */
+	@Override
+	public int componentsSize() {
+		return 2;
+	}
+
+	/**
+	 * Returns english label for components.
+	 * <br>
+	 * The index in the list is in sync with specific field component structure.
+	 * @see #getComponentLabel(int)
+	 * @since 7.8.4
+	 */
+	@Override
+	protected List<String> getComponentLabels() {
+		List<String> result = new ArrayList<>();
+		result.add("Total Messages Sent");
+		result.add("Total Messages Received");
+		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.3
+	 */
+	@Override
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<>();
+		result.put(1, "totalMessagesSent");
+		result.put(2, "totalMessagesReceived");
+		return result;
+	}
+	/**
+	 * Gets the component1 (Total Messages Sent).
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -215,9 +336,41 @@ public class Field332 extends Field implements Serializable {
 	public java.lang.Number getTotalMessagesSentAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
+	/**
+	 * Gets the component2 (Total Messages Received).
+	 * @return the component2
+	 */
+	public String getComponent2() {
+		return getComponent(2);
+	}
 
 	/**
-	 * Set the component1.
+	 * Get the component2 as Number
+	 * @return the component2 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getComponent2AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(2));
+	}
+
+	/**
+	 * Gets the Total Messages Received (component2).
+	 * @return the Total Messages Received from component2
+	 */
+	public String getTotalMessagesReceived() {
+		return getComponent(2);
+	}
+	
+	/**
+	 * Get the Total Messages Received (component2) as Number
+	 * @return the Total Messages Received from component2 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getTotalMessagesReceivedAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(2));
+	}
+
+
+	/**
+	 * Set the component1 (Total Messages Sent).
 	 * @param component1 the component1 to set
 	 */
 	public Field332 setComponent1(String component1) {
@@ -261,40 +414,9 @@ public class Field332 extends Field implements Serializable {
 		setComponent1(component1);
 		return this;
 	}
-	/**
-	 * Gets the component2
-	 * @return the component2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent2AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-
-	/**
-	 * Gets the Total Messages Received (component2).
-	 * @return the Total Messages Received from component2
-	 */
-	public String getTotalMessagesReceived() {
-		return getComponent(2);
-	}
-	
-	/**
-	 * Get the Total Messages Received (component2) as Number
-	 * @return the Total Messages Received from component2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getTotalMessagesReceivedAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-
-	/**
-	 * Set the component2.
+	 * Set the component2 (Total Messages Received).
 	 * @param component2 the component2 to set
 	 */
 	public Field332 setComponent2(String component2) {
@@ -339,35 +461,7 @@ public class Field332 extends Field implements Serializable {
 		return this;
 	}
 
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       return false;
-   }
-
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return false;
-   }
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field332.NAME
@@ -375,23 +469,6 @@ public class Field332 extends Field implements Serializable {
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field332.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "6!n6!n";
 	}
 
 	/**
@@ -453,78 +530,6 @@ public class Field332 extends Field implements Serializable {
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 2;
-	}
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 2) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 332");
-		}
-		if (component == 1) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent1AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 2) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent2AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Total Messages Sent");
-		result.add("Total Messages Received");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "totalMessagesSent");
-		result.put(2, "totalMessagesReceived");
-		return result;
 	}
 
 	/**

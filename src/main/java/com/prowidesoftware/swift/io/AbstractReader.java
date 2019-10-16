@@ -15,24 +15,14 @@
  */
 package com.prowidesoftware.swift.io;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
-import java.util.Iterator;
-import java.util.logging.Logger;
-
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.mt.AbstractMT;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
-import com.prowidesoftware.swift.io.parser.SwiftParser;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.mt.AbstractMT;
+import java.io.*;
+import java.util.Iterator;
+import java.util.logging.Logger;
 
 /**
  * Base class for message reader iterators.
@@ -87,7 +77,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 
 	@Override
 	public void remove() {
-		throw new UnsupportedOperationException("remove not avaiable in this implementation");
+		throw new UnsupportedOperationException("remove() not available in this implementation");
 	}
 	
 	/**
@@ -112,8 +102,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 				 * message is an ACK/NACK, we parse the appended original message instead
 				 */
 				final String fin = candidate.getUnparsedTexts().getAsFINString();
-				SwiftParser parser = new SwiftParser(new ByteArrayInputStream(fin.getBytes()));
-				return parser.message().toMT();
+				return AbstractMT.parse(fin);
 			} else if (candidate.isServiceMessage()) {
 				log.warning("nextMT in "+getClass().getName()+" is not intended for service messages, use nextSwiftMessage() instead");
 				return null;
@@ -136,8 +125,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 	public SwiftMessage nextSwiftMessage() throws IOException {
 		final String msg = next();
 		if (StringUtils.isNotBlank(msg)) {
-			SwiftParser parser = new SwiftParser(new ByteArrayInputStream(msg.getBytes()));
-			return parser.message();
+			return SwiftMessage.parse(msg);
 		}
 		log.warning("Ignoring blank message");
 		return null;

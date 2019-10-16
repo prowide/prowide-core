@@ -32,11 +32,10 @@ import java.util.logging.Logger;
  * @deprecated this class was meant to handle country and currency catalogs and it is no longer needed
  * in favor of native Java implementations in Currency and Locale
  * 
- * @author www.prowidesoftware.com
  * @since 3.3
  */
 @Deprecated
-@ProwideDeprecated(phase3=TargetYear._2019)
+@ProwideDeprecated(phase4=TargetYear.SRU2020)
 public abstract class PropertyResource {
 	private static final Logger log = Logger.getLogger(PropertyResource.class.getName());
 

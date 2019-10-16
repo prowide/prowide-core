@@ -15,47 +15,44 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
+import com.prowidesoftware.swift.Constants;
+import com.prowidesoftware.swift.model.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+import org.xmlunit.builder.DiffBuilder;
+import org.xmlunit.diff.Diff;
+import org.xmlunit.diff.Difference;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.custommonkey.xmlunit.XMLTestCase;
-import org.custommonkey.xmlunit.XMLUnit;
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import com.prowidesoftware.swift.Constants;
-import com.prowidesoftware.swift.model.SwiftBlock1;
-import com.prowidesoftware.swift.model.SwiftBlock2;
-import com.prowidesoftware.swift.model.SwiftBlock2Input;
-import com.prowidesoftware.swift.model.SwiftBlock2Output;
-import com.prowidesoftware.swift.model.SwiftBlock3;
-import com.prowidesoftware.swift.model.SwiftBlock4;
-import com.prowidesoftware.swift.model.SwiftBlock5;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.Tag;
+import static org.junit.Assert.assertFalse;
 
 /**
  * XML writer tests
  *
  * @since 4.0
  */
-public class XMLWriterVisitorTest extends XMLTestCase {
+public class XMLWriterVisitorTest {
 
 	private XMLWriterVisitor visitor;
 	private Writer io;
 	private SwiftMessage msg;
-	
+
+	private void assertXmlEqual(String control, String test) {
+		Diff diff = DiffBuilder.compare(control).withTest(test).ignoreWhitespace().build();
+		assertFalse(diff.hasDifferences());
+	}
+
 	@Before
 	public void setUp() {
 		this.io = new StringWriter();
 		this.visitor = new XMLWriterVisitor(this.io);
 		this.msg = new SwiftMessage();
 		this.msg.clear();					// some tests require that there are no extra blocks
-		XMLUnit.setIgnoreWhitespace(true);
 	}
 
 	@SuppressWarnings("unused")
@@ -76,7 +73,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		msg.setBlock4(null);
 		msg.setBlock5(null);
 
-		assertXMLEqual("<message/>", getResult("testEmpty"));
+		assertXmlEqual("<message/>", getResult("testEmpty"));
 	}
 	
 	@Test 
@@ -93,7 +90,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		msg.setBlock5(new SwiftBlock5());
 
 		String xml = "<message><block1/>\n<block2/>\n<block3/>\n<block4/>\n<block5/>\n</message>";
-		assertXMLEqual(xml, getResult("testEmptyBlocks"));
+		assertXmlEqual(xml, getResult("testEmptyBlocks"));
 	}
 	
 	@Test 
@@ -114,7 +111,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		b4.append(new Tag("t1:v1"));
 		msg.setBlock1(b1);
 		msg.setBlock4(b4);
-		assertXMLEqual(xml, getResult("testWithTags"));
+		assertXmlEqual(xml, getResult("testWithTags"));
 	}
 	
 	@Test 
@@ -131,7 +128,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		Constants.B1_DATA_XML + 
 		Constants.B2_INPUT_XML + 
 		"</message>";
-		assertXMLEqual(xml, getResult("testBug1539324_1"));
+		assertXmlEqual(xml, getResult("testBug1539324_1"));
 	}
 	
 	@Test 
@@ -161,7 +158,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		"\n<block4>\n</block4>" + 
 		"\n<block5>\n</block5>" + 
 		"\n</message>";
-		assertXMLEqual(xml, getResult("testBug1539324_2"));
+		assertXmlEqual(xml, getResult("testBug1539324_2"));
 	}
 	
 	@Test 
@@ -184,7 +181,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		"\n\t</tag>"+
 		"\n</block4>"+ 
 		"</message>";
-		assertXMLEqual(xml, getResult("testBug1540294_1"));
+		assertXmlEqual(xml, getResult("testBug1540294_1"));
 	}
 	
 	@Test 
@@ -202,7 +199,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		Constants.B1_DATA_XML + 
 		Constants.B2_OUTPUT_XML + 
 		"</message>";
-		assertXMLEqual(xml, getResult("testBlock2Output_1"));
+		assertXmlEqual(xml, getResult("testBlock2Output_1"));
 	}
 	
 	@Test 
@@ -217,7 +214,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		Constants.B2_OUTPUT_XML + 
 		"</message>";
 		String got = getResult("testBlock2Output");
-		assertXMLEqual(xml, got);
+		assertXmlEqual(xml, got);
 	}
 	
 	@Test 
@@ -235,7 +232,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		"\n\t</tag>"+
 		"\n</block4>"+ 
 		"</message>";
-		assertXMLEqual(xml, getResult("testTagSerialization"));
+		assertXmlEqual(xml, getResult("testTagSerialization"));
 	}
 	
 	@Test 
@@ -255,7 +252,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		"\n\t</tag>"+
 		"\n</block4>"+ 
 		"</message>";
-		assertXMLEqual(xml, getResult("testFieldSerialization"));
+		assertXmlEqual(xml, getResult("testFieldSerialization"));
 	}
 
 	@Test 
@@ -277,7 +274,7 @@ public class XMLWriterVisitorTest extends XMLTestCase {
 		msg.setBlock1(b1);
 		msg.setBlock4(b4);
 		this.visitor = new XMLWriterVisitor(this.io, true);
-		assertXMLEqual(xml, getResult("testWithTags"));
+		assertXmlEqual(xml, getResult("testWithTags"));
 	}
 
 }

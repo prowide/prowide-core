@@ -34,16 +34,17 @@ public interface MxRead {
 	 * 
 	 * @since 7.6
 	 */
-	AbstractMX read(Class<? extends AbstractMX> targetClass, final String xml, Class<? extends Object>[] classes);
+	AbstractMX read(Class<? extends AbstractMX> targetClass, final String xml, Class<?>[] classes);
 
 	/**
 	 * Read <code>xml</code> into a message object
 	 * 
 	 * @param xml the string with the message
-	 * @param id optional parameter to indicate the specific MX type to create; autodetected from namespace if null.
+	 * @param id optional parameter to indicate the specific MX type to create; auto detected from namespace if null.
 	 * @return parsed message or null if string content could not be parsed into an Mx
 	 * 
 	 * @since 7.8.4
 	 */
-	public AbstractMX read(final String xml, MxId id);
+	AbstractMX read(final String xml, MxId id);
+
 }

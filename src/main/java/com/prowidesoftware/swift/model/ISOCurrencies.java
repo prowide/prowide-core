@@ -24,12 +24,11 @@ import com.prowidesoftware.swift.utils.IsoUtils;
  * 
  * @deprecated use Java Currency instead
  * @see IsoUtils#isValidISOCurrency(String)
- * 
- * @author www.prowidesoftware.com
+ *
  * @since 3.3
  */
 @Deprecated
-@ProwideDeprecated(phase3=TargetYear._2019)
+@ProwideDeprecated(phase4=TargetYear.SRU2020)
 public class ISOCurrencies extends PropertyResource {
 	private static final ISOCurrencies instance = new ISOCurrencies();
 	

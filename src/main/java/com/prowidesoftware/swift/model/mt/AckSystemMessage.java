@@ -30,7 +30,7 @@ import java.io.InputStream;
  * @since 7.8
  */
 @Deprecated
-@ProwideDeprecated(phase2 = TargetYear._2020)
+@ProwideDeprecated(phase2 = TargetYear.SRU2020)
 public class AckSystemMessage extends ServiceMessage21 {
 
 	/**

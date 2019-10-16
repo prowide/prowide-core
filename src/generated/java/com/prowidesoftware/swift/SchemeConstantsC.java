@@ -1,20 +1,4 @@
 
-/*
- * Copyright 2006-2018 Prowide
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.prowidesoftware.swift;
 
 import com.prowidesoftware.Generated;
@@ -45,6 +29,9 @@ public interface SchemeConstantsC {
     public final static String CRTS = "CRTS";
     public final static String C = "C";
     public final static String CANC = "CANC";
+    public final static String CAMN = "CAMN";
+    public final static String CNEW = "CNEW";
+    public final static String CCAN = "CCAN";
     public final static String CLOSEOUT = "CLOSEOUT";
     public final static String CANCEL = "CANCEL";
     public final static String CLST = "CLST";
@@ -139,15 +126,22 @@ public interface SchemeConstantsC {
     public final static String COFF = "COFF";
     public final static String CONS = "CONS";
     public final static String CODE = "CODE";
-    public final static String CLTR = "CLTR";
     public final static String CLEA = "CLEA";
     public final static String CCPT = "CCPT";
     public final static String CGEN = "CGEN";
+    public final static String CASD = "CASD";
+    public final static String CALM = "CALM";
+    public final static String CACO = "CACO";
+    public final static String CBON = "CBON";
+    public final static String CUTS = "CUTS";
+    public final static String CALDET = "CALDET";
     public final static String CANP = "CANP";
+    public final static String CMPU = "CMPU";
     public final static String CSBT = "CSBT";
     public final static String COLE = "COLE";
     public final static String CACK = "CACK";
     public final static String CMAF = "CMAF";
+    public final static String CLTR = "CLTR";
     public final static String CCTR = "CCTR";
     public final static String CAPP = "CAPP";
     public final static String CETI = "CETI";

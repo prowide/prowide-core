@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import java.util.Currency;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
 import com.prowidesoftware.swift.model.field.CurrencyResolver;
 
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
@@ -46,9 +47,9 @@ import com.google.gson.JsonParser;
  * Model and parser for field 32Q of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>Currency</code></li> 
- * 		<li><code>Currency</code></li> 
+ * <ol>
+ * 		<li><code>Currency</code></li>
+ * 		<li><code>Currency</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -57,17 +58,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>S/S</code></li>
  * 		<li>components pattern: <code>CC</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
 public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -122,23 +123,7 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 		}
 		parse(tag.getValue());
 	}
-	
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(2);
-		setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
-		setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
-	}
-	
+
 	/**
 	 * Copy constructor.<br>
 	 * Initializes the components list with a deep copy of the source components list.
@@ -150,7 +135,43 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 		cp.setComponents(new ArrayList<>(source.getComponents()));
 		return cp;
 	}
-	
+
+	/**
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag tag(final String value) {
+		return new Tag(NAME, value);
+	}
+
+	/**
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag emptyTag() {
+		return new Tag(NAME, "");
+	}
+
+
+	/**
+	 * Parses the parameter value into the internal components structure.
+	 *
+	 * <p>Used to update all components from a full new value, as an alternative
+	 * to setting individual components. Previous component values are overwritten.
+	 *
+	 * @param value complete field value including separators and CRLF
+	 * @since 7.8
+	 */
+	@Override
+	public void parse(final String value) {
+		init(2);
+		setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
+		setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
+	}
 	/**
 	 * Serializes the fields' components into the single string value (SWIFT format)
 	 */
@@ -162,29 +183,119 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
         append(result, 2);
 		return result.toString();
 	}
-
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
+	 * Returns a localized suitable for showing to humans string of a field component.<br>
+	 *
+	 * @param component number of the component to display
+	 * @param locale optional locale to format date and amounts, if null, the default locale is used
+	 * @return formatted component value or null if component number is invalid or not present
+	 * @throws IllegalArgumentException if component number is invalid for the field
+	 * @since 7.8
+	 */
+	@Override
+	public String getValueDisplay(int component, Locale locale) {
+		if (component < 1 || component > 2) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 32Q");
+		}
+		if (component == 1) {
+			//default format (as is)
+			return getComponent(1);
+		}
+		if (component == 2) {
+			//default format (as is)
+			return getComponent(2);
+		}
+		return null;
+	}
+	/**
+	 * Returns the field components pattern
+	 * @return the static value of Field32Q.COMPONENTS_PATTERN
+	 */
+	@Override
+	public final String componentsPattern() {
+		return COMPONENTS_PATTERN;
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
-	
+     * Returns the field parser pattern
+     * @return the static value of Field32Q.PARSER_PATTERN
+     */
+	@Override
+	public final String parserPattern() {
+        return PARSER_PATTERN;
+    }
+
 	/**
-	 * Gets the component1
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "<CUR>/<CUR>";
+	}
+
+    /**
+     * Given a component number it returns true if the component is optional,
+     * regardless of the field being mandatory in a particular message.<br>
+     * Being the field's value conformed by a composition of one or several
+     * internal component values, the field may be present in a message with
+     * a proper value but with some of its internal components not set.
+     *
+     * @param component component number, first component of a field is referenced as 1
+     * @return true if the component is optional for this field, false otherwise
+     */
+    @Override
+    public boolean isOptional(int component) {
+        return false;
+    }
+
+    /**
+     * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     * @return true if the field is generic, false otherwise
+     */
+    @Override
+    public boolean isGeneric() {
+        return false;
+    }
+
+	/**
+	 * Returns the defined amount of components.<br>
+	 * This is not the amount of components present in the field instance, but the total amount of components
+	 * that this field accepts as defined.
+	 * @since 7.7
+	 */
+	@Override
+	public int componentsSize() {
+		return 2;
+	}
+
+	/**
+	 * Returns english label for components.
+	 * <br>
+	 * The index in the list is in sync with specific field component structure.
+	 * @see #getComponentLabel(int)
+	 * @since 7.8.4
+	 */
+	@Override
+	protected List<String> getComponentLabels() {
+		List<String> result = new ArrayList<>();
+		result.add("Currency 1");
+		result.add("Currency 2");
+		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.3
+	 */
+	@Override
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<>();
+		result.put(1, "currency1");
+		result.put(2, "currency2");
+		return result;
+	}
+	/**
+	 * Gets the component1 (Currency 1).
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -214,45 +325,8 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	public java.util.Currency getCurrency1AsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(1));
 	}
-
 	/**
-	 * Set the component1.
-	 * @param component1 the component1 to set
-	 */
-	public Field32Q setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the component1 from a Currency object.
-	 * @param component1 the Currency with the component1 content to set
-	 */
-	public Field32Q setComponent1(java.util.Currency component1) {
-		setComponent(1, SwiftFormatUtils.getCurrency(component1));
-		return this;
-	}
-	
-	/**
-	 * Set the Currency 1 (component1).
-	 * @param component1 the Currency 1 to set
-	 */
-	public Field32Q setCurrency1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Currency 1 (component1) from a Currency object.
-	 * @see #setComponent1(java.util.Currency)
-	 * @param component1 Currency with the Currency 1 content to set
-	 */
-	public Field32Q setCurrency1(java.util.Currency component1) {
-		setComponent1(component1);
-		return this;
-	}
-	/**
-	 * Gets the component2
+	 * Gets the component2 (Currency 2).
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -281,43 +355,6 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	 */
 	public java.util.Currency getCurrency2AsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(2));
-	}
-
-	/**
-	 * Set the component2.
-	 * @param component2 the component2 to set
-	 */
-	public Field32Q setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the component2 from a Currency object.
-	 * @param component2 the Currency with the component2 content to set
-	 */
-	public Field32Q setComponent2(java.util.Currency component2) {
-		setComponent(2, SwiftFormatUtils.getCurrency(component2));
-		return this;
-	}
-	
-	/**
-	 * Set the Currency 2 (component2).
-	 * @param component2 the Currency 2 to set
-	 */
-	public Field32Q setCurrency2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Currency 2 (component2) from a Currency object.
-	 * @see #setComponent2(java.util.Currency)
-	 * @param component2 Currency with the Currency 2 content to set
-	 */
-	public Field32Q setCurrency2(java.util.Currency component2) {
-		setComponent2(component2);
-		return this;
 	}
     
 	public List<String> currencyStrings() {
@@ -352,35 +389,82 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 		CurrencyResolver.resolveSetCurrency(this, cur);
 	}
 
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       return false;
-   }
 
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return false;
-   }
+	/**
+	 * Set the component1 (Currency 1).
+	 * @param component1 the component1 to set
+	 */
+	public Field32Q setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the component1 from a Currency object.
+	 * @param component1 the Currency with the component1 content to set
+	 */
+	public Field32Q setComponent1(java.util.Currency component1) {
+		setComponent(1, SwiftFormatUtils.getCurrency(component1));
+		return this;
+	}
+	
+	/**
+	 * Set the Currency 1 (component1).
+	 * @param component1 the Currency 1 to set
+	 */
+	public Field32Q setCurrency1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Currency 1 (component1) from a Currency object.
+	 * @see #setComponent1(java.util.Currency)
+	 * @param component1 Currency with the Currency 1 content to set
+	 */
+	public Field32Q setCurrency1(java.util.Currency component1) {
+		setComponent1(component1);
+		return this;
+	}
+
+	/**
+	 * Set the component2 (Currency 2).
+	 * @param component2 the component2 to set
+	 */
+	public Field32Q setComponent2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the component2 from a Currency object.
+	 * @param component2 the Currency with the component2 content to set
+	 */
+	public Field32Q setComponent2(java.util.Currency component2) {
+		setComponent(2, SwiftFormatUtils.getCurrency(component2));
+		return this;
+	}
+	
+	/**
+	 * Set the Currency 2 (component2).
+	 * @param component2 the Currency 2 to set
+	 */
+	public Field32Q setCurrency2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Currency 2 (component2) from a Currency object.
+	 * @see #setComponent2(java.util.Currency)
+	 * @param component2 Currency with the Currency 2 content to set
+	 */
+	public Field32Q setCurrency2(java.util.Currency component2) {
+		setComponent2(component2);
+		return this;
+	}
+
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field32Q.NAME
@@ -388,23 +472,6 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field32Q.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "<CUR>/<CUR>";
 	}
 
 	/**
@@ -466,68 +533,6 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 2;
-	}
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 2) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 32Q");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Currency 1");
-		result.add("Currency 2");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "currency1");
-		result.put(2, "currency2");
-		return result;
 	}
 
 	/**

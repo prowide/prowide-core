@@ -17,9 +17,6 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.MTVariant;
@@ -172,15 +169,15 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	private void updateAttributes(final SwiftMessage model) {
 		setFileFormat(FileFormat.FIN);
 		if (model.isServiceMessage21()) {
+			/*
+			 * set identifier for system aknowledge
+			 */
+			if (model.isAck()) {
+				super.identifier = IDENTIFIER_ACK;
+			} else if (model.isNack()) {
+				super.identifier = IDENTIFIER_NAK;
+			}
 			if (model.getUnparsedTextsSize() > 0) {
-				/*
-				 * set identifier for system aknowledge
-				 */
-				if (model.isAck()) {
-					super.identifier = IDENTIFIER_ACK;
-				} else if (model.isNack()) {
-					super.identifier = IDENTIFIER_NAK;
-				}
 				/*
 				 * try to parse the appended original message (if any)
 				 * to gather receiver and reference information
@@ -197,10 +194,10 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 			setReceiver(bic11(model.getReceiver()));
 			setDirection(model.getDirection());
 			setReference(SwiftMessageUtils.reference(model));
-			CurrencyAmount currencyAmount = SwiftMessageUtils.currencyAmount(model);
-			if (currencyAmount != null) {
-				setCurrency(currencyAmount.getCurrency());
-				setAmount(currencyAmount.getAmount());
+			Money money = SwiftMessageUtils.money(model);
+			if (money != null) {
+				setCurrency(money.getCurrency());
+				setAmount(money.getAmount());
 			}
 			setValueDate(SwiftMessageUtils.valueDate(model));
 			setTradeDate(SwiftMessageUtils.tradeDate(model));
@@ -285,18 +282,6 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * @deprecated The internal model message is no longer kept as class attribute to avoid 
-	 * inconsistencies between the raw format and the parsed data. To update the internal raw
-	 * format from a model object use {@link #updateFromModel(SwiftMessage)} instead of this setter.
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public void setModelMessage(final SwiftMessage modelMessage) {
-		DeprecationUtils.phase3(getClass(), "setModelMessage(SwiftMessage)", "Use updateFromModel(SwiftMessage) instead.");
-		updateFromModel(modelMessage);
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -88,7 +88,7 @@ import java.io.IOException;
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2018</strong>
+ * This source code is specific to release <strong>SRU 2019</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -97,7 +97,7 @@ public class MT707 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT707.class.getName());
 	
@@ -105,185 +105,6 @@ public class MT707 extends AbstractMT implements Serializable {
 	* Constant for MT name, this is part of the classname, after <code>MT</code>
 	*/
 	public static final String NAME = "707";
-	
-// begin qualifiers constants	
-
-	/**
-	* Constant for qualifier with value ACNF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ACNF = "ACNF";
-
-	/**
-	* Constant for qualifier with value ADD 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ADD = "ADD";
-
-	/**
-	* Constant for qualifier with value ADVI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ADVI = "ADVI";
-
-	/**
-	* Constant for qualifier with value ALLOWED 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ALLOWED = "ALLOWED";
-
-	/**
-	* Constant for qualifier with value APPL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String APPL = "APPL";
-
-	/**
-	* Constant for qualifier with value BENE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BENE = "BENE";
-
-	/**
-	* Constant for qualifier with value CANCEL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CANCEL = "CANCEL";
-
-	/**
-	* Constant for qualifier with value CONDITIONAL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CONDITIONAL = "CONDITIONAL";
-
-	/**
-	* Constant for qualifier with value CONFIRM 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CONFIRM = "CONFIRM";
-
-	/**
-	* Constant for qualifier with value DELETE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DELETE = "DELETE";
-
-	/**
-	* Constant for qualifier with value EUCPURR_LATEST_VERSION 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EUCPURR_LATEST_VERSION = "EUCPURR_LATEST_VERSION";
-
-	/**
-	* Constant for qualifier with value EUCP_LATEST_VERSION 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EUCP_LATEST_VERSION = "EUCP_LATEST_VERSION";
-
-	/**
-	* Constant for qualifier with value IRREVOCABLE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String IRREVOCABLE = "IRREVOCABLE";
-
-	/**
-	* Constant for qualifier with value IRREVOCABLE_STANDBY 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String IRREVOCABLE_STANDBY = "IRREVOCABLE_STANDBY";
-
-	/**
-	* Constant for qualifier with value IRREVOCABLE_TRANSFERABLE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String IRREVOCABLE_TRANSFERABLE = "IRREVOCABLE_TRANSFERABLE";
-
-	/**
-	* Constant for qualifier with value IRREVOC_TRANS_STANDBY 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String IRREVOC_TRANS_STANDBY = "IRREVOC_TRANS_STANDBY";
-
-	/**
-	* Constant for qualifier with value ISP_LATEST_VERSION 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ISP_LATEST_VERSION = "ISP_LATEST_VERSION";
-
-	/**
-	* Constant for qualifier with value ISSU 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ISSU = "ISSU";
-
-	/**
-	* Constant for qualifier with value MAY_ADD 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MAY_ADD = "MAY_ADD";
-
-	/**
-	* Constant for qualifier with value NOT_ALLOWED 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NOT_ALLOWED = "NOT_ALLOWED";
-
-	/**
-	* Constant for qualifier with value OTHR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OTHR = "OTHR";
-
-	/**
-	* Constant for qualifier with value REPALL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String REPALL = "REPALL";
-
-	/**
-	* Constant for qualifier with value UCPURR_LATEST_VERSION 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String UCPURR_LATEST_VERSION = "UCPURR_LATEST_VERSION";
-
-	/**
-	* Constant for qualifier with value UCP_LATEST_VERSION 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String UCP_LATEST_VERSION = "UCP_LATEST_VERSION";
-
-	/**
-	* Constant for qualifier with value WITHOUT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String WITHOUT = "WITHOUT";
-
-// end qualifiers constants	
 
 	/**
 	 * Creates an MT707 initialized with the parameter SwiftMessage
@@ -340,24 +161,6 @@ public class MT707 extends AbstractMT implements Serializable {
 	 */
 	public MT707(final String sender, final String receiver) {
 		super(707, sender, receiver);
-	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT707(String, String)
-	* @deprecated Use instead <code>new MT707(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT707(final int messageType, final String sender, final String receiver) {
-		super(707, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT707(int, String, String)", "Use the constructor MT707(sender, receiver) instead.");
 	}
 	
 	/**

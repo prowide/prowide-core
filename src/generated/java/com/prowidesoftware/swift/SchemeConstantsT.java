@@ -1,20 +1,4 @@
 
-/*
- * Copyright 2006-2018 Prowide
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.prowidesoftware.swift;
 
 import com.prowidesoftware.Generated;
@@ -84,7 +68,6 @@ public interface SchemeConstantsT {
     public final static String TRAA = "TRAA";
     public final static String TRCI = "TRCI";
     public final static String TOVA = "TOVA";
-    public final static String TCTR = "TCTR";
     public final static String TCPI = "TCPI";
     public final static String TRANSDET = "TRANSDET";
     public final static String TRANS = "TRANS";
@@ -92,6 +75,7 @@ public interface SchemeConstantsT {
     public final static String TRADDET = "TRADDET";
     public final static String TURN = "TURN";
     public final static String TPRC = "TPRC";
+    public final static String TCTR = "TCTR";
     public final static String TSMV = "TSMV";
     public final static String TYPP = "TYPP";
     public final static String TCMV = "TCMV";
@@ -100,6 +84,7 @@ public interface SchemeConstantsT {
     public final static String TPDT = "TPDT";
     public final static String TAXB = "TAXB";
     public final static String TDMT = "TDMT";
+    public final static String TAGT = "TAGT";
     public final static String TAXC = "TAXC";
     public final static String TXFR = "TXFR";
     public final static String TXIN = "TXIN";

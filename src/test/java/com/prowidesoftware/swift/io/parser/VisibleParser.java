@@ -69,17 +69,7 @@ public final class VisibleParser extends SwiftParser {
 			br = br.substring(1);
 		return super.consumeTag(br, null);
 	}
-	
-	/**
-	 * @deprecated use {@link #consumeBlock(UnparsedTextList)} instead of this, <code>consumeBlock(null)</code> is acceptable
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public SwiftBlock consumeBlock() throws IOException {
-		DeprecationUtils.phase3(getClass(), "consumeBlock()", "Use consumeBlock(UnparsedTextList) instead, where consumeBlock() is acceptable.");
-		return super.consumeBlock();
-	}
-	
+
 	public String readUntilBlockEnds() throws IOException {
 		return super.readUntilBlockEnds();
 	}

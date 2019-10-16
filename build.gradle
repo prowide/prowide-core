@@ -6,20 +6,20 @@ apply plugin: 'jacoco'
 
 archivesBaseName = 'pw-swift-core'
 
-def SRU = "2018"
+def SRU = "2019"
 
-version "SRU${SRU}-7.10.5-SNAPSHOT"
+version "SRU${SRU}-8.0.1"
 group 'com.prowidesoftware'
 	
-sourceCompatibility = '1.7'
-targetCompatibility = '1.7'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 	
 tasks.withType(JavaCompile) {
 	options.fork = true
-	if (project.hasProperty('JDK7_HOME')) {
-		options.forkOptions.executable = "$JDK7_HOME/bin/javac"
+	if (project.hasProperty('JDK8_HOME')) {
+		options.forkOptions.executable = "$JDK8_HOME/bin/javac"
 	} else {
-		println "*** Compiling with newer version of Java, this is just fine for development; for releases a proper JDK7_HOME variable must be set in gradle.properties ***"
+		println "*** Compiling with newer version of Java, this is just fine for development; for releases a proper JDK8_HOME variable must be set in gradle.properties ***"
 	}
 	options.encoding = 'UTF-8'
 }
@@ -33,9 +33,15 @@ dependencies {
 	implementation 'org.apache.commons:commons-lang3:3.8.1'
 	implementation 'org.apache.commons:commons-text:1.6'
 	implementation 'com.google.code.gson:gson:2.8.2'
-	compileOnly group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
+	compileOnly 'javax.persistence:javax.persistence-api:2.2'
 	compileOnly group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
-	testImplementation 'junit:junit:4.12', 'xmlunit:xmlunit:1.6'
+	testImplementation 'junit:junit:4.12'
+	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
+	testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.6.3'
+	testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.6.3'
+	testImplementation group: 'org.xmlunit', name: 'xmlunit-assertj', version: '2.6.3'
+	testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.0'
+	testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.0'
 }
 
 sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']
@@ -60,12 +66,12 @@ javadoc {
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
+	archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
+	archiveClassifier = 'sources'
     from sourceSets.main.allSource
 }
 
@@ -146,7 +152,7 @@ jacocoTestReport {
     
 	// exclude generated code
 	afterEvaluate {
-		classDirectories = files(classDirectories.files.collect {
+		getClassDirectories().setFrom(classDirectories.files.collect {
 			fileTree(dir: it, exclude: [
 				'**/SchemeConstants**',
 				'**/mt0xx/**',

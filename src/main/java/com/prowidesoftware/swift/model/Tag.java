@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.field.Field;
@@ -23,7 +24,6 @@ import org.apache.commons.lang3.Validate;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.logging.Level;
 
 /**
  * Representation of a swift field in a message.
@@ -51,7 +51,7 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	protected Long id;
 	
 	/**
@@ -61,7 +61,7 @@ public class Tag implements Serializable {
 	 * is not used and should not be used by clients.
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	@Deprecated
 	protected Integer sortKey;
 	
@@ -86,7 +86,7 @@ public class Tag implements Serializable {
 	 * @deprecated to retrieve fields in sequences use the AbstractMT model
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	protected transient SequenceNode sequence = null;
 	
 	/**
@@ -251,8 +251,9 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public Long getId() {
+		DeprecationUtils.phase2(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		return id;
 	}
 
@@ -263,9 +264,9 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public void setId(Long id) {
-
+		DeprecationUtils.phase2(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		this.id = id;
 	}
 
@@ -276,8 +277,9 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public Integer getSortKey() {
+		DeprecationUtils.phase2(getClass(), "getSortKey()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		return sortKey;
 	}
 
@@ -289,8 +291,9 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public void setSortKey(Integer sortKey) {
+		DeprecationUtils.phase2(getClass(), "setSortKey(Integer)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		this.sortKey = sortKey;
 	}
 
@@ -405,16 +408,14 @@ public class Tag implements Serializable {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Tag tag = (Tag) o;
-		return Objects.equals(sortKey, tag.sortKey) &&
-				Objects.equals(name, tag.name) &&
+		return Objects.equals(name, tag.name) &&
 				Objects.equals(value, tag.value) &&
-				Objects.equals(unparsedTexts, tag.unparsedTexts) &&
-				Objects.equals(sequence, tag.sequence);
+				Objects.equals(unparsedTexts, tag.unparsedTexts);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(sortKey, name, value, unparsedTexts, sequence);
+		return Objects.hash(name, value, unparsedTexts);
 	}
 
 	/**
@@ -523,8 +524,9 @@ public class Tag implements Serializable {
 	 * @deprecated use {@link #asField()} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public Field getField() {
+		DeprecationUtils.phase2(getClass(), "getField()", "use asField() instead");
 		return Field.getField(this);
 	}
 

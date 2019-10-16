@@ -31,9 +31,14 @@ public class MT671Test {
 		m.append(MT671.SequenceB.newInstance(MT671.SequenceB2.newInstance()));
 		assertTrue(m.getSequenceC().isEmpty());
 	}
+
+	/**
+	 * Sequence C and B2 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test2() {
 		MT671 m = new MT671();
+		m.append(MT671.SequenceB.newInstance());
 		m.append(MT671.SequenceC.newInstance());
 		assertTrue(m.getSequenceB2List().isEmpty());
 	}

@@ -25,40 +25,63 @@ import com.prowidesoftware.swift.model.mt.mt5xx.MT575;
 
 public class MT575Test {
 
+	/**
+	 * Sequence A1, B1a1 and C1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test1() {
 		MT575 m = new MT575();
 		m.append(MT575.SequenceA1.newInstance());
+		m.append(MT575.SequenceB1a.newInstance());
+		m.append(MT575.SequenceC.newInstance());
 		assertTrue(m.getSequenceB1a1List().isEmpty());
 		assertTrue(m.getSequenceC1List().isEmpty());
 	}
-	
+
+	/**
+	 * Sequence A1, B1a1 and C1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test2() {
 		MT575 m = new MT575();
+		m.append(MT575.SequenceA.newInstance());
 		m.append(MT575.SequenceB1a1.newInstance());
+		m.append(MT575.SequenceC.newInstance());
 		assertTrue(m.getSequenceA1List().isEmpty());
 		assertTrue(m.getSequenceC1List().isEmpty());
 	}
-	
+
+	/**
+	 * Sequence A1, B1a1 and C1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test3() {
 		MT575 m = new MT575();
+		m.append(MT575.SequenceA.newInstance());
+		m.append(MT575.SequenceB1a.newInstance());
 		m.append(MT575.SequenceC1.newInstance());
 		assertTrue(m.getSequenceA1List().isEmpty());
 		assertTrue(m.getSequenceB1a1List().isEmpty());
 	}
-	
+
+	/**
+	 * Sequence B1a4 and C2a use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test4() {
 		MT575 m = new MT575();
 		m.append(MT575.SequenceB1a4.newInstance());
+		m.append(MT575.SequenceC2.newInstance());
 		assertTrue(m.getSequenceC2aList().isEmpty());
 	}
-	
+
+	/**
+	 * Sequence B1a4 and C2a use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test5() {
 		MT575 m = new MT575();
+		m.append(MT575.SequenceB1a.newInstance());
 		m.append(MT575.SequenceC2a.newInstance());
 		assertTrue(m.getSequenceB1a4List().isEmpty());
 	}

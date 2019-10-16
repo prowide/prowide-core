@@ -44,7 +44,7 @@ public class IBAN {
     private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(IBAN.class.getName());
 
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear._2019)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2020)
     private String invalidCause = null;
 
     private String iban;
@@ -83,7 +83,6 @@ public class IBAN {
 
     /**
      * Checks if the IBAN number is valid.
-     * <p>If the number is not valid a text description of the invalid cause is set in {@link #getInvalidCause()}
      *
      * @see #validate() for details regarding the validation checks or if you need structured details of the validation
      * problem found.
@@ -174,9 +173,9 @@ public class IBAN {
      * @deprecated use {@link IBAN#translateChars(StringBuilder)}
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear._2019)
+    @ProwideDeprecated(phase4=TargetYear.SRU2020)
     public String translateChars(final StringBuffer bban) {
-        DeprecationUtils.phase2(getClass(), "translateChars(StringBuffer)", "Use translateChars(StringBuilder) instead.");
+        DeprecationUtils.phase3(getClass(), "translateChars(StringBuffer)", "Use translateChars(StringBuilder) instead.");
         return translateChars(new StringBuilder(bban));
     }
 
@@ -221,8 +220,9 @@ public class IBAN {
      * @deprecated use the {@link #validate()} method to get a detailed result of the validation problem found
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear._2019)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2020)
     public String getInvalidCause() {
+        DeprecationUtils.phase2(this.getClass(), "getInvalidCause()", "Use the validate() method to get a detailed result of the validation problem found");
         return invalidCause;
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="sequence">
 Sequence A1 - Linkages (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 A,B (O)</li>
-<li class="field">Field 20 C (M)</li>
+<li class="field">Field 20 C,U (M)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
@@ -93,7 +93,114 @@ Fieldset 95
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence C - Additional Information (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C - Penalties (O)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 69 A,B (O)</li>
+<li class="field">Field 22 F (M)</li>
+<li class="fieldset">
+Fieldset 95
+ (O)<ul><li>FieldsetItem 95 P (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="sequence">
+Sequence C1 - Penalties per Currency for a Party (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 11 A (O)</li>
+<li class="field">Field 98 A,C (O)</li>
+<li class="fieldset">
+Fieldset 95
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
+<li class="sequence">
+Sequence C1a - Penalties per Counterparty (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+<li class="fieldset">
+Fieldset 95
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
+<li class="field">Field 19 A (M)</li>
+<li class="sequence">
+Sequence C1a1 - Penalty Details (O)<ul><li class="field">Field 16 R (M)</li>
+<li class="fieldset">
+Fieldset 20
+ (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="field">Field 22 F (M)</li>
+<li class="field">Field 17 B (O)</li>
+<li class="field">Field 25 D (O)</li>
+<li class="fieldset">
+Fieldset 24
+ (O)<ul><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li></ul></li><li class="field">Field 70 D (O)</li>
+<li class="field">Field 19 A (M)</li>
+<li class="field">Field 22 F (M)</li>
+<li class="field">Field 99 B (M)</li>
+<li class="sequence">
+Sequence C1a1A - Calculation Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 98 A,C,E (M)</li>
+<li class="field">Field 17 B (O)</li>
+<li class="sequence">
+Sequence C1a1A1 - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 35 B (M)</li>
+<li class="field">Field 12 A,C (O)</li>
+<li class="field">Field 17 B (O)</li>
+<li class="field">Field 90 A,B (O)</li>
+<li class="field">Field 94 B (O)</li>
+<li class="fieldset">
+Fieldset 98
+ (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 92 B (O)</li>
+<li class="field">Field 94 B,L (O) (repetitive)</li>
+<li class="field">Field 17 B (O)</li>
+<li class="fieldset">
+Fieldset 92
+ (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="fieldset">
+Fieldset 92
+ (O) (repetitive)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 B (O) (repetitive)</li></ul></li><li class="fieldset">
+Fieldset 19
+ (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="sequence">
+Sequence C1a1A2 - Related Transaction (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+<li class="fieldset">
+Fieldset 20
+ (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="sequence">
+Sequence C1a1A2a - Transaction Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 22  (M)</li>
+<li class="fieldset">
+Fieldset 98
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="fieldset">
+Fieldset 97
+ (O)<ul><li>FieldsetItem 97 A,B (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="fieldset">
+Fieldset 95
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
+Fieldset 22
+ (M)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li></ul></li><li class="field">Field 36 B (M) (repetitive)</li>
+<li class="field">Field 19 A (O)</li>
+<li class="fieldset">
+Fieldset 98
+ (M) (repetitive)<ul><li>FieldsetItem 98 C (M)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 C (O)</li></ul></li><li class="sequence">
+Sequence C1a1A2a1 - Status (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 25 D (M)</li>
+<li class="sequence">
+Sequence C1a1A2a1A - Reason (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 24 B (M)</li>
+<li class="field">Field 70 D (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="field">Field 70 E (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="field">Field 70 E (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="field">Field 70 E (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="field">Field 70 E (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="field">Field 70 E (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="field">Field 70 E (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="sequence">
+Sequence D - Additional Information (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
  (O) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 C,P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 16 S (M)</li>
@@ -102,7 +209,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2018</strong>
+ * This source code is specific to release <strong>SRU 2019</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -111,7 +218,7 @@ public class MT548 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT548.class.getName());
 	
@@ -119,598 +226,6 @@ public class MT548 extends AbstractMT implements Serializable {
 	* Constant for MT name, this is part of the classname, after <code>MT</code>
 	*/
 	public static final String NAME = "548";
-	
-// begin qualifiers constants	
-
-	/**
-	* Constant for qualifier with value ACOW 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ACOW = "ACOW";
-
-	/**
-	* Constant for qualifier with value ADDINFO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ADDINFO = "ADDINFO";
-
-	/**
-	* Constant for qualifier with value ADEL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ADEL = "ADEL";
-
-	/**
-	* Constant for qualifier with value ALTE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String ALTE = "ALTE";
-
-	/**
-	* Constant for qualifier with value BENE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BENE = "BENE";
-
-	/**
-	* Constant for qualifier with value BLOC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BLOC = "BLOC";
-
-	/**
-	* Constant for qualifier with value CACK 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CACK = "CACK";
-
-	/**
-	* Constant for qualifier with value CALL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CALL = "CALL";
-
-	/**
-	* Constant for qualifier with value CAND 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CAND = "CAND";
-
-	/**
-	* Constant for qualifier with value CANP 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CANP = "CANP";
-
-	/**
-	* Constant for qualifier with value CAST 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CAST = "CAST";
-
-	/**
-	* Constant for qualifier with value CASY 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CASY = "CASY";
-
-	/**
-	* Constant for qualifier with value CCPT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CCPT = "CCPT";
-
-	/**
-	* Constant for qualifier with value CGEN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CGEN = "CGEN";
-
-	/**
-	* Constant for qualifier with value CLCI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CLCI = "CLCI";
-
-	/**
-	* Constant for qualifier with value CLEA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CLEA = "CLEA";
-
-	/**
-	* Constant for qualifier with value CLTR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CLTR = "CLTR";
-
-	/**
-	* Constant for qualifier with value CODU 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CODU = "CODU";
-
-	/**
-	* Constant for qualifier with value COLA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String COLA = "COLA";
-
-	/**
-	* Constant for qualifier with value COLE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String COLE = "COLE";
-
-	/**
-	* Constant for qualifier with value COMM 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String COMM = "COMM";
-
-	/**
-	* Constant for qualifier with value COPY 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String COPY = "COPY";
-
-	/**
-	* Constant for qualifier with value CORP 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CORP = "CORP";
-
-	/**
-	* Constant for qualifier with value CPRC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CPRC = "CPRC";
-
-	/**
-	* Constant for qualifier with value DEND 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DEND = "DEND";
-
-	/**
-	* Constant for qualifier with value DUPL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String DUPL = "DUPL";
-
-	/**
-	* Constant for qualifier with value EXSE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EXSE = "EXSE";
-
-	/**
-	* Constant for qualifier with value EXVA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EXVA = "EXVA";
-
-	/**
-	* Constant for qualifier with value GENL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String GENL = "GENL";
-
-	/**
-	* Constant for qualifier with value INMH 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String INMH = "INMH";
-
-	/**
-	* Constant for qualifier with value INST 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String INST = "INST";
-
-	/**
-	* Constant for qualifier with value INVE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String INVE = "INVE";
-
-	/**
-	* Constant for qualifier with value IPRC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String IPRC = "IPRC";
-
-	/**
-	* Constant for qualifier with value LEOG 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String LEOG = "LEOG";
-
-	/**
-	* Constant for qualifier with value LINK 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String LINK = "LINK";
-
-	/**
-	* Constant for qualifier with value MACL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MACL = "MACL";
-
-	/**
-	* Constant for qualifier with value MEOR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MEOR = "MEOR";
-
-	/**
-	* Constant for qualifier with value MERE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MERE = "MERE";
-
-	/**
-	* Constant for qualifier with value MITI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MITI = "MITI";
-
-	/**
-	* Constant for qualifier with value MOPN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MOPN = "MOPN";
-
-	/**
-	* Constant for qualifier with value MTCH 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String MTCH = "MTCH";
-
-	/**
-	* Constant for qualifier with value NETT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NETT = "NETT";
-
-	/**
-	* Constant for qualifier with value NMAT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NMAT = "NMAT";
-
-	/**
-	* Constant for qualifier with value NTSP 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NTSP = "NTSP";
-
-	/**
-	* Constant for qualifier with value OCMT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OCMT = "OCMT";
-
-	/**
-	* Constant for qualifier with value PACK 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PACK = "PACK";
-
-	/**
-	* Constant for qualifier with value PAYM 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PAYM = "PAYM";
-
-	/**
-	* Constant for qualifier with value PCTI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PCTI = "PCTI";
-
-	/**
-	* Constant for qualifier with value PEND 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PEND = "PEND";
-
-	/**
-	* Constant for qualifier with value PENF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PENF = "PENF";
-
-	/**
-	* Constant for qualifier with value POOL 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String POOL = "POOL";
-
-	/**
-	* Constant for qualifier with value PPRC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PPRC = "PPRC";
-
-	/**
-	* Constant for qualifier with value PREP 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PREP = "PREP";
-
-	/**
-	* Constant for qualifier with value PREV 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PREV = "PREV";
-
-	/**
-	* Constant for qualifier with value PROC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PROC = "PROC";
-
-	/**
-	* Constant for qualifier with value QFIN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String QFIN = "QFIN";
-
-	/**
-	* Constant for qualifier with value REAS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String REAS = "REAS";
-
-	/**
-	* Constant for qualifier with value REDE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String REDE = "REDE";
-
-	/**
-	* Constant for qualifier with value REGT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String REGT = "REGT";
-
-	/**
-	* Constant for qualifier with value REJT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String REJT = "REJT";
-
-	/**
-	* Constant for qualifier with value RELA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String RELA = "RELA";
-
-	/**
-	* Constant for qualifier with value REPR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String REPR = "REPR";
-
-	/**
-	* Constant for qualifier with value REPT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String REPT = "REPT";
-
-	/**
-	* Constant for qualifier with value REST 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String REST = "REST";
-
-	/**
-	* Constant for qualifier with value RTGS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String RTGS = "RTGS";
-
-	/**
-	* Constant for qualifier with value SAFE 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SAFE = "SAFE";
-
-	/**
-	* Constant for qualifier with value SEME 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SEME = "SEME";
-
-	/**
-	* Constant for qualifier with value SETPRTY 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SETPRTY = "SETPRTY";
-
-	/**
-	* Constant for qualifier with value SETR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SETR = "SETR";
-
-	/**
-	* Constant for qualifier with value SETS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SETS = "SETS";
-
-	/**
-	* Constant for qualifier with value SETT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SETT = "SETT";
-
-	/**
-	* Constant for qualifier with value SETTRAN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SETTRAN = "SETTRAN";
-
-	/**
-	* Constant for qualifier with value SPRC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SPRC = "SPRC";
-
-	/**
-	* Constant for qualifier with value SPRO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SPRO = "SPRO";
-
-	/**
-	* Constant for qualifier with value STAM 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String STAM = "STAM";
-
-	/**
-	* Constant for qualifier with value STAT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String STAT = "STAT";
-
-	/**
-	* Constant for qualifier with value STCO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String STCO = "STCO";
-
-	/**
-	* Constant for qualifier with value TCPI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TCPI = "TCPI";
-
-	/**
-	* Constant for qualifier with value TCTR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TCTR = "TCTR";
-
-	/**
-	* Constant for qualifier with value TPRC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TPRC = "TPRC";
-
-	/**
-	* Constant for qualifier with value TRAD 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TRAD = "TRAD";
-
-	/**
-	* Constant for qualifier with value TRCA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TRCA = "TRCA";
-
-	/**
-	* Constant for qualifier with value TRCI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TRCI = "TRCI";
-
-	/**
-	* Constant for qualifier with value TRRF 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String TRRF = "TRRF";
-
-// end qualifiers constants	
 
 	/**
 	 * Creates an MT548 initialized with the parameter SwiftMessage
@@ -767,24 +282,6 @@ public class MT548 extends AbstractMT implements Serializable {
 	 */
 	public MT548(final String sender, final String receiver) {
 		super(548, sender, receiver);
-	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT548(String, String)
-	* @deprecated Use instead <code>new MT548(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT548(final int messageType, final String sender, final String receiver) {
-		super(548, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT548(int, String, String)", "Use the constructor MT548(sender, receiver) instead.");
 	}
 	
 	/**
@@ -974,36 +471,126 @@ public class MT548 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 35B, 
+	 * Iterates through block4 fields and return the first one whose name matches 69A, 
 	 * or null if none is found.<br>
-	 * The first occurrence of field 35B at MT548 is expected to be the only one.
+	 * The first occurrence of field 69A at MT548 is expected to be the only one.
 	 * 
-	 * @return a Field35B object or null if the field is not found
+	 * @return a Field69A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field35B getField35B() {
-		final Tag t = tag("35B");
+	public Field69A getField69A() {
+		final Tag t = tag("69A");
 		if (t != null) {
-			return new Field35B(t.getValue());
+			return new Field69A(t.getValue());
 		} else {
 			return null;
 		}
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 70E, 
+	 * Iterates through block4 fields and return the first one whose name matches 69B, 
 	 * or null if none is found.<br>
-	 * The first occurrence of field 70E at MT548 is expected to be the only one.
+	 * The first occurrence of field 69B at MT548 is expected to be the only one.
 	 * 
-	 * @return a Field70E object or null if the field is not found
+	 * @return a Field69B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field70E getField70E() {
-		final Tag t = tag("70E");
+	public Field69B getField69B() {
+		final Tag t = tag("69B");
 		if (t != null) {
-			return new Field70E(t.getValue());
+			return new Field69B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 99B, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 99B at MT548 is expected to be the only one.
+	 * 
+	 * @return a Field99B object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field99B getField99B() {
+		final Tag t = tag("99B");
+		if (t != null) {
+			return new Field99B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 12A, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 12A at MT548 is expected to be the only one.
+	 * 
+	 * @return a Field12A object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field12A getField12A() {
+		final Tag t = tag("12A");
+		if (t != null) {
+			return new Field12A(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 12C, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 12C at MT548 is expected to be the only one.
+	 * 
+	 * @return a Field12C object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field12C getField12C() {
+		final Tag t = tag("12C");
+		if (t != null) {
+			return new Field12C(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 90A, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 90A at MT548 is expected to be the only one.
+	 * 
+	 * @return a Field90A object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field90A getField90A() {
+		final Tag t = tag("90A");
+		if (t != null) {
+			return new Field90A(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 90B, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 90B at MT548 is expected to be the only one.
+	 * 
+	 * @return a Field90B object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field90B getField90B() {
+		final Tag t = tag("90B");
+		if (t != null) {
+			return new Field90B(t.getValue());
 		} else {
 			return null;
 		}
@@ -1084,6 +671,26 @@ public class MT548 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field20C(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 20U, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 20U at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field20U objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field20U> getField20U() {
+		final List<Field20U> result = new ArrayList<>();
+		final Tag[] tags = tags("20U");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field20U(tag.getValue()));
             }
 		}
 		return result;
@@ -1569,8 +1176,167 @@ public class MT548 extends AbstractMT implements Serializable {
 		return result;
 	}
 	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 11A, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 11A at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field11A objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field11A> getField11A() {
+		final List<Field11A> result = new ArrayList<>();
+		final Tag[] tags = tags("11A");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field11A(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 17B, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 17B at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field17B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field17B> getField17B() {
+		final List<Field17B> result = new ArrayList<>();
+		final Tag[] tags = tags("17B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field17B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 35B at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field35B> getField35B() {
+		final List<Field35B> result = new ArrayList<>();
+		final Tag[] tags = tags("35B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field35B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92A, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 92A at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field92A objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field92A> getField92A() {
+		final List<Field92A> result = new ArrayList<>();
+		final Tag[] tags = tags("92A");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field92A(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 70E, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 70E at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field70E objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field70E> getField70E() {
+		final List<Field70E> result = new ArrayList<>();
+		final Tag[] tags = tags("70E");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field70E(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92B, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 92B at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field92B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field92B> getField92B() {
+		final List<Field92B> result = new ArrayList<>();
+		final Tag[] tags = tags("92B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field92B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 22 at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field22 objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field22> getField22() {
+		final List<Field22> result = new ArrayList<>();
+		final Tag[] tags = tags("22");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field22(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97E, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 97E at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field97E objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field97E> getField97E() {
+		final List<Field97E> result = new ArrayList<>();
+		final Tag[] tags = tags("97E");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field97E(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
 
-// BaseSequenceCodeGenerator [seq=A]
 	/**
 	 * Class to model Sequence "A" in MT 548
 	 */
@@ -1674,20 +1440,20 @@ public class MT548 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceA#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceA within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceA within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static SequenceA getSequenceA(SwiftTagListBlock parentSequence) {
 		final SequenceA s = new SequenceA();
-		s.setTags(parentSequence.getSubBlock(SequenceA.START_END_16RS).getTags());
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceA.START_END_16RS).getTags());
+		}
 		return s;
 	}
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
+ 
 
-
-// BaseSequenceCodeGenerator [seq=A1]
 	/**
 	 * Class to model Sequence "A1" in MT 548
 	 */
@@ -1778,8 +1544,9 @@ public class MT548 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceA1#START_END_16RS
 	 */
@@ -1788,37 +1555,37 @@ public class MT548 extends AbstractMT implements Serializable {
 		return getSequenceA1List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in SequenceA1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceA1#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceA1 within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceA1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceA1> getSequenceA1List(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceA1.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceA1> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceA1 s = new SequenceA1();
-				s.setTags(b.getSubBlock(SequenceA1.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceA1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceA1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceA1 s = new SequenceA1();
+                    s.setTags(b.getSubBlock(SequenceA1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=A2]
 	/**
 	 * Class to model Sequence "A2" in MT 548
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
+	@NonUniqueSeparator
 	public static class SequenceA2 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
@@ -1849,6 +1616,7 @@ public class MT548 extends AbstractMT implements Serializable {
 		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
+	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceA2 newInstance(final Tag ... tags) {
 			final SequenceA2 result = new SequenceA2();
@@ -1905,47 +1673,67 @@ public class MT548 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceA2 delimited by 16R/16S with value specified in SequenceA2#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceA2 delimited by 16R/16S with value specified in {@link SequenceA2#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceA2#START_END_16RS
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceA2> getSequenceA2List() {
-		return getSequenceA2List(super.getSwiftMessageNotNullOrException().getBlock4());
+  	    /*
+		 * The delimiter STAT is not unique across all sequences, in this MT.
+		 * The usual generated API for accessing this can not be used for sequence A2.
+		 * So we call a special method to resolve this situation until we find a better approach.
+		 */
+		if (this.getSwiftMessage() == null) {
+			return null;
+		}
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT548GetSequenceA2List_sru2019(this);
 	}
 	/**
-	 * Get the list of SequenceA2 delimited by 16R/16S with value specified in SequenceA2#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceA2 delimited by 16R/16S with value specified in {@link SequenceA2#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
 	 * @see SequenceA2#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceA2 within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceA2 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceA2> getSequenceA2List(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceA2.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceA2> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceA2 s = new SequenceA2();
-				s.setTags(b.getSubBlock(SequenceA2.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceA2.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceA2> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceA2 s = new SequenceA2();
+                    s.setTags(b.getSubBlock(SequenceA2.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=A2a]
 	/**
 	 * Class to model Sequence "A2a" in MT 548
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
+	@NonUniqueSeparator
 	public static class SequenceA2a extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
@@ -1976,6 +1764,7 @@ public class MT548 extends AbstractMT implements Serializable {
 		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
+	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceA2a newInstance(final Tag ... tags) {
 			final SequenceA2a result = new SequenceA2a();
@@ -2032,43 +1821,62 @@ public class MT548 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceA2a delimited by 16R/16S with value specified in SequenceA2a#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceA2a delimited by 16R/16S with value specified in {@link SequenceA2a#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceA2a#START_END_16RS
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceA2a> getSequenceA2aList() {
-		return getSequenceA2aList(super.getSwiftMessageNotNullOrException().getBlock4());
+  	    /*
+		 * The delimiter REAS is not unique across all sequences, in this MT.
+		 * The usual generated API for accessing this can not be used for sequence A2a.
+		 * So we call a special method to resolve this situation until we find a better approach.
+		 */
+		if (this.getSwiftMessage() == null) {
+			return null;
+		}
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT548GetSequenceA2aList_sru2019(this);
 	}
 	/**
-	 * Get the list of SequenceA2a delimited by 16R/16S with value specified in SequenceA2a#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceA2a delimited by 16R/16S with value specified in {@link SequenceA2a#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
 	 * @see SequenceA2a#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceA2a within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceA2a within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceA2a> getSequenceA2aList(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceA2a.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceA2a> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceA2a s = new SequenceA2a();
-				s.setTags(b.getSubBlock(SequenceA2a.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceA2a.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceA2a> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceA2a s = new SequenceA2a();
+                    s.setTags(b.getSubBlock(SequenceA2a.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=B]
 	/**
 	 * Class to model Sequence "B" in MT 548
 	 */
@@ -2172,20 +1980,20 @@ public class MT548 extends AbstractMT implements Serializable {
 	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceB#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceB within the complete message
+	 * @param parentSequence a not null parent sequence to find SequenceB within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static SequenceB getSequenceB(SwiftTagListBlock parentSequence) {
 		final SequenceB s = new SequenceB();
-		s.setTags(parentSequence.getSubBlock(SequenceB.START_END_16RS).getTags());
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceB.START_END_16RS).getTags());
+		}
 		return s;
 	}
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
+ 
 
-
-// BaseSequenceCodeGenerator [seq=B1]
 	/**
 	 * Class to model Sequence "B1" in MT 548
 	 */
@@ -2276,8 +2084,9 @@ public class MT548 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in SequenceB1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB1#START_END_16RS
 	 */
@@ -2286,33 +2095,32 @@ public class MT548 extends AbstractMT implements Serializable {
 		return getSequenceB1List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in SequenceB1#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB1#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceB1 within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceB1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static List<SequenceB1> getSequenceB1List(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceB1> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceB1 s = new SequenceB1();
-				s.setTags(b.getSubBlock(SequenceB1.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceB1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceB1 s = new SequenceB1();
+                    s.setTags(b.getSubBlock(SequenceB1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		// TODO if is is mandatory issue a warning log
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
-
-
-// BaseSequenceCodeGenerator [seq=C]
 	/**
 	 * Class to model Sequence "C" in MT 548
 	 */
@@ -2336,9 +2144,9 @@ public class MT548 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>ADDINFO</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>PENA</em>
 		 */
-		public static final String START_END_16RS = "ADDINFO";
+		public static final String START_END_16RS = "PENA";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
 
@@ -2401,43 +2209,1346 @@ public class MT548 extends AbstractMT implements Serializable {
 		}
 
 	}
-
 	/**
-	 * Get the list of SequenceC delimited by 16R/16S with value specified in SequenceC#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-     * @return the found sequences or an empty list if none is found
+	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
 	 * @see SequenceC#START_END_16RS
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceC> getSequenceCList() {
-		return getSequenceCList(super.getSwiftMessageNotNullOrException().getBlock4());
+	public SequenceC getSequenceC() {
+		return new SequenceC(super.getSwiftMessageNotNullOrException());
 	}
+	
 	/**
-	 * Get the list of SequenceC delimited by 16R/16S with value specified in SequenceC#START_END_16RS
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceC#START_END_16RS
-	 * @param parentSequence an optional parent sequence or null to find SequenceC within the complete message
-	 * @return the found sequences or an empty list if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceC within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceC> getSequenceCList(final SwiftTagListBlock parentSequence) {
-		final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC.START_END_16RS);
-		if (blocks != null && !blocks.isEmpty()) {
-			final List<SequenceC> result = new ArrayList<>(blocks.size());
-			for (final SwiftTagListBlock b:blocks) {
-				final SequenceC s = new SequenceC();
-				s.setTags(b.getSubBlock(SequenceC.START_END_16RS).getTags());
-				result.add(s);
-			}
-			return result; 
+	public static SequenceC getSequenceC(SwiftTagListBlock parentSequence) {
+		final SequenceC s = new SequenceC();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceC.START_END_16RS).getTags());
 		}
-		// TODO if is is mandatory issue a warning log
+		return s;
+	}
+ 
+
+	/**
+	 * Class to model Sequence "C1" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceC1 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceC1() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC1(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>PENACUR</em>
+		 */
+		public static final String START_END_16RS = "PENACUR";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC1 newInstance(final Tag ... tags) {
+			final SequenceC1 result = new SequenceC1();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC1 newInstance() {
+			final SequenceC1 result = new SequenceC1();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC1 newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceC1 result = new SequenceC1();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC1(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceC1 delimited by 16R/16S with value specified in {@link SequenceC1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC1#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceC1> getSequenceC1List() {
+		return getSequenceC1List(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	/**
+	 * Get the list of SequenceC1 delimited by 16R/16S with value specified in {@link SequenceC1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceC1#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC1> getSequenceC1List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC1 s = new SequenceC1();
+                    s.setTags(b.getSubBlock(SequenceC1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
 		return Collections.emptyList();
+	}
+ 
 
-	} 	
- 	// Slice debug: com.prowidesoftware.swift.codegen.velocity.mt.DelimitedSequenceCodeGenerator
+	/**
+	 * Class to model Sequence "C1a" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceC1a extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceC1a() {
+			super(new ArrayList<Tag>());
+		}
 
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC1a(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>PENACOUNT</em>
+		 */
+		public static final String START_END_16RS = "PENACOUNT";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC1a newInstance(final Tag ... tags) {
+			final SequenceC1a result = new SequenceC1a();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC1a newInstance() {
+			final SequenceC1a result = new SequenceC1a();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC1a newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceC1a result = new SequenceC1a();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC1a(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceC1a delimited by 16R/16S with value specified in {@link SequenceC1a#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC1a#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceC1a> getSequenceC1aList() {
+		return getSequenceC1aList(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	/**
+	 * Get the list of SequenceC1a delimited by 16R/16S with value specified in {@link SequenceC1a#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceC1a#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC1a within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC1a> getSequenceC1aList(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1a.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC1a> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC1a s = new SequenceC1a();
+                    s.setTags(b.getSubBlock(SequenceC1a.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
+
+	/**
+	 * Class to model Sequence "C1a1" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceC1a1 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceC1a1() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC1a1(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>PENDET</em>
+		 */
+		public static final String START_END_16RS = "PENDET";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC1a1 newInstance(final Tag ... tags) {
+			final SequenceC1a1 result = new SequenceC1a1();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC1a1 newInstance() {
+			final SequenceC1a1 result = new SequenceC1a1();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC1a1 newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceC1a1 result = new SequenceC1a1();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC1a1(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceC1a1 delimited by 16R/16S with value specified in {@link SequenceC1a1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC1a1#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceC1a1> getSequenceC1a1List() {
+		return getSequenceC1a1List(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	/**
+	 * Get the list of SequenceC1a1 delimited by 16R/16S with value specified in {@link SequenceC1a1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceC1a1#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC1a1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC1a1> getSequenceC1a1List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1a1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC1a1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC1a1 s = new SequenceC1a1();
+                    s.setTags(b.getSubBlock(SequenceC1a1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
+
+	/**
+	 * Class to model Sequence "C1a1A" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceC1a1A extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceC1a1A() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC1a1A(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>CALDET</em>
+		 */
+		public static final String START_END_16RS = "CALDET";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC1a1A newInstance(final Tag ... tags) {
+			final SequenceC1a1A result = new SequenceC1a1A();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A newInstance() {
+			final SequenceC1a1A result = new SequenceC1a1A();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceC1a1A result = new SequenceC1a1A();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC1a1A(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceC1a1A delimited by 16R/16S with value specified in {@link SequenceC1a1A#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC1a1A#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceC1a1A> getSequenceC1a1AList() {
+		return getSequenceC1a1AList(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	/**
+	 * Get the list of SequenceC1a1A delimited by 16R/16S with value specified in {@link SequenceC1a1A#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceC1a1A#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC1a1A within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC1a1A> getSequenceC1a1AList(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1a1A.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC1a1A> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC1a1A s = new SequenceC1a1A();
+                    s.setTags(b.getSubBlock(SequenceC1a1A.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
+
+	/**
+	 * Class to model Sequence "C1a1A1" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceC1a1A1 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceC1a1A1() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC1a1A1(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>FIA</em>
+		 */
+		public static final String START_END_16RS = "FIA";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC1a1A1 newInstance(final Tag ... tags) {
+			final SequenceC1a1A1 result = new SequenceC1a1A1();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A1 newInstance() {
+			final SequenceC1a1A1 result = new SequenceC1a1A1();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A1 newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceC1a1A1 result = new SequenceC1a1A1();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC1a1A1(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceC1a1A1 delimited by 16R/16S with value specified in {@link SequenceC1a1A1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC1a1A1#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceC1a1A1> getSequenceC1a1A1List() {
+		return getSequenceC1a1A1List(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	/**
+	 * Get the list of SequenceC1a1A1 delimited by 16R/16S with value specified in {@link SequenceC1a1A1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceC1a1A1#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC1a1A1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC1a1A1> getSequenceC1a1A1List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1a1A1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC1a1A1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC1a1A1 s = new SequenceC1a1A1();
+                    s.setTags(b.getSubBlock(SequenceC1a1A1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
+
+	/**
+	 * Class to model Sequence "C1a1A2" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceC1a1A2 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceC1a1A2() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC1a1A2(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>RELTRAN</em>
+		 */
+		public static final String START_END_16RS = "RELTRAN";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC1a1A2 newInstance(final Tag ... tags) {
+			final SequenceC1a1A2 result = new SequenceC1a1A2();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A2 newInstance() {
+			final SequenceC1a1A2 result = new SequenceC1a1A2();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A2 newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceC1a1A2 result = new SequenceC1a1A2();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC1a1A2(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceC1a1A2 delimited by 16R/16S with value specified in {@link SequenceC1a1A2#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC1a1A2#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceC1a1A2> getSequenceC1a1A2List() {
+		return getSequenceC1a1A2List(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	/**
+	 * Get the list of SequenceC1a1A2 delimited by 16R/16S with value specified in {@link SequenceC1a1A2#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceC1a1A2#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC1a1A2 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC1a1A2> getSequenceC1a1A2List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1a1A2.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC1a1A2> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC1a1A2 s = new SequenceC1a1A2();
+                    s.setTags(b.getSubBlock(SequenceC1a1A2.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
+
+	/**
+	 * Class to model Sequence "C1a1A2a" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceC1a1A2a extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceC1a1A2a() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC1a1A2a(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>TRAN</em>
+		 */
+		public static final String START_END_16RS = "TRAN";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC1a1A2a newInstance(final Tag ... tags) {
+			final SequenceC1a1A2a result = new SequenceC1a1A2a();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A2a newInstance() {
+			final SequenceC1a1A2a result = new SequenceC1a1A2a();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A2a newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceC1a1A2a result = new SequenceC1a1A2a();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC1a1A2a(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceC1a1A2a delimited by 16R/16S with value specified in {@link SequenceC1a1A2a#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC1a1A2a#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceC1a1A2a> getSequenceC1a1A2aList() {
+		return getSequenceC1a1A2aList(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	/**
+	 * Get the list of SequenceC1a1A2a delimited by 16R/16S with value specified in {@link SequenceC1a1A2a#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceC1a1A2a#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC1a1A2a within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC1a1A2a> getSequenceC1a1A2aList(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1a1A2a.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC1a1A2a> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC1a1A2a s = new SequenceC1a1A2a();
+                    s.setTags(b.getSubBlock(SequenceC1a1A2a.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
+
+	/**
+	 * Class to model Sequence "C1a1A2a1" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	@NonUniqueSeparator
+	public static class SequenceC1a1A2a1 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceC1a1A2a1() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC1a1A2a1(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>STAT</em>
+		 */
+		public static final String START_END_16RS = "STAT";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+	    @NonUniqueSeparator
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC1a1A2a1 newInstance(final Tag ... tags) {
+			final SequenceC1a1A2a1 result = new SequenceC1a1A2a1();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A2a1 newInstance() {
+			final SequenceC1a1A2a1 result = new SequenceC1a1A2a1();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A2a1 newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceC1a1A2a1 result = new SequenceC1a1A2a1();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC1a1A2a1(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceC1a1A2a1 delimited by 16R/16S with value specified in {@link SequenceC1a1A2a1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC1a1A2a1#START_END_16RS
+	 */
+	@NonUniqueSeparator
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceC1a1A2a1> getSequenceC1a1A2a1List() {
+  	    /*
+		 * The delimiter STAT is not unique across all sequences, in this MT.
+		 * The usual generated API for accessing this can not be used for sequence C1a1A2a1.
+		 * So we call a special method to resolve this situation until we find a better approach.
+		 */
+		if (this.getSwiftMessage() == null) {
+			return null;
+		}
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT548GetSequenceC1a1A2a1List_sru2019(this);
+	}
+	/**
+	 * Get the list of SequenceC1a1A2a1 delimited by 16R/16S with value specified in {@link SequenceC1a1A2a1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
+	 * @see SequenceC1a1A2a1#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC1a1A2a1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC1a1A2a1> getSequenceC1a1A2a1List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1a1A2a1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC1a1A2a1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC1a1A2a1 s = new SequenceC1a1A2a1();
+                    s.setTags(b.getSubBlock(SequenceC1a1A2a1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
+
+	/**
+	 * Class to model Sequence "C1a1A2a1A" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	@NonUniqueSeparator
+	public static class SequenceC1a1A2a1A extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceC1a1A2a1A() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC1a1A2a1A(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>REAS</em>
+		 */
+		public static final String START_END_16RS = "REAS";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+	    @NonUniqueSeparator
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC1a1A2a1A newInstance(final Tag ... tags) {
+			final SequenceC1a1A2a1A result = new SequenceC1a1A2a1A();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A2a1A newInstance() {
+			final SequenceC1a1A2a1A result = new SequenceC1a1A2a1A();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC1a1A2a1A newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceC1a1A2a1A result = new SequenceC1a1A2a1A();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC1a1A2a1A(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceC1a1A2a1A delimited by 16R/16S with value specified in {@link SequenceC1a1A2a1A#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceC1a1A2a1A#START_END_16RS
+	 */
+	@NonUniqueSeparator
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceC1a1A2a1A> getSequenceC1a1A2a1AList() {
+  	    /*
+		 * The delimiter REAS is not unique across all sequences, in this MT.
+		 * The usual generated API for accessing this can not be used for sequence C1a1A2a1A.
+		 * So we call a special method to resolve this situation until we find a better approach.
+		 */
+		if (this.getSwiftMessage() == null) {
+			return null;
+		}
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT548GetSequenceC1a1A2a1AList_sru2019(this);
+	}
+	/**
+	 * Get the list of SequenceC1a1A2a1A delimited by 16R/16S with value specified in {@link SequenceC1a1A2a1A#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
+	 * @see SequenceC1a1A2a1A#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC1a1A2a1A within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC1a1A2a1A> getSequenceC1a1A2a1AList(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1a1A2a1A.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC1a1A2a1A> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC1a1A2a1A s = new SequenceC1a1A2a1A();
+                    s.setTags(b.getSubBlock(SequenceC1a1A2a1A.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
+
+	/**
+	 * Class to model Sequence "D" in MT 548
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceD extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceD() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceD(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>ADDINFO</em>
+		 */
+		public static final String START_END_16RS = "ADDINFO";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceD newInstance(final Tag ... tags) {
+			final SequenceD result = new SequenceD();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceD newInstance() {
+			final SequenceD result = new SequenceD();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceD newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceD result = new SequenceD();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceD(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceD delimited by 16R/16S with value specified in {@link SequenceD#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceD#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceD> getSequenceDList() {
+		return getSequenceDList(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	/**
+	 * Get the list of SequenceD delimited by 16R/16S with value specified in {@link SequenceD#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceD#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceD within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceD> getSequenceDList(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceD.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceD> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceD s = new SequenceD();
+                    s.setTags(b.getSubBlock(SequenceD.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+ 
 
 
 

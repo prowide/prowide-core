@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ Sequence B (M) (repetitive)<ul><li class="field">Field 21  (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2018</strong>
+ * This source code is specific to release <strong>SRU 2019</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -84,7 +84,7 @@ public class MT101 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT101.class.getName());
 	
@@ -92,122 +92,6 @@ public class MT101 extends AbstractMT implements Serializable {
 	* Constant for MT name, this is part of the classname, after <code>MT</code>
 	*/
 	public static final String NAME = "101";
-	
-// begin qualifiers constants	
-
-	/**
-	* Constant for qualifier with value BEN 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String BEN = "BEN";
-
-	/**
-	* Constant for qualifier with value CHQB 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CHQB = "CHQB";
-
-	/**
-	* Constant for qualifier with value CMSW 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CMSW = "CMSW";
-
-	/**
-	* Constant for qualifier with value CMTO 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CMTO = "CMTO";
-
-	/**
-	* Constant for qualifier with value CMZB 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CMZB = "CMZB";
-
-	/**
-	* Constant for qualifier with value CORT 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String CORT = "CORT";
-
-	/**
-	* Constant for qualifier with value EQUI 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String EQUI = "EQUI";
-
-	/**
-	* Constant for qualifier with value INTC 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String INTC = "INTC";
-
-	/**
-	* Constant for qualifier with value NETS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String NETS = "NETS";
-
-	/**
-	* Constant for qualifier with value OTHR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OTHR = "OTHR";
-
-	/**
-	* Constant for qualifier with value OUR 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String OUR = "OUR";
-
-	/**
-	* Constant for qualifier with value PHON 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String PHON = "PHON";
-
-	/**
-	* Constant for qualifier with value REPA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String REPA = "REPA";
-
-	/**
-	* Constant for qualifier with value RTGS 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String RTGS = "RTGS";
-
-	/**
-	* Constant for qualifier with value SHA 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String SHA = "SHA";
-
-	/**
-	* Constant for qualifier with value URGP 
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public static final String URGP = "URGP";
-
-// end qualifiers constants	
 
 	/**
 	 * Creates an MT101 initialized with the parameter SwiftMessage
@@ -264,24 +148,6 @@ public class MT101 extends AbstractMT implements Serializable {
 	 */
 	public MT101(final String sender, final String receiver) {
 		super(101, sender, receiver);
-	}
-	
-	/**
-	* <em>DO NOT USE THIS METHOD</em>
-	* It is kept for compatibility but will be removed very soon, since the
-	* <code>messageType</code> parameter is actually ignored.
-	*
-	* @param messageType the message type number
-    * @param sender the sender address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @param receiver the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
-	* @see #MT101(String, String)
-	* @deprecated Use instead <code>new MT101(sender, receiver)</code> instead
-	*/
-	@Deprecated
-	@com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear._2019)
-	public MT101(final int messageType, final String sender, final String receiver) {
-		super(101, sender, receiver);
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "MT101(int, String, String)", "Use the constructor MT101(sender, receiver) instead.");
 	}
 	
 	/**
@@ -1081,7 +947,6 @@ public class MT101 extends AbstractMT implements Serializable {
 	}
 	
 
-// BaseSequenceCodeGenerator [seq=A]
 	/**
 	 * Class to model Sequence "A" in MT 101
 	 */
@@ -1153,7 +1018,7 @@ public class MT101 extends AbstractMT implements Serializable {
 			return result;
 		}
 	}
- 	/**
+	/**
 	 * Get the single occurrence of SequenceA delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * If block 4 is empty this method returns null.
@@ -1172,8 +1037,8 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence an optional parent sequence or null to find SequenceA within the complete message
-	 * @return the found sequence or an empty sequence if none is found
+	 * @param parentSequence a not null parent sequence to find SequenceA within it
+	 * @return the found sequence or an empty sequence if none is found, or null if the parent sequence is null or empty
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
@@ -1197,7 +1062,6 @@ public class MT101 extends AbstractMT implements Serializable {
 	}
  
 
-// BaseSequenceCodeGenerator [seq=B]
 	/**
 	 * Class to model Sequence "B" in MT 101
 	 */
@@ -1274,25 +1138,12 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
-	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence an optional parent sequence or null to find SequenceB within the complete message
 	 * @return the found sequences or an empty list if none is found
-	 * @since 7.7
+	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceB> getSequenceBList(final SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final List<SequenceB> result = new ArrayList<>();
-			final List<SwiftTagListBlock> bs = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceB.START, SequenceB.END, SequenceB.TAIL);
-			if (bs != null && !bs.isEmpty()) {
-				for (final SwiftTagListBlock s : bs) {
-					result.add(new SequenceB(s));
-				}
-			}
-			return result;
-		}
-		// TODO if is is mandatory issue a warning log
-		return Collections.emptyList();
+	public List<SequenceB> getSequenceBList() {
+		return getSequenceBList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
@@ -1300,12 +1151,24 @@ public class MT101 extends AbstractMT implements Serializable {
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
-	 * @return the found sequences or an empty list if none is found
 	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
+	 * @param parentSequence a not null parent sequence to find SequenceB within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceB> getSequenceBList() {
-		return getSequenceBList(super.getSwiftMessageNotNullOrException().getBlock4());
+	public static List<SequenceB> getSequenceBList(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceB.START, SequenceB.END, SequenceB.TAIL);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceB> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    result.add(new SequenceB(b));
+                }
+                return result;
+            }
+        }
+        return Collections.emptyList();
 	}
  
 

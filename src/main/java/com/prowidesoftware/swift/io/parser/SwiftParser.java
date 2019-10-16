@@ -136,14 +136,18 @@ public class SwiftParser {
 	/**
 	 * Parse a SWIFT message into a data structure.
 	 *
-	 * The implementation uses the default parser behaviour which is lenient and will do a best effort to
-	 * read as much from the message content as possible regardless of the content and block boundaries
-	 * beeing valid or not. For instance, it will read the headers even if the value length is incorrect,
-	 * and it will read the text block (block 4) even if it is missing the closing hyphen and bracket. For
-	 * more options check {@link #setConfiguration(SwiftParserConfiguration)}
+	 * <p>By default this implementation uses the default parser behaviour which is lenient and will do a best effort to
+	 * read as much from the message content as possible regardless of the content and block boundaries being valid
+	 * or not. For instance, it will read the headers even if the value length is incorrect, and it will read the
+	 * text block (block 4) even if it is missing the closing hyphen and bracket.
+	 *
+	 * <p>For more options check {@link #setConfiguration(SwiftParserConfiguration)}
+	 *
+	 * <p>IMPORTANT: Since the parser is initialize with a Reader, this method is not reentrant. Once a message was
+	 * parsed, the next call to this method will produce a message with null blocks.</p>
 	 *
 	 * @return the parsed swift message object
-	 * @throws IOException
+	 * @throws IOException if an error occurs during read
 	 */
 	public SwiftMessage message() throws IOException {
 
@@ -177,20 +181,11 @@ public class SwiftParser {
 	 * @deprecated use {@link SwiftMessage#parse(String)} instead
 	 */
 	@Deprecated
-    @ProwideDeprecated(phase2=TargetYear._2019)
+    @ProwideDeprecated(phase3=TargetYear.SRU2020)
 	public SwiftMessage parse(final String message) throws IOException {
+		DeprecationUtils.phase2(getClass(), "parse(String)", "For a simple static parse call use SwiftMessage#parse(String) instead; for fine grain control or parse configuration you can still create the SwiftParser instance passing a Reader, String or File and call the message() method to get the parsed message object.");
 		setData(message);
 		return message();
-	}
-
-	/**
-	 * @deprecated use {@link #consumeBlock(UnparsedTextList)} instead of this, <code>consumeBlock(null)</code> is acceptable
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	protected SwiftBlock consumeBlock() throws IOException {
-		DeprecationUtils.phase3(getClass(), "consumeBlock()", "Use consumeBlock(UnparsedTextList) instead of this, consumeBlock(null) is acceptable.");
-		return consumeBlock(null);
 	}
 	
 	/**
@@ -289,8 +284,8 @@ public class SwiftParser {
 	 * @param s the block content
 	 * @return a specific block instance with the parsed content
 	 */
-	private SwiftBlock createBlock(final char blockId, final String s) throws IOException {
-		SwiftBlock b = null;
+	private SwiftBlock createBlock(final char blockId, final String s) {
+		SwiftBlock b;
 
 		// create the block object
 		switch (blockId) {
@@ -413,9 +408,8 @@ public class SwiftParser {
 	 * @param b the block to set up tags into
 	 * @param s the block data to process
 	 * @return the processed block (the parameter b)
-	 * @throws IOException
 	 */
-	protected SwiftTagListBlock tagListBlockConsume(final SwiftTagListBlock b, final String s) throws IOException {
+	protected SwiftTagListBlock tagListBlockConsume(final SwiftTagListBlock b, final String s) {
 		// start processing the block data
 		final int start = s.indexOf(':');
 		if (start >= 0 && (start + 1) < s.length()) {
@@ -468,9 +462,8 @@ public class SwiftParser {
 	 * @param b the block to set up tags into
 	 * @param s the block data to process
 	 * @return the processed block (the parameter b)
-	 * @throws IOException
 	 */
-	protected SwiftBlock4 block4Consume(final SwiftBlock4 b, final String s) throws IOException {
+	protected SwiftBlock4 block4Consume(final SwiftBlock4 b, final String s) {
 		/*
 		 * Note that if the block4 is a text block last character is -, which is part of the EOB
 		 * since the parser removes the last }
@@ -783,9 +776,8 @@ public class SwiftParser {
 	 * @param unparsedText the unparsed text to assign (use null if none is wanted).
 	 * This single text is fragmented in multiple texts if there are more than one message.
 	 * @return a swift Tag
-	 * @throws IOException
 	 */
-	protected Tag consumeTag(final String buffer, final String unparsedText) throws IOException {
+	protected Tag consumeTag(final String buffer, final String unparsedText) {
 		// separate name and value
 		final int sep = buffer.indexOf(':');
 		String name = null;
@@ -931,7 +923,7 @@ public class SwiftParser {
 	 * call this method which reads until this block ends.
 	 *
 	 * @return a string with the block contents
-	 * @throws IOException
+	 * @throws IOException if an error occurred during read
 	 */
 	protected String readUntilBlockEnds() throws IOException {
 		final int start = buffer==null? 0 : buffer.length();
@@ -1146,10 +1138,9 @@ public class SwiftParser {
 	 * Parses a string containing the text block of an MT message 
 	 * @param s block content starting with "{4:\r\n" and ending with "\r\n-}"
 	 * @return content parsed into a block 4 or an empty block 4 if string cannot be parsed
-	 * @throws IOException
 	 * @since 7.8.4
 	 */
-	static public SwiftBlock4 parseBlock4(String s) throws IOException {
+	static public SwiftBlock4 parseBlock4(String s) {
 		SwiftBlock4 b4 = new SwiftBlock4();
 		String toParse = s;
 		if (toParse.startsWith("{")) {
@@ -1166,10 +1157,9 @@ public class SwiftParser {
 	 * Parses a string containing an MT message block 3 content 
 	 * @param s block content starting with "{3:" and ending with "}"
 	 * @return content parsed into a block 3 or an empty block 3 if string cannot be parsed
-	 * @throws IOException
 	 * @since 7.8.6
 	 */
-	static public SwiftBlock3 parseBlock3(String s) throws IOException {
+	static public SwiftBlock3 parseBlock3(String s) {
 		SwiftBlock3 b3 = new SwiftBlock3();
 		SwiftParser parser = new SwiftParser();
 		return (SwiftBlock3) parser.tagListBlockConsume(b3, s);
@@ -1179,10 +1169,9 @@ public class SwiftParser {
 	 * Parses a string containing an MT message block 5 content 
 	 * @param s block content starting with "{5:" and ending with "}"
 	 * @return content parsed into a block 5 or an empty block 5 if string cannot be parsed
-	 * @throws IOException
 	 * @since 7.8.6
 	 */
-	static public SwiftBlock5 parseBlock5(String s) throws IOException {
+	static public SwiftBlock5 parseBlock5(String s) {
 		SwiftBlock5 b5 = new SwiftBlock5();
 		SwiftParser parser = new SwiftParser();
 		return (SwiftBlock5) parser.tagListBlockConsume(b5, s);
@@ -1192,10 +1181,9 @@ public class SwiftParser {
 	 * Parses a string containing an MT message block 1 content 
 	 * @param s block content starting with "{1:" and ending with "}"
 	 * @return content parsed into a block 1 or an empty block 1 if string cannot be parsed
-	 * @throws IOException
 	 * @since 7.8.6
 	 */
-	static public SwiftBlock1 parseBlock1(String s) throws IOException {
+	static public SwiftBlock1 parseBlock1(String s) {
 		return new SwiftBlock1(StringUtils.strip(s, "{}"), true);
 	}
 
@@ -1206,10 +1194,9 @@ public class SwiftParser {
 	 *
 	 * @param s block content starting with "{2:" and ending with "}"
 	 * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
-	 * @throws IOException
 	 * @since 7.8.6
 	 */
-	static public SwiftBlock2 parseBlock2(String s) throws IOException {
+	static public SwiftBlock2 parseBlock2(String s) {
 		if (isInput(s)) {
 			return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
 		} else {
@@ -1223,10 +1210,9 @@ public class SwiftParser {
 	 *
 	 * @param s block content starting with "{2:I" and ending with "}"
 	 * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
-	 * @throws IOException
 	 * @since 7.8.6
 	 */
-	static public SwiftBlock2Input parseBlock2Input(String s) throws IOException {
+	static public SwiftBlock2Input parseBlock2Input(String s) {
 		return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
 	}
 
@@ -1236,10 +1222,9 @@ public class SwiftParser {
 	 *
 	 * @param s block content starting with "{2:O" and ending with "}"
 	 * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
-	 * @throws IOException
 	 * @since 7.8.6
 	 */
-	static public SwiftBlock2Output parseBlock2Output(String s) throws IOException {
+	static public SwiftBlock2Output parseBlock2Output(String s) {
 		return new SwiftBlock2Output(StringUtils.strip(s, "{}"), true);
 	}
 

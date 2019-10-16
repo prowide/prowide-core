@@ -27,11 +27,10 @@ import java.util.Locale;
  * @deprecated use Java {@link Locale#getISOCountries()} instead
  * @see IsoUtils#isValidISOCountry(String)
  * 
- * @author www.prowidesoftware.com
  * @since 3.3
  */
 @Deprecated
-@ProwideDeprecated(phase3=TargetYear._2019)
+@ProwideDeprecated(phase4=TargetYear.SRU2020)
 public class ISOCountries extends PropertyResource {
 	private static final ISOCountries instance = new ISOCountries();
 	

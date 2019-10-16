@@ -18,35 +18,46 @@ package com.prowidesoftware.swift.model.mt.mt5xx;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class MT535Test {
 
+	@Ignore("B1b1 and B1c cannot be uniquely identified in this context")
 	@Test
 	public void test1() {
 		MT535 m = new MT535();
 		m.append(MT535.SequenceB1b.newInstance(MT535.SequenceB1b1.newInstance()));
 		assertTrue(m.getSequenceB1cList().isEmpty());
 	}
-	
+
+	@Ignore("B1b1 and B1c cannot be uniquely identified in this context")
 	@Test
 	public void test1a() {
 		MT535 m = new MT535();
 		m.append(MT535.SequenceB.newInstance(MT535.SequenceB1b1.newInstance()));
 		assertTrue(m.getSequenceB1cList().isEmpty());
 	}
-	
+
+	/**
+	 * Sequence B1b1 and B1c use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test1b() {
 		MT535 m = new MT535();
+		m.append(MT535.SequenceB1.newInstance());
 		m.append(MT535.SequenceB1b1.newInstance());
 		assertTrue(m.getSequenceB1cList().isEmpty());
 	}
-	
+
+	/**
+	 * Sequence B1b1 and B1c use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test2() {
 		MT535 m = new MT535();
-		m.append(MT535.SequenceB1.newInstance(MT535.SequenceB1c.newInstance()));
+		m.append(MT535.SequenceB1b.newInstance());
+		m.append(MT535.SequenceB1c.newInstance());
 		assertTrue(m.getSequenceB1b1List().isEmpty());
 	}
 	

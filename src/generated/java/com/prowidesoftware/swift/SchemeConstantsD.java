@@ -1,20 +1,4 @@
 
-/*
- * Copyright 2006-2018 Prowide
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.prowidesoftware.swift;
 
 import com.prowidesoftware.Generated;
@@ -60,17 +44,22 @@ public interface SchemeConstantsD {
     public final static String DEAG = "DEAG";
     public final static String DSCA = "DSCA";
     public final static String DEALTRAN = "DEALTRAN";
+    public final static String DACO = "DACO";
     public final static String DENC = "DENC";
     public final static String DIVR = "DIVR";
     public final static String DVCP = "DVCP";
+    public final static String DERY = "DERY";
     public final static String DROP = "DROP";
+    public final static String DEDI = "DEDI";
     public final static String DSPL = "DSPL";
     public final static String DEVI = "DEVI";
     public final static String DEEM = "DEEM";
     public final static String DSBT = "DSBT";
     public final static String DSSE = "DSSE";
+    public final static String DEFP = "DEFP";
     public final static String DSDA = "DSDA";
     public final static String DSDE = "DSDE";
+    public final static String DEIT = "DEIT";
     public final static String DSWN = "DSWN";
     public final static String DSWO = "DSWO";
     public final static String DSWS = "DSWS";

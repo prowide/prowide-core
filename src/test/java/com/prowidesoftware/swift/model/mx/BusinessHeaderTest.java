@@ -16,44 +16,34 @@
 
 package com.prowidesoftware.swift.model.mx;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-
-import org.custommonkey.xmlunit.XMLAssert;
-import org.custommonkey.xmlunit.exceptions.XpathException;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import com.prowidesoftware.swift.model.mx.dic.ApplicationHeader;
-import com.prowidesoftware.swift.model.mx.dic.BranchAndFinancialInstitutionIdentification5;
-import com.prowidesoftware.swift.model.mx.dic.BranchData2;
-import com.prowidesoftware.swift.model.mx.dic.BusinessApplicationHeaderV01;
-import com.prowidesoftware.swift.model.mx.dic.EntityIdentification;
-import com.prowidesoftware.swift.model.mx.dic.FinancialInstitutionIdentification8;
-import com.prowidesoftware.swift.model.mx.dic.Party9Choice;
-import com.prowidesoftware.swift.model.mx.dic.PostalAddress6;
+import com.prowidesoftware.swift.model.mx.dic.*;
 import com.prowidesoftware.swift.utils.TestUtils;
+import org.junit.Test;
+import org.xmlunit.xpath.JAXPXPathEngine;
+
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import java.io.StringReader;
+
+import static org.junit.Assert.*;
 
 /**
- * Test cases for readign and writing MX headers
+ * Test cases for reading and writing MX headers
  * 
- * @author sebastian@prowidesoftware.com
  * @since 7.8
  */
 public class BusinessHeaderTest {
+
+	private void testXpath(String xml, String path, String expected) {
+		Source source = new StreamSource(new StringReader(xml));
+		assertEquals(expected, new JAXPXPathEngine().evaluate(TestUtils.patch(path), source));
+	}
 
 	/*
 	 * ISO header
 	 */
 	@Test
-	public void testWriteBAH() throws TransformerConfigurationException, SAXException, IOException, ParserConfigurationException, TransformerException, XpathException {
+	public void testWriteBAH() {
 		BusinessApplicationHeaderV01 bah = new BusinessApplicationHeaderV01();
 		bah.setFr(new Party9Choice());
 		bah.getFr().setFIId(new BranchAndFinancialInstitutionIdentification5());
@@ -73,17 +63,17 @@ public class BusinessHeaderTest {
 		final String xml = header.xml();
 		
 		assertNotNull(xml);
-		
-		XMLAssert.assertXpathEvaluatesTo("BIC", TestUtils.patch("/AppHdr/Fr/FIId/FinInstnId/BICFI"), xml);
-		XMLAssert.assertXpathEvaluatesTo("id", TestUtils.patch("/AppHdr/Fr/FIId/BrnchId/Id"), xml);
-		XMLAssert.assertXpathEvaluatesTo("name", TestUtils.patch("/AppHdr/Fr/FIId/BrnchId/Nm"), xml);
+		System.out.println(xml);
+		testXpath(xml, "/AppHdr/Fr/FIId/FinInstnId/BICFI", "BIC");
+		testXpath(xml, "/AppHdr/Fr/FIId/BrnchId/Id", "id");
+		testXpath(xml, "/AppHdr/Fr/FIId/BrnchId/Nm", "name");
 	}
 	
 	/*
 	 * SWIFT header
 	 */
 	@Test
-	public void testWriteBH() throws TransformerConfigurationException, SAXException, IOException, ParserConfigurationException, TransformerException, XpathException {
+	public void testWriteBH() {
 		ApplicationHeader ah = new ApplicationHeader();
 		ah.setFrom(new EntityIdentification());
 		ah.getFrom().setId("id");
@@ -94,8 +84,7 @@ public class BusinessHeaderTest {
 		final String xml = header.xml();
 		
 		assertNotNull(xml);
-		
-		XMLAssert.assertXpathEvaluatesTo("id", TestUtils.patch("/AppHdr/From/Id"), xml);
+		testXpath(xml, "/AppHdr/From/Id", "id");
 	}
 	
 	@Test

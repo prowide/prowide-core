@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import com.prowidesoftware.swift.model.field.MultiLineField;
+
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,16 +45,16 @@ import com.google.gson.JsonParser;
  * Model and parser for field 50F of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>String</code></li> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>String</code></li> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>String</code></li> 
+ * <ol>
+ * 		<li><code>String</code></li>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>String</code></li>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -61,17 +63,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>S$S/S[$S/S]0-3</code></li>
  * 		<li>components pattern: <code>SNSNSNSNS</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
-public class Field50F extends Field implements Serializable, com.prowidesoftware.swift.model.field.MultiLineField {
+public class Field50F extends Field implements Serializable, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -161,11 +163,44 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		}
 		parse(tag.getValue());
 	}
-	
+
+	/**
+	 * Copy constructor.<br>
+	 * Initializes the components list with a deep copy of the source components list.
+	 * @param source a field instance to copy
+	 * @since 7.7
+	 */
+	public static Field50F newInstance(Field50F source) {
+		Field50F cp = new Field50F();
+		cp.setComponents(new ArrayList<>(source.getComponents()));
+		return cp;
+	}
+
+	/**
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag tag(final String value) {
+		return new Tag(NAME, value);
+	}
+
+	/**
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag emptyTag() {
+		return new Tag(NAME, "");
+	}
+
+
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
+	 *
+	 * <p>Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
 	 * @param value complete field value including separators and CRLF
@@ -195,19 +230,6 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 			}	
 		}
 	}
-	
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field50F newInstance(Field50F source) {
-		Field50F cp = new Field50F();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
-	
 	/**
 	 * Serializes the fields' components into the single string value (SWIFT format)
 	 */
@@ -222,48 +244,222 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 			append(result, 3);
 		}
 		if (getComponent4() != null || getComponent5() != null) {
-			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);				
+			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
 			append(result, 4);
 			result.append("/");
 			append(result, 5);
 		}
 		if (getComponent6() != null || getComponent7() != null) {
-			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);				
+			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
 			append(result, 6);
 			result.append("/");
 			append(result, 7);
 		}
 		if (getComponent8() != null || getComponent9() != null) {
-			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);				
+			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
 			append(result, 8);
 			result.append("/");
 			append(result, 9);
 		}
 		return result.toString();
 	}
-
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
+	 * Returns a localized suitable for showing to humans string of a field component.<br>
+	 *
+	 * @param component number of the component to display
+	 * @param locale optional locale to format date and amounts, if null, the default locale is used
+	 * @return formatted component value or null if component number is invalid or not present
+	 * @throws IllegalArgumentException if component number is invalid for the field
+	 * @since 7.8
+	 */
+	@Override
+	public String getValueDisplay(int component, Locale locale) {
+		if (component < 1 || component > 9) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 50F");
+		}
+		if (component == 1) {
+			//special case for party identifier in field 50F
+			if (StringUtils.startsWith(getComponent(1), "/")) {
+				return getComponent(1).substring(1);
+			} else {
+				return getComponent(1);
+			}
+		}
+		if (component == 2) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent2AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 3) {
+			//default format (as is)
+			return getComponent(3);
+		}
+		if (component == 4) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent4AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 5) {
+			//default format (as is)
+			return getComponent(5);
+		}
+		if (component == 6) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent6AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 7) {
+			//default format (as is)
+			return getComponent(7);
+		}
+		if (component == 8) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent8AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 9) {
+			//default format (as is)
+			return getComponent(9);
+		}
+		return null;
+	}
+	/**
+	 * Returns the field components pattern
+	 * @return the static value of Field50F.COMPONENTS_PATTERN
+	 */
+	@Override
+	public final String componentsPattern() {
+		return COMPONENTS_PATTERN;
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
-	
+     * Returns the field parser pattern
+     * @return the static value of Field50F.PARSER_PATTERN
+     */
+	@Override
+	public final String parserPattern() {
+        return PARSER_PATTERN;
+    }
+
 	/**
-	 * Gets the component1
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "CUSTOM";
+	}
+
+    /**
+     * Given a component number it returns true if the component is optional,
+     * regardless of the field being mandatory in a particular message.<br>
+     * Being the field's value conformed by a composition of one or several
+     * internal component values, the field may be present in a message with
+     * a proper value but with some of its internal components not set.
+     *
+     * @param component component number, first component of a field is referenced as 1
+     * @return true if the component is optional for this field, false otherwise
+     */
+    @Override
+    public boolean isOptional(int component) {
+        if (component == 4) {
+            return true;
+        }
+        if (component == 5) {
+            return true;
+        }
+        if (component == 6) {
+            return true;
+        }
+        if (component == 7) {
+            return true;
+        }
+        if (component == 8) {
+            return true;
+        }
+        if (component == 9) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     * @return true if the field is generic, false otherwise
+     */
+    @Override
+    public boolean isGeneric() {
+        return false;
+    }
+
+	/**
+	 * Returns the defined amount of components.<br>
+	 * This is not the amount of components present in the field instance, but the total amount of components
+	 * that this field accepts as defined.
+	 * @since 7.7
+	 */
+	@Override
+	public int componentsSize() {
+		return 9;
+	}
+
+	/**
+	 * Returns english label for components.
+	 * <br>
+	 * The index in the list is in sync with specific field component structure.
+	 * @see #getComponentLabel(int)
+	 * @since 7.8.4
+	 */
+	@Override
+	protected List<String> getComponentLabels() {
+		List<String> result = new ArrayList<>();
+		result.add("Party Identifier");
+		result.add("Number 1");
+		result.add("Name And Address 1");
+		result.add("Number 2");
+		result.add("Name And Address 2");
+		result.add("Number 3");
+		result.add("Name And Address 3");
+		result.add("Number 4");
+		result.add("Name And Address 4");
+		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.3
+	 */
+	@Override
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<>();
+		result.put(1, "partyIdentifier");
+		result.put(2, "number1");
+		result.put(3, "nameAndAddress1");
+		result.put(4, "number2");
+		result.put(5, "nameAndAddress2");
+		result.put(6, "number3");
+		result.put(7, "nameAndAddress3");
+		result.put(8, "number4");
+		result.put(9, "nameAndAddress4");
+		return result;
+	}
+	/**
+	 * Gets the component1 (Party Identifier).
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -275,9 +471,9 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	 * @deprecated use {@link #getComponent(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
 	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(1);
 	}
 
@@ -288,26 +484,8 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	public String getPartyIdentifier() {
 		return getComponent(1);
 	}
-
 	/**
-	 * Set the component1.
-	 * @param component1 the component1 to set
-	 */
-	public Field50F setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Party Identifier (component1).
-	 * @param component1 the Party Identifier to set
-	 */
-	public Field50F setPartyIdentifier(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	/**
-	 * Gets the component2
+	 * Gets the component2 (Number 1).
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -337,9 +515,225 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	public java.lang.Number getNumber1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
+	/**
+	 * Gets the component3 (Name And Address 1).
+	 * @return the component3
+	 */
+	public String getComponent3() {
+		return getComponent(3);
+	}
 
 	/**
-	 * Set the component2.
+	 * Same as getComponent(3)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent3AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(3);
+	}
+
+	/**
+	 * Gets the Name And Address 1 (component3).
+	 * @return the Name And Address 1 from component3
+	 */
+	public String getNameAndAddress1() {
+		return getComponent(3);
+	}
+	/**
+	 * Gets the component4 (Number 2).
+	 * @return the component4
+	 */
+	public String getComponent4() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Get the component4 as Number
+	 * @return the component4 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getComponent4AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(4));
+	}
+
+	/**
+	 * Gets the Number 2 (component4).
+	 * @return the Number 2 from component4
+	 */
+	public String getNumber2() {
+		return getComponent(4);
+	}
+	
+	/**
+	 * Get the Number 2 (component4) as Number
+	 * @return the Number 2 from component4 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getNumber2AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(4));
+	}
+	/**
+	 * Gets the component5 (Name And Address 2).
+	 * @return the component5
+	 */
+	public String getComponent5() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Same as getComponent(5)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent5AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent5AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(5);
+	}
+
+	/**
+	 * Gets the Name And Address 2 (component5).
+	 * @return the Name And Address 2 from component5
+	 */
+	public String getNameAndAddress2() {
+		return getComponent(5);
+	}
+	/**
+	 * Gets the component6 (Number 3).
+	 * @return the component6
+	 */
+	public String getComponent6() {
+		return getComponent(6);
+	}
+
+	/**
+	 * Get the component6 as Number
+	 * @return the component6 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getComponent6AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(6));
+	}
+
+	/**
+	 * Gets the Number 3 (component6).
+	 * @return the Number 3 from component6
+	 */
+	public String getNumber3() {
+		return getComponent(6);
+	}
+	
+	/**
+	 * Get the Number 3 (component6) as Number
+	 * @return the Number 3 from component6 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getNumber3AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(6));
+	}
+	/**
+	 * Gets the component7 (Name And Address 3).
+	 * @return the component7
+	 */
+	public String getComponent7() {
+		return getComponent(7);
+	}
+
+	/**
+	 * Same as getComponent(7)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent7AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent7AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(7);
+	}
+
+	/**
+	 * Gets the Name And Address 3 (component7).
+	 * @return the Name And Address 3 from component7
+	 */
+	public String getNameAndAddress3() {
+		return getComponent(7);
+	}
+	/**
+	 * Gets the component8 (Number 4).
+	 * @return the component8
+	 */
+	public String getComponent8() {
+		return getComponent(8);
+	}
+
+	/**
+	 * Get the component8 as Number
+	 * @return the component8 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getComponent8AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(8));
+	}
+
+	/**
+	 * Gets the Number 4 (component8).
+	 * @return the Number 4 from component8
+	 */
+	public String getNumber4() {
+		return getComponent(8);
+	}
+	
+	/**
+	 * Get the Number 4 (component8) as Number
+	 * @return the Number 4 from component8 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getNumber4AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(8));
+	}
+	/**
+	 * Gets the component9 (Name And Address 4).
+	 * @return the component9
+	 */
+	public String getComponent9() {
+		return getComponent(9);
+	}
+
+	/**
+	 * Same as getComponent(9)
+	 * @deprecated use {@link #getComponent(int)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase4=TargetYear.SRU2020)
+	public java.lang.String getComponent9AsString() {
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent9AsString()", "Use use #getComponent(int) instead.");
+		return getComponent(9);
+	}
+
+	/**
+	 * Gets the Name And Address 4 (component9).
+	 * @return the Name And Address 4 from component9
+	 */
+	public String getNameAndAddress4() {
+		return getComponent(9);
+	}
+
+
+	/**
+	 * Set the component1 (Party Identifier).
+	 * @param component1 the component1 to set
+	 */
+	public Field50F setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Party Identifier (component1).
+	 * @param component1 the Party Identifier to set
+	 */
+	public Field50F setPartyIdentifier(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+
+	/**
+	 * Set the component2 (Number 1).
 	 * @param component2 the component2 to set
 	 */
 	public Field50F setComponent2(String component2) {
@@ -383,35 +777,9 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		setComponent2(component2);
 		return this;
 	}
-	/**
-	 * Gets the component3
-	 * @return the component3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
 
 	/**
-	 * Same as getComponent(3)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent3AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(3);
-	}
-
-	/**
-	 * Gets the Name And Address 1 (component3).
-	 * @return the Name And Address 1 from component3
-	 */
-	public String getNameAndAddress1() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Set the component3.
+	 * Set the component3 (Name And Address 1).
 	 * @param component3 the component3 to set
 	 */
 	public Field50F setComponent3(String component3) {
@@ -427,40 +795,9 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		setComponent(3, component3);
 		return this;
 	}
-	/**
-	 * Gets the component4
-	 * @return the component4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
 
 	/**
-	 * Get the component4 as Number
-	 * @return the component4 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent4AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(4));
-	}
-
-	/**
-	 * Gets the Number 2 (component4).
-	 * @return the Number 2 from component4
-	 */
-	public String getNumber2() {
-		return getComponent(4);
-	}
-	
-	/**
-	 * Get the Number 2 (component4) as Number
-	 * @return the Number 2 from component4 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumber2AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(4));
-	}
-
-	/**
-	 * Set the component4.
+	 * Set the component4 (Number 2).
 	 * @param component4 the component4 to set
 	 */
 	public Field50F setComponent4(String component4) {
@@ -504,35 +841,9 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		setComponent4(component4);
 		return this;
 	}
-	/**
-	 * Gets the component5
-	 * @return the component5
-	 */
-	public String getComponent5() {
-		return getComponent(5);
-	}
 
 	/**
-	 * Same as getComponent(5)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent5AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent5AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(5);
-	}
-
-	/**
-	 * Gets the Name And Address 2 (component5).
-	 * @return the Name And Address 2 from component5
-	 */
-	public String getNameAndAddress2() {
-		return getComponent(5);
-	}
-
-	/**
-	 * Set the component5.
+	 * Set the component5 (Name And Address 2).
 	 * @param component5 the component5 to set
 	 */
 	public Field50F setComponent5(String component5) {
@@ -548,40 +859,9 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		setComponent(5, component5);
 		return this;
 	}
-	/**
-	 * Gets the component6
-	 * @return the component6
-	 */
-	public String getComponent6() {
-		return getComponent(6);
-	}
 
 	/**
-	 * Get the component6 as Number
-	 * @return the component6 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent6AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(6));
-	}
-
-	/**
-	 * Gets the Number 3 (component6).
-	 * @return the Number 3 from component6
-	 */
-	public String getNumber3() {
-		return getComponent(6);
-	}
-	
-	/**
-	 * Get the Number 3 (component6) as Number
-	 * @return the Number 3 from component6 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumber3AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(6));
-	}
-
-	/**
-	 * Set the component6.
+	 * Set the component6 (Number 3).
 	 * @param component6 the component6 to set
 	 */
 	public Field50F setComponent6(String component6) {
@@ -625,35 +905,9 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		setComponent6(component6);
 		return this;
 	}
-	/**
-	 * Gets the component7
-	 * @return the component7
-	 */
-	public String getComponent7() {
-		return getComponent(7);
-	}
 
 	/**
-	 * Same as getComponent(7)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent7AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent7AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(7);
-	}
-
-	/**
-	 * Gets the Name And Address 3 (component7).
-	 * @return the Name And Address 3 from component7
-	 */
-	public String getNameAndAddress3() {
-		return getComponent(7);
-	}
-
-	/**
-	 * Set the component7.
+	 * Set the component7 (Name And Address 3).
 	 * @param component7 the component7 to set
 	 */
 	public Field50F setComponent7(String component7) {
@@ -669,40 +923,9 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		setComponent(7, component7);
 		return this;
 	}
-	/**
-	 * Gets the component8
-	 * @return the component8
-	 */
-	public String getComponent8() {
-		return getComponent(8);
-	}
 
 	/**
-	 * Get the component8 as Number
-	 * @return the component8 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent8AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(8));
-	}
-
-	/**
-	 * Gets the Number 4 (component8).
-	 * @return the Number 4 from component8
-	 */
-	public String getNumber4() {
-		return getComponent(8);
-	}
-	
-	/**
-	 * Get the Number 4 (component8) as Number
-	 * @return the Number 4 from component8 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumber4AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(8));
-	}
-
-	/**
-	 * Set the component8.
+	 * Set the component8 (Number 4).
 	 * @param component8 the component8 to set
 	 */
 	public Field50F setComponent8(String component8) {
@@ -746,35 +969,9 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		setComponent8(component8);
 		return this;
 	}
-	/**
-	 * Gets the component9
-	 * @return the component9
-	 */
-	public String getComponent9() {
-		return getComponent(9);
-	}
 
 	/**
-	 * Same as getComponent(9)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear._2019)
-	public java.lang.String getComponent9AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(getClass(), "getComponent9AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(9);
-	}
-
-	/**
-	 * Gets the Name And Address 4 (component9).
-	 * @return the Name And Address 4 from component9
-	 */
-	public String getNameAndAddress4() {
-		return getComponent(9);
-	}
-
-	/**
-	 * Set the component9.
+	 * Set the component9 (Name And Address 4).
 	 * @param component9 the component9 to set
 	 */
 	public Field50F setComponent9(String component9) {
@@ -791,53 +988,7 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 		return this;
 	}
 
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       if (component == 4) {
-           return true;
-       }
-       if (component == 5) {
-           return true;
-       }
-       if (component == 6) {
-           return true;
-       }
-       if (component == 7) {
-           return true;
-       }
-       if (component == 8) {
-           return true;
-       }
-       if (component == 9) {
-           return true;
-       }
-       return false;
-   }
-
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return false;
-   }
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field50F.NAME
@@ -845,23 +996,6 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field50F.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "CUSTOM";
 	}
 
 	/**
@@ -923,17 +1057,6 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 9;
 	}
 	
 	/**
@@ -1012,124 +1135,6 @@ public class Field50F extends Field implements Serializable, com.prowidesoftware
 	public List<String> getLinesBetween(int start, int end, int offset) {
 		Field50F cp = newInstance(this);
 		return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
-	}
-	
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 9) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 50F");
-		}
-		if (component == 1) {
-			//special case for party identifier in field 50F
-			if (StringUtils.startsWith(getComponent(1), "/")) {
-				return getComponent(1).substring(1);
-			} else {
-				return getComponent(1);
-			}
-		}
-		if (component == 2) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent2AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		if (component == 4) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent4AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 5) {
-			//default format (as is)
-			return getComponent(5);
-		}
-		if (component == 6) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent6AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 7) {
-			//default format (as is)
-			return getComponent(7);
-		}
-		if (component == 8) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent8AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 9) {
-			//default format (as is)
-			return getComponent(9);
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Party Identifier");
-		result.add("Number 1");
-		result.add("Name And Address 1");
-		result.add("Number 2");
-		result.add("Name And Address 2");
-		result.add("Number 3");
-		result.add("Name And Address 3");
-		result.add("Number 4");
-		result.add("Name And Address 4");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "partyIdentifier");
-		result.put(2, "number1");
-		result.put(3, "nameAndAddress1");
-		result.put(4, "number2");
-		result.put(5, "nameAndAddress2");
-		result.put(6, "number3");
-		result.put(7, "nameAndAddress3");
-		result.put(8, "number4");
-		result.put(9, "nameAndAddress4");
-		return result;
 	}
 
 	/**

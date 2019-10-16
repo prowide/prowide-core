@@ -15,21 +15,17 @@
  */
 package com.prowidesoftware.swift.model;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.custommonkey.xmlunit.XMLTestCase;
-import org.custommonkey.xmlunit.XMLUnit;
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
+import org.junit.Before;
+import org.junit.Test;
+import org.xmlunit.builder.DiffBuilder;
+import org.xmlunit.diff.Diff;
+
+import static org.junit.Assert.*;
 
 
 /**
@@ -37,7 +33,7 @@ import com.prowidesoftware.swift.io.writer.SwiftWriter;
  *
  * @since 4.0
  */
-public class ConversionServiceTest extends XMLTestCase {
+public class ConversionServiceTest {
 
 	private IConversionService srv;
 	private SwiftMessage msg;
@@ -59,19 +55,23 @@ public class ConversionServiceTest extends XMLTestCase {
 	private UnparsedTextList unparsedTexts;
 	private String someMsgText = "{1:L02VNDZBET2AXXX}{4:{501:05134200001900000513420000190000B8D33C65}{110:001}}";
 	private String someText = "hello world";
-	
+
+	private void assertXmlEqual(String control, String test) {
+		Diff diff = DiffBuilder.compare(control).withTest(test).ignoreWhitespace().build();
+		assertFalse(diff.hasDifferences());
+	}
+
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() {
 		srv = new ConversionService();
 		msg = new SwiftMessage();
-		
 		unparsedTexts = new UnparsedTextList();
 		unparsedTexts.addText(this.someMsgText);
 		unparsedTexts.addText(this.someText);
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getFIN(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getFIN(SwiftMessage)}.
 	 */
 	@Test 
 	public void testGetFINFromObj() {
@@ -86,7 +86,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getFIN(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getFIN(SwiftMessage)}.
 	 */
 	@Test
 	public void testGetFINFromObj2() {
@@ -101,7 +101,7 @@ public class ConversionServiceTest extends XMLTestCase {
 
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getFIN(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getFIN(SwiftMessage)}.
 	 */
 	@Test
 	public void testGetFINFromObj3_unparsedText() {
@@ -119,7 +119,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getFIN(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getFIN(SwiftMessage)}.
 	 */
 	@Test
 	public void testGetFINFromObj4_unparsedText() {
@@ -137,7 +137,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getFIN(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getFIN(SwiftMessage)}.
 	 */
 	@Test
 	public void testGetFINFromObj5_unparsedText() {
@@ -155,7 +155,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getFIN(java.lang.String)}.
+	 * Test method for {@link ConversionService#getFIN(java.lang.String)}.
 	 */
 	@Test
 	public void testGetFINThroughXML() {
@@ -172,7 +172,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getFIN(java.lang.String)}.
+	 * Test method for {@link ConversionService#getFIN(java.lang.String)}.
 	 */
 	@Test
 	public void testGetFINThroughXML_2() {
@@ -190,7 +190,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getFIN(java.lang.String)}.
+	 * Test method for {@link ConversionService#getFIN(java.lang.String)}.
 	 */
 	@Test
 	public void testGetFINThroughXML_3() {	
@@ -208,7 +208,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testGetObjFromXML_block1() {
@@ -224,7 +224,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testGetObjFromXML_block2input() {
@@ -240,7 +240,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testGetObjFromXML_block2output() {
@@ -256,7 +256,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testGetObjFromXML_block3() {
@@ -274,7 +274,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testGetObjFromXML_block5() {
@@ -292,7 +292,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testGetObjFromXML_blockUser() {
@@ -310,7 +310,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getXml(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getXml(SwiftMessage)}.
 	 */
 	@Test
 	public void testGetObjThroughXML() {
@@ -334,7 +334,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getXml(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getXml(SwiftMessage)}.
 	 */
 	@Test
 	public void testGetObjThroughXML_2() {
@@ -358,7 +358,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getXml(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getXml(SwiftMessage)}.
 	 */
 	@Test
 	public void testGetObjThroughXML3_MsgUnparsedText() {
@@ -386,7 +386,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getXml(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getXml(SwiftMessage)}.
 	 */
 	@Test
 	public void testGetObjThroughXML4_BlockUnparsedText() {
@@ -427,7 +427,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getXml(net.sourceforge.wife.swift.model.SwiftMessage)}.
+	 * Test method for {@link ConversionService#getXml(SwiftMessage)}.
 	 */
 	@Test
 	public void testGetObjThroughXML5_TagUnparsedText() {
@@ -457,7 +457,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromFIN(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromFIN(java.lang.String)}.
 	 */
 	@Test
 	public void testGetObjFromFIN_block4() {
@@ -480,10 +480,9 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	@Test
-	public void testBug1539324() throws SAXException, IOException, ParserConfigurationException {
+	public void testBug1539324() {
 		String fin = "{1:F01FOOBARYYAXXX8669486759}{3:{108:P22VUXC43C6J3NLD}}";
 		String xml = srv.getXml(fin);
-		XMLUnit.setIgnoreWhitespace(true);
 		String expected = "<message>\n" +
 				"\n<block1>" +
 				"\n\t<applicationId>F</applicationId>" +
@@ -499,11 +498,11 @@ public class ConversionServiceTest extends XMLTestCase {
 				"\n\t</tag>" +
 				"\n</block3>" + 
 				"\n</message>";
-		assertXMLEqual(expected, xml);
+		assertXmlEqual(expected, xml);
 	}
 
 	@Test
-	public void testBug1539324_2() throws SAXException, IOException, ParserConfigurationException {
+	public void testBug1539324_2() {
 		String fin = "{1:"+Constants.B1_DATA+"}{3:"+Constants.B3_DATA+"}";
 		msg = srv.getMessageFromFIN(fin);
 		assertNull(msg.getBlock2());
@@ -516,7 +515,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromFIN(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromFIN(java.lang.String)}.
 	 */
 	@Test
 	public void testGetObjFromFIN() {
@@ -603,7 +602,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testCRLF_0() {
@@ -613,7 +612,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testCRLF_1() {
@@ -623,7 +622,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testCRLF_2() {
@@ -633,7 +632,7 @@ public class ConversionServiceTest extends XMLTestCase {
 	}
 	
 	/**
-	 * Test method for {@link net.sourceforge.wife.services.ConversionService#getMessageFromXML(java.lang.String)}.
+	 * Test method for {@link ConversionService#getMessageFromXML(java.lang.String)}.
 	 */
 	@Test
 	public void testCRLF_3() {
@@ -648,8 +647,15 @@ public class ConversionServiceTest extends XMLTestCase {
 				":57A:/123456789" + FINWriterVisitor.SWIFT_EOL +
 				"FOOBARYY" + FINWriterVisitor.SWIFT_EOL +
 				"-}";
-		final String xml = srv.getXml(fin);
-		final String fin2 = srv.getFIN(xml);
+		//no fields
+		String xml = srv.getXml(fin);
+		String fin2 = srv.getFIN(xml);
+		assertEquals(fin, fin2);
+
+		//with fields
+		ConversionService srv2 = new ConversionService();
+		xml = srv2.getXml(fin, true);
+		fin2 = srv2.getFIN(xml);
 		assertEquals(fin, fin2);
 	}
 	
@@ -659,9 +665,40 @@ public class ConversionServiceTest extends XMLTestCase {
 				":57A:/D/123456789" + FINWriterVisitor.SWIFT_EOL +
 				"FOOBARYY" + FINWriterVisitor.SWIFT_EOL +
 				"-}";
-		final String xml = srv.getXml(fin);
-		final String fin2 = srv.getFIN(xml);
+		//no fields
+		String xml = srv.getXml(fin);
+		String fin2 = srv.getFIN(xml);
+		assertEquals(fin, fin2);
+
+		//with fields
+		ConversionService srv2 = new ConversionService();
+		xml = srv2.getXml(fin, true);
+		fin2 = srv2.getFIN(xml);
 		assertEquals(fin, fin2);
 	}
-	
+
+	/**
+	 * Test if leading and trailing spaces are preserved in the conversion
+	 */
+	@Test
+	public void testBackAndForthXMLConversion3() {
+		final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:" + FINWriterVisitor.SWIFT_EOL +
+				":57A:/123456789" + FINWriterVisitor.SWIFT_EOL +
+				" FOOBARYY" + FINWriterVisitor.SWIFT_EOL +
+				":61:190907D5675,S103AZMES11071950766" + FINWriterVisitor.SWIFT_EOL +
+				"  FOOEDEMMAXXXKREDBEBBXXXXN071404 " + FINWriterVisitor.SWIFT_EOL +
+				"-}";
+		ConversionService srv2 = new ConversionService();
+
+		//no fields
+		String xml = srv.getXml(fin);
+		String fin2 = srv.getFIN(xml);
+		assertEquals(fin, fin2);
+
+		//with fields
+		xml = srv2.getXml(fin, true);
+		fin2 = srv2.getFIN(xml);
+		assertEquals(fin, fin2);
+	}
+
 }

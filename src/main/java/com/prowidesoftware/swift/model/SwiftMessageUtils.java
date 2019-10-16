@@ -290,7 +290,7 @@ public class SwiftMessageUtils {
 	public static String calculateChecksum(final SwiftMessage model) {
 		if (model != null) {
 			final StringWriter writer = new StringWriter();
-			SwiftWriter.writeMessage(model, writer);
+			SwiftWriter.writeMessage(model, writer, true);
 			final String fin = writer.getBuffer().toString();
 			return md5(fin);
 		} else {
@@ -488,10 +488,9 @@ public class SwiftMessageUtils {
 	 * @since 7.8
 	 */
 	public static SwiftTagListBlock join(final List<? extends SwiftTagListBlock> sequences) {
-		if (sequences == null || sequences.isEmpty())
+		if (sequences == null || sequences.isEmpty()) {
 			return SwiftTagListBlock.EMPTY_LIST;
-		
-		
+		}
 		final SwiftTagListBlock result = new SwiftTagListBlock();
 		for (final SwiftTagListBlock b : sequences) {
 			result.getTags().addAll(b.getTags());
@@ -563,11 +562,11 @@ public class SwiftMessageUtils {
 	
 	/**
 	 * Gets the message main amount
-	 * @see #currencyAmount(SwiftMessage)
-	 * @since 7.8.8
+	 * @see #money(SwiftMessage)
+	 * @since 8.0.1
 	 */
-	protected CurrencyAmount currencyAmount() {
-		return currencyAmount(msg);
+	protected Money money() {
+		return money(msg);
 	}
 	
 	/**
@@ -583,13 +582,13 @@ public class SwiftMessageUtils {
 	 * 
 	 * @param m a message with some amount field
 	 * @return the currency and amount object extracted from the message or null if non is present or cannot be created from its fields
-	 * @since 7.8.8
+	 * @since 8.0.1
 	 */
 	/*
 	 * Do not use API from MTs and Field classes here to avoid cyclic dependency in code generation.
 	 * Keep in sync special case for 104 and 107 with MT104 and MT107 getSequenceC logic.
 	 */
-	static final CurrencyAmount currencyAmount(final SwiftMessage m) {
+	public static final Money money(final SwiftMessage m) {
 		if (m == null || m.isServiceMessage21()) {
 			return null;
 		}
@@ -598,57 +597,56 @@ public class SwiftMessageUtils {
 			return null;
 		}
 		if (m.isType(102, 103, 200, 202, 205, 256, 450, 455, 643, 644, 646, 734, 802, 900, 910)) {
-			return CurrencyAmount.of(b4.getFieldByName("32A"));
+			return Money.of(b4.getFieldByName("32A"));
 		} else if (m.isType(191, 291, 300, 304, 305, 320, 391, 491, 591, 691, 791, 891, 991, 340, 341, 350, 360, 361, 364, 365, 620, 700, 705, 710, 720, 732, 740, 742, 756)) {
-			return CurrencyAmount.of(b4.getFieldByName("32B"));
+			return Money.of(b4.getFieldByName("32B"));
 		} else if (m.isType(321, 370, 508, 509, 535, 536, 537, 540, 541, 542, 543, 544, 545, 546, 547, 548, 558, 559, 569, 574, 575, 576, 578, 586)) {
-			return CurrencyAmount.of(b4.getFieldByName("19A"));
+			return Money.of(b4.getFieldByName("19A"));
 		} else if (m.isType(330, 362)) {
-			return CurrencyAmount.of(b4.getFieldByName("32H"));
+			return Money.of(b4.getFieldByName("32H"));
 		} else if (m.isType(306, 581, 707, 747)) {
-			return CurrencyAmount.of(b4.getFieldByName("34B"));
+			return Money.of(b4.getFieldByName("34B"));
 		} else if (m.isType(380, 381, 505, 564, 566, 567)) {
-			return CurrencyAmount.of(b4.getFieldByName("19B"));
+			return Money.of(b4.getFieldByName("19B"));
 		} else if (m.isType(800)) {
-			return CurrencyAmount.of(b4.getFieldByName("33B"));
+			return Money.of(b4.getFieldByName("33B"));
 		} else if (m.isType(941)) {
-			return CurrencyAmount.of(b4.getFieldByName("62F"));
+			return Money.of(b4.getFieldByName("62F"));
 
 		} else if (m.isType(600, 601)) {
-			return CurrencyAmount.ofAny(b4, "34P", "34R");
+			return Money.ofAny(b4, "34P", "34R");
 		} else if (m.isType(609)) {
-			return CurrencyAmount.ofAny(b4, "68B", "68C");
+			return Money.ofAny(b4, "68B", "68C");
 		} else if (m.isType(111, 112, 516, 649) || m.isType(754)) {
-			return CurrencyAmount.ofAny(b4, "32A", "32B");
+			return Money.ofAny(b4, "32A", "32B");
 		} else if (m.isType(190, 290, 390, 490, 590, 690, 790, 890, 990)) {
-			return CurrencyAmount.ofAny(b4, "32C", "32D");
+			return Money.ofAny(b4, "32C", "32D");
 		} else if (m.isType(730) || m.isType(768)) {
-			return CurrencyAmount.ofAny(b4, "32B", "32D");
+			return Money.ofAny(b4, "32B", "32D");
 		} else if (m.isType(400, 410)) {
-			return CurrencyAmount.ofAny(b4, "32A", "32B", "32K");
+			return Money.ofAny(b4, "32A", "32B", "32K");
 		} else if (m.isType(430)) {
-			return CurrencyAmount.ofAny(b4, "33A", "33K", "32A", "32K");
+			return Money.ofAny(b4, "33A", "33K", "32A", "32K");
 		} else if (m.isType(750)) {
-			return CurrencyAmount.ofAny(b4, "34B", "32B");
+			return Money.ofAny(b4, "34B", "32B");
 		} else if (m.isType(752)) {
-			return CurrencyAmount.ofAny(b4, "33A", "33B", "32B");
+			return Money.ofAny(b4, "33A", "33B", "32B");
 		} else if (m.isType(769)) {
-			return CurrencyAmount.ofAny(b4, "32B", "32D", "33B", "34B");
+			return Money.ofAny(b4, "32B", "32D", "33B", "34B");
 		} else if (m.isType(940, 950, 970)) {
-			return CurrencyAmount.ofAny(b4, "62F", "62M");
-	    	
+			return Money.ofAny(b4, "62F", "62M");
 		} else if (m.isType(101, 201, 203, 204, 207, 210)) {
-			return CurrencyAmount.ofSum(b4.getFieldsByName("32B"));
+			return Money.ofSum(b4.getFieldsByName("32B"));
 		} else if (m.isType(110, 416, 420, 422, 456)) {
-			return CurrencyAmount.ofSum(b4.getFieldsByName("32a"));
+			return Money.ofSum(b4.getFieldsByName("32a"));
 		} else if (m.isType(509)) {
-			return CurrencyAmount.ofSum(b4.getFieldsByName("19A"));
+			return Money.ofSum(b4.getFieldsByName("19A"));
 		} else if (m.isType(112)) {
-			return CurrencyAmount.ofSum(b4.getFieldsByName("32A"));
+			return Money.ofSum(b4.getFieldsByName("32A"));
 		} else if (m.isType(801)) {
-			return CurrencyAmount.ofSum(b4.getFieldsByName("33B"));
+			return Money.ofSum(b4.getFieldsByName("33B"));
 		} else if (m.isType(824)) {
-			return CurrencyAmount.ofSum(b4.getFieldsByName("68A"));
+			return Money.ofSum(b4.getFieldsByName("68A"));
 			
 		} else if (m.isType(104, 107)) {
 			// we pick field 32B from sequence C
@@ -659,7 +657,7 @@ public class SwiftMessageUtils {
 				if (startIndexOfC >= 0) {
 					Tag t = b4.getTags().get(startIndexOfC);
 					if (t != null) {
-						return CurrencyAmount.of(t.asField());
+						return Money.of(t.asField());
 					}
 				}
 			}
@@ -671,7 +669,7 @@ public class SwiftMessageUtils {
 			 */
 			SwiftTagListBlock seq = b4.getSubBlock("ORDRDET");
 			if (seq != null) {
-				return CurrencyAmount.of(seq.getFieldByName("19A"));
+				return Money.of(seq.getFieldByName("19A"));
 			}
 		
 		} else if (m.isType(514, 515, 518)) {
@@ -681,7 +679,7 @@ public class SwiftMessageUtils {
 			 */
 			SwiftTagListBlock seq = b4.getSubBlock("CONFDET");
 			if (seq != null) {
-				return CurrencyAmount.of(seq.getFieldByName("19A"));
+				return Money.of(seq.getFieldByName("19A"));
 			}
 			
 		} else if (m.isType(503, 504, 506)) {
@@ -690,7 +688,7 @@ public class SwiftMessageUtils {
 			 */
 			SwiftTagListBlock seq = b4.getSubBlock("SUMM");
 			if (seq != null) {
-				return CurrencyAmount.of(seq.getFieldByName("19B"));
+				return Money.of(seq.getFieldByName("19B"));
 			}
 			
 		} else if (m.isType(527)) {
@@ -699,7 +697,7 @@ public class SwiftMessageUtils {
 			 */
 			SwiftTagListBlock seq = b4.getSubBlock("DEALTRAN");
 			if (seq != null) {
-				return CurrencyAmount.of(seq.getFieldByName("19A"));
+				return Money.of(seq.getFieldByName("19A"));
 			}
 		}
 		

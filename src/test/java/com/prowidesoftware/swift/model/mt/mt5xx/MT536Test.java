@@ -22,16 +22,24 @@ import org.junit.Test;
 
 public class MT536Test {
 
+	/**
+	 * Sequence A1 and B1a1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void testA1() {
 		MT536 m = new MT536();
 		m.append(MT536.SequenceA1.newInstance());
+		m.append(MT536.SequenceB1a.newInstance());
 		assertTrue(m.getSequenceB1a1List().isEmpty());
 	}
-	
+
+	/**
+	 * Sequence A1 and B1a1 use the same delimiter so we need to add parent sequence for unique find
+	 */
 	@Test
 	public void test2() {
 		MT536 m = new MT536();
+		m.append(MT536.SequenceA.newInstance());
 		m.append(MT536.SequenceB1a1.newInstance());
 		assertTrue(m.getSequenceA1List().isEmpty());
 	}

@@ -33,16 +33,6 @@ public class AmountResolver {
 	private static final Logger log = Logger.getLogger(AmountResolver.class.getName());
 	
 	/**
-	 * @deprecated use {@link #amounts(Field)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	public static List<BigDecimal> amounts(final Field f, final int ... component) {
-		DeprecationUtils.phase3(AmountResolver.class, "amounts(File, int ...)", "Use amounts(Field) instead.");
-		return amounts(f);
-	}
-	
-	/**
 	 * Gets the amounts of the given field by reading it's components pattern.
 	 * All index of 'N', number, in the pattern are looked for and returned as amount.
 	 * 

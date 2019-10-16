@@ -18,6 +18,9 @@ package com.prowidesoftware.swift.model.mt;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.prowidesoftware.JsonSerializable;
+import com.prowidesoftware.deprecation.DeprecationUtils;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
@@ -708,6 +711,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
     
     /**
 	 * Writes the message into a file with its message content in the FIN format.
+	 * <p>The implementation ignores all empty blocks.
 	 * 
 	 * @param file a not null file to write, if it does not exists, it will be created
 	 * @throws IOException if the file cannot be written
@@ -721,8 +725,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 			log.fine("new file created: "+file.getAbsolutePath());
 		}
 		FileWriter fw = new FileWriter(file.getAbsoluteFile());
-		this.m.removeEmptyBlocks();
-		SwiftWriter.writeMessage(this.m, fw);
+		SwiftWriter.writeMessage(this.m, fw, true);
 		fw.close();
 	}
 	
@@ -746,8 +749,9 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 	 * @see #toJson()
 	 */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear._2019)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public String json() {
+		DeprecationUtils.phase2(getClass(), "json()", "use toJson() instead");
 		Validate.notNull(this.m, "the message cannot be null");
 		return this.m.toJson();
 	}

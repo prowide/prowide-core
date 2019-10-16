@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.utils;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.LogicalTerminalAddress;
 import com.prowidesoftware.swift.model.MIR;
@@ -34,14 +35,6 @@ import java.util.Calendar;
 import java.util.Currency;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
-
-import com.prowidesoftware.swift.model.BIC;
-import com.prowidesoftware.swift.model.LogicalTerminalAddress;
-import com.prowidesoftware.swift.model.MIR;
-import com.prowidesoftware.swift.model.MOR;
 
 /**
  * This class provides methods to convert field components to objects.
@@ -633,11 +626,12 @@ public class SwiftFormatUtils {
 	 * Tell if <code>string</code> is a valid currency code using Currency isntances from Java
 	 * @param string the string to test for a currency code
 	 * @return true if string is a valid currency code and false in other case, including null and empty
-	 * @deprecated use IsoUtils#isValidISOCurrency(String) instead
+	 * @deprecated use {@link IsoUtils#isValidISOCurrency(String)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2019)
+	@ProwideDeprecated(phase3=TargetYear.SRU2020)
 	public static boolean isCurrency(final String string) {
+		DeprecationUtils.phase2(SwiftFormatUtils.class, "isCurrency(String)", "use IsoUtils#isValidISOCurrency(String) instead");
 		if (StringUtils.isNotBlank(string)) {
 			try {
 				return Currency.getInstance(string)!=null;

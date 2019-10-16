@@ -25,7 +25,6 @@ import com.prowidesoftware.swift.io.parser.MxParser;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.model.mx.BusinessHeader;
 import com.prowidesoftware.swift.model.mx.dic.ApplicationHeader;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 import javax.persistence.*;
@@ -377,39 +376,6 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	}
 
 	/**
-	 * @deprecated The internal metadata is set automatically from the message content when
-	 * the object is constructed from String, File or Stream. This should not be updated from
-	 * a decoupled namespace String to avoid inconsistencies between the stored raw message content
-	 * and the metadata.
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	protected void setDataFromNamespace(String namespace) {
-		DeprecationUtils.phase3(getClass(), "setDataFromNamespace(String)", "The internal metadata is set automatically from the message content when the object is constructed from String, File or Stream.");
-		Validate.notNull(namespace, "namespace can not be null");
-		final String[] tokens = StringUtils.split(namespace, '.');
-		if (tokens == null || tokens.length<4) {
-			throw new IllegalArgumentException("Expected at least 4 tokens in namespace '"+namespace+"'");
-		}
-		// always last 4 tokens
-		final String bp = tokens[tokens.length-4]; 
-		final String func = tokens[tokens.length-3]; 
-		final String var = tokens[tokens.length-2]; 
-		final String ver = tokens[tokens.length-1];
-		
-		final MxBusinessProcess bpEnum;
-		try {
-			bpEnum = MxBusinessProcess.valueOf(bp);
-		} catch (Exception e) {
-			throw new IllegalArgumentException("Unknown business process '"+bp+"'", e);
-		}
-		setBusinessProcess(bpEnum);
-		setFunctionality(func);
-		setVariant(var);
-		setVersion(ver);
-	}
-
-	/**
 	 * If present in the message content, returns the business header (SWIFT or ISO version)
 	 * Notice this header is optional and may not be present.
 	 * @see MxParser#parseBusinessHeader()
@@ -429,8 +395,9 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	 * @deprecated use #getBusinessHeader() instead 
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2019)
+	@ProwideDeprecated(phase3=TargetYear.SRU2020)
 	public ApplicationHeader getApplicationHeader() {
+		DeprecationUtils.phase2(getClass(), "getApplicationHeader()", "use getBusinessHeader() instead");
 		MxParser parser = new MxParser(this.message());
 		BusinessHeader h = parser.parseBusinessHeader();
 		if (h != null && h.getApplicationHeader() != null) {
@@ -445,9 +412,10 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	 * @deprecated @see #getApplicationHeader()
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2=TargetYear._2019)
+	@ProwideDeprecated(phase3=TargetYear.SRU2020)
 	public void setApplicationHeader(ApplicationHeader applicationHeader) {
-		log.warning("Obsolete API call. The application header is no longer stored as class attribute in "+getClass().getName());
+		String message = "Obsolete API call. The application header is no longer stored as class attribute in "+getClass().getName();
+		DeprecationUtils.phase2(getClass(), "setApplicationHeader(ApplicationHeader)", message);
 	}
 	
 	/**

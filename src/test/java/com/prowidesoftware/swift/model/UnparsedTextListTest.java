@@ -15,19 +15,13 @@
  */
 package com.prowidesoftware.swift.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
-
+import com.prowidesoftware.swift.io.ConversionService;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.prowidesoftware.swift.io.ConversionService;
-import com.prowidesoftware.swift.io.parser.SwiftParser;
+import java.io.IOException;
+
+import static org.junit.Assert.*;
 
 /**
  * Unparsed text lists tests.
@@ -178,14 +172,13 @@ public class UnparsedTextListTest {
 			sb.append(m);
 		}
 
-		SwiftParser parser = new SwiftParser();
-		SwiftMessage msg = parser.parse(sb.toString());
+		SwiftMessage msg = SwiftMessage.parse(sb.toString());
 				
 		@SuppressWarnings("unused")
-		SwiftMessage m2 = parser.parse(msg.getUnparsedTexts().getText(0));
+		SwiftMessage m2 = SwiftMessage.parse(msg.getUnparsedTexts().getText(0));
 		
 		@SuppressWarnings("unused")
-		SwiftMessage m3 = parser.parse(msg.getUnparsedTexts().getText(1));		
+		SwiftMessage m3 = SwiftMessage.parse(msg.getUnparsedTexts().getText(1));
 	}
 	
 }

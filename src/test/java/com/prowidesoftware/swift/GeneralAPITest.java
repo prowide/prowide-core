@@ -16,15 +16,16 @@
 package com.prowidesoftware.swift;
 
 
-import org.custommonkey.xmlunit.XMLTestCase;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;
 import com.prowidesoftware.swift.model.SwiftBlock4;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.UnparsedTextList;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 /**
@@ -32,7 +33,7 @@ import com.prowidesoftware.swift.model.UnparsedTextList;
  * 
  * @since 4.0
  */
-public class GeneralAPITest extends XMLTestCase {
+public class GeneralAPITest {
 
 	private IConversionService srv;
 	private SwiftMessage msg;
@@ -69,7 +70,7 @@ public class GeneralAPITest extends XMLTestCase {
 	private String someText = "hello world";
 	
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() {
 		srv = new ConversionService();
 		msg = new SwiftMessage();
 		

@@ -41,18 +41,60 @@ public class SwiftWriter {
 
 	private static final String WRITER_MESSAGE = "writer cannot be null";
 
-    /**
-     * Write the given message to writer in its native SWIFT format
-     * 
-     * @param msg the message to write
-     * @param writer the writer that will actually receive all the write operations
-     * @throws IllegalArgumentException if msg or writer are null
-     */
+	/**
+	 * Write the given message to writer in its native SWIFT format.
+	 *
+	 * <p>The implementation will preserve and write empty blocks if present in the message parameter.
+	 * To avoid writing empty blocks use {@link #writeMessage(SwiftMessage, Writer, boolean)} with true as parameter.
+	 *
+	 * <p>As for the EOL characters, they are written as found in the message content. You can always write into String
+	 * and use {@link #ensureEols(String)} on the result if you need to ensure compliance with SWIFT.
+	 *
+	 * @param msg the message to write
+	 * @param writer the writer that will actually receive all the write operations
+	 * @throws IllegalArgumentException if msg or writer are null
+	 */
     public static void writeMessage(SwiftMessage msg, Writer writer) {
-    	Validate.notNull(msg , "msg cannot be null");
+    	writeMessage(msg, writer, false);
+	}
+
+	/**
+	 * Write the given message to writer in its native SWIFT format.
+	 *
+	 * @param msg the message to write
+	 * @param writer the writer that will actually receive all the write operations
+	 * @param ignoreEmptyBlocks if true, empty blocks will not be written
+	 * @throws IllegalArgumentException if msg or writer are null
+	 * @since 8.0.1
+	 */
+	public static void writeMessage(SwiftMessage msg, Writer writer, boolean ignoreEmptyBlocks) {
+		Validate.notNull(msg , "msg cannot be null");
     	Validate.notNull(writer, WRITER_MESSAGE);
-    	FINWriterVisitor v = new FINWriterVisitor(writer);
-    	msg.visit(v);
+		FINWriterVisitor v = new FINWriterVisitor(writer);
+
+    	if (ignoreEmptyBlocks) {
+			// copy the blocks to a new message container
+			SwiftMessage copy = new SwiftMessage();
+			copy.setBlock1(msg.getBlock1());
+			copy.setBlock2(msg.getBlock2());
+			copy.setBlock3(msg.getBlock3());
+			copy.setBlock4(msg.getBlock4());
+			copy.setBlock5(msg.getBlock5());
+			copy.setUnparsedTexts(msg.getUnparsedTexts());
+			if (msg.getUserBlocks() != null) {
+				copy.setUserBlocks(msg.getUserBlocks());
+			}
+
+			// remove empty blocks from copy
+			copy.removeEmptyBlocks();
+
+			// serialize copy
+			copy.visit(v);
+
+		} else {
+    		// serialize message parameter as is
+			msg.visit(v);
+		}
     }
     
     /**

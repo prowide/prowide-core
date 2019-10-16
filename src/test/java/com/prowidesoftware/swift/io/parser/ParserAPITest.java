@@ -15,14 +15,13 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.Assert.assertEquals;
+import com.prowidesoftware.swift.model.SwiftBlock2Output;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import org.junit.Test;
 
 import java.io.IOException;
 
-import org.junit.Test;
-
-import com.prowidesoftware.swift.model.SwiftBlock2Output;
-import com.prowidesoftware.swift.model.SwiftMessage;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test for SwiftParser main API and functions.
@@ -32,7 +31,7 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 public class ParserAPITest {
 	
 	@Test 
-	public void test103_1() {
+	public void test103_1() throws IOException {
 		String messageToParse = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" +
 					":20:D051026EUR100057\n" + 
 					":13C:/RNCTIME/0802+0000\n" + 
@@ -49,12 +48,7 @@ public class ParserAPITest {
 					":71A:SHA\n" + 
 					"-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
 
-		SwiftMessage m = null;
-		try {
-			m = (new SwiftParser(messageToParse)).message();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		SwiftMessage m = (new SwiftParser(messageToParse)).message();
 
 		//get a simple value tag
 		@SuppressWarnings("unused")
@@ -114,7 +108,7 @@ public class ParserAPITest {
 	}
 	
 	@Test 
-	public void test103_2() {
+	public void test103_2() throws IOException {
 		String messageToParse = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" +
 					":20:D051026EUR100057\n" + 
 					":13C:/RNCTIME/0802+0000\n" + 
@@ -131,14 +125,8 @@ public class ParserAPITest {
 					":71A:SHA\n" + 
 					"-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
 
-		SwiftMessage m = null;
-		try {
-			m = (new SwiftParser()).parse(messageToParse);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		SwiftMessage m = SwiftMessage.parse(messageToParse);
+
 		assertEquals("103", m.getType());
 
 		//check b1

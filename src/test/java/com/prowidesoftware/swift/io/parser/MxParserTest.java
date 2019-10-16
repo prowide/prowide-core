@@ -15,33 +15,28 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.custommonkey.xmlunit.XMLTestCase;
-import org.custommonkey.xmlunit.XMLUnit;
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-
 import com.prowidesoftware.swift.io.parser.MxParser.MxStructureInfo;
 import com.prowidesoftware.swift.model.MxBusinessProcess;
 import com.prowidesoftware.swift.model.MxId;
 import com.prowidesoftware.swift.model.mx.BusinessHeader;
 import com.prowidesoftware.swift.model.mx.dic.ApplicationHeader;
 import com.prowidesoftware.swift.model.mx.dic.BusinessApplicationHeaderV01;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+import org.xmlunit.builder.DiffBuilder;
+import org.xmlunit.diff.Diff;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import static org.junit.Assert.*;
 
 /**
  * Test cases for {@link MxParser} header parsing, message detection, analysis and strip API.
  *
  * @since 7.6
  */
-public class MxParserTest extends XMLTestCase {
-
-	@Before
-	public void setUp() {
-		XMLUnit.setIgnoreWhitespace(true);
-	}
+public class MxParserTest {
 
 	private BusinessHeader parseHeaderFromSample(final String sample) throws IOException {
 		final InputStream inputStream = getClass().getResourceAsStream("/"+sample);
@@ -310,7 +305,8 @@ public class MxParserTest extends XMLTestCase {
 		 */
 		parser = new MxParser("<?xml version=\"1.0\" encoding=\"UTF-8\"?><message>"+ d +"</message>");
 		assertNull(parser.stripHeader());
-		assertXMLEqual(d, parser.stripDocument());
+		Diff diff = DiffBuilder.compare(d).withTest(parser.stripDocument()).build();
+		assertFalse(diff.hasDifferences());
 	}
 
 	/**
@@ -391,8 +387,12 @@ public class MxParserTest extends XMLTestCase {
 		assertEquals("urn:iso:std:iso:20022:tech:xsd:head.001.001.01", info.getHeaderNamespace());
 		assertNull(info.getHeaderPrefix());
 		assertNull(info.getException());
-		assertXMLEqual(sampleBAH, p.stripHeader());
-		assertXMLEqual(document, p.stripDocument());
+
+		Diff diff = DiffBuilder.compare(sampleBAH).withTest(p.stripHeader()).build();
+		assertFalse(diff.hasDifferences());
+
+		diff = DiffBuilder.compare(document).withTest(p.stripDocument()).build();
+		assertFalse(diff.hasDifferences());
 	}
 	
 	public static final String sampleBAH = "<AppHdr xmlns=\"urn:iso:std:iso:20022:tech:xsd:head.001.001.01\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" 

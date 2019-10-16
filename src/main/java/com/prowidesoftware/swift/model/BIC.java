@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.IsoUtils;
@@ -63,7 +64,7 @@ public class BIC {
 	public static final String PARTNER_PREFIX = "PTS";
 
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	private String invalidCause = null;
 
 	private String institution = null;
@@ -115,15 +116,14 @@ public class BIC {
 	 * @deprecated use the {@link #validate()} method to get a detailed result of the validation problem found
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public String getInvalidCause() {
+		DeprecationUtils.phase2(this.getClass(), "getInvalidCause()", "Use the validate() method to get a detailed result of the validation problem found");
 		return invalidCause;
 	}
 
 	/**
 	 * Validates the BIC structure.
-	 *
-	 * <p>If the code is not valid a text description of the invalid cause is set in {@link #getInvalidCause()}
 	 *
 	 * @see #validate() for details regarding the validation checks or if you need structured details of the validation
 	 * problem found.
@@ -363,9 +363,10 @@ public class BIC {
 	 * @since 7.7
 	 * @deprecated use {@link #getCountry()} instead
 	 */
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	@Deprecated
 	public String country() {
+		DeprecationUtils.phase2(getClass(), "country()", "use getCountry() instead");
 		return getCountry();
 	}
 
@@ -373,9 +374,10 @@ public class BIC {
 	 * @since 7.8.5
 	 * @deprecated use {@link #getInstitution()} instead
 	 */
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	@Deprecated
 	public String institution() {
+		DeprecationUtils.phase2(getClass(), "institution()", "use getInstitution() instead");
 		return getInstitution();
 	}
 	

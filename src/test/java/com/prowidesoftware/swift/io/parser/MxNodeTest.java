@@ -412,4 +412,16 @@ public class MxNodeTest {
 		assertEquals("DN", doc.singlePathValue("/AppHdr/From/Type"));
 	}
 
+	@Test
+	public void createMxTest() {
+		MxNode n = new MxNode(null, "Document");
+		MxNode n1 = new MxNode(n, "FIToFICstmrCdtTrf");
+		MxNode n2 = new MxNode(n1, "GrpHdr");
+		new MxNode(n2, "MsgId").setValue("MSGID-0001");
+		new MxNode(n2, "CreDtTm").setValue("2001-12-17T09:30:47Z");
+		new MxNode(n2, "NbOfTxs").setValue("1");
+		new MxNode(n2, "IntrBkSttlmDt").setValue("2012-01-25");
+		//n.print();
+	}
+
 }

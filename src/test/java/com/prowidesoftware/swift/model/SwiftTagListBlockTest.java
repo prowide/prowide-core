@@ -1036,19 +1036,6 @@ public class SwiftTagListBlockTest {
 		SwiftTagListBlock sb = b.getSubBlockBeforeFirst("99", false);
 		assertEquals(8, sb.size());
 	}
-	
-	@Test
-	public void testTrimAfterFirst() throws Exception {
-		b.append(new Tag("1:val1"));
-		b.append(new Tag("2:val2"));
-		b.append(new Tag("3K:val3"));
-		b.append(new Tag("4:val4"));
-		b.append(new Tag("5:val5"));
-		SwiftTagListBlock sb = b.trimAfterFirst("4", false);
-		assertEquals(3, sb.size());
-		assertEquals("val1", sb.getTag(0).getValue());
-		assertEquals("val3", sb.getTag(2).getValue());
-	}
 
 	@Test
 	public void testRemove() throws Exception {

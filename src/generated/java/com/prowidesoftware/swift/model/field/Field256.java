@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import java.util.HashMap;
 import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
@@ -45,13 +46,13 @@ import com.google.gson.JsonParser;
  * Model and parser for field 256 of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>LogicalTerminalAddress</code></li> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>Calendar</code></li> 
- * 		<li><code>Calendar</code></li> 
- * 		<li><code>Calendar</code></li> 
+ * <ol>
+ * 		<li><code>LogicalTerminalAddress</code></li>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>Calendar</code></li>
+ * 		<li><code>Calendar</code></li>
+ * 		<li><code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -60,17 +61,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>&lt;LT&gt;4!Nc&lt;DATE2&gt;[&lt;HHMM&gt;&lt;HHMM&gt;]</code></li>
  * 		<li>components pattern: <code>ZNNEHH</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
 public class Field256 extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -145,11 +146,44 @@ public class Field256 extends Field implements Serializable, DateContainer {
 		}
 		parse(tag.getValue());
 	}
-	
+
+	/**
+	 * Copy constructor.<br>
+	 * Initializes the components list with a deep copy of the source components list.
+	 * @param source a field instance to copy
+	 * @since 7.7
+	 */
+	public static Field256 newInstance(Field256 source) {
+		Field256 cp = new Field256();
+		cp.setComponents(new ArrayList<>(source.getComponents()));
+		return cp;
+	}
+
+	/**
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag tag(final String value) {
+		return new Tag(NAME, value);
+	}
+
+	/**
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag emptyTag() {
+		return new Tag(NAME, "");
+	}
+
+
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
+	 *
+	 * <p>Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
 	 * @param value complete field value including separators and CRLF
@@ -179,19 +213,6 @@ public class Field256 extends Field implements Serializable, DateContainer {
 			}
 		}
 	}
-	
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field256 newInstance(Field256 source) {
-		Field256 cp = new Field256();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
-	
 	/**
 	 * Serializes the fields' components into the single string value (SWIFT format)
 	 */
@@ -206,29 +227,165 @@ public class Field256 extends Field implements Serializable, DateContainer {
 		append(result, 6);
 		return result.toString();
 	}
-
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
+	 * Returns a localized suitable for showing to humans string of a field component.<br>
+	 *
+	 * @param component number of the component to display
+	 * @param locale optional locale to format date and amounts, if null, the default locale is used
+	 * @return formatted component value or null if component number is invalid or not present
+	 * @throws IllegalArgumentException if component number is invalid for the field
+	 * @since 7.8
+	 */
+	@Override
+	public String getValueDisplay(int component, Locale locale) {
+		if (component < 1 || component > 6) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 256");
+		}
+		if (component == 1) {
+			//default format (as is)
+			return getComponent(1);
+		}
+		if (component == 2) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent2AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 3) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent3AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 4) {
+			//date
+			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+			java.util.Calendar cal = getComponent4AsCalendar();
+			if (cal != null) {
+				return f.format(cal.getTime());
+			}
+		}
+		if (component == 5) {
+			//time
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
+			java.util.Calendar cal = getComponent5AsCalendar();
+			if (cal != null) {
+				return f.format(cal.getTime());
+			}
+		}
+		if (component == 6) {
+			//time
+			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
+			java.util.Calendar cal = getComponent6AsCalendar();
+			if (cal != null) {
+				return f.format(cal.getTime());
+			}
+		}
+		return null;
+	}
+	/**
+	 * Returns the field components pattern
+	 * @return the static value of Field256.COMPONENTS_PATTERN
+	 */
+	@Override
+	public final String componentsPattern() {
+		return COMPONENTS_PATTERN;
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
-	
+     * Returns the field parser pattern
+     * @return the static value of Field256.PARSER_PATTERN
+     */
+	@Override
+	public final String parserPattern() {
+        return PARSER_PATTERN;
+    }
+
 	/**
-	 * Gets the component1
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "<LT>4!n1!n<DATE2>[<HHMM><HHMM>]";
+	}
+
+    /**
+     * Given a component number it returns true if the component is optional,
+     * regardless of the field being mandatory in a particular message.<br>
+     * Being the field's value conformed by a composition of one or several
+     * internal component values, the field may be present in a message with
+     * a proper value but with some of its internal components not set.
+     *
+     * @param component component number, first component of a field is referenced as 1
+     * @return true if the component is optional for this field, false otherwise
+     */
+    @Override
+    public boolean isOptional(int component) {
+        return false;
+    }
+
+    /**
+     * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     * @return true if the field is generic, false otherwise
+     */
+    @Override
+    public boolean isGeneric() {
+        return false;
+    }
+
+	/**
+	 * Returns the defined amount of components.<br>
+	 * This is not the amount of components present in the field instance, but the total amount of components
+	 * that this field accepts as defined.
+	 * @since 7.7
+	 */
+	@Override
+	public int componentsSize() {
+		return 6;
+	}
+
+	/**
+	 * Returns english label for components.
+	 * <br>
+	 * The index in the list is in sync with specific field component structure.
+	 * @see #getComponentLabel(int)
+	 * @since 7.8.4
+	 */
+	@Override
+	protected List<String> getComponentLabels() {
+		List<String> result = new ArrayList<>();
+		result.add("LT Address");
+		result.add("Session Number");
+		result.add("Message Category");
+		result.add("Date");
+		result.add("Start Time");
+		result.add("End Time");
+		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.3
+	 */
+	@Override
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<>();
+		result.put(1, "lTAddress");
+		result.put(2, "sessionNumber");
+		result.put(3, "messageCategory");
+		result.put(4, "date");
+		result.put(5, "startTime");
+		result.put(6, "endTime");
+		return result;
+	}
+	/**
+	 * Gets the component1 (LT Address).
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -258,9 +415,173 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getLTAddressAsLogicalTerminalAddress() {
 		return SwiftFormatUtils.getLTAddress(getComponent(1));
 	}
+	/**
+	 * Gets the component2 (Session Number).
+	 * @return the component2
+	 */
+	public String getComponent2() {
+		return getComponent(2);
+	}
 
 	/**
-	 * Set the component1.
+	 * Get the component2 as Number
+	 * @return the component2 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getComponent2AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(2));
+	}
+
+	/**
+	 * Gets the Session Number (component2).
+	 * @return the Session Number from component2
+	 */
+	public String getSessionNumber() {
+		return getComponent(2);
+	}
+	
+	/**
+	 * Get the Session Number (component2) as Number
+	 * @return the Session Number from component2 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getSessionNumberAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(2));
+	}
+	/**
+	 * Gets the component3 (Message Category).
+	 * @return the component3
+	 */
+	public String getComponent3() {
+		return getComponent(3);
+	}
+
+	/**
+	 * Get the component3 as Number
+	 * @return the component3 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getComponent3AsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+
+	/**
+	 * Gets the Message Category (component3).
+	 * @return the Message Category from component3
+	 */
+	public String getMessageCategory() {
+		return getComponent(3);
+	}
+	
+	/**
+	 * Get the Message Category (component3) as Number
+	 * @return the Message Category from component3 converted to Number or null if cannot be converted
+	 */
+	public java.lang.Number getMessageCategoryAsNumber() {
+		return SwiftFormatUtils.getNumber(getComponent(3));
+	}
+	/**
+	 * Gets the component4 (Date).
+	 * @return the component4
+	 */
+	public String getComponent4() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Get the component4 as Calendar
+	 * @return the component4 converted to Calendar or null if cannot be converted
+	 */
+	public java.util.Calendar getComponent4AsCalendar() {
+		return SwiftFormatUtils.getDate2(getComponent(4));
+	}
+
+	/**
+	 * Gets the Date (component4).
+	 * @return the Date from component4
+	 */
+	public String getDate() {
+		return getComponent(4);
+	}
+	
+	/**
+	 * Get the Date (component4) as Calendar
+	 * @return the Date from component4 converted to Calendar or null if cannot be converted
+	 */
+	public java.util.Calendar getDateAsCalendar() {
+		return SwiftFormatUtils.getDate2(getComponent(4));
+	}
+	/**
+	 * Gets the component5 (Start Time).
+	 * @return the component5
+	 */
+	public String getComponent5() {
+		return getComponent(5);
+	}
+
+	/**
+	 * Get the component5 as Calendar
+	 * @return the component5 converted to Calendar or null if cannot be converted
+	 */
+	public java.util.Calendar getComponent5AsCalendar() {
+		return SwiftFormatUtils.getTime3(getComponent(5));
+	}
+
+	/**
+	 * Gets the Start Time (component5).
+	 * @return the Start Time from component5
+	 */
+	public String getStartTime() {
+		return getComponent(5);
+	}
+	
+	/**
+	 * Get the Start Time (component5) as Calendar
+	 * @return the Start Time from component5 converted to Calendar or null if cannot be converted
+	 */
+	public java.util.Calendar getStartTimeAsCalendar() {
+		return SwiftFormatUtils.getTime3(getComponent(5));
+	}
+	/**
+	 * Gets the component6 (End Time).
+	 * @return the component6
+	 */
+	public String getComponent6() {
+		return getComponent(6);
+	}
+
+	/**
+	 * Get the component6 as Calendar
+	 * @return the component6 converted to Calendar or null if cannot be converted
+	 */
+	public java.util.Calendar getComponent6AsCalendar() {
+		return SwiftFormatUtils.getTime3(getComponent(6));
+	}
+
+	/**
+	 * Gets the End Time (component6).
+	 * @return the End Time from component6
+	 */
+	public String getEndTime() {
+		return getComponent(6);
+	}
+	
+	/**
+	 * Get the End Time (component6) as Calendar
+	 * @return the End Time from component6 converted to Calendar or null if cannot be converted
+	 */
+	public java.util.Calendar getEndTimeAsCalendar() {
+		return SwiftFormatUtils.getTime3(getComponent(6));
+	}
+    
+    public List<Calendar> dates() {
+		List<Calendar> result = new ArrayList<>();
+		result.add(SwiftFormatUtils.getDate2(getComponent(4)));
+		result.add(SwiftFormatUtils.getTime3(getComponent(5)));
+		result.add(SwiftFormatUtils.getTime3(getComponent(6)));
+		return result;
+	}
+
+
+	/**
+	 * Set the component1 (LT Address).
 	 * @param component1 the component1 to set
 	 */
 	public Field256 setComponent1(String component1) {
@@ -295,40 +616,9 @@ public class Field256 extends Field implements Serializable, DateContainer {
 		setComponent1(component1);
 		return this;
 	}
-	/**
-	 * Gets the component2
-	 * @return the component2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent2AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-
-	/**
-	 * Gets the Session Number (component2).
-	 * @return the Session Number from component2
-	 */
-	public String getSessionNumber() {
-		return getComponent(2);
-	}
-	
-	/**
-	 * Get the Session Number (component2) as Number
-	 * @return the Session Number from component2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getSessionNumberAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-
-	/**
-	 * Set the component2.
+	 * Set the component2 (Session Number).
 	 * @param component2 the component2 to set
 	 */
 	public Field256 setComponent2(String component2) {
@@ -372,40 +662,9 @@ public class Field256 extends Field implements Serializable, DateContainer {
 		setComponent2(component2);
 		return this;
 	}
-	/**
-	 * Gets the component3
-	 * @return the component3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent3AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(3));
-	}
-
-	/**
-	 * Gets the Message Category (component3).
-	 * @return the Message Category from component3
-	 */
-	public String getMessageCategory() {
-		return getComponent(3);
-	}
-	
-	/**
-	 * Get the Message Category (component3) as Number
-	 * @return the Message Category from component3 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getMessageCategoryAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(3));
-	}
-
-	/**
-	 * Set the component3.
+	 * Set the component3 (Message Category).
 	 * @param component3 the component3 to set
 	 */
 	public Field256 setComponent3(String component3) {
@@ -449,40 +708,9 @@ public class Field256 extends Field implements Serializable, DateContainer {
 		setComponent3(component3);
 		return this;
 	}
-	/**
-	 * Gets the component4
-	 * @return the component4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
 
 	/**
-	 * Get the component4 as Calendar
-	 * @return the component4 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getComponent4AsCalendar() {
-		return SwiftFormatUtils.getDate2(getComponent(4));
-	}
-
-	/**
-	 * Gets the Date (component4).
-	 * @return the Date from component4
-	 */
-	public String getDate() {
-		return getComponent(4);
-	}
-	
-	/**
-	 * Get the Date (component4) as Calendar
-	 * @return the Date from component4 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getDateAsCalendar() {
-		return SwiftFormatUtils.getDate2(getComponent(4));
-	}
-
-	/**
-	 * Set the component4.
+	 * Set the component4 (Date).
 	 * @param component4 the component4 to set
 	 */
 	public Field256 setComponent4(String component4) {
@@ -517,40 +745,9 @@ public class Field256 extends Field implements Serializable, DateContainer {
 		setComponent4(component4);
 		return this;
 	}
-	/**
-	 * Gets the component5
-	 * @return the component5
-	 */
-	public String getComponent5() {
-		return getComponent(5);
-	}
 
 	/**
-	 * Get the component5 as Calendar
-	 * @return the component5 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getComponent5AsCalendar() {
-		return SwiftFormatUtils.getTime3(getComponent(5));
-	}
-
-	/**
-	 * Gets the Start Time (component5).
-	 * @return the Start Time from component5
-	 */
-	public String getStartTime() {
-		return getComponent(5);
-	}
-	
-	/**
-	 * Get the Start Time (component5) as Calendar
-	 * @return the Start Time from component5 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getStartTimeAsCalendar() {
-		return SwiftFormatUtils.getTime3(getComponent(5));
-	}
-
-	/**
-	 * Set the component5.
+	 * Set the component5 (Start Time).
 	 * @param component5 the component5 to set
 	 */
 	public Field256 setComponent5(String component5) {
@@ -585,40 +782,9 @@ public class Field256 extends Field implements Serializable, DateContainer {
 		setComponent5(component5);
 		return this;
 	}
-	/**
-	 * Gets the component6
-	 * @return the component6
-	 */
-	public String getComponent6() {
-		return getComponent(6);
-	}
 
 	/**
-	 * Get the component6 as Calendar
-	 * @return the component6 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getComponent6AsCalendar() {
-		return SwiftFormatUtils.getTime3(getComponent(6));
-	}
-
-	/**
-	 * Gets the End Time (component6).
-	 * @return the End Time from component6
-	 */
-	public String getEndTime() {
-		return getComponent(6);
-	}
-	
-	/**
-	 * Get the End Time (component6) as Calendar
-	 * @return the End Time from component6 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getEndTimeAsCalendar() {
-		return SwiftFormatUtils.getTime3(getComponent(6));
-	}
-
-	/**
-	 * Set the component6.
+	 * Set the component6 (End Time).
 	 * @param component6 the component6 to set
 	 */
 	public Field256 setComponent6(String component6) {
@@ -653,44 +819,8 @@ public class Field256 extends Field implements Serializable, DateContainer {
 		setComponent6(component6);
 		return this;
 	}
-    
-    public List<Calendar> dates() {
-		List<Calendar> result = new ArrayList<>();
-		result.add(SwiftFormatUtils.getDate2(getComponent(4)));
-		result.add(SwiftFormatUtils.getTime3(getComponent(5)));
-		result.add(SwiftFormatUtils.getTime3(getComponent(6)));
-		return result;
-	}
 
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       return false;
-   }
-
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return false;
-   }
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field256.NAME
@@ -698,23 +828,6 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field256.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "<LT>4!n1!n<DATE2>[<HHMM><HHMM>]";
 	}
 
 	/**
@@ -776,114 +889,6 @@ public class Field256 extends Field implements Serializable, DateContainer {
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 6;
-	}
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 6) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 256");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent2AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 3) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent3AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 4) {
-			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
-			java.util.Calendar cal = getComponent4AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		if (component == 5) {
-			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-			java.util.Calendar cal = getComponent5AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		if (component == 6) {
-			//time
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-			java.util.Calendar cal = getComponent6AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("LT Address");
-		result.add("Session Number");
-		result.add("Message Category");
-		result.add("Date");
-		result.add("Start Time");
-		result.add("End Time");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "lTAddress");
-		result.put(2, "sessionNumber");
-		result.put(3, "messageCategory");
-		result.put(4, "date");
-		result.put(5, "startTime");
-		result.put(6, "endTime");
-		return result;
 	}
 
 	/**

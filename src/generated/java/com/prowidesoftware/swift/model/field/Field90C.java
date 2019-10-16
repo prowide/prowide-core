@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2019 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ import java.math.BigDecimal;
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.AmountResolver;
 
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.field.SwiftParseUtils;
@@ -49,10 +50,10 @@ import com.google.gson.JsonParser;
  * Model and parser for field 90C of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
- * <ol> 
- * 		<li><code>Number</code></li> 
- * 		<li><code>Currency</code></li> 
- * 		<li><code>Number</code></li> 
+ * <ol>
+ * 		<li><code>Number</code></li>
+ * 		<li><code>Currency</code></li>
+ * 		<li><code>Number</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -61,17 +62,17 @@ import com.google.gson.JsonParser;
  * 		<li>parser pattern: <code>NSN</code></li>
  * 		<li>components pattern: <code>NCN</code></li>
  * </ul>
- *		 
+ *
  * <p>
- * This class complies with standard release <strong>SRU2018</strong>
+ * This class complies with standard release <strong>SRU2019</strong>
  */
-@SuppressWarnings("unused") 
+@SuppressWarnings("unused")
 @Generated
 public class Field90C extends Field implements Serializable, CurrencyContainer, AmountContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2018;
+	public static final int SRU = 2019;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -131,11 +132,44 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
 		}
 		parse(tag.getValue());
 	}
-	
+
+	/**
+	 * Copy constructor.<br>
+	 * Initializes the components list with a deep copy of the source components list.
+	 * @param source a field instance to copy
+	 * @since 7.7
+	 */
+	public static Field90C newInstance(Field90C source) {
+		Field90C cp = new Field90C();
+		cp.setComponents(new ArrayList<>(source.getComponents()));
+		return cp;
+	}
+
+	/**
+	 * Create a Tag with this field name and the given value.
+	 * Shorthand for <code>new Tag(NAME, value)</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag tag(final String value) {
+		return new Tag(NAME, value);
+	}
+
+	/**
+	 * Create a Tag with this field name and an empty string as value
+	 * Shorthand for <code>new Tag(NAME, "")</code>
+	 * @see #NAME
+	 * @since 7.5
+	 */
+	public static Tag emptyTag() {
+		return new Tag(NAME, "");
+	}
+
+
 	/**
 	 * Parses the parameter value into the internal components structure.
-	 * <br>
-	 * Used to update all components from a full new value, as an alternative
+	 *
+	 * <p>Used to update all components from a full new value, as an alternative
 	 * to setting individual components. Previous component values are overwritten.
 	 *
 	 * @param value complete field value including separators and CRLF
@@ -149,19 +183,6 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
 		setComponent2(SwiftParseUtils.getAlphaPrefix(toparse));
 		setComponent3(SwiftParseUtils.getNumericSuffix(toparse));
 	}
-	
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field90C newInstance(Field90C source) {
-		Field90C cp = new Field90C();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
-	
 	/**
 	 * Serializes the fields' components into the single string value (SWIFT format)
 	 */
@@ -171,29 +192,135 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
 		result.append(joinComponents());
 		return result.toString();
 	}
-
 	/**
-	* Create a Tag with this field name and the given value.
-	* Shorthand for <code>new Tag(NAME, value)</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
+	 * Returns a localized suitable for showing to humans string of a field component.<br>
+	 *
+	 * @param component number of the component to display
+	 * @param locale optional locale to format date and amounts, if null, the default locale is used
+	 * @return formatted component value or null if component number is invalid or not present
+	 * @throws IllegalArgumentException if component number is invalid for the field
+	 * @since 7.8
+	 */
+	@Override
+	public String getValueDisplay(int component, Locale locale) {
+		if (component < 1 || component > 3) {
+			throw new IllegalArgumentException("invalid component number "+component+" for field 90C");
+		}
+		if (component == 1) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent1AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		if (component == 2) {
+			//default format (as is)
+			return getComponent(2);
+		}
+		if (component == 3) {
+			//number, amount, rate
+			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+			f.setMaximumFractionDigits(13);
+    		Number n = getComponent3AsNumber();
+			if (n != null) {
+				return f.format(n);
+			}
+		}
+		return null;
+	}
+	/**
+	 * Returns the field components pattern
+	 * @return the static value of Field90C.COMPONENTS_PATTERN
+	 */
+	@Override
+	public final String componentsPattern() {
+		return COMPONENTS_PATTERN;
 	}
 
 	/**
-	* Create a Tag with this field name and an empty string as value
-	* Shorthand for <code>new Tag(NAME, "")</code>
-	* @see #NAME
-	* @since 7.5
-	*/
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
-	
+     * Returns the field parser pattern
+     * @return the static value of Field90C.PARSER_PATTERN
+     */
+	@Override
+	public final String parserPattern() {
+        return PARSER_PATTERN;
+    }
+
 	/**
-	 * Gets the component1
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "5n<CUR><AMOUNT>15";
+	}
+
+    /**
+     * Given a component number it returns true if the component is optional,
+     * regardless of the field being mandatory in a particular message.<br>
+     * Being the field's value conformed by a composition of one or several
+     * internal component values, the field may be present in a message with
+     * a proper value but with some of its internal components not set.
+     *
+     * @param component component number, first component of a field is referenced as 1
+     * @return true if the component is optional for this field, false otherwise
+     */
+    @Override
+    public boolean isOptional(int component) {
+        return false;
+    }
+
+    /**
+     * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     * @return true if the field is generic, false otherwise
+     */
+    @Override
+    public boolean isGeneric() {
+        return false;
+    }
+
+	/**
+	 * Returns the defined amount of components.<br>
+	 * This is not the amount of components present in the field instance, but the total amount of components
+	 * that this field accepts as defined.
+	 * @since 7.7
+	 */
+	@Override
+	public int componentsSize() {
+		return 3;
+	}
+
+	/**
+	 * Returns english label for components.
+	 * <br>
+	 * The index in the list is in sync with specific field component structure.
+	 * @see #getComponentLabel(int)
+	 * @since 7.8.4
+	 */
+	@Override
+	protected List<String> getComponentLabels() {
+		List<String> result = new ArrayList<>();
+		result.add("Number");
+		result.add("Currency");
+		result.add("Amount");
+		return result;
+	}
+
+	/**
+	 * Returns a mapping between component numbers and their label in camel case format.
+	 * @since 7.10.3
+	 */
+	@Override
+	protected Map<Integer, String> getComponentMap() {
+		Map<Integer, String> result = new HashMap<>();
+		result.put(1, "number");
+		result.put(2, "currency");
+		result.put(3, "amount");
+		return result;
+	}
+	/**
+	 * Gets the component1 (Number).
 	 * @return the component1
 	 */
 	public String getComponent1() {
@@ -223,52 +350,8 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
 	public java.lang.Number getNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
-
 	/**
-	 * Set the component1.
-	 * @param component1 the component1 to set
-	 */
-	public Field90C setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the component1 from a Number object.
-	 * <br>
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
-	 * 	<li>Example: 1234 -&gt; 1234,</li>
-	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
-	 * </ul>
-	 * @param component1 the Number with the component1 content to set
-	 */
-	public Field90C setComponent1(java.lang.Number component1) {
-		setComponent(1, SwiftFormatUtils.getNumber(component1));
-		return this;
-	}
-	
-	/**
-	 * Set the Number (component1).
-	 * @param component1 the Number to set
-	 */
-	public Field90C setNumber(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Number (component1) from a Number object.
-	 * @see #setComponent1(java.lang.Number)
-	 * @param component1 Number with the Number content to set
-	 */
-	public Field90C setNumber(java.lang.Number component1) {
-		setComponent1(component1);
-		return this;
-	}
-	/**
-	 * Gets the component2
+	 * Gets the component2 (Currency).
 	 * @return the component2
 	 */
 	public String getComponent2() {
@@ -298,52 +381,8 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
 	public java.util.Currency getCurrencyAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(2));
 	}
-
 	/**
-	 * Set the component2.
-	 * @param component2 the component2 to set
-	 */
-	public Field90C setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the component2 from a Currency object.
-	 * <br>
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
-	 * 	<li>Example: 1234 -&gt; 1234,</li>
-	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
-	 * </ul>
-	 * @param component2 the Currency with the component2 content to set
-	 */
-	public Field90C setComponent2(java.util.Currency component2) {
-		setComponent(2, SwiftFormatUtils.getCurrency(component2));
-		return this;
-	}
-	
-	/**
-	 * Set the Currency (component2).
-	 * @param component2 the Currency to set
-	 */
-	public Field90C setCurrency(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Currency (component2) from a Currency object.
-	 * @see #setComponent2(java.util.Currency)
-	 * @param component2 Currency with the Currency content to set
-	 */
-	public Field90C setCurrency(java.util.Currency component2) {
-		setComponent2(component2);
-		return this;
-	}
-	/**
-	 * Gets the component3
+	 * Gets the component3 (Amount).
 	 * @return the component3
 	 */
 	public String getComponent3() {
@@ -372,50 +411,6 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
 	 */
 	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
-	}
-
-	/**
-	 * Set the component3.
-	 * @param component3 the component3 to set
-	 */
-	public Field90C setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the component3 from a Number object.
-	 * <br>
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
-	 * 	<li>Example: 1234 -&gt; 1234,</li>
-	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
-	 * </ul>
-	 * @param component3 the Number with the component3 content to set
-	 */
-	public Field90C setComponent3(java.lang.Number component3) {
-		setComponent(3, SwiftFormatUtils.getNumber(component3));
-		return this;
-	}
-	
-	/**
-	 * Set the Amount (component3).
-	 * @param component3 the Amount to set
-	 */
-	public Field90C setAmount(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the Amount (component3) from a Number object.
-	 * @see #setComponent3(java.lang.Number)
-	 * @param component3 Number with the Amount content to set
-	 */
-	public Field90C setAmount(java.lang.Number component3) {
-		setComponent3(component3);
-		return this;
 	}
     
 	public List<String> currencyStrings() {
@@ -464,35 +459,140 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
 		return AmountResolver.amount(this);
 	}
 
-   /**
-    * Given a component number it returns true if the component is optional,
-    * regardless of the field being mandatory in a particular message.<br>
-    * Being the field's value conformed by a composition of one or several 
-    * internal component values, the field may be present in a message with
-    * a proper value but with some of its internal components not set.
-    *
-    * @param component component number, first component of a field is referenced as 1
-    * @return true if the component is optional for this field, false otherwise
-    */
-   @Override
-   public boolean isOptional(int component) {   
-       return false;
-   }
 
-   /**
-    * Returns true if the field is a GENERIC FIELD as specified by the standard.
-    *
-    * @return true if the field is generic, false otherwise
-    */
-   @Override
-   public boolean isGeneric() {   
-       return false;
-   }
+	/**
+	 * Set the component1 (Number).
+	 * @param component1 the component1 to set
+	 */
+	public Field90C setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the component1 from a Number object.
+	 * <br>
+	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+	 * <ul>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
+	 * </ul>
+	 * @param component1 the Number with the component1 content to set
+	 */
+	public Field90C setComponent1(java.lang.Number component1) {
+		setComponent(1, SwiftFormatUtils.getNumber(component1));
+		return this;
+	}
+	
+	/**
+	 * Set the Number (component1).
+	 * @param component1 the Number to set
+	 */
+	public Field90C setNumber(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Number (component1) from a Number object.
+	 * @see #setComponent1(java.lang.Number)
+	 * @param component1 Number with the Number content to set
+	 */
+	public Field90C setNumber(java.lang.Number component1) {
+		setComponent1(component1);
+		return this;
+	}
+
+	/**
+	 * Set the component2 (Currency).
+	 * @param component2 the component2 to set
+	 */
+	public Field90C setComponent2(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the component2 from a Currency object.
+	 * <br>
+	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+	 * <ul>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
+	 * </ul>
+	 * @param component2 the Currency with the component2 content to set
+	 */
+	public Field90C setComponent2(java.util.Currency component2) {
+		setComponent(2, SwiftFormatUtils.getCurrency(component2));
+		return this;
+	}
+	
+	/**
+	 * Set the Currency (component2).
+	 * @param component2 the Currency to set
+	 */
+	public Field90C setCurrency(String component2) {
+		setComponent(2, component2);
+		return this;
+	}
+	
+	/**
+	 * Set the Currency (component2) from a Currency object.
+	 * @see #setComponent2(java.util.Currency)
+	 * @param component2 Currency with the Currency content to set
+	 */
+	public Field90C setCurrency(java.util.Currency component2) {
+		setComponent2(component2);
+		return this;
+	}
+
+	/**
+	 * Set the component3 (Amount).
+	 * @param component3 the component3 to set
+	 */
+	public Field90C setComponent3(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the component3 from a Number object.
+	 * <br>
+	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+	 * <ul>
+	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
+	 * 	<li>Example: 1234 -&gt; 1234,</li>
+	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
+	 * </ul>
+	 * @param component3 the Number with the component3 content to set
+	 */
+	public Field90C setComponent3(java.lang.Number component3) {
+		setComponent(3, SwiftFormatUtils.getNumber(component3));
+		return this;
+	}
+	
+	/**
+	 * Set the Amount (component3).
+	 * @param component3 the Amount to set
+	 */
+	public Field90C setAmount(String component3) {
+		setComponent(3, component3);
+		return this;
+	}
+	
+	/**
+	 * Set the Amount (component3) from a Number object.
+	 * @see #setComponent3(java.lang.Number)
+	 * @param component3 Number with the Amount content to set
+	 */
+	public Field90C setAmount(java.lang.Number component3) {
+		setComponent3(component3);
+		return this;
+	}
+
    
-   public String parserPattern() {
-           return PARSER_PATTERN;
-   }
-
 	/**
 	 * Returns the field's name composed by the field number and the letter option (if any)
 	 * @return the static value of Field90C.NAME
@@ -500,23 +600,6 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
 	@Override
 	public String getName() {
 		return NAME;
-	}
-	
-	/**
-	 * Returns the field's components pattern
-	 * @return the static value of Field90C.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-	 * Returns the field's validators pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "5n<CUR><AMOUNT>15";
 	}
 
 	/**
@@ -578,84 +661,6 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
 			return result;
 		}
 		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components 
-	 * that this field accepts as defined. 
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 3;
-	}
-
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 3) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 90C");
-		}
-		if (component == 1) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent1AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
-		}
-		if (component == 3) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent3AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		return null;	
-	}
-	
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Number");
-		result.add("Currency");
-		result.add("Amount");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<Integer, String>();
-		result.put(1, "number");
-		result.put(2, "currency");
-		result.put(3, "amount");
-		return result;
 	}
 
 	/**

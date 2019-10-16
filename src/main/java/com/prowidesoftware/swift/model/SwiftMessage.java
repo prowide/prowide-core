@@ -113,7 +113,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @deprecated to retrieve fields in sequences use the AbstractMT model
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	private SequenceNode parsedSequences;
 
 	/**
@@ -134,7 +134,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	protected Long id;
 
 	/**
@@ -305,9 +305,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @deprecated this method has been deprecated in favor of {@link #isType(int)} which provides a safer API just passing an int number for the message type
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear._2019)
+    @ProwideDeprecated(phase4=TargetYear.SRU2020)
 	public boolean isMT(final String type) {
-		DeprecationUtils.phase2(getClass(), "isMT(String)", "Use isType(int) instead.");
+		DeprecationUtils.phase3(getClass(), "isMT(String)", "Use isType(int) instead.");
 		// sanity check
 		Validate.notNull(type);
 		Validate.isTrue(type.length() == 3, "The string must be exactly 3 chars size (type=" + type + ")");
@@ -330,7 +330,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
 	/**
 	 * Visit the current message with the given visitor.
-	 * This is a simple implementation of the visitor pattern.
+	 * Writes all present blocks 1 to 5, and also the user blocks if any.
 	 *
 	 * @param visitor the visitor to use
 	 * @throws IllegalArgumentException if parameter visitor is null
@@ -500,8 +500,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public Long getId() {
+		DeprecationUtils.phase2(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		return this.id;
 	}
 
@@ -512,8 +513,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public void setId(final Long id) {
+		DeprecationUtils.phase2(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		this.id = id;
 	}
 
@@ -694,7 +696,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 5.0
 	 * @see SwiftBlockUser
 	 */
-	protected void setUserBlocks(final List<SwiftBlockUser> userBlocks) {
+	public void setUserBlocks(final List<SwiftBlockUser> userBlocks) {
 		// sanity check
 		Validate.notNull(userBlocks, "parameter 'userBlocks' cannot be null");
 
@@ -754,7 +756,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		Validate.isTrue(userBlock.isValidName().booleanValue(), INVALID_NAME_BLOCK + userBlock.getName() + ")");
 
 		if (this.userBlocks == null) {
-			this.userBlocks = new ArrayList<SwiftBlockUser>();
+			this.userBlocks = new ArrayList<>();
 		}
 
 		// find the block position (if it's already there)
@@ -1390,12 +1392,18 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		}
 		return getUUID() + suffix.toString();
 	}
-	
+
+	@Deprecated
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public SequenceNode getParsedSequences() {
+		DeprecationUtils.phase2(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
 		return parsedSequences;
 	}
 
+	@Deprecated
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public void setParsedSequences(final SequenceNode parsedSequences) {
+		DeprecationUtils.phase2(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
 		this.parsedSequences = parsedSequences;
 	}
 
@@ -1451,8 +1459,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 7.9.8
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public String toJsonV1() {
+		DeprecationUtils.phase2(getClass(), "toJsonV1()", "use toJson() instead");
 		/*
 		 * Return an ISO 8601 combined date and time string for current timestamp
 		 */
@@ -1746,9 +1755,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @since 7.8
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear._2019)
+    @ProwideDeprecated(phase4=TargetYear.SRU2020)
     public boolean isSystemMessage() {
-    	DeprecationUtils.phase2(getClass(), "isSystemMessage()", "Despite the method name this will NOT return true for FIN system messages (category 0), use isServiceMessage21() instead.");
+    	DeprecationUtils.phase3(getClass(), "isSystemMessage()", "Despite the method name this will NOT return true for FIN system messages (category 0), use isServiceMessage21() instead.");
     	return isServiceMessage21();
     }
 

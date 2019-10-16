@@ -34,22 +34,31 @@ import org.junit.Test;
  * <br>
  * This test mainly verify that a starting double slash is preserved 
  * after serialization
- * 
- * 
- * @author www.prowidesoftware.com
  *
  */
 public class NationalClearingSystemComponentTest {
 	
 	@Test
-	public void testField52A() {
+	public void testField52AParse() {
 	    Field52A f =  new Field52A("//ATBBBBB\r\nABNANL2A");
 	    assertEquals("//ATBBBBB\r\nABNANL2A", f.getValue());
 	    assertNull(f.getDCMark());
 	    assertNull("", f.getComponent1());
-	    assertEquals("/ATBBBBB",  f.getComponent2());
+	    assertEquals("/ATBBBBB",  f.getComponent2());	//component getter will keep the extra slash
 	    assertEquals("ATBBBBB", f.getAccount());	//account getter will trims the starting slash
 	    assertEquals("ABNANL2A", f.getBIC());
+	}
+
+	@Test
+	public void testField52ABuild() {
+		Field52A f =  new Field52A();
+
+		//we need to add the explicit extra slash to the component value
+		f.setComponent2("/ATBBBBB");
+		f.setComponent3("ABNANL2A");
+
+		// serialization will combine the default slash with the extra slash added, producing thus the double slash
+		assertEquals("//ATBBBBB\r\nABNANL2A", f.getValue());
 	}
 
 	@Test

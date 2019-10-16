@@ -246,10 +246,10 @@ public class SwiftMessageUtilsTest {
 			":70:1/34530/13\n" +
 			":71A:SHA\n" +
 			"-}";
-		CurrencyAmount ca = SwiftMessageUtils.currencyAmount(SwiftMessage.parse(fin));
-		assertNotNull(ca);
-		assertEquals("PLN", ca.getCurrency());
-		assertEquals(new BigDecimal("2044.10"), ca.getAmount());
+		Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
+		assertNotNull(money);
+		assertEquals("PLN", money.getCurrency());
+		assertEquals(new BigDecimal("2044.10"), money.getAmount());
 	}
 	
 	@Test
@@ -257,8 +257,8 @@ public class SwiftMessageUtilsTest {
 		final String fin = "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}{4:\n" +
 			":20:WITHMUR\n" +
 			"-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}";
-		CurrencyAmount ca = SwiftMessageUtils.currencyAmount(SwiftMessage.parse(fin));
-		assertNull(ca);
+		Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
+		assertNull(money);
 	}
 
 }

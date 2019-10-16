@@ -15,19 +15,19 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
-import static org.junit.Assert.assertEquals;
+import com.prowidesoftware.swift.Constants;
+import com.prowidesoftware.swift.io.parser.SwiftParser;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.Tag;
+import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import org.junit.Test;
-
-import com.prowidesoftware.swift.Constants;
-import com.prowidesoftware.swift.io.parser.SwiftParser;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.Tag;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Swift writer tests
@@ -43,7 +43,11 @@ public class SwiftWriterTest {
 		m.getBlock2().clean();
 		StringWriter buf = new StringWriter();
 		SwiftWriter.writeMessage(m, buf);
-		assertEquals("{1:}{2:}{3:}{4:\r\n-}{5:}", getResult("testEmpty", buf));
+		assertEquals("{1:}{2:}{3:}{4:\r\n-}{5:}", buf.toString());
+
+		buf = new StringWriter();
+		SwiftWriter.writeMessage(m, buf, true);
+		assertTrue(buf.toString().length() == 0);
 	}
 
 	@Test 
@@ -60,7 +64,7 @@ public class SwiftWriterTest {
 		SwiftWriter.writeMessage(m, buf);
 		assertEquals("{1:"+Constants.B1_DATA+"}{2:"+Constants.B2_INPUT+"}{3:{helloworld}}{4:\r\n" +
 				":k:val\r\n"+
-				"-}{5:{foo:dacatadat}}", getResult("testSimple", buf));
+				"-}{5:{foo:dacatadat}}", buf.toString());
 	}
 
 	@Test 
@@ -119,13 +123,4 @@ public class SwiftWriterTest {
 		return result;
 	}
 
-	@SuppressWarnings("unused")
-	private String getResult(StringWriter buf) {
-		return(getResult("", buf));
-	}
-
-	private String getResult(String testName, StringWriter buf) {
-		return buf.toString();
-	}
-	
 }

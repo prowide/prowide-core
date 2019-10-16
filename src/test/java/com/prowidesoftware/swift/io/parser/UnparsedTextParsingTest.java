@@ -48,8 +48,8 @@ public class UnparsedTextParsingTest extends BaseMessageTestcase {
 		    + "-}{5:{CHK:15C62B525DAA}{TNG:}}{S:{SAC:}{COP:P}}"; 
 	    
 	    try {
-			SwiftMessage m = (new SwiftParser()).parse(msg);
-			SwiftMessage m569 = (new SwiftParser()).parse(m.getUnparsedTexts().getAsFINString());
+			SwiftMessage m = SwiftMessage.parse(msg);
+			SwiftMessage m569 = SwiftMessage.parse(m.getUnparsedTexts().getAsFINString());
 	
 			assertEquals("569", m569.getType());
 			assertEquals("F21XYZABCAAXXXX1111112222", m569.getBlock1().getBlockValue());

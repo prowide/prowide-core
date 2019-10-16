@@ -1,20 +1,4 @@
 
-/*
- * Copyright 2006-2018 Prowide
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.prowidesoftware.swift;
 
 import com.prowidesoftware.Generated;
@@ -35,7 +19,10 @@ public interface SchemeConstantsP {
     public final static String PHON = "PHON";
     public final static String PHOB = "PHOB";
     public final static String PHOI = "PHOI";
+    public final static String PRUW = "PRUW";
+    public final static String PEAM = "PEAM";
     public final static String P = "P";
+    public final static String PRUR = "PRUR";
     public final static String PRINCIPAL = "PRINCIPAL";
     public final static String PUTO = "PUTO";
     public final static String PC = "PC";
@@ -89,9 +76,20 @@ public interface SchemeConstantsP {
     public final static String PRTL = "PRTL";
     public final static String PLED = "PLED";
     public final static String PSTA = "PSTA";
+    public final static String PECU = "PECU";
+    public final static String PREF = "PREF";
+    public final static String PDRA = "PDRA";
     public final static String PPRC = "PPRC";
+    public final static String PEDA = "PEDA";
+    public final static String PENDET = "PENDET";
+    public final static String PCOM = "PCOM";
     public final static String PENF = "PENF";
+    public final static String PENA = "PENA";
     public final static String PEND = "PEND";
+    public final static String PENACOUNT = "PENACOUNT";
+    public final static String PENACUR = "PENACUR";
+    public final static String PNTP = "PNTP";
+    public final static String PNST = "PNST";
     public final static String PAIR = "PAIR";
     public final static String PREC = "PREC";
     public final static String PWAL = "PWAL";

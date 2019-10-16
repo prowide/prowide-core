@@ -55,7 +55,7 @@ public class BbanStructureValidations {
             .create();
         String reader = null;
         try {
-            reader = Lib.readResource(JSON_FILE,null);
+            reader = Lib.readResource(JSON_FILE,null, BbanStructureValidations.class);
         } catch (IOException e) {
             log.log(Level.SEVERE, "Cannot load "+ JSON_FILE + " from classpath, the BBAN structure validations will be initialized empty", e);
         }

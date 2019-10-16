@@ -16,25 +16,16 @@
 
 package com.prowidesoftware.swift.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.nio.charset.StandardCharsets;
 
-import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
-import com.prowidesoftware.swift.model.mt.mt1xx.MT103_STP;
-import com.prowidesoftware.swift.model.mt.mt2xx.MT202;
-import com.prowidesoftware.swift.model.mt.mt2xx.MT202COV;
-import org.apache.commons.lang3.StringUtils;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  */
@@ -52,8 +43,8 @@ public class MxSwiftMessageTest {
     public void testReadSimple() throws IOException {
         File f = File.createTempFile("mx_", ".xml");
         FileOutputStream fos = new FileOutputStream(f);
-        fos.write("<?xml version=\"1.0\" ?>".getBytes());
-        fos.write("<Document/>".getBytes());
+        fos.write("<?xml version=\"1.0\" ?>".getBytes(StandardCharsets.UTF_8));
+        fos.write("<Document/>".getBytes(StandardCharsets.UTF_8));
         fos.close();
         MxSwiftMessage mx = new MxSwiftMessage(f);
         Assert.assertTrue(StringUtils.contains(mx.getMessage(), "Document"));

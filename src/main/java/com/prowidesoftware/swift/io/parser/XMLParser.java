@@ -15,32 +15,20 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import java.io.ByteArrayInputStream;
-import java.util.logging.Level;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
+import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.field.Field;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-import com.prowidesoftware.swift.model.SwiftBlock1;
-import com.prowidesoftware.swift.model.SwiftBlock2;
-import com.prowidesoftware.swift.model.SwiftBlock2Input;
-import com.prowidesoftware.swift.model.SwiftBlock2Output;
-import com.prowidesoftware.swift.model.SwiftBlock3;
-import com.prowidesoftware.swift.model.SwiftBlock4;
-import com.prowidesoftware.swift.model.SwiftBlock5;
-import com.prowidesoftware.swift.model.SwiftBlockUser;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.SwiftTagListBlock;
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.model.UnparsedTextList;
-import com.prowidesoftware.swift.model.field.Field;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
 
 /**
  * This is the main parser for WIFE's XML internal representation.<br>
@@ -74,7 +62,7 @@ public class XMLParser {
 		Validate.notNull(xml);
 		try {
 			final DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			final Document doc = db.parse(new ByteArrayInputStream(xml.getBytes()));
+			final Document doc = db.parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
 			return createMessage(doc);
 		} catch (final Exception e) {
 			log.log(Level.WARNING, "Error parsing XML", e);
@@ -168,7 +156,7 @@ public class XMLParser {
 		final Node c = n.getFirstChild();
 		if (c != null) {
 			if (c.getNodeType() == Node.TEXT_NODE) {
-				text = c.getNodeValue().trim();
+				text = c.getNodeValue();
 			} else {
 				log.warning("Node is not TEXT_NODE: "+c);
 			}
@@ -347,11 +335,6 @@ public class XMLParser {
 		final NodeList children = t.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {
 			final Node n = children.item(i);
-			
-			/*
-			 * soportar ambas versiones de xml automagicamente
-			 */
-			
 			if ("name".equalsIgnoreCase(n.getNodeName())) {
 				tag.setName(getText(n));
 			}

@@ -15,31 +15,12 @@
  */
 package com.prowidesoftware.swift.model.mx;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
 /**
  * Interface to plug in code that serializes MX message objects to XML string
  *
  * @since 7.6
  */
 public interface MxWrite {
-	
-	/**
-	 * Converts obj into a xml string
-	 * 
-	 * @param namespace the namespace for the target message
-	 * @param obj the object containing the message to be serialized
-	 * @param classes array of all classes used or referenced by message class  
-	 * @return the message content serialized to XML
-	 * @since 7.6
-	 * 
-	 * @deprecated use {@link #message(String, AbstractMX, Class[], String, boolean)} instead
-	 */
-	@SuppressWarnings("rawtypes")
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear._2019)
-	String message(String namespace, AbstractMX obj, Class[]classes);
 
 	/**
 	 * Converts obj into a xml string
@@ -52,7 +33,6 @@ public interface MxWrite {
 	 * @return the message content serialized to XML
 	 * @since 7.8
 	 */
-	@SuppressWarnings("rawtypes")
 	String message(String namespace, AbstractMX obj, Class[]classes, final String prefix, boolean includeXMLDeclaration);
 
 }

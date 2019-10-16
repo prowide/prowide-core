@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.Validate;
@@ -603,8 +604,9 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 	 * @since 7.9.8
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	public String toJsonV1() {
+		DeprecationUtils.phase2(getClass(), "toJsonV1()", "use toJson() instead");
 		final StringBuilder sb = new StringBuilder();
 		sb.append("{ \n");
 

@@ -25,7 +25,7 @@ import com.prowidesoftware.deprecation.TargetYear;
  * @deprecated no longer used
  */
 @Deprecated
-@ProwideDeprecated(phase2=TargetYear._2019)
+@ProwideDeprecated(phase3=TargetYear.SRU2020)
 public class UnknownMTException extends ProwideException {
 	private static final long serialVersionUID = 6708923821228731L;
 

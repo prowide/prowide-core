@@ -33,14 +33,14 @@ public enum MTVariant {
 	 * this message variant was removed from the standard in SRU2017
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	IRSLST(false),
 
 	/*
 	 * this message variant was removed from the standard in SRU2017
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear._2019)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
 	W8BENO(false);
 	
 	boolean validationFlag = false;
