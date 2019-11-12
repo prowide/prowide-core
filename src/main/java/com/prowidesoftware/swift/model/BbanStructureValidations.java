@@ -42,7 +42,7 @@ import java.util.logging.Level;
 public class BbanStructureValidations {
     private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(BbanStructureValidations.class.getName());
 
-    private static BbanStructureValidations instance = null;
+    private volatile static BbanStructureValidations instance = null;
 
     private static final Type REVIEW_TYPE = new TypeToken<List<BbanStructureDTO>>() {}.getType();
     private static String JSON_FILE = "BbanStructureValidations.json";
@@ -65,8 +65,12 @@ public class BbanStructureValidations {
     }
 
     public static BbanStructureValidations getInstance() {
-        if (instance==null) {
-            instance = new BbanStructureValidations();
+        if (instance == null){
+            synchronized (BbanStructureValidations.class) {
+                if (instance == null) {
+                    instance = new BbanStructureValidations();
+                }
+            }
         }
         return instance;
     }

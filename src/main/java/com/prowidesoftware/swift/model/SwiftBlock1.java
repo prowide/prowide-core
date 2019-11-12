@@ -21,6 +21,7 @@ import com.prowidesoftware.swift.model.mt.ServiceIdType;
 import org.apache.commons.lang3.Validate;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -196,7 +197,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 
 		// sanity check
 		Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-		Validate.isTrue(blockNumber.intValue() == 1, "blockNumber must be 1");
+		Validate.isTrue(blockNumber == 1, "blockNumber must be 1");
 	}
 
 	/**
@@ -217,7 +218,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 	 * @return Integer containing the block's number
 	 */
 	public Integer getNumber() {
-		return new Integer(1);
+		return 1;
 	}
 
 	/**
@@ -627,7 +628,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 		try {
 			return ServiceIdType.valueOf("_"+this.serviceId);
 		} catch (Exception e) {
-			final String text = "Block1 serviceId contains an invalid value ["+ this.serviceId +"]. The expected values are "+ServiceIdType.values();
+			final String text = "Block1 serviceId contains an invalid value ["+ this.serviceId +"]. The expected values are "+ Arrays.toString(ServiceIdType.values());
 			log.warning(text);
 			log.log(Level.FINEST, text, e);
 			return null;

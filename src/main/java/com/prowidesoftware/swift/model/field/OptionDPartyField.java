@@ -122,31 +122,8 @@ public class OptionDPartyField extends Field {
         if (component < 1 || component > 6) {
             throw new IllegalArgumentException("invalid component number "+component+" for field 42D");
         }
-        if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
-        }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
-        }
-        if (component == 3) {
-            //default format (as is)
-            return getComponent(3);
-        }
-        if (component == 4) {
-            //default format (as is)
-            return getComponent(4);
-        }
-        if (component == 5) {
-            //default format (as is)
-            return getComponent(5);
-        }
-        if (component == 6) {
-            //default format (as is)
-            return getComponent(6);
-        }
-        return null;
+        //default format (as is)
+        return getComponent(component);
     }
 
     /**

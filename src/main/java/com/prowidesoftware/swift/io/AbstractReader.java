@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.io;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import org.apache.commons.lang3.StringUtils;
@@ -27,12 +29,12 @@ import java.util.logging.Logger;
 /**
  * Base class for message reader iterators.
  * 
- * @author sebastian@prowidesoftware.com
  * @since 7.8
  */
 public abstract class AbstractReader implements Iterator<String>, Iterable<String> {
 	private static final Logger log = Logger.getLogger(AbstractReader.class.getName());
-	protected Reader reader = null;
+	protected Reader reader;
+	private boolean usedAsIterable = false;
 	
 	/**
 	 * Constructs a reader to read messages from a given Reader instance
@@ -68,8 +70,19 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 		Validate.isTrue(file.exists(), "Non existent file: "+file.getAbsolutePath());
 		this.reader = new FileReader(file);
 	}
-	
-	public Iterator<String> iterator() {
+
+	/**
+	 * @return this object as an Iterator
+	 * @throws IllegalArgumentException if the iteration is attempted more than once
+	 * @deprecated the use of this object as Iterator is discourage because its internal reader can be iterated just once, use it as Iterable instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2020)
+	public Iterator<String> iterator() throws IllegalArgumentException {
+		if (usedAsIterable) {
+			throw new IllegalStateException("This reader has already been used as iterator and the implementation does not support multiple iterations, create another reader instead");
+		}
+		usedAsIterable = true;
 		return this;
 	}
 

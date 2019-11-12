@@ -58,15 +58,12 @@ public class Lib {
 			return null;
 		}
 		final String charset = encoding != null? encoding : "UTF-8";
-		BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
 		final StringBuilder sb = new StringBuilder((int) file.length());
-		try {
-			int c = 0;
+		try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset))) {
+			int c;
 			while ((c = in.read()) != -1) {
 				sb.append((char)c);
 			}
-		} finally {
-			in.close();
 		}
 		return sb.toString();
 	}
@@ -148,7 +145,7 @@ public class Lib {
 		final StringBuilder out = new StringBuilder();
 		final String enc = enconding != null ? enconding : "UTF-8";
 		try (Reader in = new InputStreamReader(stream, enc)) {
-			int c = 0;
+			int c;
 			while ((c = in.read()) != -1) {
 				out.append((char)c);
 			}
@@ -170,7 +167,7 @@ public class Lib {
 		}
 		final StringBuilder out = new StringBuilder();
 		try {
-			int c = 0;
+			int c;
 			while ((c = reader.read()) != -1) {
 				out.append((char) c);
 			}

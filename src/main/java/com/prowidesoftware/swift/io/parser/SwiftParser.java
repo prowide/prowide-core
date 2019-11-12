@@ -37,14 +37,14 @@ import java.util.List;
  * <li>Support for user defined blocks (for example: {S:{T01:xxx}{T02:yyy}})</li>
  * </ul><br>Field32A
  * This is based in the old SwiftParser2, that is now deprecated.<br>
- *
- * @author www.prowidesoftware.com
  */
 public class SwiftParser {
 
 	/**
 	 * Helper constant with the content of <code>System.getProperty("line.separator", "\n")</code>
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2020)
 	public static final String EOL = System.getProperty("line.separator", "\n");
 
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftParser.class.getName());
@@ -234,7 +234,7 @@ public class SwiftParser {
 			
 			while (!done) {
 				// try to read a block of data
-				final char data[] = new char[128];
+				final char[] data = new char[128];
 				final int size = this.reader.read(data);
 				if (size > 0) {
 					// append the read buffer
@@ -524,7 +524,7 @@ public class SwiftParser {
 			switch (c) {
 			case '}':
 				// force termination only if ending string is -}
-				if ((isTextBlock && ignore==1) || !isTextBlock) {
+				if (!isTextBlock || ignore == 1) {
 					start = s.length();
 				}
 				/*
@@ -763,7 +763,7 @@ public class SwiftParser {
 				balance--;
 				break;
 			}
-		} while (start < s.length() && (balance >= 0 || (balance == 0 && c != '}')));
+		} while (start < s.length() && balance >= 0);
 		return start;
 	}
 
@@ -958,7 +958,8 @@ public class SwiftParser {
 			if (c == -1) {
 				// if we have read something and we reach the end of file without a proper closing bracket
 				if (len > 0) {
-					final String error = "Missing or invalid closing bracket in block " + buffer.charAt(start);
+					char n = buffer != null? buffer.charAt(start) : '?';
+					final String error = "Missing or invalid closing bracket in block " + n;
 					if (configuration.isLenient()) {
 						// if the configuration is lenient we report the error and continue
 						this.errors.add(error);
@@ -991,7 +992,11 @@ public class SwiftParser {
 
 		final int end = start + len;
 
-		return buffer.substring(start, end);
+		if (buffer != null) {
+			return buffer.substring(start, end);
+		} else {
+			return "";
+		}
 	}
 
 	private boolean isTextBlock() {

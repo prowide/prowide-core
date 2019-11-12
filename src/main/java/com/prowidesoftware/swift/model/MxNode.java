@@ -116,7 +116,7 @@ public class MxNode {
 	}
 
 	private List<MxNode> _find2(int index, final String[] segments, final MxNode node) {
-		if (index > segments.length) {
+		if (index >= segments.length) {
 			return new ArrayList<>();
 		}
 		final List<MxNode> result = new ArrayList<>();

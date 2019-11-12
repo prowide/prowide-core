@@ -103,23 +103,8 @@ public class OptionUPartyField extends Field {
         if (component < 1 || component > 4) {
             throw new IllegalArgumentException("invalid component number "+component+" for field 95U");
         }
-        if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
-        }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
-        }
-        if (component == 3) {
-            //default format (as is)
-            return getComponent(3);
-        }
-        if (component == 4) {
-            //default format (as is)
-            return getComponent(4);
-        }
-        return null;
+        //default format (as is)
+        return getComponent(component);
     }
 
     /**

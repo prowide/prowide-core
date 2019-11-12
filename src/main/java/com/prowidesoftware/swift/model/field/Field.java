@@ -216,7 +216,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 		} else {
 			for (int i=0;i<lines.length;i++) {
 				if (StringUtils.isNotBlank(lines[i])) {
-					if ((i!=0) || ((i==0) && StringUtils.isNotBlank(sb.toString()))) {
+					if (i != 0 || StringUtils.isNotBlank(sb.toString())) {
 						sb.append(FINWriterVisitor.SWIFT_EOL);
 					}
 					sb.append(lines[i]);
@@ -266,7 +266,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * @param value String value of the parsed component (without component separators ':', '/', '//')
 	 */
 	public void setComponent(final int number, final String value) {
-		Validate.isTrue(number>0, "component number is 1-based");
+		Validate.isTrue(number > 0, "components are numerated starting at 1, cannot insert a component with number "+number);
 
 		//internal position index is zero based
 		final int position = number - 1;
@@ -274,14 +274,10 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 		if (this.components == null) {
 			this.components = new ArrayList<>();
 		}
-		if (position >= 0) {
-			if (position >= this.components.size()) {
-				log.warning("component number "+number+" is out of bound for field "+getName());
-			} else {
-				this.components.set(position, value);
-			}
+		if (position >= this.components.size()) {
+			log.warning("component number "+number+" is out of bound for field "+getName());
 		} else {
-			log.severe("components are named starting at 1, cannot insert a component with number "+number);
+			this.components.set(position, value);
 		}
 	}
 

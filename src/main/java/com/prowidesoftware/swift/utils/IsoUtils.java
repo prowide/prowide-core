@@ -15,11 +15,10 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import java.util.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -38,26 +37,20 @@ public final class IsoUtils {
     private Set<String> currencies;
     private Set<String> countries;
 
-    private static IsoUtils instance;
+    private volatile static IsoUtils instance;
     
     private IsoUtils() {
     	currencies = new HashSet<>();
     	for(Currency currency : Currency.getAvailableCurrencies()) {
             String val = currency.getCurrencyCode();
-            if (!currencies.contains(val)) {
-                currencies.add(val);
-            }
+            currencies.add(val);
         }
-        // Jul 2016: Belorussia changed currency from 974 (BYR) to 933 (BYN)
-        if (!currencies.contains("BYN")) {
-            currencies.add("BYN");
-        }
+        // Jul 2016: Belarus changed currency from 974 (BYR) to 933 (BYN)
+        currencies.add("BYN");
 
     	countries = new HashSet<> (Arrays.asList(Locale.getISOCountries()));
     	// Add country code for Kosovo, not yet in ISO but used by SWIFT
-        if (!countries.contains("XK")) {
-            countries.add("XK");
-        }
+        countries.add("XK");
 
         log.fine("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size() + " country codes");
     }
@@ -121,9 +114,7 @@ public final class IsoUtils {
      */
     public void addCountry(final String countryCode) {
         Validate.isTrue(countryCode != null && countryCode.length() == 2 && countryCode.matches("[A-Z]*"), "The country code must by indicated with two uppercase letters");
-        if (!countries.contains(countryCode)) {
-            countries.add(countryCode);
-        }
+        countries.add(countryCode);
     }
 
     /**
@@ -134,9 +125,7 @@ public final class IsoUtils {
      */
     public void addCurrency(final String currencyCode) {
         Validate.isTrue(currencyCode != null && currencyCode.length() == 3 && currencyCode.matches("[A-Z]*"), "The currency code must by indicated with three uppercase letters");
-        if (!currencies.contains(currencyCode)) {
-            currencies.add(currencyCode);
-        }
+        currencies.add(currencyCode);
     }
 
 }

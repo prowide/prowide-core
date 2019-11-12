@@ -1786,20 +1786,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 					 break;
 				 }
 			 }
-			 if (searchIndex == searchTags.length) {
-				 /*
-				  * if we finished iteration on search and matched something, 
-				  * break loop and return matched sub block.
-				  */
-				 if (!target.isEmpty()) {
-					 return lastAddedIndex;
-				 } else {
-					 /*
-					  * initialize iteration on search tags
-					  */
-					 searchIndex = 0;
-				 }				 
-			 }
 			 tagsIndex++;
 		 }
 		 return lastAddedIndex;
@@ -2121,7 +2107,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 
 	 public Iterator<Tag> iterator() {
 		 if (this.tags == null) {
-			 Collections.<Tag>emptyList().iterator();
+			 return Collections.<Tag>emptyList().iterator();
 		 }
 		 return this.tags.iterator();
 	 }

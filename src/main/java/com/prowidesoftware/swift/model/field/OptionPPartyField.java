@@ -97,15 +97,8 @@ public class OptionPPartyField extends Field {
         if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number "+component+" for field 95P");
         }
-        if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
-        }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
-        }
-        return null;
+        //default format (as is)
+        return getComponent(component);
     }
 
     /**

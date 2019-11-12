@@ -26,8 +26,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -58,7 +58,7 @@ public class SwiftMessageUtils {
 
 	/**
 	 * Mirrors logic on {@link CurrencyContainer#currencyStrings()} including all fields
-	 * @param m
+	 * @param m the message instance
 	 * @return an empty list if none found
 	 */
 	public static List<String> currencyStrings(final SwiftMessage m) {
@@ -100,7 +100,7 @@ public class SwiftMessageUtils {
 	 * @throws IllegalArgumentException if the starting tag is not 16R or the ending tag is not the matching 16S
 	 * @since 7.8.1
 	 */
-	public static SwiftTagListBlock removeInnerSequences(final SwiftTagListBlock sequence) {
+	public static SwiftTagListBlock removeInnerSequences(final SwiftTagListBlock sequence) throws IllegalArgumentException {
 		if (sequence == null || sequence.size() < 3) {
 			return sequence;
 		}
@@ -204,7 +204,7 @@ public class SwiftMessageUtils {
 					} else {
                         final SwiftTagListBlock seq2 = b4.getSubBlock("AMT");
                         if (seq2 != null) {
-                            f = seq.getFieldByNumber(98, "VALU");
+                            f = seq2.getFieldByNumber(98, "VALU");
                         }
                     }
 				} else if (m.isType(537)) {
@@ -329,7 +329,7 @@ public class SwiftMessageUtils {
 	//TODO add base 64 encoding on top when upgraded to Java 8
 	private static String md5(final String text) {
 		try {
-			byte[] bytesOfMessage = text.getBytes("UTF-8");
+			byte[] bytesOfMessage = text.getBytes(StandardCharsets.UTF_8);
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] thedigest = md.digest(bytesOfMessage);
 
@@ -344,8 +344,6 @@ public class SwiftMessageUtils {
 			}
 
 			return buff.toString();
-		} catch (UnsupportedEncodingException e) {
-			log.log(Level.FINEST, e.getMessage(), e);
 		} catch (NoSuchAlgorithmException e) {
 			log.log(Level.FINEST, e.getMessage(), e);
 		}
@@ -360,7 +358,7 @@ public class SwiftMessageUtils {
 		if (msg != null && msg.getBlock4() != null) {
 			return splitByField15(msg.getBlock4());
 		} else {
-			return new HashMap<String, SwiftTagListBlock>();
+			return new HashMap<>();
 		}
 	}
 
@@ -372,7 +370,7 @@ public class SwiftMessageUtils {
 	 * @since 7.7
 	 */
 	public static Map<String, SwiftTagListBlock> splitByField15(final SwiftTagListBlock block) {
-		final Map<String, SwiftTagListBlock> result = new HashMap<String, SwiftTagListBlock>();
+		final Map<String, SwiftTagListBlock> result = new HashMap<>();
 		if (block != null) {
 			SwiftTagListBlock currentList = null;
 			for (final Tag t : block.getTags()) {
@@ -533,7 +531,7 @@ public class SwiftMessageUtils {
 	 * @return the SwiftTagListBlock containing all parent sequences, the sequence requested and the contents
 	 * @since 7.8
 	 */
-	public static final SwiftTagListBlock createSubsequenceWithParents(final Class<? extends AbstractMT> mt, final String sequenceName, final Tag ... tags ) {
+	public static SwiftTagListBlock createSubsequenceWithParents(final Class<? extends AbstractMT> mt, final String sequenceName, final Tag ... tags ) {
 		log.finer("Create sequence "+sequenceName);
 		final SwiftTagListBlock result = new SwiftTagListBlock();
 		result.append(tags);
@@ -555,8 +553,9 @@ public class SwiftMessageUtils {
 			final Method method = subSequenceClass.getMethod("newInstance", Tag[].class);
 			return (SwiftTagListBlock) method.invoke(null, new Object[]{tags});
 		} catch (Exception e) {
-			log.log(Level.WARNING, "Reflection error: mt="+mt.getName()+", sequenceName="+sequenceName+", tags="+tags+" - "+e, e);
-			throw new ProwideException("Reflection error: mt="+mt.getName()+", sequenceName="+sequenceName+", tags="+tags+" - "+e);
+			String message = "Reflection error: mt="+mt.getName()+", sequenceName="+sequenceName+", tags="+ Arrays.toString(tags) +" - " + e.getMessage();
+			log.log(Level.WARNING, message, e);
+			throw new ProwideException(message);
 		}
 	}
 	
@@ -588,7 +587,7 @@ public class SwiftMessageUtils {
 	 * Do not use API from MTs and Field classes here to avoid cyclic dependency in code generation.
 	 * Keep in sync special case for 104 and 107 with MT104 and MT107 getSequenceC logic.
 	 */
-	public static final Money money(final SwiftMessage m) {
+	public static Money money(final SwiftMessage m) {
 		if (m == null || m.isServiceMessage21()) {
 			return null;
 		}

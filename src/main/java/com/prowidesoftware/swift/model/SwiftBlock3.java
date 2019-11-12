@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.prowidesoftware.swift.model.field.Field108;
 import org.apache.commons.lang3.Validate;
 
 import java.io.Serializable;
@@ -114,11 +115,11 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
 	public void generateMUR(boolean overwriteIfExist) {
 		final String MUR = (new SimpleDateFormat("yyMMddHHmmssSSSS").format(Calendar.getInstance().getTime()));
 		Tag t = getTagByName("108");
-		if (t != null && overwriteIfExist) {
+		if (t == null) {
+			builder().setField108(new Field108(MUR));
+		} else if (overwriteIfExist) {
 			log.fine("block 3 MUR value "+t.getValue()+" overwritten with generated MUR "+MUR);
 			t.setValue(MUR);
-		} else {
-			append(new Tag("108", MUR));
 		}
 	}
 

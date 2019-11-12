@@ -1,3 +1,7 @@
+SNAPSHOT 8.0.2
+  * Fixed field 108 order and overwrite if exist logic in SwiftBlock3#generateMUR
+  * (CR #207) Added optional parameter in SwiftWriter and FINWriterVisitor to control whether field values should be trimmed
+
 RELEASE 8.0.1 - October 2019 - LTS version for SRU2019
   * Added SwiftMessageUtils#currencyAmount to retrieve the main currency and amount from a message
   * (CR #192) Fixed ConversionService#getFIN(SwiftMessage) to avoid altering the message parameter when removing empty blocks

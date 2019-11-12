@@ -15,8 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Objects;
 
 /**
@@ -68,7 +66,7 @@ public class LogicalTerminalAddress extends BIC {
 	 * @return the 12 characters address or null if the BIC has less than 8 characters
 	 */
 	public String getSenderLogicalTerminalAddress() {
-		Character LT = (this.LTIdentifier == null || this.LTIdentifier.equals('X'))? 'A' : this.LTIdentifier;
+		char LT = (this.LTIdentifier == null || this.LTIdentifier.equals('X'))? 'A' : this.LTIdentifier;
 		if (getBic8() != null) {
 			return getBic8() + LT + getBranchOrDefault();
 		}

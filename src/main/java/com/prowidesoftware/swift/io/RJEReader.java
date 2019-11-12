@@ -20,7 +20,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.util.logging.Logger;
 
 /**
  * Helper class to read RJE files.
@@ -31,15 +30,12 @@ import java.util.logging.Logger;
  * <br>
  * The reader can be initialized with a File, Stream or String.
  * 
- * @author sebastian@prowidesoftware.com
  * @since 7.8
  */
 public class RJEReader extends AbstractReader {
-	@SuppressWarnings("unused")
-	private static final Logger log = Logger.getLogger(RJEReader.class.getName());
 	public static final char SPLITCHAR = '$';
 
-	private char splitChar_ = SPLITCHAR;
+	private char splitChar = SPLITCHAR;
 	
 	/**
 	 * Constructs a RJEReader to read messages from a given Reader instance
@@ -98,7 +94,7 @@ public class RJEReader extends AbstractReader {
 			int c;
 			StringBuilder sb = new StringBuilder();
 			try {
-				while ((c=reader.read())!=-1 && (c!= splitChar_)) {
+				while ((c=reader.read())!=-1 && (c!= splitChar)) {
 					sb.append((char)c);
 				}
 				if (c==-1) {
@@ -113,12 +109,12 @@ public class RJEReader extends AbstractReader {
 	}
 
 	/**
-	 * Ovewrites the default standard split char {@link #SPLITCHAR}
+	 * Overwrites the default standard split char {@link #SPLITCHAR}
 	 * @param c a character to use as message separator
 	 * @since 7.9.7
 	 */
-	public void setSplitChar_(final char c) {
-		this.splitChar_ = splitChar_;
+	public void setSplitChar(final char c) {
+		this.splitChar = c;
 	}
 
 }

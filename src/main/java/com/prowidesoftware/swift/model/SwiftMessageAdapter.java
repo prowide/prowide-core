@@ -32,7 +32,7 @@ public class SwiftMessageAdapter implements JsonDeserializer<SwiftMessage>, Json
         dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         final String ts = dateFormat.format(Calendar.getInstance().getTime());
         object.addProperty("timestamp", ts);
-        object.addProperty("version", src.JSON_VERSION);
+        object.addProperty("version", SwiftMessage.JSON_VERSION);
 
         JsonObject objectBlocks = new JsonObject();
         objectBlocks.add("block1",context.serialize(src.getBlock1()));
@@ -62,11 +62,11 @@ public class SwiftMessageAdapter implements JsonDeserializer<SwiftMessage>, Json
 
         SwiftBlock5 block5 = jsonDeserializationContext.deserialize(jsonArray.get("block5"),SwiftBlock5.class);
 
-        List<SwiftBlockUser> blockUsers = new ArrayList<SwiftBlockUser>();
+        List<SwiftBlockUser> blockUsers = new ArrayList<>();
 
         if (jsonArray.get("userBlocks") != null){
             for (JsonElement blockUser : jsonArray.get("userBlocks").getAsJsonArray()) {
-                blockUsers.add((SwiftBlockUser)jsonDeserializationContext.deserialize(blockUser,SwiftBlockUser.class));
+                blockUsers.add(jsonDeserializationContext.deserialize(blockUser,SwiftBlockUser.class));
             }
         }
 
@@ -92,7 +92,7 @@ public class SwiftMessageAdapter implements JsonDeserializer<SwiftMessage>, Json
             sm.addBlock(block5);
         }
 
-        if (blockUsers != null && blockUsers.size()>0){
+        if (blockUsers.size() > 0){
             sm.setUserBlocks(blockUsers);
         }
 

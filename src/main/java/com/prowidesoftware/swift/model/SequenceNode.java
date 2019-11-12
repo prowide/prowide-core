@@ -71,4 +71,9 @@ public class SequenceNode {
 	public SequenceNode getParent() {
 		return parent;
 	}
+
+	public List<SequenceNode> getChildren() {
+		return children;
+	}
+
 }

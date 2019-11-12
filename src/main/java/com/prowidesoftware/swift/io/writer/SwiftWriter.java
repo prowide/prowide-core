@@ -30,11 +30,7 @@ import com.prowidesoftware.swift.model.SwiftBlock5;
 import com.prowidesoftware.swift.model.SwiftMessage;
 
 /**
- * Helper API to write MT message content into native SWIFT format.
- * 
- * <p>This class handles writing swift messages exclusively, 
- * all validation and consistency checks must be done
- * previous to using the writer.
+ * Writes MT messages content into FIN format (raw SWIFT format for MT messages).
  */
 public class SwiftWriter {
     private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftWriter.class.getName());
@@ -42,10 +38,11 @@ public class SwiftWriter {
 	private static final String WRITER_MESSAGE = "writer cannot be null";
 
 	/**
-	 * Write the given message to writer in its native SWIFT format.
+	 * Writes the given message content to writer in its FIN format (raw SWIFT format for MT messages).
 	 *
-	 * <p>The implementation will preserve and write empty blocks if present in the message parameter.
-	 * To avoid writing empty blocks use {@link #writeMessage(SwiftMessage, Writer, boolean)} with true as parameter.
+	 * <p>This method call will preserve and write empty blocks present in the message parameter, and also any
+	 * starting or trailing spaces in the field values. For a fine-grain control on how to handle empty blocks and
+	 * spaces in field values use {@link #writeMessage(SwiftMessage, Writer, boolean, boolean)}.
 	 *
 	 * <p>As for the EOL characters, they are written as found in the message content. You can always write into String
 	 * and use {@link #ensureEols(String)} on the result if you need to ensure compliance with SWIFT.
@@ -59,7 +56,14 @@ public class SwiftWriter {
 	}
 
 	/**
-	 * Write the given message to writer in its native SWIFT format.
+	 * Writes the given message content to writer in its FIN format (raw SWIFT format for MT messages), controlling how
+	 * to handle empty blocks.
+	 *
+	 * <p>Starting and trailing spaces in field values will be preserve. For a fine-grain control on how to handle
+	 * spaces in field values use {@link #writeMessage(SwiftMessage, Writer, boolean, boolean)}.
+	 *
+	 * <p>As for the EOL characters, they are written as found in the message content. You can always write into String
+	 * and use {@link #ensureEols(String)} on the result if you need to ensure compliance with SWIFT.
 	 *
 	 * @param msg the message to write
 	 * @param writer the writer that will actually receive all the write operations
@@ -68,9 +72,25 @@ public class SwiftWriter {
 	 * @since 8.0.1
 	 */
 	public static void writeMessage(SwiftMessage msg, Writer writer, boolean ignoreEmptyBlocks) {
+		writeMessage(msg, writer, ignoreEmptyBlocks, false);
+	}
+
+	/**
+	 * Writes the given message content to writer in its FIN format (raw SWIFT format for MT messages), controlling how
+	 * to handle empty blocks and spaces in field values.
+	 *
+	 * @param msg the message to write
+	 * @param writer the writer that will actually receive all the write operations
+	 * @param ignoreEmptyBlocks if true, empty blocks will not be written
+	 * @param trimTagValues if true, starting and trailing spaces in field values will be trimmed.
+	 * @throws IllegalArgumentException if msg or writer are null
+	 * @since 8.0.2
+	 */
+	public static void writeMessage(SwiftMessage msg, Writer writer, boolean ignoreEmptyBlocks, boolean trimTagValues) {
 		Validate.notNull(msg , "msg cannot be null");
     	Validate.notNull(writer, WRITER_MESSAGE);
 		FINWriterVisitor v = new FINWriterVisitor(writer);
+		v.setTrimTagValues(trimTagValues);
 
     	if (ignoreEmptyBlocks) {
 			// copy the blocks to a new message container

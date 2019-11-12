@@ -109,11 +109,8 @@ public class OptionJPartyField extends Field {
         if (component < 1 || component > 1) {
             throw new IllegalArgumentException("invalid component number "+component+" for field 53J");
         }
-        if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
-        }
-        return null;
+        //default format (as is)
+        return getComponent(component);
     }
 
     /**

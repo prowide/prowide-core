@@ -25,7 +25,6 @@ import java.io.*;
  * Helper API to write MT messages into RJE files.
  * @see AbstractWriter
  * 
- * @author sebastian@prowidesoftware.com
  * @since 7.8
  */
 public class RJEWriter extends AbstractWriter {
@@ -136,12 +135,12 @@ public class RJEWriter extends AbstractWriter {
     }
 
 	/**
-	 * Ovewrites the default standard split char {@link RJEReader#SPLITCHAR}
+	 * Overwrites the default standard split char {@link RJEReader#SPLITCHAR}
 	 * @param c a character to use as message separator
 	 * @since 7.9.7
 	 */
 	public void setSplitChar(final char c) {
-		this.splitChar = splitChar;
+		this.splitChar = c;
 	}
 
 }

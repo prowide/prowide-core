@@ -21,6 +21,7 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -73,7 +74,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 	protected void setBlockNumber(final Integer blockNumber) {
 		// sanity check
 		Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-		Validate.isTrue(blockNumber.intValue() == 2, "blockNumber must be 2");
+		Validate.isTrue(blockNumber == 2, "blockNumber must be 2");
 	}
 
 	/**
@@ -93,7 +94,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 	 * @return Integer containing the block's number
 	 */
 	public Integer getNumber() {
-		return Integer.valueOf(2);
+		return 2;
 	}
 
 	/**
@@ -157,7 +158,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 			try {
 				return MessagePriority.valueOf(this.messagePriority);
 			} catch (Exception e) {
-				final String text = "Block2 messagePriority contains an invalid value ["+ this.messagePriority +"]. The expected values are "+MessagePriority.values();
+				final String text = "Block2 messagePriority contains an invalid value ["+ this.messagePriority +"]. The expected values are "+ Arrays.toString(MessagePriority.values());
 				log.warning(text);
 				log.log(Level.FINEST, text, e);
 			}
