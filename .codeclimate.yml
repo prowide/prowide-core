@@ -4,7 +4,12 @@ plugins:
   sonar-java:
     enabled: true
     config:
-      sonar.java.source: 7
+      sonar.java.source: 8
+
+checks:
+  method-complexity:
+    config:
+      threshold: 8
 
 exclude_patterns:
   - ".gradle/"
