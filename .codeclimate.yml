@@ -5,6 +5,7 @@ plugins:
     enabled: true
     config:
       sonar.java.source: 8
+      minimum_severity: critical
 
 checks:
   method-complexity:
