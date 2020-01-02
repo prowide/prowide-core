@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.Optional;
 import java.util.logging.Level;
 
 /**
@@ -308,7 +309,7 @@ public class MxParser {
 				}
 			}
 		} catch (final Exception e) {
-			log.log(Level.SEVERE, "error while analizing message: "+ e.getMessage());
+			log.log(Level.SEVERE, "error while analyzing message: "+ e.getMessage());
 			info.exception = e;
 		}
 		return this.info;
@@ -352,27 +353,48 @@ public class MxParser {
 		public boolean containsWrapper() {
 			return containsWrapper;
 		}
+
 		public boolean containsHeader() {
 			return containsHeader;
 		}
+
 		public boolean containsDocument() {
 			return containsDocument;
 		}
+
 		public String getDocumentNamespace() {
 			return documentNamespace;
 		}
+
 		public String getDocumentPrefix() {
 			return documentPrefix;
 		}
+
 		public String getHeaderNamespace() {
 			return headerNamespace;
 		}
+
 		public String getHeaderPrefix() {
 			return headerPrefix;
 		}
+
 		public Exception getException() {
 			return exception;
 		}
+
+		/**
+		 * @return true if the message contains a header and it is a legacy SWIFT ahV10 header, false if it is not and
+		 * empty if the message has no header to check
+		 * @since 8.0.5
+		 */
+		public Optional<Boolean> containsLegacyHeader() {
+			if (containsHeader) {
+				return Optional.of(StringUtils.contains(this.headerNamespace, "ahV10"));
+			} else {
+				return Optional.empty();
+			}
+		}
+
 		@Override
 		public String toString() {
 			return "MxStructureInfo [containsWrapper=" + containsWrapper + ", containsHeader=" + containsHeader
@@ -427,14 +449,15 @@ public class MxParser {
 	 */
 	public String stripDocument() {
 		analyzeMessage();
-		final String tag = this.info.getDocumentPrefix() != null? this.info.getDocumentPrefix() + ":" + MxParser.DOCUMENT_LOCALNAME : MxParser.DOCUMENT_LOCALNAME;
-		int beginIndex = this.buffer.indexOf("<" + tag);
-		int endIndex = this.buffer.lastIndexOf("</" + tag);
-		if (beginIndex >=0 && endIndex >= 0) {
-			return this.buffer.substring(beginIndex, endIndex) + "</"+tag+">";
-		} else {
-			return null;
+		if (this.info.containsDocument) {
+			final String tag = this.info.getDocumentPrefix() != null ? this.info.getDocumentPrefix() + ":" + MxParser.DOCUMENT_LOCALNAME : MxParser.DOCUMENT_LOCALNAME;
+			int beginIndex = this.buffer.indexOf("<" + tag);
+			int endIndex = this.buffer.lastIndexOf("</" + tag);
+			if (beginIndex >= 0 && endIndex >= 0) {
+				return this.buffer.substring(beginIndex, endIndex) + "</" + tag + ">";
+			}
 		}
+		return null;
 	}
 	
 	/* alternative future implementation using DOM instead of MxNode
@@ -488,8 +511,6 @@ public class MxParser {
 			int endIndex = this.buffer.indexOf("</" + tag);
 			if (beginIndex >=0 && endIndex >= 0) {
 				return this.buffer.substring(beginIndex, endIndex) + "</"+tag+">";
-			} else {
-				return null;
 			}
 		}
 		return null;
