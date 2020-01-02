@@ -21,12 +21,9 @@ import com.prowidesoftware.swift.model.*;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.Calendar;
 
 import static org.junit.Assert.*;
 
@@ -39,11 +36,11 @@ import static org.junit.Assert.*;
  * some fields are not present and the overall header size is incorrect.
  */
 public class SwiftParserTest {
-	protected VisibleParser parser;
+	private VisibleParser parser;
 
 	@Before
 	public void setUp() {
-		this.parser = new VisibleParser();
+		parser = new VisibleParser();
 	}
 
 	@Test
@@ -163,8 +160,8 @@ public class SwiftParserTest {
 	}
 
 	@Test
-	public void testConsumeTag16R() throws IOException {
-		final Tag t = parser.consumeTag(":16R:GENL\r\n");
+	public void testConsumeTag16R() {
+		final Tag t = parser.consumeTag(":16R:GENL");
 		assertNotNull(t);
 		assertEquals("16R", t.getName());
 		assertEquals("GENL", t.getValue());
@@ -172,10 +169,10 @@ public class SwiftParserTest {
 
 	@Test
 	public void testConsumeTagWithBraquets() throws IOException {
-		final Tag t = parser.consumeTag(":50K:ABCD}EFG\r\n");
+		final Tag t = parser.consumeTag(":50K:AB\nCD}EFG\r\n");
 		assertNotNull(t);
 		assertEquals("50K", t.getName());
-		assertEquals("ABCD}EFG", t.getValue());
+		assertEquals("AB\nCD}EFG\r\n", t.getValue());
 	}
 
 	@Test
@@ -402,7 +399,7 @@ public class SwiftParserTest {
 	}
 
 	@Test
-	public void testBug1539324() throws SAXException, IOException, ParserConfigurationException {
+	public void testBug1539324() throws IOException {
 		final String fin = "{1:"+Constants.B1_DATA+"}{3:{n:v}}";
 		parser.setData(fin);
 		final SwiftBlock1 b1 = (SwiftBlock1) parser.consumeBlock(null);
@@ -416,7 +413,7 @@ public class SwiftParserTest {
 	}
 
 	@Test
-	public void testBug1539324_2() throws SAXException, IOException, ParserConfigurationException {
+	public void testBug1539324_2() throws IOException {
 		final String fin = "{1:"+Constants.B1_DATA+"}{3:{n:v}}";
 		parser.setData(fin);
 		final SwiftMessage msg = parser.message();
@@ -429,7 +426,7 @@ public class SwiftParserTest {
 	}
 
 	@Test
-	public void testBug1539324_3() throws SAXException, IOException, ParserConfigurationException {
+	public void testBug1539324_3() throws IOException {
 		final String fin = "{1:"+Constants.B1_DATA+"}{3:{n:v}}";
 		final SwiftParser p = new SwiftParser(new StringReader(fin));
 		final SwiftMessage msg = p.message();
@@ -647,7 +644,7 @@ public class SwiftParserTest {
 	}
 
 	@Test
-	public void testTagEndSearch() {
+	public void testFindEndOfTag1() {
 		final String s = "4:\n" +
 				":20:628735BKRU3X\n" +
 				":79:TO FOO\n" +
@@ -668,19 +665,65 @@ public class SwiftParserTest {
 				"}\n" +
 				"-";
 		final int start = 21;
-		final int end = this.parser.textTagEndBlock4(s, start, true);
+		final int end = this.parser.findEndOfTagByLineFeed(s, start, true);
 		final String tag = s.substring(start, end);
 		assertEquals('-', tag.charAt(tag.length()-1));
 	}
 
 	@Test
-	public void testTagEndSearch1() {
-		final String s = ":79:foo\n" +
-				"}\n" +
-				"-}";
-		final int end = this.parser.textTagEndBlock4(s, 0, true);
-		assertTrue(end+" mayor que largo total ("+s.length()+")", end<s.length());
+	public void testFindEndOfTag2() {
+		final String s = ":79:foo\n}\n-}";
+		final int end = this.parser.findEndOfTagByLineFeed(s, 0, true);
 		assertEquals('-', s.charAt(end));
+	}
+
+	@Test
+	public void testFindEndOfTag3() {
+		final String s = ":20:foo\n:21:";
+		final int end = this.parser.findEndOfTagByLineFeed(s, 0, true);
+		assertEquals(7, end);
+		assertEquals('\n', s.charAt(end));
+	}
+
+	@Test
+	public void testFindEndOfTag4() {
+		final String s = ":20:foo\r\n:21:";
+		final int end = this.parser.findEndOfTagByLineFeed(s, 0, true);
+		assertEquals(7, end);
+		assertEquals('\r', s.charAt(end));
+	}
+
+	/**
+	 * The duplicated LF should be returned as part of the tag value
+	 */
+	@Test
+	public void testFindEndOfTag5() {
+		final String s = ":20:foo\n\n:21:";
+		final int end = this.parser.findEndOfTagByLineFeed(s, 0, true);
+		assertEquals(8, end);
+		assertEquals('\n', s.charAt(end));
+	}
+
+	/**
+	 * The duplicated CRLF should be returned as part of the tag value
+	 */
+	@Test
+	public void testFindEndOfTag6() {
+		final String s = ":20:foo\r\n\r\n:21:";
+		final int end = this.parser.findEndOfTagByLineFeed(s, 0, true);
+		assertEquals(9, end);
+		assertEquals('\r', s.charAt(end));
+	}
+
+	/**
+	 * The duplicated LF should be returned as part of the tag value
+	 */
+	@Test
+	public void testFindEndOfTag7() {
+		final String s = ":20:foo\n\r\n:21:";
+		final int end = this.parser.findEndOfTagByLineFeed(s, 0, true);
+		assertEquals(8, end);
+		assertEquals('\r', s.charAt(end));
 	}
 
 	@Test
@@ -744,7 +787,7 @@ public class SwiftParserTest {
 	}
 	
 	@Test
-	public void testTagStartsTrue() throws Exception {
+	public void testTagStartsTrue() {
 		assertTrue(tagStarts("20:"));
 		assertTrue(tagStarts("20:foo"));
 		assertTrue(tagStarts("20::foo"));
@@ -755,11 +798,11 @@ public class SwiftParserTest {
 	
 	private static final boolean tagStarts(final String str) {
 		SwiftParser p = new SwiftParser();
-		return p.tagStarts(str, 0);
+		return p.isTagStart(str, 0);
 	}
 	
 	@Test
-	public void testTagStartsFalse() throws Exception {
+	public void testTagStartsFalse() {
 		assertFalse(tagStarts("20foo"));
 		assertFalse(tagStarts("2:foo"));
 		assertFalse(tagStarts("20CC:"));
@@ -916,6 +959,7 @@ public class SwiftParserTest {
 	 * @throws Exception
 	 */
 	@Ignore
+	@Test
 	public void testNestedBlocks() throws Exception {
 		String fin = "{1:F01OURSGB33AXXX0000000000}{2:O0961625170421ABLRXXXXGXXX00000000001704201625N}{3:{103:CLH}{108:SWIFTBICAXXX0000890}}{4:{1:F01PTY1US33AXXX0000000000}{2:I300PTY2GB33AXXXU3003}{3:{103:ABC}}{4:\n" +
 				":15A:\n" +
@@ -956,4 +1000,44 @@ public class SwiftParserTest {
 			assertEquals("{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}", nested.getTagValue("5"));
 		}
 	}
+
+	@Test
+	public void testConsumeEmptyLinesField() throws IOException {
+		SwiftBlock4 b4 = new SwiftBlock4();
+
+		this.parser.consumeBlock4(b4,"\n:20:FOO\r\n");
+		assertEquals("FOO", b4.getTags().get(0).getValue());
+
+		this.parser.consumeBlock4(b4, "\n:20:FOO\n");
+		assertEquals("FOO", b4.getTags().get(1).getValue());
+
+		this.parser.consumeBlock4(b4, "\n:20:FOO\n\n");
+		assertEquals("FOO\n", b4.getTags().get(2).getValue());
+
+		this.parser.consumeBlock4(b4, "\n:20:FOO\n\r\n");
+		assertEquals("FOO\n", b4.getTags().get(3).getValue());
+
+		this.parser.consumeBlock4(b4, "\n:20:FOO\r\n\r\n");
+		assertEquals("FOO\r\n", b4.getTags().get(4).getValue());
+	}
+
+	@Test
+	public void testEmptyLines() throws IOException {
+		String fin = "{1:F01TESTARZZAXXX0000000000}{2:I199TESTARZZXXXXN}{4:\n" +
+				":20:1111\n" +
+				"\n" +
+				":21:2222\n" +
+				"\r\n" +
+				":59:3333\r\n4444\r\n" +
+				":79:5555\r6666\n" +
+				":72:7777\n\r\n\n\r\n\n" +
+				"-}";
+		SwiftMessage sm = SwiftMessage.parse(fin);
+		assertEquals("1111\n", sm.getBlock4().getTagByName("20").getValue());
+		assertEquals("2222\n", sm.getBlock4().getTagByName("21").getValue());
+		assertEquals("3333\r\n4444", sm.getBlock4().getTagByName("59").getValue());
+		assertEquals("5555\r6666", sm.getBlock4().getTagByName("79").getValue());
+		assertEquals("7777\n\r\n\n\r\n", sm.getBlock4().getTagByName("72").getValue());
+	}
+
 }

@@ -15,67 +15,50 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.model.SwiftBlock;
-import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.model.UnparsedTextList;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
 
 
 /**
- * Simple class that increases visibility of parser methods in 
- * order to unit tests them.
+ * Simple class that increases visibility of parser methods in order to unit tests them.
  *
  * @since 4.0
  */
-public final class VisibleParser extends SwiftParser {
+final class VisibleParser extends SwiftParser {
 	
 	public VisibleParser() {
 		super();
 	}
-	
-	public void simpleBlockConsumer(SwiftBlock b, String s) throws IOException {
-		super.tagListBlockConsume( (SwiftTagListBlock) b, s);
-	}
-	
-	public VisibleParser(InputStream is) {
-		super(is);
-	}
-	
-	public VisibleParser(Reader r) {
-		super(r);
-	}
-	
+
+	@Override
 	protected char identifyBlock(String s) {
 		return super.identifyBlock(s);
 	}
-	
+
+	@Override
 	public String findBlockStart() throws IOException {
 		return super.findBlockStart();
 	}
 	
-	public Tag consumeTag(String br) throws IOException {
+	public Tag consumeTag(String br) {
 		if (br.startsWith("{"))
 			br = br.substring(1);
 		if (br.endsWith("}"))
 			br = br.substring(0, br.length() - 1);
 		if (br.startsWith(":"))
 			br = br.substring(1);
-		return super.consumeTag(br, null);
+		return super.createTag(br, null);
 	}
 
+	@Override
 	public String readUntilBlockEnds() throws IOException {
 		return super.readUntilBlockEnds();
 	}
 
-	public int textTagEndBlock4(String s, int start, Boolean isTextBlock) {
-		return super.textTagEndBlock4(s, start, isTextBlock);
+	@Override
+	public int findEndOfTagByLineFeed(String s, int start, boolean isTextBlock) {
+		return super.findEndOfTagByLineFeed(s, start, isTextBlock);
 	}
 
 }

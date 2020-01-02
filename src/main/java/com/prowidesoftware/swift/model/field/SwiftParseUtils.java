@@ -380,7 +380,9 @@ public class SwiftParseUtils {
 	}
 
 	/**
-	 * Separate the given string in lines using readline
+	 * Separate the given string in lines, removing trailing empty lines.
+	 * <p>The implementation uses using {@link BufferedReader#readLine()} so if the string ends with a LF, the trailing
+	 * "empty" line is not returned in the result.
 	 *
 	 * @param value
 	 * @return list of found lines

@@ -300,14 +300,14 @@ public class SwiftParser {
 				}
 				break;
 			case '3': // block 3 (tag list)
-				b = tagListBlockConsume(new SwiftBlock3(), s);
+				b = consumeTagListBlock(new SwiftBlock3(), s);
 				break;
 			case '4': // block 4
 				if (this.configuration.isParseTextBlock()) {
 					if (isTextBlock(s)) {
-						b = block4Consume(new SwiftBlock4(), s);
+						b = consumeBlock4(new SwiftBlock4(), s);
 					} else {
-						b = tagListBlockConsume(new SwiftBlock4(), s);
+						b = consumeTagListBlock(new SwiftBlock4(), s);
 					}
 				} else {
 					b = new SwiftBlock4();
@@ -315,14 +315,14 @@ public class SwiftParser {
 				break;
 			case '5': // block 5 (tag list)
 				if (this.configuration.isParseTrailerBlock()) {
-					b = tagListBlockConsume(new SwiftBlock5(), s);
+					b = consumeTagListBlock(new SwiftBlock5(), s);
 				} else {
 					b = new SwiftBlock5();
 				}
 				break;
 			default: // user defined block (tag list)
 				if (this.configuration.isParseUserBlock()) {
-					b = tagListBlockConsume(new SwiftBlockUser(Character.toString(blockId)), s);
+					b = consumeTagListBlock(new SwiftBlockUser(Character.toString(blockId)), s);
 				} else {
 					b = new SwiftBlockUser();
 				}
@@ -409,7 +409,7 @@ public class SwiftParser {
 	 * @param s the block data to process
 	 * @return the processed block (the parameter b)
 	 */
-	protected SwiftTagListBlock tagListBlockConsume(final SwiftTagListBlock b, final String s) {
+	protected SwiftTagListBlock consumeTagListBlock(final SwiftTagListBlock b, final String s) {
 		// start processing the block data
 		final int start = s.indexOf(':');
 		if (start >= 0 && (start + 1) < s.length()) {
@@ -463,7 +463,7 @@ public class SwiftParser {
 	 * @param s the block data to process
 	 * @return the processed block (the parameter b)
 	 */
-	protected SwiftBlock4 block4Consume(final SwiftBlock4 b, final String s) {
+	protected SwiftBlock4 consumeBlock4(final SwiftBlock4 b, final String s) {
 		/*
 		 * Note that if the block4 is a text block last character is -, which is part of the EOB
 		 * since the parser removes the last }
@@ -522,67 +522,67 @@ public class SwiftParser {
 			String tag = null;
 			String tagUnparsedText = null;
 			switch (c) {
-			case '}':
-				// force termination only if ending string is -}
-				if (!isTextBlock || ignore == 1) {
-					start = s.length();
-				}
-				/*
-				 * De la terminacion anterior debemos contemplar que termino el mensaje de alguna forma porque
-				 * parece que no se esta detectando bien y entra en loop infinito (bug reportado de hecho)
-				 */
-				/// TODO review this log seems to be part of an infinite loop
-				log.severe("malformed message: exit by bracket");
-				//				break;
-			case ':':
-				// get the tag text
-				end = textTagEndBlock4(s, start, isTextBlock);
-				tag = s.substring(start, end);
-				break;
-			case '{':
-				// two things are possible here:
-				// A) this is an unparsed text (i.e: the tag id is 1)
-				// B) this is a valid tag (i.e: the tag id is not one)
-				if (s.startsWith("1:", start)) {
-					//
-					// CASE A (an unparsed text)
-					//
-					
-					// keep our position
-					begin = start > 0 ? start - 1 : 0;
-					end = begin + 1;
-					while (end < s.length() && !s.startsWith("{1:", end)) {
-						end = blockTagEnd(s, end + 1);
+				case '}':
+					// force termination only if ending string is -}
+					if (!isTextBlock || ignore == 1) {
+						start = s.length();
 					}
-
-					// get the unparsed text
-					unparsedText = s.substring(begin, end);
-
-					// add the unparsed text
-					b.unparsedTextAddText(unparsedText);
-				} else {
-					//
-					// CASE B (a tag)
-					//
-
+					/*
+					 * De la terminacion anterior debemos contemplar que termino el mensaje de alguna forma porque
+					 * parece que no se esta detectando bien y entra en loop infinito (bug reportado de hecho)
+					 */
+					/// TODO review this log seems to be part of an infinite loop
+					log.severe("malformed message: exit by bracket");
+					//				break;
+				case ':':
 					// get the tag text
-					end = blockTagEnd(s, start);
-					tag = s.substring(start, end - 1);
-					final int utPos = tag.indexOf("{1:");
-					if (utPos != -1) {
-						// separate unparsed texts from value
-						tagUnparsedText = tag.substring(utPos);
-						tag = tag.substring(0, utPos);
+					end = findEndOfTagByLineFeed(s, start, isTextBlock);
+					tag = s.substring(start, end);
+					break;
+				case '{':
+					// two things are possible here:
+					// A) this is an unparsed text (i.e: the tag id is 1)
+					// B) this is a valid tag (i.e: the tag id is not one)
+					if (s.startsWith("1:", start)) {
+						//
+						// CASE A (an unparsed text)
+						//
+
+						// keep our position
+						begin = start > 0 ? start - 1 : 0;
+						end = begin + 1;
+						while (end < s.length() && !s.startsWith("{1:", end)) {
+							end = findEndOfTagByBraces(s, end + 1);
+						}
+
+						// get the unparsed text
+						unparsedText = s.substring(begin, end);
+
+						// add the unparsed text
+						b.unparsedTextAddText(unparsedText);
+					} else {
+						//
+						// CASE B (a tag)
+						//
+
+						// get the tag text
+						end = findEndOfTagByBraces(s, start);
+						tag = s.substring(start, end - 1);
+						final int utPos = tag.indexOf("{1:");
+						if (utPos != -1) {
+							// separate unparsed texts from value
+							tagUnparsedText = tag.substring(utPos);
+							tag = tag.substring(0, utPos);
+						}
 					}
-				}
-				break;
+					break;
 			} /* switch(c) */
 
 			// process the tag (only if we have a tag)
 			if (tag != null) {
 
 				// process the tag
-				final Tag t = consumeTag(tag, tagUnparsedText);
+				final Tag t = createTag(tag, tagUnparsedText);
 				if (t != null) {
 					b.append(t);
 					lastTag = t;
@@ -616,26 +616,25 @@ public class SwiftParser {
 	}
 
 	/**
-	 * finds the end of a text tag (i.e: ":TAG:VALUE"). This is used to parse block 4.<br>
-	 * The function search the string looking for the occurrence of any of the sequences:<br>
+	 * Finds the end of a text tag (i.e: ":TAG:VALUE"). This is used to parse block 4.
+	 *
+	 * <p>The function search the string looking for the occurrence of any of the sequences:
 	 * <ul>
-	 * <li>"[LBR]:[X]"</li>
+	 * <li>"[LBR]:[TAG_START]"</li>
 	 * <li>"[LBR]}"</li>
 	 * <li>"[LBR]{"</li>
 	 * <li>"}"</li>
 	 * </ul>
-	 * where "[LBR]" stands for any of: "[CR]", "[LF]" or "[CR][LF]"
-	 * and "[X]" is any character other than [CR] and [LF].<br>
-	 * Then considers the end of the tag as <b>NOT</b> containing the found sequence.<br>
-	 * <b>NOTE</b>: the condition "-}" cannot happen because the terminating dash is already removed.<br>
+	 * where "[LBR]" stands for "[LF]" or "[CR][LF]" and "[TAG_START]" is a "nn[a]:" (number plus optional
+	 * letter option, plus colon).
 	 *
-	 * renamed to state clearly that this search is only used in block4Consume
+	 * <p><b>NOTE</b>: the condition "-}" cannot happen because the terminating dash is already removed.
 	 *
 	 * @param s the FIN input text
 	 * @param start the position to start analysis at
-	 * @return the position where the tag ends (excluding the &lt;CR&gt;&lt;LF&gt;)
+	 * @return the position where the tag ends
 	 */
-	protected int textTagEndBlock4(final String s, int start, final boolean isTextBlock) {
+	protected int findEndOfTagByLineFeed(final String s, int start, final boolean isTextBlock) {
 
 		int i = start; 
 		
@@ -644,26 +643,22 @@ public class SwiftParser {
 
 			// check if we found tag end
 			char c = s.charAt(i);
-			if (c == '\r' || c == '\n') {
+
+			// if char is LF then look-ahead
+			if (c == '\n') {
 
 				// keep this position
-				final int begin = i;
+				int begin = i;
 
-				// repeat cause "\r\n", accept "\n\r" also
-				if ((i + 1) == s.length()) {
+				// look-ahead one character
+				if ((i +1) == s.length()) {
 					break;
 				}
 				c = s.charAt(++i);
-				if (c == '\r' || c == '\n') {
-					if ((i +1) == s.length()) {
-						break;
-					}
-					c = s.charAt(++i);
-				}
 
 				// if open brace => it's a proper tag end (mixing BLOCK and TEXT tags, rare but...)
 				// if closing brace => it's a proper tag end (because of block end)
-				if ((!isTextBlock) && (c == '{' || c == '}' )) {
+				if (!isTextBlock && (c == '{' || c == '}' )) {
 					// found it
 					i = begin;
 					break;
@@ -675,7 +670,7 @@ public class SwiftParser {
 				// of its content.
 				else if (c == ':' && i < s.length()/* prevent index out of bounds */  ) {
 					// check if :xxx matches a new starting tag or not, break only if matches valid start of tag
-					if (tagStarts(s, (i+1))) {
+					if (isTagStart(s, (i+1))) {
 						i = begin;
 						break;
 					}
@@ -702,7 +697,13 @@ public class SwiftParser {
 			}
 		}
 
-		return i;
+		// check if previous character was a CR
+		if ((i - 1) >= start && s.charAt(i-1) == '\r') {
+			// fix return position
+			return i-1;
+		} else {
+			return i;
+		}
 	}
 
 	/**
@@ -716,7 +717,7 @@ public class SwiftParser {
 	 * @return true if at the given position there is a tag start
 	 * @since 7.10.4
 	 */
-	protected boolean tagStarts(final String s, int i) {
+	protected boolean isTagStart(final String s, int i) {
 		int length = s.length();
 		/*
 		 * at least three characters, where first and second characters must be digits
@@ -742,20 +743,21 @@ public class SwiftParser {
 	}
 
 	/**
-	 * Finds the end of a block tag (i.e: "{TAG:VALUE}"). This is used to parse blocks other than 4.<br>
-	 * The function search the string looking for the occurrence of the sequence "}". It is important to
-	 * note that curly braces are balanced along the search.
+	 * Finds the end of a block tag (i.e: "{TAG:VALUE}"). This is used to parse blocks other than 4.
+	 *
+	 * <p>The function search the string looking for an occurrence of "}", bypassing any balanced intermediate curly
+	 * braces (could be nested blocks or tags with curly braces boundaries).
+	 *
 	 * @param s the FIN input text
 	 * @param start the position to start analysis at
 	 * @return the position where the tag ends (including the "}")
 	 */
-	private int blockTagEnd(final String s, int start) {
+	private int findEndOfTagByBraces(final String s, int start) {
 		// scan until end or end of string
 		int balance = 0;
-		char c;
 		do {
 			// analyze this position
-			switch ((c = s.charAt(start++))) {
+            switch (s.charAt(start++)) {
 			case '{':
 				balance++;
 				break;
@@ -769,15 +771,17 @@ public class SwiftParser {
 
 	/**
 	 * Process the input as a tag. That is: split name and value (and possibly unparsed texts).<br>
-	 * The received buffer contains only the pertinent data for the tag (name and value). Trailing
-	 * [CR][LF] on the text <b>MUST</b> not be present.
+	 * The received buffer contains only the pertinent data for the tag (name and value).
+	 * <p>Trailing [CR][LF] on the text indicating the end of the tag value <b>MUST</b> not be present. If any
+	 * trailing [CR][LF] is present, it will be considered part of the tag value and will be propagated to the
+	 * created Tag instance.
 	 *
 	 * @param buffer the buffer containing the tag
 	 * @param unparsedText the unparsed text to assign (use null if none is wanted).
 	 * This single text is fragmented in multiple texts if there are more than one message.
 	 * @return a swift Tag
 	 */
-	protected Tag consumeTag(final String buffer, final String unparsedText) {
+	protected Tag createTag(final String buffer, final String unparsedText) {
 		// separate name and value
 		final int sep = buffer.indexOf(':');
 		String name = null;
@@ -792,24 +796,6 @@ public class SwiftParser {
 		// ignore empty tags (most likely, an "{}" in an unparsed text...)
 		if (StringUtils.isEmpty(name) && StringUtils.isEmpty(value)) {
 			return null; // no tag...
-		}
-
-		// remove terminating [CR][LF] (or any combination)
-		int size = value.length();
-		if (size > 0) {
-			final char c = value.charAt(size - 1);
-			if (c == '\r' || c == '\n') {
-				size--;
-			}
-		}
-		if (size > 0) {
-			final char c = value.charAt(size - 1);
-			if (c == '\r' || c == '\n') {
-				size--;
-			}
-		}
-		if (size != value.length()) {
-			value = value.substring(0, size);
 		}
 
 		// build the tag
@@ -865,7 +851,7 @@ public class SwiftParser {
 			// find the block end (balancing braces)
 			int end = start + 1;
 			while ((end + 1) < unparsedText.length() && !unparsedText.startsWith("{1:", end)) {
-				end = blockTagEnd(unparsedText, end + 1);
+				end = findEndOfTagByBraces(unparsedText, end + 1);
 
 				// include trailing white spaces
 				while (end < unparsedText.length() && Character.isWhitespace(unparsedText.charAt(end))) {
@@ -1000,7 +986,7 @@ public class SwiftParser {
 	}
 
 	private boolean isTextBlock() {
-		// hack to report as block4 only text blocks 4 , check data in buffer
+		// hack to report as block4 only text blocks 4, check data in buffer
 		if (this.lastBlockStartOffset >=0 && buffer.length()>this.lastBlockStartOffset) {
 			return isTextBlock(buffer.substring(this.lastBlockStartOffset));
 		}
@@ -1021,7 +1007,7 @@ public class SwiftParser {
 		} else {
 			offset = 0;
 		}
-		final char c1 = s.charAt(offset+0);
+		final char c1 = s.charAt(offset);
 		final char c2 = s.charAt(offset+1);
 		if (c1=='4' && c2==':'){
 			int c = offset+2;
@@ -1044,15 +1030,13 @@ public class SwiftParser {
 	/**
 	 * @return true if current char is } or for text block buffer is [LF]-}
 	 */
-	private final boolean isBlockEnd(final Boolean isTextBlock, final int curChar) {
+	private boolean isBlockEnd(final Boolean isTextBlock, final int curChar) {
 		// check buffer
 		if (isBlockEnd((char) curChar)) {
-			if ((isTextBlock!=null) && isTextBlock.booleanValue()) {
+			if (isTextBlock != null && isTextBlock) {
 				final char ult = buffer.charAt(buffer.length()-2);
 				final char antUlt = buffer.charAt(buffer.length()-3);
-				if (antUlt == '\n' && ult == '-' ) {
-					return true;
-				}
+                return antUlt == '\n' && ult == '-';
 			} else {
 				return true;
 			}
@@ -1063,7 +1047,7 @@ public class SwiftParser {
 	/**
 	 * @return true if parameter char is a closing bracket
 	 */
-	private static final boolean isBlockEnd(final char c) {
+	private static boolean isBlockEnd(final char c) {
 		return c == '}';
 	}
 
@@ -1102,7 +1086,7 @@ public class SwiftParser {
 	 * @return the next char read
 	 * @throws IOException if an error occurs during read
 	 */
-	private final int getChar() throws IOException {
+	private int getChar() throws IOException {
 		final int c = reader.read();
 		if (c >= 0) {
 			buffer.append((char) c);
@@ -1155,7 +1139,7 @@ public class SwiftParser {
 			toParse = toParse.substring(0, toParse.length() - 1);
 		}
 		SwiftParser parser = new SwiftParser();
-		return parser.block4Consume(b4, toParse);
+		return parser.consumeBlock4(b4, toParse);
 	}
 	
 	/**
@@ -1167,7 +1151,7 @@ public class SwiftParser {
 	static public SwiftBlock3 parseBlock3(String s) {
 		SwiftBlock3 b3 = new SwiftBlock3();
 		SwiftParser parser = new SwiftParser();
-		return (SwiftBlock3) parser.tagListBlockConsume(b3, s);
+		return (SwiftBlock3) parser.consumeTagListBlock(b3, s);
 	}
 	
 	/**
@@ -1179,7 +1163,7 @@ public class SwiftParser {
 	static public SwiftBlock5 parseBlock5(String s) {
 		SwiftBlock5 b5 = new SwiftBlock5();
 		SwiftParser parser = new SwiftParser();
-		return (SwiftBlock5) parser.tagListBlockConsume(b5, s);
+		return (SwiftBlock5) parser.consumeTagListBlock(b5, s);
 	}
 
 	/**

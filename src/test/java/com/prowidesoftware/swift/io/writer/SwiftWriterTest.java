@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.io.writer;
 
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
+import com.prowidesoftware.swift.model.SwiftBlock3;
+import com.prowidesoftware.swift.model.SwiftBlock4;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
 import org.junit.Test;
@@ -25,6 +27,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.concurrent.BlockingDeque;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -121,6 +124,22 @@ public class SwiftWriterTest {
 		SwiftWriter.writeMessage(msg, writer);
 		String result = writer.getBuffer().toString();
 		return result;
+	}
+
+	@Test
+	public void testTrimValues() {
+		SwiftMessage m = new SwiftMessage();
+		m.setBlock3(new SwiftBlock3());
+		m.getBlock3().append(new Tag("108", "  MUR  "));
+		m.setBlock4(new SwiftBlock4());
+		m.getBlock4().append(new Tag("20", "  REF  "));
+
+		StringWriter buf = new StringWriter();
+		SwiftWriter.writeMessage(m, buf, true, true);
+
+		assertEquals("{3:{108:MUR}}{4:\r\n" +
+				":20:REF\r\n" +
+				"-}", buf.toString());
 	}
 
 }
