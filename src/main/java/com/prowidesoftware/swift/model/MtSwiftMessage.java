@@ -214,6 +214,17 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	}
 
 	/**
+	 * Creates an MtSwiftMessage from a subclass of {@link AbstractMT}.
+	 * @see #MtSwiftMessage(SwiftMessage)
+	 * @since 8.0.2
+	 */
+	public MtSwiftMessage(final AbstractMT mt) {
+		super();
+		Validate.notNull(mt, "the mt message cannot be null");
+		updateFromModel(mt.getSwiftMessage());
+	}
+
+	/**
 	 * Creates an MtSwiftMessage from a SwiftMessage.
 	 * @see #updateFromModel(SwiftMessage)
 	 */
