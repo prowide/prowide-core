@@ -69,6 +69,12 @@ import java.util.logging.Logger;
 public abstract class AbstractMX extends AbstractMessage implements IDocument, JsonSerializable {
 	private static final transient Logger log = Logger.getLogger(AbstractMX.class.getName());
 
+	/**
+	 * Default root element when an MX is serialized as XML including both AppHdr and Document
+	 * @since 8.0.2
+	 */
+	public static String DEFAULT_ROOT_ELEMENT = "RequestPayload";
+
 	protected AbstractMX() {
 		super(MessageStandardType.MX);
 		// prevent construction
@@ -86,7 +92,6 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	 */
 	private BusinessHeader businessHeader;
 
-	// TODO message is MT parse
 	protected static String message(final String namespace, final AbstractMX obj, @SuppressWarnings("rawtypes") final Class[]classes, final String prefix, boolean includeXMLDeclaration) {
 		return Resolver.mxWrite().message(namespace, obj, classes, prefix, includeXMLDeclaration);
 	}
@@ -138,60 +143,59 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	public abstract int getVersion();
 
 	/**
-	 * Get this message document as an XML string (headers not included).
-	 * The XML will include the XML declaration, the corresponding
-	 * namespace and a "Doc" prefix for the namespace.
-	 * 
+	 * Get this message as an XML string.
+	 * <p>If the header is present, then 'AppHdr' and 'Document' elements will be wrapped under a
+	 * {@link #DEFAULT_ROOT_ELEMENT}
+	 * <br>Both header and documents are generated with the corresponding namespaces and by default the prefix 'h' is
+	 * used for the header and the prefix 'Doc' for the document.
+	 *
 	 * @see #message(String, boolean)
 	 * @since 7.7
 	 */
 	public String message() {
-		return message(getNamespace(), this, getClasses(), "Doc", true);
+		return message(null, true);
 	}
 	
 	/**
 	 * Get this message as an XML string.
-	 * <br> 
-	 * If the business header is set, the created XML will include
-	 * both the header and the document elements, under a default 
-	 * root element.
-	 * <br>
-	 * If the header is not present, the created XMl will only include
-	 * the document.
-	 * <br>
-	 * Both header and document are generated with namespace declaration
-	 * and default prefixes.
-	 * <br>
-	 * IMPORTANT: The name of the envelope element that binds a Header to 
-	 * the message to which it applies is implementation/network specific. 
-	 * The header root element ‘AppHdr’ and the ISO 20022 MessageDefinition 
-	 * root element ‘Document’ must always be sibling elements in any XML 
-	 * document, with the AppHdr element preceding the Document element.
-	 * <br>
+	 *
+	 * <p>If the business header is set, the created XML will include both the 'AppHdr' and the 'Document' elements,
+	 * under a the indicated or default root element.
+	 * <br>If the header is not present, the created XMl will only include the 'Document'.
+	 * <br>Both 'AppHdr' and 'Document' are generated with namespace declaration and default prefixes 'h' and 'Doc'
+	 * respectively.
+	 *
+	 * <p>IMPORTANT: The name of the envelope element that binds a Header to the message to which it applies is
+	 * implementation/network specific. The header root element ‘AppHdr’ and the ISO 20022 MessageDefinition
+	 * root element ‘Document’ must always be sibling elements in any XML document, with the AppHdr element preceding
+	 * the Document element.
 	 * 
-	 * @param rootElement optional specification of the root element
+	 * @param rootElement optional specification of the root element if not provided {@link #DEFAULT_ROOT_ELEMENT} is used
+	 * @param includeXMLDeclaration true to include the XML declaration
+	 * @return header serialized into XML string or null if the header is not set or errors occur during serialization
 	 * @return created XML
 	 * @since 7.8
 	 */
 	public String message(final String rootElement, boolean includeXMLDeclaration) {
+		String root = rootElement != null? rootElement : DEFAULT_ROOT_ELEMENT;
 		StringBuilder xml = new StringBuilder();
 		if (includeXMLDeclaration) {
 			xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n");
 		}
 		final String header = header("h", false);
 		if (header != null) {
-			xml.append("<" + rootElement + ">\n");
+			xml.append("<" + root + ">\n");
 			xml.append(header+"\n");
 		}
 		xml.append(document("Doc", false)+"\n");
 		if (header != null) {
-			xml.append("</" + rootElement + ">");
+			xml.append("</" + root + ">");
 		}
 		return xml.toString();
 	}
 	
 	/**
-	 * Same as {@link #message(String)} with includeXMLDeclaration set to true
+	 * Same as {@link #message(String, boolean)} with includeXMLDeclaration set to true
 	 * @since 7.8
 	 */
 	public String message(final String rootElement) {
@@ -199,27 +203,24 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	}
 	
 	/**
-	 * Get this message business header as an XML string.
-	 * <br>
-	 * The XML will not include the XML declaration, and will
-	 * include de namespace as default (without prefix).
+	 * Get this message AppHdr as an XML string.
+	 * <p>The XML will not include the XML declaration, and will include de namespace as default (without prefix).
 	 * 
-	 * @return the serialized header or null if header is not set
-	 * @since 7.8
 	 * @see #header(String, boolean)
+	 * @return the serialized header or null if header is not set or errors occur during serialization
+	 * @since 7.8
 	 */
 	public String header() {
 		return header(null, false);
 	}
 	
 	/**
-	 * Get this message business header as an XML string.
-	 * <br>
+	 * Get this message AppHdr as an XML string.
+	 *
 	 * @param prefix optional prefix for namespace (empty by default)
-	 * @param includeXMLDeclaration true to include the XML declaration (false by default)
-	 * @return header serialized into XML string or null if neither header version is present
+	 * @param includeXMLDeclaration true to include the XML declaration
+	 * @return header serialized into XML string or null if the header is not set or errors occur during serialization
 	 * @since 7.8
-	 * @see BusinessHeader#xml(String, boolean)
 	 */
 	public String header(final String prefix, boolean includeXMLDeclaration) {
 		if (this.businessHeader != null) {
@@ -230,19 +231,22 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	}
 	
 	/**
-	 * Get this message document as an XML string.
-	 * Same as {@link #message()}
+	 * Get this message Document as an XML string.
+	 * <p>The XML will include the XML declaration, and will use "Doc" as prefix for the elements.
+	 *
+	 * @see #document(String, boolean)
+	 * @return document serialized into XML string or null if errors occur during serialization
 	 * @since 7.8
 	 */
 	public String document() {
-		return message();
+		return document("Doc", true);
 	}
 	
 	/**
-	 * Get this message document as an XML string.
-	 * <br>
+	 * Get this message Document as an XML string.
+	 *
 	 * @param prefix optional prefix for namespace (empty by default)
-	 * @param includeXMLDeclaration true to include the XML declaration (false by default)
+	 * @param includeXMLDeclaration true to include the XML declaration
 	 * @return document serialized into XML string or null if errors occur during serialization
 	 * @since 7.8
 	 */
@@ -252,8 +256,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	
 	/**
 	 * Convenience method to get this message XML as javax.xml.transform.Source.
-	 * Notice this method will return only the document element of the message (headers not included).
-	 * 
+	 *
 	 * @return null if message() returns null or StreamSource in other case
 	 * @since 7.7
 	 * @see #message()

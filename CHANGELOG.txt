@@ -1,5 +1,7 @@
 SNAPSHOT 8.0.2
+  * Changed default root element for Mx from message to RequestPayload
   * Fixed month day parsing in SwiftFormatUtils for leap years
+  * Added MxParser#containsLegacyHeader() to check weather the message uses the legacy SWIFT header or the ISO business header
   * Added MtSwiftMessage constructor from AbstractMT
   * Fixed parser to preserve trailing lines in field values, even if the lines are empty (empty trailing lines were trimmed before)
   * (CR #203) Enhanced parser for party fields, explicit /D/ and /C/ is parsed as mark, otherwise any content following the / is parsed as account

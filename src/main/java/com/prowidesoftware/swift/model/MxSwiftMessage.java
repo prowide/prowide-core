@@ -156,19 +156,17 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	
 	/**
 	 * Creates a new message serializing to xml the parameter message object.
-	 * <br>
-	 * If the business header is present, the sender and receiver attributes will be set
-	 * with content from the header; also the internal raw XML will include both
-	 * AppHdr and Document under a root element tag "&lt;message&gt;", as returned by
-	 * {@link AbstractMX#message(String)}
-	 * <br>
-	 * If the header is not present, sender and receiver will be left null and the raw internal
-	 * xml will include just the Document element. 
+	 *
+	 * <p>If the business header is present, the sender and receiver attributes will be set with content from the
+	 * header; also the internal raw XML will include both 'AppHdr' and 'Document' under a default root element tag
+	 * as returned by {@link AbstractMX#message()}
+	 * <br>If the header is not present, sender and receiver will be left null and the raw internal XML will include
+	 * just the 'Document' element.
 	 * 
 	 * @param mx a message object
 	 */
 	public MxSwiftMessage(final AbstractMX mx) {
-		super(mx.message("message"));
+		super(mx.message());
 	}
 	
 	/**
@@ -237,7 +235,7 @@ public class MxSwiftMessage extends AbstractSwiftMessage {
 	 */
 	public void updateFromModel(final AbstractMX mx) {
 		Validate.notNull(mx, "the mx parameter cannot be null");
-		setMessage(mx.message("message", true));
+		setMessage(mx.message());
 		setFileFormat(FileFormat.MX);
 		/*
 		 * update sender, receiver and reference
