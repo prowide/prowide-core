@@ -23,8 +23,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 /**
- * Class for identification of MX messages.<br >
- * Composed by the business process (business area), functionality (message type), variant and version.
+ * Class for identification of MX messages.
+ *
+ * <p>It is composed by the business process (business area), functionality (message type), variant and version.
+ * For a better understanding of ISO 20022 variants check https://www.iso20022.org/variants.page
  *
  * @author miguel
  * @since 7.7

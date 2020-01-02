@@ -59,7 +59,10 @@ public class Lib {
 		}
 		final String charset = encoding != null? encoding : "UTF-8";
 		final StringBuilder sb = new StringBuilder((int) file.length());
-		try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset))) {
+		try (
+				FileInputStream fileStream = new FileInputStream(file);
+				BufferedReader in = new BufferedReader(new InputStreamReader(fileStream, charset))
+		) {
 			int c;
 			while ((c = in.read()) != -1) {
 				sb.append((char)c);

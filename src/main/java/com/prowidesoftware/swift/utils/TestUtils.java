@@ -99,8 +99,19 @@ public class TestUtils {
 	public static String patch(final String xpath) {
 		StringBuilder result = new StringBuilder();
 		for (String s : StringUtils.split(xpath, "/")) {
-			result.append("/*[local-name()='"+ s + "']");
+			String localName = s;
+			String predicate = null;
+			if (s.indexOf('[') >= 0 && s.indexOf(']') >= 0) {
+				// preserve predicate
+				predicate = StringUtils.substringBetween(s, "[", "]");
+				localName = s.substring(0, s.indexOf('['));
+			}
+			result.append("/*[local-name()='"+ localName + "']");
+			if (predicate != null) {
+				result.append('[').append(predicate).append(']');
+			}
 		}
 		return result.toString();
 	}
+
 }

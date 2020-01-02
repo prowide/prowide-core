@@ -33,17 +33,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 import javax.xml.transform.dom.DOMResult;
 
+import com.prowidesoftware.swift.model.mx.dic.*;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.prowidesoftware.swift.io.parser.MxParser;
 import com.prowidesoftware.swift.model.MxId;
-import com.prowidesoftware.swift.model.mx.dic.ApplicationHeader;
-import com.prowidesoftware.swift.model.mx.dic.BranchAndFinancialInstitutionIdentification5;
-import com.prowidesoftware.swift.model.mx.dic.BusinessApplicationHeaderV01;
-import com.prowidesoftware.swift.model.mx.dic.FinancialInstitutionIdentification8;
-import com.prowidesoftware.swift.model.mx.dic.Party9Choice;
 
 /**
  * General information applicable to any MX.
@@ -166,7 +162,6 @@ public class BusinessHeader {
 			}
 		}
 	}
-	
 
 	/**
 	 * Gets the receiver BIC code
@@ -330,59 +325,109 @@ public class BusinessHeader {
 			return null;
 		}
 	}
-	
+
 	/**
-	 * Convenient method to create a new header, initialized from simple parameters.
-	 * <br>
-	 * The created header will be of type {@link BusinessApplicationHeaderV01}.
-	 * Creation date will be set to current time.
-	 * <br>
-	 * All parameters are optional but in order for the header to be valid the
-	 * sender, receiver and reference must be set.
-	 * 
+	 * Convenient method to create a new ISO header, initialized from simple parameters.
+	 *
+	 * <p>All parameters are optional but in order for the header to be valid the sender, receiver and reference must
+	 * be set. Creation date will be set to current time.
+	 *
 	 * @param sender optional sender BIC for the Fr element or null to leave not set
 	 * @param receiver optional receiver BIC for the To element or null to leave not set
 	 * @param reference optional reference for the BizMsgIdr (business message identifier) or null to leave not set
 	 * @param id optional MX identification for the MsgDefIdr (message definition identifier) element or null to leave not set
 	 * @return new header initialized from parameters.
+	 * @since 8.0.5
+	 */
+	public static BusinessApplicationHeaderV01 createBusinessApplicationHeaderV01(final String sender, final String receiver, final String reference, final MxId id) {
+		BusinessApplicationHeaderV01 h = new BusinessApplicationHeaderV01();
+
+		if (sender != null) {
+			h.setFr(new Party9Choice());
+			h.getFr().setFIId(new BranchAndFinancialInstitutionIdentification5());
+			h.getFr().getFIId().setFinInstnId(new FinancialInstitutionIdentification8());
+			h.getFr().getFIId().getFinInstnId().setBICFI(sender);
+		}
+
+		if (receiver != null) {
+			h.setTo(new Party9Choice());
+			h.getTo().setFIId(new BranchAndFinancialInstitutionIdentification5());
+			h.getTo().getFIId().setFinInstnId(new FinancialInstitutionIdentification8());
+			h.getTo().getFIId().getFinInstnId().setBICFI(receiver);
+		}
+
+		if (reference != null) {
+			h.setBizMsgIdr(reference);
+		}
+
+		if (id != null) {
+			h.setMsgDefIdr(id.id());
+		}
+
+		h.setCreDt(now());
+
+		return h;
+	}
+
+	/**
+	 * Convenient method to create a new header, initialized from simple parameters.
+	 *
+	 * <p>The implementation will create a new {@link BusinessApplicationHeaderV01} and then wrap it into a generic
+	 * {@link BusinessHeader} object.
+	 *
+	 * @see #createBusinessApplicationHeaderV01(String, String, String, MxId)
 	 * @since 7.8.5
 	 */
 	public static BusinessHeader create(final String sender, final String receiver, final String reference, final MxId id) {
-		BusinessHeader h = new BusinessHeader();
-		h.setBusinessApplicationHeader(new BusinessApplicationHeaderV01());
-		
+		return new BusinessHeader(createBusinessApplicationHeaderV01(sender, receiver, reference, id));
+	}
+
+	/**
+	 * Convenient method to create a new legacy SWIFT header, initialized from simple parameters.
+	 *
+	 * <p>All parameters are optional but in order for the header to be valid the sender, receiver and reference must
+	 * be set. Creation date will be set to current time.
+	 *
+	 * @param sender optional sender BIC for the Fr element or null to leave not set
+	 * @param receiver optional receiver BIC for the To element or null to leave not set
+	 * @param reference optional reference for the BizMsgIdr (business message identifier) or null to leave not set
+	 * @param id optional MX identification for the MsgDefIdr (message definition identifier) element or null to leave not set
+	 * @return new header initialized from parameters.
+	 * @since 8.0.5
+	 */
+	public static ApplicationHeader createApplicationHeader(final String sender, final String receiver, final String reference, final MxId id) {
+		ApplicationHeader h = new ApplicationHeader();
+
 		if (sender != null) {
-			h.getBusinessApplicationHeader().setFr(new Party9Choice());
-			h.getBusinessApplicationHeader().getFr().setFIId(new BranchAndFinancialInstitutionIdentification5());
-			h.getBusinessApplicationHeader().getFr().getFIId().setFinInstnId(new FinancialInstitutionIdentification8());
-			h.getBusinessApplicationHeader().getFr().getFIId().getFinInstnId().setBICFI(sender);
+			h.setFrom(new EntityIdentification());
+			h.getFrom().setType("BIC");
+			h.getFrom().setId(sender);
 		}
-		
+
 		if (receiver != null) {
-			h.getBusinessApplicationHeader().setTo(new Party9Choice());
-			h.getBusinessApplicationHeader().getTo().setFIId(new BranchAndFinancialInstitutionIdentification5());
-			h.getBusinessApplicationHeader().getTo().getFIId().setFinInstnId(new FinancialInstitutionIdentification8());
-			h.getBusinessApplicationHeader().getTo().getFIId().getFinInstnId().setBICFI(receiver);
+			h.setTo(new EntityIdentification());
+			h.getTo().setType("BIC");
+			h.getTo().setId(receiver);
 		}
-		
+
 		if (reference != null) {
-			h.getBusinessApplicationHeader().setBizMsgIdr(reference);
+			h.setMsgRef(reference);
 		}
-		
+
 		if (id != null) {
-			h.getBusinessApplicationHeader().setMsgDefIdr(id.id());
+			h.setMsgName(id.id());
 		}
-		
-		h.getBusinessApplicationHeader().setCreDt(now());
-		
+
+		h.setCrDate(now());
+
 		return h;
 	}
-	
+
 	/**
 	 * Sets the creation date in the inner header object with current moment in UTC time zone.
 	 * <br>
 	 * Either of the inner headers must be not null. If both are null this method does nothing.
-	 * @param overwrite if true, the creation date will always be set overwriting any previous value; if false it will be set only if it is not already set 
+	 * @param overwrite if true, the creation date will always be set overwriting any previous value; if false it will be set only if it is not already set
 	 * @since 7.8.5
 	 */
 	public void setCreationDate(boolean overwrite) {
@@ -412,4 +457,5 @@ public class BusinessHeader {
 		}
 		return creationDate;
 	}
+
 }
