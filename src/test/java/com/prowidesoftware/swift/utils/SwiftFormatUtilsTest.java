@@ -15,16 +15,13 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.time.Year;
 import java.util.Calendar;
 
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  * Test for SwiftFormatUtils.
@@ -125,14 +122,27 @@ public class SwiftFormatUtilsTest {
 	public void testLeapYear() {
 		assertTrue(SwiftFormatUtils.isLeapYear(2016));
 		assertFalse(SwiftFormatUtils.isLeapYear(2017));
+		assertTrue(SwiftFormatUtils.isLeapYear(2020));
 	}
-	
+
 	@Test
-	public void testIsDate1_Leap() throws Exception {
-		if (SwiftFormatUtils.isLeapYear()) {
-			assertNotNull(SwiftFormatUtils.getDate1("0229"));
+	public void testIsMonthDay() {
+		Calendar cal = SwiftFormatUtils.getMonthDay("0827");
+		assertNotNull(cal);
+		assertEquals(Calendar.AUGUST, cal.get(Calendar.MONTH));
+		assertEquals(27, cal.get(Calendar.DAY_OF_MONTH));
+		assertEquals(Calendar.getInstance().get(Calendar.YEAR), cal.get(Calendar.YEAR));
+	}
+
+	@Test
+	public void testIsMonthDayLeapYear() {
+		if (Year.now().isLeap()) {
+			Calendar cal = SwiftFormatUtils.getMonthDay("0229");
+			assertNotNull(cal);
+			assertEquals(Calendar.FEBRUARY, cal.get(Calendar.MONTH));
+			assertEquals(29, cal.get(Calendar.DAY_OF_MONTH));
 		} else {
-			assertNull(SwiftFormatUtils.getDate1("0229"));
+			assertNull(SwiftFormatUtils.getMonthDay("0229"));
 		}
 	}
 

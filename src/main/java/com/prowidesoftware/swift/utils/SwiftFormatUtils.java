@@ -31,6 +31,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Calendar;
 import java.util.Currency;
 import java.util.Date;
@@ -94,21 +95,20 @@ public class SwiftFormatUtils {
 	 * Parses a DATE1 string (accept dates in format MMDD) into a Calendar object.
 	 * @param strDate string to parse
 	 * @return parsed date or null if the argument did not matched the expected date format
+	 * @see #getMonthDay(String)
 	 */
 	public static Calendar getDate1(final String strDate) {
-		if ((strDate != null) && (strDate.length() == 4)) {
-			return getCalendar(strDate, "MMdd");
-		} else {
-			return null;
-		}
+		return getMonthDay(strDate);
 	}
 
 	/**
 	 * returns true if the the current year is a leap year
 	 * @since 7.8.8
+	 * @deprecated use Year.now().isLeap() instead
 	 */
+	@ProwideDeprecated(phase2 = TargetYear.SRU2021)
 	public static final boolean isLeapYear() {
-		return Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
+		return Year.now().isLeap();
 	}
 	
 	/**
@@ -123,13 +123,13 @@ public class SwiftFormatUtils {
 
 	/**
 	 * Parses a Calendar object into a DATE1 string.
-	 * For February 29 it will return null if current year is not a leap year
 	 * @param date Calendar to parse
 	 * @return parsed date or null if the calendar is null
 	 * @since 6.4
+	 * @see #getMonthDay(Calendar)
 	 */
 	public static String getDate1(final Calendar date) {
-		return getCalendar(date, "MMdd");
+		return getMonthDay(date);
 	}
 
 	/**
@@ -517,14 +517,17 @@ public class SwiftFormatUtils {
 
 	/**
 	 * Parses a MONTHDAY string (accepts dates in MMDD format) into a Calendar object.
-	 * Only the month information is set, the date and year will be the Calendar default
+	 * <p>The year is set to the current year.
+	 * The implementation will log a warning and return null if 0229 is passed as argument and the current year is not
+	 * a leap year.
 	 * @param strDate string to parse
 	 * @return parsed date or null if the argument did not matched the expected date format
 	 * @since 7.4
 	 */
 	public static Calendar getMonthDay(final String strDate) {
 		if ((strDate != null) && (strDate.length() == 4)) {
-			return getCalendar(strDate, "MMdd");
+			String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+			return getCalendar(year + strDate, "yyyyMMdd");
 		} else {
 			return null;
 		}
@@ -532,6 +535,7 @@ public class SwiftFormatUtils {
 
 	/**
 	 * Parses a Calendar object into a string containing MONTHDAY in MMDD format.
+	 * For February 29 it will return null if current year is not a leap year.
 	 * @param date Calendar to parse
 	 * @return parsed date or null if the calendar is null
 	 * @since 7.4
