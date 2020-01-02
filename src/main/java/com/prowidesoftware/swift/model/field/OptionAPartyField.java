@@ -78,12 +78,12 @@ public class OptionAPartyField extends Field {
             return;
         }
         if (lines.get(0).startsWith("/")) {
-            String dcMark = SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/");
-            if (StringUtils.isNotEmpty(dcMark) && dcMark.length() == 1) {
-                setComponent(1, dcMark);
-                setComponent(2, SwiftParseUtils.getTokenSecondLast(StringUtils.substring(lines.get(0), 1), "/"));
+            String party = lines.get(0);
+            if (party.length() >= 3 && party.charAt(1) != '/' && party.charAt(2) == '/') {
+                setComponent(1, String.valueOf(party.charAt(1)));
+                setComponent(2, StringUtils.substring(party, 3));
             } else {
-                setComponent(2, StringUtils.substring(lines.get(0), 1));
+                setComponent(2, StringUtils.substring(party, 1));
             }
             if (lines.size() > 1) {
                 setComponent(3, lines.get(1));

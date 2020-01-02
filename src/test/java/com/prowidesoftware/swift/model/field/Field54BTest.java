@@ -40,66 +40,66 @@ public class Field54BTest extends AbstractFieldTest {
 	@Test
 	public void test54B() {
 		Field54B f = new Field54B((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
+		assertNull(f.getDCMark());
+		assertNull(f.getAccount());
 		assertNull(f.getComponent3());
 		
 		f = new Field54B("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
+		assertNull(f.getDCMark());
+		assertNull(f.getAccount());
 		assertNull(f.getComponent3());
 		
 		f = new Field54B("/D");
-		assertEquals("D", f.getComponent1());
-		assertNull(f.getComponent2());
+		assertNull(f.getDCMark());
+		assertEquals("D", f.getAccount());
 		assertNull(f.getComponent3());
 		
 		f = new Field54B("/D/");
-		assertEquals("D", f.getComponent1());
-		assertNull(f.getComponent2());
+		assertEquals("D", f.getDCMark());
+		assertNull(f.getAccount());
 		assertNull(f.getComponent3());
 		
 		f = new Field54B("/D/1234");
-		assertEquals("D", f.getComponent1());
-		assertEquals("1234", f.getComponent2());
+		assertEquals("D", f.getDCMark());
+		assertEquals("1234", f.getAccount());
 		assertNull(f.getComponent3());
 		
 		f = new Field54B("/D/1234/56");
-		assertEquals("D", f.getComponent1());
-		assertEquals("1234/56", f.getComponent2());
+		assertEquals("D", f.getDCMark());
+		assertEquals("1234/56", f.getAccount());
 		assertNull(f.getComponent3());
 		
 		f = new Field54B("abcd");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
+		assertNull(f.getDCMark());
+		assertNull(f.getAccount());
 		assertEquals("abcd", f.getComponent3());
 		
 		f = new Field54B("/D/1234\nabcd");
-		assertEquals("D", f.getComponent1());
-		assertEquals("1234", f.getComponent2());
+		assertEquals("D", f.getDCMark());
+		assertEquals("1234", f.getAccount());
 		assertEquals("abcd", f.getComponent3());
 		
 		f = new Field54B("/D\nabcd");
-		assertEquals("D", f.getComponent1());
-		assertNull(f.getComponent2());
+		assertNull(f.getDCMark());
+		assertEquals("D", f.getAccount());
 		assertEquals("abcd", f.getComponent3());
 		
 		f = new Field54B("/1234\nabcd");
-		assertNull(f.getComponent1());
-		assertEquals("1234", f.getComponent2());
+		assertNull(f.getDCMark());
+		assertEquals("1234", f.getAccount());
 		assertEquals("abcd", f.getComponent3());
 		
 		f = new Field54B("/00010001380002000114");
-		assertEquals("00010001380002000114", f.getComponent2());
-		assertNull(f.getComponent1());
+		assertEquals("00010001380002000114", f.getAccount());
+		assertNull(f.getDCMark());
 		assertNull(f.getComponent3());
 	}
 	
 	@Test
 	public void testGetValueDisplay() {
 		Field54B f = new Field54B("/00010001380002000114");
-		assertEquals("00010001380002000114", f.getComponent2());
-		assertNull(f.getComponent1());
+		assertEquals("00010001380002000114", f.getAccount());
+		assertNull(f.getDCMark());
 		assertNull(f.getComponent3());
 	}
 

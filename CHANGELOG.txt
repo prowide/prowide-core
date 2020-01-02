@@ -1,4 +1,8 @@
 SNAPSHOT 8.0.2
+  * Fixed month day parsing in SwiftFormatUtils for leap years
+  * Added MtSwiftMessage constructor from AbstractMT
+  * Fixed parser to preserve trailing lines in field values, even if the lines are empty (empty trailing lines were trimmed before)
+  * (CR #203) Enhanced parser for party fields, explicit /D/ and /C/ is parsed as mark, otherwise any content following the / is parsed as account
   * Fixed field 108 order and overwrite if exist logic in SwiftBlock3#generateMUR
   * (CR #207) Added optional parameter in SwiftWriter and FINWriterVisitor to control whether field values should be trimmed
 
