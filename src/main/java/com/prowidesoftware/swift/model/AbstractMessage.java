@@ -21,7 +21,7 @@ package com.prowidesoftware.swift.model;
  * @author sebastian
  *
  */
-public class AbstractMessage {
+public abstract class AbstractMessage {
 	
 	MessageStandardType type = null;
 	
@@ -36,7 +36,14 @@ public class AbstractMessage {
 		super();
 		this.type = type;
 	}
-	
+
+	/**
+	 * Serializa this message into its raw SWIFT format: FIN for MT and XML for MX
+	 * @return the message content
+	 * @since 8.0.2
+	 */
+	public abstract String message();
+
 	/**
 	 * True if the message is an MT, false otherwise
 	 */
