@@ -24,8 +24,10 @@ import com.prowidesoftware.swift.model.mx.BusinessHeader;
 import com.prowidesoftware.swift.model.mx.dic.ApplicationHeader;
 import com.prowidesoftware.swift.model.mx.dic.BusinessApplicationHeaderV01;
 import com.prowidesoftware.swift.utils.Lib;
+import com.prowidesoftware.swift.utils.SafeXmlUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
+import org.xml.sax.XMLReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,31 +38,26 @@ import java.util.logging.Level;
 
 /**
  * Basic parser for MX messages.
- * <p>IMPORTANT: An MX message is conformed by a set of optional headers 
- * and a message payload or document with the actual specific MX message. 
- * The name of the envelope element that binds a Header to the message 
- * to which it applies is <b>implementation/network specific</b> and not
- * part of the scope of the parser.
- * <br>
- * This parser has three main utilities;
+ *
+ * <p>IMPORTANT: An MX message is conformed by a set of optional headers  and a message payload or document with the
+ * actual specific MX message. The name of the envelope element that binds a Header to the message to which it applies
+ * is <b>implementation/network specific</b> and not part of the scope of the parser.
+ *
+ * <p>This parser has three main utilities;
  * <ol>
- * <li>The first one to <em>convert the message into an MxNode tree</em>. 
- * This is a generic structured representation of the
- * complete content that can be used to get specific items by xpath. It parses
- * the complete tree including both payload and overhead information
- * (wrappers, if any, application header and body content).</li>
- * <li>The second utility is to <em>parse the application header</em> extract of the
- * XML into a model object. Notice the application header is mainly used to identify 
- * the specific message, and two versions are supported; the legacy SWIFT 
- * {@link ApplicationHeader} and the ISO {@link BusinessApplicationHeaderV01}.</li>
- * <li>The third one is to provide convenient API to detect the specific Mx message
- * type, to analyze the payload structure and to strip the document or header portions
- * from the XML in a lightweight and efficient way.</li>
+ * <li>The first one to <em>convert the message into an MxNode tree</em>. This is a generic structured representation
+ * of the complete content that can be used to get specific items by xpath. It parses the complete tree including both
+ *  payload and overhead information (wrappers, if any, application header and body content).</li>
+ * <li>The second utility is to <em>parse the application header</em> extract of the XML into a model object. Notice
+ * the application header is mainly used to identify the specific message, and two versions are supported; the legacy
+ * SWIFT {@link ApplicationHeader} and the ISO {@link BusinessApplicationHeaderV01}.</li>
+ * <li>The third one is to provide convenient API to detect the specific Mx message type, to analyze the payload
+ * structure and to strip the document or header portions from the XML in a lightweight and efficient way.</li>
  * </ol>
- * <br>
- * Notice that support for MX in Prowide Core is limited. Complete model and parser 
- * implementation for each MX message type is implemented into subclasses of 
- * {@link AbstractMX} by <a href="http://www.prowidesoftware.com/products/integrator">Prowide Integrator</a>.
+ *
+ * <p>Notice that support for MX in Prowide Core is limited. Complete model and parser implementation for each MX
+ * message type is implemented into subclasses of {@link AbstractMX} by
+ * <a href="http://www.prowidesoftware.com/products/integrator">Prowide Integrator</a>.
  *
  * @since 7.6
  */
@@ -116,16 +113,13 @@ public class MxParser {
 	public MxNode parse() {
 		Validate.notNull(buffer, "the source must be initialized");
 		try {
-			final javax.xml.parsers.SAXParserFactory spf = javax.xml.parsers.SAXParserFactory.newInstance();
-			spf.setNamespaceAware(true);
-			final javax.xml.parsers.SAXParser saxParser = spf.newSAXParser();
+			XMLReader xmlReader = SafeXmlUtils.reader(true, null);
 			final MxNodeContentHandler contentHandler = new MxNodeContentHandler();
-			final org.xml.sax.XMLReader xmlReader = saxParser.getXMLReader();
 			xmlReader.setContentHandler(contentHandler);
 			xmlReader.parse(new org.xml.sax.InputSource(new StringReader(this.buffer)));
 			return contentHandler.getRootNode();
 		} catch (final Exception e) {
-			log.log(Level.SEVERE, "Error parsing: ", e);
+			log.log(Level.SEVERE, "Error parsing XML", e);
 		}
 		return null;
 	}
@@ -231,7 +225,7 @@ public class MxParser {
 			log.log(Level.SEVERE, "cannot detect message from null or empty content");
 			return null;
 		}
-		final javax.xml.stream.XMLInputFactory xif = javax.xml.stream.XMLInputFactory.newInstance();
+		final javax.xml.stream.XMLInputFactory xif = SafeXmlUtils.inputFactory();
 		try {
 			final javax.xml.stream.XMLStreamReader reader = xif.createXMLStreamReader(new StringReader(this.buffer));
 			while (reader.hasNext()) {
@@ -287,7 +281,7 @@ public class MxParser {
 			log.log(Level.WARNING, "cannot analyze message from null or empty content");
 			return this.info;
 		}
-		final javax.xml.stream.XMLInputFactory xif = javax.xml.stream.XMLInputFactory.newInstance();
+		final javax.xml.stream.XMLInputFactory xif = SafeXmlUtils.inputFactory();
 		try {
 			final javax.xml.stream.XMLStreamReader reader = xif.createXMLStreamReader(new StringReader(this.buffer));
 			boolean first = true;
@@ -475,7 +469,7 @@ public class MxParser {
 	}
 	private static String nodeToString(org.w3c.dom.Node node) throws javax.xml.transform.TransformerException {
 	    StringWriter buf = new StringWriter();
-	    javax.xml.transform.Transformer xform = javax.xml.transform.TransformerFactory.newInstance().newTransformer();
+	    javax.xml.transform.Transformer xform = SafeXmlUtils.transformer();
 	    xform.setOutputProperty(javax.xml.transform.OutputKeys.OMIT_XML_DECLARATION, "yes");
 	    xform.transform(new javax.xml.transform.dom.DOMSource(node), new javax.xml.transform.stream.StreamResult(buf));
 	    return(buf.toString());

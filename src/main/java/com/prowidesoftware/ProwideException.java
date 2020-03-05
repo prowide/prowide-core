@@ -23,7 +23,6 @@ import java.util.*;
 /**
  * Base class for Prowide exceptions hierarchy.
  *
- * @author sebastian@prowidesoftware.com
  * @since 7.7
  */
 public class ProwideException extends RuntimeException {

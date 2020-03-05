@@ -338,7 +338,7 @@ public class SwiftMessageTest {
 	
 	@Test
 	public void testGetCategory() throws IOException {
-		SwiftMessage m = SwiftMessage.parse("{1:F01FOOBARXXAXXX0387241036}{2:O9502352060913YYYYYYYYYYYY18884819330609140052N}{4:\n:20:123456\n-}");
+		SwiftMessage m = SwiftMessage.parse("{1:F01FOOBARXXAXXX0387241036}{2:O9502352060913YYYYUSYYYYYY18884819330609140052N}{4:\n:20:123456\n-}");
 		assertEquals(MtCategory._9, m.getCategory());
 		assertTrue(m.isCategory(MtCategory._9));
 		assertTrue(m.isCategory(MtCategory._0, MtCategory._1, MtCategory._3, MtCategory._9));

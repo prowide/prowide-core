@@ -15,10 +15,13 @@
  */
 package com.prowidesoftware.swift.model;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -107,6 +110,45 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
 	public static SwiftBlock5 fromJson(String json){
 		final Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, SwiftBlock5.class);
+	}
+
+	/**
+	 * Sets a specific field in the trailer.
+	 * If the field exists, its value will be overwritten.
+	 * @param field the specific field to set or update
+	 * @param value optional field value, could be a time, a MIR, or any other value for the field; null is also accepted when the field should hold no value
+	 * @since 8.0.2
+	 */
+	public SwiftBlock5 setTag(SwiftBlock5Field field, String value) {
+		String notNullValue = StringUtils.trimToEmpty(value);
+		Tag t = getTagByName(field.name());
+		if (t != null) {
+			// update existing
+			t.setValue(notNullValue);
+		} else {
+			// add new field
+			append(new Tag(field.name(), notNullValue));
+		}
+		return this;
+	}
+
+	/**
+	 * Gets a specific field from the trailer.
+	 * @param field the specific field to get
+	 * @return the found field
+	 * @since 8.0.2
+	 */
+	public Optional<Tag> getTag(SwiftBlock5Field field) {
+		return Optional.ofNullable(getTagByName(field.name()));
+	}
+
+	/**
+	 * Sets the Possible Duplicate Emission tag with no value.
+	 * If the field exists, its value will be overwritten.
+	 * @since 8.0.2
+	 */
+	public SwiftBlock5 setPDE() {
+		return setTag(SwiftBlock5Field.PDE, null);
 	}
 
 }

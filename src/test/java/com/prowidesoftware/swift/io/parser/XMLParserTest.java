@@ -15,29 +15,26 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
+import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import com.prowidesoftware.swift.utils.SafeXmlUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import static org.junit.Assert.*;
 
 /**
- * XML parser tests
+ * Test cases for the Prowide Core proprietary XML format parser
  *
  * @since 4.0
  */
@@ -122,9 +119,9 @@ public class XMLParserTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void testNode() throws ParserConfigurationException, SAXException, IOException {
+	public void testNode() throws SAXException, IOException {
 		final String text = "<tag>line1\r\nline2</tag>";
-		final DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		final DocumentBuilder db = SafeXmlUtils.documentBuilder();
 		InputStream is = new ByteArrayInputStream(text.getBytes("UTF-8"));
 		final Document doc = db.parse(is);
 		Node n = doc.getFirstChild();
@@ -434,6 +431,28 @@ public class XMLParserTest {
 		
 		assertNotNull(mt.getField71A());
 		assertNotNull("SHA", mt.getField71A().getComponent1());
+	}
+
+	/**
+	 * Test that external entities feature is disabled in the XML parsing to avoid XXE (external entity injection)
+	 */
+	@Test
+	public void testXxeDisabled() {
+		String xml = "<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\" >]>" +
+				"<message>\n" +
+				"<block1>\n" +
+				"	<serviceId>&xxe;</serviceId>\n" +
+				"</block1>\n" +
+				"<block4>\n" +
+				"	<tag>\n" +
+				"		<name>t1</name>\n" +
+				"		<value>v1</value>\n" +
+				"	</tag>\n" +
+				"</block4>\n" +
+				"</message>";
+		XMLParser p = new XMLParser();
+		SwiftMessage m = p.parse(xml);
+		assertNull(m);
 	}
 
 }

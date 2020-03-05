@@ -1,4 +1,9 @@
 SNAPSHOT 8.0.2
+  * Added Iban validation for Seychelles
+  * Added field setters API in the SwiftBlock5
+  * Added SwiftBlock5Field enumeration with commonly used block 5 trailer fields
+  * (CR #235) Added SafeXmlUtils to disallow XXE in all XML parsing code
+  * Fixed parser for fields 70[C,D,E,G], 94E, 95V when first line second component contains slashes
   * Changed default root element for Mx from message to RequestPayload
   * Fixed month day parsing in SwiftFormatUtils for leap years
   * Added MxParser#containsLegacyHeader() to check weather the message uses the legacy SWIFT header or the ISO business header

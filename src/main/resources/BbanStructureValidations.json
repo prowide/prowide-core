@@ -1318,5 +1318,30 @@
         "character_type": "n"
       }
     ]
+  },
+  {
+    "country_code": "SC",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 16,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "currency",
+        "length": 3,
+        "character_type": "a"
+      }
+    ]
   }
 ]

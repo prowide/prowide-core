@@ -434,6 +434,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 	 * @return a string with the FIN format representation of the message
 	 * @since 7.7
 	 */
+	@Override
 	public String message() {
 		IConversionService srv = new ConversionService();
 		return srv.getFIN(this.m);

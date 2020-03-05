@@ -15,19 +15,14 @@
  */
 package com.prowidesoftware.swift.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertNotNull;
-import java.util.List;
-import java.util.ArrayList;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
 import org.junit.Test;
 
-import com.prowidesoftware.swift.utils.SwiftMessageComparator;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 
 public class SwiftBlock5Test {
@@ -43,12 +38,12 @@ public class SwiftBlock5Test {
         t2.setName("23B");
         t2.setValue("CRED");
 
-        List<Tag> tagList = new ArrayList<Tag>();
+        List<Tag> tagList = new ArrayList<>();
         tagList.add(t1);
         tagList.add(t2);
 
-        SwiftBlock4 b4 = new SwiftBlock4(tagList);
-        String s = b4.toJson();
+        SwiftBlock5 b5 = new SwiftBlock5(tagList);
+        String s = b5.toJson();
         JsonParser parser = new JsonParser();
         JsonObject o = parser.parse(s).getAsJsonObject();
 
@@ -64,4 +59,28 @@ public class SwiftBlock5Test {
         assertEquals("SEPA", b5.getTagValue("113"));
         assertEquals("ILOVESEPA", b5.getTagValue("108"));
     }
+
+    @Test
+    public void testSetField() {
+        SwiftBlock5 b5 = new SwiftBlock5();
+        assertFalse(b5.getTag(SwiftBlock5Field.PDE).isPresent());
+        b5.setTag(SwiftBlock5Field.PDE, null);
+        assertTrue(b5.getTag(SwiftBlock5Field.PDE).isPresent());
+        assertEquals("", b5.getTag(SwiftBlock5Field.PDE).get().getValue());
+        b5.setTag(SwiftBlock5Field.PDE, "1234");
+        assertEquals("1234", b5.getTag(SwiftBlock5Field.PDE).get().getValue());
+        b5.setTag(SwiftBlock5Field.PDE, "2345");
+        assertEquals("2345", b5.getTag(SwiftBlock5Field.PDE).get().getValue());
+        assertEquals(1, b5.size());
+    }
+
+    @Test
+    public void testSetPDE() {
+        SwiftBlock5 b5 = new SwiftBlock5();
+        assertFalse(b5.getTag(SwiftBlock5Field.PDE).isPresent());
+        b5.setPDE();
+        assertTrue(b5.getTag(SwiftBlock5Field.PDE).isPresent());
+        assertEquals("", b5.getTag(SwiftBlock5Field.PDE).get().getValue());
+    }
+
 }

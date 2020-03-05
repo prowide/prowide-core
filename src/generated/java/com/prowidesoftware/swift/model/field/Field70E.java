@@ -180,7 +180,7 @@ public class Field70E extends Field implements Serializable, GenericField, Multi
 		List<String> lines = SwiftParseUtils.getLines(value);
 		if (!lines.isEmpty()) {
 			setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), ":", "//"));
-			setComponent2(SwiftParseUtils.getTokenSecond(lines.get(0), "//"));
+			setComponent2(SwiftParseUtils.getTokenSecondLast(lines.get(0), "//"));
 		}
 		SwiftParseUtils.setComponentsFromLines(this, 3, null, 1, lines);
 	}

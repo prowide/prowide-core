@@ -77,5 +77,10 @@ final class MockMsg extends AbstractMX {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	@Override
+	public String message() {
+		return null;
+	}
 	
 }

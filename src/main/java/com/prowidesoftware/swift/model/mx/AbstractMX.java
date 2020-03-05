@@ -152,6 +152,7 @@ public abstract class AbstractMX extends AbstractMessage implements IDocument, J
 	 * @see #message(String, boolean)
 	 * @since 7.7
 	 */
+	@Override
 	public String message() {
 		return message(null, true);
 	}

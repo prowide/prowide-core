@@ -107,6 +107,9 @@ public class IBAN {
      * For the BBAN validation the specific per country structure must be defined either in the
      * BbanStructureValidations.json file or by API in the {@link BbanStructureValidations} instance.
      *
+     * <p>Non alpha-numeric characters are removed from the code prior to validation. Meaning an IBAN
+     * such as "ES64 0049 6170 68 2810279951" will be considered valid.
+     *
      * @return IbanFormatStatus with detailed information of the validation problem found
      */
     public IbanValidationResult validate() {
@@ -199,7 +202,7 @@ public class IBAN {
     }
 
     /**
-     *
+     * Removes all non alpha-numeric characters in the IBAN code
      * @param iban
      * @return the resulting IBAN
      */

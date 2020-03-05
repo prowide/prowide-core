@@ -35,7 +35,8 @@ public enum BbanEntryType {
     NATIONAL_CHECK_DIGIT("national_check_digit"),
     ACCOUNT_TYPE("account_type"),
     OWNER_ACCOUNT_NUMBER("owner_account_number"),
-    IDENTIFICATION_NUMBER("identification_number");
+    IDENTIFICATION_NUMBER("identification_number"),
+    CURRENCY("currency");
 
     private String text;
 

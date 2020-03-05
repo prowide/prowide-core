@@ -18,6 +18,7 @@ package com.prowidesoftware.swift.io.parser;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.utils.SafeXmlUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Document;
@@ -25,7 +26,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
@@ -61,7 +61,7 @@ public class XMLParser {
 	public SwiftMessage parse(final String xml) {
 		Validate.notNull(xml);
 		try {
-			final DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			final DocumentBuilder db = SafeXmlUtils.documentBuilder();
 			final Document doc = db.parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
 			return createMessage(doc);
 		} catch (final Exception e) {

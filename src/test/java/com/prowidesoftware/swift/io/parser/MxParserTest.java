@@ -460,4 +460,64 @@ public class MxParserTest {
 		assertEquals(8, bah.getCreDt().getMonth());
     }
 
+	/**
+	 * Test that external entities feature is disabled in the XML parsing to avoid XXE (external entity injection)
+	 */
+	@Test
+	public void testXxeDisabledInDocumentParse() {
+		String xml = "<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\" >]>"+
+		"<Doc:Document xmlns:Doc=\"urn:swift:xsd:camt.007.002.02\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"+
+		"	<Doc:camt.007.002.02>"+
+		"		<Doc:Assgnmt>"+
+		"			<Doc:Id>&xxe;</Doc:Id>"+
+		"		</Doc:Assgnmt>"+
+		"	</Doc:camt.007.002.02>"+
+		"</Doc:Document>";
+		MxParser p = new MxParser(xml);
+		String document = p.stripDocument();
+		assertNotNull(document);
+		assertTrue(document.contains("&xxe;"));
+	}
+
+	/**
+	 * Test that external entities feature is disabled in the XML parsing to avoid XXE (external entity injection)
+	 */
+	@Test
+	public void testXxeDisabledInHeaderParse() {
+		String xml = "<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\" >]>"+
+				"<h:AppHdr xmlns:h=\"urn:iso:std:iso:20022:tech:xsd:head.001.001.01\">" +
+				"	<From>&xxe;</From>" +
+				"</h:AppHdr>";
+		MxParser p = new MxParser(xml);
+		String header = p.stripHeader();
+		assertNotNull(header);
+		assertTrue(header.contains("&xxe;"));
+	}
+
+	/**
+	 * Test that external entities feature is disabled in the XML parsing to avoid XXE (external entity injection)
+	 */
+	@Test
+	public void testXxeDisabledInAnalyzeMessage() {
+		final String xml = "<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\" >]>"+
+				"<Doc:Document xmlns:Doc=\"urn:swift:xsd:swift.eni$camt.003.001.04\">&xxe;</Doc:Document>";
+		MxParser parser = new MxParser(xml);
+		MxStructureInfo info = parser.analyzeMessage();
+		assertNotNull(info.getException());
+	}
+
+	/**
+	 * Test that external entities feature is disabled in the XML parsing to avoid XXE (external entity injection)
+	 * <p>This one is not affected by XXE because it only reads and returns the MxId and entity cannot be used in the
+	 * XML namespace.
+	 */
+	@Test
+	public void testXxeDisabledInDetectMessage() {
+		final String xml = "<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\" >]>"+
+				"<Doc:Document xmlns:Doc=\"urn:swift:xsd:swift.eni$camt.003.001.04\">&xxe;</Doc:Document>";
+		MxParser parser = new MxParser(xml);
+		MxId id = parser.detectMessage();
+		assertMxId(id);
+	}
+
 }

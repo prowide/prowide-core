@@ -1124,7 +1124,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 				}
 			}
 		} catch (final Exception e) {
-			log.severe("Exception ocurred while retrieving sender's BIC from message data: "+e);
+			log.severe("Exception occurred while retrieving sender's BIC from message data: "+e);
 		}
 		return null;
 	}
@@ -1149,7 +1149,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 				return null;
 			}
 		} catch (final Exception e) {
-			log.severe("Exception ocurred while retrieving receiver's BIC from message data: "+e);
+			log.severe("Exception occurred while retrieving receiver's BIC from message data: "+e);
 			return null;
 		}
 	}
@@ -1275,10 +1275,30 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	
 	/**
 	 * Gets PDE (Possible Duplicate Emission) flag from the trailer block or null if the trailer or the PDE field is not present
+	 * <p>Notice the PDE tag could hold no value, so in that case empty string is returned, meaning the flag is set but with no value.
 	 * @since 7.0
 	 */
 	public String getPDE() {
-		return this.block5 != null? this.block5.getTagValue("PDE") : null;
+		if (this.block5 != null) {
+			Optional<Tag> t = this.block5.getTag(SwiftBlock5Field.PDE);
+			if (t.isPresent()) {
+				return t.get().getValue();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Sets the Possible Duplicate Emission tag with no value, in the trailer block (block 5),
+	 * <p>If the field exists, its value will be overwritten.
+	 * @since 8.0.2
+	 */
+	public SwiftMessage setPDE() {
+		if (this.block5 == null) {
+			this.block5 = new SwiftBlock5();
+		}
+		this.block5.setPDE();
+		return this;
 	}
 
 	/**
@@ -1286,7 +1306,13 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 7.0
 	 */
 	public String getPDM() {
-		return this.block5 != null? this.block5.getTagValue("PDM") : null;
+		if (this.block5 != null) {
+			Optional<Tag> t = this.block5.getTag(SwiftBlock5Field.PDM);
+			if (t.isPresent()) {
+				return t.get().getValue();
+			}
+		}
+		return null;
 	}
 
 	/**

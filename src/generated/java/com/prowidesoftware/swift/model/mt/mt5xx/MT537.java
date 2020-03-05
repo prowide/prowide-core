@@ -196,15 +196,13 @@ Sequence D1a1A1 - Financial Instrument Attributes (O)<ul><li class="field">Field
 <li class="field">Field 12 A,C (O)</li>
 <li class="field">Field 17 B (O)</li>
 <li class="field">Field 90 A,B (O)</li>
-<li class="field">Field 94 B (O)</li>
 <li class="fieldset">
+Fieldset 94
+ (O) (repetitive)<ul><li>FieldsetItem 94 B (O)</li><li>FieldsetItem 94 B,L (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 98
- (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 92 B (O)</li>
-<li class="field">Field 94 B,L (O) (repetitive)</li>
-<li class="field">Field 17 B (O)</li>
-<li class="fieldset">
+ (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="fieldset">
 Fieldset 92
- (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="fieldset">

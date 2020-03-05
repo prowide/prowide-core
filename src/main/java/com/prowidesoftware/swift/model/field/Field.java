@@ -562,8 +562,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 			final Object arglist[] = new Object[] { value };
 			r = ct.newInstance(arglist);
 		} catch (final ClassNotFoundException e) {
-			log.log(Level.WARNING, "Field class for Field" + name
-			        + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.", e);			
+			log.warning("Field class for Field" + name
+			        + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.");
 		} catch (final Exception e) {
 			log.log(Level.WARNING, "An error occurred while creating an instance of " + name, e);
 		}
@@ -1216,7 +1216,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 				Method method = c.getMethod("fromJson", String.class);
 				return (Field) method.invoke(null, json);
 			} catch (final ClassNotFoundException e) {
-				log.log(Level.WARNING, "Field class for Field" + name + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.", e);
+				log.warning("Field class for Field" + name + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.");
 			} catch (final Exception e) {
 				log.log(Level.WARNING, "An error occured while creating an instance of " + name, e);
 			}

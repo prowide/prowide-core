@@ -76,11 +76,11 @@ public interface SchemeConstantsS {
     public final static String SFRE = "SFRE";
     public final static String SLRS = "SLRS";
     public final static String SECU = "SECU";
-    public final static String SMEM = "SMEM";
     public final static String STST = "STST";
     public final static String SSBT = "SSBT";
     public final static String SETTRAN = "SETTRAN";
     public final static String SPRC = "SPRC";
+    public final static String SMEM = "SMEM";
     public final static String SMAF = "SMAF";
     public final static String SAPP = "SAPP";
     public final static String SUSP = "SUSP";

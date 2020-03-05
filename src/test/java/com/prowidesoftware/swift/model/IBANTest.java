@@ -46,6 +46,10 @@ public class IBANTest {
         assertFalse(valid);
     }
 
+    @Test public void testOKSeychelles() {
+        assertIbanOk("SC52BAHL01031234567890123456USD");
+    }
+
     @Test public void testOKItaly() {
         assertIbanOk("IT40S0542811101000000123456");
     }

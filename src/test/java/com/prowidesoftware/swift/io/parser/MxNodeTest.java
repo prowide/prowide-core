@@ -15,17 +15,13 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import com.prowidesoftware.swift.model.MxNode;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.junit.Test;
-
-import com.prowidesoftware.swift.model.MxNode;
+import static org.junit.Assert.*;
 
 /**
  * Test cases for {@link MxParser} XML conversion into {@link MxNode}
@@ -422,6 +418,17 @@ public class MxNodeTest {
 		new MxNode(n2, "NbOfTxs").setValue("1");
 		new MxNode(n2, "IntrBkSttlmDt").setValue("2012-01-25");
 		//n.print();
+	}
+
+	/**
+	 * Test that external entities feature is disabled in the XML parsing to avoid XXE (external entity injection)
+	 */
+	@Test
+	public void testXxeDisabled() {
+		String xml = "<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\" >]>"+
+				"<FaceAmount>&xxe;</FaceAmount>";
+		final MxNode doc = new MxParser(xml).parse();
+		assertNull(doc);
 	}
 
 }
