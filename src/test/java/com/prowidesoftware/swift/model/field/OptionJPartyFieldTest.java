@@ -15,7 +15,7 @@ public class OptionJPartyFieldTest {
 
     @Test
     public void testGetValueByCodeword() {
-        OptionJPartyField f = new OptionJPartyField("/ABIC/CHASUS33\n"+
+        TestPartyField f = new TestPartyField("/ABIC/CHASUS33\n"+
                 "/NAME/12345xxxxx12345xxxxx12345+++++1234\n"+
                 "/ACCT/12345xxxxx12345xxxxx12345/NETS/\n"+
                 "/ADD1/12345xxxxx12345xxxxx12345+++++1234\n"+
@@ -29,6 +29,23 @@ public class OptionJPartyFieldTest {
         assertEquals("12345xxxxx12345xxxxx12345", f.getValueByCodeword(Codeword.ACCT));
         assertEquals("12345xxxxx12345xxxxx12345+++++12345", f.getValueByCodeword(Codeword.ADD1));
         assertEquals("12345xxxxx12345xxxxx12345+++++123", f.getValueByCodeword(Codeword.ADD2));
+    }
+
+    private class TestPartyField extends OptionJPartyField {
+
+        TestPartyField(String value) {
+            super(value);
+        }
+
+        @Override
+        public String validatorPattern() {
+            return null;
+        }
+
+        @Override
+        public String getName() {
+            return null;
+        }
     }
 
 }
