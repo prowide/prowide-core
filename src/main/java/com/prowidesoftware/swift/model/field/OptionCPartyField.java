@@ -15,14 +15,13 @@ import java.util.*;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>/34x</code></li>
  * 		<li>parser pattern: <code>/S</code></li>
  * 		<li>components pattern: <code>S</code></li>
  * </ul>
  *
  * @since 7.11.0
  */
-public class OptionCPartyField extends Field {
+public abstract class OptionCPartyField extends Field {
     public static final String PARSER_PATTERN ="/S";
     public static final String COMPONENTS_PATTERN = "S";
 
@@ -84,7 +83,7 @@ public class OptionCPartyField extends Field {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component < 1 || component > 1) {
-            throw new IllegalArgumentException("invalid component number "+component+" for field 51C");
+            throw new IllegalArgumentException("invalid component number "+component+" for field "+ getName());
         }
         //default format (as is)
         return getComponent(component);
@@ -92,7 +91,7 @@ public class OptionCPartyField extends Field {
 
     /**
      * Returns the field components pattern
-     * @return the static value of Field51C.COMPONENTS_PATTERN
+     * @return the static value of COMPONENTS_PATTERN
      */
     @Override
     public final String componentsPattern() {
@@ -101,7 +100,7 @@ public class OptionCPartyField extends Field {
 
     /**
      * Returns the field parser pattern
-     * @return the static value of Field51C.PARSER_PATTERN
+     * @return the static value of PARSER_PATTERN
      */
     @Override
     public final String parserPattern() {
@@ -109,12 +108,10 @@ public class OptionCPartyField extends Field {
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern, that could vary er specific field
      */
     @Override
-    public final String validatorPattern() {
-        return "/34x";
-    }
+    public abstract String validatorPattern();
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -176,10 +173,11 @@ public class OptionCPartyField extends Field {
         return result;
     }
 
+    /**
+     * @return the specific field name (number and letter option)
+     */
     @Override
-    public String getName() {
-        return null;
-    }
+    public abstract String getName();
 
     /**
      * Gets the component1 (Account).

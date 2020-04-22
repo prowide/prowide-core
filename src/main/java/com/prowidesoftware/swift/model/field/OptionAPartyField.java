@@ -20,14 +20,13 @@ import java.util.*;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>[[/&lt;DC&gt;][/34x]$]&lt;BIC&gt;</code></li>
  * 		<li>parser pattern: <code>[[/c][/S]$]S</code></li>
  * 		<li>components pattern: <code>SSB</code></li>
  * </ul>
  *
  * @since 7.11.0
  */
-public class OptionAPartyField extends Field {
+public abstract class OptionAPartyField extends Field implements BICContainer {
     public static final String PARSER_PATTERN ="[[/c][/S]$]S";
     public static final String COMPONENTS_PATTERN = "SSB";
 
@@ -105,7 +104,7 @@ public class OptionAPartyField extends Field {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component < 1 || component > 3) {
-            throw new IllegalArgumentException("invalid component number "+component+" for field 42A");
+            throw new IllegalArgumentException("invalid component number "+component+" for field "+ getName());
         }
         //default format (as is)
         return getComponent(component);
@@ -132,15 +131,15 @@ public class OptionAPartyField extends Field {
         return result.toString();
     }
 
-
+    /**
+     * @return the specific field name (number and letter option)
+     */
     @Override
-    public String getName() {
-        return null;
-    }
+    public abstract String getName();
 
     /**
      * Returns the field components pattern
-     * @return the static value of Field42A.COMPONENTS_PATTERN
+     * @return the static value of COMPONENTS_PATTERN
      */
     @Override
     public final String componentsPattern() {
@@ -149,7 +148,7 @@ public class OptionAPartyField extends Field {
 
     /**
      * Returns the field parser pattern
-     * @return the static value of Field41D.PARSER_PATTERN
+     * @return the static value of PARSER_PATTERN
      */
     @Override
     public final String parserPattern() {
@@ -157,12 +156,10 @@ public class OptionAPartyField extends Field {
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern, that could vary er specific field
      */
     @Override
-    public final String validatorPattern() {
-        return "[[/<DC>][/34x]$]<BIC>";
-    }
+    public abstract String validatorPattern();
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -327,13 +324,15 @@ public class OptionAPartyField extends Field {
         return SwiftFormatUtils.getBIC(getComponent(3));
     }
 
-    public List<com.prowidesoftware.swift.model.BIC> bics () {
+    @Override
+    public List<com.prowidesoftware.swift.model.BIC> bics() {
         final List<BIC> result = new ArrayList<>();
         result.add(SwiftFormatUtils.getBIC(getComponent(3)));
         return result;
     }
 
-    public List<String> bicStrings () {
+    @Override
+    public List<String> bicStrings() {
         final List<String> result = new ArrayList<>();
         result.add(getComponent(3));
         return result;

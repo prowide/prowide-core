@@ -18,14 +18,13 @@ import java.util.*;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>/34x$&lt;BIC&gt;</code></li>
  * 		<li>parser pattern: <code>/S$S</code></li>
  * 		<li>components pattern: <code>SB</code></li>
  * </ul>
  *
  * @since 7.11.0
  */
-public class OptionGPartyField extends Field {
+public abstract class OptionGPartyField extends Field implements BICContainer {
     public static final String PARSER_PATTERN ="/S$S";
     public static final String COMPONENTS_PATTERN = "SB";
 
@@ -101,7 +100,7 @@ public class OptionGPartyField extends Field {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component < 1 || component > 2) {
-            throw new IllegalArgumentException("invalid component number "+component+" for field 50G");
+            throw new IllegalArgumentException("invalid component number "+component+" for field "+ getName());
         }
         //default format (as is)
         return getComponent(component);
@@ -109,7 +108,7 @@ public class OptionGPartyField extends Field {
 
     /**
      * Returns the field components pattern
-     * @return the static value of Field50G.COMPONENTS_PATTERN
+     * @return the static value of COMPONENTS_PATTERN
      */
     @Override
     public final String componentsPattern() {
@@ -118,7 +117,7 @@ public class OptionGPartyField extends Field {
 
     /**
      * Returns the field parser pattern
-     * @return the static value of Field50G.PARSER_PATTERN
+     * @return the static value of PARSER_PATTERN
      */
     @Override
     public final String parserPattern() {
@@ -126,12 +125,10 @@ public class OptionGPartyField extends Field {
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern, that could vary er specific field
      */
     @Override
-    public final String validatorPattern() {
-        return "/34x$<BIC>";
-    }
+    public abstract String validatorPattern();
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -195,10 +192,11 @@ public class OptionGPartyField extends Field {
         return result;
     }
 
+    /**
+     * @return the specific field name (number and letter option)
+     */
     @Override
-    public String getName() {
-        return null;
-    }
+    public abstract String getName();
 
     /**
      * Gets the component1 (Account).
@@ -267,12 +265,14 @@ public class OptionGPartyField extends Field {
         return SwiftFormatUtils.getBIC(getComponent(2));
     }
 
+    @Override
     public List<com.prowidesoftware.swift.model.BIC> bics () {
         final List<BIC> result = new ArrayList<>();
         result.add(SwiftFormatUtils.getBIC(getComponent(2)));
         return result;
     }
 
+    @Override
     public List<String> bicStrings () {
         final List<String> result = new ArrayList<>();
         result.add(getComponent(2));

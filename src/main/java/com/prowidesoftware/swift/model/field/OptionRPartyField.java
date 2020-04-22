@@ -17,14 +17,13 @@ import java.util.*;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>:4!c/8c/34x(***)</code></li>
  * 		<li>parser pattern: <code>:S/S/S</code></li>
  * 		<li>components pattern: <code>SSS</code></li>
  * </ul>
  *
  * @since 7.11.0
  */
-public class OptionRPartyField extends Field {
+public abstract class OptionRPartyField extends Field {
     public static final String PARSER_PATTERN =":S/S/S";
     public static final String COMPONENTS_PATTERN = "SSS";
 
@@ -102,7 +101,7 @@ public class OptionRPartyField extends Field {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component < 1 || component > 3) {
-            throw new IllegalArgumentException("invalid component number "+component+" for field 95R");
+            throw new IllegalArgumentException("invalid component number "+component+" for field "+ getName());
         }
         //default format (as is)
         return getComponent(component);
@@ -110,7 +109,7 @@ public class OptionRPartyField extends Field {
 
     /**
      * Returns the field components pattern
-     * @return the static value of Field95R.COMPONENTS_PATTERN
+     * @return the static value of COMPONENTS_PATTERN
      */
     @Override
     public final String componentsPattern() {
@@ -119,7 +118,7 @@ public class OptionRPartyField extends Field {
 
     /**
      * Returns the field parser pattern
-     * @return the static value of Field95R.PARSER_PATTERN
+     * @return the static value of PARSER_PATTERN
      */
     @Override
     public final String parserPattern() {
@@ -127,12 +126,10 @@ public class OptionRPartyField extends Field {
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern, that could vary er specific field
      */
     @Override
-    public final String validatorPattern() {
-        return ":4!c/8c/34x(***)";
-    }
+    public abstract String validatorPattern();
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -201,10 +198,11 @@ public class OptionRPartyField extends Field {
         return result;
     }
 
+    /**
+     * @return the specific field name (number and letter option)
+     */
     @Override
-    public String getName() {
-        return null;
-    }
+    public abstract String getName();
 
     /**
      * Gets the component1 (Qualifier).

@@ -143,6 +143,13 @@ public class Field95R extends OptionRPartyField implements Serializable, Generic
 		return new Tag(NAME, "");
 	}
 
+	/**
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return ":4!c/8c/34x(***)";
+	}
 
 
 	/**

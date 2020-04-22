@@ -144,6 +144,13 @@ public class Field95P extends OptionPPartyField implements Serializable, BICCont
 		return new Tag(NAME, "");
 	}
 
+	/**
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return ":4!c//<BIC>";
+	}
 
 
 	/**

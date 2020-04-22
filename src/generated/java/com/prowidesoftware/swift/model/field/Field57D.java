@@ -146,6 +146,13 @@ public class Field57D extends OptionDPartyField implements Serializable, MultiLi
 		return new Tag(NAME, "");
 	}
 
+	/**
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "[[/<DC>][/34x]$]35x[$35x]0-3";
+	}
 
 
 	/**

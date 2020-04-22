@@ -123,7 +123,7 @@ Fieldset 24
  (O)<ul><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li></ul></li><li class="field">Field 70 D (O)</li>
 <li class="field">Field 19 A (M)</li>
 <li class="field">Field 22 F (M)</li>
-<li class="field">Field 99 B (M)</li>
+<li class="field">Field 99 A (M)</li>
 <li class="sequence">
 Sequence C1a1A - Calculation Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 98 A,C,E (M)</li>
@@ -132,17 +132,16 @@ Sequence C1a1A - Calculation Details (O) (repetitive)<ul><li class="field">Field
 Sequence C1a1A1 - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 35 B (M)</li>
 <li class="field">Field 12 A,C (O)</li>
-<li class="field">Field 17 B (O)</li>
-<li class="field">Field 90 A,B (O)</li>
-<li class="field">Field 94 B (O)</li>
 <li class="fieldset">
+Fieldset 17
+ (O)<ul><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="field">Field 90 A,B (O)</li>
+<li class="fieldset">
+Fieldset 94
+ (O) (repetitive)<ul><li>FieldsetItem 94 B (O)</li><li>FieldsetItem 94 B,L (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 98
- (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 92 B (O)</li>
-<li class="field">Field 94 B,L (O) (repetitive)</li>
-<li class="field">Field 17 B (O)</li>
-<li class="fieldset">
+ (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="fieldset">
 Fieldset 92
- (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="fieldset">
@@ -507,18 +506,18 @@ public class MT548 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 99B, 
+	 * Iterates through block4 fields and return the first one whose name matches 99A, 
 	 * or null if none is found.<br>
-	 * The first occurrence of field 99B at MT548 is expected to be the only one.
+	 * The first occurrence of field 99A at MT548 is expected to be the only one.
 	 * 
-	 * @return a Field99B object or null if the field is not found
+	 * @return a Field99A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field99B getField99B() {
-		final Tag t = tag("99B");
+	public Field99A getField99A() {
+		final Tag t = tag("99A");
 		if (t != null) {
-			return new Field99B(t.getValue());
+			return new Field99A(t.getValue());
 		} else {
 			return null;
 		}
@@ -1257,26 +1256,6 @@ public class MT548 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 70E, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 70E at MT548 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field70E objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field70E> getField70E() {
-		final List<Field70E> result = new ArrayList<>();
-		final Tag[] tags = tags("70E");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field70E(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92B, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 92B at MT548 are expected at one sequence or across several sequences.
@@ -1291,6 +1270,26 @@ public class MT548 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field92B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 70E, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 70E at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field70E objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field70E> getField70E() {
+		final List<Field70E> result = new ArrayList<>();
+		final Tag[] tags = tags("70E");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field70E(tag.getValue()));
             }
 		}
 		return result;

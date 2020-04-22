@@ -146,6 +146,13 @@ public class Field95Q extends OptionQPartyField implements Serializable, Generic
 		return new Tag(NAME, "");
 	}
 
+	/**
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return ":4!c//35x[$35x]0-3(***)";
+	}
 
 
 	/**

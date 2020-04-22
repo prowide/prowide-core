@@ -145,6 +145,13 @@ public class Field50K extends OptionKPartyField implements Serializable, MultiLi
 		return new Tag(NAME, "");
 	}
 
+	/**
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "[/34x$]35x[$35x]0-3";
+	}
 
 
 	/**

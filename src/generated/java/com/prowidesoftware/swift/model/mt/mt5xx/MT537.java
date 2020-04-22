@@ -93,7 +93,7 @@ Fieldset 19
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (O) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="sequence">
 Sequence B2b1 - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
@@ -185,7 +185,7 @@ Fieldset 24
  (O)<ul><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li></ul></li><li class="field">Field 70 D (O)</li>
 <li class="field">Field 19 A (M)</li>
 <li class="field">Field 22 F (M)</li>
-<li class="field">Field 99 B (M)</li>
+<li class="field">Field 99 A (M)</li>
 <li class="sequence">
 Sequence D1a1A - Calculation Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 98 A,C,E (M)</li>
@@ -1357,20 +1357,20 @@ public class MT537 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 99B, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 99A, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 99B at MT537 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 99A at MT537 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field99B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field99A objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field99B> getField99B() {
-		final List<Field99B> result = new ArrayList<>();
-		final Tag[] tags = tags("99B");
+	public List<Field99A> getField99A() {
+		final List<Field99A> result = new ArrayList<>();
+		final Tag[] tags = tags("99A");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field99B(tag.getValue()));
+                result.add(new Field99A(tag.getValue()));
             }
 		}
 		return result;

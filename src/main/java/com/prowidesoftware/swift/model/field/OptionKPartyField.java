@@ -20,14 +20,13 @@ import java.util.*;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>[/34x$]35x[$35x]0-3</code></li>
  * 		<li>parser pattern: <code>[/S$]S[$S]0-3</code></li>
  * 		<li>components pattern: <code>SSSSS</code></li>
  * </ul>
  *
  * @since 7.11.0
  */
-public class OptionKPartyField extends Field {
+public abstract class OptionKPartyField extends Field {
     public static final String PARSER_PATTERN ="[/S$]S[$S]0-3";
     public static final String COMPONENTS_PATTERN = "SSSSS";
 
@@ -104,7 +103,7 @@ public class OptionKPartyField extends Field {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component < 1 || component > 5) {
-            throw new IllegalArgumentException("invalid component number "+component+" for field 50K");
+            throw new IllegalArgumentException("invalid component number "+component+" for field "+ getName());
         }
         //default format (as is)
         return getComponent(component);
@@ -112,7 +111,7 @@ public class OptionKPartyField extends Field {
 
     /**
      * Returns the field components pattern
-     * @return the static value of Field50K.COMPONENTS_PATTERN
+     * @return the static value of COMPONENTS_PATTERN
      */
     @Override
     public final String componentsPattern() {
@@ -121,7 +120,7 @@ public class OptionKPartyField extends Field {
 
     /**
      * Returns the field parser pattern
-     * @return the static value of Field50K.PARSER_PATTERN
+     * @return the static value of PARSER_PATTERN
      */
     @Override
     public final String parserPattern() {
@@ -129,12 +128,10 @@ public class OptionKPartyField extends Field {
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern, that could vary er specific field
      */
     @Override
-    public final String validatorPattern() {
-        return "[/34x$]35x[$35x]0-3";
-    }
+    public abstract String validatorPattern();
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -216,10 +213,11 @@ public class OptionKPartyField extends Field {
         return result;
     }
 
+    /**
+     * @return the specific field name (number and letter option)
+     */
     @Override
-    public String getName() {
-        return null;
-    }
+    public abstract String getName();
 
     /**
      * Gets the component1 (Account).

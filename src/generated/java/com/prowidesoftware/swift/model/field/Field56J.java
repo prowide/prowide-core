@@ -140,6 +140,13 @@ public class Field56J extends OptionJPartyField implements Serializable {
 		return new Tag(NAME, "");
 	}
 
+	/**
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "<PARTYFLD-J>";
+	}
 
 
 	/**

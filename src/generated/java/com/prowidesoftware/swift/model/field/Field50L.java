@@ -140,6 +140,13 @@ public class Field50L extends OptionLPartyField implements Serializable {
 		return new Tag(NAME, "");
 	}
 
+	/**
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "35x";
+	}
 
 
 	/**

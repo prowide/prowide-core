@@ -145,6 +145,13 @@ public class Field56A extends OptionAPartyField implements Serializable, BICCont
 		return new Tag(NAME, "");
 	}
 
+	/**
+	 * Returns the field validator pattern
+	 */
+	@Override
+	public final String validatorPattern() {
+		return "[[/<DC>][/34x]$]<BIC>";
+	}
 
 
 	/**
