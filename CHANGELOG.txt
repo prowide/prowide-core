@@ -1,4 +1,4 @@
-SNAPSHOT 8.0.2
+RELEASE 8.0.2 - April 2019 - LTS maintenance version for current SRU (2019)
   * Added Iban validation for Seychelles
   * Added field setters API in the SwiftBlock5
   * Added SwiftBlock5Field enumeration with commonly used block 5 trailer fields
