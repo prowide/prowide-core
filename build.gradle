@@ -18,8 +18,6 @@ tasks.withType(JavaCompile) {
 	options.fork = true
 	if (project.hasProperty('JDK8_HOME')) {
 		options.forkOptions.executable = "$JDK8_HOME/bin/javac"
-	} else {
-		println "*** Compiling with newer version of Java, this is just fine for development; for releases a proper JDK8_HOME variable must be set in gradle.properties ***"
 	}
 	options.encoding = 'UTF-8'
 }
@@ -53,7 +51,7 @@ def formattedDate() {
 
 javadoc {
 	failOnError false
-	options.overview = "src/main/java/overview.html"
+	options.overview = "overview.html"
 	options.header = "${version}"
 	options.windowTitle = "Prowide Core API Reference"
 	options.footer="SRU${SRU}, generated ${formattedDate()}"
@@ -97,7 +95,13 @@ task writePom {
 				groupId "com.prowidesoftware"
 				artifactId "${rootProject.name}"
 				version "${version}"
-
+				name 'Prowide Core'
+				description 'Prowide Library for SWIFT messages'
+				url 'http://www.prowidesoftware.com'
+				scm {
+					url 'https://github.com/prowide/prowide-core.git'
+					connection 'git@github.com:prowide/prowide-core.git'
+				}
 				inceptionYear '2006'
 				licenses {
 					license {
@@ -131,7 +135,8 @@ distributions {
 			into ('lib') {
 				from (project.configurations.runtime)
 			}
-			from files('LICENSE.txt', 'CHANGELOG.txt')
+			from files('LICENSE.txt')
+			from files('CHANGELOG.txt')
 			from files("$buildDir/pom.xml")
 		}
 	}
@@ -141,6 +146,12 @@ distTar.enabled = false
 
 distZip {
     dependsOn writePom
+
+	doLast {
+		if (!project.hasProperty('JDK8_HOME')) {
+			println "*** WARNING: For releases an explicit JDK8_HOME variable must be set in gradle.properties ***"
+		}
+	}
 }
 
 jacocoTestReport {
