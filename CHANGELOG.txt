@@ -2,7 +2,7 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
-RELEASE 9.1.2 - September 2020
+SNAPSHOT 9.1.2 (9.1.1u3) - September 2020
   * Changed AbstractSwiftMessage JPA mapping to EAGER load the status trail and the properties
   * Added a new MessageDirection enum as alternative to the legacy MessageIOType
 
