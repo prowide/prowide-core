@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,8 @@ import java.util.List;
 
 
 /**
- * Interface to mark fields whose structure admits multiple lines
+ * Interface to mark fields whose structure admits multiple lines and API to query the field lines.
  *
- * @author www.prowidesoftware.com
  * @since 7.7
  */
 public interface MultiLineField {
@@ -35,7 +34,7 @@ public interface MultiLineField {
 	 * @see #getLine(int, int)
 	 * @since 7.7
 	 */
-	public abstract String getLine(int line);
+	String getLine(int line);
 
 	/**
 	 * Returns a specific line from the field's value.<br><br>
@@ -64,7 +63,7 @@ public interface MultiLineField {
 	 * @return line content or null if not present, if line number is above the expected or if the offset is invalid
 	 * @since 7.7
 	 */
-	public abstract String getLine(int line, int offset);
+	String getLine(int line, int offset);
 
 	/**
 	 * Returns the field value split into lines.<br>
@@ -72,7 +71,7 @@ public interface MultiLineField {
 	 * @return found lines or empty list if value is empty
 	 * @since 7.7
 	 */
-	public abstract List<String> getLines();
+	List<String> getLines();
 
 	/**
 	 * Returns the field value starting at the offset component, split into lines.<br>
@@ -81,7 +80,7 @@ public interface MultiLineField {
 	 * @return found lines or empty list if lines are not present or the offset is invalid
 	 * @since 7.7
 	 */
-	public abstract List<String> getLines(int offset);
+	List<String> getLines(int offset);
 
 	/**
 	 * Returns a specific subset of lines from the field's value, given a range.<br>
@@ -94,7 +93,7 @@ public interface MultiLineField {
 	 * @see #getLinesBetween(int, int, int)
 	 * @since 7.7
 	 */
-	public abstract List<String> getLinesBetween(int start, int end);
+	List<String> getLinesBetween(int start, int end);
 
 	/**
 	 * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
@@ -107,6 +106,6 @@ public interface MultiLineField {
 	 *
 	 * @since 7.7
 	 */
-	public abstract List<String> getLinesBetween(int start, int end, int offset);
+	List<String> getLinesBetween(int start, int end, int offset);
 
 }

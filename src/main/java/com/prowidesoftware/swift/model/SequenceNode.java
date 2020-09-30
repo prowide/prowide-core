@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import java.util.List;
  * @deprecated to retrieve fields in sequences use the AbstractMT model
  */
 @Deprecated
-@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 public class SequenceNode {
 	private final String name;
 	private final List<SequenceNode> children = new ArrayList<>();
@@ -40,7 +40,7 @@ public class SequenceNode {
 	private SequenceNode(final String name, final SequenceNode parent) {
 		this.name = name;
 		this.parent = parent;
-		DeprecationUtils.phase2(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
+		DeprecationUtils.phase3(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
 	}
 	
 	/**

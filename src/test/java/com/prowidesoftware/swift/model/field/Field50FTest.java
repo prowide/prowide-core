@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,14 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.swift.model.Tag;
 import org.junit.Test;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -323,5 +328,31 @@ public class Field50FTest extends AbstractFieldTest {
 		assertFalse(f.contains(7));
 		assertFalse(f.contains(8));
 	}
-	
+
+	/**
+	 * https://github.com/prowide/prowide-core/issues/30
+	 */
+	@Test
+	public void testIssue30() {
+		Tag t = new Tag("50F", "/123456\n"+
+				"1/ABC11\n"+
+				"2/ABC21\n"+
+				"2/ABC22\n"+
+				"2/ABC23\n"+
+				"2/ABC24\n"+
+				"2/ABC25\n"+
+				"2/ABC26\n"+
+				"2/ABC27\n"+
+				"2/ABC28");
+
+		Field50F f = new Field50F(t);
+		// parser drops invalid additional lines
+		assertEquals(5, f.getLines().size());
+
+		SwiftParseUtils.getLines(t.getValue()).forEach(line -> {
+			System.out.println(SwiftParseUtils.getTokenFirst(line, "/"));
+			System.out.println(SwiftParseUtils.getTokenSecondLast(line, "/"));
+		});
+	}
+
 }

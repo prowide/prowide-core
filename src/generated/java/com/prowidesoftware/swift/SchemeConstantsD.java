@@ -44,6 +44,7 @@ public interface SchemeConstantsD {
     public final static String DEAG = "DEAG";
     public final static String DSCA = "DSCA";
     public final static String DEALTRAN = "DEALTRAN";
+    public final static String DCSD = "DCSD";
     public final static String DACO = "DACO";
     public final static String DENC = "DENC";
     public final static String DIVR = "DIVR";

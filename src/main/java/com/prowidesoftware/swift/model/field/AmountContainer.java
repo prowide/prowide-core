@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,12 +19,8 @@ import java.math.BigDecimal;
 
 
 /**
- * Interface to mark fields whose definition contain an amount.
- * Note that if a field has a amount and it is optional, and the actual 
- * field has not set the optional amounts/ies then
- * the call amounts() will return an empty list
- * 
- * @author www.prowidesoftware.com
+ * Fields with an amount component.
+ *
  * @since 6.0
  */
 public interface AmountContainer {

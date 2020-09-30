@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ public class BIC {
 	public static final String PARTNER_PREFIX = "PTS";
 
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	private String invalidCause = null;
 
 	private String institution = null;
@@ -116,9 +116,9 @@ public class BIC {
 	 * @deprecated use the {@link #validate()} method to get a detailed result of the validation problem found
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public String getInvalidCause() {
-		DeprecationUtils.phase2(this.getClass(), "getInvalidCause()", "Use the validate() method to get a detailed result of the validation problem found");
+		DeprecationUtils.phase3(this.getClass(), "getInvalidCause()", "Use the validate() method to get a detailed result of the validation problem found");
 		return invalidCause;
 	}
 
@@ -363,10 +363,10 @@ public class BIC {
 	 * @since 7.7
 	 * @deprecated use {@link #getCountry()} instead
 	 */
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	@Deprecated
 	public String country() {
-		DeprecationUtils.phase2(getClass(), "country()", "use getCountry() instead");
+		DeprecationUtils.phase3(getClass(), "country()", "use getCountry() instead");
 		return getCountry();
 	}
 
@@ -374,10 +374,10 @@ public class BIC {
 	 * @since 7.8.5
 	 * @deprecated use {@link #getInstitution()} instead
 	 */
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	@Deprecated
 	public String institution() {
-		DeprecationUtils.phase2(getClass(), "institution()", "use getInstitution() instead");
+		DeprecationUtils.phase3(getClass(), "institution()", "use getInstitution() instead");
 		return getInstitution();
 	}
 	

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -497,41 +497,6 @@ public class SwiftMessageJsonTest {
         assertEquals("REFERENCE", m.getBlock4().getTagValue("20"));
         assertEquals("CRED", m.getBlock4().getTagValue("23B"));
         assertEquals("P", m.getUserBlocks().get(0).getName());
-    }
-
-    @Test
-    public void testSwiftMessageToJsonV1() {
-        SwiftMessage m = MT103.parse("{1:F01FOOSEDR0AXXX0000000000}{3:{113:SEPA}{108:ILOVESEPA}}{2:I103FOORECV0XXXXN}{4:\n" +
-                ":20:REFERENCE\n" +
-                ":23B:CRED\n" +
-                ":32A:130204USD1234567,89\n" +
-                ":50K:/12345678901234567890\n" +
-                "FOOBANKXXXXX\n" +
-                ":59:/12345678901234567890\n" +
-                "JOE DOE\n" +
-                ":71A:OUR\n" +
-                "-}").getSwiftMessage();
-
-        String toJsonV1SwiftMessage = m.toJsonV1();
-
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(toJsonV1SwiftMessage).getAsJsonObject();
-
-        assertNotNull(o);
-        assertEquals(SwiftMessage.JSON_VERSION, o.get("version").getAsInt());
-        assertNotNull(o.get("timestamp"));
-        assertNotNull(o.get("data"));
-
-        JsonObject block4 = o.get("data").getAsJsonObject().get("block4").getAsJsonObject();
-        assertNotNull(block4);
-
-        JsonArray tags = block4.get("tags").getAsJsonArray();
-        assertEquals(6, tags.size());
-
-        JsonObject tag50K = tags.get(3).getAsJsonObject();
-        assertNotNull(tag50K);
-
-        assertEquals("/12345678901234567890\nFOOBANKXXXXX", tag50K.get("value").getAsString());
     }
 
     @Test

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public abstract class SwiftBlock implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	protected Long id;
 
 	/**
@@ -151,9 +151,9 @@ public abstract class SwiftBlock implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public Long getId() {
-		DeprecationUtils.phase2(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
+		DeprecationUtils.phase3(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		return id;
 	}
 
@@ -163,9 +163,9 @@ public abstract class SwiftBlock implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public void setId(final Long id) {
-		DeprecationUtils.phase2(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
+		DeprecationUtils.phase3(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		this.id = id;
 	}
 

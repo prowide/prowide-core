@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,7 +98,7 @@ Sequence C - Other Details (O)<ul><li class="field">Field 16 R (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2019</strong>
+ * This source code is specific to release <strong>SRU 2020</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -107,7 +107,7 @@ public class MT670 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT670.class.getName());
 	
@@ -1369,7 +1369,7 @@ public class MT670 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceB2List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceB2List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceB2 delimited by 16R/16S with value specified in {@link SequenceB2#START_END_16RS}
@@ -1514,7 +1514,7 @@ public class MT670 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceC_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT670GetSequenceC_sru2020(this);
 	}
 	
 	/**

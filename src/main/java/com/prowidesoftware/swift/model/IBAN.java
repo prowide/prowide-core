@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ public class IBAN {
     private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(IBAN.class.getName());
 
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2020)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
     private String invalidCause = null;
 
     private String iban;
@@ -173,16 +173,6 @@ public class IBAN {
     }
 
     /**
-     * @deprecated use {@link IBAN#translateChars(StringBuilder)}
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4=TargetYear.SRU2020)
-    public String translateChars(final StringBuffer bban) {
-        DeprecationUtils.phase3(getClass(), "translateChars(StringBuffer)", "Use translateChars(StringBuilder) instead.");
-        return translateChars(new StringBuilder(bban));
-    }
-
-    /**
      * Translate letters to numbers, also ignoring non alphanumeric characters
      *
      * @param bban
@@ -223,9 +213,9 @@ public class IBAN {
      * @deprecated use the {@link #validate()} method to get a detailed result of the validation problem found
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2020)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
     public String getInvalidCause() {
-        DeprecationUtils.phase2(this.getClass(), "getInvalidCause()", "Use the validate() method to get a detailed result of the validation problem found");
+        DeprecationUtils.phase3(this.getClass(), "getInvalidCause()", "Use the validate() method to get a detailed result of the validation problem found");
         return invalidCause;
     }
 

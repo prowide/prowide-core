@@ -49,12 +49,10 @@ public interface SchemeConstantsM {
     public final static String MOPN = "MOPN";
     public final static String MAGV = "MAGV";
     public final static String MILT = "MILT";
-    public final static String MEE3 = "MEE3";
     public final static String MMCI = "MMCI";
     public final static String MEET = "MEET";
     public final static String MINP = "MINP";
     public final static String MKDT = "MKDT";
-    public final static String MEET2 = "MEET2";
     public final static String MCTD = "MCTD";
     public final static String MKTC = "MKTC";
     public final static String MFIX = "MFIX";

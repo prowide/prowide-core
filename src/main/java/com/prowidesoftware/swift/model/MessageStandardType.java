@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model;
 /**
  * Enumeration of messages standard types.
  * 
- * @author www.prowidesoftware.com
  * @since 7.8.3
  */
 public enum MessageStandardType {

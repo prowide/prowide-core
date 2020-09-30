@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -57,15 +55,15 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2019</strong>
+ * This class complies with standard release <strong>SRU2020</strong>
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field45B extends Field implements Serializable, MultiLineField {
+public class Field45B extends StructuredNarrativeField implements Serializable, NarrativeContainer, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -76,19 +74,12 @@ public class Field45B extends Field implements Serializable, MultiLineField {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_45B = "45B";
-	public static final String PARSER_PATTERN ="S";
-	public static final String COMPONENTS_PATTERN = "S";
-
-	/**
-	 * Component number for the Narrative subfield
-	 */
-	public static final Integer NARRATIVE = 1;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field45B() {
-		super(1);
+        super();
 	}
 	    					
 	/**
@@ -114,6 +105,16 @@ public class Field45B extends Field implements Serializable, MultiLineField {
 			throw new IllegalArgumentException("cannot create field 45B from tag "+tag.getName()+", tagname must match the name of the field.");
 		}
 		parse(tag.getValue());
+	}
+
+	/**
+	 * Creates a new field from a Narrative instance.
+	 * @see Narrative#builder
+	 * @param narrative a not-null narrative to use as field value
+	 * @since 8.1.0
+	 */
+	public Field45B(final Narrative narrative) {
+		this(narrative.getValue());
 	}
 
 	/**
@@ -148,160 +149,12 @@ public class Field45B extends Field implements Serializable, MultiLineField {
 		return new Tag(NAME, "");
 	}
 
-
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(1);
-		setComponent1(value);
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		append(result, 1);
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 1) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 45B");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field45B.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-     * Returns the field parser pattern
-     * @return the static value of Field45B.PARSER_PATTERN
-     */
-	@Override
-	public final String parserPattern() {
-        return PARSER_PATTERN;
-    }
-
 	/**
 	 * Returns the field validator pattern
 	 */
 	@Override
 	public final String validatorPattern() {
 		return "CUSTOM";
-	}
-
-    /**
-     * Given a component number it returns true if the component is optional,
-     * regardless of the field being mandatory in a particular message.<br>
-     * Being the field's value conformed by a composition of one or several
-     * internal component values, the field may be present in a message with
-     * a proper value but with some of its internal components not set.
-     *
-     * @param component component number, first component of a field is referenced as 1
-     * @return true if the component is optional for this field, false otherwise
-     */
-    @Override
-    public boolean isOptional(int component) {
-        return false;
-    }
-
-    /**
-     * Returns true if the field is a GENERIC FIELD as specified by the standard.
-     * @return true if the field is generic, false otherwise
-     */
-    @Override
-    public boolean isGeneric() {
-        return false;
-    }
-
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 1;
-	}
-
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Narrative");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "narrative");
-		return result;
-	}
-	/**
-	 * Gets the component1 (Narrative).
-	 * @return the component1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Same as getComponent(1)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Narrative (component1).
-	 * @return the Narrative from component1
-	 */
-	public String getNarrative() {
-		return getComponent(1);
 	}
 
 
@@ -489,5 +342,16 @@ public class Field45B extends Field implements Serializable, MultiLineField {
 		return field;
 	}
 	
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public static final Integer NARRATIVE = 1;
 
+	/**
+     * @deprecated use getValue() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getNarrative() {
+        return getValue();
+    }
 }

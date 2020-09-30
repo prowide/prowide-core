@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,14 +41,14 @@ public @interface ProwideDeprecated {
 	/**
 	 * Scheduled year for entering phase 2 of deprecation
 	 */
-	TargetYear phase2() default TargetYear.SRU2020;
+	TargetYear phase2() default TargetYear.SRU2021;
 	/**
 	 * Scheduled year for entering phase 3 of deprecation
 	 */
-	TargetYear phase3() default TargetYear.SRU2021;
+	TargetYear phase3() default TargetYear.SRU2022;
 	/**
 	 * Scheduled year for entering phase 4 of deprecation
 	 */
-	TargetYear phase4() default TargetYear.SRU2022;
+	TargetYear phase4() default TargetYear.SRU2023;
 	
 }

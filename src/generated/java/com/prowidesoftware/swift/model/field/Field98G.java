@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -62,7 +60,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2019</strong>
+ * This class complies with standard release <strong>SRU2020</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -70,7 +68,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -100,14 +98,14 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	public static final Integer NUMBER = 3;
 
 	/**
-	 * Component number for the N subfield
+	 * Component number for the Sign subfield
 	 */
-	public static final Integer N = 4;
+	public static final Integer SIGN = 4;
 
 	/**
-	 * Component number for the Time 2 subfield
+	 * Component number for the Offset subfield
 	 */
-	public static final Integer TIME_2 = 5;
+	public static final Integer OFFSET = 5;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -366,8 +364,8 @@ public class Field98G extends Field implements Serializable, DateContainer {
 		result.add("Date");
 		result.add("Time");
 		result.add("Number");
-		result.add("N");
-		result.add("Time 2");
+		result.add("Sign");
+		result.add("Offset");
 		return result;
 	}
 
@@ -381,8 +379,8 @@ public class Field98G extends Field implements Serializable, DateContainer {
 		result.put(1, "date");
 		result.put(2, "time");
 		result.put(3, "number");
-		result.put(4, "n");
-		result.put(5, "time2");
+		result.put(4, "sign");
+		result.put(5, "offset");
 		return result;
 	}
 	/**
@@ -479,7 +477,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 	/**
-	 * Gets the component4 (N).
+	 * Gets the component4 (Sign).
 	 * @return the component4
 	 */
 	public String getComponent4() {
@@ -495,22 +493,22 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Gets the N (component4).
-	 * @return the N from component4
+	 * Gets the Sign (component4).
+	 * @return the Sign from component4
 	 */
-	public String getN() {
+	public String getSign() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the N (component4) as Currency
-	 * @return the N from component4 converted to Currency or null if cannot be converted
+	 * Get the Sign (component4) as Currency
+	 * @return the Sign from component4 converted to Currency or null if cannot be converted
 	 */
-	public java.util.Currency getNAsCurrency() {
+	public java.util.Currency getSignAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(4));
 	}
 	/**
-	 * Gets the component5 (Time 2).
+	 * Gets the component5 (Offset).
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -526,18 +524,18 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Gets the Time 2 (component5).
-	 * @return the Time 2 from component5
+	 * Gets the Offset (component5).
+	 * @return the Offset from component5
 	 */
-	public String getTime2() {
+	public String getOffset() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the Time 2 (component5) as Calendar
-	 * @return the Time 2 from component5 converted to Calendar or null if cannot be converted
+	 * Get the Offset (component5) as Calendar
+	 * @return the Offset from component5 converted to Calendar or null if cannot be converted
 	 */
-	public java.util.Calendar getTime2AsCalendar() {
+	public java.util.Calendar getOffsetAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));
 	}
     
@@ -671,7 +669,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Set the component4 (N).
+	 * Set the component4 (Sign).
 	 * @param component4 the component4 to set
 	 */
 	public Field98G setComponent4(String component4) {
@@ -689,26 +687,26 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Set the N (component4).
-	 * @param component4 the N to set
+	 * Set the Sign (component4).
+	 * @param component4 the Sign to set
 	 */
-	public Field98G setN(String component4) {
+	public Field98G setSign(String component4) {
 		setComponent(4, component4);
 		return this;
 	}
 	
 	/**
-	 * Set the N (component4) from a Currency object.
+	 * Set the Sign (component4) from a Currency object.
 	 * @see #setComponent4(java.util.Currency)
-	 * @param component4 Currency with the N content to set
+	 * @param component4 Currency with the Sign content to set
 	 */
-	public Field98G setN(java.util.Currency component4) {
+	public Field98G setSign(java.util.Currency component4) {
 		setComponent4(component4);
 		return this;
 	}
 
 	/**
-	 * Set the component5 (Time 2).
+	 * Set the component5 (Offset).
 	 * @param component5 the component5 to set
 	 */
 	public Field98G setComponent5(String component5) {
@@ -726,20 +724,20 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Set the Time 2 (component5).
-	 * @param component5 the Time 2 to set
+	 * Set the Offset (component5).
+	 * @param component5 the Offset to set
 	 */
-	public Field98G setTime2(String component5) {
+	public Field98G setOffset(String component5) {
 		setComponent(5, component5);
 		return this;
 	}
 	
 	/**
-	 * Set the Time 2 (component5) from a Calendar object.
+	 * Set the Offset (component5) from a Calendar object.
 	 * @see #setComponent5(java.util.Calendar)
-	 * @param component5 Calendar with the Time 2 content to set
+	 * @param component5 Calendar with the Offset content to set
 	 */
-	public Field98G setTime2(java.util.Calendar component5) {
+	public Field98G setOffset(java.util.Calendar component5) {
 		setComponent5(component5);
 		return this;
 	}
@@ -835,14 +833,71 @@ public class Field98G extends Field implements Serializable, DateContainer {
 		if (jsonObject.get("number") != null) {
 			field.setComponent3(jsonObject.get("number").getAsString());
 		}
-		if (jsonObject.get("n") != null) {
-			field.setComponent4(jsonObject.get("n").getAsString());
+		if (jsonObject.get("sign") != null) {
+			field.setComponent4(jsonObject.get("sign").getAsString());
 		}
-		if (jsonObject.get("time2") != null) {
-			field.setComponent5(jsonObject.get("time2").getAsString());
+		if (jsonObject.get("offset") != null) {
+			field.setComponent5(jsonObject.get("offset").getAsString());
 		}
 		return field;
 	}
 	
+	/**
+	 * @deprecated use OFFSET instead
+	 */
+	@Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public static final Integer TIME_2 = 5;
 
+	/**
+	 * Get the ISO UTC Indicator combining the sign and offset, and changing the "N" negative sign indication by
+	 * proper +/- signs
+	 * @return the the UTC indicator such as +0100 or -0300
+	 */
+	public String getUtcIndicator() {
+	    if (getOffset() != null) {
+            if (getSign() != null && getSign().equals("N")) {
+                return "-" + StringUtils.trimToEmpty(getOffset());
+            } else {
+                return "+" + StringUtils.trimToEmpty(getOffset());
+            }
+	    }
+	    return null;
+	}
+
+	/**
+     * @deprecated use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getTime2() {
+        return getOffset();
+    }
+
+    /**
+     * @deprecated use getOffsetAsCalendar() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public java.util.Calendar getTime2AsCalendar() {
+        return SwiftFormatUtils.getTime3(getOffset());
+    }
+
+    /**
+     * @deprecated use setOffset(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public Field98G setTime2(String component) {
+	    return setOffset(component);
+	}
+
+	/**
+     * @deprecated use setOffset(Calendar) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public Field98G setTime2(java.util.Calendar cal) {
+        return setOffset(cal);
+	}
 }

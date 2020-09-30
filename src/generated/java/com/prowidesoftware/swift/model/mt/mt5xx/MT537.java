@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ Fieldset 19
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="sequence">
 Sequence B2b1 - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
@@ -128,7 +128,7 @@ Fieldset 19
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="sequence">
 Sequence C2a - Settlement Parties (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
@@ -161,13 +161,15 @@ Fieldset 95
  (O)<ul><li>FieldsetItem 95 P (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="sequence">
 Sequence D1 - Penalties per Currency for a Party (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 11 A (O)</li>
-<li class="field">Field 98 A,C (O)</li>
+<li class="fieldset">
+Fieldset 98
+ (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A (O)</li></ul></li><li class="field">Field 97 A,E (O)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q (O)</li><li>FieldsetItem 95 P,Q (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
 <li class="fieldset">
 Fieldset 19
- (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="sequence">
+ (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="sequence">
 Sequence D1a - Penalties per Counterparty (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
@@ -177,14 +179,14 @@ Fieldset 95
 Sequence D1a1 - Penalty Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 20
- (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="field">Field 22 F (M)</li>
-<li class="field">Field 17 B (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="fieldset">
+Fieldset 22
+ (M)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li></ul></li><li class="field">Field 17 B (O)</li>
 <li class="field">Field 25 D (O)</li>
 <li class="fieldset">
 Fieldset 24
- (O)<ul><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li></ul></li><li class="field">Field 70 D (O)</li>
+ (O)<ul><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li></ul></li><li class="field">Field 70 D (O)</li>
 <li class="field">Field 19 A (M)</li>
-<li class="field">Field 22 F (M)</li>
 <li class="field">Field 99 A (M)</li>
 <li class="sequence">
 Sequence D1a1A - Calculation Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -194,45 +196,46 @@ Sequence D1a1A - Calculation Details (O) (repetitive)<ul><li class="field">Field
 Sequence D1a1A1 - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 35 B (M)</li>
 <li class="field">Field 12 A,C (O)</li>
-<li class="field">Field 17 B (O)</li>
-<li class="field">Field 90 A,B (O)</li>
+<li class="fieldset">
+Fieldset 17
+ (O)<ul><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="field">Field 90 A,B (O)</li>
 <li class="fieldset">
 Fieldset 94
  (O) (repetitive)<ul><li>FieldsetItem 94 B (O)</li><li>FieldsetItem 94 B,L (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 98
  (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="fieldset">
 Fieldset 92
- (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (O) (repetitive)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 B (O) (repetitive)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="fieldset">
 Fieldset 92
  (O) (repetitive)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 B (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 19
- (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="sequence">
-Sequence D1a1A2 - Related Transaction (O)<ul><li class="field">Field 16 R (M)</li>
+ (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="sequence">
+Sequence D1a1B - Related Transaction (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 20
- (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="sequence">
-Sequence D1a1A2a - Transaction Details (O)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 22  (M)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="sequence">
+Sequence D1a1B1 - Transaction Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
+Fieldset 22
+ (O)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
 Fieldset 97
  (O)<ul><li>FieldsetItem 97 A,B (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="fieldset">
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
-Fieldset 22
- (M)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li></ul></li><li class="field">Field 36 B (M) (repetitive)</li>
-<li class="field">Field 19 A (O)</li>
-<li class="fieldset">
-Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 C (M)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 C (O)</li></ul></li><li class="sequence">
-Sequence D1a1A2a1 - Status (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Fieldset 36
+ (M) (repetitive)<ul><li>FieldsetItem 36 B (M) (repetitive)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="sequence">
+Sequence D1a1B1a - Status (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 25 D (M)</li>
 <li class="sequence">
-Sequence D1a1A2a1A - Reason (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence D1a1B1a1 - Reason (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 24 B (M)</li>
 <li class="field">Field 70 D (O)</li>
 <li class="field">Field 16 S (M)</li>
@@ -242,9 +245,6 @@ Sequence D1a1A2a1A - Reason (O) (repetitive)<ul><li class="field">Field 16 R (M)
 <li class="field">Field 70 E (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
-<li class="field">Field 16 S (M)</li>
-</ul></li>
-<li class="field">Field 70 E (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 70 E (O)</li>
@@ -269,7 +269,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2019</strong>
+ * This source code is specific to release <strong>SRU 2020</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -278,7 +278,7 @@ public class MT537 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT537.class.getName());
 	
@@ -633,24 +633,6 @@ public class MT537 extends AbstractMT implements Serializable {
 		final Tag t = tag("90B");
 		if (t != null) {
 			return new Field90B(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 22, 
-	 * or null if none is found.<br>
-	 * The first occurrence of field 22 at MT537 is expected to be the only one.
-	 * 
-	 * @return a Field22 object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field22 getField22() {
-		final Tag t = tag("22");
-		if (t != null) {
-			return new Field22(t.getValue());
 		} else {
 			return null;
 		}
@@ -1337,6 +1319,26 @@ public class MT537 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97E, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 97E at MT537 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field97E objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field97E> getField97E() {
+		final List<Field97E> result = new ArrayList<>();
+		final Tag[] tags = tags("97E");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field97E(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 17B, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 17B at MT537 are expected at one sequence or across several sequences.
@@ -1411,26 +1413,6 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field92B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97E, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 97E at MT537 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field97E objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field97E> getField97E() {
-		final List<Field97E> result = new ArrayList<>();
-		final Tag[] tags = tags("97E");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field97E(tag.getValue()));
             }
 		}
 		return result;
@@ -1668,7 +1650,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceA1List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceA1List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}
@@ -1816,7 +1798,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceBList_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceBList_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceB delimited by 16R/16S with value specified in {@link SequenceB#START_END_16RS}
@@ -1964,7 +1946,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB1List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB1List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
@@ -2112,7 +2094,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceB2 delimited by 16R/16S with value specified in {@link SequenceB2#START_END_16RS}
@@ -2260,7 +2242,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2aList_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2aList_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceB2a delimited by 16R/16S with value specified in {@link SequenceB2a#START_END_16RS}
@@ -2408,7 +2390,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2bList_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2bList_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceB2b delimited by 16R/16S with value specified in {@link SequenceB2b#START_END_16RS}
@@ -2556,7 +2538,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2b1List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2b1List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceB2b1 delimited by 16R/16S with value specified in {@link SequenceB2b1#START_END_16RS}
@@ -2831,7 +2813,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC1List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC1List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceC1 delimited by 16R/16S with value specified in {@link SequenceC1#START_END_16RS}
@@ -2979,7 +2961,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceC2 delimited by 16R/16S with value specified in {@link SequenceC2#START_END_16RS}
@@ -3127,7 +3109,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2aList_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2aList_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceC2a delimited by 16R/16S with value specified in {@link SequenceC2a#START_END_16RS}
@@ -3275,7 +3257,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceC3 delimited by 16R/16S with value specified in {@link SequenceC3#START_END_16RS}
@@ -3423,7 +3405,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3aList_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3aList_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceC3a delimited by 16R/16S with value specified in {@link SequenceC3a#START_END_16RS}
@@ -4220,16 +4202,16 @@ public class MT537 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "D1a1A2" in MT 537
+	 * Class to model Sequence "D1a1B" in MT 537
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static class SequenceD1a1A2 extends SwiftTagListBlock {
+	public static class SequenceD1a1B extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
 		 * Constructs an empty sequence
 		 */
-	    private SequenceD1a1A2() {
+	    private SequenceD1a1B() {
 			super(new ArrayList<Tag>());
 		}
 
@@ -4237,7 +4219,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * Creates a sequence with the given content.
 		 * @see SwiftTagListBlock
 		 */
-		private SequenceD1a1A2(final SwiftTagListBlock content) {
+		private SequenceD1a1B(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
 
@@ -4254,8 +4236,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceD1a1A2 newInstance(final Tag ... tags) {
-			final SequenceD1a1A2 result = new SequenceD1a1A2();
+		public static SequenceD1a1B newInstance(final Tag ... tags) {
+			final SequenceD1a1B result = new SequenceD1a1B();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
@@ -4272,8 +4254,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence
 		 * @since 7.6
 		 */
-		public static SequenceD1a1A2 newInstance() {
-			final SequenceD1a1A2 result = new SequenceD1a1A2();
+		public static SequenceD1a1B newInstance() {
+			final SequenceD1a1B result = new SequenceD1a1B();
 			result.append(START_TAG);
 			result.append(END_TAG);
 			return result;
@@ -4286,8 +4268,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceD1a1A2 newInstance(final SwiftTagListBlock ... sequences) {
-			final SequenceD1a1A2 result = new SequenceD1a1A2();
+		public static SequenceD1a1B newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceD1a1B result = new SequenceD1a1B();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
@@ -4299,7 +4281,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		}
 
 		@SequenceStyle(Type.GENERATED_16RS)
-		private SequenceD1a1A2(final SwiftMessage m) {
+		private SequenceD1a1B(final SwiftMessage m) {
 			super();
 			if (m.getBlock4() != null) {
 				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
@@ -4309,34 +4291,34 @@ public class MT537 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceD1a1A2 delimited by 16R/16S with value specified in {@link SequenceD1a1A2#START_END_16RS}
+	 * Get the list of SequenceD1a1B delimited by 16R/16S with value specified in {@link SequenceD1a1B#START_END_16RS}
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
-	 * @see SequenceD1a1A2#START_END_16RS
+	 * @see SequenceD1a1B#START_END_16RS
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceD1a1A2> getSequenceD1a1A2List() {
-		return getSequenceD1a1A2List(super.getSwiftMessageNotNullOrException().getBlock4());
+	public List<SequenceD1a1B> getSequenceD1a1BList() {
+		return getSequenceD1a1BList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	/**
-	 * Get the list of SequenceD1a1A2 delimited by 16R/16S with value specified in {@link SequenceD1a1A2#START_END_16RS}
+	 * Get the list of SequenceD1a1B delimited by 16R/16S with value specified in {@link SequenceD1a1B#START_END_16RS}
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * @see SequenceD1a1A2#START_END_16RS
-	 * @param parentSequence a not null parent sequence to find SequenceD1a1A2 within it
+	 * @see SequenceD1a1B#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceD1a1B within it
 	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceD1a1A2> getSequenceD1a1A2List(final SwiftTagListBlock parentSequence) {
+	public static List<SequenceD1a1B> getSequenceD1a1BList(final SwiftTagListBlock parentSequence) {
 	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceD1a1A2.START_END_16RS);
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceD1a1B.START_END_16RS);
             if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceD1a1A2> result = new ArrayList<>(blocks.size());
+                final List<SequenceD1a1B> result = new ArrayList<>(blocks.size());
                 for (final SwiftTagListBlock b : blocks) {
-                    final SequenceD1a1A2 s = new SequenceD1a1A2();
-                    s.setTags(b.getSubBlock(SequenceD1a1A2.START_END_16RS).getTags());
+                    final SequenceD1a1B s = new SequenceD1a1B();
+                    s.setTags(b.getSubBlock(SequenceD1a1B.START_END_16RS).getTags());
                     result.add(s);
                 }
                 return result;
@@ -4347,17 +4329,17 @@ public class MT537 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "D1a1A2a" in MT 537
+	 * Class to model Sequence "D1a1B1" in MT 537
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	@NonUniqueSeparator
-	public static class SequenceD1a1A2a extends SwiftTagListBlock {
+	public static class SequenceD1a1B1 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
 		 * Constructs an empty sequence
 		 */
-	    private SequenceD1a1A2a() {
+	    private SequenceD1a1B1() {
 			super(new ArrayList<Tag>());
 		}
 
@@ -4365,7 +4347,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * Creates a sequence with the given content.
 		 * @see SwiftTagListBlock
 		 */
-		private SequenceD1a1A2a(final SwiftTagListBlock content) {
+		private SequenceD1a1B1(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
 
@@ -4383,8 +4365,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 */
 	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceD1a1A2a newInstance(final Tag ... tags) {
-			final SequenceD1a1A2a result = new SequenceD1a1A2a();
+		public static SequenceD1a1B1 newInstance(final Tag ... tags) {
+			final SequenceD1a1B1 result = new SequenceD1a1B1();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
@@ -4401,8 +4383,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence
 		 * @since 7.6
 		 */
-		public static SequenceD1a1A2a newInstance() {
-			final SequenceD1a1A2a result = new SequenceD1a1A2a();
+		public static SequenceD1a1B1 newInstance() {
+			final SequenceD1a1B1 result = new SequenceD1a1B1();
 			result.append(START_TAG);
 			result.append(END_TAG);
 			return result;
@@ -4415,8 +4397,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceD1a1A2a newInstance(final SwiftTagListBlock ... sequences) {
-			final SequenceD1a1A2a result = new SequenceD1a1A2a();
+		public static SequenceD1a1B1 newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceD1a1B1 result = new SequenceD1a1B1();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
@@ -4428,7 +4410,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		}
 
 		@SequenceStyle(Type.GENERATED_16RS)
-		private SequenceD1a1A2a(final SwiftMessage m) {
+		private SequenceD1a1B1(final SwiftMessage m) {
 			super();
 			if (m.getBlock4() != null) {
 				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
@@ -4438,7 +4420,7 @@ public class MT537 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceD1a1A2a delimited by 16R/16S with value specified in {@link SequenceD1a1A2a#START_END_16RS}
+	 * Get the list of SequenceD1a1B1 delimited by 16R/16S with value specified in {@link SequenceD1a1B1#START_END_16RS}
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -4447,23 +4429,23 @@ public class MT537 extends AbstractMT implements Serializable {
      * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
      * @return the found sequences or an empty list if none is found
-	 * @see SequenceD1a1A2a#START_END_16RS
+	 * @see SequenceD1a1B1#START_END_16RS
 	 */
 	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceD1a1A2a> getSequenceD1a1A2aList() {
+	public List<SequenceD1a1B1> getSequenceD1a1B1List() {
   	    /*
 		 * The delimiter TRAN is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence D1a1A2a.
+		 * The usual generated API for accessing this can not be used for sequence D1a1B1.
 		 * So we call a special method to resolve this situation until we find a better approach.
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1A2aList_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1List_sru2020(this);
 	}
 	/**
-	 * Get the list of SequenceD1a1A2a delimited by 16R/16S with value specified in {@link SequenceD1a1A2a#START_END_16RS}
+	 * Get the list of SequenceD1a1B1 delimited by 16R/16S with value specified in {@link SequenceD1a1B1#START_END_16RS}
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -4471,20 +4453,20 @@ public class MT537 extends AbstractMT implements Serializable {
      * present inside its parent sequences.
      * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
-	 * @see SequenceD1a1A2a#START_END_16RS
-	 * @param parentSequence a not null parent sequence to find SequenceD1a1A2a within it
+	 * @see SequenceD1a1B1#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceD1a1B1 within it
 	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceD1a1A2a> getSequenceD1a1A2aList(final SwiftTagListBlock parentSequence) {
+	public static List<SequenceD1a1B1> getSequenceD1a1B1List(final SwiftTagListBlock parentSequence) {
 	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceD1a1A2a.START_END_16RS);
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceD1a1B1.START_END_16RS);
             if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceD1a1A2a> result = new ArrayList<>(blocks.size());
+                final List<SequenceD1a1B1> result = new ArrayList<>(blocks.size());
                 for (final SwiftTagListBlock b : blocks) {
-                    final SequenceD1a1A2a s = new SequenceD1a1A2a();
-                    s.setTags(b.getSubBlock(SequenceD1a1A2a.START_END_16RS).getTags());
+                    final SequenceD1a1B1 s = new SequenceD1a1B1();
+                    s.setTags(b.getSubBlock(SequenceD1a1B1.START_END_16RS).getTags());
                     result.add(s);
                 }
                 return result;
@@ -4495,17 +4477,17 @@ public class MT537 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "D1a1A2a1" in MT 537
+	 * Class to model Sequence "D1a1B1a" in MT 537
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	@NonUniqueSeparator
-	public static class SequenceD1a1A2a1 extends SwiftTagListBlock {
+	public static class SequenceD1a1B1a extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
 		 * Constructs an empty sequence
 		 */
-	    private SequenceD1a1A2a1() {
+	    private SequenceD1a1B1a() {
 			super(new ArrayList<Tag>());
 		}
 
@@ -4513,7 +4495,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * Creates a sequence with the given content.
 		 * @see SwiftTagListBlock
 		 */
-		private SequenceD1a1A2a1(final SwiftTagListBlock content) {
+		private SequenceD1a1B1a(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
 
@@ -4531,8 +4513,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 */
 	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceD1a1A2a1 newInstance(final Tag ... tags) {
-			final SequenceD1a1A2a1 result = new SequenceD1a1A2a1();
+		public static SequenceD1a1B1a newInstance(final Tag ... tags) {
+			final SequenceD1a1B1a result = new SequenceD1a1B1a();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
@@ -4549,8 +4531,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence
 		 * @since 7.6
 		 */
-		public static SequenceD1a1A2a1 newInstance() {
-			final SequenceD1a1A2a1 result = new SequenceD1a1A2a1();
+		public static SequenceD1a1B1a newInstance() {
+			final SequenceD1a1B1a result = new SequenceD1a1B1a();
 			result.append(START_TAG);
 			result.append(END_TAG);
 			return result;
@@ -4563,8 +4545,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceD1a1A2a1 newInstance(final SwiftTagListBlock ... sequences) {
-			final SequenceD1a1A2a1 result = new SequenceD1a1A2a1();
+		public static SequenceD1a1B1a newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceD1a1B1a result = new SequenceD1a1B1a();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
@@ -4576,7 +4558,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		}
 
 		@SequenceStyle(Type.GENERATED_16RS)
-		private SequenceD1a1A2a1(final SwiftMessage m) {
+		private SequenceD1a1B1a(final SwiftMessage m) {
 			super();
 			if (m.getBlock4() != null) {
 				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
@@ -4586,7 +4568,7 @@ public class MT537 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceD1a1A2a1 delimited by 16R/16S with value specified in {@link SequenceD1a1A2a1#START_END_16RS}
+	 * Get the list of SequenceD1a1B1a delimited by 16R/16S with value specified in {@link SequenceD1a1B1a#START_END_16RS}
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -4595,23 +4577,23 @@ public class MT537 extends AbstractMT implements Serializable {
      * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
      * @return the found sequences or an empty list if none is found
-	 * @see SequenceD1a1A2a1#START_END_16RS
+	 * @see SequenceD1a1B1a#START_END_16RS
 	 */
 	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceD1a1A2a1> getSequenceD1a1A2a1List() {
+	public List<SequenceD1a1B1a> getSequenceD1a1B1aList() {
   	    /*
 		 * The delimiter STAT is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence D1a1A2a1.
+		 * The usual generated API for accessing this can not be used for sequence D1a1B1a.
 		 * So we call a special method to resolve this situation until we find a better approach.
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1A2a1List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1aList_sru2020(this);
 	}
 	/**
-	 * Get the list of SequenceD1a1A2a1 delimited by 16R/16S with value specified in {@link SequenceD1a1A2a1#START_END_16RS}
+	 * Get the list of SequenceD1a1B1a delimited by 16R/16S with value specified in {@link SequenceD1a1B1a#START_END_16RS}
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -4619,20 +4601,20 @@ public class MT537 extends AbstractMT implements Serializable {
      * present inside its parent sequences.
      * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
-	 * @see SequenceD1a1A2a1#START_END_16RS
-	 * @param parentSequence a not null parent sequence to find SequenceD1a1A2a1 within it
+	 * @see SequenceD1a1B1a#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceD1a1B1a within it
 	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceD1a1A2a1> getSequenceD1a1A2a1List(final SwiftTagListBlock parentSequence) {
+	public static List<SequenceD1a1B1a> getSequenceD1a1B1aList(final SwiftTagListBlock parentSequence) {
 	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceD1a1A2a1.START_END_16RS);
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceD1a1B1a.START_END_16RS);
             if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceD1a1A2a1> result = new ArrayList<>(blocks.size());
+                final List<SequenceD1a1B1a> result = new ArrayList<>(blocks.size());
                 for (final SwiftTagListBlock b : blocks) {
-                    final SequenceD1a1A2a1 s = new SequenceD1a1A2a1();
-                    s.setTags(b.getSubBlock(SequenceD1a1A2a1.START_END_16RS).getTags());
+                    final SequenceD1a1B1a s = new SequenceD1a1B1a();
+                    s.setTags(b.getSubBlock(SequenceD1a1B1a.START_END_16RS).getTags());
                     result.add(s);
                 }
                 return result;
@@ -4643,17 +4625,17 @@ public class MT537 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "D1a1A2a1A" in MT 537
+	 * Class to model Sequence "D1a1B1a1" in MT 537
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	@NonUniqueSeparator
-	public static class SequenceD1a1A2a1A extends SwiftTagListBlock {
+	public static class SequenceD1a1B1a1 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
 		 * Constructs an empty sequence
 		 */
-	    private SequenceD1a1A2a1A() {
+	    private SequenceD1a1B1a1() {
 			super(new ArrayList<Tag>());
 		}
 
@@ -4661,7 +4643,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * Creates a sequence with the given content.
 		 * @see SwiftTagListBlock
 		 */
-		private SequenceD1a1A2a1A(final SwiftTagListBlock content) {
+		private SequenceD1a1B1a1(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
 
@@ -4679,8 +4661,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 */
 	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceD1a1A2a1A newInstance(final Tag ... tags) {
-			final SequenceD1a1A2a1A result = new SequenceD1a1A2a1A();
+		public static SequenceD1a1B1a1 newInstance(final Tag ... tags) {
+			final SequenceD1a1B1a1 result = new SequenceD1a1B1a1();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
@@ -4697,8 +4679,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence
 		 * @since 7.6
 		 */
-		public static SequenceD1a1A2a1A newInstance() {
-			final SequenceD1a1A2a1A result = new SequenceD1a1A2a1A();
+		public static SequenceD1a1B1a1 newInstance() {
+			final SequenceD1a1B1a1 result = new SequenceD1a1B1a1();
 			result.append(START_TAG);
 			result.append(END_TAG);
 			return result;
@@ -4711,8 +4693,8 @@ public class MT537 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceD1a1A2a1A newInstance(final SwiftTagListBlock ... sequences) {
-			final SequenceD1a1A2a1A result = new SequenceD1a1A2a1A();
+		public static SequenceD1a1B1a1 newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceD1a1B1a1 result = new SequenceD1a1B1a1();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
 				for (final SwiftTagListBlock s : sequences) {
@@ -4724,7 +4706,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		}
 
 		@SequenceStyle(Type.GENERATED_16RS)
-		private SequenceD1a1A2a1A(final SwiftMessage m) {
+		private SequenceD1a1B1a1(final SwiftMessage m) {
 			super();
 			if (m.getBlock4() != null) {
 				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
@@ -4734,7 +4716,7 @@ public class MT537 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceD1a1A2a1A delimited by 16R/16S with value specified in {@link SequenceD1a1A2a1A#START_END_16RS}
+	 * Get the list of SequenceD1a1B1a1 delimited by 16R/16S with value specified in {@link SequenceD1a1B1a1#START_END_16RS}
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -4743,23 +4725,23 @@ public class MT537 extends AbstractMT implements Serializable {
      * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
      * @return the found sequences or an empty list if none is found
-	 * @see SequenceD1a1A2a1A#START_END_16RS
+	 * @see SequenceD1a1B1a1#START_END_16RS
 	 */
 	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceD1a1A2a1A> getSequenceD1a1A2a1AList() {
+	public List<SequenceD1a1B1a1> getSequenceD1a1B1a1List() {
   	    /*
 		 * The delimiter REAS is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence D1a1A2a1A.
+		 * The usual generated API for accessing this can not be used for sequence D1a1B1a1.
 		 * So we call a special method to resolve this situation until we find a better approach.
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1A2a1AList_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1a1List_sru2020(this);
 	}
 	/**
-	 * Get the list of SequenceD1a1A2a1A delimited by 16R/16S with value specified in {@link SequenceD1a1A2a1A#START_END_16RS}
+	 * Get the list of SequenceD1a1B1a1 delimited by 16R/16S with value specified in {@link SequenceD1a1B1a1#START_END_16RS}
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -4767,20 +4749,20 @@ public class MT537 extends AbstractMT implements Serializable {
      * present inside its parent sequences.
      * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
-	 * @see SequenceD1a1A2a1A#START_END_16RS
-	 * @param parentSequence a not null parent sequence to find SequenceD1a1A2a1A within it
+	 * @see SequenceD1a1B1a1#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceD1a1B1a1 within it
 	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceD1a1A2a1A> getSequenceD1a1A2a1AList(final SwiftTagListBlock parentSequence) {
+	public static List<SequenceD1a1B1a1> getSequenceD1a1B1a1List(final SwiftTagListBlock parentSequence) {
 	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceD1a1A2a1A.START_END_16RS);
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceD1a1B1a1.START_END_16RS);
             if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceD1a1A2a1A> result = new ArrayList<>(blocks.size());
+                final List<SequenceD1a1B1a1> result = new ArrayList<>(blocks.size());
                 for (final SwiftTagListBlock b : blocks) {
-                    final SequenceD1a1A2a1A s = new SequenceD1a1A2a1A();
-                    s.setTags(b.getSubBlock(SequenceD1a1A2a1A.START_END_16RS).getTags());
+                    final SequenceD1a1B1a1 s = new SequenceD1a1B1a1();
+                    s.setTags(b.getSubBlock(SequenceD1a1B1a1.START_END_16RS).getTags());
                     result.add(s);
                 }
                 return result;

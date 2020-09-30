@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,21 +31,19 @@ import java.util.List;
 /**
  * An MT message comparator that compares all values from block 1 2 3, 4 and 5.
  * 
- * <p>By default the messages must be an exact match in order to be considered equal.
- * This can be tailored for example to ignore EOLS in multiline fiels, to ignore
- * header sequence and session numbers or to ignore the trailer block. Specific
- * text block fields can also indicated to be ignore when comparing the messages.
+ * <p>By default the messages must be an exact match in order to be considered equal. This can be tailored for example
+ * to ignore EOLS in multiline fields, to ignore header sequence and session numbers or to ignore the trailer block.
+ * Specific text block fields can also indicated to be ignore when comparing the messages.
  * 
- * <p>This implementation can be overwritten to add special compare implementations
- * for each of the blocks or to setup the parameters in different ways.
+ * <p>This implementation can be overwritten to add special compare implementations for each of the blocks or to
+ * setup the parameters in different ways.
  * 
- * <p>Despite implementing the Comparator interface this class is useful to find a 
- * message 'almost equal' to another one but it is not intended to <strong>sort</strong>
- * messages, since it does not provide ordering information of any kind.
+ * <p>Despite implementing the Comparator interface this class is useful to find a message 'almost equal' to another
+ * one but it is not intended to <strong>sort</strong> messages, since it does not provide ordering information of any
+ * kind.
  * 
  * <p>NOTE: when both blocks being compared are null they are considered equals, even when they're actually empty.
  * 
- * @author sebastian
  * @since 7.8.8
  */
 public class SwiftMessageComparator implements Comparator<SwiftMessage> {
@@ -58,6 +56,11 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	protected boolean ignoreHeaderSession = false;
 	
 	protected boolean ignoreTrailer = false;
+
+	/**
+	 * @since 8.0.3
+	 */
+	protected boolean ignoreBlock2OptionalFields = false;
 	
 	/**
 	 * List of tagnames to ignore in comparison.
@@ -76,14 +79,14 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	 * @see #compareB2(SwiftBlock2, SwiftBlock2)
 	 * @see #compareTagListBlock(SwiftTagListBlock, SwiftTagListBlock) 
 	 */
-	public int compare(final SwiftMessage m1, final SwiftMessage m2) {
-		Validate.notNull(m1);
-		Validate.notNull(m2);
-		final boolean b1 = compareB1(m1.getBlock1(), m2.getBlock1());
-		final boolean b2 = compareB2(m1.getBlock2(), m2.getBlock2());
-		final boolean b3 = compareTagListBlock(m1.getBlock3(), m2.getBlock3());
-		final boolean b4 = compareTagListBlock(m1.getBlock4(), m2.getBlock4());
-		final boolean b5 = this.ignoreTrailer || compareTagListBlock(m1.getBlock5(), m2.getBlock5());
+	public int compare(final SwiftMessage left, final SwiftMessage right) {
+		Validate.notNull(left);
+		Validate.notNull(right);
+		final boolean b1 = compareB1(left.getBlock1(), right.getBlock1());
+		final boolean b2 = compareB2(left.getBlock2(), right.getBlock2());
+		final boolean b3 = compareTagListBlock(left.getBlock3(), right.getBlock3());
+		final boolean b4 = compareTagListBlock(left.getBlock4(), right.getBlock4());
+		final boolean b5 = this.ignoreTrailer || compareTagListBlock(left.getBlock5(), right.getBlock5());
 		log.finest("b1="+b1+", b2="+b2+", b3="+b3+", b4="+b4+", b5="+b5);
 		return (b1 && b2 && b3 && b4 && b5) ? 0 : 1;
 	}
@@ -93,27 +96,33 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	 * <br>
 	 * If both blocks null will return <code>true</code> and one null and the other one not null will return <code>false</code>
 	 * 
-	 * @param o1
-	 * @param o2
+	 * @param left first block to compare
+	 * @param right second block to compare
 	 * @return <code>true</code> if both blocks are null or equal (from ACK point of view) or false in any other case
 	 */
-	public boolean compareB2(final SwiftBlock2 o1, final SwiftBlock2 o2) {
-		if (o1==null && o2==null) {
+	public boolean compareB2(final SwiftBlock2 left, final SwiftBlock2 right) {
+		if (left==null && right==null) {
 			/*
 			 * both are null
 			 */
 	        return true;
         }
-		if (o1==null || o2==null) {
+		if (left==null || right==null) {
 			/*
 			 * return false because the other one is not null
 			 */
 	        return false;
         }
-		if (!o1.getClass().equals(o2.getClass())) {
+		if (!left.getClass().equals(right.getClass())) {
 			return false;
 		}
-		return StringUtils.equals(o1.getValue(), o2.getValue());
+		if (left.isInput() && right.isInput() && this.ignoreBlock2OptionalFields) {
+			// we trim the value to ignore the last fields, which are optional
+			String leftValue = StringUtils.substring(left.getValue(), 0, 17);
+			String rightValue = StringUtils.substring(right.getValue(), 0, 17);
+			return StringUtils.equals(leftValue, rightValue);
+		}
+		return StringUtils.equals(left.getValue(), right.getValue());
 	}
 
 	/**
@@ -124,31 +133,31 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	 * <p>NOTE a null or empty block is considered a blank block; then if both are blank this method returns <code>true</code>
 	 * and if one of the blocks is blank and the other is not this method returns <code>false</code>
 	 * 
-	 * @param o1 first block to compare
-	 * @param o2 second block to compare
+	 * @param left first block to compare
+	 * @param right second block to compare
 	 * @return true if both blocks are equal (or blank) and false in any other case
 	 */
-	public boolean compareTagListBlock(final SwiftTagListBlock o1, final SwiftTagListBlock o2) {
-		if (isBlank(o1) && isBlank(o2)) {
+	public boolean compareTagListBlock(final SwiftTagListBlock left, final SwiftTagListBlock right) {
+		if (isBlank(left) && isBlank(right)) {
 			/*
 			 * both are null or empty
 			 */
 	        return true;
         }
-		if (isBlank(o1) || isBlank(o2)) {
+		if (isBlank(left) || isBlank(right)) {
 			/*
 			 * return false because the other one is not blank
 			 */
 	        return false;
         }
-		if (o1.size() != o2.size()) {
+		if (left.size() != right.size()) {
 	        return false;
         }
 
 		int count = 0;
-		for (int i=0;i<o1.size();i++) {
-			final Tag t1 = o1.getTag(i);
-			final Tag t2 = o2.getTag(i);
+		for (int i=0; i<left.size(); i++) {
+			final Tag t1 = left.getTag(i);
+			final Tag t2 = right.getTag(i);
 			
 			if (tagNameIgnored(t1.getName(), t2.getName())) {
 				log.finer("Tag ignored: "+t1.getName()+" - "+t2.getName());
@@ -234,29 +243,31 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	}
 
 	/**
-	 * Return true if blocks are equals in all values except session and sequence number and false in any other case (including one of them being null)
+	 * Return true if blocks are equals in all values except session and sequence number and false in any other case
+	 * (including one of them being null).
 	 * If both parameters are null it returns <code>true</code>, since there is nothing to compare.
 	 * 
-	 * @param b1 block to compare
-	 * @param b2 block to compare
-	 * @return true if b1 equals b2 (except mentioned fields) and none is null false in any other case
+	 * @param left block to compare
+	 * @param right block to compare
+	 * @return true if left equals right (except mentioned fields) and none is null false in any other case
 	 */
-	public boolean compareB1(final SwiftBlock1 b1, final SwiftBlock1 b2) {
-		if (b1 == null && b2 == null) {
+	public boolean compareB1(final SwiftBlock1 left, final SwiftBlock1 right) {
+		if (left == null && right == null) {
 	        return true;
         }
-		if (b1 == null || b2 == null) {
+		if (left == null || right == null) {
 	        return false;
         }
-		boolean session = this.ignoreHeaderSession || StringUtils.equals(b1.getSessionNumber(), b2.getSessionNumber());
-		boolean sequence = this.ignoreHeaderSession || StringUtils.equals(b1.getSequenceNumber(), b2.getSequenceNumber());
+		boolean session = this.ignoreHeaderSession || StringUtils.equals(left.getSessionNumber(), right.getSessionNumber());
+		boolean sequence = this.ignoreHeaderSession || StringUtils.equals(left.getSequenceNumber(), right.getSequenceNumber());
 		return session && sequence &&
-			StringUtils.equals(b1.getApplicationId(), b2.getApplicationId()) &&
-			StringUtils.equals(b1.getLogicalTerminal(), b2.getLogicalTerminal()) &&
-			StringUtils.equals(b1.getServiceId(), b2.getServiceId());
+			StringUtils.equals(left.getApplicationId(), right.getApplicationId()) &&
+			StringUtils.equals(left.getLogicalTerminal(), right.getLogicalTerminal()) &&
+			StringUtils.equals(left.getServiceId(), right.getServiceId());
 	}
 
 	/**
+	 * @see #setIgnoreEolsInMultiline(boolean)
 	 * @return boolean value of ignoreEolsInMultiline property
 	 */
 	public boolean isIgnoreEolsInMultiline() {
@@ -264,6 +275,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	}
 
 	/**
+	 * When this is set to true, different end of lines characters LF or CRLF will be considered the same.
 	 * @param ignoreEolsInMultiline
 	 */
 	public void setIgnoreEolsInMultiline(final boolean ignoreEolsInMultiline) {
@@ -278,34 +290,67 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	}
 
 	/**
-	 * @param tagnamesToIgnore
+	 * Sets a new list of tags in the block 4 that will be ignored in the comparison.
+	 * @param tagNamesToIgnore
 	 */
-	public void setTagnamesToIgnore(final List<String> tagnamesToIgnore) {
-		this.tagnamesToIgnore = tagnamesToIgnore;
+	public void setTagnamesToIgnore(final List<String> tagNamesToIgnore) {
+		this.tagnamesToIgnore = tagNamesToIgnore;
 	}
 
 	/**
-	 * @param o tag to add
+	 * Adds a tag in the block4 that will be ignore in the comparison.
+	 * @param tagName tag to add
 	 * @return true if tag was added
 	 */
-	public boolean addTagnameToIgnore(final String o) {
-		return tagnamesToIgnore.add(o);
+	public boolean addTagnameToIgnore(final String tagName) {
+		return tagnamesToIgnore.add(tagName);
 	}
 
+	/**
+	 * @see #setIgnoreHeaderSession(boolean)
+	 */
 	public boolean isIgnoreHeaderSession() {
 		return ignoreHeaderSession;
 	}
 
+	/**
+	 * When this is set to true, the block 1 session and sequence numbers will be ignored in the comparison.
+	 * Defaults to false.
+	 */
 	public void setIgnoreHeaderSession(boolean ignoreHeaderSession) {
 		this.ignoreHeaderSession = ignoreHeaderSession;
 	}
 
+	/**
+	 * @see #setIgnoreTrailer(boolean)
+	 */
 	public boolean isIgnoreTrailer() {
 		return ignoreTrailer;
 	}
 
+	/**
+	 * When this is set to true, the block 5 will be ignored in the comparison. Defaults to false.
+	 */
 	public void setIgnoreTrailer(boolean ignoreTrailer) {
 		this.ignoreTrailer = ignoreTrailer;
 	}
-	
+
+	/**
+	 * @see #setIgnoreBlock2OptionalFields(boolean)
+	 * @since 8.0.3
+	 */
+	public boolean isIgnoreBlock2OptionalFields() {
+		return ignoreBlock2OptionalFields;
+	}
+
+	/**
+	 * When this is set to true, the Delivery Monitoring and Obsolescence Period of block 2 Input will be ignored in the
+	 * comparison. Meaning different values for this optional fields in the compared blocks will return true as
+	 * comparison result. Defaults to false.
+	 * @since 8.0.3
+	 */
+	public void setIgnoreBlock2OptionalFields(boolean ignoreBlock2OptionalFields) {
+		this.ignoreBlock2OptionalFields = ignoreBlock2OptionalFields;
+	}
+
 }

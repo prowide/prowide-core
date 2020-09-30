@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	protected Long id;
 	
 	/**
@@ -61,7 +61,7 @@ public class Tag implements Serializable {
 	 * is not used and should not be used by clients.
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	@Deprecated
 	protected Integer sortKey;
 	
@@ -86,7 +86,7 @@ public class Tag implements Serializable {
 	 * @deprecated to retrieve fields in sequences use the AbstractMT model
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	protected transient SequenceNode sequence = null;
 	
 	/**
@@ -251,9 +251,9 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public Long getId() {
-		DeprecationUtils.phase2(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
+		DeprecationUtils.phase3(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		return id;
 	}
 
@@ -264,9 +264,9 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public void setId(Long id) {
-		DeprecationUtils.phase2(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
+		DeprecationUtils.phase3(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		this.id = id;
 	}
 
@@ -277,9 +277,9 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public Integer getSortKey() {
-		DeprecationUtils.phase2(getClass(), "getSortKey()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
+		DeprecationUtils.phase3(getClass(), "getSortKey()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		return sortKey;
 	}
 
@@ -291,9 +291,9 @@ public class Tag implements Serializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public void setSortKey(Integer sortKey) {
-		DeprecationUtils.phase2(getClass(), "setSortKey(Integer)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
+		DeprecationUtils.phase3(getClass(), "setSortKey(Integer)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		this.sortKey = sortKey;
 	}
 
@@ -524,9 +524,9 @@ public class Tag implements Serializable {
 	 * @deprecated use {@link #asField()} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public Field getField() {
-		DeprecationUtils.phase2(getClass(), "getField()", "use asField() instead");
+		DeprecationUtils.phase3(getClass(), "getField()", "use asField() instead");
 		return Field.getField(this);
 	}
 

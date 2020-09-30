@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,13 @@ public class MtId {
 	private String variant;
 
 	/**
+	 * @since @since 8.0.3
+	 */
+	public MtId() {
+		super();
+	}
+
+	/**
 	 * Creates an identification given the message type, with no variant. 
 	 * @param messageType the message type number (optionally prefixed with "fin.")
 	 * @since 7.8.6
@@ -70,25 +77,37 @@ public class MtId {
 	public String getBusinessProcess() {
 		return businessProcess;
 	}
-	
-	public void setBusinessProcess(String businessProcess) {
+
+	/**
+	 * @since 8.0.3 returns this
+	 */
+	public MtId setBusinessProcess(String businessProcess) {
 		this.businessProcess = businessProcess;
+		return this;
 	}
 	
 	public String getMessageType() {
 		return messageType;
 	}
-	
-	public void setMessageType(String messageType) {
+
+	/**
+	 * @since 8.0.3 returns this
+	 */
+	public MtId setMessageType(String messageType) {
 		this.messageType = messageType;
+		return this;
 	}
 	
 	public String getVariant() {
 		return variant;
 	}
-	
-	public void setVariant(String variant) {
+
+	/**
+	 * @since 8.0.3 returns this
+	 */
+	public MtId setVariant(String variant) {
 		this.variant = variant;
+		return this;
 	}
 	
 	@Override

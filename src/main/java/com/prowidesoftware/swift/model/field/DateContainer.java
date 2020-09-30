@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,21 +19,19 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Interface to mark fields whose definition contain a date.
- * Note that if a field has a date and it is optional, and the actual 
- * field has not set the optional date/s then
- * the call dates() will return an empty list
+ * Fields with a date component.
+ *
+ * <p>Note that if a field has a date and it is optional, and the actual field has not set the optional date/s then the
+ * call dates() will return an empty list
  * 
- * @author www.prowidesoftware.com
  * @since 6.0
  */
 public interface DateContainer {
 
 	/**
 	 * Get a calendar for every date found
-	 * 
+	 * @return found dates or empty list
 	 */
 	List<Calendar> dates();
-	
-	// Maybe times() datetimes()?
+
 }

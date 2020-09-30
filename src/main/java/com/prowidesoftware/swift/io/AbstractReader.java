@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.io;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.SwiftMessage;
@@ -77,8 +78,9 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 	 * @deprecated the use of this object as Iterator is discourage because its internal reader can be iterated just once, use it as Iterable instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2021)
 	public Iterator<String> iterator() throws IllegalArgumentException {
+		DeprecationUtils.phase2(this.getClass(), "iterator", "use it as Iterable instead");
 		if (usedAsIterable) {
 			throw new IllegalStateException("This reader has already been used as iterator and the implementation does not support multiple iterations, create another reader instead");
 		}

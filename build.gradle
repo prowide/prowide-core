@@ -1,14 +1,14 @@
 apply plugin: 'java-library-distribution'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'jacoco'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
 
 archivesBaseName = 'pw-swift-core'
 
-def SRU = "2019"
+def SRU = "2020"
 
-version "SRU${SRU}-8.0.2"
+version "SRU${SRU}-9.1.2"
 group 'com.prowidesoftware'
 	
 sourceCompatibility = '1.8'
@@ -31,26 +31,45 @@ dependencies {
 	implementation 'org.apache.commons:commons-lang3:3.8.1'
 	implementation 'org.apache.commons:commons-text:1.6'
 	implementation 'com.google.code.gson:gson:2.8.2'
+
 	compileOnly 'javax.persistence:javax.persistence-api:2.2'
 	compileOnly group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
+
 	testImplementation 'junit:junit:4.12'
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
 	testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.6.3'
 	testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.6.3'
 	testImplementation group: 'org.xmlunit', name: 'xmlunit-assertj', version: '2.6.3'
-	testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.0'
-	testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.0'
 }
 
 sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']
 
+tasks.withType(Jar) {
+	manifest.attributes(
+			'Specification-Title': 'Prowide Core',
+			'Specification-Version': project.version,
+			'Specification-Vendor': "SRU${SRU}",
+			'Implementation-Title': 'Prowide Core',
+			'Implementation-Version': project.version,
+			'Implementation-Vendor': 'www.prowidesoftware.com',
+			'Built-OS': System.getProperty('os.name'),
+			'Source-Compatibility': project.sourceCompatibility,
+			'Target-Compatibility': project.targetCompatibility,
+			'Built-Date': new Date().format("yyyy-MM-dd")
+	)
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	archiveClassifier = 'sources'
+	from sourceSets.main.allSource
+}
 
 def formattedDate() { 
 	new Date().format('dd MMM yyyy') 
 }
 
 javadoc {
-	failOnError false
+	failOnError true
 	options.overview = "overview.html"
 	options.header = "${version}"
 	options.windowTitle = "Prowide Core API Reference"
@@ -66,26 +85,6 @@ javadoc {
 task javadocJar(type: Jar, dependsOn: javadoc) {
 	archiveClassifier = 'javadoc'
     from javadoc.destinationDir
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-	archiveClassifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-tasks.withType(Jar) {
-	manifest.attributes(
-		'Specification-Title': 'Prowide Core',
-		'Specification-Version': project.version,
-		'Specification-Vendor': "SRU${SRU}",
-		'Implementation-Title': 'Prowide Core',
-		'Implementation-Version': project.version,
-		'Implementation-Vendor': 'www.prowidesoftware.com',
-		'Built-OS': System.getProperty('os.name'),
-		'Source-Compatibility': project.sourceCompatibility,
-		'Target-Compatibility': project.targetCompatibility,
-		'Built-Date': new Date().format("yyyy-MM-dd")
-	)
 }
 
 task writePom {
@@ -125,7 +124,6 @@ task writePom {
 		}.writeTo("$buildDir/pom.xml")
 	}
 }
-
 
 distributions {
 	main {
@@ -175,8 +173,7 @@ jacocoTestReport {
 				'**/mt6xx/**',
 				'**/mt7xx/**',
 				'**/mt8xx/**',
-				'**/mt9xx/**',
-				'**/dic/**'
+				'**/mt9xx/**'
 			])
 		})
 	}

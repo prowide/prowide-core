@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -62,7 +60,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2019</strong>
+ * This class complies with standard release <strong>SRU2020</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -70,7 +68,7 @@ public class Field98D extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -105,9 +103,9 @@ public class Field98D extends Field implements Serializable, DateContainer {
 	public static final Integer SIGN = 4;
 
 	/**
-	 * Component number for the UTC Indicator subfield
+	 * Component number for the Offset subfield
 	 */
-	public static final Integer UTC_INDICATOR = 5;
+	public static final Integer OFFSET = 5;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -361,7 +359,7 @@ public class Field98D extends Field implements Serializable, DateContainer {
 		result.add("Time");
 		result.add("Decimals");
 		result.add("Sign");
-		result.add("UTC Indicator");
+		result.add("Offset");
 		return result;
 	}
 
@@ -376,7 +374,7 @@ public class Field98D extends Field implements Serializable, DateContainer {
 		result.put(2, "time");
 		result.put(3, "decimals");
 		result.put(4, "sign");
-		result.put(5, "uTCIndicator");
+		result.put(5, "offset");
 		return result;
 	}
 	/**
@@ -504,7 +502,7 @@ public class Field98D extends Field implements Serializable, DateContainer {
 		return SwiftFormatUtils.getCurrency(getComponent(4));
 	}
 	/**
-	 * Gets the component5 (UTC Indicator).
+	 * Gets the component5 (Offset).
 	 * @return the component5
 	 */
 	public String getComponent5() {
@@ -520,18 +518,18 @@ public class Field98D extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Gets the UTC Indicator (component5).
-	 * @return the UTC Indicator from component5
+	 * Gets the Offset (component5).
+	 * @return the Offset from component5
 	 */
-	public String getUTCIndicator() {
+	public String getOffset() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the UTC Indicator (component5) as Calendar
-	 * @return the UTC Indicator from component5 converted to Calendar or null if cannot be converted
+	 * Get the Offset (component5) as Calendar
+	 * @return the Offset from component5 converted to Calendar or null if cannot be converted
 	 */
-	public java.util.Calendar getUTCIndicatorAsCalendar() {
+	public java.util.Calendar getOffsetAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));
 	}
     
@@ -702,7 +700,7 @@ public class Field98D extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-	 * Set the component5 (UTC Indicator).
+	 * Set the component5 (Offset).
 	 * @param component5 the component5 to set
 	 */
 	public Field98D setComponent5(String component5) {
@@ -720,20 +718,20 @@ public class Field98D extends Field implements Serializable, DateContainer {
 	}
 	
 	/**
-	 * Set the UTC Indicator (component5).
-	 * @param component5 the UTC Indicator to set
+	 * Set the Offset (component5).
+	 * @param component5 the Offset to set
 	 */
-	public Field98D setUTCIndicator(String component5) {
+	public Field98D setOffset(String component5) {
 		setComponent(5, component5);
 		return this;
 	}
 	
 	/**
-	 * Set the UTC Indicator (component5) from a Calendar object.
+	 * Set the Offset (component5) from a Calendar object.
 	 * @see #setComponent5(java.util.Calendar)
-	 * @param component5 Calendar with the UTC Indicator content to set
+	 * @param component5 Calendar with the Offset content to set
 	 */
-	public Field98D setUTCIndicator(java.util.Calendar component5) {
+	public Field98D setOffset(java.util.Calendar component5) {
 		setComponent5(component5);
 		return this;
 	}
@@ -832,11 +830,68 @@ public class Field98D extends Field implements Serializable, DateContainer {
 		if (jsonObject.get("sign") != null) {
 			field.setComponent4(jsonObject.get("sign").getAsString());
 		}
-		if (jsonObject.get("uTCIndicator") != null) {
-			field.setComponent5(jsonObject.get("uTCIndicator").getAsString());
+		if (jsonObject.get("offset") != null) {
+			field.setComponent5(jsonObject.get("offset").getAsString());
 		}
 		return field;
 	}
 	
+	/**
+	 * @deprecated use OFFSET instead
+	 */
+	@Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public static final Integer UTC_INDICATOR = 5;
 
+	/**
+	 * Get the ISO UTC Indicator combining the sign and offset, and changing the "N" negative sign indication by
+	 * proper +/- signs
+	 * @return the the UTC indicator such as +0100 or -0300
+	 */
+	public String getUtcIndicator() {
+	    if (getOffset() != null) {
+            if (getSign() != null && getSign().equals("N")) {
+                return "-" + StringUtils.trimToEmpty(getOffset());
+            } else {
+                return "+" + StringUtils.trimToEmpty(getOffset());
+            }
+	    }
+	    return null;
+	}
+
+	/**
+     * @deprecated use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getUTCIndicator() {
+        return getOffset();
+    }
+
+    /**
+     * @deprecated use getOffsetAsCalendar() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public java.util.Calendar getUTCIndicatorAsCalendar() {
+        return SwiftFormatUtils.getTime3(getOffset());
+    }
+
+    /**
+     * @deprecated use setOffset(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public Field98D setUTCIndicator(String component) {
+	    return setOffset(component);
+	}
+
+	/**
+     * @deprecated use setOffset(Calendar) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public Field98D setUTCIndicator(java.util.Calendar cal) {
+        return setOffset(cal);
+	}
 }

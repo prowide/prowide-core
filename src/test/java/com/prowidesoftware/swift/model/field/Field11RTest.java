@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -89,6 +89,12 @@ public class Field11RTest extends AbstractFieldTest {
 		f = new Field11R("100\n091019\n1234567890");
 		assertEquals("1234", f.getComponent3());
 		assertEquals("567890", f.getComponent4());
+
+		f = new Field11R("950\n090527");
+		assertEquals("950", f.getComponent1());
+		assertEquals("090527", f.getComponent2());
+		assertNull(f.getComponent3());
+		assertNull(f.getComponent4());
 	}
 	
 	@Test

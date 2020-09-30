@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -69,7 +67,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2019</strong>
+ * This class complies with standard release <strong>SRU2020</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -77,7 +75,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -501,17 +499,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 	}
 
 	/**
-	 * Same as getComponent(3)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent3AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(3);
-	}
-
-	/**
 	 * Gets the D/C Mark (component3).
 	 * @return the D/C Mark from component3
 	 */
@@ -523,17 +510,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 	 * @return the component4
 	 */
 	public String getComponent4() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Same as getComponent(4)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent4AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(4);
 	}
 
@@ -584,17 +560,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 	}
 
 	/**
-	 * Same as getComponent(6)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent6AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(6);
-	}
-
-	/**
 	 * Gets the Transaction Type (component6).
 	 * @return the Transaction Type from component6
 	 */
@@ -606,17 +571,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 	 * @return the component7
 	 */
 	public String getComponent7() {
-		return getComponent(7);
-	}
-
-	/**
-	 * Same as getComponent(7)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent7AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent7AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(7);
 	}
 
@@ -636,17 +590,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 	}
 
 	/**
-	 * Same as getComponent(8)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent8AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent8AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(8);
-	}
-
-	/**
 	 * Gets the Reference For The Account Owner (component8).
 	 * @return the Reference For The Account Owner from component8
 	 */
@@ -662,17 +605,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 	}
 
 	/**
-	 * Same as getComponent(9)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent9AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent9AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(9);
-	}
-
-	/**
 	 * Gets the Reference Of The Account Servicing Institution (component9).
 	 * @return the Reference Of The Account Servicing Institution from component9
 	 */
@@ -684,17 +616,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 	 * @return the component10
 	 */
 	public String getComponent10() {
-		return getComponent(10);
-	}
-
-	/**
-	 * Same as getComponent(10)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent10AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent10AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(10);
 	}
 
@@ -1172,7 +1093,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 		return field;
 	}
 	
-
 	/**
 	 * Custom parser for Field61.
 	 *

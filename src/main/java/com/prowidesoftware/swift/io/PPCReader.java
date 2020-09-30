@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -117,7 +117,7 @@ public class PPCReader extends AbstractReader {
 					sb.append((char) curChar);
 				}
 			} while (!done);
-			return sb.toString();
+			return sb.toString().trim();
 		} else {
 			throw new IllegalStateException("hasNext did not return true but this method was called");
 		}

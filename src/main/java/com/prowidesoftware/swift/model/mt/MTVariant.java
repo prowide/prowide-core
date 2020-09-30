@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,14 +33,14 @@ public enum MTVariant {
 	 * this message variant was removed from the standard in SRU2017
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	IRSLST(false),
 
 	/*
 	 * this message variant was removed from the standard in SRU2017
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	W8BENO(false);
 	
 	boolean validationFlag = false;

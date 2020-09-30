@@ -1,13 +1,26 @@
+/*
+ * Copyright 2006-2020 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
 /**
- * Name & Address
+ * Name and Address
  *
  * <p>Subfields (components) Data types
  * <ol>
@@ -249,17 +262,6 @@ public abstract class OptionDPartyField extends Field {
     }
 
     /**
-     * Same as getComponent(1)
-     * @deprecated use {@link #getComponent(int)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4= TargetYear.SRU2020)
-    public java.lang.String getComponent1AsString() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
-        return getComponent(1);
-    }
-
-    /**
      * Gets the D/C Mark (component1).
      * @return the D/C Mark from component1
      */
@@ -271,17 +273,6 @@ public abstract class OptionDPartyField extends Field {
      * @return the component2
      */
     public String getComponent2() {
-        return getComponent(2);
-    }
-
-    /**
-     * Same as getComponent(2)
-     * @deprecated use {@link #getComponent(int)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4=TargetYear.SRU2020)
-    public java.lang.String getComponent2AsString() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
         return getComponent(2);
     }
 
@@ -306,17 +297,6 @@ public abstract class OptionDPartyField extends Field {
      * @return the component3
      */
     public String getComponent3() {
-        return getComponent(3);
-    }
-
-    /**
-     * Same as getComponent(3)
-     * @deprecated use {@link #getComponent(int)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4=TargetYear.SRU2020)
-    public java.lang.String getComponent3AsString() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
         return getComponent(3);
     }
 
@@ -377,16 +357,6 @@ public abstract class OptionDPartyField extends Field {
     }
 
     /**
-     * Same as getComponent(4)
-     * @deprecated use {@link #getComponent(int)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4=TargetYear.SRU2020)
-    public java.lang.String getComponent4AsString() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
-        return getComponent(4);
-    }
-    /**
      * Gets the component5 (Name And Address).
      * @return the component5
      */
@@ -395,31 +365,10 @@ public abstract class OptionDPartyField extends Field {
     }
 
     /**
-     * Same as getComponent(5)
-     * @deprecated use {@link #getComponent(int)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4=TargetYear.SRU2020)
-    public java.lang.String getComponent5AsString() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent5AsString()", "Use use #getComponent(int) instead.");
-        return getComponent(5);
-    }
-    /**
      * Gets the component6 (Name And Address).
      * @return the component6
      */
     public String getComponent6() {
-        return getComponent(6);
-    }
-
-    /**
-     * Same as getComponent(6)
-     * @deprecated use {@link #getComponent(int)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4=TargetYear.SRU2020)
-    public java.lang.String getComponent6AsString() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
         return getComponent(6);
     }
 

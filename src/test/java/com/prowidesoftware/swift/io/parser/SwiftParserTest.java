@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -277,7 +277,7 @@ public class SwiftParserTest {
 	}
 
 	@Test
-	public void testConsumeBock1() throws IOException {
+	public void testConsumeBock_01() throws IOException {
 		parser.setData("{1:0123456789012345678901234}");
 		final SwiftBlock1 b = (SwiftBlock1) parser.consumeBlock(null);
 		assertNotNull(b);
@@ -286,7 +286,7 @@ public class SwiftParserTest {
 	}
 
 	@Test
-	public void testConsumeBock2() throws IOException {
+	public void testConsumeBock_02() throws IOException {
 		parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003}");
 		final SwiftBlock1 b = (SwiftBlock1) parser.consumeBlock(null);
 		assertNotNull(b);
@@ -300,7 +300,7 @@ public class SwiftParserTest {
 	}
 
 	@Test
-	public void testConsumeBock3() throws IOException {
+	public void testConsumeBock_03() throws IOException {
 		parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I541CITIGB2LXXXXN}{4:\r\n" +
 				":16R:GENL\r\n" +
 				":20C::SEME//2005070600000006\r\n" +

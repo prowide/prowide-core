@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -47,30 +45,25 @@ import com.google.gson.JsonParser;
  * <p>Subfields (components) Data types
  * <ol>
  * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>35x[$35x]0-5</code></li>
- * 		<li>parser pattern: <code>S[$S]0-5</code></li>
- * 		<li>components pattern: <code>SSSSSS</code></li>
+ * 		<li>parser pattern: <code>S</code></li>
+ * 		<li>components pattern: <code>S</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2019</strong>
+ * This class complies with standard release <strong>SRU2020</strong>
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field74 extends Field implements Serializable, MultiLineField {
+public class Field74 extends StructuredNarrativeField implements Serializable, NarrativeContainer, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -81,19 +74,12 @@ public class Field74 extends Field implements Serializable, MultiLineField {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_74 = "74";
-	public static final String PARSER_PATTERN ="S[$S]0-5";
-	public static final String COMPONENTS_PATTERN = "SSSSSS";
-
-	/**
-	 * Component number for the Narrative subfield
-	 */
-	public static final Integer NARRATIVE = 1;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field74() {
-		super(6);
+        super();
 	}
 	    					
 	/**
@@ -119,6 +105,16 @@ public class Field74 extends Field implements Serializable, MultiLineField {
 			throw new IllegalArgumentException("cannot create field 74 from tag "+tag.getName()+", tagname must match the name of the field.");
 		}
 		parse(tag.getValue());
+	}
+
+	/**
+	 * Creates a new field from a Narrative instance.
+	 * @see Narrative#builder
+	 * @param narrative a not-null narrative to use as field value
+	 * @since 8.1.0
+	 */
+	public Field74(final Narrative narrative) {
+		this(narrative.getValue());
 	}
 
 	/**
@@ -153,353 +149,12 @@ public class Field74 extends Field implements Serializable, MultiLineField {
 		return new Tag(NAME, "");
 	}
 
-
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(6);
-		List<String> lines = SwiftParseUtils.getLines(value);
-		SwiftParseUtils.setComponentsFromLines(this, 1, null, 0, lines);
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		appendInLines(result, 1, 6);
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 6) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 74");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
-		}
-		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		if (component == 4) {
-			//default format (as is)
-			return getComponent(4);
-		}
-		if (component == 5) {
-			//default format (as is)
-			return getComponent(5);
-		}
-		if (component == 6) {
-			//default format (as is)
-			return getComponent(6);
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field74.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
-
-	/**
-     * Returns the field parser pattern
-     * @return the static value of Field74.PARSER_PATTERN
-     */
-	@Override
-	public final String parserPattern() {
-        return PARSER_PATTERN;
-    }
-
 	/**
 	 * Returns the field validator pattern
 	 */
 	@Override
 	public final String validatorPattern() {
 		return "35x[$35x]0-5";
-	}
-
-    /**
-     * Given a component number it returns true if the component is optional,
-     * regardless of the field being mandatory in a particular message.<br>
-     * Being the field's value conformed by a composition of one or several
-     * internal component values, the field may be present in a message with
-     * a proper value but with some of its internal components not set.
-     *
-     * @param component component number, first component of a field is referenced as 1
-     * @return true if the component is optional for this field, false otherwise
-     */
-    @Override
-    public boolean isOptional(int component) {
-        if (component == 2) {
-            return true;
-        }
-        if (component == 3) {
-            return true;
-        }
-        if (component == 4) {
-            return true;
-        }
-        if (component == 5) {
-            return true;
-        }
-        if (component == 6) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Returns true if the field is a GENERIC FIELD as specified by the standard.
-     * @return true if the field is generic, false otherwise
-     */
-    @Override
-    public boolean isGeneric() {
-        return false;
-    }
-
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 6;
-	}
-
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Narrative");
-		result.add("Narrative 2");
-		result.add("Narrative 3");
-		result.add("Narrative 4");
-		result.add("Narrative 5");
-		result.add("Narrative 6");
-		return result;
-	}
-
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "narrative");
-		result.put(2, "narrative2");
-		result.put(3, "narrative3");
-		result.put(4, "narrative4");
-		result.put(5, "narrative5");
-		result.put(6, "narrative6");
-		return result;
-	}
-	/**
-	 * Gets the component1 (Narrative).
-	 * @return the component1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Same as getComponent(1)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Narrative (component1).
-	 * @return the Narrative from component1
-	 */
-	public String getNarrativeLine1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Narrative (component2).
-	 * @return the Narrative from component2
-	 */
-	public String getNarrativeLine2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Gets the Narrative (component3).
-	 * @return the Narrative from component3
-	 */
-	public String getNarrativeLine3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Gets the Narrative (component4).
-	 * @return the Narrative from component4
-	 */
-	public String getNarrativeLine4() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Gets the Narrative (component5).
-	 * @return the Narrative from component5
-	 */
-	public String getNarrativeLine5() {
-		return getComponent(5);
-	}
-
-	/**
-	 * Gets the Narrative (component6).
-	 * @return the Narrative from component6
-	 */
-	public String getNarrativeLine6() {
-		return getComponent(6);
-	}
-
-	/**
-	 * Gets the Narrative as a concatenation of component1 to component6.
-	 * @return the Narrative from components
-	 */
-	public String getNarrative() {
-		StringBuilder result = new StringBuilder();
-		for (int i = 1 ; i < 7 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
-			}
-		}
-		return result.toString();
-	}
-	/**
-	 * Gets the component2 (Narrative).
-	 * @return the component2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Same as getComponent(2)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent2AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(2);
-	}
-	/**
-	 * Gets the component3 (Narrative).
-	 * @return the component3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Same as getComponent(3)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent3AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(3);
-	}
-	/**
-	 * Gets the component4 (Narrative).
-	 * @return the component4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Same as getComponent(4)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent4AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(4);
-	}
-	/**
-	 * Gets the component5 (Narrative).
-	 * @return the component5
-	 */
-	public String getComponent5() {
-		return getComponent(5);
-	}
-
-	/**
-	 * Same as getComponent(5)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent5AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent5AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(5);
-	}
-	/**
-	 * Gets the component6 (Narrative).
-	 * @return the component6
-	 */
-	public String getComponent6() {
-		return getComponent(6);
-	}
-
-	/**
-	 * Same as getComponent(6)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent6AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(6);
 	}
 
 
@@ -511,113 +166,13 @@ public class Field74 extends Field implements Serializable, MultiLineField {
 		setComponent(1, component1);
 		return this;
 	}
-
+	
 	/**
 	 * Set the Narrative (component1).
 	 * @param component1 the Narrative to set
 	 */
-	public Field74 setNarrativeLine1(String component1) {
+	public Field74 setNarrative(String component1) {
 		setComponent(1, component1);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component2).
-	 * @param component2 the Narrative to set
-	 */
-	public Field74 setNarrativeLine2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component3).
-	 * @param component3 the Narrative to set
-	 */
-	public Field74 setNarrativeLine3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component4).
-	 * @param component4 the Narrative to set
-	 */
-	public Field74 setNarrativeLine4(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component5).
-	 * @param component5 the Narrative to set
-	 */
-	public Field74 setNarrativeLine5(String component5) {
-		setComponent(5, component5);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative (component6).
-	 * @param component6 the Narrative to set
-	 */
-	public Field74 setNarrativeLine6(String component6) {
-		setComponent(6, component6);
-		return this;
-	}
-
-	/**
-	 * Set the Narrative splitting the parameter lines into components 1 to 6.
-	 * @param value the Narrative to set, may contain line ends and each line will be set to its correspondent component attribute
-	 */
-	public Field74 setNarrative(String value) {
-		List<String> lines = SwiftParseUtils.getLines(value);
-		SwiftParseUtils.setComponentsFromLines(this, 1, 6, 0, lines);
-		return this;
-	}
-
-	/**
-	 * Set the component2 (Narrative).
-	 * @param component2 the component2 to set
-	 */
-	public Field74 setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-
-	/**
-	 * Set the component3 (Narrative).
-	 * @param component3 the component3 to set
-	 */
-	public Field74 setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-
-	/**
-	 * Set the component4 (Narrative).
-	 * @param component4 the component4 to set
-	 */
-	public Field74 setComponent4(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-
-	/**
-	 * Set the component5 (Narrative).
-	 * @param component5 the component5 to set
-	 */
-	public Field74 setComponent5(String component5) {
-		setComponent(5, component5);
-		return this;
-	}
-
-	/**
-	 * Set the component6 (Narrative).
-	 * @param component6 the component6 to set
-	 */
-	public Field74 setComponent6(String component6) {
-		setComponent(6, component6);
 		return this;
 	}
 
@@ -784,23 +339,229 @@ public class Field74 extends Field implements Serializable, MultiLineField {
 		if (jsonObject.get("narrative") != null) {
 			field.setComponent1(jsonObject.get("narrative").getAsString());
 		}
-		if (jsonObject.get("narrative2") != null) {
-			field.setComponent2(jsonObject.get("narrative2").getAsString());
-		}
-		if (jsonObject.get("narrative3") != null) {
-			field.setComponent3(jsonObject.get("narrative3").getAsString());
-		}
-		if (jsonObject.get("narrative4") != null) {
-			field.setComponent4(jsonObject.get("narrative4").getAsString());
-		}
-		if (jsonObject.get("narrative5") != null) {
-			field.setComponent5(jsonObject.get("narrative5").getAsString());
-		}
-		if (jsonObject.get("narrative6") != null) {
-			field.setComponent6(jsonObject.get("narrative6").getAsString());
-		}
 		return field;
 	}
 	
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public static final Integer NARRATIVE = 1;
 
+	/**
+     * @deprecated use getValue() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getNarrative() {
+        return getValue();
+    }
+
+    // changed component 1
+
+	/**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getNarrativeLine1() {
+		return getLine(1);
+	}
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setNarrativeLine1(String component) {
+        return this;
+    }
+
+    // deprecated component 2
+
+	/**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public String getComponent2() {
+        return getLine(2);
+    }
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setComponent2(String component) {
+        return this;
+    }
+
+    /**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getNarrativeLine2() {
+		return getLine(2);
+	}
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setNarrativeLine2(String component) {
+        return this;
+    }
+
+    // deprecated component 3
+
+	/**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public String getComponent3() {
+        return getLine(3);
+    }
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setComponent3(String component) {
+        return this;
+    }
+
+    /**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getNarrativeLine3() {
+		return getLine(3);
+	}
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setNarrativeLine3(String component) {
+        return this;
+    }
+
+    // deprecated component 4
+
+	/**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public String getComponent4() {
+        return getLine(4);
+    }
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setComponent4(String component) {
+        return this;
+    }
+
+    /**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getNarrativeLine4() {
+		return getLine(4);
+	}
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setNarrativeLine4(String component) {
+        return this;
+    }
+
+    // deprecated component 5
+
+	/**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public String getComponent5() {
+        return getLine(5);
+    }
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setComponent5(String component) {
+        return this;
+    }
+
+    /**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getNarrativeLine5() {
+		return getLine(5);
+	}
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setNarrativeLine5(String component) {
+        return this;
+    }
+
+    // deprecated component 6
+
+	/**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+	public String getComponent6() {
+        return getLine(6);
+    }
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setComponent6(String component) {
+        return this;
+    }
+
+    /**
+     * @deprecated use getLine(int) or narrative() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public String getNarrativeLine6() {
+		return getLine(6);
+	}
+
+	/**
+     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    public Field74 setNarrativeLine6(String component) {
+        return this;
+    }
 }

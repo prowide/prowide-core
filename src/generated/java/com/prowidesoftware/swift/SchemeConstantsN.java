@@ -48,6 +48,8 @@ public interface SchemeConstantsN {
     public final static String NEWA = "NEWA";
     public final static String NOTE = "NOTE";
     public final static String NAVL = "NAVL";
+    public final static String NESP = "NESP";
+    public final static String NCOM = "NCOM";
     public final static String NBON = "NBON";
     public final static String NBLT = "NBLT";
     public final static String NDOM = "NDOM";

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,32 +19,30 @@ import java.util.Currency;
 import java.util.List;
 
 /**
- * Interface to mark fields whose definition contain a currency.
- * Note that if a field has a currency and it is optional, and the actual 
- * field has not set the optional currency/ies then
- * the call currencies() will return an empty list
+ * Field with a currency component.
+ *
+ * <p>Note that if a field has a currency and it is optional, and the actual field has not set the optional currency/ies
+ * then the call currencies() will return an empty list
  * 
- * @author www.prowidesoftware.com
  * @since 6.0
  */
 public interface CurrencyContainer extends PatternContainer {
 
 	/**
 	 * Get a list of strings of currencies present in this field
-	 * @return a list, with zero or more currencies in this field.
+	 * @return found currency codes or empty list
 	 */
 	List<String> currencyStrings();
 	
 	/**
 	 * Get the single currency contained in this field.
 	 * @return null if no currency is contained - which should never happen, or throws an exception if more than one currency is present in this field.
-	 * 
 	 */
 	String currencyString();
 	
 	/**
 	 * Utility method that creates a Currency for every string returned by {@link #currencyStrings()}
-	 * 
+	 *  @return found currencies or empty list
 	 */
 	List<Currency> currencies();
 	
@@ -56,7 +54,7 @@ public interface CurrencyContainer extends PatternContainer {
 	Currency currency();
 	
 	/**
-	 * set the currency of this field.
+	 * Set the currency of this field.
 	 * If this field contains more than one currency then all currency components will be set.
 	 * Individual setComponentNN should be used to set only one component of the field.
 	 */

@@ -42,6 +42,7 @@ public interface SchemeConstantsB {
     public final static String BYIY = "BYIY";
     public final static String BREAK = "BREAK";
     public final static String BOOK = "BOOK";
+    public final static String BDEV = "BDEV";
     public final static String BYSTAREA = "BYSTAREA";
     public final static String BWIT = "BWIT";
     public final static String BOLQ = "BOLQ";

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -163,7 +163,7 @@ Sequence F (O)<ul><li class="field">Field 15 F (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2019</strong>
+ * This source code is specific to release <strong>SRU 2020</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -172,7 +172,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT300.class.getName());
 	
@@ -3683,8 +3683,9 @@ public class MT300 extends AbstractMT implements Serializable {
 	 */
 	@SequenceStyle(Type.CUSTOM)
 	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2020)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2021)
 	public SequenceE1 getSequenceE1() {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getSequenceE1()", "Use the getSequenceE1List() instead, this sequence is repetitive");
 		return getSequenceE1(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
@@ -3698,8 +3699,9 @@ public class MT300 extends AbstractMT implements Serializable {
 	 */
 	@SequenceStyle(Type.CUSTOM)
 	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2020)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2021)
 	public SequenceE1 getSequenceE1(final SwiftTagListBlock parentSequence) {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getSequenceE1(SwiftTagListBlock)", "Use the getSequenceE1List(SwiftTagListBlock) instead, this sequence is repetitive");
 		List<SequenceE1> all = getSequenceE1List(parentSequence);
 		if (!all.isEmpty()) {
 		    return all.get(0);

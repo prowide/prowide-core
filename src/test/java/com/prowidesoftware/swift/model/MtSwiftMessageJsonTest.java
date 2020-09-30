@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class MtSwiftMessageJsonTest {
 				"R00000V000034534\n" +
 				":71A:OUR\n" +
 				":72:/TIPO/422\n" +
-				"-}";
+				"-}{5:{PDE:FOO}}";
 
 		MtSwiftMessage m = new MtSwiftMessage(fin);
 
@@ -61,6 +61,7 @@ public class MtSwiftMessageJsonTest {
         m.setNotes(notes);
 		assertNotNull(m);
 		String s = m.toJson();
+        //System.out.println(s);
 
         JsonParser parser = new JsonParser();
         JsonObject o = parser.parse(s).getAsJsonObject();
@@ -68,7 +69,7 @@ public class MtSwiftMessageJsonTest {
         assertNotNull(o);
 
         assertNull(o.get("mir"));
-        assertNull(o.get("pde"));
+        assertEquals("FOO", o.get("pde").getAsString());
         assertNull(o.get("pdm"));
         assertNull(o.get("mur"));
 		assertEquals("ICARAANC0FFF103TBEXO200909031", o.get("uuid").getAsString());

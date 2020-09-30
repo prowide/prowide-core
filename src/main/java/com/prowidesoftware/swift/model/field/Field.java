@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,9 +58,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * @deprecated use {@link #Field(int)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear.SRU2020)
+	@ProwideDeprecated(phase4=TargetYear.SRU2021)
 	protected Field() {
-		DeprecationUtils.phase2(getClass(), "Field() no args constructor", "Use the constructor Field(int) with the number of components parameter instead");
+		DeprecationUtils.phase3(getClass(), "Field() no args constructor", "Use the constructor Field(int) with the number of components parameter instead");
 	}
 
 	/**
@@ -736,7 +736,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Moved to GenericField Interface
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear.SRU2020)
+	@ProwideDeprecated(phase4=TargetYear.SRU2021)
 	public String getDSS() {
 		return null;
 	}
@@ -745,7 +745,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Moved to GenericField Interface
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear.SRU2020)
+	@ProwideDeprecated(phase4=TargetYear.SRU2021)
 	public boolean isDSSPresent() {
 		return false;
 	}
@@ -754,7 +754,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 	 * Moved to GenericField Interface
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear.SRU2020)
+	@ProwideDeprecated(phase4=TargetYear.SRU2021)
 	public String getConditionalQualifier() {
 		return null;
 	}
@@ -782,16 +782,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 			return l.charValue() == c;
 		}
 		return false;
-	}
-
-	/**
-	 * @deprecated confusing name, use {@link #isNameAnyOf(String...)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public boolean isAnyOf(final String ... names) {
-		DeprecationUtils.phase3(getClass(), "isAnyOf(String...)", "Use isNameAnyOf(String...) instead.");
-		return isNameAnyOf(names);
 	}
 
 	/**

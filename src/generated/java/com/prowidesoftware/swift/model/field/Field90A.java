@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -63,7 +61,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2019</strong>
+ * This class complies with standard release <strong>SRU2020</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -71,7 +69,7 @@ public class Field90A extends Field implements Serializable, AmountContainer, Ge
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -344,17 +342,6 @@ public class Field90A extends Field implements Serializable, AmountContainer, Ge
 	}
 
 	/**
-	 * Same as getComponent(1)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(1);
-	}
-
-	/**
 	 * Gets the Qualifier (component1).
 	 * @return the Qualifier from component1
 	 */
@@ -370,17 +357,6 @@ public class Field90A extends Field implements Serializable, AmountContainer, Ge
 	}
 
 	/**
-	 * Same as getComponent(2)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent2AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(2);
-	}
-
-	/**
 	 * Gets the Percentage Type Code (component2).
 	 * @return the Percentage Type Code from component2
 	 */
@@ -392,17 +368,6 @@ public class Field90A extends Field implements Serializable, AmountContainer, Ge
 	 * @return the component3
 	 */
 	public String getComponent3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Same as getComponent(3)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent3AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(3);
 	}
 

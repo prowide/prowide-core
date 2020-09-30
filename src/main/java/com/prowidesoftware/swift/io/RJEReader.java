@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -103,7 +103,7 @@ public class RJEReader extends AbstractReader {
 			} catch (IOException unused) {
 				return null;
 			}
-			return sb.toString();
+			return sb.toString().trim();
 		}
 		return null;
 	}

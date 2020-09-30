@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	@Column(name = "creation_date")
 	private Calendar creationDate = Calendar.getInstance();
 
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "msg_id", nullable = false)
 	@OrderColumn(name = "sort_key")
 	private List<SwiftMessageStatusInfo> statusTrail = new ArrayList<>();
@@ -126,8 +126,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	@OrderColumn(name = "sort_key")
 	private List<SwiftMessageNote> notes = new ArrayList<>();
 
-	@ElementCollection
-	//@Fetch(FetchMode.SELECT)
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "swift_msg_properties", joinColumns = @JoinColumn(name = "id"))
 	@MapKeyColumn(name = "property_key", length = 200)
 	@Column(name = "property_value")
@@ -267,7 +266,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * Updates the object attributes with metadata parsed from the message raw content:
-	 * identifier, sender, receiver, direction and specific data for the implementing subclass.<br/>
+	 * identifier, sender, receiver, direction and specific data for the implementing subclass.
 	 * 
 	 * @since 7.7
 	 */
@@ -308,15 +307,12 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     /**
      * Set the raw content of the message.
      * <p>
-     * IMPORTANT: this will not automatically update the metadata attributes.
-     * Consider using one of the specific subclass <strong>update</strong> methods.
-     * @see MtSwiftMessage#updateFromFIN(String)}
-     * @see MtSwiftMessage#updateFromModel(com.prowidesoftware.swift.model.mt.AbstractMT)}
-     * @see MtSwiftMessage#updateFromModel(SwiftMessage)} 
-     * @see MxSwiftMessage#updateFromXML(String)}
-     * @see MxSwiftMessage#updateFromModel(com.prowidesoftware.swift.model.mx.AbstractMX)
+     * IMPORTANT: this will not automatically update the metadata attributes. Consider using one of the specific
+	 * subclasses <strong>update</strong> methods. For MT that would be {@link MtSwiftMessage#updateFromFIN(String)}
+     * {@link MtSwiftMessage#updateFromModel(com.prowidesoftware.swift.model.mt.AbstractMT)} and
+     * {@link MtSwiftMessage#updateFromModel(SwiftMessage)}. The for MX in the Prowide ISO20022 library you can use
+	 * equivalent methods MxSwiftMessage#updateFromXML(String) and MxSwiftMessage#updateFromModel(AbstractMX)
      *
-     * 
      * @param message raw content of the message
      */
     public void setMessage(String message) {
@@ -326,10 +322,10 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	/**
 	 * Message type identification as specify by SWIFT.
 	 * <ul>
-	 * 	<li>For MT: fin.&lt;msgtype&gt;[.&lt;mug|variant&gt;] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
-	 * 	<li>For MX: &lt;bus.area>.&lt;msgtype&gt;.&lt;variant&gt;.&lt;version&gt; for example: camt.034.001.02, ifds.001.001.01</li>
-	 * 	<li>For acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
-	 * 	<li>For non-acknowledge service messages @see {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
+	 * 	<li>For MT: fin.type[.variant] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
+	 * 	<li>For MX: the message business area, type, variant and version; for example: camt.034.001.02</li>
+	 * 	<li>For acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
+	 * 	<li>For non-acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
 	 * 	<li>For other service messages the identifier is left <code>null</code></li>
 	 * </ul>
 	 */
@@ -834,6 +830,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 		
 	/**
 	 * Get the value of the property under the given key or <code>null</code> if the key is not found or its value is empty
+	 * @param key the property key to get
 	 */
 	public String getProperty(String key) {
 		if (this.properties != null) {
@@ -844,6 +841,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * @see #getProperty(String)
+	 * @param key the property key to get
 	 */
 	@SuppressWarnings("rawtypes")
 	public String getProperty(Enum key) {
@@ -852,6 +850,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * Sets a property using the given key and value, if the key exists the value is overwritten.
+	 * @param key the property to set
+	 * @param value the value for the property
 	 */
 	public void setProperty(String key, String value) {
 		if (this.properties == null) {
@@ -864,6 +864,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * @see #setProperty(String, String)
+	 * @param key the property to set
+	 * @param value the value for the property
 	 */
 	@SuppressWarnings("rawtypes")
 	public void setProperty(Enum key, String value) {
@@ -872,6 +874,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * Returns true if the message has a property with the given key name and value "true"
+	 * @param key the property key to get
 	 */
 	public boolean getPropertyBoolean(final String key) {
 		return propertyEquals("true", key);
@@ -879,6 +882,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	
 	/**
 	 * @see #getPropertyBoolean(String)
+	 * @param key the property key to get
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean getPropertyBoolean(final Enum key) {
@@ -898,6 +902,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
 	/**
 	 * @see #propertyEquals(String, String)
+	 * @param key the property key to check
+	 * @param expectedValue the expected value
 	 * @since 7.10.4
 	 */
 	@SuppressWarnings("rawtypes")
@@ -1054,7 +1060,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	}
 
 	/**
-	 * True if the message is an {@link MxSwiftMessage}, false otherwise
+	 * True if the message is an MxSwiftMessage from the Prowide ISO20022 library, false otherwise
 	 * @since 7.8
 	 */
 	public boolean isMX() {
@@ -1357,20 +1363,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	 * @return a string with the category or empty if the identifier is invalid or not present
 	 * @since 7.10.4
 	 */
-	public String getCategory() {
-		if (StringUtils.isBlank(this.identifier)) {
-			return "";
-		}
-		if (isMT())	{
-			return (new MtId(this.identifier)).category();
-		} else {
-			MxBusinessProcess proc = (new MxId(this.identifier)).getBusinessProcess();
-			if (proc != null) {
-				return proc.name();
-			}
-		}
-		return "";
-	}
+	public abstract String getCategory();
 
 	/**
 	 * Get the message type.<br>

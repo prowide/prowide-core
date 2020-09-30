@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -65,7 +63,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2019</strong>
+ * This class complies with standard release <strong>SRU2020</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -73,7 +71,7 @@ public class Field346 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -395,17 +393,6 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Same as getComponent(1)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(1);
-	}
-
-	/**
 	 * Gets the Branch1 (component1).
 	 * @return the Branch1 from component1
 	 */
@@ -417,17 +404,6 @@ public class Field346 extends Field implements Serializable {
 	 * @return the component2
 	 */
 	public String getComponent2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Same as getComponent(2)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent2AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(2);
 	}
 
@@ -447,17 +423,6 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Same as getComponent(3)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent3AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(3);
-	}
-
-	/**
 	 * Gets the Branch3 (component3).
 	 * @return the Branch3 from component3
 	 */
@@ -469,17 +434,6 @@ public class Field346 extends Field implements Serializable {
 	 * @return the component4
 	 */
 	public String getComponent4() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Same as getComponent(4)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent4AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(4);
 	}
 
@@ -499,17 +453,6 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Same as getComponent(5)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent5AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent5AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(5);
-	}
-
-	/**
 	 * Gets the Branch5 (component5).
 	 * @return the Branch5 from component5
 	 */
@@ -521,17 +464,6 @@ public class Field346 extends Field implements Serializable {
 	 * @return the component6
 	 */
 	public String getComponent6() {
-		return getComponent(6);
-	}
-
-	/**
-	 * Same as getComponent(6)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent6AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(6);
 	}
 
@@ -551,17 +483,6 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Same as getComponent(7)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent7AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent7AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(7);
-	}
-
-	/**
 	 * Gets the Branch7 (component7).
 	 * @return the Branch7 from component7
 	 */
@@ -573,17 +494,6 @@ public class Field346 extends Field implements Serializable {
 	 * @return the component8
 	 */
 	public String getComponent8() {
-		return getComponent(8);
-	}
-
-	/**
-	 * Same as getComponent(8)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent8AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent8AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(8);
 	}
 
@@ -603,17 +513,6 @@ public class Field346 extends Field implements Serializable {
 	}
 
 	/**
-	 * Same as getComponent(9)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent9AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent9AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(9);
-	}
-
-	/**
 	 * Gets the Branch9 (component9).
 	 * @return the Branch9 from component9
 	 */
@@ -625,17 +524,6 @@ public class Field346 extends Field implements Serializable {
 	 * @return the component10
 	 */
 	public String getComponent10() {
-		return getComponent(10);
-	}
-
-	/**
-	 * Same as getComponent(10)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent10AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent10AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(10);
 	}
 

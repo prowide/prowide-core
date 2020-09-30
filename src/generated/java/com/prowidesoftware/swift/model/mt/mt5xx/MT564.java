@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -217,7 +217,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2019</strong>
+ * This source code is specific to release <strong>SRU 2020</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -226,7 +226,7 @@ public class MT564 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT564.class.getName());
 	
@@ -2303,7 +2303,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceB1_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceB1_sru2020(this);
 	}
 	
 	/**
@@ -3053,7 +3053,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceE1aList_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceE1aList_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceE1a delimited by 16R/16S with value specified in {@link SequenceE1a#START_END_16RS}

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import com.prowidesoftware.deprecation.TargetYear;
  * @deprecated usage of this interface as enum is discouraged, create custom and specific enum as necessary
  */
 @Deprecated
-@ProwideDeprecated(phase3= TargetYear.SRU2020)
+@ProwideDeprecated(phase4= TargetYear.SRU2021)
 public interface SequenceName {
 	String A = "A";
 	String A1 = "A1";

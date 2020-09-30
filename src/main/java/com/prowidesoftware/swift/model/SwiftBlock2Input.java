@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -491,9 +491,9 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
 	 * @since 7.9.8
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public String toJsonV1() {
-		DeprecationUtils.phase2(getClass(), "toJsonV1()", "use toJson() instead");
+		DeprecationUtils.phase3(getClass(), "toJsonV1()", "use toJson() instead");
 		final StringBuilder sb = new StringBuilder();
 		sb.append("{ \n");
 

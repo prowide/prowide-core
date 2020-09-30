@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,14 @@
  */
 package com.prowidesoftware.swift.model;
 
+import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 /**
- * Enumeration of messages flow types.
+ * Message direction from application perspective, including the catch all value "both".
  * 
- * @author www.prowidesoftware.com
- * @since 7.0
+ * @see MessageDirection
  */
 public enum MessageIOType {
 	/**
@@ -39,12 +39,7 @@ public enum MessageIOType {
 	both;
 
 	public static boolean isValid(String ioType) {
-		Validate.notNull(ioType, "ioType can not be null");
-		for (MessageIOType t: values()) {
-			if (StringUtils.equals(ioType.trim(), t.name()))
-				return true;
-		}
-		return false;
+		return EnumUtils.isValidEnum(MessageIOType.class, ioType);
 	}
 	
 	public boolean isIncoming() {

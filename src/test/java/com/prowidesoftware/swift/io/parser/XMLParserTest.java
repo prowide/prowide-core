@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -356,7 +356,7 @@ public class XMLParserTest {
 					"<block1>\n" + 
 					"	<applicationId>F</applicationId>\n" + 
 					"	<serviceId>01</serviceId>\n" + 
-					"	<logicalTerminal>TESTUS00AXXX</logicalTerminal>\n" + 
+					"	<logicalTerminal>TESTUS20AXXX</logicalTerminal>\n" +
 					"	<sessionNumber>0816</sessionNumber>\n" + 
 					"	<sequenceNumber>000001</sequenceNumber>\n" + 
 					"</block1>\n" + 

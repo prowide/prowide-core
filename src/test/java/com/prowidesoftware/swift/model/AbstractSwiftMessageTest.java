@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,12 +41,14 @@ public class AbstractSwiftMessageTest {
 		assertFalse(msg.match(""));
 		assertFalse(msg.match(null));
 		assertTrue(msg.match("fin.103"));
+		assertTrue(msg.match("fin.103|fin.102"));
 		assertTrue(msg.match("fin.*"));
 		assertFalse(msg.match("fin.*STP"));
 
 		msg.setIdentifier("camt.002.002.01");
 		assertTrue(msg.match("camt.*"));
 		assertTrue(msg.match("camt.*01"));
+		assertTrue(msg.match("camt\\..*01"));
 	}
 
 	@Test
@@ -59,15 +61,6 @@ public class AbstractSwiftMessageTest {
 
 		mt.setIdentifier("fin.103");
 		assertEquals("1", mt.getCategory());
-
-		MxSwiftMessage mx = new MxSwiftMessage();
-		assertEquals("", mx.getCategory());
-
-		mx.setIdentifier("");
-		assertEquals("", mx.getCategory());
-
-		mx.setIdentifier("camt.002.002.01");
-		assertEquals("camt", mx.getCategory());
 	}
 
 }

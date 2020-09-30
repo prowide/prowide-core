@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -690,16 +690,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	}
 	
 	/**
-	 * @deprecated use {@link #countAll()} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public int getTagCount() {
-		DeprecationUtils.phase3(getClass(), "getTagCount()", "Use countAll() instead." );
-		return countAll();
-	}
-	
-	/**
 	 * Gets the number of tags in this taglist
 	 * @return zero or the amount of tags contained in the block
 	 */	public int countAll() {
@@ -1012,9 +1002,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 * @deprecated use #getSubBlock(Integer, Integer) instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public SwiftTagListBlock getSubBlockByIndex(final Integer startIndex, final Integer endIndex) {
-		DeprecationUtils.phase2(getClass(), "getSubBlockByIndex(Integer, Integer", "use getSubBlock(Integer, Integer) instead");
+		DeprecationUtils.phase3(getClass(), "getSubBlockByIndex(Integer, Integer", "use getSubBlock(Integer, Integer) instead");
 		return getSubBlock(startIndex, endIndex);
 	}
 
@@ -1128,18 +1118,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 			default:
 				return -1;
 		}
-    }
-
-    /**
-     * Gets a subblock after the first tag with the given tagname.
-     * The given separator tag is included in the result
-     * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4=TargetYear.SRU2020)
-    public SwiftTagListBlock getSubBlockAfterFirst(final String tagname) {
-    	DeprecationUtils.phase3(getClass(), "getSubBlockAfterFirst(String)", "Use getSubBlockAfterFirst(String, boolean) instead.");
-        return getSubBlockAfterFirst(tagname, true);
     }
 
 	/**
@@ -1265,11 +1243,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 	 /**
 	  * Split the given list with the given tagname.
 	  * Beware if the tagname is not found the entire list of tags is returned.
-	  *
-	  * @deprecated use {@link #splitByTagName(int, String)} instead where the result is empty when the boundary field is not found
 	  */
-	 @Deprecated
-	 @ProwideDeprecated(phase2 = TargetYear.SRU2020)
 	 public List<SwiftTagListBlock> splitByTagName(final String tagName) {
 		 final List<SwiftTagListBlock> result = new ArrayList<>();
 		 if (this.tags.isEmpty() || !containsTag(tagName)) {
@@ -1467,9 +1441,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @deprecated use {@link #getSubBlockBeforeFirst(String, boolean)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2020)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public SwiftTagListBlock trimAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
-    	DeprecationUtils.phase2(getClass(), "trimAfterFirst(String, boolean)", "use getSubBlockBeforeFirst(String, boolean) instead");
+    	DeprecationUtils.phase3(getClass(), "trimAfterFirst(String, boolean)", "use getSubBlockBeforeFirst(String, boolean) instead");
 		return getSubBlockBeforeFirst(tagname, includeBoundaryInResult);
 	 }
 
@@ -1641,24 +1615,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 		 }
 		 return result;
 	 }
-
-	/**
-	 * @deprecated use {@link #getSubBlockBeforeFirst(String, boolean)}
-	 */
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public SwiftTagListBlock removeAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
-		DeprecationUtils.phase3(getClass(), "removeAfterFirst(String, boolean)", "Use getSubBlockBeforeFirst(String, boolean) instead.");
-		return getSubBlockBeforeFirst(tagname, includeBoundaryInResult);
-	}
-
-    /**
-     * @deprecated use {@link #getSubBlockAfterFirst(String, boolean)}
-     */
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-    public SwiftTagListBlock removeUntilFirst(final String tagname, final boolean includeBoundaryInResult) {
-		DeprecationUtils.phase3(getClass(), "removeUntilFirst(String, boolean)", "Use getSubBlockAfterFirst(String, boolean) instead.");
-		return getSubBlockAfterFirst(tagname, includeBoundaryInResult);
-	}
 
 	 /**
 	  * Get all subblocks in message that start with tag with tagname, end with tag named endName and optionally, may be null, have optionalTail tag names at the end of the secuence
@@ -1964,9 +1920,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return a string with the message content serialized as JSON
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public String toJsonV1() {
-		DeprecationUtils.phase2(getClass(), "toJsonV1()", "use toJson() instead");
+		DeprecationUtils.phase3(getClass(), "toJsonV1()", "use toJson() instead");
 		final StringBuilder sb = new StringBuilder();
 		sb.append("[ \n");
 		if (this.tags != null && !this.tags.isEmpty()) {

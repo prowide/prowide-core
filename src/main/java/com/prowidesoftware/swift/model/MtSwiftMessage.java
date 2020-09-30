@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -167,50 +167,57 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	}
 	
 	private void updateAttributes(final SwiftMessage model) {
-		setFileFormat(FileFormat.FIN);
 		if (model.isServiceMessage21()) {
-			/*
-			 * set identifier for system aknowledge
-			 */
-			if (model.isAck()) {
-				super.identifier = IDENTIFIER_ACK;
-			} else if (model.isNack()) {
-				super.identifier = IDENTIFIER_NAK;
-			}
+			// for service messages, we attempt to set the metadata from the original attached message, if present
 			if (model.getUnparsedTextsSize() > 0) {
-				/*
-				 * try to parse the appended original message (if any)
-				 * to gather receiver and reference information
-				 */
 				final SwiftMessage original = model.getUnparsedTexts().getTextAsMessage(0);
 				if (original != null) {
-					super.receiver = bic11(original.getReceiver());
-					setDirection(original.getDirection());
-					setReference(SwiftMessageUtils.reference(original));
+					update(original);
 				}
 			}
-		} else if (model.getBlock1() != null && model.getBlock1().getServiceIdType() == ServiceIdType._01) {
-			setIdentifier(model.getMtId().id());
-			setReceiver(bic11(model.getReceiver()));
-			setDirection(model.getDirection());
-			setReference(SwiftMessageUtils.reference(model));
-			Money money = SwiftMessageUtils.money(model);
-			if (money != null) {
-				setCurrency(money.getCurrency());
-				setAmount(money.getAmount());
+			// then we overwrite the identifier form the actual service message
+			if (model.isAck()) {
+				setIdentifier(IDENTIFIER_ACK);
+			} else if (model.isNack()) {
+				setIdentifier(IDENTIFIER_NAK);
 			}
-			setValueDate(SwiftMessageUtils.valueDate(model));
-			setTradeDate(SwiftMessageUtils.tradeDate(model));
+
+		} else {
+			// any other case we just update the metadata from the received message
+			update(model);
+			if (model.getMtId() != null) {
+				setIdentifier(model.getMtId().id());
+			}
 		}
+		setFileFormat(FileFormat.FIN);
 		setSender(bic11(model.getSender()));
 		setChecksum(SwiftMessageUtils.calculateChecksum(model));
 		setChecksumBody(SwiftMessageUtils.calculateChecksum(model.getBlock4()));
+		setLastModified(Calendar.getInstance());
+	}
+
+	private void update(final SwiftMessage model) {
+		setReceiver(bic11(model.getReceiver()));
+		setDirection(model.getDirection());
+		setReference(SwiftMessageUtils.reference(model));
+
+		Money money = SwiftMessageUtils.money(model);
+		if (money != null) {
+			setCurrency(money.getCurrency());
+			setAmount(money.getAmount());
+		}
+
+		setValueDate(SwiftMessageUtils.valueDate(model));
+		setTradeDate(SwiftMessageUtils.tradeDate(model));
+
 		setPde(model.getPDE());
 		setPdm(model.getPDM());
 		setMir(model.getMIR());
 		setMur(model.getMUR());
-		setUuid(model.getUUID());
-		setLastModified(Calendar.getInstance());
+
+		if (model.getBlock2() != null) {
+			setUuid(model.getUUID());
+		}
 	}
 
 	/**
@@ -395,7 +402,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	 * @param pdm the PDM flag to set
 	 */
 	public void setPdm(final String pdm) {
-		this.pde = pdm;
+		this.pdm = pdm;
 	}
 
 	/**
@@ -523,6 +530,20 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	 */
 	public MtId getMtId() {
 		return new MtId(getMessageType(), getVariant());
+	}
+
+	/**
+	 * For MT messages returns the category number and for MX messages return the business process.
+	 * For example for MT103 returns 1 and for pacs.004.001.06 returns pacs
+	 * @return a string with the category or empty if the identifier is invalid or not present
+	 * @since 7.10.4
+	 */
+	@Override
+	public String getCategory() {
+		if (!StringUtils.isBlank(this.identifier)) {
+			return (new MtId(this.identifier)).category();
+		}
+		return "";
 	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -488,8 +488,10 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 	
 	/**
 	 * Test if the MT class contains a getSequenceXList method
-	 * @since 7.8
+	 * @param name the sequence alpha numeric identifier such as A1a
+	 * @return found sequences or empty list
 	 * @see #getSequenceList(String)
+	 * @since 7.8
 	 */
 	public boolean containsSequenceList(final String name) {
 		try {
@@ -501,6 +503,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 	
 	/**
 	 * Test if the MT class contains a getSequenceX method
+	 * @param name the sequence alpha numeric identifier such as A1a
+	 * @return found sequences or empty list
 	 * @since 7.8
 	 * @see #getSequence(String)
 	 */
@@ -696,7 +700,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 	
 	/**
 	 * Base implementation for subclasses static parse.
-	 * 
+	 * @param fin the plain MT content to parse
+	 * @return the parsed message or null if content cannot be parsed
 	 * @since 7.7
 	 */
     protected static SwiftMessage read(String fin) {
@@ -748,11 +753,12 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 	 * Returns the JSON representation of the SwiftMessage attribute
 	 * @deprecated use {@link #toJson()} instead
 	 * @see #toJson()
+	 * @return the JSON content of the MT
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2020)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public String json() {
-		DeprecationUtils.phase2(getClass(), "json()", "use toJson() instead");
+		DeprecationUtils.phase3(getClass(), "json()", "use toJson() instead");
 		Validate.notNull(this.m, "the message cannot be null");
 		return this.m.toJson();
 	}

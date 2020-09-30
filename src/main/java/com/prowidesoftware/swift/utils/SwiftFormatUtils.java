@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -633,9 +633,9 @@ public class SwiftFormatUtils {
 	 * @deprecated use {@link IsoUtils#isValidISOCurrency(String)} instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3=TargetYear.SRU2020)
+	@ProwideDeprecated(phase4=TargetYear.SRU2021)
 	public static boolean isCurrency(final String string) {
-		DeprecationUtils.phase2(SwiftFormatUtils.class, "isCurrency(String)", "use IsoUtils#isValidISOCurrency(String) instead");
+		DeprecationUtils.phase3(SwiftFormatUtils.class, "isCurrency(String)", "use IsoUtils#isValidISOCurrency(String) instead");
 		if (StringUtils.isNotBlank(string)) {
 			try {
 				return Currency.getInstance(string)!=null;

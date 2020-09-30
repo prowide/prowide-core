@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,11 @@
 package com.prowidesoftware.swift.model.field;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Locale;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -70,5 +72,17 @@ public class GetValueDisplayTest {
 		Field50F f = new Field50F(value);
 		assertEquals("1234567890", f.getValueDisplay(1, Locale.US));
 	}
-	
+
+	/*
+	 * Huge number formatting
+	 */
+	@Ignore("produces heap exception because number is interpreted as exponential value")
+	//TODO fix getValueDisplay when expression is parsed into exponential value
+	@Test
+	public void test95L() {
+		Field95L f = new Field95L(":ISSU//300300E1007142000089");
+		f.setComponent3("300300E1007142000089");
+		assertNotNull(f.getValueDisplay(Locale.getDefault()));
+	}
+
 }

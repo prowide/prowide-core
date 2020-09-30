@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ public class SwiftParser {
 	 * Helper constant with the content of <code>System.getProperty("line.separator", "\n")</code>
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase3 = TargetYear.SRU2021)
 	public static final String EOL = System.getProperty("line.separator", "\n");
 
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftParser.class.getName());
@@ -181,9 +181,9 @@ public class SwiftParser {
 	 * @deprecated use {@link SwiftMessage#parse(String)} instead
 	 */
 	@Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2020)
+    @ProwideDeprecated(phase4=TargetYear.SRU2021)
 	public SwiftMessage parse(final String message) throws IOException {
-		DeprecationUtils.phase2(getClass(), "parse(String)", "For a simple static parse call use SwiftMessage#parse(String) instead; for fine grain control or parse configuration you can still create the SwiftParser instance passing a Reader, String or File and call the message() method to get the parsed message object.");
+		DeprecationUtils.phase3(getClass(), "parse(String)", "For a simple static parse call use SwiftMessage#parse(String) instead; for fine grain control or parse configuration you can still create the SwiftParser instance passing a Reader, String or File and call the message() method to get the parsed message object.");
 		setData(message);
 		return message();
 	}
@@ -668,7 +668,7 @@ public class SwiftParser {
 				// Note: It is note sufficient to check for a starting colon because for some fields like
 				// 77E for example, it is allowed the field content to have a ':<CR><LF>' as the second line
 				// of its content.
-				else if (c == ':' && i < s.length()/* prevent index out of bounds */  ) {
+				else if (c == ':') {
 					// check if :xxx matches a new starting tag or not, break only if matches valid start of tag
 					if (isTagStart(s, (i+1))) {
 						i = begin;
@@ -1101,7 +1101,7 @@ public class SwiftParser {
 	 * @return a copy of the list of errors found
 	 */
 	public List<String> getErrors() {
-		return new ArrayList(this.errors);
+		return this.errors;
 	}
 
 	/**

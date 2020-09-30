@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.prowidesoftware.swift.model;
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
+import com.prowidesoftware.swift.model.field.Field108;
 import com.prowidesoftware.swift.model.field.Field111;
 import com.prowidesoftware.swift.model.field.Field119;
 import com.prowidesoftware.swift.model.field.Field121;
@@ -363,6 +364,9 @@ public class SwiftMessageTest {
 		
 		m = SwiftMessage.parse("{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{4:\n:16R:GENL\n-}");
 		assertEquals("OAAPBESMMXXX103", m.getUUID());
+
+		m = SwiftMessage.parse("{1:F01FOOBARXXAXXX8683497519}{2:O5411535051028ESPBESMMAXXX54237522470510281535N}{3:{113:ROMF}{108:0510280182794665}}{4:\n:16R:GENL\n:20C::SEME//K8N46BUK6XXXXXXXXXXXX\n-}");
+		assertEquals("OESPBESMMXXX541K8N46BUK6XXXXXXXXXXXX", m.getUUID());
 	}
 
 	@Test
@@ -418,5 +422,20 @@ public class SwiftMessageTest {
 		assertTrue(m.isREMIT());
 		assertTrue(m.getBlock3().countByName(Field119.NAME) == 1);
 	}
-	
+
+	@Test
+	public void testGetMUR() {
+		SwiftMessage m = new SwiftMessage();
+		assertNull(m.getMUR());
+
+		m.setBlock3(new SwiftBlock3());
+		m.getBlock3().append(Field108.tag("FOO"));
+		assertEquals("FOO", m.getMUR());
+
+		m.setBlock3(null);
+		m.setBlock4(new SwiftBlock4());
+		m.getBlock4().append(Field108.tag("BAR"));
+		assertEquals("BAR", m.getMUR());
+	}
+
 }

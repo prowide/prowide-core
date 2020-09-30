@@ -79,6 +79,7 @@ public interface SchemeConstantsP {
     public final static String PECU = "PECU";
     public final static String PREF = "PREF";
     public final static String PDRA = "PDRA";
+    public final static String PPRF = "PPRF";
     public final static String PPRC = "PPRC";
     public final static String PEDA = "PEDA";
     public final static String PENDET = "PENDET";
@@ -86,7 +87,9 @@ public interface SchemeConstantsP {
     public final static String PENF = "PENF";
     public final static String PENA = "PENA";
     public final static String PEND = "PEND";
+    public final static String PPCM = "PPCM";
     public final static String PENACOUNT = "PENACOUNT";
+    public final static String PAYD = "PAYD";
     public final static String PENACUR = "PENACUR";
     public final static String PNTP = "PNTP";
     public final static String PNST = "PNST";
@@ -94,7 +97,6 @@ public interface SchemeConstantsP {
     public final static String PREC = "PREC";
     public final static String PWAL = "PWAL";
     public final static String PENR = "PENR";
-    public final static String PAYD = "PAYD";
     public final static String PAYA = "PAYA";
     public final static String PPDT = "PPDT";
     public final static String PODT = "PODT";

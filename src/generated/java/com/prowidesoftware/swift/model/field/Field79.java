@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -91,7 +89,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2019</strong>
+ * This class complies with standard release <strong>SRU2020</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -99,7 +97,7 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -627,17 +625,6 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	}
 
 	/**
-	 * Same as getComponent(1)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent1AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent1AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(1);
-	}
-
-	/**
 	 * Gets the Narrative (component1).
 	 * @return the Narrative from component1
 	 */
@@ -940,33 +927,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent2() {
 		return getComponent(2);
 	}
-
-	/**
-	 * Same as getComponent(2)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent2AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent2AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(2);
-	}
 	/**
 	 * Gets the component3 (Narrative).
 	 * @return the component3
 	 */
 	public String getComponent3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Same as getComponent(3)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent3AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent3AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(3);
 	}
 	/**
@@ -976,33 +941,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent4() {
 		return getComponent(4);
 	}
-
-	/**
-	 * Same as getComponent(4)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent4AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent4AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(4);
-	}
 	/**
 	 * Gets the component5 (Narrative).
 	 * @return the component5
 	 */
 	public String getComponent5() {
-		return getComponent(5);
-	}
-
-	/**
-	 * Same as getComponent(5)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent5AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent5AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(5);
 	}
 	/**
@@ -1012,33 +955,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent6() {
 		return getComponent(6);
 	}
-
-	/**
-	 * Same as getComponent(6)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent6AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent6AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(6);
-	}
 	/**
 	 * Gets the component7 (Narrative).
 	 * @return the component7
 	 */
 	public String getComponent7() {
-		return getComponent(7);
-	}
-
-	/**
-	 * Same as getComponent(7)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent7AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent7AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(7);
 	}
 	/**
@@ -1048,33 +969,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent8() {
 		return getComponent(8);
 	}
-
-	/**
-	 * Same as getComponent(8)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent8AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent8AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(8);
-	}
 	/**
 	 * Gets the component9 (Narrative).
 	 * @return the component9
 	 */
 	public String getComponent9() {
-		return getComponent(9);
-	}
-
-	/**
-	 * Same as getComponent(9)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent9AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent9AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(9);
 	}
 	/**
@@ -1084,33 +983,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent10() {
 		return getComponent(10);
 	}
-
-	/**
-	 * Same as getComponent(10)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent10AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent10AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(10);
-	}
 	/**
 	 * Gets the component11 (Narrative).
 	 * @return the component11
 	 */
 	public String getComponent11() {
-		return getComponent(11);
-	}
-
-	/**
-	 * Same as getComponent(11)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent11AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent11AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(11);
 	}
 	/**
@@ -1120,33 +997,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent12() {
 		return getComponent(12);
 	}
-
-	/**
-	 * Same as getComponent(12)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent12AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent12AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(12);
-	}
 	/**
 	 * Gets the component13 (Narrative).
 	 * @return the component13
 	 */
 	public String getComponent13() {
-		return getComponent(13);
-	}
-
-	/**
-	 * Same as getComponent(13)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent13AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent13AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(13);
 	}
 	/**
@@ -1156,33 +1011,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent14() {
 		return getComponent(14);
 	}
-
-	/**
-	 * Same as getComponent(14)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent14AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent14AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(14);
-	}
 	/**
 	 * Gets the component15 (Narrative).
 	 * @return the component15
 	 */
 	public String getComponent15() {
-		return getComponent(15);
-	}
-
-	/**
-	 * Same as getComponent(15)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent15AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent15AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(15);
 	}
 	/**
@@ -1192,33 +1025,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent16() {
 		return getComponent(16);
 	}
-
-	/**
-	 * Same as getComponent(16)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent16AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent16AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(16);
-	}
 	/**
 	 * Gets the component17 (Narrative).
 	 * @return the component17
 	 */
 	public String getComponent17() {
-		return getComponent(17);
-	}
-
-	/**
-	 * Same as getComponent(17)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent17AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent17AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(17);
 	}
 	/**
@@ -1228,33 +1039,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent18() {
 		return getComponent(18);
 	}
-
-	/**
-	 * Same as getComponent(18)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent18AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent18AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(18);
-	}
 	/**
 	 * Gets the component19 (Narrative).
 	 * @return the component19
 	 */
 	public String getComponent19() {
-		return getComponent(19);
-	}
-
-	/**
-	 * Same as getComponent(19)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent19AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent19AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(19);
 	}
 	/**
@@ -1264,33 +1053,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent20() {
 		return getComponent(20);
 	}
-
-	/**
-	 * Same as getComponent(20)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent20AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent20AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(20);
-	}
 	/**
 	 * Gets the component21 (Narrative).
 	 * @return the component21
 	 */
 	public String getComponent21() {
-		return getComponent(21);
-	}
-
-	/**
-	 * Same as getComponent(21)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent21AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent21AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(21);
 	}
 	/**
@@ -1300,33 +1067,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent22() {
 		return getComponent(22);
 	}
-
-	/**
-	 * Same as getComponent(22)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent22AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent22AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(22);
-	}
 	/**
 	 * Gets the component23 (Narrative).
 	 * @return the component23
 	 */
 	public String getComponent23() {
-		return getComponent(23);
-	}
-
-	/**
-	 * Same as getComponent(23)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent23AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent23AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(23);
 	}
 	/**
@@ -1336,33 +1081,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent24() {
 		return getComponent(24);
 	}
-
-	/**
-	 * Same as getComponent(24)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent24AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent24AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(24);
-	}
 	/**
 	 * Gets the component25 (Narrative).
 	 * @return the component25
 	 */
 	public String getComponent25() {
-		return getComponent(25);
-	}
-
-	/**
-	 * Same as getComponent(25)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent25AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent25AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(25);
 	}
 	/**
@@ -1372,33 +1095,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent26() {
 		return getComponent(26);
 	}
-
-	/**
-	 * Same as getComponent(26)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent26AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent26AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(26);
-	}
 	/**
 	 * Gets the component27 (Narrative).
 	 * @return the component27
 	 */
 	public String getComponent27() {
-		return getComponent(27);
-	}
-
-	/**
-	 * Same as getComponent(27)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent27AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent27AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(27);
 	}
 	/**
@@ -1408,33 +1109,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent28() {
 		return getComponent(28);
 	}
-
-	/**
-	 * Same as getComponent(28)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent28AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent28AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(28);
-	}
 	/**
 	 * Gets the component29 (Narrative).
 	 * @return the component29
 	 */
 	public String getComponent29() {
-		return getComponent(29);
-	}
-
-	/**
-	 * Same as getComponent(29)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent29AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent29AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(29);
 	}
 	/**
@@ -1444,33 +1123,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent30() {
 		return getComponent(30);
 	}
-
-	/**
-	 * Same as getComponent(30)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent30AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent30AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(30);
-	}
 	/**
 	 * Gets the component31 (Narrative).
 	 * @return the component31
 	 */
 	public String getComponent31() {
-		return getComponent(31);
-	}
-
-	/**
-	 * Same as getComponent(31)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent31AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent31AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(31);
 	}
 	/**
@@ -1480,33 +1137,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent32() {
 		return getComponent(32);
 	}
-
-	/**
-	 * Same as getComponent(32)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent32AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent32AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(32);
-	}
 	/**
 	 * Gets the component33 (Narrative).
 	 * @return the component33
 	 */
 	public String getComponent33() {
-		return getComponent(33);
-	}
-
-	/**
-	 * Same as getComponent(33)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent33AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent33AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(33);
 	}
 	/**
@@ -1516,33 +1151,11 @@ public class Field79 extends Field implements Serializable, MultiLineField {
 	public String getComponent34() {
 		return getComponent(34);
 	}
-
-	/**
-	 * Same as getComponent(34)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent34AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent34AsString()", "Use use #getComponent(int) instead.");
-		return getComponent(34);
-	}
 	/**
 	 * Gets the component35 (Narrative).
 	 * @return the component35
 	 */
 	public String getComponent35() {
-		return getComponent(35);
-	}
-
-	/**
-	 * Same as getComponent(35)
-	 * @deprecated use {@link #getComponent(int)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public java.lang.String getComponent35AsString() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getComponent35AsString()", "Use use #getComponent(int) instead.");
 		return getComponent(35);
 	}
 

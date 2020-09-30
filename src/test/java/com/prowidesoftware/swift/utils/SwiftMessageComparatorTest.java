@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 /**
  * Swift message comparator for tests.
  * 
- * @author sebastian
  * @since 7.8.8
  */
 public class SwiftMessageComparatorTest {
@@ -72,16 +71,34 @@ public class SwiftMessageComparatorTest {
 	}
 
 	@Test
-	public void testB2() {
+	public void testB2Input() {
 		SwiftBlock2Input b1 = new SwiftBlock2Input("I103CARAANC0XXXXN");
 		assertTrue(comp.compareB2(b1, b1));
-		
+
 		SwiftBlock2Input b2 = new SwiftBlock2Input("I103CARAANC0XXXXN");
 		assertTrue(comp.compareB2(b1, b2));
-		
+
 		b2.setDeliveryMonitoring("3");
 		assertFalse(comp.compareB2(b1, b2));
-		
+
+		comp.setIgnoreBlock2OptionalFields(true);
+
+		// block values differ but compare will be true because we are ignoring optional fields
+		assertFalse(b1.getValue().equals(b2.getValue()));
+		assertTrue(comp.compareB2(b1, b2));
+
+		b1.setDeliveryMonitoring("2");
+		assertTrue(comp.compareB2(b1, b2));
+
+		b1.setObsolescencePeriod("003");
+		assertTrue(comp.compareB2(b1, b2));
+
+		comp.setIgnoreBlock2OptionalFields(false);
+		assertFalse(comp.compareB2(b1, b2));
+	}
+
+	@Test
+	public void testB2Output() {
 		SwiftBlock2Output b3 = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
 		assertTrue(comp.compareB2(b3, b3));
 

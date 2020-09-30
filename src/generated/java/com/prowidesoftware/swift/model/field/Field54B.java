@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -59,7 +57,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2019</strong>
+ * This class complies with standard release <strong>SRU2020</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -67,7 +65,7 @@ public class Field54B extends OptionBPartyField implements Serializable, MultiLi
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -378,28 +376,6 @@ public class Field54B extends OptionBPartyField implements Serializable, MultiLi
 		return field;
 	}
 	
-	/**
-	 * @see #getDCMark()
-	 * @deprecated use getDCMark() instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public String getDC() {
-	    com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "getDC()", "Use use getDCMark() instead.");
-		return getDCMark();
-	}
-
-	/**
-	 * @see #setDCMark(String component1)
-	 * @deprecated use setDCMark(String) instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public void setDC(final String DC) {
-	    com.prowidesoftware.deprecation.DeprecationUtils.phase3(getClass(), "setDC(String)", "Use use setDCMark(String) instead.");
-		setDCMark(DC);
-	}
-
 	/**
 	 * Human readable value of the field
 	 * @return s

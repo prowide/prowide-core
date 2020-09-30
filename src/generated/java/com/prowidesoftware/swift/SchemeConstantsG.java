@@ -21,6 +21,7 @@ public interface SchemeConstantsG {
     public final static String GUAR = "GUAR";
     public final static String GIUP = "GIUP";
     public final static String GOMB = "GOMB";
+    public final static String GBNT = "GBNT";
     public final static String GBON = "GBON";
     public final static String GRSS = "GRSS";
     public final static String GUPA = "GUPA";

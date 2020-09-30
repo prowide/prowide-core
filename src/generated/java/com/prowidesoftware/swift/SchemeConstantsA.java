@@ -67,10 +67,10 @@ public interface SchemeConstantsA {
     public final static String ACTI = "ACTI";
     public final static String AGGR = "AGGR";
     public final static String AUDT = "AUDT";
+    public final static String ASTS = "ASTS";
     public final static String AGCR = "AGCR";
     public final static String ADEL = "ADEL";
     public final static String ASDP = "ASDP";
-    public final static String ASTS = "ASTS";
     public final static String AGDE = "AGDE";
     public final static String ACTV = "ACTV";
     public final static String AMCO = "AMCO";

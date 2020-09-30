@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @deprecated to retrieve fields in sequences use the AbstractMT model
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	private SequenceNode parsedSequences;
 
 	/**
@@ -134,7 +134,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	protected Long id;
 
 	/**
@@ -291,27 +291,6 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 					break;
 			}
 		}
-	}
-
-	/**
-	 * Attempt to identify the current message type (MT).
-	 *
-	 * @param type must be a valid registered handler id
-	 * @return true if this message is successfully identified as the given MT and false in other case	 *
-	 * @throws IllegalArgumentException if parameter type is null or not a valid type (i.e: 3 chars len)
-	 * @see SwiftBlock2#getMessageType()
-	 * @see #getType()
-	 * 
-	 * @deprecated this method has been deprecated in favor of {@link #isType(int)} which provides a safer API just passing an int number for the message type
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4=TargetYear.SRU2020)
-	public boolean isMT(final String type) {
-		DeprecationUtils.phase3(getClass(), "isMT(String)", "Use isType(int) instead.");
-		// sanity check
-		Validate.notNull(type);
-		Validate.isTrue(type.length() == 3, "The string must be exactly 3 chars size (type=" + type + ")");
-		return getType() != null && getType().equals(type);
 	}
 
 	/**
@@ -494,28 +473,15 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * Get the unique identifier of this message
-	 * @return the message id
-	 * @see #id
-	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
-	public Long getId() {
-		DeprecationUtils.phase2(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-		return this.id;
-	}
-
-	/**
 	 * Set the unique identifier of this message
 	 * @param id the id to be set
 	 * @see #id
 	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public void setId(final Long id) {
-		DeprecationUtils.phase2(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
+		DeprecationUtils.phase3(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
 		this.id = id;
 	}
 
@@ -1179,8 +1145,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	/**
 	 * Checks all blocks (1 to 5) and if a block is empty, it is removed from the message.
 	 * @since 6.4
+	 * @since 8.0.3 returns this
 	 */
-	public void removeEmptyBlocks() {
+	public SwiftMessage removeEmptyBlocks() {
 		if (this.block1 != null && this.block1.isEmpty()) {
 			this.block1 = null;
 		}
@@ -1196,6 +1163,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 		if (this.block5 != null && this.block5.isEmpty()) {
 			this.block5 = null;
 		}
+		return this;
 	}
 
 	/**
@@ -1234,7 +1202,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 				}
 			}
 		} catch (final Exception e) {
-			log.severe("Unexpected exception ocurred while determining direction from message data: " + e);
+			log.severe("Unexpected exception occurred while determining direction from message data: " + e);
 		}
 		return null;
 	}
@@ -1331,14 +1299,24 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * Gets MUR (Message User Reference) from the user header block or null if the user header or MUR are not present.
-	 * <p>The MUR is the Message User Reference used by applications for reconciliation with ACK.
-	 * It is a free-format field in which users may specify their own reference of up to 16 characters
-	 * of the permitted character set, and it is contained in a 108 field at the message user header (block 3).
+	 * Gets MUR (Message User Reference) from field 108 in the user header block (block 3) or in the text block
+	 * (block 4). Notice for user to user messages this field is located at the user header, however for system messages
+	 * (category 0) the field is located at the text block.
+	 *
+	 * <p>The MUR is the Message User Reference used by applications for reconciliation with ACK. It is a free-format
+	 * field in which users may specify their own reference of up to 16 characters of the permitted character set.
+	 *
+     * @return the value of field 108 if found, or null when not found neither in block 3 or block 4
 	 * @since 7.0
 	 */
 	public String getMUR() {
-		return this.block3 != null? this.block3.getTagValue(Field108.NAME) : null;
+		if (this.block3 != null && this.block3.containsTag(Field108.NAME)) {
+			return this.block3.getTagValue(Field108.NAME);
+		}
+		if (this.block4 != null && this.block4.containsTag(Field108.NAME)) {
+			return this.block4.getTagValue(Field108.NAME);
+		}
+		return null;
 	}
 
 	/**
@@ -1420,16 +1398,16 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public SequenceNode getParsedSequences() {
-		DeprecationUtils.phase2(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
+		DeprecationUtils.phase3(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
 		return parsedSequences;
 	}
 
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public void setParsedSequences(final SequenceNode parsedSequences) {
-		DeprecationUtils.phase2(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
+		DeprecationUtils.phase3(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
 		this.parsedSequences = parsedSequences;
 	}
 
@@ -1485,9 +1463,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 7.9.8
 	 */
 	@Deprecated
-	@ProwideDeprecated(phase3 = TargetYear.SRU2020)
+	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 	public String toJsonV1() {
-		DeprecationUtils.phase2(getClass(), "toJsonV1()", "use toJson() instead");
+		DeprecationUtils.phase3(getClass(), "toJsonV1()", "use toJson() instead");
 		/*
 		 * Return an ISO 8601 combined date and time string for current timestamp
 		 */
@@ -1765,26 +1743,6 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     		return false;
     	}
     	return this.block1.getServiceIdType() != ServiceIdType._01;
-    }
-
-	/**
-     * Returns true if message service id is 21 = GPA/FIN Message (ACK/NAK/UAK/UNK)
-	 *
-     * <p>IMPORTANT: Note despite the method name this will NOT return true for FIN system messages (category 0).
-     * It is just useful to detect acknowledges.<br>
-     * To check for system messages use {@link #isCategory(MtCategory...)} instead, passing zero as parameter
-     * 
-     * <p>@deprecated this method is kept for backward compatibility but was replace by {@link #isServiceMessage21()} which
-     * reflects what the method returns properly. Notice a "system message" is actually a message with category 0, which is 
-     * not the same as a "service message".
-     * 
-     * @since 7.8
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4=TargetYear.SRU2020)
-    public boolean isSystemMessage() {
-    	DeprecationUtils.phase3(getClass(), "isSystemMessage()", "Despite the method name this will NOT return true for FIN system messages (category 0), use isServiceMessage21() instead.");
-    	return isServiceMessage21();
     }
 
     /**

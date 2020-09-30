@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ public interface JsonSerializable {
 
 	/**
 	 * Serializes this object into JSON
+	 * @return the message content as JSON
 	 */
 	String toJson();
 

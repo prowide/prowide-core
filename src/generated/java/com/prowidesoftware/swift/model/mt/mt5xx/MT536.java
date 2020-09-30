@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2019 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ Fieldset 19
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 25 D (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (M)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 25 D (O)</li>
 <li class="field">Field 70 E (O)</li>
 <li class="sequence">
 Sequence B1a2A - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -128,7 +128,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2019</strong>
+ * This source code is specific to release <strong>SRU 2020</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -137,7 +137,7 @@ public class MT536 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2019;
+	public static final int SRU = 2020;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT536.class.getName());
 	
@@ -1365,7 +1365,7 @@ public class MT536 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT536GetSequenceA1List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT536GetSequenceA1List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}
@@ -1894,7 +1894,7 @@ public class MT536 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT536GetSequenceB1a1List_sru2019(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT536GetSequenceB1a1List_sru2020(this);
 	}
 	/**
 	 * Get the list of SequenceB1a1 delimited by 16R/16S with value specified in {@link SequenceB1a1#START_END_16RS}

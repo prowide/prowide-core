@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,13 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Test for Field70 and similar fields.
  * 
- * @author www.prowidesoftware.com
  * @since 6.0
  */
 public class Field70Test extends AbstractFieldTest {
@@ -35,38 +33,28 @@ public class Field70Test extends AbstractFieldTest {
 				"a\nb\nc\nd"
 			);
 	}
-	
+
 	@Test
 	public void testField70() {		
 		Field70 f = new Field70((String)null);
 		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
 
 		f = new Field70("a");
 		assertEquals("a", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
 		
 		f = new Field70("a\nb");
-		assertEquals("a", f.getComponent1());
-		assertEquals("b", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+		assertEquals("a", f.getLine(1));
+		assertEquals("b", f.getLine(2));
+		assertNull(f.getLine(3));
+		assertNull(f.getLine(4));
 		
 		f = new Field70("a\nb\nc");
-		assertEquals("a", f.getComponent1());
-		assertEquals("b", f.getComponent2());
-		assertEquals("c", f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field70("a\nb\nc\nd");
-		assertEquals("a", f.getComponent1());
-		assertEquals("b", f.getComponent2());
-		assertEquals("c", f.getComponent3());
-		assertEquals("d", f.getComponent4());
+		Narrative n = f.narrative();
+		assertTrue(n.getStructured().isEmpty());
+		assertEquals(3, n.getUnstructuredFragments().size());
+		assertEquals("a", n.getUnstructuredFragments().get(0));
+		assertEquals("b", n.getUnstructuredFragments().get(1));
+		assertEquals("c", n.getUnstructuredFragments().get(2));
 	}
 	
 }

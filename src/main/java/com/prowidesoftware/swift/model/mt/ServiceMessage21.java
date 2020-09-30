@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,14 @@
  */
 package com.prowidesoftware.swift.model.mt;
 
+import com.prowidesoftware.swift.model.MtId;
 import com.prowidesoftware.swift.model.MtSwiftMessage;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.model.field.Field108;
+import com.prowidesoftware.swift.model.field.Field177;
+import com.prowidesoftware.swift.model.field.Field405;
+import com.prowidesoftware.swift.model.field.Field451;
 import com.prowidesoftware.swift.utils.Lib;
 import org.apache.commons.lang3.Validate;
 
@@ -184,11 +189,10 @@ public class ServiceMessage21 extends AbstractMT {
 	 * @return error code found or null if the error code field is not present
 	 */
 	public String getErrorCode() {
-		final Tag t = super.m.getBlock4().getTagByName("405");
-		if (t == null) {
+		Field405 f = getField405();
+		if (f == null)
 			return null;
-		}
-		return t.asField().getComponent(1);
+		return f.getReasonForRejection();
 	}
 	
 	/**
@@ -196,10 +200,82 @@ public class ServiceMessage21 extends AbstractMT {
 	 * @return error code found or null if the error code field is not present
 	 */
 	public String getErrorLine() {
-		final Tag t = super.m.getBlock4().getTagByName("405");
-		if (t == null)
+		Field405 f = getField405();
+		if (f == null)
 			return null;
-		return t.asField().getComponent(2);
+		return f.getLineFieldNumber();
 	}
-	
+
+	/**
+	 * Local date time of the submitting user message on to the SWIFT network
+	 * @since 8.0.3
+	 */
+	public Field177 getField177() {
+		final Tag t = tag(Field177.NAME);
+		if (t != null) {
+			return new Field177(t.getValue());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * The ACK/NAK flag field
+	 * @since 8.0.3
+	 */
+	public Field451 getField451() {
+		final Tag t = tag(Field451.NAME);
+		if (t != null) {
+			return new Field451(t.getValue());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * The error code and error line in case of NAK
+	 * @since 8.0.3
+	 * @see #getErrorCode()
+	 * @see #getErrorLine()
+	 */
+	public Field405 getField405() {
+		final Tag t = tag(Field405.NAME);
+		if (t != null) {
+			return new Field405(t.getValue());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * gets the MUR field
+	 * @since 8.0.3
+	 */
+	public Field108 getField108() {
+		final Tag t = tag(Field108.NAME);
+		if (t != null) {
+			return new Field108(t.getValue());
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * @since 8.0.3
+	 * @return gpa.021
+	 */
+	@Override
+	public MtId getMtId() {
+		return mtId();
+	}
+
+	/**
+	 * The identifier for system messages will always be gpa.021
+	 * @since 8.0.3
+	 * @return gpa.021
+	 */
+	public static MtId mtId() {
+		return new MtId().setBusinessProcess("gpa").setMessageType("021");
+	}
+
 }

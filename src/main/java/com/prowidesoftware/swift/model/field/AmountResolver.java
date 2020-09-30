@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 

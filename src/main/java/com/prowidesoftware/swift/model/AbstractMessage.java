@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,21 +45,21 @@ public abstract class AbstractMessage {
 	public abstract String message();
 
 	/**
-	 * True if the message is an MT, false otherwise
+	 * @return true if the message is an MT, false otherwise
 	 */
 	public boolean isMT() {
 		return this.type == MessageStandardType.MT;
 	}
 
 	/**
-	 * True if the message is an MX, false otherwise
+	 * @return true if the message is an MX, false otherwise
 	 */
 	public boolean isMX() {
 		return this.type == MessageStandardType.MX;
 	}
 	
 	/**
-	 * Returns the standard enumeration value corresponding to this message
+	 * @return the standard enumeration value corresponding to this message
 	 */
 	public MessageStandardType getMessageStandardType() {
 		return this.type;

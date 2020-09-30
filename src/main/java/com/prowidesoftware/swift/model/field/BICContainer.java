@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2018 Prowide
+ * Copyright 2006-2020 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,11 @@ import java.util.List;
 import com.prowidesoftware.swift.model.BIC;
 
 /**
- * Interface to mark fields whose definition contain a BIC.
- * Note that if a field has a BIC and it is optional, and the actual 
- * field has not set the optional BIC/s then
- * the call bics() will return an empty list
+ * Fields with a BIC component.
+ *
+ * <p>Note that if a field has a BIC and it is optional, and the actual field has not set the optional BIC/s then the
+ * call bics() will return an empty list
  * 
- * @author www.prowidesoftware.com
  * @since 6.1
  */
 public interface BICContainer {
