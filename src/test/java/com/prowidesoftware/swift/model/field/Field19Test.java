@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -43,16 +43,16 @@ public class Field19Test extends AbstractFieldTest {
 		Field19 f = null;
 	
 		f = new Field19("12345");
-		assertNotNull("Parse of correct field failed", f);
+		assertNotNull(f, "Parse of correct field failed");
 		assertEquals(new Double(12345), new Double(f.getComponent1AsNumber().doubleValue()));
 
 		f = new Field19("12345,12");
-		assertNotNull("Parse of correct field failed", f);
+		assertNotNull(f, "Parse of correct field failed");
 		assertEquals("12345,12", f.getComponent1());
 		assertEquals(new Double(12345.12), new Double(f.getComponent1AsNumber().doubleValue()));
 
 		f = new Field19("12345,");
-		assertNotNull("Parse of correct field failed", f);
+		assertNotNull(f, "Parse of correct field failed");
 		assertEquals(new Double(12345), new Double(f.getComponent1AsNumber().doubleValue()));
 	}
 

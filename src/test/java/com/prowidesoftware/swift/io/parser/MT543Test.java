@@ -15,12 +15,12 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.model.SwiftBlock2Input;
 import com.prowidesoftware.swift.model.Tag;
@@ -32,7 +32,7 @@ import com.prowidesoftware.swift.model.Tag;
  */
 public class MT543Test extends BaseMessageTestcase {
 	
-	@Test 
+	@Test
 	public void test543_1() {
 		messageToParse = "{1:F01FOOBARXXXXXX0000000000}{2:I543FOOODEFFXCUSN}{4:\n" +
 			":16R:GENL\n" +

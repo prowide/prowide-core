@@ -16,11 +16,19 @@
 
 package com.prowidesoftware.swift.model.mt.mt2xx;
 
-import com.prowidesoftware.swift.model.field.*;
-import org.junit.Test;
-import org.junit.Ignore;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import com.prowidesoftware.swift.model.field.Field20;
+import com.prowidesoftware.swift.model.field.Field21;
+import com.prowidesoftware.swift.model.field.Field32A;
+import com.prowidesoftware.swift.model.field.Field50A;
+import com.prowidesoftware.swift.model.field.Field58A;
+import com.prowidesoftware.swift.model.field.Field59A;
 
 public class MT202COVTest {
 
@@ -31,7 +39,7 @@ public class MT202COVTest {
 		assertTrue(m.getSwiftMessage().isCOV());
 	}
 
-	@Ignore("the newInstance API in sequence with no delimiters 16RS should be revamped because it is misleading")
+	@Disabled("the newInstance API in sequence with no delimiters 16RS should be revamped because it is misleading")
 	@Test
 	public void test2() {
 		MT202COV m = new MT202COV()

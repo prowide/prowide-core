@@ -16,11 +16,11 @@
 
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
@@ -122,7 +122,7 @@ public class MT199Test extends BaseMessageTestcase {
 		SwiftMessage msg = new SwiftParser(s).message();
 		final String value = msg.getBlock4().getTagByName("79").getValue();
 		assertEquals('{', value.charAt(value.length()-1));
-		assertTrue("Invalid character (opening bracked) not properly included in value", value.endsWith("{"));
+		assertTrue(value.endsWith("{"), "Invalid character (opening bracked) not properly included in value");
 	}
 	
 	@Test

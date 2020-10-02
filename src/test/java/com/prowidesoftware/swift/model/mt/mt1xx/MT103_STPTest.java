@@ -16,9 +16,9 @@
 
 package com.prowidesoftware.swift.model.mt.mt1xx;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MT103_STPTest {
 

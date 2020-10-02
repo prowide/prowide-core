@@ -15,12 +15,12 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 
-import static junit.framework.TestCase.assertFalse;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Similar test cases as in {@link SwiftParserStrinctTest} but using the lenient
@@ -31,7 +31,7 @@ import static junit.framework.TestCase.assertFalse;
 public class SwiftParserLenientTest {
 	protected VisibleParser parser;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.parser = new VisibleParser();
 		this.parser.getConfiguration().setLenient(true);

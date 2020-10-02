@@ -15,15 +15,16 @@
  */
 package com.prowidesoftware.swift.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * User blocks tests.
@@ -36,7 +37,7 @@ public class SwiftBlockUserTest {
 	private SwiftBlockUser buS = null;
 	private SwiftBlockUser bu9 = null;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		m   = new SwiftMessage();
 		buS = new SwiftBlockUser("S");
@@ -108,10 +109,12 @@ public class SwiftBlockUserTest {
 		assertNull(m.getUserBlock(1));
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void test_removeBlock_1() {
-		// FIXME why does this test fail? IAE is thrown and expected...
-		m.removeUserBlock(1);
+	  // FIXME why does this test fail? IAE is thrown and expected...
+	  Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		  m.removeUserBlock(1);
+	  });
 	}
 	
 	/**

@@ -16,14 +16,14 @@
 
 package com.prowidesoftware.swift.model.mt.mt5xx;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 public class MT535Test {
 
-	@Ignore("B1b1 and B1c cannot be uniquely identified in this context")
+	@Disabled("B1b1 and B1c cannot be uniquely identified in this context")
 	@Test
 	public void test1() {
 		MT535 m = new MT535();
@@ -31,7 +31,7 @@ public class MT535Test {
 		assertTrue(m.getSequenceB1cList().isEmpty());
 	}
 
-	@Ignore("B1b1 and B1c cannot be uniquely identified in this context")
+	@Disabled("B1b1 and B1c cannot be uniquely identified in this context")
 	@Test
 	public void test1a() {
 		MT535 m = new MT535();

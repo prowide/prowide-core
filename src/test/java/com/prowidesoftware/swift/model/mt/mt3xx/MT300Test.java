@@ -17,11 +17,11 @@
 package com.prowidesoftware.swift.model.mt.mt3xx;
 
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MT300Test {
 

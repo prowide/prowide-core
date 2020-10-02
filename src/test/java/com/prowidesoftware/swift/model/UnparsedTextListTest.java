@@ -15,13 +15,19 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.prowidesoftware.swift.io.ConversionService;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.prowidesoftware.swift.io.ConversionService;
 
 /**
  * Unparsed text lists tests.
@@ -36,7 +42,7 @@ public class UnparsedTextListTest {
 
 	private UnparsedTextList  t = null;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		t = new UnparsedTextList();
 	}
@@ -83,10 +89,12 @@ public class UnparsedTextListTest {
 		assertEquals(t.getText(0), someText);
 		assertEquals(t.getText(1), someMsg);
 	}
-
-	@Test(expected=IndexOutOfBoundsException.class)
+	
+	@Test
 	public void test_getTextBAD() {
-		assertNull(t.getText(-1));
+		Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+			  assertNull(t.getText(-1));
+		});
 	}
 
 	@Test
@@ -95,9 +103,12 @@ public class UnparsedTextListTest {
 		assertNotNull(t.getTextAsMessage(0));
 	}
 
-	@Test(expected=IndexOutOfBoundsException.class)
+	@Test
 	public void test_getTextAsMessageBAD() {
-		assertNull(t.getTextAsMessage(-1));
+		Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+			assertNull(t.getTextAsMessage(-1));
+		});
+		
 	}
 
 	@Test
@@ -124,9 +135,11 @@ public class UnparsedTextListTest {
 		assertEquals(t.size(), new Integer(1));
 	}
 
-	@Test(expected=IndexOutOfBoundsException.class)
+	@Test
 	public void test_removeIndexBAD() {
-		t.removeText(1);
+		Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+			t.removeText(1);
+		});
 	}
 
 	@Test

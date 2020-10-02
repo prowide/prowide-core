@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field19A and similar fields.

@@ -16,9 +16,20 @@
 
 package com.prowidesoftware.swift.model.mt;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
+
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.field.Field32A;
 import com.prowidesoftware.swift.model.field.Field35B;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT102;
@@ -30,14 +41,6 @@ import com.prowidesoftware.swift.model.mt.mt5xx.MT547;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT549;
 import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
 import com.prowidesoftware.swift.utils.TestUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.util.List;
-import com.prowidesoftware.swift.model.field.Field;
-
-import static org.junit.Assert.*;
 
 public class AbstractMTTest {
 
@@ -47,7 +50,7 @@ public class AbstractMTTest {
 		TestUtils.append(m, MT102.SequenceB.newInstance(Field32A.tag("bar")));
 		AbstractMT o = m.toMT();
 		SwiftTagListBlock A = o.getSequence("A");
-		assertNotNull("Expected A but got null", A);
+		assertNotNull(A, "Expected A but got null");
 		assertEquals(3, A.size());
 		assertEquals("foo", A.getTag(1).getValue());
 	}

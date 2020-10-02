@@ -15,13 +15,13 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.math.BigDecimal;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Field90ATest extends AbstractFieldTest {
 	
@@ -38,7 +38,7 @@ public class Field90ATest extends AbstractFieldTest {
 	@Test
 	public void testParse90A_1() throws Exception {
 		Field90A f = new Field90A(":AAAA//BBBB/N123");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertEquals("AAAA", f.getComponent1());
 		assertEquals("BBBB", f.getComponent2());
 		assertEquals("N", f.getComponent3());
@@ -48,7 +48,7 @@ public class Field90ATest extends AbstractFieldTest {
 	@Test
 	public void testParse90A_2() throws Exception {
 		Field90A f = new Field90A(":AAAA//BBBB/123");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertEquals("AAAA", f.getComponent1());
 		assertEquals("BBBB", f.getComponent2());
 		assertNull(f.getComponent3());
@@ -58,7 +58,7 @@ public class Field90ATest extends AbstractFieldTest {
 	@Test
 	public void testParse90A_3() throws Exception {
 		Field90A f = new Field90A(":DEAL//YIEL/N1234,5");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		
 		assertEquals("DEAL", f.getQualifier());
 		assertEquals("DEAL", f.getComponent(Field90A.QUALIFIER));

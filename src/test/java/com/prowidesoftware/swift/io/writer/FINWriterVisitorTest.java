@@ -15,13 +15,15 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
-import static org.junit.Assert.assertEquals;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.StringWriter;
 import java.io.Writer;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.model.SwiftBlock1;
@@ -39,7 +41,7 @@ public class FINWriterVisitorTest {
 	private FINWriterVisitor visitor;
 	private Writer io;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.io = new StringWriter();
 		this.visitor = new FINWriterVisitor(this.io);

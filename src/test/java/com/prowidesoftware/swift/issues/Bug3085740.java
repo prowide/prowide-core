@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 package com.prowidesoftware.swift.issues;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 
-import junit.framework.TestCase;
-
-public class Bug3085740 extends TestCase {
+public class Bug3085740 {
 
   private String expectedMT940 = "{1:F01FOOBARXXAXXX0000000000}{2:I940FOOBARXXXXXXN}{4:\r\n" +
 								":20:REFXXXXX\r\n" +
@@ -43,7 +45,7 @@ public class Bug3085740 extends TestCase {
 								":86:Message de bienvenue\r\n" +
 							    ":62M:C100921ZAR499650,23\r\n" +
 							    "-}";
-
+  @Test
   public void testWifeBug() throws IOException {
     IConversionService conversionService = new ConversionService();
     String actualMT940 = conversionService.getFIN(new SwiftParser(expectedMT940).message());

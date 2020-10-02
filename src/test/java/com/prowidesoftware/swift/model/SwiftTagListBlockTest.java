@@ -15,16 +15,27 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.prowidesoftware.swift.io.ConversionService;
-import com.prowidesoftware.swift.model.field.*;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.prowidesoftware.swift.io.ConversionService;
+import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.model.field.Field16R;
+import com.prowidesoftware.swift.model.field.Field16S;
+import com.prowidesoftware.swift.model.field.Field19A;
+import com.prowidesoftware.swift.model.field.Field20;
+import com.prowidesoftware.swift.model.field.Field93B;
 
 /**
  * Tag list block tests.
@@ -36,7 +47,7 @@ public class SwiftTagListBlockTest {
 	private SwiftTagListBlock b;
 	private Tag t;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.b = new SwiftBlock3();
 		this.t = new Tag("n:v");
@@ -1206,7 +1217,8 @@ public class SwiftTagListBlockTest {
 		String[] tail = new String[]{};
 		SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
 		
-		assertEquals(""+result.tagNamesList(), 5, result.size());
+		assertEquals(""+result.tagNamesList(), "[1, 2, 3, 4, 5]");
+//		assertEquals(""+result.size(), 5);
 	}
 	
 	@Test
@@ -1253,7 +1265,8 @@ public class SwiftTagListBlockTest {
 		SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
 		
 		assertNotNull(result);
-		assertEquals("returned: "+result.tagNamesList(), 3, result.size());
+//		assertEquals(result.size(), 3);
+		assertEquals("returned: "+result.tagNamesList(), "returned: [1, 2, 3]");
 	}
 
 	/*
@@ -1698,10 +1711,12 @@ public class SwiftTagListBlockTest {
 		assertEquals("val2", b.getTag(1).getValue());
 		assertEquals("val3", b.getTag(2).getValue());
 	}
-
-	@Test(expected = IndexOutOfBoundsException.class)
+	
+	@Test
 	public void testAdd_3() {
-		b.addTag(1, new Tag("1:val1"));
+	  Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+		  b.addTag(1, new Tag("1:val1"));
+	  });		
 	}
 
 	@Test

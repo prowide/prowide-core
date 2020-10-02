@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 package com.prowidesoftware.swift.io.parser;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT101;
@@ -65,7 +65,7 @@ public class ParserTest {
 	/*
 	 * https://sourceforge.net/p/wife/bugs/80/
 	 */
-	@Ignore("requires absolute path for file")
+	@Disabled("requires absolute path for file")
 	@Test
 	public void testParse101File() throws IOException {
 		MT101 mt = MT101.parse(new File("/home/foo/src/prowide-core/src/test/resourcesmt101.fin"));

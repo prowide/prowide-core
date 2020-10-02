@@ -1,11 +1,11 @@
 package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Field95LTest extends AbstractFieldTest{
 

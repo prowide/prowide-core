@@ -15,12 +15,12 @@
  */
 package com.prowidesoftware.swift.issues;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.prowidesoftware.swift.model.field.Field61;
 import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * https://sourceforge.net/p/wife/bugs/81/

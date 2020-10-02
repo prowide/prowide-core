@@ -15,22 +15,21 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+
+import org.junit.jupiter.api.Test;
+
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.model.SwiftBlock3;
 import com.prowidesoftware.swift.model.SwiftBlock4;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
-import org.junit.Test;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.concurrent.BlockingDeque;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Swift writer tests
@@ -50,7 +49,7 @@ public class SwiftWriterTest {
 
 		buf = new StringWriter();
 		SwiftWriter.writeMessage(m, buf, true);
-		assertTrue(buf.toString().length() == 0);
+		assertEquals(buf.toString().length(), 0);
 	}
 
 	@Test 
