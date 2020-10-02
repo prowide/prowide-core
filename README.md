@@ -45,3 +45,5 @@ SWIFT is a trademark of S.W.I.F.T. SCRL. (www.swift.com)
 
 * run `./gradlew eclipse` or `./gradlew idea` to generate your local IDE setup
 * run `./gradlew build` to build the library
+
+Make sure your IDE encoding is UTF-8, some test may fail if not.
