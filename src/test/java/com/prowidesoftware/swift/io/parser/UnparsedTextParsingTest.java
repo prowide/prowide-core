@@ -50,10 +50,7 @@ public class UnparsedTextParsingTest extends BaseMessageTestcase {
 	    try {
 			SwiftMessage m = SwiftMessage.parse(msg);
 			SwiftMessage m569 = SwiftMessage.parse(m.getUnparsedTexts().getAsFINString());
-	
-			
-			
-			
+
 			Assertions.assertEquals("569", m569.getType());
 			Assertions.assertEquals("F21XYZABCAAXXXX1111112222", m569.getBlock1().getBlockValue());
 			

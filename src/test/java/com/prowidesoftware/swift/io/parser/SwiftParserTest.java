@@ -650,10 +650,7 @@ public class SwiftParserTest {
 		final SwiftMessage msg = p.message();
 		assertNotNull(msg.getBlock1());
 		assertNotNull(msg.getBlock4());
-//		assertEquals("Expected 6 tags but found "+msg.getBlock4().size()+", "+msg.getBlock4().tagNamesList(), 6, msg.getBlock4().size());
-		
-		//		assertEquals("v1", msg.getBlock4().getTagValue("t1"));
-		//		assertEquals("v2", msg.getBlock4().getTagValue("t2"));
+		assertEquals(6, msg.getBlock4().size(), "Expected 6 tags but found "+msg.getBlock4().size()+", "+msg.getBlock4().tagNamesList());
 	}
 
 	@Test

@@ -39,7 +39,7 @@ public class JapaneseCharactersTest {
         assertNotNull(mt);
         Field86 field86 = mt.getField86().get(0);
         //System.out.println(mt.message());
-//        assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
+        assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class JapaneseCharactersTest {
         assertNotNull(mt);
         Field86 field86 = mt.getField86().get(0);
         //System.out.println(mt.message());
-//        assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
+        assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
     }
 
     @Test
