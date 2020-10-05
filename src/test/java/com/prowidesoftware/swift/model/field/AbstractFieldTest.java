@@ -36,7 +36,7 @@ public abstract class AbstractFieldTest {
 	    	for (String v : values) {
 	    		Tag t1 = new Tag(tagName, v);
 	    		Tag t2 = Field.getField(t1).asTag();;
-//	    		assertTrue("["+t1.getValue()+"] is not equals ["+t2.getValue()+"]", t1.equalsIgnoreCR(t2));
+	    		assertTrue(t1.equalsIgnoreCR(t2), "["+t1.getValue()+"] is not equals ["+t2.getValue()+"]");
 	    	}
     	} catch (Exception e) {
     		fail(e.getMessage());

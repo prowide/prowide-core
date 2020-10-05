@@ -1216,9 +1216,8 @@ public class SwiftTagListBlockTest {
 		String[] end = new String[]{"5c", "5b", "5"};
 		String[] tail = new String[]{};
 		SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
-		
-		assertEquals(""+result.tagNamesList(), "[1, 2, 3, 4, 5]");
-//		assertEquals(""+result.size(), 5);
+		assertEquals(5, result.size(), ""+result.tagNamesList());
+
 	}
 	
 	@Test
@@ -1265,8 +1264,8 @@ public class SwiftTagListBlockTest {
 		SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
 		
 		assertNotNull(result);
-//		assertEquals(result.size(), 3);
-		assertEquals("returned: "+result.tagNamesList(), "returned: [1, 2, 3]");
+		assertEquals(3, result.size(), "returned: "+result.tagNamesList());
+
 	}
 
 	/*

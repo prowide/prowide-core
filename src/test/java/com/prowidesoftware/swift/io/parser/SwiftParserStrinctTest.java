@@ -169,10 +169,10 @@ public class SwiftParserStrinctTest {
 
 	@Test
 	public void testBlock4ClossingBracketOk() throws IOException {
-//		parser.setData("{4:\r\n" +
-//				":79:FOO\r\n" +
-//				"-}");
-//		parser.consumeBlock(null);
+		parser.setData("{4:\r\n" +
+				":79:FOO\r\n" +
+				"-}");
+		parser.consumeBlock(null);
 	}
 
 }
