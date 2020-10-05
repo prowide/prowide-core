@@ -15,15 +15,15 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class Field48Test extends AbstractFieldTest {
 	Field48 f = null;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		f = null;
 	}

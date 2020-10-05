@@ -16,14 +16,15 @@
 
 package com.prowidesoftware.swift.model;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * Tests for JSON API in MtSwiftMessage

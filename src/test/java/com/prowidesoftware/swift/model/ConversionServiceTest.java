@@ -20,12 +20,12 @@ import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.Diff;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -61,7 +61,7 @@ public class ConversionServiceTest {
 		assertFalse(diff.hasDifferences());
 	}
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		srv = new ConversionService();
 		msg = new SwiftMessage();

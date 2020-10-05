@@ -15,12 +15,12 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.model.SwiftMessage;
@@ -50,9 +50,9 @@ public class UnparsedTextParsingTest extends BaseMessageTestcase {
 	    try {
 			SwiftMessage m = SwiftMessage.parse(msg);
 			SwiftMessage m569 = SwiftMessage.parse(m.getUnparsedTexts().getAsFINString());
-	
-			assertEquals("569", m569.getType());
-			assertEquals("F21XYZABCAAXXXX1111112222", m569.getBlock1().getBlockValue());
+
+			Assertions.assertEquals("569", m569.getType());
+			Assertions.assertEquals("F21XYZABCAAXXXX1111112222", m569.getBlock1().getBlockValue());
 			
 			ConversionService service = new ConversionService(); 
 			service.getXml(m.getUnparsedTexts().getAsFINString());

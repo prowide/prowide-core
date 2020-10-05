@@ -22,9 +22,9 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT547;
 import com.prowidesoftware.swift.utils.SwiftMessageComparator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for JSON API in AbstractMT and subclasses

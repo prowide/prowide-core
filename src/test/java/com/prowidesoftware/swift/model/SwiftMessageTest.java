@@ -15,6 +15,20 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Calendar;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
@@ -27,15 +41,6 @@ import com.prowidesoftware.swift.model.mt.MTVariant;
 import com.prowidesoftware.swift.model.mt.MtCategory;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT102;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT540;
-import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.Calendar;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * General swift message tests.
@@ -242,7 +247,8 @@ public class SwiftMessageTest {
 	        m.setBlock2(b2);
 	        
 		AbstractMT o = m.toMT();
-		assertTrue("MT not an instance of 102", o instanceof MT102);
+		assertTrue(o instanceof MT102, "MT not an instance of 102");
+		
 	}
 	
 	@Test
@@ -257,7 +263,7 @@ public class SwiftMessageTest {
 	        b2.setReceiverAddress("12345612XXXX");
 	        m.setBlock2(b2);
 		AbstractMT o = m.toMT();
-		assertTrue("MT not an instance of 540", o instanceof MT540);
+		assertTrue(o instanceof MT540, "MT not an instance of 540");
 	}
 	
 	@Test

@@ -15,12 +15,12 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 
@@ -59,7 +59,7 @@ public class Field257Test extends AbstractFieldTest {
 	@Test
 	public void testParse257Ex1() throws Exception {
 		Field257 f = new Field257(EXAMPLE1_FIELD_257);
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertEquals("FOOBARXXXXXX", f.getComponent1());
 		assertEquals("731019", f.getComponent2());
 		assertEquals("1212", f.getComponent3());
@@ -99,7 +99,7 @@ public class Field257Test extends AbstractFieldTest {
 	@Test
 	public void testParse257Ex2() throws Exception {
 		Field257 f = new Field257(EXAMPLE2_FIELD_257);
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertEquals("FOOBARABCDEF", f.getComponent1());
 		assertEquals("210117", f.getComponent2());
 		assertEquals("1111", f.getComponent3());

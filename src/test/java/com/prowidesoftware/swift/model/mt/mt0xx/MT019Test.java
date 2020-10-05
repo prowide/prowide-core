@@ -16,10 +16,10 @@
 
 package com.prowidesoftware.swift.model.mt.mt0xx;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.model.field.Field102;
 import com.prowidesoftware.swift.model.field.Field106;

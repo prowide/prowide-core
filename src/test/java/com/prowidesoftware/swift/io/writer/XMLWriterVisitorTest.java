@@ -15,21 +15,32 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
-import com.prowidesoftware.swift.Constants;
-import com.prowidesoftware.swift.model.*;
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
-import org.xmlunit.builder.DiffBuilder;
-import org.xmlunit.diff.Diff;
-import org.xmlunit.diff.Difference;
 
-import javax.xml.parsers.ParserConfigurationException;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import static org.junit.Assert.assertFalse;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.xml.sax.SAXException;
+import org.xmlunit.builder.DiffBuilder;
+import org.xmlunit.diff.Diff;
+
+import com.prowidesoftware.swift.Constants;
+import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
+import com.prowidesoftware.swift.model.SwiftBlock2Input;
+import com.prowidesoftware.swift.model.SwiftBlock2Output;
+import com.prowidesoftware.swift.model.SwiftBlock3;
+import com.prowidesoftware.swift.model.SwiftBlock4;
+import com.prowidesoftware.swift.model.SwiftBlock5;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.Tag;
 
 /**
  * XML writer tests
@@ -47,7 +58,7 @@ public class XMLWriterVisitorTest {
 		assertFalse(diff.hasDifferences());
 	}
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.io = new StringWriter();
 		this.visitor = new XMLWriterVisitor(this.io);

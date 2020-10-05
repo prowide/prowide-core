@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;

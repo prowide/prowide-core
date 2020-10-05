@@ -15,13 +15,14 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import com.prowidesoftware.swift.model.SwiftBlock2Output;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import com.prowidesoftware.swift.model.SwiftBlock2Output;
+import com.prowidesoftware.swift.model.SwiftMessage;
 
 /**
  * Test for SwiftParser main API and functions.

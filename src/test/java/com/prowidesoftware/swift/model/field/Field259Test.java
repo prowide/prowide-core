@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field257 and similar fields.
@@ -53,7 +53,7 @@ public class Field259Test extends AbstractFieldTest {
 	@Test
 	public void testParse259Ex1() throws Exception {
 		Field259 f = new Field259(EXAMPLE1_FIELD_259);
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		
 		assertEquals("VNDZBET2AXXX", f.getComponent1());
 		assertEquals("0025", f.getComponent2());

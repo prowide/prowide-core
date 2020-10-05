@@ -15,12 +15,12 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Calendar;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.model.Tag;
 

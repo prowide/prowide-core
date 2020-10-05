@@ -15,14 +15,14 @@
  */
 package com.prowidesoftware.swift.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Block2 output tests.
@@ -33,7 +33,7 @@ public class SwiftBlock2OutputTest {
 
 	SwiftBlock2Output out;
 	
-	@Before
+	@BeforeEach
 	public void setUp() {
 		out = new SwiftBlock2Output();
 	}

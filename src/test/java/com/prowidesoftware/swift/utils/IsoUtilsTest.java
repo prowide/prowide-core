@@ -15,12 +15,11 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Currency;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * test cases for {@link IsoUtils}
@@ -74,24 +73,35 @@ public class IsoUtilsTest {
 		assertFalse(IsoUtils.getInstance().isValidISOCountry("ar"));
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void testAddCountry_1() {
-		IsoUtils.getInstance().addCountry(null);
+	  Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		  IsoUtils.getInstance().addCountry(null);
+	  });
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void testAddCountry_2() {
-		IsoUtils.getInstance().addCountry("33");
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			IsoUtils.getInstance().addCountry("33");
+		  });
+		
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void testAddCountry_3() {
-		IsoUtils.getInstance().addCountry("aa");
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			IsoUtils.getInstance().addCountry("aa");
+		  });
+		
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void testAddCountry_4() {
-		IsoUtils.getInstance().addCountry("AAA");
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			IsoUtils.getInstance().addCountry("AAA");
+		  });
+		
 	}
 
 	@Test
@@ -101,24 +111,35 @@ public class IsoUtilsTest {
 		IsoUtils.getInstance().getCountries().remove("SZ");
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void testAddCurrency_1() {
-		IsoUtils.getInstance().addCurrency(null);
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			IsoUtils.getInstance().addCurrency(null);
+		  });
+		
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void testAddCurrency_2() {
-		IsoUtils.getInstance().addCurrency("333");
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			IsoUtils.getInstance().addCurrency("333");
+		  });
+		
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void testAddCurrency_3() {
-		IsoUtils.getInstance().addCurrency("aaa");
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			IsoUtils.getInstance().addCurrency("aaa");
+		  });
+		
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test
 	public void testAddCurrency_4() {
-		IsoUtils.getInstance().addCurrency("AAAA");
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			IsoUtils.getInstance().addCurrency("AAAA");
+		  });
 	}
 
 	@Test

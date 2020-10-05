@@ -15,9 +15,10 @@
  */
 package com.prowidesoftware.deprecation;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.deprecation.DeprecationUtils.EnvironmentVariableKey;
 
@@ -57,11 +58,14 @@ public class DeprecationUtilTest {
 	/**
 	 * Default behavior
 	 */
-	@Test(expected=UnsupportedOperationException.class)
+	@Test
 	public void testPhase3_default() {
-		DeprecationUtils.phase3(this.getClass(), null, "phase 3 message");
+		Assertions.assertThrows(UnsupportedOperationException.class, () -> {
+			DeprecationUtils.phase3(this.getClass(), null, "phase 3 message");
+		});
 	}
-	
+		
+
 	/**
 	 * Exception switched off
 	 */

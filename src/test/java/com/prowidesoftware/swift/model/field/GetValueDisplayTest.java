@@ -15,13 +15,13 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Locale;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for fields getValueDisplay API.
@@ -76,7 +76,7 @@ public class GetValueDisplayTest {
 	/*
 	 * Huge number formatting
 	 */
-	@Ignore("produces heap exception because number is interpreted as exponential value")
+	@Disabled("produces heap exception because number is interpreted as exponential value")
 	//TODO fix getValueDisplay when expression is parsed into exponential value
 	@Test
 	public void test95L() {

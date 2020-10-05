@@ -34,8 +34,7 @@ dependencies {
 
 	compileOnly 'javax.persistence:javax.persistence-api:2.2'
 	compileOnly group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
-
-	testImplementation 'junit:junit:4.12'
+	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.0'
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
 	testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.6.3'
 	testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.6.3'

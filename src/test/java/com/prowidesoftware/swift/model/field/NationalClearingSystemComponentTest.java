@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for fields that define a special usage overriding the
@@ -43,7 +43,7 @@ public class NationalClearingSystemComponentTest {
 	    Field52A f =  new Field52A("//ATBBBBB\r\nABNANL2A");
 	    assertEquals("//ATBBBBB\r\nABNANL2A", f.getValue());
 	    assertNull(f.getDCMark());
-	    assertNull("", f.getComponent1());
+	    assertNull(f.getComponent1());
 	    assertEquals("/ATBBBBB",  f.getComponent2());	//component getter will keep the extra slash
 	    assertEquals("ATBBBBB", f.getAccount());	//account getter will trims the starting slash
 	    assertEquals("ABNANL2A", f.getBIC());

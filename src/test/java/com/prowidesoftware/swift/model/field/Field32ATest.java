@@ -15,14 +15,14 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field32A and similar fields.
@@ -43,7 +43,7 @@ public class Field32ATest extends AbstractFieldTest {
 	@Test
 	public void testParse32A() throws Exception {
 		Field32A f = new Field32A("010203USD123");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertEquals(2001, f.getComponent1AsCalendar().get(Calendar.YEAR));
 		assertEquals(1, f.getComponent1AsCalendar().get(Calendar.MONTH));
 		assertEquals(3, f.getComponent1AsCalendar().get(Calendar.DATE));
@@ -55,8 +55,8 @@ public class Field32ATest extends AbstractFieldTest {
 	@Test
 	public void testParse32A_2() throws Exception {
 		Field32A f = new Field32A("010203USD123dss");
-		assertNotNull("Parse of field failed", f);
-		assertNotNull("Parse of field date failed", f.getComponent1AsCalendar());
+		assertNotNull(f, "Parse of field failed");
+		assertNotNull(f.getComponent1AsCalendar(), "Parse of field date failed");
 		assertEquals(2001, f.getComponent1AsCalendar().get(Calendar.YEAR));
 		assertEquals(Calendar.FEBRUARY, f.getComponent1AsCalendar().get(Calendar.MONTH));
 		assertEquals(3, f.getComponent1AsCalendar().get(Calendar.DAY_OF_MONTH));
@@ -68,7 +68,7 @@ public class Field32ATest extends AbstractFieldTest {
 	@Test
 	public void testParse32A_3() throws Exception {
 		Field32A f = new Field32A("999999USD123");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertNull(f.getComponent1AsCalendar());
 		assertEquals("USD", f.getComponent2());
 		assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
@@ -77,13 +77,13 @@ public class Field32ATest extends AbstractFieldTest {
 	@Test
 	public void testParse32A_4() throws Exception {
 		Field32A f = new Field32A("081001VEF30625,");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertNotNull(f.getComponent1AsCalendar());
 		assertEquals("VEF", f.getComponent2());
 		assertEquals(new BigDecimal(30625.00), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
 		
 		f = new Field32A("081001VEF30625,00");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertNotNull(f.getComponent1AsCalendar());
 		assertEquals("VEF", f.getComponent2());
 		assertEquals(new BigDecimal(30625.00), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
@@ -92,7 +92,7 @@ public class Field32ATest extends AbstractFieldTest {
 	@Test
 	public void testParse32A_Amount() throws Exception {
 		Field32A f = new Field32A("081001VEF30625,00");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertEquals("VEF", f.getComponent2());
 		assertEquals(new BigDecimal(30625.00), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
 	}
@@ -100,7 +100,7 @@ public class Field32ATest extends AbstractFieldTest {
 	@Test
 	public void testParse32A_Amount_2() throws Exception {
 		Field32A f = new Field32A("081001VEF30625,67");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertEquals("VEF", f.getComponent2());
 		assertEquals(new BigDecimal(30625.67), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
 	}
@@ -115,7 +115,7 @@ public class Field32ATest extends AbstractFieldTest {
 	@Test
 	public void testTicketAmountSize() {
 		Field32A f = new Field32A("051028EUR1765432,");
-		assertNotNull("Parse of field failed", f);
+		assertNotNull(f, "Parse of field failed");
 		assertEquals("EUR", f.getComponent2());
 		assertEquals(new BigDecimal(1765432), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
 	}

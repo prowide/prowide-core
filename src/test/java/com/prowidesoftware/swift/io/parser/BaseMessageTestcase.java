@@ -15,8 +15,8 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -129,11 +129,11 @@ public abstract class BaseMessageTestcase {
 	 */
 	protected void assertAllBlocksNonNull(SwiftMessage o) {
 		assertNotNull(o);
-		assertNotNull("Block 1 is null", o.getBlock1());
-		assertNotNull("Block 2 is null", o.getBlock2());
-		assertNotNull("Block 3 is null", o.getBlock3());
-		assertNotNull("Block 4 is null", o.getBlock4());
-		assertNotNull("Block 5 is null", o.getBlock5());
+		assertNotNull(o.getBlock1(), "Block 1 is null");
+		assertNotNull(o.getBlock2(), "Block 2 is null");
+		assertNotNull(o.getBlock3(), "Block 3 is null");
+		assertNotNull(o.getBlock4(), "Block 4 is null");
+		assertNotNull(o.getBlock5(), "Block 5 is null");
 	}
 
 }

@@ -15,14 +15,19 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
+
 import com.prowidesoftware.swift.model.field.Field106;
 import com.prowidesoftware.swift.model.field.Field108;
 import com.prowidesoftware.swift.model.field.Field121;
 import com.prowidesoftware.swift.model.field.Field165;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Block3 tests.
@@ -43,7 +48,7 @@ public class SwiftBlock3Test {
 		assertEquals(current, b.getTagByName("108").getValue());
 		Thread.sleep(500);
 		b.generateMUR(true);
-		assertFalse("expected a different MUR after generateMUR(true)", StringUtils.equals(current, b.getTagByName("108").getValue()));
+		assertFalse(StringUtils.equals(current, b.getTagByName("108").getValue()), "expected a different MUR after generateMUR(true)");
 	}
 
 	@Test

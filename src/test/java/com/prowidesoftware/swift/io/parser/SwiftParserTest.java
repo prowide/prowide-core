@@ -15,17 +15,29 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import com.prowidesoftware.swift.Constants;
-import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-import com.prowidesoftware.swift.model.*;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.io.StringReader;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import com.prowidesoftware.swift.Constants;
+import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import com.prowidesoftware.swift.model.SwiftBlock;
+import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
+import com.prowidesoftware.swift.model.SwiftBlock3;
+import com.prowidesoftware.swift.model.SwiftBlock4;
+import com.prowidesoftware.swift.model.SwiftBlock5;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.Tag;
 
 /**
  * Swift parser tests using the default lenient (permissive) mode.
@@ -38,7 +50,7 @@ import static org.junit.Assert.*;
 public class SwiftParserTest {
 	private VisibleParser parser;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		parser = new VisibleParser();
 	}
@@ -638,7 +650,8 @@ public class SwiftParserTest {
 		final SwiftMessage msg = p.message();
 		assertNotNull(msg.getBlock1());
 		assertNotNull(msg.getBlock4());
-		assertEquals("Expected 6 tags but found "+msg.getBlock4().size()+", "+msg.getBlock4().tagNamesList(), 6, msg.getBlock4().size());
+		assertEquals(6, msg.getBlock4().size(), "Expected 6 tags but found "+msg.getBlock4().size()+", "+msg.getBlock4().tagNamesList());
+		
 		//		assertEquals("v1", msg.getBlock4().getTagValue("t1"));
 		//		assertEquals("v2", msg.getBlock4().getTagValue("t2"));
 	}
@@ -958,7 +971,7 @@ public class SwiftParserTest {
 	 * Test parsing nested blocks as tags
 	 * @throws Exception
 	 */
-	@Ignore
+	@Disabled
 	@Test
 	public void testNestedBlocks() throws Exception {
 		String fin = "{1:F01OURSGB33AXXX0000000000}{2:O0961625170421ABLRXXXXGXXX00000000001704201625N}{3:{103:CLH}{108:SWIFTBICAXXX0000890}}{4:{1:F01PTY1US33AXXX0000000000}{2:I300PTY2GB33AXXXU3003}{3:{103:ABC}}{4:\n" +

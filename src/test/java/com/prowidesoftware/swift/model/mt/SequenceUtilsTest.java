@@ -16,9 +16,9 @@
 
 package com.prowidesoftware.swift.model.mt;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT536;

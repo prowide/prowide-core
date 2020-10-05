@@ -16,11 +16,9 @@
 
 package com.prowidesoftware.swift.model.mt.mt6xx;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
-
-import com.prowidesoftware.swift.model.mt.mt6xx.MT670;
+import org.junit.jupiter.api.Test;
 
 
 public class MT670Test {

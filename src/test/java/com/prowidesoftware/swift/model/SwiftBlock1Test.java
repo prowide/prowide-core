@@ -15,17 +15,14 @@
  */
 package com.prowidesoftware.swift.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Block1 tests.
@@ -36,7 +33,7 @@ public class SwiftBlock1Test {
 
 	private SwiftBlock1 b;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		b = new SwiftBlock1();
 	}
