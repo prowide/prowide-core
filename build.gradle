@@ -34,7 +34,7 @@ dependencies {
 
 	compileOnly 'javax.persistence:javax.persistence-api:2.2'
 	compileOnly group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
-	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.0'
+	testImplementation('org.junit.jupiter:junit-jupiter:5.7.0')
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
 	testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.6.3'
 	testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.6.3'
@@ -42,6 +42,10 @@ dependencies {
 }
 
 sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']
+
+test {
+	useJUnitPlatform()
+}
 
 tasks.withType(Jar) {
 	manifest.attributes(
