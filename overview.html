@@ -10,7 +10,6 @@
 		<li>Builder API from Java to SWIFT (FIN or {@link com.prowidesoftware.swift.io.RJEReader RJE})</li>
 		<li>Conversion to {@link com.prowidesoftware.swift.model.SwiftMessage#toJson() JSON} and proprietary {@link com.prowidesoftware.swift.model.SwiftMessage#toXml() XML}</li>
 		<li>Complementary model suited for {@link com.prowidesoftware.swift.model.AbstractSwiftMessage persistence}</li>
-		<li>Generic support for ISO 20022 {@link com.prowidesoftware.swift.io.parser.MxParser MX}</li>
 	</ol>
 
 	<h2>Java model for MT SWIFT messages</h2>
@@ -23,7 +22,7 @@
 	
 		<h3>Persistence - Lightweight Layer</h3>
 		
-		<p>Generic representation for messages intended for persistence. It can be thinked of as a wrapper of a swift message file.</p> 
+		<p>Generic representation for messages intended for persistence. It can be thought of as a wrapper of a swift message file.</p>
 		
 		<p>The model includes specific attributes for headers and trailer information, while the body content (business payload) is kept as single <code>String</code> attribute (not parsed).
 		<br>It is specially suited for optimal database persistence, sharing a simple and efficient database structure for all message types including MX.</p>
