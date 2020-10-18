@@ -194,6 +194,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 		setChecksum(SwiftMessageUtils.calculateChecksum(model));
 		setChecksumBody(SwiftMessageUtils.calculateChecksum(model.getBlock4()));
 		setLastModified(Calendar.getInstance());
+		setMur(model.getMUR());
 	}
 
 	private void update(final SwiftMessage model) {
@@ -213,7 +214,6 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 		setPde(model.getPDE());
 		setPdm(model.getPDM());
 		setMir(model.getMIR());
-		setMur(model.getMUR());
 
 		if (model.getBlock2() != null) {
 			setUuid(model.getUUID());
