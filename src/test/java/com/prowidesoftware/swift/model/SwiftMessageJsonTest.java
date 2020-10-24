@@ -66,7 +66,7 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testBlock2InputToJson(){
-        SwiftBlock2Input b1 = new SwiftBlock2Input("I103CARAANC0XXXXN");
+        SwiftBlock2Input b1 = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
         String s = b1.toJson();
 
         JsonParser parser = new JsonParser();
@@ -74,7 +74,7 @@ public class SwiftMessageJsonTest {
 
         assertNotNull(o);
         assertEquals("I", o.get("direction").getAsString());
-        assertEquals("CARAANC0XXXX", o.get("receiverAddress").getAsString());
+        assertEquals("BBBBUSC0XXXX", o.get("receiverAddress").getAsString());
         assertEquals("103", o.get("messageType").getAsString());
         assertEquals("N", o.get("messagePriority").getAsString());
     }
@@ -98,11 +98,11 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testBlock2InputFromJson(){
-        String s = "{\"direction\":\"I\",\"messageType\":\"103\",\"receiverAddress\":\"CARAANC0XXXX\",\"messagePriority\":\"N\",\"deliveryMonitoring\":\"2\",\"obsolescencePeriod\":\"003\"}";
+        String s = "{\"direction\":\"I\",\"messageType\":\"103\",\"receiverAddress\":\"BBBBUSC0XXXX\",\"messagePriority\":\"N\",\"deliveryMonitoring\":\"2\",\"obsolescencePeriod\":\"003\"}";
         SwiftBlock2Input block2Input = SwiftBlock2Input.fromJson(s);
         assertTrue(block2Input.isInput());
         assertEquals("103", block2Input.getMessageType());
-        assertEquals("CARAANC0XXXX", block2Input.getReceiverAddress());
+        assertEquals("BBBBUSC0XXXX", block2Input.getReceiverAddress());
         assertEquals("N", block2Input.getMessagePriority());
         assertEquals("2", block2Input.getDeliveryMonitoring());
         assertEquals("003", block2Input.getObsolescencePeriod());

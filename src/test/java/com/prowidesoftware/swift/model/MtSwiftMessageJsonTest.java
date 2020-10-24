@@ -18,7 +18,9 @@ package com.prowidesoftware.swift.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -33,17 +35,17 @@ public class MtSwiftMessageJsonTest {
 
 	@Test
 	public void testMtSwiftMessageToJson() {
-		String fin = "{1:F01CARBVEC0ADDD0344000050}{2:I103CARAANC0XFFFN}{4:\n" +
+		String fin = "{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\n" +
 				":20:TBEXO200909031\n" +
 				":23B:CRED\n" +
-				":32A:090903VEF23453,\n" +
+				":32A:090903USD23453,\n" +
 				":50K:/01111001759234567890\n" +
-				"ROMAN GUILLEN DOBOZI \n" +
+				"JOE DOE\n" +
 				"R00000V0574734\n" +
 				":53B:/00010013800002001234\n" +
 				"MI BANCO\n" +
 				":59:/00013500510020179998\n" +
-				"PDVSA GAS\n" +
+				"FOO CORP\n" +
 				"R00000V000034534\n" +
 				":71A:OUR\n" +
 				":72:/TIPO/422\n" +
@@ -62,7 +64,7 @@ public class MtSwiftMessageJsonTest {
         m.setNotes(notes);
 		assertNotNull(m);
 		String s = m.toJson();
-        //System.out.println(s);
+        System.out.println(s);
 
         JsonParser parser = new JsonParser();
         JsonObject o = parser.parse(s).getAsJsonObject();
@@ -73,7 +75,7 @@ public class MtSwiftMessageJsonTest {
         assertEquals("FOO", o.get("pde").getAsString());
         assertNull(o.get("pdm"));
         assertNull(o.get("mur"));
-		assertEquals("ICARAANC0FFF103TBEXO200909031", o.get("uuid").getAsString());
+		assertEquals("IBBBBUSC0FFF103TBEXO200909031", o.get("uuid").getAsString());
 		assertTrue(o.get("statusTrail").getAsJsonArray().size() == 1);
         assertEquals("comments", o.get("statusTrail").getAsJsonArray().get(0).getAsJsonObject().get("comments").getAsString());
         assertTrue(o.get("notes").getAsJsonArray().size() == 1);
@@ -83,11 +85,11 @@ public class MtSwiftMessageJsonTest {
     @Test
     public void testMtSwiftMessageFromJson() {
         String json = "{\n" +
-                "  \"uuid\": \"ICARAANC0FFF103TBEXO200909031\",\n" +
-                "  \"message\": \"{1:F01CARBVEC0ADDD0344000050}{2:I103CARAANC0XFFFN}{4:\\n:20:TBEXO200909031\\n:23B:CRED\\n:32A:090903VEF23453,\\n:50K:/01111001759234567890\\nROMAN GUILLEN DOBOZI \\nR00000V0574734\\n:53B:/00010013800002001234\\nMI BANCO\\n:59:/00013500510020179998\\nPDVSA GAS\\nR00000V000034534\\n:71A:OUR\\n:72:/TIPO/422\\n-}\",\n" +
+                "  \"uuid\": \"IBBBBUSC0FFF103TBEXO200909031\",\n" +
+                "  \"message\": \"{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\\n:20:TBEXO200909031\\n:23B:CRED\\n:32A:090903USD23453,\\n:50K:/01111001759234567890\\nROMAN GUILLEN DOBOZI \\nR00000V0574734\\n:53B:/00010013800002001234\\nMI BANCO\\n:59:/00013500510020179998\\nFOO CORP\\nR00000V000034534\\n:71A:OUR\\n:72:/TIPO/422\\n-}\",\n" +
                 "  \"identifier\": \"fin.103\",\n" +
-                "  \"sender\": \"CARBVEC0DDD\",\n" +
-                "  \"receiver\": \"CARAANC0FFF\",\n" +
+                "  \"sender\": \"AAAAUSC0DDD\",\n" +
+                "  \"receiver\": \"BBBBUSC0FFF\",\n" +
                 "  \"direction\": \"outgoing\",\n" +
                 "  \"checksum\": \"c82941778f70a0426ffc04321fa145ad\",\n" +
                 "  \"checksumBody\": \"7d5e9d83c18a16664df1dfd9b1ebe8a6\",\n" +
@@ -100,9 +102,9 @@ public class MtSwiftMessageJsonTest {
                 "    \"second\": 4\n" +
                 "  },\n" +
                 "  \"creationDate\": {\n" +
-                "    \"year\": 2018,\n" +
-                "    \"month\": 4,\n" +
-                "    \"dayOfMonth\": 22,\n" +
+                "    \"year\": 2015,\n" +
+                "    \"month\": 7,\n" +
+                "    \"dayOfMonth\": 27,\n" +
                 "    \"hourOfDay\": 0,\n" +
                 "    \"minute\": 48,\n" +
                 "    \"second\": 4\n" +
@@ -140,7 +142,7 @@ public class MtSwiftMessageJsonTest {
                 "  \"properties\": {},\n" +
                 "  \"fileFormat\": \"FIN\",\n" +
                 "  \"reference\": \"TBEXO200909031\",\n" +
-                "  \"currency\": \"VEF\",\n" +
+                "  \"currency\": \"USD\",\n" +
                 "  \"amount\": 23453,\n" +
                 "  \"revisions\": []\n" +
                 "}";
@@ -148,7 +150,7 @@ public class MtSwiftMessageJsonTest {
 
         MtSwiftMessage swiftMessage = MtSwiftMessage.fromJson(json);
 
-        assertEquals("ICARAANC0FFF103TBEXO200909031", swiftMessage.getUuid());
+        assertEquals("IBBBBUSC0FFF103TBEXO200909031", swiftMessage.getUuid());
         assertEquals("TBEXO200909031", swiftMessage.getReference());
         assertEquals("FIN", swiftMessage.getFileFormat().toString());
         assertEquals("fin.103", swiftMessage.getIdentifier());
@@ -156,6 +158,9 @@ public class MtSwiftMessageJsonTest {
         assertEquals("comments", swiftMessage.getStatusTrail().get(0).getComments());
         assertTrue(swiftMessage.getNotes().size() == 1);
         assertEquals("creationUser", swiftMessage.getNotes().get(0).getCreationUser());
+        assertEquals(2015, swiftMessage.getCreationDate().get(Calendar.YEAR));
+        assertEquals(27, swiftMessage.getCreationDate().get(Calendar.DAY_OF_MONTH));
+        assertEquals(Calendar.AUGUST, swiftMessage.getCreationDate().get(Calendar.MONTH));
 
         SwiftMessage sm = swiftMessage.modelMessage();
         assertNotNull(sm.getBlock1());
@@ -163,7 +168,7 @@ public class MtSwiftMessageJsonTest {
         assertNotNull(sm.getBlock4());
         assertTrue(sm.getBlock2().isInput());
         assertEquals("TBEXO200909031", sm.getBlock4().getTagValue("20"));
-        assertEquals("CARBVEC0ADDD", sm.getBlock1().getLogicalTerminal());
+        assertEquals("AAAAUSC0ADDD", sm.getBlock1().getLogicalTerminal());
         assertEquals("103", sm.getBlock2().getMessageType());
         assertEquals("0344", sm.getBlock1().getSessionNumber());
         assertNull(sm.getBlock5());

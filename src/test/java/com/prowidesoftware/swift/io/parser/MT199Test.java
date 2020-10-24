@@ -30,7 +30,7 @@ public class MT199Test extends BaseMessageTestcase {
 
 	@Test
 	public void test199_01() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
+		String s = "{1:F01AAAAUSC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:24986614073\n" +
 					":79:TO.   HSBC INTERNATIONAL TRUSTEE LIMITED\n" +
 					"ATTN. FOO LAM / FOO CHENG - FAX NO. 11112222\n" +
@@ -78,7 +78,7 @@ public class MT199Test extends BaseMessageTestcase {
 
 	@Test
 	public void test199_02() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
+		String s = "{1:F01AAAAUSC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:628735BKRU3X\n" +
 					":79:TO.   CITIBANK NA (NEW YORK)\n" +
 					"ATTN. ANTHONY FOO/BONI FOO - ABC OPERATIONS\n" +
@@ -112,7 +112,7 @@ public class MT199Test extends BaseMessageTestcase {
 	
 	@Test
 	public void test199_03() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
+		String s = "{1:F01AAAAUSC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:628735BKRU3X\n" +
 					":79:TO.   FOO NA (HONG KONG)\n" +
 					"FOO\n" +
@@ -127,7 +127,7 @@ public class MT199Test extends BaseMessageTestcase {
 	
 	@Test
 	public void test199_04() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
+		String s = "{1:F01AAAAUSC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:628735BKRU3X\n" +
 					":79:foo\n" +
 					"}\n" +				//invalid character
@@ -139,7 +139,7 @@ public class MT199Test extends BaseMessageTestcase {
 
 	@Test
 	public void test199_05() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
+		String s = "{1:F01AAAAUSC0AXXX8321000092}{2:I199FOOBARAAXXXXN}{4:\n" +
 					":20:628735BKRU3X\n" +
 					":79:foo\n" +
 					"}\n" +				//invalid character

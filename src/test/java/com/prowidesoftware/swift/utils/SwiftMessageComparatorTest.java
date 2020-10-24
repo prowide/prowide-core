@@ -72,10 +72,10 @@ public class SwiftMessageComparatorTest {
 
 	@Test
 	public void testB2Input() {
-		SwiftBlock2Input b1 = new SwiftBlock2Input("I103CARAANC0XXXXN");
+		SwiftBlock2Input b1 = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
 		assertTrue(comp.compareB2(b1, b1));
 
-		SwiftBlock2Input b2 = new SwiftBlock2Input("I103CARAANC0XXXXN");
+		SwiftBlock2Input b2 = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
 		assertTrue(comp.compareB2(b1, b2));
 
 		b2.setDeliveryMonitoring("3");
@@ -113,10 +113,10 @@ public class SwiftMessageComparatorTest {
 	public void testFullMessage() throws IOException {
 		assertTrue(comp.compare(new SwiftMessage(), new SwiftMessage()) == 0);
 		
-		final String fin = "{1:F01CARBVEC0AXXX6083000009}{2:I103CARAANC0XXXXN}{4:\n"
+		final String fin = "{1:F01AAAAUSC0AXXX6083000009}{2:I103BBBBUSC0XXXXN}{4:\n"
 				+":20:TCLIO200908132\n"
 				+":23B:CRED\n"
-				+":32A:090813VEF1000,\n"
+				+":32A:090813USD1000,\n"
 				+":50K:/01115446997234567890\n"
 				+"FOO GUILARTE MADRIZ\n"
 				+"R00000V01321705\n"

@@ -34,7 +34,7 @@ public class Field23Test extends AbstractFieldTest {
 	@Test
 	public void testSerialization() {
 		testSerializationImpl("23",
-				"abcd/efgh/ijk/VEF//aaa"
+				"abcd/efgh/ijk/USD//aaa"
 			);
 	}
 	
@@ -90,29 +90,29 @@ public class Field23Test extends AbstractFieldTest {
 		assertEquals("ijk", f.getComponent3());
 		assertNull(f.getComponent4());
 		
-		f = new Field23("abcd/efgh/ijk/VEF");
+		f = new Field23("abcd/efgh/ijk/USD");
 		assertEquals("abcd", f.getComponent1());
 		assertEquals("efgh", f.getComponent2());
 		assertEquals("ijk", f.getComponent3());
-		assertEquals("VEF", f.getComponent4());
+		assertEquals("USD", f.getComponent4());
 		
-		f = new Field23("abcd/efgh/ijk/VEF/");
+		f = new Field23("abcd/efgh/ijk/USD/");
 		assertEquals("abcd", f.getComponent1());
 		assertEquals("efgh", f.getComponent2());
 		assertEquals("ijk", f.getComponent3());
-		assertEquals("VEF/", f.getComponent4());
+		assertEquals("USD/", f.getComponent4());
 		
-		f = new Field23("abcd/efgh/ijk/VEF//");
+		f = new Field23("abcd/efgh/ijk/USD//");
 		assertEquals("abcd", f.getComponent1());
 		assertEquals("efgh", f.getComponent2());
 		assertEquals("ijk", f.getComponent3());
-		assertEquals("VEF//", f.getComponent4());
+		assertEquals("USD//", f.getComponent4());
 		
-		f = new Field23("abcd/efgh/ijk/VEF//aaa");
+		f = new Field23("abcd/efgh/ijk/USD//aaa");
 		assertEquals("abcd", f.getComponent1());
 		assertEquals("efgh", f.getComponent2());
 		assertEquals("ijk", f.getComponent3());
-		assertEquals("VEF//aaa", f.getComponent4());
+		assertEquals("USD//aaa", f.getComponent4());
 	}
 
 }

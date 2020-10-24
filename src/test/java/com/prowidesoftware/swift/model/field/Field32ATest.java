@@ -36,7 +36,7 @@ public class Field32ATest extends AbstractFieldTest {
 	public void testSerialization() {
 		testSerializationImpl("32A",
 				"010203USD123",
-				"081001VEF30625,00"
+				"081001USD30625,00"
 			);
 	}
 	
@@ -49,7 +49,7 @@ public class Field32ATest extends AbstractFieldTest {
 		assertEquals(3, f.getComponent1AsCalendar().get(Calendar.DATE));
 		assertEquals("USD", f.getComponent2());
 		assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
-		//081001VEF30625,00
+		//081001USD30625,00
 	}
 	
 	@Test
@@ -76,32 +76,32 @@ public class Field32ATest extends AbstractFieldTest {
 	
 	@Test
 	public void testParse32A_4() throws Exception {
-		Field32A f = new Field32A("081001VEF30625,");
+		Field32A f = new Field32A("081001USD30625,");
 		assertNotNull(f, "Parse of field failed");
 		assertNotNull(f.getComponent1AsCalendar());
-		assertEquals("VEF", f.getComponent2());
+		assertEquals("USD", f.getComponent2());
 		assertEquals(new BigDecimal(30625.00), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
 		
-		f = new Field32A("081001VEF30625,00");
+		f = new Field32A("081001USD30625,00");
 		assertNotNull(f, "Parse of field failed");
 		assertNotNull(f.getComponent1AsCalendar());
-		assertEquals("VEF", f.getComponent2());
+		assertEquals("USD", f.getComponent2());
 		assertEquals(new BigDecimal(30625.00), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
 	}
 	
 	@Test
 	public void testParse32A_Amount() throws Exception {
-		Field32A f = new Field32A("081001VEF30625,00");
+		Field32A f = new Field32A("081001USD30625,00");
 		assertNotNull(f, "Parse of field failed");
-		assertEquals("VEF", f.getComponent2());
+		assertEquals("USD", f.getComponent2());
 		assertEquals(new BigDecimal(30625.00), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
 	}
 	
 	@Test
 	public void testParse32A_Amount_2() throws Exception {
-		Field32A f = new Field32A("081001VEF30625,67");
+		Field32A f = new Field32A("081001USD30625,67");
 		assertNotNull(f, "Parse of field failed");
-		assertEquals("VEF", f.getComponent2());
+		assertEquals("USD", f.getComponent2());
 		assertEquals(new BigDecimal(30625.67), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
 	}
 

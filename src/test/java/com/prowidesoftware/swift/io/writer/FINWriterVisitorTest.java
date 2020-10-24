@@ -121,7 +121,7 @@ public class FINWriterVisitorTest {
 	public void testWriteBlock4_2() {
 		SwiftMessage msg = new SwiftMessage(true);
 		msg.setBlock1(null);
-		msg.setBlock2(new SwiftBlock2Input("I028CARAANC0XXXXN"));
+		msg.setBlock2(new SwiftBlock2Input("I028BBBBUSC0XXXXN"));
 		msg.setBlock3(null);
 		msg.setBlock5(null);
 		
@@ -129,14 +129,14 @@ public class FINWriterVisitorTest {
 		msg.getBlock4().append(new Tag("2:val2"));
 		
 		msg.visit(this.visitor);
-		assertEquals("{2:I028CARAANC0XXXXN}{4:{1:val1}{2:val2}}", getResult("testWriteBlock4_2"));
+		assertEquals("{2:I028BBBBUSC0XXXXN}{4:{1:val1}{2:val2}}", getResult("testWriteBlock4_2"));
 	}
 	
 	@Test 
 	public void testWriteBlock4_3() {
 		SwiftMessage msg = new SwiftMessage(true);
 		msg.setBlock1(new SwiftBlock1("F01VNDZBET2AXXX0027000580"));
-		msg.setBlock2(new SwiftBlock2Input("I028CARAANC0XXXXN"));
+		msg.setBlock2(new SwiftBlock2Input("I028BBBBUSC0XXXXN"));
 		msg.setBlock3(null);
 		msg.setBlock5(null);
 		
@@ -144,7 +144,7 @@ public class FINWriterVisitorTest {
 		msg.getBlock4().append(new Tag("2:val2"));
 		
 		msg.visit(this.visitor);
-		assertEquals("{1:F01VNDZBET2AXXX0027000580}{2:I028CARAANC0XXXXN}{4:{1:val1}{2:val2}}", getResult("testWriteBlock4_3"));
+		assertEquals("{1:F01VNDZBET2AXXX0027000580}{2:I028BBBBUSC0XXXXN}{4:{1:val1}{2:val2}}", getResult("testWriteBlock4_3"));
 	}
 	
 	@Test 

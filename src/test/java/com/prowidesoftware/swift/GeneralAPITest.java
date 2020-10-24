@@ -56,7 +56,7 @@ public class GeneralAPITest {
 	private String fin2 = "{1:F01FOOBARCAAXXX5306843322}{2:O2021128081024FOOSUS33DXXX19330576120810241058N}{4:\n" + 
 		":20:TCPLO200919447\n" + 
 		":21:345234\n" + 
-		":32A:091118VEF2345234,3\n" + 
+		":32A:091118USD2345234,3\n" +
 		":53B:/00010013800002000114\n" + 
 		"FOO BANK\n" + 
 		":58D:/00013500510020179998\n" + 
@@ -103,7 +103,7 @@ public class GeneralAPITest {
 		SwiftBlock4 b4 = msg.getBlock4();
 		assertNotNull(b4);
 		assertEquals("TCPLO200919447", b4.getTagByName("20").getValue());
-		assertEquals("091118VEF2345234,3", b4.getTagByName("32A").getValue());
+		assertEquals("091118USD2345234,3", b4.getTagByName("32A").getValue());
 //		assertEquals((new Double(2345234.3)).doubleValue(), mt202.getField32A().getComponent3AsNumber().doubleValue());
 	}
 	
