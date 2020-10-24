@@ -1,7 +1,7 @@
 ![alt tag](http://www.prowidesoftware.com/img/logoPW_800x253-300dpi.jpg)
 
 
-**Prowide Core** is an open source Java framework for managing SWIFT messages.
+**Prowide Core** is an open source Java framework for managing SWIFT FIN messages.
 
 The project (previously known as WIFE) is active since 2006, production ready and commercially supported.
 
@@ -26,12 +26,11 @@ For SWIFT messages validation, translations, GUI application and more, please ch
 
 ### Documentation
 * Documentation site http://www.prowidesoftware.com/resources
-* Javadoc http://api.prowidesoftware.com/core/
-* Changelog http://www.prowidesoftware.com/resources/changelog
+* Javadoc https://www.javadoc.io/doc/com.prowidesoftware/pw-swift-core/
 * Code examples https://github.com/prowide/prowide-core-examples
 
 ### Distribution
-Latest public **binary DOWNLOAD** is available at http://www.prowidesoftware.com/download-prowide-core
+Latest public **binary DOWNLOAD** is available at http://www.prowidesoftware.com/download
 
 SRU updates are made available on October (one month before SWIFT production date) for the general public, and 6 months in advance for subscribed customers.
 
