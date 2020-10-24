@@ -25,12 +25,12 @@ For ISO 20022 model, parser and builder API check the https://github.com/prowide
 For SWIFT messages validation, translations, GUI application and more, please check our complementary commercial offerings at http://www.prowidesoftware.com/
 
 ### Documentation
-* Documentation site http://www.prowidesoftware.com/resources
+* Documentation site https://www.prowidesoftware.com/resources
 * Javadoc https://www.javadoc.io/doc/com.prowidesoftware/pw-swift-core/
 * Code examples https://github.com/prowide/prowide-core-examples
 
 ### Distribution
-Latest public **binary DOWNLOAD** is available at http://www.prowidesoftware.com/download
+Latest public **binary DOWNLOAD** is available at https://www.prowidesoftware.com/download
 
 SRU updates are made available on October (one month before SWIFT production date) for the general public, and 6 months in advance for subscribed customers.
 
