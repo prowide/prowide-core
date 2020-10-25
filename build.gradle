@@ -94,8 +94,8 @@ task writePom {
 	doLast {
 		pom {
 			project {
-				groupId "com.prowidesoftware"
-				artifactId "${rootProject.name}"
+				groupId 'com.prowidesoftware'
+				artifactId 'pw-swift-core'
 				version "${version}"
 				name 'Prowide Core'
 				description 'Prowide Library for SWIFT messages'
@@ -183,3 +183,12 @@ jacocoTestReport {
 }
 
 test.finalizedBy jacocoTestReport
+
+task bundle(type: Zip, dependsOn: build) {
+	description 'Creates the bundle.jar for Maven Central distribution'
+	from jar
+	from sourcesJar
+	from javadocJar
+	from files("$buildDir/pom.xml")
+	archiveName 'bundle.zip'
+}
