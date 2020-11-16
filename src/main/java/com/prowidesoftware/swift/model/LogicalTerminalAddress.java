@@ -18,11 +18,10 @@ package com.prowidesoftware.swift.model;
 import java.util.Objects;
 
 /**
- * Identifies a logical channel connection to SWIFT, and the network uses it
- * for addressing. It is composed by the BIC code, an optional terminal
- * identifier (A, B or C) if the institution has more than one terminal,
- * and the branch (padded with "X" if no branch is used). 
- * For example BFOOARBSAXXX or BFOOARBSXXX.<br>
+ * Identifies a logical channel connection to SWIFT, and the network uses it for addressing.
+ * It is basically a BIC code with an additional character identifier the terminal sending the message. The LT
+ * identifier is located in position 9 of a full 12 characters address.
+ * For example letter 'A' in CCCCUS33AXXX<br>
  * 
  * A sender LT address cannot have 'X' as LT identifier, conversely a
  * receiver LT address must have an 'X' as LT identifier.

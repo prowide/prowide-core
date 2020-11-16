@@ -28,8 +28,6 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 
 /**
  * Swift message comparator for tests.
- * 
- * @since 4.0
  */
 public class AckMessageComparatorTest {
 
@@ -118,6 +116,52 @@ public class AckMessageComparatorTest {
 		ackMsg.getBlock1().setSequenceNumber("X");
 		ackMsg.getBlock1().setSessionNumber("X");
 		assertEquals(0, c.compare(ackMsg, mMsg));
+	}
+
+	@Test
+	public void testCompare2() throws IOException {
+		String fin1 = "{1:F01AAAADEF0AXXX0023000109}{2:I999BBBBGB20AXXXN}{4:\r\n" +
+		":20:1234\r\n" +
+		":21:REPORT NAN\r\n" +
+		":79:TEST 13 NOV 2020\r\n" +
+		"-}{5:{CHK:201113000184}{TNG:}}";
+
+		String fin2 = "{1:F01AAAADEF0BXXX0000000000}{2:I999BBBBGB20XXXXN}{4:\r\n" +
+		":20:1234\r\n" +
+		":21:REPORT NAN\r\n" +
+		":79:TEST 13 NOV 2020\r\n" +
+		"-}";
+
+		AckMessageComparator comp = new AckMessageComparator();
+		SwiftMessage msg1 = SwiftMessage.parse(fin1);
+		SwiftMessage msg2 = SwiftMessage.parse(fin2);
+		assertEquals(1, comp.compare(msg1, msg2));
+
+		comp.setIgnoreLT(true);
+		assertEquals(0, comp.compare(msg1, msg2));
+	}
+
+	@Test
+	public void testCompare3() throws IOException {
+		String fin1 = "{1:F01AAAADEFXAXXX0023000109}{2:I999BBBBGB22XXXXN}{4:\r\n" +
+				":20:1234\r\n" +
+				":21:REPORT NAN\r\n" +
+				":79:TEST 13 NOV 2020\r\n" +
+				"-}{5:{CHK:201113000184}{TNG:}}";
+
+		String fin2 = "{1:F01AAAADEF0AXXX0023000109}{2:I999BBBBGB20XXXXN}{4:\r\n" +
+				":20:1234\r\n" +
+				":21:REPORT NAN\r\n" +
+				":79:TEST 13 NOV 2020\r\n" +
+				"-}";
+
+		AckMessageComparator comp = new AckMessageComparator();
+		SwiftMessage msg1 = SwiftMessage.parse(fin1);
+		SwiftMessage msg2 = SwiftMessage.parse(fin2);
+		assertEquals(1, comp.compare(msg1, msg2));
+
+		comp.setIgnoreLocationFlag(true);
+		assertEquals(0, comp.compare(msg1, msg2));
 	}
 
 }

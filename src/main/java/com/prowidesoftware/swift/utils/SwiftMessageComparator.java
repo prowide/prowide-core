@@ -61,7 +61,17 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	 * @since 8.0.3
 	 */
 	protected boolean ignoreBlock2OptionalFields = false;
-	
+
+	/**
+	 * @since 9.1.3
+	 */
+	protected boolean ignoreLT = false;
+
+	/**
+	 * @since 9.1.3
+	 */
+	protected boolean ignoreLocationFlag = false;
+
 	/**
 	 * List of tagnames to ignore in comparison.
 	 * tagnames will be matched using tag.getName()
@@ -102,27 +112,43 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	 */
 	public boolean compareB2(final SwiftBlock2 left, final SwiftBlock2 right) {
 		if (left==null && right==null) {
-			/*
-			 * both are null
-			 */
-	        return true;
+			return true;
         }
 		if (left==null || right==null) {
-			/*
-			 * return false because the other one is not null
-			 */
-	        return false;
+			return false;
         }
 		if (!left.getClass().equals(right.getClass())) {
 			return false;
 		}
-		if (left.isInput() && right.isInput() && this.ignoreBlock2OptionalFields) {
-			// we trim the value to ignore the last fields, which are optional
-			String leftValue = StringUtils.substring(left.getValue(), 0, 17);
-			String rightValue = StringUtils.substring(right.getValue(), 0, 17);
-			return StringUtils.equals(leftValue, rightValue);
+		if (left.isInput() && right.isInput()) {
+			return compareB2Input((SwiftBlock2Input) left, (SwiftBlock2Input) right);
+		} else if (left.isOutput() && right.isOutput()) {
+			return compareB2Output((SwiftBlock2Output) left, (SwiftBlock2Output) right);
 		}
-		return StringUtils.equals(left.getValue(), right.getValue());
+		throw new IllegalStateException();
+	}
+
+	private boolean compareB2Input(final SwiftBlock2Input left, final SwiftBlock2Input right) {
+		boolean sameType = StringUtils.equals(left.getMessageType(), right.getMessageType());
+		boolean sameReceiverAddress = compareLTAddress(left.getReceiverAddress(), right.getReceiverAddress());
+		boolean sameDeliveryMonitoring = ignoreBlock2OptionalFields || StringUtils.equals(left.getDeliveryMonitoring(), right.getDeliveryMonitoring());
+		boolean sameObsolescencePeriod = ignoreBlock2OptionalFields ||StringUtils.equals(left.getObsolescencePeriod(), right.getObsolescencePeriod());
+		boolean samePriority = StringUtils.equals(left.getMessagePriority(), right.getMessagePriority());
+		return sameType && sameReceiverAddress && sameDeliveryMonitoring && sameObsolescencePeriod && samePriority;
+	}
+
+	private boolean compareB2Output(final SwiftBlock2Output left, final SwiftBlock2Output right) {
+		boolean sameType = StringUtils.equals(left.getMessageType(), right.getMessageType());
+		boolean sameSenderInputTime = StringUtils.equals(left.getSenderInputTime(), right.getSenderInputTime());
+		boolean sameMIRDate = StringUtils.equals(left.getMIRDate(), right.getMIRDate());
+		boolean sameMIRLogicalTerminal = compareLTAddress(left.getMIRLogicalTerminal(), right.getMIRLogicalTerminal());
+		boolean sameMIRSessionNumber = StringUtils.equals(left.getMIRSessionNumber(), right.getMIRSessionNumber());
+		boolean sameMIRSequenceNumber = StringUtils.equals(left.getMIRSequenceNumber(), right.getMIRSequenceNumber());
+		boolean sameReceiverOutputDate = StringUtils.equals(left.getReceiverOutputDate(), right.getReceiverOutputDate());
+		boolean sameReceiverOutputTime = StringUtils.equals(left.getReceiverOutputTime(), right.getReceiverOutputTime());
+		boolean samePriority = StringUtils.equals(left.getMessagePriority(), right.getMessagePriority());
+		return sameType && sameSenderInputTime && sameMIRDate && sameMIRLogicalTerminal && sameMIRSessionNumber &&
+				sameMIRSequenceNumber && sameReceiverOutputDate && sameReceiverOutputTime && samePriority;
 	}
 
 	/**
@@ -258,12 +284,32 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 		if (left == null || right == null) {
 	        return false;
         }
-		boolean session = this.ignoreHeaderSession || StringUtils.equals(left.getSessionNumber(), right.getSessionNumber());
-		boolean sequence = this.ignoreHeaderSession || StringUtils.equals(left.getSequenceNumber(), right.getSequenceNumber());
-		return session && sequence &&
-			StringUtils.equals(left.getApplicationId(), right.getApplicationId()) &&
-			StringUtils.equals(left.getLogicalTerminal(), right.getLogicalTerminal()) &&
-			StringUtils.equals(left.getServiceId(), right.getServiceId());
+		boolean sameApplicationId = StringUtils.equals(left.getApplicationId(), right.getApplicationId());
+		boolean sameServiceId = StringUtils.equals(left.getServiceId(), right.getServiceId());
+		boolean sameSession = this.ignoreHeaderSession || StringUtils.equals(left.getSessionNumber(), right.getSessionNumber());
+		boolean sameSequence = this.ignoreHeaderSession || StringUtils.equals(left.getSequenceNumber(), right.getSequenceNumber());
+		boolean sameLTAddress = compareLTAddress(left.getLogicalTerminal(), right.getLogicalTerminal());
+		return sameApplicationId && sameServiceId && sameSequence && sameSession & sameLTAddress;
+	}
+
+	private boolean compareLTAddress(String logicalTerminalLeft, String logicalTerminalRight) {
+		LogicalTerminalAddress leftLTAddress = new LogicalTerminalAddress(logicalTerminalLeft);
+		LogicalTerminalAddress rightLTAddress = new LogicalTerminalAddress(logicalTerminalRight);
+		if (this.ignoreLT) {
+			leftLTAddress.setLTIdentifier('A');
+			rightLTAddress.setLTIdentifier('A');
+		}
+		boolean sameLTIdentifier = leftLTAddress.getLTIdentifier() == rightLTAddress.getLTIdentifier();
+		boolean sameBic11 = compareBic(leftLTAddress, rightLTAddress);
+		return sameLTIdentifier && sameBic11;
+	}
+
+	private boolean compareBic(BIC left, BIC right) {
+		if (this.ignoreLocationFlag) {
+			return StringUtils.equals(left.asTestBic().getBic11(), right.asTestBic().getBic11());
+		} else {
+			return StringUtils.equals(left.getBic11(), right.getBic11());
+		}
 	}
 
 	/**
@@ -351,6 +397,43 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 	 */
 	public void setIgnoreBlock2OptionalFields(boolean ignoreBlock2OptionalFields) {
 		this.ignoreBlock2OptionalFields = ignoreBlock2OptionalFields;
+	}
+
+	/**
+	 * @see #isIgnoreLT()
+	 * @since 9.1.3
+	 */
+	public boolean isIgnoreLT() {
+		return ignoreLT;
+	}
+
+	/**
+	 * If this is set to true, when comparing block 1 and block 2, the Logical Terminal identifier will be ignored in
+	 * the comparison. Meaning different values for the LT identifier such as FFFFUS33AXXX and FFFFUS33BXXX in the
+	 * headers of the compared blocks will return true as comparison result. Defaults to false.
+	 * @since 9.1.3
+	 */
+	public void setIgnoreLT(boolean ignoreLT) {
+		this.ignoreLT = ignoreLT;
+	}
+
+	/**
+	 * @see #isIgnoreLocationFlag()
+	 * @since 9.1.3
+	 */
+	public boolean isIgnoreLocationFlag() {
+		return ignoreLocationFlag;
+	}
+
+	/**
+	 * If this is set to true, when comparing block 1 and block 2, the second digit of the location code (character at
+	 * 8th position of the logical terminal addresses) will be ignored in the comparison.
+	 * Meaning for example FFFFUS30AXXX and FFFFUS33AXXX in the headers of the compared blocks will return true as
+	 * comparison result. Defaults to false.
+	 * @since 9.1.3
+	 */
+	public void setIgnoreLocationFlag(boolean ignoreLocationFlag) {
+		this.ignoreLocationFlag = ignoreLocationFlag;
 	}
 
 }

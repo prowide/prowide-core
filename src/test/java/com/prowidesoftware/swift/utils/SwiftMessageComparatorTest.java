@@ -15,90 +15,164 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.IOException;
-
-import org.junit.jupiter.api.Test;
-
 import com.prowidesoftware.swift.model.SwiftBlock1;
 import com.prowidesoftware.swift.model.SwiftBlock2Input;
 import com.prowidesoftware.swift.model.SwiftBlock2Output;
 import com.prowidesoftware.swift.model.SwiftMessage;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Swift message comparator for tests.
- * 
- * @since 7.8.8
  */
 public class SwiftMessageComparatorTest {
-	
-	final private SwiftMessageComparator comp = new SwiftMessageComparator();
-	
+
 	@Test
 	public void testB1() {
-		SwiftBlock1 b1 = new SwiftBlock1();
-		assertTrue(comp.compareB1(b1, b1));
-		
-		b1.setLogicalTerminal("FOOBARXXXXX");
-		assertTrue(comp.compareB1(b1, b1));
-		
-		b1.setSequenceNumber("123456");
-		assertTrue(comp.compareB1(b1, b1));
-		
-		b1.setSessionNumber("1234");
-		assertTrue(comp.compareB1(b1, b1));
+		SwiftMessageComparator comp = new SwiftMessageComparator();
 
-		SwiftBlock1 b2 = new SwiftBlock1();
-		b2.setApplicationId(b1.getApplicationId());
-		b2.setServiceId(b1.getServiceId());
-		b2.setLogicalTerminal(b1.getLogicalTerminal());
-		b2.setSequenceNumber(b1.getSequenceNumber());
-		b2.setSessionNumber(b1.getSessionNumber());
-		assertTrue(comp.compareB1(b1, b2));
+		SwiftBlock1 left = new SwiftBlock1();
+		assertTrue(comp.compareB1(left, left));
+
+		left.setLogicalTerminal("FOOBARXAXXXX");
+		assertTrue(comp.compareB1(left, left));
+
+		left.setSequenceNumber("123456");
+		assertTrue(comp.compareB1(left, left));
+
+		left.setSessionNumber("1234");
+		assertTrue(comp.compareB1(left, left));
+
+		SwiftBlock1 right = new SwiftBlock1();
+		right.setLogicalTerminal(left.getLogicalTerminal());
+		right.setSequenceNumber(left.getSequenceNumber());
+		right.setSessionNumber(left.getSessionNumber());
+		assertTrue(comp.compareB1(left, right));
+
+		right.setLogicalTerminal("QQQQARXAXXXX");
+		assertFalse(comp.compareB1(left, right));
+	}
+
+	@Test
+	public void testB1SequenceAndSession() {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
+
+		SwiftBlock1 left = new SwiftBlock1();
+		left.setLogicalTerminal("FOOBARXAXXXX");
+		left.setSequenceNumber("123456");
+		left.setSessionNumber("1234");
+
+		SwiftBlock1 right = new SwiftBlock1();
+		right.setLogicalTerminal(left.getLogicalTerminal());
+		right.setSequenceNumber("666666");
+		right.setSessionNumber("4444");
+
+		assertFalse(comp.compareB1(left, right));
 		
-		b2.setSequenceNumber("666666");
-		b2.setSessionNumber("4444");
-		assertFalse(comp.compareB1(b1, b2));
-		
-		/*
-		 * Check that changing these values compare still returns true
-		 * with the ignore header session on true
-		 */
 		comp.setIgnoreHeaderSession(true);
-		assertTrue(comp.compareB1(b1, b2));
+		assertTrue(comp.compareB1(left, right));
+	}
+
+	@Test
+	public void testB1LT() {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
+
+		SwiftBlock1 left = new SwiftBlock1();
+		left.setLogicalTerminal("FOOBARXXAXXX");
+
+		SwiftBlock1 right = new SwiftBlock1();
+		right.setLogicalTerminal("FOOBARXXBXXX");
+
+		assertFalse(comp.compareB1(left, right));
+
+		comp.setIgnoreLT(true);
+		assertTrue(comp.compareB1(left, right));
+	}
+
+	@Test
+	public void testB1Location() {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
+
+		SwiftBlock1 left = new SwiftBlock1();
+		left.setLogicalTerminal("FOOBARXXAXXX");
+
+		SwiftBlock1 right = new SwiftBlock1();
+		right.setLogicalTerminal("FOOBARX0AXXX");
+
+		assertFalse(comp.compareB1(left, right));
+
+		comp.setIgnoreLocationFlag(true);
+		assertTrue(comp.compareB1(left, right));
 	}
 
 	@Test
 	public void testB2Input() {
-		SwiftBlock2Input b1 = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
-		assertTrue(comp.compareB2(b1, b1));
+		SwiftMessageComparator comp = new SwiftMessageComparator();
 
-		SwiftBlock2Input b2 = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
-		assertTrue(comp.compareB2(b1, b2));
+		SwiftBlock2Input left = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
+		assertTrue(comp.compareB2(left, left));
 
-		b2.setDeliveryMonitoring("3");
-		assertFalse(comp.compareB2(b1, b2));
+		SwiftBlock2Input right = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
+		assertTrue(comp.compareB2(left, right));
+
+		right.setDeliveryMonitoring("3");
+		assertFalse(comp.compareB2(left, right));
+	}
+
+	@Test
+	public void testB2InputOptionalFields() {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
+
+		SwiftBlock2Input left = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
+		left.setDeliveryMonitoring("3");
+		SwiftBlock2Input right = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
+		assertFalse(comp.compareB2(left, right));
 
 		comp.setIgnoreBlock2OptionalFields(true);
 
 		// block values differ but compare will be true because we are ignoring optional fields
-		assertFalse(b1.getValue().equals(b2.getValue()));
-		assertTrue(comp.compareB2(b1, b2));
+		assertFalse(left.getValue().equals(right.getValue()));
+		assertTrue(comp.compareB2(left, right));
 
-		b1.setDeliveryMonitoring("2");
-		assertTrue(comp.compareB2(b1, b2));
-
-		b1.setObsolescencePeriod("003");
-		assertTrue(comp.compareB2(b1, b2));
+		left.setObsolescencePeriod("003");
+		assertTrue(comp.compareB2(left, right));
 
 		comp.setIgnoreBlock2OptionalFields(false);
-		assertFalse(comp.compareB2(b1, b2));
+		assertFalse(comp.compareB2(left, right));
+	}
+
+	@Test
+	public void testB2InputLT() {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
+
+		SwiftBlock2Input left = new SwiftBlock2Input("I103BBBBUSCAXXXXN");
+		SwiftBlock2Input right = new SwiftBlock2Input("I103BBBBUSCABXXXN");
+		assertFalse(comp.compareB2(left, right));
+
+		comp.setIgnoreLT(true);
+		assertTrue(comp.compareB2(left, right));
+	}
+
+	@Test
+	public void testB2InputLocation() {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
+
+		SwiftBlock2Input left = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
+		SwiftBlock2Input right = new SwiftBlock2Input("I103BBBBUSCAXXXXN");
+		assertFalse(comp.compareB2(left, right));
+
+		comp.setIgnoreLocationFlag(true);
+		assertTrue(comp.compareB2(left, right));
 	}
 
 	@Test
 	public void testB2Output() {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
+
 		SwiftBlock2Output b3 = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
 		assertTrue(comp.compareB2(b3, b3));
 
@@ -108,9 +182,34 @@ public class SwiftMessageComparatorTest {
 		b4.setMessageType("999");
 		assertFalse(comp.compareB2(b3, b4));
 	}
-	
+
+	@Test
+	public void testB2OutputLT() {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
+
+		SwiftBlock2Output b3 = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
+		SwiftBlock2Output b4 = new SwiftBlock2Output("O1001200010103BANKBEBBBXXX22221234560101031201N");
+		assertFalse(comp.compareB2(b3, b4));
+
+		comp.setIgnoreLT(true);
+		assertTrue(comp.compareB2(b3, b4));
+	}
+
+	@Test
+	public void testB2OutputLocation() {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
+
+		SwiftBlock2Output b3 = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
+		SwiftBlock2Output b4 = new SwiftBlock2Output("O1001200010103BANKBEB0AXXX22221234560101031201N");
+		assertFalse(comp.compareB2(b3, b4));
+
+		comp.setIgnoreLocationFlag(true);
+		assertTrue(comp.compareB2(b3, b4));
+	}
+
 	@Test
 	public void testFullMessage() throws IOException {
+		SwiftMessageComparator comp = new SwiftMessageComparator();
 		assertTrue(comp.compare(new SwiftMessage(), new SwiftMessage()) == 0);
 		
 		final String fin = "{1:F01AAAAUSC0AXXX6083000009}{2:I103BBBBUSC0XXXXN}{4:\n"
@@ -145,4 +244,5 @@ public class SwiftMessageComparatorTest {
 		comp.setIgnoreEolsInMultiline(true);
 		assertTrue(comp.compare(m1, m2) == 0);
 	}
+
 }
