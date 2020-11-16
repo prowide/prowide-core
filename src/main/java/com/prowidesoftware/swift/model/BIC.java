@@ -461,4 +461,20 @@ public class BIC {
 		this.branch = branch;
 	}
 
+	/**
+	 * Returns a new BIC with second character of the location set to zero.
+	 * If the location is invalid it is set with a default value. Also if it has more than 2 characters it is trimmed
+	 * to two with a zero in the second position.
+	 * @since 9.1.3
+	 */
+	public BIC asTestBic() {
+		BIC bic = new BIC(this.getBic11());
+		if (bic.getLocation() == null || bic.getLocation().isEmpty()) {
+			bic.setLocation("00");
+		} else {
+			bic.setLocation(bic.getLocation().charAt(0) + "0");
+		}
+		return bic;
+	}
+
 }

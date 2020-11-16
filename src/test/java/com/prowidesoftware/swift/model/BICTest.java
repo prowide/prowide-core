@@ -161,4 +161,11 @@ public class BICTest {
 		assertEquals("ou=0be,o=bacoarb1,o=swift", new BIC("BACOARB10BE").distinguishedName());
 	}
 
+	@Test
+	public void testAsTestBic() {
+		assertEquals("BACOARB0", new BIC("BACOARB1").asTestBic().getBic8());
+		assertEquals("BACOARB0XXX", new BIC("BACOARB1XXX").asTestBic().getBic11());
+		assertEquals("BACOARB00BE", new BIC("BACOARB10BE").asTestBic().getBic11());
+	}
+
 }
