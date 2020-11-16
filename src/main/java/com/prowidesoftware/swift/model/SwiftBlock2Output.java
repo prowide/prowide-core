@@ -21,8 +21,10 @@ import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -187,8 +189,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 	}
 
 	/**
-	 * Sets the date the sender sent the message to SWIFT,
-	 * from the MIR field
+	 * Sets the date the sender sent the message to SWIFT, from the MIR field
 	 * 
 	 * @param MIRDate 6 numbers with date in format YYMMDD
 	 */
@@ -204,6 +205,16 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 	 */
 	public String getMIRDate() {
 		return this.MIRDate;
+	}
+
+	/**
+	 * Sets the date the sender sent the message to SWIFT, from the MIR field
+	 * @param cal the calendar to format date from
+	 * @since 9.1.3
+	 */
+	public void setMIRDate(Calendar cal) {
+		String yymmdd = DateFormatUtils.format(cal.getTime(), "yyMMdd");
+		setMIRDate(yymmdd);
 	}
 
 	/**
@@ -423,6 +434,18 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 	 */
 	public String getReceiverOutputTime() {
 		return receiverOutputTime;
+	}
+
+	/**
+	 * Sets the receiver output date and receiver output time fields from a Calendar
+	 * @param cal the calendar to format date and time from
+	 * @since 9.1.3
+	 */
+	public void setReceiverOutputDateTime(Calendar cal) {
+		String yymmdd = DateFormatUtils.format(cal.getTime(), "yyMMdd");
+		String hhmm = DateFormatUtils.format(cal.getTime(), "HHmm");
+		setReceiverOutputDate(yymmdd);
+		setReceiverOutputTime(hhmm);
 	}
 
 	/**
@@ -706,4 +729,5 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 		final Gson gson = new GsonBuilder().create();
 		return gson.fromJson(json, SwiftBlock2Output.class);
 	}
+
 }

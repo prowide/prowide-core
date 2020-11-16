@@ -90,6 +90,7 @@ public interface SchemeConstantsS {
     public final static String SPLP = "SPLP";
     public final static String SOLA = "SOLA";
     public final static String SPOS = "SPOS";
+    public final static String SRDC = "SRDC";
     public final static String STIN = "STIN";
     public final static String SHRT = "SHRT";
     public final static String SXDT = "SXDT";
