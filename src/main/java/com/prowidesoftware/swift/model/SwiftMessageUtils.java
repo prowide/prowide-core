@@ -17,10 +17,7 @@ package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.ProwideException;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
-import com.prowidesoftware.swift.model.field.CurrencyContainer;
-import com.prowidesoftware.swift.model.field.DateContainer;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.field.Field30T;
+import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.mt3xx.MT305;
 import com.prowidesoftware.swift.model.mt.mt3xx.MT306;
@@ -167,18 +164,18 @@ public class SwiftMessageUtils {
 				Tag t = null;
 				Field f = null;
 				if (m.isType(101, 104, 107, 201, 203, 204, 207, 210, 604,605)) {
-					t = b4.getTagByName("30");
+					t = b4.getTagByName(Field30.NAME);
 				} else if (m.isType(102, 103, 200, 202, 205, 400, 450, 455, 800, 802, 900, 910)) {
-					t = b4.getTagByName("32A");
+					t = b4.getTagByName(Field32A.NAME);
 				} else if (m.isType(300, 304, 320, 330, 350, 620)) {
-					t = b4.getTagByName("30V");
+					t = b4.getTagByName(Field30V.NAME);
                 } else if (m.isType(370)) {
                     final SwiftTagListBlock seq = b4.getSubBlock("NETPOS");
                     if (seq != null) {
                         f = seq.getFieldByNumber(98, "NETT");
                     }
                 } else if (m.isType(456)) {
-					t = b4.getTagByName("33D");
+					t = b4.getTagByName(Field33D.NAME);
 				} else if (m.isType(502)) {
                     final SwiftTagListBlock seq = b4.getSubBlock("AMT");
                     if (seq != null) {
@@ -230,23 +227,21 @@ public class SwiftMessageUtils {
 						f = seq.getFieldByNumber(98, "POST");
 					}
 				} else if (m.isType(730, 768, 769)) {
-					t = b4.getTagByName("32D");
+					t = b4.getTagByName(Field30.NAME);
 				} else if (m.isType(734, 752, 756)) {
-					t = b4.getTagByName("33A");
+					t = b4.getTagByName(Field33A.NAME);
 				} else if (m.isType(742, 754)) {
-					t = b4.getTagByName("34A");
+					t = b4.getTagByName(Field34A.NAME);
 				} else if (m.isType(942, 950, 970, 972)){
-					t = b4.getTagByName("61");
+					t = b4.getTagByName(Field61.NAME);
 				} else if (m.isType(305)){
-					MT305 mt305 = new MT305(m);
-					t = mt305.getField31G().asTag();
+					t = b4.getTagByName(Field31G.NAME);
 				} else if (m.isType(306)){
-					MT306 mt306 = new MT306(m);
-					t = mt306.getField30V().asTag();
+					t = b4.getTagByName(Field30V.NAME);
 				} else if (m.isType(340, 341)){
-					t = b4.getTagByName("30F");
+					t = b4.getTagByName(Field30F.NAME);
 				} else if (m.isType(360,361,362)){
-					t = b4.getTagByName("30V");
+					t = b4.getTagByName(Field30V.NAME);
 				}
 
 				if (t != null) {

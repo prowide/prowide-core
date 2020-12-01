@@ -241,7 +241,6 @@ public class SwiftMessageUtilsTest {
 			":70:1/34530/13\n" +
 			":71A:SHA\n" +
 			"-}";
-
 		Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
 		assertNotNull(money);
 		assertEquals("PLN", money.getCurrency());
@@ -261,40 +260,40 @@ public class SwiftMessageUtilsTest {
 	public void testValueDate() throws IOException, ParseException {
 
 		//MT305
-		MT305 mt305 = MT305.parse(Lib.readResource("MT305.fin"));
-		Calendar date = SwiftMessageUtils.valueDate(mt305.getSwiftMessage());
+		SwiftMessage sm = SwiftMessage.parse(Lib.readResource("MT305.fin"));
+		Calendar date = SwiftMessageUtils.valueDate(sm);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
 		assertEquals(date.getTime(), sdf.parse("201230"));
 
 		//MT306
-		MT306 mt306 = MT306.parse(Lib.readResource("MT306_02.fin"));
-		date = SwiftMessageUtils.valueDate(mt306.getSwiftMessage());
+		sm = SwiftMessage.parse(Lib.readResource("MT306.fin"));
+		date = SwiftMessageUtils.valueDate(sm);
 		sdf = new SimpleDateFormat("yyyyMMdd");
 		assertEquals(date.getTime(), sdf.parse("20080609"));
 
 		//MT340
-		MT340 mt340 = MT340.parse(Lib.readResource("MT340.fin"));
-		date = SwiftMessageUtils.valueDate(mt340.getSwiftMessage());
+		sm = SwiftMessage.parse(Lib.readResource("MT340.fin"));
+		date = SwiftMessageUtils.valueDate(sm);
 		assertEquals(date.getTime(), sdf.parse("20000715"));
 
 		//MT341
-		MT341 mt341 = MT341.parse(Lib.readResource("MT341.fin"));
-		date = SwiftMessageUtils.valueDate(mt341.getSwiftMessage());
+		sm = SwiftMessage.parse(Lib.readResource("MT341.fin"));
+		date = SwiftMessageUtils.valueDate(sm);
 		assertEquals(date.getTime(), sdf.parse("20000715"));
 
 		//MT360
-		MT360 mt360 = MT360.parse(Lib.readResource("MT360.fin"));
-		date = SwiftMessageUtils.valueDate(mt360.getSwiftMessage());
+		sm = SwiftMessage.parse(Lib.readResource("MT360.fin"));
+		date = SwiftMessageUtils.valueDate(sm);
 		assertEquals(date.getTime(), sdf.parse("20070209"));
 
 		//MT361
-		MT361 mt361 = MT361.parse(Lib.readResource("MT361.fin"));
-		date = SwiftMessageUtils.valueDate(mt361.getSwiftMessage());
+		sm = SwiftMessage.parse(Lib.readResource("MT361.fin"));
+		date = SwiftMessageUtils.valueDate(sm);
 		assertEquals(date.getTime(), sdf.parse("19941214"));
 
 		//MT362
-		MT362 mt362 = MT362.parse(Lib.readResource("MT362.fin"));
-		date = SwiftMessageUtils.valueDate(mt362.getSwiftMessage());
+		sm = SwiftMessage.parse(Lib.readResource("MT362.fin"));
+		date = SwiftMessageUtils.valueDate(sm);
 		assertEquals(date.getTime(), sdf.parse("20090106"));
 
 	}
