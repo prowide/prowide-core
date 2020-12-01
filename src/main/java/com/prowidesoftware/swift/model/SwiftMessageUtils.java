@@ -22,6 +22,8 @@ import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.field.Field30T;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
+import com.prowidesoftware.swift.model.mt.mt3xx.MT305;
+import com.prowidesoftware.swift.model.mt.mt3xx.MT306;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
@@ -235,7 +237,18 @@ public class SwiftMessageUtils {
 					t = b4.getTagByName("34A");
 				} else if (m.isType(942, 950, 970, 972)){
 					t = b4.getTagByName("61");
+				} else if (m.isType(305)){
+					MT305 mt305 = new MT305(m);
+					t = mt305.getField31G().asTag();
+				} else if (m.isType(306)){
+					MT306 mt306 = new MT306(m);
+					t = mt306.getField30V().asTag();
+				} else if (m.isType(340, 341)){
+					t = b4.getTagByName("30F");
+				} else if (m.isType(360,361,362)){
+					t = b4.getTagByName("30V");
 				}
+
 				if (t != null) {
 					f = t.asField();
 				}

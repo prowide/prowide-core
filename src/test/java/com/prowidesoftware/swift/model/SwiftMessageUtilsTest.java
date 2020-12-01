@@ -22,24 +22,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.prowidesoftware.swift.model.field.*;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT101;
+import com.prowidesoftware.swift.model.mt.mt3xx.*;
+import com.prowidesoftware.swift.utils.Lib;
 import org.junit.jupiter.api.Test;
 
-import com.prowidesoftware.swift.model.field.Field13A;
-import com.prowidesoftware.swift.model.field.Field13B;
-import com.prowidesoftware.swift.model.field.Field13C;
-import com.prowidesoftware.swift.model.field.Field15A;
-import com.prowidesoftware.swift.model.field.Field15B;
-import com.prowidesoftware.swift.model.field.Field15C;
-import com.prowidesoftware.swift.model.field.Field15D;
-import com.prowidesoftware.swift.model.field.Field16R;
-import com.prowidesoftware.swift.model.field.Field16S;
-import com.prowidesoftware.swift.model.field.Field32A;
-import com.prowidesoftware.swift.model.field.Field32B;
-import com.prowidesoftware.swift.model.field.Field33A;
-import com.prowidesoftware.swift.model.field.Field34B;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT502;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
 
@@ -246,6 +241,7 @@ public class SwiftMessageUtilsTest {
 			":70:1/34530/13\n" +
 			":71A:SHA\n" +
 			"-}";
+
 		Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
 		assertNotNull(money);
 		assertEquals("PLN", money.getCurrency());
@@ -259,6 +255,48 @@ public class SwiftMessageUtilsTest {
 			"-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}";
 		Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
 		assertNull(money);
+	}
+
+	@Test
+	public void testValueDate() throws IOException, ParseException {
+
+		//MT305
+		MT305 mt305 = MT305.parse(Lib.readResource("MT305.fin"));
+		Calendar date = SwiftMessageUtils.valueDate(mt305.getSwiftMessage());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+		assertEquals(date.getTime(), sdf.parse("201230"));
+
+		//MT306
+		MT306 mt306 = MT306.parse(Lib.readResource("MT306_02.fin"));
+		date = SwiftMessageUtils.valueDate(mt306.getSwiftMessage());
+		sdf = new SimpleDateFormat("yyyyMMdd");
+		assertEquals(date.getTime(), sdf.parse("20080609"));
+
+		//MT340
+		MT340 mt340 = MT340.parse(Lib.readResource("MT340.fin"));
+		date = SwiftMessageUtils.valueDate(mt340.getSwiftMessage());
+		assertEquals(date.getTime(), sdf.parse("20000715"));
+
+		//MT341
+		MT341 mt341 = MT341.parse(Lib.readResource("MT341.fin"));
+		date = SwiftMessageUtils.valueDate(mt341.getSwiftMessage());
+		assertEquals(date.getTime(), sdf.parse("20000715"));
+
+		//MT360
+		MT360 mt360 = MT360.parse(Lib.readResource("MT360.fin"));
+		date = SwiftMessageUtils.valueDate(mt360.getSwiftMessage());
+		assertEquals(date.getTime(), sdf.parse("20070209"));
+
+		//MT361
+		MT361 mt361 = MT361.parse(Lib.readResource("MT361.fin"));
+		date = SwiftMessageUtils.valueDate(mt361.getSwiftMessage());
+		assertEquals(date.getTime(), sdf.parse("19941214"));
+
+		//MT362
+		MT362 mt362 = MT362.parse(Lib.readResource("MT362.fin"));
+		date = SwiftMessageUtils.valueDate(mt362.getSwiftMessage());
+		assertEquals(date.getTime(), sdf.parse("20090106"));
+
 	}
 
 }
