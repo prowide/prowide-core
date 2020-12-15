@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.3 (9.1.2u2)
+  * Removed the indexes from the AbstractSwiftMessage JPA mapping (can be created directly in the DB as needed)
   * Added options in the MT message comparator to ignore the LT identifier or test flag when comparing header LT addresses
   * Added asTestBic in BIC to create a test BIC by setting the second component of the location to zero
   * Added API in the SwiftBlock2Output to set the MIR date and receiver date time fields from Calendar object

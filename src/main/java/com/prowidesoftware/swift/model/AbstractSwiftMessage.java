@@ -48,18 +48,7 @@ import java.util.*;
  * @since 7.0
  */
 @Entity
-@Table(
-	name = "swift_msg",
-	indexes = {
-		//MT and MX
-		@Index(name = "x_chk", columnList = "checksum"),
-		@Index(name = "x_chkbody", columnList = "checksum_body"),
-		@Index(name = "x_cd", columnList = "checksum_body"),
-		//MT only
-		@Index(name = "x_mir", columnList = "checksum"),
-		@Index(name = "x_mur", columnList = "checksum_body"),
-		@Index(name = "x_uuid", columnList = "checksum_body")
-	})
+@Table(name = "swift_msg")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", length = 2)
 public abstract class AbstractSwiftMessage implements Serializable, JsonSerializable {
