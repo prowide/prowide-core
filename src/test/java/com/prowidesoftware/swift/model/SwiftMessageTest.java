@@ -40,6 +40,7 @@ import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.MTVariant;
 import com.prowidesoftware.swift.model.mt.MtCategory;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT102;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT540;
 
 /**
@@ -442,6 +443,11 @@ public class SwiftMessageTest {
 		m.setBlock4(new SwiftBlock4());
 		m.getBlock4().append(Field108.tag("BAR"));
 		assertEquals("BAR", m.getMUR());
+	}
+
+	@Test
+	public void testIsGpi() {
+		assertTrue((new MT103()).getSwiftMessage().isGpi());
 	}
 
 }

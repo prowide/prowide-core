@@ -1946,14 +1946,19 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	}
 
 	/**
-	 * Returns true if the message is part of the Global Payments Initiative (gpi) and
-	 * thus requires the mandatory UETR for tracking within SWIFT gpi service.
-	 * @return true if the message type is 103, 202 or 205 in any variant
+	 * Returns true if the message is part of the Global Payments Initiative (gpi) and thus requires the mandatory
+	 * fields 111 and UETR for tracking within the SWIFT gpi service.
+	 *
+	 * <p>Notice this only reflects the mandatory GPI service message types for outgoing messages. More message types
+	 * would be included as part of the GPI service if the application provider chooses to support the optional g4C and
+	 * gFIT services.
+	 *
+	 * @return true if the message type is 103, 199, 299, 192, 196, 202COV or 205COV
 	 * @since 7.10.0
 	 * @see #setUETR()
 	 */
 	public boolean isGpi() {
-		return isType(103, 202, 205);
+		return isType(103, 199, 299, 192, 196) || (isType(202, 205) && isCOV());
 	}
 
 }
