@@ -27,6 +27,9 @@ import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.List;
 
+import com.prowidesoftware.swift.model.mt.mt1xx.*;
+import com.prowidesoftware.swift.model.mt.mt2xx.*;
+import com.prowidesoftware.swift.model.mt.mt3xx.MT300;
 import org.junit.jupiter.api.Test;
 
 import com.prowidesoftware.swift.Constants;
@@ -39,8 +42,6 @@ import com.prowidesoftware.swift.model.field.Field121;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.MTVariant;
 import com.prowidesoftware.swift.model.mt.MtCategory;
-import com.prowidesoftware.swift.model.mt.mt1xx.MT102;
-import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT540;
 
 /**
@@ -448,6 +449,20 @@ public class SwiftMessageTest {
 	@Test
 	public void testIsGpi() {
 		assertTrue((new MT103()).getSwiftMessage().isGpi());
+		assertTrue((new MT103_STP()).getSwiftMessage().isGpi());
+		assertTrue((new MT103_REMIT()).getSwiftMessage().isGpi());
+		assertTrue((new MT199()).getSwiftMessage().isGpi());
+		assertTrue((new MT299()).getSwiftMessage().isGpi());
+		assertTrue((new MT192()).getSwiftMessage().isGpi());
+		assertTrue((new MT196()).getSwiftMessage().isGpi());
+		assertTrue((new MT202COV()).getSwiftMessage().isGpi());
+		assertTrue((new MT205COV()).getSwiftMessage().isGpi());
+
+		assertFalse((new MT202()).getSwiftMessage().isGpi());
+		assertFalse((new MT205()).getSwiftMessage().isGpi());
+		assertFalse((new MT540()).getSwiftMessage().isGpi());
+		assertFalse((new MT300()).getSwiftMessage().isGpi());
+		assertFalse((new MT198()).getSwiftMessage().isGpi());
 	}
 
 }
