@@ -227,7 +227,7 @@ public class SwiftMessageUtils {
 						f = seq.getFieldByNumber(98, "POST");
 					}
 				} else if (m.isType(730, 768, 769)) {
-					t = b4.getTagByName(Field30.NAME);
+					t = b4.getTagByName(Field32D.NAME);
 				} else if (m.isType(734, 752, 756)) {
 					t = b4.getTagByName(Field33A.NAME);
 				} else if (m.isType(742, 754)) {
