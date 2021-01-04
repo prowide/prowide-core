@@ -15,28 +15,21 @@
  */
 package com.prowidesoftware.swift.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.prowidesoftware.swift.model.field.*;
+import com.prowidesoftware.swift.model.mt.mt5xx.MT502;
+import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
+import com.prowidesoftware.swift.utils.Lib;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.prowidesoftware.swift.model.field.*;
-import com.prowidesoftware.swift.model.mt.mt1xx.MT101;
-import com.prowidesoftware.swift.model.mt.mt3xx.*;
-import com.prowidesoftware.swift.utils.Lib;
-import org.junit.jupiter.api.Test;
-
-import com.prowidesoftware.swift.model.mt.mt5xx.MT502;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SwiftMessageUtilsTest {
 

@@ -19,8 +19,6 @@ import com.prowidesoftware.ProwideException;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import com.prowidesoftware.swift.model.mt.mt3xx.MT305;
-import com.prowidesoftware.swift.model.mt.mt3xx.MT306;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
