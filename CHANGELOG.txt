@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT 9.1.4
+  * Added more message type cases to the SwiftMessageUtils valueDate
+
 RELEASE 9.1.3 - December 2020
   * Changed SwiftMessage#isGpi() to be true for: 103, 199, 299, 192, 196, 202COV or 205COV (mandatory outgoing GPI types)
   * Removed the indexes from the AbstractSwiftMessage JPA mapping (can be created directly in the DB as needed)
