@@ -18,7 +18,9 @@ package com.prowidesoftware.swift.model;
 import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT502;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
+import com.prowidesoftware.swift.model.mt.mt5xx.MT564;
 import com.prowidesoftware.swift.utils.Lib;
+import com.sun.javafx.animation.TickCalculation;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -26,8 +28,10 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -291,4 +295,17 @@ public class SwiftMessageUtilsTest {
 
 	}
 
+	@Test
+	public void testMT564() throws IOException {
+		MT564 msj = MT564.parse(Lib.readResource("MT564.fin"));
+
+		SwiftTagListBlock sublist = SwiftMessageUtils.removeInnerSequences(msj.getSequenceEList().get(0));
+
+		assertEquals(sublist.getFieldsByName("92H").length , 1);
+		assertEquals(sublist.getFieldsByName("92J").length , 0);
+
+		assertNull(sublist.getFieldByName("92J"));
+		assertNotNull(sublist.getFieldByName("92H"));
+
+	}
 }
