@@ -515,6 +515,8 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
 	 */
 	public String field(SwiftBlock2InputField field) {
 		switch (field) {
+			case Direction:
+				return MessageDirection.Input.name();
 			case MessageType:
 				return getMessageType();
 			case MessagePriority:
