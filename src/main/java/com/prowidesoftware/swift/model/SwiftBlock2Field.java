@@ -22,6 +22,10 @@ package com.prowidesoftware.swift.model;
  * @since 7.7
  */
 public enum SwiftBlock2Field {
+	/**
+	 * @since 9.1.4
+	 */
+	Direction,
 	MessageType,
 	MessagePriority;
 }

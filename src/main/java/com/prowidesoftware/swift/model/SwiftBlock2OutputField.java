@@ -25,6 +25,10 @@ public enum SwiftBlock2OutputField {
 	/*
 	 * common fields to block 2
 	 */
+	/**
+	 * @since 9.1.4
+	 */
+	Direction,
 	MessageType,
 	MessagePriority,
 	/*

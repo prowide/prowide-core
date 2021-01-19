@@ -657,6 +657,8 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 	 */
 	public String field(SwiftBlock2OutputField field) {
 		switch (field) {
+			case Direction:
+				return MessageDirection.Output.name();
 			case MessageType:
 				return getMessageType();
 			case MessagePriority:

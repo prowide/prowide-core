@@ -227,6 +227,13 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
 	 */
 	public String field(SwiftBlock2Field field) {
 		switch (field) {
+			case Direction: {
+				if (isInput()) {
+					return MessageDirection.Input.name();
+				} else {
+					return MessageDirection.Output.name();
+				}
+			}
 			case MessageType:
 				return getMessageType();
 			case MessagePriority:
