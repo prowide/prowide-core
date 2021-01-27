@@ -436,4 +436,123 @@ public class AbstractMtJsonTest {
         assertEquals("/ES0123456789012345671234\nFOOOOO 1000 FOOBAR S.A.", o.get("data").getAsJsonObject().get("block4").getAsJsonObject().getAsJsonArray("tags").get(8).getAsJsonObject().get("value").getAsString());
     }
 
+    @Test
+    public void testMT103Field70(){
+
+        String mt103JsonOneNarrative = "{\n" +
+                "  \"type\": \"MT\",\n" +
+                "  \"basicHeaderBlock\": {\n" +
+                "    \"applicationId\": \"F\",\n" +
+                "    \"serviceId\": \"01\",\n" +
+                "    \"logicalTerminal\": \"FOOSEDR0AXXX\",\n" +
+                "    \"sessionNumber\": \"0000\",\n" +
+                "    \"sequenceNumber\": \"000000\"\n" +
+                "  },\n" +
+                "  \"applicationHeaderBlock\": {\n" +
+                "    \"receiverAddress\": \"FOORECV0XXXX\",\n" +
+                "    \"messagePriority\": \"N\",\n" +
+                "    \"messageType\": \"103\",\n" +
+                "    \"direction\": \"I\"\n" +
+                "  },\n" +
+                "  \"userHeaderBlock\": {\n" +
+                "    \"fields\": [\n" +
+                "      {\n" +
+                "        \"name\": \"113\",\n" +
+                "        \"bankingPriority\": \"SEPA\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"name\": \"108\",\n" +
+                "        \"mUR\": \"ILOVESEPA\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"textBlock\": {\n" +
+                "    \"fields\": [\n" +
+                "      {\n" +
+                "        \"name\": \"20\",\n" +
+                "        \"reference\": \"REFERENCE\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"name\": \"70\",\n" +
+                "        \"narrative\": \"Narrative Value 1\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"trailerBlock\": {\n" +
+                "    \"fields\": [\n" +
+                "      {\n" +
+                "        \"name\": \"CHK\",\n" +
+                "        \"value\": \"C77F8E009597\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"name\": \"PDE\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "}";
+
+
+        MT103 mt103 = (MT103) AbstractMT.fromJson(mt103JsonOneNarrative);
+        String narrativeFinalValue = mt103.getField70().narrative().getUnstructuredFragments().get(0).toString();
+        assertEquals(narrativeFinalValue,"Narrative Value 1");
+
+        String mt103JsonMoreThanOneNarrative = "{\n" +
+                "  \"type\": \"MT\",\n" +
+                "  \"basicHeaderBlock\": {\n" +
+                "    \"applicationId\": \"F\",\n" +
+                "    \"serviceId\": \"01\",\n" +
+                "    \"logicalTerminal\": \"FOOSEDR0AXXX\",\n" +
+                "    \"sessionNumber\": \"0000\",\n" +
+                "    \"sequenceNumber\": \"000000\"\n" +
+                "  },\n" +
+                "  \"applicationHeaderBlock\": {\n" +
+                "    \"receiverAddress\": \"FOORECV0XXXX\",\n" +
+                "    \"messagePriority\": \"N\",\n" +
+                "    \"messageType\": \"103\",\n" +
+                "    \"direction\": \"I\"\n" +
+                "  },\n" +
+                "  \"userHeaderBlock\": {\n" +
+                "    \"fields\": [\n" +
+                "      {\n" +
+                "        \"name\": \"113\",\n" +
+                "        \"bankingPriority\": \"SEPA\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"name\": \"108\",\n" +
+                "        \"mUR\": \"ILOVESEPA\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"textBlock\": {\n" +
+                "    \"fields\": [\n" +
+                "      {\n" +
+                "        \"name\": \"20\",\n" +
+                "        \"reference\": \"REFERENCE\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"name\": \"70\",\n" +
+                "        \"narrative\": \"Narrative Value 1 \",\n" +
+                "        \"narrative2\": \"Narrative Value 2 \",\n" +
+                "        \"narrative3\": \"Narrative Value 3\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"trailerBlock\": {\n" +
+                "    \"fields\": [\n" +
+                "      {\n" +
+                "        \"name\": \"CHK\",\n" +
+                "        \"value\": \"C77F8E009597\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"name\": \"PDE\"\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "}";
+
+        mt103 = (MT103) AbstractMT.fromJson(mt103JsonMoreThanOneNarrative);
+        narrativeFinalValue = mt103.getField70().narrative().getUnstructuredFragments().get(0).toString();
+        assertEquals(narrativeFinalValue,"Narrative Value 1 Narrative Value 2 Narrative Value 3");
+    }
+
 }

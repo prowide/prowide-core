@@ -58,6 +58,19 @@ public class FieldJsonTest {
         o = parser.parse(f15A.toJson()).getAsJsonObject();
         assertEquals("15A", o.get("name").getAsString());
         assertNull(o.get("value"));
+
+
+        Narrative narrative = new Narrative();
+        narrative.addUnstructuredFragment("VALUE 1 ");
+        narrative.addUnstructuredFragment("VALUE 2 ");
+        narrative.addUnstructuredFragment("VALUE 3");
+        Field70 f70 = new Field70(narrative);
+        //{"name":"70","narrative":"\"VALUE 1 \\r\\nVALUE 2 \\r\\nVALUE 3\"";}
+
+        o = parser.parse(f70.toJson()).getAsJsonObject();
+        assertEquals("VALUE 1 VALUE 2 VALUE 3" , o.get("narrative").getAsString().replace("\n", "").replace("\r", ""));
+
+
     }
 
     @Test
@@ -82,6 +95,31 @@ public class FieldJsonTest {
         assertEquals(f32A, f32Abis);
         Field50D f50Dbis = (Field50D) Field.fromJson(json50D);
         assertEquals(f50D, f50Dbis);
+
+        //check fromJson in the Field70 with more than one "narrative" key present in json
+        String field70JsonStringMoreThanOneNarratives = "      {\n" +
+                "        \"name\": \"70\",\n" +
+                "        \"narrative\":  \"VALUE 1 \",\n" +
+                "        \"narrative2\": \"VALUE 2 \",\n" +
+                "        \"narrative3\": \"VALUE 3 \",\n" +
+                "        \"narrative4\": \"VALUE 4 \"\n" +
+                "      }";
+
+        Field70 f70 = Field70.fromJson(field70JsonStringMoreThanOneNarratives);
+        assertEquals("VALUE 1 VALUE 2 VALUE 3 VALUE 4 ", f70.narrative().getUnstructuredFragments().get(0).toString());
+
+        //chec fromJson in the Field70 with more than one "narrative" key present in json
+        String field70JsonStringWithOneNarrative = "      {\n" +
+                "        \"name\": \"70\",\n" +
+                "        \"narrative\":  \"VALUE 1 VALUE 2\"\n" +
+                "      }";
+
+        f70 = Field70.fromJson(field70JsonStringWithOneNarrative);
+        assertEquals("VALUE 1 VALUE 2", f70.narrative().getUnstructuredFragments().get(0).toString());
+
+
     }
+
+
 
 }

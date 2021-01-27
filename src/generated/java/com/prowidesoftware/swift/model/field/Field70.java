@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
 
@@ -337,12 +339,38 @@ public class Field70 extends StructuredNarrativeField implements Serializable, N
 		JsonParser parser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) parser.parse(json);
 		if (jsonObject.get("narrative") != null) {
-			field.setComponent1(jsonObject.get("narrative").getAsString());
+			int numberOfNarrativesInJson = countNarrativesInJson(json);
+			if(numberOfNarrativesInJson>1){
+				JsonObject jsonWithNarrativeGroup = groupNarratives(json, numberOfNarrativesInJson);
+				field.setComponent1(jsonWithNarrativeGroup.get("narrative").getAsString());
+			} else {
+				field.setComponent1(jsonObject.get("narrative").getAsString());
+			}
 		}
 		return field;
 	}
-	
-    @Deprecated
+
+	private static JsonObject groupNarratives(String json, int numberOfNarrativesInJson) {
+		Gson gson = new Gson(); // Creates new instance of Gson
+		JsonElement element = gson.fromJson (json, JsonElement.class); //Converts the json string to JsonElement without POJO
+		JsonObject jsonObj = element.getAsJsonObject(); //Converting JsonElement to JsonObject
+
+		String finalNarrativeValue = jsonObj.get("narrative").getAsString();
+		for(int i=2; i<=numberOfNarrativesInJson; i++){
+			String currentNarrativeValue = jsonObj.get("narrative"+i).getAsString();
+			finalNarrativeValue = finalNarrativeValue+currentNarrativeValue;
+			jsonObj.remove("narrative"+i);
+		}
+
+		jsonObj.addProperty("narrative", finalNarrativeValue);
+		return jsonObj;
+	}
+
+	private static int countNarrativesInJson(String json) {
+		return StringUtils.countMatches(json, "narrative");
+	}
+
+	@Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
 	public static final Integer NARRATIVE = 1;
 
