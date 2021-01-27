@@ -24,14 +24,13 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test cases for fields JSON conversion
- * @since 7.10.3
  */
 public class FieldJsonTest {
 
     private JsonParser parser = new JsonParser();
 
     @Test
-    public void toJson() {
+    public void toJsonField32A() {
         Field32A f32A = new Field32A("010203USD123,45");
         //{"name":"32A","date":"010203","currency":"USD","amount":"123"}
 
@@ -40,26 +39,34 @@ public class FieldJsonTest {
         assertEquals("010203", o.get("date").getAsString());
         assertEquals("USD", o.get("currency").getAsString());
         assertEquals("123,45", o.get("amount").getAsString());
+    }
 
+    @Test
+    public void toJsonField50D() {
         Field50D f50D = new Field50D("/D/1234\nFoo1\nFoo2\nFoo3");
         // {"name":"50D","dCMark":"D","account":"1234","nameAndAddress":"Foo1","nameAndAddress2":"Foo2","nameAndAddress3":"Foo3"}
 
-        o = parser.parse(f50D.toJson()).getAsJsonObject();
+        JsonObject o = parser.parse(f50D.toJson()).getAsJsonObject();
         assertEquals("50D", o.get("name").getAsString());
         assertEquals("D", o.get("dCMark").getAsString());
         assertEquals("1234", o.get("account").getAsString());
         assertEquals("Foo1", o.get("nameAndAddress").getAsString());
         assertEquals("Foo2", o.get("nameAndAddress2").getAsString());
         assertEquals("Foo3", o.get("nameAndAddress3").getAsString());
+    }
 
+    @Test
+    public void toJsonField15A() {
         Field15A f15A = new Field15A();
         // {"name":"15A"}
 
-        o = parser.parse(f15A.toJson()).getAsJsonObject();
+        JsonObject o = parser.parse(f15A.toJson()).getAsJsonObject();
         assertEquals("15A", o.get("name").getAsString());
         assertNull(o.get("value"));
+    }
 
-
+    @Test
+    public void toJsonField70() {
         Narrative narrative = new Narrative();
         narrative.addUnstructuredFragment("VALUE 1 ");
         narrative.addUnstructuredFragment("VALUE 2 ");
@@ -67,14 +74,12 @@ public class FieldJsonTest {
         Field70 f70 = new Field70(narrative);
         //{"name":"70","narrative":"\"VALUE 1 \\r\\nVALUE 2 \\r\\nVALUE 3\"";}
 
-        o = parser.parse(f70.toJson()).getAsJsonObject();
+        JsonObject o = parser.parse(f70.toJson()).getAsJsonObject();
         assertEquals("VALUE 1 VALUE 2 VALUE 3" , o.get("narrative").getAsString().replace("\n", "").replace("\r", ""));
-
-
     }
 
     @Test
-    public void fromJson() {
+    public void fromJson32A() {
         // check fromJson in specific Field classes
         String json32A = "{\"name\":\"32A\",\"date\":\"010203\",\"currency\":\"USD\",\"amount\":\"123,45\"}";
         Field32A f32A = Field32A.fromJson(json32A);
@@ -82,6 +87,13 @@ public class FieldJsonTest {
         assertEquals("USD", f32A.getCurrency());
         assertEquals("123,45", f32A.getAmount());
 
+        // check factory methods in Field
+        Field32A f32Abis = (Field32A) Field.fromJson(json32A);
+        assertEquals(f32A, f32Abis);
+    }
+
+    @Test
+    public void fromJson50D() {
         String json50D = "{\"name\":\"50D\",\"dCMark\":\"D\",\"account\":\"1234\",\"nameAndAddress\":\"Foo1\",\"nameAndAddress2\":\"Foo2\",\"nameAndAddress3\":\"Foo3\"}";
         Field50D f50D = Field50D.fromJson(json50D);
         assertEquals("D", f50D.getDCMark());
@@ -90,36 +102,41 @@ public class FieldJsonTest {
         assertEquals("Foo2", f50D.getNameAndAddressLine2());
         assertEquals("Foo3", f50D.getNameAndAddressLine3());
 
-        // check factory methods in Field
-        Field32A f32Abis = (Field32A) Field.fromJson(json32A);
-        assertEquals(f32A, f32Abis);
         Field50D f50Dbis = (Field50D) Field.fromJson(json50D);
         assertEquals(f50D, f50Dbis);
-
-        //check fromJson in the Field70 with more than one "narrative" key present in json
-        String field70JsonStringMoreThanOneNarratives = "      {\n" +
-                "        \"name\": \"70\",\n" +
-                "        \"narrative\":  \"VALUE 1 \",\n" +
-                "        \"narrative2\": \"VALUE 2 \",\n" +
-                "        \"narrative3\": \"VALUE 3 \",\n" +
-                "        \"narrative4\": \"VALUE 4 \"\n" +
-                "      }";
-
-        Field70 f70 = Field70.fromJson(field70JsonStringMoreThanOneNarratives);
-        assertEquals("VALUE 1 VALUE 2 VALUE 3 VALUE 4 ", f70.narrative().getUnstructuredFragments().get(0).toString());
-
-        //chec fromJson in the Field70 with more than one "narrative" key present in json
-        String field70JsonStringWithOneNarrative = "      {\n" +
-                "        \"name\": \"70\",\n" +
-                "        \"narrative\":  \"VALUE 1 VALUE 2\"\n" +
-                "      }";
-
-        f70 = Field70.fromJson(field70JsonStringWithOneNarrative);
-        assertEquals("VALUE 1 VALUE 2", f70.narrative().getUnstructuredFragments().get(0).toString());
-
-
     }
 
+    /**
+     * Check fromJson in the Field70 with a single "narrative" key present in json (current model structure)
+     */
+    @Test
+    public void fromJson70() {
+        String field70JsonStringWithOneNarrative = "{\n" +
+                "    \"name\": \"70\",\n" +
+                "    \"narrative\":  \"VALUE 1 VALUE 2\"\n" +
+                "}";
+        Field70 f70 = Field70.fromJson(field70JsonStringWithOneNarrative);
+        assertEquals("VALUE 1 VALUE 2", f70.narrative().getUnstructuredFragments().get(0));
+        assertEquals("VALUE 1 VALUE 2", f70.getComponent(1));
+    }
 
+    /**
+     * Check fromJson in the Field70 with more than one "narrative" key present in json. This is compatible from the
+     * old field model, where narrative lines where parsed into individual components. It was later replaced by the
+     * {@link NarrativeContainer} interface, having a single String narrative component in the field model.
+     */
+    @Test
+    public void fromJson70_backwardCompatibility() {
+        String field70JsonStringMoreThanOneNarratives = "{\n" +
+                "    \"name\": \"70\",\n" +
+                "    \"narrative\":  \"VALUE 1 \",\n" +
+                "    \"narrative2\": \"VALUE 2 \",\n" +
+                "    \"narrative3\": \"VALUE 3 \",\n" +
+                "    \"narrative4\": \"VALUE 4 \"\n" +
+                "}";
+        Field70 f70 = Field70.fromJson(field70JsonStringMoreThanOneNarratives);
+        assertEquals("VALUE 1 VALUE 2 VALUE 3 VALUE 4 ", f70.narrative().getUnstructuredFragments().get(0));
+        assertEquals("VALUE 1 VALUE 2 VALUE 3 VALUE 4 ", f70.getComponent(1));
+    }
 
 }

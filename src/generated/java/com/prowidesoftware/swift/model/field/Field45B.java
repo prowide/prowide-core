@@ -336,9 +336,7 @@ public class Field45B extends StructuredNarrativeField implements Serializable, 
 		Field45B field = new Field45B();
 		JsonParser parser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("narrative") != null) {
-			field.setComponent1(jsonObject.get("narrative").getAsString());
-		}
+        NarrativeContainerJsonUtils.fromJson(jsonObject, json, field);
 		return field;
 	}
 	

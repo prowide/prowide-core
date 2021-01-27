@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for JSON API in AbstractMT and subclasses
- * @since 7.10.3
  */
 public class AbstractMtJsonTest {
 
@@ -437,7 +436,7 @@ public class AbstractMtJsonTest {
     }
 
     @Test
-    public void testMT103Field70(){
+    public void testMT103_Field70() {
 
         String mt103JsonOneNarrative = "{\n" +
                 "  \"type\": \"MT\",\n" +
@@ -490,12 +489,14 @@ public class AbstractMtJsonTest {
                 "    ]\n" +
                 "  }\n" +
                 "}";
-
-
         MT103 mt103 = (MT103) AbstractMT.fromJson(mt103JsonOneNarrative);
-        String narrativeFinalValue = mt103.getField70().narrative().getUnstructuredFragments().get(0).toString();
-        assertEquals(narrativeFinalValue,"Narrative Value 1");
+        String narrativeFinalValue = mt103.getField70().narrative().getUnstructuredFragments().get(0);
+        assertEquals("Narrative Value 1", narrativeFinalValue);
+        assertEquals("Narrative Value 1", mt103.getField70().getComponent(1));
+    }
 
+    @Test
+    public void testMT103_Field70_backwardCompatibility() {
         String mt103JsonMoreThanOneNarrative = "{\n" +
                 "  \"type\": \"MT\",\n" +
                 "  \"basicHeaderBlock\": {\n" +
@@ -550,9 +551,10 @@ public class AbstractMtJsonTest {
                 "  }\n" +
                 "}";
 
-        mt103 = (MT103) AbstractMT.fromJson(mt103JsonMoreThanOneNarrative);
-        narrativeFinalValue = mt103.getField70().narrative().getUnstructuredFragments().get(0).toString();
-        assertEquals(narrativeFinalValue,"Narrative Value 1 Narrative Value 2 Narrative Value 3");
+        MT103 mt103 = (MT103) AbstractMT.fromJson(mt103JsonMoreThanOneNarrative);
+        String narrativeFinalValue = mt103.getField70().narrative().getUnstructuredFragments().get(0);
+        assertEquals("Narrative Value 1 Narrative Value 2 Narrative Value 3", narrativeFinalValue);
+        assertEquals("Narrative Value 1 Narrative Value 2 Narrative Value 3", mt103.getField70().getComponent(1));
     }
 
 }
