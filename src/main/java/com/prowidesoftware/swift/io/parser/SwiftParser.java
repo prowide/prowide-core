@@ -717,6 +717,7 @@ public class SwiftParser {
 	 * @return true if at the given position there is a tag start
 	 * @since 7.10.4
 	 */
+	// TODO: need to update this method to support tag names of 3 digits, i.g. MT094 -> block4 -> 135, 136, etc..
 	protected boolean isTagStart(final String s, int i) {
 		int length = s.length();
 		/*
