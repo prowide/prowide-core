@@ -370,6 +370,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine1(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -390,6 +391,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent2(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -408,6 +410,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine2(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -428,6 +431,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent3(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -446,6 +450,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine3(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -466,6 +471,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent4(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -484,6 +490,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine4(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -504,6 +511,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent5(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -522,6 +530,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine5(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -542,6 +551,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent6(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -560,6 +570,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine6(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -580,6 +591,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent7(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -598,6 +610,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine7(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -618,6 +631,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent8(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -636,6 +650,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine8(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -656,6 +671,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent9(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -674,6 +690,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine9(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -694,6 +711,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent10(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -712,6 +730,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine10(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -732,6 +751,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent11(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -750,6 +770,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine11(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -770,6 +791,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent12(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -788,6 +810,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine12(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -808,6 +831,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent13(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -826,6 +850,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine13(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -846,6 +871,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent14(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -864,6 +890,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine14(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -884,6 +911,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent15(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -902,6 +930,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine15(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -922,6 +951,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent16(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -940,6 +970,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine16(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -960,6 +991,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent17(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -978,6 +1010,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine17(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -998,6 +1031,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent18(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -1016,6 +1050,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine18(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -1036,6 +1071,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent19(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -1054,6 +1090,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine19(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -1074,6 +1111,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setComponent20(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -1092,6 +1130,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field77 setNarrativeLine20(String component) {
+        appendLine(component);
         return this;
     }
 }

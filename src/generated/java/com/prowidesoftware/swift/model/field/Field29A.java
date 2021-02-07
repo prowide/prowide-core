@@ -370,6 +370,7 @@ public class Field29A extends StructuredNarrativeField implements Serializable, 
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field29A setNarrativeLine1(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -390,6 +391,7 @@ public class Field29A extends StructuredNarrativeField implements Serializable, 
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field29A setComponent2(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -408,6 +410,7 @@ public class Field29A extends StructuredNarrativeField implements Serializable, 
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field29A setNarrativeLine2(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -428,6 +431,7 @@ public class Field29A extends StructuredNarrativeField implements Serializable, 
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field29A setComponent3(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -446,6 +450,7 @@ public class Field29A extends StructuredNarrativeField implements Serializable, 
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field29A setNarrativeLine3(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -466,6 +471,7 @@ public class Field29A extends StructuredNarrativeField implements Serializable, 
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field29A setComponent4(String component) {
+        appendLine(component);
         return this;
     }
 
@@ -484,6 +490,7 @@ public class Field29A extends StructuredNarrativeField implements Serializable, 
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
     public Field29A setNarrativeLine4(String component) {
+        appendLine(component);
         return this;
     }
 
