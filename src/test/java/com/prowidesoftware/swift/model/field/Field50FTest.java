@@ -272,6 +272,21 @@ public class Field50FTest extends AbstractFieldTest {
 	}
 
 	@Test
+	public void testParse_12() {
+		Field50F f = new Field50F("CUST/HK/11-222-333-44-55-6666-77777\n" +
+				"1/NORTH WEST LIMITED 38 FOOBAR\n" +
+				"2/BLOCK 2 BSAS COVE BRASILIA\n" +
+				"3/HK/HONG KONG, HONG KONG BR NO");
+		assertEquals("CUST/HK/11-222-333-44-55-6666-77777", f.getComponent1());
+		assertEquals("1", f.getComponent2());
+		assertEquals("NORTH WEST LIMITED 38 FOOBAR", f.getComponent3());
+		assertEquals("2", f.getComponent4());
+		assertEquals("BLOCK 2 BSAS COVE BRASILIA", f.getComponent5());
+		assertEquals("3", f.getComponent6());
+		assertEquals("HK/HONG KONG, HONG KONG BR NO", f.getComponent7());
+	}
+
+	@Test
 	public void testDynamicLabels() {
 		Field50F f = new Field50F("/12345678\n"+
 				"1/SMITH JOHN\n"+
