@@ -58,7 +58,7 @@ Sequence B - Request Details (O) (repetitive)<ul><li class="field">Field 16 R (M
 Fieldset 20
  (O)<ul><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C,U (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="fieldset">
 Fieldset 22
- (O) (repetitive)<ul><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="sequence">
+ (O) (repetitive)<ul><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="sequence">
 Sequence B1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 22 F (O)</li>
 <li class="field">Field 13 A,B (O)</li>
@@ -74,6 +74,8 @@ Sequence C - Additional Information (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 97 A,B (O)</li>
 <li class="field">Field 35 B (O)</li>
 <li class="field">Field 36 B (O)</li>
+<li class="field">Field 90 A,B (M)</li>
+<li class="field">Field 19 A (O)</li>
 <li class="fieldset">
 Fieldset 98
  (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 17 B (O)</li>
@@ -424,6 +426,60 @@ public class MT530 extends AbstractMT implements Serializable {
 		final Tag t = tag("36B");
 		if (t != null) {
 			return new Field36B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 90A, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 90A at MT530 is expected to be the only one.
+	 * 
+	 * @return a Field90A object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field90A getField90A() {
+		final Tag t = tag("90A");
+		if (t != null) {
+			return new Field90A(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 90B, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 90B at MT530 is expected to be the only one.
+	 * 
+	 * @return a Field90B object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field90B getField90B() {
+		final Tag t = tag("90B");
+		if (t != null) {
+			return new Field90B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 19A, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 19A at MT530 is expected to be the only one.
+	 * 
+	 * @return a Field19A object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field19A getField19A() {
+		final Tag t = tag("19A");
+		if (t != null) {
+			return new Field19A(t.getValue());
 		} else {
 			return null;
 		}
