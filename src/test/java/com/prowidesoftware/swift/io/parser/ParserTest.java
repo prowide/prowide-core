@@ -48,7 +48,7 @@ public class ParserTest {
 	 */
 	@Test
 	public void testParse101() {
-		SwiftMessage msg = parseMessage("mt101.fin");
+		SwiftMessage msg = parseMessage("MT101.fin");
 		assertMT101(msg);
 	}
 	
@@ -57,7 +57,7 @@ public class ParserTest {
 	 */
 	@Test
 	public void testParse101Stream() throws IOException {
-		MT101 mt = MT101.parse(getClass().getResourceAsStream("/mt101.fin"));
+		MT101 mt = MT101.parse(getClass().getResourceAsStream("/MT101.fin"));
 		SwiftMessage msg = mt.getSwiftMessage();
 		assertMT101(msg);
 	}
@@ -68,7 +68,7 @@ public class ParserTest {
 	@Disabled("requires absolute path for file")
 	@Test
 	public void testParse101File() throws IOException {
-		MT101 mt = MT101.parse(new File("/home/foo/src/prowide-core/src/test/resourcesmt101.fin"));
+		MT101 mt = MT101.parse(new File("/home/foo/src/prowide-core/src/test/resources/MT101.fin"));
 		SwiftMessage msg = mt.getSwiftMessage();
 		assertMT101(msg);
 	}

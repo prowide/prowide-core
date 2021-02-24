@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
  *
  * @since 6.3
  */
-public class MT900Test extends BaseMessageTestcase {
+public class MT900ParserTest extends BaseMessageTestcase {
 	
 	@Test 
 	public void testImproperBlock4Ending() {

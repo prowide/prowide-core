@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test cases for Mts n92, n95 and n96
  */
-public class MTn9nTest extends BaseMessageTestcase {
+public class MTn9nParserTest extends BaseMessageTestcase {
 	
 	@Test 
 	public void test192_1() {

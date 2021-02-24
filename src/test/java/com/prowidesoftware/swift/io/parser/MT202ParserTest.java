@@ -26,7 +26,7 @@ import com.prowidesoftware.swift.model.SwiftBlock2Output;
  *
  * @since 4.0
  */
-public class MT202Test extends BaseMessageTestcase {
+public class MT202ParserTest extends BaseMessageTestcase {
 	
 	@Test 
 	public void test202_1() {

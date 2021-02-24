@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
 
-public class MT199Test extends BaseMessageTestcase {
+public class MT199ParserTest extends BaseMessageTestcase {
 
 
 	@Test

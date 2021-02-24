@@ -30,7 +30,7 @@ import com.prowidesoftware.swift.model.SwiftBlock2Input;
  *
  * @since 4.0
  */
-public class MT940Test extends BaseMessageTestcase {
+public class MT940ParserTest extends BaseMessageTestcase {
 	
 	@Test 
 	public void test940_1() {

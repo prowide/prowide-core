@@ -28,7 +28,7 @@ import com.prowidesoftware.swift.model.SwiftBlock2Input;
  *
  * @since 4.0
  */
-public class MT950Test extends BaseMessageTestcase {
+public class MT950ParserTest extends BaseMessageTestcase {
 	
 	@Test 
 	public void test535_1() {

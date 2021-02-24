@@ -30,7 +30,7 @@ import com.prowidesoftware.swift.model.Tag;
  *
  * @since 4.0
  */
-public class MT543Test extends BaseMessageTestcase {
+public class MT543ParserTest extends BaseMessageTestcase {
 	
 	@Test
 	public void test543_1() {
