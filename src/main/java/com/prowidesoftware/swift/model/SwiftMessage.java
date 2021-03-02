@@ -1192,7 +1192,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	public MessageIOType getDirection() {
 		try {
 			if (this.block2 == null) {
-				log.info("Requesting direction on a message without block2, can't determine direction. set log level to finer to view more details");
+				log.fine("Requesting direction on a message without block2, can't determine direction. set log level to finer to view more details");
 				log.finest("Message: " + this);
 			} else {
 				if (this.block2.isOutput()) {
