@@ -1922,10 +1922,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 	 * @since 7.10.0
 	 */
 	public String setUETR() {
-		UUID uuid = UUID.randomUUID();
-		String uuid36 = uuid.toString();
-		setUETR(uuid36);
-		return uuid36;
+		return UETRUtils.generate();
 	}
 
 	/**
