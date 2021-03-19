@@ -18,9 +18,12 @@ package com.prowidesoftware.swift.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.prowidesoftware.JsonSerializable;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.Lib;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
@@ -29,22 +32,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.security.MessageDigest;
 import java.text.NumberFormat;
 import java.util.*;
 
 /**
- * Base class for common attributes of MT and MX SWIFT messages intended for messages persistence.
+ * Base entity for MT and MX message persistence.
  * 
  * <p>This class hierarchy is designed as a container of the raw message contents (xml for MX and FIN for MT)
  * plus minimal message metadata. The extra data contains several common attributes for all messages, and
  * the subclasses add additional information mainly to identify the specific message type.
  * 
- * <p>This minimal abstraction make this model optimal for an ORM mapping (ex: for Hibernate) to store
- * all messages in a single and simple table.
+ * <p>This minimal abstraction make this model is specially suited for JPA to store all messages in a single table.
  *
- * <p>XML metadata may be used to override or augment these JPA annotations.
+ * <p>XML may be used to override or augment these default JPA annotations.
  * 
- * @author www.prowidesoftware.com
  * @since 7.0
  */
 @Entity
@@ -154,53 +156,60 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	private java.util.Calendar tradeDate;
 
 	/**
-	 * Empty constructor provided for ORM persistence.
-	 * On most situations this objects are constructed with message data as parameter.
+	 * Empty constructor provided for the ORM only, use one of the specific constructors instead.
 	 * @since 7.7
 	 */
 	public AbstractSwiftMessage() {
 		super();
 	}
-	
+
 	/**
-	 * Creates a new message reading the message the content from a string. 
-	 * Uses abstract method @link {{@link #updateFromMessage()}} to fill the specific metadata attributes.<br>
-	 * 
-	 * The complete string content will be read and set as raw message content, but if the stringt contains 
-	 * multiple messages, only the first one will be used for metadata and message identification.
-	 * 
-	 * @param content a swift message content
-	 * @since 7.7
+	 * @deprecated use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	protected AbstractSwiftMessage(final String content) {
 		super();
 		this.message = content;
-	    updateFromMessage();
+		updateFromMessage();
 	}
-	
+
 	/**
-	 * @see AbstractSwiftMessage#AbstractSwiftMessage(String)
-	 * @since 7.8.4
-	 * @param content the raw message content
-	 * @param fileFormat the content specific format
+	 * @deprecated use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	protected AbstractSwiftMessage(final String content, final FileFormat fileFormat) {
 		super();
 		this.message = content;
 		this.fileFormat = fileFormat;
 	    updateFromMessage();
 	}
-	
+
 	/**
-	 * Creates a new message reading the message the content from an input stream, using UTF-8 as encoding.
-	 * Uses abstract method {{@link #updateFromMessage()}} to fill the specific metadata attributes.<br>
-	 * 
-	 * The complete stream content will be read and set as raw message content, but if the stream contains 
+	 * Creates a new message reading the message the content from a string.
+	 *
+	 * <p>The complete string content will be read and set as raw message content, but if the string contains
 	 * multiple messages, only the first one will be used for metadata and message identification.
-	 *  
-	 * @param stream a stream with the raw mesasge content to read
+	 *
+	 * @param content a swift MT or MX plain message content
+	 * @param fileFormat the source file format
+	 * @param metadataStrategy the specific metadata extraction to apply
+	 * @since 9.1.4
+	 */
+	protected AbstractSwiftMessage(final String content, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) {
+		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+		this.message = content;
+		this.fileFormat = fileFormat;
+		updateFromMessage(metadataStrategy);
+	}
+
+	/**
+	 * @deprecated use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
 	 * @since 7.7
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	protected AbstractSwiftMessage(final InputStream stream) throws IOException {
 		super();
 	    this.message = Lib.readStream(stream);
@@ -208,29 +217,42 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	}
 	
 	/**
-	 * @see #AbstractSwiftMessage(InputStream) 
-	 * @param stream a stream with the raw mesasge content to read
-	 * @param fileFormat the specific content format
-	 * @throws IOException if an error occur reading the stream
+	 * @deprecated use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
 	 * @since 7.8.4
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat) throws IOException {
 		super();
 	    this.message = Lib.readStream(stream);
 		this.fileFormat = fileFormat;
 	    updateFromMessage();
 	}
-	
+
 	/**
-	 * Creates a new message reading the message the content from a file. 
-	 * Uses abstract method {{@link #updateFromMessage()}} to fill the specific metadata attributes.<br>
-	 * 
-	 * The complete file content will be read and set as raw message content, but if the file contains 
+	 * Creates a new message reading the message the content from an input stream, using UTF-8 as encoding.
+	 *
+	 * <p>The complete stream content will be read and set as raw message content, but if the stream contains
 	 * multiple messages, only the first one will be used for metadata and message identification.
-	 * 
-	 * @param file an existing file name containing only one message.
+	 *
+	 * @param stream a stream with the raw mesasge content to read
+	 * @param fileFormat the source file format
+	 * @param metadataStrategy the specific metadata extraction to apply
+	 * @since 9.1.4
+	 */
+	protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
+		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+		this.message = Lib.readStream(stream);
+		this.fileFormat = fileFormat;
+		updateFromMessage(metadataStrategy);
+	}
+
+	/**
+	 * @deprecated use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
 	 * @since 7.7
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	protected AbstractSwiftMessage(final File file) throws IOException {
 		super();
 	    this.message = Lib.readFile(file);
@@ -239,12 +261,11 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 	}
 	
 	/**
-	 * @see #AbstractSwiftMessage(File)
-	 * @param file a file with the raw mesasge content to read
-	 * @param fileFormat the specific file content format
-	 * @throws IOException if an error occur reading the file
+	 * @deprecated use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
 	 * @since 7.8.4
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	protected AbstractSwiftMessage(final File file, final FileFormat fileFormat) throws IOException {
 		super();
 	    this.message = Lib.readFile(file);
@@ -252,14 +273,47 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 		this.fileFormat = fileFormat;
 	    updateFromMessage();
 	}
+
+	/**
+	 * Creates a new message reading the message the content from a file.
+	 *
+	 * <p>The complete file content will be read and set as raw message content, but if the file contains
+	 * multiple messages, only the first one will be used for metadata and message identification.
+	 *
+	 * @param file an existing file containing the message payload
+	 * @param fileFormat the source file format
+	 * @param metadataStrategy the specific metadata extraction to apply
+	 * @since 9.1.4
+	 */
+	protected AbstractSwiftMessage(final File file, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
+		Validate.notNull(file, "the file parameter cannot be null");
+		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+		this.message = Lib.readFile(file);
+		this.filename = file.getAbsolutePath();
+		this.fileFormat = fileFormat;
+		updateFromMessage(metadataStrategy);
+	}
 	
 	/**
-	 * Updates the object attributes with metadata parsed from the message raw content:
-	 * identifier, sender, receiver, direction and specific data for the implementing subclass.
+	 * Updates the object attributes with metadata parsed from the message raw content: identifier, sender, receiver,
+	 * direction and specific data for the implementing subclass. The method is called during message creation or update.
 	 * 
 	 * @since 7.7
 	 */
     protected abstract void updateFromMessage();
+
+	/**
+	 * Updates the object attributes with metadata parsed from the message raw content using the provided strategy
+	 * implementation for several of the metadata fields. The method is called during message creation or update.
+	 *
+	 * <p>This method is expected to be overwritten by subclasses. This default implementation will just ignore the
+	 * parameter strategy.
+	 *
+	 * @since 9.1.4
+	 */
+	protected void updateFromMessage(final MessageMetadataStrategy metadataStrategy) {
+		updateFromMessage();
+	}
 	
     /**
      * Returns the persisted message unique identifier.

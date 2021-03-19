@@ -3,6 +3,8 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.4
+  * Added UETRUtils to generate the GPI unique end-to-end transaction reference, mandatory for several payment messages
+  * Added customizable strategies to set the MtSwiftMessage metadata fields: reference, main amount, value date, etc...
   * Added field classes for SCORE messages: 13E, 21S, 21T, 27A, 29P, 29S, 29U, 49Z (to be used in the proprietary payload of the MT798 envelop)
   * (JIRA-451) Added backward compatible implementation in setComponent* and SetNarrative* API of narrative container fields: 29A, 37N, 70, 71B, 71D, 72Z, 72, 73A, 73, 74, 75, 76, 77A, 77B, 77D, 77
   * (JIRA-445) Added backward compatible fromJson for narrative container fields: 29A, 37N, 45B, 46B, 49M, 49N, 70, 71B, 71D, 72Z, 72, 73A, 73, 74, 75, 76, 77A, 77B, 77D, 77J, 77

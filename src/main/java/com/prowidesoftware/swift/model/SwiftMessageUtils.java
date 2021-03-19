@@ -16,6 +16,8 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.ProwideException;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
@@ -34,27 +36,41 @@ import java.util.logging.Logger;
 /**
  * Utility methods that provide higher level access to {@link SwiftMessage}
  *
- * @author www.prowidesoftware.com
  * @since 6.0
  */
 public class SwiftMessageUtils {
 	private static final Logger log = Logger.getLogger(SwiftMessageUtils.class.getName());
 	private final SwiftMessage msg;
 
+	/**
+	 * @deprecated use the static API instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public SwiftMessageUtils() {
 		this(null);
 	}
 
+	/**
+	 * @deprecated use the static API instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public SwiftMessageUtils(final SwiftMessage m) {
 		this.msg = m;
 	}
 
+	/**
+	 * @deprecated use the static {@link #currencyStrings(SwiftMessage)} instead
+	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public List<String> currencyStrings() {
 		return SwiftMessageUtils.currencyStrings(msg);
 	}
 
 	/**
-	 * Mirrors logic on {@link CurrencyContainer#currencyStrings()} including all fields
+	 * Get all message currencies for fields implementing {@link CurrencyContainer}
 	 * @param m the message instance
 	 * @return an empty list if none found
 	 */
@@ -77,9 +93,10 @@ public class SwiftMessageUtils {
 	}
 
 	/**
-	 * Gets the message value date
-	 * @see #valueDate(SwiftMessage)
+	 * @deprecated use the static {@link #valueDate(SwiftMessage)} instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public Calendar valueDate() {
 		return SwiftMessageUtils.valueDate(msg);
 	}
@@ -474,12 +491,12 @@ public class SwiftMessageUtils {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Gets the message reference
-	 * @see #reference(SwiftMessage)
-	 * @since 7.8.8
+	 * @deprecated use the static {@link #reference(SwiftMessage)} instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public final String reference() {
 		return SwiftMessageUtils.reference(msg);
 	}
@@ -564,12 +581,12 @@ public class SwiftMessageUtils {
 			throw new ProwideException(message);
 		}
 	}
-	
+
 	/**
-	 * Gets the message main amount
-	 * @see #money(SwiftMessage)
-	 * @since 8.0.1
+	 * @deprecated use the static {@link #money(SwiftMessage)} instead
 	 */
+	@Deprecated
+	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	protected Money money() {
 		return money(msg);
 	}

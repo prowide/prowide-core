@@ -1,0 +1,68 @@
+/*
+ * Copyright 2006-2020 Prowide
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.prowidesoftware.swift.model.mt;
+
+
+import com.prowidesoftware.swift.model.*;
+
+import java.util.Calendar;
+import java.util.Optional;
+
+/**
+ * Default implementation of MT messages metadata extraction.
+ *
+ * @see SwiftMessageUtils
+ * @since 9.1.4
+ */
+public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
+
+    /**
+     * Extracts the MT main reference using {@link SwiftMessageUtils#reference(SwiftMessage)}
+     */
+    public Optional<String> reference(AbstractMessage message) {
+        return Optional.ofNullable(SwiftMessageUtils.reference(asSwiftMessage(message)));
+    }
+
+    /**
+     * Extracts the MT main amount, if present, using {@link SwiftMessageUtils#money(SwiftMessage)}
+     */
+    public Optional<Money> amount(AbstractMessage message) {
+        return Optional.ofNullable(SwiftMessageUtils.money(asSwiftMessage(message)));
+    }
+
+    /**
+     * Extracts the MT value date, if any, using {@link SwiftMessageUtils#valueDate(SwiftMessage)}
+     */
+    public Optional<Calendar> valueDate(AbstractMessage message) {
+        return Optional.ofNullable(SwiftMessageUtils.valueDate(asSwiftMessage(message)));
+    }
+
+    /**
+     * Extracts the MT trade date, if any, using {@link SwiftMessageUtils#tradeDate(SwiftMessage)}
+     */
+    public Optional<Calendar> tradeDate(AbstractMessage message) {
+        return Optional.ofNullable(SwiftMessageUtils.tradeDate(asSwiftMessage(message)));
+    }
+
+    private SwiftMessage asSwiftMessage(AbstractMessage message) {
+        if (message.isMT()) {
+            AbstractMT mt = (AbstractMT) message;
+            return mt.getSwiftMessage();
+        }
+        return null;
+    }
+
+}
