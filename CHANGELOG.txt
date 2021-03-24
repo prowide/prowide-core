@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.4
+  * NPE prevention in AbstractMT.getFields() when the parsed FIN content is invalid
   * Added UETRUtils to generate the GPI unique end-to-end transaction reference, mandatory for several payment messages
   * Added customizable strategies to set the MtSwiftMessage metadata fields: reference, main amount, value date, etc...
   * Added field classes for SCORE messages: 13E, 21S, 21T, 27A, 29P, 29S, 29U, 49Z (to be used in the proprietary payload of the MT798 envelop)

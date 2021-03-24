@@ -425,6 +425,9 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 		if (getSwiftMessage() == null) {
 			this.m = new SwiftMessage();
 		}
+		if (getSwiftMessage().getBlock4() == null) {
+			getSwiftMessage().setBlock4(new SwiftBlock4());
+		}
 		getSwiftMessage().getBlock4().append(f);
 	}
 
@@ -895,8 +898,10 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 	 */
 	public List<Field> getFields() {
 		List<Field> fields = new ArrayList<>();
-		for (Tag tag : this.m.getBlock4().getTags()){
-			fields.add(tag.asField());
+		if (this.m.getBlock4() != null) {
+			for (Tag tag : this.m.getBlock4().getTags()) {
+				fields.add(tag.asField());
+			}
 		}
 		return fields;
 	}

@@ -116,5 +116,6 @@ public interface SchemeConstantsP {
     public final static String PHYSICAL = "PHYSICAL";
     public final static String PUT = "PUT";
     public final static String PMTH = "PMTH";
+    public final static String PRCD = "PRCD";
 
 }

@@ -237,6 +237,7 @@ public class AbstractMTTest {
 		assertEquals(new Tag("16S", "ABC"), s2.getTag(3));
 	}
 	*/
+
 	@Test
 	public void testGetFields() throws IOException {
 		final String msg = "{1:F21OMFNCIABAXXX6368087500}{4:{177:1511041614}{451:0}}{1:F01OMFNCIABAXXX6368087500}{2:O1031542151104BCAOSNDPAXXX22438129121511041542N}{3:{113:0030}{108:001RTGS153030005}}{4:\n" +
@@ -266,6 +267,18 @@ public class AbstractMTTest {
 	}
 
 	@Test
+	public void testGetFieldsInvalidBlockBrackets() throws IOException {
+		final String msg = "{1:F01OMFNCIABAXXX6368087500}{2:O1031542151104BCAOSNDPAXXX22438129121511041542N}{3:{108:210323165210}{4:\n" +
+				":20:1234567890\n" +
+				":23B:CRED\n" +
+				":23E:SDVA\n" +
+				"-}";
+		AbstractMT asm = AbstractMT.parse(msg);
+		List<Field> fields = asm.getFields();
+		assertTrue(fields.isEmpty());
+	}
+
+	@Test
 	public void testMTClassParse() {
 		MT940 mt = MT940.parse("{1:F01ANASCH20AXXX0000000000}{2:I940BSCHGB2LXEQUN}{3:{108:FOOB3926BE868XXX}}{4:\n" +
 				":20:123456\n" +
@@ -286,4 +299,5 @@ public class AbstractMTTest {
 				"-}{5:{CHK:3916EF336FF7}}");
 		assertEquals(ServiceIdType._01, mt.getSwiftMessage().getBlock1().getServiceIdType());
 	}
+
 }
