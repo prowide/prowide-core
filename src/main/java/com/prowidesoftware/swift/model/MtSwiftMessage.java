@@ -252,7 +252,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 		AbstractMT mt = model.toMT();
 
 		String reference = strategy.reference(mt).orElse(null);
-		setReference(reference);
+		if (StringUtils.isNotBlank(reference)) {
+			setReference(reference);
+		}
 
 		Optional<Money> money = strategy.amount(mt);
 		if (money.isPresent()) {
@@ -261,10 +263,14 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 		}
 
 		Calendar valueDate = strategy.valueDate(mt).orElse(null);
-		setValueDate(valueDate);
+		if (valueDate != null) {
+			setValueDate(valueDate);
+		}
 
 		Calendar tradeDate = strategy.tradeDate(mt).orElse(null);
-		setTradeDate(tradeDate);
+		if (tradeDate != null) {
+			setTradeDate(tradeDate);
+		}
 	}
 
 	/**
