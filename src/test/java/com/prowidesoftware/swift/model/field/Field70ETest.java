@@ -18,6 +18,7 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -108,6 +109,19 @@ public class Field70ETest extends AbstractFieldTest {
 		assertEquals("GGGG", f.getComponent9());
 		assertEquals("HHHH", f.getComponent10());
 		assertEquals("IIII", f.getComponent11());
+	}
+
+	@Test
+	public void testJoinNarrative() {
+		Field70E f = new Field70E(":TXNR//FOO\n BAR");
+		assertEquals("FOO\r\nBAR", f.getNarrative());
+		assertEquals(":TXNR//FOO BAR", String.join("", f.getLines()));
+		assertEquals("FOOBAR", String.join("", f.getLines(2)));
+
+		assertEquals("FOO\r\n BAR", StringUtils.substringAfter(f.getValue(), "//"));
+
+		f.setComponent1(null);
+		assertEquals("FOO\r\n BAR", StringUtils.substringAfter(f.getValue(), "://"));
 	}
 
 }

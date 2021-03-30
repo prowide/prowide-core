@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.swift.model.mt.DefaultMtMetadataStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -56,12 +57,16 @@ public class MtSwiftMessageTest {
                 ":20:TEST\n" +
                 ":79:AAAAA\n" +
                 "-}";
+
         MtSwiftMessage mt = MtSwiftMessage.parse(fin);
+
+        // default metadata
         assertEquals("AGBLLT2XXXX", mt.getSender());
         assertEquals("TESTARZZXXX", mt.getReceiver());
         assertEquals("MYMUR123458", mt.getMur());
         assertEquals("TEST", mt.getReference());
 
+        // update metadata
         mt.updateMetadata(new TestMtMetadataStrategy());
         assertEquals("REFERENCE", mt.getReference());
         assertEquals(new BigDecimal("1234.56"), mt.getAmount());
@@ -92,4 +97,36 @@ public class MtSwiftMessageTest {
             return Optional.empty();
         }
     }
+
+    @Test
+    public void testUpdateMetadata2() {
+        String fin = "{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n" +
+                ":79:AAAAA\n" +
+                "-}";
+        MtSwiftMessage mt = MtSwiftMessage.parse(fin);
+
+        // default metadata
+        assertEquals("AGBLLT2XXXX", mt.getSender());
+        assertEquals("TESTARZZXXX", mt.getReceiver());
+        assertEquals("MYMUR123458", mt.getMur());
+        assertNull(mt.getReference());
+        assertNull(mt.getCurrency());
+        assertNull(mt.getAmount());
+
+        // preset some values
+        mt.setReference("MYREFERENCE");
+        mt.setCurrency("EUR");
+        mt.setAmount(new BigDecimal("333.33"));
+
+        // update metadata
+        mt.updateMetadata(new DefaultMtMetadataStrategy());
+        assertEquals("AGBLLT2XXXX", mt.getSender());
+        assertEquals("TESTARZZXXX", mt.getReceiver());
+        assertEquals("MYREFERENCE", mt.getReference()); // preserved
+        assertEquals(new BigDecimal("333.33"), mt.getAmount()); // preserved
+        assertEquals("EUR", mt.getCurrency()); // preserved
+        assertNull(mt.getValueDate());
+        assertNull(mt.getTradeDate());
+    }
+
 }

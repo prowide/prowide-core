@@ -34,7 +34,8 @@ public class Field69DTest extends AbstractFieldTest {
 	@Test
 	public void testSerialization() {
 		testSerializationImpl("69D",
-				":ABC//20111224131415/DEF"
+				":ABC//20111224131415/DEF",
+						":PRIC//20210326091730/ONGO"
 			);
 	}
 	
@@ -104,6 +105,12 @@ public class Field69DTest extends AbstractFieldTest {
 		assertEquals(14, f.getComponent3AsCalendar().get(Calendar.MINUTE));
 		assertEquals(15, f.getComponent3AsCalendar().get(Calendar.SECOND));
 		assertEquals("DEF", f.getComponent4());
+
+		f = new Field69D(":PRIC//20210326091730/ONGO");
+		assertEquals("PRIC", f.getComponent1());
+		assertEquals("20210326", f.getComponent2());
+		assertEquals("091730", f.getComponent3());
+		assertEquals("ONGO", f.getComponent4());
 	}
 		
 }	
