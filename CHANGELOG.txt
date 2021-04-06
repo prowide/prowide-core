@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.4
+  * (JIRA-505) Fixed SwiftFormatUtils#decimalsInAmount(BigDecimal)
   * NPE prevention in AbstractMT.getFields() when the parsed FIN content is invalid
   * Added UETRUtils to generate the GPI unique end-to-end transaction reference, mandatory for several payment messages
   * Added customizable strategies to set the MtSwiftMessage metadata fields: reference, main amount, value date, etc...

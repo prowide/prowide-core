@@ -667,10 +667,8 @@ public class SwiftFormatUtils {
 	 */
 	public static int decimalsInAmount(final BigDecimal amount) {
 		if (amount != null) {
-			BigDecimal d = new BigDecimal(amount.toString());
-			BigDecimal result = d.subtract(d.setScale(0, RoundingMode.FLOOR)).movePointRight(d.scale());
-			if (result.intValue() != 0) {
-				return result.toString().length();
+			if (amount.scale() != 0) {
+				return amount.scale();
 			}
 		}
 		return 0;
