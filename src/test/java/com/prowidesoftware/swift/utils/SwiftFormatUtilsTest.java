@@ -163,7 +163,7 @@ public class SwiftFormatUtilsTest {
 	}
 
 	@Test
-	public void testDecimalsInAmountBigDecimal() throws Exception {
+	public void testDecimalsInAmountBigDecimal() {
 		assertEquals(0, SwiftFormatUtils.decimalsInAmount((BigDecimal)null));
 		assertEquals(0, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1")));
 		assertEquals(2, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1.00")));
