@@ -166,14 +166,14 @@ public class SwiftFormatUtilsTest {
 	public void testDecimalsInAmountBigDecimal() throws Exception {
 		assertEquals(0, SwiftFormatUtils.decimalsInAmount((BigDecimal)null));
 		assertEquals(0, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1")));
-		assertEquals(0, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1.00")));
+		assertEquals(2, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1.00")));
 		assertEquals(0, SwiftFormatUtils.decimalsInAmount("new BigDecimal(1127892189"));
 		
 		assertEquals(5, SwiftFormatUtils.decimalsInAmount(new BigDecimal("11278.92189")));
 		assertEquals(1, SwiftFormatUtils.decimalsInAmount(new BigDecimal("112789218.9")));
 		assertEquals(4, SwiftFormatUtils.decimalsInAmount(new BigDecimal("112789.2189")));
 		assertEquals(6, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1.000123")));
-		assertEquals(6, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1.00012300")));
+		assertEquals(8, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1.00012300")));
 	}
 	
 }
