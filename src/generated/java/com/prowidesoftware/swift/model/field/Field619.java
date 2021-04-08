@@ -275,16 +275,16 @@ public class Field619 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (FINCopy Service Code).
-	 * @return the component1
+	 * Gets the component 1 (FINCopy Service Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the FINCopy Service Code (component1).
-	 * @return the FINCopy Service Code from component1
+	 * Gets the FINCopy Service Code (component 1).
+	 * @return the FINCopy Service Code from component 1
 	 */
 	public String getFINCopyServiceCode() {
 		return getComponent(1);

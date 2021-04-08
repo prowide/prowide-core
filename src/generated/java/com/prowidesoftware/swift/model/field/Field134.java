@@ -311,62 +311,62 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
 		return result;
 	}
 	/**
-	 * Gets the component1 (BIC).
-	 * @return the component1
+	 * Gets the component 1 (BIC).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as BIC
-	 * @return the component1 converted to BIC or null if cannot be converted
+	 * Get the component 1 as BIC
+	 * @return the component 1 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getComponent1AsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(1));
 	}
 
 	/**
-	 * Gets the BIC (component1).
-	 * @return the BIC from component1
+	 * Gets the BIC (component 1).
+	 * @return the BIC from component 1
 	 */
 	public String getBIC() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the BIC (component1) as BIC
-	 * @return the BIC from component1 converted to BIC or null if cannot be converted
+	 * Get the BIC (component 1) as BIC
+	 * @return the BIC from component 1 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Broadcast Requester Name).
-	 * @return the component2
+	 * Gets the component 2 (Broadcast Requester Name).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Broadcast Requester Name (component2).
-	 * @return the Broadcast Requester Name from component2
+	 * Gets the Broadcast Requester Name (component 2).
+	 * @return the Broadcast Requester Name from component 2
 	 */
 	public String getBroadcastRequesterName() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Broadcast Requester City).
-	 * @return the component3
+	 * Gets the component 3 (Broadcast Requester City).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Broadcast Requester City (component3).
-	 * @return the Broadcast Requester City from component3
+	 * Gets the Broadcast Requester City (component 3).
+	 * @return the Broadcast Requester City from component 3
 	 */
 	public String getBroadcastRequesterCity() {
 		return getComponent(3);

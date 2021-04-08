@@ -290,31 +290,31 @@ public class Field22S extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Side Indicator).
-	 * @return the component1
+	 * Gets the component 1 (Side Indicator).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Side Indicator (component1).
-	 * @return the Side Indicator from component1
+	 * Gets the Side Indicator (component 1).
+	 * @return the Side Indicator from component 1
 	 */
 	public String getSideIndicator() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Identification).
-	 * @return the component2
+	 * Gets the component 2 (Identification).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Identification (component2).
-	 * @return the Identification from component2
+	 * Gets the Identification (component 2).
+	 * @return the Identification from component 2
 	 */
 	public String getIdentification() {
 		return getComponent(2);

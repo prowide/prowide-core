@@ -275,16 +275,16 @@ public class Field22V extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Execution Venue).
-	 * @return the component1
+	 * Gets the component 1 (Execution Venue).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Execution Venue (component1).
-	 * @return the Execution Venue from component1
+	 * Gets the Execution Venue (component 1).
+	 * @return the Execution Venue from component 1
 	 */
 	public String getExecutionVenue() {
 		return getComponent(1);

@@ -332,77 +332,77 @@ public class Field133 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Broadcast Indicator).
-	 * @return the component1
+	 * Gets the component 1 (Broadcast Indicator).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Broadcast Indicator (component1).
-	 * @return the Broadcast Indicator from component1
+	 * Gets the Broadcast Indicator (component 1).
+	 * @return the Broadcast Indicator from component 1
 	 */
 	public String getBroadcastIndicator() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Unsequenced Broadcast).
-	 * @return the component2
+	 * Gets the component 2 (Unsequenced Broadcast).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Unsequenced Broadcast (component2).
-	 * @return the Unsequenced Broadcast from component2
+	 * Gets the Unsequenced Broadcast (component 2).
+	 * @return the Unsequenced Broadcast from component 2
 	 */
 	public String getUnsequencedBroadcast() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Broadcast Issuer).
-	 * @return the component3
+	 * Gets the component 3 (Broadcast Issuer).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Broadcast Issuer (component3).
-	 * @return the Broadcast Issuer from component3
+	 * Gets the Broadcast Issuer (component 3).
+	 * @return the Broadcast Issuer from component 3
 	 */
 	public String getBroadcastIssuer() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Broadcast Number).
-	 * @return the component4
+	 * Gets the component 4 (Broadcast Number).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Number
-	 * @return the component4 converted to Number or null if cannot be converted
+	 * Get the component 4 as Number
+	 * @return the component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));
 	}
 
 	/**
-	 * Gets the Broadcast Number (component4).
-	 * @return the Broadcast Number from component4
+	 * Gets the Broadcast Number (component 4).
+	 * @return the Broadcast Number from component 4
 	 */
 	public String getBroadcastNumber() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Broadcast Number (component4) as Number
-	 * @return the Broadcast Number from component4 converted to Number or null if cannot be converted
+	 * Get the Broadcast Number (component 4) as Number
+	 * @return the Broadcast Number from component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getBroadcastNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));

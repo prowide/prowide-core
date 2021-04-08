@@ -290,31 +290,31 @@ public class Field14G extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Frequency).
-	 * @return the component1
+	 * Gets the component 1 (Frequency).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Frequency (component1).
-	 * @return the Frequency from component1
+	 * Gets the Frequency (component 1).
+	 * @return the Frequency from component 1
 	 */
 	public String getFrequency() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Method).
-	 * @return the component2
+	 * Gets the component 2 (Method).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Method (component2).
-	 * @return the Method from component2
+	 * Gets the Method (component 2).
+	 * @return the Method from component 2
 	 */
 	public String getMethod() {
 		return getComponent(2);

@@ -280,32 +280,32 @@ public class Field209 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Type).
-	 * @return the component1
+	 * Gets the component 1 (Type).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Type (component1).
-	 * @return the Type from component1
+	 * Gets the Type (component 1).
+	 * @return the Type from component 1
 	 */
 	public String getType() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Type (component1) as Number
-	 * @return the Type from component1 converted to Number or null if cannot be converted
+	 * Get the Type (component 1) as Number
+	 * @return the Type from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getTypeAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));

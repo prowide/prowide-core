@@ -280,32 +280,32 @@ public class Field533 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Cut Off Time Count).
-	 * @return the component1
+	 * Gets the component 1 (Cut Off Time Count).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Cut Off Time Count (component1).
-	 * @return the Cut Off Time Count from component1
+	 * Gets the Cut Off Time Count (component 1).
+	 * @return the Cut Off Time Count from component 1
 	 */
 	public String getCutOffTimeCount() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Cut Off Time Count (component1) as Number
-	 * @return the Cut Off Time Count from component1 converted to Number or null if cannot be converted
+	 * Get the Cut Off Time Count (component 1) as Number
+	 * @return the Cut Off Time Count from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getCutOffTimeCountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));

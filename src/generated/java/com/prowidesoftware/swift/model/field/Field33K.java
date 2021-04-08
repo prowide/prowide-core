@@ -352,124 +352,124 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
 		return result;
 	}
 	/**
-	 * Gets the component1 (D/M Mark).
-	 * @return the component1
+	 * Gets the component 1 (D/M Mark).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the D/M Mark (component1).
-	 * @return the D/M Mark from component1
+	 * Gets the D/M Mark (component 1).
+	 * @return the D/M Mark from component 1
 	 */
 	public String getDMMark() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Number of Days/Months).
-	 * @return the component2
+	 * Gets the component 2 (Number of Days/Months).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Number of Days/Months (component2).
-	 * @return the Number of Days/Months from component2
+	 * Gets the Number of Days/Months (component 2).
+	 * @return the Number of Days/Months from component 2
 	 */
 	public String getNumberofDaysMonths() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Number of Days/Months (component2) as Number
-	 * @return the Number of Days/Months from component2 converted to Number or null if cannot be converted
+	 * Get the Number of Days/Months (component 2) as Number
+	 * @return the Number of Days/Months from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getNumberofDaysMonthsAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Code).
-	 * @return the component3
+	 * Gets the component 3 (Code).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Code (component3).
-	 * @return the Code from component3
+	 * Gets the Code (component 3).
+	 * @return the Code from component 3
 	 */
 	public String getCode() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Currency).
-	 * @return the component4
+	 * Gets the component 4 (Currency).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Currency
-	 * @return the component4 converted to Currency or null if cannot be converted
+	 * Get the component 4 as Currency
+	 * @return the component 4 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getComponent4AsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(4));
 	}
 
 	/**
-	 * Gets the Currency (component4).
-	 * @return the Currency from component4
+	 * Gets the Currency (component 4).
+	 * @return the Currency from component 4
 	 */
 	public String getCurrency() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Currency (component4) as Currency
-	 * @return the Currency from component4 converted to Currency or null if cannot be converted
+	 * Get the Currency (component 4) as Currency
+	 * @return the Currency from component 4 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getCurrencyAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(4));
 	}
 	/**
-	 * Gets the component5 (Amount).
-	 * @return the component5
+	 * Gets the component 5 (Amount).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Get the component5 as Number
-	 * @return the component5 converted to Number or null if cannot be converted
+	 * Get the component 5 as Number
+	 * @return the component 5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
 	}
 
 	/**
-	 * Gets the Amount (component5).
-	 * @return the Amount from component5
+	 * Gets the Amount (component 5).
+	 * @return the Amount from component 5
 	 */
 	public String getAmount() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the Amount (component5) as Number
-	 * @return the Amount from component5 converted to Number or null if cannot be converted
+	 * Get the Amount (component 5) as Number
+	 * @return the Amount from component 5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));

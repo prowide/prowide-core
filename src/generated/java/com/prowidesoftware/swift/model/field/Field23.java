@@ -338,77 +338,77 @@ public class Field23 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Code 1).
-	 * @return the component1
+	 * Gets the component 1 (Code 1).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Code 1 (component1).
-	 * @return the Code 1 from component1
+	 * Gets the Code 1 (component 1).
+	 * @return the Code 1 from component 1
 	 */
 	public String getCode1() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Code 2).
-	 * @return the component2
+	 * Gets the component 2 (Code 2).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Code 2 (component2).
-	 * @return the Code 2 from component2
+	 * Gets the Code 2 (component 2).
+	 * @return the Code 2 from component 2
 	 */
 	public String getCode2() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Code 3).
-	 * @return the component3
+	 * Gets the component 3 (Code 3).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Code 3 (component3).
-	 * @return the Code 3 from component3
+	 * Gets the Code 3 (component 3).
+	 * @return the Code 3 from component 3
 	 */
 	public String getCode3() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Currency).
-	 * @return the component4
+	 * Gets the component 4 (Currency).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Currency
-	 * @return the component4 converted to Currency or null if cannot be converted
+	 * Get the component 4 as Currency
+	 * @return the component 4 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getComponent4AsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(4));
 	}
 
 	/**
-	 * Gets the Currency (component4).
-	 * @return the Currency from component4
+	 * Gets the Currency (component 4).
+	 * @return the Currency from component 4
 	 */
 	public String getCurrency() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Currency (component4) as Currency
-	 * @return the Currency from component4 converted to Currency or null if cannot be converted
+	 * Get the Currency (component 4) as Currency
+	 * @return the Currency from component 4 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getCurrencyAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(4));

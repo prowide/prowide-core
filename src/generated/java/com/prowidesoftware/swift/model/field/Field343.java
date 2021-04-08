@@ -344,125 +344,125 @@ public class Field343 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Region Time Count 1).
-	 * @return the component1
+	 * Gets the component 1 (Region Time Count 1).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Region Time Count 1 (component1).
-	 * @return the Region Time Count 1 from component1
+	 * Gets the Region Time Count 1 (component 1).
+	 * @return the Region Time Count 1 from component 1
 	 */
 	public String getRegionTimeCount1() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Region Time Count 1 (component1) as Number
-	 * @return the Region Time Count 1 from component1 converted to Number or null if cannot be converted
+	 * Get the Region Time Count 1 (component 1) as Number
+	 * @return the Region Time Count 1 from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getRegionTimeCount1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Region Time Count 2).
-	 * @return the component2
+	 * Gets the component 2 (Region Time Count 2).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Region Time Count 2 (component2).
-	 * @return the Region Time Count 2 from component2
+	 * Gets the Region Time Count 2 (component 2).
+	 * @return the Region Time Count 2 from component 2
 	 */
 	public String getRegionTimeCount2() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Region Time Count 2 (component2) as Number
-	 * @return the Region Time Count 2 from component2 converted to Number or null if cannot be converted
+	 * Get the Region Time Count 2 (component 2) as Number
+	 * @return the Region Time Count 2 from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getRegionTimeCount2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Region Time Count 3).
-	 * @return the component3
+	 * Gets the component 3 (Region Time Count 3).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the Region Time Count 3 (component3).
-	 * @return the Region Time Count 3 from component3
+	 * Gets the Region Time Count 3 (component 3).
+	 * @return the Region Time Count 3 from component 3
 	 */
 	public String getRegionTimeCount3() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Region Time Count 3 (component3) as Number
-	 * @return the Region Time Count 3 from component3 converted to Number or null if cannot be converted
+	 * Get the Region Time Count 3 (component 3) as Number
+	 * @return the Region Time Count 3 from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getRegionTimeCount3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 	/**
-	 * Gets the component4 (Region Time Count 4).
-	 * @return the component4
+	 * Gets the component 4 (Region Time Count 4).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Number
-	 * @return the component4 converted to Number or null if cannot be converted
+	 * Get the component 4 as Number
+	 * @return the component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));
 	}
 
 	/**
-	 * Gets the Region Time Count 4 (component4).
-	 * @return the Region Time Count 4 from component4
+	 * Gets the Region Time Count 4 (component 4).
+	 * @return the Region Time Count 4 from component 4
 	 */
 	public String getRegionTimeCount4() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Region Time Count 4 (component4) as Number
-	 * @return the Region Time Count 4 from component4 converted to Number or null if cannot be converted
+	 * Get the Region Time Count 4 (component 4) as Number
+	 * @return the Region Time Count 4 from component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getRegionTimeCount4AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));

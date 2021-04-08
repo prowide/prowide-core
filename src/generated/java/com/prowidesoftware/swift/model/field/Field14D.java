@@ -275,16 +275,16 @@ public class Field14D extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Day Count Fraction).
-	 * @return the component1
+	 * Gets the component 1 (Day Count Fraction).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Day Count Fraction (component1).
-	 * @return the Day Count Fraction from component1
+	 * Gets the Day Count Fraction (component 1).
+	 * @return the Day Count Fraction from component 1
 	 */
 	public String getDayCountFraction() {
 		return getComponent(1);

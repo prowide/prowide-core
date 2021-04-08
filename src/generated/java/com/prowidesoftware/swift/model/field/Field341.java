@@ -275,16 +275,16 @@ public class Field341 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Generation Time Options).
-	 * @return the component1
+	 * Gets the component 1 (Generation Time Options).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Generation Time Options (component1).
-	 * @return the Generation Time Options from component1
+	 * Gets the Generation Time Options (component 1).
+	 * @return the Generation Time Options from component 1
 	 */
 	public String getGenerationTimeOptions() {
 		return getComponent(1);

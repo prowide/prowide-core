@@ -319,62 +319,62 @@ public class Field37H extends Field implements Serializable, AmountContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (D/C Mark).
-	 * @return the component1
+	 * Gets the component 1 (D/C Mark).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the D/C Mark (component1).
-	 * @return the D/C Mark from component1
+	 * Gets the D/C Mark (component 1).
+	 * @return the D/C Mark from component 1
 	 */
 	public String getDCMark() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Sign).
-	 * @return the component2
+	 * Gets the component 2 (Sign).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Sign (component2).
-	 * @return the Sign from component2
+	 * Gets the Sign (component 2).
+	 * @return the Sign from component 2
 	 */
 	public String getSign() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Rate).
-	 * @return the component3
+	 * Gets the component 3 (Rate).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the Rate (component3).
-	 * @return the Rate from component3
+	 * Gets the Rate (component 3).
+	 * @return the Rate from component 3
 	 */
 	public String getRate() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Rate (component3) as Number
-	 * @return the Rate from component3 converted to Number or null if cannot be converted
+	 * Get the Rate (component 3) as Number
+	 * @return the Rate from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getRateAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));

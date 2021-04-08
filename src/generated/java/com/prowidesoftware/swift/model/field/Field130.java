@@ -340,93 +340,93 @@ public class Field130 extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Heading Code).
-	 * @return the component1
+	 * Gets the component 1 (Heading Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Heading Code (component1).
-	 * @return the Heading Code from component1
+	 * Gets the Heading Code (component 1).
+	 * @return the Heading Code from component 1
 	 */
 	public String getHeadingCode() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Heading Code (component1) as Number
-	 * @return the Heading Code from component1 converted to Number or null if cannot be converted
+	 * Get the Heading Code (component 1) as Number
+	 * @return the Heading Code from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getHeadingCodeAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Heading Text).
-	 * @return the component2
+	 * Gets the component 2 (Heading Text).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Heading Text (component2).
-	 * @return the Heading Text from component2
+	 * Gets the Heading Text (component 2).
+	 * @return the Heading Text from component 2
 	 */
 	public String getHeadingText() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Heading Code 2).
-	 * @return the component3
+	 * Gets the component 3 (Heading Code 2).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the Heading Code 2 (component3).
-	 * @return the Heading Code 2 from component3
+	 * Gets the Heading Code 2 (component 3).
+	 * @return the Heading Code 2 from component 3
 	 */
 	public String getHeadingCode2() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Heading Code 2 (component3) as Number
-	 * @return the Heading Code 2 from component3 converted to Number or null if cannot be converted
+	 * Get the Heading Code 2 (component 3) as Number
+	 * @return the Heading Code 2 from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getHeadingCode2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 	/**
-	 * Gets the component4 (Heading Text 2).
-	 * @return the component4
+	 * Gets the component 4 (Heading Text 2).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Heading Text 2 (component4).
-	 * @return the Heading Text 2 from component4
+	 * Gets the Heading Text 2 (component 4).
+	 * @return the Heading Text 2 from component 4
 	 */
 	public String getHeadingText2() {
 		return getComponent(4);

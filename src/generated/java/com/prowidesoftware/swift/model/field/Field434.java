@@ -291,31 +291,31 @@ public class Field434 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Code Word).
-	 * @return the component1
+	 * Gets the component 1 (Code Word).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Code Word (component1).
-	 * @return the Code Word from component1
+	 * Gets the Code Word (component 1).
+	 * @return the Code Word from component 1
 	 */
 	public String getCodeWord() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Additional Information).
-	 * @return the component2
+	 * Gets the component 2 (Additional Information).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Additional Information (component2).
-	 * @return the Additional Information from component2
+	 * Gets the Additional Information (component 2).
+	 * @return the Additional Information from component 2
 	 */
 	public String getAdditionalInformation() {
 		return getComponent(2);

@@ -310,62 +310,62 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Code).
-	 * @return the component2
+	 * Gets the component 2 (Code).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Code (component2).
-	 * @return the Code from component2
+	 * Gets the Code (component 2).
+	 * @return the Code from component 2
 	 */
 	public String getCode() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (BIC).
-	 * @return the component3
+	 * Gets the component 3 (BIC).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as BIC
-	 * @return the component3 converted to BIC or null if cannot be converted
+	 * Get the component 3 as BIC
+	 * @return the component 3 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getComponent3AsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(3));
 	}
 
 	/**
-	 * Gets the BIC (component3).
-	 * @return the BIC from component3
+	 * Gets the BIC (component 3).
+	 * @return the BIC from component 3
 	 */
 	public String getBIC() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the BIC (component3) as BIC
-	 * @return the BIC from component3 converted to BIC or null if cannot be converted
+	 * Get the BIC (component 3) as BIC
+	 * @return the BIC from component 3 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(3));

@@ -275,32 +275,32 @@ public class Field174 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Range).
-	 * @return the component1
+	 * Gets the component 1 (Range).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getHour(getComponent(1));
 	}
 
 	/**
-	 * Gets the Range (component1).
-	 * @return the Range from component1
+	 * Gets the Range (component 1).
+	 * @return the Range from component 1
 	 */
 	public String getRange() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Range (component1) as Calendar
-	 * @return the Range from component1 converted to Calendar or null if cannot be converted
+	 * Get the Range (component 1) as Calendar
+	 * @return the Range from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getRangeAsCalendar() {
 		return SwiftFormatUtils.getHour(getComponent(1));

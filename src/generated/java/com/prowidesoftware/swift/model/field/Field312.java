@@ -275,16 +275,16 @@ public class Field312 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Broadcast Text).
-	 * @return the component1
+	 * Gets the component 1 (Broadcast Text).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Broadcast Text (component1).
-	 * @return the Broadcast Text from component1
+	 * Gets the Broadcast Text (component 1).
+	 * @return the Broadcast Text from component 1
 	 */
 	public String getBroadcastText() {
 		return getComponent(1);

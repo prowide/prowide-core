@@ -300,63 +300,63 @@ public class Field28D extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Statement Number).
-	 * @return the component1
+	 * Gets the component 1 (Statement Number).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Statement Number (component1).
-	 * @return the Statement Number from component1
+	 * Gets the Statement Number (component 1).
+	 * @return the Statement Number from component 1
 	 */
 	public String getStatementNumber() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Statement Number (component1) as Number
-	 * @return the Statement Number from component1 converted to Number or null if cannot be converted
+	 * Get the Statement Number (component 1) as Number
+	 * @return the Statement Number from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getStatementNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Sequence Number).
-	 * @return the component2
+	 * Gets the component 2 (Sequence Number).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Sequence Number (component2).
-	 * @return the Sequence Number from component2
+	 * Gets the Sequence Number (component 2).
+	 * @return the Sequence Number from component 2
 	 */
 	public String getSequenceNumber() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Sequence Number (component2) as Number
-	 * @return the Sequence Number from component2 converted to Number or null if cannot be converted
+	 * Get the Sequence Number (component 2) as Number
+	 * @return the Sequence Number from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getSequenceNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));

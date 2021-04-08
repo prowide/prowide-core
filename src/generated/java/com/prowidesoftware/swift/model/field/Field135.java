@@ -275,16 +275,16 @@ public class Field135 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Priority).
-	 * @return the component1
+	 * Gets the component 1 (Priority).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Priority (component1).
-	 * @return the Priority from component1
+	 * Gets the Priority (component 1).
+	 * @return the Priority from component 1
 	 */
 	public String getPriority() {
 		return getComponent(1);

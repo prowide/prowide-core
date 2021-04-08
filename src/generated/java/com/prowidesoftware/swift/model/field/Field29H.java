@@ -275,16 +275,16 @@ public class Field29H extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Location).
-	 * @return the component1
+	 * Gets the component 1 (Location).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Location (component1).
-	 * @return the Location from component1
+	 * Gets the Location (component 1).
+	 * @return the Location from component 1
 	 */
 	public String getLocation() {
 		return getComponent(1);

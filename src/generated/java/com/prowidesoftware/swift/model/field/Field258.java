@@ -378,171 +378,171 @@ public class Field258 extends Field implements Serializable, DateContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (LT Address).
-	 * @return the component1
+	 * Gets the component 1 (LT Address).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as LogicalTerminalAddress
-	 * @return the component1 converted to LogicalTerminalAddress or null if cannot be converted
+	 * Get the component 1 as LogicalTerminalAddress
+	 * @return the component 1 converted to LogicalTerminalAddress or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getComponent1AsLogicalTerminalAddress() {
 		return SwiftFormatUtils.getLTAddress(getComponent(1));
 	}
 
 	/**
-	 * Gets the LT Address (component1).
-	 * @return the LT Address from component1
+	 * Gets the LT Address (component 1).
+	 * @return the LT Address from component 1
 	 */
 	public String getLTAddress() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the LT Address (component1) as LogicalTerminalAddress
-	 * @return the LT Address from component1 converted to LogicalTerminalAddress or null if cannot be converted
+	 * Get the LT Address (component 1) as LogicalTerminalAddress
+	 * @return the LT Address from component 1 converted to LogicalTerminalAddress or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getLTAddressAsLogicalTerminalAddress() {
 		return SwiftFormatUtils.getLTAddress(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Session Number).
-	 * @return the component2
+	 * Gets the component 2 (Session Number).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Session Number (component2).
-	 * @return the Session Number from component2
+	 * Gets the Session Number (component 2).
+	 * @return the Session Number from component 2
 	 */
 	public String getSessionNumber() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Session Number (component2) as Number
-	 * @return the Session Number from component2 converted to Number or null if cannot be converted
+	 * Get the Session Number (component 2) as Number
+	 * @return the Session Number from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getSessionNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Message Type).
-	 * @return the component3
+	 * Gets the component 3 (Message Type).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Message Type (component3).
-	 * @return the Message Type from component3
+	 * Gets the Message Type (component 3).
+	 * @return the Message Type from component 3
 	 */
 	public String getMessageType() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Date).
-	 * @return the component4
+	 * Gets the component 4 (Date).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Calendar
-	 * @return the component4 converted to Calendar or null if cannot be converted
+	 * Get the component 4 as Calendar
+	 * @return the component 4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(4));
 	}
 
 	/**
-	 * Gets the Date (component4).
-	 * @return the Date from component4
+	 * Gets the Date (component 4).
+	 * @return the Date from component 4
 	 */
 	public String getDate() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Date (component4) as Calendar
-	 * @return the Date from component4 converted to Calendar or null if cannot be converted
+	 * Get the Date (component 4) as Calendar
+	 * @return the Date from component 4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(4));
 	}
 	/**
-	 * Gets the component5 (Start Time).
-	 * @return the component5
+	 * Gets the component 5 (Start Time).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Get the component5 as Calendar
-	 * @return the component5 converted to Calendar or null if cannot be converted
+	 * Get the component 5 as Calendar
+	 * @return the component 5 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent5AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));
 	}
 
 	/**
-	 * Gets the Start Time (component5).
-	 * @return the Start Time from component5
+	 * Gets the Start Time (component 5).
+	 * @return the Start Time from component 5
 	 */
 	public String getStartTime() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the Start Time (component5) as Calendar
-	 * @return the Start Time from component5 converted to Calendar or null if cannot be converted
+	 * Get the Start Time (component 5) as Calendar
+	 * @return the Start Time from component 5 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getStartTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));
 	}
 	/**
-	 * Gets the component6 (End Time).
-	 * @return the component6
+	 * Gets the component 6 (End Time).
+	 * @return the component 6
 	 */
 	public String getComponent6() {
 		return getComponent(6);
 	}
 
 	/**
-	 * Get the component6 as Calendar
-	 * @return the component6 converted to Calendar or null if cannot be converted
+	 * Get the component 6 as Calendar
+	 * @return the component 6 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent6AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(6));
 	}
 
 	/**
-	 * Gets the End Time (component6).
-	 * @return the End Time from component6
+	 * Gets the End Time (component 6).
+	 * @return the End Time from component 6
 	 */
 	public String getEndTime() {
 		return getComponent(6);
 	}
 	
 	/**
-	 * Get the End Time (component6) as Calendar
-	 * @return the End Time from component6 converted to Calendar or null if cannot be converted
+	 * Get the End Time (component 6) as Calendar
+	 * @return the End Time from component 6 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getEndTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(6));

@@ -294,47 +294,47 @@ public class Field29E extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Location).
-	 * @return the component1
+	 * Gets the component 1 (Location).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Location (component1).
-	 * @return the Location from component1
+	 * Gets the Location (component 1).
+	 * @return the Location from component 1
 	 */
 	public String getLocation() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Time).
-	 * @return the component2
+	 * Gets the component 2 (Time).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Calendar
-	 * @return the component2 converted to Calendar or null if cannot be converted
+	 * Get the component 2 as Calendar
+	 * @return the component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(2));
 	}
 
 	/**
-	 * Gets the Time (component2).
-	 * @return the Time from component2
+	 * Gets the Time (component 2).
+	 * @return the Time from component 2
 	 */
 	public String getTime() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Time (component2) as Calendar
-	 * @return the Time from component2 converted to Calendar or null if cannot be converted
+	 * Get the Time (component 2) as Calendar
+	 * @return the Time from component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(2));

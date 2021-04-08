@@ -457,200 +457,200 @@ public class Field50F extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Party Identifier).
-	 * @return the component1
+	 * Gets the component 1 (Party Identifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Party Identifier (component1).
-	 * @return the Party Identifier from component1
+	 * Gets the Party Identifier (component 1).
+	 * @return the Party Identifier from component 1
 	 */
 	public String getPartyIdentifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Number 1).
-	 * @return the component2
+	 * Gets the component 2 (Number 1).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Number 1 (component2).
-	 * @return the Number 1 from component2
+	 * Gets the Number 1 (component 2).
+	 * @return the Number 1 from component 2
 	 */
 	public String getNumber1() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Number 1 (component2) as Number
-	 * @return the Number 1 from component2 converted to Number or null if cannot be converted
+	 * Get the Number 1 (component 2) as Number
+	 * @return the Number 1 from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getNumber1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Name And Address 1).
-	 * @return the component3
+	 * Gets the component 3 (Name And Address 1).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Name And Address 1 (component3).
-	 * @return the Name And Address 1 from component3
+	 * Gets the Name And Address 1 (component 3).
+	 * @return the Name And Address 1 from component 3
 	 */
 	public String getNameAndAddress1() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Number 2).
-	 * @return the component4
+	 * Gets the component 4 (Number 2).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Number
-	 * @return the component4 converted to Number or null if cannot be converted
+	 * Get the component 4 as Number
+	 * @return the component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));
 	}
 
 	/**
-	 * Gets the Number 2 (component4).
-	 * @return the Number 2 from component4
+	 * Gets the Number 2 (component 4).
+	 * @return the Number 2 from component 4
 	 */
 	public String getNumber2() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Number 2 (component4) as Number
-	 * @return the Number 2 from component4 converted to Number or null if cannot be converted
+	 * Get the Number 2 (component 4) as Number
+	 * @return the Number 2 from component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getNumber2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));
 	}
 	/**
-	 * Gets the component5 (Name And Address 2).
-	 * @return the component5
+	 * Gets the component 5 (Name And Address 2).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Gets the Name And Address 2 (component5).
-	 * @return the Name And Address 2 from component5
+	 * Gets the Name And Address 2 (component 5).
+	 * @return the Name And Address 2 from component 5
 	 */
 	public String getNameAndAddress2() {
 		return getComponent(5);
 	}
 	/**
-	 * Gets the component6 (Number 3).
-	 * @return the component6
+	 * Gets the component 6 (Number 3).
+	 * @return the component 6
 	 */
 	public String getComponent6() {
 		return getComponent(6);
 	}
 
 	/**
-	 * Get the component6 as Number
-	 * @return the component6 converted to Number or null if cannot be converted
+	 * Get the component 6 as Number
+	 * @return the component 6 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent6AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(6));
 	}
 
 	/**
-	 * Gets the Number 3 (component6).
-	 * @return the Number 3 from component6
+	 * Gets the Number 3 (component 6).
+	 * @return the Number 3 from component 6
 	 */
 	public String getNumber3() {
 		return getComponent(6);
 	}
 	
 	/**
-	 * Get the Number 3 (component6) as Number
-	 * @return the Number 3 from component6 converted to Number or null if cannot be converted
+	 * Get the Number 3 (component 6) as Number
+	 * @return the Number 3 from component 6 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getNumber3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(6));
 	}
 	/**
-	 * Gets the component7 (Name And Address 3).
-	 * @return the component7
+	 * Gets the component 7 (Name And Address 3).
+	 * @return the component 7
 	 */
 	public String getComponent7() {
 		return getComponent(7);
 	}
 
 	/**
-	 * Gets the Name And Address 3 (component7).
-	 * @return the Name And Address 3 from component7
+	 * Gets the Name And Address 3 (component 7).
+	 * @return the Name And Address 3 from component 7
 	 */
 	public String getNameAndAddress3() {
 		return getComponent(7);
 	}
 	/**
-	 * Gets the component8 (Number 4).
-	 * @return the component8
+	 * Gets the component 8 (Number 4).
+	 * @return the component 8
 	 */
 	public String getComponent8() {
 		return getComponent(8);
 	}
 
 	/**
-	 * Get the component8 as Number
-	 * @return the component8 converted to Number or null if cannot be converted
+	 * Get the component 8 as Number
+	 * @return the component 8 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent8AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(8));
 	}
 
 	/**
-	 * Gets the Number 4 (component8).
-	 * @return the Number 4 from component8
+	 * Gets the Number 4 (component 8).
+	 * @return the Number 4 from component 8
 	 */
 	public String getNumber4() {
 		return getComponent(8);
 	}
 	
 	/**
-	 * Get the Number 4 (component8) as Number
-	 * @return the Number 4 from component8 converted to Number or null if cannot be converted
+	 * Get the Number 4 (component 8) as Number
+	 * @return the Number 4 from component 8 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getNumber4AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(8));
 	}
 	/**
-	 * Gets the component9 (Name And Address 4).
-	 * @return the component9
+	 * Gets the component 9 (Name And Address 4).
+	 * @return the component 9
 	 */
 	public String getComponent9() {
 		return getComponent(9);
 	}
 
 	/**
-	 * Gets the Name And Address 4 (component9).
-	 * @return the Name And Address 4 from component9
+	 * Gets the Name And Address 4 (component 9).
+	 * @return the Name And Address 4 from component 9
 	 */
 	public String getNameAndAddress4() {
 		return getComponent(9);

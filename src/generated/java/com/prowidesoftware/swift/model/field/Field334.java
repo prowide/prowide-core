@@ -294,47 +294,47 @@ public class Field334 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Region).
-	 * @return the component1
+	 * Gets the component 1 (Region).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Region (component1).
-	 * @return the Region from component1
+	 * Gets the Region (component 1).
+	 * @return the Region from component 1
 	 */
 	public String getRegion() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Delta Time).
-	 * @return the component2
+	 * Gets the component 2 (Delta Time).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Calendar
-	 * @return the component2 converted to Calendar or null if cannot be converted
+	 * Get the component 2 as Calendar
+	 * @return the component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(2));
 	}
 
 	/**
-	 * Gets the Delta Time (component2).
-	 * @return the Delta Time from component2
+	 * Gets the Delta Time (component 2).
+	 * @return the Delta Time from component 2
 	 */
 	public String getDeltaTime() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Delta Time (component2) as Calendar
-	 * @return the Delta Time from component2 converted to Calendar or null if cannot be converted
+	 * Get the Delta Time (component 2) as Calendar
+	 * @return the Delta Time from component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDeltaTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(2));

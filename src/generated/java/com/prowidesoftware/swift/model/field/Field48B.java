@@ -275,16 +275,16 @@ public class Field48B extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Code).
-	 * @return the component1
+	 * Gets the component 1 (Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Code (component1).
-	 * @return the Code from component1
+	 * Gets the Code (component 1).
+	 * @return the Code from component 1
 	 */
 	public String getCode() {
 		return getComponent(1);

@@ -299,47 +299,47 @@ public class Field405 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Reason For Rejection).
-	 * @return the component1
+	 * Gets the component 1 (Reason For Rejection).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Reason For Rejection (component1).
-	 * @return the Reason For Rejection from component1
+	 * Gets the Reason For Rejection (component 1).
+	 * @return the Reason For Rejection from component 1
 	 */
 	public String getReasonForRejection() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Line Field Number).
-	 * @return the component2
+	 * Gets the component 2 (Line Field Number).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Line Field Number (component2).
-	 * @return the Line Field Number from component2
+	 * Gets the Line Field Number (component 2).
+	 * @return the Line Field Number from component 2
 	 */
 	public String getLineFieldNumber() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Line Field Number (component2) as Number
-	 * @return the Line Field Number from component2 converted to Number or null if cannot be converted
+	 * Get the Line Field Number (component 2) as Number
+	 * @return the Line Field Number from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getLineFieldNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));

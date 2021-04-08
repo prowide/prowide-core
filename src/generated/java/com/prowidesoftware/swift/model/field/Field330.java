@@ -384,187 +384,187 @@ public class Field330 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Session Number).
-	 * @return the component1
+	 * Gets the component 1 (Session Number).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Session Number (component1).
-	 * @return the Session Number from component1
+	 * Gets the Session Number (component 1).
+	 * @return the Session Number from component 1
 	 */
 	public String getSessionNumber() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Session Number (component1) as Number
-	 * @return the Session Number from component1 converted to Number or null if cannot be converted
+	 * Get the Session Number (component 1) as Number
+	 * @return the Session Number from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getSessionNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (ISN).
-	 * @return the component2
+	 * Gets the component 2 (ISN).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the ISN (component2).
-	 * @return the ISN from component2
+	 * Gets the ISN (component 2).
+	 * @return the ISN from component 2
 	 */
 	public String getISN() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the ISN (component2) as Number
-	 * @return the ISN from component2 converted to Number or null if cannot be converted
+	 * Get the ISN (component 2) as Number
+	 * @return the ISN from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getISNAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (ISN NAK).
-	 * @return the component3
+	 * Gets the component 3 (ISN NAK).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the ISN NAK (component3).
-	 * @return the ISN NAK from component3
+	 * Gets the ISN NAK (component 3).
+	 * @return the ISN NAK from component 3
 	 */
 	public String getISNNAK() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the ISN NAK (component3) as Number
-	 * @return the ISN NAK from component3 converted to Number or null if cannot be converted
+	 * Get the ISN NAK (component 3) as Number
+	 * @return the ISN NAK from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getISNNAKAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 	/**
-	 * Gets the component4 (OSN).
-	 * @return the component4
+	 * Gets the component 4 (OSN).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Number
-	 * @return the component4 converted to Number or null if cannot be converted
+	 * Get the component 4 as Number
+	 * @return the component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));
 	}
 
 	/**
-	 * Gets the OSN (component4).
-	 * @return the OSN from component4
+	 * Gets the OSN (component 4).
+	 * @return the OSN from component 4
 	 */
 	public String getOSN() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the OSN (component4) as Number
-	 * @return the OSN from component4 converted to Number or null if cannot be converted
+	 * Get the OSN (component 4) as Number
+	 * @return the OSN from component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getOSNAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));
 	}
 	/**
-	 * Gets the component5 (OSN NAK).
-	 * @return the component5
+	 * Gets the component 5 (OSN NAK).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Get the component5 as Number
-	 * @return the component5 converted to Number or null if cannot be converted
+	 * Get the component 5 as Number
+	 * @return the component 5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
 	}
 
 	/**
-	 * Gets the OSN NAK (component5).
-	 * @return the OSN NAK from component5
+	 * Gets the OSN NAK (component 5).
+	 * @return the OSN NAK from component 5
 	 */
 	public String getOSNNAK() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the OSN NAK (component5) as Number
-	 * @return the OSN NAK from component5 converted to Number or null if cannot be converted
+	 * Get the OSN NAK (component 5) as Number
+	 * @return the OSN NAK from component 5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getOSNNAKAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
 	}
 	/**
-	 * Gets the component6 (ACK Replay Indicator).
-	 * @return the component6
+	 * Gets the component 6 (ACK Replay Indicator).
+	 * @return the component 6
 	 */
 	public String getComponent6() {
 		return getComponent(6);
 	}
 
 	/**
-	 * Get the component6 as Number
-	 * @return the component6 converted to Number or null if cannot be converted
+	 * Get the component 6 as Number
+	 * @return the component 6 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent6AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(6));
 	}
 
 	/**
-	 * Gets the ACK Replay Indicator (component6).
-	 * @return the ACK Replay Indicator from component6
+	 * Gets the ACK Replay Indicator (component 6).
+	 * @return the ACK Replay Indicator from component 6
 	 */
 	public String getACKReplayIndicator() {
 		return getComponent(6);
 	}
 	
 	/**
-	 * Get the ACK Replay Indicator (component6) as Number
-	 * @return the ACK Replay Indicator from component6 converted to Number or null if cannot be converted
+	 * Get the ACK Replay Indicator (component 6) as Number
+	 * @return the ACK Replay Indicator from component 6 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getACKReplayIndicatorAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(6));

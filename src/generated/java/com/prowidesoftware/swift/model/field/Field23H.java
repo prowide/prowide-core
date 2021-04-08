@@ -275,16 +275,16 @@ public class Field23H extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Function).
-	 * @return the component1
+	 * Gets the component 1 (Function).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Function (component1).
-	 * @return the Function from component1
+	 * Gets the Function (component 1).
+	 * @return the Function from component 1
 	 */
 	public String getFunction() {
 		return getComponent(1);

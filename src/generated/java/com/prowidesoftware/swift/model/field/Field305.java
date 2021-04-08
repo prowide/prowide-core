@@ -275,16 +275,16 @@ public class Field305 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (LT).
-	 * @return the component1
+	 * Gets the component 1 (LT).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the LT (component1).
-	 * @return the LT from component1
+	 * Gets the LT (component 1).
+	 * @return the LT from component 1
 	 */
 	public String getLT() {
 		return getComponent(1);

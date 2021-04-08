@@ -275,16 +275,16 @@ public class Field113 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Banking Priority).
-	 * @return the component1
+	 * Gets the component 1 (Banking Priority).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Banking Priority (component1).
-	 * @return the Banking Priority from component1
+	 * Gets the Banking Priority (component 1).
+	 * @return the Banking Priority from component 1
 	 */
 	public String getBankingPriority() {
 		return getComponent(1);

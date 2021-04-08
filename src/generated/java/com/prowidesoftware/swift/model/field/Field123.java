@@ -275,16 +275,16 @@ public class Field123 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Message List).
-	 * @return the component1
+	 * Gets the component 1 (Message List).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Message List (component1).
-	 * @return the Message List from component1
+	 * Gets the Message List (component 1).
+	 * @return the Message List from component 1
 	 */
 	public String getMessageList() {
 		return getComponent(1);

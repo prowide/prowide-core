@@ -318,78 +318,78 @@ public class Field92F extends Field implements Serializable, CurrencyContainer, 
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Currency).
-	 * @return the component2
+	 * Gets the component 2 (Currency).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Currency
-	 * @return the component2 converted to Currency or null if cannot be converted
+	 * Get the component 2 as Currency
+	 * @return the component 2 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getComponent2AsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(2));
 	}
 
 	/**
-	 * Gets the Currency (component2).
-	 * @return the Currency from component2
+	 * Gets the Currency (component 2).
+	 * @return the Currency from component 2
 	 */
 	public String getCurrency() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Currency (component2) as Currency
-	 * @return the Currency from component2 converted to Currency or null if cannot be converted
+	 * Get the Currency (component 2) as Currency
+	 * @return the Currency from component 2 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getCurrencyAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Amount).
-	 * @return the component3
+	 * Gets the component 3 (Amount).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the Amount (component3).
-	 * @return the Amount from component3
+	 * Gets the Amount (component 3).
+	 * @return the Amount from component 3
 	 */
 	public String getAmount() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Amount (component3) as Number
-	 * @return the Amount from component3 converted to Number or null if cannot be converted
+	 * Get the Amount (component 3) as Number
+	 * @return the Amount from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));

@@ -328,109 +328,109 @@ public class Field281 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Output Time).
-	 * @return the component1
+	 * Gets the component 1 (Output Time).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(1));
 	}
 
 	/**
-	 * Gets the Output Time (component1).
-	 * @return the Output Time from component1
+	 * Gets the Output Time (component 1).
+	 * @return the Output Time from component 1
 	 */
 	public String getOutputTime() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Output Time (component1) as Calendar
-	 * @return the Output Time from component1 converted to Calendar or null if cannot be converted
+	 * Get the Output Time (component 1) as Calendar
+	 * @return the Output Time from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getOutputTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (MOR).
-	 * @return the component2
+	 * Gets the component 2 (MOR).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as MOR
-	 * @return the component2 converted to MOR or null if cannot be converted
+	 * Get the component 2 as MOR
+	 * @return the component 2 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getComponent2AsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(2));
 	}
 
 	/**
-	 * Gets the MOR (component2).
-	 * @return the MOR from component2
+	 * Gets the MOR (component 2).
+	 * @return the MOR from component 2
 	 */
 	public String getMOR() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the MOR (component2) as MOR
-	 * @return the MOR from component2 converted to MOR or null if cannot be converted
+	 * Get the MOR (component 2) as MOR
+	 * @return the MOR from component 2 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getMORAsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Accepted).
-	 * @return the component3
+	 * Gets the component 3 (Accepted).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Boolean
-	 * @return the component3 converted to Boolean or null if cannot be converted
+	 * Get the component 3 as Boolean
+	 * @return the component 3 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getComponent3AsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(3));
 	}
 
 	/**
-	 * Gets the Accepted (component3).
-	 * @return the Accepted from component3
+	 * Gets the Accepted (component 3).
+	 * @return the Accepted from component 3
 	 */
 	public String getAccepted() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Accepted (component3) as Boolean
-	 * @return the Accepted from component3 converted to Boolean or null if cannot be converted
+	 * Get the Accepted (component 3) as Boolean
+	 * @return the Accepted from component 3 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getAcceptedAsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(3));
 	}
 	/**
-	 * Gets the component4 (Error).
-	 * @return the component4
+	 * Gets the component 4 (Error).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Error (component4).
-	 * @return the Error from component4
+	 * Gets the Error (component 4).
+	 * @return the Error from component 4
 	 */
 	public String getError() {
 		return getComponent(4);

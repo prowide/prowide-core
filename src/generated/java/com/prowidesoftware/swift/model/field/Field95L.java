@@ -316,62 +316,62 @@ public class Field95L extends Field implements Serializable, GenericField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Legal Entity Identifier Code).
-	 * @return the component2
+	 * Gets the component 2 (Legal Entity Identifier Code).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Legal Entity Identifier Code (component2).
-	 * @return the Legal Entity Identifier Code from component2
+	 * Gets the Legal Entity Identifier Code (component 2).
+	 * @return the Legal Entity Identifier Code from component 2
 	 */
 	public String getLegalEntityIdentifierCode() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Legal Entity Identifier Number).
-	 * @return the component3
+	 * Gets the component 3 (Legal Entity Identifier Number).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the Legal Entity Identifier Number (component3).
-	 * @return the Legal Entity Identifier Number from component3
+	 * Gets the Legal Entity Identifier Number (component 3).
+	 * @return the Legal Entity Identifier Number from component 3
 	 */
 	public String getLegalEntityIdentifierNumber() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Legal Entity Identifier Number (component3) as Number
-	 * @return the Legal Entity Identifier Number from component3 converted to Number or null if cannot be converted
+	 * Get the Legal Entity Identifier Number (component 3) as Number
+	 * @return the Legal Entity Identifier Number from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getLegalEntityIdentifierNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));

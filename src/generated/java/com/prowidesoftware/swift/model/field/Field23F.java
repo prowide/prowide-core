@@ -294,31 +294,31 @@ public class Field23F extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Period).
-	 * @return the component1
+	 * Gets the component 1 (Period).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Period (component1).
-	 * @return the Period from component1
+	 * Gets the Period (component 1).
+	 * @return the Period from component 1
 	 */
 	public String getPeriod() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Details).
-	 * @return the component2
+	 * Gets the component 2 (Details).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Details (component2).
-	 * @return the Details from component2
+	 * Gets the Details (component 2).
+	 * @return the Details from component 2
 	 */
 	public String getDetails() {
 		return getComponent(2);

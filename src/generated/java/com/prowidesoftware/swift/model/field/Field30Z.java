@@ -281,32 +281,32 @@ public class Field30Z extends Field implements Serializable, DateContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Date).
-	 * @return the component1
+	 * Gets the component 1 (Date).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(1));
 	}
 
 	/**
-	 * Gets the Date (component1).
-	 * @return the Date from component1
+	 * Gets the Date (component 1).
+	 * @return the Date from component 1
 	 */
 	public String getDate() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Date (component1) as Calendar
-	 * @return the Date from component1 converted to Calendar or null if cannot be converted
+	 * Get the Date (component 1) as Calendar
+	 * @return the Date from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(1));

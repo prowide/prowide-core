@@ -275,16 +275,16 @@ public class Field141 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Key).
-	 * @return the component1
+	 * Gets the component 1 (Key).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Key (component1).
-	 * @return the Key from component1
+	 * Gets the Key (component 1).
+	 * @return the Key from component 1
 	 */
 	public String getKey() {
 		return getComponent(1);

@@ -294,31 +294,31 @@ public class Field40B extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Type).
-	 * @return the component1
+	 * Gets the component 1 (Type).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Type (component1).
-	 * @return the Type from component1
+	 * Gets the Type (component 1).
+	 * @return the Type from component 1
 	 */
 	public String getType() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Code).
-	 * @return the component2
+	 * Gets the component 2 (Code).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Code (component2).
-	 * @return the Code from component2
+	 * Gets the Code (component 2).
+	 * @return the Code from component 2
 	 */
 	public String getCode() {
 		return getComponent(2);

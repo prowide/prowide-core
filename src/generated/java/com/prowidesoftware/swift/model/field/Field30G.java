@@ -300,63 +300,63 @@ public class Field30G extends Field implements Serializable, DateContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Start Date).
-	 * @return the component1
+	 * Gets the component 1 (Start Date).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(1));
 	}
 
 	/**
-	 * Gets the Start Date (component1).
-	 * @return the Start Date from component1
+	 * Gets the Start Date (component 1).
+	 * @return the Start Date from component 1
 	 */
 	public String getStartDate() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Start Date (component1) as Calendar
-	 * @return the Start Date from component1 converted to Calendar or null if cannot be converted
+	 * Get the Start Date (component 1) as Calendar
+	 * @return the Start Date from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getStartDateAsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (End Date).
-	 * @return the component2
+	 * Gets the component 2 (End Date).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Calendar
-	 * @return the component2 converted to Calendar or null if cannot be converted
+	 * Get the component 2 as Calendar
+	 * @return the component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(2));
 	}
 
 	/**
-	 * Gets the End Date (component2).
-	 * @return the End Date from component2
+	 * Gets the End Date (component 2).
+	 * @return the End Date from component 2
 	 */
 	public String getEndDate() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the End Date (component2) as Calendar
-	 * @return the End Date from component2 converted to Calendar or null if cannot be converted
+	 * Get the End Date (component 2) as Calendar
+	 * @return the End Date from component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getEndDateAsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(2));

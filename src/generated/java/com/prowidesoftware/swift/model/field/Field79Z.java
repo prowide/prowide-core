@@ -617,543 +617,554 @@ public class Field79Z extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Narrative).
-	 * @return the component1
+	 * Gets the component 1 (Narrative).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Narrative (component1).
-	 * @return the Narrative from component1
+	 * Gets the Narrative (component 1).
+	 * @return the Narrative from component 1
 	 */
 	public String getNarrativeLine1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Narrative (component2).
-	 * @return the Narrative from component2
+	 * Gets the Narrative (component 2).
+	 * @return the Narrative from component 2
 	 */
 	public String getNarrativeLine2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Narrative (component3).
-	 * @return the Narrative from component3
+	 * Gets the Narrative (component 3).
+	 * @return the Narrative from component 3
 	 */
 	public String getNarrativeLine3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Narrative (component4).
-	 * @return the Narrative from component4
+	 * Gets the Narrative (component 4).
+	 * @return the Narrative from component 4
 	 */
 	public String getNarrativeLine4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Narrative (component5).
-	 * @return the Narrative from component5
+	 * Gets the Narrative (component 5).
+	 * @return the Narrative from component 5
 	 */
 	public String getNarrativeLine5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Gets the Narrative (component6).
-	 * @return the Narrative from component6
+	 * Gets the Narrative (component 6).
+	 * @return the Narrative from component 6
 	 */
 	public String getNarrativeLine6() {
 		return getComponent(6);
 	}
 
 	/**
-	 * Gets the Narrative (component7).
-	 * @return the Narrative from component7
+	 * Gets the Narrative (component 7).
+	 * @return the Narrative from component 7
 	 */
 	public String getNarrativeLine7() {
 		return getComponent(7);
 	}
 
 	/**
-	 * Gets the Narrative (component8).
-	 * @return the Narrative from component8
+	 * Gets the Narrative (component 8).
+	 * @return the Narrative from component 8
 	 */
 	public String getNarrativeLine8() {
 		return getComponent(8);
 	}
 
 	/**
-	 * Gets the Narrative (component9).
-	 * @return the Narrative from component9
+	 * Gets the Narrative (component 9).
+	 * @return the Narrative from component 9
 	 */
 	public String getNarrativeLine9() {
 		return getComponent(9);
 	}
 
 	/**
-	 * Gets the Narrative (component10).
-	 * @return the Narrative from component10
+	 * Gets the Narrative (component 10).
+	 * @return the Narrative from component 10
 	 */
 	public String getNarrativeLine10() {
 		return getComponent(10);
 	}
 
 	/**
-	 * Gets the Narrative (component11).
-	 * @return the Narrative from component11
+	 * Gets the Narrative (component 11).
+	 * @return the Narrative from component 11
 	 */
 	public String getNarrativeLine11() {
 		return getComponent(11);
 	}
 
 	/**
-	 * Gets the Narrative (component12).
-	 * @return the Narrative from component12
+	 * Gets the Narrative (component 12).
+	 * @return the Narrative from component 12
 	 */
 	public String getNarrativeLine12() {
 		return getComponent(12);
 	}
 
 	/**
-	 * Gets the Narrative (component13).
-	 * @return the Narrative from component13
+	 * Gets the Narrative (component 13).
+	 * @return the Narrative from component 13
 	 */
 	public String getNarrativeLine13() {
 		return getComponent(13);
 	}
 
 	/**
-	 * Gets the Narrative (component14).
-	 * @return the Narrative from component14
+	 * Gets the Narrative (component 14).
+	 * @return the Narrative from component 14
 	 */
 	public String getNarrativeLine14() {
 		return getComponent(14);
 	}
 
 	/**
-	 * Gets the Narrative (component15).
-	 * @return the Narrative from component15
+	 * Gets the Narrative (component 15).
+	 * @return the Narrative from component 15
 	 */
 	public String getNarrativeLine15() {
 		return getComponent(15);
 	}
 
 	/**
-	 * Gets the Narrative (component16).
-	 * @return the Narrative from component16
+	 * Gets the Narrative (component 16).
+	 * @return the Narrative from component 16
 	 */
 	public String getNarrativeLine16() {
 		return getComponent(16);
 	}
 
 	/**
-	 * Gets the Narrative (component17).
-	 * @return the Narrative from component17
+	 * Gets the Narrative (component 17).
+	 * @return the Narrative from component 17
 	 */
 	public String getNarrativeLine17() {
 		return getComponent(17);
 	}
 
 	/**
-	 * Gets the Narrative (component18).
-	 * @return the Narrative from component18
+	 * Gets the Narrative (component 18).
+	 * @return the Narrative from component 18
 	 */
 	public String getNarrativeLine18() {
 		return getComponent(18);
 	}
 
 	/**
-	 * Gets the Narrative (component19).
-	 * @return the Narrative from component19
+	 * Gets the Narrative (component 19).
+	 * @return the Narrative from component 19
 	 */
 	public String getNarrativeLine19() {
 		return getComponent(19);
 	}
 
 	/**
-	 * Gets the Narrative (component20).
-	 * @return the Narrative from component20
+	 * Gets the Narrative (component 20).
+	 * @return the Narrative from component 20
 	 */
 	public String getNarrativeLine20() {
 		return getComponent(20);
 	}
 
 	/**
-	 * Gets the Narrative (component21).
-	 * @return the Narrative from component21
+	 * Gets the Narrative (component 21).
+	 * @return the Narrative from component 21
 	 */
 	public String getNarrativeLine21() {
 		return getComponent(21);
 	}
 
 	/**
-	 * Gets the Narrative (component22).
-	 * @return the Narrative from component22
+	 * Gets the Narrative (component 22).
+	 * @return the Narrative from component 22
 	 */
 	public String getNarrativeLine22() {
 		return getComponent(22);
 	}
 
 	/**
-	 * Gets the Narrative (component23).
-	 * @return the Narrative from component23
+	 * Gets the Narrative (component 23).
+	 * @return the Narrative from component 23
 	 */
 	public String getNarrativeLine23() {
 		return getComponent(23);
 	}
 
 	/**
-	 * Gets the Narrative (component24).
-	 * @return the Narrative from component24
+	 * Gets the Narrative (component 24).
+	 * @return the Narrative from component 24
 	 */
 	public String getNarrativeLine24() {
 		return getComponent(24);
 	}
 
 	/**
-	 * Gets the Narrative (component25).
-	 * @return the Narrative from component25
+	 * Gets the Narrative (component 25).
+	 * @return the Narrative from component 25
 	 */
 	public String getNarrativeLine25() {
 		return getComponent(25);
 	}
 
 	/**
-	 * Gets the Narrative (component26).
-	 * @return the Narrative from component26
+	 * Gets the Narrative (component 26).
+	 * @return the Narrative from component 26
 	 */
 	public String getNarrativeLine26() {
 		return getComponent(26);
 	}
 
 	/**
-	 * Gets the Narrative (component27).
-	 * @return the Narrative from component27
+	 * Gets the Narrative (component 27).
+	 * @return the Narrative from component 27
 	 */
 	public String getNarrativeLine27() {
 		return getComponent(27);
 	}
 
 	/**
-	 * Gets the Narrative (component28).
-	 * @return the Narrative from component28
+	 * Gets the Narrative (component 28).
+	 * @return the Narrative from component 28
 	 */
 	public String getNarrativeLine28() {
 		return getComponent(28);
 	}
 
 	/**
-	 * Gets the Narrative (component29).
-	 * @return the Narrative from component29
+	 * Gets the Narrative (component 29).
+	 * @return the Narrative from component 29
 	 */
 	public String getNarrativeLine29() {
 		return getComponent(29);
 	}
 
 	/**
-	 * Gets the Narrative (component30).
-	 * @return the Narrative from component30
+	 * Gets the Narrative (component 30).
+	 * @return the Narrative from component 30
 	 */
 	public String getNarrativeLine30() {
 		return getComponent(30);
 	}
 
 	/**
-	 * Gets the Narrative (component31).
-	 * @return the Narrative from component31
+	 * Gets the Narrative (component 31).
+	 * @return the Narrative from component 31
 	 */
 	public String getNarrativeLine31() {
 		return getComponent(31);
 	}
 
 	/**
-	 * Gets the Narrative (component32).
-	 * @return the Narrative from component32
+	 * Gets the Narrative (component 32).
+	 * @return the Narrative from component 32
 	 */
 	public String getNarrativeLine32() {
 		return getComponent(32);
 	}
 
 	/**
-	 * Gets the Narrative (component33).
-	 * @return the Narrative from component33
+	 * Gets the Narrative (component 33).
+	 * @return the Narrative from component 33
 	 */
 	public String getNarrativeLine33() {
 		return getComponent(33);
 	}
 
 	/**
-	 * Gets the Narrative (component34).
-	 * @return the Narrative from component34
+	 * Gets the Narrative (component 34).
+	 * @return the Narrative from component 34
 	 */
 	public String getNarrativeLine34() {
 		return getComponent(34);
 	}
 
 	/**
-	 * Gets the Narrative (component35).
-	 * @return the Narrative from component35
+	 * Gets the Narrative (component 35).
+	 * @return the Narrative from component 35
 	 */
 	public String getNarrativeLine35() {
 		return getComponent(35);
 	}
 
 	/**
-	 * Gets the Narrative as a concatenation of component1 to component35.
+	 * Gets the Narrative as a concatenation of component 1 to component 35.
 	 * @return the Narrative from components
 	 */
 	public String getNarrative() {
+		return getNarrative(null);
+	}
+
+	/**
+	 * Gets the Narrative as a concatenation of component 1 to component 35 joined together with a copy of the
+	 * specified delimiter.
+	 * @param deli the delimiter that separates each component
+	 * @return the Narrative from components
+	 * @since 9.1.4
+	 */
+	public String getNarrative(CharSequence deli) {
 		StringBuilder result = new StringBuilder();
 		for (int i = 1 ; i < 36 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			if (getComponent(i) != null) {
+			    if (deli != null && result.length() > 0) {
+                    result.append(deli);
+                }
+				result.append(getComponent(i));
 			}
 		}
 		return result.toString();
 	}
 	/**
-	 * Gets the component2 (Narrative).
-	 * @return the component2
+	 * Gets the component 2 (Narrative).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Narrative).
-	 * @return the component3
+	 * Gets the component 3 (Narrative).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Narrative).
-	 * @return the component4
+	 * Gets the component 4 (Narrative).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 	/**
-	 * Gets the component5 (Narrative).
-	 * @return the component5
+	 * Gets the component 5 (Narrative).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 	/**
-	 * Gets the component6 (Narrative).
-	 * @return the component6
+	 * Gets the component 6 (Narrative).
+	 * @return the component 6
 	 */
 	public String getComponent6() {
 		return getComponent(6);
 	}
 	/**
-	 * Gets the component7 (Narrative).
-	 * @return the component7
+	 * Gets the component 7 (Narrative).
+	 * @return the component 7
 	 */
 	public String getComponent7() {
 		return getComponent(7);
 	}
 	/**
-	 * Gets the component8 (Narrative).
-	 * @return the component8
+	 * Gets the component 8 (Narrative).
+	 * @return the component 8
 	 */
 	public String getComponent8() {
 		return getComponent(8);
 	}
 	/**
-	 * Gets the component9 (Narrative).
-	 * @return the component9
+	 * Gets the component 9 (Narrative).
+	 * @return the component 9
 	 */
 	public String getComponent9() {
 		return getComponent(9);
 	}
 	/**
-	 * Gets the component10 (Narrative).
-	 * @return the component10
+	 * Gets the component 10 (Narrative).
+	 * @return the component 10
 	 */
 	public String getComponent10() {
 		return getComponent(10);
 	}
 	/**
-	 * Gets the component11 (Narrative).
-	 * @return the component11
+	 * Gets the component 11 (Narrative).
+	 * @return the component 11
 	 */
 	public String getComponent11() {
 		return getComponent(11);
 	}
 	/**
-	 * Gets the component12 (Narrative).
-	 * @return the component12
+	 * Gets the component 12 (Narrative).
+	 * @return the component 12
 	 */
 	public String getComponent12() {
 		return getComponent(12);
 	}
 	/**
-	 * Gets the component13 (Narrative).
-	 * @return the component13
+	 * Gets the component 13 (Narrative).
+	 * @return the component 13
 	 */
 	public String getComponent13() {
 		return getComponent(13);
 	}
 	/**
-	 * Gets the component14 (Narrative).
-	 * @return the component14
+	 * Gets the component 14 (Narrative).
+	 * @return the component 14
 	 */
 	public String getComponent14() {
 		return getComponent(14);
 	}
 	/**
-	 * Gets the component15 (Narrative).
-	 * @return the component15
+	 * Gets the component 15 (Narrative).
+	 * @return the component 15
 	 */
 	public String getComponent15() {
 		return getComponent(15);
 	}
 	/**
-	 * Gets the component16 (Narrative).
-	 * @return the component16
+	 * Gets the component 16 (Narrative).
+	 * @return the component 16
 	 */
 	public String getComponent16() {
 		return getComponent(16);
 	}
 	/**
-	 * Gets the component17 (Narrative).
-	 * @return the component17
+	 * Gets the component 17 (Narrative).
+	 * @return the component 17
 	 */
 	public String getComponent17() {
 		return getComponent(17);
 	}
 	/**
-	 * Gets the component18 (Narrative).
-	 * @return the component18
+	 * Gets the component 18 (Narrative).
+	 * @return the component 18
 	 */
 	public String getComponent18() {
 		return getComponent(18);
 	}
 	/**
-	 * Gets the component19 (Narrative).
-	 * @return the component19
+	 * Gets the component 19 (Narrative).
+	 * @return the component 19
 	 */
 	public String getComponent19() {
 		return getComponent(19);
 	}
 	/**
-	 * Gets the component20 (Narrative).
-	 * @return the component20
+	 * Gets the component 20 (Narrative).
+	 * @return the component 20
 	 */
 	public String getComponent20() {
 		return getComponent(20);
 	}
 	/**
-	 * Gets the component21 (Narrative).
-	 * @return the component21
+	 * Gets the component 21 (Narrative).
+	 * @return the component 21
 	 */
 	public String getComponent21() {
 		return getComponent(21);
 	}
 	/**
-	 * Gets the component22 (Narrative).
-	 * @return the component22
+	 * Gets the component 22 (Narrative).
+	 * @return the component 22
 	 */
 	public String getComponent22() {
 		return getComponent(22);
 	}
 	/**
-	 * Gets the component23 (Narrative).
-	 * @return the component23
+	 * Gets the component 23 (Narrative).
+	 * @return the component 23
 	 */
 	public String getComponent23() {
 		return getComponent(23);
 	}
 	/**
-	 * Gets the component24 (Narrative).
-	 * @return the component24
+	 * Gets the component 24 (Narrative).
+	 * @return the component 24
 	 */
 	public String getComponent24() {
 		return getComponent(24);
 	}
 	/**
-	 * Gets the component25 (Narrative).
-	 * @return the component25
+	 * Gets the component 25 (Narrative).
+	 * @return the component 25
 	 */
 	public String getComponent25() {
 		return getComponent(25);
 	}
 	/**
-	 * Gets the component26 (Narrative).
-	 * @return the component26
+	 * Gets the component 26 (Narrative).
+	 * @return the component 26
 	 */
 	public String getComponent26() {
 		return getComponent(26);
 	}
 	/**
-	 * Gets the component27 (Narrative).
-	 * @return the component27
+	 * Gets the component 27 (Narrative).
+	 * @return the component 27
 	 */
 	public String getComponent27() {
 		return getComponent(27);
 	}
 	/**
-	 * Gets the component28 (Narrative).
-	 * @return the component28
+	 * Gets the component 28 (Narrative).
+	 * @return the component 28
 	 */
 	public String getComponent28() {
 		return getComponent(28);
 	}
 	/**
-	 * Gets the component29 (Narrative).
-	 * @return the component29
+	 * Gets the component 29 (Narrative).
+	 * @return the component 29
 	 */
 	public String getComponent29() {
 		return getComponent(29);
 	}
 	/**
-	 * Gets the component30 (Narrative).
-	 * @return the component30
+	 * Gets the component 30 (Narrative).
+	 * @return the component 30
 	 */
 	public String getComponent30() {
 		return getComponent(30);
 	}
 	/**
-	 * Gets the component31 (Narrative).
-	 * @return the component31
+	 * Gets the component 31 (Narrative).
+	 * @return the component 31
 	 */
 	public String getComponent31() {
 		return getComponent(31);
 	}
 	/**
-	 * Gets the component32 (Narrative).
-	 * @return the component32
+	 * Gets the component 32 (Narrative).
+	 * @return the component 32
 	 */
 	public String getComponent32() {
 		return getComponent(32);
 	}
 	/**
-	 * Gets the component33 (Narrative).
-	 * @return the component33
+	 * Gets the component 33 (Narrative).
+	 * @return the component 33
 	 */
 	public String getComponent33() {
 		return getComponent(33);
 	}
 	/**
-	 * Gets the component34 (Narrative).
-	 * @return the component34
+	 * Gets the component 34 (Narrative).
+	 * @return the component 34
 	 */
 	public String getComponent34() {
 		return getComponent(34);
 	}
 	/**
-	 * Gets the component35 (Narrative).
-	 * @return the component35
+	 * Gets the component 35 (Narrative).
+	 * @return the component 35
 	 */
 	public String getComponent35() {
 		return getComponent(35);

@@ -275,16 +275,16 @@ public class Field311 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Text).
-	 * @return the component1
+	 * Gets the component 1 (Text).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Text (component1).
-	 * @return the Text from component1
+	 * Gets the Text (component 1).
+	 * @return the Text from component 1
 	 */
 	public String getText() {
 		return getComponent(1);

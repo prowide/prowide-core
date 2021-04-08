@@ -318,62 +318,62 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Sign).
-	 * @return the component2
+	 * Gets the component 2 (Sign).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Sign (component2).
-	 * @return the Sign from component2
+	 * Gets the Sign (component 2).
+	 * @return the Sign from component 2
 	 */
 	public String getSign() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Rate Amount).
-	 * @return the component3
+	 * Gets the component 3 (Rate Amount).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the Rate Amount (component3).
-	 * @return the Rate Amount from component3
+	 * Gets the Rate Amount (component 3).
+	 * @return the Rate Amount from component 3
 	 */
 	public String getRateAmount() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Rate Amount (component3) as Number
-	 * @return the Rate Amount from component3 converted to Number or null if cannot be converted
+	 * Get the Rate Amount (component 3) as Number
+	 * @return the Rate Amount from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getRateAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));

@@ -324,78 +324,78 @@ public class Field31F extends Field implements Serializable, DateContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Date).
-	 * @return the component1
+	 * Gets the component 1 (Date).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(1));
 	}
 
 	/**
-	 * Gets the Date (component1).
-	 * @return the Date from component1
+	 * Gets the Date (component 1).
+	 * @return the Date from component 1
 	 */
 	public String getDate() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Date (component1) as Calendar
-	 * @return the Date from component1 converted to Calendar or null if cannot be converted
+	 * Get the Date (component 1) as Calendar
+	 * @return the Date from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Period Date).
-	 * @return the component2
+	 * Gets the component 2 (Period Date).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Calendar
-	 * @return the component2 converted to Calendar or null if cannot be converted
+	 * Get the component 2 as Calendar
+	 * @return the component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(2));
 	}
 
 	/**
-	 * Gets the Period Date (component2).
-	 * @return the Period Date from component2
+	 * Gets the Period Date (component 2).
+	 * @return the Period Date from component 2
 	 */
 	public String getPeriodDate() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Period Date (component2) as Calendar
-	 * @return the Period Date from component2 converted to Calendar or null if cannot be converted
+	 * Get the Period Date (component 2) as Calendar
+	 * @return the Period Date from component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getPeriodDateAsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Period Details).
-	 * @return the component3
+	 * Gets the component 3 (Period Details).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Period Details (component3).
-	 * @return the Period Details from component3
+	 * Gets the Period Details (component 3).
+	 * @return the Period Details from component 3
 	 */
 	public String getPeriodDetails() {
 		return getComponent(3);

@@ -429,199 +429,199 @@ public class Field61 extends Field implements Serializable, AmountContainer, Mul
 		return result;
 	}
 	/**
-	 * Gets the component1 (Value Date).
-	 * @return the component1
+	 * Gets the component 1 (Value Date).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(1));
 	}
 
 	/**
-	 * Gets the Value Date (component1).
-	 * @return the Value Date from component1
+	 * Gets the Value Date (component 1).
+	 * @return the Value Date from component 1
 	 */
 	public String getValueDate() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Value Date (component1) as Calendar
-	 * @return the Value Date from component1 converted to Calendar or null if cannot be converted
+	 * Get the Value Date (component 1) as Calendar
+	 * @return the Value Date from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getValueDateAsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Entry Date).
-	 * @return the component2
+	 * Gets the component 2 (Entry Date).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Calendar
-	 * @return the component2 converted to Calendar or null if cannot be converted
+	 * Get the component 2 as Calendar
+	 * @return the component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getMonthDay(getComponent(2));
 	}
 
 	/**
-	 * Gets the Entry Date (component2).
-	 * @return the Entry Date from component2
+	 * Gets the Entry Date (component 2).
+	 * @return the Entry Date from component 2
 	 */
 	public String getEntryDate() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Entry Date (component2) as Calendar
-	 * @return the Entry Date from component2 converted to Calendar or null if cannot be converted
+	 * Get the Entry Date (component 2) as Calendar
+	 * @return the Entry Date from component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getEntryDateAsCalendar() {
 		return SwiftFormatUtils.getMonthDay(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (D/C Mark).
-	 * @return the component3
+	 * Gets the component 3 (D/C Mark).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the D/C Mark (component3).
-	 * @return the D/C Mark from component3
+	 * Gets the D/C Mark (component 3).
+	 * @return the D/C Mark from component 3
 	 */
 	public String getDCMark() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Funds Code).
-	 * @return the component4
+	 * Gets the component 4 (Funds Code).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Funds Code (component4).
-	 * @return the Funds Code from component4
+	 * Gets the Funds Code (component 4).
+	 * @return the Funds Code from component 4
 	 */
 	public String getFundsCode() {
 		return getComponent(4);
 	}
 	/**
-	 * Gets the component5 (Amount).
-	 * @return the component5
+	 * Gets the component 5 (Amount).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Get the component5 as Number
-	 * @return the component5 converted to Number or null if cannot be converted
+	 * Get the component 5 as Number
+	 * @return the component 5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
 	}
 
 	/**
-	 * Gets the Amount (component5).
-	 * @return the Amount from component5
+	 * Gets the Amount (component 5).
+	 * @return the Amount from component 5
 	 */
 	public String getAmount() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the Amount (component5) as Number
-	 * @return the Amount from component5 converted to Number or null if cannot be converted
+	 * Get the Amount (component 5) as Number
+	 * @return the Amount from component 5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
 	}
 	/**
-	 * Gets the component6 (Transaction Type).
-	 * @return the component6
+	 * Gets the component 6 (Transaction Type).
+	 * @return the component 6
 	 */
 	public String getComponent6() {
 		return getComponent(6);
 	}
 
 	/**
-	 * Gets the Transaction Type (component6).
-	 * @return the Transaction Type from component6
+	 * Gets the Transaction Type (component 6).
+	 * @return the Transaction Type from component 6
 	 */
 	public String getTransactionType() {
 		return getComponent(6);
 	}
 	/**
-	 * Gets the component7 (Identification Code).
-	 * @return the component7
+	 * Gets the component 7 (Identification Code).
+	 * @return the component 7
 	 */
 	public String getComponent7() {
 		return getComponent(7);
 	}
 
 	/**
-	 * Gets the Identification Code (component7).
-	 * @return the Identification Code from component7
+	 * Gets the Identification Code (component 7).
+	 * @return the Identification Code from component 7
 	 */
 	public String getIdentificationCode() {
 		return getComponent(7);
 	}
 	/**
-	 * Gets the component8 (Reference For The Account Owner).
-	 * @return the component8
+	 * Gets the component 8 (Reference For The Account Owner).
+	 * @return the component 8
 	 */
 	public String getComponent8() {
 		return getComponent(8);
 	}
 
 	/**
-	 * Gets the Reference For The Account Owner (component8).
-	 * @return the Reference For The Account Owner from component8
+	 * Gets the Reference For The Account Owner (component 8).
+	 * @return the Reference For The Account Owner from component 8
 	 */
 	public String getReferenceForTheAccountOwner() {
 		return getComponent(8);
 	}
 	/**
-	 * Gets the component9 (Reference Of The Account Servicing Institution).
-	 * @return the component9
+	 * Gets the component 9 (Reference Of The Account Servicing Institution).
+	 * @return the component 9
 	 */
 	public String getComponent9() {
 		return getComponent(9);
 	}
 
 	/**
-	 * Gets the Reference Of The Account Servicing Institution (component9).
-	 * @return the Reference Of The Account Servicing Institution from component9
+	 * Gets the Reference Of The Account Servicing Institution (component 9).
+	 * @return the Reference Of The Account Servicing Institution from component 9
 	 */
 	public String getReferenceOfTheAccountServicingInstitution() {
 		return getComponent(9);
 	}
 	/**
-	 * Gets the component10 (Supplementary Details).
-	 * @return the component10
+	 * Gets the component 10 (Supplementary Details).
+	 * @return the component 10
 	 */
 	public String getComponent10() {
 		return getComponent(10);
 	}
 
 	/**
-	 * Gets the Supplementary Details (component10).
-	 * @return the Supplementary Details from component10
+	 * Gets the Supplementary Details (component 10).
+	 * @return the Supplementary Details from component 10
 	 */
 	public String getSupplementaryDetails() {
 		return getComponent(10);

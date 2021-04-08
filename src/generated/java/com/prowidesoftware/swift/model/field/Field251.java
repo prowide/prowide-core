@@ -275,32 +275,32 @@ public class Field251 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (MIR).
-	 * @return the component1
+	 * Gets the component 1 (MIR).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as MIR
-	 * @return the component1 converted to MIR or null if cannot be converted
+	 * Get the component 1 as MIR
+	 * @return the component 1 converted to MIR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MIR getComponent1AsMIR() {
 		return SwiftFormatUtils.getMIR(getComponent(1));
 	}
 
 	/**
-	 * Gets the MIR (component1).
-	 * @return the MIR from component1
+	 * Gets the MIR (component 1).
+	 * @return the MIR from component 1
 	 */
 	public String getMIR() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the MIR (component1) as MIR
-	 * @return the MIR from component1 converted to MIR or null if cannot be converted
+	 * Get the MIR (component 1) as MIR
+	 * @return the MIR from component 1 converted to MIR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MIR getMIRAsMIR() {
 		return SwiftFormatUtils.getMIR(getComponent(1));

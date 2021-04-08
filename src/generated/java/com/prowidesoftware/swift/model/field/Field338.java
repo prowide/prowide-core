@@ -275,16 +275,16 @@ public class Field338 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Delivery Subsets).
-	 * @return the component1
+	 * Gets the component 1 (Delivery Subsets).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Delivery Subsets (component1).
-	 * @return the Delivery Subsets from component1
+	 * Gets the Delivery Subsets (component 1).
+	 * @return the Delivery Subsets from component 1
 	 */
 	public String getDeliverySubsets() {
 		return getComponent(1);

@@ -275,32 +275,32 @@ public class Field329 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Reconnect Allowed Option).
-	 * @return the component1
+	 * Gets the component 1 (Reconnect Allowed Option).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Boolean
-	 * @return the component1 converted to Boolean or null if cannot be converted
+	 * Get the component 1 as Boolean
+	 * @return the component 1 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getComponent1AsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(1));
 	}
 
 	/**
-	 * Gets the Reconnect Allowed Option (component1).
-	 * @return the Reconnect Allowed Option from component1
+	 * Gets the Reconnect Allowed Option (component 1).
+	 * @return the Reconnect Allowed Option from component 1
 	 */
 	public String getReconnectAllowedOption() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Reconnect Allowed Option (component1) as Boolean
-	 * @return the Reconnect Allowed Option from component1 converted to Boolean or null if cannot be converted
+	 * Get the Reconnect Allowed Option (component 1) as Boolean
+	 * @return the Reconnect Allowed Option from component 1 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getReconnectAllowedOptionAsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(1));

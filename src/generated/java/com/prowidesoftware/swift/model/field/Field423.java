@@ -275,16 +275,16 @@ public class Field423 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Balance Checkpoint Date Time).
-	 * @return the component1
+	 * Gets the component 1 (Balance Checkpoint Date Time).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Balance Checkpoint Date Time (component1).
-	 * @return the Balance Checkpoint Date Time from component1
+	 * Gets the Balance Checkpoint Date Time (component 1).
+	 * @return the Balance Checkpoint Date Time from component 1
 	 */
 	public String getBalanceCheckpointDateTime() {
 		return getComponent(1);

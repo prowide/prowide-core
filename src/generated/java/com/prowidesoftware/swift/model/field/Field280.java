@@ -328,109 +328,109 @@ public class Field280 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Input Time).
-	 * @return the component1
+	 * Gets the component 1 (Input Time).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(1));
 	}
 
 	/**
-	 * Gets the Input Time (component1).
-	 * @return the Input Time from component1
+	 * Gets the Input Time (component 1).
+	 * @return the Input Time from component 1
 	 */
 	public String getInputTime() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Input Time (component1) as Calendar
-	 * @return the Input Time from component1 converted to Calendar or null if cannot be converted
+	 * Get the Input Time (component 1) as Calendar
+	 * @return the Input Time from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getInputTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (MIR).
-	 * @return the component2
+	 * Gets the component 2 (MIR).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as MIR
-	 * @return the component2 converted to MIR or null if cannot be converted
+	 * Get the component 2 as MIR
+	 * @return the component 2 converted to MIR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MIR getComponent2AsMIR() {
 		return SwiftFormatUtils.getMIR(getComponent(2));
 	}
 
 	/**
-	 * Gets the MIR (component2).
-	 * @return the MIR from component2
+	 * Gets the MIR (component 2).
+	 * @return the MIR from component 2
 	 */
 	public String getMIR() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the MIR (component2) as MIR
-	 * @return the MIR from component2 converted to MIR or null if cannot be converted
+	 * Get the MIR (component 2) as MIR
+	 * @return the MIR from component 2 converted to MIR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MIR getMIRAsMIR() {
 		return SwiftFormatUtils.getMIR(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Accepted).
-	 * @return the component3
+	 * Gets the component 3 (Accepted).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Boolean
-	 * @return the component3 converted to Boolean or null if cannot be converted
+	 * Get the component 3 as Boolean
+	 * @return the component 3 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getComponent3AsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(3));
 	}
 
 	/**
-	 * Gets the Accepted (component3).
-	 * @return the Accepted from component3
+	 * Gets the Accepted (component 3).
+	 * @return the Accepted from component 3
 	 */
 	public String getAccepted() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Accepted (component3) as Boolean
-	 * @return the Accepted from component3 converted to Boolean or null if cannot be converted
+	 * Get the Accepted (component 3) as Boolean
+	 * @return the Accepted from component 3 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getAcceptedAsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(3));
 	}
 	/**
-	 * Gets the component4 (Error).
-	 * @return the component4
+	 * Gets the component 4 (Error).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Error (component4).
-	 * @return the Error from component4
+	 * Gets the Error (component 4).
+	 * @return the Error from component 4
 	 */
 	public String getError() {
 		return getComponent(4);

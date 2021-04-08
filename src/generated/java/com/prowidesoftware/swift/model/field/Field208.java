@@ -275,32 +275,32 @@ public class Field208 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (LT Directed Queue).
-	 * @return the component1
+	 * Gets the component 1 (LT Directed Queue).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Boolean
-	 * @return the component1 converted to Boolean or null if cannot be converted
+	 * Get the component 1 as Boolean
+	 * @return the component 1 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getComponent1AsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(1));
 	}
 
 	/**
-	 * Gets the LT Directed Queue (component1).
-	 * @return the LT Directed Queue from component1
+	 * Gets the LT Directed Queue (component 1).
+	 * @return the LT Directed Queue from component 1
 	 */
 	public String getLTDirectedQueue() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the LT Directed Queue (component1) as Boolean
-	 * @return the LT Directed Queue from component1 converted to Boolean or null if cannot be converted
+	 * Get the LT Directed Queue (component 1) as Boolean
+	 * @return the LT Directed Queue from component 1 converted to Boolean or null if cannot be converted
 	 */
 	public java.lang.Boolean getLTDirectedQueueAsBoolean() {
 		return SwiftFormatUtils.getBoolean(getComponent(1));

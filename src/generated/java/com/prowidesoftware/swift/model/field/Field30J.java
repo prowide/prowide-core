@@ -293,47 +293,47 @@ public class Field30J extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Indicator).
-	 * @return the component1
+	 * Gets the component 1 (Indicator).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Indicator (component1).
-	 * @return the Indicator from component1
+	 * Gets the Indicator (component 1).
+	 * @return the Indicator from component 1
 	 */
 	public String getIndicator() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Number).
-	 * @return the component2
+	 * Gets the component 2 (Number).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Number (component2).
-	 * @return the Number from component2
+	 * Gets the Number (component 2).
+	 * @return the Number from component 2
 	 */
 	public String getNumber() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Number (component2) as Number
-	 * @return the Number from component2 converted to Number or null if cannot be converted
+	 * Get the Number (component 2) as Number
+	 * @return the Number from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));

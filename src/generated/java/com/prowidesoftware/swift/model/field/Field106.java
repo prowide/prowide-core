@@ -275,16 +275,16 @@ public class Field106 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (MIR).
-	 * @return the component1
+	 * Gets the component 1 (MIR).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the MIR (component1).
-	 * @return the MIR from component1
+	 * Gets the MIR (component 1).
+	 * @return the MIR from component 1
 	 */
 	public String getMIR() {
 		return getComponent(1);

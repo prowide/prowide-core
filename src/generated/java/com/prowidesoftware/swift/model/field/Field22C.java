@@ -344,92 +344,92 @@ public class Field22C extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Party Prefix 1).
-	 * @return the component1
+	 * Gets the component 1 (Party Prefix 1).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Party Prefix 1 (component1).
-	 * @return the Party Prefix 1 from component1
+	 * Gets the Party Prefix 1 (component 1).
+	 * @return the Party Prefix 1 from component 1
 	 */
 	public String getPartyPrefix1() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Party Suffix 1).
-	 * @return the component2
+	 * Gets the component 2 (Party Suffix 1).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Party Suffix 1 (component2).
-	 * @return the Party Suffix 1 from component2
+	 * Gets the Party Suffix 1 (component 2).
+	 * @return the Party Suffix 1 from component 2
 	 */
 	public String getPartySuffix1() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Reference Code).
-	 * @return the component3
+	 * Gets the component 3 (Reference Code).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the Reference Code (component3).
-	 * @return the Reference Code from component3
+	 * Gets the Reference Code (component 3).
+	 * @return the Reference Code from component 3
 	 */
 	public String getReferenceCode() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Reference Code (component3) as Number
-	 * @return the Reference Code from component3 converted to Number or null if cannot be converted
+	 * Get the Reference Code (component 3) as Number
+	 * @return the Reference Code from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getReferenceCodeAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 	/**
-	 * Gets the component4 (Party Prefix 2).
-	 * @return the component4
+	 * Gets the component 4 (Party Prefix 2).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Party Prefix 2 (component4).
-	 * @return the Party Prefix 2 from component4
+	 * Gets the Party Prefix 2 (component 4).
+	 * @return the Party Prefix 2 from component 4
 	 */
 	public String getPartyPrefix2() {
 		return getComponent(4);
 	}
 	/**
-	 * Gets the component5 (Party Suffix 2).
-	 * @return the component5
+	 * Gets the component 5 (Party Suffix 2).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Gets the Party Suffix 2 (component5).
-	 * @return the Party Suffix 2 from component5
+	 * Gets the Party Suffix 2 (component 5).
+	 * @return the Party Suffix 2 from component 5
 	 */
 	public String getPartySuffix2() {
 		return getComponent(5);

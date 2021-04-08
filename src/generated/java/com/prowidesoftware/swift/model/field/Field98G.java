@@ -384,156 +384,156 @@ public class Field98G extends Field implements Serializable, DateContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Date).
-	 * @return the component1
+	 * Gets the component 1 (Date).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(1));
 	}
 
 	/**
-	 * Gets the Date (component1).
-	 * @return the Date from component1
+	 * Gets the Date (component 1).
+	 * @return the Date from component 1
 	 */
 	public String getDate() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Date (component1) as Calendar
-	 * @return the Date from component1 converted to Calendar or null if cannot be converted
+	 * Get the Date (component 1) as Calendar
+	 * @return the Date from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Time).
-	 * @return the component2
+	 * Gets the component 2 (Time).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Calendar
-	 * @return the component2 converted to Calendar or null if cannot be converted
+	 * Get the component 2 as Calendar
+	 * @return the component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getTime2(getComponent(2));
 	}
 
 	/**
-	 * Gets the Time (component2).
-	 * @return the Time from component2
+	 * Gets the Time (component 2).
+	 * @return the Time from component 2
 	 */
 	public String getTime() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Time (component2) as Calendar
-	 * @return the Time from component2 converted to Calendar or null if cannot be converted
+	 * Get the Time (component 2) as Calendar
+	 * @return the Time from component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getTimeAsCalendar() {
 		return SwiftFormatUtils.getTime2(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Number).
-	 * @return the component3
+	 * Gets the component 3 (Number).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the Number (component3).
-	 * @return the Number from component3
+	 * Gets the Number (component 3).
+	 * @return the Number from component 3
 	 */
 	public String getNumber() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Number (component3) as Number
-	 * @return the Number from component3 converted to Number or null if cannot be converted
+	 * Get the Number (component 3) as Number
+	 * @return the Number from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 	/**
-	 * Gets the component4 (Sign).
-	 * @return the component4
+	 * Gets the component 4 (Sign).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Currency
-	 * @return the component4 converted to Currency or null if cannot be converted
+	 * Get the component 4 as Currency
+	 * @return the component 4 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getComponent4AsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(4));
 	}
 
 	/**
-	 * Gets the Sign (component4).
-	 * @return the Sign from component4
+	 * Gets the Sign (component 4).
+	 * @return the Sign from component 4
 	 */
 	public String getSign() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Sign (component4) as Currency
-	 * @return the Sign from component4 converted to Currency or null if cannot be converted
+	 * Get the Sign (component 4) as Currency
+	 * @return the Sign from component 4 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getSignAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(4));
 	}
 	/**
-	 * Gets the component5 (Offset).
-	 * @return the component5
+	 * Gets the component 5 (Offset).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Get the component5 as Calendar
-	 * @return the component5 converted to Calendar or null if cannot be converted
+	 * Get the component 5 as Calendar
+	 * @return the component 5 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent5AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));
 	}
 
 	/**
-	 * Gets the Offset (component5).
-	 * @return the Offset from component5
+	 * Gets the Offset (component 5).
+	 * @return the Offset from component 5
 	 */
 	public String getOffset() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the Offset (component5) as Calendar
-	 * @return the Offset from component5 converted to Calendar or null if cannot be converted
+	 * Get the Offset (component 5) as Calendar
+	 * @return the Offset from component 5 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getOffsetAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));

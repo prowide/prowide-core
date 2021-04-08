@@ -275,16 +275,16 @@ public class Field127 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Test Mode Code).
-	 * @return the component1
+	 * Gets the component 1 (Test Mode Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Test Mode Code (component1).
-	 * @return the Test Mode Code from component1
+	 * Gets the Test Mode Code (component 1).
+	 * @return the Test Mode Code from component 1
 	 */
 	public String getTestModeCode() {
 		return getComponent(1);

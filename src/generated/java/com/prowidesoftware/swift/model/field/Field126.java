@@ -280,32 +280,32 @@ public class Field126 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Seed).
-	 * @return the component1
+	 * Gets the component 1 (Seed).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Seed (component1).
-	 * @return the Seed from component1
+	 * Gets the Seed (component 1).
+	 * @return the Seed from component 1
 	 */
 	public String getSeed() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Seed (component1) as Number
-	 * @return the Seed from component1 converted to Number or null if cannot be converted
+	 * Get the Seed (component 1) as Number
+	 * @return the Seed from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getSeedAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));

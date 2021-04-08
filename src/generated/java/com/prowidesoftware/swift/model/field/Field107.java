@@ -275,16 +275,16 @@ public class Field107 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (MOR).
-	 * @return the component1
+	 * Gets the component 1 (MOR).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the MOR (component1).
-	 * @return the MOR from component1
+	 * Gets the MOR (component 1).
+	 * @return the MOR from component 1
 	 */
 	public String getMOR() {
 		return getComponent(1);

@@ -294,31 +294,31 @@ public class Field94H extends Field implements Serializable, BICContainer, Gener
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (BIC).
-	 * @return the component2
+	 * Gets the component 2 (BIC).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the BIC (component2).
-	 * @return the BIC from component2
+	 * Gets the BIC (component 2).
+	 * @return the BIC from component 2
 	 */
 	public String getBIC() {
 		return getComponent(2);

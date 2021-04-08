@@ -275,16 +275,16 @@ public class Field94A extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Scope).
-	 * @return the component1
+	 * Gets the component 1 (Scope).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Scope (component1).
-	 * @return the Scope from component1
+	 * Gets the Scope (component 1).
+	 * @return the Scope from component 1
 	 */
 	public String getScope() {
 		return getComponent(1);

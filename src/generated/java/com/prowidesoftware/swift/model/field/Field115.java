@@ -275,16 +275,16 @@ public class Field115 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Payment Release Information Receiver).
-	 * @return the component1
+	 * Gets the component 1 (Payment Release Information Receiver).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Payment Release Information Receiver (component1).
-	 * @return the Payment Release Information Receiver from component1
+	 * Gets the Payment Release Information Receiver (component 1).
+	 * @return the Payment Release Information Receiver from component 1
 	 */
 	public String getPaymentReleaseInformationReceiver() {
 		return getComponent(1);

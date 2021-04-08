@@ -275,16 +275,16 @@ public class Field22J extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Type Of Barrier).
-	 * @return the component1
+	 * Gets the component 1 (Type Of Barrier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Type Of Barrier (component1).
-	 * @return the Type Of Barrier from component1
+	 * Gets the Type Of Barrier (component 1).
+	 * @return the Type Of Barrier from component 1
 	 */
 	public String getTypeOfBarrier() {
 		return getComponent(1);

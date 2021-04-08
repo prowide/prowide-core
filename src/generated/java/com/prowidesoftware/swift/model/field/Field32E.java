@@ -278,32 +278,32 @@ public class Field32E extends Field implements Serializable, CurrencyContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Currency).
-	 * @return the component1
+	 * Gets the component 1 (Currency).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Currency
-	 * @return the component1 converted to Currency or null if cannot be converted
+	 * Get the component 1 as Currency
+	 * @return the component 1 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getComponent1AsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(1));
 	}
 
 	/**
-	 * Gets the Currency (component1).
-	 * @return the Currency from component1
+	 * Gets the Currency (component 1).
+	 * @return the Currency from component 1
 	 */
 	public String getCurrency() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Currency (component1) as Currency
-	 * @return the Currency from component1 converted to Currency or null if cannot be converted
+	 * Get the Currency (component 1) as Currency
+	 * @return the Currency from component 1 converted to Currency or null if cannot be converted
 	 */
 	public java.util.Currency getCurrencyAsCurrency() {
 		return SwiftFormatUtils.getCurrency(getComponent(1));

@@ -275,32 +275,32 @@ public class Field253 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (MOR).
-	 * @return the component1
+	 * Gets the component 1 (MOR).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as MOR
-	 * @return the component1 converted to MOR or null if cannot be converted
+	 * Get the component 1 as MOR
+	 * @return the component 1 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getComponent1AsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(1));
 	}
 
 	/**
-	 * Gets the MOR (component1).
-	 * @return the MOR from component1
+	 * Gets the MOR (component 1).
+	 * @return the MOR from component 1
 	 */
 	public String getMOR() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the MOR (component1) as MOR
-	 * @return the MOR from component1 converted to MOR or null if cannot be converted
+	 * Get the MOR (component 1) as MOR
+	 * @return the MOR from component 1 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getMORAsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(1));

@@ -280,32 +280,32 @@ public class Field14C extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Year).
-	 * @return the component1
+	 * Gets the component 1 (Year).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Year (component1).
-	 * @return the Year from component1
+	 * Gets the Year (component 1).
+	 * @return the Year from component 1
 	 */
 	public String getYear() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Year (component1) as Number
-	 * @return the Year from component1 converted to Number or null if cannot be converted
+	 * Get the Year (component 1) as Number
+	 * @return the Year from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getYearAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));

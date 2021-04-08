@@ -292,31 +292,31 @@ public class Field13A extends Field implements Serializable, GenericField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Number Id).
-	 * @return the component2
+	 * Gets the component 2 (Number Id).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Number Id (component2).
-	 * @return the Number Id from component2
+	 * Gets the Number Id (component 2).
+	 * @return the Number Id from component 2
 	 */
 	public String getNumberId() {
 		return getComponent(2);

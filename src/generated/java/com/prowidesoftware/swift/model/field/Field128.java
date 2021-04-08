@@ -292,47 +292,47 @@ public class Field128 extends Field implements Serializable, BICContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Priority).
-	 * @return the component1
+	 * Gets the component 1 (Priority).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Priority (component1).
-	 * @return the Priority from component1
+	 * Gets the Priority (component 1).
+	 * @return the Priority from component 1
 	 */
 	public String getPriority() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (BIC).
-	 * @return the component2
+	 * Gets the component 2 (BIC).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as BIC
-	 * @return the component2 converted to BIC or null if cannot be converted
+	 * Get the component 2 as BIC
+	 * @return the component 2 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getComponent2AsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(2));
 	}
 
 	/**
-	 * Gets the BIC (component2).
-	 * @return the BIC from component2
+	 * Gets the BIC (component 2).
+	 * @return the BIC from component 2
 	 */
 	public String getBIC() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the BIC (component2) as BIC
-	 * @return the BIC from component2 converted to BIC or null if cannot be converted
+	 * Get the BIC (component 2) as BIC
+	 * @return the BIC from component 2 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(2));

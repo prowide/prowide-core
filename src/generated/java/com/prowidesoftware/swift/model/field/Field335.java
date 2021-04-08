@@ -349,140 +349,140 @@ public class Field335 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Time Message Entered).
-	 * @return the component1
+	 * Gets the component 1 (Time Message Entered).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(1));
 	}
 
 	/**
-	 * Gets the Time Message Entered (component1).
-	 * @return the Time Message Entered from component1
+	 * Gets the Time Message Entered (component 1).
+	 * @return the Time Message Entered from component 1
 	 */
 	public String getTimeMessageEntered() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Time Message Entered (component1) as Calendar
-	 * @return the Time Message Entered from component1 converted to Calendar or null if cannot be converted
+	 * Get the Time Message Entered (component 1) as Calendar
+	 * @return the Time Message Entered from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getTimeMessageEnteredAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (MIR).
-	 * @return the component2
+	 * Gets the component 2 (MIR).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as MIR
-	 * @return the component2 converted to MIR or null if cannot be converted
+	 * Get the component 2 as MIR
+	 * @return the component 2 converted to MIR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MIR getComponent2AsMIR() {
 		return SwiftFormatUtils.getMIR(getComponent(2));
 	}
 
 	/**
-	 * Gets the MIR (component2).
-	 * @return the MIR from component2
+	 * Gets the MIR (component 2).
+	 * @return the MIR from component 2
 	 */
 	public String getMIR() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the MIR (component2) as MIR
-	 * @return the MIR from component2 converted to MIR or null if cannot be converted
+	 * Get the MIR (component 2) as MIR
+	 * @return the MIR from component 2 converted to MIR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MIR getMIRAsMIR() {
 		return SwiftFormatUtils.getMIR(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (MT).
-	 * @return the component3
+	 * Gets the component 3 (MT).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the MT (component3).
-	 * @return the MT from component3
+	 * Gets the MT (component 3).
+	 * @return the MT from component 3
 	 */
 	public String getMT() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Receiver).
-	 * @return the component4
+	 * Gets the component 4 (Receiver).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as LogicalTerminalAddress
-	 * @return the component4 converted to LogicalTerminalAddress or null if cannot be converted
+	 * Get the component 4 as LogicalTerminalAddress
+	 * @return the component 4 converted to LogicalTerminalAddress or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getComponent4AsLogicalTerminalAddress() {
 		return SwiftFormatUtils.getLTAddress(getComponent(4));
 	}
 
 	/**
-	 * Gets the Receiver (component4).
-	 * @return the Receiver from component4
+	 * Gets the Receiver (component 4).
+	 * @return the Receiver from component 4
 	 */
 	public String getReceiver() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Receiver (component4) as LogicalTerminalAddress
-	 * @return the Receiver from component4 converted to LogicalTerminalAddress or null if cannot be converted
+	 * Get the Receiver (component 4) as LogicalTerminalAddress
+	 * @return the Receiver from component 4 converted to LogicalTerminalAddress or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getReceiverAsLogicalTerminalAddress() {
 		return SwiftFormatUtils.getLTAddress(getComponent(4));
 	}
 	/**
-	 * Gets the component5 (Time Last Delivery Attempt).
-	 * @return the component5
+	 * Gets the component 5 (Time Last Delivery Attempt).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Get the component5 as Calendar
-	 * @return the component5 converted to Calendar or null if cannot be converted
+	 * Get the component 5 as Calendar
+	 * @return the component 5 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent5AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));
 	}
 
 	/**
-	 * Gets the Time Last Delivery Attempt (component5).
-	 * @return the Time Last Delivery Attempt from component5
+	 * Gets the Time Last Delivery Attempt (component 5).
+	 * @return the Time Last Delivery Attempt from component 5
 	 */
 	public String getTimeLastDeliveryAttempt() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the Time Last Delivery Attempt (component5) as Calendar
-	 * @return the Time Last Delivery Attempt from component5 converted to Calendar or null if cannot be converted
+	 * Get the Time Last Delivery Attempt (component 5) as Calendar
+	 * @return the Time Last Delivery Attempt from component 5 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getTimeLastDeliveryAttemptAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(5));

@@ -334,31 +334,31 @@ public class Field56B extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (D/C Mark).
-	 * @return the component1
+	 * Gets the component 1 (D/C Mark).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the D/C Mark (component1).
-	 * @return the D/C Mark from component1
+	 * Gets the D/C Mark (component 1).
+	 * @return the D/C Mark from component 1
 	 */
 	public String getDCMark() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Account).
-	 * @return the component2
+	 * Gets the component 2 (Account).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Account (component2) removing its starting slashes if any.
-	 * @return the Account from component2
+	 * Gets the Account (component 2) removing its starting slashes if any.
+	 * @return the Account from component 2
 	 */
 	public String getAccount() {
 		String c = getComponent(2);
@@ -373,16 +373,16 @@ public class Field56B extends Field implements Serializable, MultiLineField {
 		return null;
 	}
 	/**
-	 * Gets the component3 (Location).
-	 * @return the component3
+	 * Gets the component 3 (Location).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Location (component3).
-	 * @return the Location from component3
+	 * Gets the Location (component 3).
+	 * @return the Location from component 3
 	 */
 	public String getLocation() {
 		return getComponent(3);

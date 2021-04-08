@@ -351,76 +351,76 @@ public class Field26C extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Delivery Details).
-	 * @return the component1
+	 * Gets the component 1 (Delivery Details).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Delivery Details (component1).
-	 * @return the Delivery Details from component1
+	 * Gets the Delivery Details (component 1).
+	 * @return the Delivery Details from component 1
 	 */
 	public String getDeliveryDetails() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Delivery Location).
-	 * @return the component2
+	 * Gets the component 2 (Delivery Location).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Delivery Location (component2).
-	 * @return the Delivery Location from component2
+	 * Gets the Delivery Location (component 2).
+	 * @return the Delivery Location from component 2
 	 */
 	public String getDeliveryLocation() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Allocation).
-	 * @return the component3
+	 * Gets the component 3 (Allocation).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Allocation (component3).
-	 * @return the Allocation from component3
+	 * Gets the Allocation (component 3).
+	 * @return the Allocation from component 3
 	 */
 	public String getAllocation() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Type).
-	 * @return the component4
+	 * Gets the component 4 (Type).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Type (component4).
-	 * @return the Type from component4
+	 * Gets the Type (component 4).
+	 * @return the Type from component 4
 	 */
 	public String getType() {
 		return getComponent(4);
 	}
 	/**
-	 * Gets the component5 (Denomination Form).
-	 * @return the component5
+	 * Gets the component 5 (Denomination Form).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Gets the Denomination Form (component5).
-	 * @return the Denomination Form from component5
+	 * Gets the Denomination Form (component 5).
+	 * @return the Denomination Form from component 5
 	 */
 	public String getDenominationForm() {
 		return getComponent(5);

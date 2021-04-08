@@ -300,47 +300,47 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Amount).
-	 * @return the component2
+	 * Gets the component 2 (Amount).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Amount (component2).
-	 * @return the Amount from component2
+	 * Gets the Amount (component 2).
+	 * @return the Amount from component 2
 	 */
 	public String getAmount() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Amount (component2) as Number
-	 * @return the Amount from component2 converted to Number or null if cannot be converted
+	 * Get the Amount (component 2) as Number
+	 * @return the Amount from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));

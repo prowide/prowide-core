@@ -310,63 +310,74 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Address).
-	 * @return the component2
+	 * Gets the component 2 (Address).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Address (component2).
-	 * @return the Address from component2
+	 * Gets the Address (component 2).
+	 * @return the Address from component 2
 	 */
 	public String getAddressLine1() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Address (component3).
-	 * @return the Address from component3
+	 * Gets the Address (component 3).
+	 * @return the Address from component 3
 	 */
 	public String getAddressLine2() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Address as a concatenation of component2 to component3.
+	 * Gets the Address as a concatenation of component 2 to component 3.
 	 * @return the Address from components
 	 */
 	public String getAddress() {
+		return getAddress(null);
+	}
+
+	/**
+	 * Gets the Address as a concatenation of component 2 to component 3 joined together with a copy of the
+	 * specified delimiter.
+	 * @param deli the delimiter that separates each component
+	 * @return the Address from components
+	 * @since 9.1.4
+	 */
+	public String getAddress(CharSequence deli) {
 		StringBuilder result = new StringBuilder();
 		for (int i = 2 ; i < 4 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			if (getComponent(i) != null) {
+			    if (deli != null && result.length() > 0) {
+                    result.append(deli);
+                }
+				result.append(getComponent(i));
 			}
 		}
 		return result.toString();
 	}
 	/**
-	 * Gets the component3 (Address).
-	 * @return the component3
+	 * Gets the component 3 (Address).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);

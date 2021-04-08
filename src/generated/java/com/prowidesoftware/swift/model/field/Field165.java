@@ -291,31 +291,31 @@ public class Field165 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Service Code).
-	 * @return the component1
+	 * Gets the component 1 (Service Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Service Code (component1).
-	 * @return the Service Code from component1
+	 * Gets the Service Code (component 1).
+	 * @return the Service Code from component 1
 	 */
 	public String getServiceCode() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Payment Information).
-	 * @return the component2
+	 * Gets the component 2 (Payment Information).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Payment Information (component2).
-	 * @return the Payment Information from component2
+	 * Gets the Payment Information (component 2).
+	 * @return the Payment Information from component 2
 	 */
 	public String getPaymentInformation() {
 		return getComponent(2);

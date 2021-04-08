@@ -275,16 +275,16 @@ public class Field40D extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Language).
-	 * @return the component1
+	 * Gets the component 1 (Language).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Language (component1).
-	 * @return the Language from component1
+	 * Gets the Language (component 1).
+	 * @return the Language from component 1
 	 */
 	public String getLanguage() {
 		return getComponent(1);

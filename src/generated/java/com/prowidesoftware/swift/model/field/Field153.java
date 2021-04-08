@@ -280,32 +280,32 @@ public class Field153 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Sequence Number).
-	 * @return the component1
+	 * Gets the component 1 (Sequence Number).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Sequence Number (component1).
-	 * @return the Sequence Number from component1
+	 * Gets the Sequence Number (component 1).
+	 * @return the Sequence Number from component 1
 	 */
 	public String getSequenceNumber() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Sequence Number (component1) as Number
-	 * @return the Sequence Number from component1 converted to Number or null if cannot be converted
+	 * Get the Sequence Number (component 1) as Number
+	 * @return the Sequence Number from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getSequenceNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));

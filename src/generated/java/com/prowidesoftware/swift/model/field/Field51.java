@@ -307,78 +307,89 @@ public class Field51 extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Name And Address).
-	 * @return the component1
+	 * Gets the component 1 (Name And Address).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Name And Address (component1).
-	 * @return the Name And Address from component1
+	 * Gets the Name And Address (component 1).
+	 * @return the Name And Address from component 1
 	 */
 	public String getNameAndAddressLine1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Name And Address (component2).
-	 * @return the Name And Address from component2
+	 * Gets the Name And Address (component 2).
+	 * @return the Name And Address from component 2
 	 */
 	public String getNameAndAddressLine2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Name And Address (component3).
-	 * @return the Name And Address from component3
+	 * Gets the Name And Address (component 3).
+	 * @return the Name And Address from component 3
 	 */
 	public String getNameAndAddressLine3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Name And Address (component4).
-	 * @return the Name And Address from component4
+	 * Gets the Name And Address (component 4).
+	 * @return the Name And Address from component 4
 	 */
 	public String getNameAndAddressLine4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Name And Address as a concatenation of component1 to component4.
+	 * Gets the Name And Address as a concatenation of component 1 to component 4.
 	 * @return the Name And Address from components
 	 */
 	public String getNameAndAddress() {
+		return getNameAndAddress(null);
+	}
+
+	/**
+	 * Gets the Name And Address as a concatenation of component 1 to component 4 joined together with a copy of the
+	 * specified delimiter.
+	 * @param deli the delimiter that separates each component
+	 * @return the Name And Address from components
+	 * @since 9.1.4
+	 */
+	public String getNameAndAddress(CharSequence deli) {
 		StringBuilder result = new StringBuilder();
 		for (int i = 1 ; i < 5 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			if (getComponent(i) != null) {
+			    if (deli != null && result.length() > 0) {
+                    result.append(deli);
+                }
+				result.append(getComponent(i));
 			}
 		}
 		return result.toString();
 	}
 	/**
-	 * Gets the component2 (Name And Address).
-	 * @return the component2
+	 * Gets the component 2 (Name And Address).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Name And Address).
-	 * @return the component3
+	 * Gets the component 3 (Name And Address).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Name And Address).
-	 * @return the component4
+	 * Gets the component 4 (Name And Address).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);

@@ -275,16 +275,16 @@ public class Field35C extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Number).
-	 * @return the component1
+	 * Gets the component 1 (Number).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Number (component1).
-	 * @return the Number from component1
+	 * Gets the Number (component 1).
+	 * @return the Number from component 1
 	 */
 	public String getNumber() {
 		return getComponent(1);

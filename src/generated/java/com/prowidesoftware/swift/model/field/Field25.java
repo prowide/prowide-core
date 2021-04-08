@@ -275,16 +275,16 @@ public class Field25 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Account).
-	 * @return the component1
+	 * Gets the component 1 (Account).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Account (component1) removing its starting slashes if any.
-	 * @return the Account from component1
+	 * Gets the Account (component 1) removing its starting slashes if any.
+	 * @return the Account from component 1
 	 */
 	public String getAccount() {
 		String c = getComponent(1);

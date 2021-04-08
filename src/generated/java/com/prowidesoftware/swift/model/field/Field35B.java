@@ -353,108 +353,119 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (ISIN).
-	 * @return the component2
+	 * Gets the component 2 (ISIN).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the ISIN (component2).
-	 * @return the ISIN from component2
+	 * Gets the ISIN (component 2).
+	 * @return the ISIN from component 2
 	 */
 	public String getISIN() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Description).
-	 * @return the component3
+	 * Gets the component 3 (Description).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Description (component3).
-	 * @return the Description from component3
+	 * Gets the Description (component 3).
+	 * @return the Description from component 3
 	 */
 	public String getDescriptionLine1() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Description (component4).
-	 * @return the Description from component4
+	 * Gets the Description (component 4).
+	 * @return the Description from component 4
 	 */
 	public String getDescriptionLine2() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Description (component5).
-	 * @return the Description from component5
+	 * Gets the Description (component 5).
+	 * @return the Description from component 5
 	 */
 	public String getDescriptionLine3() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Gets the Description (component6).
-	 * @return the Description from component6
+	 * Gets the Description (component 6).
+	 * @return the Description from component 6
 	 */
 	public String getDescriptionLine4() {
 		return getComponent(6);
 	}
 
 	/**
-	 * Gets the Description as a concatenation of component3 to component6.
+	 * Gets the Description as a concatenation of component 3 to component 6.
 	 * @return the Description from components
 	 */
 	public String getDescription() {
+		return getDescription(null);
+	}
+
+	/**
+	 * Gets the Description as a concatenation of component 3 to component 6 joined together with a copy of the
+	 * specified delimiter.
+	 * @param deli the delimiter that separates each component
+	 * @return the Description from components
+	 * @since 9.1.4
+	 */
+	public String getDescription(CharSequence deli) {
 		StringBuilder result = new StringBuilder();
 		for (int i = 3 ; i < 7 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			if (getComponent(i) != null) {
+			    if (deli != null && result.length() > 0) {
+                    result.append(deli);
+                }
+				result.append(getComponent(i));
 			}
 		}
 		return result.toString();
 	}
 	/**
-	 * Gets the component4 (Description).
-	 * @return the component4
+	 * Gets the component 4 (Description).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 	/**
-	 * Gets the component5 (Description).
-	 * @return the component5
+	 * Gets the component 5 (Description).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 	/**
-	 * Gets the component6 (Description).
-	 * @return the component6
+	 * Gets the component 6 (Description).
+	 * @return the component 6
 	 */
 	public String getComponent6() {
 		return getComponent(6);

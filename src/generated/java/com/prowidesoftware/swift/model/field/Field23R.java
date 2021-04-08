@@ -342,123 +342,134 @@ public class Field23R extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Code).
-	 * @return the component1
+	 * Gets the component 1 (Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Code (component1).
-	 * @return the Code from component1
+	 * Gets the Code (component 1).
+	 * @return the Code from component 1
 	 */
 	public String getCode() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Text).
-	 * @return the component2
+	 * Gets the component 2 (Text).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Text (component2).
-	 * @return the Text from component2
+	 * Gets the Text (component 2).
+	 * @return the Text from component 2
 	 */
 	public String getTextLine1() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Text (component3).
-	 * @return the Text from component3
+	 * Gets the Text (component 3).
+	 * @return the Text from component 3
 	 */
 	public String getTextLine2() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Text (component4).
-	 * @return the Text from component4
+	 * Gets the Text (component 4).
+	 * @return the Text from component 4
 	 */
 	public String getTextLine3() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Text (component5).
-	 * @return the Text from component5
+	 * Gets the Text (component 5).
+	 * @return the Text from component 5
 	 */
 	public String getTextLine4() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Gets the Text (component6).
-	 * @return the Text from component6
+	 * Gets the Text (component 6).
+	 * @return the Text from component 6
 	 */
 	public String getTextLine5() {
 		return getComponent(6);
 	}
 
 	/**
-	 * Gets the Text (component7).
-	 * @return the Text from component7
+	 * Gets the Text (component 7).
+	 * @return the Text from component 7
 	 */
 	public String getTextLine6() {
 		return getComponent(7);
 	}
 
 	/**
-	 * Gets the Text as a concatenation of component2 to component7.
+	 * Gets the Text as a concatenation of component 2 to component 7.
 	 * @return the Text from components
 	 */
 	public String getText() {
+		return getText(null);
+	}
+
+	/**
+	 * Gets the Text as a concatenation of component 2 to component 7 joined together with a copy of the
+	 * specified delimiter.
+	 * @param deli the delimiter that separates each component
+	 * @return the Text from components
+	 * @since 9.1.4
+	 */
+	public String getText(CharSequence deli) {
 		StringBuilder result = new StringBuilder();
 		for (int i = 2 ; i < 8 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			if (getComponent(i) != null) {
+			    if (deli != null && result.length() > 0) {
+                    result.append(deli);
+                }
+				result.append(getComponent(i));
 			}
 		}
 		return result.toString();
 	}
 	/**
-	 * Gets the component3 (Text).
-	 * @return the component3
+	 * Gets the component 3 (Text).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Text).
-	 * @return the component4
+	 * Gets the component 4 (Text).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 	/**
-	 * Gets the component5 (Text).
-	 * @return the component5
+	 * Gets the component 5 (Text).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 	/**
-	 * Gets the component6 (Text).
-	 * @return the component6
+	 * Gets the component 6 (Text).
+	 * @return the component 6
 	 */
 	public String getComponent6() {
 		return getComponent(6);
 	}
 	/**
-	 * Gets the component7 (Text).
-	 * @return the component7
+	 * Gets the component 7 (Text).
+	 * @return the component 7
 	 */
 	public String getComponent7() {
 		return getComponent(7);

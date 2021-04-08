@@ -275,16 +275,16 @@ public class Field17W extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Indicator).
-	 * @return the component1
+	 * Gets the component 1 (Indicator).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Indicator (component1).
-	 * @return the Indicator from component1
+	 * Gets the Indicator (component 1).
+	 * @return the Indicator from component 1
 	 */
 	public String getIndicator() {
 		return getComponent(1);

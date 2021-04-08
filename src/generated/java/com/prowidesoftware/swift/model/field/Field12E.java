@@ -275,16 +275,16 @@ public class Field12E extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Expiration Style).
-	 * @return the component1
+	 * Gets the component 1 (Expiration Style).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Expiration Style (component1).
-	 * @return the Expiration Style from component1
+	 * Gets the Expiration Style (component 1).
+	 * @return the Expiration Style from component 1
 	 */
 	public String getExpirationStyle() {
 		return getComponent(1);

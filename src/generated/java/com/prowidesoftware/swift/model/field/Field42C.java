@@ -297,63 +297,74 @@ public class Field42C extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Narrative).
-	 * @return the component1
+	 * Gets the component 1 (Narrative).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Narrative (component1).
-	 * @return the Narrative from component1
+	 * Gets the Narrative (component 1).
+	 * @return the Narrative from component 1
 	 */
 	public String getNarrativeLine1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Narrative (component2).
-	 * @return the Narrative from component2
+	 * Gets the Narrative (component 2).
+	 * @return the Narrative from component 2
 	 */
 	public String getNarrativeLine2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Narrative (component3).
-	 * @return the Narrative from component3
+	 * Gets the Narrative (component 3).
+	 * @return the Narrative from component 3
 	 */
 	public String getNarrativeLine3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Narrative as a concatenation of component1 to component3.
+	 * Gets the Narrative as a concatenation of component 1 to component 3.
 	 * @return the Narrative from components
 	 */
 	public String getNarrative() {
+		return getNarrative(null);
+	}
+
+	/**
+	 * Gets the Narrative as a concatenation of component 1 to component 3 joined together with a copy of the
+	 * specified delimiter.
+	 * @param deli the delimiter that separates each component
+	 * @return the Narrative from components
+	 * @since 9.1.4
+	 */
+	public String getNarrative(CharSequence deli) {
 		StringBuilder result = new StringBuilder();
 		for (int i = 1 ; i < 4 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			if (getComponent(i) != null) {
+			    if (deli != null && result.length() > 0) {
+                    result.append(deli);
+                }
+				result.append(getComponent(i));
 			}
 		}
 		return result.toString();
 	}
 	/**
-	 * Gets the component2 (Narrative).
-	 * @return the component2
+	 * Gets the component 2 (Narrative).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Narrative).
-	 * @return the component3
+	 * Gets the component 3 (Narrative).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);

@@ -275,16 +275,16 @@ public class Field301 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Reporting Options).
-	 * @return the component1
+	 * Gets the component 1 (Reporting Options).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Reporting Options (component1).
-	 * @return the Reporting Options from component1
+	 * Gets the Reporting Options (component 1).
+	 * @return the Reporting Options from component 1
 	 */
 	public String getReportingOptions() {
 		return getComponent(1);

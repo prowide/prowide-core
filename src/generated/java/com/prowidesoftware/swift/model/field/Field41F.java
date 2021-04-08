@@ -277,32 +277,32 @@ public class Field41F extends Field implements Serializable, BICContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (BIC).
-	 * @return the component1
+	 * Gets the component 1 (BIC).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as BIC
-	 * @return the component1 converted to BIC or null if cannot be converted
+	 * Get the component 1 as BIC
+	 * @return the component 1 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getComponent1AsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(1));
 	}
 
 	/**
-	 * Gets the BIC (component1).
-	 * @return the BIC from component1
+	 * Gets the BIC (component 1).
+	 * @return the BIC from component 1
 	 */
 	public String getBIC() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the BIC (component1) as BIC
-	 * @return the BIC from component1 converted to BIC or null if cannot be converted
+	 * Get the BIC (component 1) as BIC
+	 * @return the BIC from component 1 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(1));

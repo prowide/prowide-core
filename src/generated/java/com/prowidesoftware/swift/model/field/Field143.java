@@ -280,32 +280,32 @@ public class Field143 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (End Date Time).
-	 * @return the component1
+	 * Gets the component 1 (End Date Time).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getDateTime(getComponent(1));
 	}
 
 	/**
-	 * Gets the End Date Time (component1).
-	 * @return the End Date Time from component1
+	 * Gets the End Date Time (component 1).
+	 * @return the End Date Time from component 1
 	 */
 	public String getEndDateTime() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the End Date Time (component1) as Calendar
-	 * @return the End Date Time from component1 converted to Calendar or null if cannot be converted
+	 * Get the End Date Time (component 1) as Calendar
+	 * @return the End Date Time from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getEndDateTimeAsCalendar() {
 		return SwiftFormatUtils.getDateTime(getComponent(1));

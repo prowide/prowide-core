@@ -295,47 +295,47 @@ public class Field28E extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Page Number).
-	 * @return the component1
+	 * Gets the component 1 (Page Number).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Page Number (component1).
-	 * @return the Page Number from component1
+	 * Gets the Page Number (component 1).
+	 * @return the Page Number from component 1
 	 */
 	public String getPageNumber() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Page Number (component1) as Number
-	 * @return the Page Number from component1 converted to Number or null if cannot be converted
+	 * Get the Page Number (component 1) as Number
+	 * @return the Page Number from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getPageNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Continuation Indicator).
-	 * @return the component2
+	 * Gets the component 2 (Continuation Indicator).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Continuation Indicator (component2).
-	 * @return the Continuation Indicator from component2
+	 * Gets the Continuation Indicator (component 2).
+	 * @return the Continuation Indicator from component 2
 	 */
 	public String getContinuationIndicator() {
 		return getComponent(2);

@@ -276,16 +276,16 @@ public class Field77F extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (DIFACT Message).
-	 * @return the component1
+	 * Gets the component 1 (DIFACT Message).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the DIFACT Message (component1).
-	 * @return the DIFACT Message from component1
+	 * Gets the DIFACT Message (component 1).
+	 * @return the DIFACT Message from component 1
 	 */
 	public String getDIFACTMessage() {
 		return getComponent(1);

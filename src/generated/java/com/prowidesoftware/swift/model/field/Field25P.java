@@ -296,16 +296,16 @@ public class Field25P extends Field implements Serializable, BICContainer, Multi
 		return result;
 	}
 	/**
-	 * Gets the component1 (Account).
-	 * @return the component1
+	 * Gets the component 1 (Account).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Account (component1) removing its starting slashes if any.
-	 * @return the Account from component1
+	 * Gets the Account (component 1) removing its starting slashes if any.
+	 * @return the Account from component 1
 	 */
 	public String getAccount() {
 		String c = getComponent(1);
@@ -320,32 +320,32 @@ public class Field25P extends Field implements Serializable, BICContainer, Multi
 		return null;
 	}
 	/**
-	 * Gets the component2 (BIC).
-	 * @return the component2
+	 * Gets the component 2 (BIC).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as BIC
-	 * @return the component2 converted to BIC or null if cannot be converted
+	 * Get the component 2 as BIC
+	 * @return the component 2 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getComponent2AsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(2));
 	}
 
 	/**
-	 * Gets the BIC (component2).
-	 * @return the BIC from component2
+	 * Gets the BIC (component 2).
+	 * @return the BIC from component 2
 	 */
 	public String getBIC() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the BIC (component2) as BIC
-	 * @return the BIC from component2 converted to BIC or null if cannot be converted
+	 * Get the BIC (component 2) as BIC
+	 * @return the BIC from component 2 converted to BIC or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
 		return SwiftFormatUtils.getBIC(getComponent(2));

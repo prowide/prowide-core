@@ -73,9 +73,11 @@ public class Field59Test extends AbstractFieldTest {
 		assertEquals("ddd", f.getNameAndAddressLine2());
 		assertEquals("eee", f.getNameAndAddressLine3());
 		assertEquals("fff", f.getNameAndAddressLine4());
-		assertEquals("ccc"+FINWriterVisitor.SWIFT_EOL+"ddd"+FINWriterVisitor.SWIFT_EOL+"eee"+FINWriterVisitor.SWIFT_EOL+"fff", f.getNameAndAddress());
+		assertEquals("ccc"+FINWriterVisitor.SWIFT_EOL+"ddd"+FINWriterVisitor.SWIFT_EOL+"eee"+FINWriterVisitor.SWIFT_EOL+"fff", f.getNameAndAddress(FINWriterVisitor.SWIFT_EOL));
+		assertEquals("ccc ddd eee fff", f.getNameAndAddress(" "));
+		assertEquals("cccdddeeefff", f.getNameAndAddress());
 		f.setComponent3(null);
-		assertEquals("ccc"+FINWriterVisitor.SWIFT_EOL+"eee"+FINWriterVisitor.SWIFT_EOL+"fff", f.getNameAndAddress());
+		assertEquals("ccc eee fff", f.getNameAndAddress(" "));
 	}
 
 	@Test
@@ -98,7 +100,9 @@ public class Field59Test extends AbstractFieldTest {
 
 		f = new Field59();
 		f.setNameAndAddress("aaaa\nbbbb\ncccc");
-		assertEquals("aaaa"+FINWriterVisitor.SWIFT_EOL+"bbbb"+FINWriterVisitor.SWIFT_EOL+"cccc", f.getNameAndAddress());
+		assertEquals("aaaa"+FINWriterVisitor.SWIFT_EOL+"bbbb"+FINWriterVisitor.SWIFT_EOL+"cccc", f.getNameAndAddress(FINWriterVisitor.SWIFT_EOL));
+		assertEquals("aaaa bbbb cccc", f.getNameAndAddress(" "));
+		assertEquals("aaaabbbbcccc", f.getNameAndAddress());
 	}
 
 	@Test

@@ -275,16 +275,16 @@ public class Field121 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Unique Reference).
-	 * @return the component1
+	 * Gets the component 1 (Unique Reference).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Unique Reference (component1).
-	 * @return the Unique Reference from component1
+	 * Gets the Unique Reference (component 1).
+	 * @return the Unique Reference from component 1
 	 */
 	public String getUniqueReference() {
 		return getComponent(1);

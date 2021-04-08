@@ -333,93 +333,93 @@ public class Field65 extends Field implements Serializable, DateContainer, Amoun
 		return result;
 	}
 	/**
-	 * Gets the component1 (D/C Mark).
-	 * @return the component1
+	 * Gets the component 1 (D/C Mark).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the D/C Mark (component1).
-	 * @return the D/C Mark from component1
+	 * Gets the D/C Mark (component 1).
+	 * @return the D/C Mark from component 1
 	 */
 	public String getDCMark() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Date).
-	 * @return the component2
+	 * Gets the component 2 (Date).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Calendar
-	 * @return the component2 converted to Calendar or null if cannot be converted
+	 * Get the component 2 as Calendar
+	 * @return the component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(2));
 	}
 
 	/**
-	 * Gets the Date (component2).
-	 * @return the Date from component2
+	 * Gets the Date (component 2).
+	 * @return the Date from component 2
 	 */
 	public String getDate() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Date (component2) as Calendar
-	 * @return the Date from component2 converted to Calendar or null if cannot be converted
+	 * Get the Date (component 2) as Calendar
+	 * @return the Date from component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDateAsCalendar() {
 		return SwiftFormatUtils.getDate2(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Currency).
-	 * @return the component3
+	 * Gets the component 3 (Currency).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Currency (component3).
-	 * @return the Currency from component3
+	 * Gets the Currency (component 3).
+	 * @return the Currency from component 3
 	 */
 	public String getCurrency() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Amount).
-	 * @return the component4
+	 * Gets the component 4 (Amount).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Number
-	 * @return the component4 converted to Number or null if cannot be converted
+	 * Get the component 4 as Number
+	 * @return the component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent4AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));
 	}
 
 	/**
-	 * Gets the Amount (component4).
-	 * @return the Amount from component4
+	 * Gets the Amount (component 4).
+	 * @return the Amount from component 4
 	 */
 	public String getAmount() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Amount (component4) as Number
-	 * @return the Amount from component4 converted to Number or null if cannot be converted
+	 * Get the Amount (component 4) as Number
+	 * @return the Amount from component 4 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(4));

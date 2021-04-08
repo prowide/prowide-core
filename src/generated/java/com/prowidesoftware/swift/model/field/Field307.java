@@ -275,16 +275,16 @@ public class Field307 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Country Codes Group).
-	 * @return the component1
+	 * Gets the component 1 (Country Codes Group).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Country Codes Group (component1).
-	 * @return the Country Codes Group from component1
+	 * Gets the Country Codes Group (component 1).
+	 * @return the Country Codes Group from component 1
 	 */
 	public String getCountryCodesGroup() {
 		return getComponent(1);

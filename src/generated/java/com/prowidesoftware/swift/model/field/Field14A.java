@@ -275,16 +275,16 @@ public class Field14A extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Convention).
-	 * @return the component1
+	 * Gets the component 1 (Convention).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Convention (component1).
-	 * @return the Convention from component1
+	 * Gets the Convention (component 1).
+	 * @return the Convention from component 1
 	 */
 	public String getConvention() {
 		return getComponent(1);

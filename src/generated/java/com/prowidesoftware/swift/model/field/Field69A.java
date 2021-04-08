@@ -318,78 +318,78 @@ public class Field69A extends Field implements Serializable, DateContainer, Gene
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Date1).
-	 * @return the component2
+	 * Gets the component 2 (Date1).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Calendar
-	 * @return the component2 converted to Calendar or null if cannot be converted
+	 * Get the component 2 as Calendar
+	 * @return the component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(2));
 	}
 
 	/**
-	 * Gets the Date1 (component2).
-	 * @return the Date1 from component2
+	 * Gets the Date1 (component 2).
+	 * @return the Date1 from component 2
 	 */
 	public String getDate1() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Date1 (component2) as Calendar
-	 * @return the Date1 from component2 converted to Calendar or null if cannot be converted
+	 * Get the Date1 (component 2) as Calendar
+	 * @return the Date1 from component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDate1AsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Date2).
-	 * @return the component3
+	 * Gets the component 3 (Date2).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Calendar
-	 * @return the component3 converted to Calendar or null if cannot be converted
+	 * Get the component 3 as Calendar
+	 * @return the component 3 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent3AsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(3));
 	}
 
 	/**
-	 * Gets the Date2 (component3).
-	 * @return the Date2 from component3
+	 * Gets the Date2 (component 3).
+	 * @return the Date2 from component 3
 	 */
 	public String getDate2() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Date2 (component3) as Calendar
-	 * @return the Date2 from component3 converted to Calendar or null if cannot be converted
+	 * Get the Date2 (component 3) as Calendar
+	 * @return the Date2 from component 3 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDate2AsCalendar() {
 		return SwiftFormatUtils.getDate4(getComponent(3));

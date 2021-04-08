@@ -275,16 +275,16 @@ public class Field12F extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Option Style).
-	 * @return the component1
+	 * Gets the component 1 (Option Style).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Option Style (component1).
-	 * @return the Option Style from component1
+	 * Gets the Option Style (component 1).
+	 * @return the Option Style from component 1
 	 */
 	public String getOptionStyle() {
 		return getComponent(1);

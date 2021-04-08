@@ -275,16 +275,16 @@ public class Field119 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Validation Flag).
-	 * @return the component1
+	 * Gets the component 1 (Validation Flag).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Validation Flag (component1).
-	 * @return the Validation Flag from component1
+	 * Gets the Validation Flag (component 1).
+	 * @return the Validation Flag from component 1
 	 */
 	public String getValidationFlag() {
 		return getComponent(1);

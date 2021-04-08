@@ -275,16 +275,16 @@ public class Field108 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (MUR).
-	 * @return the component1
+	 * Gets the component 1 (MUR).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the MUR (component1).
-	 * @return the MUR from component1
+	 * Gets the MUR (component 1).
+	 * @return the MUR from component 1
 	 */
 	public String getMUR() {
 		return getComponent(1);

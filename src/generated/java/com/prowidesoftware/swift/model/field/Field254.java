@@ -335,125 +335,125 @@ public class Field254 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Start MOR).
-	 * @return the component1
+	 * Gets the component 1 (Start MOR).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as MOR
-	 * @return the component1 converted to MOR or null if cannot be converted
+	 * Get the component 1 as MOR
+	 * @return the component 1 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getComponent1AsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(1));
 	}
 
 	/**
-	 * Gets the Start MOR (component1).
-	 * @return the Start MOR from component1
+	 * Gets the Start MOR (component 1).
+	 * @return the Start MOR from component 1
 	 */
 	public String getStartMOR() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Start MOR (component1) as MOR
-	 * @return the Start MOR from component1 converted to MOR or null if cannot be converted
+	 * Get the Start MOR (component 1) as MOR
+	 * @return the Start MOR from component 1 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getStartMORAsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (End MOR).
-	 * @return the component2
+	 * Gets the component 2 (End MOR).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as MOR
-	 * @return the component2 converted to MOR or null if cannot be converted
+	 * Get the component 2 as MOR
+	 * @return the component 2 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getComponent2AsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(2));
 	}
 
 	/**
-	 * Gets the End MOR (component2).
-	 * @return the End MOR from component2
+	 * Gets the End MOR (component 2).
+	 * @return the End MOR from component 2
 	 */
 	public String getEndMOR() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the End MOR (component2) as MOR
-	 * @return the End MOR from component2 converted to MOR or null if cannot be converted
+	 * Get the End MOR (component 2) as MOR
+	 * @return the End MOR from component 2 converted to MOR or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.MOR getEndMORAsMOR() {
 		return SwiftFormatUtils.getMOR(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Start Time).
-	 * @return the component3
+	 * Gets the component 3 (Start Time).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Calendar
-	 * @return the component3 converted to Calendar or null if cannot be converted
+	 * Get the component 3 as Calendar
+	 * @return the component 3 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent3AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(3));
 	}
 
 	/**
-	 * Gets the Start Time (component3).
-	 * @return the Start Time from component3
+	 * Gets the Start Time (component 3).
+	 * @return the Start Time from component 3
 	 */
 	public String getStartTime() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Start Time (component3) as Calendar
-	 * @return the Start Time from component3 converted to Calendar or null if cannot be converted
+	 * Get the Start Time (component 3) as Calendar
+	 * @return the Start Time from component 3 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getStartTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(3));
 	}
 	/**
-	 * Gets the component4 (End Time).
-	 * @return the component4
+	 * Gets the component 4 (End Time).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Calendar
-	 * @return the component4 converted to Calendar or null if cannot be converted
+	 * Get the component 4 as Calendar
+	 * @return the component 4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(4));
 	}
 
 	/**
-	 * Gets the End Time (component4).
-	 * @return the End Time from component4
+	 * Gets the End Time (component 4).
+	 * @return the End Time from component 4
 	 */
 	public String getEndTime() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the End Time (component4) as Calendar
-	 * @return the End Time from component4 converted to Calendar or null if cannot be converted
+	 * Get the End Time (component 4) as Calendar
+	 * @return the End Time from component 4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getEndTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(4));

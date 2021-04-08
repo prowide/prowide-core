@@ -280,32 +280,32 @@ public class Field110 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Window Size).
-	 * @return the component1
+	 * Gets the component 1 (Window Size).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Window Size (component1).
-	 * @return the Window Size from component1
+	 * Gets the Window Size (component 1).
+	 * @return the Window Size from component 1
 	 */
 	public String getWindowSize() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Window Size (component1) as Number
-	 * @return the Window Size from component1 converted to Number or null if cannot be converted
+	 * Get the Window Size (component 1) as Number
+	 * @return the Window Size from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getWindowSizeAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));

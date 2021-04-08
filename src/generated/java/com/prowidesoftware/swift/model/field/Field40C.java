@@ -294,31 +294,31 @@ public class Field40C extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Type).
-	 * @return the component1
+	 * Gets the component 1 (Type).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Type (component1).
-	 * @return the Type from component1
+	 * Gets the Type (component 1).
+	 * @return the Type from component 1
 	 */
 	public String getType() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Narrative).
-	 * @return the component2
+	 * Gets the component 2 (Narrative).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Narrative (component2).
-	 * @return the Narrative from component2
+	 * Gets the Narrative (component 2).
+	 * @return the Narrative from component 2
 	 */
 	public String getNarrative() {
 		return getComponent(2);

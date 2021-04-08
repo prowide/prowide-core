@@ -280,32 +280,32 @@ public class Field120 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Identifier).
-	 * @return the component1
+	 * Gets the component 1 (Identifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Identifier (component1).
-	 * @return the Identifier from component1
+	 * Gets the Identifier (component 1).
+	 * @return the Identifier from component 1
 	 */
 	public String getIdentifier() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Identifier (component1) as Number
-	 * @return the Identifier from component1 converted to Number or null if cannot be converted
+	 * Get the Identifier (component 1) as Number
+	 * @return the Identifier from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getIdentifierAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));

@@ -275,16 +275,16 @@ public class Field12 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Message Type).
-	 * @return the component1
+	 * Gets the component 1 (Message Type).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Message Type (component1).
-	 * @return the Message Type from component1
+	 * Gets the Message Type (component 1).
+	 * @return the Message Type from component 1
 	 */
 	public String getMessageType() {
 		return getComponent(1);

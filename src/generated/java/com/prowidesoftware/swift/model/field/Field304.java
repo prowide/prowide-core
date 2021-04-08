@@ -292,31 +292,31 @@ public class Field304 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Country Code).
-	 * @return the component1
+	 * Gets the component 1 (Country Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Country Code (component1).
-	 * @return the Country Code from component1
+	 * Gets the Country Code (component 1).
+	 * @return the Country Code from component 1
 	 */
 	public String getCountryCode() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Region).
-	 * @return the component2
+	 * Gets the component 2 (Region).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Region (component2).
-	 * @return the Region from component2
+	 * Gets the Region (component 2).
+	 * @return the Region from component 2
 	 */
 	public String getRegion() {
 		return getComponent(2);

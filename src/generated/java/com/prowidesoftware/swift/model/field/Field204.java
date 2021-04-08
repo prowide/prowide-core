@@ -275,16 +275,16 @@ public class Field204 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Logical Terminal Select State).
-	 * @return the component1
+	 * Gets the component 1 (Logical Terminal Select State).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Logical Terminal Select State (component1).
-	 * @return the Logical Terminal Select State from component1
+	 * Gets the Logical Terminal Select State (component 1).
+	 * @return the Logical Terminal Select State from component 1
 	 */
 	public String getLogicalTerminalSelectState() {
 		return getComponent(1);

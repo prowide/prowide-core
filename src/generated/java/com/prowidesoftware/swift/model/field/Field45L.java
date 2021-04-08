@@ -275,16 +275,16 @@ public class Field45L extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Narrative).
-	 * @return the component1
+	 * Gets the component 1 (Narrative).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Narrative (component1).
-	 * @return the Narrative from component1
+	 * Gets the Narrative (component 1).
+	 * @return the Narrative from component 1
 	 */
 	public String getNarrative() {
 		return getComponent(1);

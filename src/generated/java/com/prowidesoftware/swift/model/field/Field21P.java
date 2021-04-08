@@ -275,16 +275,16 @@ public class Field21P extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Reference).
-	 * @return the component1
+	 * Gets the component 1 (Reference).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Reference (component1).
-	 * @return the Reference from component1
+	 * Gets the Reference (component 1).
+	 * @return the Reference from component 1
 	 */
 	public String getReference() {
 		return getComponent(1);

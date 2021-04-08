@@ -280,32 +280,32 @@ public class Field151 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Session Number).
-	 * @return the component1
+	 * Gets the component 1 (Session Number).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Session Number (component1).
-	 * @return the Session Number from component1
+	 * Gets the Session Number (component 1).
+	 * @return the Session Number from component 1
 	 */
 	public String getSessionNumber() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Session Number (component1) as Number
-	 * @return the Session Number from component1 converted to Number or null if cannot be converted
+	 * Get the Session Number (component 1) as Number
+	 * @return the Session Number from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getSessionNumberAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));

@@ -275,16 +275,16 @@ public class Field339 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Subset Name).
-	 * @return the component1
+	 * Gets the component 1 (Subset Name).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Subset Name (component1).
-	 * @return the Subset Name from component1
+	 * Gets the Subset Name (component 1).
+	 * @return the Subset Name from component 1
 	 */
 	public String getSubsetName() {
 		return getComponent(1);

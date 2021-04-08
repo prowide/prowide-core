@@ -342,123 +342,134 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Code).
-	 * @return the component1
+	 * Gets the component 1 (Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Code (component1).
-	 * @return the Code from component1
+	 * Gets the Code (component 1).
+	 * @return the Code from component 1
 	 */
 	public String getCode() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Name and Address).
-	 * @return the component2
+	 * Gets the component 2 (Name and Address).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Name and Address (component2).
-	 * @return the Name and Address from component2
+	 * Gets the Name and Address (component 2).
+	 * @return the Name and Address from component 2
 	 */
 	public String getNameandAddressLine1() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Name and Address (component3).
-	 * @return the Name and Address from component3
+	 * Gets the Name and Address (component 3).
+	 * @return the Name and Address from component 3
 	 */
 	public String getNameandAddressLine2() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Name and Address (component4).
-	 * @return the Name and Address from component4
+	 * Gets the Name and Address (component 4).
+	 * @return the Name and Address from component 4
 	 */
 	public String getNameandAddressLine3() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Name and Address (component5).
-	 * @return the Name and Address from component5
+	 * Gets the Name and Address (component 5).
+	 * @return the Name and Address from component 5
 	 */
 	public String getNameandAddressLine4() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Gets the Name and Address (component6).
-	 * @return the Name and Address from component6
+	 * Gets the Name and Address (component 6).
+	 * @return the Name and Address from component 6
 	 */
 	public String getNameandAddressLine5() {
 		return getComponent(6);
 	}
 
 	/**
-	 * Gets the Name and Address (component7).
-	 * @return the Name and Address from component7
+	 * Gets the Name and Address (component 7).
+	 * @return the Name and Address from component 7
 	 */
 	public String getNameandAddressLine6() {
 		return getComponent(7);
 	}
 
 	/**
-	 * Gets the Name and Address as a concatenation of component2 to component7.
+	 * Gets the Name and Address as a concatenation of component 2 to component 7.
 	 * @return the Name and Address from components
 	 */
 	public String getNameandAddress() {
+		return getNameandAddress(null);
+	}
+
+	/**
+	 * Gets the Name and Address as a concatenation of component 2 to component 7 joined together with a copy of the
+	 * specified delimiter.
+	 * @param deli the delimiter that separates each component
+	 * @return the Name and Address from components
+	 * @since 9.1.4
+	 */
+	public String getNameandAddress(CharSequence deli) {
 		StringBuilder result = new StringBuilder();
 		for (int i = 2 ; i < 8 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			if (getComponent(i) != null) {
+			    if (deli != null && result.length() > 0) {
+                    result.append(deli);
+                }
+				result.append(getComponent(i));
 			}
 		}
 		return result.toString();
 	}
 	/**
-	 * Gets the component3 (Name and Address).
-	 * @return the component3
+	 * Gets the component 3 (Name and Address).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Name and Address).
-	 * @return the component4
+	 * Gets the component 4 (Name and Address).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 	/**
-	 * Gets the component5 (Name and Address).
-	 * @return the component5
+	 * Gets the component 5 (Name and Address).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 	/**
-	 * Gets the component6 (Name and Address).
-	 * @return the component6
+	 * Gets the component 6 (Name and Address).
+	 * @return the component 6
 	 */
 	public String getComponent6() {
 		return getComponent(6);
 	}
 	/**
-	 * Gets the component7 (Name and Address).
-	 * @return the component7
+	 * Gets the component 7 (Name and Address).
+	 * @return the component 7
 	 */
 	public String getComponent7() {
 		return getComponent(7);

@@ -275,16 +275,16 @@ public class Field14F extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Option).
-	 * @return the component1
+	 * Gets the component 1 (Option).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Option (component1).
-	 * @return the Option from component1
+	 * Gets the Option (component 1).
+	 * @return the Option from component 1
 	 */
 	public String getOption() {
 		return getComponent(1);

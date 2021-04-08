@@ -275,16 +275,16 @@ public class Field117 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Authentication Code).
-	 * @return the component1
+	 * Gets the component 1 (Authentication Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Authentication Code (component1).
-	 * @return the Authentication Code from component1
+	 * Gets the Authentication Code (component 1).
+	 * @return the Authentication Code from component 1
 	 */
 	public String getAuthenticationCode() {
 		return getComponent(1);

@@ -319,62 +319,62 @@ public class Field35H extends Field implements Serializable, AmountContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Sign).
-	 * @return the component1
+	 * Gets the component 1 (Sign).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Sign (component1).
-	 * @return the Sign from component1
+	 * Gets the Sign (component 1).
+	 * @return the Sign from component 1
 	 */
 	public String getSign() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Currency).
-	 * @return the component2
+	 * Gets the component 2 (Currency).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Currency (component2).
-	 * @return the Currency from component2
+	 * Gets the Currency (component 2).
+	 * @return the Currency from component 2
 	 */
 	public String getCurrency() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Amount).
-	 * @return the component3
+	 * Gets the component 3 (Amount).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Get the component3 as Number
-	 * @return the component3 converted to Number or null if cannot be converted
+	 * Get the component 3 as Number
+	 * @return the component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent3AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 
 	/**
-	 * Gets the Amount (component3).
-	 * @return the Amount from component3
+	 * Gets the Amount (component 3).
+	 * @return the Amount from component 3
 	 */
 	public String getAmount() {
 		return getComponent(3);
 	}
 	
 	/**
-	 * Get the Amount (component3) as Number
-	 * @return the Amount from component3 converted to Number or null if cannot be converted
+	 * Get the Amount (component 3) as Number
+	 * @return the Amount from component 3 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(3));

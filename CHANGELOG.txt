@@ -3,6 +3,8 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.4
+  * (JIRA-501) Added getNarrative(deli), getNameAndAddress(deli) and similar getters in Field classes to get a concatenation of the relevant components with a specific delimiter
+  * (JIRA-501) Fixed the getNarrative(), getNameAndAddress() and similar getters in Field classes to do a simple join of the relevant components, without CRLF and without components value trim
   * (JIRA-505) Fixed SwiftFormatUtils#decimalsInAmount(BigDecimal)
   * NPE prevention in AbstractMT.getFields() when the parsed FIN content is invalid
   * Added UETRUtils to generate the GPI unique end-to-end transaction reference, mandatory for several payment messages

@@ -294,31 +294,31 @@ public class Field340 extends Field implements Serializable, DateContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Country Code).
-	 * @return the component1
+	 * Gets the component 1 (Country Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Country Code (component1).
-	 * @return the Country Code from component1
+	 * Gets the Country Code (component 1).
+	 * @return the Country Code from component 1
 	 */
 	public String getCountryCode() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Dates).
-	 * @return the component2
+	 * Gets the component 2 (Dates).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Dates (component2).
-	 * @return the Dates from component2
+	 * Gets the Dates (component 2).
+	 * @return the Dates from component 2
 	 */
 	public String getDates() {
 		return getComponent(2);

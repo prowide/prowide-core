@@ -280,32 +280,32 @@ public class Field173 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Day Time).
-	 * @return the component1
+	 * Gets the component 1 (Day Time).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getDayTime(getComponent(1));
 	}
 
 	/**
-	 * Gets the Day Time (component1).
-	 * @return the Day Time from component1
+	 * Gets the Day Time (component 1).
+	 * @return the Day Time from component 1
 	 */
 	public String getDayTime() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Day Time (component1) as Calendar
-	 * @return the Day Time from component1 converted to Calendar or null if cannot be converted
+	 * Get the Day Time (component 1) as Calendar
+	 * @return the Day Time from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getDayTimeAsCalendar() {
 		return SwiftFormatUtils.getDayTime(getComponent(1));

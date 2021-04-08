@@ -296,47 +296,47 @@ public class Field37K extends Field implements Serializable, AmountContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Currency).
-	 * @return the component1
+	 * Gets the component 1 (Currency).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Currency (component1).
-	 * @return the Currency from component1
+	 * Gets the Currency (component 1).
+	 * @return the Currency from component 1
 	 */
 	public String getCurrency() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Rate).
-	 * @return the component2
+	 * Gets the component 2 (Rate).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Rate (component2).
-	 * @return the Rate from component2
+	 * Gets the Rate (component 2).
+	 * @return the Rate from component 2
 	 */
 	public String getRate() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Rate (component2) as Number
-	 * @return the Rate from component2 converted to Number or null if cannot be converted
+	 * Get the Rate (component 2) as Number
+	 * @return the Rate from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getRateAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));

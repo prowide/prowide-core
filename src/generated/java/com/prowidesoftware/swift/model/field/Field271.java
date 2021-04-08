@@ -299,47 +299,47 @@ public class Field271 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Timestamp).
-	 * @return the component1
+	 * Gets the component 1 (Timestamp).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Calendar
-	 * @return the component1 converted to Calendar or null if cannot be converted
+	 * Get the component 1 as Calendar
+	 * @return the component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent1AsCalendar() {
 		return SwiftFormatUtils.getDateTimeShortYear(getComponent(1));
 	}
 
 	/**
-	 * Gets the Timestamp (component1).
-	 * @return the Timestamp from component1
+	 * Gets the Timestamp (component 1).
+	 * @return the Timestamp from component 1
 	 */
 	public String getTimestamp() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Timestamp (component1) as Calendar
-	 * @return the Timestamp from component1 converted to Calendar or null if cannot be converted
+	 * Get the Timestamp (component 1) as Calendar
+	 * @return the Timestamp from component 1 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getTimestampAsCalendar() {
 		return SwiftFormatUtils.getDateTimeShortYear(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Logout Block).
-	 * @return the component2
+	 * Gets the component 2 (Logout Block).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Logout Block (component2).
-	 * @return the Logout Block from component2
+	 * Gets the Logout Block (component 2).
+	 * @return the Logout Block from component 2
 	 */
 	public String getLogoutBlock() {
 		return getComponent(2);

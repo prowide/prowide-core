@@ -275,16 +275,16 @@ public class Field124 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (MT).
-	 * @return the component1
+	 * Gets the component 1 (MT).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the MT (component1).
-	 * @return the MT from component1
+	 * Gets the MT (component 1).
+	 * @return the MT from component 1
 	 */
 	public String getMT() {
 		return getComponent(1);

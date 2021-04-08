@@ -275,16 +275,16 @@ public class Field12G extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Early Termination  Style).
-	 * @return the component1
+	 * Gets the component 1 (Early Termination  Style).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Early Termination  Style (component1).
-	 * @return the Early Termination  Style from component1
+	 * Gets the Early Termination  Style (component 1).
+	 * @return the Early Termination  Style from component 1
 	 */
 	public String getEarlyTerminationStyle() {
 		return getComponent(1);

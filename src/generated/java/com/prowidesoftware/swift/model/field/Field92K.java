@@ -292,31 +292,31 @@ public class Field92K extends Field implements Serializable, GenericField {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Rate Type Code).
-	 * @return the component2
+	 * Gets the component 2 (Rate Type Code).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Rate Type Code (component2).
-	 * @return the Rate Type Code from component2
+	 * Gets the Rate Type Code (component 2).
+	 * @return the Rate Type Code from component 2
 	 */
 	public String getRateTypeCode() {
 		return getComponent(2);

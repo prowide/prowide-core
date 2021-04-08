@@ -352,92 +352,92 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Data Source Scheme).
-	 * @return the component2
+	 * Gets the component 2 (Data Source Scheme).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Data Source Scheme (component2).
-	 * @return the Data Source Scheme from component2
+	 * Gets the Data Source Scheme (component 2).
+	 * @return the Data Source Scheme from component 2
 	 */
 	public String getDataSourceScheme() {
 		return getComponent(2);
 	}
 	/**
-	 * Gets the component3 (Quantity Type Code).
-	 * @return the component3
+	 * Gets the component 3 (Quantity Type Code).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Quantity Type Code (component3).
-	 * @return the Quantity Type Code from component3
+	 * Gets the Quantity Type Code (component 3).
+	 * @return the Quantity Type Code from component 3
 	 */
 	public String getQuantityTypeCode() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Sign).
-	 * @return the component4
+	 * Gets the component 4 (Sign).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Sign (component4).
-	 * @return the Sign from component4
+	 * Gets the Sign (component 4).
+	 * @return the Sign from component 4
 	 */
 	public String getSign() {
 		return getComponent(4);
 	}
 	/**
-	 * Gets the component5 (Balance Amount).
-	 * @return the component5
+	 * Gets the component 5 (Balance Amount).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Get the component5 as Number
-	 * @return the component5 converted to Number or null if cannot be converted
+	 * Get the component 5 as Number
+	 * @return the component 5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent5AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));
 	}
 
 	/**
-	 * Gets the Balance Amount (component5).
-	 * @return the Balance Amount from component5
+	 * Gets the Balance Amount (component 5).
+	 * @return the Balance Amount from component 5
 	 */
 	public String getBalanceAmount() {
 		return getComponent(5);
 	}
 	
 	/**
-	 * Get the Balance Amount (component5) as Number
-	 * @return the Balance Amount from component5 converted to Number or null if cannot be converted
+	 * Get the Balance Amount (component 5) as Number
+	 * @return the Balance Amount from component 5 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getBalanceAmountAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(5));

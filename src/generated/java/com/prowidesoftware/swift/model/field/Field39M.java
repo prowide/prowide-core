@@ -275,16 +275,16 @@ public class Field39M extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Country Code).
-	 * @return the component1
+	 * Gets the component 1 (Country Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Country Code (component1).
-	 * @return the Country Code from component1
+	 * Gets the Country Code (component 1).
+	 * @return the Country Code from component 1
 	 */
 	public String getCountryCode() {
 		return getComponent(1);

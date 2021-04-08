@@ -294,31 +294,31 @@ public class Field23G extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Function).
-	 * @return the component1
+	 * Gets the component 1 (Function).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Function (component1).
-	 * @return the Function from component1
+	 * Gets the Function (component 1).
+	 * @return the Function from component 1
 	 */
 	public String getFunction() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Subfunction).
-	 * @return the component2
+	 * Gets the component 2 (Subfunction).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Subfunction (component2).
-	 * @return the Subfunction from component2
+	 * Gets the Subfunction (component 2).
+	 * @return the Subfunction from component 2
 	 */
 	public String getSubfunction() {
 		return getComponent(2);

@@ -290,31 +290,31 @@ public class Field23X extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Code).
-	 * @return the component1
+	 * Gets the component 1 (Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Code (component1).
-	 * @return the Code from component1
+	 * Gets the Code (component 1).
+	 * @return the Code from component 1
 	 */
 	public String getCode() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (File Name Or Reference).
-	 * @return the component2
+	 * Gets the component 2 (File Name Or Reference).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the File Name Or Reference (component2).
-	 * @return the File Name Or Reference from component2
+	 * Gets the File Name Or Reference (component 2).
+	 * @return the File Name Or Reference from component 2
 	 */
 	public String getFileNameOrReference() {
 		return getComponent(2);

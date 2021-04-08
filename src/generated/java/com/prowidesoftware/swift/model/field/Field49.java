@@ -275,16 +275,16 @@ public class Field49 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Instruction).
-	 * @return the component1
+	 * Gets the component 1 (Instruction).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Instruction (component1).
-	 * @return the Instruction from component1
+	 * Gets the Instruction (component 1).
+	 * @return the Instruction from component 1
 	 */
 	public String getInstruction() {
 		return getComponent(1);

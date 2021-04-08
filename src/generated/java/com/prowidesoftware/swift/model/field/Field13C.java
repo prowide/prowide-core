@@ -332,93 +332,93 @@ public class Field13C extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Code).
-	 * @return the component1
+	 * Gets the component 1 (Code).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Code (component1).
-	 * @return the Code from component1
+	 * Gets the Code (component 1).
+	 * @return the Code from component 1
 	 */
 	public String getCode() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Time).
-	 * @return the component2
+	 * Gets the component 2 (Time).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Calendar
-	 * @return the component2 converted to Calendar or null if cannot be converted
+	 * Get the component 2 as Calendar
+	 * @return the component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent2AsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(2));
 	}
 
 	/**
-	 * Gets the Time (component2).
-	 * @return the Time from component2
+	 * Gets the Time (component 2).
+	 * @return the Time from component 2
 	 */
 	public String getTime() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Time (component2) as Calendar
-	 * @return the Time from component2 converted to Calendar or null if cannot be converted
+	 * Get the Time (component 2) as Calendar
+	 * @return the Time from component 2 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getTimeAsCalendar() {
 		return SwiftFormatUtils.getTime3(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Sign).
-	 * @return the component3
+	 * Gets the component 3 (Sign).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Sign (component3).
-	 * @return the Sign from component3
+	 * Gets the Sign (component 3).
+	 * @return the Sign from component 3
 	 */
 	public String getSign() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Offset).
-	 * @return the component4
+	 * Gets the component 4 (Offset).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Get the component4 as Calendar
-	 * @return the component4 converted to Calendar or null if cannot be converted
+	 * Get the component 4 as Calendar
+	 * @return the component 4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getComponent4AsCalendar() {
 		return SwiftFormatUtils.getOffset(getComponent(4));
 	}
 
 	/**
-	 * Gets the Offset (component4).
-	 * @return the Offset from component4
+	 * Gets the Offset (component 4).
+	 * @return the Offset from component 4
 	 */
 	public String getOffset() {
 		return getComponent(4);
 	}
 	
 	/**
-	 * Get the Offset (component4) as Calendar
-	 * @return the Offset from component4 converted to Calendar or null if cannot be converted
+	 * Get the Offset (component 4) as Calendar
+	 * @return the Offset from component 4 converted to Calendar or null if cannot be converted
 	 */
 	public java.util.Calendar getOffsetAsCalendar() {
 		return SwiftFormatUtils.getOffset(getComponent(4));

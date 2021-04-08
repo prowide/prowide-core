@@ -283,32 +283,32 @@ public class Field37P extends Field implements Serializable, AmountContainer {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Rate).
-	 * @return the component1
+	 * Gets the component 1 (Rate).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Rate (component1).
-	 * @return the Rate from component1
+	 * Gets the Rate (component 1).
+	 * @return the Rate from component 1
 	 */
 	public String getRate() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Rate (component1) as Number
-	 * @return the Rate from component1 converted to Number or null if cannot be converted
+	 * Get the Rate (component 1) as Number
+	 * @return the Rate from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getRateAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));

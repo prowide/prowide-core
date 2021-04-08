@@ -275,32 +275,32 @@ public class Field102 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (LT Address).
-	 * @return the component1
+	 * Gets the component 1 (LT Address).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as LogicalTerminalAddress
-	 * @return the component1 converted to LogicalTerminalAddress or null if cannot be converted
+	 * Get the component 1 as LogicalTerminalAddress
+	 * @return the component 1 converted to LogicalTerminalAddress or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getComponent1AsLogicalTerminalAddress() {
 		return SwiftFormatUtils.getLTAddress(getComponent(1));
 	}
 
 	/**
-	 * Gets the LT Address (component1).
-	 * @return the LT Address from component1
+	 * Gets the LT Address (component 1).
+	 * @return the LT Address from component 1
 	 */
 	public String getLTAddress() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the LT Address (component1) as LogicalTerminalAddress
-	 * @return the LT Address from component1 converted to LogicalTerminalAddress or null if cannot be converted
+	 * Get the LT Address (component 1) as LogicalTerminalAddress
+	 * @return the LT Address from component 1 converted to LogicalTerminalAddress or null if cannot be converted
 	 */
 	public com.prowidesoftware.swift.model.LogicalTerminalAddress getLTAddressAsLogicalTerminalAddress() {
 		return SwiftFormatUtils.getLTAddress(getComponent(1));

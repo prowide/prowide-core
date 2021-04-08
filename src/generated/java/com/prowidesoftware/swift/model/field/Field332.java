@@ -304,63 +304,63 @@ public class Field332 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Total Messages Sent).
-	 * @return the component1
+	 * Gets the component 1 (Total Messages Sent).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Get the component1 as Number
-	 * @return the component1 converted to Number or null if cannot be converted
+	 * Get the component 1 as Number
+	 * @return the component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent1AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 
 	/**
-	 * Gets the Total Messages Sent (component1).
-	 * @return the Total Messages Sent from component1
+	 * Gets the Total Messages Sent (component 1).
+	 * @return the Total Messages Sent from component 1
 	 */
 	public String getTotalMessagesSent() {
 		return getComponent(1);
 	}
 	
 	/**
-	 * Get the Total Messages Sent (component1) as Number
-	 * @return the Total Messages Sent from component1 converted to Number or null if cannot be converted
+	 * Get the Total Messages Sent (component 1) as Number
+	 * @return the Total Messages Sent from component 1 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getTotalMessagesSentAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(1));
 	}
 	/**
-	 * Gets the component2 (Total Messages Received).
-	 * @return the component2
+	 * Gets the component 2 (Total Messages Received).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Total Messages Received (component2).
-	 * @return the Total Messages Received from component2
+	 * Gets the Total Messages Received (component 2).
+	 * @return the Total Messages Received from component 2
 	 */
 	public String getTotalMessagesReceived() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Total Messages Received (component2) as Number
-	 * @return the Total Messages Received from component2 converted to Number or null if cannot be converted
+	 * Get the Total Messages Received (component 2) as Number
+	 * @return the Total Messages Received from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getTotalMessagesReceivedAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));

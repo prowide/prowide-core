@@ -275,16 +275,16 @@ public class Field101 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Application Identifier).
-	 * @return the component1
+	 * Gets the component 1 (Application Identifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Application Identifier (component1).
-	 * @return the Application Identifier from component1
+	 * Gets the Application Identifier (component 1).
+	 * @return the Application Identifier from component 1
 	 */
 	public String getApplicationIdentifier() {
 		return getComponent(1);

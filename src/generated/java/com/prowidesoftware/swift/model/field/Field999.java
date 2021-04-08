@@ -269,8 +269,8 @@ public class Field999 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 ($label).
-	 * @return the component1
+	 * Gets the component 1 ($label).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);

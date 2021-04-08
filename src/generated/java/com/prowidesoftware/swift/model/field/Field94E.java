@@ -388,183 +388,194 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
 		return result;
 	}
 	/**
-	 * Gets the component1 (Qualifier).
-	 * @return the component1
+	 * Gets the component 1 (Qualifier).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Qualifier (component1).
-	 * @return the Qualifier from component1
+	 * Gets the Qualifier (component 1).
+	 * @return the Qualifier from component 1
 	 */
 	public String getQualifier() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Address).
-	 * @return the component2
+	 * Gets the component 2 (Address).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Address (component2).
-	 * @return the Address from component2
+	 * Gets the Address (component 2).
+	 * @return the Address from component 2
 	 */
 	public String getAddressLine1() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Gets the Address (component3).
-	 * @return the Address from component3
+	 * Gets the Address (component 3).
+	 * @return the Address from component 3
 	 */
 	public String getAddressLine2() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Address (component4).
-	 * @return the Address from component4
+	 * Gets the Address (component 4).
+	 * @return the Address from component 4
 	 */
 	public String getAddressLine3() {
 		return getComponent(4);
 	}
 
 	/**
-	 * Gets the Address (component5).
-	 * @return the Address from component5
+	 * Gets the Address (component 5).
+	 * @return the Address from component 5
 	 */
 	public String getAddressLine4() {
 		return getComponent(5);
 	}
 
 	/**
-	 * Gets the Address (component6).
-	 * @return the Address from component6
+	 * Gets the Address (component 6).
+	 * @return the Address from component 6
 	 */
 	public String getAddressLine5() {
 		return getComponent(6);
 	}
 
 	/**
-	 * Gets the Address (component7).
-	 * @return the Address from component7
+	 * Gets the Address (component 7).
+	 * @return the Address from component 7
 	 */
 	public String getAddressLine6() {
 		return getComponent(7);
 	}
 
 	/**
-	 * Gets the Address (component8).
-	 * @return the Address from component8
+	 * Gets the Address (component 8).
+	 * @return the Address from component 8
 	 */
 	public String getAddressLine7() {
 		return getComponent(8);
 	}
 
 	/**
-	 * Gets the Address (component9).
-	 * @return the Address from component9
+	 * Gets the Address (component 9).
+	 * @return the Address from component 9
 	 */
 	public String getAddressLine8() {
 		return getComponent(9);
 	}
 
 	/**
-	 * Gets the Address (component10).
-	 * @return the Address from component10
+	 * Gets the Address (component 10).
+	 * @return the Address from component 10
 	 */
 	public String getAddressLine9() {
 		return getComponent(10);
 	}
 
 	/**
-	 * Gets the Address (component11).
-	 * @return the Address from component11
+	 * Gets the Address (component 11).
+	 * @return the Address from component 11
 	 */
 	public String getAddressLine10() {
 		return getComponent(11);
 	}
 
 	/**
-	 * Gets the Address as a concatenation of component2 to component11.
+	 * Gets the Address as a concatenation of component 2 to component 11.
 	 * @return the Address from components
 	 */
 	public String getAddress() {
+		return getAddress(null);
+	}
+
+	/**
+	 * Gets the Address as a concatenation of component 2 to component 11 joined together with a copy of the
+	 * specified delimiter.
+	 * @param deli the delimiter that separates each component
+	 * @return the Address from components
+	 * @since 9.1.4
+	 */
+	public String getAddress(CharSequence deli) {
 		StringBuilder result = new StringBuilder();
 		for (int i = 2 ; i < 12 ; i++) {
-			if (StringUtils.isNotBlank(getComponent(i))) {
-				if (result.length() > 0) {
-					result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-				}
-				result.append(StringUtils.trimToEmpty(getComponent(i)));
+			if (getComponent(i) != null) {
+			    if (deli != null && result.length() > 0) {
+                    result.append(deli);
+                }
+				result.append(getComponent(i));
 			}
 		}
 		return result.toString();
 	}
 	/**
-	 * Gets the component3 (Address).
-	 * @return the component3
+	 * Gets the component 3 (Address).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 	/**
-	 * Gets the component4 (Address).
-	 * @return the component4
+	 * Gets the component 4 (Address).
+	 * @return the component 4
 	 */
 	public String getComponent4() {
 		return getComponent(4);
 	}
 	/**
-	 * Gets the component5 (Address).
-	 * @return the component5
+	 * Gets the component 5 (Address).
+	 * @return the component 5
 	 */
 	public String getComponent5() {
 		return getComponent(5);
 	}
 	/**
-	 * Gets the component6 (Address).
-	 * @return the component6
+	 * Gets the component 6 (Address).
+	 * @return the component 6
 	 */
 	public String getComponent6() {
 		return getComponent(6);
 	}
 	/**
-	 * Gets the component7 (Address).
-	 * @return the component7
+	 * Gets the component 7 (Address).
+	 * @return the component 7
 	 */
 	public String getComponent7() {
 		return getComponent(7);
 	}
 	/**
-	 * Gets the component8 (Address).
-	 * @return the component8
+	 * Gets the component 8 (Address).
+	 * @return the component 8
 	 */
 	public String getComponent8() {
 		return getComponent(8);
 	}
 	/**
-	 * Gets the component9 (Address).
-	 * @return the component9
+	 * Gets the component 9 (Address).
+	 * @return the component 9
 	 */
 	public String getComponent9() {
 		return getComponent(9);
 	}
 	/**
-	 * Gets the component10 (Address).
-	 * @return the component10
+	 * Gets the component 10 (Address).
+	 * @return the component 10
 	 */
 	public String getComponent10() {
 		return getComponent(10);
 	}
 	/**
-	 * Gets the component11 (Address).
-	 * @return the component11
+	 * Gets the component 11 (Address).
+	 * @return the component 11
 	 */
 	public String getComponent11() {
 		return getComponent(11);

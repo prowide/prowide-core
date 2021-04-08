@@ -314,62 +314,62 @@ public class Field336 extends Field implements Serializable {
 		return result;
 	}
 	/**
-	 * Gets the component1 (Delivery Subset Name).
-	 * @return the component1
+	 * Gets the component 1 (Delivery Subset Name).
+	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
 	/**
-	 * Gets the Delivery Subset Name (component1).
-	 * @return the Delivery Subset Name from component1
+	 * Gets the Delivery Subset Name (component 1).
+	 * @return the Delivery Subset Name from component 1
 	 */
 	public String getDeliverySubsetName() {
 		return getComponent(1);
 	}
 	/**
-	 * Gets the component2 (Number Of Messages).
-	 * @return the component2
+	 * Gets the component 2 (Number Of Messages).
+	 * @return the component 2
 	 */
 	public String getComponent2() {
 		return getComponent(2);
 	}
 
 	/**
-	 * Get the component2 as Number
-	 * @return the component2 converted to Number or null if cannot be converted
+	 * Get the component 2 as Number
+	 * @return the component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getComponent2AsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 
 	/**
-	 * Gets the Number Of Messages (component2).
-	 * @return the Number Of Messages from component2
+	 * Gets the Number Of Messages (component 2).
+	 * @return the Number Of Messages from component 2
 	 */
 	public String getNumberOfMessages() {
 		return getComponent(2);
 	}
 	
 	/**
-	 * Get the Number Of Messages (component2) as Number
-	 * @return the Number Of Messages from component2 converted to Number or null if cannot be converted
+	 * Get the Number Of Messages (component 2) as Number
+	 * @return the Number Of Messages from component 2 converted to Number or null if cannot be converted
 	 */
 	public java.lang.Number getNumberOfMessagesAsNumber() {
 		return SwiftFormatUtils.getNumber(getComponent(2));
 	}
 	/**
-	 * Gets the component3 (Codes).
-	 * @return the component3
+	 * Gets the component 3 (Codes).
+	 * @return the component 3
 	 */
 	public String getComponent3() {
 		return getComponent(3);
 	}
 
 	/**
-	 * Gets the Codes (component3).
-	 * @return the Codes from component3
+	 * Gets the Codes (component 3).
+	 * @return the Codes from component 3
 	 */
 	public String getCodes() {
 		return getComponent(3);

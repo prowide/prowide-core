@@ -114,8 +114,12 @@ public class Field70ETest extends AbstractFieldTest {
 	@Test
 	public void testJoinNarrative() {
 		Field70E f = new Field70E(":TXNR//FOO\n BAR");
-		assertEquals("FOO\r\nBAR", f.getNarrative());
+
+		assertEquals("FOO BAR", f.getNarrative());
+
 		assertEquals(":TXNR//FOO BAR", String.join("", f.getLines()));
+
+		// the getLines API strips leading blanks
 		assertEquals("FOOBAR", String.join("", f.getLines(2)));
 
 		assertEquals("FOO\r\n BAR", StringUtils.substringAfter(f.getValue(), "//"));
