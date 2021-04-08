@@ -3,6 +3,8 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.4
+  * Added MultiLineField interface implementation to fields: 45C, 45L and 49Z
+  * Removed MultiLineField interface implementation to field 77H since its value is always a single line
   * (JIRA-501) Added getNarrative(deli), getNameAndAddress(deli) and similar getters in Field classes to get a concatenation of the relevant components with a specific delimiter
   * (JIRA-501) Fixed the getNarrative(), getNameAndAddress() and similar getters in Field classes to do a simple join of the relevant components, without CRLF and without components value trim
   * (JIRA-505) Fixed SwiftFormatUtils#decimalsInAmount(BigDecimal)
