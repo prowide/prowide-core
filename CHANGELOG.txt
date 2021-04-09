@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.4
+  * (JIRA-508) Fixed validator pattern in field 98K
   * Added MultiLineField interface implementation to fields: 45C, 45L and 49Z
   * Removed MultiLineField interface implementation to field 77H since its value is always a single line
   * (JIRA-501) Added getNarrative(deli), getNameAndAddress(deli) and similar getters in Field classes to get a concatenation of the relevant components with a specific delimiter

@@ -55,7 +55,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>:4!c/8c/&lt;DATE4&gt;&lt;TIME2&gt;/34!x(***)</code></li>
+ * 		<li>validation pattern: <code>:4!c/8c/&lt;DATE4&gt;&lt;TIME2&gt;/34x(***)</code></li>
  * 		<li>parser pattern: <code>:S/S/&lt;DATE4&gt;&lt;TIME2&gt;/S</code></li>
  * 		<li>components pattern: <code>SSDTS</code></li>
  * </ul>
@@ -283,7 +283,7 @@ public class Field98K extends Field implements Serializable, DateContainer, Gene
 	 */
 	@Override
 	public final String validatorPattern() {
-		return ":4!c/8c/<DATE4><TIME2>/34!x(***)";
+		return ":4!c/8c/<DATE4><TIME2>/34x(***)";
 	}
 
     /**
