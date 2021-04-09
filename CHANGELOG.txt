@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.4
+  * (JIRA-510) Fixed parser of field 90L
   * (JIRA-508) Fixed validator pattern in field 98K
   * Added MultiLineField interface implementation to fields: 45C, 45L and 49Z
   * Removed MultiLineField interface implementation to field 77H since its value is always a single line

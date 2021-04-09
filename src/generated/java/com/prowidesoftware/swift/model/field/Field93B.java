@@ -57,7 +57,7 @@ import com.google.gson.JsonParser;
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>:4!c/[8c]/4!c/[&lt;N&gt;]&lt;AMOUNT&gt;15</code></li>
- * 		<li>parser pattern: <code>:S/[S]/S/[c]N</code></li>
+ * 		<li>parser pattern: <code>:S/[S]/S/[S]N</code></li>
  * 		<li>components pattern: <code>SSSSN</code></li>
  * </ul>
  *
@@ -81,7 +81,7 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_93B = "93B";
-	public static final String PARSER_PATTERN =":S/[S]/S/[c]N";
+	public static final String PARSER_PATTERN =":S/[S]/S/[S]N";
 	public static final String COMPONENTS_PATTERN = "SSSSN";
 
 	/**

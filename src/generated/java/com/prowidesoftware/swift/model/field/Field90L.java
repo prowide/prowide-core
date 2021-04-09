@@ -55,7 +55,7 @@ import com.google.gson.JsonParser;
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>:4!c//[&lt;N&gt;]&lt;AMOUNT&gt;15</code></li>
- * 		<li>parser pattern: <code>:S//N</code></li>
+ * 		<li>parser pattern: <code>:S//[S]N</code></li>
  * 		<li>components pattern: <code>SSN</code></li>
  * </ul>
  *
@@ -79,7 +79,7 @@ public class Field90L extends Field implements Serializable, AmountContainer, Ge
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_90L = "90L";
-	public static final String PARSER_PATTERN =":S//N";
+	public static final String PARSER_PATTERN =":S//[S]N";
 	public static final String COMPONENTS_PATTERN = "SSN";
 
 	/**
@@ -175,7 +175,9 @@ public class Field90L extends Field implements Serializable, AmountContainer, Ge
 	public void parse(final String value) {
 		init(3);
 		setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
-		setComponent2(SwiftParseUtils.getTokenSecondLast(value, "//"));
+		String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
+		setComponent2(SwiftParseUtils.getAlphaPrefix(toparse));
+		setComponent3(SwiftParseUtils.getNumericSuffix(toparse));
 	}
 	/**
 	 * Serializes the fields' components into the single string value (SWIFT format)
@@ -187,6 +189,7 @@ public class Field90L extends Field implements Serializable, AmountContainer, Ge
 		append(result, 1);
 		result.append("//");
 		append(result, 2);
+		append(result, 3);
 		return result.toString();
 	}
 	/**
