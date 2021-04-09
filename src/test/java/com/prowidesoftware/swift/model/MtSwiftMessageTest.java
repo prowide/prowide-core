@@ -16,6 +16,8 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.model.mt.DefaultMtMetadataStrategy;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import com.prowidesoftware.swift.model.mt.mt7xx.MT798;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -127,6 +129,72 @@ public class MtSwiftMessageTest {
         assertEquals("EUR", mt.getCurrency()); // preserved
         assertNull(mt.getValueDate());
         assertNull(mt.getTradeDate());
+    }
+
+    @Test
+    void testParseInvalidPayload() {
+        MtSwiftMessage msg = MtSwiftMessage.parse("foo bar");
+        assertNull(msg.getMessageType());
+        assertNull(msg.getSender());
+
+        SwiftMessage swiftMessage = msg.modelMessage();
+        assertNull(swiftMessage.getBlock1());
+        assertNull(swiftMessage.getBlock2());
+        assertNull(swiftMessage.getBlock3());
+        assertNull(swiftMessage.getBlock4());
+        assertNull(swiftMessage.getBlock5());
+        assertNull(swiftMessage.getUserBlocks());
+
+        // Although we may wrap it as an MT
+        MT103 mt103 = new MT103(msg);
+
+        // thew MT content is null
+        assertNull(mt103.getField20());
+        assertNull(mt103.getField32A());
+    }
+
+    @Test
+    void testParseEmptyPayload() {
+        MtSwiftMessage msg = MtSwiftMessage.parse("");
+        assertNull(msg.getMessageType());
+        assertNull(msg.getSender());
+
+        SwiftMessage swiftMessage = msg.modelMessage();
+        assertNull(swiftMessage.getBlock1());
+        assertNull(swiftMessage.getBlock2());
+        assertNull(swiftMessage.getBlock3());
+        assertNull(swiftMessage.getBlock4());
+        assertNull(swiftMessage.getBlock5());
+        assertNull(swiftMessage.getUserBlocks());
+
+        // Although we may wrap it as an MT
+        MT103 mt103 = new MT103(msg);
+
+        // thew MT content is null
+        assertNull(mt103.getField20());
+        assertNull(mt103.getField32A());
+    }
+
+    @Test
+    void testParseInvalidHeader() {
+        MtSwiftMessage msg = MtSwiftMessage.parse("Big blue sea{4:\n" +
+                ":20:123456789\n" +
+                ":77E:\n" +
+                ":27A:2/3\n" +
+                ":15A:\n" +
+                ":27:3/5\n" +
+                "-}dark green forrest");
+
+        // Still cast to a specific type
+        MT798 mt798 = new MT798(msg);
+
+        assertEquals("798", mt798.getMessageType());
+
+        // missing field is is null, as expected
+        assertNull(mt798.getField12());
+
+        // The content of block 4 is still available
+        assertEquals("123456789", mt798.getField20().getValue());
     }
 
 }

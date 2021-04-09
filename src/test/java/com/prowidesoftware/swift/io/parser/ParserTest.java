@@ -83,23 +83,6 @@ public class ParserTest {
 		assertEquals("101", msg.getBlock2().getMessageType());
 		assertEquals("DG942_171206-004", msg.getBlock4().getFieldByName("20").getValue());
 	}
-	
-	protected void formatMessage(String messagePath) {
-		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			InputStream is = ParserTest.class.getResourceAsStream(messagePath);
-			int c;
-			while ((c=is.read())!=-1) {
-				baos.write(c);
-			}
-			baos.close();
-			String xml = new String(baos.toByteArray());
-			assertNotNull(xml);
-		} catch (Throwable t) {
-			t.printStackTrace();
-			fail("error while processing: " + messagePath);
-		}
-	}
 
 	protected SwiftMessage parseMessage(String messagePath) {
 		InputStream input = ParserTest.class.getResourceAsStream("/"+messagePath);

@@ -251,6 +251,11 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 	private void applyStrategy(SwiftMessage model, MessageMetadataStrategy strategy) {
 		AbstractMT mt = model.toMT();
 
+		if (mt == null) {
+			// prevent NPE
+			return;
+		}
+
 		String reference = strategy.reference(mt).orElse(null);
 		if (StringUtils.isNotBlank(reference)) {
 			setReference(reference);
