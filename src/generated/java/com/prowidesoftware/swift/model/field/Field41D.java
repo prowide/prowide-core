@@ -272,13 +272,13 @@ public class Field41D extends Field implements Serializable, MultiLineField {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 2) {
+            return true;
+        }
         if (component == 3) {
             return true;
         }
         if (component == 4) {
-            return true;
-        }
-        if (component == 5) {
             return true;
         }
         return false;
