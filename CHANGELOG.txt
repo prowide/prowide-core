@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.4
+  * Fixed getConditionalQualifier in fields 69C, 69D and 92H
   * Fixed field 41D isOptional(component) method
   * (JIRA-510) Fixed parser of field 90L
   * (JIRA-508) Fixed validator pattern in field 98K

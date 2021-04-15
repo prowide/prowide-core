@@ -761,10 +761,9 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
     public static final Integer CONDITIONAL_QUALIFIER = 2;
    
    /**
-    * Gets the conditional qualifier.<br>
-    * The conditional qualifier is the the component following the DSS of generic fields, being component 2 or 3 depending on the field structure definition.
+    * Gets the component with the conditional (secondary) qualifier.
     *
-    * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this kind of field.
+    * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
     */
    public String getConditionalQualifier() {
        return getComponent(CONDITIONAL_QUALIFIER);
