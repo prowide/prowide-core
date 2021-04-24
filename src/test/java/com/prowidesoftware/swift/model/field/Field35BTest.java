@@ -15,13 +15,12 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test for Field35B and similar fields.
@@ -30,83 +29,83 @@ import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
  */
 public class Field35BTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("35B",
-				"ISIN HELLO\nAAAA\nBBBB\nCCCC",
-				"AAAA\nBBBB\nCCCC\nDDDD"
-			);
-	}
-	
-	@Test
-	public void testParse() {
-		Field35B f = new Field35B();
-		
-		//remaining lines are ignored by parser
-		f = new Field35B("ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD\nEEEE\nFFFF\nGGGG");
-		assertEquals("ISIN", f.getComponent1());
-		assertEquals("HELLO", f.getComponent2());
-		assertEquals("AAAA", f.getComponent3());
-		assertEquals("BBBB", f.getComponent4());
-		assertEquals("CCCC", f.getComponent5());
-		assertEquals("DDDD", f.getComponent6());
-		
-		f = new Field35B("ISIN HELLO\nAAAA\nBBBB\nCCCC");
-		assertEquals("ISIN", f.getComponent1());
-		assertEquals("HELLO", f.getComponent2());
-		assertEquals("AAAA", f.getComponent3());
-		assertEquals("BBBB", f.getComponent4());
-		assertEquals("CCCC", f.getComponent5());
-		assertNull(f.getComponent6());
-		
-		f = new Field35B("ISIN HELLO");
-		assertEquals("ISIN", f.getComponent1());
-		assertEquals("HELLO", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
-		
-		f = new Field35B("ISINHELLO");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertEquals("ISINHELLO", f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
-		
-		f = new Field35B(" ISINHELLO");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertEquals(" ISINHELLO", f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
-	}
-	
-	@Test
-	public void testGetValue() {
-		Field35B f = new Field35B();		
-		String v = "ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD";
-		f = new Field35B(v);
-		assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("35B",
+                "ISIN HELLO\nAAAA\nBBBB\nCCCC",
+                "AAAA\nBBBB\nCCCC\nDDDD"
+        );
+    }
 
-	@Test
-	public void testGetValue_2() {
-		Field35B f = new Field35B();		
-		String v = "ISIN 123456789012\nAAAA\nBBBB\nCCCC\nDDDD";
-		f = new Field35B(v);
-		assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
-	}
+    @Test
+    public void testParse() {
+        Field35B f = new Field35B();
 
-	@Test
-	public void testGetValue_3() {
-		Field35B f = new Field35B();		
-		String v = "AAAA\nBBBB\nCCCC\nDDDD";
-		f = new Field35B(v);
-		assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
-	}
+        //remaining lines are ignored by parser
+        f = new Field35B("ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD\nEEEE\nFFFF\nGGGG");
+        assertEquals("ISIN", f.getComponent1());
+        assertEquals("HELLO", f.getComponent2());
+        assertEquals("AAAA", f.getComponent3());
+        assertEquals("BBBB", f.getComponent4());
+        assertEquals("CCCC", f.getComponent5());
+        assertEquals("DDDD", f.getComponent6());
+
+        f = new Field35B("ISIN HELLO\nAAAA\nBBBB\nCCCC");
+        assertEquals("ISIN", f.getComponent1());
+        assertEquals("HELLO", f.getComponent2());
+        assertEquals("AAAA", f.getComponent3());
+        assertEquals("BBBB", f.getComponent4());
+        assertEquals("CCCC", f.getComponent5());
+        assertNull(f.getComponent6());
+
+        f = new Field35B("ISIN HELLO");
+        assertEquals("ISIN", f.getComponent1());
+        assertEquals("HELLO", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
+
+        f = new Field35B("ISINHELLO");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertEquals("ISINHELLO", f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
+
+        f = new Field35B(" ISINHELLO");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertEquals(" ISINHELLO", f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
+    }
+
+    @Test
+    public void testGetValue() {
+        Field35B f = new Field35B();
+        String v = "ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD";
+        f = new Field35B(v);
+        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+    }
+
+    @Test
+    public void testGetValue_2() {
+        Field35B f = new Field35B();
+        String v = "ISIN 123456789012\nAAAA\nBBBB\nCCCC\nDDDD";
+        f = new Field35B(v);
+        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+    }
+
+    @Test
+    public void testGetValue_3() {
+        Field35B f = new Field35B();
+        String v = "AAAA\nBBBB\nCCCC\nDDDD";
+        f = new Field35B(v);
+        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+    }
 
 }

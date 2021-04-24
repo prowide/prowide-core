@@ -17,24 +17,24 @@ package com.prowidesoftware.swift.model;
 
 /**
  * Full qualified names for attributes in block 2 input.
- * 
- * @author sebastian@prowidesoftware.com
+ *
+ * @author sebastian
  * @since 7.7
  */
 public enum SwiftBlock2InputField {
-	/*
-	 * common fields to block 2
-	 */
-	/**
-	 * @since 9.1.4
-	 */
-	Direction,
-	MessageType,
-	MessagePriority,
-	/*
-	 * specific fields of input block
-	 */
-	ReceiverAddress,
-	DeliveryMonitoring,
-	ObsolescencePeriod;
+    /*
+     * common fields to block 2
+     */
+    /**
+     * @since 9.1.4
+     */
+    Direction,
+    MessageType,
+    MessagePriority,
+    /*
+     * specific fields of input block
+     */
+    ReceiverAddress,
+    DeliveryMonitoring,
+    ObsolescencePeriod
 }

@@ -15,12 +15,10 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Swift writer tests
@@ -29,50 +27,49 @@ import org.junit.jupiter.api.Test;
  */
 public class MultilineUtilTest {
 
-	private MultilineUtil util;
+    private MultilineUtil util;
 
-	@BeforeEach
-	public void setUp() {
-		this.util = new MultilineUtil();
-	}
-	
-	/**
-	 * Returns the same array if it is empty
-	 *
-	 */
-	@Test 
-	public void testEmpty() {
-		final String [] lines = new String[0];
-		String[] got = util.removeInnerEmptyLines(lines);
-		assertSame(lines, got);
-	}
-	
-	@Test 
-	public void testReturnEmpty() {
-		final String [] lines = new String[10];
-		String[] got = util.removeInnerEmptyLines(lines);
-		assertNotNull(got);
-		assertEquals(0, got.length);
-	}
-	
-	@Test 
-	public void testReturnEmptyKeep() {
-		final String [] lines = new String[10];
-		String[] got = util.removeInnerEmptyLines(lines, true);
-		assertNotNull(got);
-		assertEquals(10, got.length);
-	}
-	
-	@Test 
-	public void testSimple1() {
-		final String [] lines = new String[3];
-		lines[0] = "foo";
-		lines[1] = "    ";
-		lines[2] = "bar";
-		String[] got = util.removeInnerEmptyLines(lines);
-		assertNotNull(got);
-		assertEquals(2, got.length);
-		assertEquals("foo", got[0]);
-		assertEquals("bar", got[1]);
-	}
+    @BeforeEach
+    public void setUp() {
+        this.util = new MultilineUtil();
+    }
+
+    /**
+     * Returns the same array if it is empty
+     */
+    @Test
+    public void testEmpty() {
+        final String[] lines = new String[0];
+        String[] got = util.removeInnerEmptyLines(lines);
+        assertSame(lines, got);
+    }
+
+    @Test
+    public void testReturnEmpty() {
+        final String[] lines = new String[10];
+        String[] got = util.removeInnerEmptyLines(lines);
+        assertNotNull(got);
+        assertEquals(0, got.length);
+    }
+
+    @Test
+    public void testReturnEmptyKeep() {
+        final String[] lines = new String[10];
+        String[] got = util.removeInnerEmptyLines(lines, true);
+        assertNotNull(got);
+        assertEquals(10, got.length);
+    }
+
+    @Test
+    public void testSimple1() {
+        final String[] lines = new String[3];
+        lines[0] = "foo";
+        lines[1] = "    ";
+        lines[2] = "bar";
+        String[] got = util.removeInnerEmptyLines(lines);
+        assertNotNull(got);
+        assertEquals(2, got.length);
+        assertEquals("foo", got[0]);
+        assertEquals("bar", got[1]);
+    }
 }

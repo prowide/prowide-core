@@ -15,49 +15,49 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Field60FTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("60F",
-				"D121212USD1234,56",
-				"121212USD1234,56"
-			);
-	}
-	
-	@Test
-	public void testSetCurrency() throws Exception {
-		assertEquals("ARS", new Field60F().setCurrency("ARS").getValue());
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("60F",
+                "D121212USD1234,56",
+                "121212USD1234,56"
+        );
+    }
 
-	@Test
-	public void testSetAmount() throws Exception {
-		assertEquals("100,", new Field60F().setAmount(100).getValue());
-	}
+    @Test
+    public void testSetCurrency() throws Exception {
+        assertEquals("ARS", new Field60F().setCurrency("ARS").getValue());
+    }
 
-	@Test
-	public void testSetDCMark() throws Exception {
-		assertEquals("D", new Field60F().setDCMark("D").getValue());
-	}
+    @Test
+    public void testSetAmount() throws Exception {
+        assertEquals("100,", new Field60F().setAmount(100).getValue());
+    }
 
-	@Test
-	public void testSetCurrencyTag() throws Exception {
-		assertEquals("ARS", new Field60F().setCurrency("ARS").asTag().getValue());
-	}
+    @Test
+    public void testSetDCMark() throws Exception {
+        assertEquals("D", new Field60F().setDCMark("D").getValue());
+    }
 
-	@Test
-	public void testSetAmountTag() throws Exception {
-		assertEquals("100,", new Field60F().setAmount(100).asTag().getValue());
-	}
+    @Test
+    public void testSetCurrencyTag() throws Exception {
+        assertEquals("ARS", new Field60F().setCurrency("ARS").asTag().getValue());
+    }
 
-	@Test
-	public void testSetDCMarkTag() throws Exception {
-		assertEquals("D", new Field60F().setDCMark("D").asTag().getValue());
-	}
+    @Test
+    public void testSetAmountTag() throws Exception {
+        assertEquals("100,", new Field60F().setAmount(100).asTag().getValue());
+    }
+
+    @Test
+    public void testSetDCMarkTag() throws Exception {
+        assertEquals("D", new Field60F().setDCMark("D").asTag().getValue());
+    }
 
 }

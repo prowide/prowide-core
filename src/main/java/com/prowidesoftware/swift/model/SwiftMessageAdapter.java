@@ -35,11 +35,11 @@ public class SwiftMessageAdapter implements JsonDeserializer<SwiftMessage>, Json
         object.addProperty("version", SwiftMessage.JSON_VERSION);
 
         JsonObject objectBlocks = new JsonObject();
-        objectBlocks.add("block1",context.serialize(src.getBlock1()));
-        objectBlocks.add("block2",context.serialize(src.getBlock2(), SwiftBlock2.class));
-        objectBlocks.add("block3",context.serialize(src.getBlock3()));
-        objectBlocks.add("block4",context.serialize(src.getBlock4()));
-        objectBlocks.add("block5",context.serialize(src.getBlock5()));
+        objectBlocks.add("block1", context.serialize(src.getBlock1()));
+        objectBlocks.add("block2", context.serialize(src.getBlock2(), SwiftBlock2.class));
+        objectBlocks.add("block3", context.serialize(src.getBlock3()));
+        objectBlocks.add("block4", context.serialize(src.getBlock4()));
+        objectBlocks.add("block5", context.serialize(src.getBlock5()));
         //TODO agregar user blocks
 
         object.add("data", objectBlocks);
@@ -52,47 +52,47 @@ public class SwiftMessageAdapter implements JsonDeserializer<SwiftMessage>, Json
 
         JsonObject jsonArray = jsonElement.getAsJsonObject().get("data").getAsJsonObject();
 
-        SwiftBlock1 block1 = jsonDeserializationContext.deserialize(jsonArray.get("block1"),SwiftBlock1.class);
+        SwiftBlock1 block1 = jsonDeserializationContext.deserialize(jsonArray.get("block1"), SwiftBlock1.class);
 
-        SwiftBlock2 block2 = jsonDeserializationContext.deserialize(jsonArray.get("block2"),SwiftBlock2.class);
+        SwiftBlock2 block2 = jsonDeserializationContext.deserialize(jsonArray.get("block2"), SwiftBlock2.class);
 
-        SwiftBlock3 block3 = jsonDeserializationContext.deserialize(jsonArray.get("block3"),SwiftBlock3.class);
+        SwiftBlock3 block3 = jsonDeserializationContext.deserialize(jsonArray.get("block3"), SwiftBlock3.class);
 
-        SwiftBlock4 block4 = jsonDeserializationContext.deserialize(jsonArray.get("block4"),SwiftBlock4.class);
+        SwiftBlock4 block4 = jsonDeserializationContext.deserialize(jsonArray.get("block4"), SwiftBlock4.class);
 
-        SwiftBlock5 block5 = jsonDeserializationContext.deserialize(jsonArray.get("block5"),SwiftBlock5.class);
+        SwiftBlock5 block5 = jsonDeserializationContext.deserialize(jsonArray.get("block5"), SwiftBlock5.class);
 
         List<SwiftBlockUser> blockUsers = new ArrayList<>();
 
-        if (jsonArray.get("userBlocks") != null){
+        if (jsonArray.get("userBlocks") != null) {
             for (JsonElement blockUser : jsonArray.get("userBlocks").getAsJsonArray()) {
-                blockUsers.add(jsonDeserializationContext.deserialize(blockUser,SwiftBlockUser.class));
+                blockUsers.add(jsonDeserializationContext.deserialize(blockUser, SwiftBlockUser.class));
             }
         }
 
         SwiftMessage sm = new SwiftMessage();
 
-        if (block1 != null){
+        if (block1 != null) {
             sm.addBlock(block1);
         }
 
-        if (block2 != null){
+        if (block2 != null) {
             sm.addBlock(block2);
         }
 
-        if (block3 != null){
+        if (block3 != null) {
             sm.addBlock(block3);
         }
 
-        if (block4 != null){
+        if (block4 != null) {
             sm.addBlock(block4);
         }
 
-        if (block5 != null){
+        if (block5 != null) {
             sm.addBlock(block5);
         }
 
-        if (blockUsers.size() > 0){
+        if (blockUsers.size() > 0) {
             sm.setUserBlocks(blockUsers);
         }
 

@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 public class FieldJsonTest {
 
-    private JsonParser parser = new JsonParser();
+    private final JsonParser parser = new JsonParser();
 
     @Test
     public void toJsonField32A() {
@@ -75,7 +75,7 @@ public class FieldJsonTest {
         //{"name":"70","narrative":"\"VALUE 1 \\r\\nVALUE 2 \\r\\nVALUE 3\"";}
 
         JsonObject o = parser.parse(f70.toJson()).getAsJsonObject();
-        assertEquals("VALUE 1 VALUE 2 VALUE 3" , o.get("narrative").getAsString().replace("\n", "").replace("\r", ""));
+        assertEquals("VALUE 1 VALUE 2 VALUE 3", o.get("narrative").getAsString().replace("\n", "").replace("\r", ""));
     }
 
     @Test

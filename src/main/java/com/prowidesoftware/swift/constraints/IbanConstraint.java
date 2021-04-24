@@ -36,10 +36,12 @@ import static java.lang.annotation.ElementType.*;
  */
 @Documented
 @Constraint(validatedBy = IbanValidator.class)
-@Target({ METHOD, FIELD, PARAMETER })
+@Target({METHOD, FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IbanConstraint {
     String message() default "Invalid IBAN number";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

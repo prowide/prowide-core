@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field13D and similar fields.
@@ -26,128 +26,128 @@ import org.junit.jupiter.api.Test;
  * @since 6.0
  */
 public class Field13DTest extends AbstractFieldTest {
-	@SuppressWarnings("unused")
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field13DTest.class.getName());
+    @SuppressWarnings("unused")
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field13DTest.class.getName());
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("13D",
-				"aaaaaabbbbcddddx"
-			);
-	}
-	
-	@Test
-	public void testField13DString() {
-		Field13D f = null;
-	
-		f = new Field13D((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("a");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aa");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaa");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaaa");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaaaa");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaaaaa");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaaaaab");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaaaaabb");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaaaaabbb");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaaaaabbbb");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertEquals("bbbb", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaaaaabbbbc");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertEquals("bbbb", f.getComponent2());
-		assertEquals("c", f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field13D("aaaaaabbbbcd");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertEquals("bbbb", f.getComponent2());
-		assertEquals("c", f.getComponent3());
-		assertEquals("d", f.getComponent4());
-		
-		f = new Field13D("aaaaaabbbbcdd");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertEquals("bbbb", f.getComponent2());
-		assertEquals("c", f.getComponent3());
-		assertEquals("dd", f.getComponent4());
-		
-		f = new Field13D("aaaaaabbbbcddd");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertEquals("bbbb", f.getComponent2());
-		assertEquals("c", f.getComponent3());
-		assertEquals("ddd", f.getComponent4());
-		
-		f = new Field13D("aaaaaabbbbcdddd");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertEquals("bbbb", f.getComponent2());
-		assertEquals("c", f.getComponent3());
-		assertEquals("dddd", f.getComponent4());
-		
-		f = new Field13D("aaaaaabbbbcddddx");
-		assertEquals("aaaaaa", f.getComponent1());
-		assertEquals("bbbb", f.getComponent2());
-		assertEquals("c", f.getComponent3());
-		assertEquals("ddddx", f.getComponent4());
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("13D",
+                "aaaaaabbbbcddddx"
+        );
+    }
+
+    @Test
+    public void testField13DString() {
+        Field13D f = null;
+
+        f = new Field13D((String) null);
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("a");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aa");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaa");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaaa");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaaaa");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaaaaa");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaaaaab");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaaaaabb");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaaaaabbb");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaaaaabbbb");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertEquals("bbbb", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaaaaabbbbc");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertEquals("bbbb", f.getComponent2());
+        assertEquals("c", f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field13D("aaaaaabbbbcd");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertEquals("bbbb", f.getComponent2());
+        assertEquals("c", f.getComponent3());
+        assertEquals("d", f.getComponent4());
+
+        f = new Field13D("aaaaaabbbbcdd");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertEquals("bbbb", f.getComponent2());
+        assertEquals("c", f.getComponent3());
+        assertEquals("dd", f.getComponent4());
+
+        f = new Field13D("aaaaaabbbbcddd");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertEquals("bbbb", f.getComponent2());
+        assertEquals("c", f.getComponent3());
+        assertEquals("ddd", f.getComponent4());
+
+        f = new Field13D("aaaaaabbbbcdddd");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertEquals("bbbb", f.getComponent2());
+        assertEquals("c", f.getComponent3());
+        assertEquals("dddd", f.getComponent4());
+
+        f = new Field13D("aaaaaabbbbcddddx");
+        assertEquals("aaaaaa", f.getComponent1());
+        assertEquals("bbbb", f.getComponent2());
+        assertEquals("c", f.getComponent3());
+        assertEquals("ddddx", f.getComponent4());
+    }
 
 }

@@ -22,10 +22,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class MT202Test {
 
-	@Test
-	public void test1() {
-		MT202 m = new MT202();
-		assertNotNull(m.getUETR());
-	}
-	
+    @Test
+    public void test1() {
+        MT202 m = new MT202();
+        assertNotNull(m.getUETR());
+    }
+
 }

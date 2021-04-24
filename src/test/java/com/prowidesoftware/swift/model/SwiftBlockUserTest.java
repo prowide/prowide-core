@@ -15,16 +15,13 @@
  */
 package com.prowidesoftware.swift.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.IOException;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * User blocks tests.
@@ -33,125 +30,125 @@ import org.junit.jupiter.api.Test;
  */
 public class SwiftBlockUserTest {
 
-	private SwiftMessage   m   = null;
-	private SwiftBlockUser buS = null;
-	private SwiftBlockUser bu9 = null;
+    private SwiftMessage m = null;
+    private SwiftBlockUser buS = null;
+    private SwiftBlockUser bu9 = null;
 
-	@BeforeEach
-	public void setUp() {
-		m   = new SwiftMessage();
-		buS = new SwiftBlockUser("S");
-		bu9 = new SwiftBlockUser("9");
-	}
+    @BeforeEach
+    public void setUp() {
+        m = new SwiftMessage();
+        buS = new SwiftBlockUser("S");
+        bu9 = new SwiftBlockUser("9");
+    }
 
-	@Test 
-	public void test_ValidNames() {
-		// numbers 0 or 6 are valid
-		assertTrue(SwiftBlockUser.isValidName(0));
-		assertTrue(SwiftBlockUser.isValidName(6));
+    @Test
+    public void test_ValidNames() {
+        // numbers 0 or 6 are valid
+        assertTrue(SwiftBlockUser.isValidName(0));
+        assertTrue(SwiftBlockUser.isValidName(6));
 
-		// numbers 0 or 6 are valid
-		assertTrue(SwiftBlockUser.isValidName("0"));
-		assertTrue(SwiftBlockUser.isValidName("6"));
+        // numbers 0 or 6 are valid
+        assertTrue(SwiftBlockUser.isValidName("0"));
+        assertTrue(SwiftBlockUser.isValidName("6"));
 
-		// single letters are valid
-		assertTrue(SwiftBlockUser.isValidName("A"));
-		assertTrue(SwiftBlockUser.isValidName("z"));
-	}
+        // single letters are valid
+        assertTrue(SwiftBlockUser.isValidName("A"));
+        assertTrue(SwiftBlockUser.isValidName("z"));
+    }
 
-	@Test
-	public void test_InValidNames() {
-		// numbers 1-5 are invalid
-		assertFalse(SwiftBlockUser.isValidName(1));
-		assertFalse(SwiftBlockUser.isValidName(2));
-		assertFalse(SwiftBlockUser.isValidName(3));
-		assertFalse(SwiftBlockUser.isValidName(4));
-		assertFalse(SwiftBlockUser.isValidName(5));
+    @Test
+    public void test_InValidNames() {
+        // numbers 1-5 are invalid
+        assertFalse(SwiftBlockUser.isValidName(1));
+        assertFalse(SwiftBlockUser.isValidName(2));
+        assertFalse(SwiftBlockUser.isValidName(3));
+        assertFalse(SwiftBlockUser.isValidName(4));
+        assertFalse(SwiftBlockUser.isValidName(5));
 
-		// srings 1-5 are invalid
-		assertFalse(SwiftBlockUser.isValidName("1"));
-		assertFalse(SwiftBlockUser.isValidName("2"));
-		assertFalse(SwiftBlockUser.isValidName("3"));
-		assertFalse(SwiftBlockUser.isValidName("4"));
-		assertFalse(SwiftBlockUser.isValidName("5"));
+        // srings 1-5 are invalid
+        assertFalse(SwiftBlockUser.isValidName("1"));
+        assertFalse(SwiftBlockUser.isValidName("2"));
+        assertFalse(SwiftBlockUser.isValidName("3"));
+        assertFalse(SwiftBlockUser.isValidName("4"));
+        assertFalse(SwiftBlockUser.isValidName("5"));
 
-		// other strings are invalid
-		assertFalse(SwiftBlockUser.isValidName(""));
-		assertFalse(SwiftBlockUser.isValidName("AB"));
-	}
+        // other strings are invalid
+        assertFalse(SwiftBlockUser.isValidName(""));
+        assertFalse(SwiftBlockUser.isValidName("AB"));
+    }
 
-	@Test
-	public void test_block_S() {
-		m.addUserBlock(buS);
-		assertTrue(m.getUserBlock("S") == buS);
-		m.removeUserBlock("S");
-	}
+    @Test
+    public void test_block_S() {
+        m.addUserBlock(buS);
+        assertTrue(m.getUserBlock("S") == buS);
+        m.removeUserBlock("S");
+    }
 
-	@Test
-	public void test_addBlock_9() {
-		assertEquals(null, m.getUserBlocks());
-		m.addUserBlock(bu9);
-		assertEquals(1, m.getUserBlocks().size());
-		assertTrue(m.getUserBlock(9) == bu9);
-		m.removeUserBlock(9);
-		assertEquals(0, m.getUserBlocks().size());
-	}
+    @Test
+    public void test_addBlock_9() {
+        assertEquals(null, m.getUserBlocks());
+        m.addUserBlock(bu9);
+        assertEquals(1, m.getUserBlocks().size());
+        assertTrue(m.getUserBlock(9) == bu9);
+        m.removeUserBlock(9);
+        assertEquals(0, m.getUserBlocks().size());
+    }
 
-	@Test
-	public void test_addBlock_9String() {
-		m.addUserBlock(bu9);
-		assertTrue(m.getUserBlock("9") == bu9);
-		m.removeUserBlock("9");
-	}
+    @Test
+    public void test_addBlock_9String() {
+        m.addUserBlock(bu9);
+        assertTrue(m.getUserBlock("9") == bu9);
+        m.removeUserBlock("9");
+    }
 
-	@Test
-	public void test_getBlock_1() {
-		assertNull(m.getUserBlock(1));
-	}
+    @Test
+    public void test_getBlock_1() {
+        assertNull(m.getUserBlock(1));
+    }
 
-	@Test
-	public void test_removeBlock_1() {
-	  // FIXME why does this test fail? IAE is thrown and expected...
-	  Assertions.assertThrows(IllegalArgumentException.class, () -> {
-		  m.removeUserBlock(1);
-	  });
-	}
-	
-	/**
-	 * Remove UserBlock using a string for block naming
-	 */
-	@Test
-	public void testRemoveBlockUserStringName() throws IOException {
-		final SwiftMessage m = new SwiftMessage(false);
-		assertEquals(0, m.getBlockCount());
-		
-		final SwiftBlockUser bu = new SwiftBlockUser("S");
-		bu.append(new Tag("120:asdadad"));
-		m.addUserBlock(bu);
-		assertEquals(1, m.getBlockCount());
-		assertEquals(bu, m.getUserBlock("S"));
-		
-		m.removeUserBlock("S");
-		assertEquals(0, m.getBlockCount());
-		assertNull(m.getUserBlock("S"));
-	}
-	
-	/**
-	 * Remove UserBlock using an integer for block naming
-	 */
-	@Test
-	public void testRemoveBlockUserNumberName() throws IOException {
-		final SwiftMessage m = new SwiftMessage(false);
-		assertEquals(0, m.getBlockCount());
-		
-		final SwiftBlockUser bu = new SwiftBlockUser(6);
-		bu.append(new Tag("120:asdadad"));
-		m.addUserBlock(bu);
-		assertEquals(1, m.getBlockCount());
-		assertEquals(bu, m.getUserBlock(6));
-		
-		m.removeUserBlock(6);
-		assertEquals(0, m.getBlockCount());
-		assertNull(m.getUserBlock(6));
-	}
+    @Test
+    public void test_removeBlock_1() {
+        // FIXME why does this test fail? IAE is thrown and expected...
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            m.removeUserBlock(1);
+        });
+    }
+
+    /**
+     * Remove UserBlock using a string for block naming
+     */
+    @Test
+    public void testRemoveBlockUserStringName() throws IOException {
+        final SwiftMessage m = new SwiftMessage(false);
+        assertEquals(0, m.getBlockCount());
+
+        final SwiftBlockUser bu = new SwiftBlockUser("S");
+        bu.append(new Tag("120:asdadad"));
+        m.addUserBlock(bu);
+        assertEquals(1, m.getBlockCount());
+        assertEquals(bu, m.getUserBlock("S"));
+
+        m.removeUserBlock("S");
+        assertEquals(0, m.getBlockCount());
+        assertNull(m.getUserBlock("S"));
+    }
+
+    /**
+     * Remove UserBlock using an integer for block naming
+     */
+    @Test
+    public void testRemoveBlockUserNumberName() throws IOException {
+        final SwiftMessage m = new SwiftMessage(false);
+        assertEquals(0, m.getBlockCount());
+
+        final SwiftBlockUser bu = new SwiftBlockUser(6);
+        bu.append(new Tag("120:asdadad"));
+        m.addUserBlock(bu);
+        assertEquals(1, m.getBlockCount());
+        assertEquals(bu, m.getUserBlock(6));
+
+        m.removeUserBlock(6);
+        assertEquals(0, m.getBlockCount());
+        assertNull(m.getUserBlock(6));
+    }
 }

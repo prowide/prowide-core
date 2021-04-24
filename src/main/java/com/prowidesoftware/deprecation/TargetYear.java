@@ -18,14 +18,12 @@ package com.prowidesoftware.deprecation;
 /**
  * Target year for which a deprecation operation is scheduled.
  * Mainly used for tracking items in codebase.
- * 
+ *
  * @author miguel
  * @since 7.8.1
- *
  */
 public enum TargetYear {
-	SRU2021,
-	SRU2022,
-	SRU2023
-	;
+    SRU2021,
+    SRU2022,
+    SRU2023
 }

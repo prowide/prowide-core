@@ -15,33 +15,21 @@
  */
 package com.prowidesoftware.swift.issues;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.prowidesoftware.swift.model.field.Field61;
 import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * https://sourceforge.net/p/wife/bugs/81/
  */
 public class TabInFieldValueTest {
 
-    @Test
-    public void test() {
-        Field61 field = new Field61(":61:1804190419D56716,17NTRF\u000b//XXX 18041900259\n" +
-            "FX-NORMAL TRANSACTION");
-        assertNotNull(field);
-
-        Field61 field2 = new Field61(":61:1804190419D56716,17NTRF\t//XXX 18041900259\n" +
-            "FX-NORMAL TRANSACTION");
-        assertNotNull(field2);
-    }
-
     private static final String REF_ACC_OWN = "REFERENCE_BB_ACCOUNTOWNER";
     private static final String REF_ACC_OWN_TAB = "REFERENCE_\u000b\u000b_ACCOUNTOWNER";
     private static final String REF_ACC_OWN_TAB2 = "\u000b\u000b";
-
     private static final String MESSAGE = "{1:F01ABCDEFGHXXX0000000000}{2:I940WOWAUS6CUXXXX}{4:\n" +
             ":20:1234567890123456\n" +
             ":25:ABCDEFGHXXX/12345678\n" +
@@ -53,7 +41,6 @@ public class TabInFieldValueTest {
             ":62F:C180419CNY0,00\n" +
             ":64:C180419CNY0,00\n" +
             "-}";
-
     private static final String MESSAGE_TAB = "{1:F01ABCDEFGHXXX0000000000}{2:I940WOWAUS6CUXXXX}{4:\n" +
             ":20:1234567890123456\n" +
             ":25:ABCDEFGHXXX/12345678\n" +
@@ -65,7 +52,6 @@ public class TabInFieldValueTest {
             ":62F:C180419CNY0,00\n" +
             ":64:C180419CNY0,00\n" +
             "-}";
-
     private static final String MESSAGE_TAB2 = "{1:F01ABCDEFGHXXX0000000000}{2:I940WOWAUS6CUXXXX}{4:\n" +
             ":20:1234567890123456\n" +
             ":25:ABCDEFGHXXX/12345678\n" +
@@ -77,6 +63,17 @@ public class TabInFieldValueTest {
             ":62F:C180419CNY0,00\n" +
             ":64:C180419CNY0,00\n" +
             "-}";
+
+    @Test
+    public void test() {
+        Field61 field = new Field61(":61:1804190419D56716,17NTRF\u000b//XXX 18041900259\n" +
+                "FX-NORMAL TRANSACTION");
+        assertNotNull(field);
+
+        Field61 field2 = new Field61(":61:1804190419D56716,17NTRF\t//XXX 18041900259\n" +
+                "FX-NORMAL TRANSACTION");
+        assertNotNull(field2);
+    }
 
     private void test(final String expected, final String message) {
         final MT940 mt940 = new MT940(message);

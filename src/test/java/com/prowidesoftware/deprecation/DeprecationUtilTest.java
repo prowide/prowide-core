@@ -15,65 +15,64 @@
  */
 package com.prowidesoftware.deprecation;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import com.prowidesoftware.deprecation.DeprecationUtils.EnvironmentVariableKey;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.prowidesoftware.deprecation.DeprecationUtils.EnvironmentVariableKey;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test cases for the deprecation policy implementation
- * 
+ *
  * @author sebastian
  * @since 7.8.9
  */
 public class DeprecationUtilTest {
 
-	/**
-	 * Default behavior
-	 */
-	@Test
-	public void testPhase2_default() {
-		long t0 = System.currentTimeMillis();
-		DeprecationUtils.phase2(this.getClass(), "method", "phase 2 message");
-		long t1 = System.currentTimeMillis();
-		long diff = t1-t0;
-		assertTrue(diff >= 3990);
-	}
-	
-	/**
-	 * Log and delay switched off
-	 */
-	@Test
-	public void testPhase2_off() {
-		DeprecationUtils.setEnv(EnvironmentVariableKey.NOLOG, EnvironmentVariableKey.NODELAY);
-		long t0 = System.currentTimeMillis();
-		DeprecationUtils.phase2(this.getClass(), null, "another phase 2 message");
-		long t1 = System.currentTimeMillis();
-		assertTrue((t1-t0) < 4000);
-		DeprecationUtils.clearEnv();
-	}
+    /**
+     * Default behavior
+     */
+    @Test
+    public void testPhase2_default() {
+        long t0 = System.currentTimeMillis();
+        DeprecationUtils.phase2(this.getClass(), "method", "phase 2 message");
+        long t1 = System.currentTimeMillis();
+        long diff = t1 - t0;
+        assertTrue(diff >= 3990);
+    }
 
-	/**
-	 * Default behavior
-	 */
-	@Test
-	public void testPhase3_default() {
-		Assertions.assertThrows(UnsupportedOperationException.class, () -> {
-			DeprecationUtils.phase3(this.getClass(), null, "phase 3 message");
-		});
-	}
-		
+    /**
+     * Log and delay switched off
+     */
+    @Test
+    public void testPhase2_off() {
+        DeprecationUtils.setEnv(EnvironmentVariableKey.NOLOG, EnvironmentVariableKey.NODELAY);
+        long t0 = System.currentTimeMillis();
+        DeprecationUtils.phase2(this.getClass(), null, "another phase 2 message");
+        long t1 = System.currentTimeMillis();
+        assertTrue((t1 - t0) < 4000);
+        DeprecationUtils.clearEnv();
+    }
 
-	/**
-	 * Exception switched off
-	 */
-	@Test
-	public void testPhase3_off() {
-		DeprecationUtils.setEnv(EnvironmentVariableKey.NOLOG, EnvironmentVariableKey.NODELAY, EnvironmentVariableKey.NOEXCEPTION);
-		DeprecationUtils.phase3(this.getClass(), null, "phase 3 message");
-		DeprecationUtils.clearEnv();
-	}
+    /**
+     * Default behavior
+     */
+    @Test
+    public void testPhase3_default() {
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> {
+            DeprecationUtils.phase3(this.getClass(), null, "phase 3 message");
+        });
+    }
+
+
+    /**
+     * Exception switched off
+     */
+    @Test
+    public void testPhase3_off() {
+        DeprecationUtils.setEnv(EnvironmentVariableKey.NOLOG, EnvironmentVariableKey.NODELAY, EnvironmentVariableKey.NOEXCEPTION);
+        DeprecationUtils.phase3(this.getClass(), null, "phase 3 message");
+        DeprecationUtils.clearEnv();
+    }
 
 }

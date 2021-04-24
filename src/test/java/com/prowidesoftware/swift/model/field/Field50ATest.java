@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field50A and similar fields.
@@ -26,28 +26,28 @@ import org.junit.jupiter.api.Test;
  * @since 6.0
  */
 public class Field50ATest extends AbstractFieldTest {
-	
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("50A",
-				"bbb",
-				"/acc\nbbb"
-			);
-	}
-	
-	@Test
-	public void testGetValue2() {
-		Field50A f = new Field50A("/acc\nbbb");
-		assertEquals("acc", f.getComponent1());
-		assertEquals("bbb", f.getComponent2());
-	}
-	
-	@Test
-	public void testGetValue3() {
-		Field50A f = new Field50A("bbb");
-		assertNull(f.getComponent1());
-		assertEquals("bbb", f.getComponent2());
-	}
+
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("50A",
+                "bbb",
+                "/acc\nbbb"
+        );
+    }
+
+    @Test
+    public void testGetValue2() {
+        Field50A f = new Field50A("/acc\nbbb");
+        assertEquals("acc", f.getComponent1());
+        assertEquals("bbb", f.getComponent2());
+    }
+
+    @Test
+    public void testGetValue3() {
+        Field50A f = new Field50A("bbb");
+        assertNull(f.getComponent1());
+        assertEquals("bbb", f.getComponent2());
+    }
 
 }

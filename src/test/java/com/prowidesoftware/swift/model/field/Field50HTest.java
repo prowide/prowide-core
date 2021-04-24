@@ -15,32 +15,31 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
  * Test for Field50H and similar fields.
- *
  */
 public class Field50HTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("50H",
-				"/0000001111000000\r\nBNPPARIBAS\r\n66 VICTOIRE\r\nPARIS"
-			);
-	}
-	
-	@Test
-	public void testGetValue() {
-		Field50H f = new Field50H("/0000001111000000\r\nBNPPARIBAS\r\n66 VICTOIRE\r\nPARIS\r\n");
-		assertEquals(f.getComponent1(), "0000001111000000");
-		assertEquals(f.getComponent2(), "BNPPARIBAS");
-		assertEquals(f.getComponent3(), "66 VICTOIRE");
-		assertEquals(f.getComponent4(), "PARIS");
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("50H",
+                "/0000001111000000\r\nBNPPARIBAS\r\n66 VICTOIRE\r\nPARIS"
+        );
+    }
+
+    @Test
+    public void testGetValue() {
+        Field50H f = new Field50H("/0000001111000000\r\nBNPPARIBAS\r\n66 VICTOIRE\r\nPARIS\r\n");
+        assertEquals(f.getComponent1(), "0000001111000000");
+        assertEquals(f.getComponent2(), "BNPPARIBAS");
+        assertEquals(f.getComponent3(), "66 VICTOIRE");
+        assertEquals(f.getComponent4(), "PARIS");
+    }
 
 }

@@ -16,44 +16,36 @@
 
 package com.prowidesoftware.swift.model.mt.mt2xx;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import com.prowidesoftware.swift.model.field.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.prowidesoftware.swift.model.field.Field20;
-import com.prowidesoftware.swift.model.field.Field21;
-import com.prowidesoftware.swift.model.field.Field32A;
-import com.prowidesoftware.swift.model.field.Field50A;
-import com.prowidesoftware.swift.model.field.Field58A;
-import com.prowidesoftware.swift.model.field.Field59A;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MT202COVTest {
 
-	@Test
-	public void test1() {
-		MT202COV m = new MT202COV();
-		assertNotNull(m.getUETR());
-		assertTrue(m.getSwiftMessage().isCOV());
-	}
+    @Test
+    public void test1() {
+        MT202COV m = new MT202COV();
+        assertNotNull(m.getUETR());
+        assertTrue(m.getSwiftMessage().isCOV());
+    }
 
-	@Disabled("the newInstance API in sequence with no delimiters 16RS should be revamped because it is misleading")
-	@Test
-	public void test2() {
-		MT202COV m = new MT202COV()
-				.append(MT202COV.SequenceA.newInstance(
-						Field20.tag("REF"),
-						Field21.tag("RELREF"),
-						Field32A.tag("121212USD1234,56"),
-						Field58A.tag("ABCOCOBMXXX")))
-				.append(MT202COV.SequenceB.newInstance(
-						Field50A.tag("DEFOCOBMXXX"),
-						Field59A.tag("GHIOCOBMXXX")));
-		assertNotNull(m.getUETR());
-		assertTrue(m.getSwiftMessage().isCOV());
-		assertEquals(6, m.getSwiftMessage().getBlock4().getTags().size());
-	}
-	
+    @Disabled("the newInstance API in sequence with no delimiters 16RS should be revamped because it is misleading")
+    @Test
+    public void test2() {
+        MT202COV m = new MT202COV()
+                .append(MT202COV.SequenceA.newInstance(
+                        Field20.tag("REF"),
+                        Field21.tag("RELREF"),
+                        Field32A.tag("121212USD1234,56"),
+                        Field58A.tag("ABCOCOBMXXX")))
+                .append(MT202COV.SequenceB.newInstance(
+                        Field50A.tag("DEFOCOBMXXX"),
+                        Field59A.tag("GHIOCOBMXXX")));
+        assertNotNull(m.getUETR());
+        assertTrue(m.getSwiftMessage().isCOV());
+        assertEquals(6, m.getSwiftMessage().getBlock4().getTags().size());
+    }
+
 }

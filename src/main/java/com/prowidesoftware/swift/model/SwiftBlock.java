@@ -15,17 +15,17 @@
  */
 package com.prowidesoftware.swift.model;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
- * Base class for a generic SWIFT block.<br> 
+ * Base class for a generic SWIFT block.<br>
  * This is an <b>abstract</b> class so specific block classes for each block (block 1, 2, 3, etc...)
  * should be instantiated.<br>
  * <br>
@@ -35,283 +35,301 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * However, not all the base list methods have been implemented. If you need to use not
  * exposed functionality, retrieve the underlying list with (see getUnparsedTexts method)<br>
  *
- * @author www.prowidesoftware.com
+ * @author sebastian
  */
 //TODO: add parameter checks (Validate.*) and complete javadocs 
 public abstract class SwiftBlock implements Serializable {
-	private static final long serialVersionUID = -6993261477630953757L;
+    private static final long serialVersionUID = -6993261477630953757L;
 
-	/**
-	 * Unique identifier of the swift block.
-	 * Mainly used for persistence services.
-	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
-	protected Long id;
+    /**
+     * Unique identifier of the swift block.
+     * Mainly used for persistence services.
+     *
+     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
+    protected Long id;
 
-	/**
-	 * List of unparsed texts. For performance reasons, this will be null until really needed.
-	 */
-	protected UnparsedTextList unparsedTexts = null;
+    /**
+     * List of unparsed texts. For performance reasons, this will be null until really needed.
+     */
+    protected UnparsedTextList unparsedTexts = null;
 
-	/**
-	 * Only valid for block2, only when using hibernate for persistence
-	 */
-	protected Boolean input;
-	/**
-	 * Only valid for block2, only when using hibernate for persistence
-	 */
-	protected Boolean output;
+    /**
+     * Only valid for block2, only when using hibernate for persistence
+     */
+    protected Boolean input;
+    /**
+     * Only valid for block2, only when using hibernate for persistence
+     */
+    protected Boolean output;
+    /**
+     * helper for hibernate mapping
+     */
+    protected String blockType;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		SwiftBlock that = (SwiftBlock) o;
-		return Objects.equals(unparsedTexts, that.unparsedTexts);
-	}
+    /**
+     * Default constructor, shouldn't be used normally.
+     * <b>DO NOT USE</b>: present only for subclasses
+     */
+    public SwiftBlock() {
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(unparsedTexts);
-	}
+    }
 
-	/**
-	 * helper for hibernate mapping
-	 */
-	protected String blockType;
-	
-	/**
-	 * @return a string identifying block type or null if not implemented
-	 */
-	public String getBlockType() {
-		return blockType;
-	}
+    /**
+     * Constructor for an unparsed text list
+     *
+     * @param unparsedText the list of unparsed texts
+     */
+    public SwiftBlock(final UnparsedTextList unparsedText) {
 
-	/**
-	 * should not be normally called
-	 * @param blockType
-	 */
-	public void setBlockType(String blockType) {
-		this.blockType = blockType;
-	}
+        // set the unparsed text list
+        this.unparsedTexts = unparsedText;
+    }
 
-	/**
-	 * Default constructor, shouldn't be used normally.
-	 * <b>DO NOT USE</b>: present only for subclasses
-	 */
-	public SwiftBlock() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SwiftBlock that = (SwiftBlock) o;
+        return Objects.equals(unparsedTexts, that.unparsedTexts);
+    }
 
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(unparsedTexts);
+    }
 
-	/**
-	 * Constructor for an unparsed text list
-	 * @param unparsedText the list of unparsed texts
-	 */
-	public SwiftBlock(final UnparsedTextList unparsedText) {
+    /**
+     * @return a string identifying block type or null if not implemented
+     */
+    public String getBlockType() {
+        return blockType;
+    }
 
-		// set the unparsed text list
-		this.unparsedTexts = unparsedText;
-	}
+    /**
+     * should not be normally called
+     *
+     * @param blockType
+     */
+    public void setBlockType(String blockType) {
+        this.blockType = blockType;
+    }
 
-	/**
-	 * Sets the block number (this method is to be overwrite for derived classes).
-	 * @param blockNumber the block number to set
-	 * 
-	 * @since 5.0
-	 */
-	protected abstract void setBlockNumber(Integer blockNumber);
+    /**
+     * Sets the block number (this method is to be overwrite for derived classes).
+     *
+     * @param blockNumber the block number to set
+     * @since 5.0
+     */
+    protected abstract void setBlockNumber(Integer blockNumber);
 
-	/**
-	 * Sets the block name (this method is to be overwrite for derived classes).
-	 * @param blockName the block name to set
-	 * 
-	 * @since 5.0
-	 */
-	protected abstract void setBlockName(String blockName);
+    /**
+     * Sets the block name (this method is to be overwrite for derived classes).
+     *
+     * @param blockName the block name to set
+     * @since 5.0
+     */
+    protected abstract void setBlockName(String blockName);
 
-	/**
-	 * Returns the block number (this method is to be overwritten for derived classes).
-	 * @return Integer containing the block's number
-	 */
-	public abstract Integer getNumber();
+    /**
+     * Returns the block number (this method is to be overwritten for derived classes).
+     *
+     * @return Integer containing the block's number
+     */
+    public abstract Integer getNumber();
 
-	/**
-	 * Returns the block name (this method is to be overwritten for derived classes).
-	 * @return block name
-	 * 
-	 * @since 5.0
-	 */
-	public abstract String getName();
+    /**
+     * Returns the block name (this method is to be overwritten for derived classes).
+     *
+     * @return block name
+     * @since 5.0
+     */
+    public abstract String getName();
 
-	/**
-	 * Get the unique identifier of this block or null if it is not set
-	 * @return the unique identifier 
-	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
-	public Long getId() {
-		DeprecationUtils.phase3(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-		return id;
-	}
+    /**
+     * Get the unique identifier of this block or null if it is not set
+     *
+     * @return the unique identifier
+     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
+    public Long getId() {
+        DeprecationUtils.phase3(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
+        return id;
+    }
 
-	/**
-	 * Sets the unique identifier of this block
-	 * @param id the unique identifier to set.
-	 * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
-	public void setId(final Long id) {
-		DeprecationUtils.phase3(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-		this.id = id;
-	}
+    /**
+     * Sets the unique identifier of this block
+     *
+     * @param id the unique identifier to set.
+     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
+    public void setId(final Long id) {
+        DeprecationUtils.phase3(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
+        this.id = id;
+    }
 
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
-	}
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 
-	/**
-	 * Tell if this block is a block that contains a list of tags (3-5) or is a block with fixed length value (1-2)
-	 * @return <code>true</code> if this object contains a list of tags (which may be empty or null
-	 */
-	public boolean isTagBlock() {
-		return this instanceof SwiftTagListBlock;
-	}
+    /**
+     * Tell if this block is a block that contains a list of tags (3-5) or is a block with fixed length value (1-2)
+     *
+     * @return <code>true</code> if this object contains a list of tags (which may be empty or null
+     */
+    public boolean isTagBlock() {
+        return this instanceof SwiftTagListBlock;
+    }
 
-	/**
-	 * verifies that the unparsed text list exists
-	 */
-	protected void unparsedTextVerify() {
-		if (this.unparsedTexts == null) {
-			this.unparsedTexts = new UnparsedTextList();
-		}
-	}
+    /**
+     * verifies that the unparsed text list exists
+     */
+    protected void unparsedTextVerify() {
+        if (this.unparsedTexts == null) {
+            this.unparsedTexts = new UnparsedTextList();
+        }
+    }
 
-	/**
-	 * Returns the unparsed text list attached to the Block.
-	 * @return the unparsed texts attached to the block
-	 */
-	public UnparsedTextList getUnparsedTexts() {
-		// create the list if needed
-		unparsedTextVerify();
-		return this.unparsedTexts;
-	}
+    /**
+     * Returns the unparsed text list attached to the Block.
+     *
+     * @return the unparsed texts attached to the block
+     */
+    public UnparsedTextList getUnparsedTexts() {
+        // create the list if needed
+        unparsedTextVerify();
+        return this.unparsedTexts;
+    }
 
-	/**
-	 * sets the list of unparsed texts
-	 * @param texts the new list of unparsed texts (may be null)
-	 */
-	public void setUnparsedTexts(final UnparsedTextList texts) {
-		this.unparsedTexts = texts;
-	}
+    /**
+     * sets the list of unparsed texts
+     *
+     * @param texts the new list of unparsed texts (may be null)
+     */
+    public void setUnparsedTexts(final UnparsedTextList texts) {
+        this.unparsedTexts = texts;
+    }
 
-	/**
-	 * returns the size of the unparsed text list
-	 * @return the count of unparsed test attached to the block
-	 */
-	public Integer getUnparsedTextsSize() {
-		// no list => size is zero...
-		if (this.unparsedTexts == null) {
-			return Integer.valueOf(0);
-		}
-		return this.unparsedTexts.size();
-	}
+    /**
+     * returns the size of the unparsed text list
+     *
+     * @return the count of unparsed test attached to the block
+     */
+    public Integer getUnparsedTextsSize() {
+        // no list => size is zero...
+        if (this.unparsedTexts == null) {
+            return Integer.valueOf(0);
+        }
+        return this.unparsedTexts.size();
+    }
 
-	/**
-	 * decides if a specific text (by index) is likely a SWIFT FIN message. Exceptions are inherited from
-	 * base implementation methods.
-	 * @param index the unparsed text number
-	 * @throws IllegalArgumentException if parameter index is null
-	 * @throws IndexOutOfBoundsException if parameter index is out of bounds
-	 * @return true if the unparsed text at position index is a full SWIFT Message
-	 */
-	public Boolean unparsedTextIsMessage(final Integer index) {
-		// create the list if needed
-		unparsedTextVerify();
-		return this.unparsedTexts.isMessage(index);
-	}
+    /**
+     * decides if a specific text (by index) is likely a SWIFT FIN message. Exceptions are inherited from
+     * base implementation methods.
+     *
+     * @param index the unparsed text number
+     * @return true if the unparsed text at position index is a full SWIFT Message
+     * @throws IllegalArgumentException  if parameter index is null
+     * @throws IndexOutOfBoundsException if parameter index is out of bounds
+     */
+    public Boolean unparsedTextIsMessage(final Integer index) {
+        // create the list if needed
+        unparsedTextVerify();
+        return this.unparsedTexts.isMessage(index);
+    }
 
-	/**
-	 * get an unparsed text
-	 * @param index the unparsed text number
-	 * @return the requested text
-	 * @throws IllegalArgumentException if parameter index is null
-	 * @throws IndexOutOfBoundsException if parameter index is out of bounds
-	 */
-	public String unparsedTextGetText(final Integer index) {
-		// create the list if needed
-		unparsedTextVerify();
-		return this.unparsedTexts.getText(index);
-	}
+    /**
+     * get an unparsed text
+     *
+     * @param index the unparsed text number
+     * @return the requested text
+     * @throws IllegalArgumentException  if parameter index is null
+     * @throws IndexOutOfBoundsException if parameter index is out of bounds
+     */
+    public String unparsedTextGetText(final Integer index) {
+        // create the list if needed
+        unparsedTextVerify();
+        return this.unparsedTexts.getText(index);
+    }
 
-	/**
-	 * get an unparsed text as a parsed swift message
-	 * @param index the unparsed text number
-	 * @throws IllegalArgumentException if parameter index is null
-	 * @return the blocks unparsed text at position index, parsed into a SwiftMessage object
-	 */
-	public SwiftMessage unparsedTextGetAsMessage(final Integer index) {
-		// create the list if needed
-		unparsedTextVerify();
-		return this.unparsedTexts.getTextAsMessage(index);
-	}
+    /**
+     * get an unparsed text as a parsed swift message
+     *
+     * @param index the unparsed text number
+     * @return the blocks unparsed text at position index, parsed into a SwiftMessage object
+     * @throws IllegalArgumentException if parameter index is null
+     */
+    public SwiftMessage unparsedTextGetAsMessage(final Integer index) {
+        // create the list if needed
+        unparsedTextVerify();
+        return this.unparsedTexts.getTextAsMessage(index);
+    }
 
-	/**
-	 * adds a new unparsed text
-	 * @param text the unparsed text to append
-	 * @throws IllegalArgumentException if parameter text is null
-	 */
-	public void unparsedTextAddText(final String text) {
-		// create the list if needed
-		unparsedTextVerify();
-		this.unparsedTexts.addText(text);
-	}
+    /**
+     * adds a new unparsed text
+     *
+     * @param text the unparsed text to append
+     * @throws IllegalArgumentException if parameter text is null
+     */
+    public void unparsedTextAddText(final String text) {
+        // create the list if needed
+        unparsedTextVerify();
+        this.unparsedTexts.addText(text);
+    }
 
-	/**
-	 * adds a new unparsed text from a message
-	 * @param message the message to be appended
-	 * @throws IllegalArgumentException if parameter message is null
-	 */
-	public void unparsedTextAddText(final SwiftMessage message) {
-		// create the list if needed
-		unparsedTextVerify();
-		this.unparsedTexts.addText(message);
-	}
+    /**
+     * adds a new unparsed text from a message
+     *
+     * @param message the message to be appended
+     * @throws IllegalArgumentException if parameter message is null
+     */
+    public void unparsedTextAddText(final SwiftMessage message) {
+        // create the list if needed
+        unparsedTextVerify();
+        this.unparsedTexts.addText(message);
+    }
 
-	/**
-	 * Only valid for block2, only when using hibernate for persistence
-	 * @return true if the message block type is <code>2I</code>
-	 * @deprecated use {@link #getBlockType()}
-	 */
-	public Boolean getInput() {
-		return Boolean.valueOf(StringUtils.equals(getBlockType(), "2I"));
-	}
+    /**
+     * Only valid for block2, only when using hibernate for persistence
+     *
+     * @return true if the message block type is <code>2I</code>
+     * @deprecated use {@link #getBlockType()}
+     */
+    public Boolean getInput() {
+        return Boolean.valueOf(StringUtils.equals(getBlockType(), "2I"));
+    }
 
-	/**
-	 * Only valid for block2, only when using hibernate for persistence
-	 * @param input the is input parameter
-	 */
-	public void setInput(Boolean input) {
-		this.input = input;
-	}
+    /**
+     * Only valid for block2, only when using hibernate for persistence
+     *
+     * @param input the is input parameter
+     */
+    public void setInput(Boolean input) {
+        this.input = input;
+    }
 
-	/**
-	 * Only valid for block2, only when using hibernate for persistence
-	 * @return <code>true</code> if message block type is <code>2O</code>
-	 * @deprecated use {@link #getBlockType()}
-	 */
-	public Boolean getOutput() {
-		return Boolean.valueOf(StringUtils.equals(getBlockType(), "2O"));
-	}
+    /**
+     * Only valid for block2, only when using hibernate for persistence
+     *
+     * @return <code>true</code> if message block type is <code>2O</code>
+     * @deprecated use {@link #getBlockType()}
+     */
+    public Boolean getOutput() {
+        return Boolean.valueOf(StringUtils.equals(getBlockType(), "2O"));
+    }
 
-	/**
-	 * Only valid for block2, only when using hibernate for persistence
-	 * @param output the is output parameter
-	 */
-	public void setOutput(Boolean output) {
-		this.output = output;
-	}	
+    /**
+     * Only valid for block2, only when using hibernate for persistence
+     *
+     * @param output the is output parameter
+     */
+    public void setOutput(Boolean output) {
+        this.output = output;
+    }
 }

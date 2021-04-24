@@ -16,10 +16,10 @@
 package com.prowidesoftware.swift.model;
 
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for Message Input Reference (MIR) model class.
@@ -28,37 +28,37 @@ import org.junit.jupiter.api.Test;
  */
 public class MIRTest {
 
-	@Test
-	public void testSplitComponents() throws Exception {
-		MIR mir = new MIR("");
-		assertNull(mir.getDate());
-		assertNull(mir.getLogicalTerminal());
-		assertNull(mir.getSessionNumber());		
-		assertNull(mir.getSequenceNumber());
+    @Test
+    public void testSplitComponents() throws Exception {
+        MIR mir = new MIR("");
+        assertNull(mir.getDate());
+        assertNull(mir.getLogicalTerminal());
+        assertNull(mir.getSessionNumber());
+        assertNull(mir.getSequenceNumber());
 
-		mir = new MIR(null);
-		assertNull(mir.getDate());
-		assertNull(mir.getLogicalTerminal());
-		assertNull(mir.getSessionNumber());		
-		assertNull(mir.getSequenceNumber());
-		
-		mir = new MIR("1234567890");
-		assertNull(mir.getDate());
-		assertNull(mir.getLogicalTerminal());
-		assertNull(mir.getSessionNumber());		
-		assertNull(mir.getSequenceNumber());
-		
-		mir = new MIR("1234567890123456789012345678901234567890");
-		assertNull(mir.getDate());
-		assertNull(mir.getLogicalTerminal());
-		assertNull(mir.getSessionNumber());		
-		assertNull(mir.getSequenceNumber());
-		
-		mir = new MIR("091203BANKBEBBAXXX2222123456");
-		assertEquals("091203", mir.getDate());
-		assertEquals("BANKBEBBAXXX", mir.getLogicalTerminal());
-		assertEquals("2222", mir.getSessionNumber());
-		assertEquals("123456", mir.getSequenceNumber());	
-	}
-	
+        mir = new MIR(null);
+        assertNull(mir.getDate());
+        assertNull(mir.getLogicalTerminal());
+        assertNull(mir.getSessionNumber());
+        assertNull(mir.getSequenceNumber());
+
+        mir = new MIR("1234567890");
+        assertNull(mir.getDate());
+        assertNull(mir.getLogicalTerminal());
+        assertNull(mir.getSessionNumber());
+        assertNull(mir.getSequenceNumber());
+
+        mir = new MIR("1234567890123456789012345678901234567890");
+        assertNull(mir.getDate());
+        assertNull(mir.getLogicalTerminal());
+        assertNull(mir.getSessionNumber());
+        assertNull(mir.getSequenceNumber());
+
+        mir = new MIR("091203BANKBEBBAXXX2222123456");
+        assertEquals("091203", mir.getDate());
+        assertEquals("BANKBEBBAXXX", mir.getLogicalTerminal());
+        assertEquals("2222", mir.getSessionNumber());
+        assertEquals("123456", mir.getSequenceNumber());
+    }
+
 }

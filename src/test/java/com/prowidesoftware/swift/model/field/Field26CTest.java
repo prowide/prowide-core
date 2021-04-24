@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field26C and similar fields.
@@ -27,88 +27,88 @@ import org.junit.jupiter.api.Test;
  */
 public class Field26CTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("26C",
-				"A/B/CCCCCDDDDEEEE"
-			);
-	}
-	
-	/**
-	 * [S]/S/5!a4!aS
-	 */
-	@Test
-	public void testField26C() {		
-		Field26C f = new Field26C((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("26C",
+                "A/B/CCCCCDDDDEEEE"
+        );
+    }
 
-		f = new Field26C("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
+    /**
+     * [S]/S/5!a4!aS
+     */
+    @Test
+    public void testField26C() {
+        Field26C f = new Field26C((String) null);
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
 
-		f = new Field26C("A");
-		assertEquals("A", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
+        f = new Field26C("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
 
-		f = new Field26C("A/");
-		assertEquals("A", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		
-		f = new Field26C("A/B");
-		assertEquals("A", f.getComponent1());
-		assertEquals("B", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		
-		f = new Field26C("A/B/C");
-		assertEquals("A", f.getComponent1());
-		assertEquals("B", f.getComponent2());
-		assertEquals("C", f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
+        f = new Field26C("A");
+        assertEquals("A", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
 
-		f = new Field26C("A/B/CCCCC");
-		assertEquals("A", f.getComponent1());
-		assertEquals("B", f.getComponent2());
-		assertEquals("CCCCC", f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
+        f = new Field26C("A/");
+        assertEquals("A", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
 
-		f = new Field26C("A/B/CCCCCD");
-		assertEquals("A", f.getComponent1());
-		assertEquals("B", f.getComponent2());
-		assertEquals("CCCCC", f.getComponent3());
-		assertEquals("D", f.getComponent4());
-		assertNull(f.getComponent5());
-		
-		f = new Field26C("A/B/CCCCCDDDD");
-		assertEquals("A", f.getComponent1());
-		assertEquals("B", f.getComponent2());
-		assertEquals("CCCCC", f.getComponent3());
-		assertEquals("DDDD", f.getComponent4());
-		assertNull(f.getComponent5());
-		
-		f = new Field26C("A/B/CCCCCDDDDEEEE");
-		assertEquals("A", f.getComponent1());
-		assertEquals("B", f.getComponent2());
-		assertEquals("CCCCC", f.getComponent3());
-		assertEquals("DDDD", f.getComponent4());
-		assertEquals("EEEE", f.getComponent5());
-	}
+        f = new Field26C("A/B");
+        assertEquals("A", f.getComponent1());
+        assertEquals("B", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+
+        f = new Field26C("A/B/C");
+        assertEquals("A", f.getComponent1());
+        assertEquals("B", f.getComponent2());
+        assertEquals("C", f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+
+        f = new Field26C("A/B/CCCCC");
+        assertEquals("A", f.getComponent1());
+        assertEquals("B", f.getComponent2());
+        assertEquals("CCCCC", f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+
+        f = new Field26C("A/B/CCCCCD");
+        assertEquals("A", f.getComponent1());
+        assertEquals("B", f.getComponent2());
+        assertEquals("CCCCC", f.getComponent3());
+        assertEquals("D", f.getComponent4());
+        assertNull(f.getComponent5());
+
+        f = new Field26C("A/B/CCCCCDDDD");
+        assertEquals("A", f.getComponent1());
+        assertEquals("B", f.getComponent2());
+        assertEquals("CCCCC", f.getComponent3());
+        assertEquals("DDDD", f.getComponent4());
+        assertNull(f.getComponent5());
+
+        f = new Field26C("A/B/CCCCCDDDDEEEE");
+        assertEquals("A", f.getComponent1());
+        assertEquals("B", f.getComponent2());
+        assertEquals("CCCCC", f.getComponent3());
+        assertEquals("DDDD", f.getComponent4());
+        assertEquals("EEEE", f.getComponent5());
+    }
 
 }

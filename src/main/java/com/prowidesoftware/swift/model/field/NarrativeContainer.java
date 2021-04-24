@@ -5,13 +5,13 @@ package com.prowidesoftware.swift.model.field;
  * a structured or unstructured format.
  *
  * @see Narrative
- *
  * @since 8.1.0
  */
 public interface NarrativeContainer {
 
     /**
      * Parses the field content into a narrative model.
+     *
      * @return the content parsed into a Narrative or an empty Narrative it the field is not well-formed
      */
     Narrative narrative();
@@ -29,9 +29,10 @@ public interface NarrativeContainer {
 
     /**
      * Sets or overrides this field value serializing the content of the structured narrative provided by parameter.
-     * @see Narrative#builder(int)
+     *
      * @param narrative a narrative instance
      * @return this field
+     * @see Narrative#builder(int)
      */
     NarrativeContainer setNarrative(Narrative narrative);
 

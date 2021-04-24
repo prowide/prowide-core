@@ -22,16 +22,17 @@ import java.util.Map;
 
 /**
  * To indicate the validation problem found when validating a BIC
+ *
+ * @author sebastian
  * @see BIC#validate()
  * @since 7.10.3
- * @author sebastian
  */
 public enum BicValidationResult {
     OK("The BIC code is valid"),
 
     INVALID_LENGTH("The BIC code must contain at least 8 characters with the institution (4), country (2) and location code (2)"),
     INVALID_INSTITUTION_LENGTH("The institution code must contain 4 characters and ${length} were found in ${found}"),
-	INVALID_COUNTRY_LENGTH("The country code must contain 2 characters and ${length} were found in ${found}"),
+    INVALID_COUNTRY_LENGTH("The country code must contain 2 characters and ${length} were found in ${found}"),
     INVALID_LOCATION_LENGTH("The location code must contain 2 characters and ${length} were found in ${found}"),
     INVALID_BRANCH_LENGTH("The branch code must contain 3 characters and ${length} were found in ${found}"),
     INVALID_INSTITUTION_CHARSET("The institution code can only contain uppercase letters and ${found} was found"),
@@ -39,12 +40,11 @@ public enum BicValidationResult {
     INVALID_LOCATION_CHARSET("The location code can only contain uppercase letters or digits and ${found} was found"),
     INVALID_BRANCH_CHARSET("The branch code can only contain uppercase letters or digits and ${found} was found");
 
+    private final String message;
+    private final Map<String, String> vars = new HashMap<>();
     BicValidationResult(final String message) {
         this.message = message;
     }
-
-    private String message;
-    private Map<String, String> vars = new HashMap<>();
 
     /**
      * Validation problem description including expected and found content when necessary

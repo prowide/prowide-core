@@ -23,6 +23,7 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * Implementation of the ISO Alpha-2 country validation constraint
+ *
  * @see com.prowidesoftware.swift.utils.IsoUtils#isValidISOCountry(String) for implementation details
  * @since 7.10.3
  */

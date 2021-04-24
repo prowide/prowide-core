@@ -20,14 +20,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import com.prowidesoftware.swift.utils.SwiftMessageComparator;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import com.prowidesoftware.swift.utils.SwiftMessageComparator;
 
 /**
  * Test cases for SwiftMessage and blocks JSON API
@@ -38,8 +34,8 @@ import com.prowidesoftware.swift.utils.SwiftMessageComparator;
 public class SwiftMessageJsonTest {
 
     @Test
-    public void testBlock1ToJson(){
-        SwiftBlock1 b1 = new SwiftBlock1("F","01","FOOSEDR0AXXX","0000","000000");
+    public void testBlock1ToJson() {
+        SwiftBlock1 b1 = new SwiftBlock1("F", "01", "FOOSEDR0AXXX", "0000", "000000");
         String s = b1.toJson();
 
         JsonParser parser = new JsonParser();
@@ -54,7 +50,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testBlock1FromJson(){
+    public void testBlock1FromJson() {
         String json = "{\"applicationId\":\"F\",\"serviceId\":\"01\",\"logicalTerminal\":\"FOOSEDR0AXXX\",\"sessionNumber\":\"0000\",\"sequenceNumber\":\"000000\"}";
         SwiftBlock1 b1 = SwiftBlock1.fromJson(json);
         assertEquals("F", b1.getApplicationId());
@@ -65,7 +61,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testBlock2InputToJson(){
+    public void testBlock2InputToJson() {
         SwiftBlock2Input b1 = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
         String s = b1.toJson();
 
@@ -80,7 +76,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testBlock2OutputToJson(){
+    public void testBlock2OutputToJson() {
         SwiftBlock2Output nout = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
         String s = nout.toJson();
 
@@ -97,7 +93,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testBlock2InputFromJson(){
+    public void testBlock2InputFromJson() {
         String s = "{\"direction\":\"I\",\"messageType\":\"103\",\"receiverAddress\":\"BBBBUSC0XXXX\",\"messagePriority\":\"N\",\"deliveryMonitoring\":\"2\",\"obsolescencePeriod\":\"003\"}";
         SwiftBlock2Input block2Input = SwiftBlock2Input.fromJson(s);
         assertTrue(block2Input.isInput());
@@ -109,7 +105,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testBlock2OutputFromJson(){
+    public void testBlock2OutputFromJson() {
         String s = "{\"direction\":\"O\",\"messageType\":\"100\",\"senderInputTime\":\"1200\",\"MIRDate\":\"010103\",\"MIRLogicalTerminal\":\"BANKBEBBAXXX\",\"MIRSessionNumber\":\"2222\",\"MIRSequenceNumber\":\"123456\",\"receiverOutputDate\":\"010103\",\"receiverOutputTime\":\"1201\",\"messagePriority\":\"N\"}";
 
         SwiftBlock2Output block2Output = SwiftBlock2Output.fromJson(s);
@@ -123,22 +119,22 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testBlock3ToJson(){
+    public void testBlock3ToJson() {
         SwiftBlock3 b3 = new SwiftBlock3();
-        b3.append(new Tag("113","SEPA"));
-        b3.append(new Tag("108","ILOVESEPA"));
+        b3.append(new Tag("113", "SEPA"));
+        b3.append(new Tag("108", "ILOVESEPA"));
 
         String s = b3.toJson();
         JsonParser parser = new JsonParser();
         JsonObject o = parser.parse(s).getAsJsonObject();
 
         assertNotNull(o);
-        assertTrue(o.get("tags").getAsJsonArray().size()==2);
+        assertTrue(o.get("tags").getAsJsonArray().size() == 2);
         //TODO agregar mas asserts, ver testBlock1ToJson
     }
 
     @Test
-    public void testBlock3FromJson(){
+    public void testBlock3FromJson() {
         String json = "{\"tags\":[{\"name\":\"113\",\"value\":\"SEPA\"},{\"name\":\"108\",\"value\":\"ILOVESEPA\"}]}";
         SwiftBlock3 b3 = SwiftBlock3.fromJson(json);
         assertTrue(b3.getTags().size() == 2);
@@ -147,7 +143,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testBlock4ToJson(){
+    public void testBlock4ToJson() {
         SwiftBlock4 b4 = new SwiftBlock4();
         b4.append(new Tag("20", "REFERENCE"));
         b4.append(new Tag("23B", "CRED"));
@@ -159,13 +155,13 @@ public class SwiftMessageJsonTest {
         assertNotNull(o);
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
         assertEquals("20", o.get("tags").getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString());
-        assertEquals("23B",o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString());
-        assertEquals("REFERENCE",o.get("tags").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString());
+        assertEquals("23B", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString());
+        assertEquals("REFERENCE", o.get("tags").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString());
         assertEquals("CRED", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("value").getAsString());
     }
 
     @Test
-    public void testBlock4FromJson(){
+    public void testBlock4FromJson() {
         String json = "{\"tags\":[{\"name\":\"20\",\"value\":\"REFERENCE\"},{\"name\":\"23B\",\"value\":\"CRED\"}]}";
         SwiftBlock4 b4 = SwiftBlock4.fromJson(json);
         assertTrue(b4.getTags().size() == 2);
@@ -174,7 +170,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testBlock5ToJson(){
+    public void testBlock5ToJson() {
         SwiftBlock5 b5 = new SwiftBlock5();
         b5.append(new Tag("PDE"));
         b5.append(new Tag("CHK", "aaaa1111bbbb2222"));
@@ -187,13 +183,13 @@ public class SwiftMessageJsonTest {
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
 
         assertEquals("PDE", o.get("tags").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString());
-        assertEquals("CHK",o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString());
+        assertEquals("CHK", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString());
         assertEquals("aaaa1111bbbb2222", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("value").getAsString());
 
     }
 
     @Test
-    public void testBlock5FromJson(){
+    public void testBlock5FromJson() {
         String json = "{\"tags\":[{\"name\":\"PDE\",\"value\":\"\"},{\"name\":\"CHK\",\"value\":\"aaaa1111bbbb2222\"}]}";
         SwiftBlock5 b5 = SwiftBlock5.fromJson(json);
         assertTrue(b5.getTags().size() == 2);
@@ -203,7 +199,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testSwiftBlockUserToJson(){
+    public void testSwiftBlockUserToJson() {
         SwiftBlockUser bu = new SwiftBlockUser("P");
         bu.append(new Tag("PDE"));
         bu.append(new Tag("CHK", "aaaa1111bbbb2222"));
@@ -216,12 +212,12 @@ public class SwiftMessageJsonTest {
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
 
         assertEquals("PDE", o.get("tags").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString());
-        assertEquals("CHK",o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString());
+        assertEquals("CHK", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString());
         assertEquals("P", o.get("blockName").getAsString());
     }
 
     @Test
-    public void testSwiftBlockUserFromJson(){
+    public void testSwiftBlockUserFromJson() {
         String json = "{\"blockName\":\"A\",\"tags\":[{\"name\":\"PDE\",\"value\":\"\"},{\"name\":\"CHK\",\"value\":\"aaaa1111bbbb2222\"}]}";
         SwiftBlockUser b = SwiftBlockUser.fromJson(json);
         assertTrue(b.getTags().size() == 2);
@@ -267,7 +263,7 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testSwiftMessageFromJsonWithBlock3() throws Exception {
-        String json ="{\n" +
+        String json = "{\n" +
                 "  \"timestamp\": \"2018-04-19T02:31:26Z\",\n" +
                 "  \"version\": 2,\n" +
                 "  \"data\": {\n" +
@@ -340,7 +336,7 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testSwiftMessageFromJson() throws Exception {
-        String json ="{\n" +
+        String json = "{\n" +
                 "  \"timestamp\": \"2018-04-16T03:57:16Z\",\n" +
                 "  \"version\": 2,\n" +
                 "  \"data\": {\n" +
@@ -400,7 +396,7 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testSwiftMessageFromJsonUserBlocks() {
-        String json ="{\n" +
+        String json = "{\n" +
                 "  \"timestamp\": \"2018-04-25T02:22:10Z\",\n" +
                 "  \"version\": 2,\n" +
                 "  \"data\": {\n" +
@@ -459,7 +455,7 @@ public class SwiftMessageJsonTest {
                 "    },\n" +
                 "    \"userBlocks\": [\n" +
                 "      {\n" +
-                "       \"blockName\":\"P\",\n"+
+                "       \"blockName\":\"P\",\n" +
                 "        \"tags\": [\n" +
                 "          {\n" +
                 "            \"name\": \"20\",\n" +

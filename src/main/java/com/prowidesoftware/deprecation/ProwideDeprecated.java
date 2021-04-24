@@ -21,14 +21,14 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Main annotation to track prowide deprecated items.
- * 
+ * <p>
  * See <a href="http://www.prowidesoftware.com/resources/deprecation-policy">Deprecation Policy</a>
  * for more details.
- * 
- * <p>This annotation is intended for internal use of Prowide and 
- * source code administration. It may suffer incompatible changes 
+ *
+ * <p>This annotation is intended for internal use of Prowide and
+ * source code administration. It may suffer incompatible changes
  * without prior notice.
- * 
+ *
  * @author miguel
  * @since 7.8.1
  */
@@ -36,19 +36,21 @@ import java.lang.annotation.RetentionPolicy;
 @Documented
 public @interface ProwideDeprecated {
 
-	String comment() default "";
-	
-	/**
-	 * Scheduled year for entering phase 2 of deprecation
-	 */
-	TargetYear phase2() default TargetYear.SRU2021;
-	/**
-	 * Scheduled year for entering phase 3 of deprecation
-	 */
-	TargetYear phase3() default TargetYear.SRU2022;
-	/**
-	 * Scheduled year for entering phase 4 of deprecation
-	 */
-	TargetYear phase4() default TargetYear.SRU2023;
-	
+    String comment() default "";
+
+    /**
+     * Scheduled year for entering phase 2 of deprecation
+     */
+    TargetYear phase2() default TargetYear.SRU2021;
+
+    /**
+     * Scheduled year for entering phase 3 of deprecation
+     */
+    TargetYear phase3() default TargetYear.SRU2022;
+
+    /**
+     * Scheduled year for entering phase 4 of deprecation
+     */
+    TargetYear phase4() default TargetYear.SRU2023;
+
 }

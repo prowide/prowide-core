@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field32B and similar fields.
@@ -27,40 +27,40 @@ import org.junit.jupiter.api.Test;
  */
 public class Field32BTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("32B",
-				"USD123"
-			);
-	}
-	
-	@Test
-	public void testField32B() {		
-		Field32B f = new Field32B("USD123");
-		assertEquals("USD", f.getComponent1());
-		assertEquals("123", f.getComponent2());
-		assertEquals(new Double(123), new Double(f.getComponent2AsNumber().doubleValue()));
-		
-		f = new Field32B("123");
-		assertNull(f.getComponent1());
-		assertEquals("123", f.getComponent2());
-		assertEquals(new Double(123), new Double(f.getComponent2AsNumber().doubleValue()));
-		
-		f = new Field32B("USD");
-		assertEquals("USD", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent2AsNumber());
-		
-		f = new Field32B("USD123,");
-		assertEquals("USD", f.getComponent1());
-		assertEquals("123,", f.getComponent2());
-		assertEquals(new Double(123), new Double(f.getComponent2AsNumber().doubleValue()));
-		
-		f = new Field32B("USD123,45");
-		assertEquals("USD", f.getComponent1());
-		assertEquals("123,45", f.getComponent2());
-		assertEquals(new Double(123.45), new Double(f.getComponent2AsNumber().doubleValue()));
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("32B",
+                "USD123"
+        );
+    }
+
+    @Test
+    public void testField32B() {
+        Field32B f = new Field32B("USD123");
+        assertEquals("USD", f.getComponent1());
+        assertEquals("123", f.getComponent2());
+        assertEquals(new Double(123), new Double(f.getComponent2AsNumber().doubleValue()));
+
+        f = new Field32B("123");
+        assertNull(f.getComponent1());
+        assertEquals("123", f.getComponent2());
+        assertEquals(new Double(123), new Double(f.getComponent2AsNumber().doubleValue()));
+
+        f = new Field32B("USD");
+        assertEquals("USD", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent2AsNumber());
+
+        f = new Field32B("USD123,");
+        assertEquals("USD", f.getComponent1());
+        assertEquals("123,", f.getComponent2());
+        assertEquals(new Double(123), new Double(f.getComponent2AsNumber().doubleValue()));
+
+        f = new Field32B("USD123,45");
+        assertEquals("USD", f.getComponent1());
+        assertEquals("123,45", f.getComponent2());
+        assertEquals(new Double(123.45), new Double(f.getComponent2AsNumber().doubleValue()));
+    }
 
 }

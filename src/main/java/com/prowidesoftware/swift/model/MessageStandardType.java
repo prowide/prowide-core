@@ -17,17 +17,18 @@ package com.prowidesoftware.swift.model;
 
 /**
  * Enumeration of messages standard types.
- * 
+ *
  * @since 7.8.3
  */
 public enum MessageStandardType {
-	MT,
-	MX;
+    MT,
+    MX;
 
-	public boolean isMT() {
-		return this == MT;
-	}
-	public boolean isMX() {
-		return this == MX;
-	}
+    public boolean isMT() {
+        return this == MT;
+    }
+
+    public boolean isMX() {
+        return this == MX;
+    }
 }

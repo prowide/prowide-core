@@ -15,29 +15,29 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import java.util.List;
-
 import com.prowidesoftware.swift.model.BIC;
+
+import java.util.List;
 
 /**
  * Fields with a BIC component.
  *
  * <p>Note that if a field has a BIC and it is optional, and the actual field has not set the optional BIC/s then the
  * call bics() will return an empty list
- * 
+ *
  * @since 6.1
  */
 public interface BICContainer {
 
-	/**
-	 * Get a list of strings of BICs present in this field
-	 * @return a list, with zero or more BICs in this field.
-	 */
-	List<String> bicStrings();
-	
-	/**
-	 * Utility method that creates a BIC for every string returned by {@link #bicStrings()}
-	 * 
-	 */
-	List<BIC> bics();
+    /**
+     * Get a list of strings of BICs present in this field
+     *
+     * @return a list, with zero or more BICs in this field.
+     */
+    List<String> bicStrings();
+
+    /**
+     * Utility method that creates a BIC for every string returned by {@link #bicStrings()}
+     */
+    List<BIC> bics();
 }

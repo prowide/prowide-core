@@ -15,13 +15,13 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Test for fields getValueDisplay API.
@@ -30,59 +30,59 @@ import org.junit.jupiter.api.Test;
  */
 public class GetValueDisplayTest {
 
-	/*
-	 * Rate formatting
-	 */
-	@Test
-	public void test36() {
-		Field36 f = new Field36("1,234567890120");
-		assertEquals("1.23456789012", f.getValueDisplay(Locale.US));
-		assertEquals("1,23456789012", f.getValueDisplay(Locale.GERMANY));
-		assertEquals("1,23456789012", f.getValueDisplay(Locale.FRANCE));
-		f = new Field36("1234,234567890120");
-		assertEquals("1,234.23456789012", f.getValueDisplay(Locale.US));
-		assertEquals("1.234,23456789012", f.getValueDisplay(Locale.GERMANY));
-		assertEquals("1 234,23456789012", f.getValueDisplay(Locale.FRANCE));
-	}
-	
-	/*
-	 * Amount formatting
-	 */
-	@Test
-	public void test32A() {
-		Field32A f = new Field32A("121212USD1,234500");
-		assertEquals("1.2345", f.getValueDisplay(3, Locale.US));
-		assertEquals("1,2345", f.getValueDisplay(3, Locale.GERMANY));
-		assertEquals("1,2345", f.getValueDisplay(3, Locale.FRANCE));
-		f = new Field32A("121212USD1234,5670");
-		assertEquals("1,234.567", f.getValueDisplay(3, Locale.US));
-		assertEquals("1.234,567", f.getValueDisplay(3, Locale.GERMANY));
-		assertEquals("1 234,567", f.getValueDisplay(3, Locale.FRANCE));
-	}
-	
-	/*
-	 * Account formatting
-	 */
-	@Test
-	public void test50F() {
-		final String value = "/1234567890\r\n"+
-				"1/JOHN SMITH\r\n"+
-				"2/HIGH STREET 6, APT 6C\r\n"+
-				"3/BE/BRUSSELS";
-		Field50F f = new Field50F(value);
-		assertEquals("1234567890", f.getValueDisplay(1, Locale.US));
-	}
+    /*
+     * Rate formatting
+     */
+    @Test
+    public void test36() {
+        Field36 f = new Field36("1,234567890120");
+        assertEquals("1.23456789012", f.getValueDisplay(Locale.US));
+        assertEquals("1,23456789012", f.getValueDisplay(Locale.GERMANY));
+        assertEquals("1,23456789012", f.getValueDisplay(Locale.FRANCE));
+        f = new Field36("1234,234567890120");
+        assertEquals("1,234.23456789012", f.getValueDisplay(Locale.US));
+        assertEquals("1.234,23456789012", f.getValueDisplay(Locale.GERMANY));
+        assertEquals("1 234,23456789012", f.getValueDisplay(Locale.FRANCE));
+    }
 
-	/*
-	 * Huge number formatting
-	 */
-	@Disabled("produces heap exception because number is interpreted as exponential value")
-	//TODO fix getValueDisplay when expression is parsed into exponential value
-	@Test
-	public void test95L() {
-		Field95L f = new Field95L(":ISSU//300300E1007142000089");
-		f.setComponent3("300300E1007142000089");
-		assertNotNull(f.getValueDisplay(Locale.getDefault()));
-	}
+    /*
+     * Amount formatting
+     */
+    @Test
+    public void test32A() {
+        Field32A f = new Field32A("121212USD1,234500");
+        assertEquals("1.2345", f.getValueDisplay(3, Locale.US));
+        assertEquals("1,2345", f.getValueDisplay(3, Locale.GERMANY));
+        assertEquals("1,2345", f.getValueDisplay(3, Locale.FRANCE));
+        f = new Field32A("121212USD1234,5670");
+        assertEquals("1,234.567", f.getValueDisplay(3, Locale.US));
+        assertEquals("1.234,567", f.getValueDisplay(3, Locale.GERMANY));
+        assertEquals("1 234,567", f.getValueDisplay(3, Locale.FRANCE));
+    }
+
+    /*
+     * Account formatting
+     */
+    @Test
+    public void test50F() {
+        final String value = "/1234567890\r\n" +
+                "1/JOHN SMITH\r\n" +
+                "2/HIGH STREET 6, APT 6C\r\n" +
+                "3/BE/BRUSSELS";
+        Field50F f = new Field50F(value);
+        assertEquals("1234567890", f.getValueDisplay(1, Locale.US));
+    }
+
+    /*
+     * Huge number formatting
+     */
+    @Disabled("produces heap exception because number is interpreted as exponential value")
+    //TODO fix getValueDisplay when expression is parsed into exponential value
+    @Test
+    public void test95L() {
+        Field95L f = new Field95L(":ISSU//300300E1007142000089");
+        f.setComponent3("300300E1007142000089");
+        assertNotNull(f.getValueDisplay(Locale.getDefault()));
+    }
 
 }

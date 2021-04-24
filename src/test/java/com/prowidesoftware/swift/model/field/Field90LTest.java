@@ -28,61 +28,61 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 public class Field90LTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("90L",
-				":MAXP//235,06",
-				":OFFR//N3,"
-			);
-	}
-	
-	@Test
-	public void testField90LString() {
-		Field90L f;
-		
-		f = new Field90L("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("90L",
+                ":MAXP//235,06",
+                ":OFFR//N3,"
+        );
+    }
 
-		f = new Field90L(":");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		
-		f = new Field90L(":MAXP");
-		assertEquals("MAXP", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
+    @Test
+    public void testField90LString() {
+        Field90L f;
 
-		f = new Field90L(":MAXP//");
-		assertEquals("MAXP", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
+        f = new Field90L("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
 
-		f = new Field90L(":MAXP//123,");
-		assertEquals("MAXP", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertEquals("123,", f.getComponent3());
+        f = new Field90L(":");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
 
-		f = new Field90L(":MAXP//N123,");
-		assertEquals("MAXP", f.getComponent1());
-		assertEquals("N", f.getComponent2());
-		assertEquals("123,", f.getComponent3());
-	}
+        f = new Field90L(":MAXP");
+        assertEquals("MAXP", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
 
-	@Test
-	public void testGetters() {
-		Field90L f = new Field90L(":MAXP//235,06");
-		assertNull(f.getSign());
-		assertEquals("235,06", f.getAmount());
-		assertEquals(new BigDecimal("235.06"), f.getAmountAsNumber());
+        f = new Field90L(":MAXP//");
+        assertEquals("MAXP", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
 
-		f = new Field90L(":OFFR//N3,");
-		assertEquals("N", f.getSign());
-		assertEquals("3,", f.getAmount());
-		assertEquals(new BigDecimal("3"), f.getAmountAsNumber());
-	}
+        f = new Field90L(":MAXP//123,");
+        assertEquals("MAXP", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertEquals("123,", f.getComponent3());
+
+        f = new Field90L(":MAXP//N123,");
+        assertEquals("MAXP", f.getComponent1());
+        assertEquals("N", f.getComponent2());
+        assertEquals("123,", f.getComponent3());
+    }
+
+    @Test
+    public void testGetters() {
+        Field90L f = new Field90L(":MAXP//235,06");
+        assertNull(f.getSign());
+        assertEquals("235,06", f.getAmount());
+        assertEquals(new BigDecimal("235.06"), f.getAmountAsNumber());
+
+        f = new Field90L(":OFFR//N3,");
+        assertEquals("N", f.getSign());
+        assertEquals("3,", f.getAmount());
+        assertEquals(new BigDecimal("3"), f.getAmountAsNumber());
+    }
 
 }

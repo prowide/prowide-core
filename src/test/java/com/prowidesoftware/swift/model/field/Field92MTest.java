@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for Field92M and similar fields.
@@ -28,77 +28,77 @@ import org.junit.jupiter.api.Test;
  */
 public class Field92MTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("92M",
-				":DDDD//EEEEEEEE123/FFFF"
-			);
-	}
-	
-	@Test
-	public void testField92MString() {
-		Field92M f = null;
-		
-		f = new Field92M("");
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		
-		f = new Field92M(":");
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		
-		f = new Field92M(":/");
-		//assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		
-		f = new Field92M("://");
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		
-		f = new Field92M(":///");
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-				
-		f = new Field92M(":DDDD");
-		assertEquals("DDDD", f.getComponent1());
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		
-		f = new Field92M(":DDDD//");
-		assertEquals("DDDD", f.getComponent1());
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		
-		f = new Field92M(":DDDD//EEEEEEEE");
-		assertEquals("DDDD", f.getComponent1());
-		assertEquals("EEEEEEEE", f.getComponent2());
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		
-		f = new Field92M(":DDDD//EEEEEEEE123/");
-		assertEquals("DDDD", f.getComponent1());
-		assertEquals("EEEEEEEE", f.getComponent2());
-		assertEquals("123", f.getComponent3());
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		
-		f = new Field92M(":DDDD//EEEEEEEE123/FFFF");
-		assertEquals("DDDD", f.getComponent1());
-		assertEquals("EEEEEEEE", f.getComponent2());
-		assertEquals("123", f.getComponent3());
-		assertEquals("FFFF", f.getComponent4());
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("92M",
+                ":DDDD//EEEEEEEE123/FFFF"
+        );
+    }
+
+    @Test
+    public void testField92MString() {
+        Field92M f = null;
+
+        f = new Field92M("");
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field92M(":");
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field92M(":/");
+        //assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field92M("://");
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field92M(":///");
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field92M(":DDDD");
+        assertEquals("DDDD", f.getComponent1());
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field92M(":DDDD//");
+        assertEquals("DDDD", f.getComponent1());
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field92M(":DDDD//EEEEEEEE");
+        assertEquals("DDDD", f.getComponent1());
+        assertEquals("EEEEEEEE", f.getComponent2());
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field92M(":DDDD//EEEEEEEE123/");
+        assertEquals("DDDD", f.getComponent1());
+        assertEquals("EEEEEEEE", f.getComponent2());
+        assertEquals("123", f.getComponent3());
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field92M(":DDDD//EEEEEEEE123/FFFF");
+        assertEquals("DDDD", f.getComponent1());
+        assertEquals("EEEEEEEE", f.getComponent2());
+        assertEquals("123", f.getComponent3());
+        assertEquals("FFFF", f.getComponent4());
+    }
 
 }

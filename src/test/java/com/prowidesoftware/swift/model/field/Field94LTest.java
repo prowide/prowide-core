@@ -7,7 +7,7 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Field94LTest extends AbstractFieldTest{
+public class Field94LTest extends AbstractFieldTest {
 
     @Override
     @Test

@@ -15,12 +15,12 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test for Field69F and similar fields.
@@ -30,65 +30,65 @@ import org.junit.jupiter.api.Test;
  */
 public class Field69FTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("69F",
-				":ABC//DEF/20111224131415"
-			);
-	}
-	
-	@Test
-	public void testParse69F() {
-		Field69F f = null;
-		
-		f = new Field69F((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field69F("ABC");
-		assertEquals("ABC", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("69F",
+                ":ABC//DEF/20111224131415"
+        );
+    }
 
-		f = new Field69F(":ABC");
-		assertEquals("ABC", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field69F("ABC//");
-		assertEquals("ABC", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+    @Test
+    public void testParse69F() {
+        Field69F f = null;
 
-		f = new Field69F(":ABC//");
-		assertEquals("ABC", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+        f = new Field69F((String) null);
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
 
-		f = new Field69F(":ABC//DEF");
-		assertEquals("ABC", f.getComponent1());
-		assertEquals("DEF", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field69F(":ABC//DEF/20111224131415");
-		assertEquals("ABC", f.getComponent1());
-		assertEquals("DEF", f.getComponent2());
-		assertEquals("20111224", f.getComponent3());
-		assertEquals(2011, f.getComponent3AsCalendar().get(Calendar.YEAR));
-		assertEquals(Calendar.DECEMBER, f.getComponent3AsCalendar().get(Calendar.MONTH));
-		assertEquals(24, f.getComponent3AsCalendar().get(Calendar.DAY_OF_MONTH));
-		assertEquals("131415", f.getComponent4());
-		assertEquals(1, f.getComponent4AsCalendar().get(Calendar.HOUR));
-		assertEquals(14, f.getComponent4AsCalendar().get(Calendar.MINUTE));
-		assertEquals(15, f.getComponent4AsCalendar().get(Calendar.SECOND));
-	}
-		
+        f = new Field69F("ABC");
+        assertEquals("ABC", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field69F(":ABC");
+        assertEquals("ABC", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field69F("ABC//");
+        assertEquals("ABC", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field69F(":ABC//");
+        assertEquals("ABC", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field69F(":ABC//DEF");
+        assertEquals("ABC", f.getComponent1());
+        assertEquals("DEF", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field69F(":ABC//DEF/20111224131415");
+        assertEquals("ABC", f.getComponent1());
+        assertEquals("DEF", f.getComponent2());
+        assertEquals("20111224", f.getComponent3());
+        assertEquals(2011, f.getComponent3AsCalendar().get(Calendar.YEAR));
+        assertEquals(Calendar.DECEMBER, f.getComponent3AsCalendar().get(Calendar.MONTH));
+        assertEquals(24, f.getComponent3AsCalendar().get(Calendar.DAY_OF_MONTH));
+        assertEquals("131415", f.getComponent4());
+        assertEquals(1, f.getComponent4AsCalendar().get(Calendar.HOUR));
+        assertEquals(14, f.getComponent4AsCalendar().get(Calendar.MINUTE));
+        assertEquals(15, f.getComponent4AsCalendar().get(Calendar.SECOND));
+    }
+
 }

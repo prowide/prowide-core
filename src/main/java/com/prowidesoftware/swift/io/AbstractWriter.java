@@ -15,14 +15,7 @@
  */
 package com.prowidesoftware.swift.io;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.*;
 
 /**
  * Base implementation for message writers.
@@ -37,65 +30,71 @@ import java.io.Writer;
  * <li>Instantiating the writer for a particular File or stream, calling
  * the write methods and closing the writer when all messages has been written</li>
  * </ul>
- * 
- * @author sebastian@prowidesoftware.com
+ *
+ * @author sebastian
  * @since 7.8
  */
 public abstract class AbstractWriter {
-	protected Writer writer = null;
+    protected Writer writer = null;
 
-	/**
-	 * Constructs a writer to write content into a given Writer instance.
-	 * @param writer
-	 */
-	public AbstractWriter(final Writer writer) {
-		this.writer = writer;
-	}
-	
-	/**
-	 * Constructs a writer to write content into a file.
-	 * @param file
-	 * @throws FileNotFoundException 
-	 */
-	public AbstractWriter(final File file) throws FileNotFoundException {
-		this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file))); 
-	}
-	
-	/**
-	 * Constructs a writer to write content into a file.
-	 * @param filename file to create
-	 * @throws FileNotFoundException 
-	 */
-	public AbstractWriter(final String filename) throws FileNotFoundException {
-		this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename))); 
-	}
-	
-	/**
-	 * Constructs a writer to write content into a given stream.
-	 * @param stream
-	 */
-	public AbstractWriter(final OutputStream stream) {
-		this.writer = new BufferedWriter(new OutputStreamWriter(stream));
-	}
-    
+    /**
+     * Constructs a writer to write content into a given Writer instance.
+     *
+     * @param writer
+     */
+    public AbstractWriter(final Writer writer) {
+        this.writer = writer;
+    }
+
+    /**
+     * Constructs a writer to write content into a file.
+     *
+     * @param file
+     * @throws FileNotFoundException
+     */
+    public AbstractWriter(final File file) throws FileNotFoundException {
+        this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+    }
+
+    /**
+     * Constructs a writer to write content into a file.
+     *
+     * @param filename file to create
+     * @throws FileNotFoundException
+     */
+    public AbstractWriter(final String filename) throws FileNotFoundException {
+        this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename)));
+    }
+
+    /**
+     * Constructs a writer to write content into a given stream.
+     *
+     * @param stream
+     */
+    public AbstractWriter(final OutputStream stream) {
+        this.writer = new BufferedWriter(new OutputStreamWriter(stream));
+    }
+
     /**
      * Close the stream.
+     *
      * @throws IOException if an I/O error occurs
      */
     public void close() throws IOException {
-    	if (this.writer != null) {
-    		this.writer.close();
-    	}
+        if (this.writer != null) {
+            this.writer.close();
+        }
     }
-    
+
     /**
      * Flush the stream.
+     *
      * @throws IOException if an I/O error occurs
      */
     public void flush() throws IOException {
-    	if (this.writer != null) {
-    		this.writer.flush();
-    	}
+        if (this.writer != null) {
+            this.writer.flush();
+        }
     }
-    
+
 }

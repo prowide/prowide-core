@@ -15,120 +15,120 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
-
 /**
  * Test for Field68A and similar fields.
- * 
- * @author www.prowidesoftware.com
+ *
+ * @author sebastian
  * @since 6.4
  */
 public class Field68ATest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("68A",
-				"130301FOO130302/1234/999",
-				"130301FOO130302/1234/999//ABC"
-			);
-	}
-	
-	/**
-	 * NSN/N[/N][//S]
-	 */
-	@Test
-	public void testField68A() {		
-		Field68A f = new Field68A((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("68A",
+                "130301FOO130302/1234/999",
+                "130301FOO130302/1234/999//ABC"
+        );
+    }
 
-		f = new Field68A("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
+    /**
+     * NSN/N[/N][//S]
+     */
+    @Test
+    public void testField68A() {
+        Field68A f = new Field68A((String) null);
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
-		f = new Field68A("130301");
-		assertEquals("130301", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
+        f = new Field68A("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
-		f = new Field68A("130301FOO");
-		assertEquals("130301", f.getComponent1());
-		assertEquals("FOO", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
-		
-		f = new Field68A("130301FOO130302");
-		assertEquals("130301", f.getComponent1());
-		assertEquals("FOO", f.getComponent2());
-		assertEquals("130302", f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
+        f = new Field68A("130301");
+        assertEquals("130301", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
-		f = new Field68A("130301FOO130302/");
-		assertEquals("130301", f.getComponent1());
-		assertEquals("FOO", f.getComponent2());
-		assertEquals("130302", f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
+        f = new Field68A("130301FOO");
+        assertEquals("130301", f.getComponent1());
+        assertEquals("FOO", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
-		f = new Field68A("130301FOO130302/1234");
-		assertEquals("130301", f.getComponent1());
-		assertEquals("FOO", f.getComponent2());
-		assertEquals("130302", f.getComponent3());
-		assertEquals("1234", f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
+        f = new Field68A("130301FOO130302");
+        assertEquals("130301", f.getComponent1());
+        assertEquals("FOO", f.getComponent2());
+        assertEquals("130302", f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
-		f = new Field68A("130301FOO130302/1234/");
-		assertEquals("130301", f.getComponent1());
-		assertEquals("FOO", f.getComponent2());
-		assertEquals("130302", f.getComponent3());
-		assertEquals("1234", f.getComponent4());
-		assertNull(f.getComponent5());
-		assertNull(f.getComponent6());
+        f = new Field68A("130301FOO130302/");
+        assertEquals("130301", f.getComponent1());
+        assertEquals("FOO", f.getComponent2());
+        assertEquals("130302", f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
-		f = new Field68A("130301FOO130302/1234/999");
-		assertEquals("130301", f.getComponent1());
-		assertEquals("FOO", f.getComponent2());
-		assertEquals("130302", f.getComponent3());
-		assertEquals("1234", f.getComponent4());
-		assertEquals("999", f.getComponent5());
-		assertNull(f.getComponent6());
+        f = new Field68A("130301FOO130302/1234");
+        assertEquals("130301", f.getComponent1());
+        assertEquals("FOO", f.getComponent2());
+        assertEquals("130302", f.getComponent3());
+        assertEquals("1234", f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
-		f = new Field68A("130301FOO130302/1234/999//");
-		assertEquals("130301", f.getComponent1());
-		assertEquals("FOO", f.getComponent2());
-		assertEquals("130302", f.getComponent3());
-		assertEquals("1234", f.getComponent4());
-		assertEquals("999", f.getComponent5());
-		assertNull(f.getComponent6());
+        f = new Field68A("130301FOO130302/1234/");
+        assertEquals("130301", f.getComponent1());
+        assertEquals("FOO", f.getComponent2());
+        assertEquals("130302", f.getComponent3());
+        assertEquals("1234", f.getComponent4());
+        assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
-		f = new Field68A("130301FOO130302/1234/999//ABC");
-		assertEquals("130301", f.getComponent1());
-		assertEquals("FOO", f.getComponent2());
-		assertEquals("130302", f.getComponent3());
-		assertEquals("1234", f.getComponent4());
-		assertEquals("999", f.getComponent5());
-		assertEquals("ABC", f.getComponent6());
-	}
-	
+        f = new Field68A("130301FOO130302/1234/999");
+        assertEquals("130301", f.getComponent1());
+        assertEquals("FOO", f.getComponent2());
+        assertEquals("130302", f.getComponent3());
+        assertEquals("1234", f.getComponent4());
+        assertEquals("999", f.getComponent5());
+        assertNull(f.getComponent6());
+
+        f = new Field68A("130301FOO130302/1234/999//");
+        assertEquals("130301", f.getComponent1());
+        assertEquals("FOO", f.getComponent2());
+        assertEquals("130302", f.getComponent3());
+        assertEquals("1234", f.getComponent4());
+        assertEquals("999", f.getComponent5());
+        assertNull(f.getComponent6());
+
+        f = new Field68A("130301FOO130302/1234/999//ABC");
+        assertEquals("130301", f.getComponent1());
+        assertEquals("FOO", f.getComponent2());
+        assertEquals("130302", f.getComponent3());
+        assertEquals("1234", f.getComponent4());
+        assertEquals("999", f.getComponent5());
+        assertEquals("ABC", f.getComponent6());
+    }
+
 }

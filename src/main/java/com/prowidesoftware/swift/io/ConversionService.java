@@ -38,100 +38,101 @@ import java.io.StringWriter;
  */
 public class ConversionService implements IConversionService {
 
-	/**
-	 * Given a SwiftMessage object returns a String containing its SWIFT message representation.
-	 * <p>The implementation ensures all line breaks use CRLF, and ignores all empty blocks.
-	 *
-	 * @see com.prowidesoftware.swift.io.IConversionService#getFIN(com.prowidesoftware.swift.model.SwiftMessage)
-	 */
-	public String getFIN(final SwiftMessage msg) {
-		Validate.notNull(msg);
+    /**
+     * Given a SwiftMessage object returns a String containing its SWIFT message representation.
+     * <p>The implementation ensures all line breaks use CRLF, and ignores all empty blocks.
+     *
+     * @see com.prowidesoftware.swift.io.IConversionService#getFIN(com.prowidesoftware.swift.model.SwiftMessage)
+     */
+    public String getFIN(final SwiftMessage msg) {
+        Validate.notNull(msg);
 
-		final StringWriter writer = new StringWriter();
-		SwiftWriter.writeMessage(msg, writer, true);
-		final String fin = writer.getBuffer().toString();
+        final StringWriter writer = new StringWriter();
+        SwiftWriter.writeMessage(msg, writer, true);
+        final String fin = writer.getBuffer().toString();
 
-		// ensure EOLs in the result
-		return SwiftWriter.ensureEols(fin);
-	}
+        // ensure EOLs in the result
+        return SwiftWriter.ensureEols(fin);
+    }
 
-	/**
-	 * Given a String containing a message in its Wife XML internal representation, returns a String
-	 * containing its SWIFT message representation.
-	 *
-	 * @see com.prowidesoftware.swift.io.IConversionService#getFIN(java.lang.String)
-	 */
-	public String getFIN(final String xml) {
-		Validate.notNull(xml);
-		final SwiftMessage msg = getMessageFromXML(xml);
-		if (msg == null) {
-			throw new ProwideException("parsed SwiftMessage from XML is null");
-		}
-		return getFIN(msg);
-	}
+    /**
+     * Given a String containing a message in its Wife XML internal representation, returns a String
+     * containing its SWIFT message representation.
+     *
+     * @see com.prowidesoftware.swift.io.IConversionService#getFIN(java.lang.String)
+     */
+    public String getFIN(final String xml) {
+        Validate.notNull(xml);
+        final SwiftMessage msg = getMessageFromXML(xml);
+        if (msg == null) {
+            throw new ProwideException("parsed SwiftMessage from XML is null");
+        }
+        return getFIN(msg);
+    }
 
-	/**
-	 * Given a SwiftMessage objects returns a String containing WIFE internal XML representation of the message.
-	 *
-	 * @see com.prowidesoftware.swift.io.IConversionService#getXml(com.prowidesoftware.swift.model.SwiftMessage)
-	 */
-	public String getXml(final SwiftMessage msg) {
-		return getXml(msg, false);
-	}
-	
-	/**
-	 * Given a SwiftMessage objects returns a String containing WIFE internal XML representation of the message.
-	 * @since 7.6
-	 */
-	public String getXml(final SwiftMessage msg, final boolean useField) {
-		Validate.notNull(msg);
-		final StringWriter w = new StringWriter();
-		msg.visit(new XMLWriterVisitor(w, useField));
-		return w.getBuffer().toString();
-	}
+    /**
+     * Given a SwiftMessage objects returns a String containing WIFE internal XML representation of the message.
+     *
+     * @see com.prowidesoftware.swift.io.IConversionService#getXml(com.prowidesoftware.swift.model.SwiftMessage)
+     */
+    public String getXml(final SwiftMessage msg) {
+        return getXml(msg, false);
+    }
 
-	/**
-	 * Given a Swift message String returns a String containing WIFE internal XML representation of the message.
-	 *
-	 * @see com.prowidesoftware.swift.io.IConversionService#getXml(java.lang.String)
-	 */
-	public String getXml(final String fin) {
-		return getXml(fin, false);
-	}
-	
-	/**
-	 * Given a Swift message String returns a String containing WIFE internal XML representation of the message, use field (true) or tag (false) depending on the value of useField 
-	 *
-	 * @see #getXml(String)
-	 * @since 7.6
-	 */
-	public String getXml(final String fin, final boolean useField) {
-		Validate.notNull(fin);
-		final SwiftMessage msg = this.getMessageFromFIN(fin);
-		return getXml(msg, useField);
-	}
+    /**
+     * Given a SwiftMessage objects returns a String containing WIFE internal XML representation of the message.
+     *
+     * @since 7.6
+     */
+    public String getXml(final SwiftMessage msg, final boolean useField) {
+        Validate.notNull(msg);
+        final StringWriter w = new StringWriter();
+        msg.visit(new XMLWriterVisitor(w, useField));
+        return w.getBuffer().toString();
+    }
 
-	/**
-	 * Given a Swift message String returns a SwiftMessage object.
-	 *
-	 * @see com.prowidesoftware.swift.io.IConversionService#getMessageFromFIN(java.lang.String)
-	 */
-	public SwiftMessage getMessageFromFIN(final String fin) {
-		Validate.notNull(fin);
-		try {
-			return SwiftMessage.parse(fin);
-		} catch (final IOException e) {
-			throw new ProwideException(e+" during parse of message");
-		}
-	}
+    /**
+     * Given a Swift message String returns a String containing WIFE internal XML representation of the message.
+     *
+     * @see com.prowidesoftware.swift.io.IConversionService#getXml(java.lang.String)
+     */
+    public String getXml(final String fin) {
+        return getXml(fin, false);
+    }
 
-	/**
-	 * Given a String containing a message in its WIFE internal XML representation, returns a SwiftMessage object.
-	 *
-	 * @see com.prowidesoftware.swift.io.IConversionService#getMessageFromXML(java.lang.String)
-	 */
-	public SwiftMessage getMessageFromXML(final String xml) {
-		return new XMLParser().parse(xml);
-	}
-	
+    /**
+     * Given a Swift message String returns a String containing WIFE internal XML representation of the message, use field (true) or tag (false) depending on the value of useField
+     *
+     * @see #getXml(String)
+     * @since 7.6
+     */
+    public String getXml(final String fin, final boolean useField) {
+        Validate.notNull(fin);
+        final SwiftMessage msg = this.getMessageFromFIN(fin);
+        return getXml(msg, useField);
+    }
+
+    /**
+     * Given a Swift message String returns a SwiftMessage object.
+     *
+     * @see com.prowidesoftware.swift.io.IConversionService#getMessageFromFIN(java.lang.String)
+     */
+    public SwiftMessage getMessageFromFIN(final String fin) {
+        Validate.notNull(fin);
+        try {
+            return SwiftMessage.parse(fin);
+        } catch (final IOException e) {
+            throw new ProwideException(e + " during parse of message");
+        }
+    }
+
+    /**
+     * Given a String containing a message in its WIFE internal XML representation, returns a SwiftMessage object.
+     *
+     * @see com.prowidesoftware.swift.io.IConversionService#getMessageFromXML(java.lang.String)
+     */
+    public SwiftMessage getMessageFromXML(final String xml) {
+        return new XMLParser().parse(xml);
+    }
+
 }

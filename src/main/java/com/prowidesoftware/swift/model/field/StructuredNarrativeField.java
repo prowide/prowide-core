@@ -29,6 +29,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
 
     /**
      * Creates a new field and initializes its components with content from the parameter value.
+     *
      * @param value complete field value including separators and CRLF
      */
     public StructuredNarrativeField(final String value) {
@@ -54,7 +55,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component != 1) {
-            throw new IllegalArgumentException("invalid component number "+component+" for field "+ getName());
+            throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
         //default format (as is)
         return getComponent1();
@@ -73,6 +74,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
 
     /**
      * Returns the field components pattern
+     *
      * @return the static value of COMPONENTS_PATTERN
      */
     @Override
@@ -82,6 +84,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
 
     /**
      * Returns the field parser pattern
+     *
      * @return the static value of PARSER_PATTERN
      */
     @Override
@@ -109,6 +112,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
 
     /**
      * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     *
      * @return always false since narrative fields are not generic fields
      */
     @Override
@@ -120,6 +124,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
      * Returns the defined amount of components.<br>
      * This is not the amount of components present in the field instance, but the total amount of components
      * that this field accepts as defined.
+     *
      * @return for narrative fields this method always returns 1
      * @since 7.7
      */
@@ -132,9 +137,10 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
      * Returns english label for components.
      * <br>
      * The index in the list is in sync with specific field component structure.
+     *
+     * @return for Narrative fields returns a single element for the "Narrative" as a single component
      * @see #getComponentLabel(int)
      * @since 7.8.4
-     * @return for Narrative fields returns a single element for the "Narrative" as a single component
      */
     @Override
     protected List<String> getComponentLabels() {
@@ -145,8 +151,9 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
 
     /**
      * Returns a mapping between component numbers and their label in camel case format.
-     * @since 7.10.3
+     *
      * @return for Narrative fields returns a single entry for the "Narrative" as a single component
+     * @since 7.10.3
      */
     @Override
     protected Map<Integer, String> getComponentMap() {
@@ -157,6 +164,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
 
     /**
      * Gets the single field component with the complete consolidated narrative content.
+     *
      * @return the narrative content
      */
     public String getComponent1() {

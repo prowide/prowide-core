@@ -25,6 +25,7 @@ import java.util.List;
 
 /**
  * Json serialization for AbstractMT and subclasses using Gson.
+ *
  * @since 7.10.3
  */
 public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeserializer<AbstractMT> {
@@ -35,6 +36,20 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
     private static final String BLOCK4_FINAL_NAME = "textBlock";
     private static final String BLOCK5_FINAL_NAME = "trailerBlock";
 
+    /**
+     * Parses the JSON array with fields into specific Field instances
+     */
+    private static List<Field> parseFields(JsonElement fieldsElement) {
+        List<Field> fields = new ArrayList<Field>();
+        for (JsonElement element : fieldsElement.getAsJsonArray()) {
+            Field field = Field.fromJson(element.toString());
+            if (field != null) {
+                fields.add(field);
+            }
+        }
+        return fields;
+    }
+
     @Override
     public JsonElement serialize(AbstractMT src, Type typeOfSrc, JsonSerializationContext context) {
         String json = src.m.toJson();
@@ -42,7 +57,7 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
         JsonObject o = parser.parse(json).getAsJsonObject();
         JsonObject response = new JsonObject();
 
-        response.addProperty("type","MT");
+        response.addProperty("type", "MT");
 
         if (src.m.getBlock1() != null) {
             // default serialization from SwiftMessage
@@ -55,11 +70,11 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
         }
 
         if (src.m.getBlock3() != null && !src.m.getBlock3().getTags().isEmpty()) {
-            setFinalBlockNameAndFields(response,"block3", src.m.getBlock3().getTags());
+            setFinalBlockNameAndFields(response, "block3", src.m.getBlock3().getTags());
         }
 
         if (src.m.getBlock4() != null && !src.m.getBlock4().getTags().isEmpty()) {
-            setFinalBlockNameAndFields(response,"block4", src.m.getBlock4().getTags());
+            setFinalBlockNameAndFields(response, "block4", src.m.getBlock4().getTags());
         }
 
         if (src.m.getBlock5() != null && !src.m.getBlock5().getTags().isEmpty()) {
@@ -137,38 +152,23 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
         return block;
     }
 
-    /**
-     * Parses the JSON array with fields into specific Field instances
-     */
-    private static List<Field> parseFields(JsonElement fieldsElement) {
-        List<Field> fields = new ArrayList<Field>();
-        for (JsonElement element : fieldsElement.getAsJsonArray()) {
-            Field field = Field.fromJson(element.toString());
-            if (field != null) {
-                fields.add(field);
-            }
-        }
-        return fields;
-    }
-
-
     private void setFinalBlockNameAndFields(JsonObject response, String blockName, List<Tag> tags) {
         String finalBlockName = BLOCK4_FINAL_NAME;
         if (blockName.equals("block3")) {
             finalBlockName = BLOCK3_FINAL_NAME;
-        } else if(blockName.equals("block5")){
+        } else if (blockName.equals("block5")) {
             finalBlockName = BLOCK5_FINAL_NAME;
         }
         JsonArray fields = getFieldsFromTags(tags);
         JsonObject block = new JsonObject();
         block.add("fields", fields);
-        response.add(finalBlockName,block);
+        response.add(finalBlockName, block);
     }
 
     /**
      * Converts the tag elements into fields, and the fields into json
      */
-    private JsonArray getFieldsFromTags(List<Tag> tags){
+    private JsonArray getFieldsFromTags(List<Tag> tags) {
         JsonArray fields = new JsonArray();
         JsonParser parser = new JsonParser();
         for (Tag tag : tags) {

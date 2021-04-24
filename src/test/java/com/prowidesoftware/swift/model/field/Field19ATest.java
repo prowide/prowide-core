@@ -15,160 +15,160 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for Field19A and similar fields.
- * 
+ *
  * @since 6.0
  */
 public class Field19ATest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("19A",
-				":abc//errr123",
-				":SETT//CHF178626,04"
-			);
-	}
-	
-	@Test
-	public void testField19AString() {
-		Field19A f = null;
-	
-		f = new Field19A((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A("/");
-		assertEquals("/", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("19A",
+                ":abc//errr123",
+                ":SETT//CHF178626,04"
+        );
+    }
 
-		f = new Field19A("//");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A("://");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A(":/");
-		assertEquals("/", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A("///");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());	// the expected component is a letter, so it is not filled with the slash
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-	
-		f = new Field19A(":///");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());	// the expected component is a letter, so it is not filled with the slash
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A(":abc//");
-		assertEquals("abc", f.getComponent1());
-		assertNull(f.getComponent2());	
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+    @Test
+    public void testField19AString() {
+        Field19A f = null;
 
-		f = new Field19A(":abc//e");
-		assertEquals("abc", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+        f = new Field19A((String) null);
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
 
-		f = new Field19A(":abc//er");
-		assertEquals("abc", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A(":abc//err");
-		assertEquals("abc", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertEquals("err", f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A(":abc//errr");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("e", f.getComponent2());
-		assertEquals("rrr", f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A(":abc//errrxx");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("e", f.getComponent2());
-		assertEquals("rrrxx", f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field19A(":abc//errr123");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("e", f.getComponent2());
-		assertEquals("rrr", f.getComponent3());
-		assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent4AsNumber().doubleValue()));
-		
-		f = new Field19A(":abc//errr123,");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("e", f.getComponent2());
-		assertEquals("rrr", f.getComponent3());
-		assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent4AsNumber().doubleValue()));
-		
-		f = new Field19A(":abc//errr123,45");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("e", f.getComponent2());
-		assertEquals("rrr", f.getComponent3());
-		assertEquals(new BigDecimal(123.45), new BigDecimal(f.getComponent4AsNumber().doubleValue()));
-		
-		f = new Field19A(":abc//errr123,45,");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("e", f.getComponent2());
-		assertEquals("rrr", f.getComponent3());
-		//log.fine("number:"+f.getComponent4().doubleValue());
-		//assertNull(f.getComponent4());
-		
-		f = new Field19A(":abc//errr123.45");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("e", f.getComponent2());
-		assertEquals("rrr", f.getComponent3());
-		//log.fine("number:"+f.getComponent4().doubleValue());
-		//assertNull(f.getComponent4());
-		
-		f = new Field19A(":abc//errr123aaa");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("e", f.getComponent2());
-		assertEquals("rrr", f.getComponent3());
-		//assertNull(f.getComponent4());
-	}
+        f = new Field19A("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
 
-	@Test
-	public void testIssueAmountResolver() throws Exception {
-		Field19A f = new Field19A("SETT//CHF178626,04");
-		Object n = f.getComponentAs(4, Number.class);
-		assertNotNull(n);
-	}
+        f = new Field19A("/");
+        assertEquals("/", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A("//");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A("://");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A(":/");
+        assertEquals("/", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A("///");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());    // the expected component is a letter, so it is not filled with the slash
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A(":///");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());    // the expected component is a letter, so it is not filled with the slash
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A(":abc//");
+        assertEquals("abc", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A(":abc//e");
+        assertEquals("abc", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A(":abc//er");
+        assertEquals("abc", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A(":abc//err");
+        assertEquals("abc", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertEquals("err", f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A(":abc//errr");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("e", f.getComponent2());
+        assertEquals("rrr", f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A(":abc//errrxx");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("e", f.getComponent2());
+        assertEquals("rrrxx", f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field19A(":abc//errr123");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("e", f.getComponent2());
+        assertEquals("rrr", f.getComponent3());
+        assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent4AsNumber().doubleValue()));
+
+        f = new Field19A(":abc//errr123,");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("e", f.getComponent2());
+        assertEquals("rrr", f.getComponent3());
+        assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent4AsNumber().doubleValue()));
+
+        f = new Field19A(":abc//errr123,45");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("e", f.getComponent2());
+        assertEquals("rrr", f.getComponent3());
+        assertEquals(new BigDecimal(123.45), new BigDecimal(f.getComponent4AsNumber().doubleValue()));
+
+        f = new Field19A(":abc//errr123,45,");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("e", f.getComponent2());
+        assertEquals("rrr", f.getComponent3());
+        //log.fine("number:"+f.getComponent4().doubleValue());
+        //assertNull(f.getComponent4());
+
+        f = new Field19A(":abc//errr123.45");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("e", f.getComponent2());
+        assertEquals("rrr", f.getComponent3());
+        //log.fine("number:"+f.getComponent4().doubleValue());
+        //assertNull(f.getComponent4());
+
+        f = new Field19A(":abc//errr123aaa");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("e", f.getComponent2());
+        assertEquals("rrr", f.getComponent3());
+        //assertNull(f.getComponent4());
+    }
+
+    @Test
+    public void testIssueAmountResolver() throws Exception {
+        Field19A f = new Field19A("SETT//CHF178626,04");
+        Object n = f.getComponentAs(4, Number.class);
+        assertNotNull(n);
+    }
 
 }

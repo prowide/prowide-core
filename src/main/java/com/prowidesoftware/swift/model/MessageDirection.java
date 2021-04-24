@@ -11,5 +11,5 @@ package com.prowidesoftware.swift.model;
  */
 public enum MessageDirection {
     Input,
-    Output;
+    Output
 }

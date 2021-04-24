@@ -24,13 +24,14 @@ public class MurMessageComparator implements Comparator<SwiftMessage> {
 
     /**
      * Compare the two given messages based on the MUR.
-     * @param left a non-null message
+     *
+     * @param left  a non-null message
      * @param right a non-null message
      */
     public int compare(final SwiftMessage left, final SwiftMessage right) {
         Validate.notNull(left);
         Validate.notNull(right);
-        return StringUtils.equals(left.getMUR(), right.getMUR())? 0 : 1;
+        return StringUtils.equals(left.getMUR(), right.getMUR()) ? 0 : 1;
     }
 
 }

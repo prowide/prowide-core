@@ -26,39 +26,39 @@ import java.io.IOException;
  * @since 4.0
  */
 final class VisibleParser extends SwiftParser {
-	
-	public VisibleParser() {
-		super();
-	}
 
-	@Override
-	protected char identifyBlock(String s) {
-		return super.identifyBlock(s);
-	}
+    public VisibleParser() {
+        super();
+    }
 
-	@Override
-	public String findBlockStart() throws IOException {
-		return super.findBlockStart();
-	}
-	
-	public Tag consumeTag(String br) {
-		if (br.startsWith("{"))
-			br = br.substring(1);
-		if (br.endsWith("}"))
-			br = br.substring(0, br.length() - 1);
-		if (br.startsWith(":"))
-			br = br.substring(1);
-		return super.createTag(br, null);
-	}
+    @Override
+    protected char identifyBlock(String s) {
+        return super.identifyBlock(s);
+    }
 
-	@Override
-	public String readUntilBlockEnds() throws IOException {
-		return super.readUntilBlockEnds();
-	}
+    @Override
+    public String findBlockStart() throws IOException {
+        return super.findBlockStart();
+    }
 
-	@Override
-	public int findEndOfTagByLineFeed(String s, int start, boolean isTextBlock) {
-		return super.findEndOfTagByLineFeed(s, start, isTextBlock);
-	}
+    public Tag consumeTag(String br) {
+        if (br.startsWith("{"))
+            br = br.substring(1);
+        if (br.endsWith("}"))
+            br = br.substring(0, br.length() - 1);
+        if (br.startsWith(":"))
+            br = br.substring(1);
+        return super.createTag(br, null);
+    }
+
+    @Override
+    public String readUntilBlockEnds() throws IOException {
+        return super.readUntilBlockEnds();
+    }
+
+    @Override
+    public int findEndOfTagByLineFeed(String s, int start, boolean isTextBlock) {
+        return super.findEndOfTagByLineFeed(s, start, isTextBlock);
+    }
 
 }

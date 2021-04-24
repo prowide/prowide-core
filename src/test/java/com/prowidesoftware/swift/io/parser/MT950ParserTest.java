@@ -15,13 +15,10 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import com.prowidesoftware.swift.model.SwiftBlock2Input;
 import org.junit.jupiter.api.Test;
 
-import com.prowidesoftware.swift.model.SwiftBlock2Input;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * MT950 tests
@@ -29,53 +26,53 @@ import com.prowidesoftware.swift.model.SwiftBlock2Input;
  * @since 4.0
  */
 public class MT950ParserTest extends BaseMessageTestcase {
-	
-	@Test 
-	public void test535_1() {
-		messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I950FOOBARXXXXXXN}{4:\n" +
-					":20:12345678070403\n" +
-					":25:12345678\n" +
-					":28C:93/1\n" +
-					":60F:C070403USD0,\n" +
-					":61:0704050402C115454,92NSALNONREF\n" +
-					"/US/037833100/SHS/1235,\n" +
-					":62M:C070403USD115454,92\n" +
-					"-}{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}"; 
-		
-		assertEquals("950", (parseMessage(messageToParse)).getType());
-		
-		//check b1
-		assertEquals("F01FOOBARXXAXXX3227607589", b1.getBlockValue());
-		assertEquals("F", b1.getApplicationId());
-		assertEquals("01", b1.getServiceId());
-		assertEquals("FOOBARXXAXXX", b1.getLogicalTerminal());
-		assertEquals("3227", b1.getSessionNumber());
-		assertEquals("607589", b1.getSequenceNumber());
-		
-		//check b2
-		assertEquals("I950FOOBARXXXXXXN", b2.getBlockValue());
-		assertEquals("950", ((SwiftBlock2Input)b2).getMessageType());
-		assertEquals("FOOBARXXXXXX", ((SwiftBlock2Input)b2).getReceiverAddress());
-		assertEquals("N", ((SwiftBlock2Input)b2).getMessagePriority());
-		assertNull(((SwiftBlock2Input)b2).getDeliveryMonitoring());
-		assertNull(((SwiftBlock2Input)b2).getObsolescencePeriod());
-		
-		//check b4
-		assertEquals(6, b4.countAll());
-		assertEquals("12345678070403", b4.getTagValue("20"));
-		assertEquals("12345678", b4.getTagValue("25"));
-		assertEquals("93/1", b4.getTagValue("28C"));
-		assertEquals("C070403USD0,", b4.getTagValue("60F"));
-		assertEquals("0704050402C115454,92NSALNONREF\n" + "/US/037833100/SHS/1235,", b4.getTagValue("61"));
-		assertEquals("C070403USD115454,92", b4.getTagValue("62M"));
-		
-		//check b5
-		assertEquals(1, b5.countAll());
-		assertEquals("12C48A7C53B2", b5.getTagValue("CHK"));	
-		
-		//user block (extra data, not swift standard, attached to the message as a trailer block)
-		assertNotNull(o.getUserBlock("S"));
-		assertEquals("I20070404.763727356.out/1/1", o.getUserBlock("S").getTagValue("REF"));
-	}
-	
+
+    @Test
+    public void test535_1() {
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I950FOOBARXXXXXXN}{4:\n" +
+                ":20:12345678070403\n" +
+                ":25:12345678\n" +
+                ":28C:93/1\n" +
+                ":60F:C070403USD0,\n" +
+                ":61:0704050402C115454,92NSALNONREF\n" +
+                "/US/037833100/SHS/1235,\n" +
+                ":62M:C070403USD115454,92\n" +
+                "-}{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}";
+
+        assertEquals("950", (parseMessage(messageToParse)).getType());
+
+        //check b1
+        assertEquals("F01FOOBARXXAXXX3227607589", b1.getBlockValue());
+        assertEquals("F", b1.getApplicationId());
+        assertEquals("01", b1.getServiceId());
+        assertEquals("FOOBARXXAXXX", b1.getLogicalTerminal());
+        assertEquals("3227", b1.getSessionNumber());
+        assertEquals("607589", b1.getSequenceNumber());
+
+        //check b2
+        assertEquals("I950FOOBARXXXXXXN", b2.getBlockValue());
+        assertEquals("950", b2.getMessageType());
+        assertEquals("FOOBARXXXXXX", ((SwiftBlock2Input) b2).getReceiverAddress());
+        assertEquals("N", b2.getMessagePriority());
+        assertNull(((SwiftBlock2Input) b2).getDeliveryMonitoring());
+        assertNull(((SwiftBlock2Input) b2).getObsolescencePeriod());
+
+        //check b4
+        assertEquals(6, b4.countAll());
+        assertEquals("12345678070403", b4.getTagValue("20"));
+        assertEquals("12345678", b4.getTagValue("25"));
+        assertEquals("93/1", b4.getTagValue("28C"));
+        assertEquals("C070403USD0,", b4.getTagValue("60F"));
+        assertEquals("0704050402C115454,92NSALNONREF\n" + "/US/037833100/SHS/1235,", b4.getTagValue("61"));
+        assertEquals("C070403USD115454,92", b4.getTagValue("62M"));
+
+        //check b5
+        assertEquals(1, b5.countAll());
+        assertEquals("12C48A7C53B2", b5.getTagValue("CHK"));
+
+        //user block (extra data, not swift standard, attached to the message as a trailer block)
+        assertNotNull(o.getUserBlock("S"));
+        assertEquals("I20070404.763727356.out/1/1", o.getUserBlock("S").getTagValue("REF"));
+    }
+
 }

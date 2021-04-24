@@ -15,57 +15,57 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
-
 /**
  * Test for Field31X and similar fields.
- * 
- * @author www.prowidesoftware.com
+ *
+ * @author sebastian
  * @since 6.4
  */
 public class Field31XTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("31X",
-				"1312011212",
-				"FOO"
-			);
-	}
-	
-	/**
-	 * (<DATE2>[<HHMM>])|S
-	 */
-	@Test
-	public void testField31X() {		
-		Field31X f = new Field31X((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("31X",
+                "1312011212",
+                "FOO"
+        );
+    }
 
-		f = new Field31X("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
+    /**
+     * (<DATE2>[<HHMM>])|S
+     */
+    @Test
+    public void testField31X() {
+        Field31X f = new Field31X((String) null);
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
 
-		f = new Field31X("131212");
-		assertEquals("131212", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		
-		f = new Field31X("1312011212");
-		assertEquals("131201", f.getComponent1());
-		assertEquals("1212", f.getComponent2());
-		assertNull(f.getComponent3());
+        f = new Field31X("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
 
-		f = new Field31X("FOO");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertEquals("FOO", f.getComponent3());
-	}
-	
+        f = new Field31X("131212");
+        assertEquals("131212", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+
+        f = new Field31X("1312011212");
+        assertEquals("131201", f.getComponent1());
+        assertEquals("1212", f.getComponent2());
+        assertNull(f.getComponent3());
+
+        f = new Field31X("FOO");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertEquals("FOO", f.getComponent3());
+    }
+
 }

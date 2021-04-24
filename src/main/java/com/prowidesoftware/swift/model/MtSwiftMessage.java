@@ -49,623 +49,642 @@ import java.util.logging.Level;
 @Entity(name = "mt")
 @DiscriminatorValue("mt")
 public class MtSwiftMessage extends AbstractSwiftMessage {
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MtSwiftMessage.class.getName());
-	private static final long serialVersionUID = -5972656648349958815L;
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MtSwiftMessage.class.getName());
+    private static final long serialVersionUID = -5972656648349958815L;
 
-	@Column(length = 35)
-	private String pde;
+    @Column(length = 35)
+    private String pde;
 
-	@Column(length = 35)
-	private String pdm;
+    @Column(length = 35)
+    private String pdm;
 
-	@Column(length = 28, name = "mir")
-	private String mir;
+    @Column(length = 28, name = "mir")
+    private String mir;
 
-	@Column(length = 16, name = "mur")
-	private String mur;
+    @Column(length = 16, name = "mur")
+    private String mur;
 
-	@Column(length = 31, name = "uuid")
-	private String uuid;
+    @Column(length = 31, name = "uuid")
+    private String uuid;
 
-	public MtSwiftMessage() {
-		super();
-	}
+    public MtSwiftMessage() {
+        super();
+    }
 
-	/**
-	 * Calls {@link #MtSwiftMessage(String, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
-	 */
-	public MtSwiftMessage(final String fin) {
-		this(fin, new DefaultMtMetadataStrategy());
-	}
+    /**
+     * Calls {@link #MtSwiftMessage(String, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     */
+    public MtSwiftMessage(final String fin) {
+        this(fin, new DefaultMtMetadataStrategy());
+    }
 
-	/**
-	 * Creates a new MT entity reading the message content from the plain message content.
-	 *
-	 * <p>If the FIN content contains several messages (because it is an RJE batch file for example) then the whole
-	 * content will be stored in the message attribute but the metadata (such as the message type) will be extracted
-	 * from the first message only.
-	 *
-	 * <p>Notice that if an ACK/NAK message is used as parameter, this object will represent the ACK/NAK.
-	 * Even if the original message is attached after the service 21 messages.
-	 *
-	 * <p>File format is set to {@link FileFormat#FIN}
-	 *
-	 * @param fin the plain FIN message content
-	 * @param metadataStrategy a strategy for metadata extraction
-	 * @since 9.1.4
-	 */
-	public MtSwiftMessage(final String fin, final MessageMetadataStrategy metadataStrategy) {
-		super(fin, FileFormat.FIN, metadataStrategy);
-	}
+    /**
+     * Creates a new MT entity reading the message content from the plain message content.
+     *
+     * <p>If the FIN content contains several messages (because it is an RJE batch file for example) then the whole
+     * content will be stored in the message attribute but the metadata (such as the message type) will be extracted
+     * from the first message only.
+     *
+     * <p>Notice that if an ACK/NAK message is used as parameter, this object will represent the ACK/NAK.
+     * Even if the original message is attached after the service 21 messages.
+     *
+     * <p>File format is set to {@link FileFormat#FIN}
+     *
+     * @param fin              the plain FIN message content
+     * @param metadataStrategy a strategy for metadata extraction
+     * @since 9.1.4
+     */
+    public MtSwiftMessage(final String fin, final MessageMetadataStrategy metadataStrategy) {
+        super(fin, FileFormat.FIN, metadataStrategy);
+    }
 
-	/**
-	 * Creates a new message reading the message the content from a string.
-	 * This is a static version of the constructor {@link #MtSwiftMessage(String)}
-	 *
-	 * @since 7.7
-	 */
-	public static MtSwiftMessage parse(final String fin) {
-		return new MtSwiftMessage(fin);
-	}
+    /**
+     * Calls {@link #MtSwiftMessage(InputStream, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     */
+    public MtSwiftMessage(final InputStream stream) throws IOException {
+        this(stream, new DefaultMtMetadataStrategy());
+    }
 
-	/**
-	 * Calls {@link #MtSwiftMessage(InputStream, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
-	 */
-	public MtSwiftMessage(final InputStream stream) throws IOException {
-		this(stream, new DefaultMtMetadataStrategy());
-	}
+    /**
+     * Creates a new message reading the message the content from an input stream.
+     * <br>
+     * File format is set to {@link FileFormat#FIN}
+     *
+     * @param metadataStrategy a strategy for metadata extraction
+     * @since 9.1.4
+     */
+    public MtSwiftMessage(final InputStream stream, final MessageMetadataStrategy metadataStrategy) throws IOException {
+        super(stream, FileFormat.FIN, metadataStrategy);
+    }
 
-	/**
-	 * Creates a new message reading the message the content from an input stream.
-	 * <br>
-	 * File format is set to {@link FileFormat#FIN}
-	 *
-	 * @param metadataStrategy a strategy for metadata extraction
-	 * @since 9.1.4
-	 */
-	public MtSwiftMessage(final InputStream stream, final MessageMetadataStrategy metadataStrategy) throws IOException {
-		super(stream, FileFormat.FIN, metadataStrategy);
-	}
+    /**
+     * Calls {@link #MtSwiftMessage(File, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     */
+    public MtSwiftMessage(final File file) throws IOException {
+        this(file, new DefaultMtMetadataStrategy());
+    }
 
-	/**
-	 * Creates a new message reading the message the content from an input stream.
-	 * This is a static version of the constructor {@link #MtSwiftMessage(InputStream)}
-	 *
-	 * @since 7.7
-	 */
-	public static MtSwiftMessage parse(final InputStream stream) throws IOException {
-		return new MtSwiftMessage(stream);
-	}
+    /**
+     * Creates a new message reading the message the content from a file.
+     * <br>
+     * File format is set to {@link FileFormat#FIN}
+     *
+     * @param metadataStrategy a strategy for metadata extraction
+     * @since 9.1.4
+     */
+    public MtSwiftMessage(final File file, final MessageMetadataStrategy metadataStrategy) throws IOException {
+        super(file, FileFormat.FIN, metadataStrategy);
+    }
 
-	/**
-	 * Calls {@link #MtSwiftMessage(File, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
-	 */
-	public MtSwiftMessage(final File file) throws IOException {
-		this(file, new DefaultMtMetadataStrategy());
-	}
+    /**
+     * Calls {@link #MtSwiftMessage(AbstractMT, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     *
+     * @since 8.0.2
+     */
+    public MtSwiftMessage(final AbstractMT mt) {
+        this(mt, new DefaultMtMetadataStrategy());
+    }
 
-	/**
-	 * Creates a new message reading the message the content from a file.
-	 * <br>
-	 * File format is set to {@link FileFormat#FIN}
-	 *
-	 * @param metadataStrategy a strategy for metadata extraction
-	 * @since 9.1.4
-	 */
-	public MtSwiftMessage(final File file, final MessageMetadataStrategy metadataStrategy) throws IOException {
-		super(file, FileFormat.FIN, metadataStrategy);
-	}
+    /**
+     * Creates an MtSwiftMessage from a subclass of {@link AbstractMT}.
+     *
+     * @param mt               the MT message to create this entity from
+     * @param metadataStrategy a strategy for metadata extraction
+     * @since 9.1.4
+     */
+    public MtSwiftMessage(final AbstractMT mt, final MessageMetadataStrategy metadataStrategy) {
+        Validate.notNull(mt, "the mt message cannot be null");
+        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        updateFromModel(mt.getSwiftMessage(), metadataStrategy);
+    }
 
-	/**
-	 * Creates a new message reading the message the content from a file.
-	 * This is a static version of the constructor {@link #MtSwiftMessage(File)}
-	 *
-	 * @since 7.7
-	 */
-	public static MtSwiftMessage parse(final File file) throws IOException {
-		return new MtSwiftMessage(file);
-	}
+    /**
+     * Calls {@link #MtSwiftMessage(SwiftMessage, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     */
+    public MtSwiftMessage(final SwiftMessage model) {
+        this(model, new DefaultMtMetadataStrategy());
+    }
 
-	/**
-	 * Calls {@link #updateFromMessage(MessageMetadataStrategy)} with {@link DefaultMtMetadataStrategy}
-	 * @since 7.7
-	 */
-	@Override
-	protected void updateFromMessage() throws IllegalArgumentException {
-		updateFromMessage(new DefaultMtMetadataStrategy());
-	}
+    /**
+     * Creates an MtSwiftMessage from a SwiftMessage.
+     *
+     * @param model            the MT message to create this entity from
+     * @param metadataStrategy a strategy for metadata extraction
+     * @since 9.1.4
+     */
+    public MtSwiftMessage(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
+        Validate.notNull(model, "the message model cannot be null");
+        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        updateFromModel(model, metadataStrategy);
+    }
 
-	/**
-	 * @see AbstractSwiftMessage#updateFromMessage(MessageMetadataStrategy)
-	 * @since 9.1.4
-	 * @throws IllegalArgumentException if the source format is not {@link FileFormat#FIN} or if the message cannot be parsed into a {@link MtSwiftMessage} object
-	 */
-	@Override
-	protected void updateFromMessage(MessageMetadataStrategy metadataStrategy) throws IllegalArgumentException {
-		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-		Validate.notNull(getMessage(), "the raw message attribute cannot be null");
-		if (getFileFormat() != FileFormat.FIN) {
-			throw new IllegalArgumentException("expected source format "+FileFormat.FIN+" and found "+getFileFormat());
-		}
-		SwiftMessage model = null;
-		try {
-			model = SwiftMessage.parse(getMessage());
-		} catch (final IOException e) {
-			log.log(Level.SEVERE, "the raw message parameter could not be parsed into a SwiftMessage", e);
-		}
-		if (model == null) {
-			throw new IllegalArgumentException("the raw message parameter could not be parsed into a SwiftMessage");
-		} else {
-			updateAttributes(model, metadataStrategy);
-		}
-	}
-	
-	private void updateAttributes(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-		if (model.isServiceMessage21()) {
-			// for service messages, we attempt to set the metadata from the original attached message, if present
-			if (model.getUnparsedTextsSize() > 0) {
-				final SwiftMessage original = model.getUnparsedTexts().getTextAsMessage(0);
-				if (original != null) {
-					extractMetadata(original, metadataStrategy);
-				}
-			}
-			// then we overwrite the identifier form the actual service message
-			if (model.isAck()) {
-				setIdentifier(IDENTIFIER_ACK);
-			} else if (model.isNack()) {
-				setIdentifier(IDENTIFIER_NAK);
-			}
+    /**
+     * Creates a new message reading the message the content from a string.
+     * This is a static version of the constructor {@link #MtSwiftMessage(String)}
+     *
+     * @since 7.7
+     */
+    public static MtSwiftMessage parse(final String fin) {
+        return new MtSwiftMessage(fin);
+    }
 
-		} else {
-			// any other case we just update the metadata from the received message
-			extractMetadata(model, metadataStrategy);
-			if (model.getMtId() != null) {
-				setIdentifier(model.getMtId().id());
-			}
-		}
-		setFileFormat(FileFormat.FIN);
-		setSender(bic11(model.getSender()));
-		setChecksum(SwiftMessageUtils.calculateChecksum(model));
-		setChecksumBody(SwiftMessageUtils.calculateChecksum(model.getBlock4()));
-		setLastModified(Calendar.getInstance());
-		setMur(model.getMUR());
-	}
+    /**
+     * Creates a new message reading the message the content from an input stream.
+     * This is a static version of the constructor {@link #MtSwiftMessage(InputStream)}
+     *
+     * @since 7.7
+     */
+    public static MtSwiftMessage parse(final InputStream stream) throws IOException {
+        return new MtSwiftMessage(stream);
+    }
 
-	private void extractMetadata(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-		setReceiver(bic11(model.getReceiver()));
-		setDirection(model.getDirection());
+    /**
+     * Creates a new message reading the message the content from a file.
+     * This is a static version of the constructor {@link #MtSwiftMessage(File)}
+     *
+     * @since 7.7
+     */
+    public static MtSwiftMessage parse(final File file) throws IOException {
+        return new MtSwiftMessage(file);
+    }
 
-		setPde(model.getPDE());
-		setPdm(model.getPDM());
-		setMir(model.getMIR());
+    /**
+     * This method deserializes the JSON data into an MT message object.
+     *
+     * @since 7.10.3
+     */
+    public static MtSwiftMessage fromJson(String json) {
+        final Gson gson = new GsonBuilder().create();
+        return gson.fromJson(json, MtSwiftMessage.class);
+    }
 
-		if (model.getBlock2() != null) {
-			setUuid(model.getUUID());
-		}
+    /**
+     * Calls {@link #updateFromMessage(MessageMetadataStrategy)} with {@link DefaultMtMetadataStrategy}
+     *
+     * @since 7.7
+     */
+    @Override
+    protected void updateFromMessage() throws IllegalArgumentException {
+        updateFromMessage(new DefaultMtMetadataStrategy());
+    }
 
-		// we extract metadata with the default strategy
-		// specific strategy can be applied on top with the #updateMetadata method
-		applyStrategy(model, metadataStrategy);
-	}
+    /**
+     * @throws IllegalArgumentException if the source format is not {@link FileFormat#FIN} or if the message cannot be parsed into a {@link MtSwiftMessage} object
+     * @see AbstractSwiftMessage#updateFromMessage(MessageMetadataStrategy)
+     * @since 9.1.4
+     */
+    @Override
+    protected void updateFromMessage(MessageMetadataStrategy metadataStrategy) throws IllegalArgumentException {
+        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        Validate.notNull(getMessage(), "the raw message attribute cannot be null");
+        if (getFileFormat() != FileFormat.FIN) {
+            throw new IllegalArgumentException("expected source format " + FileFormat.FIN + " and found " + getFileFormat());
+        }
+        SwiftMessage model = null;
+        try {
+            model = SwiftMessage.parse(getMessage());
+        } catch (final IOException e) {
+            log.log(Level.SEVERE, "the raw message parameter could not be parsed into a SwiftMessage", e);
+        }
+        if (model == null) {
+            throw new IllegalArgumentException("the raw message parameter could not be parsed into a SwiftMessage");
+        } else {
+            updateAttributes(model, metadataStrategy);
+        }
+    }
 
-	private void applyStrategy(SwiftMessage model, MessageMetadataStrategy strategy) {
-		AbstractMT mt = model.toMT();
+    private void updateAttributes(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
+        if (model.isServiceMessage21()) {
+            // for service messages, we attempt to set the metadata from the original attached message, if present
+            if (model.getUnparsedTextsSize() > 0) {
+                final SwiftMessage original = model.getUnparsedTexts().getTextAsMessage(0);
+                if (original != null) {
+                    extractMetadata(original, metadataStrategy);
+                }
+            }
+            // then we overwrite the identifier form the actual service message
+            if (model.isAck()) {
+                setIdentifier(IDENTIFIER_ACK);
+            } else if (model.isNack()) {
+                setIdentifier(IDENTIFIER_NAK);
+            }
 
-		if (mt == null) {
-			// prevent NPE
-			return;
-		}
+        } else {
+            // any other case we just update the metadata from the received message
+            extractMetadata(model, metadataStrategy);
+            if (model.getMtId() != null) {
+                setIdentifier(model.getMtId().id());
+            }
+        }
+        setFileFormat(FileFormat.FIN);
+        setSender(bic11(model.getSender()));
+        setChecksum(SwiftMessageUtils.calculateChecksum(model));
+        setChecksumBody(SwiftMessageUtils.calculateChecksum(model.getBlock4()));
+        setLastModified(Calendar.getInstance());
+        setMur(model.getMUR());
+    }
 
-		String reference = strategy.reference(mt).orElse(null);
-		if (StringUtils.isNotBlank(reference)) {
-			setReference(reference);
-		}
+    private void extractMetadata(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
+        setReceiver(bic11(model.getReceiver()));
+        setDirection(model.getDirection());
 
-		Optional<Money> money = strategy.amount(mt);
-		if (money.isPresent()) {
-			setCurrency(money.get().getCurrency());
-			setAmount(money.get().getAmount());
-		}
+        setPde(model.getPDE());
+        setPdm(model.getPDM());
+        setMir(model.getMIR());
 
-		Calendar valueDate = strategy.valueDate(mt).orElse(null);
-		if (valueDate != null) {
-			setValueDate(valueDate);
-		}
+        if (model.getBlock2() != null) {
+            setUuid(model.getUUID());
+        }
 
-		Calendar tradeDate = strategy.tradeDate(mt).orElse(null);
-		if (tradeDate != null) {
-			setTradeDate(tradeDate);
-		}
-	}
+        // we extract metadata with the default strategy
+        // specific strategy can be applied on top with the #updateMetadata method
+        applyStrategy(model, metadataStrategy);
+    }
 
-	/**
-	 * Calls {@link #MtSwiftMessage(AbstractMT, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
-	 * @since 8.0.2
-	 */
-	public MtSwiftMessage(final AbstractMT mt) {
-		this(mt, new DefaultMtMetadataStrategy());
-	}
+    private void applyStrategy(SwiftMessage model, MessageMetadataStrategy strategy) {
+        AbstractMT mt = model.toMT();
 
-	/**
-	 * Creates an MtSwiftMessage from a subclass of {@link AbstractMT}.
-	 *
-	 * @param mt the MT message to create this entity from
-	 * @param metadataStrategy a strategy for metadata extraction
-	 * @since 9.1.4
-	 */
-	public MtSwiftMessage(final AbstractMT mt, final MessageMetadataStrategy metadataStrategy) {
-		Validate.notNull(mt, "the mt message cannot be null");
-		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-		updateFromModel(mt.getSwiftMessage(), metadataStrategy);
-	}
+        if (mt == null) {
+            // prevent NPE
+            return;
+        }
 
-	/**
-	 * Calls {@link #MtSwiftMessage(SwiftMessage, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
-	 */
-	public MtSwiftMessage(final SwiftMessage model) {
-		this(model, new DefaultMtMetadataStrategy());
-	}
+        String reference = strategy.reference(mt).orElse(null);
+        if (StringUtils.isNotBlank(reference)) {
+            setReference(reference);
+        }
 
-	/**
-	 * Creates an MtSwiftMessage from a SwiftMessage.
-	 *
-	 * @param model the MT message to create this entity from
-	 * @param metadataStrategy a strategy for metadata extraction
-	 * @since 9.1.4
-	 */
-	public MtSwiftMessage(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-		Validate.notNull(model, "the message model cannot be null");
-		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-		updateFromModel(model, metadataStrategy);
-	}
+        Optional<Money> money = strategy.amount(mt);
+        if (money.isPresent()) {
+            setCurrency(money.get().getCurrency());
+            setAmount(money.get().getAmount());
+        }
 
-	/**
-	 * Calls {@link #updateFromFIN(String, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
-	 */
-	public void updateFromFIN(final String fin) {
-		updateFromFIN(fin, new DefaultMtMetadataStrategy());
-	}
+        Calendar valueDate = strategy.valueDate(mt).orElse(null);
+        if (valueDate != null) {
+            setValueDate(valueDate);
+        }
 
-	/**
-	 * Updates the the attributes with the raw message and its metadata from the given raw (FIN) message content.
-	 *
-	 * @param fin the new message content
-	 * @param metadataStrategy a strategy implementation to extract the metadata from the FIN content
-	 * @since 9.1.4
-	 */
-	public void updateFromFIN(final String fin, final MessageMetadataStrategy metadataStrategy) {
-		Validate.notNull(fin, "the raw message parameter cannot be null");
-		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-		setMessage(fin);
-		setFileFormat(FileFormat.FIN);
-		updateFromMessage(metadataStrategy);
-	}
+        Calendar tradeDate = strategy.tradeDate(mt).orElse(null);
+        if (tradeDate != null) {
+            setTradeDate(tradeDate);
+        }
+    }
 
-	/**
-	 * Updates the derived attributes from the current raw (FIN) message attribute.
-	 * This is similar to create a new message instance from string content.
-	 *
-	 * @deprecated use {@link #updateFromFIN(String)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	public void updateFromFIN() {
-		updateFromMessage();
-	}
+    /**
+     * Calls {@link #updateFromFIN(String, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     */
+    public void updateFromFIN(final String fin) {
+        updateFromFIN(fin, new DefaultMtMetadataStrategy());
+    }
 
-	/**
-	 * Calls {@link #updateFromModel(SwiftMessage, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
-	 */
-	public void updateFromModel(final SwiftMessage model) {
-		updateFromModel(model, new DefaultMtMetadataStrategy());
-	}
+    /**
+     * Updates the the attributes with the raw message and its metadata from the given raw (FIN) message content.
+     *
+     * @param fin              the new message content
+     * @param metadataStrategy a strategy implementation to extract the metadata from the FIN content
+     * @since 9.1.4
+     */
+    public void updateFromFIN(final String fin, final MessageMetadataStrategy metadataStrategy) {
+        Validate.notNull(fin, "the raw message parameter cannot be null");
+        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        setMessage(fin);
+        setFileFormat(FileFormat.FIN);
+        updateFromMessage(metadataStrategy);
+    }
 
-	/**
-	 * The SwiftMessage is serialized to its FIN raw format to set the internal raw message attribute.
-	 * And the header attributes are set with data from the parameter SwiftMessage.
-	 * Notice that the SwiftMessage is not stored as internal attribute.
-	 *
-	 * @param model the new message content
-	 * @param metadataStrategy a strategy implementation to extract the metadata from the model
-	 * @since 9.1.4
-	 */
-	public void updateFromModel(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-		Validate.notNull(model, "the model message cannot be null");
-		Validate.notNull(metadataStrategy, "the metadata strategy cannot be null");
-		final String fin = (new ConversionService()).getFIN(model);
-		Validate.notNull(fin, "the raw message could not be created from the SwiftMessage parameter");
-		setMessage(fin);
-		updateAttributes(model, metadataStrategy);
-	}
+    /**
+     * Updates the derived attributes from the current raw (FIN) message attribute.
+     * This is similar to create a new message instance from string content.
+     *
+     * @deprecated use {@link #updateFromFIN(String)} instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public void updateFromFIN() {
+        updateFromMessage();
+    }
 
-	/**
-	 * Calls {@link #updateFromModel(AbstractMT, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
-	 * @since 7.8.4
-	 */
-	public void updateFromModel(final AbstractMT mt) {
-		updateFromModel(mt, new DefaultMtMetadataStrategy());
-	}
+    /**
+     * Calls {@link #updateFromModel(SwiftMessage, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     */
+    public void updateFromModel(final SwiftMessage model) {
+        updateFromModel(model, new DefaultMtMetadataStrategy());
+    }
 
-	/**
-	 * The AbstractMT is serialized to its FIN raw format to set the internal raw message attribute.
-	 * And the header attributes are set with data from the parameter AbstractMT.
-	 * Notice that the AbstractMT is not stored as internal attribute.
-	 *
-	 * @param mt the new message content to set
-	 * @param metadataStrategy a strategy implementation to extract the metadata from the model
-	 * @since 9.1.4
-	 */
-	public void updateFromModel(final AbstractMT mt, final MessageMetadataStrategy metadataStrategy) {
-		Validate.notNull(mt, "the model message cannot be null");
-		Validate.notNull(metadataStrategy, "the metadata strategy cannot be null");
-		updateFromModel(mt.getSwiftMessage(), metadataStrategy);
-	}
+    /**
+     * The SwiftMessage is serialized to its FIN raw format to set the internal raw message attribute.
+     * And the header attributes are set with data from the parameter SwiftMessage.
+     * Notice that the SwiftMessage is not stored as internal attribute.
+     *
+     * @param model            the new message content
+     * @param metadataStrategy a strategy implementation to extract the metadata from the model
+     * @since 9.1.4
+     */
+    public void updateFromModel(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
+        Validate.notNull(model, "the model message cannot be null");
+        Validate.notNull(metadataStrategy, "the metadata strategy cannot be null");
+        final String fin = (new ConversionService()).getFIN(model);
+        Validate.notNull(fin, "the raw message could not be created from the SwiftMessage parameter");
+        setMessage(fin);
+        updateAttributes(model, metadataStrategy);
+    }
 
-	/**
-	 * Parses the raw message content into a {@link SwiftMessage} object.
-	 * @return the parsed message or null if the raw content is not set or cannot be parsed
-	 * @since 7.8.9
-	 */
-	public SwiftMessage modelMessage() {
-		if (getMessage() != null) {
-			try {
-				return SwiftMessage.parse(message());
-			} catch (IOException e) {
-				log.log(Level.WARNING, "error converting FIN text to model: "+e.getMessage(), e);
-			}
-		}
-		return null;
-	}
+    /**
+     * Calls {@link #updateFromModel(AbstractMT, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     *
+     * @since 7.8.4
+     */
+    public void updateFromModel(final AbstractMT mt) {
+        updateFromModel(mt, new DefaultMtMetadataStrategy());
+    }
 
-	/**
-	 * Get the integer value of the {@link #getMessageType()}
-	 * or null if the identifier attribute is not set or not a number
-	 */
-	public Integer getMessageTypeInt() {
-		final String number = getMessageType();
-		if (number != null && StringUtils.isNumeric(number)) {
-			return Integer.parseInt(number);
-		} else {
-			return null;
-		}
-	}
+    /**
+     * The AbstractMT is serialized to its FIN raw format to set the internal raw message attribute.
+     * And the header attributes are set with data from the parameter AbstractMT.
+     * Notice that the AbstractMT is not stored as internal attribute.
+     *
+     * @param mt               the new message content to set
+     * @param metadataStrategy a strategy implementation to extract the metadata from the model
+     * @since 9.1.4
+     */
+    public void updateFromModel(final AbstractMT mt, final MessageMetadataStrategy metadataStrategy) {
+        Validate.notNull(mt, "the model message cannot be null");
+        Validate.notNull(metadataStrategy, "the metadata strategy cannot be null");
+        updateFromModel(mt.getSwiftMessage(), metadataStrategy);
+    }
 
-	/**
-	 * Get the value of the property under the {@link #PROPERTY_NAME} key or the result of {@link #getMessageType()}
-	 * @return the set message name or message type
-	 */
-	@Override
-	public String getMessageName() {
-		final String name = super.getMessageName();
-		if (name != null) {
-			return name;
-		} else {
-			return getMessageType();
-		}
-	}
+    /**
+     * Parses the raw message content into a {@link SwiftMessage} object.
+     *
+     * @return the parsed message or null if the raw content is not set or cannot be parsed
+     * @since 7.8.9
+     */
+    public SwiftMessage modelMessage() {
+        if (getMessage() != null) {
+            try {
+                return SwiftMessage.parse(message());
+            } catch (IOException e) {
+                log.log(Level.WARNING, "error converting FIN text to model: " + e.getMessage(), e);
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Tell if this message is any of the given types.
-	 *
-	 * @param type a variable list of integers for testing to match as the current message type
-	 * @return <code>true</code> if the current message type is any of the integers given as parameters, and <code>false</code> in any other case
-	 */
-	public boolean isType(final Integer ... type) {
-		for (final Integer integer : type) {
-			if (isType(integer)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * Get the integer value of the {@link #getMessageType()}
+     * or null if the identifier attribute is not set or not a number
+     */
+    public Integer getMessageTypeInt() {
+        final String number = getMessageType();
+        if (number != null && StringUtils.isNumeric(number)) {
+            return Integer.parseInt(number);
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * Test if this message is a given specific type.
-	 *
-	 * @param type the message type given as int, to test
-	 * @return <code>true</code> if this message type is the <code>type</code> given, or <code>false</code> in any other case
-	 */
-	public boolean isType(final int type) {
-		Integer typeInt = getMessageTypeInt();
-		if (typeInt != null) {
-			return typeInt == type;
-		}
-		return false;
-	}
+    /**
+     * Get the value of the property under the {@link #PROPERTY_NAME} key or the result of {@link #getMessageType()}
+     *
+     * @return the set message name or message type
+     */
+    @Override
+    public String getMessageName() {
+        final String name = super.getMessageName();
+        if (name != null) {
+            return name;
+        } else {
+            return getMessageType();
+        }
+    }
 
-	@Override
-	public String toString() {
-		return "MtSwiftMessage id=" + getId() + " message=" + getMessage();
-	}
+    /**
+     * Tell if this message is any of the given types.
+     *
+     * @param type a variable list of integers for testing to match as the current message type
+     * @return <code>true</code> if the current message type is any of the integers given as parameters, and <code>false</code> in any other case
+     */
+    public boolean isType(final Integer... type) {
+        for (final Integer integer : type) {
+            if (isType(integer)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	/**
-	 * Gets PDE (Possible Duplicate Emission) flag from the trailer block or null if the trailer or the PDE field is not present
-	 * @return the PDE flag or null
-	 */
-	public String getPde() {
-		return pde;
-	}
-	
-	/**
-	 * Sets the PDE attribute.
-	 * This field is automatically updated on message update from FIN or model
-	 * @see #updateFromFIN(String)
-	 * @see #updateFromModel(AbstractMT)
-	 * @see #updateFromModel(SwiftMessage)
-	 * @param pde the PDE flag to set
-	 */
-	public void setPde(final String pde) {
-		this.pde = pde;
-	}
+    /**
+     * Test if this message is a given specific type.
+     *
+     * @param type the message type given as int, to test
+     * @return <code>true</code> if this message type is the <code>type</code> given, or <code>false</code> in any other case
+     */
+    public boolean isType(final int type) {
+        Integer typeInt = getMessageTypeInt();
+        if (typeInt != null) {
+            return typeInt == type;
+        }
+        return false;
+    }
 
-	/**
- 	 * Gets PDM from the trailer block or null if the trailer or the PDM field is not present
-	 * @return PDM flag or null
-	 */
-	public String getPdm() {
-		return pdm;
-	}
+    @Override
+    public String toString() {
+        return "MtSwiftMessage id=" + getId() + " message=" + getMessage();
+    }
 
-	/**
-	 * Sets the PDM attribute.
-	 * This field is automatically updated on message update from FIN or model
-	 * @see #updateFromFIN(String)
-	 * @see #updateFromModel(AbstractMT)
-	 * @see #updateFromModel(SwiftMessage)
-	 * @param pdm the PDM flag to set
-	 */
-	public void setPdm(final String pdm) {
-		this.pdm = pdm;
-	}
+    /**
+     * Gets PDE (Possible Duplicate Emission) flag from the trailer block or null if the trailer or the PDE field is not present
+     *
+     * @return the PDE flag or null
+     */
+    public String getPde() {
+        return pde;
+    }
 
-	/**
-	 * Gets the MIR (Message Input Reference)
-	 * @see SwiftMessage#getMIR()
-	 */
-	public String getMir() {
-		return mir;
-	}
+    /**
+     * Sets the PDE attribute.
+     * This field is automatically updated on message update from FIN or model
+     *
+     * @param pde the PDE flag to set
+     * @see #updateFromFIN(String)
+     * @see #updateFromModel(AbstractMT)
+     * @see #updateFromModel(SwiftMessage)
+     */
+    public void setPde(final String pde) {
+        this.pde = pde;
+    }
 
-	/**
-	 * Sets the MIR attribute.
-	 * This field is automatically updated on message update from FIN or model
-	 * @see #updateFromFIN(String)
-	 * @see #updateFromModel(AbstractMT)
-	 * @see #updateFromModel(SwiftMessage)
-	 * @param mir the MIR to set
-	 */
-	public void setMir(final String mir) {
-		this.mir = mir;
-	}
+    /**
+     * Gets PDM from the trailer block or null if the trailer or the PDM field is not present
+     *
+     * @return PDM flag or null
+     */
+    public String getPdm() {
+        return pdm;
+    }
 
-	/**
-	 * Gets the MUR (Message User Reference) from block 3
-	 * @see SwiftMessage#getMUR()
-	 * @return the MUR or null if not present in the message
-	 */
-	public String getMur() {
-		return mur;
-	}
+    /**
+     * Sets the PDM attribute.
+     * This field is automatically updated on message update from FIN or model
+     *
+     * @param pdm the PDM flag to set
+     * @see #updateFromFIN(String)
+     * @see #updateFromModel(AbstractMT)
+     * @see #updateFromModel(SwiftMessage)
+     */
+    public void setPdm(final String pdm) {
+        this.pdm = pdm;
+    }
 
-	/**
-	 * Sets the MUR attribute.
-	 * This field is automatically updated on message update from FIN or model
-	 * @see #updateFromFIN(String)
-	 * @see #updateFromModel(AbstractMT)
-	 * @see #updateFromModel(SwiftMessage)
-	 * @param mur the MUR to set
-	 */
-	public void setMur(final String mur) {
-		this.mur = mur;
-	}
+    /**
+     * Gets the MIR (Message Input Reference)
+     *
+     * @see SwiftMessage#getMIR()
+     */
+    public String getMir() {
+        return mir;
+    }
 
-	/**
-	 * Gets a UUID (User Unique Identifier)
-	 * @see SwiftMessage#getUUID()
-	 */
-	public String getUuid() {
-		return uuid;
-	}
+    /**
+     * Sets the MIR attribute.
+     * This field is automatically updated on message update from FIN or model
+     *
+     * @param mir the MIR to set
+     * @see #updateFromFIN(String)
+     * @see #updateFromModel(AbstractMT)
+     * @see #updateFromModel(SwiftMessage)
+     */
+    public void setMir(final String mir) {
+        this.mir = mir;
+    }
 
-	/**
-	 * Sets a UUID
- 	 * This field is automatically updated on message update from FIN or model
-	 * @see #updateFromFIN(String)
-	 * @see #updateFromModel(AbstractMT)
-	 * @see #updateFromModel(SwiftMessage)
-	 */
-	public void setUuid(final String uuid) {
-		this.uuid = uuid;
-	}
+    /**
+     * Gets the MUR (Message User Reference) from block 3
+     *
+     * @return the MUR or null if not present in the message
+     * @see SwiftMessage#getMUR()
+     */
+    public String getMur() {
+        return mur;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
-		MtSwiftMessage that = (MtSwiftMessage) o;
-		return Objects.equals(pde, that.pde) &&
-				Objects.equals(pdm, that.pdm) &&
-				Objects.equals(mir, that.mir) &&
-				Objects.equals(mur, that.mur) &&
-				Objects.equals(uuid, that.uuid);
-	}
+    /**
+     * Sets the MUR attribute.
+     * This field is automatically updated on message update from FIN or model
+     *
+     * @param mur the MUR to set
+     * @see #updateFromFIN(String)
+     * @see #updateFromModel(AbstractMT)
+     * @see #updateFromModel(SwiftMessage)
+     */
+    public void setMur(final String mur) {
+        this.mur = mur;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(super.hashCode(), pde, pdm, mir, mur, uuid);
-	}
+    /**
+     * Gets a UUID (User Unique Identifier)
+     *
+     * @see SwiftMessage#getUUID()
+     */
+    public String getUuid() {
+        return uuid;
+    }
 
-	/**
-	 * Creates a full copy of the current message object into another message.
-	 * @param msg target message
-	 * @since 7.7
-	 * @see AbstractSwiftMessage#copyTo(AbstractSwiftMessage)
-	 */
-	public void copyTo(final MtSwiftMessage msg) {
-		super.copyTo(msg);
-		msg.setMir(getMir());
-		msg.setMur(getMur());
-		msg.setPde(getPde());
-		msg.setPdm(getPdm());
-		msg.setUuid(getUuid());
-	}
+    /**
+     * Sets a UUID
+     * This field is automatically updated on message update from FIN or model
+     *
+     * @see #updateFromFIN(String)
+     * @see #updateFromModel(AbstractMT)
+     * @see #updateFromModel(SwiftMessage)
+     */
+    public void setUuid(final String uuid) {
+        this.uuid = uuid;
+    }
 
-	/**
-	 * This method deserializes the JSON data into an MT message object.
-	 *
-	 * @since 7.10.3
-	 */
-	public static MtSwiftMessage fromJson(String json){
-		final Gson gson = new GsonBuilder().create();
-		return gson.fromJson(json, MtSwiftMessage.class);
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MtSwiftMessage that = (MtSwiftMessage) o;
+        return Objects.equals(pde, that.pde) &&
+                Objects.equals(pdm, that.pdm) &&
+                Objects.equals(mir, that.mir) &&
+                Objects.equals(mur, that.mur) &&
+                Objects.equals(uuid, that.uuid);
+    }
 
-	/**
-	 * Returns the message type variant
-	 * @return the variant or null if the message has no variant
-	 * @since 7.10.4
-	 */
-	public MTVariant getVariant() {
-		String s = StringUtils.substringAfterLast(this.identifier, ".");
-		if (EnumUtils.isValidEnum(MTVariant.class, s)) {
-			return MTVariant.valueOf(s);
-		}
-		return null;
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), pde, pdm, mir, mur, uuid);
+    }
 
-	/**
-	 * Returns this message MT identification
-	 * @return the identification object for this message
-	 * @since 7.10.4
-	 */
-	public MtId getMtId() {
-		return new MtId(getMessageType(), getVariant());
-	}
+    /**
+     * Creates a full copy of the current message object into another message.
+     *
+     * @param msg target message
+     * @see AbstractSwiftMessage#copyTo(AbstractSwiftMessage)
+     * @since 7.7
+     */
+    public void copyTo(final MtSwiftMessage msg) {
+        super.copyTo(msg);
+        msg.setMir(getMir());
+        msg.setMur(getMur());
+        msg.setPde(getPde());
+        msg.setPdm(getPdm());
+        msg.setUuid(getUuid());
+    }
 
-	/**
-	 * For MT messages returns the category number and for MX messages return the business process.
-	 * For example for MT103 returns 1 and for pacs.004.001.06 returns pacs
-	 * @return a string with the category or empty if the identifier is invalid or not present
-	 * @since 7.10.4
-	 */
-	@Override
-	public String getCategory() {
-		if (!StringUtils.isBlank(this.identifier)) {
-			return (new MtId(this.identifier)).category();
-		}
-		return "";
-	}
+    /**
+     * Returns the message type variant
+     *
+     * @return the variant or null if the message has no variant
+     * @since 7.10.4
+     */
+    public MTVariant getVariant() {
+        String s = StringUtils.substringAfterLast(this.identifier, ".");
+        if (EnumUtils.isValidEnum(MTVariant.class, s)) {
+            return MTVariant.valueOf(s);
+        }
+        return null;
+    }
 
-	/**
-	 * Enables injecting your own implementation for the entity metadata extraction, to set the generic properties
-	 * shared by all message types: main reference, main amount and currency, value date, trade date.
-	 *
-	 * @since 9.1.4
-	 */
-	public void updateMetadata(MessageMetadataStrategy strategy) {
-		Validate.notNull(strategy, "the strategy for metadata extraction cannot be null");
-		applyStrategy(modelMessage(), strategy);
-	}
+    /**
+     * Returns this message MT identification
+     *
+     * @return the identification object for this message
+     * @since 7.10.4
+     */
+    public MtId getMtId() {
+        return new MtId(getMessageType(), getVariant());
+    }
+
+    /**
+     * For MT messages returns the category number and for MX messages return the business process.
+     * For example for MT103 returns 1 and for pacs.004.001.06 returns pacs
+     *
+     * @return a string with the category or empty if the identifier is invalid or not present
+     * @since 7.10.4
+     */
+    @Override
+    public String getCategory() {
+        if (!StringUtils.isBlank(this.identifier)) {
+            return (new MtId(this.identifier)).category();
+        }
+        return "";
+    }
+
+    /**
+     * Enables injecting your own implementation for the entity metadata extraction, to set the generic properties
+     * shared by all message types: main reference, main amount and currency, value date, trade date.
+     *
+     * @since 9.1.4
+     */
+    public void updateMetadata(MessageMetadataStrategy strategy) {
+        Validate.notNull(strategy, "the strategy for metadata extraction cannot be null");
+        applyStrategy(modelMessage(), strategy);
+    }
 
 }

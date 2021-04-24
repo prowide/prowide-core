@@ -15,13 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import org.junit.jupiter.api.Test;
 
-import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for Field50K and similar fields.
@@ -30,48 +27,48 @@ import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
  */
 public class Field50KTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("50K",
-				"/acc",
-				"/acc\nbbb\nccc\nddd\neee"
-			);
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("50K",
+                "/acc",
+                "/acc\nbbb\nccc\nddd\neee"
+        );
+    }
 
-	@Test
-	public void testSerialization2() {
-		Field50K f = new Field50K("/345345234534\nSDFGSDFGSDFGSD");
-		assertNotNull(f.getValue());
-		assertEquals("/345345234534"+FINWriterVisitor.SWIFT_EOL+"SDFGSDFGSDFGSD", f.getValue());
-	}
+    @Test
+    public void testSerialization2() {
+        Field50K f = new Field50K("/345345234534\nSDFGSDFGSDFGSD");
+        assertNotNull(f.getValue());
+        assertEquals("/345345234534" + FINWriterVisitor.SWIFT_EOL + "SDFGSDFGSDFGSD", f.getValue());
+    }
 
-	@Test
-	public void testGetValue() {
-		Field50K f = new Field50K("/acc");
-		assertEquals("/acc", f.getValue());
-		f.setComponent2("c2");
-		assertEquals("/acc\r\nc2", f.getValue());
-	}
-	
-	@Test
-	public void testGetValue2() {
-		Field50K f = new Field50K("/acc\nbbb\nccc\nddd\neee");
-		assertEquals("acc", f.getComponent1());
-		assertEquals("bbb", f.getComponent2());
-		assertEquals("ccc", f.getComponent3());
-		assertEquals("ddd", f.getComponent4());
-		assertEquals("eee", f.getComponent5());
-	}
-	
-	@Test
-	public void testGetValue3() {
-		Field50K f = new Field50K("bbb\nccc\nddd\neee");
-		assertNull(f.getComponent1());
-		assertEquals("bbb", f.getComponent2());
-		assertEquals("ccc", f.getComponent3());
-		assertEquals("ddd", f.getComponent4());
-		assertEquals("eee", f.getComponent5());
-	}
-	
+    @Test
+    public void testGetValue() {
+        Field50K f = new Field50K("/acc");
+        assertEquals("/acc", f.getValue());
+        f.setComponent2("c2");
+        assertEquals("/acc\r\nc2", f.getValue());
+    }
+
+    @Test
+    public void testGetValue2() {
+        Field50K f = new Field50K("/acc\nbbb\nccc\nddd\neee");
+        assertEquals("acc", f.getComponent1());
+        assertEquals("bbb", f.getComponent2());
+        assertEquals("ccc", f.getComponent3());
+        assertEquals("ddd", f.getComponent4());
+        assertEquals("eee", f.getComponent5());
+    }
+
+    @Test
+    public void testGetValue3() {
+        Field50K f = new Field50K("bbb\nccc\nddd\neee");
+        assertNull(f.getComponent1());
+        assertEquals("bbb", f.getComponent2());
+        assertEquals("ccc", f.getComponent3());
+        assertEquals("ddd", f.getComponent4());
+        assertEquals("eee", f.getComponent5());
+    }
+
 }

@@ -16,145 +16,175 @@
 package com.prowidesoftware.swift.model;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class IBANTest {
 
-    @Test public void testIsValidFoooo() {
+    @Test
+    public void testIsValidFoooo() {
         assertFalse(new IBAN("fooo").isValid());
     }
-    @Test public void testIsValidFo00() {
+
+    @Test
+    public void testIsValidFo00() {
         assertFalse(new IBAN("fo00").isValid());
     }
 
-    @Test public void testReportedBad() {
+    @Test
+    public void testReportedBad() {
         IBAN iban = new IBAN("CH10002300A1023502601");
         boolean valid = iban.isValid();
         assertTrue(valid);
     }
 
-    @Test public void testOkAustrian() {
+    @Test
+    public void testOkAustrian() {
         assertIbanOk("AT611904300234573201");
     }
 
-    @Test public void testInvalidBbanAustrian() {
+    @Test
+    public void testInvalidBbanAustrian() {
         IBAN iban = new IBAN("AT32010000000173363");
         boolean valid = iban.isValid();
         assertFalse(valid);
     }
 
-    @Test public void testOKSeychelles() {
+    @Test
+    public void testOKSeychelles() {
         assertIbanOk("SC52BAHL01031234567890123456USD");
     }
 
-    @Test public void testOKItaly() {
+    @Test
+    public void testOKItaly() {
         assertIbanOk("IT40S0542811101000000123456");
     }
 
-    @Test public void testOKBelgiumOK() {
+    @Test
+    public void testOKBelgiumOK() {
         assertIbanOk("BE62510007547061");
     }
 
-    @Test public void testOKLuxembourg() {
+    @Test
+    public void testOKLuxembourg() {
         assertIbanOk("LU280019400644750000");
     }
 
-    @Test public void testOKDenmark() {
+    @Test
+    public void testOKDenmark() {
         assertIbanOk("DK5000400440116243");
     }
 
-    @Test public void testOKNetherlands() {
+    @Test
+    public void testOKNetherlands() {
         assertIbanOk("NL39RABO0300065264");
     }
 
-    @Test public void testOKFinland() {
+    @Test
+    public void testOKFinland() {
         assertIbanOk("FI2112345600000785");
     }
 
-    @Test public void testOKNorway() {
+    @Test
+    public void testOKNorway() {
         assertIbanOk("NO9386011117947");
     }
 
-    @Test public void testOKFrance() {
+    @Test
+    public void testOKFrance() {
         assertIbanOk("FR1420041010050500013M02606");
     }
 
-    @Test public void testOKPoland() {
+    @Test
+    public void testOKPoland() {
         assertIbanOk("PL60102010260000042270201111");
     }
 
-    @Test public void testOKGermany() {
+    @Test
+    public void testOKGermany() {
         assertIbanOk("DE89370400440532013000");
     }
 
-    @Test public void testOKPortugal() {
+    @Test
+    public void testOKPortugal() {
         assertIbanOk("PT50000201231234567890154");
     }
 
-    @Test public void testOKGibraltar() {
+    @Test
+    public void testOKGibraltar() {
         assertIbanOk("GI75NWBK000000007099453");
     }
 
-    @Test public void testOKSpain() {
+    @Test
+    public void testOKSpain() {
         assertIbanOk("ES0700120345030000067890");
     }
 
-    @Test public void testOKGreece() {
+    @Test
+    public void testOKGreece() {
         assertIbanOk("GR1601101250000000012300695");
     }
 
-    @Test public void testOKSweden() {
+    @Test
+    public void testOKSweden() {
         assertIbanOk("SE3550000000054910000003");
     }
 
-    @Test public void testOKIceland() {
+    @Test
+    public void testOKIceland() {
         assertIbanOk("IS140159260076545510730339");
     }
 
-    @Test public void testOKSwitzerland() {
+    @Test
+    public void testOKSwitzerland() {
         assertIbanOk("CH9300762011623852957");
     }
 
-    @Test public void testOKIreland() {
+    @Test
+    public void testOKIreland() {
         assertIbanOk("IE29AIBK93115212345678");
     }
 
-    @Test public void testOKGreatBritain() {
+    @Test
+    public void testOKGreatBritain() {
         assertIbanOk(" GB51 LOYD 3092 0700 7195 88.");
     }
 
-    @Test public void testErrorEmpty() {
+    @Test
+    public void testErrorEmpty() {
         IBAN iban = new IBAN("");
         assertTrue(iban.validate() == IbanValidationResult.IBAN_IS_EMPTY);
     }
 
-    @Test public void testErrorNull() {
+    @Test
+    public void testErrorNull() {
         IBAN iban = new IBAN(null);
         assertTrue(iban.validate() == IbanValidationResult.IBAN_IS_NULL);
     }
 
-    @Test public void testErrorMissingBban() {
+    @Test
+    public void testErrorMissingBban() {
         IBAN iban = new IBAN("IE99");
         assertTrue(iban.validate() == IbanValidationResult.MISSING_BBAN);
     }
 
-    @Test public void testErrorBbanMaxLength() {
+    @Test
+    public void testErrorBbanMaxLength() {
         IBAN iban = new IBAN("IE991234567890123456789012345678901");
         assertTrue(iban.validate() == IbanValidationResult.BBAN_MAX_LENGTH);
     }
 
-    @Test public void testErrorBbanLength() {
+    @Test
+    public void testErrorBbanLength() {
         IBAN iban = new IBAN("AT32010000000173363");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_LENGTH);
         //System.out.println(result.message());
     }
 
-    @Test public void testErrorCountry() {
+    @Test
+    public void testErrorCountry() {
         IBAN iban = new IBAN("aa17002001280000001200527600");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.INVALID_COUNTRY_CODE_CHARSET);
@@ -165,33 +195,38 @@ public class IBANTest {
         //System.out.println(result.message());
     }
 
-    @Test public void testValidateCheckDigitPresence() {
+    @Test
+    public void testValidateCheckDigitPresence() {
         IBAN iban = new IBAN("AT1");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.MISSING_CHECK_DIGITS);
     }
 
-    @Test public void testValidateBbanInvalidDigits() {
+    @Test
+    public void testValidateBbanInvalidDigits() {
         IBAN iban = new IBAN("DK5000400T40116243");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_DIGITS);
     }
 
-    @Test public void testValidateBbanInvalidDigitsOrLetters() {
+    @Test
+    public void testValidateBbanInvalidDigitsOrLetters() {
         IBAN iban = new IBAN("GI75NWBK00000000709t453");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_DIGITS_OR_LETTERS);
         //System.out.println(result.message());
     }
 
-    @Test public void testValidateBbanInvalidUpperCaseLetters() {
+    @Test
+    public void testValidateBbanInvalidUpperCaseLetters() {
         IBAN iban = new IBAN("GI75nWBK000000007099453");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_UPPER_CASE_LETTERS);
         //System.out.println(result.message());
     }
 
-    @Test public void testSomeValidCodes() {
+    @Test
+    public void testSomeValidCodes() {
         assertIbanOk("CY17002001280000001200527600");
         assertIbanOk("GB45-LOYD-3092-0711-1072-32");
         assertIbanOk("  GB51 LOYD 3092 0700 7195 88.");

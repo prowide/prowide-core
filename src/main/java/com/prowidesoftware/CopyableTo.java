@@ -18,20 +18,19 @@ package com.prowidesoftware;
 /**
  * Interface implemented by classes that can be copied to another live object.
  * Implementors of this interface define copyTo(...) which is a deep copy of the current object.
- *  
- * @author mgriffa
- * @since 7.8
  *
  * @param <T>
+ * @author mgriffa
+ * @since 7.8
  */
 public interface CopyableTo<T> {
 
-	/**
-	 * Copy recursively all attributes of this object to target.
-	 * If an attribute implements {@link CopyableTo}, then copyTo is invoked also in that attribute.
-	 * 
-	 * @param target the object where these attributes will be copied. may be null, in which case nothing happens.
-	 * @since 7.8
-	 */
-	void copyTo(T target);
+    /**
+     * Copy recursively all attributes of this object to target.
+     * If an attribute implements {@link CopyableTo}, then copyTo is invoked also in that attribute.
+     *
+     * @param target the object where these attributes will be copied. may be null, in which case nothing happens.
+     * @since 7.8
+     */
+    void copyTo(T target);
 }

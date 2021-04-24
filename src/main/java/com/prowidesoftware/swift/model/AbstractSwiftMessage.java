@@ -32,21 +32,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.security.MessageDigest;
 import java.text.NumberFormat;
 import java.util.*;
 
 /**
  * Base entity for MT and MX message persistence.
- * 
+ *
  * <p>This class hierarchy is designed as a container of the raw message contents (xml for MX and FIN for MT)
  * plus minimal message metadata. The extra data contains several common attributes for all messages, and
  * the subclasses add additional information mainly to identify the specific message type.
- * 
+ *
  * <p>This minimal abstraction make this model is specially suited for JPA to store all messages in a single table.
  *
  * <p>XML may be used to override or augment these default JPA annotations.
- * 
+ *
  * @since 7.0
  */
 @Entity
@@ -54,1371 +53,1402 @@ import java.util.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", length = 2)
 public abstract class AbstractSwiftMessage implements Serializable, JsonSerializable {
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
-	private static final long serialVersionUID = 3769865560736793606L;
+    public static final transient String PROPERTY_NAME = "name";
+    /**
+     * Identifier constant for acknowledge service messages
+     *
+     * @since 7.8.8
+     */
+    protected final static String IDENTIFIER_ACK = "ACK";
+    /**
+     * Identifier constant for non-acknowledge service messages
+     *
+     * @since 7.8.8
+     */
+    protected final static String IDENTIFIER_NAK = "NAK";
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
+    private static final long serialVersionUID = 3769865560736793606L;
+    @Column(length = 40)
+    protected String identifier;
+    @Column(length = 12)
+    protected String sender;
+    @Column(length = 12)
+    protected String receiver;
+    /**
+     * Unique identifier (used for ORM mapped to the table record id)
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Lob
+    private String message;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 8)
+    private MessageIOType direction;
+    @Column(length = 32, name = "checksum")
+    private String checksum;
+    @Column(length = 32, name = "checksum_body")
+    private String checksumBody;
+    @Column(name = "last_modified")
+    private Calendar lastModified = Calendar.getInstance();
+    @Column(name = "creation_date")
+    private Calendar creationDate = Calendar.getInstance();
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "msg_id", nullable = false)
+    @OrderColumn(name = "sort_key")
+    private List<SwiftMessageStatusInfo> statusTrail = new ArrayList<>();
+    @Column(length = 50)
+    private String status;
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "msg_id", nullable = false)
+    @OrderColumn(name = "sort_key")
+    private List<SwiftMessageNote> notes = new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "swift_msg_properties", joinColumns = @JoinColumn(name = "id"))
+    @MapKeyColumn(name = "property_key", length = 200)
+    @Column(name = "property_value")
+    @Lob //only applies to the value
+    private Map<String, String> properties = new HashMap<>();
+    @Column(length = 100)
+    private String filename;
+    @Transient
+    private FileFormat fileFormat;
+    @Column(length = 35)
+    private String reference;
+    @Column(length = 3)
+    private String currency;
+    private BigDecimal amount;
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "msg_id", nullable = false)
+    @OrderColumn(name = "sort_key")
+    private List<SwiftMessageRevision> revisions = new ArrayList<>();
+    /**
+     * @since 7.10.8
+     */
+    @Temporal(TemporalType.DATE)
+    private java.util.Calendar valueDate;
+    /**
+     * @since 7.10.8
+     */
+    @Temporal(TemporalType.DATE)
+    private java.util.Calendar tradeDate;
 
-	/**
-	 * Identifier constant for acknowledge service messages
-	 * @since 7.8.8
-	 */
-	protected final static String IDENTIFIER_ACK = "ACK";
-	
-	/**
-	 * Identifier constant for non-acknowledge service messages
-	 * @since 7.8.8
-	 */
-	protected final static String IDENTIFIER_NAK = "NAK";
+    /**
+     * Empty constructor provided for the ORM only, use one of the specific constructors instead.
+     *
+     * @since 7.7
+     */
+    public AbstractSwiftMessage() {
+        super();
+    }
 
-	/**
-	 * Unique identifier (used for ORM mapped to the table record id)
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    /**
+     * @deprecated use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    protected AbstractSwiftMessage(final String content) {
+        super();
+        this.message = content;
+        updateFromMessage();
+    }
 
-	@Lob
-	private String message;
+    /**
+     * @deprecated use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    protected AbstractSwiftMessage(final String content, final FileFormat fileFormat) {
+        super();
+        this.message = content;
+        this.fileFormat = fileFormat;
+        updateFromMessage();
+    }
 
-	@Column(length = 40)
-	protected String identifier;
+    /**
+     * Creates a new message reading the message the content from a string.
+     *
+     * <p>The complete string content will be read and set as raw message content, but if the string contains
+     * multiple messages, only the first one will be used for metadata and message identification.
+     *
+     * @param content          a swift MT or MX plain message content
+     * @param fileFormat       the source file format
+     * @param metadataStrategy the specific metadata extraction to apply
+     * @since 9.1.4
+     */
+    protected AbstractSwiftMessage(final String content, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) {
+        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        this.message = content;
+        this.fileFormat = fileFormat;
+        updateFromMessage(metadataStrategy);
+    }
 
-	@Column(length = 12)
-	protected String sender;
+    /**
+     * @since 7.7
+     * @deprecated use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    protected AbstractSwiftMessage(final InputStream stream) throws IOException {
+        super();
+        this.message = Lib.readStream(stream);
+        updateFromMessage();
+    }
 
-	@Column(length = 12)
-	protected String receiver;
+    /**
+     * @since 7.8.4
+     * @deprecated use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat) throws IOException {
+        super();
+        this.message = Lib.readStream(stream);
+        this.fileFormat = fileFormat;
+        updateFromMessage();
+    }
 
-	@Enumerated(EnumType.STRING)
-	@Column(length = 8)
-	private MessageIOType direction;
+    /**
+     * Creates a new message reading the message the content from an input stream, using UTF-8 as encoding.
+     *
+     * <p>The complete stream content will be read and set as raw message content, but if the stream contains
+     * multiple messages, only the first one will be used for metadata and message identification.
+     *
+     * @param stream           a stream with the raw mesasge content to read
+     * @param fileFormat       the source file format
+     * @param metadataStrategy the specific metadata extraction to apply
+     * @since 9.1.4
+     */
+    protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
+        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        this.message = Lib.readStream(stream);
+        this.fileFormat = fileFormat;
+        updateFromMessage(metadataStrategy);
+    }
 
-	@Column(length = 32, name = "checksum")
-	private String checksum;
+    /**
+     * @since 7.7
+     * @deprecated use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    protected AbstractSwiftMessage(final File file) throws IOException {
+        super();
+        this.message = Lib.readFile(file);
+        this.filename = file.getAbsolutePath();
+        updateFromMessage();
+    }
 
-	@Column(length = 32, name = "checksum_body")
-	private String checksumBody;
+    /**
+     * @since 7.8.4
+     * @deprecated use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    protected AbstractSwiftMessage(final File file, final FileFormat fileFormat) throws IOException {
+        super();
+        this.message = Lib.readFile(file);
+        this.filename = file.getAbsolutePath();
+        this.fileFormat = fileFormat;
+        updateFromMessage();
+    }
 
-	@Column(name = "last_modified")
-	private Calendar lastModified = Calendar.getInstance();
+    /**
+     * Creates a new message reading the message the content from a file.
+     *
+     * <p>The complete file content will be read and set as raw message content, but if the file contains
+     * multiple messages, only the first one will be used for metadata and message identification.
+     *
+     * @param file             an existing file containing the message payload
+     * @param fileFormat       the source file format
+     * @param metadataStrategy the specific metadata extraction to apply
+     * @since 9.1.4
+     */
+    protected AbstractSwiftMessage(final File file, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
+        Validate.notNull(file, "the file parameter cannot be null");
+        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        this.message = Lib.readFile(file);
+        this.filename = file.getAbsolutePath();
+        this.fileFormat = fileFormat;
+        updateFromMessage(metadataStrategy);
+    }
 
-	@Column(name = "creation_date")
-	private Calendar creationDate = Calendar.getInstance();
-
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "msg_id", nullable = false)
-	@OrderColumn(name = "sort_key")
-	private List<SwiftMessageStatusInfo> statusTrail = new ArrayList<>();
-
-	@Column(length = 50)
-	private String status;
-
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-	@JoinColumn(name = "msg_id", nullable = false)
-	@OrderColumn(name = "sort_key")
-	private List<SwiftMessageNote> notes = new ArrayList<>();
-
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "swift_msg_properties", joinColumns = @JoinColumn(name = "id"))
-	@MapKeyColumn(name = "property_key", length = 200)
-	@Column(name = "property_value")
-	@Lob //only applies to the value
-	private Map<String, String> properties = new HashMap<>();
-
-	@Column(length = 100)
-	private String filename;
-
-	@Transient
-	private FileFormat fileFormat;
-
-	@Column(length = 35)
-	private String reference;
-
-	@Column(length = 3)
-	private String currency;
-
-	private BigDecimal amount;
-
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-	@JoinColumn(name = "msg_id", nullable = false)
-	@OrderColumn(name = "sort_key")
-	private List<SwiftMessageRevision> revisions = new ArrayList<>();
-
-	/**
-	 * @since 7.10.8
-	 */
-	@Temporal(TemporalType.DATE)
-	private java.util.Calendar valueDate;
-
-	/**
-	 * @since 7.10.8
-	 */
-	@Temporal(TemporalType.DATE)
-	private java.util.Calendar tradeDate;
-
-	/**
-	 * Empty constructor provided for the ORM only, use one of the specific constructors instead.
-	 * @since 7.7
-	 */
-	public AbstractSwiftMessage() {
-		super();
-	}
-
-	/**
-	 * @deprecated use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	protected AbstractSwiftMessage(final String content) {
-		super();
-		this.message = content;
-		updateFromMessage();
-	}
-
-	/**
-	 * @deprecated use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	protected AbstractSwiftMessage(final String content, final FileFormat fileFormat) {
-		super();
-		this.message = content;
-		this.fileFormat = fileFormat;
-	    updateFromMessage();
-	}
-
-	/**
-	 * Creates a new message reading the message the content from a string.
-	 *
-	 * <p>The complete string content will be read and set as raw message content, but if the string contains
-	 * multiple messages, only the first one will be used for metadata and message identification.
-	 *
-	 * @param content a swift MT or MX plain message content
-	 * @param fileFormat the source file format
-	 * @param metadataStrategy the specific metadata extraction to apply
-	 * @since 9.1.4
-	 */
-	protected AbstractSwiftMessage(final String content, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) {
-		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-		this.message = content;
-		this.fileFormat = fileFormat;
-		updateFromMessage(metadataStrategy);
-	}
-
-	/**
-	 * @deprecated use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
-	 * @since 7.7
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	protected AbstractSwiftMessage(final InputStream stream) throws IOException {
-		super();
-	    this.message = Lib.readStream(stream);
-	    updateFromMessage();
-	}
-	
-	/**
-	 * @deprecated use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
-	 * @since 7.8.4
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat) throws IOException {
-		super();
-	    this.message = Lib.readStream(stream);
-		this.fileFormat = fileFormat;
-	    updateFromMessage();
-	}
-
-	/**
-	 * Creates a new message reading the message the content from an input stream, using UTF-8 as encoding.
-	 *
-	 * <p>The complete stream content will be read and set as raw message content, but if the stream contains
-	 * multiple messages, only the first one will be used for metadata and message identification.
-	 *
-	 * @param stream a stream with the raw mesasge content to read
-	 * @param fileFormat the source file format
-	 * @param metadataStrategy the specific metadata extraction to apply
-	 * @since 9.1.4
-	 */
-	protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
-		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-		this.message = Lib.readStream(stream);
-		this.fileFormat = fileFormat;
-		updateFromMessage(metadataStrategy);
-	}
-
-	/**
-	 * @deprecated use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
-	 * @since 7.7
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	protected AbstractSwiftMessage(final File file) throws IOException {
-		super();
-	    this.message = Lib.readFile(file);
-	    this.filename = file.getAbsolutePath();
-	    updateFromMessage();
-	}
-	
-	/**
-	 * @deprecated use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
-	 * @since 7.8.4
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	protected AbstractSwiftMessage(final File file, final FileFormat fileFormat) throws IOException {
-		super();
-	    this.message = Lib.readFile(file);
-	    this.filename = file.getAbsolutePath();
-		this.fileFormat = fileFormat;
-	    updateFromMessage();
-	}
-
-	/**
-	 * Creates a new message reading the message the content from a file.
-	 *
-	 * <p>The complete file content will be read and set as raw message content, but if the file contains
-	 * multiple messages, only the first one will be used for metadata and message identification.
-	 *
-	 * @param file an existing file containing the message payload
-	 * @param fileFormat the source file format
-	 * @param metadataStrategy the specific metadata extraction to apply
-	 * @since 9.1.4
-	 */
-	protected AbstractSwiftMessage(final File file, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
-		Validate.notNull(file, "the file parameter cannot be null");
-		Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-		this.message = Lib.readFile(file);
-		this.filename = file.getAbsolutePath();
-		this.fileFormat = fileFormat;
-		updateFromMessage(metadataStrategy);
-	}
-	
-	/**
-	 * Updates the object attributes with metadata parsed from the message raw content: identifier, sender, receiver,
-	 * direction and specific data for the implementing subclass. The method is called during message creation or update.
-	 * 
-	 * @since 7.7
-	 */
+    /**
+     * Updates the object attributes with metadata parsed from the message raw content: identifier, sender, receiver,
+     * direction and specific data for the implementing subclass. The method is called during message creation or update.
+     *
+     * @since 7.7
+     */
     protected abstract void updateFromMessage();
 
-	/**
-	 * Updates the object attributes with metadata parsed from the message raw content using the provided strategy
-	 * implementation for several of the metadata fields. The method is called during message creation or update.
-	 *
-	 * <p>This method is expected to be overwritten by subclasses. This default implementation will just ignore the
-	 * parameter strategy.
-	 *
-	 * @since 9.1.4
-	 */
-	protected void updateFromMessage(final MessageMetadataStrategy metadataStrategy) {
-		updateFromMessage();
-	}
-	
+    /**
+     * Updates the object attributes with metadata parsed from the message raw content using the provided strategy
+     * implementation for several of the metadata fields. The method is called during message creation or update.
+     *
+     * <p>This method is expected to be overwritten by subclasses. This default implementation will just ignore the
+     * parameter strategy.
+     *
+     * @since 9.1.4
+     */
+    protected void updateFromMessage(final MessageMetadataStrategy metadataStrategy) {
+        updateFromMessage();
+    }
+
     /**
      * Returns the persisted message unique identifier.
      */
-	public Long getId() {
-		return id;
-	}
-	
+    public Long getId() {
+        return id;
+    }
+
     /**
      * Used by the ORM to set the database unique identifier.
      */
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	/**
-	 * Raw message content. FIN for MTS, and XML for MX.
-	 */
-	public String getMessage() {
-		return message;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	/**
-	 * Returns the internal swift message in its original raw format.
-	 * Same as {@link #getMessage()}
-	 * 
-	 * @return raw content of the message
-	 * @since 7.7
-	 */
-	public String message() {
-		return message;
-	}
+    /**
+     * Raw message content. FIN for MTS, and XML for MX.
+     */
+    public String getMessage() {
+        return message;
+    }
 
     /**
      * Set the raw content of the message.
      * <p>
      * IMPORTANT: this will not automatically update the metadata attributes. Consider using one of the specific
-	 * subclasses <strong>update</strong> methods. For MT that would be {@link MtSwiftMessage#updateFromFIN(String)}
+     * subclasses <strong>update</strong> methods. For MT that would be {@link MtSwiftMessage#updateFromFIN(String)}
      * {@link MtSwiftMessage#updateFromModel(com.prowidesoftware.swift.model.mt.AbstractMT)} and
      * {@link MtSwiftMessage#updateFromModel(SwiftMessage)}. The for MX in the Prowide ISO20022 library you can use
-	 * equivalent methods MxSwiftMessage#updateFromXML(String) and MxSwiftMessage#updateFromModel(AbstractMX)
+     * equivalent methods MxSwiftMessage#updateFromXML(String) and MxSwiftMessage#updateFromModel(AbstractMX)
      *
      * @param message raw content of the message
      */
     public void setMessage(String message) {
-		this.message = message;
-	}
-    
-	/**
-	 * Message type identification as specify by SWIFT.
-	 * <ul>
-	 * 	<li>For MT: fin.type[.variant] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
-	 * 	<li>For MX: the message business area, type, variant and version; for example: camt.034.001.02</li>
-	 * 	<li>For acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
-	 * 	<li>For non-acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
-	 * 	<li>For other service messages the identifier is left <code>null</code></li>
-	 * </ul>
-	 */
-	public String getIdentifier() {
-		return identifier;
-	}
-	
-	/**
- 	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param identifier the message identifier such as fin.103
-	 */
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
-	}
-	
-	/**
-	 * Proprietary checksum computed for the whole raw message content, helpful for integrity verification or duplicates detection.
-	 * 
-	 * <p>At the moment this is only implemented for MT messages
-	 * @see SwiftMessageUtils#calculateChecksum(SwiftMessage)
-	 */
-	//TODO implement the same for MX, computing hash on XSLT normalized version of the XML
-	public String getChecksum() {
-		return checksum;
-	}
-	
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * <p>At the moment this is only implemented for MT messages
-	 * @see SwiftMessageUtils#calculateChecksum(SwiftMessage)
-	 * @param checksum the calculated checksum to set
-	 */
-	public void setChecksum(String checksum) {
-		this.checksum = checksum;
-	}
-	
-	/**
- 	 * Gets the proprietary checksum calculated for the text block (block 4) only in MT or Document only in MX, helpful for integrity verification or duplicates detection.
- 	 * 
- 	 * <p>At the moment this is only implemented for MT messages
-	 * @see SwiftMessageUtils#calculateChecksum(SwiftBlock4)
-	 * @since 7.9.5
-	 */
-	//TODO implement the same for MX, computing hash on XSLT normalized version of the XML
-	public String getChecksumBody() {
-		return checksumBody;
-	}
-
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param checksumBody the checksum to set
-	 * @since 7.9.5
-	 */
-	public void setChecksumBody(String checksumBody) {
-		this.checksumBody = checksumBody;
-	}
-	
-	/**
-	 * Last modification date and time.
-	 */
-	@XmlTransient
-	public Calendar getLastModified() {
-		return lastModified;
-	}
-	
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param lastModified the last modification timestamp to set
-	 */
-	public void setLastModified(Calendar lastModified) {
-		this.lastModified = lastModified;
-	}
-	
-	/**
-	 * Creation date and time.
-	 */
-	@XmlTransient
-	public Calendar getCreationDate() {
-		return creationDate;
-	}
-	
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param creationDate the creation timestamp to set
-	 */
-	public void setCreationDate(Calendar creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	/**
-	 * User comments attached to this message.
-	 */
-	public List<SwiftMessageNote> getNotes() {
-		return notes;
-	}
-	
-	/**
-	 * @see #addNote(SwiftMessageNote)
-	 */
-	public void setNotes(List<SwiftMessageNote> notes) {
-		this.notes = notes;
-	}
-	
-	/**
-	 * Flexible property container to extend message metadata.
-	 */
-	@XmlTransient
-	public Map<String, String> getProperties() {
-		return properties;
-	}
-	
-	/**
-	 * @see #setProperty(Enum, String)
-	 * @see #setProperty(String, String)
-	 */
-	public void setProperties(Map<String, String> properties) {
-		this.properties = properties;
-	}
-	
-	/**
-	 * Status history for this message.
-	 * current status is the last one in the list.
-	 */
-	public List<SwiftMessageStatusInfo> getStatusTrail() {
-		return statusTrail;
-	}
-	
-	/**
-	 * @see #addStatus(SwiftMessageStatusInfo)
-	 * @param statusTrail a list with statuses information
-	 */
-	public void setStatusTrail(List<SwiftMessageStatusInfo> statusTrail) {
-		this.statusTrail = statusTrail;
-	}
-	
-	/**
-	 * Get the name of the last status set to this message, or <code>null</code> if none is found.
-	 */
-	public String getStatus() {
-		return status;
-	}
-	
-	/**
-	 * Sets the status attribute. Notice that this method does not update the status trail.
-	 * @see #addStatus(SwiftMessageStatusInfo)
-	 * @param status the current message status name
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-	/**
-	 * Senders BIC11 code.<br>
-	 * For MT messages this is the BIC11 portion of the sender logical terminal; for outgoing messages the LT at block 1 
-	 * is used, and for incoming messages it is the LT at the MIR of block 2.
-	 * For MX messages this is the (capitalized) BIC information in the "From" tag of the Application Header.
-	 */
-	public String getSender() {
-		return sender;
-	}
-
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param sender the sender address
-	 */
-	public void setSender(String sender) {
-		this.sender = sender;
-	}
-
-	/**
-	 * Receivers BIC11 code.<br>
-	 * For MT messages this is the BIC11 portion of the receiver logical terminal; for outgoing messages the LT at 
-	 * block 2 is used, and for incoming messages it is the LT at block 1.
-	 * For MX messages this is the (capitalized) BIC information in the "To" tag of the Application Header.
-	 */
-	public String getReceiver() {
-		return receiver;
-	}
-
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param receiver the receiver address
-	 */
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
-	}
-
-	/**
-	 * Direction from application perspective;
-	 * message is sent to SWIFT are outgoing and
-	 * messages received from SWIFT are incoming.
-	 */
-	public MessageIOType getDirection() {
-		return direction;
-	}
-
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param direction the direction (either incoming or outgoing)
-	 */
-	public void setDirection(MessageIOType direction) {
-		this.direction = direction;
-	}
-	
-	/**
-	 * Original filename if applies.
-	 */
-	public String getFilename() {
-		return filename;
-	}
-
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param filename the name of the file read to create this message instance
-	 */
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-	
-	public static final transient String PROPERTY_NAME = "name";
-	
-	/**
-	 * Get the value of the property under the {@link #PROPERTY_NAME} key or <code>null</code> if not found
-	 */
-	public String getMessageName() {
-		Map<String, String> p = getProperties();
-		if (p!=null && p.containsKey(PROPERTY_NAME) && StringUtils.isNotBlank(p.get(PROPERTY_NAME))) {
-			return p.get(PROPERTY_NAME);
-		}
-		return null;
-	}
-	
-	/**
-	 * Adds a status to the message's status trail and current status attribute, initializing the statuses trail list if necessary.
-	 * @param status the status to add
-	 */
-	public void addStatus(SwiftMessageStatusInfo status) {
-		if (status != null) {
-			if (this.getStatusTrail() == null) {
-				this.setStatusTrail(new ArrayList<SwiftMessageStatusInfo>());
-			}
-			this.statusTrail.add(status);
-			setStatus(status.getName());
-		}
-	}
-		
-	/**
-	 * @return true if the message is outgoing (sent to SWIFT), false other case; using the direction attribute.
-	 */
-	public boolean isOutgoing() {
-		return this.direction == MessageIOType.outgoing;
-	}
-	
-	/**
-	 * @see #isOutgoing()
-	 */
-	public boolean isInput() {
-		return isOutgoing();
-	}
-
-	/**
-	 * @return true if the message is incoming (received from SWIFT), false other case; using the direction attribute.
-	 */
-	public Boolean isIncoming() {
-		return this.direction == MessageIOType.incoming;
-	}
-
-	/**
-	 * @see #isIncoming()
-	 */
-	public Boolean isOutput() {
-		return isIncoming();
-	}
-	
-	/**
-	 * @see #addStatus(SwiftMessageStatusInfo)
-	 */
-	public void setStatus(SwiftMessageStatusInfo status) {
-		addStatus(status);
-	}
-		
-	/**
-	 * Returns true if the current status is equals to the parameter status
-	 * @param status a status name
-	 */
-	public boolean isStatus(String status) {
-		return StringUtils.equals(status, getStatus());
-	}
-
-	/**
-	 * Returns true if the current status is equals to the parameter status
-	 * @param status a status enum keyFget
-	 */
-	@SuppressWarnings("rawtypes")
-	public boolean isStatus(Enum status) {
-		if (status != null) {
-			return isStatus(status.name());
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Retrieves from the status trail, the current status info; or <code>null</code> if none is found.
-	 */
-	public SwiftMessageStatusInfo getStatusInfo() {
-		List<SwiftMessageStatusInfo> l = getStatusTrail();
-		if (l != null && !l.isEmpty()) {
-			return l.get(l.size()-1);
-		}
-		return null;
-	}
-
-	/**
-	 * Retrieves from the status trail, the status info before the current one; or <code>null</code> if none is found.
-	 */
-	public SwiftMessageStatusInfo getPreviousStatusInfo() {
-		List<SwiftMessageStatusInfo> l = getStatusTrail();
-		if (l != null && l.size() >= 2) {
-			return l.get(l.size() -2);
-		}
-		return null;
-	}
-	
-	/**
-	 * Tell if this message has any of the given statuses in his status <b>trail</b>
-	 * @param statuses a list of statuses to check in the status trail
-	 */
-	@SuppressWarnings("rawtypes")
-	public boolean contains(Enum ... statuses) {
-		boolean result = false;
-		List<SwiftMessageStatusInfo> l = getStatusTrail();
-		if (l != null && !l.isEmpty()) {
-			for (SwiftMessageStatusInfo s : getStatusTrail()) {
-				for (Enum e : statuses) {
-					if (e != null && StringUtils.equals(s.getName(), e.name())) {
-						result = true;
-					}
-				}
-			}
-		}
-		return result;
-	}
-	
-	/**
-	 * Tell if this message has any of the given statuses in his status <b>trail</b>
-	 * @param statuses a list of statuses to check in the status trail
-	 */
-	public boolean contains(String ... statuses) {
-		boolean result = false;
-		List<SwiftMessageStatusInfo> l = getStatusTrail();
-		if (l != null && !l.isEmpty()) {
-			for (SwiftMessageStatusInfo s : getStatusTrail()) {
-				for (String e : statuses) {
-					if (e != null && StringUtils.equals(s.getName(), e)) {
-						result = true;
-					}
-				}
-			}
-		}
-		return result;
-	}
-	
-	/**
-	 * Tell if this message has any of the given statuses as <b>current</b> status
-	 * @param statuses a list of status names to check
-	 */
-	public boolean isStatus(String ... statuses) {
-		for (String s : statuses) {
-			if (isStatus(s)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Tell if this message has any of the given statuses as <b>current</b> status
-	 * @param statuses a list of status enum keys to check
-	 */
-	@SuppressWarnings("rawtypes")
-	public boolean isStatus(Enum ... statuses) {
-		for (Enum e : statuses) {
-			if (e != null && isStatus(e.name())) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Get the last saved status data of this message or empty string if not found
-	 * @param statuses an array of statuses to check data into, if <code>null</code> all message statuses are checked for data
-	 * @return the most recent (last) status data found
-	 */
-	public String getLastData(String ...statuses) {
-		List<SwiftMessageStatusInfo> l = getStatusTrail();
-		if (l != null && !l.isEmpty()) {
-			for (int i=l.size()-1; i>=0 ;i--) {
-				String d = l.get(i).getData();
-				if (d != null && (statuses == null || ArrayUtils.contains(statuses, l.get(i).getName()))) {
-					return d;
-				}
-			}
-		}
-		return "";
-	}
-	
-	/**
-	 * Same as {@link #getLastData(String...)} passing a null array parameter
-	 */
-	public String getLastData() {
-		return getLastData((String[])null);
-	}
-
-	/**
-	 * Finds the first status info from the status trail, with a name matching any of the given status names, or returns <code>null</code> if not found
-	 * This method is similar to {@link #findStatusInfoLast(String...)} but checks the status trail in ascending order from oldest to latest.
-	 * @since 7.8.8
-	 */
-	public SwiftMessageStatusInfo findStatusInfo(String ... statusNames) {
-		List<SwiftMessageStatusInfo> l = getStatusTrail();
-		if (l != null && !l.isEmpty()) {
-			for (SwiftMessageStatusInfo sms : l) {
-				if (ArrayUtils.contains(statusNames, sms.getName())) {
-					return sms;
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Finds the first status info from the status trail, with the given name or returns <code>null</code> if not found
-	 * @see #findStatusInfo(String...)
-	 */
-	public SwiftMessageStatusInfo findStatusInfo(String statusName) {
-		String[] statuses = { statusName };
-		return findStatusInfo(statuses);
-	}
-	
-	/**
-	 * Finds the last status info from the status trail, with a name matching any of the given status names, or returns <code>null</code> if not found.
-	 * This method is similar to {@link #findStatusInfo(String...)} but checks the status trail in descending order from latest to oldest.
-	 * @since 7.8.8
-	 */
-	public SwiftMessageStatusInfo findStatusInfoLast(String ... statusNames) {
-		final List<SwiftMessageStatusInfo> l = getStatusTrail();
-		if (l != null && !l.isEmpty()) {
-			for (int i=l.size()-1; i>=0 ;i--) {
-				if (ArrayUtils.contains(statusNames, l.get(i).getName())) {
-					return l.get(i);
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Finds the last status info from the status trail, with the given name or returns <code>null</code> if not found
-	 * @see #findStatusInfoLast(String...)
-	 * @since 7.8.8
-	 */
-	public SwiftMessageStatusInfo findStatusInfoLast(String statusName) {
-		String[] statuses = { statusName };
-		return findStatusInfoLast(statuses);
-	}
-
-	/**
-	 * Adds a new note to the messages, initializing the note list if necessary.
-	 * @param n note to add
-	 */
-	public void addNote(SwiftMessageNote n) {
-	    if (notes==null) {
-	    	notes = new ArrayList<>();
-	    }
-	    notes.add(n);
-	}
-	
-	/**
-	 * Iterate message properties and truncate all needed values issuing a log entry for each truncated one
-	 */
-	public void sanityCheckProperties() {
-		try {
-			final Map<String, String> p = getProperties();
-			for (Map.Entry<String, String> entry : p.entrySet()) {
-				final String v = entry.getValue();
-				if (v != null && v.length() > 500) {
-					log.severe("Value for key="+entry.getKey()+" too long, will be truncated. value="+v);
-					p.put(entry.getKey(), v.substring(0, 500));
-				}
-				if (entry.getKey().length() > 200) {
-					log.severe("Key too long: "+entry.getKey()+" will be truncated");
-					p.remove(entry.getKey());
-					p.put(entry.getKey().substring(0, 200), v);
-				}
-			}
-		} catch (Exception e) {
-			log.log(java.util.logging.Level.WARNING, "Error cheking properties", e);
-		}
-	}
-		
-	/**
-	 * Get the value of the property under the given key or <code>null</code> if the key is not found or its value is empty
-	 * @param key the property key to get
-	 */
-	public String getProperty(String key) {
-		if (this.properties != null) {
-			return StringUtils.trimToNull(this.properties.get(key));
-		}
-		return null;
-	}
-	
-	/**
-	 * @see #getProperty(String)
-	 * @param key the property key to get
-	 */
-	@SuppressWarnings("rawtypes")
-	public String getProperty(Enum key) {
-		return getProperty(key.name());
-	}
-
-	/**
-	 * Sets a property using the given key and value, if the key exists the value is overwritten.
-	 * @param key the property to set
-	 * @param value the value for the property
-	 */
-	public void setProperty(String key, String value) {
-		if (this.properties == null) {
-			this.properties = new HashMap<>();
-		}
-		if (StringUtils.isNotBlank(value)) {
-			this.properties.put(key, value);
-		}
-	}
-
-	/**
-	 * @see #setProperty(String, String)
-	 * @param key the property to set
-	 * @param value the value for the property
-	 */
-	@SuppressWarnings("rawtypes")
-	public void setProperty(Enum key, String value) {
-		setProperty(key.name(), value);
-	}
-	
-	/**
-	 * Returns true if the message has a property with the given key name and value "true"
-	 * @param key the property key to get
-	 */
-	public boolean getPropertyBoolean(final String key) {
-		return propertyEquals("true", key);
-	}
-	
-	/**
-	 * @see #getPropertyBoolean(String)
-	 * @param key the property key to get
-	 */
-	@SuppressWarnings("rawtypes")
-	public boolean getPropertyBoolean(final Enum key) {
-		return getPropertyBoolean(key.name());
-	}
-
-	/**
-	 * Checks if a given property has a specific value
-	 * @param key the property key to check
-	 * @param expectedValue the expected value
-	 * @return true if the property is set and the value matches, false otherwise
-	 * @since 7.10.4
-	 */
-	public boolean propertyEquals(String key, String expectedValue) {
-		return StringUtils.equals(expectedValue, getProperty(key));
-	}
-
-	/**
-	 * @see #propertyEquals(String, String)
-	 * @param key the property key to check
-	 * @param expectedValue the expected value
-	 * @since 7.10.4
-	 */
-	@SuppressWarnings("rawtypes")
-	public boolean propertyEquals(Enum key, String expectedValue) {
-		return propertyEquals(key.name(), expectedValue);
-	}
-
-	/**
-	 * @see #propertyEquals(String, String)
-	 * @since 7.10.4
-	 */
-	@SuppressWarnings("rawtypes")
-	public boolean propertyEquals(Enum key, Enum expectedValue) {
-		return propertyEquals(key.name(), expectedValue.name());
-	}
-
-	/**
-	 * Returns the internal unique id as fixed length string, padded with zeros.
-	 * @return string with 10 characters with this message identifier
-	 */
-	public String getPaddedId() {
-		String id = this.id != null? this.id.toString() : "0";
-		return StringUtils.leftPad(id, 10, "0");
-	}
-
-	/**
-	 * Creates a full copy of the current message object into another message.
-	 * <p>The implementation works as a copy constructor. All attributes are replicated into
-	 * new instances in the target message. The only fields that are not copied are the Long id
-	 * because they are intended for ORM (persistence) autogeneration. Preexisting data in the
-	 * target message will be overwritten.
-	 * @param msg target message
-	 * @since 7.7
-	 */
-	public void copyTo(AbstractSwiftMessage msg) {
-		msg.setMessage(getMessage());
-		msg.setIdentifier(getIdentifier());
-		msg.setSender(getSender());
-		msg.setReceiver(getReceiver());
-		msg.setDirection(getDirection());
-		msg.setChecksum(getChecksum());
-		msg.setChecksumBody(getChecksumBody());
-		msg.setLastModified(getLastModified());
-		msg.setCreationDate(getCreationDate());
-		
-		msg.setStatusTrail(null);
-		for (SwiftMessageStatusInfo status : getStatusTrail()) {
-			msg.addStatus(new SwiftMessageStatusInfo(status.getComments(), status.getCreationDate(), status.getCreationUser(), status.getName(), status.getData()));
-		}
-		msg.setStatus(getStatus());
-		
-		msg.setNotes(null);
-		for (SwiftMessageNote note : getNotes()) {
-			SwiftMessageNote copy = new SwiftMessageNote(note.getCreationUser(), note.getText());
-			copy.setCreationDate(note.getCreationDate());
-			msg.addNote(copy);
-		}
-
-		msg.setProperties(getProperties());
-		msg.setFilename(getFilename());
-		msg.setFileFormat(getFileFormat());
-		msg.setReference(getReference());
-		msg.setCurrency(getCurrency());
-		msg.setAmount(getAmount());
-		msg.setValueDate(getValueDate());
-		msg.setTradeDate(getTradeDate());
-		
-		msg.setRevisions(null);
-		for (SwiftMessageRevision rev : getRevisions()) {
-			SwiftMessageRevision copy = new SwiftMessageRevision();
-			copy.setCreationDate(rev.getCreationDate());
-			copy.setCreationUser(rev.getCreationUser());
-			copy.setMessage(rev.getMessage());
-			copy.setJson(rev.getJson());
-			msg.addRevision(copy);
-		}
+        this.message = message;
     }
 
-	/**
-	 * Snapshots of message content used to track its changes history
-	 * @since 7.8
-	 * @return this message revisions or empty list if none is set
-	 */
-	public List<SwiftMessageRevision> getRevisions() {
-		return revisions;
-	}
+    /**
+     * Returns the internal swift message in its original raw format.
+     * Same as {@link #getMessage()}
+     *
+     * @return raw content of the message
+     * @since 7.7
+     */
+    public String message() {
+        return message;
+    }
 
-	/**
-	 * @since 7.8
-	 * @param revisions a list of message modification revisions
-	 */
-	public void setRevisions(List<SwiftMessageRevision> revisions) {
-		this.revisions = revisions;
-	}
+    /**
+     * Message type identification as specify by SWIFT.
+     * <ul>
+     * 	<li>For MT: fin.type[.variant] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
+     * 	<li>For MX: the message business area, type, variant and version; for example: camt.034.001.02</li>
+     * 	<li>For acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
+     * 	<li>For non-acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
+     * 	<li>For other service messages the identifier is left <code>null</code></li>
+     * </ul>
+     */
+    public String getIdentifier() {
+        return identifier;
+    }
 
-	/**
-	 * Adds a new revision to the messages, initializing the revision list if necessary.
-	 * @param revision revision to add
-	 * @since 7.8
-	 */
-	public void addRevision(SwiftMessageRevision revision) {
-		if (this.revisions == null) {
-			this.revisions = new ArrayList<>();
-		}
-		this.revisions.add(revision);
-	}
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param identifier the message identifier such as fin.103
+     */
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
 
-	/**
-	 * Creates a new revision of the message and adds it to the revision list.
-	 * @see SwiftMessageRevision#SwiftMessageRevision(AbstractSwiftMessage)
-	 * @since 7.8
-	 * @return the revision added
-	 */
-	public SwiftMessageRevision createRevision() {
-		SwiftMessageRevision rev = new SwiftMessageRevision(this);
-		addRevision(rev);
-		return rev;
-	}
+    /**
+     * Proprietary checksum computed for the whole raw message content, helpful for integrity verification or duplicates detection.
+     *
+     * <p>At the moment this is only implemented for MT messages
+     *
+     * @see SwiftMessageUtils#calculateChecksum(SwiftMessage)
+     */
+    //TODO implement the same for MX, computing hash on XSLT normalized version of the XML
+    public String getChecksum() {
+        return checksum;
+    }
 
-	/**
-	 * @since 7.10.8
-	 */
-	public Calendar getValueDate() {
-		return valueDate;
-	}
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     * <p>At the moment this is only implemented for MT messages
+     *
+     * @param checksum the calculated checksum to set
+     * @see SwiftMessageUtils#calculateChecksum(SwiftMessage)
+     */
+    public void setChecksum(String checksum) {
+        this.checksum = checksum;
+    }
 
-	/**
-	 * @since 7.10.8
-	 */
-	public void setValueDate(Calendar valueDate) {
-		this.valueDate = valueDate;
-	}
+    /**
+     * Gets the proprietary checksum calculated for the text block (block 4) only in MT or Document only in MX, helpful for integrity verification or duplicates detection.
+     *
+     * <p>At the moment this is only implemented for MT messages
+     *
+     * @see SwiftMessageUtils#calculateChecksum(SwiftBlock4)
+     * @since 7.9.5
+     */
+    //TODO implement the same for MX, computing hash on XSLT normalized version of the XML
+    public String getChecksumBody() {
+        return checksumBody;
+    }
 
-	/**
-	 * @since 7.10.8
-	 */
-	public Calendar getTradeDate() {
-		return tradeDate;
-	}
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param checksumBody the checksum to set
+     * @since 7.9.5
+     */
+    public void setChecksumBody(String checksumBody) {
+        this.checksumBody = checksumBody;
+    }
 
-	/**
-	 * @since 7.10.8
-	 */
-	public void setTradeDate(Calendar tradeDate) {
-		this.tradeDate = tradeDate;
-	}
+    /**
+     * Last modification date and time.
+     */
+    @XmlTransient
+    public Calendar getLastModified() {
+        return lastModified;
+    }
 
-	/**
-	 * True if the message is an {@link MtSwiftMessage}, false otherwise
-	 * @since 7.8
-	 */
-	public boolean isMT() {
-		return this.getClass().getSimpleName().startsWith("Mt");
-	}
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param lastModified the last modification timestamp to set
+     */
+    public void setLastModified(Calendar lastModified) {
+        this.lastModified = lastModified;
+    }
 
-	/**
-	 * True if the message is an MxSwiftMessage from the Prowide ISO20022 library, false otherwise
-	 * @since 7.8
-	 */
-	public boolean isMX() {
-		return this.getClass().getSimpleName().startsWith("Mx");
-	}
-	
-	/**
-	 * Returns the enumeration value corresponding to this message.
-	 * @return standard enumeration value or null if messages cannot be identified as either standard
-	 * @since 7.8.3
-	 */
-	public MessageStandardType messageStandardType() {
-		if (isMT()) {
-			return MessageStandardType.MT;
-		} else if (isMX()) {
-			return MessageStandardType.MX;
-		}
-		return null;
-	}
-	
-	/**
-	 * Original file format if applies. 
-	 * @since 7.8.4
-	 * @return this message file format if any is set
-	 */
-	public FileFormat getFileFormat() {
-		return this.fileFormat;
-	}
+    /**
+     * Creation date and time.
+     */
+    @XmlTransient
+    public Calendar getCreationDate() {
+        return creationDate;
+    }
 
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @since 7.8.4
-	 * @param fileFormat the file format read
-	 */
-	public void setFileFormat(FileFormat fileFormat) {
-		this.fileFormat = fileFormat;
-	}
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param creationDate the creation timestamp to set
+     */
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
+    }
 
-	/**
-	 * Message reference
-	 */
-	public String getReference() {
-		return reference;
-	}
+    /**
+     * User comments attached to this message.
+     */
+    public List<SwiftMessageNote> getNotes() {
+        return notes;
+    }
 
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param reference the message reference
-	 */
-	public void setReference(String reference) {
-		this.reference = reference;
-	}
-	
-	/**
-	 * Main currency
-	 * @return the main currency or <code>null</code> if non is present or does not apply for this message type
-	 * @since 7.8.8
-	 */
-	public String getCurrency() {
-		return currency;
-	}
+    /**
+     * @see #addNote(SwiftMessageNote)
+     */
+    public void setNotes(List<SwiftMessageNote> notes) {
+        this.notes = notes;
+    }
 
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param currency the message main currency
-	 */
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
+    /**
+     * Flexible property container to extend message metadata.
+     */
+    @XmlTransient
+    public Map<String, String> getProperties() {
+        return properties;
+    }
 
-	/**
-	 * Main amount
-	 * @return the main amount or <code>null</code> if non is present or does not apply for this message type
-	 * @since 7.8.8
-	 */
-	public BigDecimal getAmount() {
-		return amount;
-	}
+    /**
+     * @see #setProperty(Enum, String)
+     * @see #setProperty(String, String)
+     */
+    public void setProperties(Map<String, String> properties) {
+        this.properties = properties;
+    }
 
-	/**
-	 * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
-	 * @param amount the message main amount
-	 */
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
-	}
+    /**
+     * Status history for this message.
+     * current status is the last one in the list.
+     */
+    public List<SwiftMessageStatusInfo> getStatusTrail() {
+        return statusTrail;
+    }
 
-	/**
-	 * Applies the parameter regex to the message identifier.
-	 * <br>
-	 * <p>
-	 * Notice the identifier will contain:
-	 * <ul>
-	 * <li>For MT: fin.&lt;msgtype&gt;[.&lt;mug|variant&gt;] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
-	 * <li>For MX: &lt;bus.area&gt;.&lt;msgtype&gt;.&lt;variant&gt;.&lt;version&gt; for example: camt.034.001.02, ifds.001.001.01</li>
-	 * </ul>
-	 * So for example <code>fin.*</code> matches all MT messages, <code>fin.*STP</code> matches all STP MT messages
-	 * and <code>camt.*</code> matches all MX messages in the category camt. 
-	 *
-	 * 
-	 * @since 7.8.4
-	 * @param regex to match
-	 * @return true if regex match identifier, false otherwise
-	 */
-	public boolean match(final String regex) {
-		return this.identifier != null && StringUtils.isNotBlank(regex) && this.identifier.matches(regex);
-	}
+    /**
+     * @param statusTrail a list with statuses information
+     * @see #addStatus(SwiftMessageStatusInfo)
+     */
+    public void setStatusTrail(List<SwiftMessageStatusInfo> statusTrail) {
+        this.statusTrail = statusTrail;
+    }
 
-	/**
-	 * If the amount is set, returns its currency and value formatted using the default locale.
-	 * @see #getAmount()
-	 * @see #formattedAmount(Locale, boolean)
-	 * @return formatted amount for example USD 123,456.78 or empty string if amount is not set
-	 * @since 7.8.8
-	 */
-	public String formattedAmount() {
-		return formattedAmount(null, true);
-	}
-	
-	/**
-	 * If the amount is set, returns its value formatted for the given locale.
-	 * @see #getAmount()
-	 * @param locale a specific locale to use or <code>null</code> to use the current default locale 
-	 * @param includeCurrency if true and the currency is set, the formatted value will be prefixed by the currency symbol
-	 * @return formatted amount for example USD 123,456.78 or empty string if amount is not set
-	 * @since 7.8.8
-	 */
-	public String formattedAmount(final Locale locale, boolean includeCurrency) {
-		StringBuilder result = new StringBuilder();
-		if (this.amount != null) {
-			if (includeCurrency && this.currency != null) {
-				result.append(this.currency);
-				result.append(" ");
-			}
-			NumberFormat formatter = locale != null? NumberFormat.getInstance(locale) : NumberFormat.getInstance();
-			result.append(formatter.format(this.amount));
-		}
-		return result.toString();
-	}
-	
-	/**
-	 * Returns true if this message identifier is {@link #IDENTIFIER_ACK}
-	 * 
-	 * <p>The implementation does not check the inner content of the message.
-	 * 
-	 * <p>It is safe to use this method to check if message is effectively 
-	 * and acknowledge only when the API is used with the provided subclasses
-	 * for MT and MX and when the identifier has not been altered by the accesor.
-	 *  
-	 * @return true if the identifier is {@link #IDENTIFIER_ACK} false otherwise
-	 * @since 7.8.8
-	 */
-	public boolean identifiedAsACK() {
-		return StringUtils.equals(this.identifier, IDENTIFIER_ACK);
-	}
+    /**
+     * Get the name of the last status set to this message, or <code>null</code> if none is found.
+     */
+    public String getStatus() {
+        return status;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		AbstractSwiftMessage that = (AbstractSwiftMessage) o;
-		return Objects.equals(message, that.message) &&
-				Objects.equals(identifier, that.identifier) &&
-				Objects.equals(sender, that.sender) &&
-				Objects.equals(receiver, that.receiver) &&
-				direction == that.direction &&
-				Objects.equals(checksum, that.checksum) &&
-				Objects.equals(checksumBody, that.checksumBody) &&
-				Objects.equals(lastModified, that.lastModified) &&
-				Objects.equals(creationDate, that.creationDate) &&
-				Objects.equals(statusTrail, that.statusTrail) &&
-				Objects.equals(status, that.status) &&
-				Objects.equals(notes, that.notes) &&
-				Objects.equals(properties, that.properties) &&
-				Objects.equals(filename, that.filename) &&
-				fileFormat == that.fileFormat &&
-				Objects.equals(reference, that.reference) &&
-				Objects.equals(currency, that.currency) &&
-				Objects.equals(amount, that.amount) &&
-				Objects.equals(revisions, that.revisions) &&
-				Objects.equals(valueDate, that.valueDate) &&
-				Objects.equals(tradeDate, that.tradeDate);
-	}
+    /**
+     * Sets the status attribute. Notice that this method does not update the status trail.
+     *
+     * @param status the current message status name
+     * @see #addStatus(SwiftMessageStatusInfo)
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(message, identifier, sender, receiver, direction, checksum, checksumBody, lastModified, creationDate, statusTrail, status, notes, properties, filename, fileFormat, reference, currency, amount, revisions, valueDate, tradeDate);
-	}
+    /**
+     * @see #addStatus(SwiftMessageStatusInfo)
+     */
+    public void setStatus(SwiftMessageStatusInfo status) {
+        addStatus(status);
+    }
 
-	/**
-	 * Returns true if this message identifier is {@link #IDENTIFIER_NAK}
-	 * 
-	 * <p>The implementation does not check the inner content of the message.
-	 * 
-	 * <p>It is safe to use this method to check if message is effectively 
-	 * and non-acknowledge only when the API is used with the provided subclasses
-	 * for MT and MX and when the identifier has not been altered by the accesor.
-	 *  
-	 * @return true if the identifier is {@link #IDENTIFIER_NAK} false otherwise
-	 * @since 7.8.8
-	 */
-	public boolean identifiedAsNAK() {
-		return StringUtils.equals(this.identifier, IDENTIFIER_NAK);
-	}
-	
-	/**
-	 * Creates a BIC11 from the given address. 
-	 * If the address contains a logical terminal it wil be dropped.
-	 * If the address does not contain a branch, the default XXX will be used
-	 * @param address a BIC8, BIC11 or full logical terminal address (BIC12)
-	 * @return the bic11 or null if address is null
-	 * @since 7.9.5
-	 * @see BIC#getBic11()
-	 */
-	protected String bic11(String address) {
-		if (address != null) {
-			return (new BIC(address)).getBic11();
-		}
-		return null;
-	}
+    /**
+     * Senders BIC11 code.<br>
+     * For MT messages this is the BIC11 portion of the sender logical terminal; for outgoing messages the LT at block 1
+     * is used, and for incoming messages it is the LT at the MIR of block 2.
+     * For MX messages this is the (capitalized) BIC information in the "From" tag of the Application Header.
+     */
+    public String getSender() {
+        return sender;
+    }
 
-	/**
-	 * Returns the correspondent BIC code from the headers.<br>
-	 * For an outgoing message, the BIC address identifies the receiver of the message. Where for an incoming message it identifies the sender of the message.
-	 * @return the correspondent BIC code or null if headers are not properly set
-	 * @since 7.9.5
-	 */
-	public BIC getCorrespondentBIC() {
-		if (isOutgoing()) {
-			final String receiver = getReceiver();
-			if (receiver != null) {
-				return new BIC(receiver);
-			}
-		}
-		if (isIncoming()) {
-			final String sender = getSender();
-			if (sender != null) {
-				return new BIC(sender);
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 * The year when the message was created, extracted from the {@link #getCreationDate()}
-	 * Helper read-only property useful for faceting search
-	 * @return the year in YYYY format
-	 * @since 7.9.7
-	 */
-	public String getCreationYear() {
-		return String.valueOf(creationDate.get(Calendar.YEAR));
-	}
-	
-	/**
-	 * The month when the message was created, extracted from the {@link #getCreationDate()}
-	 * Helper read-only property useful for faceting search
-	 * @return the month number, 1 based and padded with zero, such as 01, 02, 12
-	 * @since 7.9.7
-	 */
-	public String getCreationMonth() {
-		int imonth = creationDate.get(Calendar.MONTH) + 1;
-		return (imonth < 10 ? "0" : "") + String.valueOf(imonth);
-	}
-	
-	/**
-	 * The day of month when the message was created, extracted from the {@link #getCreationDate()}
-	 * Helper read-only property useful for faceting search
-	 * @return the day of month, padded with zero, such as 01, 02, 31
-	 * @since 7.9.7
-	 */
-	public String getCreationDayOfMonth() {
-		int iday = creationDate.get(Calendar.DAY_OF_MONTH);
-        return (iday < 10 ? "0" : "") + String.valueOf(iday);
-	}
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param sender the sender address
+     */
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
 
-	/**
-	 * Gets a JSON representation of this message.
-	 * @since 7.10.3
-	 */
-	@Override
-	public String toJson() {
-		return toJsonImpl();
-	}
+    /**
+     * Receivers BIC11 code.<br>
+     * For MT messages this is the BIC11 portion of the receiver logical terminal; for outgoing messages the LT at
+     * block 2 is used, and for incoming messages it is the LT at block 1.
+     * For MX messages this is the (capitalized) BIC information in the "To" tag of the Application Header.
+     */
+    public String getReceiver() {
+        return receiver;
+    }
 
-	/**
-	 * Isolated Json implementation, useful for mocked test
-	 * @return json serialization using Gson
-	 * @since 7.10.6
-	 */
-	protected String toJsonImpl(){
-		final Gson gson = new GsonBuilder()
-				.setPrettyPrinting()
-				.create();
-		return gson.toJson(this);
-	}
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param receiver the receiver address
+     */
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
 
-	/**
-	 * For MT messages returns the category number and for MX messages return the business process.
-	 * For example for MT103 returns 1 and for pacs.004.001.06 returns pacs
-	 * @return a string with the category or empty if the identifier is invalid or not present
-	 * @since 7.10.4
-	 */
-	public abstract String getCategory();
+    /**
+     * Direction from application perspective;
+     * message is sent to SWIFT are outgoing and
+     * messages received from SWIFT are incoming.
+     */
+    public MessageIOType getDirection() {
+        return direction;
+    }
 
-	/**
-	 * Get the message type.<br>
-	 * For MTs this is the MT type number present in the identifier attribute. For example for fin.103.STP returns 103
-	 * For MX returns the same as #getIdentifier()
-	 */
-	public String getMessageType() {
-		if (this.identifier != null && isMT()) {
-			return this.identifier.replaceAll("\\D+","");
-		} else {
-			return getIdentifier();
-		}
-	}
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param direction the direction (either incoming or outgoing)
+     */
+    public void setDirection(MessageIOType direction) {
+        this.direction = direction;
+    }
+
+    /**
+     * Original filename if applies.
+     */
+    public String getFilename() {
+        return filename;
+    }
+
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param filename the name of the file read to create this message instance
+     */
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    /**
+     * Get the value of the property under the {@link #PROPERTY_NAME} key or <code>null</code> if not found
+     */
+    public String getMessageName() {
+        Map<String, String> p = getProperties();
+        if (p != null && p.containsKey(PROPERTY_NAME) && StringUtils.isNotBlank(p.get(PROPERTY_NAME))) {
+            return p.get(PROPERTY_NAME);
+        }
+        return null;
+    }
+
+    /**
+     * Adds a status to the message's status trail and current status attribute, initializing the statuses trail list if necessary.
+     *
+     * @param status the status to add
+     */
+    public void addStatus(SwiftMessageStatusInfo status) {
+        if (status != null) {
+            if (this.getStatusTrail() == null) {
+                this.setStatusTrail(new ArrayList<SwiftMessageStatusInfo>());
+            }
+            this.statusTrail.add(status);
+            setStatus(status.getName());
+        }
+    }
+
+    /**
+     * @return true if the message is outgoing (sent to SWIFT), false other case; using the direction attribute.
+     */
+    public boolean isOutgoing() {
+        return this.direction == MessageIOType.outgoing;
+    }
+
+    /**
+     * @see #isOutgoing()
+     */
+    public boolean isInput() {
+        return isOutgoing();
+    }
+
+    /**
+     * @return true if the message is incoming (received from SWIFT), false other case; using the direction attribute.
+     */
+    public Boolean isIncoming() {
+        return this.direction == MessageIOType.incoming;
+    }
+
+    /**
+     * @see #isIncoming()
+     */
+    public Boolean isOutput() {
+        return isIncoming();
+    }
+
+    /**
+     * Returns true if the current status is equals to the parameter status
+     *
+     * @param status a status name
+     */
+    public boolean isStatus(String status) {
+        return StringUtils.equals(status, getStatus());
+    }
+
+    /**
+     * Returns true if the current status is equals to the parameter status
+     *
+     * @param status a status enum keyFget
+     */
+    @SuppressWarnings("rawtypes")
+    public boolean isStatus(Enum status) {
+        if (status != null) {
+            return isStatus(status.name());
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Retrieves from the status trail, the current status info; or <code>null</code> if none is found.
+     */
+    public SwiftMessageStatusInfo getStatusInfo() {
+        List<SwiftMessageStatusInfo> l = getStatusTrail();
+        if (l != null && !l.isEmpty()) {
+            return l.get(l.size() - 1);
+        }
+        return null;
+    }
+
+    /**
+     * Retrieves from the status trail, the status info before the current one; or <code>null</code> if none is found.
+     */
+    public SwiftMessageStatusInfo getPreviousStatusInfo() {
+        List<SwiftMessageStatusInfo> l = getStatusTrail();
+        if (l != null && l.size() >= 2) {
+            return l.get(l.size() - 2);
+        }
+        return null;
+    }
+
+    /**
+     * Tell if this message has any of the given statuses in his status <b>trail</b>
+     *
+     * @param statuses a list of statuses to check in the status trail
+     */
+    @SuppressWarnings("rawtypes")
+    public boolean contains(Enum... statuses) {
+        boolean result = false;
+        List<SwiftMessageStatusInfo> l = getStatusTrail();
+        if (l != null && !l.isEmpty()) {
+            for (SwiftMessageStatusInfo s : getStatusTrail()) {
+                for (Enum e : statuses) {
+                    if (e != null && StringUtils.equals(s.getName(), e.name())) {
+                        result = true;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Tell if this message has any of the given statuses in his status <b>trail</b>
+     *
+     * @param statuses a list of statuses to check in the status trail
+     */
+    public boolean contains(String... statuses) {
+        boolean result = false;
+        List<SwiftMessageStatusInfo> l = getStatusTrail();
+        if (l != null && !l.isEmpty()) {
+            for (SwiftMessageStatusInfo s : getStatusTrail()) {
+                for (String e : statuses) {
+                    if (e != null && StringUtils.equals(s.getName(), e)) {
+                        result = true;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Tell if this message has any of the given statuses as <b>current</b> status
+     *
+     * @param statuses a list of status names to check
+     */
+    public boolean isStatus(String... statuses) {
+        for (String s : statuses) {
+            if (isStatus(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Tell if this message has any of the given statuses as <b>current</b> status
+     *
+     * @param statuses a list of status enum keys to check
+     */
+    @SuppressWarnings("rawtypes")
+    public boolean isStatus(Enum... statuses) {
+        for (Enum e : statuses) {
+            if (e != null && isStatus(e.name())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Get the last saved status data of this message or empty string if not found
+     *
+     * @param statuses an array of statuses to check data into, if <code>null</code> all message statuses are checked for data
+     * @return the most recent (last) status data found
+     */
+    public String getLastData(String... statuses) {
+        List<SwiftMessageStatusInfo> l = getStatusTrail();
+        if (l != null && !l.isEmpty()) {
+            for (int i = l.size() - 1; i >= 0; i--) {
+                String d = l.get(i).getData();
+                if (d != null && (statuses == null || ArrayUtils.contains(statuses, l.get(i).getName()))) {
+                    return d;
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * Same as {@link #getLastData(String...)} passing a null array parameter
+     */
+    public String getLastData() {
+        return getLastData((String[]) null);
+    }
+
+    /**
+     * Finds the first status info from the status trail, with a name matching any of the given status names, or returns <code>null</code> if not found
+     * This method is similar to {@link #findStatusInfoLast(String...)} but checks the status trail in ascending order from oldest to latest.
+     *
+     * @since 7.8.8
+     */
+    public SwiftMessageStatusInfo findStatusInfo(String... statusNames) {
+        List<SwiftMessageStatusInfo> l = getStatusTrail();
+        if (l != null && !l.isEmpty()) {
+            for (SwiftMessageStatusInfo sms : l) {
+                if (ArrayUtils.contains(statusNames, sms.getName())) {
+                    return sms;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Finds the first status info from the status trail, with the given name or returns <code>null</code> if not found
+     *
+     * @see #findStatusInfo(String...)
+     */
+    public SwiftMessageStatusInfo findStatusInfo(String statusName) {
+        String[] statuses = {statusName};
+        return findStatusInfo(statuses);
+    }
+
+    /**
+     * Finds the last status info from the status trail, with a name matching any of the given status names, or returns <code>null</code> if not found.
+     * This method is similar to {@link #findStatusInfo(String...)} but checks the status trail in descending order from latest to oldest.
+     *
+     * @since 7.8.8
+     */
+    public SwiftMessageStatusInfo findStatusInfoLast(String... statusNames) {
+        final List<SwiftMessageStatusInfo> l = getStatusTrail();
+        if (l != null && !l.isEmpty()) {
+            for (int i = l.size() - 1; i >= 0; i--) {
+                if (ArrayUtils.contains(statusNames, l.get(i).getName())) {
+                    return l.get(i);
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Finds the last status info from the status trail, with the given name or returns <code>null</code> if not found
+     *
+     * @see #findStatusInfoLast(String...)
+     * @since 7.8.8
+     */
+    public SwiftMessageStatusInfo findStatusInfoLast(String statusName) {
+        String[] statuses = {statusName};
+        return findStatusInfoLast(statuses);
+    }
+
+    /**
+     * Adds a new note to the messages, initializing the note list if necessary.
+     *
+     * @param n note to add
+     */
+    public void addNote(SwiftMessageNote n) {
+        if (notes == null) {
+            notes = new ArrayList<>();
+        }
+        notes.add(n);
+    }
+
+    /**
+     * Iterate message properties and truncate all needed values issuing a log entry for each truncated one
+     */
+    public void sanityCheckProperties() {
+        try {
+            final Map<String, String> p = getProperties();
+            for (Map.Entry<String, String> entry : p.entrySet()) {
+                final String v = entry.getValue();
+                if (v != null && v.length() > 500) {
+                    log.severe("Value for key=" + entry.getKey() + " too long, will be truncated. value=" + v);
+                    p.put(entry.getKey(), v.substring(0, 500));
+                }
+                if (entry.getKey().length() > 200) {
+                    log.severe("Key too long: " + entry.getKey() + " will be truncated");
+                    p.remove(entry.getKey());
+                    p.put(entry.getKey().substring(0, 200), v);
+                }
+            }
+        } catch (Exception e) {
+            log.log(java.util.logging.Level.WARNING, "Error cheking properties", e);
+        }
+    }
+
+    /**
+     * Get the value of the property under the given key or <code>null</code> if the key is not found or its value is empty
+     *
+     * @param key the property key to get
+     */
+    public String getProperty(String key) {
+        if (this.properties != null) {
+            return StringUtils.trimToNull(this.properties.get(key));
+        }
+        return null;
+    }
+
+    /**
+     * @param key the property key to get
+     * @see #getProperty(String)
+     */
+    @SuppressWarnings("rawtypes")
+    public String getProperty(Enum key) {
+        return getProperty(key.name());
+    }
+
+    /**
+     * Sets a property using the given key and value, if the key exists the value is overwritten.
+     *
+     * @param key   the property to set
+     * @param value the value for the property
+     */
+    public void setProperty(String key, String value) {
+        if (this.properties == null) {
+            this.properties = new HashMap<>();
+        }
+        if (StringUtils.isNotBlank(value)) {
+            this.properties.put(key, value);
+        }
+    }
+
+    /**
+     * @param key   the property to set
+     * @param value the value for the property
+     * @see #setProperty(String, String)
+     */
+    @SuppressWarnings("rawtypes")
+    public void setProperty(Enum key, String value) {
+        setProperty(key.name(), value);
+    }
+
+    /**
+     * Returns true if the message has a property with the given key name and value "true"
+     *
+     * @param key the property key to get
+     */
+    public boolean getPropertyBoolean(final String key) {
+        return propertyEquals("true", key);
+    }
+
+    /**
+     * @param key the property key to get
+     * @see #getPropertyBoolean(String)
+     */
+    @SuppressWarnings("rawtypes")
+    public boolean getPropertyBoolean(final Enum key) {
+        return getPropertyBoolean(key.name());
+    }
+
+    /**
+     * Checks if a given property has a specific value
+     *
+     * @param key           the property key to check
+     * @param expectedValue the expected value
+     * @return true if the property is set and the value matches, false otherwise
+     * @since 7.10.4
+     */
+    public boolean propertyEquals(String key, String expectedValue) {
+        return StringUtils.equals(expectedValue, getProperty(key));
+    }
+
+    /**
+     * @param key           the property key to check
+     * @param expectedValue the expected value
+     * @see #propertyEquals(String, String)
+     * @since 7.10.4
+     */
+    @SuppressWarnings("rawtypes")
+    public boolean propertyEquals(Enum key, String expectedValue) {
+        return propertyEquals(key.name(), expectedValue);
+    }
+
+    /**
+     * @see #propertyEquals(String, String)
+     * @since 7.10.4
+     */
+    @SuppressWarnings("rawtypes")
+    public boolean propertyEquals(Enum key, Enum expectedValue) {
+        return propertyEquals(key.name(), expectedValue.name());
+    }
+
+    /**
+     * Returns the internal unique id as fixed length string, padded with zeros.
+     *
+     * @return string with 10 characters with this message identifier
+     */
+    public String getPaddedId() {
+        String id = this.id != null ? this.id.toString() : "0";
+        return StringUtils.leftPad(id, 10, "0");
+    }
+
+    /**
+     * Creates a full copy of the current message object into another message.
+     * <p>The implementation works as a copy constructor. All attributes are replicated into
+     * new instances in the target message. The only fields that are not copied are the Long id
+     * because they are intended for ORM (persistence) autogeneration. Preexisting data in the
+     * target message will be overwritten.
+     *
+     * @param msg target message
+     * @since 7.7
+     */
+    public void copyTo(AbstractSwiftMessage msg) {
+        msg.setMessage(getMessage());
+        msg.setIdentifier(getIdentifier());
+        msg.setSender(getSender());
+        msg.setReceiver(getReceiver());
+        msg.setDirection(getDirection());
+        msg.setChecksum(getChecksum());
+        msg.setChecksumBody(getChecksumBody());
+        msg.setLastModified(getLastModified());
+        msg.setCreationDate(getCreationDate());
+
+        msg.setStatusTrail(null);
+        for (SwiftMessageStatusInfo status : getStatusTrail()) {
+            msg.addStatus(new SwiftMessageStatusInfo(status.getComments(), status.getCreationDate(), status.getCreationUser(), status.getName(), status.getData()));
+        }
+        msg.setStatus(getStatus());
+
+        msg.setNotes(null);
+        for (SwiftMessageNote note : getNotes()) {
+            SwiftMessageNote copy = new SwiftMessageNote(note.getCreationUser(), note.getText());
+            copy.setCreationDate(note.getCreationDate());
+            msg.addNote(copy);
+        }
+
+        msg.setProperties(getProperties());
+        msg.setFilename(getFilename());
+        msg.setFileFormat(getFileFormat());
+        msg.setReference(getReference());
+        msg.setCurrency(getCurrency());
+        msg.setAmount(getAmount());
+        msg.setValueDate(getValueDate());
+        msg.setTradeDate(getTradeDate());
+
+        msg.setRevisions(null);
+        for (SwiftMessageRevision rev : getRevisions()) {
+            SwiftMessageRevision copy = new SwiftMessageRevision();
+            copy.setCreationDate(rev.getCreationDate());
+            copy.setCreationUser(rev.getCreationUser());
+            copy.setMessage(rev.getMessage());
+            copy.setJson(rev.getJson());
+            msg.addRevision(copy);
+        }
+    }
+
+    /**
+     * Snapshots of message content used to track its changes history
+     *
+     * @return this message revisions or empty list if none is set
+     * @since 7.8
+     */
+    public List<SwiftMessageRevision> getRevisions() {
+        return revisions;
+    }
+
+    /**
+     * @param revisions a list of message modification revisions
+     * @since 7.8
+     */
+    public void setRevisions(List<SwiftMessageRevision> revisions) {
+        this.revisions = revisions;
+    }
+
+    /**
+     * Adds a new revision to the messages, initializing the revision list if necessary.
+     *
+     * @param revision revision to add
+     * @since 7.8
+     */
+    public void addRevision(SwiftMessageRevision revision) {
+        if (this.revisions == null) {
+            this.revisions = new ArrayList<>();
+        }
+        this.revisions.add(revision);
+    }
+
+    /**
+     * Creates a new revision of the message and adds it to the revision list.
+     *
+     * @return the revision added
+     * @see SwiftMessageRevision#SwiftMessageRevision(AbstractSwiftMessage)
+     * @since 7.8
+     */
+    public SwiftMessageRevision createRevision() {
+        SwiftMessageRevision rev = new SwiftMessageRevision(this);
+        addRevision(rev);
+        return rev;
+    }
+
+    /**
+     * @since 7.10.8
+     */
+    public Calendar getValueDate() {
+        return valueDate;
+    }
+
+    /**
+     * @since 7.10.8
+     */
+    public void setValueDate(Calendar valueDate) {
+        this.valueDate = valueDate;
+    }
+
+    /**
+     * @since 7.10.8
+     */
+    public Calendar getTradeDate() {
+        return tradeDate;
+    }
+
+    /**
+     * @since 7.10.8
+     */
+    public void setTradeDate(Calendar tradeDate) {
+        this.tradeDate = tradeDate;
+    }
+
+    /**
+     * True if the message is an {@link MtSwiftMessage}, false otherwise
+     *
+     * @since 7.8
+     */
+    public boolean isMT() {
+        return this.getClass().getSimpleName().startsWith("Mt");
+    }
+
+    /**
+     * True if the message is an MxSwiftMessage from the Prowide ISO20022 library, false otherwise
+     *
+     * @since 7.8
+     */
+    public boolean isMX() {
+        return this.getClass().getSimpleName().startsWith("Mx");
+    }
+
+    /**
+     * Returns the enumeration value corresponding to this message.
+     *
+     * @return standard enumeration value or null if messages cannot be identified as either standard
+     * @since 7.8.3
+     */
+    public MessageStandardType messageStandardType() {
+        if (isMT()) {
+            return MessageStandardType.MT;
+        } else if (isMX()) {
+            return MessageStandardType.MX;
+        }
+        return null;
+    }
+
+    /**
+     * Original file format if applies.
+     *
+     * @return this message file format if any is set
+     * @since 7.8.4
+     */
+    public FileFormat getFileFormat() {
+        return this.fileFormat;
+    }
+
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param fileFormat the file format read
+     * @since 7.8.4
+     */
+    public void setFileFormat(FileFormat fileFormat) {
+        this.fileFormat = fileFormat;
+    }
+
+    /**
+     * Message reference
+     */
+    public String getReference() {
+        return reference;
+    }
+
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param reference the message reference
+     */
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    /**
+     * Main currency
+     *
+     * @return the main currency or <code>null</code> if non is present or does not apply for this message type
+     * @since 7.8.8
+     */
+    public String getCurrency() {
+        return currency;
+    }
+
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param currency the message main currency
+     */
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    /**
+     * Main amount
+     *
+     * @return the main amount or <code>null</code> if non is present or does not apply for this message type
+     * @since 7.8.8
+     */
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    /**
+     * This field is automatically set by the <strong>constructor</strong> or when the message is updated by using a specific subclass <strong>update</strong> method.
+     *
+     * @param amount the message main amount
+     */
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    /**
+     * Applies the parameter regex to the message identifier.
+     * <br>
+     * <p>
+     * Notice the identifier will contain:
+     * <ul>
+     * <li>For MT: fin.&lt;msgtype&gt;[.&lt;mug|variant&gt;] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
+     * <li>For MX: &lt;bus.area&gt;.&lt;msgtype&gt;.&lt;variant&gt;.&lt;version&gt; for example: camt.034.001.02, ifds.001.001.01</li>
+     * </ul>
+     * So for example <code>fin.*</code> matches all MT messages, <code>fin.*STP</code> matches all STP MT messages
+     * and <code>camt.*</code> matches all MX messages in the category camt.
+     *
+     * @param regex to match
+     * @return true if regex match identifier, false otherwise
+     * @since 7.8.4
+     */
+    public boolean match(final String regex) {
+        return this.identifier != null && StringUtils.isNotBlank(regex) && this.identifier.matches(regex);
+    }
+
+    /**
+     * If the amount is set, returns its currency and value formatted using the default locale.
+     *
+     * @return formatted amount for example USD 123,456.78 or empty string if amount is not set
+     * @see #getAmount()
+     * @see #formattedAmount(Locale, boolean)
+     * @since 7.8.8
+     */
+    public String formattedAmount() {
+        return formattedAmount(null, true);
+    }
+
+    /**
+     * If the amount is set, returns its value formatted for the given locale.
+     *
+     * @param locale          a specific locale to use or <code>null</code> to use the current default locale
+     * @param includeCurrency if true and the currency is set, the formatted value will be prefixed by the currency symbol
+     * @return formatted amount for example USD 123,456.78 or empty string if amount is not set
+     * @see #getAmount()
+     * @since 7.8.8
+     */
+    public String formattedAmount(final Locale locale, boolean includeCurrency) {
+        StringBuilder result = new StringBuilder();
+        if (this.amount != null) {
+            if (includeCurrency && this.currency != null) {
+                result.append(this.currency);
+                result.append(" ");
+            }
+            NumberFormat formatter = locale != null ? NumberFormat.getInstance(locale) : NumberFormat.getInstance();
+            result.append(formatter.format(this.amount));
+        }
+        return result.toString();
+    }
+
+    /**
+     * Returns true if this message identifier is {@link #IDENTIFIER_ACK}
+     *
+     * <p>The implementation does not check the inner content of the message.
+     *
+     * <p>It is safe to use this method to check if message is effectively
+     * and acknowledge only when the API is used with the provided subclasses
+     * for MT and MX and when the identifier has not been altered by the accesor.
+     *
+     * @return true if the identifier is {@link #IDENTIFIER_ACK} false otherwise
+     * @since 7.8.8
+     */
+    public boolean identifiedAsACK() {
+        return StringUtils.equals(this.identifier, IDENTIFIER_ACK);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractSwiftMessage that = (AbstractSwiftMessage) o;
+        return Objects.equals(message, that.message) &&
+                Objects.equals(identifier, that.identifier) &&
+                Objects.equals(sender, that.sender) &&
+                Objects.equals(receiver, that.receiver) &&
+                direction == that.direction &&
+                Objects.equals(checksum, that.checksum) &&
+                Objects.equals(checksumBody, that.checksumBody) &&
+                Objects.equals(lastModified, that.lastModified) &&
+                Objects.equals(creationDate, that.creationDate) &&
+                Objects.equals(statusTrail, that.statusTrail) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(notes, that.notes) &&
+                Objects.equals(properties, that.properties) &&
+                Objects.equals(filename, that.filename) &&
+                fileFormat == that.fileFormat &&
+                Objects.equals(reference, that.reference) &&
+                Objects.equals(currency, that.currency) &&
+                Objects.equals(amount, that.amount) &&
+                Objects.equals(revisions, that.revisions) &&
+                Objects.equals(valueDate, that.valueDate) &&
+                Objects.equals(tradeDate, that.tradeDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(message, identifier, sender, receiver, direction, checksum, checksumBody, lastModified, creationDate, statusTrail, status, notes, properties, filename, fileFormat, reference, currency, amount, revisions, valueDate, tradeDate);
+    }
+
+    /**
+     * Returns true if this message identifier is {@link #IDENTIFIER_NAK}
+     *
+     * <p>The implementation does not check the inner content of the message.
+     *
+     * <p>It is safe to use this method to check if message is effectively
+     * and non-acknowledge only when the API is used with the provided subclasses
+     * for MT and MX and when the identifier has not been altered by the accesor.
+     *
+     * @return true if the identifier is {@link #IDENTIFIER_NAK} false otherwise
+     * @since 7.8.8
+     */
+    public boolean identifiedAsNAK() {
+        return StringUtils.equals(this.identifier, IDENTIFIER_NAK);
+    }
+
+    /**
+     * Creates a BIC11 from the given address.
+     * If the address contains a logical terminal it wil be dropped.
+     * If the address does not contain a branch, the default XXX will be used
+     *
+     * @param address a BIC8, BIC11 or full logical terminal address (BIC12)
+     * @return the bic11 or null if address is null
+     * @see BIC#getBic11()
+     * @since 7.9.5
+     */
+    protected String bic11(String address) {
+        if (address != null) {
+            return (new BIC(address)).getBic11();
+        }
+        return null;
+    }
+
+    /**
+     * Returns the correspondent BIC code from the headers.<br>
+     * For an outgoing message, the BIC address identifies the receiver of the message. Where for an incoming message it identifies the sender of the message.
+     *
+     * @return the correspondent BIC code or null if headers are not properly set
+     * @since 7.9.5
+     */
+    public BIC getCorrespondentBIC() {
+        if (isOutgoing()) {
+            final String receiver = getReceiver();
+            if (receiver != null) {
+                return new BIC(receiver);
+            }
+        }
+        if (isIncoming()) {
+            final String sender = getSender();
+            if (sender != null) {
+                return new BIC(sender);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * The year when the message was created, extracted from the {@link #getCreationDate()}
+     * Helper read-only property useful for faceting search
+     *
+     * @return the year in YYYY format
+     * @since 7.9.7
+     */
+    public String getCreationYear() {
+        return String.valueOf(creationDate.get(Calendar.YEAR));
+    }
+
+    /**
+     * The month when the message was created, extracted from the {@link #getCreationDate()}
+     * Helper read-only property useful for faceting search
+     *
+     * @return the month number, 1 based and padded with zero, such as 01, 02, 12
+     * @since 7.9.7
+     */
+    public String getCreationMonth() {
+        int imonth = creationDate.get(Calendar.MONTH) + 1;
+        return (imonth < 10 ? "0" : "") + imonth;
+    }
+
+    /**
+     * The day of month when the message was created, extracted from the {@link #getCreationDate()}
+     * Helper read-only property useful for faceting search
+     *
+     * @return the day of month, padded with zero, such as 01, 02, 31
+     * @since 7.9.7
+     */
+    public String getCreationDayOfMonth() {
+        int iday = creationDate.get(Calendar.DAY_OF_MONTH);
+        return (iday < 10 ? "0" : "") + iday;
+    }
+
+    /**
+     * Gets a JSON representation of this message.
+     *
+     * @since 7.10.3
+     */
+    @Override
+    public String toJson() {
+        return toJsonImpl();
+    }
+
+    /**
+     * Isolated Json implementation, useful for mocked test
+     *
+     * @return json serialization using Gson
+     * @since 7.10.6
+     */
+    protected String toJsonImpl() {
+        final Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        return gson.toJson(this);
+    }
+
+    /**
+     * For MT messages returns the category number and for MX messages return the business process.
+     * For example for MT103 returns 1 and for pacs.004.001.06 returns pacs
+     *
+     * @return a string with the category or empty if the identifier is invalid or not present
+     * @since 7.10.4
+     */
+    public abstract String getCategory();
+
+    /**
+     * Get the message type.<br>
+     * For MTs this is the MT type number present in the identifier attribute. For example for fin.103.STP returns 103
+     * For MX returns the same as #getIdentifier()
+     */
+    public String getMessageType() {
+        if (this.identifier != null && isMT()) {
+            return this.identifier.replaceAll("\\D+", "");
+        } else {
+            return getIdentifier();
+        }
+    }
 
 }

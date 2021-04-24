@@ -15,81 +15,81 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
-
 /**
  * Test for Field32K and similar fields.
- * 
- * @author www.prowidesoftware.com
+ *
+ * @author sebastian
  * @since 6.0
  */
 public class Field32KTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("32K",
-				"D123AAAEUR1234,56",
-				"123AAAEUR1234,56"
-			);
-	}
-	
-	/**
-	 * cNS<CUR>N
-	 */
-	@Test
-	public void testField32K() {		
-		Field32K f = new Field32K((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("32K",
+                "D123AAAEUR1234,56",
+                "123AAAEUR1234,56"
+        );
+    }
 
-		f = new Field32K("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
+    /**
+     * cNS<CUR>N
+     */
+    @Test
+    public void testField32K() {
+        Field32K f = new Field32K((String) null);
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
 
-		f = new Field32K("D");
-		assertEquals("D", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
+        f = new Field32K("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
 
-		f = new Field32K("D123");
-		assertEquals("D", f.getComponent1());
-		assertEquals("123", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		assertNull(f.getComponent5());
-		
-		f = new Field32K("D123EUR");
-		assertEquals("D", f.getComponent1());
-		assertEquals("123", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertEquals("EUR", f.getComponent4());
-		assertNull(f.getComponent5());
-		
-		f = new Field32K("D123AAAEUR");
-		assertEquals("D", f.getComponent1());
-		assertEquals("123", f.getComponent2());
-		assertEquals("AAA", f.getComponent3());
-		assertEquals("EUR", f.getComponent4());
-		assertNull(f.getComponent5());	
-		
-		f = new Field32K("D123AAAEUR1234,56");
-		assertEquals("D", f.getComponent1());
-		assertEquals("123", f.getComponent2());
-		assertEquals("AAA", f.getComponent3());
-		assertEquals("EUR", f.getComponent4());
-		assertEquals("1234,56", f.getComponent5());
-	}
+        f = new Field32K("D");
+        assertEquals("D", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+
+        f = new Field32K("D123");
+        assertEquals("D", f.getComponent1());
+        assertEquals("123", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+        assertNull(f.getComponent5());
+
+        f = new Field32K("D123EUR");
+        assertEquals("D", f.getComponent1());
+        assertEquals("123", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertEquals("EUR", f.getComponent4());
+        assertNull(f.getComponent5());
+
+        f = new Field32K("D123AAAEUR");
+        assertEquals("D", f.getComponent1());
+        assertEquals("123", f.getComponent2());
+        assertEquals("AAA", f.getComponent3());
+        assertEquals("EUR", f.getComponent4());
+        assertNull(f.getComponent5());
+
+        f = new Field32K("D123AAAEUR1234,56");
+        assertEquals("D", f.getComponent1());
+        assertEquals("123", f.getComponent2());
+        assertEquals("AAA", f.getComponent3());
+        assertEquals("EUR", f.getComponent4());
+        assertEquals("1234,56", f.getComponent5());
+    }
 
 }

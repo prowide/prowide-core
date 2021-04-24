@@ -25,8 +25,8 @@ import java.math.BigDecimal;
  */
 public interface AmountContainer {
 
-	/**
-	 * Get the first amount in this field.
-	 */
-	BigDecimal amount();
+    /**
+     * Get the first amount in this field.
+     */
+    BigDecimal amount();
 }

@@ -16,54 +16,52 @@
 
 package com.prowidesoftware.swift.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.junit.jupiter.api.Test;
 
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for JSON API in MtSwiftMessage
  */
 public class MtSwiftMessageJsonTest {
 
-	@Test
-	public void testMtSwiftMessageToJson() {
-		String fin = "{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\n" +
-				":20:TBEXO200909031\n" +
-				":23B:CRED\n" +
-				":32A:090903USD23453,\n" +
-				":50K:/01111001759234567890\n" +
-				"JOE DOE\n" +
-				"R00000V0574734\n" +
-				":53B:/00010013800002001234\n" +
-				"MI BANCO\n" +
-				":59:/00013500510020179998\n" +
-				"FOO CORP\n" +
-				"R00000V000034534\n" +
-				":71A:OUR\n" +
-				":72:/TIPO/422\n" +
-				"-}{5:{PDE:FOO}}";
+    @Test
+    public void testMtSwiftMessageToJson() {
+        String fin = "{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\n" +
+                ":20:TBEXO200909031\n" +
+                ":23B:CRED\n" +
+                ":32A:090903USD23453,\n" +
+                ":50K:/01111001759234567890\n" +
+                "JOE DOE\n" +
+                "R00000V0574734\n" +
+                ":53B:/00010013800002001234\n" +
+                "MI BANCO\n" +
+                ":59:/00013500510020179998\n" +
+                "FOO CORP\n" +
+                "R00000V000034534\n" +
+                ":71A:OUR\n" +
+                ":72:/TIPO/422\n" +
+                "-}{5:{PDE:FOO}}";
 
-		MtSwiftMessage m = new MtSwiftMessage(fin);
+        MtSwiftMessage m = new MtSwiftMessage(fin);
 
-		SwiftMessageStatusInfo statusInfo = new SwiftMessageStatusInfo("comments", "creationUser", "name","data");
+        SwiftMessageStatusInfo statusInfo = new SwiftMessageStatusInfo("comments", "creationUser", "name", "data");
         List<SwiftMessageStatusInfo> statusTrial = new ArrayList<SwiftMessageStatusInfo>();
         statusTrial.add(statusInfo);
-		m.setStatusTrail(statusTrial);
+        m.setStatusTrail(statusTrial);
 
-        SwiftMessageNote swiftMessageNote = new SwiftMessageNote("creationUser","text");
+        SwiftMessageNote swiftMessageNote = new SwiftMessageNote("creationUser", "text");
         List<SwiftMessageNote> notes = new ArrayList<SwiftMessageNote>();
         notes.add(swiftMessageNote);
         m.setNotes(notes);
-		assertNotNull(m);
-		String s = m.toJson();
+        assertNotNull(m);
+        String s = m.toJson();
         System.out.println(s);
 
         JsonParser parser = new JsonParser();
@@ -75,12 +73,12 @@ public class MtSwiftMessageJsonTest {
         assertEquals("FOO", o.get("pde").getAsString());
         assertNull(o.get("pdm"));
         assertNull(o.get("mur"));
-		assertEquals("IBBBBUSC0FFF103TBEXO200909031", o.get("uuid").getAsString());
-		assertTrue(o.get("statusTrail").getAsJsonArray().size() == 1);
+        assertEquals("IBBBBUSC0FFF103TBEXO200909031", o.get("uuid").getAsString());
+        assertTrue(o.get("statusTrail").getAsJsonArray().size() == 1);
         assertEquals("comments", o.get("statusTrail").getAsJsonArray().get(0).getAsJsonObject().get("comments").getAsString());
         assertTrue(o.get("notes").getAsJsonArray().size() == 1);
         assertEquals("creationUser", o.get("notes").getAsJsonArray().get(0).getAsJsonObject().get("creationUser").getAsString());
-	}
+    }
 
     @Test
     public void testMtSwiftMessageFromJson() {

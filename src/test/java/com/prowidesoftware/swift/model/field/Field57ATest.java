@@ -15,11 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import org.junit.jupiter.api.Test;
 
-import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Field57A and similar fields.
@@ -27,32 +26,32 @@ import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
  * @since 7.7
  */
 public class Field57ATest extends AbstractFieldTest {
-	
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("57A",
-				"/D/1234\nFOOBAR",
-				"/1234\nFOOBAR",
-				"FOOBAR"
-			);
-	}
-	
-	@Test
-	public void test_getValue() {
-		Field57A f = new Field57A();
-		f.setComponent1("");
-		f.setComponent2("1234567890");
-		f.setComponent3("FOOBARXX");
-		assertEquals("//1234567890" + FINWriterVisitor.SWIFT_EOL + "FOOBARXX", f.getValue());
-	}
 
-	@Test
-	public void test_getValue2() {
-		Field57A f = new Field57A();
-		f.setComponent2("1234567890");
-		f.setComponent3("FOOBARXX");
-		assertEquals("/1234567890" + FINWriterVisitor.SWIFT_EOL + "FOOBARXX", f.getValue());
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("57A",
+                "/D/1234\nFOOBAR",
+                "/1234\nFOOBAR",
+                "FOOBAR"
+        );
+    }
+
+    @Test
+    public void test_getValue() {
+        Field57A f = new Field57A();
+        f.setComponent1("");
+        f.setComponent2("1234567890");
+        f.setComponent3("FOOBARXX");
+        assertEquals("//1234567890" + FINWriterVisitor.SWIFT_EOL + "FOOBARXX", f.getValue());
+    }
+
+    @Test
+    public void test_getValue2() {
+        Field57A f = new Field57A();
+        f.setComponent2("1234567890");
+        f.setComponent3("FOOBARXX");
+        assertEquals("/1234567890" + FINWriterVisitor.SWIFT_EOL + "FOOBARXX", f.getValue());
+    }
 
 }

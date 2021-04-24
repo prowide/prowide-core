@@ -26,109 +26,111 @@ import java.util.*;
  * @since 7.7
  */
 public class ProwideException extends RuntimeException {
-	private static final long serialVersionUID = 4645197208853563727L;
-	private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(ProwideException.class.getName());
+    private static final long serialVersionUID = 4645197208853563727L;
+    private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(ProwideException.class.getName());
 
-	private Map<String, String> variables = null;
+    private Map<String, String> variables = null;
 
-	public ProwideException() {
-		super();
-	}
+    public ProwideException() {
+        super();
+    }
 
-	public ProwideException(final String message, final Throwable cause) {
-		super(message, cause);
-	}
+    public ProwideException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 
-	public ProwideException(final String message) {
-		super(message);
-	}
+    public ProwideException(final String message) {
+        super(message);
+    }
 
-	public ProwideException(final Throwable cause) {
-		super(cause);
-	}
+    public ProwideException(final Throwable cause) {
+        super(cause);
+    }
 
-	public static ResourceBundle getBundle() {
-		return ProwideLocale.getBundle(ProwideException.class.getSimpleName());
-	}
+    public static ResourceBundle getBundle() {
+        return ProwideLocale.getBundle(ProwideException.class.getSimpleName());
+    }
 
-	public static ResourceBundle getBundle(final Locale locale) {
-		return ProwideLocale.getBundle(ProwideException.class.getSimpleName(), locale);
-	}
+    public static ResourceBundle getBundle(final Locale locale) {
+        return ProwideLocale.getBundle(ProwideException.class.getSimpleName(), locale);
+    }
 
-	/**
-	 * Gets a descriptive, localized error message suitable for presenting to the final user.
-	 *
-	 * @param locale optional locale
-	 * @return exception description
-	 */
-	public String getMessage(final Locale locale) {
-		return getMessage(locale, null);
-	}
+    /**
+     * Gets a descriptive, localized error message suitable for presenting to the final user.
+     *
+     * @param locale optional locale
+     * @return exception description
+     */
+    public String getMessage(final Locale locale) {
+        return getMessage(locale, null);
+    }
 
-	/**
-	 * Gets a descriptive message suitable for presenting to the final user, using the default locale.
-	 *
-	 * @return the formated text message
-	 */
-	@Override
-	public String getMessage() {
-		return getMessage(null, null);
-	}
+    /**
+     * Gets a descriptive message suitable for presenting to the final user, using the default locale.
+     *
+     * @return the formated text message
+     */
+    @Override
+    public String getMessage() {
+        return getMessage(null, null);
+    }
 
-	/**
-	 * Gets a descriptive, localized error message suitable for presenting to the final user.
-	 *
-	 * @param locale optional locale
-	 * @param variables optional map of variables to replace in the message read from resource bundle
-	 * @return exception description
-	 */
-	protected String getMessage(final Locale locale, final Map<String, String> variables) {
-		ResourceBundle bundle;
-		try {
-			bundle = locale == null ? getBundle() : getBundle(locale);
-		} catch (final MissingResourceException ignored) {
-			final String lan = locale != null ? locale.getLanguage() : "en";
-			return "Missing resource bundle. Please check that " + ProwideException.class.getSimpleName() + "_" + lan
-					+ ".properties is present in the classpath";
-		}
-		final String key = this.getClass().getSimpleName();
-		try {
-			final String msg = bundle.getString(key);
-			if (this.variables != null) {
-				final StringSubstitutor sub = new StringSubstitutor(this.variables);
-				return sub.replace(msg);
-			} else {
-				return msg;
-			}
-		} catch (final MissingResourceException ignored) {
-			log.fine("No localized message found for exception key '" + key + "'");
-			return super.getMessage();
-		}
+    /**
+     * Gets a descriptive, localized error message suitable for presenting to the final user.
+     *
+     * @param locale    optional locale
+     * @param variables optional map of variables to replace in the message read from resource bundle
+     * @return exception description
+     */
+    protected String getMessage(final Locale locale, final Map<String, String> variables) {
+        ResourceBundle bundle;
+        try {
+            bundle = locale == null ? getBundle() : getBundle(locale);
+        } catch (final MissingResourceException ignored) {
+            final String lan = locale != null ? locale.getLanguage() : "en";
+            return "Missing resource bundle. Please check that " + ProwideException.class.getSimpleName() + "_" + lan
+                    + ".properties is present in the classpath";
+        }
+        final String key = this.getClass().getSimpleName();
+        try {
+            final String msg = bundle.getString(key);
+            if (this.variables != null) {
+                final StringSubstitutor sub = new StringSubstitutor(this.variables);
+                return sub.replace(msg);
+            } else {
+                return msg;
+            }
+        } catch (final MissingResourceException ignored) {
+            log.fine("No localized message found for exception key '" + key + "'");
+            return super.getMessage();
+        }
 
-	}
+    }
 
-	/**
-	 * Initializes the variables Map if necessary and puts the parameter tuple.
-	 * @param key variable key
-	 * @param value variable value
-	 */
-	protected void addVariable(final String key, final String value) {
-		if (this.variables == null) {
-			this.variables = new HashMap<>();
-		}
-		this.variables.put(key, value);
-	}
+    /**
+     * Initializes the variables Map if necessary and puts the parameter tuple.
+     *
+     * @param key   variable key
+     * @param value variable value
+     */
+    protected void addVariable(final String key, final String value) {
+        if (this.variables == null) {
+            this.variables = new HashMap<>();
+        }
+        this.variables.put(key, value);
+    }
 
-	/**
-	 * Returns a variable value, if set, given its key
-	 * @param key variable key name
-	 * @return found variable value or null if not found
-	 */
-	protected String getVariable(final String key) {
-		if (this.variables != null) {
-			return this.variables.get(key);
-		} else {
-			return null;
-		}
-	}
+    /**
+     * Returns a variable value, if set, given its key
+     *
+     * @param key variable key name
+     * @return found variable value or null if not found
+     */
+    protected String getVariable(final String key) {
+        if (this.variables != null) {
+            return this.variables.get(key);
+        } else {
+            return null;
+        }
+    }
 }

@@ -36,10 +36,12 @@ import static java.lang.annotation.ElementType.*;
  */
 @Documented
 @Constraint(validatedBy = CurrencyValidator.class)
-@Target({ METHOD, FIELD, PARAMETER })
+@Target({METHOD, FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CurrencyConstraint {
     String message() default "Invalid currency code";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

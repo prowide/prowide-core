@@ -16,52 +16,52 @@
 package com.prowidesoftware.swift.model;
 
 /**
- * Base class for hierarchy of specific MT and MX classes. 
-
- * @author sebastian
+ * Base class for hierarchy of specific MT and MX classes.
  *
+ * @author sebastian
  */
 public abstract class AbstractMessage {
-	
-	MessageStandardType type = null;
-	
-	/*
-	 * necessary for jaxb in MX
-	 */
-	protected AbstractMessage() {
-		super();
-	}
-	
-	protected AbstractMessage(MessageStandardType type) {
-		super();
-		this.type = type;
-	}
 
-	/**
-	 * Serializa this message into its raw SWIFT format: FIN for MT and XML for MX
-	 * @return the message content
-	 * @since 8.0.2
-	 */
-	public abstract String message();
+    MessageStandardType type = null;
 
-	/**
-	 * @return true if the message is an MT, false otherwise
-	 */
-	public boolean isMT() {
-		return this.type == MessageStandardType.MT;
-	}
+    /*
+     * necessary for jaxb in MX
+     */
+    protected AbstractMessage() {
+        super();
+    }
 
-	/**
-	 * @return true if the message is an MX, false otherwise
-	 */
-	public boolean isMX() {
-		return this.type == MessageStandardType.MX;
-	}
-	
-	/**
-	 * @return the standard enumeration value corresponding to this message
-	 */
-	public MessageStandardType getMessageStandardType() {
-		return this.type;
-	}
+    protected AbstractMessage(MessageStandardType type) {
+        super();
+        this.type = type;
+    }
+
+    /**
+     * Serializa this message into its raw SWIFT format: FIN for MT and XML for MX
+     *
+     * @return the message content
+     * @since 8.0.2
+     */
+    public abstract String message();
+
+    /**
+     * @return true if the message is an MT, false otherwise
+     */
+    public boolean isMT() {
+        return this.type == MessageStandardType.MT;
+    }
+
+    /**
+     * @return true if the message is an MX, false otherwise
+     */
+    public boolean isMX() {
+        return this.type == MessageStandardType.MX;
+    }
+
+    /**
+     * @return the standard enumeration value corresponding to this message
+     */
+    public MessageStandardType getMessageStandardType() {
+        return this.type;
+    }
 }

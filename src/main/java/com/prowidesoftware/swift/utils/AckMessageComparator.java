@@ -17,7 +17,7 @@ package com.prowidesoftware.swift.utils;
 
 /**
  * A {@link SwiftMessageComparator} tailored for typical ACK matching using the full original message copy.
- * 
+ *
  * <p>Compares all values from block 1 2 3 and 4, ignoring session and sequence number in block1. The trailer block 5
  * if present in any of the messages is also ignored. Regarding multiline fields the EOL must be an exact match
  * (meaning CRLF is not the same as just LF). And for block 2 Input, the optional fields for the Delivery Monitoring
@@ -27,12 +27,12 @@ package com.prowidesoftware.swift.utils;
  */
 public class AckMessageComparator extends SwiftMessageComparator {
 
-	public AckMessageComparator() {
-		super();
-		super.ignoreEolsInMultiline = true;
-		super.ignoreTrailer = true;
-		super.ignoreHeaderSession = true;
-		super.ignoreBlock2OptionalFields = true;
-	}
+    public AckMessageComparator() {
+        super();
+        super.ignoreEolsInMultiline = true;
+        super.ignoreTrailer = true;
+        super.ignoreHeaderSession = true;
+        super.ignoreBlock2OptionalFields = true;
+    }
 
 }

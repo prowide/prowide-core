@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 
 /**
@@ -27,92 +27,92 @@ import org.junit.jupiter.api.Test;
  * @since 6.0
  */
 public class Field23Test extends AbstractFieldTest {
-	@SuppressWarnings("unused")
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field23Test.class.getName());
+    @SuppressWarnings("unused")
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field23Test.class.getName());
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("23",
-				"abcd/efgh/ijk/USD//aaa"
-			);
-	}
-	
-	@Test
-	public void testParse23() {
-		Field23 f = null;
-	
-		f = new Field23((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field23("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field23("abcd");
-		assertEquals("abcd", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field23("abcd/");
-		assertEquals("abcd", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field23("abcd/efgh");
-		assertEquals("abcd", f.getComponent1());
-		assertEquals("efgh", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field23("abcd/efgh/");
-		assertEquals("abcd", f.getComponent1());
-		assertEquals("efgh", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field23("abcd/efgh/ijk");
-		assertEquals("abcd", f.getComponent1());
-		assertEquals("efgh", f.getComponent2());
-		assertEquals("ijk", f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field23("abcd/efgh/ijk/");
-		assertEquals("abcd", f.getComponent1());
-		assertEquals("efgh", f.getComponent2());
-		assertEquals("ijk", f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field23("abcd/efgh/ijk/USD");
-		assertEquals("abcd", f.getComponent1());
-		assertEquals("efgh", f.getComponent2());
-		assertEquals("ijk", f.getComponent3());
-		assertEquals("USD", f.getComponent4());
-		
-		f = new Field23("abcd/efgh/ijk/USD/");
-		assertEquals("abcd", f.getComponent1());
-		assertEquals("efgh", f.getComponent2());
-		assertEquals("ijk", f.getComponent3());
-		assertEquals("USD/", f.getComponent4());
-		
-		f = new Field23("abcd/efgh/ijk/USD//");
-		assertEquals("abcd", f.getComponent1());
-		assertEquals("efgh", f.getComponent2());
-		assertEquals("ijk", f.getComponent3());
-		assertEquals("USD//", f.getComponent4());
-		
-		f = new Field23("abcd/efgh/ijk/USD//aaa");
-		assertEquals("abcd", f.getComponent1());
-		assertEquals("efgh", f.getComponent2());
-		assertEquals("ijk", f.getComponent3());
-		assertEquals("USD//aaa", f.getComponent4());
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("23",
+                "abcd/efgh/ijk/USD//aaa"
+        );
+    }
+
+    @Test
+    public void testParse23() {
+        Field23 f = null;
+
+        f = new Field23((String) null);
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field23("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field23("abcd");
+        assertEquals("abcd", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field23("abcd/");
+        assertEquals("abcd", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field23("abcd/efgh");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field23("abcd/efgh/");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field23("abcd/efgh/ijk");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijk", f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field23("abcd/efgh/ijk/");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijk", f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field23("abcd/efgh/ijk/USD");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijk", f.getComponent3());
+        assertEquals("USD", f.getComponent4());
+
+        f = new Field23("abcd/efgh/ijk/USD/");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijk", f.getComponent3());
+        assertEquals("USD/", f.getComponent4());
+
+        f = new Field23("abcd/efgh/ijk/USD//");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijk", f.getComponent3());
+        assertEquals("USD//", f.getComponent4());
+
+        f = new Field23("abcd/efgh/ijk/USD//aaa");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijk", f.getComponent3());
+        assertEquals("USD//aaa", f.getComponent4());
+    }
 
 }

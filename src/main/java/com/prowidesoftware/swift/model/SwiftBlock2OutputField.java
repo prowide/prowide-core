@@ -17,28 +17,28 @@ package com.prowidesoftware.swift.model;
 
 /**
  * Full qualified names for attributes in block 2 output.
- * 
- * @author sebastian@prowidesoftware.com
+ *
+ * @author sebastian
  * @since 7.7
  */
 public enum SwiftBlock2OutputField {
-	/*
-	 * common fields to block 2
-	 */
-	/**
-	 * @since 9.1.4
-	 */
-	Direction,
-	MessageType,
-	MessagePriority,
-	/*
-	 * specific fields of output block
-	 */
-	SenderInputTime,
-	MIRDate,
-	MIRLogicalTerminal,
-	MIRSessionNumber,
-	MIRSequenceNumber,
-	ReceiverOutputDate,
-	ReceiverOutputTime;
+    /*
+     * common fields to block 2
+     */
+    /**
+     * @since 9.1.4
+     */
+    Direction,
+    MessageType,
+    MessagePriority,
+    /*
+     * specific fields of output block
+     */
+    SenderInputTime,
+    MIRDate,
+    MIRLogicalTerminal,
+    MIRSessionNumber,
+    MIRSequenceNumber,
+    ReceiverOutputDate,
+    ReceiverOutputTime
 }

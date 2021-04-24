@@ -15,18 +15,11 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import com.prowidesoftware.swift.model.SwiftBlock1;
-import com.prowidesoftware.swift.model.SwiftBlock2;
-import com.prowidesoftware.swift.model.SwiftBlock3;
-import com.prowidesoftware.swift.model.SwiftBlock4;
-import com.prowidesoftware.swift.model.SwiftBlock5;
-import com.prowidesoftware.swift.model.SwiftBlockUser;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.model.*;
 
 /**
  * Interface to be implemented by classes that will 'visit' a swift message.
- *
+ * <p>
  * There method call sequence is as follows:
  *
  * <ol>
@@ -42,117 +35,115 @@ import com.prowidesoftware.swift.model.Tag;
  *
  * <p>Notice that the <code>tag</code> and <code>value</code> methods are overloaded for every type of SwiftBlock
  * derived class.
- * 
- * <p><b>NOTE</b>: this API has changed since 4.0 with SwiftBlocks 1-5 in each start/end 
+ *
+ * <p><b>NOTE</b>: this API has changed since 4.0 with SwiftBlocks 1-5 in each start/end
  * method pairs.
  */
 public interface IMessageVisitor {
 
-	/**
-	 * @param b block to visit
-	 */
-	void startBlock1(SwiftBlock1 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void startBlock2(SwiftBlock2 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void startBlock3(SwiftBlock3 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void startBlock4(SwiftBlock4 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void startBlock5(SwiftBlock5 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void startBlockUser(SwiftBlockUser b);
+    /**
+     * @param b block to visit
+     */
+    void startBlock1(SwiftBlock1 b);
 
-	/**
-	 * @param b block to visit
-	 */
-	void endBlock1(SwiftBlock1 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void endBlock2(SwiftBlock2 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void endBlock3(SwiftBlock3 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void endBlock4(SwiftBlock4 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void endBlock5(SwiftBlock5 b);
-	
-	/**
-	 * @param b block to visit
-	 */
-	void endBlockUser(SwiftBlockUser b);
-	
-	/**
-	 * @param b
-	 * @param t
-	 */
-	void tag(SwiftBlock3    b, Tag t);
-	
-	/**
-	 * @param b
-	 * @param t
-	 */
-	void tag(SwiftBlock4    b, Tag t);
-	
-	/**
-	 * @param b
-	 * @param t
-	 */
-	void tag(SwiftBlock5    b, Tag t);
-	
-	/**
-	 * @param b
-	 * @param t
-	 */
-	void tag(SwiftBlockUser b, Tag t);
-	
-	/**
-	 * @param b
-	 * @param v
-	 */
-	void value(SwiftBlock1  b, String v);
-	
-	/**
-	 * @param b
-	 * @param v
-	 */
-	void value(SwiftBlock2  b, String v);
-	
-	/**
-	 * 
-	 * @param m
-	 */
-	void startMessage(SwiftMessage m);
-	
-	/**
-	 * 
-	 * @param m
-	 */
-	void endMessage(SwiftMessage m);
+    /**
+     * @param b block to visit
+     */
+    void startBlock2(SwiftBlock2 b);
+
+    /**
+     * @param b block to visit
+     */
+    void startBlock3(SwiftBlock3 b);
+
+    /**
+     * @param b block to visit
+     */
+    void startBlock4(SwiftBlock4 b);
+
+    /**
+     * @param b block to visit
+     */
+    void startBlock5(SwiftBlock5 b);
+
+    /**
+     * @param b block to visit
+     */
+    void startBlockUser(SwiftBlockUser b);
+
+    /**
+     * @param b block to visit
+     */
+    void endBlock1(SwiftBlock1 b);
+
+    /**
+     * @param b block to visit
+     */
+    void endBlock2(SwiftBlock2 b);
+
+    /**
+     * @param b block to visit
+     */
+    void endBlock3(SwiftBlock3 b);
+
+    /**
+     * @param b block to visit
+     */
+    void endBlock4(SwiftBlock4 b);
+
+    /**
+     * @param b block to visit
+     */
+    void endBlock5(SwiftBlock5 b);
+
+    /**
+     * @param b block to visit
+     */
+    void endBlockUser(SwiftBlockUser b);
+
+    /**
+     * @param b
+     * @param t
+     */
+    void tag(SwiftBlock3 b, Tag t);
+
+    /**
+     * @param b
+     * @param t
+     */
+    void tag(SwiftBlock4 b, Tag t);
+
+    /**
+     * @param b
+     * @param t
+     */
+    void tag(SwiftBlock5 b, Tag t);
+
+    /**
+     * @param b
+     * @param t
+     */
+    void tag(SwiftBlockUser b, Tag t);
+
+    /**
+     * @param b
+     * @param v
+     */
+    void value(SwiftBlock1 b, String v);
+
+    /**
+     * @param b
+     * @param v
+     */
+    void value(SwiftBlock2 b, String v);
+
+    /**
+     * @param m
+     */
+    void startMessage(SwiftMessage m);
+
+    /**
+     * @param m
+     */
+    void endMessage(SwiftMessage m);
 }

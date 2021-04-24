@@ -15,42 +15,42 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Field57C and similar fields.
- * 
- * @author www.prowidesoftware.com
+ *
+ * @author sebastian
  * @since 6.0
  */
 public class Field57CTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("57C",
-				"/acc/bb"
-			);
-	}
-	
-	@Test
-	public void testGetComponent1() {
-		Field57C f = new Field57C("/acc");
-		assertEquals("acc", f.getComponent1());
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("57C",
+                "/acc/bb"
+        );
+    }
 
-	@Test
-	public void testGetComponent1b() {
-		Field57C f = new Field57C("acc");
-		assertEquals("acc", f.getComponent1());
-	}
+    @Test
+    public void testGetComponent1() {
+        Field57C f = new Field57C("/acc");
+        assertEquals("acc", f.getComponent1());
+    }
 
-	@Test
-	public void testGetComponent1c() {
-		Field57C f = new Field57C("/acc/bb");
-		assertEquals("acc/bb", f.getComponent1());
-	}
+    @Test
+    public void testGetComponent1b() {
+        Field57C f = new Field57C("acc");
+        assertEquals("acc", f.getComponent1());
+    }
+
+    @Test
+    public void testGetComponent1c() {
+        Field57C f = new Field57C("/acc/bb");
+        assertEquals("acc/bb", f.getComponent1());
+    }
 
 }

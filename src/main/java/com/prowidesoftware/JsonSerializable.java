@@ -17,15 +17,16 @@ package com.prowidesoftware;
 
 /**
  * Interface implemented by classes that can be converted to a JSON representation.
- *  
+ *
  * @since 7.10.3
  */
 public interface JsonSerializable {
 
-	/**
-	 * Serializes this object into JSON
-	 * @return the message content as JSON
-	 */
-	String toJson();
+    /**
+     * Serializes this object into JSON
+     *
+     * @return the message content as JSON
+     */
+    String toJson();
 
 }

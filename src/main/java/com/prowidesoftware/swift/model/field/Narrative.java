@@ -71,6 +71,27 @@ public class Narrative {
         super();
     }
 
+    private Narrative(Builder builder) {
+        super();
+        this.structured = builder.structured;
+        this.unstructuredFragments = builder.unstructuredFragments;
+    }
+
+    /**
+     * This builder allows creating the structured narrative with ease, just adding chunks of texts with optional
+     * codewords and extra fields. It is intended to simplify construction of different line formats.
+     *
+     * <p>The implementation splits the text into fragments up to the given length, with word wrapping.
+     * <p>Since the builder will do the line wrapping, the parameter text should not contain line breaks. If your text
+     * is already formatted into lines use the {@link NarrativeContainer#appendLine(String)} method or the field plain
+     * component setter when you have the compete formatted value.
+     *
+     * @param lineLength specific field max line length, used for text wrapping
+     */
+    public static Builder builder(int lineLength) {
+        return new Builder(lineLength);
+    }
+
     /**
      * Gets the structured part of the narrative, meaning the segments composed by a codeword and a structured text.
      * See examples below.
@@ -120,6 +141,7 @@ public class Narrative {
 
     /**
      * Count the occurrences of a given codeword in the structured narrative
+     *
      * @param codeword an instruction codeword for the field such as: OCMT, CHGS, etc..
      * @return number of structured content with the parameter codeword or zero if none is found
      */
@@ -196,7 +218,7 @@ public class Narrative {
      */
     public String getUnstructured(String delimiter) {
         if (!this.unstructuredFragments.isEmpty()) {
-            String s = delimiter != null? delimiter : "";
+            String s = delimiter != null ? delimiter : "";
             return String.join(s, this.unstructuredFragments);
         }
         return null;
@@ -228,6 +250,7 @@ public class Narrative {
 
     /**
      * If the field has structured narrative returns a set of all codewords used
+     *
      * @return found codewords or empty if none is found (content is unstructured)
      */
     public Set<String> codewords() {
@@ -254,9 +277,9 @@ public class Narrative {
             }
             // append mandatory codeword, even if it is empty (invalid) we will add the slashes
             result
-                .append("/")
-                .append(StringUtils.trimToEmpty(structured.getCodeword()))
-                .append("/");
+                    .append("/")
+                    .append(StringUtils.trimToEmpty(structured.getCodeword()))
+                    .append("/");
 
             if (structured.getCountry() != null) {
                 // append the country (only used in some fields)
@@ -316,8 +339,8 @@ public class Narrative {
 
     public static class Builder {
         int lineLength;
-        private List<StructuredNarrative> structured = new ArrayList<>();
-        private List<String> unstructuredFragments = new ArrayList<>();
+        private final List<StructuredNarrative> structured = new ArrayList<>();
+        private final List<String> unstructuredFragments = new ArrayList<>();
 
         /**
          * @param lineLength specific field max line length, used for text wrapping
@@ -333,12 +356,13 @@ public class Narrative {
          * Line 1: 	    /codeword/[narrative]
          * Lines 2-n:   [//continuation of narrative]
          * </pre>
-         * @param codeword the codeword (instruction code)
+         *
+         * @param codeword  the codeword (instruction code)
          * @param narrative the narrative text (will be wrapped into lines if necessary)
          */
         public Builder addCodeword(String codeword, String narrative) {
             StructuredNarrative structured = new StructuredNarrative().setCodeword(codeword);
-            String prefix =  "/" + StringUtils.trim(codeword) + "/";
+            String prefix = "/" + StringUtils.trim(codeword) + "/";
             for (String fragment : wrap(prefix, narrative)) {
                 structured.addNarrativeFragment(fragment);
             }
@@ -353,8 +377,9 @@ public class Narrative {
          * Line 1: 	    /codeword/[currency][amount][narrative]
          * Lines 2-n:   [//continuation of narrative]
          * </pre>
-         * @param codeword the codeword (instruction code)
-         * @param currency a three letters ISO currency code
+         *
+         * @param codeword  the codeword (instruction code)
+         * @param currency  a three letters ISO currency code
          * @param narrative the narrative text (will be wrapped into lines if necessary)
          */
         public Builder addCodewordWithAmount(String codeword, String currency, BigDecimal amount, String narrative) {
@@ -362,8 +387,8 @@ public class Narrative {
                     .setCodeword(codeword)
                     .setCurrency(currency)
                     .setAmount(amount);
-            String amountString = amount != null? amount.toString() : "";
-            String prefix =  "/" + StringUtils.trim(codeword) + "/" + StringUtils.trim(currency) + amountString;
+            String amountString = amount != null ? amount.toString() : "";
+            String prefix = "/" + StringUtils.trim(codeword) + "/" + StringUtils.trim(currency) + amountString;
             for (String fragment : wrap(prefix, narrative)) {
                 structured.addNarrativeFragment(fragment);
             }
@@ -384,7 +409,7 @@ public class Narrative {
                     .setCodeword(codeword)
                     .setCountry(country);
             String countrySlash = country != null ? country + "//" : "";
-            String prefix =  "/" + StringUtils.trim(codeword) + countrySlash;
+            String prefix = "/" + StringUtils.trim(codeword) + countrySlash;
             for (String fragment : wrap(prefix, narrative)) {
                 structured.addNarrativeFragment(fragment);
             }
@@ -403,16 +428,17 @@ public class Narrative {
          * Line 1:		    /number/[narrative][/supplement]
          * Lines 2-6	    [//continuation of narrative][/supplement]
          * </pre>
-         * @param number the API accepts a String however this line structure is normally used with query/answer numbers as codewords
-         * @param narrative the primary query/answer text
+         *
+         * @param number     the API accepts a String however this line structure is normally used with query/answer numbers as codewords
+         * @param narrative  the primary query/answer text
          * @param supplement additional query/answer text, that will be added with slash separator
          */
         public Builder addCodewordWithSupplement(String number, String narrative, String supplement) {
             StructuredNarrative structured = new StructuredNarrative();
-            String codeword = number != null? number : "";
+            String codeword = number != null ? number : "";
             structured.setCodeword(codeword);
-            String prefix =  "/" + codeword + "/";
-            String text = supplement != null? narrative + "/" + supplement : narrative;
+            String prefix = "/" + codeword + "/";
+            String text = supplement != null ? narrative + "/" + supplement : narrative;
             boolean isSupplement = false;
             for (String fragment : wrap(prefix, text)) {
                 // check if fragment has supplement
@@ -459,7 +485,7 @@ public class Narrative {
             for (String line : lines) {
                 String fragment;
                 if (first) {
-                    fragment = StringUtils.trimToNull(StringUtils.substringAfter(line,  prefix));
+                    fragment = StringUtils.trimToNull(StringUtils.substringAfter(line, prefix));
                 } else {
                     fragment = StringUtils.trimToNull(line);
                 }
@@ -474,27 +500,6 @@ public class Narrative {
         public Narrative build() {
             return new Narrative(this);
         }
-    }
-
-    private Narrative(Builder builder) {
-        super();
-        this.structured = builder.structured;
-        this.unstructuredFragments = builder.unstructuredFragments;
-    }
-
-    /**
-     * This builder allows creating the structured narrative with ease, just adding chunks of texts with optional
-     * codewords and extra fields. It is intended to simplify construction of different line formats.
-     *
-     * <p>The implementation splits the text into fragments up to the given length, with word wrapping.
-     * <p>Since the builder will do the line wrapping, the parameter text should not contain line breaks. If your text
-     * is already formatted into lines use the {@link NarrativeContainer#appendLine(String)} method or the field plain
-     * component setter when you have the compete formatted value.
-     *
-     * @param lineLength specific field max line length, used for text wrapping
-     */
-    public static Builder builder(int lineLength) {
-        return new Builder(lineLength);
     }
 
 }

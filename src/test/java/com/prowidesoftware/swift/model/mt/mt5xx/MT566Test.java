@@ -16,35 +16,33 @@
 
 package com.prowidesoftware.swift.model.mt.mt5xx;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-import com.prowidesoftware.swift.model.mt.mt5xx.MT566;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class MT566Test {
 
-	/**
-	 * Sequence B1 and D1a use the same delimiter so we need to add parent sequence for unique find
-	 */
-	@Test
-	public void test1() {
-		MT566 m = new MT566();
-		m.append(MT566.SequenceB1.newInstance());
-		m.append(MT566.SequenceD1.newInstance());
-		assertTrue(m.getSequenceD1aList().isEmpty());
-	}
+    /**
+     * Sequence B1 and D1a use the same delimiter so we need to add parent sequence for unique find
+     */
+    @Test
+    public void test1() {
+        MT566 m = new MT566();
+        m.append(MT566.SequenceB1.newInstance());
+        m.append(MT566.SequenceD1.newInstance());
+        assertTrue(m.getSequenceD1aList().isEmpty());
+    }
 
-	/**
-	 * Sequence B1 and D1a use the same delimiter so we need to add parent sequence for unique find
-	 */
-	@Test
-	public void test2() {
-		MT566 m = new MT566();
-		m.append(MT566.SequenceB.newInstance());
-		m.append(MT566.SequenceD1a.newInstance());
-		assertTrue(m.getSequenceB1List().isEmpty());
-	}
-	
+    /**
+     * Sequence B1 and D1a use the same delimiter so we need to add parent sequence for unique find
+     */
+    @Test
+    public void test2() {
+        MT566 m = new MT566();
+        m.append(MT566.SequenceB.newInstance());
+        m.append(MT566.SequenceD1a.newInstance());
+        assertTrue(m.getSequenceB1List().isEmpty());
+    }
+
 }

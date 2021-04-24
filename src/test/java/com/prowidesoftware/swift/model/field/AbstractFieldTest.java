@@ -15,38 +15,37 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.swift.model.Tag;
+import org.junit.jupiter.api.Disabled;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.jupiter.api.Disabled;
-
-import com.prowidesoftware.swift.model.Tag;
-
 /**
  * Base implementation for field test cases
- * 
+ *
  * @author sebastian
  * @since 7.9.3
  */
 @Disabled
 public abstract class AbstractFieldTest {
-	
-    protected void testSerializationImpl(final String tagName, String ... values) {
-    	try {
-	    	for (String v : values) {
-	    		Tag t1 = new Tag(tagName, v);
-	    		Tag t2 = Field.getField(t1).asTag();;
-	    		assertTrue(t1.equalsIgnoreCR(t2), "["+t1.getValue()+"] is not equals ["+t2.getValue()+"]");
-	    	}
-    	} catch (Exception e) {
-    		fail(e.getMessage());
-    	}
+
+    protected void testSerializationImpl(final String tagName, String... values) {
+        try {
+            for (String v : values) {
+                Tag t1 = new Tag(tagName, v);
+                Tag t2 = Field.getField(t1).asTag();
+                assertTrue(t1.equalsIgnoreCR(t2), "[" + t1.getValue() + "] is not equals [" + t2.getValue() + "]");
+            }
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
-    
+
     /**
      * All subclasses must implement this test case calling {@link #testSerializationImpl(String, String...)}
      * to verify that a field value integrity is preserve after parsing it into components and serializing the
-     * components back into a plain string. 
+     * components back into a plain string.
      */
     public abstract void testSerialization();
 

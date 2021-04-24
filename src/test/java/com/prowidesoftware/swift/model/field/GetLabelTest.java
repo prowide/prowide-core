@@ -15,40 +15,40 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for fields getLabel API.
  *
- * @author www.prowidesoftware.com
+ * @author sebastian
  * @since 7.8.4
  */
 public class GetLabelTest {
 
-	@Test
-	public void test35B() {
-		final Field35B f = new Field35B();
-		assertEquals("Qualifier", f.getComponentLabel(1));
-		assertEquals("ISIN", f.getComponentLabel(2));
-	}
-	
-	@Test
-	public void test32A() {
-		final Field32A f = new Field32A();
-		assertEquals("Date", f.getComponentLabel(1));
-		assertEquals("Currency", f.getComponentLabel(2));
-		assertEquals("Amount", f.getComponentLabel(3));
-	}
-	
-	@Test
-	public void test50K() {
-		final Field50K f = new Field50K();
-		assertEquals("Account", f.getComponentLabel(1));
-		assertEquals("Name And Address", f.getComponentLabel(2));
-		assertEquals("Name And Address 2", f.getComponentLabel(3));
-	}
+    @Test
+    public void test35B() {
+        final Field35B f = new Field35B();
+        assertEquals("Qualifier", f.getComponentLabel(1));
+        assertEquals("ISIN", f.getComponentLabel(2));
+    }
 
-	
+    @Test
+    public void test32A() {
+        final Field32A f = new Field32A();
+        assertEquals("Date", f.getComponentLabel(1));
+        assertEquals("Currency", f.getComponentLabel(2));
+        assertEquals("Amount", f.getComponentLabel(3));
+    }
+
+    @Test
+    public void test50K() {
+        final Field50K f = new Field50K();
+        assertEquals("Account", f.getComponentLabel(1));
+        assertEquals("Name And Address", f.getComponentLabel(2));
+        assertEquals("Name And Address 2", f.getComponentLabel(3));
+    }
+
+
 }

@@ -18,35 +18,35 @@ package com.prowidesoftware.swift.model.field;
 
 /**
  * Interface to mark generic fields and add method related to DSS and qualifiers.
- * 
+ *
  * @since 6.4
  */
 public interface GenericField {
-	   /**
-	    * Returns the issuer code (or Data Source Scheme or DSS).
-	    * The DSS is only present in some generic fields, when present, is equals to component two.
-	    *
-	    * @return DSS component value or null if the DSS is not set or not available for this field.
-	    */
-	   String getDSS();
-	   
-	   /**
-	    * Checks if the issuer code (or Data Source Scheme or DSS) is present.
-	    *
-	    * @see #getDSS()
-	    * @return true if DSS is present, false otherwise.
-	    */
-	   boolean isDSSPresent();
-	   
-	   /**
-	    * Gets the conditional (secondary) qualifier.
-		*
-		* <p>In generic fields this is normally the component following the DSS or the double slash separator when the
-		* field does not has a DSS component; so in most cases this method returns either 2 or 3 depending if the field
-		* contains a DSS component or not. For some specific fields the conditionally qualifier could be something
-		* different, for example in fields 69D and 92H it is the component 4.
-	    *
-	    * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
-	    */
-	   String getConditionalQualifier();
+    /**
+     * Returns the issuer code (or Data Source Scheme or DSS).
+     * The DSS is only present in some generic fields, when present, is equals to component two.
+     *
+     * @return DSS component value or null if the DSS is not set or not available for this field.
+     */
+    String getDSS();
+
+    /**
+     * Checks if the issuer code (or Data Source Scheme or DSS) is present.
+     *
+     * @return true if DSS is present, false otherwise.
+     * @see #getDSS()
+     */
+    boolean isDSSPresent();
+
+    /**
+     * Gets the conditional (secondary) qualifier.
+     *
+     * <p>In generic fields this is normally the component following the DSS or the double slash separator when the
+     * field does not has a DSS component; so in most cases this method returns either 2 or 3 depending if the field
+     * contains a DSS component or not. For some specific fields the conditionally qualifier could be something
+     * different, for example in fields 69D and 92H it is the component 4.
+     *
+     * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
+     */
+    String getConditionalQualifier();
 }

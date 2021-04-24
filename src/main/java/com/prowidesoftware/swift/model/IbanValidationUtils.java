@@ -19,8 +19,9 @@ import com.prowidesoftware.swift.utils.IsoUtils;
 
 /**
  * Helper API for IBAN validation
- * @since 7.9.7
+ *
  * @author psantamarina
+ * @since 7.9.7
  */
 class IbanValidationUtils {
 
@@ -37,6 +38,7 @@ class IbanValidationUtils {
 
     /**
      * Checks the IBAN country code
+     *
      * @return problem found or null if country code is OK
      */
     static IbanValidationResult validateCountryCode(final String iban) {
@@ -67,6 +69,7 @@ class IbanValidationUtils {
 
     /**
      * Checks the check digits are present
+     *
      * @return problem found or null if OK
      */
     static IbanValidationResult validateCheckDigitPresence(final String iban) {
@@ -78,7 +81,7 @@ class IbanValidationUtils {
         final String checkDigit = IBAN.getCheckDigits(iban);
 
         // check digits
-        if(!Character.isDigit(checkDigit.charAt(0)) ||
+        if (!Character.isDigit(checkDigit.charAt(0)) ||
                 !Character.isDigit(checkDigit.charAt(1))) {
             IbanValidationResult result = IbanValidationResult.INVALID_CHECK_DIGITS_FORMAT;
             result.setFound(checkDigit);
@@ -89,6 +92,7 @@ class IbanValidationUtils {
 
     /**
      * Checks the BBAN is present
+     *
      * @return problem found or null if OK
      * @since 7.9.7
      */
@@ -101,6 +105,7 @@ class IbanValidationUtils {
 
     /**
      * Validates Bban max length
+     *
      * @param bban the BBAN part of the IBAN to check
      * @return problem found or null if OK
      * @since 7.9.7
@@ -117,8 +122,9 @@ class IbanValidationUtils {
 
     /**
      * Validates Bban length
-     * @param bban the BBAN part of the IBAN to check
-     * @param  structure structure to check
+     *
+     * @param bban      the BBAN part of the IBAN to check
+     * @param structure structure to check
      * @return problem found or null if OK
      * @since 7.9.7
      */
@@ -134,7 +140,7 @@ class IbanValidationUtils {
         }
 
         int bbanEntryOffset = 0;
-        for(final BbanStructureEntryDTO entry : structure.getValidation_rules()) {
+        for (final BbanStructureEntryDTO entry : structure.getValidation_rules()) {
 
             final int entryLength = entry.getLength();
 
@@ -169,6 +175,7 @@ class IbanValidationUtils {
 
     /**
      * Checks the check digits are present
+     *
      * @return problem found or null if OK
      * @since 7.9.7
      */
@@ -186,7 +193,8 @@ class IbanValidationUtils {
                     result = IbanValidationResult.BBAN_INVALID_DIGITS;
                     break;
 
-                default: break;
+                default:
+                    break;
 
             }
             if (result != null) {
@@ -200,6 +208,7 @@ class IbanValidationUtils {
 
     /**
      * Validates the check digits
+     *
      * @return problem found or null if OK
      * @since 7.9.7
      */
@@ -217,6 +226,7 @@ class IbanValidationUtils {
 
     /**
      * Validates the IBAN characters numeric range
+     *
      * @return problem found or null if OK
      * @since 7.9.7
      */
@@ -240,7 +250,7 @@ class IbanValidationUtils {
      * @return check digit as String
      * @since 7.9.7
      */
-    private static String calculateCheckDigit(final String iban)  {
+    private static String calculateCheckDigit(final String iban) {
         final String reformattedIban = replaceCheckDigit(iban, IBAN_DEFAULT_CHECK_DIGIT);
         final int modResult = calculateMod(reformattedIban);
         final int checkDigitIntValue = (98 - modResult);

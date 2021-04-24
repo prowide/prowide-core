@@ -17,14 +17,14 @@ package com.prowidesoftware.swift.model;
 
 /**
  * Full qualified names for attributes in block 1.
- * 
- * @author sebastian@prowidesoftware.com
+ *
+ * @author sebastian
  * @since 7.7
  */
 public enum SwiftBlock1Field {
-	ApplicationId,
-	ServiceId,
-	LogicalTerminal,
-	SessionNumber,
-	SequenceNumber;
+    ApplicationId,
+    ServiceId,
+    LogicalTerminal,
+    SessionNumber,
+    SequenceNumber
 }

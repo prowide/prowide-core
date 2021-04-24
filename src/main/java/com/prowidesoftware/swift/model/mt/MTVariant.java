@@ -20,39 +20,39 @@ import com.prowidesoftware.deprecation.TargetYear;
 
 /**
  * Official variants for MT messages (not including closed user groups version of messages)
- * 
- * @author sebastian@prowidesoftware.com
+ *
+ * @author sebastian
  * @since 7.8
  */
 public enum MTVariant {
-	STP(true),
-	REMIT(true),
-	COV(true),
+    STP(true),
+    REMIT(true),
+    COV(true),
 
-	/*
-	 * this message variant was removed from the standard in SRU2017
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
-	IRSLST(false),
+    /*
+     * this message variant was removed from the standard in SRU2017
+     */
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
+    IRSLST(false),
 
-	/*
-	 * this message variant was removed from the standard in SRU2017
-	 */
-	@Deprecated
-	@ProwideDeprecated(phase4 = TargetYear.SRU2021)
-	W8BENO(false);
-	
-	boolean validationFlag = false;
-	
-	MTVariant(boolean validationFlag) {
-		this.validationFlag = validationFlag;
-	}
-	
-	/**
-	 * returns true if the variant is also a validation flag used in the user header block
-	 */
-	public boolean isValidationFlag() {
-		return this.validationFlag;
-	}
+    /*
+     * this message variant was removed from the standard in SRU2017
+     */
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
+    W8BENO(false);
+
+    boolean validationFlag = false;
+
+    MTVariant(boolean validationFlag) {
+        this.validationFlag = validationFlag;
+    }
+
+    /**
+     * returns true if the variant is also a validation flag used in the user header block
+     */
+    public boolean isValidationFlag() {
+        return this.validationFlag;
+    }
 }

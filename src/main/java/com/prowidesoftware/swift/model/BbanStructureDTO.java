@@ -25,8 +25,8 @@ import java.util.List;
  * The BBAN is the last part of the IBAN when used for international funds transfers.
  * Every country has it's specific BBAN format and length depending on it's own standards.
  *
- * @since 7.9.7
  * @author psantamarina
+ * @since 7.9.7
  */
 public class BbanStructureDTO {
     /**

@@ -51,6 +51,7 @@ public class SwiftBlock3Builder {
 
     /**
      * Initializes the builder with fields data from an existing block 3
+     *
      * @param b3 an existing block3
      */
     SwiftBlock3Builder(final SwiftBlock3 b3) {
@@ -155,6 +156,7 @@ public class SwiftBlock3Builder {
 
     /**
      * This field should only be set for outgoing messages (input to SWIFT)
+     *
      * @since 7.10.3
      */
     public SwiftBlock3Builder setField434(Field434 field434) {
@@ -208,6 +210,7 @@ public class SwiftBlock3Builder {
 
     /**
      * Adds the list of fields to the block, dropping any unexpected field
+     *
      * @param fields the fields to add
      * @since 7.10.9
      */
@@ -220,6 +223,7 @@ public class SwiftBlock3Builder {
 
     /**
      * If the field is expected, it is added to the block
+     *
      * @param field the field to add
      * @since 7.10.9
      */

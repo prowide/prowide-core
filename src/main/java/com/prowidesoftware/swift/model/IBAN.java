@@ -41,23 +41,70 @@ import java.util.logging.Level;
  * @since 3.3
  */
 public class IBAN {
+    static final int COUNTRY_CODE_LENGTH = 2;
+    static final int CHECK_DIGIT_LENGTH = 2;
     private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(IBAN.class.getName());
-
+    private static final int COUNTRY_CODE_INDEX = 0;
+    private static final int CHECK_DIGIT_INDEX = COUNTRY_CODE_LENGTH;
+    private static final int BBAN_INDEX = CHECK_DIGIT_INDEX + CHECK_DIGIT_LENGTH;
+    private static final String INVALIDA_IBAN_LENGTH = "Invalid IBAN length in";
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2021)
     private String invalidCause = null;
-
     private String iban;
 
-    private static final int COUNTRY_CODE_INDEX = 0;
-    static final int COUNTRY_CODE_LENGTH = 2;
-    private static final int CHECK_DIGIT_INDEX = COUNTRY_CODE_LENGTH;
-    static final int CHECK_DIGIT_LENGTH = 2;
-    private static final int BBAN_INDEX = CHECK_DIGIT_INDEX + CHECK_DIGIT_LENGTH;
-    private static final String INVALIDA_IBAN_LENGTH = "Invalid IBAN length in";
+    /**
+     * Create an IBAN object with the given iban code.
+     * This constructor does not perform any validation on the iban, only
+     *
+     * @param iban
+     */
+    public IBAN(String iban) {
+        this.iban = iban;
+    }
+
+    /**
+     * Gets the BBAN (custom account number) part of the given IBAN
+     *
+     * @param iban a well-formed IBAN
+     * @return the custom account part of the IBAN
+     * @throws IndexOutOfBoundsException if the IBAN length is wrong
+     * @author psantamarina
+     * @since 7.9.7
+     */
+    public static String getBban(final String iban) throws IndexOutOfBoundsException {
+        return iban.substring(BBAN_INDEX);
+    }
+
+    /**
+     * Gets the check digits part of the given IBAN.
+     *
+     * @param iban a well-formed IBAN
+     * @return the check digits (two digits as String)
+     * @throws IndexOutOfBoundsException if the IBAN length is wrong
+     * @author psantamarina
+     * @since 7.9.7
+     */
+    public static String getCheckDigits(final String iban) throws IndexOutOfBoundsException {
+        return iban.substring(CHECK_DIGIT_INDEX, CHECK_DIGIT_INDEX + CHECK_DIGIT_LENGTH);
+    }
+
+    /**
+     * Gets the country code part of the given IBAN.
+     *
+     * @param iban a well-formed IBAN
+     * @return the two letters ISO country code
+     * @throws IndexOutOfBoundsException if the IBAN length is wrong
+     * @author psantamarina
+     * @since 7.9.7
+     */
+    public static String getCountryCode(final String iban) throws IndexOutOfBoundsException {
+        return iban.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
+    }
 
     /**
      * Get the IBAN
+     *
      * @return a string with the IBAN
      */
     public String getIban() {
@@ -66,6 +113,7 @@ public class IBAN {
 
     /**
      * Set the IBAN
+     *
      * @param iban the IBAN to set
      */
     public void setIban(String iban) {
@@ -73,21 +121,11 @@ public class IBAN {
     }
 
     /**
-     * Create an IBAN object with the given iban code.
-     * This constructor does not perform any validation on the iban, only
-     * @param iban
-     */
-    public IBAN(String iban) {
-        this.iban = iban;
-    }
-
-    /**
      * Checks if the IBAN number is valid.
      *
+     * @return <code>true</code> if the IBAN is valid and <code>false</code> in other case
      * @see #validate() for details regarding the validation checks or if you need structured details of the validation
      * problem found.
-     *
-     * @return <code>true</code> if the IBAN is valid and <code>false</code> in other case
      */
     public boolean isValid() {
         IbanValidationResult result = validate();
@@ -180,12 +218,12 @@ public class IBAN {
      */
     public String translateChars(final StringBuilder bban) {
         final StringBuilder result = new StringBuilder();
-        for (int i=0;i<bban.length();i++) {
+        for (int i = 0; i < bban.length(); i++) {
             char c = bban.charAt(i);
             if (Character.isLetter(c)) {
                 result.append(Character.getNumericValue(c));
             } else {
-                result.append((char)c);
+                result.append(c);
             }
         }
         return result.toString();
@@ -193,15 +231,16 @@ public class IBAN {
 
     /**
      * Removes all non alpha-numeric characters in the IBAN code
+     *
      * @param iban
      * @return the resulting IBAN
      */
     public String removeNonAlpha(final String iban) {
         final StringBuilder result = new StringBuilder();
-        for (int i=0;i<iban.length();i++) {
+        for (int i = 0; i < iban.length(); i++) {
             char c = iban.charAt(i);
-            if (Character.isLetter(c) || Character.isDigit(c) ) {
-                result.append((char)c);
+            if (Character.isLetter(c) || Character.isDigit(c)) {
+                result.append(c);
             }
         }
         return result.toString();
@@ -209,6 +248,7 @@ public class IBAN {
 
     /**
      * Get a string with information about why the IBAN was found invalid
+     *
      * @return a human readable (english) string
      * @deprecated use the {@link #validate()} method to get a detailed result of the validation problem found
      */
@@ -221,9 +261,10 @@ public class IBAN {
 
     /**
      * Gets the BBAN (custom account number) part of the IBAN
+     *
      * @return the custom account part of the IBAN or null if the IBAN has an invalid length
-     * @since 7.9.7
      * @author psantamarina
+     * @since 7.9.7
      */
     public String getBban() {
         if (StringUtils.isNotEmpty(this.iban)) {
@@ -237,23 +278,11 @@ public class IBAN {
     }
 
     /**
-     * Gets the BBAN (custom account number) part of the given IBAN
-     *
-     * @param iban a well-formed IBAN
-     * @return the custom account part of the IBAN
-     * @throws IndexOutOfBoundsException if the IBAN length is wrong
-     * @since 7.9.7
-     * @author psantamarina
-     */
-    public static String getBban(final String iban) throws IndexOutOfBoundsException {
-        return iban.substring(BBAN_INDEX);
-    }
-
-    /**
      * Gets the check digits part of the IBAN
+     *
      * @return the check digits (two digits as String) of the IBAN or null if the IBAN has an invalid length
-     * @since 7.9.7
      * @author psantamarina
+     * @since 7.9.7
      */
     public String getCheckDigits() {
         if (StringUtils.isNotEmpty(this.iban)) {
@@ -267,23 +296,11 @@ public class IBAN {
     }
 
     /**
-     * Gets the check digits part of the given IBAN.
-     *
-     * @param iban a well-formed IBAN
-     * @return the check digits (two digits as String)
-     * @throws IndexOutOfBoundsException if the IBAN length is wrong
-     * @since 7.9.7
-     * @author psantamarina
-     */
-    public static String getCheckDigits(final String iban) throws IndexOutOfBoundsException {
-        return iban.substring(CHECK_DIGIT_INDEX, CHECK_DIGIT_INDEX + CHECK_DIGIT_LENGTH);
-    }
-
-    /**
      * Gets the country code part of the IBAN
+     *
      * @return the two letters ISO country code of the IBAN or null if the IBAN has an invalid length
-     * @since 7.9.7
      * @author psantamarina
+     * @since 7.9.7
      */
     public String getCountryCode() {
         if (StringUtils.isNotEmpty(this.iban)) {
@@ -294,19 +311,6 @@ public class IBAN {
             }
         }
         return null;
-    }
-
-    /**
-     * Gets the country code part of the given IBAN.
-     *
-     * @param iban a well-formed IBAN
-     * @return the two letters ISO country code
-     * @throws IndexOutOfBoundsException if the IBAN length is wrong
-     * @since 7.9.7
-     * @author psantamarina
-     */
-    public static String getCountryCode(final String iban) throws IndexOutOfBoundsException {
-        return iban.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
     }
 
 }

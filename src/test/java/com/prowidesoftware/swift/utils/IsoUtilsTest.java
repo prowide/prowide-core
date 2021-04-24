@@ -15,138 +15,138 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * test cases for {@link IsoUtils}
- * 
+ *
  * @author sebastian
  * @since 7.9.2
  */
 public class IsoUtilsTest {
 
-	@Test
-	public void testCurrencies() {
-		/*
-		 * valid
-		 */
-		assertTrue(IsoUtils.getInstance().isValidISOCurrency("EUR"));
-		assertTrue(IsoUtils.getInstance().isValidISOCurrency("USD"));
-		assertTrue(IsoUtils.getInstance().isValidISOCurrency("ARS"));
-		assertTrue(IsoUtils.getInstance().isValidISOCurrency("BYN"));
-		assertTrue(IsoUtils.getInstance().isValidISOCurrency("NGN"));
-		/*
-		 * invalid
-		 */
-		assertFalse(IsoUtils.getInstance().isValidISOCurrency("usd"));
-		assertFalse(IsoUtils.getInstance().isValidISOCurrency(""));
-		assertFalse(IsoUtils.getInstance().isValidISOCurrency(null));
-		assertFalse(IsoUtils.getInstance().isValidISOCurrency("XYZ"));
+    @Test
+    public void testCurrencies() {
+        /*
+         * valid
+         */
+        assertTrue(IsoUtils.getInstance().isValidISOCurrency("EUR"));
+        assertTrue(IsoUtils.getInstance().isValidISOCurrency("USD"));
+        assertTrue(IsoUtils.getInstance().isValidISOCurrency("ARS"));
+        assertTrue(IsoUtils.getInstance().isValidISOCurrency("BYN"));
+        assertTrue(IsoUtils.getInstance().isValidISOCurrency("NGN"));
+        /*
+         * invalid
+         */
+        assertFalse(IsoUtils.getInstance().isValidISOCurrency("usd"));
+        assertFalse(IsoUtils.getInstance().isValidISOCurrency(""));
+        assertFalse(IsoUtils.getInstance().isValidISOCurrency(null));
+        assertFalse(IsoUtils.getInstance().isValidISOCurrency("XYZ"));
 
-		IsoUtils.getInstance().getCurrencies().add("XYZ");
-		assertTrue(IsoUtils.getInstance().isValidISOCurrency("XYZ"));
-		IsoUtils.getInstance().getCurrencies().remove("XYZ");
-	}
-	
-	@Test
-	public void testCountries() {
-		/*
-		 * valid
-		 */
-		assertTrue(IsoUtils.getInstance().isValidISOCountry("US"));
-		assertTrue(IsoUtils.getInstance().isValidISOCountry("AR"));
-		assertTrue(IsoUtils.getInstance().isValidISOCountry("BR"));
-		assertTrue(IsoUtils.getInstance().isValidISOCountry("XK")); //Kosovo, not currently in ISO
-		/*
-		 * invalid
-		 */
-		assertFalse(IsoUtils.getInstance().isValidISOCountry("us"));
-		assertFalse(IsoUtils.getInstance().isValidISOCountry("Foo"));
-		assertFalse(IsoUtils.getInstance().isValidISOCountry(""));
-		assertFalse(IsoUtils.getInstance().isValidISOCountry(null));
-		assertFalse(IsoUtils.getInstance().isValidISOCountry("XX"));
-		assertFalse(IsoUtils.getInstance().isValidISOCountry("ZZ"));
-		assertFalse(IsoUtils.getInstance().isValidISOCountry("ar"));
-	}
+        IsoUtils.getInstance().getCurrencies().add("XYZ");
+        assertTrue(IsoUtils.getInstance().isValidISOCurrency("XYZ"));
+        IsoUtils.getInstance().getCurrencies().remove("XYZ");
+    }
 
-	@Test
-	public void testAddCountry_1() {
-	  Assertions.assertThrows(IllegalArgumentException.class, () -> {
-		  IsoUtils.getInstance().addCountry(null);
-	  });
-	}
+    @Test
+    public void testCountries() {
+        /*
+         * valid
+         */
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("US"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("AR"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("BR"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XK")); //Kosovo, not currently in ISO
+        /*
+         * invalid
+         */
+        assertFalse(IsoUtils.getInstance().isValidISOCountry("us"));
+        assertFalse(IsoUtils.getInstance().isValidISOCountry("Foo"));
+        assertFalse(IsoUtils.getInstance().isValidISOCountry(""));
+        assertFalse(IsoUtils.getInstance().isValidISOCountry(null));
+        assertFalse(IsoUtils.getInstance().isValidISOCountry("XX"));
+        assertFalse(IsoUtils.getInstance().isValidISOCountry("ZZ"));
+        assertFalse(IsoUtils.getInstance().isValidISOCountry("ar"));
+    }
 
-	@Test
-	public void testAddCountry_2() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			IsoUtils.getInstance().addCountry("33");
-		  });
-		
-	}
+    @Test
+    public void testAddCountry_1() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            IsoUtils.getInstance().addCountry(null);
+        });
+    }
 
-	@Test
-	public void testAddCountry_3() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			IsoUtils.getInstance().addCountry("aa");
-		  });
-		
-	}
+    @Test
+    public void testAddCountry_2() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            IsoUtils.getInstance().addCountry("33");
+        });
 
-	@Test
-	public void testAddCountry_4() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			IsoUtils.getInstance().addCountry("AAA");
-		  });
-		
-	}
+    }
 
-	@Test
-	public void testAddCountry_5() {
-		IsoUtils.getInstance().addCountry("SZ");
-		assertTrue(IsoUtils.getInstance().isValidISOCountry("SZ"));
-		IsoUtils.getInstance().getCountries().remove("SZ");
-	}
+    @Test
+    public void testAddCountry_3() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            IsoUtils.getInstance().addCountry("aa");
+        });
 
-	@Test
-	public void testAddCurrency_1() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			IsoUtils.getInstance().addCurrency(null);
-		  });
-		
-	}
+    }
 
-	@Test
-	public void testAddCurrency_2() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			IsoUtils.getInstance().addCurrency("333");
-		  });
-		
-	}
+    @Test
+    public void testAddCountry_4() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            IsoUtils.getInstance().addCountry("AAA");
+        });
 
-	@Test
-	public void testAddCurrency_3() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			IsoUtils.getInstance().addCurrency("aaa");
-		  });
-		
-	}
+    }
 
-	@Test
-	public void testAddCurrency_4() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			IsoUtils.getInstance().addCurrency("AAAA");
-		  });
-	}
+    @Test
+    public void testAddCountry_5() {
+        IsoUtils.getInstance().addCountry("SZ");
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("SZ"));
+        IsoUtils.getInstance().getCountries().remove("SZ");
+    }
 
-	@Test
-	public void testAddCurrency_5() {
-		IsoUtils.getInstance().addCurrency("DSZ");
-		assertTrue(IsoUtils.getInstance().isValidISOCurrency("DSZ"));
-		IsoUtils.getInstance().getCurrencies().remove("DSZ");
-	}
+    @Test
+    public void testAddCurrency_1() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            IsoUtils.getInstance().addCurrency(null);
+        });
+
+    }
+
+    @Test
+    public void testAddCurrency_2() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            IsoUtils.getInstance().addCurrency("333");
+        });
+
+    }
+
+    @Test
+    public void testAddCurrency_3() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            IsoUtils.getInstance().addCurrency("aaa");
+        });
+
+    }
+
+    @Test
+    public void testAddCurrency_4() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            IsoUtils.getInstance().addCurrency("AAAA");
+        });
+    }
+
+    @Test
+    public void testAddCurrency_5() {
+        IsoUtils.getInstance().addCurrency("DSZ");
+        assertTrue(IsoUtils.getInstance().isValidISOCurrency("DSZ"));
+        IsoUtils.getInstance().getCurrencies().remove("DSZ");
+    }
 
 }

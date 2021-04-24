@@ -81,8 +81,8 @@ public class Issue41 {
         assertEquals(1, fields.size());
         assertEquals(":GRSS//USD0,12345657/ACTU", fields.get(0).getValue());
 
-        assertEquals(trimmedSequenceE.getFieldsByName("92H").length , 1);
-        assertEquals(trimmedSequenceE.getFieldsByName("92J").length , 0);
+        assertEquals(trimmedSequenceE.getFieldsByName("92H").length, 1);
+        assertEquals(trimmedSequenceE.getFieldsByName("92J").length, 0);
 
         assertNull(trimmedSequenceE.getFieldByName("92J"));
         assertNotNull(trimmedSequenceE.getFieldByName("92H"));

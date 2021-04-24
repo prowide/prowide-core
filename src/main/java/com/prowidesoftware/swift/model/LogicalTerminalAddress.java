@@ -22,82 +22,82 @@ import java.util.Objects;
  * It is basically a BIC code with an additional character identifier the terminal sending the message. The LT
  * identifier is located in position 9 of a full 12 characters address.
  * For example letter 'A' in CCCCUS33AXXX<br>
- * 
+ * <p>
  * A sender LT address cannot have 'X' as LT identifier, conversely a
  * receiver LT address must have an 'X' as LT identifier.
- * 
- * @author www.prowidesoftware.com
+ *
+ * @author sebastian
  * @since 7.6
  */
 public class LogicalTerminalAddress extends BIC {
-	private Character LTIdentifier;
-	
-	/**
-	 * Creates an LT address from its string value.
-	 * <p>If the string contains a BIC8 or BIC11 the LT identifier will be set with a default value.
-	 * 
-	 * @param code a full LT address code (12 characters) or a BIC8 or BIC11
-	 */
-	public LogicalTerminalAddress(final String code) {
-		super(code);
-		if (code != null && code.length() >=12) {
-			this.LTIdentifier = code.charAt(8);
-		}
-	}
+    private Character LTIdentifier;
 
-	public Character getLTIdentifier() {
-		return LTIdentifier;
-	}
+    /**
+     * Creates an LT address from its string value.
+     * <p>If the string contains a BIC8 or BIC11 the LT identifier will be set with a default value.
+     *
+     * @param code a full LT address code (12 characters) or a BIC8 or BIC11
+     */
+    public LogicalTerminalAddress(final String code) {
+        super(code);
+        if (code != null && code.length() >= 12) {
+            this.LTIdentifier = code.charAt(8);
+        }
+    }
 
-	public void setLTIdentifier(final Character lTIdentifier) {
-		LTIdentifier = lTIdentifier;
-	}
+    public Character getLTIdentifier() {
+        return LTIdentifier;
+    }
 
-	/**
-	 * Returns a proper LT address for the sender of a message, assuring
-	 * the returned code has 12 characters and with no "X" in the 9th position.
-	 * 
-	 * <p>If the terminal identifier is not set or if it is set to "X", then
-	 * the default identifier "A" will be used.
-	 * 
-	 * <p>The branch code is padded with "XXX" if not present.
-	 * 
-	 * @return the 12 characters address or null if the BIC has less than 8 characters
-	 */
-	public String getSenderLogicalTerminalAddress() {
-		char LT = (this.LTIdentifier == null || this.LTIdentifier.equals('X'))? 'A' : this.LTIdentifier;
-		if (getBic8() != null) {
-			return getBic8() + LT + getBranchOrDefault();
-		}
-		return null;
-	}
-	
-	/**
-	 * Returns a proper LT address for the receiver of a message, assuring
-	 * the returned code has 12 characters and with a fixed "X" in the 9th position.
-	 * 
-	 * <p>The branch code is padded with "XXX" if not present.
-	 * 
-	 * @return the 12 characters address or null if the BIC has less than 8 characters
-	 */
-	public String getReceiverLogicalTerminalAddress() {
-		if (getBic8() != null) {
-			return getBic8() + "X" + getBranchOrDefault();
-		}
-		return null;
-	}
+    public void setLTIdentifier(final Character lTIdentifier) {
+        LTIdentifier = lTIdentifier;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
-		LogicalTerminalAddress that = (LogicalTerminalAddress) o;
-		return Objects.equals(LTIdentifier, that.LTIdentifier);
-	}
+    /**
+     * Returns a proper LT address for the sender of a message, assuring
+     * the returned code has 12 characters and with no "X" in the 9th position.
+     *
+     * <p>If the terminal identifier is not set or if it is set to "X", then
+     * the default identifier "A" will be used.
+     *
+     * <p>The branch code is padded with "XXX" if not present.
+     *
+     * @return the 12 characters address or null if the BIC has less than 8 characters
+     */
+    public String getSenderLogicalTerminalAddress() {
+        char LT = (this.LTIdentifier == null || this.LTIdentifier.equals('X')) ? 'A' : this.LTIdentifier;
+        if (getBic8() != null) {
+            return getBic8() + LT + getBranchOrDefault();
+        }
+        return null;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(super.hashCode(), LTIdentifier);
-	}
+    /**
+     * Returns a proper LT address for the receiver of a message, assuring
+     * the returned code has 12 characters and with a fixed "X" in the 9th position.
+     *
+     * <p>The branch code is padded with "XXX" if not present.
+     *
+     * @return the 12 characters address or null if the BIC has less than 8 characters
+     */
+    public String getReceiverLogicalTerminalAddress() {
+        if (getBic8() != null) {
+            return getBic8() + "X" + getBranchOrDefault();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        LogicalTerminalAddress that = (LogicalTerminalAddress) o;
+        return Objects.equals(LTIdentifier, that.LTIdentifier);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), LTIdentifier);
+    }
 }

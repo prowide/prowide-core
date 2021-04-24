@@ -25,6 +25,16 @@ public class SwiftBlock2Adapter implements JsonSerializer<SwiftBlock2>, JsonDese
 
     private static final String DIRECTION = "direction";
 
+    private static void setSwiftBlock2Properties(SwiftBlock2 sb, JsonObject jsonObject) {
+        if (jsonObject.get("messageType") != null) {
+            sb.setMessageType(jsonObject.get("messageType").getAsString());
+        }
+
+        if (jsonObject.get("messagePriority") != null) {
+            sb.setMessagePriority(jsonObject.get("messagePriority").getAsString());
+        }
+    }
+
     @Override
     public JsonElement serialize(final SwiftBlock2 swiftBlock2, Type type, final JsonSerializationContext jsonSerializationContext) {
 
@@ -32,13 +42,13 @@ public class SwiftBlock2Adapter implements JsonSerializer<SwiftBlock2>, JsonDese
 
         String direction = "";
 
-        if (swiftBlock2.isInput()){
+        if (swiftBlock2.isInput()) {
             direction = "I";
         } else {
             direction = "O";
         }
 
-        object.getAsJsonObject().addProperty(DIRECTION,direction);
+        object.getAsJsonObject().addProperty(DIRECTION, direction);
 
         return object;
     }
@@ -47,7 +57,7 @@ public class SwiftBlock2Adapter implements JsonSerializer<SwiftBlock2>, JsonDese
     public SwiftBlock2 deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
 
-        if ((jsonObject.get(DIRECTION) != null && jsonObject.get(DIRECTION).getAsString().equals("O"))){
+        if ((jsonObject.get(DIRECTION) != null && jsonObject.get(DIRECTION).getAsString().equals("O"))) {
             return getSwiftBlock2OutputObject(jsonObject);
         } else {
             // defult to INPUT
@@ -58,35 +68,35 @@ public class SwiftBlock2Adapter implements JsonSerializer<SwiftBlock2>, JsonDese
     private SwiftBlock2Output getSwiftBlock2OutputObject(JsonObject jsonObject) {
         SwiftBlock2Output swiftBlock2Output = new SwiftBlock2Output();
 
-        setSwiftBlock2Properties(swiftBlock2Output,jsonObject);
+        setSwiftBlock2Properties(swiftBlock2Output, jsonObject);
 
         // specific data for OUTPUT
 
-        if (jsonObject.get("senderInputTime") != null){
+        if (jsonObject.get("senderInputTime") != null) {
             swiftBlock2Output.setSenderInputTime(jsonObject.get("senderInputTime").getAsString());
         }
 
-        if (jsonObject.get("MIRDate") != null){
+        if (jsonObject.get("MIRDate") != null) {
             swiftBlock2Output.setMIRDate(jsonObject.get("MIRDate").getAsString());
         }
 
-        if (jsonObject.get("MIRLogicalTerminal") != null){
+        if (jsonObject.get("MIRLogicalTerminal") != null) {
             swiftBlock2Output.setMIRLogicalTerminal(jsonObject.get("MIRLogicalTerminal").getAsString());
         }
 
-        if (jsonObject.get("MIRSessionNumber") != null){
+        if (jsonObject.get("MIRSessionNumber") != null) {
             swiftBlock2Output.setMIRSessionNumber(jsonObject.get("MIRSessionNumber").getAsString());
         }
 
-        if (jsonObject.get("MIRSequenceNumber") != null){
+        if (jsonObject.get("MIRSequenceNumber") != null) {
             swiftBlock2Output.setMIRSequenceNumber(jsonObject.get("MIRSequenceNumber").getAsString());
         }
 
-        if (jsonObject.get("receiverOutputDate") != null){
+        if (jsonObject.get("receiverOutputDate") != null) {
             swiftBlock2Output.setReceiverOutputDate(jsonObject.get("receiverOutputDate").getAsString());
         }
 
-        if (jsonObject.get("receiverOutputTime") != null){
+        if (jsonObject.get("receiverOutputTime") != null) {
             swiftBlock2Output.setReceiverOutputTime(jsonObject.get("receiverOutputTime").getAsString());
         }
 
@@ -96,33 +106,23 @@ public class SwiftBlock2Adapter implements JsonSerializer<SwiftBlock2>, JsonDese
     private SwiftBlock2Input getSwiftBlock2InputObject(JsonObject jsonObject) {
         SwiftBlock2Input swiftBlock2Input = new SwiftBlock2Input();
 
-        setSwiftBlock2Properties(swiftBlock2Input,jsonObject);
+        setSwiftBlock2Properties(swiftBlock2Input, jsonObject);
 
         // specific data for INPUT
 
-        if (jsonObject.get("receiverAddress") != null){
+        if (jsonObject.get("receiverAddress") != null) {
             swiftBlock2Input.setReceiverAddress(jsonObject.get("receiverAddress").getAsString());
         }
 
-        if (jsonObject.get("deliveryMonitoring") != null){
+        if (jsonObject.get("deliveryMonitoring") != null) {
             swiftBlock2Input.setDeliveryMonitoring(jsonObject.get("deliveryMonitoring").getAsString());
         }
 
-        if (jsonObject.get("obsolescencePeriod") != null){
+        if (jsonObject.get("obsolescencePeriod") != null) {
             swiftBlock2Input.setObsolescencePeriod(jsonObject.get("obsolescencePeriod").getAsString());
         }
 
         return swiftBlock2Input;
-    }
-
-    private static void setSwiftBlock2Properties(SwiftBlock2 sb,JsonObject jsonObject) {
-        if (jsonObject.get("messageType") != null){
-            sb.setMessageType(jsonObject.get("messageType").getAsString());
-        }
-
-        if (jsonObject.get("messagePriority") != null){
-            sb.setMessagePriority(jsonObject.get("messagePriority").getAsString());
-        }
     }
 
 }

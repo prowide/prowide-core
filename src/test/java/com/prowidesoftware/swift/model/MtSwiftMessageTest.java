@@ -77,29 +77,6 @@ public class MtSwiftMessageTest {
         assertNull(mt.getTradeDate());
     }
 
-    public class TestMtMetadataStrategy implements MessageMetadataStrategy {
-
-        @Override
-        public Optional<String> reference(AbstractMessage message) {
-            return Optional.of("REFERENCE");
-        }
-
-        @Override
-        public Optional<Money> amount(AbstractMessage message) {
-            return Optional.of(new Money("USD", new BigDecimal("1234.56")));
-        }
-
-        @Override
-        public Optional<Calendar> valueDate(AbstractMessage message) {
-            return Optional.empty();
-        }
-
-        @Override
-        public Optional<Calendar> tradeDate(AbstractMessage message) {
-            return Optional.empty();
-        }
-    }
-
     @Test
     public void testUpdateMetadata2() {
         String fin = "{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n" +
@@ -195,6 +172,29 @@ public class MtSwiftMessageTest {
 
         // The content of block 4 is still available
         assertEquals("123456789", mt798.getField20().getValue());
+    }
+
+    public class TestMtMetadataStrategy implements MessageMetadataStrategy {
+
+        @Override
+        public Optional<String> reference(AbstractMessage message) {
+            return Optional.of("REFERENCE");
+        }
+
+        @Override
+        public Optional<Money> amount(AbstractMessage message) {
+            return Optional.of(new Money("USD", new BigDecimal("1234.56")));
+        }
+
+        @Override
+        public Optional<Calendar> valueDate(AbstractMessage message) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<Calendar> tradeDate(AbstractMessage message) {
+            return Optional.empty();
+        }
     }
 
 }

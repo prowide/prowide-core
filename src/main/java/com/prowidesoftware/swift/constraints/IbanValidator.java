@@ -24,6 +24,7 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * Implementation of the IBAN validation constraint
+ *
  * @see IBAN#validate() for implementation details
  * @since 7.10.3
  */

@@ -15,34 +15,33 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import java.util.Calendar;
-
+import com.prowidesoftware.swift.model.Tag;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import com.prowidesoftware.swift.model.Tag;
+import java.util.Calendar;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class Field11STest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("11S",
-				"195\n121212"
-			);
-	}
-	
-	@Test
-	public void testSerialization2() throws Exception {
-		Field11S field11s = new Field11S();
-		field11s.setComponent1("195");
-		field11s.setComponent2(Calendar.getInstance());
-		field11s.setComponent3(2);
-		Tag tag = field11s.asTag();
-		String val = tag.getValue();
-		assertFalse(StringUtils.isBlank(val));
-	}
-	
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("11S",
+                "195\n121212"
+        );
+    }
+
+    @Test
+    public void testSerialization2() throws Exception {
+        Field11S field11s = new Field11S();
+        field11s.setComponent1("195");
+        field11s.setComponent2(Calendar.getInstance());
+        field11s.setComponent3(2);
+        Tag tag = field11s.asTag();
+        String val = tag.getValue();
+        assertFalse(StringUtils.isBlank(val));
+    }
+
 }

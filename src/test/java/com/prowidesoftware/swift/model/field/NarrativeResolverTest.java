@@ -1,11 +1,11 @@
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @since 8.1.0
@@ -18,13 +18,13 @@ public class NarrativeResolverTest {
     /**
      * Line 1: 	    /8a/[additional information] 			    (Code)(Narrative)
      * Lines 2-n:   /8a/[additional information] 			    (Code)(Narrative)
-     *              [//continuation of additional information] 	(Narrative)
+     * [//continuation of additional information] 	(Narrative)
      */
     @Test
     public void testFormat1() {
         v = "WE NOTED FCR SHOWING YOURSELVES\n" +
-            "AS CONSIGNEE PLEASE DISCHARGE\n" +
-            "US SOONEST";
+                "AS CONSIGNEE PLEASE DISCHARGE\n" +
+                "US SOONEST";
         n = NarrativeResolver.parse(new Field77A(v));
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
@@ -68,19 +68,19 @@ public class NarrativeResolverTest {
     /**
      * Line 1: 	    /8c/[additional information] 			    (Code)(Narrative)
      * Lines 2-n:   /8c/[additional information] 			    (Code)(Narrative)
-     *              [//continuation of additional information] 	(Narrative)
+     * [//continuation of additional information] 	(Narrative)
      */
     @Test
     public void testFormat2() {
         v = "WE NOTED FCR SHOWING YOURSELVES\n" +
-            "AS CONSIGNEE PLEASE DISCHARGE\n" +
-            "US SOONEST";
+                "AS CONSIGNEE PLEASE DISCHARGE\n" +
+                "US SOONEST";
         n = NarrativeResolver.parse(new Field72Z(v));
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
 
         v = "/REC/EURO\n" +
-            "//Target";
+                "//Target";
         n = NarrativeResolver.parse(new Field72(v));
         assertEquals(1, n.getStructured().size());
         assertEquals("EUROTarget", n.getStructured("REC").getNarrative());
@@ -88,8 +88,8 @@ public class NarrativeResolverTest {
         assertNull(n.getUnstructured());
 
         v = "/RETN/59\n" +
-            "/BE02/BENEFICIARIO DESCONOCIDO\n" +
-            "/MREF/0511030094000014";
+                "/BE02/BENEFICIARIO DESCONOCIDO\n" +
+                "/MREF/0511030094000014";
         n = NarrativeResolver.parse(new Field72(v));
         assertEquals(3, n.getStructured().size());
         assertEquals("59", n.getStructured("RETN").getNarrative());
@@ -98,17 +98,17 @@ public class NarrativeResolverTest {
         assertNull(n.getUnstructured());
 
         v = "/BNF/1000057346REDEMPTION MERRILL L\n" +
-            "//YNCH FUNDSFFC 123455600000078 //BAN\n" +
-            "//COFOO / FOO";
+                "//YNCH FUNDSFFC 123455600000078 //BAN\n" +
+                "//COFOO / FOO";
         n = NarrativeResolver.parse(new Field72(v));
         assertEquals(1, n.getStructured().size());
         assertEquals("1000057346REDEMPTION MERRILL LYNCH FUNDSFFC 123455600000078 //BANCOFOO / FOO", n.getStructured("BNF").getNarrative());
         assertNull(n.getUnstructured());
 
         v = "/MYCODE/FOO BAR\n" +
-            "//CONTINUATION OF MYCODE\n" +
-            "FREE ADDITIONAL NARRATIVE\n" +
-            "CONTINUATION";
+                "//CONTINUATION OF MYCODE\n" +
+                "FREE ADDITIONAL NARRATIVE\n" +
+                "CONTINUATION";
         n = NarrativeResolver.parse(new Field77J(v));
         assertEquals(1, n.getStructured().size());
         assertEquals("FOO BAR CONTINUATION OF MYCODE", n.getStructured("MYCODE").getNarrative(" "));
@@ -118,13 +118,13 @@ public class NarrativeResolverTest {
     /**
      * Line 1: 	    /8c/[3!a13d][additional information] 		(Code)(Currency)(Amount)(Narrative)
      * Lines 2-6: 	/8c/[3!a13d][additional information] 		(Code)(Currency)(Amount)(Narrative)
-     *              [//continuation of additional information] 	(Narrative)
+     * [//continuation of additional information] 	(Narrative)
      */
     @Test
     public void testFormat3() {
         v = "YOUR CHARGES GBP 95,\n" +
-            "CABLE GBP10,\n" +
-            "INTEREST GBP18,";
+                "CABLE GBP10,\n" +
+                "INTEREST GBP18,";
         n = NarrativeResolver.parse(new Field73A(v));
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
@@ -135,7 +135,7 @@ public class NarrativeResolverTest {
         assertEquals(v, n.getUnstructured());
 
         v = "/COMM/EUR300,\n" +
-            "/CABLE/USD20,3";
+                "/CABLE/USD20,3";
         n = NarrativeResolver.parse(new Field71D(v));
         assertEquals(2, n.getStructured().size());
         assertEquals("EUR", n.getStructured("COMM").getCurrency());
@@ -147,7 +147,7 @@ public class NarrativeResolverTest {
         assertNull(n.getUnstructured());
 
         v = "/TELECHAR/USD21,\n" +
-            "/COMM/USD14,";
+                "/COMM/USD14,";
         n = NarrativeResolver.parse(new Field71B(v));
         assertEquals(2, n.getStructured().size());
         assertEquals("USD", n.getStructured("TELECHAR").getCurrency());
@@ -240,7 +240,7 @@ public class NarrativeResolverTest {
     /**
      * Line 1:		/2n/[supplement 1][/supplement2]		        (Query Number)(Narrative 1)(Narrative 2)
      * Lines 2-6	/2n/[supplement 1][/supplement2]
-     *              [//continuation of supplementary information]
+     * [//continuation of supplementary information]
      */
     @Test
     public void testFormat5() {
@@ -261,7 +261,7 @@ public class NarrativeResolverTest {
         assertNull(n.getUnstructured());
 
         v = "WE HAVE RECEIVED THE FOLLOWING\n" +
-            "MESSAGE FROM BNF BANK FBACUAUX";
+                "MESSAGE FROM BNF BANK FBACUAUX";
         n = NarrativeResolver.parse(new Field75(v));
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
@@ -300,9 +300,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat6() {
         v = "/ADD/+COPY OF CERTIFICATE OF ORIGIN\n" +
-            "SHOWING GOODS ARE OF BELGIAN ORIGIN\n" +
-            "/ADD/+COPY OF CONSULAR INVOICE MENTIONING\n" +
-            "IMPORT REGISTRATION NUMBER 123";
+                "SHOWING GOODS ARE OF BELGIAN ORIGIN\n" +
+                "/ADD/+COPY OF CONSULAR INVOICE MENTIONING\n" +
+                "IMPORT REGISTRATION NUMBER 123";
         n = NarrativeResolver.parse(new Field46B(v));
         assertEquals(2, n.getStructured().size());
         assertEquals("+COPY OF CERTIFICATE OF ORIGIN SHOWING GOODS ARE OF BELGIAN ORIGIN", n.getStructured("ADD").getNarrative(" "));
@@ -324,8 +324,8 @@ public class NarrativeResolverTest {
         assertNull(n.getUnstructured());
 
         v = "/CNC/FRA. 2213 CUENTA 18 SEPTIEMBRE\n" +
-            "// MANT\n" +
-            "//NIMIENTO EQUIPOS E INSTALACIONES";
+                "// MANT\n" +
+                "//NIMIENTO EQUIPOS E INSTALACIONES";
         n = NarrativeResolver.parse(new Field70(v));
         assertEquals(1, n.getStructured().size());
         assertEquals("FRA. 2213 CUENTA 18 SEPTIEMBRE MANTNIMIENTO EQUIPOS E INSTALACIONES", n.getStructured("CNC").getNarrative());
@@ -343,7 +343,7 @@ public class NarrativeResolverTest {
         assertNull(n.getUnstructured());
 
         v = "/VALD/20040509\n" +
-            "/SETC/USD";
+                "/SETC/USD";
         n = NarrativeResolver.parse(new Field77D(v));
         assertEquals(2, n.getStructured().size());
         assertEquals("20040509", n.getStructured("VALD").getNarrative());
@@ -351,11 +351,11 @@ public class NarrativeResolverTest {
         assertNull(n.getUnstructured());
 
         v = "IN THE ABSENCE OF ANY OTHER MASTER\n" +
-            "AGREEMENT BETWEEN US WHICH GOVERNS\n" +
-            "FOREIGN EXCHANGE TRANSACTIONS, THE\n" +
-            "1997 INTERNATIONAL FOREIGN EXCHANGE\n" +
-            "MASTER AGREEMENT (IFEMA) TERMS\n" +
-            "SHALL APPLY";
+                "AGREEMENT BETWEEN US WHICH GOVERNS\n" +
+                "FOREIGN EXCHANGE TRANSACTIONS, THE\n" +
+                "1997 INTERNATIONAL FOREIGN EXCHANGE\n" +
+                "MASTER AGREEMENT (IFEMA) TERMS\n" +
+                "SHALL APPLY";
         n = NarrativeResolver.parse(new Field77D(v));
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
@@ -391,7 +391,7 @@ public class NarrativeResolverTest {
         assertNull(n.getUnstructured());
 
         v = "/unstruct/NAME/Jones/DEPT/IRS Back Office\n" +
-                " - more DEPT description/description2/GENDER/Male";;
+                " - more DEPT description/description2/GENDER/Male";
         n = NarrativeResolver.parse(new Field29A(v));
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));

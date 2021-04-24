@@ -23,15 +23,16 @@ import java.util.List;
  *
  * <p>Note that if a field has a date and it is optional, and the actual field has not set the optional date/s then the
  * call dates() will return an empty list
- * 
+ *
  * @since 6.0
  */
 public interface DateContainer {
 
-	/**
-	 * Get a calendar for every date found
-	 * @return found dates or empty list
-	 */
-	List<Calendar> dates();
+    /**
+     * Get a calendar for every date found
+     *
+     * @return found dates or empty list
+     */
+    List<Calendar> dates();
 
 }

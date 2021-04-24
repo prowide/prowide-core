@@ -16,18 +16,18 @@
 
 package com.prowidesoftware.swift.model.mt.mt1xx;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
-
 public class MT103_REMITTest {
 
-	@Test
-	public void test1() {
-		MT103_REMIT m = new MT103_REMIT();
-		assertNotNull(m.getUETR());
-		assertTrue(m.getSwiftMessage().isREMIT());
-	}
-	
+    @Test
+    public void test1() {
+        MT103_REMIT m = new MT103_REMIT();
+        assertNotNull(m.getUETR());
+        assertTrue(m.getSwiftMessage().isREMIT());
+    }
+
 }

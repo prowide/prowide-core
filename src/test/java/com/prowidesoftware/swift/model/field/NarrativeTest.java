@@ -15,9 +15,9 @@ public class NarrativeTest {
     public void testUnstructured() {
         String text = "WE NOTED FCR SHOWING YOURSELVES AS CONSIGNEE PLEASE DISCHARGE US SOONEST";
         Narrative n = Narrative
-            .builder(35)
-            .addUnstructured(text)
-            .build();
+                .builder(35)
+                .addUnstructured(text)
+                .build();
         assertTrue(n.getStructured().isEmpty());
         assertEquals(text, n.getUnstructured(" "));
         assertEquals(3, n.getUnstructuredFragments().size());

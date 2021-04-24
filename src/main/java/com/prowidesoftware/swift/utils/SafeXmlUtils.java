@@ -34,6 +34,7 @@ import javax.xml.validation.Validator;
 /**
  * Reusable safe XML document builder to prevent XXE
  * https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html
+ *
  * @since 8.0.5
  */
 public class SafeXmlUtils {
@@ -46,6 +47,7 @@ public class SafeXmlUtils {
 
     /**
      * Safe DOM parsing, with default parameters
+     *
      * @throws ProwideException if the parser cannot be configured
      * @see #documentBuilder(boolean)
      */
@@ -55,6 +57,7 @@ public class SafeXmlUtils {
 
     /**
      * Safe DOM parsing
+     *
      * @param namespaceAware factory awareness
      * @throws ProwideException if the parser cannot be configured
      */
@@ -64,7 +67,7 @@ public class SafeXmlUtils {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
             feature = XMLConstants.FEATURE_SECURE_PROCESSING;
-            dbf.setFeature(feature, true );
+            dbf.setFeature(feature, true);
 
             // Xerces 1 - http://xerces.apache.org/xerces-j/features.html#external-general-entities
             // Xerces 2 - http://xerces.apache.org/xerces2-j/features.html#external-general-entities
@@ -90,6 +93,7 @@ public class SafeXmlUtils {
 
     /**
      * Safe SAX parser, with default parameters
+     *
      * @throws ProwideException if the parser cannot be configured
      * @see #reader(boolean, Schema)
      */
@@ -99,8 +103,9 @@ public class SafeXmlUtils {
 
     /**
      * Safe SAX parser
+     *
      * @param namespaceAware SAX factory awareness
-     * @param schema optional schema if the reader will be used for validaiton, null to ignore
+     * @param schema         optional schema if the reader will be used for validaiton, null to ignore
      * @throws ProwideException if the parser cannot be configured
      */
     public static XMLReader reader(boolean namespaceAware, Schema schema) throws ProwideException {
@@ -109,7 +114,7 @@ public class SafeXmlUtils {
             SAXParserFactory spf = SAXParserFactory.newInstance();
 
             feature = XMLConstants.FEATURE_SECURE_PROCESSING;
-            spf.setFeature(feature, true );
+            spf.setFeature(feature, true);
 
             // Xerces 1 - http://xerces.apache.org/xerces-j/features.html#external-general-entities
             // Xerces 2 - http://xerces.apache.org/xerces2-j/features.html#external-general-entities
@@ -156,6 +161,7 @@ public class SafeXmlUtils {
 
     /**
      * Safe StAX parser
+     *
      * @throws ProwideException if the parser cannot be configured
      */
     public static XMLInputFactory inputFactory() {

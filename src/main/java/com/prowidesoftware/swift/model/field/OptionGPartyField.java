@@ -38,7 +38,7 @@ import java.util.*;
  * @since 7.11.0
  */
 public abstract class OptionGPartyField extends Field implements BICContainer {
-    public static final String PARSER_PATTERN ="/S$S";
+    public static final String PARSER_PATTERN = "/S$S";
     public static final String COMPONENTS_PATTERN = "SB";
 
     /**
@@ -60,6 +60,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Creates a new field and initializes its components with content from the parameter value.
+     *
      * @param value complete field value including separators and CRLF
      */
     public OptionGPartyField(final String value) {
@@ -105,7 +106,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * Returns a localized suitable for showing to humans string of a field component.<br>
      *
      * @param component number of the component to display
-     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @param locale    optional locale to format date and amounts, if null, the default locale is used
      * @return formatted component value or null if component number is invalid or not present
      * @throws IllegalArgumentException if component number is invalid for the field
      * @since 7.8
@@ -113,7 +114,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component < 1 || component > 2) {
-            throw new IllegalArgumentException("invalid component number "+component+" for field "+ getName());
+            throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
         //default format (as is)
         return getComponent(component);
@@ -121,6 +122,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Returns the field components pattern
+     *
      * @return the static value of COMPONENTS_PATTERN
      */
     @Override
@@ -130,6 +132,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Returns the field parser pattern
+     *
      * @return the static value of PARSER_PATTERN
      */
     @Override
@@ -160,6 +163,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Returns true if the field is a GENERIC FIELD as specified by the standard.
+     *
      * @return true if the field is generic, false otherwise
      */
     @Override
@@ -171,6 +175,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * Returns the defined amount of components.<br>
      * This is not the amount of components present in the field instance, but the total amount of components
      * that this field accepts as defined.
+     *
      * @since 7.7
      */
     @Override
@@ -182,6 +187,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * Returns english label for components.
      * <br>
      * The index in the list is in sync with specific field component structure.
+     *
      * @see #getComponentLabel(int)
      * @since 7.8.4
      */
@@ -195,6 +201,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Returns a mapping between component numbers and their label in camel case format.
+     *
      * @since 7.10.3
      */
     @Override
@@ -213,6 +220,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Gets the component1 (Account).
+     *
      * @return the component1
      */
     public String getComponent1() {
@@ -221,12 +229,13 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Gets the Account (component1) removing its starting slashes if any.
+     *
      * @return the Account from component1
      */
     public String getAccount() {
         String c = getComponent(1);
         if (c != null) {
-            for (int i=0; i<c.length(); i++) {
+            for (int i = 0; i < c.length(); i++) {
                 if (c.charAt(i) != '/') {
                     return c.substring(i);
                 }
@@ -235,8 +244,10 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
         }
         return null;
     }
+
     /**
      * Gets the component2 (BIC).
+     *
      * @return the component2
      */
     public String getComponent2() {
@@ -245,6 +256,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Get the component2 as BIC
+     *
      * @return the component2 converted to BIC or null if cannot be converted
      */
     public com.prowidesoftware.swift.model.BIC getComponent2AsBIC() {
@@ -253,6 +265,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Gets the BIC (component2).
+     *
      * @return the BIC from component2
      */
     public String getBIC() {
@@ -261,6 +274,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
 
     /**
      * Get the BIC (component2) as BIC
+     *
      * @return the BIC from component2 converted to BIC or null if cannot be converted
      */
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
@@ -268,14 +282,14 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     }
 
     @Override
-    public List<com.prowidesoftware.swift.model.BIC> bics () {
+    public List<com.prowidesoftware.swift.model.BIC> bics() {
         final List<BIC> result = new ArrayList<>();
         result.add(SwiftFormatUtils.getBIC(getComponent(2)));
         return result;
     }
 
     @Override
-    public List<String> bicStrings () {
+    public List<String> bicStrings() {
         final List<String> result = new ArrayList<>();
         result.add(getComponent(2));
         return result;

@@ -15,41 +15,40 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 
 /**
  * Test for Field94D and similar fields.
- *
  */
 public class Field94DTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("94D",
-				":AAAA//BB/C",
-				":AAAA///C"
-			);
-	}
-	
-	@Test
-	public void test1() {
-		Field94D f = new Field94D(":AAAA//BB/C");
-		assertEquals(f.getComponent1(), "AAAA");
-		assertEquals(f.getComponent2(), "BB");
-		assertEquals(f.getComponent3(), "C");
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("94D",
+                ":AAAA//BB/C",
+                ":AAAA///C"
+        );
+    }
 
-	@Test
-	public void test2() {
-		Field94D f = new Field94D(":AAAA///C");
-		assertEquals(f.getComponent1(), "AAAA");
-		assertNull(f.getComponent2());
-		assertEquals(f.getComponent3(), "C");
-	}
+    @Test
+    public void test1() {
+        Field94D f = new Field94D(":AAAA//BB/C");
+        assertEquals(f.getComponent1(), "AAAA");
+        assertEquals(f.getComponent2(), "BB");
+        assertEquals(f.getComponent3(), "C");
+    }
+
+    @Test
+    public void test2() {
+        Field94D f = new Field94D(":AAAA///C");
+        assertEquals(f.getComponent1(), "AAAA");
+        assertNull(f.getComponent2());
+        assertEquals(f.getComponent3(), "C");
+    }
 
 }

@@ -15,41 +15,41 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class Field48Test extends AbstractFieldTest {
-	Field48 f = null;
+    Field48 f = null;
 
-	@BeforeEach
-	public void setup() {
-		f = null;
-	}
+    @BeforeEach
+    public void setup() {
+        f = null;
+    }
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("48",
-				"1",
-				"1/FOO"
-			);
-	}
-	
-	@Test
-	public void testGetValue1() {
-		f = new Field48();
-		f.setComponent1("1234");
-		assertEquals("1234", f.getValue());
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("48",
+                "1",
+                "1/FOO"
+        );
+    }
 
-	@Test
-	public void testGetValue2() {
-		f = new Field48();
-		f.setComponent1("1234");
-		f.setComponent2("FOO");
-		assertEquals("1234/FOO", f.getValue());
-	}
+    @Test
+    public void testGetValue1() {
+        f = new Field48();
+        f.setComponent1("1234");
+        assertEquals("1234", f.getValue());
+    }
+
+    @Test
+    public void testGetValue2() {
+        f = new Field48();
+        f.setComponent1("1234");
+        f.setComponent2("FOO");
+        assertEquals("1234/FOO", f.getValue());
+    }
 
 }

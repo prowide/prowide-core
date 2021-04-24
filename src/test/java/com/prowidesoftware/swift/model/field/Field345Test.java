@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field345 and similar fields.
@@ -26,28 +26,28 @@ import org.junit.jupiter.api.Test;
  * @since 7.8.8
  */
 public class Field345Test extends AbstractFieldTest {
-	
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("345",
-				"101202103"
-			);
-	}
-	
-	@Test
-	public void testParse345() throws Exception {
-		Field345 f = new Field345("1");
-		assertNotNull(f, "Parse of field failed");
-		assertEquals("1", f.getComponent1());
-		f = new Field345("101");
-		assertNotNull(f, "Parse of field failed");
-		assertEquals("101", f.getComponent1());
-		f = new Field345("101202103");
-		assertNotNull(f, "Parse of field failed");
-		assertEquals("101", f.getComponent1());
-		assertEquals("202", f.getComponent2());
-		assertEquals("103", f.getComponent3());
-	}
-	
+
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("345",
+                "101202103"
+        );
+    }
+
+    @Test
+    public void testParse345() throws Exception {
+        Field345 f = new Field345("1");
+        assertNotNull(f, "Parse of field failed");
+        assertEquals("1", f.getComponent1());
+        f = new Field345("101");
+        assertNotNull(f, "Parse of field failed");
+        assertEquals("101", f.getComponent1());
+        f = new Field345("101202103");
+        assertNotNull(f, "Parse of field failed");
+        assertEquals("101", f.getComponent1());
+        assertEquals("202", f.getComponent2());
+        assertEquals("103", f.getComponent3());
+    }
+
 }

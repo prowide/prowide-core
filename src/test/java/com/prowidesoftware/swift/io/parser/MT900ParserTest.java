@@ -15,11 +15,9 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * MT900 tests
@@ -27,66 +25,66 @@ import org.junit.jupiter.api.Test;
  * @since 6.3
  */
 public class MT900ParserTest extends BaseMessageTestcase {
-	
-	@Test 
-	public void testImproperBlock4Ending() {
-		messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" +
-					":20:628735BKRU3X\n" + 
-					":79:TO.   FOOBANK NA (HONG KONG)\n" + 
-					"ATTN. FOO - FOO OPERATIONS\n" + 
-					"FROM.\n" + 
-					"RE.   FOO  SUB A/C 123456\n" + 
-					"A/C: 961XXX\n" + 
-					".\n" + 
-					"WE CONFIRM TO INCREASE THE FOLLOWING DEPOSIT FROM\n" + 
-					".\n" + 
-					"INSTRUCTIONS:\n" + 
-					".\n" + 
-					"REGARDS,\n" + 
-					"}"+
-					"{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}"; 
-		
-		parseMessage(messageToParse);
-		assertEquals("900", this.o.getType());
-		
-		assertNull(b5);
-		String expected = "out/1/1}}";
-		String last = b4.getTagByName("79").getValue();
-		last = last.substring(last.length()-expected.length(), last.length());
-		assertEquals(expected, last);
-	}
 
-	@Test 
-	public void testMissingEOBandB5() {
-		messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" +
-					":20:628735BKRU3X\n" + 
-					":79:TO FOO\n" + 
-					"REGARDS,\n" + 
-					"{"+
-					"{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}"; 
-			
-			parseMessage(messageToParse);
-			assertEquals("900", this.o.getType());
-			assertNull(b5);
-			String expected = "out/1/1}}";
-			String last = b4.getTagByName("79").getValue();
-			last = last.substring(last.length()-expected.length(), last.length());
-			assertEquals(expected, last);
-		}
+    @Test
+    public void testImproperBlock4Ending() {
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" +
+                ":20:628735BKRU3X\n" +
+                ":79:TO.   FOOBANK NA (HONG KONG)\n" +
+                "ATTN. FOO - FOO OPERATIONS\n" +
+                "FROM.\n" +
+                "RE.   FOO  SUB A/C 123456\n" +
+                "A/C: 961XXX\n" +
+                ".\n" +
+                "WE CONFIRM TO INCREASE THE FOLLOWING DEPOSIT FROM\n" +
+                ".\n" +
+                "INSTRUCTIONS:\n" +
+                ".\n" +
+                "REGARDS,\n" +
+                "}" +
+                "{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}";
 
-	@Test 
-		public void testMissingEOBAndEOF() {
-			messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" +
-						":20:628735BKRU3X\n" + 
-						":79:TO FOO\n" + 
-						"INSTRUCTIONS:\n" + 
-						"{";
-			
-			parseMessage(messageToParse);
-			assertEquals("900", this.o.getType());
-			
-			String last = b4.getTagByName("79").getValue();
-			assertTrue(last.endsWith("\n{"));
-		}
+        parseMessage(messageToParse);
+        assertEquals("900", this.o.getType());
+
+        assertNull(b5);
+        String expected = "out/1/1}}";
+        String last = b4.getTagByName("79").getValue();
+        last = last.substring(last.length() - expected.length());
+        assertEquals(expected, last);
+    }
+
+    @Test
+    public void testMissingEOBandB5() {
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" +
+                ":20:628735BKRU3X\n" +
+                ":79:TO FOO\n" +
+                "REGARDS,\n" +
+                "{" +
+                "{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}";
+
+        parseMessage(messageToParse);
+        assertEquals("900", this.o.getType());
+        assertNull(b5);
+        String expected = "out/1/1}}";
+        String last = b4.getTagByName("79").getValue();
+        last = last.substring(last.length() - expected.length());
+        assertEquals(expected, last);
+    }
+
+    @Test
+    public void testMissingEOBAndEOF() {
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" +
+                ":20:628735BKRU3X\n" +
+                ":79:TO FOO\n" +
+                "INSTRUCTIONS:\n" +
+                "{";
+
+        parseMessage(messageToParse);
+        assertEquals("900", this.o.getType());
+
+        String last = b4.getTagByName("79").getValue();
+        assertTrue(last.endsWith("\n{"));
+    }
 
 }

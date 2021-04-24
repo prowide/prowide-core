@@ -15,41 +15,40 @@
  */
 package com.prowidesoftware.swift.io;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
 
-import org.junit.jupiter.api.Test;
-
-import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test cases for the {@link RJEWriter} class
- * 
+ *
  * @author sebastian
  * @since 7.8.8
  */
 public class RJEWriterTest {
 
-	@Test
-	public void test1() throws IOException {
-		StringWriter s = new StringWriter();
-		RJEWriter w = new RJEWriter(s);
-		MT103 mt = new MT103();
-		w.write(mt);
-		assertEquals(s.toString(), mt.message());
-	}
-	
-	@Test
-	public void test2() throws IOException {
-		StringWriter s = new StringWriter();
-		RJEWriter w = new RJEWriter(s);
-		MT103 mt = new MT103();
-		w.write(mt);
-		w.write(mt);
-		assertEquals(s.toString(), mt.message() + FINWriterVisitor.SWIFT_EOL + RJEReader.SPLITCHAR + FINWriterVisitor.SWIFT_EOL + mt.message());
-	}
+    @Test
+    public void test1() throws IOException {
+        StringWriter s = new StringWriter();
+        RJEWriter w = new RJEWriter(s);
+        MT103 mt = new MT103();
+        w.write(mt);
+        assertEquals(s.toString(), mt.message());
+    }
+
+    @Test
+    public void test2() throws IOException {
+        StringWriter s = new StringWriter();
+        RJEWriter w = new RJEWriter(s);
+        MT103 mt = new MT103();
+        w.write(mt);
+        w.write(mt);
+        assertEquals(s.toString(), mt.message() + FINWriterVisitor.SWIFT_EOL + RJEReader.SPLITCHAR + FINWriterVisitor.SWIFT_EOL + mt.message());
+    }
 
 }

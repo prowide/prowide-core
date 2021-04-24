@@ -22,9 +22,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.ElementType.*;
 
 /**
  * Bean validation for BIC numbers.
@@ -38,10 +36,12 @@ import static java.lang.annotation.ElementType.PARAMETER;
  */
 @Documented
 @Constraint(validatedBy = BicValidator.class)
-@Target({ METHOD, FIELD, PARAMETER })
+@Target({METHOD, FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface BicConstraint {
     String message() default "Invalid BIC code";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

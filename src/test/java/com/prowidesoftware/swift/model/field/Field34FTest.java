@@ -15,12 +15,12 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test for Field34F and similar fields.
@@ -28,89 +28,89 @@ import org.junit.jupiter.api.Test;
  * @since 6.0
  */
 public class Field34FTest extends AbstractFieldTest {
-	@SuppressWarnings("unused")
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field34FTest.class.getName());
+    @SuppressWarnings("unused")
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field34FTest.class.getName());
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("34F",
-				"aaab123,45"
-			);
-	}
-	
-	@Test
-	public void testField19AString() {
-		Field34F f = null;
-	
-		f = new Field34F((String)null);
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		
-		f = new Field34F("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		
-		f = new Field34F("a");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		
-		f = new Field34F("aa");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		
-		f = new Field34F("aaa");
-		assertEquals("aaa", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-			
-		f = new Field34F("aaab");
-		assertEquals("aaa", f.getComponent1());
-		assertEquals("b", f.getComponent2());
-		assertNull(f.getComponent3());
-		
-		f = new Field34F("aaabb");
-		assertEquals("aaa", f.getComponent1());
-		assertEquals("bb", f.getComponent2());
-		assertNull(f.getComponent3());
-		
-		f = new Field34F("aaabb1");
-		assertEquals("aaa", f.getComponent1());
-		assertEquals("bb", f.getComponent2());
-		assertEquals("1", f.getComponent3());
-		
-		f = new Field34F("aaab1");
-		assertEquals("aaa", f.getComponent1());
-		assertEquals("b", f.getComponent2());
-		assertEquals("1", f.getComponent3());
-		
-		f = new Field34F("aaab1x");
-		assertEquals("aaa", f.getComponent1());
-		assertEquals("b", f.getComponent2());
-		assertEquals("1x", f.getComponent3());
-		
-		f = new Field34F("aaab123");
-		assertEquals("aaa", f.getComponent1());
-		assertEquals("b", f.getComponent2());
-		assertEquals("123", f.getComponent3());
-		assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
-		
-		f = new Field34F("aaab123,");
-		assertEquals("aaa", f.getComponent1());
-		assertEquals("b", f.getComponent2());
-		assertEquals("123,", f.getComponent3());
-		assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
-		
-		f = new Field34F("aaab123,45");
-		assertEquals("aaa", f.getComponent1());
-		assertEquals("b", f.getComponent2());
-		assertEquals("123,45", f.getComponent3());
-		assertEquals(new BigDecimal(123.45), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("34F",
+                "aaab123,45"
+        );
+    }
 
-	}
+    @Test
+    public void testField19AString() {
+        Field34F f = null;
+
+        f = new Field34F((String) null);
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+
+        f = new Field34F("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+
+        f = new Field34F("a");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+
+        f = new Field34F("aa");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+
+        f = new Field34F("aaa");
+        assertEquals("aaa", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+
+        f = new Field34F("aaab");
+        assertEquals("aaa", f.getComponent1());
+        assertEquals("b", f.getComponent2());
+        assertNull(f.getComponent3());
+
+        f = new Field34F("aaabb");
+        assertEquals("aaa", f.getComponent1());
+        assertEquals("bb", f.getComponent2());
+        assertNull(f.getComponent3());
+
+        f = new Field34F("aaabb1");
+        assertEquals("aaa", f.getComponent1());
+        assertEquals("bb", f.getComponent2());
+        assertEquals("1", f.getComponent3());
+
+        f = new Field34F("aaab1");
+        assertEquals("aaa", f.getComponent1());
+        assertEquals("b", f.getComponent2());
+        assertEquals("1", f.getComponent3());
+
+        f = new Field34F("aaab1x");
+        assertEquals("aaa", f.getComponent1());
+        assertEquals("b", f.getComponent2());
+        assertEquals("1x", f.getComponent3());
+
+        f = new Field34F("aaab123");
+        assertEquals("aaa", f.getComponent1());
+        assertEquals("b", f.getComponent2());
+        assertEquals("123", f.getComponent3());
+        assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
+
+        f = new Field34F("aaab123,");
+        assertEquals("aaa", f.getComponent1());
+        assertEquals("b", f.getComponent2());
+        assertEquals("123,", f.getComponent3());
+        assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
+
+        f = new Field34F("aaab123,45");
+        assertEquals("aaa", f.getComponent1());
+        assertEquals("b", f.getComponent2());
+        assertEquals("123,45", f.getComponent3());
+        assertEquals(new BigDecimal(123.45), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
+
+    }
 
 }

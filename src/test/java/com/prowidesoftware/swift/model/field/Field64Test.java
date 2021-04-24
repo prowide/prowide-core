@@ -15,53 +15,51 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Test for Field64 and similar fields.
- * 
- * @author www.prowidesoftware.com
+ *
+ * @author sebastian
  * @since 6.0
  */
 public class Field64Test extends AbstractFieldTest {
-	@SuppressWarnings("unused")
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field64Test.class.getName());
+    @SuppressWarnings("unused")
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field64Test.class.getName());
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("64",
-				"090822EUR1234,56",
-				"D090822EUR1234,56"
-			);
-	}
-	
-	@Test
-	public void testField64String() {
-		Field64 f = null;
-		
-		f = new Field64("");
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("64",
+                "090822EUR1234,56",
+                "D090822EUR1234,56"
+        );
+    }
 
-		f = new Field64("D090822EUR1234,56");
-		assertEquals("D", f.getComponent1());
-		assertEquals("090822", f.getComponent2());
-		assertEquals("EUR", f.getComponent3());
-		assertEquals("1234,56", f.getComponent4());
-		
-		f = new Field64("090822EUR1234,56");
-		assertNull(f.getComponent1());
-		assertEquals("090822", f.getComponent2());
-		assertEquals("EUR", f.getComponent3());
-		assertEquals("1234,56", f.getComponent4());
-	}
+    @Test
+    public void testField64String() {
+        Field64 f = null;
+
+        f = new Field64("");
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field64("D090822EUR1234,56");
+        assertEquals("D", f.getComponent1());
+        assertEquals("090822", f.getComponent2());
+        assertEquals("EUR", f.getComponent3());
+        assertEquals("1234,56", f.getComponent4());
+
+        f = new Field64("090822EUR1234,56");
+        assertNull(f.getComponent1());
+        assertEquals("090822", f.getComponent2());
+        assertEquals("EUR", f.getComponent3());
+        assertEquals("1234,56", f.getComponent4());
+    }
 
 }

@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field98F and similar fields.
@@ -28,99 +28,99 @@ import org.junit.jupiter.api.Test;
  */
 public class Field98FTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("98F",
-				":RDDT//ONGO160000",
-				":abc/def/ggggggggfffaaaaaa"
-			);
-	}
-	
-	@Test
-	public void testField98FString() {
-		Field98F f = null;
-		
-		f = new Field98F("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("98F",
+                ":RDDT//ONGO160000",
+                ":abc/def/ggggggggfffaaaaaa"
+        );
+    }
 
-		f = new Field98F(":");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98F("/");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98F("//");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98F("://");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98F(":/");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98F(":abc/");
-		assertEquals("abc", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+    @Test
+    public void testField98FString() {
+        Field98F f = null;
 
-		f = new Field98F(":abc/def");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("def", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98F(":abc/def/ggg");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("def", f.getComponent2());
-		assertEquals("ggg", f.getComponent3());
-		assertNull(f.getComponent4());
-	
-		f = new Field98F(":abc/def/aaaagggggg");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("def", f.getComponent2());
-		assertEquals("aaaa", f.getComponent3());
-		assertEquals("gggggg", f.getComponent4());
-		
-		f = new Field98F(":abc/def/ggggggggaaaaaa");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("def", f.getComponent2());
-		assertEquals("gggggggg", f.getComponent3());
-		assertEquals("aaaaaa", f.getComponent4());
-		
-		f = new Field98F(":abc/def/ggggggggfffaaaaaa");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("def", f.getComponent2());
-		assertEquals("ggggggggfff", f.getComponent3());
-		assertEquals("aaaaaa", f.getComponent4());
-	}
-	
-	@Test
-	public void testParse() {
-		Field98F f = new Field98F(":RDDT//ONGO160000");
-		assertEquals("RDDT", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertEquals("ONGO", f.getComponent3());
-		assertEquals("160000", f.getComponent4());
-	}
+        f = new Field98F("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98F(":");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98F("/");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98F("//");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98F("://");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98F(":/");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98F(":abc/");
+        assertEquals("abc", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98F(":abc/def");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("def", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98F(":abc/def/ggg");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("def", f.getComponent2());
+        assertEquals("ggg", f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98F(":abc/def/aaaagggggg");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("def", f.getComponent2());
+        assertEquals("aaaa", f.getComponent3());
+        assertEquals("gggggg", f.getComponent4());
+
+        f = new Field98F(":abc/def/ggggggggaaaaaa");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("def", f.getComponent2());
+        assertEquals("gggggggg", f.getComponent3());
+        assertEquals("aaaaaa", f.getComponent4());
+
+        f = new Field98F(":abc/def/ggggggggfffaaaaaa");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("def", f.getComponent2());
+        assertEquals("ggggggggfff", f.getComponent3());
+        assertEquals("aaaaaa", f.getComponent4());
+    }
+
+    @Test
+    public void testParse() {
+        Field98F f = new Field98F(":RDDT//ONGO160000");
+        assertEquals("RDDT", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertEquals("ONGO", f.getComponent3());
+        assertEquals("160000", f.getComponent4());
+    }
 
 }

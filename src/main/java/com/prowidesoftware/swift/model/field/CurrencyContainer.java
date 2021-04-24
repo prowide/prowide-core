@@ -23,46 +23,50 @@ import java.util.List;
  *
  * <p>Note that if a field has a currency and it is optional, and the actual field has not set the optional currency/ies
  * then the call currencies() will return an empty list
- * 
+ *
  * @since 6.0
  */
 public interface CurrencyContainer extends PatternContainer {
 
-	/**
-	 * Get a list of strings of currencies present in this field
-	 * @return found currency codes or empty list
-	 */
-	List<String> currencyStrings();
-	
-	/**
-	 * Get the single currency contained in this field.
-	 * @return null if no currency is contained - which should never happen, or throws an exception if more than one currency is present in this field.
-	 */
-	String currencyString();
-	
-	/**
-	 * Utility method that creates a Currency for every string returned by {@link #currencyStrings()}
-	 *  @return found currencies or empty list
-	 */
-	List<Currency> currencies();
-	
-	/**
-	 * Analog to {@link #currencyString()}
-	 * @see #currencyStrings()
-	 * @see #currencyString()
-	 */
-	Currency currency();
-	
-	/**
-	 * Set the currency of this field.
-	 * If this field contains more than one currency then all currency components will be set.
-	 * Individual setComponentNN should be used to set only one component of the field.
-	 */
-	void initializeCurrencies(String cur);
-	
-	/**
-	 * @see #initializeCurrencies(String)
-	 */
-	void initializeCurrencies(Currency cur);
-	
+    /**
+     * Get a list of strings of currencies present in this field
+     *
+     * @return found currency codes or empty list
+     */
+    List<String> currencyStrings();
+
+    /**
+     * Get the single currency contained in this field.
+     *
+     * @return null if no currency is contained - which should never happen, or throws an exception if more than one currency is present in this field.
+     */
+    String currencyString();
+
+    /**
+     * Utility method that creates a Currency for every string returned by {@link #currencyStrings()}
+     *
+     * @return found currencies or empty list
+     */
+    List<Currency> currencies();
+
+    /**
+     * Analog to {@link #currencyString()}
+     *
+     * @see #currencyStrings()
+     * @see #currencyString()
+     */
+    Currency currency();
+
+    /**
+     * Set the currency of this field.
+     * If this field contains more than one currency then all currency components will be set.
+     * Individual setComponentNN should be used to set only one component of the field.
+     */
+    void initializeCurrencies(String cur);
+
+    /**
+     * @see #initializeCurrencies(String)
+     */
+    void initializeCurrencies(Currency cur);
+
 }

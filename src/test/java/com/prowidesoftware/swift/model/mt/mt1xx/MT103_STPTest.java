@@ -18,15 +18,16 @@ package com.prowidesoftware.swift.model.mt.mt1xx;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MT103_STPTest {
 
-	@Test
-	public void test1() {
-		MT103_STP m = new MT103_STP();
-		assertNotNull(m.getUETR());
-		assertTrue(m.getSwiftMessage().isSTP());
-	}
-	
+    @Test
+    public void test1() {
+        MT103_STP m = new MT103_STP();
+        assertNotNull(m.getUETR());
+        assertTrue(m.getSwiftMessage().isSTP());
+    }
+
 }

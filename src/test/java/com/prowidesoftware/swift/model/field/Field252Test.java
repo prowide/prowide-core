@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field252 and similar fields.
@@ -26,23 +26,23 @@ import org.junit.jupiter.api.Test;
  * @since 7.8.8
  */
 public class Field252Test extends AbstractFieldTest {
-	
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("252",
-				"MIR4567890123456789012345ENDMIR4567890123456789012345END11112222"
-			);
-	}
-	
-	@Test
-	public void testParse252() throws Exception {
-		Field252 f = new Field252("MIR4567890123456789012345ENDMIR4567890123456789012345END11112222");
-		assertNotNull(f, "Parse of field failed");
-		assertEquals("MIR4567890123456789012345END", f.getComponent1());
-		assertEquals("MIR4567890123456789012345END", f.getComponent2());
-		assertEquals("1111", f.getComponent3());
-		assertEquals("2222", f.getComponent4());
-	}
-	
+
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("252",
+                "MIR4567890123456789012345ENDMIR4567890123456789012345END11112222"
+        );
+    }
+
+    @Test
+    public void testParse252() throws Exception {
+        Field252 f = new Field252("MIR4567890123456789012345ENDMIR4567890123456789012345END11112222");
+        assertNotNull(f, "Parse of field failed");
+        assertEquals("MIR4567890123456789012345END", f.getComponent1());
+        assertEquals("MIR4567890123456789012345END", f.getComponent2());
+        assertEquals("1111", f.getComponent3());
+        assertEquals("2222", f.getComponent4());
+    }
+
 }

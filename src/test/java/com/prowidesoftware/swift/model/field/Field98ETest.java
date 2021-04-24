@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for Field98E and similar fields.
@@ -28,171 +28,171 @@ import org.junit.jupiter.api.Test;
  * @since 6.0
  */
 public class Field98ETest extends AbstractFieldTest {
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field98ETest.class.getName());
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field98ETest.class.getName());
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("98E",
-				":abc//12121212242424,33/N2020",
-				":abc//12121212242424,33"
-			);
-	}
-	
-	@Test
-	public void testField98EString() {
-		Field98E f = null;
-		
-		f = new Field98E("");
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("98E",
+                ":abc//12121212242424,33/N2020",
+                ":abc//12121212242424,33"
+        );
+    }
 
-		f = new Field98E(":");
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
-		
-		f = new Field98E("/");
-		log.fine("f:"+f);
-		assertEquals("/", f.getComponent1());
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
-		
-		f = new Field98E("//");
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
-		
-		f = new Field98E("://");
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
-		
-		f = new Field98E(":/");
-		assertEquals("/", f.getComponent1());
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
-		
-		f = new Field98E("///");
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
-	
-		f = new Field98E(":///");
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent1()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
-		
-		f = new Field98E(":abc//");
-		assertEquals("abc", f.getComponent1());
-		assertTrue(StringUtils.isBlank(f.getComponent2()));
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
+    @Test
+    public void testField98EString() {
+        Field98E f = null;
 
-		f = new Field98E(":abc//12121212");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertTrue(StringUtils.isBlank(f.getComponent3()));
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
+        f = new Field98E("");
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
 
-		f = new Field98E(":abc//12121212242424");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertEquals("242424", f.getComponent3());
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
-		
-		f = new Field98E(":abc//12121212242424,33");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertEquals("242424", f.getComponent3());
-		assertEquals("33", f.getComponent4());
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
-		
-		f = new Field98E(":abc//12121212242424/N");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertEquals("242424", f.getComponent3());
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertEquals("N", f.getComponent5());
-		assertTrue(StringUtils.isBlank(f.getComponent6()));
+        f = new Field98E(":");
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
 
-		f = new Field98E(":abc//12121212242424/N2020");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertEquals("242424", f.getComponent3());
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertEquals("N", f.getComponent5());
-		assertEquals("2020", f.getComponent6());
+        f = new Field98E("/");
+        log.fine("f:" + f);
+        assertEquals("/", f.getComponent1());
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
 
-		f = new Field98E(":abc//12121212242424/N20");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertEquals("242424", f.getComponent3());
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertEquals("N", f.getComponent5());
-		assertEquals("20", f.getComponent6());
+        f = new Field98E("//");
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
 
-		f = new Field98E(":abc//12121212242424/20");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertEquals("242424", f.getComponent3());
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertEquals("20", f.getComponent6());
-		
-		f = new Field98E(":abc//12121212242424/2020");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertEquals("242424", f.getComponent3());
-		assertTrue(StringUtils.isBlank(f.getComponent4()));
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertEquals("2020", f.getComponent6());
-		
-		f = new Field98E(":abc//12121212242424,33/2020");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertEquals("242424", f.getComponent3());
-		assertEquals("33", f.getComponent4());
-		assertTrue(StringUtils.isBlank(f.getComponent5()));
-		assertEquals("2020", f.getComponent6());
+        f = new Field98E("://");
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
 
-		f = new Field98E(":abc//12121212242424,33/N2020");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("12121212", f.getComponent2());
-		assertEquals("242424", f.getComponent3());
-		assertEquals("33", f.getComponent4());
-		assertEquals("N", f.getComponent5());
-		assertEquals("2020", f.getComponent6());
-	}
+        f = new Field98E(":/");
+        assertEquals("/", f.getComponent1());
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
+
+        f = new Field98E("///");
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
+
+        f = new Field98E(":///");
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent1()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
+
+        f = new Field98E(":abc//");
+        assertEquals("abc", f.getComponent1());
+        assertTrue(StringUtils.isBlank(f.getComponent2()));
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+
+        f = new Field98E(":abc//12121212");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertTrue(StringUtils.isBlank(f.getComponent3()));
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
+
+        f = new Field98E(":abc//12121212242424");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertEquals("242424", f.getComponent3());
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
+
+        f = new Field98E(":abc//12121212242424,33");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertEquals("242424", f.getComponent3());
+        assertEquals("33", f.getComponent4());
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
+
+        f = new Field98E(":abc//12121212242424/N");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertEquals("242424", f.getComponent3());
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertEquals("N", f.getComponent5());
+        assertTrue(StringUtils.isBlank(f.getComponent6()));
+
+        f = new Field98E(":abc//12121212242424/N2020");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertEquals("242424", f.getComponent3());
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertEquals("N", f.getComponent5());
+        assertEquals("2020", f.getComponent6());
+
+        f = new Field98E(":abc//12121212242424/N20");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertEquals("242424", f.getComponent3());
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertEquals("N", f.getComponent5());
+        assertEquals("20", f.getComponent6());
+
+        f = new Field98E(":abc//12121212242424/20");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertEquals("242424", f.getComponent3());
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertEquals("20", f.getComponent6());
+
+        f = new Field98E(":abc//12121212242424/2020");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertEquals("242424", f.getComponent3());
+        assertTrue(StringUtils.isBlank(f.getComponent4()));
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertEquals("2020", f.getComponent6());
+
+        f = new Field98E(":abc//12121212242424,33/2020");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertEquals("242424", f.getComponent3());
+        assertEquals("33", f.getComponent4());
+        assertTrue(StringUtils.isBlank(f.getComponent5()));
+        assertEquals("2020", f.getComponent6());
+
+        f = new Field98E(":abc//12121212242424,33/N2020");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("12121212", f.getComponent2());
+        assertEquals("242424", f.getComponent3());
+        assertEquals("33", f.getComponent4());
+        assertEquals("N", f.getComponent5());
+        assertEquals("2020", f.getComponent6());
+    }
 
 }

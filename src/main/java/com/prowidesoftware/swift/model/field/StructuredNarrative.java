@@ -25,8 +25,8 @@ public class StructuredNarrative {
     private String currency;
     private BigDecimal amount;
     private String country;
-    private List<String> narrativeFragments = new ArrayList<>();
-    private List<String> narrativeSupplementFragments = new ArrayList<>();
+    private final List<String> narrativeFragments = new ArrayList<>();
+    private final List<String> narrativeSupplementFragments = new ArrayList<>();
 
     public StructuredNarrative() {
         super();
@@ -154,7 +154,7 @@ public class StructuredNarrative {
      */
     public String getNarrative(String delimiter) {
         if (!this.narrativeFragments.isEmpty()) {
-            String s = delimiter != null? delimiter : "";
+            String s = delimiter != null ? delimiter : "";
             return String.join(s, this.narrativeFragments);
         }
         return null;
@@ -181,7 +181,7 @@ public class StructuredNarrative {
      */
     public String getNarrativeSupplement(String delimiter) {
         if (!this.narrativeSupplementFragments.isEmpty()) {
-            String s = delimiter != null? delimiter : "";
+            String s = delimiter != null ? delimiter : "";
             return String.join(s, this.narrativeSupplementFragments);
         }
         return null;
@@ -201,7 +201,7 @@ public class StructuredNarrative {
     public boolean valid() {
         return StringUtils.isNotBlank(this.codeword) &&
                 ((this.currency != null && this.amount != null) ||
-                this.country != null || !this.narrativeFragments.isEmpty());
+                        this.country != null || !this.narrativeFragments.isEmpty());
     }
 
 }

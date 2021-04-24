@@ -16,39 +16,39 @@
 package com.prowidesoftware.swift.model;
 
 import org.apache.commons.lang3.EnumUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 
 /**
  * Message direction from application perspective, including the catch all value "both".
- * 
+ *
  * @see MessageDirection
  */
 public enum MessageIOType {
-	/**
-	 * Message coming to the institution from SWIFT network
-	 */
-	incoming,
-	/**
-	 * Message produced in the institution to be introduced (or already did) in the SWIFT network
-	 */
-	outgoing,
-	/**
-	 * Messages coming from and going to the swift network
-	 */
-	both;
+    /**
+     * Message coming to the institution from SWIFT network
+     */
+    incoming,
+    /**
+     * Message produced in the institution to be introduced (or already did) in the SWIFT network
+     */
+    outgoing,
+    /**
+     * Messages coming from and going to the swift network
+     */
+    both;
 
-	public static boolean isValid(String ioType) {
-		return EnumUtils.isValidEnum(MessageIOType.class, ioType);
-	}
-	
-	public boolean isIncoming() {
-		return this == MessageIOType.incoming;
-	}
-	public boolean isOutgoing() {
-		return this == MessageIOType.outgoing;
-	}
-	public boolean isBoth() {
-		return this == MessageIOType.both;
-	}
+    public static boolean isValid(String ioType) {
+        return EnumUtils.isValidEnum(MessageIOType.class, ioType);
+    }
+
+    public boolean isIncoming() {
+        return this == MessageIOType.incoming;
+    }
+
+    public boolean isOutgoing() {
+        return this == MessageIOType.outgoing;
+    }
+
+    public boolean isBoth() {
+        return this == MessageIOType.both;
+    }
 }

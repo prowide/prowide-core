@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for Field52D and similar fields.
@@ -27,38 +27,38 @@ import org.junit.jupiter.api.Test;
  */
 public class Field52DTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("52D",
-				"//SC1111111\r\nXXX XX\r\n111 XXXXXXXXX XX XXXXXX",
-				"/D/SC1111111"
-			);
-	}
-	
-	@Test
-	public void test52D_issue6() {
-		Field52D f = new Field52D("//SC1111111\r\n"
-					+ "XXX XX\r\n"
-					+"111 XXXXXXXXX XX XXXXXX");
-		assertNull(f.getComponent1());
-		assertEquals("/SC1111111", f.getComponent2());
-		assertEquals("XXX XX", f.getComponent3());
-		assertEquals("111 XXXXXXXXX XX XXXXXX", f.getComponent4());
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("52D",
+                "//SC1111111\r\nXXX XX\r\n111 XXXXXXXXX XX XXXXXX",
+                "/D/SC1111111"
+        );
+    }
 
-	@Test
-	public void test52D_2() {
-		Field52D f = new Field52D("/D/SC1111111\r\n");
-		assertEquals("D", f.getComponent1());
-		assertEquals("SC1111111", f.getComponent2());
-	}
-	
-	@Test
-	public void test52D_3() {
-		Field52D f = new Field52D("/D2/SC1111111\r\n");
-		assertNull(f.getComponent1());
-		assertEquals("D2/SC1111111", f.getComponent2());
-	}
-	
+    @Test
+    public void test52D_issue6() {
+        Field52D f = new Field52D("//SC1111111\r\n"
+                + "XXX XX\r\n"
+                + "111 XXXXXXXXX XX XXXXXX");
+        assertNull(f.getComponent1());
+        assertEquals("/SC1111111", f.getComponent2());
+        assertEquals("XXX XX", f.getComponent3());
+        assertEquals("111 XXXXXXXXX XX XXXXXX", f.getComponent4());
+    }
+
+    @Test
+    public void test52D_2() {
+        Field52D f = new Field52D("/D/SC1111111\r\n");
+        assertEquals("D", f.getComponent1());
+        assertEquals("SC1111111", f.getComponent2());
+    }
+
+    @Test
+    public void test52D_3() {
+        Field52D f = new Field52D("/D2/SC1111111\r\n");
+        assertNull(f.getComponent1());
+        assertEquals("D2/SC1111111", f.getComponent2());
+    }
+
 }

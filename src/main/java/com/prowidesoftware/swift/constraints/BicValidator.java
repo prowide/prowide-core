@@ -24,6 +24,7 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * Implementation of the BIC validation constraint
+ *
  * @see BIC#validate() for implementation details
  * @since 7.10.3
  */

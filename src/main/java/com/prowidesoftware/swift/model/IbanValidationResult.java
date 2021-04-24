@@ -22,9 +22,10 @@ import java.util.Map;
 
 /**
  * To indicate the validation problem found when validating an IBAN
+ *
+ * @author psantamarina
  * @see IBAN#validate()
  * @since 7.9.7
- * @author psantamarina
  */
 public enum IbanValidationResult {
     OK("The IBAN is valid"),
@@ -53,12 +54,11 @@ public enum IbanValidationResult {
     UNKNOWN("Unknown exception validating IBAN");
 
 
+    private final String message;
+    private final Map<String, String> vars = new HashMap<>();
     IbanValidationResult(final String message) {
         this.message = message;
     }
-
-    private String message;
-    private Map<String, String> vars = new HashMap<>();
 
     /**
      * Validation problem description including expected and found content when necessary

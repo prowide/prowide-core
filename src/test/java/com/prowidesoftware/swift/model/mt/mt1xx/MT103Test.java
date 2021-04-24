@@ -23,11 +23,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class MT103Test {
 
-	@Test
-	public void test1() {
-		MT103 m = new MT103();
-		assertNotNull(m.getUETR());
-		assertFalse(m.getSwiftMessage().isSTP());
-	}
-	
+    @Test
+    public void test1() {
+        MT103 m = new MT103();
+        assertNotNull(m.getUETR());
+        assertFalse(m.getSwiftMessage().isSTP());
+    }
+
 }

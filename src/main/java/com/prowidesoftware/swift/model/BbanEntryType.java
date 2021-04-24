@@ -25,8 +25,9 @@ import java.lang.reflect.Type;
 
 /**
  * Basic Bank Account Number Entry Types.
- * @since 7.9.7
+ *
  * @author psantamarina
+ * @since 7.9.7
  */
 public enum BbanEntryType {
     BANK_CODE("bank_code"),
@@ -38,14 +39,10 @@ public enum BbanEntryType {
     IDENTIFICATION_NUMBER("identification_number"),
     CURRENCY("currency");
 
-    private String text;
+    private final String text;
 
     BbanEntryType(String text) {
         this.text = text;
-    }
-
-    public String getText() {
-        return this.text;
     }
 
     public static BbanEntryType fromString(String text) {
@@ -57,16 +54,17 @@ public enum BbanEntryType {
         return null;
     }
 
+    public String getText() {
+        return this.text;
+    }
+
 }
 
-class BbanEntryTypeDeserializer implements JsonDeserializer<BbanEntryType>
-{
+class BbanEntryTypeDeserializer implements JsonDeserializer<BbanEntryType> {
     @Override
-    public BbanEntryType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
-    {
+    public BbanEntryType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         BbanEntryType[] scopes = BbanEntryType.values();
-        for (BbanEntryType scope : scopes)
-        {
+        for (BbanEntryType scope : scopes) {
             if (scope.getText().equals(json.getAsString()))
                 return scope;
         }

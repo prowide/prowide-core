@@ -17,51 +17,51 @@ package com.prowidesoftware.swift.model;
 
 /**
  * Supported file formats in the {@link AbstractSwiftMessage} hierarchy.
- * 
- * @author sebastian@prowidesoftware.com
+ *
+ * @author sebastian
  * @since 7.8.4
  */
 /*
  * sebastian aug 2016: annotate subclasses?
  */
 public enum FileFormat {
-	/**
-	 * SWIFT FIN message format
-	 */
-	FIN("fin"),
-	/**
-	 * Prowide CORE XML format
-	 */
-	CORE_XML("xml"),
-	/**
-	 * MQ-MT format
-	 */
-	MQ_MT("mt"),
-	/**
-	 * Only valid for MT.
-	 * Remote Job Entry
-	 */
-	RJE("rje"),
-	/**
-	 * MX format 
-	 */
-	MX("xml"),
-	/**
-	 * Applies to both MT and MX
-	 */
-	XML_V2("xml");
-	
-	private String extension = null;
-	
-	FileFormat(final String extension) {
-		this.extension = extension;
-	}
-	
-	public String extension() {
-		return this.extension;
-	}
-	
-	public String label() {
-		return "file-format."+name();
-	}
+    /**
+     * SWIFT FIN message format
+     */
+    FIN("fin"),
+    /**
+     * Prowide CORE XML format
+     */
+    CORE_XML("xml"),
+    /**
+     * MQ-MT format
+     */
+    MQ_MT("mt"),
+    /**
+     * Only valid for MT.
+     * Remote Job Entry
+     */
+    RJE("rje"),
+    /**
+     * MX format
+     */
+    MX("xml"),
+    /**
+     * Applies to both MT and MX
+     */
+    XML_V2("xml");
+
+    private String extension = null;
+
+    FileFormat(final String extension) {
+        this.extension = extension;
+    }
+
+    public String extension() {
+        return this.extension;
+    }
+
+    public String label() {
+        return "file-format." + name();
+    }
 }

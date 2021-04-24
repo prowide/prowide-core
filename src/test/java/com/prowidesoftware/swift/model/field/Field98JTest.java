@@ -15,78 +15,78 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
-
 /**
  * Test for field 98J and similar fields.
- * 
+ *
  * @author sebastian
  * @since 7.9.3
  */
 public class Field98JTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("98J",
-				":FOO//121212121111/ABCDUSAAXXX"
-			);
-	}
-	
-	@Test
-	public void testField98JString() {
-		Field98J f = null;
-		
-		f = new Field98J("");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("98J",
+                ":FOO//121212121111/ABCDUSAAXXX"
+        );
+    }
 
-		f = new Field98J(":");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98J("//");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98J("://");
-		assertNull(f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98J(":abc//");
-		assertEquals("abc", f.getComponent1());
-		assertNull(f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
+    @Test
+    public void testField98JString() {
+        Field98J f = null;
 
-		f = new Field98J(":abc//11111111");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("11111111", f.getComponent2());
-		assertNull(f.getComponent3());
-		assertNull(f.getComponent4());
-		
-		f = new Field98J(":abc//111111112222");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("11111111", f.getComponent2());
-		assertEquals("2222", f.getComponent3());
-		assertNull(f.getComponent4());
-	
-		f = new Field98J(":abc//111111112222/foo");
-		assertEquals("abc", f.getComponent1());
-		assertEquals("11111111", f.getComponent2());
-		assertEquals("2222", f.getComponent3());
-		assertEquals("foo", f.getComponent4());
-	}
+        f = new Field98J("");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98J(":");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98J("//");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98J("://");
+        assertNull(f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98J(":abc//");
+        assertEquals("abc", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98J(":abc//11111111");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("11111111", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98J(":abc//111111112222");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("11111111", f.getComponent2());
+        assertEquals("2222", f.getComponent3());
+        assertNull(f.getComponent4());
+
+        f = new Field98J(":abc//111111112222/foo");
+        assertEquals("abc", f.getComponent1());
+        assertEquals("11111111", f.getComponent2());
+        assertEquals("2222", f.getComponent3());
+        assertEquals("foo", f.getComponent4());
+    }
 
 }

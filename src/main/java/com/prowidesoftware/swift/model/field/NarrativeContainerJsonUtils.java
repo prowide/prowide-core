@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * Helper API for the {@link NarrativeContainer} fields JSON support
+ *
  * @since 9.1.4
  */
 class NarrativeContainerJsonUtils {
@@ -14,7 +15,7 @@ class NarrativeContainerJsonUtils {
     static void fromJson(JsonObject jsonObject, String json, Field field) {
         if (jsonObject.get("narrative") != null) {
             int numberOfNarrativesInJson = countNarrativesInJson(json);
-            if(numberOfNarrativesInJson > 1){
+            if (numberOfNarrativesInJson > 1) {
                 JsonObject jsonWithNarrativeGroup = groupNarratives(json, numberOfNarrativesInJson);
                 field.setComponent(1, jsonWithNarrativeGroup.get("narrative").getAsString());
             } else {
@@ -25,11 +26,11 @@ class NarrativeContainerJsonUtils {
 
     private static JsonObject groupNarratives(String json, int numberOfNarrativesInJson) {
         Gson gson = new Gson();
-        JsonElement element = gson.fromJson (json, JsonElement.class);
+        JsonElement element = gson.fromJson(json, JsonElement.class);
         JsonObject jsonObj = element.getAsJsonObject();
 
         String finalNarrativeValue = jsonObj.get("narrative").getAsString();
-        for(int i=2; i <= numberOfNarrativesInJson; i++) {
+        for (int i = 2; i <= numberOfNarrativesInJson; i++) {
             String currentNarrativeValue = jsonObj.get("narrative" + i).getAsString();
             finalNarrativeValue = finalNarrativeValue + currentNarrativeValue;
             jsonObj.remove("narrative" + i);

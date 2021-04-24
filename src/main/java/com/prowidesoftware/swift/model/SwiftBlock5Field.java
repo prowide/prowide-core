@@ -16,7 +16,7 @@ public enum SwiftBlock5Field {
     TNG("Test & Training Message, only in test and training mode"),
     SYS("System Originated Message added for system message or service message, cotaining the MIR of the request.");
 
-    private String description;
+    private final String description;
 
     SwiftBlock5Field(String description) {
         this.description = description;

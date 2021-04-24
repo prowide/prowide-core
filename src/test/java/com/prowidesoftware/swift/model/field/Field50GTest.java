@@ -15,30 +15,29 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
  * Test for Field50G and similar fields.
- *
  */
 public class Field50GTest extends AbstractFieldTest {
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("50G",
-				"/0000001111000000\r\nBNPPARIBAS"
-			);
-	}
-	
-	@Test
-	public void testGetValue() {
-		Field50G f = new Field50G("/0000001111000000\r\nBNPPARIBAS");
-		assertEquals(f.getComponent1(), "0000001111000000");
-		assertEquals(f.getComponent2(), "BNPPARIBAS");
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("50G",
+                "/0000001111000000\r\nBNPPARIBAS"
+        );
+    }
+
+    @Test
+    public void testGetValue() {
+        Field50G f = new Field50G("/0000001111000000\r\nBNPPARIBAS");
+        assertEquals(f.getComponent1(), "0000001111000000");
+        assertEquals(f.getComponent2(), "BNPPARIBAS");
+    }
 
 }

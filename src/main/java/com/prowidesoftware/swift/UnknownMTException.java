@@ -25,40 +25,43 @@ import com.prowidesoftware.deprecation.TargetYear;
  * @deprecated no longer used
  */
 @Deprecated
-@ProwideDeprecated(phase4=TargetYear.SRU2021)
+@ProwideDeprecated(phase4 = TargetYear.SRU2021)
 public class UnknownMTException extends ProwideException {
-	private static final long serialVersionUID = 6708923821228731L;
+    private static final long serialVersionUID = 6708923821228731L;
 
-	/**
-	 * Default constructor
-	 */
-	public UnknownMTException() {
-		super();
-	}
+    /**
+     * Default constructor
+     */
+    public UnknownMTException() {
+        super();
+    }
 
-	/**
-	 * Constructor with given text message and cause
-	 * @param message
-	 * @param cause
-	 */
-	public UnknownMTException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    /**
+     * Constructor with given text message and cause
+     *
+     * @param message
+     * @param cause
+     */
+    public UnknownMTException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	/**
-	 * Constructor with given text message, it takes a default cause.
-	 * @param message
-	 */
-	public UnknownMTException(String message) {
-		super(message);
-	}
+    /**
+     * Constructor with given text message, it takes a default cause.
+     *
+     * @param message
+     */
+    public UnknownMTException(String message) {
+        super(message);
+    }
 
-	/**
-	 * Constructor with given cause, it takes a default message.
-	 * @param cause
-	 */
-	public UnknownMTException(Throwable cause) {
-		super(cause);
-	}
+    /**
+     * Constructor with given cause, it takes a default message.
+     *
+     * @param cause
+     */
+    public UnknownMTException(Throwable cause) {
+        super(cause);
+    }
 
 }

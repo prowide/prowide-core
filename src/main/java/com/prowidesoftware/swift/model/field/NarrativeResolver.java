@@ -26,28 +26,28 @@ public class NarrativeResolver {
     public static Narrative parse(Field f) {
 // enabled parser for any field until SRU2020 when NarrativeContainer is added for the generated fields model
 //        if (f instanceof NarrativeContainer) {
-            // each field support one or two line formats
-            if (f.getName().equals(Field77A.NAME) || f.getName().equals(Field74.NAME) || f.getName().equals(Field86.NAME)) {
-                return parseFormat1(f);
-            } else if (f.getName().equals(Field72Z.NAME) || f.getName().equals(Field72.NAME) || f.getName().equals(Field77.NAME) || f.getName().equals(Field77J.NAME)) {
-                return parseFormat2(f);
-            } else if (f.getName().equals(Field73A.NAME) || f.getName().equals(Field71D.NAME) || f.getName().equals(Field71B.NAME) || f.getName().equals(Field73.NAME)) {
-                return parseFormat3(f);
-            } else if (f.getName().equals(Field77B.NAME)) {
-                return parseFormat4(f);
-            } else if (f.getName().equals(Field75.NAME) || f.getName().equals(Field76.NAME)) {
-                return parseFormat5(f);
-            } else if (f.getName().equals(Field49N.NAME) || f.getName().equals(Field45B.NAME) || f.getName().equals(Field46B.NAME) || f.getName().equals(Field49M.NAME)) {
-                return parseFormat6(f);
-            } else if (f.getName().equals(Field70.NAME) || f.getName().equals(Field77D.NAME) || f.getName().equals(Field37N.NAME)) {
-                return parseFormat7(f);
-            } else if (f.getName().equals(Field29A.NAME) || f.getName().equals(Field79.NAME)) {
-                return parseFormat8(f.getValue());
-            } else if (f.getName().equals(Field61.NAME)) {
-                Field61 field61 = (Field61) f;
-                return parseFormat8(field61.getSupplementaryDetails());
-            }
-            log.warning("Don't know how to parse structured narrative line formats for "+ f.getName());
+        // each field support one or two line formats
+        if (f.getName().equals(Field77A.NAME) || f.getName().equals(Field74.NAME) || f.getName().equals(Field86.NAME)) {
+            return parseFormat1(f);
+        } else if (f.getName().equals(Field72Z.NAME) || f.getName().equals(Field72.NAME) || f.getName().equals(Field77.NAME) || f.getName().equals(Field77J.NAME)) {
+            return parseFormat2(f);
+        } else if (f.getName().equals(Field73A.NAME) || f.getName().equals(Field71D.NAME) || f.getName().equals(Field71B.NAME) || f.getName().equals(Field73.NAME)) {
+            return parseFormat3(f);
+        } else if (f.getName().equals(Field77B.NAME)) {
+            return parseFormat4(f);
+        } else if (f.getName().equals(Field75.NAME) || f.getName().equals(Field76.NAME)) {
+            return parseFormat5(f);
+        } else if (f.getName().equals(Field49N.NAME) || f.getName().equals(Field45B.NAME) || f.getName().equals(Field46B.NAME) || f.getName().equals(Field49M.NAME)) {
+            return parseFormat6(f);
+        } else if (f.getName().equals(Field70.NAME) || f.getName().equals(Field77D.NAME) || f.getName().equals(Field37N.NAME)) {
+            return parseFormat7(f);
+        } else if (f.getName().equals(Field29A.NAME) || f.getName().equals(Field79.NAME)) {
+            return parseFormat8(f.getValue());
+        } else if (f.getName().equals(Field61.NAME)) {
+            Field61 field61 = (Field61) f;
+            return parseFormat8(field61.getSupplementaryDetails());
+        }
+        log.warning("Don't know how to parse structured narrative line formats for " + f.getName());
 //        } else {
 //            log.warning("Field "+ f.getName() + " is not a " + NarrativeContainer.class.getSimpleName());
 //        }
@@ -223,9 +223,10 @@ public class NarrativeResolver {
 
     /**
      * Adds a structured narrative item to the narrative
+     *
      * @param narrative the narrative where item is added
-     * @param codeword a codeword
-     * @param text the narrative text or blank to skip
+     * @param codeword  a codeword
+     * @param text      the narrative text or blank to skip
      */
     private static void add(Narrative narrative, String codeword, String text) {
         StructuredNarrative item = new StructuredNarrative().setCodeword(codeword);
@@ -245,7 +246,7 @@ public class NarrativeResolver {
             return false;
 
         //Type
-        for(int i=0; i<codeword.length(); i++){
+        for (int i = 0; i < codeword.length(); i++) {
             char c = codeword.charAt(i);
             if (!Character.isLetterOrDigit(c))
                 return false;
@@ -274,11 +275,11 @@ public class NarrativeResolver {
 
         int section = 1;
         text = StringUtils.trimToEmpty(text);
-        for(int i=0; i<text.length(); i++){
+        for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
             switch (section) {
                 case 1: //currency section
-                    if (Character.isDigit(c)){
+                    if (Character.isDigit(c)) {
                         section = 2;
                         amount.append(c);
                     } else
@@ -307,7 +308,7 @@ public class NarrativeResolver {
     /**
      * Line 1: 	    /8a/[additional information] 			    (Code)(Narrative)
      * Lines 2-n:   /8a/[additional information] 			    (Code)(Narrative)
-     *              [//continuation of additional information] 	(Narrative)
+     * [//continuation of additional information] 	(Narrative)
      */
     public static Narrative parseFormat1(Field f) {
         return parseFormat(f, 8, CODEWORDTYPE_UCASE, false, false, false, true);
@@ -316,7 +317,7 @@ public class NarrativeResolver {
     /**
      * Line 1: 	    /8c/[additional information] 			    (Code)(Narrative)
      * Lines 2-n:   /8c/[additional information] 			    (Code)(Narrative)
-     *              [//continuation of additional information] 	(Narrative)
+     * [//continuation of additional information] 	(Narrative)
      */
     public static Narrative parseFormat2(Field f) {
         return parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, false, false, true);
@@ -325,7 +326,7 @@ public class NarrativeResolver {
     /**
      * Line 1: 	    /8c/[3!a13d][additional information] 		(Code)(Currency)(Amount)(Narrative)
      * Lines 2-6: 	/8c/[3!a13d][additional information] 		(Code)(Currency)(Amount)(Narrative)
-     *              [//continuation of additional information] 	(Narrative)
+     * [//continuation of additional information] 	(Narrative)
      */
     public static Narrative parseFormat3(Field f) {
         return parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, true, false, true);
@@ -345,7 +346,7 @@ public class NarrativeResolver {
     /**
      * Line 1:		/2n/[supplement 1][/supplement2]		        (Query Number)(Narrative 1)(Narrative 2)
      * Lines 2-6	/2n/[supplement 1][/supplement2]
-     *              [//continuation of supplementary information]
+     * [//continuation of supplementary information]
      */
     public static Narrative parseFormat5(Field f) {
         return parseFormat(f, 2, CODEWORDTYPE_NUMBER, false, false, true, true);

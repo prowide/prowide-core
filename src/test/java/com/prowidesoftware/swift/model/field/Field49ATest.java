@@ -21,36 +21,36 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Field49ATest extends AbstractFieldTest {
-	Field49A f = null;
+    Field49A f = null;
 
-	@BeforeEach
-	public void setup() {
-		f = null;
-	}
+    @BeforeEach
+    public void setup() {
+        f = null;
+    }
 
-	@Override
-	@Test
-	public void testSerialization() {
-		testSerializationImpl("49A",
-				"123",
-				"123\nFOO",
-				"123\nFOO\nBAR"
-			);
-	}
+    @Override
+    @Test
+    public void testSerialization() {
+        testSerializationImpl("49A",
+                "123",
+                "123\nFOO",
+                "123\nFOO\nBAR"
+        );
+    }
 
-	@Test
-	public void testParse() {
-		f = new Field49A("123\nFOO\nBAR");
-		f.setComponent1("1234");
-		f.setComponent2("FOO\nBAR");
-	}
+    @Test
+    public void testParse() {
+        f = new Field49A("123\nFOO\nBAR");
+        f.setComponent1("1234");
+        f.setComponent2("FOO\nBAR");
+    }
 
-	@Test
-	public void testGetValue() {
-		f = new Field49A();
-		f.setComponent1("1234");
-		f.setComponent2("FOO\nBAR");
-		assertEquals("1234\r\nFOO\nBAR", f.getValue());
-	}
+    @Test
+    public void testGetValue() {
+        f = new Field49A();
+        f.setComponent1("1234");
+        f.setComponent2("FOO\nBAR");
+        assertEquals("1234\r\nFOO\nBAR", f.getValue());
+    }
 
 }

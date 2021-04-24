@@ -36,10 +36,12 @@ import static java.lang.annotation.ElementType.*;
  */
 @Documented
 @Constraint(validatedBy = CountryValidator.class)
-@Target({ METHOD, FIELD, PARAMETER })
+@Target({METHOD, FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CountryConstraint {
     String message() default "Invalid ISO country code";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

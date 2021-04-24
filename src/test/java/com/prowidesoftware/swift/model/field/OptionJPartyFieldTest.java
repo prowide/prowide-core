@@ -15,10 +15,10 @@ public class OptionJPartyFieldTest {
 
     @Test
     public void testGetValueByCodeword() {
-        TestPartyField f = new TestPartyField("/ABIC/CHASUS33\n"+
-                "/NAME/12345xxxxx12345xxxxx12345+++++1234\n"+
-                "/ACCT/12345xxxxx12345xxxxx12345/NETS/\n"+
-                "/ADD1/12345xxxxx12345xxxxx12345+++++1234\n"+
+        TestPartyField f = new TestPartyField("/ABIC/CHASUS33\n" +
+                "/NAME/12345xxxxx12345xxxxx12345+++++1234\n" +
+                "/ACCT/12345xxxxx12345xxxxx12345/NETS/\n" +
+                "/ADD1/12345xxxxx12345xxxxx12345+++++1234\n" +
                 "5/ADD2/12345xxxxx12345xxxxx12345+++++123");
         assertNull(f.getValueByCodeword(Codeword.SVBY));
         assertNull(f.getValueByCodeword(Codeword.NETS));

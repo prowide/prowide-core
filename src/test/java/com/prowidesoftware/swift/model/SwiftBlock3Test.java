@@ -15,65 +15,60 @@
  */
 package com.prowidesoftware.swift.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
-
 import com.prowidesoftware.swift.model.field.Field106;
 import com.prowidesoftware.swift.model.field.Field108;
 import com.prowidesoftware.swift.model.field.Field121;
 import com.prowidesoftware.swift.model.field.Field165;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Block3 tests.
- * 
+ *
  * @author sebastian
  * @since 7.8.8
  */
 public class SwiftBlock3Test {
 
-	@Test
-	public void testGenerateMUR() throws InterruptedException {
-		SwiftBlock3 b = new SwiftBlock3();
-		assertNull(b.getTagByName("108"));
-		b.generateMUR(true);
-		assertNotNull(b.getTagByName("108"));
-		final String current = b.getTagByName("108").getValue();
-		b.generateMUR(false);
-		assertEquals(current, b.getTagByName("108").getValue());
-		Thread.sleep(500);
-		b.generateMUR(true);
-		assertFalse(StringUtils.equals(current, b.getTagByName("108").getValue()), "expected a different MUR after generateMUR(true)");
-	}
+    @Test
+    public void testGenerateMUR() throws InterruptedException {
+        SwiftBlock3 b = new SwiftBlock3();
+        assertNull(b.getTagByName("108"));
+        b.generateMUR(true);
+        assertNotNull(b.getTagByName("108"));
+        final String current = b.getTagByName("108").getValue();
+        b.generateMUR(false);
+        assertEquals(current, b.getTagByName("108").getValue());
+        Thread.sleep(500);
+        b.generateMUR(true);
+        assertFalse(StringUtils.equals(current, b.getTagByName("108").getValue()), "expected a different MUR after generateMUR(true)");
+    }
 
-	@Test
-	public void testIsSTP() {
-		SwiftBlock3 b = new SwiftBlock3();
-		assertFalse(b.isSTP());
-		b.append(new Tag("119", "STP"));
-		assertTrue(b.isSTP());
-	}
+    @Test
+    public void testIsSTP() {
+        SwiftBlock3 b = new SwiftBlock3();
+        assertFalse(b.isSTP());
+        b.append(new Tag("119", "STP"));
+        assertTrue(b.isSTP());
+    }
 
-	@Test
-	public void testBuilder() {
-		SwiftBlock3 b = new SwiftBlock3();
-		b.builder()
-				.setField121(new Field121("foo"))
-				.setField106(new Field106("foo"))
-				.setField165(new Field165("foo"))
-				.setField106(new Field106("finalValue106"))
-				.setField108(new Field108("foo"));
-		assertEquals(Field108.NAME, b.getTags().get(0).getName());
-		assertEquals(Field106.NAME, b.getTags().get(1).getName());
-		assertEquals(Field121.NAME, b.getTags().get(2).getName());
-		assertEquals(Field165.NAME, b.getTags().get(3).getName());
-		assertEquals(4, b.getTags().size());
-		assertEquals("finalValue106", b.getTagValue(Field106.NAME));
-	}
+    @Test
+    public void testBuilder() {
+        SwiftBlock3 b = new SwiftBlock3();
+        b.builder()
+                .setField121(new Field121("foo"))
+                .setField106(new Field106("foo"))
+                .setField165(new Field165("foo"))
+                .setField106(new Field106("finalValue106"))
+                .setField108(new Field108("foo"));
+        assertEquals(Field108.NAME, b.getTags().get(0).getName());
+        assertEquals(Field106.NAME, b.getTags().get(1).getName());
+        assertEquals(Field121.NAME, b.getTags().get(2).getName());
+        assertEquals(Field165.NAME, b.getTags().get(3).getName());
+        assertEquals(4, b.getTags().size());
+        assertEquals("finalValue106", b.getTagValue(Field106.NAME));
+    }
 
 }

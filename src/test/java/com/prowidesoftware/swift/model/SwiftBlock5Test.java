@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SwiftBlock5Test {
 
     @Test
-    public void testBlock5ToJson(){
+    public void testBlock5ToJson() {
 
         Tag t1 = new Tag();
         t1.setName("20");
@@ -48,14 +48,14 @@ public class SwiftBlock5Test {
         JsonObject o = parser.parse(s).getAsJsonObject();
 
         assertNotNull(o);
-        assertTrue(o.get("tags").getAsJsonArray().size()==2);
+        assertTrue(o.get("tags").getAsJsonArray().size() == 2);
     }
 
     @Test
-    public void testBlock5FromJson(){
+    public void testBlock5FromJson() {
         String json = "{\"tags\":[{\"name\":\"113\",\"value\":\"SEPA\"},{\"name\":\"108\",\"value\":\"ILOVESEPA\"}]}";
         SwiftBlock5 b5 = SwiftBlock5.fromJson(json);
-        assertTrue(b5.getTags().size()==2);
+        assertTrue(b5.getTags().size() == 2);
         assertEquals("SEPA", b5.getTagValue("113"));
         assertEquals("ILOVESEPA", b5.getTagValue("108"));
     }

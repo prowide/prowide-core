@@ -26,106 +26,106 @@ import static javax.persistence.FetchType.LAZY;
  * Applications may use to store revisions each time a message is edited.
  *
  * <p>XML metadata may be used to override or augment these JPA annotations.
- * 
- * @author sebastian@prowidesoftware.com
+ *
+ * @author sebastian
  * @since 7.8
  */
 @Entity
-@Table(name="swift_msg_revision")
+@Table(name = "swift_msg_revision")
 public class SwiftMessageRevision {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(name = "creation_date")
-	private Calendar creationDate = Calendar.getInstance();
+    @Column(name = "creation_date")
+    private Calendar creationDate = Calendar.getInstance();
 
-	@Column(length = 40, name="creation_user")
-	private String creationUser;
+    @Column(length = 40, name = "creation_user")
+    private String creationUser;
 
-	@Lob
-	private String message;
+    @Lob
+    private String message;
+    @Lob
+    @Basic(fetch = LAZY)
+    private String json;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		SwiftMessageRevision that = (SwiftMessageRevision) o;
-		return Objects.equals(creationDate, that.creationDate) &&
-				Objects.equals(creationUser, that.creationUser) &&
-				Objects.equals(message, that.message);
-	}
+    public SwiftMessageRevision() {
+        super();
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(creationDate, creationUser, message);
-	}
+    /**
+     * Creates a message revision from a messages.<br>
+     * Sets the revision message content with the actual message content.
+     * And sets the revision creation date and creation user with information
+     * taken from the current status info. If the message has no status, this
+     * fields are left null.
+     *
+     * @param msg message for the snapshot
+     */
+    public SwiftMessageRevision(AbstractSwiftMessage msg) {
+        super();
+        SwiftMessageStatusInfo status = msg.getStatusInfo();
+        if (status != null) {
+            this.creationDate = status.getCreationDate();
+            this.creationUser = status.getCreationUser();
+        }
+        this.message = msg.message();
+    }
 
-	@Lob
-	@Basic(fetch=LAZY)
-	private String json;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SwiftMessageRevision that = (SwiftMessageRevision) o;
+        return Objects.equals(creationDate, that.creationDate) &&
+                Objects.equals(creationUser, that.creationUser) &&
+                Objects.equals(message, that.message);
+    }
 
-	public SwiftMessageRevision() {
-		super();
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(creationDate, creationUser, message);
+    }
 
-	/**
-	 * Creates a message revision from a messages.<br> 
-	 * Sets the revision message content with the actual message content. 
-	 * And sets the revision creation date and creation user with information
-	 * taken from the current status info. If the message has no status, this
-	 * fields are left null. 
-	 * @param msg message for the snapshot
-	 */
-	public SwiftMessageRevision(AbstractSwiftMessage msg) {
-		super();
-		SwiftMessageStatusInfo status = msg.getStatusInfo();
-		if (status != null) {
-			this.creationDate = status.getCreationDate();
-			this.creationUser = status.getCreationUser();
-		}
-		this.message = msg.message();
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Calendar getCreationDate() {
+        return creationDate;
+    }
 
-	public Calendar getCreationDate() {
-		return creationDate;
-	}
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
+    }
 
-	public void setCreationDate(Calendar creationDate) {
-		this.creationDate = creationDate;
-	}
+    public String getCreationUser() {
+        return creationUser;
+    }
 
-	public String getCreationUser() {
-		return creationUser;
-	}
+    public void setCreationUser(String creationUser) {
+        this.creationUser = creationUser;
+    }
 
-	public void setCreationUser(String creationUser) {
-		this.creationUser = creationUser;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public String getJson() {
+        return json;
+    }
 
-	public String getJson() {
-		return json;
-	}
-
-	public void setJson(String json) {
-		this.json = json;
-	}
+    public void setJson(String json) {
+        this.json = json;
+    }
 
 }
