@@ -117,9 +117,11 @@ public interface SchemeConstantsC {
     public final static String CLPA = "CLPA";
     public final static String CSMV = "CSMV";
     public final static String COLLPRTY = "COLLPRTY";
+    public final static String CSAC = "CSAC";
     public final static String CLCI = "CLCI";
     public final static String CCMV = "CCMV";
     public final static String CASHMOVE = "CASHMOVE";
+    public final static String CRYD = "CRYD";
     public final static String CINS = "CINS";
     public final static String CONC = "CONC";
     public final static String CONP = "CONP";
@@ -134,6 +136,7 @@ public interface SchemeConstantsC {
     public final static String CACO = "CACO";
     public final static String CBON = "CBON";
     public final static String CUTS = "CUTS";
+    public final static String CPRF = "CPRF";
     public final static String CALDET = "CALDET";
     public final static String CANP = "CANP";
     public final static String CMPU = "CMPU";

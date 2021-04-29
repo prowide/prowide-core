@@ -65,6 +65,7 @@ public interface SchemeConstantsS {
     public final static String SEBL = "SEBL";
     public final static String SUBS = "SUBS";
     public final static String SHS = "SHS";
+    public final static String SPIA = "SPIA";
     public final static String SECMOVE = "SECMOVE";
     public final static String STTP = "STTP";
     public final static String SPLT = "SPLT";
@@ -94,6 +95,7 @@ public interface SchemeConstantsS {
     public final static String STIN = "STIN";
     public final static String SHRT = "SHRT";
     public final static String SXDT = "SXDT";
+    public final static String SODF = "SODF";
     public final static String STAC = "STAC";
     public final static String STAQ = "STAQ";
     public final static String SECDET = "SECDET";

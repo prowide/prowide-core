@@ -42,6 +42,7 @@ public interface SchemeConstantsM {
     public final static String MAUP = "MAUP";
     public final static String MACO = "MACO";
     public final static String MSC = "MSC";
+    public final static String MTAC = "MTAC";
     public final static String MNPE = "MNPE";
     public final static String MACL = "MACL";
     public final static String MOVE = "MOVE";

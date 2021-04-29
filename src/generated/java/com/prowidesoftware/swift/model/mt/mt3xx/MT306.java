@@ -135,6 +135,7 @@ Sequence G (O) (repetitive)<ul><li class="field">Field 15 G (M)</li>
 Sequence H (O)<ul><li class="field">Field 15 H (M)</li>
 <li class="field">Field 14 S (M) (repetitive)</li>
 <li class="field">Field 32 E (M)</li>
+<li class="field">Field 26 K (O)</li>
 </ul></li>
 <li class="sequence">
 Sequence I (O)<ul><li class="field">Field 15 I (M)</li>
@@ -1356,6 +1357,24 @@ public class MT306 extends AbstractMT implements Serializable {
 		final Tag t = tag("32E");
 		if (t != null) {
 			return new Field32E(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 26K, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 26K at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field26K object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field26K getField26K() {
+		final Tag t = tag("26K");
+		if (t != null) {
+			return new Field26K(t.getValue());
 		} else {
 			return null;
 		}

@@ -42,6 +42,7 @@ public interface SchemeConstantsL {
     public final static String LIDT = "LIDT";
     public final static String LYDT = "LYDT";
     public final static String LOTE = "LOTE";
+    public final static String LKBD = "LKBD";
     public final static String LIQU = "LIQU";
     public final static String LISH = "LISH";
     public final static String LAPD = "LAPD";

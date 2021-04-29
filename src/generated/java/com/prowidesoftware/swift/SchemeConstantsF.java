@@ -54,6 +54,7 @@ public interface SchemeConstantsF {
     public final static String FROM = "FROM";
     public final static String FORC = "FORC";
     public final static String FMT = "FMT";
+    public final static String FFRD = "FFRD";
     public final static String FSBN = "FSBN";
     public final static String FSSA = "FSSA";
     public final static String FIN = "FIN";

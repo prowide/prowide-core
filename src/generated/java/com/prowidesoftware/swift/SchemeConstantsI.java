@@ -26,6 +26,7 @@ public interface SchemeConstantsI {
     public final static String INT2 = "INT2";
     public final static String INTE = "INTE";
     public final static String ICM_ACT = "ICM/ACT";
+    public final static String ISDACS = "ISDACS";
     public final static String INT1 = "INT1";
     public final static String INSI = "INSI";
     public final static String INSF = "INSF";
@@ -45,6 +46,7 @@ public interface SchemeConstantsI {
     public final static String IPRC = "IPRC";
     public final static String INPOSDET = "INPOSDET";
     public final static String INPA = "INPA";
+    public final static String INPD = "INPD";
     public final static String INOP = "INOP";
     public final static String INCL = "INCL";
     public final static String ILSH = "ILSH";

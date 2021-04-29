@@ -16,6 +16,7 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsJ {
 
+    public final static String JOIN = "JOIN";
     public final static String JUDI = "JUDI";
 
 }

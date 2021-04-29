@@ -63,6 +63,7 @@ public interface SchemeConstantsA {
     public final static String ALLO = "ALLO";
     public final static String AKTI = "AKTI";
     public final static String AUTA = "AUTA";
+    public final static String ALTA = "ALTA";
     public final static String AVAI = "AVAI";
     public final static String ACTI = "ACTI";
     public final static String AGGR = "AGGR";
@@ -74,6 +75,7 @@ public interface SchemeConstantsA {
     public final static String AGDE = "AGDE";
     public final static String ACTV = "ACTV";
     public final static String AMCO = "AMCO";
+    public final static String ALRP = "ALRP";
     public final static String AMNT = "AMNT";
     public final static String ASRF = "ASRF";
     public final static String ALOC = "ALOC";

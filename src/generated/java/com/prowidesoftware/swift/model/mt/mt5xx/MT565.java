@@ -90,7 +90,7 @@ Fieldset 93
 Sequence C - Beneficial Owners' Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 L,P,R,V (M) (repetitive)</li><li>FieldsetItem 95 S (O) (repetitive)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 95 L,P,R,S,V (M) (repetitive)</li><li>FieldsetItem 95 S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 94
  (O) (repetitive)<ul><li>FieldsetItem 94 C (O)</li><li>FieldsetItem 94 C (O) (repetitive)</li></ul></li><li class="field">Field 36 B (M)</li>
 <li class="field">Field 22 F (O) (repetitive)</li>
@@ -115,6 +115,7 @@ Fieldset 92
  (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 90
  (O) (repetitive)<ul><li>FieldsetItem 90 A,B (O)</li><li>FieldsetItem 90 A,B (O)</li><li>FieldsetItem 90 A,B,E,F,J,L (O)</li><li>FieldsetItem 90 A,B (O)</li></ul></li><li class="field">Field 20 D (O)</li>
+<li class="field">Field 17 B (O)</li>
 <li class="fieldset">
 Fieldset 70
  (O) (repetitive)<ul><li>FieldsetItem 70 E (O) (repetitive)</li><li>FieldsetItem 70 E (O) (repetitive)</li><li>FieldsetItem 70 E (O) (repetitive)</li><li>FieldsetItem 70 E (O) (repetitive)</li></ul></li><li class="field">Field 16 S (M)</li>
@@ -459,6 +460,24 @@ public class MT565 extends AbstractMT implements Serializable {
 		final Tag t = tag("20D");
 		if (t != null) {
 			return new Field20D(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 17B, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 17B at MT565 is expected to be the only one.
+	 * 
+	 * @return a Field17B object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field17B getField17B() {
+		final Tag t = tag("17B");
+		if (t != null) {
+			return new Field17B(t.getValue());
 		} else {
 			return null;
 		}
