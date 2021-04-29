@@ -54,5 +54,6 @@ public interface SchemeConstantsL {
     public final static String LBTY = "LBTY";
     public final static String LIT = "LIT";
     public final static String LEAD = "LEAD";
+    public final static String LEAS = "LEAS";
 
 }

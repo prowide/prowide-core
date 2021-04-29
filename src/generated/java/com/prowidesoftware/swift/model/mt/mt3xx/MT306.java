@@ -59,9 +59,9 @@ Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
 <li class="field">Field 22 K (M)</li>
 <li class="field">Field 30 U (O)</li>
 <li class="field">Field 29 H (O)</li>
-<li class="field">Field 82 A,D,J (M)</li>
-<li class="field">Field 87 A,D,J (M)</li>
-<li class="field">Field 83 A,D,J (O)</li>
+<li class="field">Field 82 A,J (M)</li>
+<li class="field">Field 87 A,J (M)</li>
+<li class="field">Field 83 A,J (O)</li>
 <li class="field">Field 77 H (M)</li>
 <li class="field">Field 77 D (O)</li>
 <li class="field">Field 14 C (O)</li>
@@ -86,11 +86,11 @@ Sequence B2 (M)<ul><li class="field">Field 84 A,B,D,J (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence C (O)<ul><li class="field">Field 15 C (M)</li>
-<li class="field">Field 53 A,D,J (O)</li>
-<li class="field">Field 86 A,D,J (O)</li>
-<li class="field">Field 56 A,D,J (O)</li>
-<li class="field">Field 57 A,D,J (M)</li>
-<li class="field">Field 58 A,D,J (O)</li>
+<li class="field">Field 53 A,J (O)</li>
+<li class="field">Field 86 A,J (O)</li>
+<li class="field">Field 56 A,J (O)</li>
+<li class="field">Field 57 A,J (M)</li>
+<li class="field">Field 58 A,J (O)</li>
 </ul></li>
 <li class="sequence">
 Sequence D (O)<ul><li class="field">Field 15 D (M)</li>
@@ -105,11 +105,11 @@ Sequence D (O)<ul><li class="field">Field 15 D (M)</li>
 Sequence E (O)<ul><li class="field">Field 15 E (M)</li>
 <li class="field">Field 33 E (M)</li>
 <li class="field">Field 30 H (O)</li>
-<li class="field">Field 53 A,D,J (O)</li>
-<li class="field">Field 86 A,D,J (O)</li>
-<li class="field">Field 56 A,D,J (O)</li>
-<li class="field">Field 57 A,D,J (M)</li>
-<li class="field">Field 58 A,D,J (O)</li>
+<li class="field">Field 53 A,J (O)</li>
+<li class="field">Field 86 A,J (O)</li>
+<li class="field">Field 56 A,J (O)</li>
+<li class="field">Field 57 A,J (M)</li>
+<li class="field">Field 58 A,J (O)</li>
 </ul></li>
 <li class="sequence">
 Sequence F (O)<ul><li class="field">Field 15 F (M)</li>
@@ -191,10 +191,10 @@ Sequence L (O)<ul><li class="field">Field 15 L (M)</li>
 Sequence _L1 (O) (repetitive)<ul><li class="field">Field 30 F (M)</li>
 <li class="field">Field 32 H (M)</li>
 </ul></li>
-<li class="field">Field 53 A,D,J (O)</li>
-<li class="field">Field 86 A,D,J (O)</li>
-<li class="field">Field 56 A,D,J (O)</li>
-<li class="field">Field 57 A,D,J (O)</li>
+<li class="field">Field 53 A,J (O)</li>
+<li class="field">Field 86 A,J (O)</li>
+<li class="field">Field 56 A,J (O)</li>
+<li class="field">Field 57 A,J (O)</li>
 </ul></li>
 <li class="sequence">
 Sequence M (O)<ul><li class="field">Field 15 M (M)</li>
@@ -236,7 +236,7 @@ Sequence M1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -245,7 +245,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT306.class.getName());
 	
@@ -786,24 +786,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 82D, 
-	 * or null if none is found.<br>
-	 * The first occurrence of field 82D at MT306 is expected to be the only one.
-	 * 
-	 * @return a Field82D object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field82D getField82D() {
-		final Tag t = tag("82D");
-		if (t != null) {
-			return new Field82D(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82J, 
 	 * or null if none is found.<br>
 	 * The first occurrence of field 82J at MT306 is expected to be the only one.
@@ -840,24 +822,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 87D, 
-	 * or null if none is found.<br>
-	 * The first occurrence of field 87D at MT306 is expected to be the only one.
-	 * 
-	 * @return a Field87D object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field87D getField87D() {
-		final Tag t = tag("87D");
-		if (t != null) {
-			return new Field87D(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 87J, 
 	 * or null if none is found.<br>
 	 * The first occurrence of field 87J at MT306 is expected to be the only one.
@@ -888,24 +852,6 @@ public class MT306 extends AbstractMT implements Serializable {
 		final Tag t = tag("83A");
 		if (t != null) {
 			return new Field83A(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 83D, 
-	 * or null if none is found.<br>
-	 * The first occurrence of field 83D at MT306 is expected to be the only one.
-	 * 
-	 * @return a Field83D object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field83D getField83D() {
-		final Tag t = tag("83D");
-		if (t != null) {
-			return new Field83D(t.getValue());
 		} else {
 			return null;
 		}
@@ -2376,26 +2322,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 53D at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field53D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field53D> getField53D() {
-		final List<Field53D> result = new ArrayList<>();
-		final Tag[] tags = tags("53D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field53D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53J, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 53J at MT306 are expected at one sequence or across several sequences.
@@ -2430,26 +2356,6 @@ public class MT306 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field86A(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 86D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 86D at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field86D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field86D> getField86D() {
-		final List<Field86D> result = new ArrayList<>();
-		final Tag[] tags = tags("86D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field86D(tag.getValue()));
             }
 		}
 		return result;
@@ -2496,26 +2402,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 56D at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field56D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field56D> getField56D() {
-		final List<Field56D> result = new ArrayList<>();
-		final Tag[] tags = tags("56D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field56D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56J, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 56J at MT306 are expected at one sequence or across several sequences.
@@ -2556,26 +2442,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 57D at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field57D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field57D> getField57D() {
-		final List<Field57D> result = new ArrayList<>();
-		final Tag[] tags = tags("57D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field57D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57J, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 57J at MT306 are expected at one sequence or across several sequences.
@@ -2610,26 +2476,6 @@ public class MT306 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field58A(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 58D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 58D at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field58D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field58D> getField58D() {
-		final List<Field58D> result = new ArrayList<>();
-		final Tag[] tags = tags("58D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field58D(tag.getValue()));
             }
 		}
 		return result;

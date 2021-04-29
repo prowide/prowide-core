@@ -76,6 +76,7 @@ Fieldset 95
 Sequence B2 - Other Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 70 E (O) (repetitive)</li>
 <li class="field">Field 22 F (O)</li>
+<li class="field">Field 22 H (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 16 S (M)</li>
@@ -91,7 +92,7 @@ Sequence C - Other Details (O)<ul><li class="field">Field 16 R (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -100,7 +101,7 @@ public class MT671 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT671.class.getName());
 	
@@ -1225,7 +1226,7 @@ public class MT671 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceB2List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceB2List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceB2 delimited by 16R/16S with value specified in {@link SequenceB2#START_END_16RS}
@@ -1370,7 +1371,7 @@ public class MT671 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceC_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceC_sru2021(this);
 	}
 	
 	/**

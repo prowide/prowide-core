@@ -114,5 +114,6 @@ public interface SchemeConstantsT {
     public final static String TAL = "TAL";
     public final static String TTNA = "TTNA";
     public final static String TRANSFER = "TRANSFER";
+    public final static String TEND = "TEND";
 
 }

@@ -49,13 +49,13 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>2!a[/65x]</code></li>
+ * 		<li>validation pattern: <code>&lt;CC&gt;[/65x]</code></li>
  * 		<li>parser pattern: <code>S[/S]</code></li>
  * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2020</strong>
+ * This class complies with standard release <strong>SRU2021</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -63,7 +63,7 @@ public class Field44H extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -226,7 +226,7 @@ public class Field44H extends Field implements Serializable {
 	 */
 	@Override
 	public final String validatorPattern() {
-		return "2!a[/65x]";
+		return "<CC>[/65x]";
 	}
 
     /**

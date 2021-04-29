@@ -191,5 +191,6 @@ public interface SchemeConstantsC {
     public final static String COUR = "COUR";
     public final static String CLSVOPEN = "CLSVOPEN";
     public final static String CLSVCLOS = "CLSVCLOS";
+    public final static String CUST = "CUST";
 
 }

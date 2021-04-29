@@ -107,12 +107,15 @@ public interface SchemeConstantsR {
     public final static String RHOD = "RHOD";
     public final static String RUTH = "RUTH";
     public final static String REPALL = "REPALL";
+    public final static String RETURN = "RETURN";
     public final static String RETD = "RETD";
     public final static String REFE = "REFE";
     public final static String REQISSUE = "REQISSUE";
     public final static String REQAMEND = "REQAMEND";
     public final static String REIMBURS = "REIMBURS";
     public final static String REQFINAN = "REQFINAN";
+    public final static String RETN = "RETN";
+    public final static String REGM = "REGM";
     public final static String RC = "RC";
     public final static String RD = "RD";
 

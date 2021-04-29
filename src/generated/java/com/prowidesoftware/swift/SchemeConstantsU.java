@@ -37,6 +37,7 @@ public interface SchemeConstantsU {
     public final static String UCP_LATEST_VERSION = "UCP_LATEST_VERSION";
     public final static String URR_LATEST_VERSION = "URR_LATEST_VERSION";
     public final static String UNDK = "UNDK";
+    public final static String UCPR = "UCPR";
     public final static String URDG = "URDG";
 
 }

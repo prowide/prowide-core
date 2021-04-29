@@ -6,9 +6,9 @@ apply plugin: 'eclipse'
 
 archivesBaseName = 'pw-swift-core'
 
-def SRU = "2020"
+def SRU = "2021"
 
-version "SNAPSHOT-SRU${SRU}-9.1.5"
+version "SNAPSHOT-SRU${SRU}-9.2.0"
 group 'com.prowidesoftware'
 	
 sourceCompatibility = '1.8'

@@ -105,5 +105,9 @@ public interface SchemeConstantsA {
     public final static String ACNF = "ACNF";
     public final static String APPL = "APPL";
     public final static String ADDING_OUR_CONFIRMATION = "ADDING_OUR_CONFIRMATION";
+    public final static String APAY = "APAY";
+    public final static String ACNA = "ACNA";
+    public final static String ADVA = "ADVA";
+    public final static String ACCP = "ACCP";
 
 }

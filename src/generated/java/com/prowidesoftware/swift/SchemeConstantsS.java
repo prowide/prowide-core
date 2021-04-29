@@ -108,5 +108,6 @@ public interface SchemeConstantsS {
     public final static String SSIR = "SSIR";
     public final static String SSIDET = "SSIDET";
     public final static String STBY = "STBY";
+    public final static String STND = "STND";
 
 }

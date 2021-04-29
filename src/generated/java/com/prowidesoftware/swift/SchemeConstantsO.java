@@ -57,5 +57,7 @@ public interface SchemeConstantsO {
     public final static String OTHRDET = "OTHRDET";
     public final static String OVER = "OVER";
     public final static String OTHERFNC = "OTHERFNC";
+    public final static String OPEN = "OPEN";
+    public final static String ONEY = "ONEY";
 
 }

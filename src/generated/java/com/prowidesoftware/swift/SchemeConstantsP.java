@@ -117,5 +117,9 @@ public interface SchemeConstantsP {
     public final static String PUT = "PUT";
     public final static String PMTH = "PMTH";
     public final static String PRCD = "PRCD";
+    public final static String PREVINST = "PREVINST";
+    public final static String PREDENOT = "PREDENOT";
+    public final static String PERF = "PERF";
+    public final static String PAEX = "PAEX";
 
 }

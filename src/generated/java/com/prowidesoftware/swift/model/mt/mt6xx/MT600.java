@@ -48,9 +48,9 @@ Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
 <li class="field">Field 21  (M)</li>
 <li class="field">Field 22  (M)</li>
 <li class="field">Field 94 A (O)</li>
-<li class="field">Field 82 A,D,J (M)</li>
-<li class="field">Field 87 A,D,J (M)</li>
-<li class="field">Field 83 A,D,J (O)</li>
+<li class="field">Field 82 A,J (M)</li>
+<li class="field">Field 87 A,J (M)</li>
+<li class="field">Field 83 A,J (O)</li>
 <li class="field">Field 30  (M)</li>
 <li class="field">Field 26 C (M)</li>
 <li class="field">Field 26 H (O)</li>
@@ -67,9 +67,9 @@ Sequence B (O)<ul><li class="field">Field 15 B (M)</li>
 <li class="field">Field 86 A,B,D (O)</li>
 <li class="field">Field 87 A,B,D (M)</li>
 <li class="field">Field 34 P (M)</li>
-<li class="field">Field 53 A,B,D (O)</li>
-<li class="field">Field 56 A,B,D (O)</li>
-<li class="field">Field 57 A,B,D (M)</li>
+<li class="field">Field 53 A,J (O)</li>
+<li class="field">Field 56 A,J (O)</li>
+<li class="field">Field 57 A,J (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence C (O)<ul><li class="field">Field 15 C (M)</li>
@@ -77,8 +77,8 @@ Sequence C (O)<ul><li class="field">Field 15 C (M)</li>
 <li class="field">Field 86 A,B,D (O)</li>
 <li class="field">Field 87 A,B,D (M)</li>
 <li class="field">Field 34 R (M)</li>
-<li class="field">Field 56 A,B,D (O)</li>
-<li class="field">Field 57 A,B,D (M)</li>
+<li class="field">Field 56 A,J (O)</li>
+<li class="field">Field 57 A,J (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence D (O)<ul><li class="field">Field 15 D (M)</li>
@@ -120,7 +120,7 @@ Sequence D1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -129,7 +129,7 @@ public class MT600 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT600.class.getName());
 	
@@ -472,24 +472,6 @@ public class MT600 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 82D, 
-	 * or null if none is found.<br>
-	 * The first occurrence of field 82D at MT600 is expected to be the only one.
-	 * 
-	 * @return a Field82D object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field82D getField82D() {
-		final Tag t = tag("82D");
-		if (t != null) {
-			return new Field82D(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82J, 
 	 * or null if none is found.<br>
 	 * The first occurrence of field 82J at MT600 is expected to be the only one.
@@ -538,24 +520,6 @@ public class MT600 extends AbstractMT implements Serializable {
 		final Tag t = tag("83A");
 		if (t != null) {
 			return new Field83A(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 83D, 
-	 * or null if none is found.<br>
-	 * The first occurrence of field 83D at MT600 is expected to be the only one.
-	 * 
-	 * @return a Field83D object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field83D getField83D() {
-		final Tag t = tag("83D");
-		if (t != null) {
-			return new Field83D(t.getValue());
 		} else {
 			return null;
 		}
@@ -796,36 +760,18 @@ public class MT600 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 53B, 
+	 * Iterates through block4 fields and return the first one whose name matches 53J, 
 	 * or null if none is found.<br>
-	 * The first occurrence of field 53B at MT600 is expected to be the only one.
+	 * The first occurrence of field 53J at MT600 is expected to be the only one.
 	 * 
-	 * @return a Field53B object or null if the field is not found
+	 * @return a Field53J object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field53B getField53B() {
-		final Tag t = tag("53B");
+	public Field53J getField53J() {
+		final Tag t = tag("53J");
 		if (t != null) {
-			return new Field53B(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 53D, 
-	 * or null if none is found.<br>
-	 * The first occurrence of field 53D at MT600 is expected to be the only one.
-	 * 
-	 * @return a Field53D object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field53D getField53D() {
-		final Tag t = tag("53D");
-		if (t != null) {
-			return new Field53D(t.getValue());
+			return new Field53J(t.getValue());
 		} else {
 			return null;
 		}
@@ -1284,26 +1230,6 @@ public class MT600 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 87D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 87D at MT600 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field87D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field87D> getField87D() {
-		final List<Field87D> result = new ArrayList<>();
-		final Tag[] tags = tags("87D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field87D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 32F, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 32F at MT600 are expected at one sequence or across several sequences.
@@ -1404,6 +1330,26 @@ public class MT600 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 87D, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 87D at MT600 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field87D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field87D> getField87D() {
+		final List<Field87D> result = new ArrayList<>();
+		final Tag[] tags = tags("87D");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field87D(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56A, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
 	 * Multiple occurrences of field 56A at MT600 are expected at one sequence or across several sequences.
@@ -1424,40 +1370,20 @@ public class MT600 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56B, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56J, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 56B at MT600 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 56J at MT600 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field56B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field56J objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field56B> getField56B() {
-		final List<Field56B> result = new ArrayList<>();
-		final Tag[] tags = tags("56B");
+	public List<Field56J> getField56J() {
+		final List<Field56J> result = new ArrayList<>();
+		final Tag[] tags = tags("56J");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field56B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 56D at MT600 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field56D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field56D> getField56D() {
-		final List<Field56D> result = new ArrayList<>();
-		final Tag[] tags = tags("56D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field56D(tag.getValue()));
+                result.add(new Field56J(tag.getValue()));
             }
 		}
 		return result;
@@ -1484,40 +1410,20 @@ public class MT600 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57B, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57J, 
 	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 57B at MT600 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 57J at MT600 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field57B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field57J objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field57B> getField57B() {
-		final List<Field57B> result = new ArrayList<>();
-		final Tag[] tags = tags("57B");
+	public List<Field57J> getField57J() {
+		final List<Field57J> result = new ArrayList<>();
+		final Tag[] tags = tags("57J");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field57B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
-	 * Multiple occurrences of field 57D at MT600 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field57D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field57D> getField57D() {
-		final List<Field57D> result = new ArrayList<>();
-		final Tag[] tags = tags("57D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field57D(tag.getValue()));
+                result.add(new Field57J(tag.getValue()));
             }
 		}
 		return result;

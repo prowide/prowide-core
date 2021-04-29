@@ -65,14 +65,17 @@ public interface SchemeConstantsI {
     public final static String ITYP = "ITYP";
     public final static String INPE = "INPE";
     public final static String IRID = "IRID";
-    public final static String IRREVOCABLE_STANDBY = "IRREVOCABLE_STANDBY";
     public final static String IRREVOCABLE = "IRREVOCABLE";
     public final static String IRREVOCABLE_TRANSFERABLE = "IRREVOCABLE_TRANSFERABLE";
-    public final static String ISP_LATEST_VERSION = "ISP_LATEST_VERSION";
-    public final static String IRREVOC_TRANS_STANDBY = "IRREVOC_TRANS_STANDBY";
     public final static String INSU = "INSU";
     public final static String ISSUANCE = "ISSUANCE";
     public final static String ISSAMEND = "ISSAMEND";
     public final static String ISPR = "ISPR";
+    public final static String ICCO = "ICCO";
+    public final static String ISCO = "ISCO";
+    public final static String INCP = "INCP";
+    public final static String ISCA = "ISCA";
+    public final static String ISUA = "ISUA";
+    public final static String ICCA = "ICCA";
 
 }

@@ -60,5 +60,6 @@ public interface SchemeConstantsB {
     public final static String BMRB = "BMRB";
     public final static String BRIT = "BRIT";
     public final static String BUY = "BUY";
+    public final static String BILL = "BILL";
 
 }

@@ -76,5 +76,6 @@ public interface SchemeConstantsF {
     public final static String FAS = "FAS";
     public final static String FACT = "FACT";
     public final static String FRAUDMSG = "FRAUDMSG";
+    public final static String FIXD = "FIXD";
 
 }

@@ -74,5 +74,6 @@ public interface SchemeConstantsM {
     public final static String MANU = "MANU";
     public final static String MARK = "MARK";
     public final static String MAY_ADD = "MAY_ADD";
+    public final static String MESS = "MESS";
 
 }
