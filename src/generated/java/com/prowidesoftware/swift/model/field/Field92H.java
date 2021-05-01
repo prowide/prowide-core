@@ -102,6 +102,11 @@ public class Field92H extends Field implements Serializable, CurrencyContainer, 
 	public static final Integer AMOUNT = 3;
 
 	/**
+	 * Component number for the Rate Status subfield
+	 */
+	public static final Integer RATE_STATUS = 4;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field92H() {
@@ -311,7 +316,7 @@ public class Field92H extends Field implements Serializable, CurrencyContainer, 
 		result.add("Qualifier");
 		result.add("Currency");
 		result.add("Amount");
-		result.add(null);
+		result.add("Rate Status");
 		return result;
 	}
 
@@ -325,7 +330,7 @@ public class Field92H extends Field implements Serializable, CurrencyContainer, 
 		result.put(1, "qualifier");
 		result.put(2, "currency");
 		result.put(3, "amount");
-		result.put(4, "?");
+		result.put(4, "rateStatus");
 		return result;
 	}
 	/**
@@ -406,10 +411,18 @@ public class Field92H extends Field implements Serializable, CurrencyContainer, 
 		return SwiftFormatUtils.getNumber(getComponent(3));
 	}
 	/**
-	 * Gets the component 4 (Amount).
+	 * Gets the component 4 (Rate Status).
 	 * @return the component 4
 	 */
 	public String getComponent4() {
+		return getComponent(4);
+	}
+
+	/**
+	 * Gets the Rate Status (component 4).
+	 * @return the Rate Status from component 4
+	 */
+	public String getRateStatus() {
 		return getComponent(4);
 	}
     
@@ -567,10 +580,19 @@ public class Field92H extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Set the component4 (Amount).
+	 * Set the component4 (Rate Status).
 	 * @param component4 the component4 to set
 	 */
 	public Field92H setComponent4(String component4) {
+		setComponent(4, component4);
+		return this;
+	}
+	
+	/**
+	 * Set the Rate Status (component4).
+	 * @param component4 the Rate Status to set
+	 */
+	public Field92H setRateStatus(String component4) {
 		setComponent(4, component4);
 		return this;
 	}
@@ -700,8 +722,8 @@ public class Field92H extends Field implements Serializable, CurrencyContainer, 
 		if (jsonObject.get("amount") != null) {
 			field.setComponent3(jsonObject.get("amount").getAsString());
 		}
-		if (jsonObject.get("?") != null) {
-			field.setComponent4(jsonObject.get("?").getAsString());
+		if (jsonObject.get("rateStatus") != null) {
+			field.setComponent4(jsonObject.get("rateStatus").getAsString());
 		}
 		return field;
 	}

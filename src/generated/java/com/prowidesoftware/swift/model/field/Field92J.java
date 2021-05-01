@@ -114,9 +114,9 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	public static final Integer AMOUNT = 5;
 
 	/**
-	 * Component number for the Narrative subfield
+	 * Component number for the Rate Status subfield
 	 */
-	public static final Integer NARRATIVE = 6;
+	public static final Integer RATE_STATUS = 6;
 
 	/**
 	 * Default constructor. Creates a new field setting all components to null.
@@ -351,7 +351,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		result.add("Code");
 		result.add("Currency");
 		result.add("Amount");
-		result.add("Narrative");
+		result.add("Rate Status");
 		return result;
 	}
 
@@ -367,7 +367,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		result.put(3, "code");
 		result.put(4, "currency");
 		result.put(5, "amount");
-		result.put(6, "narrative");
+		result.put(6, "rateStatus");
 		return result;
 	}
 	/**
@@ -478,7 +478,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		return SwiftFormatUtils.getNumber(getComponent(5));
 	}
 	/**
-	 * Gets the component 6 (Narrative).
+	 * Gets the component 6 (Rate Status).
 	 * @return the component 6
 	 */
 	public String getComponent6() {
@@ -486,10 +486,10 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Gets the Narrative (component 6).
-	 * @return the Narrative from component 6
+	 * Gets the Rate Status (component 6).
+	 * @return the Rate Status from component 6
 	 */
-	public String getNarrative() {
+	public String getRateStatus() {
 		return getComponent(6);
 	}
     
@@ -683,7 +683,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 
 	/**
-	 * Set the component6 (Narrative).
+	 * Set the component6 (Rate Status).
 	 * @param component6 the component6 to set
 	 */
 	public Field92J setComponent6(String component6) {
@@ -692,10 +692,10 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	}
 	
 	/**
-	 * Set the Narrative (component6).
-	 * @param component6 the Narrative to set
+	 * Set the Rate Status (component6).
+	 * @param component6 the Rate Status to set
 	 */
-	public Field92J setNarrative(String component6) {
+	public Field92J setRateStatus(String component6) {
 		setComponent(6, component6);
 		return this;
 	}
@@ -831,11 +831,35 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 		if (jsonObject.get("amount") != null) {
 			field.setComponent5(jsonObject.get("amount").getAsString());
 		}
-		if (jsonObject.get("narrative") != null) {
-			field.setComponent6(jsonObject.get("narrative").getAsString());
+		if (jsonObject.get("rateStatus") != null) {
+			field.setComponent6(jsonObject.get("rateStatus").getAsString());
 		}
 		return field;
 	}
 	
+    /**
+     * @deprecated use RATE_STATUS instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    public static final Integer NARRATIVE = 6;
+
+    /**
+     * @deprecated use getRateStatus instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    public String getNarrative() {
+        return getRateStatus();
+    }
+
+    /**
+     * @deprecated use setRateStatus instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    public Field92J setNarrative(String narrative) {
+        return setRateStatus(narrative);
+    }
 
 }

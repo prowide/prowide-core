@@ -2,6 +2,10 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT 9.1.5
+  * (JIRA-519) Field92H: Added "Rate Status" accessors
+  * (JIRA-519) Field92J: Replaced "Narrative" accessors by "Rate Status" accessors
+
 RELEASE 9.1.4 - April 2021
   * Fixed getConditionalQualifier in fields 69C, 69D and 92H
   * Fixed field 41D isOptional(component) method
