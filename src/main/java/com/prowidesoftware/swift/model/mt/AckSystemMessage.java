@@ -26,12 +26,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Use {@link ServiceMessage21 instead}
+ * Use {@link ServiceMessage21 instead} this class will be removed in the SRU2022 update
  *
  * @since 7.8
  */
 @Deprecated
-@ProwideDeprecated(phase3 = TargetYear.SRU2021)
+@ProwideDeprecated(phase4 = TargetYear.SRU2022)
 public class AckSystemMessage extends ServiceMessage21 {
 
     /**

@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.IsoUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -65,9 +62,6 @@ public class BIC {
      */
     public static final String PARTNER_PREFIX = "PTS";
     protected String branch = null;
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    private String invalidCause = null;
     private String institution = null;
     private String country = null;
     private String location = null;
@@ -111,19 +105,6 @@ public class BIC {
     }
 
     /**
-     * Get a string with information about why the BIC was found invalid
-     *
-     * @return a human readable (english) string
-     * @deprecated use the {@link #validate()} method to get a detailed result of the validation problem found
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String getInvalidCause() {
-        DeprecationUtils.phase3(this.getClass(), "getInvalidCause()", "Use the validate() method to get a detailed result of the validation problem found");
-        return invalidCause;
-    }
-
-    /**
      * Validates the BIC structure.
      *
      * @return true if the BIC is valid and false otherwise
@@ -131,13 +112,7 @@ public class BIC {
      * problem found.
      */
     public boolean isValid() {
-        BicValidationResult result = validate();
-        if (result == BicValidationResult.OK) {
-            return true;
-        } else {
-            this.invalidCause = result.message();
-            return false;
-        }
+        return validate() == BicValidationResult.OK;
     }
 
     /**
@@ -368,28 +343,6 @@ public class BIC {
             return bic8 + getBranchOrDefault();
         }
         return null;
-    }
-
-    /**
-     * @since 7.7
-     * @deprecated use {@link #getCountry()} instead
-     */
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    @Deprecated
-    public String country() {
-        DeprecationUtils.phase3(getClass(), "country()", "use getCountry() instead");
-        return getCountry();
-    }
-
-    /**
-     * @since 7.8.5
-     * @deprecated use {@link #getInstitution()} instead
-     */
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    @Deprecated
-    public String institution() {
-        DeprecationUtils.phase3(getClass(), "institution()", "use getInstitution() instead");
-        return getInstitution();
     }
 
     /**

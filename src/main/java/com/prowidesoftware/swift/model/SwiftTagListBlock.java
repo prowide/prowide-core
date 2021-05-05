@@ -17,9 +17,6 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.field.Field16R;
 import com.prowidesoftware.swift.model.field.Field16S;
@@ -980,17 +977,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
     }
 
     /**
-     * @since 6.5
-     * @deprecated use #getSubBlock(Integer, Integer) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public SwiftTagListBlock getSubBlockByIndex(final Integer startIndex, final Integer endIndex) {
-        DeprecationUtils.phase3(getClass(), "getSubBlockByIndex(Integer, Integer", "use getSubBlock(Integer, Integer) instead");
-        return getSubBlock(startIndex, endIndex);
-    }
-
-    /**
      * Get a new list with the elements contained between start and end, both inclusive.
      * Both start and end <em>may be null</em>.
      * For a new block excluding the end index use {@link #getSubBlock(Integer, Integer)}
@@ -1402,16 +1388,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
             }
         }
         return -1;
-    }
-
-    /**
-     * @deprecated use {@link #getSubBlockBeforeFirst(String, boolean)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public SwiftTagListBlock trimAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
-        DeprecationUtils.phase3(getClass(), "trimAfterFirst(String, boolean)", "use getSubBlockBeforeFirst(String, boolean) instead");
-        return getSubBlockBeforeFirst(tagname, includeBoundaryInResult);
     }
 
     /**
@@ -1881,37 +1857,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
             }
         }
         return new SwiftTagListBlock(tags);
-    }
-
-    /**
-     * Legacy (version 1) json representation of this object.
-     *
-     * <p>This implementation has been replaced by version 2, based on Gson.
-     * The main difference is the list of tags in the new version is serialized
-     * as a named field "tags".
-     *
-     * @return a string with the message content serialized as JSON
-     * @since 7.9.8
-     * @deprecated use {@link #toJson()} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String toJsonV1() {
-        DeprecationUtils.phase3(getClass(), "toJsonV1()", "use toJson() instead");
-        final StringBuilder sb = new StringBuilder();
-        sb.append("[ \n");
-        if (this.tags != null && !this.tags.isEmpty()) {
-            for (int i = 0; i < this.tags.size(); i++) {
-                final Tag t = this.tags.get(i);
-                sb.append("{ \"").append(t.getName()).append("\" : \"").append(escapeJson(t.getValue())).append("\" }");
-                if (i + 1 < this.tags.size()) {
-                    sb.append(',');
-                }
-                sb.append('\n');
-            }
-        }
-        sb.append("]");
-        return sb.toString();
     }
 
     private String escapeJson(final String value) {

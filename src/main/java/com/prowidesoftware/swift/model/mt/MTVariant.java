@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.model.mt;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
 /**
  * Official variants for MT messages (not including closed user groups version of messages)
  *
@@ -27,21 +24,7 @@ import com.prowidesoftware.deprecation.TargetYear;
 public enum MTVariant {
     STP(true),
     REMIT(true),
-    COV(true),
-
-    /*
-     * this message variant was removed from the standard in SRU2017
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    IRSLST(false),
-
-    /*
-     * this message variant was removed from the standard in SRU2017
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    W8BENO(false);
+    COV(true);
 
     boolean validationFlag = false;
 

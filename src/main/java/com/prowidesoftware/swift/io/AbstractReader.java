@@ -81,9 +81,9 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      * @deprecated the use of this object as Iterator is discourage because its internal reader can be iterated just once, use it as Iterable instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2021)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2022)
     public Iterator<String> iterator() throws IllegalArgumentException {
-        DeprecationUtils.phase2(this.getClass(), "iterator", "use it as Iterable instead");
+        DeprecationUtils.phase3(this.getClass(), "iterator", "use it as Iterable instead");
         if (usedAsIterable) {
             throw new IllegalStateException("This reader has already been used as iterator and the implementation does not support multiple iterations, create another reader instead");
         }

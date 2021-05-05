@@ -748,7 +748,7 @@ public class Field98H extends Field implements Serializable {
 	 * @deprecated use OFFSET instead
 	 */
 	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
     public static final Integer TIME_2 = 4;
 
 	/**
@@ -771,8 +771,9 @@ public class Field98H extends Field implements Serializable {
      * @deprecated use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
     public String getTime2() {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getTime2()", "Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset");
         return getOffset();
     }
 
@@ -780,8 +781,9 @@ public class Field98H extends Field implements Serializable {
      * @deprecated use getOffsetAsCalendar() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
     public java.util.Calendar getTime2AsCalendar() {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getTime2AsCalendar()", "Use getOffsetAsCalendar() instead");
         return SwiftFormatUtils.getTime3(getOffset());
     }
 
@@ -789,8 +791,9 @@ public class Field98H extends Field implements Serializable {
      * @deprecated use setOffset(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
 	public Field98H setTime2(String component) {
+	    com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setTime2(String)", "Use setOffset(String) instead");
 	    return setOffset(component);
 	}
 
@@ -798,8 +801,9 @@ public class Field98H extends Field implements Serializable {
      * @deprecated use setOffset(Calendar) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
 	public Field98H setTime2(java.util.Calendar cal) {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setTime2(Calendar)", "Use setOffset(Calendar) instead");
         return setOffset(cal);
 	}
 }

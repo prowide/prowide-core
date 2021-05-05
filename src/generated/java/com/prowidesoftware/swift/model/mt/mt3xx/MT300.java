@@ -3702,9 +3702,9 @@ public class MT300 extends AbstractMT implements Serializable {
 	 */
 	@SequenceStyle(Type.CUSTOM)
 	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2022)
 	public SequenceE1 getSequenceE1() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getSequenceE1()", "Use the getSequenceE1List() instead, this sequence is repetitive");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getSequenceE1()", "Use the getSequenceE1List() instead, this sequence is repetitive");
 		return getSequenceE1(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
@@ -3718,9 +3718,9 @@ public class MT300 extends AbstractMT implements Serializable {
 	 */
 	@SequenceStyle(Type.CUSTOM)
 	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2022)
 	public SequenceE1 getSequenceE1(final SwiftTagListBlock parentSequence) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getSequenceE1(SwiftTagListBlock)", "Use the getSequenceE1List(SwiftTagListBlock) instead, this sequence is repetitive");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getSequenceE1(SwiftTagListBlock)", "Use the getSequenceE1List(SwiftTagListBlock) instead, this sequence is repetitive");
 		List<SequenceE1> all = getSequenceE1List(parentSequence);
 		if (!all.isEmpty()) {
 		    return all.get(0);

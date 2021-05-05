@@ -55,15 +55,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     protected List<String> components;
 
     /**
-     * @deprecated use {@link #Field(int)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    protected Field() {
-        DeprecationUtils.phase3(getClass(), "Field() no args constructor", "Use the constructor Field(int) with the number of components parameter instead");
-    }
-
-    /**
      * Creates a field with the list of components initialized to the given number of components.
      *
      * @param components the number of components to initialize
@@ -806,35 +797,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public abstract boolean isOptional(int component);
 
     public abstract boolean isGeneric();
-
-    /**
-     * Moved to GenericField Interface
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String getDSS() {
-        return null;
-    }
-
-    // FIXME debido a esto: el nombre del field deberia ser validado y eliminado como atributo dinamico
-
-    /**
-     * Moved to GenericField Interface
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public boolean isDSSPresent() {
-        return false;
-    }
-
-    /**
-     * Moved to GenericField Interface
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String getConditionalQualifier() {
-        return null;
-    }
 
     /**
      * Return the letter option of this field as given by it classname or null if this field has no letter option
