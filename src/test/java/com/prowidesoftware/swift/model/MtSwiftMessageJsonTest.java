@@ -62,7 +62,7 @@ public class MtSwiftMessageJsonTest {
         m.setNotes(notes);
         assertNotNull(m);
         String s = m.toJson();
-        System.out.println(s);
+        //System.out.println(s);
 
         JsonParser parser = new JsonParser();
         JsonObject o = parser.parse(s).getAsJsonObject();

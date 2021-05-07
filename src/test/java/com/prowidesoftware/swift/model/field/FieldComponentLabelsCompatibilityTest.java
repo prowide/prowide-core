@@ -71,7 +71,7 @@ public class FieldComponentLabelsCompatibilityTest {
     }
 
     @Test
-    public void test50K() throws Exception {
+    public void test50K() {
         final String label = Field.getLabelComponents("50K", null, null, null);
         System.out.println(label);
     }
