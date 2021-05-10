@@ -2,12 +2,10 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
-SNAPSHOT 9.2.0 - May 2021
+RELEASE 9.2.0 - May 2021
   * SWIFT Standard release update 2021 (live 21 November 2021)
   * Yearly revision of deprecation phase (see http://www.prowidesoftware.com/resources/deprecation-policy)
   * Fixed the getSequence API in MT classes when the sequence boundary field is repetitive, in some scenarios produced invalid results
-
-SNAPSHOT 9.1.5
   * (JIRA-519) Field92H: Added "Rate Status" accessors
   * (JIRA-519) Field92J: Replaced "Narrative" accessors by "Rate Status" accessors
 
