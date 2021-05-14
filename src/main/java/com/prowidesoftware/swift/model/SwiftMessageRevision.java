@@ -46,6 +46,7 @@ public class SwiftMessageRevision {
 
     @Lob
     private String message;
+
     @Lob
     @Basic(fetch = LAZY)
     private String json;

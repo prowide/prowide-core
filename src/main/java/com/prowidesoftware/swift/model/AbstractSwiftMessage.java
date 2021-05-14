@@ -68,65 +68,87 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     protected final static String IDENTIFIER_NAK = "NAK";
     private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
     private static final long serialVersionUID = 3769865560736793606L;
-    @Column(length = 40)
-    protected String identifier;
-    @Column(length = 12)
-    protected String sender;
-    @Column(length = 12)
-    protected String receiver;
+
     /**
      * Unique identifier (used for ORM mapped to the table record id)
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(length = 40)
+    protected String identifier;
+
+    @Column(length = 12)
+    protected String sender;
+
+    @Column(length = 12)
+    protected String receiver;
+
     @Lob
     private String message;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 8)
     private MessageIOType direction;
+
     @Column(length = 32, name = "checksum")
     private String checksum;
+
     @Column(length = 32, name = "checksum_body")
     private String checksumBody;
+
     @Column(name = "last_modified")
     private Calendar lastModified = Calendar.getInstance();
+
     @Column(name = "creation_date")
     private Calendar creationDate = Calendar.getInstance();
+
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "msg_id", nullable = false)
     @OrderColumn(name = "sort_key")
     private List<SwiftMessageStatusInfo> statusTrail = new ArrayList<>();
+
     @Column(length = 50)
     private String status;
+
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "msg_id", nullable = false)
     @OrderColumn(name = "sort_key")
     private List<SwiftMessageNote> notes = new ArrayList<>();
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "swift_msg_properties", joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "property_key", length = 200)
     @Column(name = "property_value")
     @Lob //only applies to the value
     private Map<String, String> properties = new HashMap<>();
+
     @Column(length = 100)
     private String filename;
+
     @Transient
     private FileFormat fileFormat;
+
     @Column(length = 35)
     private String reference;
+
     @Column(length = 3)
     private String currency;
+
     private BigDecimal amount;
+
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "msg_id", nullable = false)
     @OrderColumn(name = "sort_key")
     private List<SwiftMessageRevision> revisions = new ArrayList<>();
+
     /**
      * @since 7.10.8
      */
     @Temporal(TemporalType.DATE)
     private java.util.Calendar valueDate;
+
     /**
      * @since 7.10.8
      */
