@@ -301,4 +301,20 @@ public class FieldTest {
         assertFalse(f.is("FOO", "BAR", "ABC"));
     }
 
+    @Test
+    public void testAsTag() {
+        Tag t = new Field32A("210518USD1234,56").asTag();
+        assertEquals(Field32A.NAME, t.getName());
+        assertEquals("210518USD1234,56", t.getValue());
+
+        t = new Field15A("").asTag();
+        assertEquals(Field15A.NAME, t.getName());
+        assertEquals("", t.getValue());
+
+        t = new Field15A().asTag();
+        assertEquals(Field15A.NAME, t.getName());
+        // field getValue() is empty, not null, so the Tag ends up with empty as value
+        assertEquals("", t.getValue());
+    }
+
 }

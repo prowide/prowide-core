@@ -83,6 +83,13 @@ public class TagTest {
     }
 
     @Test
+    public void test9() {
+        Tag t = new Tag("20", (String) null);
+        assertEquals("20", t.getName());
+        assertNull(t.getValue());
+    }
+
+    @Test
     public void test_getLetterOption() {
         Tag t = new Tag("58A:value");
         assertEquals("58A", t.getName());

@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.5
+  * (JIRA-534) allowed null value for the Tag constructor
   * Fixed the getSequence API in MT classes when the sequence boundary field is repetitive, in some scenarios produced invalid results
   * (JIRA-519) Field92H: Added "Rate Status" accessors
   * (JIRA-519) Field92J: Replaced "Narrative" accessors by "Rate Status" accessors
