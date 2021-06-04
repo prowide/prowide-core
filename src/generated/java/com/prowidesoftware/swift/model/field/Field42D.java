@@ -53,7 +53,7 @@ import com.google.gson.JsonParser;
  * </ol>
  *
  * <p>Structure definition
- * <u
+ * <ul>
  * 		<li>validation pattern: <code>[[/&lt;DC&gt;][/34x]$]35x[$35x]0-3</code></li>
  * 		<li>parser pattern: <code>[[/c][/S]$]S[$S]0-3</code></li>
  * 		<li>components pattern: <code>SSSSSS</code></li>
