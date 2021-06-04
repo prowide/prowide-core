@@ -109,13 +109,14 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     }
 
     /**
-     * Compares all elements of block2.
+     * Return true if blocks are equals in all values but the ones with the ignore flag. Fields that can be ignored
+     * are the optional fields, the BIC LT identifier and the BIC location flag.
      * <br>
      * If both blocks null will return <code>true</code> and one null and the other one not null will return <code>false</code>
      *
      * @param left  first block to compare
      * @param right second block to compare
-     * @return <code>true</code> if both blocks are null or equal (from ACK point of view) or false in any other case
+     * @return true if both blocks are equal or null, false otherwise
      */
     public boolean compareB2(final SwiftBlock2 left, final SwiftBlock2 right) {
         if (left == null && right == null) {
@@ -265,13 +266,13 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     }
 
     /**
-     * Return true if blocks are equals in all values except session and sequence number and false in any other case
-     * (including one of them being null).
+     * Return true if blocks are equals in all values but the ones with the ignore flag. Fields that can be ignored
+     * are the session and sequence numbers, the BIC LT identifier and the BIC location flag.
      * If both parameters are null it returns <code>true</code>, since there is nothing to compare.
      *
      * @param left  block to compare
      * @param right block to compare
-     * @return true if left equals right (except mentioned fields) and none is null false in any other case
+     * @return true if left equals right (except mentioned fields) or both null, false otherwise
      */
     public boolean compareB1(final SwiftBlock1 left, final SwiftBlock1 right) {
         if (left == null && right == null) {
@@ -291,11 +292,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     private boolean compareLTAddress(String logicalTerminalLeft, String logicalTerminalRight) {
         LogicalTerminalAddress leftLTAddress = new LogicalTerminalAddress(logicalTerminalLeft);
         LogicalTerminalAddress rightLTAddress = new LogicalTerminalAddress(logicalTerminalRight);
-        if (this.ignoreLT) {
-            leftLTAddress.setLTIdentifier('A');
-            rightLTAddress.setLTIdentifier('A');
-        }
-        boolean sameLTIdentifier = leftLTAddress.getLTIdentifier() == rightLTAddress.getLTIdentifier();
+        boolean sameLTIdentifier = this.ignoreLT || leftLTAddress.getLTIdentifier() == rightLTAddress.getLTIdentifier();
         boolean sameBic11 = compareBic(leftLTAddress, rightLTAddress);
         return sameLTIdentifier && sameBic11;
     }
