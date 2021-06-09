@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT 9.1.6
+  * Enhanced parser for LogicalTerminalAddress when the parameter has 9 characters
+
 RELEASE 9.1.5 - June 2021
   * (JIRA-534) allowed null value for the Tag constructor
   * Fixed the getSequence API in MT classes when the sequence boundary field is repetitive, in some scenarios produced invalid results

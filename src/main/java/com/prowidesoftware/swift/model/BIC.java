@@ -64,13 +64,19 @@ public class BIC {
      * @since 7.8
      */
     public static final String PARTNER_PREFIX = "PTS";
+
     protected String branch = null;
+
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2021)
     private String invalidCause = null;
+
     private String institution = null;
+
     private String country = null;
+
     private String location = null;
+
     private String subtype = null;
 
     /**
