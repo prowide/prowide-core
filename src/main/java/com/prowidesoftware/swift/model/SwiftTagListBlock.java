@@ -1859,13 +1859,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         return new SwiftTagListBlock(tags);
     }
 
-    private String escapeJson(final String value) {
-        String tmp = StringUtils.replace(value, "\n", "\\n");
-        tmp = StringUtils.replace(tmp, "\"", "\\\"");
-        tmp = StringUtils.remove(tmp, "\r");
-        return tmp;
-    }
-
     /**
      * Get a json representation of this block.
      * <p>
