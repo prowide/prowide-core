@@ -3,6 +3,8 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.6
+  * Added "ignore block 3" and "ignore priority" options to the SwiftMessageComparator
+  * Added field classes for SCORE messages: 12[H,K,L], 20E, 25F, 29[D,F], 31R, 78B (to be used in the proprietary payload of the MT798 envelop)
   * Enhanced parser for LogicalTerminalAddress when the parameter has 9 characters
 
 RELEASE 9.1.5 - June 2021

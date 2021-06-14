@@ -170,6 +170,18 @@ public class SwiftMessageComparatorTest {
     }
 
     @Test
+    public void testB2InputPriority() {
+        SwiftMessageComparator comp = new SwiftMessageComparator();
+
+        SwiftBlock2Input left = new SwiftBlock2Input("I103BBBBUSCAXXXXN");
+        SwiftBlock2Input right = new SwiftBlock2Input("I103BBBBUSCAXXXXU");
+        assertFalse(comp.compareB2(left, right));
+
+        comp.setIgnorePriority(true);
+        assertTrue(comp.compareB2(left, right));
+    }
+
+    @Test
     public void testB2Output() {
         SwiftMessageComparator comp = new SwiftMessageComparator();
 
@@ -204,6 +216,18 @@ public class SwiftMessageComparatorTest {
         assertFalse(comp.compareB2(b3, b4));
 
         comp.setIgnoreLocationFlag(true);
+        assertTrue(comp.compareB2(b3, b4));
+    }
+
+    @Test
+    public void testB2OutputPriority() {
+        SwiftMessageComparator comp = new SwiftMessageComparator();
+
+        SwiftBlock2Output b3 = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
+        SwiftBlock2Output b4 = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201U");
+        assertFalse(comp.compareB2(b3, b4));
+
+        comp.setIgnorePriority(true);
         assertTrue(comp.compareB2(b3, b4));
     }
 
@@ -245,4 +269,29 @@ public class SwiftMessageComparatorTest {
         assertTrue(comp.compare(m1, m2) == 0);
     }
 
+    @Test
+    public void testB3() throws IOException {
+        SwiftMessageComparator comp = new SwiftMessageComparator();
+
+        SwiftMessage msg1 = SwiftMessage.parse("{1:F01BICFOOYYAXXX8667486276}{2:O1031610051014IRVTUS3NBXXX63382244920510142210N}{3:{108:FDF0510141142100}{121:8579f4a4-a547-463e-ae63-e7c6620d59b4}}{4:\n" +
+                ":20:FDF0510141142100\n" +
+                ":72:/ACC/ 00940060752415000231\n" +
+                "-}");
+        assertTrue(comp.compare(msg1, msg1) == 0);
+
+        SwiftMessage msg2 = SwiftMessage.parse("{1:F01BICFOOYYAXXX8667486276}{2:O1031610051014IRVTUS3NBXXX63382244920510142210N}{3:{108:FDF0510141142100}}{4:\n" +
+            ":20:FDF0510141142100\n" +
+            ":72:/ACC/ 00940060752415000231\n" +
+            "-}");
+
+        SwiftMessage msg3 = SwiftMessage.parse("{1:F01BICFOOYYAXXX8667486276}{2:O1031610051014IRVTUS3NBXXX63382244920510142210N}{3:{121:8579f4a4-a547-463e-ae63-e7c6620d59b4}}{4:\n" +
+                ":20:FDF0510141142100\n" +
+                ":72:/ACC/ 00940060752415000231\n" +
+                "-}");
+
+        assertTrue(comp.compare(msg2, msg3) != 0);
+
+        comp.setIgnoreBlock3(true);
+        assertTrue(comp.compare(msg2, msg3) == 0);
+    }
 }
