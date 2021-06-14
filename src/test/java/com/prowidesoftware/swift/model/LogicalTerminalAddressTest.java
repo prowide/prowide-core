@@ -35,60 +35,70 @@ public class LogicalTerminalAddressTest {
         assertNull(b.getLocation());
         assertNull(b.getBranch());
         assertNull(b.getLTIdentifier());
+
         b = new LogicalTerminalAddress("");
         assertNull(b.getInstitution());
         assertNull(b.getCountry());
         assertNull(b.getLocation());
         assertNull(b.getBranch());
         assertNull(b.getLTIdentifier());
+
         b = new LogicalTerminalAddress("I");
         assertEquals("I", b.getInstitution());
         assertNull(b.getCountry());
         assertNull(b.getLocation());
         assertNull(b.getBranch());
         assertNull(b.getLTIdentifier());
+
         b = new LogicalTerminalAddress("IIII");
         assertEquals("IIII", b.getInstitution());
         assertNull(b.getCountry());
         assertNull(b.getLocation());
         assertNull(b.getBranch());
         assertNull(b.getLTIdentifier());
+
         b = new LogicalTerminalAddress("IIIIC");
         assertEquals("IIII", b.getInstitution());
         assertEquals("C", b.getCountry());
         assertNull(b.getLocation());
         assertNull(b.getBranch());
         assertNull(b.getLTIdentifier());
+
         b = new LogicalTerminalAddress("IIIICC");
         assertEquals("IIII", b.getInstitution());
         assertEquals("CC", b.getCountry());
         assertNull(b.getLocation());
         assertNull(b.getBranch());
         assertNull(b.getLTIdentifier());
+
         b = new LogicalTerminalAddress("IIIICCL");
         assertEquals("IIII", b.getInstitution());
         assertEquals("CC", b.getCountry());
         assertEquals("L", b.getLocation());
         assertNull(b.getBranch());
         assertNull(b.getLTIdentifier());
+
         b = new LogicalTerminalAddress("IIIICCLL");
         assertEquals("IIII", b.getInstitution());
         assertEquals("CC", b.getCountry());
         assertEquals("LL", b.getLocation());
         assertNull(b.getBranch());
         assertNull(b.getLTIdentifier());
+
         b = new LogicalTerminalAddress("IIIICCLLB");
         assertEquals("IIII", b.getInstitution());
         assertEquals("CC", b.getCountry());
         assertEquals("LL", b.getLocation());
-        assertEquals("B", b.getBranch());
-        assertNull(b.getLTIdentifier());
+        assertEquals('B', b.getLTIdentifier());
+        assertNull(b.getBranch());
+
         b = new LogicalTerminalAddress("IIIICCLLBBB");
         assertEquals("IIII", b.getInstitution());
         assertEquals("CC", b.getCountry());
         assertEquals("LL", b.getLocation());
         assertEquals("BBB", b.getBranch());
         assertNull(b.getLTIdentifier());
+
         b = new LogicalTerminalAddress("IIIICCLLABBB");
         assertEquals("IIII", b.getInstitution());
         assertEquals("CC", b.getCountry());

@@ -37,7 +37,7 @@ public abstract class AbstractMessage {
     }
 
     /**
-     * Serializa this message into its raw SWIFT format: FIN for MT and XML for MX
+     * Serialize this message into its raw SWIFT format: FIN for MT and XML for MX
      *
      * @return the message content
      * @since 8.0.2

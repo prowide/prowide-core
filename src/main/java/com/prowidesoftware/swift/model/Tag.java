@@ -110,14 +110,10 @@ public class Tag implements Serializable {
      *
      * @param tagname name of this tag
      * @param value   the value of this tag
-     * @throws IllegalArgumentException if parameter tagname or value are null
+     * @throws IllegalArgumentException if parameter tagname is null
      */
     public Tag(String tagname, String value) {
-
-        // sanity check
-        Validate.notNull(tagname, "parameter 'tagname' cannot be null");
-        Validate.notNull(value, "parameter 'value' cannot be null");
-
+        Validate.notNull(tagname, "tag name cannot be null");
         this.name = tagname;
         this.value = value;
     }

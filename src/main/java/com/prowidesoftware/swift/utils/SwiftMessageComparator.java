@@ -73,6 +73,16 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     protected boolean ignoreLocationFlag = false;
 
     /**
+     * @since 9.1.6
+     */
+    protected boolean ignoreBlock3 = false;
+
+    /**
+     * @since 9.1.6
+     */
+    protected boolean ignorePriority = false;
+
+    /**
      * List of tagnames to ignore in comparison.
      * tagnames will be matched using tag.getName()
      */
@@ -101,7 +111,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         Validate.notNull(right);
         final boolean b1 = compareB1(left.getBlock1(), right.getBlock1());
         final boolean b2 = compareB2(left.getBlock2(), right.getBlock2());
-        final boolean b3 = compareTagListBlock(left.getBlock3(), right.getBlock3());
+        final boolean b3 = ignoreBlock3 || compareTagListBlock(left.getBlock3(), right.getBlock3());
         final boolean b4 = compareTagListBlock(left.getBlock4(), right.getBlock4());
         final boolean b5 = this.ignoreTrailer || compareTagListBlock(left.getBlock5(), right.getBlock5());
         log.finest("b1=" + b1 + ", b2=" + b2 + ", b3=" + b3 + ", b4=" + b4 + ", b5=" + b5);
@@ -109,13 +119,14 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     }
 
     /**
-     * Compares all elements of block2.
+     * Return true if blocks are equals in all values but the ones with the ignore flag. Fields that can be ignored
+     * are the optional fields, the BIC LT identifier and the BIC location flag.
      * <br>
      * If both blocks null will return <code>true</code> and one null and the other one not null will return <code>false</code>
      *
      * @param left  first block to compare
      * @param right second block to compare
-     * @return <code>true</code> if both blocks are null or equal (from ACK point of view) or false in any other case
+     * @return true if both blocks are equal or null, false otherwise
      */
     public boolean compareB2(final SwiftBlock2 left, final SwiftBlock2 right) {
         if (left == null && right == null) {
@@ -140,7 +151,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         boolean sameReceiverAddress = compareLTAddress(left.getReceiverAddress(), right.getReceiverAddress());
         boolean sameDeliveryMonitoring = ignoreBlock2OptionalFields || StringUtils.equals(left.getDeliveryMonitoring(), right.getDeliveryMonitoring());
         boolean sameObsolescencePeriod = ignoreBlock2OptionalFields || StringUtils.equals(left.getObsolescencePeriod(), right.getObsolescencePeriod());
-        boolean samePriority = StringUtils.equals(left.getMessagePriority(), right.getMessagePriority());
+        boolean samePriority = ignorePriority || StringUtils.equals(left.getMessagePriority(), right.getMessagePriority());
         return sameType && sameReceiverAddress && sameDeliveryMonitoring && sameObsolescencePeriod && samePriority;
     }
 
@@ -153,7 +164,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         boolean sameMIRSequenceNumber = StringUtils.equals(left.getMIRSequenceNumber(), right.getMIRSequenceNumber());
         boolean sameReceiverOutputDate = StringUtils.equals(left.getReceiverOutputDate(), right.getReceiverOutputDate());
         boolean sameReceiverOutputTime = StringUtils.equals(left.getReceiverOutputTime(), right.getReceiverOutputTime());
-        boolean samePriority = StringUtils.equals(left.getMessagePriority(), right.getMessagePriority());
+        boolean samePriority = ignorePriority || StringUtils.equals(left.getMessagePriority(), right.getMessagePriority());
         return sameType && sameSenderInputTime && sameMIRDate && sameMIRLogicalTerminal && sameMIRSessionNumber &&
                 sameMIRSequenceNumber && sameReceiverOutputDate && sameReceiverOutputTime && samePriority;
     }
@@ -265,13 +276,13 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     }
 
     /**
-     * Return true if blocks are equals in all values except session and sequence number and false in any other case
-     * (including one of them being null).
+     * Return true if blocks are equals in all values but the ones with the ignore flag. Fields that can be ignored
+     * are the session and sequence numbers, the BIC LT identifier and the BIC location flag.
      * If both parameters are null it returns <code>true</code>, since there is nothing to compare.
      *
      * @param left  block to compare
      * @param right block to compare
-     * @return true if left equals right (except mentioned fields) and none is null false in any other case
+     * @return true if left equals right (except mentioned fields) or both null, false otherwise
      */
     public boolean compareB1(final SwiftBlock1 left, final SwiftBlock1 right) {
         if (left == null && right == null) {
@@ -291,11 +302,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     private boolean compareLTAddress(String logicalTerminalLeft, String logicalTerminalRight) {
         LogicalTerminalAddress leftLTAddress = new LogicalTerminalAddress(logicalTerminalLeft);
         LogicalTerminalAddress rightLTAddress = new LogicalTerminalAddress(logicalTerminalRight);
-        if (this.ignoreLT) {
-            leftLTAddress.setLTIdentifier('A');
-            rightLTAddress.setLTIdentifier('A');
-        }
-        boolean sameLTIdentifier = leftLTAddress.getLTIdentifier() == rightLTAddress.getLTIdentifier();
+        boolean sameLTIdentifier = this.ignoreLT || leftLTAddress.getLTIdentifier() == rightLTAddress.getLTIdentifier();
         boolean sameBic11 = compareBic(leftLTAddress, rightLTAddress);
         return sameLTIdentifier && sameBic11;
     }
@@ -400,7 +407,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     }
 
     /**
-     * @see #isIgnoreLT()
+     * @see #setIgnoreLT(boolean)
      * @since 9.1.3
      */
     public boolean isIgnoreLT() {
@@ -419,7 +426,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     }
 
     /**
-     * @see #isIgnoreLocationFlag()
+     * @see #setIgnoreLocationFlag(boolean)
      * @since 9.1.3
      */
     public boolean isIgnoreLocationFlag() {
@@ -438,4 +445,42 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         this.ignoreLocationFlag = ignoreLocationFlag;
     }
 
+    /**
+     * @see #setIgnoreBlock3(boolean)
+     * @since 9.1.6
+     */
+    public boolean isIgnoreBlock3() {
+        return ignoreBlock3;
+    }
+
+    /**
+     * If this is set to true, the whole block 3 will be ignored in the headers comparison. Meaning a message with a
+     * with block 3 will match a message without it. Also messages with different fields or field values in their
+     * block 3 will also match. Defaults to false, meaning if block 3 is present in a message all fields in the block
+     * must match.
+     *
+     * @since 9.1.3
+     */
+    public void setIgnoreBlock3(boolean ignoreBlock3) {
+        this.ignoreBlock3 = ignoreBlock3;
+    }
+
+    /**
+     * @see #setIgnorePriority(boolean)
+     * @since 9.1.6
+     */
+    public boolean isIgnorePriority() {
+        return ignorePriority;
+    }
+
+    /**
+     * If this is set to true, the priority flag in block 2 will be ignored int the comparison. Meaning a message with
+     * a normal priority will match a message with an urgent priority and so forth. Any combination of priorities in the
+     * messages will still produce a match. Defaults to false, meaning both message must have the same priority.
+     *
+     * @since 9.1.3
+     */
+    public void setIgnorePriority(boolean ignorePriority) {
+        this.ignorePriority = ignorePriority;
+    }
 }

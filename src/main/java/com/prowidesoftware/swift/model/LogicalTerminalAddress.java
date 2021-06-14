@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 /**
@@ -34,14 +36,31 @@ public class LogicalTerminalAddress extends BIC {
 
     /**
      * Creates an LT address from its string value.
-     * <p>If the string contains a BIC8 or BIC11 the LT identifier will be set with a default value.
+     * <p>If the string contains a BIC8 or BIC11 the LT identifier will be set with a default value. If the BIC has
+     * 12 characters, then the LT and branch is extracted from the parameter code. Finally if the BIC has a special
+     * size of 9 characters, that is parsed as the BIC8 plus the LT identifier, letting the branch with default.
      *
-     * @param code a full LT address code (12 characters) or a BIC8 or BIC11
+     * @param code a full LT address code (12 characters) or a BIC8, BIC11 or BIC8 plus LT identifier
      */
     public LogicalTerminalAddress(final String code) {
-        super(code);
-        if (code != null && code.length() >= 12) {
-            this.LTIdentifier = code.charAt(8);
+        if (code != null) {
+            setInstitution(StringUtils.trimToNull(StringUtils.substring(code, 0, 4)));
+            setCountry(StringUtils.trimToNull(StringUtils.substring(code, 4, 6)));
+            setLocation(StringUtils.trimToNull(StringUtils.substring(code, 6, 8)));
+            if (code.length() > 8) {
+                // after the BIC 8 we expect the LT, the LT + branch o just the branch
+                if (code.length() == 9) {
+                    // if it has just 9 characters we assume it is a BIC8 plus the LT without branch
+                    this.LTIdentifier = code.charAt(8);
+                } else if (code.length() >= 12) {
+                    // for 12 or more characters we extract both the LT and the branch
+                    this.LTIdentifier = code.charAt(8);
+                    super.branch = StringUtils.trimToNull(StringUtils.substring(code, 9));
+                } else {
+                    // otherwise we take the part after the BIC8 as the branch
+                    super.branch = StringUtils.trimToNull(StringUtils.substring(code, 8));
+                }
+            }
         }
     }
 
