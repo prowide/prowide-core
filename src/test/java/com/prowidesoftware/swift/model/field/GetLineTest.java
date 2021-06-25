@@ -33,7 +33,7 @@ public class GetLineTest {
      * Simplest case
      */
     @Test
-    public void test01() {
+    public void testSimple() {
         final Field35B f = new Field35B("ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD\nEEEE\nFFFF\nGGGG");
         assertEquals("ISIN HELLO", f.getLine(1));
         assertEquals("AAAA", f.getLine(2));
@@ -50,9 +50,9 @@ public class GetLineTest {
      * Missing component 2
      */
     @Test
-    public void test02() {
+    public void testMissingComponent() {
         final Field35B f = new Field35B("ISIN \nAAAA\nBBBB\nCCCC\nDDDD");
-        assertEquals("ISIN", f.getLine(1));
+        assertEquals("ISIN ", f.getLine(1));
         assertEquals("AAAA", f.getLine(2));
         assertEquals("BBBB", f.getLine(3));
         assertEquals("CCCC", f.getLine(4));
@@ -63,7 +63,7 @@ public class GetLineTest {
      * Missing first line
      */
     @Test
-    public void test03() {
+    public void testMissingFirstLine() {
         final Field35B f = new Field35B("AAAA\nBBBB\nCCCC\nDDDD");
         assertNull(f.getLine(1));
         assertEquals("AAAA", f.getLine(2));
@@ -76,7 +76,7 @@ public class GetLineTest {
      * Missing first two lines
      */
     @Test
-    public void test04() {
+    public void testMissingFirstAndSecondLines() {
         final Field35B f = new Field35B("BBBB\nCCCC\nDDDD");
         assertNull(f.getLine(1));
         assertEquals("BBBB", f.getLine(2));
@@ -89,7 +89,7 @@ public class GetLineTest {
      * Using offset
      */
     @Test
-    public void test05() {
+    public void testSimpleWithOffset() {
         final Field35B f = new Field35B("ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD");
         assertEquals("AAAA", f.getLine(1, Field35B.DESCRIPTION));
         assertEquals("BBBB", f.getLine(2, Field35B.DESCRIPTION));
@@ -101,7 +101,7 @@ public class GetLineTest {
      * Using offset and missing fields
      */
     @Test
-    public void test06() {
+    public void testMissingFieldsWithOffset() {
         final Field35B f = new Field35B("ISIN \nAAAA\nBBBB\nCCCC\nDDDD");
         assertEquals("AAAA", f.getLine(1, Field35B.DESCRIPTION));
         assertEquals("BBBB", f.getLine(2, Field35B.DESCRIPTION));
@@ -113,7 +113,7 @@ public class GetLineTest {
      * Using offset and missing fields
      */
     @Test
-    public void test07() {
+    public void testMissingFieldsWithOffset_2() {
         final Field35B f = new Field35B("AAAA\nBBBB\nCCCC\nDDDD");
         assertEquals("AAAA", f.getLine(1, Field35B.DESCRIPTION));
         assertEquals("BBBB", f.getLine(2, Field35B.DESCRIPTION));
@@ -125,7 +125,7 @@ public class GetLineTest {
      * Using offset
      */
     @Test
-    public void test08() {
+    public void testWithOffset() {
         final Field35B f = new Field35B("ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD");
         /*
          * plain lines
@@ -148,7 +148,7 @@ public class GetLineTest {
      * Empty
      */
     @Test
-    public void test09() {
+    public void testEmpty() {
         final Field35B f = new Field35B();
         assertNull(f.getLine(1));
         assertNull(f.getLine(2));
@@ -161,7 +161,7 @@ public class GetLineTest {
      * Empty
      */
     @Test
-    public void test10() {
+    public void testEmpty_2() {
         final Field35B f = new Field35B("");
         assertNull(f.getLine(1));
         assertNull(f.getLine(2));
@@ -174,7 +174,7 @@ public class GetLineTest {
      * Null
      */
     @Test
-    public void test11() {
+    public void testNull() {
         final Field35B f = new Field35B((String) null);
         assertNull(f.getLine(1));
         assertNull(f.getLine(2));
@@ -187,7 +187,7 @@ public class GetLineTest {
      * Empty
      */
     @Test
-    public void test12() {
+    public void testEmpty_3() {
         final Field59 f = new Field59("");
         assertNull(f.getLine(1));
         assertNull(f.getLine(2));
@@ -200,7 +200,7 @@ public class GetLineTest {
      * Null
      */
     @Test
-    public void test13() {
+    public void testNull_2() {
         final Field59 f = new Field59((String) null);
         assertNull(f.getLine(1));
         assertNull(f.getLine(2));
@@ -213,7 +213,7 @@ public class GetLineTest {
      * Using offset
      */
     @Test
-    public void test14() {
+    public void testWithOffset_2() {
         final Field35B f = new Field35B("ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD");
 
         assertEquals("ISIN HELLO", f.getLinesBetween(1, 1).get(0));
@@ -233,19 +233,19 @@ public class GetLineTest {
     }
 
     @Test
-    public void test15() {
+    public void testAccountNumber() {
         final Field53B f = new Field53B("/1234\nBANK");
         assertEquals("/1234", f.getLine(1));
     }
 
     @Test
-    public void test16() {
+    public void testAccountNumberDOubleSlash() {
         final Field53B f = new Field53B("//1234\nBANK");
         assertEquals("//1234", f.getLine(1));
     }
 
     @Test
-    public void test17() {
+    public void testField50H() {
         final Field50H f = new Field50H(
                 "/8754219990\n" +
                         "MAG-NUM INC.\n" +
@@ -260,19 +260,16 @@ public class GetLineTest {
     }
 
     @Test
-    public void test18() {
+    public void testField95Q() {
         Field95Q f = new Field95Q(":INVE//JOE DOE");
         assertEquals(":INVE//JOE DOE", f.getLine(1));
-    }
 
-    @Test
-    public void test19() {
-        Field95Q f = new Field95Q(":INVE//JOE DOE");
+        f = new Field95Q(":INVE//JOE DOE");
         assertEquals("JOE DOE", f.getLine(1, Field95Q.NAME_AND_ADDRESS));
     }
 
     @Test
-    public void test19b() {
+    public void testSeparators() {
         Field95Q f = new Field95Q(":INVE//JOE DOE\n/FOO");
         List<String> lines = f.getLinesBetween(1, 2, Field95Q.NAME_AND_ADDRESS);
         /*
@@ -286,7 +283,7 @@ public class GetLineTest {
     }
 
     @Test
-    public void test19c() {
+    public void testSeparators_2() {
         Field95Q f = new Field95Q(":INVE//JOE DOE\n/FOO");
         List<String> lines = f.getLinesBetween(1, 2);
         /*
@@ -300,7 +297,7 @@ public class GetLineTest {
     }
 
     @Test
-    public void test19d() throws Exception {
+    public void testSeparators_3() {
         Field35B f = new Field35B("/US/31392EXH8\nFEDERAL NATL MTG ASSN");
         assertEquals("/US/31392EXH8", f.getLine(2));
         /*
@@ -310,7 +307,7 @@ public class GetLineTest {
     }
 
     @Test
-    public void test20() {
+    public void testField50K() {
         Field50K f = new Field50K("/12345");
         assertEquals(1, f.getLines().size());
         assertEquals("/12345", f.getLine(1));
@@ -318,7 +315,7 @@ public class GetLineTest {
     }
 
     @Test
-    public void test21() {
+    public void testField50K_2() {
         Field50K f = new Field50K("ABC");
         assertEquals(1, f.getLines().size());
         assertNull(f.getLine(1));
@@ -326,7 +323,7 @@ public class GetLineTest {
     }
 
     @Test
-    public void test22() {
+    public void testField50K_3() {
         Field50K f = new Field50K("ABC");
         assertEquals(1, f.getLines().size());
         assertNull(f.getLine(1));
