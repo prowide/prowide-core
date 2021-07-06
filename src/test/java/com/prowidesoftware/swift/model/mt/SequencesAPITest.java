@@ -206,7 +206,9 @@ public class SequencesAPITest {
         assertEquals(6, seqB.size());
         assertTrue(mt.getSequenceB1().isEmpty());
 
-        assertTrue(mt.getSequenceB1(mt.getSwiftMessage().getBlock4()).isEmpty());
+        // if we call this with a parent sequence, such as B it works
+        // however if we pass the whole block 4, it fails because it returns the colliding FIA from SECMOVE
+        assertTrue(mt.getSequenceB1(mt.getSequenceB()).isEmpty());
     }
 
     @Test
