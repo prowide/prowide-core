@@ -77,6 +77,11 @@ public class Field26K extends Field implements Serializable {
 	public static final String COMPONENTS_PATTERN = "S";
 
 	/**
+	 * Component number for the Calculation Agent subfield
+	 */
+	public static final Integer CALCULATION_AGENT = 1;
+
+	/**
 	 * Default constructor. Creates a new field setting all components to null.
 	 */
 	public Field26K() {
@@ -255,7 +260,7 @@ public class Field26K extends Field implements Serializable {
 	@Override
 	protected List<String> getComponentLabels() {
 		List<String> result = new ArrayList<>();
-		result.add(null);
+		result.add("Calculation Agent");
 		return result;
 	}
 
@@ -266,22 +271,40 @@ public class Field26K extends Field implements Serializable {
 	@Override
 	protected Map<Integer, String> getComponentMap() {
 		Map<Integer, String> result = new HashMap<>();
+		result.put(1, "calculationAgent");
 		return result;
 	}
 	/**
-	 * Gets the component 1 ($label).
+	 * Gets the component 1 (Calculation Agent).
 	 * @return the component 1
 	 */
 	public String getComponent1() {
 		return getComponent(1);
 	}
 
+	/**
+	 * Gets the Calculation Agent (component 1).
+	 * @return the Calculation Agent from component 1
+	 */
+	public String getCalculationAgent() {
+		return getComponent(1);
+	}
+
 
 	/**
-	 * Set the component1 ($label).
+	 * Set the component1 (Calculation Agent).
 	 * @param component1 the component1 to set
 	 */
 	public Field26K setComponent1(String component1) {
+		setComponent(1, component1);
+		return this;
+	}
+	
+	/**
+	 * Set the Calculation Agent (component1).
+	 * @param component1 the Calculation Agent to set
+	 */
+	public Field26K setCalculationAgent(String component1) {
 		setComponent(1, component1);
 		return this;
 	}
@@ -368,6 +391,9 @@ public class Field26K extends Field implements Serializable {
 		Field26K field = new Field26K();
 		JsonParser parser = new JsonParser();
 		JsonObject jsonObject = (JsonObject) parser.parse(json);
+		if (jsonObject.get("calculationAgent") != null) {
+			field.setComponent1(jsonObject.get("calculationAgent").getAsString());
+		}
 		return field;
 	}
 	
