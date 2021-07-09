@@ -223,13 +223,13 @@ Fieldset 20
 Sequence D1a1B1 - Transaction Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 22
- (O)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
  (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
 Fieldset 97
  (O)<ul><li>FieldsetItem 97 A,B (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
 Fieldset 36
  (M) (repetitive)<ul><li>FieldsetItem 36 B (M) (repetitive)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="fieldset">
 Fieldset 19

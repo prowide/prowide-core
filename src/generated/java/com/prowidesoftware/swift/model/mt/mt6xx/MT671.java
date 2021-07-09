@@ -76,6 +76,7 @@ Fieldset 95
 Sequence B2 - Other Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 70 E (O) (repetitive)</li>
 <li class="field">Field 22 F (O)</li>
+<li class="field">Field 22 H (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 16 S (M)</li>
