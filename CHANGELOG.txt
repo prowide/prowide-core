@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.6
+  * MT548: Minor scheme fix, added letter option "C" in field "98C:SCTS" in sequence "C1a1B1"
   * (JIRA-627) fixed Narrative.builder() to compute "//" size in the lines wrapping
   * (JIRA-581) the MultiLineField API now preserves any starting and trailing spaces in field lines
   * Added "ignore block 3" and "ignore priority" options to the SwiftMessageComparator
