@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @since 8.1.0
  */
-public class NarrativeTest {
+public class NarrativeBuilderTest {
 
     @Test
     public void testUnstructured() {
@@ -74,6 +74,20 @@ public class NarrativeTest {
         assertEquals("/ADD/Text 1\r\n/ADD/Text 2", n.getValue());
         assertTrue(n.getUnstructuredFragments().isEmpty());
         assertNull(n.getUnstructured());
+    }
+
+    @Test
+    public void testStructuredLineWrapping() {
+        Narrative.Builder narrativeBuilder;
+        narrativeBuilder = Narrative.builder(35);
+        narrativeBuilder.addCodeword("INS", "JOHN DOE HAS GONE TO AMSTERDAM AND FROM THERE HE GOES TO PARIS AND");
+
+        Narrative n = narrativeBuilder.build();
+        assertEquals(1, n.getStructured().size());
+        assertEquals("INS", n.getStructured().get(0).getCodeword());
+        assertEquals("JOHN DOE HAS GONE TO AMSTERDAM", n.getStructured().get(0).getNarrativeFragments().get(0));
+        assertEquals("AND FROM THERE HE GOES TO PARIS", n.getStructured().get(0).getNarrativeFragments().get(1));
+        assertEquals("AND", n.getStructured().get(0).getNarrativeFragments().get(2));
     }
 
     @Test

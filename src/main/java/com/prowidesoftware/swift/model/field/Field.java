@@ -1049,8 +1049,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
          * try to replace /hash first just in case the component is optional
          * then replace the hash only if present
          */
-        String trimmed = StringUtils.trimToNull(StringUtils.replace(StringUtils.replace(value, "/" + hash, ""), hash, ""));
-        if (trimmed != null && !onlySlashes(trimmed)) {
+        String trimmed = StringUtils.replace(StringUtils.replace(value, "/" + hash, ""), hash, "");
+        if (StringUtils.isNotBlank(trimmed) && !onlySlashes(trimmed)) {
 			/*
 			 * sebastian Oct 2015
 			 * La logica para remover separadores debiera depender de si el offset

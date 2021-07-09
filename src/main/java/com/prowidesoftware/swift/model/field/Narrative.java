@@ -488,27 +488,46 @@ public class Narrative {
         }
 
         /**
-         * Wraps the text into lines removing the prefix for the first line, while still considering the prefix when
-         * computing the line length in the wrap
+         * Wraps the text into lines considering the prefix size for the first line and considering the "//" prefix
+         * that would be added to the following lines in the serialization
          */
         private List<String> wrap(String prefix, String narrative) {
-            String text = prefix + StringUtils.trimToEmpty(narrative);
-            String wrapped = WordUtils.wrap(text, lineLength, FINWriterVisitor.SWIFT_EOL, true);
-            String[] lines = wrapped.split(FINWriterVisitor.SWIFT_EOL);
+            if (narrative == null) {
+                return Collections.emptyList();
+            }
+
             List<String> fragments = new ArrayList<>();
-            boolean first = true;
-            for (String line : lines) {
-                String fragment;
-                if (first) {
-                    fragment = StringUtils.trimToNull(StringUtils.substringAfter(line, prefix));
-                } else {
-                    fragment = StringUtils.trimToNull(line);
-                }
-                if (fragment != null) {
-                    fragments.add(fragment);
-                    first = false;
+
+            // first line wrap should discount the prefix size
+            String wrap = WordUtils.wrap(narrative, lineLength - prefix.length(), "\n", true);
+            String[] lines = wrap.split("\n");
+
+            if (lines.length >= 0) {
+                String firstLine = StringUtils.trimToNull(lines[0]);
+                if (firstLine != null) {
+                    fragments.add(firstLine);
                 }
             }
+
+            if (!fragments.isEmpty()) {
+
+                String remainder = StringUtils.trimToNull(StringUtils.substringAfter(narrative, fragments.get(0)));
+
+                if (remainder != null) {
+
+                    // following lines wrap should discount the "//" that would be added in the serialization
+                    wrap = WordUtils.wrap(remainder, lineLength - 2, "\n", true);
+                    lines = wrap.split("\n");
+
+                    for (String line : lines) {
+                        String fragment = StringUtils.trimToNull(line);
+                        if (fragment != null) {
+                            fragments.add(fragment);
+                        }
+                    }
+                }
+            }
+
             return fragments;
         }
 

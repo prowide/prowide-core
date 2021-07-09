@@ -111,6 +111,27 @@ public class Field70ETest extends AbstractFieldTest {
         assertEquals("IIII", f.getComponent11());
     }
 
+    /**
+     * Test starting and trailing spaces are preserved when retrieving components
+     */
+    @Test
+    public void testField70ELines_PreserveSpaces() {
+        Field70E f = new Field70E(":PACO//The quick brown fox \n" +
+                "jumps over the\n" +
+                " the lazy dog");
+        assertEquals("PACO", f.getQualifier());
+        assertEquals("The quick brown fox ", f.getNarrativeLine1());
+        assertEquals("jumps over the", f.getNarrativeLine2());
+        assertEquals(" the lazy dog", f.getNarrativeLine3());
+        assertNull(f.getNarrativeLine4());
+        assertNull(f.getNarrativeLine5());
+        assertNull(f.getNarrativeLine6());
+        assertNull(f.getNarrativeLine7());
+        assertNull(f.getNarrativeLine8());
+        assertNull(f.getNarrativeLine9());
+        assertNull(f.getNarrativeLine10());
+    }
+
     @Test
     public void testJoinNarrative() {
         Field70E f = new Field70E(":TXNR//FOO\n BAR");
@@ -119,8 +140,7 @@ public class Field70ETest extends AbstractFieldTest {
 
         assertEquals(":TXNR//FOO BAR", String.join("", f.getLines()));
 
-        // the getLines API strips leading blanks
-        assertEquals("FOOBAR", String.join("", f.getLines(2)));
+        assertEquals("FOO BAR", String.join("", f.getLines(2)));
 
         assertEquals("FOO\r\n BAR", StringUtils.substringAfter(f.getValue(), "//"));
 
