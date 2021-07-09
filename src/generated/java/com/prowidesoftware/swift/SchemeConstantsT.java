@@ -67,6 +67,8 @@ public interface SchemeConstantsT {
     public final static String TSTA = "TSTA";
     public final static String TRAA = "TRAA";
     public final static String TRCI = "TRCI";
+    public final static String TRTI = "TRTI";
+    public final static String TENO = "TENO";
     public final static String TOVA = "TOVA";
     public final static String TCPI = "TCPI";
     public final static String TRANSDET = "TRANSDET";
@@ -114,5 +116,6 @@ public interface SchemeConstantsT {
     public final static String TAL = "TAL";
     public final static String TTNA = "TTNA";
     public final static String TRANSFER = "TRANSFER";
+    public final static String TEND = "TEND";
 
 }

@@ -16,7 +16,6 @@
 package com.prowidesoftware.swift.io.parser;
 
 import com.prowidesoftware.ProwideException;
-import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.*;
@@ -44,7 +43,7 @@ public class SwiftParser {
      * Helper constant with the content of <code>System.getProperty("line.separator", "\n")</code>
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2021)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2022)
     public static final String EOL = System.getProperty("line.separator", "\n");
 
     private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftParser.class.getName());
@@ -302,17 +301,6 @@ public class SwiftParser {
         }
 
         return message;
-    }
-
-    /**
-     * @deprecated use {@link SwiftMessage#parse(String)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public SwiftMessage parse(final String message) throws IOException {
-        DeprecationUtils.phase3(getClass(), "parse(String)", "For a simple static parse call use SwiftMessage#parse(String) instead; for fine grain control or parse configuration you can still create the SwiftParser instance passing a Reader, String or File and call the message() method to get the parsed message object.");
-        setData(message);
-        return message();
     }
 
     /**

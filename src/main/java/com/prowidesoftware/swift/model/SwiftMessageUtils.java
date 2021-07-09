@@ -491,6 +491,22 @@ public class SwiftMessageUtils {
         if (sequences == null || sequences.isEmpty()) {
             return SwiftTagListBlock.EMPTY_LIST;
         }
+        SwiftTagListBlock[] seqArray = new SwiftTagListBlock[sequences.size()];
+        sequences.toArray(seqArray);
+        return join(seqArray);
+    }
+
+    /**
+     * Joins all the given sequences in one single list.
+     *
+     * @param sequences the sequences to be joined. Can be null or empty, in which case this method returns {@link SwiftTagListBlock#EMPTY_LIST}
+     * @return a single {@link SwiftTagListBlock} containing all elements in order of each of the given sequences or {@link SwiftTagListBlock#EMPTY_LIST} if sequences is null or empty
+     * @since 9.2.0
+     */
+    public static SwiftTagListBlock join(final SwiftTagListBlock... sequences) {
+        if (sequences == null || sequences.length == 0) {
+            return SwiftTagListBlock.EMPTY_LIST;
+        }
         final SwiftTagListBlock result = new SwiftTagListBlock();
         for (final SwiftTagListBlock b : sequences) {
             result.getTags().addAll(b.getTags());

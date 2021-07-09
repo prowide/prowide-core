@@ -109,8 +109,9 @@ public class SwiftFormatUtils {
      * @since 7.8.8
      * @deprecated use Year.now().isLeap() instead
      */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2021)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2022)
     public static final boolean isLeapYear() {
+        DeprecationUtils.phase2(SwiftFormatUtils.class, "isLeapYear()", "use Year.now().isLeap() instead");
         return Year.now().isLeap();
     }
 
@@ -662,26 +663,6 @@ public class SwiftFormatUtils {
         } else {
             return null;
         }
-    }
-
-    /**
-     * Tell if <code>string</code> is a valid currency code using Currency isntances from Java
-     *
-     * @param string the string to test for a currency code
-     * @return true if string is a valid currency code and false in other case, including null and empty
-     * @deprecated use {@link IsoUtils#isValidISOCurrency(String)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public static boolean isCurrency(final String string) {
-        DeprecationUtils.phase3(SwiftFormatUtils.class, "isCurrency(String)", "use IsoUtils#isValidISOCurrency(String) instead");
-        if (StringUtils.isNotBlank(string)) {
-            try {
-                return Currency.getInstance(string) != null;
-            } catch (final Exception ignored) {
-            }
-        }
-        return false;
     }
 
     /**

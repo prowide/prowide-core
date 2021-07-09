@@ -17,9 +17,6 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
@@ -631,35 +628,6 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), senderInputTime, MIRDate, MIRLogicalTerminal, MIRSessionNumber, MIRSequenceNumber, receiverOutputDate, receiverOutputTime);
-    }
-
-    /**
-     * Legacy (version 1) json representation of this object.
-     *
-     * <p>This implementation has been replaced by version 2, based on Gson.
-     *
-     * @since 7.9.8
-     * @deprecated use {@link #toJson()} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String toJsonV1() {
-        DeprecationUtils.phase3(getClass(), "toJsonV1()", "use toJson() instead");
-        final StringBuilder sb = new StringBuilder();
-        sb.append("{ \n");
-
-        sb.append(" \"messageType\" : \"").append(messageType).append(SEPARATOR);
-        sb.append(" \"senderInputTime\" : \"").append(senderInputTime).append(SEPARATOR);
-        sb.append(" \"MIRDate\" : \"").append(MIRDate).append("\", \n");
-        sb.append(" \"MIRLogicalTerminal\" : \"").append(MIRLogicalTerminal).append(SEPARATOR);
-        sb.append(" \"MIRSessionNumber\" : \"").append(MIRSessionNumber).append(SEPARATOR);
-        sb.append(" \"MIRSequenceNumber\" : \"").append(MIRSequenceNumber).append(SEPARATOR);
-        sb.append(" \"receiverOutputDate\" : \"").append(receiverOutputDate).append(SEPARATOR);
-        sb.append(" \"receiverOutputTime\" : \"").append(receiverOutputTime).append(SEPARATOR);
-        sb.append(" \"messagePriority\" : \"").append(messagePriority).append(SEPARATOR);
-
-        sb.append("} ");
-        return sb.toString();
     }
 
     /**

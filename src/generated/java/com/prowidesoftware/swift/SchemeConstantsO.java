@@ -38,6 +38,7 @@ public interface SchemeConstantsO {
     public final static String ODDL = "ODDL";
     public final static String OPC = "OPC";
     public final static String OPS = "OPS";
+    public final static String OFRF = "OFRF";
     public final static String OKPE = "OKPE";
     public final static String OMAT = "OMAT";
     public final static String OPTF = "OPTF";
@@ -57,5 +58,7 @@ public interface SchemeConstantsO {
     public final static String OTHRDET = "OTHRDET";
     public final static String OVER = "OVER";
     public final static String OTHERFNC = "OTHERFNC";
+    public final static String OPEN = "OPEN";
+    public final static String ONEY = "ONEY";
 
 }

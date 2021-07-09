@@ -29,5 +29,6 @@ public interface SchemeConstantsW {
     public final static String WITHOUT = "WITHOUT";
     public final static String WITHOUT_OUR_CONFIRMATION = "WITHOUT_OUR_CONFIRMATION";
     public final static String WINF = "WINF";
+    public final static String WARR = "WARR";
 
 }

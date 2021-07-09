@@ -20,12 +20,14 @@ import java.util.logging.Logger;
 
 /**
  * Helper class to read DOS-PCC files.
- * <br>
- * File content is splitted, and the iterator returns the raw message content of
- * each SWIFT message found in the file. API is also provided to read each message
- * parsed into an MT.
- * <br>
- * The reader can be initialized with a File, Stream or String.
+ *
+ * <p>
+ * File content is splitted, and the iterator returns the raw message content of each SWIFT message found in the file.
+ * API is also provided to read each message parsed into an MT.
+ *
+ * <p>
+ * The reader can be created from a String but also from a Reader, File or Stream; thus when used as an iterator you
+ * can iterate it just once, it is not re-entrant.
  *
  * @author sebastian
  * @since 7.8

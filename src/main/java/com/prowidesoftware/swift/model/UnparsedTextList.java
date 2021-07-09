@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.ConversionService;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -79,16 +76,6 @@ public class UnparsedTextList implements Serializable {
     private static final String WRITER_MESSAGE = "parameter 'index' cannot be null";
 
     /**
-     * Unique identifier of the unparsed texts list.
-     * Mainly used for persistence services.
-     *
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    private Long id;
-
-    /**
      * list of unparsed texts
      *
      * @since 5.0
@@ -126,32 +113,6 @@ public class UnparsedTextList implements Serializable {
     static public Boolean isMessage(final String text) {
         // sanity check and evaluation
         return Boolean.valueOf((text != null && (text.indexOf("{1:") >= 0)));
-    }
-
-    /**
-     * Get the unique identifier of this unparsed text list or null if it is not set
-     *
-     * @return the unique identifier
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public Long getId() {
-        DeprecationUtils.phase3(getClass(), "getId()", "The SwiftModel model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-        return id;
-    }
-
-    /**
-     * Sets the unique identifier of this unparsed text list
-     *
-     * @param id the unique identifier to set.
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public void setId(final Long id) {
-        DeprecationUtils.phase3(getClass(), "setId(Long)", "The SwiftModel model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-        this.id = id;
     }
 
     /**

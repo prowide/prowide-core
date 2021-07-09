@@ -83,5 +83,8 @@ public interface SchemeConstantsD {
     public final static String DIFF = "DIFF";
     public final static String DGAR = "DGAR";
     public final static String DOCR = "DOCR";
+    public final static String DAYS = "DAYS";
+    public final static String DEPU = "DEPU";
+    public final static String DPAY = "DPAY";
 
 }

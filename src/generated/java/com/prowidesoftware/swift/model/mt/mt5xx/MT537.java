@@ -93,7 +93,7 @@ Fieldset 19
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="sequence">
 Sequence B2b1 - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
@@ -128,7 +128,7 @@ Fieldset 19
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="sequence">
 Sequence C2a - Settlement Parties (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
@@ -164,6 +164,7 @@ Sequence D1 - Penalties per Currency for a Party (O) (repetitive)<ul><li class="
 <li class="fieldset">
 Fieldset 98
  (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A (O)</li></ul></li><li class="field">Field 97 A,E (O)</li>
+<li class="field">Field 20 C (M)</li>
 <li class="fieldset">
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q (O)</li><li>FieldsetItem 95 P,Q (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
@@ -173,7 +174,7 @@ Fieldset 19
 Sequence D1a - Penalties per Counterparty (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
 <li class="field">Field 19 A (M)</li>
 <li class="sequence">
 Sequence D1a1 - Penalty Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -223,17 +224,16 @@ Fieldset 20
 Sequence D1a1B1 - Transaction Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 22
- (O)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
 Fieldset 97
  (O)<ul><li>FieldsetItem 97 A,B (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="fieldset">
 Fieldset 95
  (O)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (M) (repetitive)<ul><li>FieldsetItem 36 B (M) (repetitive)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="fieldset">
-Fieldset 19
- (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="sequence">
+ (M) (repetitive)<ul><li>FieldsetItem 36 B (M) (repetitive)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="field">Field 19 A (O)</li>
+<li class="sequence">
 Sequence D1a1B1a - Status (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 25 D (M)</li>
 <li class="sequence">
@@ -271,7 +271,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -280,7 +280,7 @@ public class MT537 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT537.class.getName());
 	
@@ -1652,7 +1652,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceA1List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceA1List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}
@@ -1800,7 +1800,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceBList_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceBList_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceB delimited by 16R/16S with value specified in {@link SequenceB#START_END_16RS}
@@ -1948,7 +1948,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB1List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB1List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
@@ -2096,7 +2096,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceB2 delimited by 16R/16S with value specified in {@link SequenceB2#START_END_16RS}
@@ -2244,7 +2244,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2aList_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2aList_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceB2a delimited by 16R/16S with value specified in {@link SequenceB2a#START_END_16RS}
@@ -2392,7 +2392,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2bList_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2bList_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceB2b delimited by 16R/16S with value specified in {@link SequenceB2b#START_END_16RS}
@@ -2540,7 +2540,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2b1List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2b1List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceB2b1 delimited by 16R/16S with value specified in {@link SequenceB2b1#START_END_16RS}
@@ -2815,7 +2815,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC1List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC1List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceC1 delimited by 16R/16S with value specified in {@link SequenceC1#START_END_16RS}
@@ -2963,7 +2963,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceC2 delimited by 16R/16S with value specified in {@link SequenceC2#START_END_16RS}
@@ -3111,7 +3111,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2aList_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2aList_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceC2a delimited by 16R/16S with value specified in {@link SequenceC2a#START_END_16RS}
@@ -3259,7 +3259,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceC3 delimited by 16R/16S with value specified in {@link SequenceC3#START_END_16RS}
@@ -3407,7 +3407,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3aList_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3aList_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceC3a delimited by 16R/16S with value specified in {@link SequenceC3a#START_END_16RS}
@@ -4444,7 +4444,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceD1a1B1 delimited by 16R/16S with value specified in {@link SequenceD1a1B1#START_END_16RS}
@@ -4592,7 +4592,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1aList_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1aList_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceD1a1B1a delimited by 16R/16S with value specified in {@link SequenceD1a1B1a#START_END_16RS}
@@ -4740,7 +4740,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1a1List_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1a1List_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceD1a1B1a1 delimited by 16R/16S with value specified in {@link SequenceD1a1B1a1#START_END_16RS}

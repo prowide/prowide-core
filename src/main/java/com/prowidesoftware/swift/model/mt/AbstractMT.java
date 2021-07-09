@@ -801,21 +801,6 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
     }
 
     /**
-     * Returns the JSON representation of the SwiftMessage attribute
-     *
-     * @return the JSON content of the MT
-     * @see #toJson()
-     * @deprecated use {@link #toJson()} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String json() {
-        DeprecationUtils.phase3(getClass(), "json()", "use toJson() instead");
-        Validate.notNull(this.m, "the message cannot be null");
-        return this.m.toJson();
-    }
-
-    /**
      * Returns the message content in XML format.<br>
      * The XML created is the internal format defined and used by Prowide Core.<br>
      * Notice: it is neither a standard nor the MX version of this MT.

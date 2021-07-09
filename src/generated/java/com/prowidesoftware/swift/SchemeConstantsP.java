@@ -22,6 +22,8 @@ public interface SchemeConstantsP {
     public final static String PRUW = "PRUW";
     public final static String PEAM = "PEAM";
     public final static String P = "P";
+    public final static String PTYB = "PTYB";
+    public final static String PTYA = "PTYA";
     public final static String PRUR = "PRUR";
     public final static String PRINCIPAL = "PRINCIPAL";
     public final static String PUTO = "PUTO";
@@ -35,8 +37,6 @@ public interface SchemeConstantsP {
     public final static String PTRC = "PTRC";
     public final static String PTRM = "PTRM";
     public final static String PREP = "PREP";
-    public final static String PTYB = "PTYB";
-    public final static String PTYA = "PTYA";
     public final static String PLIS = "PLIS";
     public final static String POST = "POST";
     public final static String PFRE = "PFRE";
@@ -117,5 +117,9 @@ public interface SchemeConstantsP {
     public final static String PUT = "PUT";
     public final static String PMTH = "PMTH";
     public final static String PRCD = "PRCD";
+    public final static String PREVINST = "PREVINST";
+    public final static String PREDENOT = "PREDENOT";
+    public final static String PERF = "PERF";
+    public final static String PAEX = "PAEX";
 
 }

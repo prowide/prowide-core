@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.logging.Level;
@@ -48,9 +45,6 @@ public class IBAN {
     private static final int CHECK_DIGIT_INDEX = COUNTRY_CODE_LENGTH;
     private static final int BBAN_INDEX = CHECK_DIGIT_INDEX + CHECK_DIGIT_LENGTH;
     private static final String INVALIDA_IBAN_LENGTH = "Invalid IBAN length in";
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    private String invalidCause = null;
     private String iban;
 
     /**
@@ -128,13 +122,7 @@ public class IBAN {
      * problem found.
      */
     public boolean isValid() {
-        IbanValidationResult result = validate();
-        if (result == IbanValidationResult.OK) {
-            return true;
-        } else {
-            this.invalidCause = result.message();
-            return false;
-        }
+        return validate() == IbanValidationResult.OK;
     }
 
     /**
@@ -244,19 +232,6 @@ public class IBAN {
             }
         }
         return result.toString();
-    }
-
-    /**
-     * Get a string with information about why the IBAN was found invalid
-     *
-     * @return a human readable (english) string
-     * @deprecated use the {@link #validate()} method to get a detailed result of the validation problem found
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String getInvalidCause() {
-        DeprecationUtils.phase3(this.getClass(), "getInvalidCause()", "Use the validate() method to get a detailed result of the validation problem found");
-        return invalidCause;
     }
 
     /**

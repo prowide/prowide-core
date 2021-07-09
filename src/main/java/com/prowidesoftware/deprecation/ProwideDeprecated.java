@@ -41,16 +41,16 @@ public @interface ProwideDeprecated {
     /**
      * Scheduled year for entering phase 2 of deprecation
      */
-    TargetYear phase2() default TargetYear.SRU2021;
+    TargetYear phase2() default TargetYear.SRU2022;
 
     /**
      * Scheduled year for entering phase 3 of deprecation
      */
-    TargetYear phase3() default TargetYear.SRU2022;
+    TargetYear phase3() default TargetYear.SRU2023;
 
     /**
      * Scheduled year for entering phase 4 of deprecation
      */
-    TargetYear phase4() default TargetYear.SRU2023;
+    TargetYear phase4() default TargetYear.SRU2024;
 
 }

@@ -46,13 +46,14 @@ import java.io.IOException;
 <li class="field">Field 34 B (O)</li>
 <li class="field">Field 39 C (O)</li>
 <li class="field">Field 57 A,B,D (O)</li>
-<li class="field">Field 71 B (O)</li>
-<li class="field">Field 72  (O)</li>
+<li class="field">Field 71 D (O)</li>
+<li class="field">Field 72 Z (O)</li>
+<li class="field">Field 23 X (O)</li>
 </ul></div>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -61,7 +62,7 @@ public class MT769 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT769.class.getName());
 	
@@ -512,36 +513,54 @@ public class MT769 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 71B, 
+	 * Iterates through block4 fields and return the first one whose name matches 71D, 
 	 * or null if none is found.<br>
-	 * The first occurrence of field 71B at MT769 is expected to be the only one.
+	 * The first occurrence of field 71D at MT769 is expected to be the only one.
 	 * 
-	 * @return a Field71B object or null if the field is not found
+	 * @return a Field71D object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field71B getField71B() {
-		final Tag t = tag("71B");
+	public Field71D getField71D() {
+		final Tag t = tag("71D");
 		if (t != null) {
-			return new Field71B(t.getValue());
+			return new Field71D(t.getValue());
 		} else {
 			return null;
 		}
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 72, 
+	 * Iterates through block4 fields and return the first one whose name matches 72Z, 
 	 * or null if none is found.<br>
-	 * The first occurrence of field 72 at MT769 is expected to be the only one.
+	 * The first occurrence of field 72Z at MT769 is expected to be the only one.
 	 * 
-	 * @return a Field72 object or null if the field is not found
+	 * @return a Field72Z object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field72 getField72() {
-		final Tag t = tag("72");
+	public Field72Z getField72Z() {
+		final Tag t = tag("72Z");
 		if (t != null) {
-			return new Field72(t.getValue());
+			return new Field72Z(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 23X, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 23X at MT769 is expected to be the only one.
+	 * 
+	 * @return a Field23X object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field23X getField23X() {
+		final Tag t = tag("23X");
+		if (t != null) {
+			return new Field23X(t.getValue());
 		} else {
 			return null;
 		}

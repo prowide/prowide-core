@@ -88,7 +88,7 @@ Sequence C (M)<ul><li class="field">Field 32 B (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -97,7 +97,7 @@ public class MT107 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT107.class.getName());
 	

@@ -94,4 +94,26 @@ public class MT537Test {
         assertEquals(1, m.getSequenceC2aList().size());
     }
 
+    /**
+     * B2 and D1a1B1 have the same delimiter
+     */
+    @Test
+    public void testB2() {
+        MT537 m = new MT537();
+        m.append(MT537.SequenceB.newInstance(MT537.SequenceB2.newInstance()));
+        assertEquals(1, m.getSequenceB2List().size());
+        assertTrue(m.getSequenceD1a1B1List().isEmpty());
+    }
+
+    /**
+     * B2 and D1a1B1 have the same delimiter
+     */
+    @Test
+    public void testD1a1B1() {
+        MT537 m = new MT537();
+        m.append(MT537.SequenceD1a1B.newInstance(MT537.SequenceD1a1B1.newInstance()));
+        assertTrue(m.getSequenceB2List().isEmpty());
+        assertEquals(1, m.getSequenceD1a1B1List().size());
+    }
+
 }

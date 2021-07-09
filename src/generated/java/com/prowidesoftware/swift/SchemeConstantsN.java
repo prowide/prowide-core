@@ -68,7 +68,11 @@ public interface SchemeConstantsN {
     public final static String NBUF = "NBUF";
     public final static String NOBL = "NOBL";
     public final static String NOT_ALLOWED = "NOT_ALLOWED";
+    public final static String NOTIFY = "NOTIFY";
     public final static String NOTURR = "NOTURR";
     public final static String NONE = "NONE";
+    public final static String NPRT = "NPRT";
+    public final static String NMLT = "NMLT";
+    public final static String NMPT = "NMPT";
 
 }

@@ -62,6 +62,7 @@ Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
 <li class="field">Field 32 E (O)</li>
 <li class="field">Field 30 U (O)</li>
 <li class="field">Field 14 S (O) (repetitive)</li>
+<li class="field">Field 26 K (O)</li>
 <li class="field">Field 21 A (O)</li>
 <li class="field">Field 14 E (O)</li>
 </ul></li>
@@ -129,7 +130,7 @@ Sequence E (O)<ul><li class="field">Field 15 E (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -138,7 +139,7 @@ public class MT304 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT304.class.getName());
 	
@@ -817,6 +818,24 @@ public class MT304 extends AbstractMT implements Serializable {
 		final Tag t = tag("30U");
 		if (t != null) {
 			return new Field30U(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 26K, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 26K at MT304 is expected to be the only one.
+	 * 
+	 * @return a Field26K object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field26K getField26K() {
+		final Tag t = tag("26K");
+		if (t != null) {
+			return new Field26K(t.getValue());
 		} else {
 			return null;
 		}

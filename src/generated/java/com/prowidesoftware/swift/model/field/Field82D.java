@@ -60,7 +60,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2020</strong>
+ * This class complies with standard release <strong>SRU2021</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -68,7 +68,7 @@ public class Field82D extends OptionDPartyField implements Serializable, MultiLi
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 
 	private static final long serialVersionUID = 1L;
 	/**

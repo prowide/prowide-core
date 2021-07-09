@@ -58,7 +58,7 @@ Fieldset 13
 Sequence A1 - Collateral Parties (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q,R (O)</li></ul></li><li class="field">Field 97 A,B (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
@@ -74,29 +74,39 @@ Sequence A2a - Reason (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 </ul></li>
 <li class="fieldset">
 Fieldset 17
- (O)<ul><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="fieldset">
 Fieldset 19
  (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="fieldset">
 Fieldset 70
  (O)<ul><li>FieldsetItem 70 D (O)</li><li>FieldsetItem 70 E (O)</li><li>FieldsetItem 70 E (O)</li></ul></li><li class="sequence">
 Sequence A3 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 A,B (O)</li>
-<li class="field">Field 20 C (M)</li>
+<li class="field">Field 20 C,U (M)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence B - Deal Transaction Details (O)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 99 B (O)</li>
-<li class="field">Field 98 A,B,C (M)</li>
+<li class="field">Field 94 B,L (O)</li>
+<li class="field">Field 17 B (O)</li>
+<li class="fieldset">
+Fieldset 99
+ (O)<ul><li>FieldsetItem 99 B (O)</li><li>FieldsetItem 99 B (O)</li><li>FieldsetItem 99 B (O)</li><li>FieldsetItem 99 B (O)</li><li>FieldsetItem 99 B (O)</li></ul></li><li class="field">Field 98 A,B,C (M)</li>
 <li class="fieldset">
 Fieldset 19
- (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="sequence">
+Sequence B1 (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 13 B (M)</li>
+<li class="field">Field 19 A (M)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="fieldset">
 Fieldset 92
- (O)<ul><li>FieldsetItem 92 A,C (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,C (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 92 A,C (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,C (O)</li></ul></li><li class="field">Field 11 A (O)</li>
+<li class="fieldset">
 Fieldset 22
- (O)<ul><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 H (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (O)<ul><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence C - Securities Movement (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -136,7 +146,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -145,7 +155,7 @@ public class MT558 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT558.class.getName());
 	
@@ -416,18 +426,36 @@ public class MT558 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 99B, 
+	 * Iterates through block4 fields and return the first one whose name matches 94B, 
 	 * or null if none is found.<br>
-	 * The first occurrence of field 99B at MT558 is expected to be the only one.
+	 * The first occurrence of field 94B at MT558 is expected to be the only one.
 	 * 
-	 * @return a Field99B object or null if the field is not found
+	 * @return a Field94B object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field99B getField99B() {
-		final Tag t = tag("99B");
+	public Field94B getField94B() {
+		final Tag t = tag("94B");
 		if (t != null) {
-			return new Field99B(t.getValue());
+			return new Field94B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 94L, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 94L at MT558 is expected to be the only one.
+	 * 
+	 * @return a Field94L object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field94L getField94L() {
+		final Tag t = tag("94L");
+		if (t != null) {
+			return new Field94L(t.getValue());
 		} else {
 			return null;
 		}
@@ -446,6 +474,24 @@ public class MT558 extends AbstractMT implements Serializable {
 		final Tag t = tag("98B");
 		if (t != null) {
 			return new Field98B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 11A, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 11A at MT558 is expected to be the only one.
+	 * 
+	 * @return a Field11A object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field11A getField11A() {
+		final Tag t = tag("11A");
+		if (t != null) {
+			return new Field11A(t.getValue());
 		} else {
 			return null;
 		}
@@ -606,6 +652,26 @@ public class MT558 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field16R(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95L, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 95L at MT558 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field95L objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field95L> getField95L() {
+		final List<Field95L> result = new ArrayList<>();
+		final Tag[] tags = tags("95L");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95L(tag.getValue()));
             }
 		}
 		return result;
@@ -866,6 +932,46 @@ public class MT558 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field13A(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 20U, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 20U at MT558 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field20U objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field20U> getField20U() {
+		final List<Field20U> result = new ArrayList<>();
+		final Tag[] tags = tags("20U");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field20U(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 99B, 
+	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * Multiple occurrences of field 99B at MT558 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field99B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field99B> getField99B() {
+		final List<Field99B> result = new ArrayList<>();
+		final Tag[] tags = tags("99B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field99B(tag.getValue()));
             }
 		}
 		return result;
@@ -1711,6 +1817,133 @@ public class MT558 extends AbstractMT implements Serializable {
 		    s.setTags(parentSequence.getSubBlock(SequenceB.START_END_16RS).getTags());
 		}
 		return s;
+	}
+ 
+
+	/**
+	 * Class to model Sequence "B1" in MT 558
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceB1 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence
+		 */
+	    private SequenceB1() {
+			super(new ArrayList<Tag>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceB1(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>BREAK</em>
+		 */
+		public static final String START_END_16RS = "BREAK";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceB1 newInstance(final Tag ... tags) {
+			final SequenceB1 result = new SequenceB1();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceB1 newInstance() {
+			final SequenceB1 result = new SequenceB1();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceB1 newInstance(final SwiftTagListBlock ... sequences) {
+			final SequenceB1 result = new SequenceB1();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceB1(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+
+	/**
+	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
+	 * @see SequenceB1#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public List<SequenceB1> getSequenceB1List() {
+		return getSequenceB1List(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	/**
+	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceB1#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceB1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceB1> getSequenceB1List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceB1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceB1 s = new SequenceB1();
+                    s.setTags(b.getSubBlock(SequenceB1.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
 	}
  
 

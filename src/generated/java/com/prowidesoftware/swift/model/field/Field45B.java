@@ -55,7 +55,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2020</strong>
+ * This class complies with standard release <strong>SRU2021</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -63,7 +63,7 @@ public class Field45B extends StructuredNarrativeField implements Serializable, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -341,15 +341,16 @@ public class Field45B extends StructuredNarrativeField implements Serializable, 
 	}
 	
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
 	public static final Integer NARRATIVE = 1;
 
 	/**
      * @deprecated use getValue() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2021)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
     public String getNarrative() {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrative()", "Use getValue() instead");
         return getValue();
     }
 }
