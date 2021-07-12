@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.6
+  * MT564: Minor scheme fix, 92a TAXR and WITL can be repeated in CASHMOVE (E2)
   * (JIRA-627) fixed Narrative.builder() to compute "//" size in the lines wrapping
   * (JIRA-581) the MultiLineField API now preserves any starting and trailing spaces in field lines
   * MT565: fixed repetition of sequence B2 (multiple to single)
