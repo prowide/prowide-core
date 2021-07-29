@@ -231,7 +231,6 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      * Creates a full LT address using the parameter BIC code and a default LT identifier,
      * and sets the resulting address as MIR logical terminal address.
      *
-     * @param bic
      * @see #setMIRLogicalTerminal(LogicalTerminalAddress)
      * @since 7.6
      */

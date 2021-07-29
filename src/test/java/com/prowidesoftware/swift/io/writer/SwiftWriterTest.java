@@ -120,8 +120,7 @@ public class SwiftWriterTest {
         SwiftMessage msg = p.message();
         StringWriter writer = new StringWriter();
         SwiftWriter.writeMessage(msg, writer);
-        String result = writer.getBuffer().toString();
-        return result;
+        return writer.getBuffer().toString();
     }
 
     @Test

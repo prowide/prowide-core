@@ -17,7 +17,6 @@ package com.prowidesoftware.swift.io.parser;
 
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;
-import com.prowidesoftware.swift.model.SwiftBlock2Input;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

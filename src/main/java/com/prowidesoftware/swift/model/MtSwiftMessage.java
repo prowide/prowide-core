@@ -437,7 +437,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      */
     public Integer getMessageTypeInt() {
         final String number = getMessageType();
-        if (number != null && StringUtils.isNumeric(number)) {
+        if (StringUtils.isNumeric(number)) {
             return Integer.parseInt(number);
         } else {
             return null;

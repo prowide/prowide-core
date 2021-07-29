@@ -177,7 +177,6 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
     /**
      * Creates a full LT address using the parameter BIC code and a default LT identifier.
      *
-     * @param bic
      * @see #setReceiverAddress(LogicalTerminalAddress)
      * @since 7.6
      */
@@ -219,7 +218,6 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
     /**
      * Sets the receiver's address.<br>
      *
-     * @param logicalTerminal
      * @see LogicalTerminalAddress#getReceiverLogicalTerminalAddress()
      * @since 7.6
      */

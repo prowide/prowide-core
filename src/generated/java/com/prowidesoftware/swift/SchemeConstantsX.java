@@ -16,8 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsX {
 
-    public final static String XDTE = "XDTE";
-    public final static String XCDT = "XCDT";
-    public final static String XAMT = "XAMT";
+    String XDTE = "XDTE";
+    String XCDT = "XCDT";
+    String XAMT = "XAMT";
 
 }

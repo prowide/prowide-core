@@ -38,7 +38,6 @@ public class PPCWriter extends AbstractWriter {
     /**
      * Constructs a PPCWriter to write content into a given Writer instance.
      *
-     * @param writer
      */
     public PPCWriter(final Writer writer) {
         super(writer);
@@ -47,8 +46,6 @@ public class PPCWriter extends AbstractWriter {
     /**
      * Constructs a PPCWriter to write content into a file.
      *
-     * @param file
-     * @throws FileNotFoundException
      */
     public PPCWriter(final File file) throws FileNotFoundException {
         super(file);
@@ -58,7 +55,6 @@ public class PPCWriter extends AbstractWriter {
      * Constructs a PPCWriter to write content into a file.
      *
      * @param filename file to create
-     * @throws FileNotFoundException
      */
     public PPCWriter(final String filename) throws FileNotFoundException {
         super(filename);
@@ -67,7 +63,6 @@ public class PPCWriter extends AbstractWriter {
     /**
      * Constructs a PPCWriter to write content into a given stream.
      *
-     * @param stream
      */
     public PPCWriter(final OutputStream stream) {
         super(stream);
@@ -77,7 +72,6 @@ public class PPCWriter extends AbstractWriter {
      * Writes the message into the writer in DOS-PPC format
      *
      * @param msg    message to write
-     * @param writer
      * @throws IOException if an I/O error occurs
      */
     public static void write(final AbstractMT msg, final Writer writer) throws IOException {
@@ -89,7 +83,6 @@ public class PPCWriter extends AbstractWriter {
      * Writes the message content into the writer in DOS-PPC format
      *
      * @param msg    SWIFT MT content to write
-     * @param writer
      * @throws IOException if an I/O error occurs
      */
     /*

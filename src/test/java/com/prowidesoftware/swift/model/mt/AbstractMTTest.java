@@ -158,17 +158,17 @@ public class AbstractMTTest {
     }
 
     @Test
-    public void testNameFromClass103() throws Exception {
+    public void testNameFromClass103() {
         assertEquals("103", new MT103().nameFromClass());
     }
 
     @Test
-    public void testNameFromClass202COV() throws Exception {
+    public void testNameFromClass202COV() {
         assertEquals("202COV", new MT202COV().nameFromClass());
     }
 
     @Test
-    public void testMtId() throws Exception {
+    public void testMtId() {
         assertEquals("fin.202.COV", new MT202COV().getMtId().id());
         assertEquals("fin.202", new MT202().getMtId().id());
         assertEquals("fin.103.STP", new MT103_STP().getMtId().id());
@@ -176,7 +176,7 @@ public class AbstractMTTest {
     }
 
     @Test
-    public void testRetrieveFields() throws Exception {
+    public void testRetrieveFields() {
         MT549 mt = new MT549();
         mt.append(new Tag("35B", "ISIN DE000A0AAA09"));
         mt.append(new Tag("35B", "ISIN LU000B0BBB09"));

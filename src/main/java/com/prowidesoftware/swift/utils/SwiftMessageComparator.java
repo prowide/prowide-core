@@ -223,8 +223,6 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
      * if {@link #ignoreEolsInMultiline} is true, then multi-line tags are compared line by
      * line, ignoring which eol is used in each case. lines are determined by java api readline
      *
-     * @param value1
-     * @param value2
      * @return true if equals according to internal settings, false otherwise
      */
     private boolean valuesAreEqual(final String value1, final String value2) {
@@ -326,7 +324,6 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     /**
      * When this is set to true, different end of lines characters LF or CRLF will be considered the same.
      *
-     * @param ignoreEolsInMultiline
      */
     public void setIgnoreEolsInMultiline(final boolean ignoreEolsInMultiline) {
         this.ignoreEolsInMultiline = ignoreEolsInMultiline;
@@ -342,7 +339,6 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     /**
      * Sets a new list of tags in the block 4 that will be ignored in the comparison.
      *
-     * @param tagNamesToIgnore
      */
     public void setTagnamesToIgnore(final List<String> tagNamesToIgnore) {
         this.tagnamesToIgnore = tagNamesToIgnore;

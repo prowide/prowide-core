@@ -16,22 +16,22 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsG {
 
-    public final static String GENL = "GENL";
-    public final static String GROSS = "GROSS";
-    public final static String GUAR = "GUAR";
-    public final static String GIUP = "GIUP";
-    public final static String GOMB = "GOMB";
-    public final static String GBNT = "GBNT";
-    public final static String GBON = "GBON";
-    public final static String GRSS = "GRSS";
-    public final static String GUPA = "GUPA";
-    public final static String GCST = "GCST";
-    public final static String GCOS = "GCOS";
-    public final static String GETS = "GETS";
-    public final static String GOLD = "GOLD";
-    public final static String GRM = "GRM";
-    public final static String GECU = "GECU";
-    public final static String GOZ = "GOZ";
-    public final static String GENINFAD = "GENINFAD";
+    String GENL = "GENL";
+    String GROSS = "GROSS";
+    String GUAR = "GUAR";
+    String GIUP = "GIUP";
+    String GOMB = "GOMB";
+    String GBNT = "GBNT";
+    String GBON = "GBON";
+    String GRSS = "GRSS";
+    String GUPA = "GUPA";
+    String GCST = "GCST";
+    String GCOS = "GCOS";
+    String GETS = "GETS";
+    String GOLD = "GOLD";
+    String GRM = "GRM";
+    String GECU = "GECU";
+    String GOZ = "GOZ";
+    String GENINFAD = "GENINFAD";
 
 }

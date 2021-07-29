@@ -77,7 +77,7 @@ public class MT537Test {
     }
 
     @Test
-    public void testC2a_from_S285() throws Exception {
+    public void testC2a_from_S285() {
         SwiftTagListBlock C2_contents = new SwiftTagListBlock()
                 .append(Field22H.tag(":REDE//DELI"))
                 .append(MT537.SequenceC2a.newInstance(Field95C.tag(":DEAG")));

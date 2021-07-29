@@ -44,7 +44,6 @@ public class SwiftParserConfiguration {
     }
 
     /**
-     * @param lenient
      * @see #isLenient()
      */
     public void setLenient(final boolean lenient) {

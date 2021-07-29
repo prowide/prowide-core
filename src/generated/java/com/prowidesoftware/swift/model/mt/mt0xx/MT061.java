@@ -292,7 +292,7 @@ public class MT061 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT061
 	 * @since 7.10.3
 	 */
-	public final static MT061 fromJson(String json) {
+	public static MT061 fromJson(String json) {
 		return (MT061) AbstractMT.fromJson(json);
 	}
 

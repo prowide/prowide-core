@@ -40,7 +40,7 @@ public class Field11RTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testSerialization2() throws Exception {
+    public void testSerialization2() {
         Field11R field11r = new Field11R();
         field11r.setComponent1("103");
         field11r.setComponent2(Calendar.getInstance());

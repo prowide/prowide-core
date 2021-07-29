@@ -38,7 +38,6 @@ public class RJEWriter extends AbstractWriter {
     /**
      * Constructs a RJEWriter to write content into a given Writer instance.
      *
-     * @param writer
      */
     public RJEWriter(final Writer writer) {
         super(writer);
@@ -47,8 +46,6 @@ public class RJEWriter extends AbstractWriter {
     /**
      * Constructs a RJEWriter to write content into a file.
      *
-     * @param file
-     * @throws FileNotFoundException
      */
     public RJEWriter(final File file) throws FileNotFoundException {
         super(file);
@@ -58,7 +55,6 @@ public class RJEWriter extends AbstractWriter {
      * Constructs a RJEWriter to write content into a file.
      *
      * @param filename file to create
-     * @throws FileNotFoundException
      */
     public RJEWriter(final String filename) throws FileNotFoundException {
         super(filename);
@@ -67,7 +63,6 @@ public class RJEWriter extends AbstractWriter {
     /**
      * Constructs a RJEWriter to write content into a given stream.
      *
-     * @param stream
      */
     public RJEWriter(final OutputStream stream) {
         super(stream);
@@ -75,7 +70,6 @@ public class RJEWriter extends AbstractWriter {
 
     /**
      * @param msg    message to write
-     * @param writer
      * @throws IOException if an I/O error occurs
      * @see #write(String, Writer)
      */
@@ -94,7 +88,6 @@ public class RJEWriter extends AbstractWriter {
      * implementation cannot use custom split separator chars.
      *
      * @param msg    SWIFT MT content to write
-     * @param writer
      * @throws IOException if an I/O error occurs
      */
     public static void write(final String msg, final Writer writer) throws IOException {

@@ -66,7 +66,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testEmpty() throws SAXException, IOException, ParserConfigurationException {
+    public void testEmpty() {
         msg.setBlock1(null);
         msg.setBlock2(null);
         msg.setBlock3(null);
@@ -77,7 +77,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testEmptyBlocks() throws SAXException, IOException, ParserConfigurationException {
+    public void testEmptyBlocks() {
         msg.setBlock1(new SwiftBlock1());
         msg.getBlock1().setApplicationId(null);
         msg.getBlock1().setServiceId(null);
@@ -94,7 +94,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testWithTags() throws SAXException, IOException, ParserConfigurationException {
+    public void testWithTags() {
         String xml = "<message>" +
                 Constants.B1_DATA_XML +
                 "\n<block4>" +
@@ -115,7 +115,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testBug1539324_1() throws SAXException, IOException, ParserConfigurationException {
+    public void testBug1539324_1() {
         SwiftBlock1 b1 = new SwiftBlock1();
         b1.setValue(Constants.B1_DATA);
         msg.setBlock1(b1);
@@ -132,7 +132,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testBug1539324_2() throws SAXException, IOException, ParserConfigurationException {
+    public void testBug1539324_2() {
         SwiftBlock1 b1 = new SwiftBlock1();
         b1.setValue(Constants.B1_DATA);
         msg.setBlock1(b1);
@@ -162,7 +162,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testBug1540294_1() throws SAXException, IOException, ParserConfigurationException {
+    public void testBug1540294_1() {
         msg.clear();
         SwiftBlock4 b4 = new SwiftBlock4();
         b4.append(new Tag("t1", "v1"));
@@ -185,7 +185,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testBlock2Output_1() throws SAXException, IOException, ParserConfigurationException {
+    public void testBlock2Output_1() {
         msg.clear();
         SwiftBlock1 b1 = new SwiftBlock1();
         b1.setValue(Constants.B1_DATA);
@@ -203,7 +203,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testBlock2Output() throws SAXException, IOException, ParserConfigurationException {
+    public void testBlock2Output() {
         msg.clear();
 
         SwiftBlock2 b2 = new SwiftBlock2Output();
@@ -218,7 +218,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testTagSerialization() throws SAXException, IOException, ParserConfigurationException {
+    public void testTagSerialization() {
         msg.clear();
         SwiftBlock4 b4 = new SwiftBlock4();
         b4.append(new Tag("26C", "/LONDON/UNFOOGOLD"));
@@ -236,7 +236,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testFieldSerialization() throws SAXException, IOException, ParserConfigurationException {
+    public void testFieldSerialization() {
         msg.clear();
         msg.setBlock4(new SwiftBlock4());
 
@@ -256,7 +256,7 @@ public class XMLWriterVisitorTest {
     }
 
     @Test
-    public void testWithTags_asField() throws SAXException, IOException, ParserConfigurationException {
+    public void testWithTags_asField() {
         String xml = "<message>" +
                 Constants.B1_DATA_XML +
                 "\n<block4>" +

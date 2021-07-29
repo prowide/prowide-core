@@ -39,8 +39,6 @@ public class UnknownMTException extends ProwideException {
     /**
      * Constructor with given text message and cause
      *
-     * @param message
-     * @param cause
      */
     public UnknownMTException(String message, Throwable cause) {
         super(message, cause);
@@ -49,7 +47,6 @@ public class UnknownMTException extends ProwideException {
     /**
      * Constructor with given text message, it takes a default cause.
      *
-     * @param message
      */
     public UnknownMTException(String message) {
         super(message);
@@ -58,7 +55,6 @@ public class UnknownMTException extends ProwideException {
     /**
      * Constructor with given cause, it takes a default message.
      *
-     * @param cause
      */
     public UnknownMTException(Throwable cause) {
         super(cause);

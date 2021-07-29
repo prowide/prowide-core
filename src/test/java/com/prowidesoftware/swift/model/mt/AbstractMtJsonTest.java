@@ -390,16 +390,12 @@ public class AbstractMtJsonTest {
          * Generic fromJson implementation
          */
         MT103 mt2 = (MT103) AbstractMT.fromJson(json);
-        //System.out.println(mt.message());
-        //System.out.println(mt2.message());
         assertTrue(comp.compare(original, mt2.getSwiftMessage()) == 0);
 
         /*
          * Specific MT class fromJson implementation
          */
         MT103 mt3 = MT103.fromJson(json);
-        //System.out.println(mt.message());
-        //System.out.println(mt3.message());
         assertTrue(comp.compare(original, mt3.getSwiftMessage()) == 0);
     }
 

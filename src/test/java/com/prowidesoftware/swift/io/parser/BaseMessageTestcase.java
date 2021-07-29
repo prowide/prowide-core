@@ -43,8 +43,7 @@ public abstract class BaseMessageTestcase {
 
     protected SwiftParser buildParser(String filename) {
         InputStream is = getInputStream(filename);
-        SwiftParser parser = new SwiftParser(is);
-        return parser;
+        return new SwiftParser(is);
     }
 
     protected InputStream getInputStream(String filename) {

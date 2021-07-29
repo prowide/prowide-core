@@ -53,7 +53,7 @@ public class Field335Test extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse281() throws Exception {
+    public void testParse281() {
         Field335 f = new Field335("1020MIR4567890123456789012345END103AAAAAAAAAAAA1234");
         assertNotNull(f, "Parse of field failed");
         assertEquals("1020", f.getComponent1());
@@ -64,7 +64,7 @@ public class Field335Test extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse2() throws Exception {
+    public void testParse2() {
         Field335 f = new Field335(EXAMPLE1_FIELD_335);
         assertNotNull(f, "Parse of field failed");
         assertEquals("1522", f.getComponent1());
@@ -75,7 +75,7 @@ public class Field335Test extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse3() throws Exception {
+    public void testParse3() {
         Field335 f = new Field335(EXAMPLE2_FIELD_335);
         assertNotNull(f, "Parse of field failed");
         assertEquals("1800", f.getComponent1());

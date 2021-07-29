@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class MIRTest {
 
     @Test
-    public void testSplitComponents() throws Exception {
+    public void testSplitComponents() {
         MIR mir = new MIR("");
         assertNull(mir.getDate());
         assertNull(mir.getLogicalTerminal());

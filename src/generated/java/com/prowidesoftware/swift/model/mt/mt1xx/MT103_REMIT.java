@@ -324,7 +324,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	 * @return a new instance of MT103_REMIT
 	 * @since 7.10.3
 	 */
-	public final static MT103_REMIT fromJson(String json) {
+	public static MT103_REMIT fromJson(String json) {
 		return (MT103_REMIT) AbstractMT.fromJson(json);
 	}
 

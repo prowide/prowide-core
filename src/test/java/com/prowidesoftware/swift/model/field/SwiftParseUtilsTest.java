@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SwiftParseUtilsTest {
 
     @Test
-    public void testSplitComponents() throws Exception {
+    public void testSplitComponents() {
         assertEquals(0, (SwiftParseUtils.splitComponents(null, null, null)).size());
         assertEquals(0, (SwiftParseUtils.splitComponents(null, null, "/")).size());
         assertEquals(0, (SwiftParseUtils.splitComponents(null, ":", null)).size());
@@ -61,7 +61,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetAlphaPrefix() throws Exception {
+    public void testGetAlphaPrefix() {
         assertNull(SwiftParseUtils.getAlphaPrefix(null));
         assertNull(SwiftParseUtils.getAlphaPrefix(""));
         assertNull(SwiftParseUtils.getAlphaPrefix("12342"));
@@ -74,7 +74,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetAlphaSuffix() throws Exception {
+    public void testGetAlphaSuffix() {
         assertNull(SwiftParseUtils.getAlphaSuffix(null));
         assertNull(SwiftParseUtils.getAlphaSuffix(""));
         assertNull(SwiftParseUtils.getAlphaSuffix("12342"));
@@ -88,7 +88,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetNumericPrefix() throws Exception {
+    public void testGetNumericPrefix() {
         assertNull(SwiftParseUtils.getNumericPrefix(null));
         assertNull(SwiftParseUtils.getNumericPrefix(""));
         assertNull(SwiftParseUtils.getNumericPrefix("asdfD"));
@@ -102,7 +102,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetNumericSuffix() throws Exception {
+    public void testGetNumericSuffix() {
         assertNull(SwiftParseUtils.getNumericSuffix(null));
         assertNull(SwiftParseUtils.getNumericSuffix(""));
         assertNull(SwiftParseUtils.getNumericSuffix("asdfD"));
@@ -114,7 +114,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetTokenFirst() throws Exception {
+    public void testGetTokenFirst() {
         assertNull(SwiftParseUtils.getTokenFirst(null, null, null));
         assertNull(SwiftParseUtils.getTokenFirst("", "", ""));
         assertNull(SwiftParseUtils.getTokenFirst(null, null, "/"));
@@ -135,7 +135,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetTokenSecond() throws Exception {
+    public void testGetTokenSecond() {
         assertNull(SwiftParseUtils.getTokenSecond(null, null));
         assertNull(SwiftParseUtils.getTokenSecond("", ""));
         assertNull(SwiftParseUtils.getTokenSecond(null, "/"));
@@ -156,7 +156,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetTokenSecondWithPrefix() throws Exception {
+    public void testGetTokenSecondWithPrefix() {
         assertNull(SwiftParseUtils.getTokenSecond(null, null, null));
         assertNull(SwiftParseUtils.getTokenSecond("", "", ""));
         assertNull(SwiftParseUtils.getTokenSecond(null, null, "/"));
@@ -177,7 +177,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetTokenSecondLast() throws Exception {
+    public void testGetTokenSecondLast() {
         assertNull(SwiftParseUtils.getTokenSecondLast(null, null));
         assertNull(SwiftParseUtils.getTokenSecondLast("", ""));
         assertNull(SwiftParseUtils.getTokenSecondLast(null, "/"));
@@ -200,7 +200,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetTokenSecondLastWithPrefix() throws Exception {
+    public void testGetTokenSecondLastWithPrefix() {
         assertNull(SwiftParseUtils.getTokenSecondLast(null, null, null));
         assertNull(SwiftParseUtils.getTokenSecondLast("", "", ""));
         assertNull(SwiftParseUtils.getTokenSecondLast(null, "/", "/"));
@@ -223,7 +223,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetTokenThird() throws Exception {
+    public void testGetTokenThird() {
         assertNull(SwiftParseUtils.getTokenThird(null, null));
         assertNull(SwiftParseUtils.getTokenThird("", ""));
         assertNull(SwiftParseUtils.getTokenThird(null, "/"));
@@ -241,7 +241,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetTokenThirdLast() throws Exception {
+    public void testGetTokenThirdLast() {
         assertNull(SwiftParseUtils.getTokenThirdLast(null, null));
         assertNull(SwiftParseUtils.getTokenThirdLast("", ""));
         assertNull(SwiftParseUtils.getTokenThirdLast(null, "/"));
@@ -261,7 +261,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetTokenForth() throws Exception {
+    public void testGetTokenForth() {
         assertNull(SwiftParseUtils.getTokenForth(null, null));
         assertNull(SwiftParseUtils.getTokenForth("", ""));
         assertNull(SwiftParseUtils.getTokenForth(null, "/"));
@@ -282,7 +282,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testGetTokenForthLast() throws Exception {
+    public void testGetTokenForthLast() {
         assertNull(SwiftParseUtils.getTokenForthLast(null, null));
         assertNull(SwiftParseUtils.getTokenForthLast("", ""));
         assertNull(SwiftParseUtils.getTokenForthLast(null, "/"));
@@ -303,7 +303,7 @@ public class SwiftParseUtilsTest {
     }
 
     @Test
-    public void testRemovePrefix() throws Exception {
+    public void testRemovePrefix() {
         assertNull(SwiftParseUtils.removePrefix(null, null));
         assertNull(SwiftParseUtils.removePrefix(null, ""));
         assertNull(SwiftParseUtils.removePrefix(null, "/"));

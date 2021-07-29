@@ -94,7 +94,7 @@ public class DeprecationUtils {
      * Returns true if the environment variable {@link #PW_DEPRECATED} contains
      * the given key in its value
      */
-    private static final boolean isSet(final EnvironmentVariableKey key) {
+    private static boolean isSet(final EnvironmentVariableKey key) {
         return StringUtils.containsIgnoreCase(System.getenv(PW_DEPRECATED), key.name());
     }
 

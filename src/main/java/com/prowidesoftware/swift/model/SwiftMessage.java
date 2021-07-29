@@ -182,10 +182,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      *
      * @param fin string a string containing a swift MT message
      * @return parser message or null if string content could not be parsed
-     * @throws IOException
      * @since 7.8.8
      */
-    public final static SwiftMessage parse(final String fin) throws IOException {
+    public static SwiftMessage parse(final String fin) throws IOException {
         return (new SwiftParser(fin)).message();
     }
 
@@ -1454,7 +1453,6 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     /**
      * return first results of fields() or null if none
      *
-     * @param name
      * @return null if not found
      * @see #fields(String...)
      */

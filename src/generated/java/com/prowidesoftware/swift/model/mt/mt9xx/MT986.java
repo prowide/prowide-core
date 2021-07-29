@@ -284,7 +284,7 @@ public class MT986 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT986
 	 * @since 7.10.3
 	 */
-	public final static MT986 fromJson(String json) {
+	public static MT986 fromJson(String json) {
 		return (MT986) AbstractMT.fromJson(json);
 	}
 

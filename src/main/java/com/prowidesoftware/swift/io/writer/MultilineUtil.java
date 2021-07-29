@@ -33,7 +33,6 @@ public class MultilineUtil {
     /**
      * Same as <code>removeInnerEmptyLines(lines, false)</code>
      *
-     * @param lines
      * @return a String array with all nonempty lines contained in the lines array
      * @see #removeInnerEmptyLines(String[], boolean)
      */

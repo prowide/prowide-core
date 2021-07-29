@@ -81,18 +81,16 @@ public class Issue41 {
         MT564 mt = MT564.parse(fin);
 
         // this returns all field 92a in the message
-        List<Field> fields = (List<Field>) mt.getSwiftMessage().getBlock4().getFieldsByNumber(92);
-        assertEquals(2, fields.size());
+        assertEquals(2, mt.getSwiftMessage().getBlock4().getFieldsByNumber(92).size());
 
         MT564.SequenceE sequenceE = mt.getSequenceEList().get(0);
 
         // this returns all fields 92a in sequence E and ALSO in any subsequence such as the occurrence in the inner E2
-        fields = (List<Field>) sequenceE.getFieldsByNumber(92);
-        assertEquals(2, fields.size());
+        assertEquals(2, sequenceE.getFieldsByNumber(92).size());
 
         // this returns all fields 92a in sequence E only, not occurrence in subsequences
         SwiftTagListBlock trimmedSequenceE = SwiftMessageUtils.removeInnerSequences(mt.getSequenceEList().get(0));
-        fields = (List<Field>) trimmedSequenceE.getFieldsByNumber(92);
+        List<? extends Field> fields = trimmedSequenceE.getFieldsByNumber(92);
         assertEquals(1, fields.size());
         assertEquals(":GRSS//USD0,12345657/ACTU", fields.get(0).getValue());
 
@@ -104,7 +102,7 @@ public class Issue41 {
 
         // this returns all fields 92a in sequence E2
         SwiftTagListBlock sequenceE2 = SwiftMessageUtils.removeInnerSequences(mt.getSequenceE2List().get(0));
-        fields = (List<Field>) sequenceE2.getFieldsByNumber(92);
+        fields = sequenceE2.getFieldsByNumber(92);
         assertEquals(1, fields.size());
         assertEquals(":GRSS//INCO/USD0,1234567/ACTU", fields.get(0).getValue());
     }

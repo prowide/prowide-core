@@ -358,7 +358,7 @@ public class MT365 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT365
 	 * @since 7.10.3
 	 */
-	public final static MT365 fromJson(String json) {
+	public static MT365 fromJson(String json) {
 		return (MT365) AbstractMT.fromJson(json);
 	}
 

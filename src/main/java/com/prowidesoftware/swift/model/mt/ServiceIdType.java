@@ -56,7 +56,7 @@ public enum ServiceIdType {
      * @return <code>true</code> if the parameter number is a valid service id
      * @since 7.8.8
      */
-    public static final boolean valid(String number) {
+    public static boolean valid(String number) {
         if (StringUtils.isNotEmpty(number)) {
             try {
                 valueOf("_" + number);

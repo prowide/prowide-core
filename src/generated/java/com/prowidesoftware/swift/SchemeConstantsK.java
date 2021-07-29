@@ -16,11 +16,11 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsK {
 
-    public final static String KNOT = "KNOT";
-    public final static String KIKO = "KIKO";
-    public final static String KOKI = "KOKI";
-    public final static String KNIN = "KNIN";
-    public final static String KLO = "KLO";
-    public final static String KRUG = "KRUG";
+    String KNOT = "KNOT";
+    String KIKO = "KIKO";
+    String KOKI = "KOKI";
+    String KNIN = "KNIN";
+    String KLO = "KLO";
+    String KRUG = "KRUG";
 
 }

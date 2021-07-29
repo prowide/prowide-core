@@ -51,7 +51,7 @@ public class CurrencyResolver {
     }
 
     public static void resolveSetCurrency(final CurrencyContainer cc, final Currency cur) {
-
+        resolveSetCurrency(cc, cur.toString());
     }
 
     public static void resolveSetCurrency(final CurrencyContainer cc, final String cur) {

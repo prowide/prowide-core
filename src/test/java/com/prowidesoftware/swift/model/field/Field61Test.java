@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test for Field61 and similar fields.
  *
- * @author sebastian
  * @since 6.0
  */
 public class Field61Test extends AbstractFieldTest {
@@ -68,7 +67,7 @@ public class Field61Test extends AbstractFieldTest {
 
         f = new Field61(v3);
         assertNotNull(f);
-        assertEquals(new BigDecimal(10215), new BigDecimal(f.getComponent5AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("10215.0"), BigDecimal.valueOf(f.getComponent5AsNumber().doubleValue()));
         assertEquals("N", f.getComponent(Field61.TRANSACTION_TYPE));
         assertEquals("OPT", f.getComponent(Field61.IDENTIFICATION_CODE));
         assertEquals("12710361", f.getComponent8());
@@ -80,7 +79,7 @@ public class Field61Test extends AbstractFieldTest {
 
         f = new Field61("090227C291553,62NAYG13391140" + "\n" + "1524/6009/TRASPASO AUTOMATICO AL");
         assertNotNull(f);
-        assertEquals(new BigDecimal(291553.62), new BigDecimal(f.getComponent5AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("291553.62"), BigDecimal.valueOf(f.getComponent5AsNumber().doubleValue()));
 
         assertFalse(291553.9962 == f.getComponent5AsNumber().doubleValue());
     }
@@ -94,7 +93,7 @@ public class Field61Test extends AbstractFieldTest {
         assertEquals(2008, f.getComponent1AsCalendar().get(Calendar.YEAR));
         assertEquals(Calendar.OCTOBER, f.getComponent1AsCalendar().get(Calendar.MONTH));
         assertEquals(24, f.getComponent1AsCalendar().get(Calendar.DAY_OF_MONTH));
-        assertEquals(new BigDecimal(10215), new BigDecimal(f.getComponent5AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("10215.0"), BigDecimal.valueOf(f.getComponent5AsNumber().doubleValue()));
         assertEquals("10215,", f.getComponent5());
     }
 
@@ -160,7 +159,7 @@ public class Field61Test extends AbstractFieldTest {
     @Test
     public void test_DCMark() {
 
-        /**
+        /*
          C  Credit
          D  Debit
          EC Expected Credit
@@ -191,7 +190,7 @@ public class Field61Test extends AbstractFieldTest {
 
     @Test
     public void test_DCMArk_with_funds_code() {
-        /**
+        /*
          C  Credit
          D  Debit
          EC Expected Credit

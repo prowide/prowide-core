@@ -31,8 +31,7 @@ public class UETRUtils {
     public static String generate() {
         // we just use the Java UUID that is compatible with the SWIFT spec for UETR
         UUID uuid = UUID.randomUUID();
-        String uuid36 = uuid.toString();
-        return uuid36;
+        return uuid.toString();
     }
 
 }

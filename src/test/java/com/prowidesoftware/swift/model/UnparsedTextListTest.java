@@ -87,9 +87,7 @@ public class UnparsedTextListTest {
 
     @Test
     public void test_getTextBAD() {
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            assertNull(t.getText(-1));
-        });
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> assertNull(t.getText(-1)));
     }
 
     @Test
@@ -100,9 +98,7 @@ public class UnparsedTextListTest {
 
     @Test
     public void test_getTextAsMessageBAD() {
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            assertNull(t.getTextAsMessage(-1));
-        });
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> assertNull(t.getTextAsMessage(-1)));
 
     }
 
@@ -132,9 +128,7 @@ public class UnparsedTextListTest {
 
     @Test
     public void test_removeIndexBAD() {
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            t.removeText(1);
-        });
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> t.removeText(1));
     }
 
     @Test

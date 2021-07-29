@@ -31,32 +31,32 @@ public class Field60FTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testSetCurrency() throws Exception {
+    public void testSetCurrency() {
         assertEquals("ARS", new Field60F().setCurrency("ARS").getValue());
     }
 
     @Test
-    public void testSetAmount() throws Exception {
+    public void testSetAmount() {
         assertEquals("100,", new Field60F().setAmount(100).getValue());
     }
 
     @Test
-    public void testSetDCMark() throws Exception {
+    public void testSetDCMark() {
         assertEquals("D", new Field60F().setDCMark("D").getValue());
     }
 
     @Test
-    public void testSetCurrencyTag() throws Exception {
+    public void testSetCurrencyTag() {
         assertEquals("ARS", new Field60F().setCurrency("ARS").asTag().getValue());
     }
 
     @Test
-    public void testSetAmountTag() throws Exception {
+    public void testSetAmountTag() {
         assertEquals("100,", new Field60F().setAmount(100).asTag().getValue());
     }
 
     @Test
-    public void testSetDCMarkTag() throws Exception {
+    public void testSetDCMarkTag() {
         assertEquals("D", new Field60F().setDCMark("D").asTag().getValue());
     }
 

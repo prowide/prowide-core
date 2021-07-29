@@ -97,19 +97,19 @@ public class Field34FTest extends AbstractFieldTest {
         assertEquals("aaa", f.getComponent1());
         assertEquals("b", f.getComponent2());
         assertEquals("123", f.getComponent3());
-        assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
 
         f = new Field34F("aaab123,");
         assertEquals("aaa", f.getComponent1());
         assertEquals("b", f.getComponent2());
         assertEquals("123,", f.getComponent3());
-        assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
 
         f = new Field34F("aaab123,45");
         assertEquals("aaa", f.getComponent1());
         assertEquals("b", f.getComponent2());
         assertEquals("123,45", f.getComponent3());
-        assertEquals(new BigDecimal(123.45), new BigDecimal(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123.45"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
 
     }
 

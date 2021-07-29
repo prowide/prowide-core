@@ -109,16 +109,14 @@ public class SwiftBlockUserTest {
     @Test
     public void test_removeBlock_1() {
         // FIXME why does this test fail? IAE is thrown and expected...
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            m.removeUserBlock(1);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> m.removeUserBlock(1));
     }
 
     /**
      * Remove UserBlock using a string for block naming
      */
     @Test
-    public void testRemoveBlockUserStringName() throws IOException {
+    public void testRemoveBlockUserStringName() {
         final SwiftMessage m = new SwiftMessage(false);
         assertEquals(0, m.getBlockCount());
 
@@ -137,7 +135,7 @@ public class SwiftBlockUserTest {
      * Remove UserBlock using an integer for block naming
      */
     @Test
-    public void testRemoveBlockUserNumberName() throws IOException {
+    public void testRemoveBlockUserNumberName() {
         final SwiftMessage m = new SwiftMessage(false);
         assertEquals(0, m.getBlockCount());
 

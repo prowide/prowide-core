@@ -208,7 +208,7 @@ public class SequencesAPITest {
 
         // if we call this with a parent sequence, such as B it works
         // however if we pass the whole block 4, it fails because it returns the colliding FIA from SECMOVE
-        assertTrue(mt.getSequenceB1(mt.getSequenceB()).isEmpty());
+        assertTrue(MT564.getSequenceB1(mt.getSequenceB()).isEmpty());
     }
 
     @Test

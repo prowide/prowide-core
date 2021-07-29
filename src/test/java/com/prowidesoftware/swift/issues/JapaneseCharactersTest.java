@@ -61,7 +61,7 @@ public class JapaneseCharactersTest {
     }
 
     @Test
-    public void testMTFromString() throws IOException {
+    public void testMTFromString() {
         MT940 mt = new MT940("{1:F01FOOBARXXAXXX0000000000}{2:I940FOOBARXXXXXXN}{4:\n" +
                 ":20:ABC123456530012\n" +
                 ":25:987654321\n" +

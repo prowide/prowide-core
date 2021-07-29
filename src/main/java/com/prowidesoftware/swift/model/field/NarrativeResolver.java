@@ -42,30 +42,43 @@ public class NarrativeResolver {
 // enabled parser for any field until SRU2020 when NarrativeContainer is added for the generated fields model
 //        if (f instanceof NarrativeContainer) {
         // each field support one or two line formats
-        if (f.getName().equals(Field77A.NAME) || f.getName().equals(Field74.NAME) || f.getName().equals(Field86.NAME)) {
-            return parseFormat1(f);
-        } else if (f.getName().equals(Field72Z.NAME) || f.getName().equals(Field72.NAME) || f.getName().equals(Field77.NAME) || f.getName().equals(Field77J.NAME)) {
-            return parseFormat2(f);
-        } else if (f.getName().equals(Field73A.NAME) || f.getName().equals(Field71D.NAME) || f.getName().equals(Field71B.NAME) || f.getName().equals(Field73.NAME)) {
-            return parseFormat3(f);
-        } else if (f.getName().equals(Field77B.NAME)) {
-            return parseFormat4(f);
-        } else if (f.getName().equals(Field75.NAME) || f.getName().equals(Field76.NAME)) {
-            return parseFormat5(f);
-        } else if (f.getName().equals(Field49N.NAME) || f.getName().equals(Field45B.NAME) || f.getName().equals(Field46B.NAME) || f.getName().equals(Field49M.NAME)) {
-            return parseFormat6(f);
-        } else if (f.getName().equals(Field70.NAME) || f.getName().equals(Field77D.NAME) || f.getName().equals(Field37N.NAME)) {
-            return parseFormat7(f);
-        } else if (f.getName().equals(Field29A.NAME) || f.getName().equals(Field79.NAME)) {
-            return parseFormat8(f.getValue());
-        } else if (f.getName().equals(Field61.NAME)) {
-            Field61 field61 = (Field61) f;
-            return parseFormat8(field61.getSupplementaryDetails());
+        switch (f.getName()) {
+            case Field77A.NAME:
+            case Field74.NAME:
+            case Field86.NAME:
+                return parseFormat1(f);
+            case Field72Z.NAME:
+            case Field72.NAME:
+            case Field77.NAME:
+            case Field77J.NAME:
+                return parseFormat2(f);
+            case Field73A.NAME:
+            case Field71D.NAME:
+            case Field71B.NAME:
+            case Field73.NAME:
+                return parseFormat3(f);
+            case Field77B.NAME:
+                return parseFormat4(f);
+            case Field75.NAME:
+            case Field76.NAME:
+                return parseFormat5(f);
+            case Field49N.NAME:
+            case Field45B.NAME:
+            case Field46B.NAME:
+            case Field49M.NAME:
+                return parseFormat6(f);
+            case Field70.NAME:
+            case Field77D.NAME:
+            case Field37N.NAME:
+                return parseFormat7(f);
+            case Field29A.NAME:
+            case Field79.NAME:
+                return parseFormat8(f.getValue());
+            case Field61.NAME:
+                Field61 field61 = (Field61) f;
+                return parseFormat8(field61.getSupplementaryDetails());
         }
         log.warning("Don't know how to parse structured narrative line formats for " + f.getName());
-//        } else {
-//            log.warning("Field "+ f.getName() + " is not a " + NarrativeContainer.class.getSimpleName());
-//        }
         return new Narrative();
     }
 

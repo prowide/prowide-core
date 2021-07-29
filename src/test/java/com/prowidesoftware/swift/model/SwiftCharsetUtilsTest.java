@@ -24,7 +24,7 @@ public class SwiftCharsetUtilsTest {
     private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftCharsetUtilsTest.class.getName());
 
     @Test
-    public void test_n() throws Exception {
+    public void test_n() {
         log.info("n " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_n()));
 
         assertTrue(SwiftCharsetUtils.is_n('0'));
@@ -51,7 +51,7 @@ public class SwiftCharsetUtilsTest {
     }
 
     @Test
-    public void test_a() throws Exception {
+    public void test_a() {
         log.info("a " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_a()));
 
         assertTrue(SwiftCharsetUtils.is_a('A'));
@@ -94,7 +94,7 @@ public class SwiftCharsetUtilsTest {
     }
 
     @Test
-    public void test_x() throws Exception {
+    public void test_x() {
         log.info("x " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_x()));
 
         assertTrue(SwiftCharsetUtils.is_x('A'));
@@ -194,7 +194,7 @@ public class SwiftCharsetUtilsTest {
     }
 
     @Test
-    public void test_y() throws Exception {
+    public void test_y() {
         log.info("y " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_y()));
 
         assertTrue(SwiftCharsetUtils.is_y('A'));
@@ -269,7 +269,7 @@ public class SwiftCharsetUtilsTest {
     }
 
     @Test
-    public void test_z() throws Exception {
+    public void test_z() {
         log.info("z " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_z()));
 
         assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_z("KJAHSDJSsdfs@#HJKAHS876823 /DD78()+ DDFD<JJ>&%*\"' 89?DD-43/D;!:=D"));
@@ -279,7 +279,7 @@ public class SwiftCharsetUtilsTest {
     }
 
     @Test
-    public void test_c() throws Exception {
+    public void test_c() {
         log.info("c " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_c()));
 
         assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_c("KASJDFSD8223JS2220983JFKSI12SFD5344678590LSKSFDMNCVXOW"));
@@ -289,7 +289,7 @@ public class SwiftCharsetUtilsTest {
     }
 
     @Test
-    public void test_B() throws Exception {
+    public void test_B() {
         log.info("B " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_B()));
 
         assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_B("KASJDFasdsSD8223JS22209ytJFKSI1dd2SFD5d344678590LSKSFDMNCVXOW"));
@@ -299,7 +299,7 @@ public class SwiftCharsetUtilsTest {
     }
 
     @Test
-    public void test_filter() throws Exception {
+    public void test_filter() {
         assertEquals("", SwiftCharsetUtils.filter("", SwiftCharset.x));
         assertEquals("abcd", SwiftCharsetUtils.filter("abcd", SwiftCharset.x));
         assertEquals("abcdEFG", SwiftCharsetUtils.filter("abcdEFG", SwiftCharset.x));
@@ -309,7 +309,7 @@ public class SwiftCharsetUtilsTest {
     }
 
     @Test
-    public void asString() throws Exception {
+    public void asString() {
         String s = SwiftCharsetUtils.getAsString(SwiftCharset.a);
         log.info("a" + s);
         assertFalse(s.contains("M"));

@@ -40,7 +40,6 @@ public abstract class AbstractWriter {
     /**
      * Constructs a writer to write content into a given Writer instance.
      *
-     * @param writer
      */
     public AbstractWriter(final Writer writer) {
         this.writer = writer;
@@ -49,8 +48,6 @@ public abstract class AbstractWriter {
     /**
      * Constructs a writer to write content into a file.
      *
-     * @param file
-     * @throws FileNotFoundException
      */
     public AbstractWriter(final File file) throws FileNotFoundException {
         this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
@@ -60,7 +57,6 @@ public abstract class AbstractWriter {
      * Constructs a writer to write content into a file.
      *
      * @param filename file to create
-     * @throws FileNotFoundException
      */
     public AbstractWriter(final String filename) throws FileNotFoundException {
         this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename)));
@@ -69,7 +65,6 @@ public abstract class AbstractWriter {
     /**
      * Constructs a writer to write content into a given stream.
      *
-     * @param stream
      */
     public AbstractWriter(final OutputStream stream) {
         this.writer = new BufferedWriter(new OutputStreamWriter(stream));

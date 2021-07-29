@@ -111,7 +111,7 @@ public class Field41DTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testName() throws Exception {
+    public void testName() {
         String s = "c1\nc5";
         Field41D f = new Field41D(s);
         assertFalse(StringUtils.isEmpty(f.getComponent5()));

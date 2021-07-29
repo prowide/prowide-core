@@ -129,33 +129,29 @@ public class Field19ATest extends AbstractFieldTest {
         assertEquals("abc", f.getComponent1());
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
-        assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent4AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent4AsNumber().doubleValue()));
 
         f = new Field19A(":abc//errr123,");
         assertEquals("abc", f.getComponent1());
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
-        assertEquals(new BigDecimal(123), new BigDecimal(f.getComponent4AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent4AsNumber().doubleValue()));
 
         f = new Field19A(":abc//errr123,45");
         assertEquals("abc", f.getComponent1());
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
-        assertEquals(new BigDecimal(123.45), new BigDecimal(f.getComponent4AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123.45"), BigDecimal.valueOf(f.getComponent4AsNumber().doubleValue()));
 
         f = new Field19A(":abc//errr123,45,");
         assertEquals("abc", f.getComponent1());
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
-        //log.fine("number:"+f.getComponent4().doubleValue());
-        //assertNull(f.getComponent4());
 
         f = new Field19A(":abc//errr123.45");
         assertEquals("abc", f.getComponent1());
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
-        //log.fine("number:"+f.getComponent4().doubleValue());
-        //assertNull(f.getComponent4());
 
         f = new Field19A(":abc//errr123aaa");
         assertEquals("abc", f.getComponent1());
@@ -165,7 +161,7 @@ public class Field19ATest extends AbstractFieldTest {
     }
 
     @Test
-    public void testIssueAmountResolver() throws Exception {
+    public void testIssueAmountResolver() {
         Field19A f = new Field19A("SETT//CHF178626,04");
         Object n = f.getComponentAs(4, Number.class);
         assertNotNull(n);

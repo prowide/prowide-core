@@ -105,12 +105,12 @@ public class Field59Test extends AbstractFieldTest {
     }
 
     @Test
-    public void testMultilineApiGetLine1Empty() throws Exception {
+    public void testMultilineApiGetLine1Empty() {
         assertNull(new Field59("").getLine(1));
     }
 
     @Test
-    public void testMultilineApiGetLine1Null() throws Exception {
+    public void testMultilineApiGetLine1Null() {
         assertNull(new Field59((String) null).getLine(1));
     }
 

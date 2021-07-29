@@ -228,7 +228,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testSwiftMessageToJson() throws Exception {
+    public void testSwiftMessageToJson() {
         SwiftMessage m = MT103.parse("{1:F01FOOSEDR0AXXX0000000000}{3:{113:SEPA}{108:ILOVESEPA}}{2:I103FOORECV0XXXXN}{4:\n" +
                 ":20:REFERENCE\n" +
                 ":23B:CRED\n" +
@@ -262,7 +262,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testSwiftMessageFromJsonWithBlock3() throws Exception {
+    public void testSwiftMessageFromJsonWithBlock3() {
         String json = "{\n" +
                 "  \"timestamp\": \"2018-04-19T02:31:26Z\",\n" +
                 "  \"version\": 2,\n" +
@@ -335,7 +335,7 @@ public class SwiftMessageJsonTest {
     }
 
     @Test
-    public void testSwiftMessageFromJson() throws Exception {
+    public void testSwiftMessageFromJson() {
         String json = "{\n" +
                 "  \"timestamp\": \"2018-04-16T03:57:16Z\",\n" +
                 "  \"version\": 2,\n" +

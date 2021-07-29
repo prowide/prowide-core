@@ -795,7 +795,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockAfterFirst() throws Exception {
+    public void testGetSubBlockAfterFirst() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -808,7 +808,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockAfterFirst2() throws Exception {
+    public void testGetSubBlockAfterFirst2() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -821,7 +821,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockAfterFirst3() throws Exception {
+    public void testGetSubBlockAfterFirst3() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -837,7 +837,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockAfterFirstLimit() throws Exception {
+    public void testGetSubBlockAfterFirstLimit() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -851,7 +851,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockAfterFirstLimit2() throws Exception {
+    public void testGetSubBlockAfterFirstLimit2() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -865,7 +865,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockAfterFirstNotFound() throws Exception {
+    public void testGetSubBlockAfterFirstNotFound() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -879,7 +879,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockAfterFirstTag() throws Exception {
+    public void testGetSubBlockAfterFirstTag() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -895,7 +895,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockBeforeFirst() throws Exception {
+    public void testGetSubBlockBeforeFirst() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -907,7 +907,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockBeforeLast() throws Exception {
+    public void testGetSubBlockBeforeLast() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -923,7 +923,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testIndexOfLast() throws Exception {
+    public void testIndexOfLast() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -938,7 +938,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockAfterLast() throws Exception {
+    public void testGetSubBlockAfterLast() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -954,7 +954,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockBeforeFirst2() throws Exception {
+    public void testGetSubBlockBeforeFirst2() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -967,7 +967,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockBeforeFirst3() throws Exception {
+    public void testGetSubBlockBeforeFirst3() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -981,7 +981,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockBeforeFirstFirst2() throws Exception {
+    public void testGetSubBlockBeforeFirstFirst2() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -997,7 +997,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockBeforeFirstLimit() throws Exception {
+    public void testGetSubBlockBeforeFirstLimit() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -1011,7 +1011,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockBeforeFirstLimit2() throws Exception {
+    public void testGetSubBlockBeforeFirstLimit2() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -1025,7 +1025,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockBeforeFirstNotFound() throws Exception {
+    public void testGetSubBlockBeforeFirstNotFound() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -1039,7 +1039,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testRemove() throws Exception {
+    public void testRemove() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -1118,7 +1118,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testFilterByName() throws Exception {
+    public void testFilterByName() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -1135,7 +1135,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testFilterByName2() throws Exception {
+    public void testFilterByName2() {
         SwiftTagListBlock sb = b.filterByName(true, "1", "4", "7");
         assertEquals(0, sb.size());
 
@@ -1153,7 +1153,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testFilterByNameOrdered() throws Exception {
+    public void testFilterByNameOrdered() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -1169,7 +1169,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetOptionalList() throws Exception {
+    public void testGetOptionalList() {
 
         b.append(new Tag("1:val1")); // entra, en primera fila de permitidos
         b.append(new Tag("2:val2")); // entra en la tercera
@@ -1188,7 +1188,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetOptionalLists() throws Exception {
+    public void testGetOptionalLists() {
         appends(b, 1, 8);
         appends(b, 1, 8);
 
@@ -1199,7 +1199,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockDelimitedWithOptionalTail() throws Exception {
+    public void testGetSubBlockDelimitedWithOptionalTail() {
         appends(b, 1, 8);
 
         String[] start = new String[]{"1"};
@@ -1211,7 +1211,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlocksDelimitedWithOptionalTail() throws Exception {
+    public void testGetSubBlocksDelimitedWithOptionalTail() {
         appends(b, 1, 8);
         appends(b, 1, 8);
 
@@ -1232,7 +1232,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockDelimitedWithOptionalTail_304bugNPE() throws Exception {
+    public void testGetSubBlockDelimitedWithOptionalTail_304bugNPE() {
         appends(b, 1, 4);
 
         String[] start = new String[]{"1"};
@@ -1245,7 +1245,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testGetSubBlockDelimitedWithOptionalTail_Bug1() throws Exception {
+    public void testGetSubBlockDelimitedWithOptionalTail_Bug1() {
         appends(b, 1, 9);
 
         String[] start = new String[]{"1"};
@@ -1262,7 +1262,7 @@ public class SwiftTagListBlockTest {
      * The getSubBlock includes the starting element in the result but excludes the ending one
      */
     @Test
-    public void testGetSubBlock() throws Exception {
+    public void testGetSubBlock() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -1292,7 +1292,7 @@ public class SwiftTagListBlockTest {
      * The sublist method includes both the starting and ending elements in the result
      */
     @Test
-    public void testSublist() throws Exception {
+    public void testSublist() {
         appends(b, 1, 10);
 
         SwiftTagListBlock sl = b.sublist(0, 1);
@@ -1309,7 +1309,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testRemoveSubBlock() throws Exception {
+    public void testRemoveSubBlock() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -1325,7 +1325,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testRemoveSubBlock_2() throws Exception {
+    public void testRemoveSubBlock_2() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("2:val2"));
         b.append(new Tag("3K:val3"));
@@ -1341,7 +1341,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testRemoveSubBlock_3() throws Exception {
+    public void testRemoveSubBlock_3() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("16R:HELLO"));
         b.append(new Tag("3K:val3"));
@@ -1357,7 +1357,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testRemoveSubBlock_4() throws Exception {
+    public void testRemoveSubBlock_4() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("16R:TEST"));
         b.append(new Tag("3K:val3"));
@@ -1370,7 +1370,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testRemoveSubBlock_5() throws Exception {
+    public void testRemoveSubBlock_5() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("16R:TEST"));
         b.append(new Tag("3K:val3"));
@@ -1382,7 +1382,7 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testRemoveSubBlock_6() throws Exception {
+    public void testRemoveSubBlock_6() {
         b.append(new Tag("1:val1"));
         b.append(new Tag("16R:TEST"));
         b.append(new Tag("3K:val3"));
@@ -1397,7 +1397,7 @@ public class SwiftTagListBlockTest {
      * https://github.com/prowide/prowide-core/issues/13
      */
     @Test
-    public void testRemoveSubBlock_7() throws Exception {
+    public void testRemoveSubBlock_7() {
         b.append(Field20.tag("before"));
 
         // first sub-block
@@ -1424,7 +1424,7 @@ public class SwiftTagListBlockTest {
      * https://github.com/prowide/prowide-core/issues/13
      */
     @Test
-    public void testRemoveSubBlocks() throws Exception {
+    public void testRemoveSubBlocks() {
         b.append(Field20.tag("before"));
 
         // first sub-block
@@ -1446,14 +1446,14 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
-    public void testEmptyArrayReturn() throws Exception {
+    public void testEmptyArrayReturn() {
         Field[] arr = new SwiftTagListBlock().getFieldsByName("nn");
         assertNotNull(arr);
         assertEquals(0, arr.length);
     }
 
     @Test
-    public void testGetFieldByName19A() throws Exception {
+    public void testGetFieldByName19A() {
         b.append(Field19A.tag(":SETT"));
         assertNotNull(b.getFieldByName(Field19A.NAME, "SETT"));
     }
@@ -1462,7 +1462,7 @@ public class SwiftTagListBlockTest {
      * @since 7.8.5
      */
     @Test
-    public void testGetSubBlockByTagNames() throws Exception {
+    public void testGetSubBlockByTagNames() {
         /*
          * empty search and empty block
          */
@@ -1541,7 +1541,7 @@ public class SwiftTagListBlockTest {
      * @since 7.8.5
      */
     @Test
-    public void testGetSubBlockByTagNames_repetition() throws Exception {
+    public void testGetSubBlockByTagNames_repetition() {
         b.append(new Tag("1", "1"));
         b.append(new Tag("2", "2"));
         b.append(new Tag("2", "2"));
@@ -1587,7 +1587,7 @@ public class SwiftTagListBlockTest {
      * @since 7.8.5
      */
     @Test
-    public void testGetSubBlocksByTagNames() throws Exception {
+    public void testGetSubBlocksByTagNames() {
         /*
          * empty search and empty block
          */
@@ -1704,9 +1704,7 @@ public class SwiftTagListBlockTest {
 
     @Test
     public void testAdd_3() {
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            b.addTag(1, new Tag("1:val1"));
-        });
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> b.addTag(1, new Tag("1:val1")));
     }
 
     @Test

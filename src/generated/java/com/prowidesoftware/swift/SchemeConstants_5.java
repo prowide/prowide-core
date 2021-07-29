@@ -16,6 +16,6 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstants_5 {
 
-    public final static String _52_ANN = "52/ANN";
+    String _52_ANN = "52/ANN";
 
 }

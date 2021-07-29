@@ -69,7 +69,7 @@ public class SwiftMessageTest {
     }
 
     @Test
-    public void testClear() throws IOException {
+    public void testClear() {
         final SwiftMessage m = new SwiftMessage();
         m.clear();
         assertEquals(0, m.getBlockCount());
@@ -82,7 +82,7 @@ public class SwiftMessageTest {
     }
 
     @Test
-    public void testNotInitializedConstructor() throws IOException {
+    public void testNotInitializedConstructor() {
         final SwiftMessage m = new SwiftMessage(false);
         assertEquals(0, m.getBlockCount());
         assertNull(m.getBlock1());
@@ -232,7 +232,7 @@ public class SwiftMessageTest {
     }
 
     @Test
-    public void testToMt() throws Exception {
+    public void testToMt() {
         final SwiftMessage m = new SwiftMessage(true);
         final SwiftBlock2Input b2 = new SwiftBlock2Input();
         b2.setMessageType("102");
@@ -249,7 +249,7 @@ public class SwiftMessageTest {
     }
 
     @Test
-    public void testToMt_540() throws Exception {
+    public void testToMt_540() {
         final SwiftMessage m = new SwiftMessage(true);
         final SwiftBlock2Input b2 = new SwiftBlock2Input();
         b2.setMessageType("540");

@@ -161,26 +161,26 @@ public class SwiftMessageUtilsTest {
     }
 
     @Test
-    public void testCreateSubsequenceWithParentsB_502() throws Exception {
+    public void testCreateSubsequenceWithParentsB_502() {
         SwiftTagListBlock o = SwiftMessageUtils.createSubsequenceWithParents(MT502.class, "B",
                 Field13A.emptyTag(), Field13B.emptyTag(), Field13C.emptyTag());
         assertEquals(5, o.size());
     }
 
     @Test
-    public void testCreateSubsequenceWithParentsA() throws Exception {
+    public void testCreateSubsequenceWithParentsA() {
         SwiftTagListBlock o = SwiftMessageUtils.createSubsequenceWithParents(MT535.class, "A", Field13A.emptyTag());
         assertEquals(3, o.size());
     }
 
     @Test
-    public void testCreateSubsequenceWithParentsA1() throws Exception {
+    public void testCreateSubsequenceWithParentsA1() {
         SwiftTagListBlock o = SwiftMessageUtils.createSubsequenceWithParents(MT535.class, "A1", Field13A.emptyTag());
         assertEquals(5, o.size());
     }
 
     @Test
-    public void testCreateSubsequenceWithParentsA1_order() throws Exception {
+    public void testCreateSubsequenceWithParentsA1_order() {
         SwiftTagListBlock o = SwiftMessageUtils.createSubsequenceWithParents(MT535.class, "A1", Field13A.emptyTag());
         assertEquals(5, o.size());
         assertEquals(MT535.SequenceA.START_END_16RS, o.getTag(0).getValue());
@@ -199,13 +199,13 @@ public class SwiftMessageUtilsTest {
     }
 
     @Test
-    public void testCreateSubsequenceWithParentsB1b1() throws Exception {
+    public void testCreateSubsequenceWithParentsB1b1() {
         SwiftTagListBlock o = SwiftMessageUtils.createSubsequenceWithParents(MT535.class, "B1b1", Field13A.emptyTag());
         assertEquals(9, o.size());
     }
 
     @Test
-    public void testRemoveInnerSequences() throws Exception {
+    public void testRemoveInnerSequences() {
         MT535 m = new MT535()
                 .append(MT535.SequenceA.newInstance(
                         MT535.SequenceA1.newInstance(

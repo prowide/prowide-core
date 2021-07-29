@@ -34,7 +34,7 @@ public class Field90ATest extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse90A_1() throws Exception {
+    public void testParse90A_1() {
         Field90A f = new Field90A(":AAAA//BBBB/N123");
         assertNotNull(f, "Parse of field failed");
         assertEquals("AAAA", f.getComponent1());
@@ -44,7 +44,7 @@ public class Field90ATest extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse90A_2() throws Exception {
+    public void testParse90A_2() {
         Field90A f = new Field90A(":AAAA//BBBB/123");
         assertNotNull(f, "Parse of field failed");
         assertEquals("AAAA", f.getComponent1());
@@ -54,7 +54,7 @@ public class Field90ATest extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse90A_3() throws Exception {
+    public void testParse90A_3() {
         Field90A f = new Field90A(":DEAL//YIEL/N1234,5");
         assertNotNull(f, "Parse of field failed");
 
