@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT 9.1.7
+  * Added user assigned country codes (example "XE") as valid codes in the IsoUtils country validation
+
 RELEASE 9.1.6 - July 2021
   * MT564: Minor scheme fix, 92a TAXR and WITL can be repeated in CASHMOVE (E2)
   * (JIRA-627) fixed Narrative.builder() to compute "//" size in the lines wrapping

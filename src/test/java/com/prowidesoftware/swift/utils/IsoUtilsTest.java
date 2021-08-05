@@ -23,9 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * test cases for {@link IsoUtils}
- *
- * @author sebastian
- * @since 7.9.2
  */
 public class IsoUtilsTest {
 
@@ -60,7 +57,6 @@ public class IsoUtilsTest {
         assertTrue(IsoUtils.getInstance().isValidISOCountry("US"));
         assertTrue(IsoUtils.getInstance().isValidISOCountry("AR"));
         assertTrue(IsoUtils.getInstance().isValidISOCountry("BR"));
-        assertTrue(IsoUtils.getInstance().isValidISOCountry("XK")); //Kosovo, not currently in ISO
         /*
          * invalid
          */
@@ -68,9 +64,38 @@ public class IsoUtilsTest {
         assertFalse(IsoUtils.getInstance().isValidISOCountry("Foo"));
         assertFalse(IsoUtils.getInstance().isValidISOCountry(""));
         assertFalse(IsoUtils.getInstance().isValidISOCountry(null));
-        assertFalse(IsoUtils.getInstance().isValidISOCountry("XX"));
         assertFalse(IsoUtils.getInstance().isValidISOCountry("ZZ"));
         assertFalse(IsoUtils.getInstance().isValidISOCountry("ar"));
+    }
+
+    @Test
+    public void testCountriesUserAssigned() {
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XA"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XB"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XC"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XD"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XE"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XF"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XG"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XH"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XI"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XJ"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XK"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XL"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XM"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XN"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XO"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XP"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XQ"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XR"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XS"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XT"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XU"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XV"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XW"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XX"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XY"));
+        assertTrue(IsoUtils.getInstance().isValidISOCountry("XZ"));
     }
 
     @Test
@@ -81,19 +106,16 @@ public class IsoUtilsTest {
     @Test
     public void testAddCountry_2() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry("33"));
-
     }
 
     @Test
     public void testAddCountry_3() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry("aa"));
-
     }
 
     @Test
     public void testAddCountry_4() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry("AAA"));
-
     }
 
     @Test
@@ -106,19 +128,16 @@ public class IsoUtilsTest {
     @Test
     public void testAddCurrency_1() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency(null));
-
     }
 
     @Test
     public void testAddCurrency_2() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency("333"));
-
     }
 
     @Test
     public void testAddCurrency_3() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency("aaa"));
-
     }
 
     @Test
