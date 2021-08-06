@@ -287,7 +287,7 @@ public class MT701 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT701
 	 * @since 7.10.3
 	 */
-	public final static MT701 fromJson(String json) {
+	public static MT701 fromJson(String json) {
 		return (MT701) AbstractMT.fromJson(json);
 	}
 

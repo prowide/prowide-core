@@ -16,13 +16,13 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstants_0 {
 
-    public final static String _00 = "00";
-    public final static String _01 = "01";
-    public final static String _02 = "02";
-    public final static String _03 = "03";
-    public final static String _06 = "06";
-    public final static String _07 = "07";
-    public final static String _08 = "08";
-    public final static String _0 = "0";
+    String _00 = "00";
+    String _01 = "01";
+    String _02 = "02";
+    String _03 = "03";
+    String _06 = "06";
+    String _07 = "07";
+    String _08 = "08";
+    String _0 = "0";
 
 }

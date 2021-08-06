@@ -16,13 +16,13 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsQ {
 
-    public final static String QREG = "QREG";
-    public final static String QSEC = "QSEC";
-    public final static String QFIN = "QFIN";
-    public final static String QTSO = "QTSO";
-    public final static String QINT = "QINT";
-    public final static String QCAS = "QCAS";
-    public final static String QINS = "QINS";
-    public final static String QAGE = "QAGE";
+    String QREG = "QREG";
+    String QSEC = "QSEC";
+    String QFIN = "QFIN";
+    String QTSO = "QTSO";
+    String QINT = "QINT";
+    String QCAS = "QCAS";
+    String QINS = "QINS";
+    String QAGE = "QAGE";
 
 }

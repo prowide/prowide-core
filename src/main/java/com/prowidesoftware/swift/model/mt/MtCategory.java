@@ -48,7 +48,7 @@ public enum MtCategory {
      * @param cat a category number between 0 and 9
      * @return the created category value or null if the parameter in is not a valid category number
      */
-    public static final MtCategory valueOf(int cat) {
+    public static MtCategory valueOf(int cat) {
         if (cat >= 0 && cat <= 9) {
             return valueOf("_" + cat);
         } else {

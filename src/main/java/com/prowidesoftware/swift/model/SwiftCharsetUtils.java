@@ -28,7 +28,7 @@ import org.apache.commons.lang3.StringUtils;
  * the set of allowed characters in each case.
  */
 public class SwiftCharsetUtils {
-    public static int OK = -1;
+    public static final int OK = -1;
     private static final char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     private static final char[] AZ = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     private static final char[] azLowerCase = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
@@ -313,24 +313,21 @@ public class SwiftCharsetUtils {
      * Gets SWIFT n charset; numeric digits (0 through 9) only.
      */
     public static char[] get_n() {
-        char[] result = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-        return result;
+        return new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     }
 
     /**
      * Gets SWIFT a charset; alphabetic capital letters (A through Z), upper case only.
      */
     public static char[] get_a() {
-        char[] result = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-        return result;
+        return new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     }
 
     /**
      * Lower case a to z.
      */
     private static char[] _get_az() {
-        char[] result = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        return result;
+        return new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     }
 
     /**

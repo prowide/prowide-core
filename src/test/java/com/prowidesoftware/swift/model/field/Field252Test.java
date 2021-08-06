@@ -36,7 +36,7 @@ public class Field252Test extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse252() throws Exception {
+    public void testParse252() {
         Field252 f = new Field252("MIR4567890123456789012345ENDMIR4567890123456789012345END11112222");
         assertNotNull(f, "Parse of field failed");
         assertEquals("MIR4567890123456789012345END", f.getComponent1());

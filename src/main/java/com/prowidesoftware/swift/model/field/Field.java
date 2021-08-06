@@ -98,7 +98,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     /**
      * Format the given object as a money number without currency information in format
      *
-     * @param aValue
      * @return the formatted amount as String
      */
     protected static String formatNumber(final Object aValue) {
@@ -110,8 +109,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             ((DecimalFormat) f).setDecimalSeparatorAlwaysShown(true);
             fmt.setDecimalFormatSymbols(((DecimalFormat) f).getDecimalFormatSymbols());
         }
-        final String formatted = fmt.format(aValue);
-        return formatted;
+        return fmt.format(aValue);
     }
 
     /**
@@ -154,7 +152,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     /**
      * Gets a BigDecimal from a generic Number argument
      *
-     * @param number
      * @return BigDecimal value of number parameter
      */
     static public BigDecimal getAsBigDecimal(final Number number) {
@@ -324,8 +321,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     /**
      * Helper implementation of getString from bundle without throwing exception
      *
-     * @param labels
-     * @param key
      * @return the found resource or null if not found for the given key
      */
     private static String getString(final ResourceBundle labels, final String key) {
@@ -401,7 +396,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             } catch (final Exception e) {
                 log.log(Level.WARNING, "An error occured while creating an instance of " + name, e);
             }
-            return (Field) r;
+            return (Field) null;
         }
         return null;
     }
@@ -672,7 +667,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     /**
      * Returns a string with all field's components joined.
      *
-     * @param skipLast
      * @return s
      * @see #joinComponents(int, boolean)
      */
@@ -683,7 +677,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     /**
      * Returns a string with all field's components joined
      *
-     * @param start
      * @return s
      * @see #joinComponents(int, boolean)
      */
@@ -704,7 +697,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     /**
      * Returns the first component starting with the given prefix value or null if not found.
      *
-     * @param prefix
      * @return s
      */
     public String findComponentStartingWith(final String prefix) {
@@ -726,7 +718,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * //BLABLABLA CrLf<br>
      * A call to this method with parameter "INS" will return "CITIUS33MIA"
      *
-     * @param codeword
      * @return the found value or null if not found
      * @see #findComponentStartingWith(String)
      */
@@ -766,7 +757,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     public boolean isEmpty() {
         for (final String c : getComponents()) {
-            if ((c != null) && StringUtils.isNotBlank(c)) {
+            if (StringUtils.isNotBlank(c)) {
                 return false;
             }
         }

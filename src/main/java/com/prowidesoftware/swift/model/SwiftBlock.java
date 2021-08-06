@@ -97,7 +97,6 @@ public abstract class SwiftBlock implements Serializable {
     /**
      * should not be normally called
      *
-     * @param blockType
      */
     public void setBlockType(String blockType) {
         this.blockType = blockType;

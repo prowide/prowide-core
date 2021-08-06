@@ -32,17 +32,17 @@ public class SequenceUtilsTest {
      */
 
     @Test
-    public void testPrecondition535() throws Exception {
+    public void testPrecondition535() {
         assertEquals(MT535.SequenceB1b1.START_END_16RS, MT535.SequenceB1c.START_END_16RS);
     }
 
     @Test
-    public void testPrecondition536() throws Exception {
+    public void testPrecondition536() {
         assertEquals(MT536.SequenceA1.START_END_16RS, MT536.SequenceB1a1.START_END_16RS);
     }
 
     @Test
-    public void testPrecondition537() throws Exception {
+    public void testPrecondition537() {
         assertEquals(MT537.SequenceA1.START_END_16RS, MT537.SequenceB2a.START_END_16RS);
         assertEquals(MT537.SequenceA1.START_END_16RS, MT537.SequenceC1.START_END_16RS);
         assertEquals(MT537.SequenceB.START_END_16RS, MT537.SequenceC3.START_END_16RS);
@@ -52,22 +52,22 @@ public class SequenceUtilsTest {
     }
 
     @Test
-    public void testPrecondition538() throws Exception {
+    public void testPrecondition538() {
         assertEquals(MT538.SequenceA1.START_END_16RS, MT538.SequenceB2a1.START_END_16RS);
     }
 
     @Test
-    public void testPrecondition564() throws Exception {
+    public void testPrecondition564() {
         assertEquals(MT564.SequenceB1.START_END_16RS, MT564.SequenceE1a.START_END_16RS);
     }
 
     @Test
-    public void testPrecondition566() throws Exception {
+    public void testPrecondition566() {
         assertEquals(MT566.SequenceB1.START_END_16RS, MT566.SequenceD1a.START_END_16RS);
     }
 
     @Test
-    public void testPrecondition575() throws Exception {
+    public void testPrecondition575() {
         assertEquals(MT575.SequenceA1.START_END_16RS, MT575.SequenceB1a1.START_END_16RS);
         assertEquals(MT575.SequenceA1.START_END_16RS, MT575.SequenceC1.START_END_16RS);
 
@@ -75,22 +75,22 @@ public class SequenceUtilsTest {
     }
 
     @Test
-    public void testPrecondition576() throws Exception {
+    public void testPrecondition576() {
         assertEquals(MT576.SequenceA1.START_END_16RS, MT576.SequenceB2a.START_END_16RS);
     }
 
     @Test
-    public void testPrecondition586() throws Exception {
+    public void testPrecondition586() {
         assertEquals(MT586.SequenceA1.START_END_16RS, MT586.SequenceB1.START_END_16RS);
     }
 
     @Test
-    public void testPrecondition670() throws Exception {
+    public void testPrecondition670() {
         assertEquals(MT670.SequenceB2.START_END_16RS, MT670.SequenceC.START_END_16RS);
     }
 
     @Test
-    public void testPrecondition671() throws Exception {
+    public void testPrecondition671() {
         assertEquals(MT671.SequenceB2.START_END_16RS, MT671.SequenceC.START_END_16RS);
     }
 }

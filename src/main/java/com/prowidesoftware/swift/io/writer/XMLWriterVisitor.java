@@ -46,14 +46,12 @@ public class XMLWriterVisitor implements IMessageVisitor {
      * Constructor for XMLWriteVisitor from a Writer object
      * Same as <code>XMLWriterVisitor(writer, false)</code>
      *
-     * @param writer
      */
     public XMLWriterVisitor(Writer writer) {
         this.writer = writer;
     }
 
     /**
-     * @param writer
      * @param useField use {@link Field} for serialization, instead of Tag
      */
     public XMLWriterVisitor(Writer writer, boolean useField) {
@@ -338,7 +336,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
     // INTERNAL METHODS
     //
     ////////////////////////////////////////////////////////////
-    private final void appendTag(Tag t) {
+    private void appendTag(Tag t) {
         // generate the xml tag
         write(EOL + "\t<tag>");
         write(EOL + "\t\t<name>");
@@ -391,7 +389,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         }
     }
 
-    private final void appendElement(StringBuilder sb, String element, String value) {
+    private void appendElement(StringBuilder sb, String element, String value) {
         sb.append(EOL + "\t<").append(element).append('>')
                 .append(value)
                 .append("</").append(element).append('>');

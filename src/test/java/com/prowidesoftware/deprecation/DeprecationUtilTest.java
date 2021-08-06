@@ -59,9 +59,7 @@ public class DeprecationUtilTest {
      */
     @Test
     public void testPhase3_default() {
-        Assertions.assertThrows(UnsupportedOperationException.class, () -> {
-            DeprecationUtils.phase3(this.getClass(), null, "phase 3 message");
-        });
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> DeprecationUtils.phase3(this.getClass(), null, "phase 3 message"));
     }
 
 

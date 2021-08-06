@@ -130,7 +130,6 @@ public class SwiftWriter {
      * Write the given block to writer in its native SWIFT format
      *
      * @param b1     a not null block 1
-     * @param writer
      * @since 7.8.6
      */
     public static void writeBlock1(SwiftBlock1 b1, Writer writer) {
@@ -158,7 +157,6 @@ public class SwiftWriter {
      * Write the given block to writer in its native SWIFT format
      *
      * @param b2     a not null block 2
-     * @param writer
      * @since 7.8.6
      */
     public static void writeBlock2(SwiftBlock2 b2, Writer writer) {
@@ -186,7 +184,6 @@ public class SwiftWriter {
      * Write the given block to writer in its native SWIFT format
      *
      * @param b3     a not null block 3
-     * @param writer
      * @since 7.8.6
      */
     public static void writeBlock3(SwiftBlock3 b3, Writer writer) {
@@ -214,7 +211,6 @@ public class SwiftWriter {
      * Write the given block to writer in its native SWIFT format
      *
      * @param b4     a not null block 4
-     * @param writer
      * @since 7.8.6
      */
     public static void writeBlock4(SwiftBlock4 b4, Writer writer) {
@@ -242,7 +238,6 @@ public class SwiftWriter {
      * Write the given block to writer in its native SWIFT format
      *
      * @param b5     a not null block 5
-     * @param writer
      * @since 7.8.6
      */
     public static void writeBlock5(SwiftBlock5 b5, Writer writer) {

@@ -54,7 +54,7 @@ public class Field257Test extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse257Ex1() throws Exception {
+    public void testParse257Ex1() {
         Field257 f = new Field257(EXAMPLE1_FIELD_257);
         assertNotNull(f, "Parse of field failed");
         assertEquals("FOOBARXXXXXX", f.getComponent1());
@@ -94,7 +94,7 @@ public class Field257Test extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse257Ex2() throws Exception {
+    public void testParse257Ex2() {
         Field257 f = new Field257(EXAMPLE2_FIELD_257);
         assertNotNull(f, "Parse of field failed");
         assertEquals("FOOBARABCDEF", f.getComponent1());

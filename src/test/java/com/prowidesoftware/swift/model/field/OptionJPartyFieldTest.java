@@ -46,7 +46,7 @@ public class OptionJPartyFieldTest {
         assertEquals("12345xxxxx12345xxxxx12345+++++123", f.getValueByCodeword(Codeword.ADD2));
     }
 
-    private class TestPartyField extends OptionJPartyField {
+    private static class TestPartyField extends OptionJPartyField {
 
         TestPartyField(String value) {
             super(value);

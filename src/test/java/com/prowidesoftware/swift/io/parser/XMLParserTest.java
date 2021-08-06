@@ -116,9 +116,6 @@ public class XMLParserTest {
     /**
      * Test for w3 dom parsing behavior
      *
-     * @throws ParserConfigurationException
-     * @throws SAXException
-     * @throws IOException
      */
     @Test
     public void testNode() throws SAXException, IOException {

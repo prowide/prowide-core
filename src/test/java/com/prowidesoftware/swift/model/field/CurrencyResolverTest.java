@@ -56,7 +56,7 @@ public class CurrencyResolverTest {
         assertEquals("USD", CurrencyResolver.resolveCurrencyString(o));
     }
 
-    private final class DummyCurrencyContainer implements CurrencyContainer {
+    private static final class DummyCurrencyContainer implements CurrencyContainer {
         private final List<String> currencies;
 
         DummyCurrencyContainer(List<String> list) {

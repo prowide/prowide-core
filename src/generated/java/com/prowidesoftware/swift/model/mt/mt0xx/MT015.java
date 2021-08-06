@@ -281,7 +281,7 @@ public class MT015 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT015
 	 * @since 7.10.3
 	 */
-	public final static MT015 fromJson(String json) {
+	public static MT015 fromJson(String json) {
 		return (MT015) AbstractMT.fromJson(json);
 	}
 

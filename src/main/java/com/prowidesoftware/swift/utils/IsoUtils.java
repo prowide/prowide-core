@@ -47,8 +47,6 @@ public final class IsoUtils {
         currencies.add("BYN");
 
         countries = new HashSet<>(Arrays.asList(Locale.getISOCountries()));
-        // Add country code for Kosovo, not yet in ISO but used by SWIFT
-        countries.add("XK");
 
         log.fine("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size() + " country codes");
     }
@@ -101,9 +99,13 @@ public final class IsoUtils {
      */
     public boolean isValidISOCountry(String countryCode) {
         if (StringUtils.length(countryCode) == 2) {
-            return countries.contains(countryCode);
+            return countries.contains(countryCode) || isUserAssignedCountryCode(countryCode);
         }
         return false;
+    }
+
+    private boolean isUserAssignedCountryCode(String code) {
+        return code.charAt(0) == 'X' && Character.isUpperCase(code.charAt(1));
     }
 
     /**

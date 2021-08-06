@@ -324,7 +324,7 @@ public class SwiftParserConsumeBlockLenientTest {
     }
 
     @Test
-    public void testConsumeEmptyLinesField() throws IOException {
+    public void testConsumeEmptyLinesField() {
         SwiftBlock4 b4 = new SwiftBlock4();
 
         this.parser.consumeBlock4(b4, "\n:20:FOO\r\n");

@@ -433,7 +433,7 @@ public class MT502 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT502
 	 * @since 7.10.3
 	 */
-	public final static MT502 fromJson(String json) {
+	public static MT502 fromJson(String json) {
 		return (MT502) AbstractMT.fromJson(json);
 	}
 

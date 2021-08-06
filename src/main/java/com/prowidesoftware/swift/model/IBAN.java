@@ -51,7 +51,6 @@ public class IBAN {
      * Create an IBAN object with the given iban code.
      * This constructor does not perform any validation on the iban, only
      *
-     * @param iban
      */
     public IBAN(String iban) {
         this.iban = iban;
@@ -201,7 +200,6 @@ public class IBAN {
     /**
      * Translate letters to numbers, also ignoring non alphanumeric characters
      *
-     * @param bban
      * @return the translated value
      */
     public String translateChars(final StringBuilder bban) {
@@ -220,7 +218,6 @@ public class IBAN {
     /**
      * Removes all non alpha-numeric characters in the IBAN code
      *
-     * @param iban
      * @return the resulting IBAN
      */
     public String removeNonAlpha(final String iban) {

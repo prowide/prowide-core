@@ -327,7 +327,7 @@ public class MT202COV extends AbstractMT implements Serializable {
 	 * @return a new instance of MT202COV
 	 * @since 7.10.3
 	 */
-	public final static MT202COV fromJson(String json) {
+	public static MT202COV fromJson(String json) {
 		return (MT202COV) AbstractMT.fromJson(json);
 	}
 

@@ -334,7 +334,7 @@ public class MT568 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT568
 	 * @since 7.10.3
 	 */
-	public final static MT568 fromJson(String json) {
+	public static MT568 fromJson(String json) {
 		return (MT568) AbstractMT.fromJson(json);
 	}
 

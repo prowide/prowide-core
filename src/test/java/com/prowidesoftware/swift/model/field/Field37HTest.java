@@ -33,7 +33,7 @@ public class Field37HTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse37H_1() throws Exception {
+    public void testParse37H_1() {
         Field37H f = new Field37H("D123");
         assertNotNull(f, "Parse of field failed");
         assertEquals("D", f.getComponent1());
@@ -42,7 +42,7 @@ public class Field37HTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse37H_2() throws Exception {
+    public void testParse37H_2() {
         Field37H f = new Field37H("DN123");
         assertNotNull(f, "Parse of field failed");
         assertEquals("D", f.getComponent1());
@@ -51,7 +51,7 @@ public class Field37HTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse37H_3() throws Exception {
+    public void testParse37H_3() {
         Field37H f = new Field37H("HelloWorld123");
         assertNotNull(f, "Parse of field failed");
         assertEquals("HelloWorl", f.getComponent1());
@@ -60,7 +60,7 @@ public class Field37HTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse37H_4() throws Exception {
+    public void testParse37H_4() {
         Field37H f = new Field37H("DN");
         assertNotNull(f, "Parse of field failed");
         assertEquals("D", f.getComponent1());
@@ -69,7 +69,7 @@ public class Field37HTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse37H_5() throws Exception {
+    public void testParse37H_5() {
         Field37H f = new Field37H("HelloWorld");
         assertNotNull(f, "Parse of field failed");
         assertEquals("HelloWorl", f.getComponent1());
@@ -78,7 +78,7 @@ public class Field37HTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse37H_6() throws Exception {
+    public void testParse37H_6() {
         Field37H f = new Field37H("D9,75");
         assertNotNull(f, "Parse of field failed");
         assertEquals("D", f.getComponent1());
@@ -87,7 +87,7 @@ public class Field37HTest extends AbstractFieldTest {
     }
 
     @Test
-    public void testFromMt935() throws Exception {
+    public void testFromMt935() {
         Field37H f = new Field37H("D9,75\n");
         assertEquals("D", f.getComponent1());
         assertNull(f.getComponent2());

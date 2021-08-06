@@ -179,13 +179,13 @@ public class FieldTest {
     }
 
     @Test
-    public void testLetterOption() throws Exception {
+    public void testLetterOption() {
         assertEquals(Character.valueOf('A'), new Field59A().letterOption());
         assertEquals(null, new Field59().letterOption());
     }
 
     @Test
-    public void testIsLetterOption() throws Exception {
+    public void testIsLetterOption() {
         assertTrue(new Field59A().isLetterOption('A'));
         assertTrue(new Field56B().isLetterOption('B'));
         assertFalse(new Field59().isLetterOption('B'));
@@ -290,7 +290,7 @@ public class FieldTest {
         try {
             new Field32A(t);
             fail("exception expected");
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException ignored) {
         }
     }
 

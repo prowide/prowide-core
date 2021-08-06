@@ -16,12 +16,12 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstants_9 {
 
-    public final static String _950 = "950";
-    public final static String _940 = "940";
-    public final static String _941 = "941";
-    public final static String _942 = "942";
-    public final static String _971 = "971";
-    public final static String _972 = "972";
-    public final static String _998 = "998";
+    String _950 = "950";
+    String _940 = "940";
+    String _941 = "941";
+    String _942 = "942";
+    String _971 = "971";
+    String _972 = "972";
+    String _998 = "998";
 
 }

@@ -102,48 +102,34 @@ public interface IMessageVisitor {
     void endBlockUser(SwiftBlockUser b);
 
     /**
-     * @param b
-     * @param t
      */
     void tag(SwiftBlock3 b, Tag t);
 
     /**
-     * @param b
-     * @param t
      */
     void tag(SwiftBlock4 b, Tag t);
 
     /**
-     * @param b
-     * @param t
      */
     void tag(SwiftBlock5 b, Tag t);
 
     /**
-     * @param b
-     * @param t
      */
     void tag(SwiftBlockUser b, Tag t);
 
     /**
-     * @param b
-     * @param v
      */
     void value(SwiftBlock1 b, String v);
 
     /**
-     * @param b
-     * @param v
      */
     void value(SwiftBlock2 b, String v);
 
     /**
-     * @param m
      */
     void startMessage(SwiftMessage m);
 
     /**
-     * @param m
      */
     void endMessage(SwiftMessage m);
 }

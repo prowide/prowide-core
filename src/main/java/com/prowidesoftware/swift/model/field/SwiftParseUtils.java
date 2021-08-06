@@ -78,9 +78,6 @@ public class SwiftParseUtils {
      * is empty or null.<br>
      * This method does not validate the starting string presence, it just strips it if present.
      *
-     * @param line
-     * @param starting
-     * @param separator
      * @return the first token found or null
      */
     public static String getTokenFirst(String line, final String starting, final String separator) {
@@ -97,8 +94,6 @@ public class SwiftParseUtils {
     }
 
     /**
-     * @param line
-     * @param separator
      * @return found token
      * @see #getTokenFirst(String, String, String)
      */
@@ -107,8 +102,6 @@ public class SwiftParseUtils {
     }
 
     /**
-     * @param value
-     * @param prefix
      * @return s
      */
     public static String removePrefix(final String value, final String prefix) {
@@ -127,14 +120,11 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/foo/def/ghi" will return "foo".</li>
      * </ul>
      *
-     * @param line
-     * @param separator
      * @return s
      */
     public static String getTokenSecond(final String line, final String separator) {
         //notice we cannot use String.split nor StringUtils.split because in that implementations two adjacent separators are treated as one
-        final String result = getTokenFirst(StringUtils.substringAfter(line, separator), null, separator);
-        return result;
+        return getTokenFirst(StringUtils.substringAfter(line, separator), null, separator);
     }
 
     /**
@@ -147,8 +137,6 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/foo/def/ghi" will return "foo/def/ghi".</li>
      * </ul>
      *
-     * @param line
-     * @param separator
      * @return s
      */
     public static String getTokenSecondLast(final String line, final String separator) {
@@ -165,9 +153,6 @@ public class SwiftParseUtils {
      * is empty or null.<br>
      * This method does not validate the starting string presence, it just strips it if present.
      *
-     * @param line
-     * @param starting
-     * @param separator
      * @return the second token found or null
      * @since 7.4
      */
@@ -184,9 +169,6 @@ public class SwiftParseUtils {
      * last one so its content may have additional separators if present.<br>
      * This method does not validate the starting string presence, it just strips it if present.
      *
-     * @param line
-     * @param starting
-     * @param separator
      * @return the second token found or null
      * @since 7.4
      */
@@ -204,13 +186,10 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/def/foo/ghi" will return "foo".</li>
      * </ul>
      *
-     * @param line
-     * @param separator
      * @return s
      */
     public static String getTokenThird(final String line, final String separator) {
-        final String result = getTokenSecond(getTokenSecondLast(line, separator), separator);
-        return result;
+        return getTokenSecond(getTokenSecondLast(line, separator), separator);
     }
 
     /**
@@ -224,8 +203,6 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/def/foo/ghi" will return "foo/ghi".</li>
      * </ul>
      *
-     * @param line
-     * @param separator
      * @return s
      */
     public static String getTokenThirdLast(final String line, final String separator) {
@@ -250,13 +227,10 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/def/ghi/foo/ghi" will return "foo".</li>
      * </ul>
      *
-     * @param line
-     * @param separator
      * @return s
      */
     public static String getTokenForth(final String line, final String separator) {
-        final String result = getTokenSecond(getTokenThirdLast(line, separator), separator);
-        return result;
+        return getTokenSecond(getTokenThirdLast(line, separator), separator);
     }
 
     /**
@@ -270,8 +244,6 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/def/ghi/foo/ghi" will return "foo/ghi".</li>
      * </ul>
      *
-     * @param line
-     * @param separator
      * @return s
      */
     public static String getTokenForthLast(final String line, final String separator) {
@@ -293,7 +265,6 @@ public class SwiftParseUtils {
      * ABCD2345,33 will be return ABCD<br>
      * If the value does not contain any alphabetic character null is returned.
      *
-     * @param value
      * @return s
      */
     public static String getAlphaPrefix(final String value) {
@@ -316,7 +287,6 @@ public class SwiftParseUtils {
      * 2345,33ABCD will be return 2345,33<br>
      * If the value does not contain any numeric or comma character null is returned.
      *
-     * @param value
      * @return s
      */
     public static String getNumericPrefix(final String value) {
@@ -339,7 +309,6 @@ public class SwiftParseUtils {
      * ABCD2345,33 will be return 2345,33<br>
      * If the value does not contain any numeric character null is returned.
      *
-     * @param value
      * @return s
      */
     public static String getNumericSuffix(final String value) {
@@ -362,7 +331,6 @@ public class SwiftParseUtils {
      * 2345,33ABCD will be return ABCD<br>
      * If the value does not contain any alpha character null is returned.
      *
-     * @param value
      * @return s
      */
     public static String getAlphaSuffix(final String value) {
@@ -383,7 +351,6 @@ public class SwiftParseUtils {
      * <p>The implementation uses using {@link BufferedReader#readLine()} so if the string ends with a LF, the trailing
      * "empty" line is not returned in the result.
      *
-     * @param value
      * @return list of found lines
      */
     public static List<String> getLines(final String value) {
@@ -439,17 +406,15 @@ public class SwiftParseUtils {
         StringBuilder token = new StringBuilder();
         int componentNumber = startingComponentNumber;
         for (final char c : value.toCharArray()) {
-            if (token.length() < tokenSize) {
-                token.append(c);
-            } else {
+            if (token.length() >= tokenSize) {
                 //token complete
                 if (componentNumber <= componentsToSet) {
                     f.setComponent(componentNumber, token.toString());
                 }
                 componentNumber++;
                 token = new StringBuilder();
-                token.append(c);
             }
+            token.append(c);
         }
         //add remainder
         if (token.length() > 0 && componentNumber <= componentsToSet) {

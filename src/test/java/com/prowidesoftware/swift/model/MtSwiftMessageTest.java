@@ -174,7 +174,7 @@ public class MtSwiftMessageTest {
         assertEquals("123456789", mt798.getField20().getValue());
     }
 
-    public class TestMtMetadataStrategy implements MessageMetadataStrategy {
+    public static class TestMtMetadataStrategy implements MessageMetadataStrategy {
 
         @Override
         public Optional<String> reference(AbstractMessage message) {

@@ -16,10 +16,10 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsH {
 
-    public final static String HOLD = "HOLD";
-    public final static String HOLP = "HOLP";
-    public final static String HOLS = "HOLS";
-    public final static String HEAR = "HEAR";
-    public final static String HOST = "HOST";
+    String HOLD = "HOLD";
+    String HOLP = "HOLP";
+    String HOLS = "HOLS";
+    String HEAR = "HEAR";
+    String HOST = "HOST";
 
 }

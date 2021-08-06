@@ -353,7 +353,7 @@ public class Narrative {
     }
 
     public static class Builder {
-        int lineLength;
+        final int lineLength;
         private final List<StructuredNarrative> structured = new ArrayList<>();
         private final List<String> unstructuredFragments = new ArrayList<>();
 

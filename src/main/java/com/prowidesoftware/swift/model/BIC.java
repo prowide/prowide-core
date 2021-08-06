@@ -218,7 +218,6 @@ public class BIC {
     /**
      * Returns the branch code or XXX as default
      *
-     * @return
      * @since 7.10.3
      */
     public String getBranchOrDefault() {

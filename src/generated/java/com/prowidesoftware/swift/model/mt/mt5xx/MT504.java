@@ -420,7 +420,7 @@ public class MT504 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT504
 	 * @since 7.10.3
 	 */
-	public final static MT504 fromJson(String json) {
+	public static MT504 fromJson(String json) {
 		return (MT504) AbstractMT.fromJson(json);
 	}
 

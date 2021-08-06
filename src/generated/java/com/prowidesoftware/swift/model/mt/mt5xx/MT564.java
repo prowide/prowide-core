@@ -197,7 +197,7 @@ Fieldset 19
 Fieldset 98
  (M) (repetitive)<ul><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
 Fieldset 92
- (O) (repetitive)<ul><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 F,K (O)</li><li>FieldsetItem 92 A,F,K,M (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,J,K (O) (repetitive)</li><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,K,M (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K,R (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,K,R (O)</li><li>FieldsetItem 92 A,F,J,K,R (O) (repetitive)</li></ul></li><li class="fieldset">
+ (O) (repetitive)<ul><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 F,K (O)</li><li>FieldsetItem 92 A,F,K,M (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,J,K (O) (repetitive)</li><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,K,M (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,K,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,J,K,R (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 90
  (O)<ul><li>FieldsetItem 90 A,B,E,F,J,L (O)</li><li>FieldsetItem 90 A,B,E,K (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -456,7 +456,7 @@ public class MT564 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT564
 	 * @since 7.10.3
 	 */
-	public final static MT564 fromJson(String json) {
+	public static MT564 fromJson(String json) {
 		return (MT564) AbstractMT.fromJson(json);
 	}
 

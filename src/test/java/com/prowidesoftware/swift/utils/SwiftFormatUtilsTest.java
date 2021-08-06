@@ -32,16 +32,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SwiftFormatUtilsTest {
 
     @Test
-    public void testGetNumber() throws Exception {
+    public void testGetNumber() {
         assertNotNull(SwiftFormatUtils.getNumber("123"));
         assertEquals(123, (SwiftFormatUtils.getNumber("123").intValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("123,"));
-        assertEquals(new BigDecimal(123), new BigDecimal(SwiftFormatUtils.getNumber("123,").doubleValue()));
+        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(SwiftFormatUtils.getNumber("123,").doubleValue()));
 
         //this test does not work but this format is not used
-        //assertNotNull(SwiftFormatUtils.getNumber(",12"));
-        //assertEquals(new BigDecimal(0.12), new BigDecimal(SwiftFormatUtils.getNumber(",12").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("1,2"));
         assertEquals(new Double(1.2), new Double(SwiftFormatUtils.getNumber("1,2").doubleValue()));
@@ -63,26 +61,26 @@ public class SwiftFormatUtilsTest {
     }
 
     @Test
-    public void testGetNumberWriter() throws Exception {
+    public void testGetNumberWriter() {
         assertEquals("12,", SwiftFormatUtils.getNumber(new BigDecimal(12)));
-        assertEquals("12,34", SwiftFormatUtils.getNumber(new BigDecimal(12.34)));
-        assertEquals("12,", SwiftFormatUtils.getNumber(new BigDecimal(12.0)));
+        assertEquals("12,34", SwiftFormatUtils.getNumber(new BigDecimal("12.34")));
+        assertEquals("12,", SwiftFormatUtils.getNumber(new BigDecimal("12.0")));
         assertEquals("123,", SwiftFormatUtils.getNumber(new BigDecimal(123)));
-        assertEquals("1,2", SwiftFormatUtils.getNumber(new BigDecimal(1.2)));
-        assertEquals("0,7", SwiftFormatUtils.getNumber(new BigDecimal(0.7)));
-        assertEquals("12,345", SwiftFormatUtils.getNumber(new BigDecimal(12.345)));
+        assertEquals("1,2", SwiftFormatUtils.getNumber(new BigDecimal("1.2")));
+        assertEquals("0,7", SwiftFormatUtils.getNumber(new BigDecimal("0.7")));
+        assertEquals("12,345", SwiftFormatUtils.getNumber(new BigDecimal("12.345")));
         assertEquals("12,", SwiftFormatUtils.getNumber(12));
         assertEquals("12,3", SwiftFormatUtils.getNumber(12.3));
         assertEquals("12,34", SwiftFormatUtils.getNumber(12.34));
         assertEquals("12,345", SwiftFormatUtils.getNumber(12.345));
-        assertEquals("12,3456", SwiftFormatUtils.getNumber(new BigDecimal(12.3456)));
-        assertEquals("12,34567", SwiftFormatUtils.getNumber(new BigDecimal(12.34567)));
-        assertEquals("12,345678", SwiftFormatUtils.getNumber(new BigDecimal(12.345678)));
-        assertEquals("12,3456789", SwiftFormatUtils.getNumber(new BigDecimal(12.3456789)));
+        assertEquals("12,3456", SwiftFormatUtils.getNumber(new BigDecimal("12.3456")));
+        assertEquals("12,34567", SwiftFormatUtils.getNumber(new BigDecimal("12.34567")));
+        assertEquals("12,345678", SwiftFormatUtils.getNumber(new BigDecimal("12.345678")));
+        assertEquals("12,3456789", SwiftFormatUtils.getNumber(new BigDecimal("12.3456789")));
     }
 
     @Test
-    public void testIsHHMM() throws Exception {
+    public void testIsHHMM() {
         assertNotNull(SwiftFormatUtils.getHhmm("0000"));
         assertEquals(0, SwiftFormatUtils.getHhmm("0000").get(Calendar.HOUR_OF_DAY));
         assertEquals(0, SwiftFormatUtils.getHhmm("0000").get(Calendar.MINUTE));
@@ -100,7 +98,7 @@ public class SwiftFormatUtilsTest {
     }
 
     @Test
-    public void testIsOffset() throws Exception {
+    public void testIsOffset() {
         assertNotNull(SwiftFormatUtils.getOffset("0000"));
         assertNotNull(SwiftFormatUtils.getOffset("1245"));
         assertNotNull(SwiftFormatUtils.getOffset("1300"));
@@ -111,7 +109,7 @@ public class SwiftFormatUtilsTest {
     }
 
     @Test
-    public void testIsDate2() throws Exception {
+    public void testIsDate2() {
         // TODO add test for specific values to be parsed correctly
         assertNotNull(SwiftFormatUtils.getDate2("070131"));
         assertNotNull(SwiftFormatUtils.getDate2("070228"));
@@ -150,7 +148,7 @@ public class SwiftFormatUtilsTest {
     }
 
     @Test
-    public void testDecimalsInAmount() throws Exception {
+    public void testDecimalsInAmount() {
         assertEquals(0, SwiftFormatUtils.decimalsInAmount((String) null));
         assertEquals(0, SwiftFormatUtils.decimalsInAmount(""));
         assertEquals(0, SwiftFormatUtils.decimalsInAmount("1"));

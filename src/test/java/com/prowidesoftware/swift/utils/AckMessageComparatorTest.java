@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class AckMessageComparatorTest {
 
-    String m = "{1:F01AAAAUSC0AXXX6083000009}{2:I103BBBBUSC0XXXXN}{4:\n"
+    final String m = "{1:F01AAAAUSC0AXXX6083000009}{2:I103BBBBUSC0XXXXN}{4:\n"
             + ":20:TCLIO200908132\n"
             + ":23B:CRED\n"
             + ":32A:090813USD1000,\n"
@@ -44,7 +44,7 @@ public class AckMessageComparatorTest {
             + ":71A:OUR\n"
             + ":72:/TIPO/410\n"
             + "-}";
-    String m2 = "{1:F01AAAAUSC0AXXX6083000009}{2:I103BBBBUSC0XXXXN}{4:\n"
+    final String m2 = "{1:F01AAAAUSC0AXXX6083000009}{2:I103BBBBUSC0XXXXN}{4:\n"
             + ":20:TCLIO200908132\n"
             + ":23B:CRED\n"
             + ":32A:090813USD1000,\n"
@@ -58,7 +58,7 @@ public class AckMessageComparatorTest {
             + ":71A:OUR\n"
             + ":72:/TIPO/410\n"
             + "-}";
-    String ack = "{1:F01AAAAUSC0AXXX6083000009}{2:I103BBBBUSC0XXXXN}{4:\n"
+    final String ack = "{1:F01AAAAUSC0AXXX6083000009}{2:I103BBBBUSC0XXXXN}{4:\n"
             + ":20:TCLIO200908132\n"
             + ":23B:CRED\n"
             + ":32A:090813USD1000,\n"

@@ -321,7 +321,7 @@ public class MT102_STP extends AbstractMT implements Serializable {
 	 * @return a new instance of MT102_STP
 	 * @since 7.10.3
 	 */
-	public final static MT102_STP fromJson(String json) {
+	public static MT102_STP fromJson(String json) {
 		return (MT102_STP) AbstractMT.fromJson(json);
 	}
 

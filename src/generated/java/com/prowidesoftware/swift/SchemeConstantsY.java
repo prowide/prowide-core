@@ -16,10 +16,10 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsY {
 
-    public final static String Y = "Y";
-    public final static String YY = "YY";
-    public final static String YN = "YN";
-    public final static String YTMR = "YTMR";
-    public final static String YIEL = "YIEL";
+    String Y = "Y";
+    String YY = "YY";
+    String YN = "YN";
+    String YTMR = "YTMR";
+    String YIEL = "YIEL";
 
 }

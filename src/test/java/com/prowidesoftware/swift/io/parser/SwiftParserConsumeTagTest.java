@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SwiftParserConsumeTagTest {
     private VisibleParser parser;
 
-    private static final boolean tagStarts(final String str) {
+    private static boolean tagStarts(final String str) {
         SwiftParser p = new SwiftParser();
         return p.isTagStart(str, 0);
     }
@@ -58,7 +58,7 @@ public class SwiftParserConsumeTagTest {
     }
 
     @Test
-    public void testConsumeTagWithBraquets() throws IOException {
+    public void testConsumeTagWithBraquets() {
         final Tag t = parser.consumeTag(":50K:AB\nCD}EFG\r\n");
         assertNotNull(t);
         assertEquals("50K", t.getName());
@@ -66,7 +66,7 @@ public class SwiftParserConsumeTagTest {
     }
 
     @Test
-    public void testConsumeTagColons1() throws Exception {
+    public void testConsumeTagColons1() {
         Tag o = this.parser.consumeTag(":86:/FOO\n" +
                 ":BAR\n");
         assertTrue(o.getValue().contains("BAR"));

@@ -41,7 +41,6 @@ import java.io.InputStream;
 public class ServiceMessage21 extends AbstractMT {
 
     /**
-     * @param aMessage
      * @throws RuntimeException if the message is not a service message with service id 21 (meaning positive or negative acknowledge)
      */
     public ServiceMessage21(final SwiftMessage aMessage) {
@@ -94,7 +93,6 @@ public class ServiceMessage21 extends AbstractMT {
     }
 
     /**
-     * @param swiftMessage
      * @throws RuntimeException if the message is not a service message with service id 21 (meaning positive or negative acknowledge)
      */
     public static AbstractMT newInstance(final SwiftMessage swiftMessage) {

@@ -225,7 +225,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
         Integer blockNumber = new Integer(-1);
         try {
             blockNumber = Integer.decode(blockName);
-        } catch (NumberFormatException fe) {
+        } catch (NumberFormatException ignored) {
         }
         return (blockNumber);
     }

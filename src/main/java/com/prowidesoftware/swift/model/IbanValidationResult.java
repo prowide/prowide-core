@@ -15,7 +15,7 @@
  */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.lang3.text.StrSubstitutor;
+import org.apache.commons.text.StringSubstitutor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,9 +64,7 @@ public enum IbanValidationResult {
      * Validation problem description including expected and found content when necessary
      */
     public String message() {
-        // this legacy class has been migrated to apache commons-text
-        // we avoid adding the new dependency until it is further required
-        final StrSubstitutor sub = new StrSubstitutor(this.vars);
+        final StringSubstitutor sub = new StringSubstitutor(this.vars);
         return sub.replace(this.message);
     }
 

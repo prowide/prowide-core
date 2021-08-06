@@ -120,7 +120,7 @@ public class SwiftFormatUtils {
      *
      * @since 7.8.8
      */
-    public static final boolean isLeapYear(int year) {
+    public static boolean isLeapYear(int year) {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
         return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
@@ -254,8 +254,7 @@ public class SwiftFormatUtils {
             df.setParseBigDecimal(true);
             df.setDecimalSeparatorAlwaysShown(true);
             final String formatted = df.format(number);
-            final String result = StringUtils.replaceChars(formatted, '.', ',');
-            return result;
+            return StringUtils.replaceChars(formatted, '.', ',');
         }
         return null;
     }
@@ -372,8 +371,7 @@ public class SwiftFormatUtils {
      * @return a Calendar set with hour and minutes from the offset
      */
     public static Calendar getOffset(final String string) {
-        final Calendar result = getHhmm(string);
-        return result;
+        return getHhmm(string);
     }
 
     /**
@@ -701,7 +699,7 @@ public class SwiftFormatUtils {
      * @return a LT address initialized from the parameter code
      * @since 7.8.8
      */
-    public static final LogicalTerminalAddress getLTAddress(final String address) {
+    public static LogicalTerminalAddress getLTAddress(final String address) {
         return new LogicalTerminalAddress(address);
     }
 
@@ -714,7 +712,7 @@ public class SwiftFormatUtils {
      * @return the string with the full 12 characters long LT identifier
      * @since 7.8.8
      */
-    public static final String getLTAddress(final LogicalTerminalAddress address) {
+    public static String getLTAddress(final LogicalTerminalAddress address) {
         return address.getSenderLogicalTerminalAddress();
     }
 }

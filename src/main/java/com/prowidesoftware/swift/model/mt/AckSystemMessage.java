@@ -35,7 +35,6 @@ import java.io.InputStream;
 public class AckSystemMessage extends ServiceMessage21 {
 
     /**
-     * @param aMessage
      * @throws RuntimeException if the message is not a service message with service id 21 (meaning positive or negative acknowledge)
      */
     public AckSystemMessage(final SwiftMessage aMessage) {
@@ -83,7 +82,6 @@ public class AckSystemMessage extends ServiceMessage21 {
     }
 
     /**
-     * @param swiftMessage
      * @throws RuntimeException if the message is not a service message with service id 21 (meaning positive or negative acknowledge)
      */
     public static AbstractMT newInstance(final SwiftMessage swiftMessage) {

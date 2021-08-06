@@ -36,7 +36,7 @@ public class Field345Test extends AbstractFieldTest {
     }
 
     @Test
-    public void testParse345() throws Exception {
+    public void testParse345() {
         Field345 f = new Field345("1");
         assertNotNull(f, "Parse of field failed");
         assertEquals("1", f.getComponent1());

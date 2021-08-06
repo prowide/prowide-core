@@ -37,7 +37,7 @@ public final class ProwideLocale {
      * @return the bundle for the given class and locale or English if not found.
      * @since 7.7
      */
-    public static ResourceBundle getBundle(Class<? extends Object> clazz, Locale locale) {
+    public static ResourceBundle getBundle(Class<?> clazz, Locale locale) {
         return getBundle(clazz.getName(), locale);
     }
 
@@ -48,7 +48,7 @@ public final class ProwideLocale {
      * @see #getBundle(Class, Locale)
      * @since 7.7
      */
-    public static ResourceBundle getBundle(Class<? extends Object> clazz) {
+    public static ResourceBundle getBundle(Class<?> clazz) {
         return getBundle(clazz.getName());
     }
 

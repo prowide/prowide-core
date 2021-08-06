@@ -1938,9 +1938,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public SwiftTagListBlock append(final Tag... tags) {
         if ((tags != null) && tags.length > 0) {
-            for (final Tag t : tags) {
-                this.tags.add(t);
-            }
+            this.tags.addAll(Arrays.asList(tags));
         }
         return this;
     }

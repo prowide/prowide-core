@@ -289,7 +289,7 @@ public class MT730 extends AbstractMT implements Serializable {
 	 * @return a new instance of MT730
 	 * @since 7.10.3
 	 */
-	public final static MT730 fromJson(String json) {
+	public static MT730 fromJson(String json) {
 		return (MT730) AbstractMT.fromJson(json);
 	}
 

@@ -16,7 +16,7 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsZ {
 
-    public final static String ZWIS = "ZWIS";
-    public final static String ZINC = "ZINC";
+    String ZWIS = "ZWIS";
+    String ZINC = "ZINC";
 
 }

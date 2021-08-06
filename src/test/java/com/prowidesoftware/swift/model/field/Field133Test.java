@@ -49,7 +49,7 @@ public class Field133Test extends AbstractFieldTest {
      * BJBDHQ1506
      * SCCXHK9999
      *
-     * @plucero Note: Unsequenced Broadcast cannot contain numbers.
+     * Note: Unsequenced Broadcast cannot contain numbers.
      */
 
     private static final String EXAMPLE1_FIELD_133 = "BAZEUS1111";

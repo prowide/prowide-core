@@ -42,7 +42,6 @@ public class FINWriterVisitor implements IMessageVisitor {
     private boolean trimTagValues = false;
 
     /**
-     * @param writer
      */
     public FINWriterVisitor(Writer writer) {
         this.writer = writer;
@@ -380,8 +379,6 @@ public class FINWriterVisitor implements IMessageVisitor {
     /**
      * Returns the tags value.
      *
-     * @param t
-     * @param block
      * @return the tag value removing the block number if present
      */
     protected String getTagValue(final Tag t, final int block) {

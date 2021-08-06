@@ -163,7 +163,6 @@ public final class Money implements Serializable {
      * Creates a currency amount from the first found field in the block
      *
      * @param fieldNames a list of field names to extract the money from
-     * @return
      */
     static Money ofAny(SwiftTagListBlock block, String... fieldNames) {
         for (String fieldName : fieldNames) {

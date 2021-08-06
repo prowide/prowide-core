@@ -37,21 +37,6 @@ public class ConversionServiceTest {
 
     private IConversionService srv;
     private SwiftMessage msg;
-    private final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" +
-            ":20:AMLX985338-D4E5E\n" +
-            ":23B:CRED\n" +
-            ":32A:051018EUR66969,52\n" +
-            ":33B:EUR66969,52\n" +
-            ":50K:FOO SA\n" +
-            ":53A:DEUTDEFF\n" +
-            ":54A://RT\n" +
-            "FOOBARYY\n" +
-            ":59:/-\n" +
-            "Tressis SA\n" +
-            ":70:/CS BD ST EUR B\n" +
-            "REDEMPTION AMLX985338\n" +
-            ":71A:OUR\n" +
-            "-}{5:{MAC:52F48656}{CHK:24C40F1FF931}}";
     private UnparsedTextList unparsedTexts;
     private final String someMsgText = "{1:L02VNDZBET2AXXX}{4:{501:05134200001900000513420000190000B8D33C65}{110:001}}";
     private final String someText = "hello world";
@@ -461,6 +446,21 @@ public class ConversionServiceTest {
      */
     @Test
     public void testGetObjFromFIN_block4() {
+        String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" +
+                ":20:AMLX985338-D4E5E\n" +
+                ":23B:CRED\n" +
+                ":32A:051018EUR66969,52\n" +
+                ":33B:EUR66969,52\n" +
+                ":50K:FOO SA\n" +
+                ":53A:DEUTDEFF\n" +
+                ":54A://RT\n" +
+                "FOOBARYY\n" +
+                ":59:/-\n" +
+                "Tressis SA\n" +
+                ":70:/CS BD ST EUR B\n" +
+                "REDEMPTION AMLX985338\n" +
+                ":71A:OUR\n" +
+                "-}{5:{MAC:52F48656}{CHK:24C40F1FF931}}";
         String xml = srv.getXml(fin);
         SwiftMessage m = srv.getMessageFromXML(xml);
         assertNotNull(m);

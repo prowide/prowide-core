@@ -1,5 +1,5 @@
 apply plugin: 'java-library-distribution'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'jacoco'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
@@ -24,7 +24,6 @@ tasks.withType(JavaCompile) {
 	
 repositories {
     mavenCentral()
-	jcenter()
 }
 	
 dependencies {
@@ -33,12 +32,12 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.8.2'
 
 	compileOnly 'javax.persistence:javax.persistence-api:2.2'
-	compileOnly group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
-	testImplementation('org.junit.jupiter:junit-jupiter:5.7.0')
-	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
-	testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.6.3'
-	testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.6.3'
-	testImplementation group: 'org.xmlunit', name: 'xmlunit-assertj', version: '2.6.3'
+	compileOnly group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+	testImplementation('org.junit.jupiter:junit-jupiter:5.7.2')
+	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.20.2'
+	testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.8.2'
+	testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.8.2'
+	testImplementation group: 'org.xmlunit', name: 'xmlunit-assertj', version: '2.8.2'
 }
 
 sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']
@@ -83,6 +82,8 @@ javadoc {
     
 	options.bottom = '<script src="//static.getclicky.com/js"></script><script>try{ clicky.init(101039278); }catch(e){}</script>'
 	exclude "**/internal/**"
+
+	options.addStringOption('Xdoclint:none', '-quiet')
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -90,42 +91,62 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
-task writePom {
-	doLast {
-		pom {
-			project {
-				groupId 'com.prowidesoftware'
-				artifactId 'pw-swift-core'
-				version "${version}"
-				name 'Prowide Core'
-				description 'Prowide Library for SWIFT messages'
-				url 'http://www.prowidesoftware.com'
-				scm {
-					url 'https://github.com/prowide/prowide-core.git'
-					connection 'git@github.com:prowide/prowide-core.git'
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			versionMapping {
+				usage('java-api') {
+					fromResolutionOf('runtimeClasspath')
 				}
-				inceptionYear '2006'
-				licenses {
-					license {
-						name 'Apache License Version 2.0'
-						url 'https://www.apache.org/licenses/LICENSE-2.0'
-						distribution 'repo'
-					}
-				}
-				developers {
-					developer {
-						id 'zubri'
-						name 'Sebastian Zubrinic'
-						email 'sebastian@prowidesoftware.com'
-					}
-				}
-				organization {
-					name 'Prowide'
-					url 'http://www.prowidesoftware.com'
+				usage('java-runtime') {
+					fromResolutionResult()
 				}
 			}
-		}.writeTo("$buildDir/pom.xml")
+			afterEvaluate {
+				from components.java
+				artifactId = 'pw-swift-core'
+				groupId = 'com.prowidesoftware'
+				version = "${version}"
+				pom {
+					name = 'Prowide Core'
+					description = 'Prowide Library for SWIFT messages'
+					url = 'http://www.prowidesoftware.com'
+					scm {
+						url = 'https://github.com/prowide/prowide-core.git'
+						connection = 'git@github.com:prowide/prowide-core.git'
+					}
+					inceptionYear = '2006'
+					licenses {
+						license {
+							name = 'Apache License Version 2.0'
+							url = 'https://www.apache.org/licenses/LICENSE-2.0'
+							distribution = 'repo'
+						}
+					}
+					developers {
+						developer {
+							id = 'zubri'
+							name = 'Sebastian Zubrinic'
+							email = 'sebastian@prowidesoftware.com'
+						}
+					}
+					organization {
+						name = 'Prowide'
+						url = 'http://www.prowidesoftware.com'
+					}
+				}
+			}
+			//pom.withXml {
+			//	replaceDependencyVersion(asNode(), 'pw-swift-integrator-sdk', rootProject.version)
+			//}
+		}
 	}
+}
+jar.finalizedBy generatePomFileForMavenJavaPublication
+
+// to avoid metadata in the generated pom.xml files
+tasks.withType(GenerateModuleMetadata) {
+	enabled = false
 }
 
 distributions {
@@ -134,11 +155,13 @@ distributions {
 			from javadocJar
 			from sourcesJar
 			into ('lib') {
-				from (project.configurations.runtime)
+				from (project.configurations.runtimeClasspath)
 			}
 			from files('LICENSE.txt')
 			from files('CHANGELOG.txt')
-			from files("$buildDir/pom.xml")
+			from ("$buildDir/publications/mavenJava/pom-default.xml") {
+				rename ".*", "pom.xml"
+			}
 		}
 	}
 }
@@ -146,13 +169,13 @@ distributions {
 distTar.enabled = false
 
 distZip {
-    dependsOn writePom
-
+    dependsOn generatePomFileForMavenJavaPublication
 	doLast {
 		if (!project.hasProperty('JDK8_HOME')) {
 			println "*** WARNING: For releases an explicit JDK8_HOME variable must be set in gradle.properties ***"
 		}
 	}
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 jacocoTestReport {
@@ -189,6 +212,8 @@ task bundle(type: Zip, dependsOn: build) {
 	from jar
 	from sourcesJar
 	from javadocJar
-	from files("$buildDir/pom.xml")
+	from ("$buildDir/publications/mavenJava/pom-default.xml") {
+		rename ".*", "pom.xml"
+	}
 	archiveName 'bundle.zip'
 }

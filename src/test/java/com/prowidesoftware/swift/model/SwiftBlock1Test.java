@@ -125,8 +125,6 @@ public class SwiftBlock1Test {
 
     @Test
     public void testIsEmptyAndSize() {
-        //assertTrue(b.isEmpty());
-        //assertTrue(b.size() == 0);
         b.setValue("F01BANKBEBBAXXX1234567890");
         assertFalse(b.isEmpty());
         assertTrue(b.size() == 25);
