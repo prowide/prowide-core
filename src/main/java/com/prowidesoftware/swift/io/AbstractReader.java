@@ -15,7 +15,6 @@
  */
 package com.prowidesoftware.swift.io;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.SwiftMessage;
@@ -83,7 +82,6 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2021)
     public Iterator<String> iterator() throws IllegalArgumentException {
-        DeprecationUtils.phase2(this.getClass(), "iterator", "use it as Iterable instead");
         if (usedAsIterable) {
             throw new IllegalStateException("This reader has already been used as iterator and the implementation does not support multiple iterations, create another reader instead");
         }
