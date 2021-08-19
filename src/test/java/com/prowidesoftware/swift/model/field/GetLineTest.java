@@ -239,7 +239,7 @@ public class GetLineTest {
     }
 
     @Test
-    public void testAccountNumberDOubleSlash() {
+    public void testAccountNumberDoubleSlash() {
         final Field53B f = new Field53B("//1234\nBANK");
         assertEquals("//1234", f.getLine(1));
     }
@@ -300,10 +300,8 @@ public class GetLineTest {
     public void testSeparators_3() {
         Field35B f = new Field35B("/US/31392EXH8\nFEDERAL NATL MTG ASSN");
         assertEquals("/US/31392EXH8", f.getLine(2));
-        /*
-         * the starting slash will not be returned because the query includes an offset
-         */
-        assertEquals("US/31392EXH8", f.getLine(1, Field35B.DESCRIPTION));
+        assertEquals("/US/31392EXH8", f.getLine(1, Field35B.DESCRIPTION));
+        assertEquals("/US/31392EXH8", f.getLine(2));
     }
 
     @Test

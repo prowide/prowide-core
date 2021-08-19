@@ -924,21 +924,15 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         final String hash = UUID.randomUUID().toString();
         for (int i = 1; i <= componentsSize(); i++) {
             if (i < offset) {
-                /*
-                 * blank fields below the offset
-                 */
+                // blank fields below the offset
                 cp.setComponent(i, null);
             } else if (getComponent(i) == null) {
-                /*
-                 * fill empty components above offset
-                 */
+                // fill empty components above offset
                 cp.setComponent(i, hash);
             }
         }
 
-        /*
-         * get all meaningful lines from value
-         */
+        // get all meaningful lines from value
         final List<String> lines = new ArrayList<>();
         for (final String l : SwiftParseUtils.getLines(cp.getValue())) {
             if (StringUtils.isNotEmpty(l) && !onlySlashes(l)) {
@@ -946,10 +940,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             }
         }
 
-        /*
-         * if the query includes a component offset above 1, we remove meaningless prefix separators from result.
-         */
-        boolean removeSeparators = offset > 1;
         if (start != null) {
             if (lines.size() >= start) {
                 if (end != null) {
@@ -958,26 +948,20 @@ public abstract class Field implements PatternContainer, JsonSerializable {
                         if (end > lines.size()) {
                             trimmedEnd = lines.size() - 1;
                         }
-                        /*
-                         * return line subset
-                         */
-                        return asString(hash, lines.subList(start - 1, trimmedEnd), removeSeparators);
+                        // return line subset
+                        return asString(hash, lines.subList(start - 1, trimmedEnd));
                     } else {
                         log.warning("invalid lines range [" + start + "-" + end
                                 + "] the ending line number (" + end + ") must be greater or equal to the starting line number (" + start + ")");
                     }
                 } else {
-                    /*
-                     * return a single line
-                     */
-                    return clean(hash, lines.get(start - 1), removeSeparators);
+                    // return a single line
+                    return clean(hash, lines.get(start - 1));
                 }
             }
         } else {
-            /*
-             * return all lines from offset
-             */
-            return asString(hash, lines, removeSeparators);
+            // return all lines from offset
+            return asString(hash, lines);
         }
         return null;
     }
@@ -998,17 +982,15 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     /**
      * Creates a string from the list of lines, replacing the hash by blank, and ignoring empty lines
      *
-     * @param hash             hash used during getLine process
-     * @param list             list of lines
-     * @param removeSeparators true to remove meaningless prefix separators,
+     * @param hash hash used during getLine process
+     * @param list list of lines
      * @return a string with the final, cleaned, joined lines
      */
-    private String asString(final String hash, final List<String> list, boolean removeSeparators) {
+    private String asString(final String hash, final List<String> list) {
         final StringBuilder result = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
             final String l = list.get(i);
-            boolean b = i == 0 && removeSeparators; //remove prefix only for first line
-            final String trimmed = clean(hash, l, b);
+            final String trimmed = clean(hash, l);
             if (trimmed != null) {
                 if (result.length() > 0) {
                     result.append(FINWriterVisitor.SWIFT_EOL);
@@ -1030,52 +1012,29 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * contains the component separator "/", or starts with ":" or starts with "/" separators
      * all of them will also be removed).
      *
-     * @param hash             hash string used by the get lines method
-     * @param value            current value to clean
-     * @param removeSeparators if true, meaningless starting separators (: and /) are removed
+     * @param hash  hash string used by the get lines method
+     * @param value current value to clean
      * @return proper final line value or null if the original field didn't contained content for such line
      */
-    private String clean(final String hash, final String value, boolean removeSeparators) {
-        /*
-         * try to replace /hash first just in case the component is optional
-         * then replace the hash only if present
-         */
+    private String clean(final String hash, final String value) {
+        // try to replace /hash first just in case the component is optional then replace the hash only if present
         String trimmed = StringUtils.replace(StringUtils.replace(value, "/" + hash, ""), hash, "");
         if (StringUtils.isNotBlank(trimmed) && !onlySlashes(trimmed)) {
-			/*
-			 * sebastian Oct 2015
-			 * La logica para remover separadores debiera depender de si el offset
-			 * abarca la linea entera o si el componente del offset esta en al mitad
-			 * de una linea, y removerlo solo en este ultimo caso.
-			 * Esto es dificil de implementar porque no esta modelada la relacion
-			 * entre componentes y lineas.
-			 * Por lo tanto de momento se deja el parametro removeSeparators pero
-			 * con el codigo de aca abajo comentado. Y se coloca a cambio el patch
-			 * para el caso especifico de :// que es el que aparentemente no esta
-			 * contemplado segun los test.
-			 *
-			if (removeSeparators) {
-				for (int i = 0; i < trimmed.length(); i++) {
-					char c = trimmed.charAt(i);
-					if (c != ':' && c != '/') {
-						return trimmed.substring(i);
-					}
-				}
-			} else {
-				return trimmed;
-			}
-			*/
+            /*
+             * sebastian Oct 2015
+             * We should remove meaningless component separators separators (':' and '/') from the result depending on
+             * the offset, removing it only if the offset is in the middle of a line (more than one component are in
+             * the same field line and the offset parameter to the getLine is not for the first component in the line).
+             * We cannot do that at the moment because there is no relation in the model to match components and lines.
+             * We just do a specific patch below for specific cases based on the test cases we have.
+             */
             if (trimmed.startsWith("://")) {
                 return StringUtils.substringAfter(trimmed, "://");
-            } else if (removeSeparators && (trimmed.startsWith(":") || trimmed.startsWith("/"))) {
-                return StringUtils.trimToNull(StringUtils.substring(trimmed, 1));
             } else {
                 return trimmed;
             }
         }
-        /*
-         * otherwise return null
-         */
+        // otherwise return null
         return null;
     }
 

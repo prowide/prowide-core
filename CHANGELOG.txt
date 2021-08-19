@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT 9.2.4
+  * MultiLineField: preserve starting component separator when getting lines with offset
+
 RELEASE 9.2.3 - August 2021
   * Added user assigned country codes (example "XE") as valid codes in the IsoUtils country validation
   * Added field classes for SCORE messages: 11T, 12[S,R], 25G, 31[J,K,T], 34[D,K,L,M,S,T,U,X,V,W], 49[J,K,L] (to be used in the proprietary payload of the MT798 envelop)

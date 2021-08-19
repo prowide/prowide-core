@@ -19,28 +19,19 @@ import java.io.*;
 import java.util.logging.Logger;
 
 /**
- * Helper class to read DOS-PCC files.
- *
+ * Helper class to read the legacy DOS-PCC files.
  * <p>
- * File content is splitted, and the iterator returns the raw message content of each SWIFT message found in the file.
+ * File content is split, and the iterator returns the raw message content of each SWIFT message found in the file.
  * API is also provided to read each message parsed into an MT.
- *
  * <p>
  * The reader can be created from a String but also from a Reader, File or Stream; thus when used as an iterator you
  * can iterate it just once, it is not re-entrant.
  *
- * @author sebastian
  * @since 7.8
- */
-/*
- * sebastian ago 2016:
- * According to documentation all messages must be precede with its ack.
- * TODO: Remove the ack and parse the unparsed text here to return the actual MT
  */
 public class PPCReader extends AbstractReader {
     static final int BEGIN = 0x01;
     static final int END = 0x03;
-    static final int NULL = 0x00;
     static final int EMPTY = 0x20;
     private static final Logger log = Logger.getLogger(PPCReader.class.getName());
     private int curChar = 0;
