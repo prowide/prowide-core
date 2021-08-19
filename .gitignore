@@ -18,3 +18,4 @@ out
 .idea/vcs.xml
 .idea/workspace.xml
 .idea/libraries-with-intellij-classes.xml
+.idea/jpa-buddy.xml

@@ -300,11 +300,7 @@ public class GetLineTest {
     public void testSeparators_3() {
         Field35B f = new Field35B("/US/31392EXH8\nFEDERAL NATL MTG ASSN");
         assertEquals("/US/31392EXH8", f.getLine(2));
-
-        // the starting slash will not be returned because the query includes an offset
-        assertEquals("US/31392EXH8", f.getLine(1, Field35B.DESCRIPTION));
-
-        // if we remove the offset we get the whole line
+        assertEquals("/US/31392EXH8", f.getLine(1, Field35B.DESCRIPTION));
         assertEquals("/US/31392EXH8", f.getLine(2));
     }
 

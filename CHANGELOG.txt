@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.1.7
+  * MultiLineField: preserve starting component separator when getting lines with offset
   * Added user assigned country codes (example "XE") as valid codes in the IsoUtils country validation
 
 RELEASE 9.1.6 - July 2021
