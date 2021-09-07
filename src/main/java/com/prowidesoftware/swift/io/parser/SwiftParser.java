@@ -1002,6 +1002,9 @@ public class SwiftParser {
             if ('A' <= c && c <= 'Z') {
                 return c;
             }
+            if( (c=='\n'|| c=='\r') && s.charAt(1)=='5'){
+                return '5';
+            }
         }
         return ' ';
     }

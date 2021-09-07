@@ -454,4 +454,20 @@ public class SwiftParserTest {
         assertNull(contentMessage.getFieldByName("52A"));
     }
 
+
+    @Test
+    void test_parse_system_message_MT094_from_string() throws IOException {
+        String fin_MT094 = "{1:F01AAAACNBJBXXX1010000000}{2:O0941836210827NXNXXXXX0XXX00080000012345678911S}\n" +
+                "{4:{135:N}{136:X12345}{130:/01/BANK\n" +
+                "/01/XXXXXYYYYYX}{134:FOOABHBX\n" +
+                "ABCDFGGH N.A.\n" +
+                "ABCANA}{312:SUBJECT: xxxx XXXX AAA AASX YXYXY FOR SSS YXYXYXYX-XXX YXYX\n" +
+                "XXXXXX YYY YYYYYYY TO FFF WWWWW REF X00000000 ON 00\n" +
+                "XXX0000 YYY XXXXX YXYXYXY CODES YXYXYX FOR IPSUM LOERM\n" +
+                "S YSYSY XXXX XXXX,THE XXXXX OF THE XXXXXX IPSUM AAA\n" +
+                "XXXX XXX XXX MXXXAY XXXX IN XXX AND XXXX.}}{\n" +
+                "5:{CHK:123456789123}{SYS:1234567891XXXXXX1YYXXX1234567894}}";
+        SwiftMessage msg = SwiftMessage.parse(fin_MT094);
+        assertNotNull(msg.getBlock5());
+    }
 }

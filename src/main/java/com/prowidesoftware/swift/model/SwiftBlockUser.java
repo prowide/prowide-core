@@ -176,7 +176,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 
         // only upper or lower case letters
         char c = Character.toLowerCase(blockName.charAt(0));
-        if (!(('0' <= c && c <= '9') || ('a' <= c && c <= 'z')))
+        if ((c!='5') && !(('0' <= c && c <= '9') || ('a' <= c && c <= 'z')))
             return (Boolean.FALSE);
 
         return (Boolean.TRUE);
