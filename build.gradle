@@ -8,7 +8,7 @@ archivesBaseName = 'pw-swift-core'
 
 def SRU = "2020"
 
-version "SNAPSHOT-SRU${SRU}-9.1.7"
+version "SRU${SRU}-9.1.7"
 group 'com.prowidesoftware'
 	
 sourceCompatibility = '1.8'
