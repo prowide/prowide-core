@@ -375,6 +375,10 @@ public class SwiftParser {
         final char blockId = identifyBlock(s);
         SwiftBlock b;
         if (blockId == ' ') {
+            if (configuration.isLenient()) {
+                errors.add("The block " + s + " could not be identified");
+                return null;
+            }
             // block cannot be identified
             log.severe("unidentified block:" + s);
             throw new ProwideException("The block " + s + " could not be identified");
@@ -480,6 +484,7 @@ public class SwiftParser {
             }
         }
     }
+
 
     /**
      * Creates the block 2, dealing with the {@link IllegalArgumentException} in case of lenient mode
