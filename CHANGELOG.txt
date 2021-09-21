@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT 9.1.8
+  * Enhanced the MtId to automatically extract the variant from String identifiers such as "fin.103.STP" or "202.COV"
+
 RELEASE 9.1.7 - September 2021
   * (PW-664) Parser enhancement to be lenient on LF before block identifier
   * MultiLineField: preserve starting component separator when getting lines with offset

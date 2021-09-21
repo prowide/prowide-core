@@ -21,9 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
 
 /**
- * Class for identification of MT messages.
- * <br >
- * Composed by the business process, message type and variant or message user group (MUG).
+ * Structured identification of MT message types, composed by the business process, actual type and variant.
  * <br>
  * The business process is currently set to a fixed value "fin", however it is kept as
  * class attribute because eventually could be used also for "apc".
@@ -44,13 +42,19 @@ public class MtId {
     }
 
     /**
-     * Creates an identification given the message type, with no variant.
-     *
-     * @param messageType the message type number (optionally prefixed with "fin.")
+     * Parses a string identifier into a structured MT identifier
+     * @param identifier an identifier such as 103, fin.103, fin.103.STP, 202.COV
      * @since 7.8.6
      */
-    public MtId(String messageType) {
-        this(messageType, (String) null);
+    public MtId(String identifier) {
+        this();
+        if (identifier != null) {
+            this.messageType = identifier.replaceAll("\\D+", "");
+            MTVariant variant = MTVariant.extract(identifier).orElse(null);
+            if (variant != null) {
+                this.variant = variant.name();
+            }
+        }
     }
 
     /**
@@ -73,6 +77,15 @@ public class MtId {
      */
     public MtId(String messageType, MTVariant variant) {
         this(messageType, variant != null ? variant.name() : null);
+    }
+
+    /**
+     * Parses a string identifier into a structured MT identifier
+     * @param identifier an identifier such as 103, fin.103, fin.103.STP, 202.COV
+     * @since 9.1.8
+     */
+    public static MtId parse(final String identifier) {
+        return new MtId(identifier);
     }
 
     public String getBusinessProcess() {
@@ -108,6 +121,14 @@ public class MtId {
      */
     public MtId setVariant(String variant) {
         this.variant = variant;
+        return this;
+    }
+
+    /**
+     * @since 9.2.6
+     */
+    public MtId setVariant(MTVariant variant) {
+        this.variant = variant.name();
         return this;
     }
 
