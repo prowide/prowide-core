@@ -214,7 +214,7 @@ public class SwiftParser {
         String block2Type = getBlock2Type(s);
         if ("I".equals(block2Type)) {
             return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
-        } else if ("0".equals(block2Type)) {
+        } else if ("O".equals(block2Type)) {
             return new SwiftBlock2Output(StringUtils.strip(s, "{}"), true);
         }
         throw new ProwideException("The Block2 type could not be identified");
@@ -434,7 +434,7 @@ public class SwiftParser {
                     b = createBlock2Input(s);
                 } else {
                     b = createBlock2Output(s);
-                    if (!"0".equals(block2Type)) {
+                    if (!"O".equals(block2Type)) {
                         final String error = "The Block2 type could not be identified";
                         if (configuration.isLenient()) {
                             // if the configuration is lenient we report the error and continue
