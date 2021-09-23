@@ -474,10 +474,12 @@ public class SwiftParserTest {
         parser.setConfiguration(configuration);
         parser.message();
 
-        String errorMessage = "The block \n" +
-                "5:{CHK:123456789123}{SYS:1234567891XXXXXX1YYXXX1234567894} could not be identified";
-        assertEquals(parser.getErrors().size(), 1);
+        String errorMessage = "The Block2 type could not be identified";
+        assertEquals(parser.getErrors().size(), 2);
         assertEquals(parser.getErrors().get(0), errorMessage);
+        errorMessage = "The block \n" +
+                "5:{CHK:123456789123}{SYS:1234567891XXXXXX1YYXXX1234567894} could not be identified";
+        assertEquals(parser.getErrors().get(1), errorMessage);
     }
 
     @Test
