@@ -121,7 +121,7 @@ public class SwiftParser {
      * @return an Character or null if the parameter block
      * content is not well-formed and cannot be parsed
      */
-    private static Character getBlock2Type(final String s) {
+    private static Character extractBlock2Type(final String s) {
         // try to find out the in/out type
         final int i = s.indexOf(':');
         Character ch = null;
@@ -201,20 +201,22 @@ public class SwiftParser {
 
     /**
      * Parses a string containing an MT message block 2 content.
-     * <p>Will return either a {@link SwiftBlock2Input} or {@link SwiftBlock2Output} depending
-     * on the parameter block content.
+     * <p>Will return either a {@link SwiftBlock2Input} or {@link SwiftBlock2Output} depending on the block content.
      *
      * @param s block content starting with "{2:" and ending with "}"
-     * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
+     * @return content parsed into a block 2 or an empty block 2 (output) if string cannot be parsed
      * @since 7.8.6
      */
     static public SwiftBlock2 parseBlock2(String s) {
-        Character block2Type = getBlock2Type(s);
-        if (new Character('I').equals(block2Type)) {
-            return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
-        } else {
-            return new SwiftBlock2Output(StringUtils.strip(s, "{}"), true);
+        if (s != null) {
+            Character block2Type = extractBlock2Type(s);
+            if (new Character('I').equals(block2Type) || s.length() <= 23) {
+                return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
+            } else {
+                return new SwiftBlock2Output(StringUtils.strip(s, "{}"), true);
+            }
         }
+        return new SwiftBlock2Output();
     }
 
     /**
@@ -426,21 +428,7 @@ public class SwiftParser {
                 b = createBlock1(s);
                 break;
             case '2': // block 2 (single valued)
-                Character block2Type = getBlock2Type(s);
-                if (new Character('I').equals(block2Type)) {
-                    b = createBlock2Input(s);
-                } else {
-                    b = createBlock2Output(s);
-                    if (!new Character('O').equals(block2Type)) {
-                        final String error = "Expected an \"I\" or \"O\" to identify " +
-                                "the block 2 type (direction) and found: " + block2Type;
-                        if (this.configuration.isLenient()) {
-                            this.errors.add(error);
-                        } else {
-                            throw new ProwideException(error);
-                        }
-                    }
-                }
+                b = createBlock2(s);
                 break;
             case '3': // block 3 (tag list)
                 b = consumeTagListBlock(new SwiftBlock3(), s);
@@ -487,6 +475,29 @@ public class SwiftParser {
                 return new SwiftBlock1(s, true);
             } else {
                 throw e;
+            }
+        }
+    }
+
+    private SwiftBlock2 createBlock2(final String s) {
+        Character block2Type = extractBlock2Type(s);
+        if (new Character('I').equals(block2Type)) {
+            return createBlock2Input(s);
+        } else if (new Character('O').equals(block2Type)) {
+            return createBlock2Output(s);
+        } else {
+            final String error = "Expected an \"I\" or \"O\" to identify " +
+                    "the block 2 type (direction) and found: " + block2Type;
+            if (this.configuration.isLenient()) {
+                this.errors.add(error);
+                // in lenient mode we use the size as heuristic to default as Input or Output
+                if (s.length() <= 23) {
+                    return createBlock2Input(s);
+                } else {
+                    return createBlock2Output(s);
+                }
+            } else {
+                throw new ProwideException(error);
             }
         }
     }
