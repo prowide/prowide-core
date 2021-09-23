@@ -433,7 +433,7 @@ public class SwiftParser {
                     b = createBlock2Output(s);
                     if (!new Character('O').equals(block2Type)) {
                         final String error = "Expected an \"I\" or \"O\" to identify " +
-                                "the block 2 type (direction) and found " + block2Type;
+                                "the block 2 type (direction) and found: " + block2Type;
                         if (this.configuration.isLenient()) {
                             this.errors.add(error);
                         } else {
