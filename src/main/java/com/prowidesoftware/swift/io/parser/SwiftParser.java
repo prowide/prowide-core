@@ -115,13 +115,13 @@ public class SwiftParser {
     }
 
     /**
-     * Attempt to detect if block 2 refers to an input or output message.
-     * If the parameter block content is not well-formed will return false as default.
+     * Attempt to extract the block 2 type which should refer to an input or output message.
      *
      * @param s the block 2 value (as a FIN value) for example I100BANKDEFFXXXXU3003 or 2:I100BANKDEFFXXXXU3003
-     * @return whether it's an input block 2 (true) or an output one (false)
+     * @return an uppercase String char or an empty String if the parameter block
+     * content is not well-formed and cannot be parsed
      */
-    private static boolean isInput(final String s) {
+    private static String getBlock2Type(final String s) {
         // try to find out the in/out type
         final int i = s.indexOf(':');
         Character ch = null;
@@ -132,7 +132,7 @@ public class SwiftParser {
             // check start
             ch = s.charAt(0);
         }
-        return ch != null && Character.toUpperCase(ch) == 'I';
+        return ch != null ? Character.toString(Character.toUpperCase(ch)) : "";
     }
 
     /**
@@ -207,13 +207,17 @@ public class SwiftParser {
      * @param s block content starting with "{2:" and ending with "}"
      * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
      * @since 7.8.6
+     * @throws ProwideException if block 2 type cannot be determined
      */
     static public SwiftBlock2 parseBlock2(String s) {
-        if (isInput(s)) {
+
+        String block2Type = getBlock2Type(s);
+        if ("I".equals(block2Type)) {
             return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
-        } else {
+        } else if ("O".equals(block2Type)) {
             return new SwiftBlock2Output(StringUtils.strip(s, "{}"), true);
         }
+        throw new ProwideException("The Block2 type could not be identified");
     }
 
     /**
@@ -425,10 +429,18 @@ public class SwiftParser {
                 b = createBlock1(s);
                 break;
             case '2': // block 2 (single valued)
-                if (isInput(s)) {
+                String block2Type = getBlock2Type(s);
+                if ("I".equals(block2Type)) {
                     b = createBlock2Input(s);
                 } else {
                     b = createBlock2Output(s);
+                    if (!"O".equals(block2Type)) {
+                        final String error = "The Block2 type could not be identified";
+                        if (configuration.isLenient()) {
+                            // if the configuration is lenient we report the error and continue
+                            this.errors.add(error);
+                        }
+                    }
                 }
                 break;
             case '3': // block 3 (tag list)
