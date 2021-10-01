@@ -1387,7 +1387,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
     }
 
     /**
-     * Gets the index of the first tag matching any of the given names after the given index in the tag list
+     * Gets the index of the first tag matching any of the given names at or after the given index in the tag list
      *
      * @return a 0-based index of the found tag or -1 if not found
      */
