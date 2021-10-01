@@ -176,12 +176,8 @@ public class Field98C extends Field implements Serializable, DateContainer, Gene
 		setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
 		String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
 		if (toparse != null) {
-			if (toparse.length() >= 8) {
-				setComponent2(StringUtils.substring(toparse, 0, 8));
-			}
-			if (toparse.length() > 8) {
-				setComponent3(StringUtils.substring(toparse, 8));
-			}
+            setComponent2(StringUtils.substring(toparse, 0, 8));
+            setComponent3(StringUtils.substring(toparse, 8));
 		}
 	}
 	/**
