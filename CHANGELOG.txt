@@ -2,7 +2,7 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
-SNAPSHOT 9.1.8
+RELEASE 9.1.8
   * (GH-60) Enhanced parser for field 98C
   * (PW-703) Enhanced SwiftParser in order to validate "Input" or "Output" Block 2 type
   * Enhanced the MtId to automatically extract the variant from String identifiers such as "fin.103.STP" or "202.COV"
