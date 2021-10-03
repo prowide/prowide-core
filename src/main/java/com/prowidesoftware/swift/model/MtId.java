@@ -50,9 +50,16 @@ public class MtId {
         this();
         if (identifier != null) {
             this.messageType = identifier.replaceAll("\\D+", "");
-            MTVariant variant = MTVariant.extract(identifier).orElse(null);
-            if (variant != null) {
-                this.variant = variant.name();
+
+            if (StringUtils.isNotBlank(this.messageType)) {
+                // if message type was extracted, we try to extract the variant as well
+                MTVariant variant = MTVariant.extract(identifier).orElse(null);
+                if (variant != null) {
+                    this.variant = variant.name();
+                }
+            } else {
+                // otherwise we just use the parameter as type
+                this.messageType = identifier;
             }
         }
     }

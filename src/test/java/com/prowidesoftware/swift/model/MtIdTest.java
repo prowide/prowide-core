@@ -35,6 +35,9 @@ class MtIdTest {
         assertEquals("fin.103.STP", new MtId("fin.103STP").id());
         assertEquals("fin.202.COV", new MtId("fin.202_COV").id());
         assertEquals("fin.202.COV", new MtId("fin.202COV").id());
+        assertEquals("fin.ACK", new MtId("ACK").id());
+        assertEquals("fin.NAK", new MtId("NAK").id());
+        assertEquals("fin.BypassFoobar", new MtId("BypassFoobar").id());
     }
 
 }
