@@ -1861,4 +1861,27 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         return isType(103, 199, 299, 192, 196) || (isType(202, 205) && isCOV());
     }
 
+
+    /**
+     * The MOR (Message Output Reference) is a String of 28 characters, always local to the sender of the message.
+     * It includes the date the sender sent the message to SWIFT, followed by the full LT address of the sender of the
+     * message, and the sender's session and sequence to SWIFT: YYMMDD BANKBEBBAXXX 2222 123456.
+     * It is only available in incoming messages (received from SWIFT).
+     *
+     * @since 7.10.0
+     */
+    public String getMOR() {
+        if(this.block2 != null && this.block2.isOutput()){
+            SwiftBlock2Output swiftBlock2Output = ((SwiftBlock2Output) this.block2);
+            String date = swiftBlock2Output.getReceiverOutputDate();
+            if(this.block1!= null){
+                String logicalTerminal = this.block1.getLogicalTerminal();
+                String sessionNumber = this.block1.getSessionNumber();
+                String sequenceNumber = this.block1.getSequenceNumber();
+                MOR mor = new MOR(date, logicalTerminal, sessionNumber, sequenceNumber);
+                return mor.getMOR();
+            }
+        }
+        return null;
+    }
 }
