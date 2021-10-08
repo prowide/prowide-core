@@ -1290,6 +1290,29 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
+     * The MOR (Message Output Reference) is a String of 28 characters, always local to the receiver of the message.
+     * It includes the message output date, the address of the receiver, the output session number, and the output
+     * sequence number.: YYMMDD BANKBEBBAXXX 2222 123456.
+     * It is only available in incoming messages (received from SWIFT).
+     *
+     * @since 9.2.7
+     */
+    public String getMOR() {
+        if (this.block2 != null && this.block2.isOutput()) {
+            SwiftBlock2Output swiftBlock2Output = ((SwiftBlock2Output) this.block2);
+            String date = swiftBlock2Output.getReceiverOutputDate();
+            if (this.block1 != null) {
+                String logicalTerminal = this.block1.getLogicalTerminal();
+                String sessionNumber = this.block1.getSessionNumber();
+                String sequenceNumber = this.block1.getSequenceNumber();
+                MOR mor = new MOR(date, logicalTerminal, sessionNumber, sequenceNumber);
+                return mor.getMOR();
+            }
+        }
+        return null;
+    }
+
+    /**
      * Gets MUR (Message User Reference) from field 108 in the user header block (block 3) or in the text block
      * (block 4). Notice for user to user messages this field is located at the user header, however for system messages
      * (category 0) the field is located at the text block.
@@ -1861,27 +1884,4 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         return isType(103, 199, 299, 192, 196) || (isType(202, 205) && isCOV());
     }
 
-
-    /**
-     * The MOR (Message Output Reference) is a String of 28 characters, always local to the sender of the message.
-     * It includes the date the sender sent the message to SWIFT, followed by the full LT address of the sender of the
-     * message, and the sender's session and sequence to SWIFT: YYMMDD BANKBEBBAXXX 2222 123456.
-     * It is only available in incoming messages (received from SWIFT).
-     *
-     * @since 7.10.0
-     */
-    public String getMOR() {
-        if(this.block2 != null && this.block2.isOutput()){
-            SwiftBlock2Output swiftBlock2Output = ((SwiftBlock2Output) this.block2);
-            String date = swiftBlock2Output.getReceiverOutputDate();
-            if(this.block1!= null){
-                String logicalTerminal = this.block1.getLogicalTerminal();
-                String sessionNumber = this.block1.getSessionNumber();
-                String sequenceNumber = this.block1.getSequenceNumber();
-                MOR mor = new MOR(date, logicalTerminal, sessionNumber, sequenceNumber);
-                return mor.getMOR();
-            }
-        }
-        return null;
-    }
 }

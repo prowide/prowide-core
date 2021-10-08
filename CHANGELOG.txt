@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT 9.2.7
+  * (CR-23) Added SwiftMessage#getMOR
+
 RELEASE 9.2.6 - October 2021
   * (GH-60) Enhanced parser for field 98C
   * (PW-703) Enhanced SwiftParser in order to validate "Input" or "Output" Block 2 type
