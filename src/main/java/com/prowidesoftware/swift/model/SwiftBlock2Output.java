@@ -571,9 +571,6 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
                 if (slen != 46 && slen != 47) {
                     throw new IllegalArgumentException("Value must match: O<mt><time><mir><date><time>[<pri>]");
                 }
-                if (Character.toUpperCase(value.charAt(offset)) != 'O') {
-                    throw new IllegalArgumentException("Value must match: O<mt><time><mir><date><time>[<pri>]");
-                }
             }
             offset++; // skip the output mark
 

@@ -25,6 +25,8 @@ RELEASE 9.2.7 - October 2021
   * Updated dependency: Apache Commons Lang 3.8.1 -> 3.12.0
   * Updated dependency: Apache Commons Text 1.6 -> 1.9
   * Updated dependency: Gson 2.8.2 -> 2.8.8
+  * Removing Regex error for Input/Output Blocks ("I<mt><address>[<pri>[<monitoring>[<obsolescence>]]]"|"O<mt><time><mir><date><time>[<pri>]")
+
 
 RELEASE 9.2.6 - October 2021
   * (GH-60) Enhanced parser for field 98C
