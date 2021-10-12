@@ -209,13 +209,22 @@ public class SwiftParser {
     static public SwiftBlock2 parseBlock2(String s) {
         if (s != null) {
             Character block2Type = extractBlock2Type(s);
-            if (new Character('I').equals(block2Type) || s.length() <= 23) {
+            if (new Character('I').equals(block2Type)) {
+                return enrichBlockType(new SwiftBlock2Input(StringUtils.strip(s, "{}"), true), "I");
+            } else if (new Character('0').equals(block2Type)) {
+                return enrichBlockType(new SwiftBlock2Output(StringUtils.strip(s, "{}"), true), "O");
+            } else if (s.length() <= 23) {
                 return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
             } else {
                 return new SwiftBlock2Output(StringUtils.strip(s, "{}"), true);
             }
         }
         return new SwiftBlock2Output();
+    }
+
+    private static SwiftBlock2 enrichBlockType(SwiftBlock2 block, String type) {
+        block.setBlockType(type);
+        return block;
     }
 
     /**
@@ -470,9 +479,9 @@ public class SwiftParser {
     private SwiftBlock2 createBlock2(final String s) {
         Character block2Type = extractBlock2Type(s);
         if (new Character('I').equals(block2Type)) {
-            return createBlock2Input(s);
+            return enrichBlockType(createBlock2Input(s),"I");
         } else if (new Character('O').equals(block2Type)) {
-            return createBlock2Output(s);
+            return enrichBlockType(createBlock2Output(s),"O");
         } else {
             final String error = "Expected an \"I\" or \"O\" to identify " +
                     "the block 2 type (direction) and found: " + block2Type;
