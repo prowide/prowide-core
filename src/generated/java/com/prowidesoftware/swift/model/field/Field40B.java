@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -24,8 +26,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import com.prowidesoftware.swift.model.field.MultiLineField;
 
+
+import com.prowidesoftware.swift.model.field.MultiLineField;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -75,8 +78,26 @@ public class Field40B extends Field implements Serializable, MultiLineField {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_40B = "40B";
-	public static final String PARSER_PATTERN ="S$S";
+	public static final String PARSER_PATTERN = "S$S";
+
+    /**
+     * Components pattern
+     *
+     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
+     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SS";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
+     * @since 9.2.7
+     */
+	public static final String TYPES_PATTERN = "SS";
 
 	/**
 	 * Component number for the Type subfield
@@ -88,149 +109,171 @@ public class Field40B extends Field implements Serializable, MultiLineField {
 	 */
 	public static final Integer CODE = 2;
 
-	/**
-	 * Default constructor. Creates a new field setting all components to null.
-	 */
-	public Field40B() {
-		super(2);
-	}
-	    					
-	/**
-	 * Creates a new field and initializes its components with content from the parameter value.
-	 * @param value complete field value including separators and CRLF
-	 */
-	public Field40B(final String value) {
-		super(value);
-	}
-	
-	/**
-	 * Creates a new field and initializes its components with content from the parameter tag.
-	 * The value is parsed with {@link #parse(String)} 	 
-	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
-	 * @since 7.8
-	 */
-	public Field40B(final Tag tag) {
-		this();
-		if (tag == null) {
-			throw new IllegalArgumentException("tag cannot be null.");
-		}
-		if (!StringUtils.equals(tag.getName(), "40B")) {
-			throw new IllegalArgumentException("cannot create field 40B from tag "+tag.getName()+", tagname must match the name of the field.");
-		}
-		parse(tag.getValue());
-	}
+    /**
+     * Default constructor. Creates a new field setting all components to null.
+     */
+    public Field40B() {
+        super(2);
+    }
 
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field40B newInstance(Field40B source) {
-		Field40B cp = new Field40B();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter value.
+     * @param value complete field value including separators and CRLF
+     */
+    public Field40B(final String value) {
+        super(value);
+    }
 
-	/**
-	 * Create a Tag with this field name and the given value.
-	 * Shorthand for <code>new Tag(NAME, value)</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter tag.
+     * The value is parsed with {@link #parse(String)}
+     * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
+     * @since 7.8
+     */
+    public Field40B(final Tag tag) {
+        this();
+        if (tag == null) {
+            throw new IllegalArgumentException("tag cannot be null.");
+        }
+        if (!StringUtils.equals(tag.getName(), "40B")) {
+            throw new IllegalArgumentException("cannot create field 40B from tag "+tag.getName()+", tagname must match the name of the field.");
+        }
+        parse(tag.getValue());
+    }
 
-	/**
-	 * Create a Tag with this field name and an empty string as value
-	 * Shorthand for <code>new Tag(NAME, "")</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
+    /**
+     * Copy constructor.<br>
+     * Initializes the components list with a deep copy of the source components list.
+     * @param source a field instance to copy
+     * @since 7.7
+     */
+    public static Field40B newInstance(Field40B source) {
+        Field40B cp = new Field40B();
+        cp.setComponents(new ArrayList<>(source.getComponents()));
+        return cp;
+    }
+
+    /**
+     * Create a Tag with this field name and the given value.
+     * Shorthand for <code>new Tag(NAME, value)</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag tag(final String value) {
+        return new Tag(NAME, value);
+    }
+
+    /**
+     * Create a Tag with this field name and an empty string as value
+     * Shorthand for <code>new Tag(NAME, "")</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag emptyTag() {
+        return new Tag(NAME, "");
+    }
 
 
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(2);
-		List<String> lines = SwiftParseUtils.getLines(value);
-		if (!lines.isEmpty()) {
-			setComponent1(lines.get(0));
-			if (lines.size() > 1) {
-				setComponent2(lines.get(1));
-			}
-		}
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		appendInLines(result, 1, 2);
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 2) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 40B");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field40B.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
+    /**
+     * Parses the parameter value into the internal components structure.
+     *
+     * <p>Used to update all components from a full new value, as an alternative
+     * to setting individual components. Previous component values are overwritten.
+     *
+     * @param value complete field value including separators and CRLF
+     * @since 7.8
+     */
+    @Override
+    public void parse(final String value) {
+        init(2);
+        List<String> lines = SwiftParseUtils.getLines(value);
+        if (!lines.isEmpty()) {
+            setComponent1(lines.get(0));
+            if (lines.size() > 1) {
+                setComponent2(lines.get(1));
+            }
+        }
+    }
 
-	/**
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        appendInLines(result, 1, 2);
+        return result.toString();
+    }
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param component number of the component to display
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component number is invalid or not present
+     * @throws IllegalArgumentException if component number is invalid for the field
+     * @since 7.8
+     */
+    @Override
+    public String getValueDisplay(int component, Locale locale) {
+        if (component < 1 || component > 2) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 40B");
+        }
+        if (component == 1) {
+            //default format (as is)
+            return getComponent(1);
+        }
+        if (component == 2) {
+            //default format (as is)
+            return getComponent(2);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the field components pattern
+     *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field40B.COMPONENTS_PATTERN
+     */
+    @Override
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public final String componentsPattern() {
+        return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @since 9.2.7
+     * @see #TYPES_PATTERN
+     * @return the static value of Field40B.TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
+    }
+
+    /**
      * Returns the field parser pattern
      * @return the static value of Field40B.PARSER_PATTERN
      */
-	@Override
-	public final String parserPattern() {
+    @Override
+    public final String parserPattern() {
         return PARSER_PATTERN;
     }
 
-	/**
-	 * Returns the field validator pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "24x$24x";
-	}
+    /**
+     * Returns the field validator pattern
+     */
+    @Override
+    public final String validatorPattern() {
+        return "24x$24x";
+    }
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -256,279 +299,297 @@ public class Field40B extends Field implements Serializable, MultiLineField {
         return false;
     }
 
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 2;
-	}
+    /**
+     * Returns the defined amount of components.<br>
+     * This is not the amount of components present in the field instance, but the total amount of components
+     * that this field accepts as defined.
+     * @since 7.7
+     */
+    @Override
+    public int componentsSize() {
+        return 2;
+    }
 
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Type");
-		result.add("Code");
-		return result;
-	}
+    /**
+     * Returns english label for components.
+     * <br>
+     * The index in the list is in sync with specific field component structure.
+     * @see #getComponentLabel(int)
+     * @since 7.8.4
+     */
+    @Override
+    protected List<String> getComponentLabels() {
+        List<String> result = new ArrayList<>();
+        result.add("Type");
+        result.add("Code");
+        return result;
+    }
 
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "type");
-		result.put(2, "code");
-		return result;
-	}
-	/**
-	 * Gets the component 1 (Type).
-	 * @return the component 1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Type (component 1).
-	 * @return the Type from component 1
-	 */
-	public String getType() {
-		return getComponent(1);
-	}
-	/**
-	 * Gets the component 2 (Code).
-	 * @return the component 2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Gets the Code (component 2).
-	 * @return the Code from component 2
-	 */
-	public String getCode() {
-		return getComponent(2);
-	}
+    /**
+     * Returns a mapping between component numbers and their label in camel case format.
+     * @since 7.10.3
+     */
+    @Override
+    protected Map<Integer, String> getComponentMap() {
+        Map<Integer, String> result = new HashMap<>();
+        result.put(1, "type");
+        result.put(2, "code");
+        return result;
+    }
 
 
-	/**
-	 * Set the component1 (Type).
-	 * @param component1 the component1 to set
-	 */
-	public Field40B setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Type (component1).
-	 * @param component1 the Type to set
-	 */
-	public Field40B setType(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
+    /**
+     * Gets the component 1 (Type).
+     * @return the component 1
+     */
+    public String getComponent1() {
+        return getComponent(1);
+    }
 
-	/**
-	 * Set the component2 (Code).
-	 * @param component2 the component2 to set
-	 */
-	public Field40B setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Code (component2).
-	 * @param component2 the Code to set
-	 */
-	public Field40B setCode(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
+    /**
+     * Gets the Type (component 1).
+     * @return the Type from component 1
+     */
+    public String getType() {
+        return getComponent1();
+    }
 
-   
-	/**
-	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field40B.NAME
-	 */
-	@Override
-	public String getName() {
-		return NAME;
-	}
+    /**
+     * Gets the component 2 (Code).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
 
-	/**
-	 * Gets the first occurrence form the tag list or null if not found.
-	 * @return null if not found o block is null or empty
-	 * @param block may be null or empty 
-	 */
-	public static Field40B get(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return null;
-		}
-		final Tag t = block.getTagByName(NAME);
-		if (t == null) {
-			return null;
-		}
-		return new Field40B(t) ;
-	}
-	
-	/**
-	 * Gets the first instance of Field40B in the given message.
-	 * @param msg may be empty or null
-	 * @return null if not found or msg is empty or null
-	 * @see #get(SwiftTagListBlock)
-	 */
-	public static Field40B get(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return null;
-		return get(msg.getBlock4());
-	}
+    /**
+     * Gets the Code (component 2).
+     * @return the Code from component 2
+     */
+    public String getCode() {
+        return getComponent2();
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field40B in the given message
-	 * an empty list is returned if none found.
-	 * @param msg may be empty or null in which case an empty list is returned
-	 * @see #getAll(SwiftTagListBlock)
-	 */ 
-	public static List<Field40B> getAll(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return java.util.Collections.emptyList();
-		return getAll(msg.getBlock4());
-	}
+    /**
+     * Set the component 1 (Type).
+     *
+     * @param component1 the Type to set
+     * @return the field object to enable build pattern
+     */
+    public Field40B setComponent1(String component1) {
+        setComponent(1, component1);
+        return this;
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field40B from the given block
-	 * an empty list is returned if none found.
-	 *
-	 * @param block may be empty or null in which case an empty list is returned 
-	 */ 
-	public static List<Field40B> getAll(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return java.util.Collections.emptyList();
-		}
-		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length > 0) {
-			final List<Field40B> result = new ArrayList<>(arr.length);
-			for (final Tag f : arr) {
-				result.add( new Field40B(f));
-			}
-			return result;
-		}
-		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns a specific line from the field's value.<br>
-	 *
-	 * @see MultiLineField#getLine(int)
-	 * @param line a reference to a specific line in the field, first line being 1
-	 * @return line content or null if not present or if line number is above the expected
-	 * @since 7.7
-	 */
-	public String getLine(int line) {
-		return getLine(line, 0);
-	}
-	
-	/**
-	 * Returns a specific line from the field's value.<br>
-	 * 
-	 * @see MultiLineField#getLine(int, int)
-	 * @param line a reference to a specific line in the field, first line being 1
-	 * @param offset an optional component number used as offset when counting lines
-	 * @return line content or null if not present or if line number is above the expected
-	 * @since 7.7
-	 */
-	public String getLine(int line, int offset) {
-		Field40B cp = newInstance(this);
-		return getLine(cp, line, null, offset);
-	}
-	
-	/**
-	 * Returns the field value split into lines.<br>
-	 *
-	 * @see MultiLineField#getLines()
-	 * @return lines content or empty list if field's value is empty
-	 * @since 7.7
-	 */
-	public List<String> getLines() {
-		return SwiftParseUtils.getLines(getValue());
-	}
+    /**
+     * Set the Type (component 1).
+     *
+     * @param component1 the Type to set
+     * @return the field object to enable build pattern
+     */
+    public Field40B setType(String component1) {
+        return setComponent1(component1);
+    }
 
-	/**
-	 * Returns the field value starting at the offset component, split into lines.<br>
-	 *
-	 * @see MultiLineField#getLines(int)
-	 * @param offset an optional component number used as offset when counting lines
-	 * @return found lines or empty list if lines are not present or the offset is invalid
-	 * @since 7.7
-	 */
-	public List<String> getLines(int offset) {
-		Field40B cp = newInstance(this);
-		return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
-	}
-	
-	/**
-	 * Returns a specific subset of lines from the field's value, given a range.<br>
-	 *
-	 * @see MultiLineField#getLinesBetween(int, int )
-	 * @param start a reference to a specific line in the field, first line being 1
-	 * @param end a reference to a specific line in the field, must be greater than start
-	 * @return found lines or empty list if value is empty
-	 * @since 7.7
-	 */
-	public List<String> getLinesBetween(int start, int end) {
-		return getLinesBetween(start, end, 0);
-	}
+    /**
+     * Set the component 2 (Code).
+     *
+     * @param component2 the Code to set
+     * @return the field object to enable build pattern
+     */
+    public Field40B setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
 
-	/**
-	 * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
-	 *
-	 * @see MultiLineField#getLinesBetween(int start, int end, int offset)
-	 * @param start a reference to a specific line in the field, first line being 1
-	 * @param end a reference to a specific line in the field, must be greater than start
-	 * @param offset an optional component number used as offset when counting lines
-	 * @return found lines or empty list if lines are not present or the offset is invalid
-	 * @since 7.7
-	 */
-	public List<String> getLinesBetween(int start, int end, int offset) {
-		Field40B cp = newInstance(this);
-		return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
-	}
+    /**
+     * Set the Code (component 2).
+     *
+     * @param component2 the Code to set
+     * @return the field object to enable build pattern
+     */
+    public Field40B setCode(String component2) {
+        return setComponent2(component2);
+    }
 
-	/**
-	 * This method deserializes the JSON data into a Field40B object.
-	 * @param json JSON structure including tuples with label and value for all field components
-	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.3
-	 * @see Field#fromJson(String)
-	 */
-	public static Field40B fromJson(final String json) {
-		Field40B field = new Field40B();
-		JsonParser parser = new JsonParser();
-		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("type") != null) {
-			field.setComponent1(jsonObject.get("type").getAsString());
-		}
-		if (jsonObject.get("code") != null) {
-			field.setComponent2(jsonObject.get("code").getAsString());
-		}
-		return field;
-	}
-	
+
+
+    /**
+     * Returns the field's name composed by the field number and the letter option (if any)
+     * @return the static value of Field40B.NAME
+     */
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    /**
+     * Gets the first occurrence form the tag list or null if not found.
+     * @return null if not found o block is null or empty
+     * @param block may be null or empty
+     */
+    public static Field40B get(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return null;
+        }
+        final Tag t = block.getTagByName(NAME);
+        if (t == null) {
+            return null;
+        }
+        return new Field40B(t) ;
+    }
+
+    /**
+     * Gets the first instance of Field40B in the given message.
+     * @param msg may be empty or null
+     * @return null if not found or msg is empty or null
+     * @see #get(SwiftTagListBlock)
+     */
+    public static Field40B get(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return null;
+        return get(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field40B in the given message
+     * an empty list is returned if none found.
+     * @param msg may be empty or null in which case an empty list is returned
+     * @see #getAll(SwiftTagListBlock)
+     */
+    public static List<Field40B> getAll(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return java.util.Collections.emptyList();
+        return getAll(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field40B from the given block
+     * an empty list is returned if none found.
+     *
+     * @param block may be empty or null in which case an empty list is returned
+     */
+    public static List<Field40B> getAll(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return java.util.Collections.emptyList();
+        }
+        final Tag[] arr = block.getTagsByName(NAME);
+        if (arr != null && arr.length > 0) {
+            final List<Field40B> result = new ArrayList<>(arr.length);
+            for (final Tag f : arr) {
+                result.add( new Field40B(f));
+            }
+            return result;
+        }
+        return java.util.Collections.emptyList();
+    }
+
+    /**
+     * Returns a specific line from the field's value.<br>
+     *
+     * @see MultiLineField#getLine(int)
+     * @param line a reference to a specific line in the field, first line being 1
+     * @return line content or null if not present or if line number is above the expected
+     * @since 7.7
+     */
+    public String getLine(int line) {
+        return getLine(line, 0);
+    }
+
+    /**
+     * Returns a specific line from the field's value.<br>
+     *
+     * @see MultiLineField#getLine(int, int)
+     * @param line a reference to a specific line in the field, first line being 1
+     * @param offset an optional component number used as offset when counting lines
+     * @return line content or null if not present or if line number is above the expected
+     * @since 7.7
+     */
+    public String getLine(int line, int offset) {
+        Field40B cp = newInstance(this);
+        return getLine(cp, line, null, offset);
+    }
+
+    /**
+     * Returns the field value split into lines.<br>
+     *
+     * @see MultiLineField#getLines()
+     * @return lines content or empty list if field's value is empty
+     * @since 7.7
+     */
+    public List<String> getLines() {
+        return SwiftParseUtils.getLines(getValue());
+    }
+
+    /**
+     * Returns the field value starting at the offset component, split into lines.<br>
+     *
+     * @see MultiLineField#getLines(int)
+     * @param offset an optional component number used as offset when counting lines
+     * @return found lines or empty list if lines are not present or the offset is invalid
+     * @since 7.7
+     */
+    public List<String> getLines(int offset) {
+        Field40B cp = newInstance(this);
+        return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
+    }
+
+    /**
+     * Returns a specific subset of lines from the field's value, given a range.<br>
+     *
+     * @see MultiLineField#getLinesBetween(int, int )
+     * @param start a reference to a specific line in the field, first line being 1
+     * @param end a reference to a specific line in the field, must be greater than start
+     * @return found lines or empty list if value is empty
+     * @since 7.7
+     */
+    public List<String> getLinesBetween(int start, int end) {
+        return getLinesBetween(start, end, 0);
+    }
+
+    /**
+     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     *
+     * @see MultiLineField#getLinesBetween(int start, int end, int offset)
+     * @param start a reference to a specific line in the field, first line being 1
+     * @param end a reference to a specific line in the field, must be greater than start
+     * @param offset an optional component number used as offset when counting lines
+     * @return found lines or empty list if lines are not present or the offset is invalid
+     * @since 7.7
+     */
+    public List<String> getLinesBetween(int start, int end, int offset) {
+        Field40B cp = newInstance(this);
+        return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
+    }
+
+    /**
+     * This method deserializes the JSON data into a Field40B object.
+     * @param json JSON structure including tuples with label and value for all field components
+     * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+     * @since 7.10.3
+     * @see Field#fromJson(String)
+     */
+    public static Field40B fromJson(final String json) {
+
+        Field40B field = new Field40B();
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(json);
+
+        // **** COMPONENT 1 - Type
+
+        if (jsonObject.get("type") != null) {
+            field.setComponent1(jsonObject.get("type").getAsString());
+        }
+
+        // **** COMPONENT 2 - Code
+
+        if (jsonObject.get("code") != null) {
+            field.setComponent2(jsonObject.get("code").getAsString());
+        }
+
+        return field;
+    }
+
 
 }

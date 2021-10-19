@@ -68,6 +68,11 @@ public class CurrencyResolverTest {
             return null;
         }
 
+        public String typesPattern() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
         public String parserPattern() {
             // TODO Auto-generated method stub
             return null;

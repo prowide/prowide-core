@@ -27,7 +27,7 @@ import java.util.List;
  *
  * @since 6.1
  */
-public interface BICContainer {
+public interface BICContainer extends PatternContainer {
 
     /**
      * Get a list of strings of BICs present in this field

@@ -605,8 +605,11 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             if (c.equals(String.class)) {
                 return s;
 
-            } else if (c.equals(Number.class) || c.equals(BigDecimal.class)) {
+            } else if (c.equals(Number.class)) {
                 return SwiftFormatUtils.getNumber(s);
+
+            } else if (c.equals(BigDecimal.class)) {
+                return SwiftFormatUtils.getBigDecimal(s);
 
             } else if (c.equals(BIC.class)) {
                 return new BIC(s);
@@ -772,11 +775,24 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public abstract String getName();
 
     /**
-     * Returns the field's components pattern
+     * Returns the field components pattern
      *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field${dto.getField()}.COMPONENTS_PATTERN
      * @since 7.8
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public abstract String componentsPattern();
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     */
+    public abstract String typesPattern();
 
     /**
      * Returns the field's validator pattern

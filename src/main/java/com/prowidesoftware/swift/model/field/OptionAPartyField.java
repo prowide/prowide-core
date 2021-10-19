@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -39,9 +41,25 @@ import java.util.*;
  *
  * @since 7.11.0
  */
-public abstract class OptionAPartyField extends Field implements BICContainer {
+public abstract class OptionAPartyField extends Field implements BICContainer, PartyIdentifier {
     public static final String PARSER_PATTERN = "[[/c][/S]$]S";
+
+    /**
+     * Components pattern
+     *
+     * This is <em>DEPRECATED</em>, use <code>TYPES_PATTERN</code> instead.
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public static final String COMPONENTS_PATTERN = "SSB";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type of each component
+     */
+    public static final String TYPES_PATTERN = "SSB";
 
     /**
      * Component number for the D/C Mark subfield
@@ -154,11 +172,28 @@ public abstract class OptionAPartyField extends Field implements BICContainer {
     /**
      * Returns the field components pattern
      *
+     * This is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
      * @return the static value of COMPONENTS_PATTERN
+     * @see #typesPattern()
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     @Override
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @see #TYPES_PATTERN
+     * @return the static value of TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
     }
 
     /**
@@ -334,6 +369,35 @@ public abstract class OptionAPartyField extends Field implements BICContainer {
         final List<BIC> result = new ArrayList<>();
         result.add(SwiftFormatUtils.getBIC(getComponent(3)));
         return result;
+    }
+
+    /**
+     * Get the formatted Party Identifier (CD Mark + Account)
+     *
+     * The Party Indentifier has the following format:
+     *
+     * <code>[/{cd-mark}]/{account}</code>
+     *
+     * @return the formatted Party Identifier
+     */
+    public String getPartyIdentifier() {
+        return PartyIdentifierUtils.getPartyIdentifier(this, 1, 2);
+    }
+
+    /**
+     * Set the formatted Party Identifier (CD Mark + Account)
+     *
+     * The Party Indentifier has the following format:
+     *
+     * <code>[/{cd-mark}]/{account}</code>
+     *
+     * If the format is not valid
+     * @param partyIdentifier the formatted Party Identifier to set
+     * @return the current OptionAPartyField
+     */
+    @Override
+    public OptionAPartyField setPartyIdentifier(String partyIdentifier) {
+        return (OptionAPartyField) PartyIdentifierUtils.setPartyIdentifier(this, 1, 2, partyIdentifier);
     }
 
     @Override

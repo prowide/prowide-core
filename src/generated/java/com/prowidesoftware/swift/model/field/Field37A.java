@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -24,12 +26,15 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Calendar;
-import com.prowidesoftware.swift.model.field.DateContainer;
+
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Calendar;
+
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.AmountResolver;
-
+import com.prowidesoftware.swift.model.field.DateContainer;
+import com.prowidesoftware.swift.model.field.DateResolver;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -48,10 +53,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Number</code></li>
+ * 		<li><code>BigDecimal</code></li>
  * 		<li><code>Calendar</code></li>
  * 		<li><code>String</code></li>
- * 		<li><code>Number</code></li>
+ * 		<li><code>Long</code></li>
  * 		<li><code>String</code></li>
  * </ol>
  *
@@ -82,8 +87,26 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_37A = "37A";
-	public static final String PARSER_PATTERN ="N[//<DATE2>cS][/S]";
+	public static final String PARSER_PATTERN = "N[//<DATE2>cS][/S]";
+
+    /**
+     * Components pattern
+     *
+     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
+     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NESNS";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
+     * @since 9.2.7
+     */
+	public static final String TYPES_PATTERN = "IESNS";
 
 	/**
 	 * Component number for the Rate subfield
@@ -110,192 +133,214 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
 	 */
 	public static final Integer INFORMATION = 5;
 
-	/**
-	 * Default constructor. Creates a new field setting all components to null.
-	 */
-	public Field37A() {
-		super(5);
-	}
-	    					
-	/**
-	 * Creates a new field and initializes its components with content from the parameter value.
-	 * @param value complete field value including separators and CRLF
-	 */
-	public Field37A(final String value) {
-		super(value);
-	}
-	
-	/**
-	 * Creates a new field and initializes its components with content from the parameter tag.
-	 * The value is parsed with {@link #parse(String)} 	 
-	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
-	 * @since 7.8
-	 */
-	public Field37A(final Tag tag) {
-		this();
-		if (tag == null) {
-			throw new IllegalArgumentException("tag cannot be null.");
-		}
-		if (!StringUtils.equals(tag.getName(), "37A")) {
-			throw new IllegalArgumentException("cannot create field 37A from tag "+tag.getName()+", tagname must match the name of the field.");
-		}
-		parse(tag.getValue());
-	}
+    /**
+     * Default constructor. Creates a new field setting all components to null.
+     */
+    public Field37A() {
+        super(5);
+    }
 
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field37A newInstance(Field37A source) {
-		Field37A cp = new Field37A();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter value.
+     * @param value complete field value including separators and CRLF
+     */
+    public Field37A(final String value) {
+        super(value);
+    }
 
-	/**
-	 * Create a Tag with this field name and the given value.
-	 * Shorthand for <code>new Tag(NAME, value)</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter tag.
+     * The value is parsed with {@link #parse(String)}
+     * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
+     * @since 7.8
+     */
+    public Field37A(final Tag tag) {
+        this();
+        if (tag == null) {
+            throw new IllegalArgumentException("tag cannot be null.");
+        }
+        if (!StringUtils.equals(tag.getName(), "37A")) {
+            throw new IllegalArgumentException("cannot create field 37A from tag "+tag.getName()+", tagname must match the name of the field.");
+        }
+        parse(tag.getValue());
+    }
 
-	/**
-	 * Create a Tag with this field name and an empty string as value
-	 * Shorthand for <code>new Tag(NAME, "")</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
+    /**
+     * Copy constructor.<br>
+     * Initializes the components list with a deep copy of the source components list.
+     * @param source a field instance to copy
+     * @since 7.7
+     */
+    public static Field37A newInstance(Field37A source) {
+        Field37A cp = new Field37A();
+        cp.setComponents(new ArrayList<>(source.getComponents()));
+        return cp;
+    }
+
+    /**
+     * Create a Tag with this field name and the given value.
+     * Shorthand for <code>new Tag(NAME, value)</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag tag(final String value) {
+        return new Tag(NAME, value);
+    }
+
+    /**
+     * Create a Tag with this field name and an empty string as value
+     * Shorthand for <code>new Tag(NAME, "")</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag emptyTag() {
+        return new Tag(NAME, "");
+    }
 
 
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(5);
-		setComponent1(SwiftParseUtils.getTokenFirst(value, "//"));
-		String toparse = SwiftParseUtils.getTokenSecond(value, "//");
-		if (toparse != null) {
-			if (toparse.length() >= 6) {
-				setComponent2(StringUtils.substring(toparse, 0, 6));
-			}
-			if (toparse.length() >= 7) {
-				setComponent3(StringUtils.substring(toparse, 6, 7));
-			}
-			if (toparse.length() > 7) {
-				String toparse2 = StringUtils.substring(toparse, 7);
-				setComponent4(SwiftParseUtils.getTokenFirst(toparse2, "/"));
-				setComponent5(SwiftParseUtils.getTokenSecondLast(toparse2, "/"));
-			}
-		}
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		append(result, 1);
-		if (getComponent2() != null || getComponent3() != null || getComponent4() != null) {
-			result.append("//");
-			append(result, 2);
-			append(result, 3);
-			append(result, 4);
-		}
-		if (getComponent5() != null) {
-			result.append("/").append(getComponent5());
-		}
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 5) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 37A");
-		}
-		if (component == 1) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent1AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 2) {
-			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
-			java.util.Calendar cal = getComponent2AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		if (component == 4) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent4AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 5) {
-			//default format (as is)
-			return getComponent(5);
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field37A.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
+    /**
+     * Parses the parameter value into the internal components structure.
+     *
+     * <p>Used to update all components from a full new value, as an alternative
+     * to setting individual components. Previous component values are overwritten.
+     *
+     * @param value complete field value including separators and CRLF
+     * @since 7.8
+     */
+    @Override
+    public void parse(final String value) {
+        init(5);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, "//"));
+        String toparse = SwiftParseUtils.getTokenSecond(value, "//");
+        if (toparse != null) {
+            if (toparse.length() >= 6) {
+                setComponent2(StringUtils.substring(toparse, 0, 6));
+            }
+            if (toparse.length() >= 7) {
+                setComponent3(StringUtils.substring(toparse, 6, 7));
+            }
+            if (toparse.length() > 7) {
+                String toparse2 = StringUtils.substring(toparse, 7);
+                setComponent4(SwiftParseUtils.getTokenFirst(toparse2, "/"));
+                setComponent5(SwiftParseUtils.getTokenSecondLast(toparse2, "/"));
+            }
+        }
+    }
 
-	/**
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        append(result, 1);
+        if (getComponent2() != null || getComponent3() != null || getComponent4() != null) {
+            result.append("//");
+            append(result, 2);
+            append(result, 3);
+            append(result, 4);
+        }
+        if (getComponent5() != null) {
+            result.append("/").append(getComponent5());
+        }
+        return result.toString();
+    }
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param component number of the component to display
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component number is invalid or not present
+     * @throws IllegalArgumentException if component number is invalid for the field
+     * @since 7.8
+     */
+    @Override
+    public String getValueDisplay(int component, Locale locale) {
+        if (component < 1 || component > 5) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 37A");
+        }
+        if (component == 1) {
+            //number, amount, rate
+            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+            f.setMaximumFractionDigits(13);
+            BigDecimal n = getComponent1AsBigDecimal();
+            if (n != null) {
+                return f.format(n);
+            }
+        }
+        if (component == 2) {
+            //date
+            java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+            java.util.Calendar cal = getComponent2AsCalendar();
+            if (cal != null) {
+                return f.format(cal.getTime());
+            }
+        }
+        if (component == 3) {
+            //default format (as is)
+            return getComponent(3);
+        }
+        if (component == 4) {
+            //number, amount, rate
+            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+            f.setMaximumFractionDigits(13);
+            Number n = getComponent4AsNumber();
+            if (n != null) {
+                return f.format(n);
+            }
+        }
+        if (component == 5) {
+            //default format (as is)
+            return getComponent(5);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the field components pattern
+     *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field37A.COMPONENTS_PATTERN
+     */
+    @Override
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public final String componentsPattern() {
+        return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @since 9.2.7
+     * @see #TYPES_PATTERN
+     * @return the static value of Field37A.TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
+    }
+
+    /**
      * Returns the field parser pattern
      * @return the static value of Field37A.PARSER_PATTERN
      */
-	@Override
-	public final String parserPattern() {
+    @Override
+    public final String parserPattern() {
         return PARSER_PATTERN;
     }
 
-	/**
-	 * Returns the field validator pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "<AMOUNT>12[//<DATE2><DM>3n][/16x]";
-	}
+    /**
+     * Returns the field validator pattern
+     */
+    @Override
+    public final String validatorPattern() {
+        return "<AMOUNT>12[//<DATE2><DM>3n][/16x]";
+    }
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -333,461 +378,676 @@ public class Field37A extends Field implements Serializable, DateContainer, Amou
         return false;
     }
 
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 5;
-	}
+    /**
+     * Returns the defined amount of components.<br>
+     * This is not the amount of components present in the field instance, but the total amount of components
+     * that this field accepts as defined.
+     * @since 7.7
+     */
+    @Override
+    public int componentsSize() {
+        return 5;
+    }
 
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Rate");
-		result.add("Date");
-		result.add("D/M Mark");
-		result.add("Number of Days/Months");
-		result.add("Information");
-		return result;
-	}
+    /**
+     * Returns english label for components.
+     * <br>
+     * The index in the list is in sync with specific field component structure.
+     * @see #getComponentLabel(int)
+     * @since 7.8.4
+     */
+    @Override
+    protected List<String> getComponentLabels() {
+        List<String> result = new ArrayList<>();
+        result.add("Rate");
+        result.add("Date");
+        result.add("D/M Mark");
+        result.add("Number of Days/Months");
+        result.add("Information");
+        return result;
+    }
 
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "rate");
-		result.put(2, "date");
-		result.put(3, "dMMark");
-		result.put(4, "numberofDaysMonths");
-		result.put(5, "information");
-		return result;
-	}
-	/**
-	 * Gets the component 1 (Rate).
-	 * @return the component 1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
+    /**
+     * Returns a mapping between component numbers and their label in camel case format.
+     * @since 7.10.3
+     */
+    @Override
+    protected Map<Integer, String> getComponentMap() {
+        Map<Integer, String> result = new HashMap<>();
+        result.put(1, "rate");
+        result.put(2, "date");
+        result.put(3, "dMMark");
+        result.put(4, "numberofDaysMonths");
+        result.put(5, "information");
+        return result;
+    }
 
-	/**
-	 * Get the component 1 as Number
-	 * @return the component 1 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent1AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(1));
-	}
 
-	/**
-	 * Gets the Rate (component 1).
-	 * @return the Rate from component 1
-	 */
-	public String getRate() {
-		return getComponent(1);
-	}
-	
-	/**
-	 * Get the Rate (component 1) as Number
-	 * @return the Rate from component 1 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getRateAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(1));
-	}
-	/**
-	 * Gets the component 2 (Date).
-	 * @return the component 2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
+    /**
+     * Gets the component 1 (Rate).
+     * @return the component 1
+     */
+    public String getComponent1() {
+        return getComponent(1);
+    }
 
-	/**
-	 * Get the component 2 as Calendar
-	 * @return the component 2 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getComponent2AsCalendar() {
-		return SwiftFormatUtils.getDate2(getComponent(2));
-	}
+    /**
+     * Get the component 1 as BigDecimal
+     *
+     * @return the component 1 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getComponent1AsBigDecimal() {
+        return SwiftFormatUtils.getBigDecimal(getComponent(1));
+    }
 
-	/**
-	 * Gets the Date (component 2).
-	 * @return the Date from component 2
-	 */
-	public String getDate() {
-		return getComponent(2);
-	}
-	
-	/**
-	 * Get the Date (component 2) as Calendar
-	 * @return the Date from component 2 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getDateAsCalendar() {
-		return SwiftFormatUtils.getDate2(getComponent(2));
-	}
-	/**
-	 * Gets the component 3 (D/M Mark).
-	 * @return the component 3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
+    /**
+     * Get the component 1 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent1AsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getComponent1AsNumber() {
+        return getComponent1AsBigDecimal();
+    }
 
-	/**
-	 * Gets the D/M Mark (component 3).
-	 * @return the D/M Mark from component 3
-	 */
-	public String getDMMark() {
-		return getComponent(3);
-	}
-	/**
-	 * Gets the component 4 (Number of Days/Months).
-	 * @return the component 4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
+    /**
+     * Gets the Rate (component 1).
+     * @return the Rate from component 1
+     */
+    public String getRate() {
+        return getComponent1();
+    }
 
-	/**
-	 * Get the component 4 as Number
-	 * @return the component 4 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent4AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(4));
-	}
+    /**
+     * Get the Rate (component 1) as BigDecimal
+     * @return the Rate from component 1 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getRateAsBigDecimal() {
+        return getComponent1AsBigDecimal();
+    }
 
-	/**
-	 * Gets the Number of Days/Months (component 4).
-	 * @return the Number of Days/Months from component 4
-	 */
-	public String getNumberofDaysMonths() {
-		return getComponent(4);
-	}
-	
-	/**
-	 * Get the Number of Days/Months (component 4) as Number
-	 * @return the Number of Days/Months from component 4 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumberofDaysMonthsAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(4));
-	}
-	/**
-	 * Gets the component 5 (Information).
-	 * @return the component 5
-	 */
-	public String getComponent5() {
-		return getComponent(5);
-	}
+    /**
+     * Get the Rate (component 1) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getRateAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getRateAsNumber() {
+        return getComponent1AsNumber();
+    }
 
-	/**
-	 * Gets the Information (component 5).
-	 * @return the Information from component 5
-	 */
-	public String getInformation() {
-		return getComponent(5);
-	}
-    
+    /**
+     * Gets the component 2 (Date).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
+
+    /**
+     * Get the component 2 as Calendar
+     *
+     * @return the component 2 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getComponent2AsCalendar() {
+        return SwiftFormatUtils.getDate2(getComponent(2));
+    }
+
+    /**
+     * Gets the Date (component 2).
+     * @return the Date from component 2
+     */
+    public String getDate() {
+        return getComponent2();
+    }
+
+    /**
+     * Get the Date (component 2) as Calendar
+     * @return the Date from component 2 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getDateAsCalendar() {
+        return getComponent2AsCalendar();
+    }
+
+    /**
+     * Gets the component 3 (D/M Mark).
+     * @return the component 3
+     */
+    public String getComponent3() {
+        return getComponent(3);
+    }
+
+    /**
+     * Gets the D/M Mark (component 3).
+     * @return the D/M Mark from component 3
+     */
+    public String getDMMark() {
+        return getComponent3();
+    }
+
+    /**
+     * Gets the component 4 (Number of Days/Months).
+     * @return the component 4
+     */
+    public String getComponent4() {
+        return getComponent(4);
+    }
+
+    /**
+     * Get the component 4 as Long
+     *
+     * @return the component 4 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getComponent4AsLong() {
+        return SwiftFormatUtils.getLong(getComponent(4));
+    }
+
+    /**
+     * Get the component 4 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsLong()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent4AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getComponent4AsNumber() {
+        Long l = getComponent4AsLong();
+        return l != null ? new BigDecimal(l.longValue()) : null;
+    }
+
+    /**
+     * Gets the Number of Days/Months (component 4).
+     * @return the Number of Days/Months from component 4
+     */
+    public String getNumberofDaysMonths() {
+        return getComponent4();
+    }
+
+    /**
+     * Get the Number of Days/Months (component 4) as Long
+     * @return the Number of Days/Months from component 4 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumberofDaysMonthsAsLong() {
+        return getComponent4AsLong();
+    }
+
+    /**
+     * Get the Number of Days/Months (component 4) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsLong()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberofDaysMonthsAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumberofDaysMonthsAsNumber() {
+        return getComponent4AsNumber();
+    }
+
+    /**
+     * Gets the component 5 (Information).
+     * @return the component 5
+     */
+    public String getComponent5() {
+        return getComponent(5);
+    }
+
+    /**
+     * Gets the Information (component 5).
+     * @return the Information from component 5
+     */
+    public String getInformation() {
+        return getComponent5();
+    }
+
+    /**
+     * Set the component 1 (Rate).
+     *
+     * @param component1 the Rate to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setComponent1(String component1) {
+        setComponent(1, component1);
+        return this;
+    }
+
+    /**
+     * Set the component1 from a BigDecimal object.
+     * <br>
+     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+     * <ul>
+     *     <li>Example: 1234.00 -&gt; 1234,</li>
+     *     <li>Example: 1234 -&gt; 1234,</li>
+     *     <li>Example: 1234.56 -&gt; 1234,56</li>
+     * </ul>
+     * @since 9.2.7
+     *
+     * @param component1 the BigDecimal with the Rate content to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setComponent1(java.math.BigDecimal component1) {
+        setComponent(1, SwiftFormatUtils.getBigDecimal(component1));
+        return this;
+    }
+    /**
+     * Alternative method setter for field's Rate (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
+     *
+     * @param component1 the Number with the Rate content to set
+     * @return the field object to enable build pattern
+     * @see #setRate(java.math.BigDecimal)
+     */
+    public Field37A setComponent1(java.lang.Number component1) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component1 instanceof BigDecimal) {
+            setComponent(1, SwiftFormatUtils.getBigDecimal( (BigDecimal) component1));
+        } else if (component1 instanceof BigInteger) {
+            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component1)));
+        } else if (component1 instanceof Long || component1 instanceof Integer) {
+            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal(component1.longValue())));
+        } else if (component1 instanceof Float || component1 instanceof Double || component1 instanceof Number) {
+            // it's non null
+            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal(component1.doubleValue())));
+        } else {
+            // so it's a Number that failed instanceof Number => it's null
+            setComponent(1, null);
+        }
+        return this;
+    }
+
+    /**
+     * Set the Rate (component 1).
+     *
+     * @param component1 the Rate to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setRate(String component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Set the Rate (component 1) from a BigDecimal object.
+     *
+     * @see #setComponent1(java.math.BigDecimal)
+     *
+     * @param component1 BigDecimal with the Rate content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field37A setRate(java.math.BigDecimal component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Rate (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component1 the Number with the Rate content to set
+     * @return the field object to enable build pattern
+     * @see #setRate(java.math.BigDecimal)
+     */
+    public Field37A setRate(java.lang.Number component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Date).
+     *
+     * @param component2 the Date to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the component2 from a Calendar object.
+     *
+     * @param component2 the Calendar with the Date content to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setComponent2(java.util.Calendar component2) {
+        setComponent(2, SwiftFormatUtils.getDate2(component2));
+        return this;
+    }
+
+    /**
+     * Set the Date (component 2).
+     *
+     * @param component2 the Date to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setDate(String component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the Date (component 2) from a Calendar object.
+     *
+     * @see #setComponent2(java.util.Calendar)
+     *
+     * @param component2 Calendar with the Date content to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setDate(java.util.Calendar component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the component 3 (D/M Mark).
+     *
+     * @param component3 the D/M Mark to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setComponent3(String component3) {
+        setComponent(3, component3);
+        return this;
+    }
+
+    /**
+     * Set the D/M Mark (component 3).
+     *
+     * @param component3 the D/M Mark to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setDMMark(String component3) {
+        return setComponent3(component3);
+    }
+
+    /**
+     * Set the component 4 (Number of Days/Months).
+     *
+     * @param component4 the Number of Days/Months to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setComponent4(String component4) {
+        setComponent(4, component4);
+        return this;
+    }
+
+    /**
+     * Set the component4 from a Long object.
+     * <br>
+     * <em>If the component being set is a fixed length number, the argument will not be
+     * padded.</em> It is recommended for these cases to use the setComponent4(String)
+     * method.
+     *
+     * @see #setComponent4(String)
+     * @since 9.2.7
+     *
+     * @param component4 the Long with the Number of Days/Months content to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setComponent4(java.lang.Long component4) {
+        setComponent(4, SwiftFormatUtils.getLong(component4));
+        return this;
+    }
+
+    /**
+     * Alternative method setter for field's Number of Days/Months (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component4 the Number with the Number of Days/Months content to set
+     * @return the field object to enable build pattern
+     * @see #setNumberofDaysMonths(java.lang.Long)
+     */
+    public Field37A setComponent4(java.lang.Number component4) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component4 instanceof Long) {
+            setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
+        } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
+            setComponent(4, SwiftFormatUtils.getLong(new Long(component4.longValue())));
+        } else if (component4 instanceof Float || component4 instanceof Double ||
+                   component4 instanceof BigDecimal || component4 instanceof Number) {
+            // it's non null
+            setComponent(4, SwiftFormatUtils.getLong(new Long(component4.longValue())));
+        } else {
+            // so it's a Number that failed instanceof Number => it's null
+            setComponent(4, null);
+        }
+        return this;
+    }
+
+    /**
+     * Set the Number of Days/Months (component 4).
+     *
+     * @param component4 the Number of Days/Months to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setNumberofDaysMonths(String component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Set the Number of Days/Months (component 4) from a Long object.
+     *
+     * @see #setComponent4(java.lang.Long)
+     *
+     * @param component4 Long with the Number of Days/Months content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field37A setNumberofDaysMonths(java.lang.Long component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Alternative method setter for field's Number of Days/Months (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component4 the Number with the Number of Days/Months content to set
+     * @return the field object to enable build pattern
+     * @see #setNumberofDaysMonths(java.lang.Long)
+     */
+    public Field37A setNumberofDaysMonths(java.lang.Number component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Set the component 5 (Information).
+     *
+     * @param component5 the Information to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setComponent5(String component5) {
+        setComponent(5, component5);
+        return this;
+    }
+
+    /**
+     * Set the Information (component 5).
+     *
+     * @param component5 the Information to set
+     * @return the field object to enable build pattern
+     */
+    public Field37A setInformation(String component5) {
+        return setComponent5(component5);
+    }
+
+
+    /**
+     * Returns all components that can be converted to a Calendar
+     *
+     * @return the list of converted components (a Calendar object or null)
+     */
     public List<Calendar> dates() {
-		List<Calendar> result = new ArrayList<>();
-		result.add(SwiftFormatUtils.getDate2(getComponent(2)));
-		return result;
-	}
-    
-	/**
-	 * @see AmountResolver#amounts(Field)
-	 */
-	public List<BigDecimal> amounts() {
-		return AmountResolver.amounts(this);
-	}
-	
-	/**
-	 * @see AmountResolver#amount(Field)
-	 */
-	public BigDecimal amount() {
-		return AmountResolver.amount(this);
-	}
+        return DateResolver.dates(this);
+    }
+
+    /**
+     * Returns the first component that can be converted to a Calendar
+     *
+     * @return the converted components (a Calendar object or null)
+     */
+    public Calendar date() {
+        return DateResolver.date(this);
+    }
+
+    /**
+     * Returns the list of all NON-NULL amounts as BigDecimal
+     *
+     * @return the list of NON-NULL amounts as BigDecimal values
+     * @see AmountResolver#amounts(Field)
+     */
+    public List<BigDecimal> amounts() {
+        return AmountResolver.amounts(this);
+    }
+
+    /**
+     * Returns the first amounts as BigDecimal
+     *
+     * @return the first amount as BigDecimal value. Can be null
+     * @see AmountResolver#amount(Field)
+     */
+    public BigDecimal amount() {
+        return AmountResolver.amount(this);
+    }
 
 
-	/**
-	 * Set the component1 (Rate).
-	 * @param component1 the component1 to set
-	 */
-	public Field37A setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the component1 from a Number object.
-	 * <br>
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
-	 * 	<li>Example: 1234 -&gt; 1234,</li>
-	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
-	 * </ul>
-	 * @param component1 the Number with the component1 content to set
-	 */
-	public Field37A setComponent1(java.lang.Number component1) {
-		setComponent(1, SwiftFormatUtils.getNumber(component1));
-		return this;
-	}
-	
-	/**
-	 * Set the Rate (component1).
-	 * @param component1 the Rate to set
-	 */
-	public Field37A setRate(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Rate (component1) from a Number object.
-	 * @see #setComponent1(java.lang.Number)
-	 * @param component1 Number with the Rate content to set
-	 */
-	public Field37A setRate(java.lang.Number component1) {
-		setComponent1(component1);
-		return this;
-	}
+    /**
+     * Returns the field's name composed by the field number and the letter option (if any)
+     * @return the static value of Field37A.NAME
+     */
+    @Override
+    public String getName() {
+        return NAME;
+    }
 
-	/**
-	 * Set the component2 (Date).
-	 * @param component2 the component2 to set
-	 */
-	public Field37A setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the component2 from a Calendar object.
-	 * <br>
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
-	 * 	<li>Example: 1234 -&gt; 1234,</li>
-	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
-	 * </ul>
-	 * @param component2 the Calendar with the component2 content to set
-	 */
-	public Field37A setComponent2(java.util.Calendar component2) {
-		setComponent(2, SwiftFormatUtils.getDate2(component2));
-		return this;
-	}
-	
-	/**
-	 * Set the Date (component2).
-	 * @param component2 the Date to set
-	 */
-	public Field37A setDate(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Date (component2) from a Calendar object.
-	 * @see #setComponent2(java.util.Calendar)
-	 * @param component2 Calendar with the Date content to set
-	 */
-	public Field37A setDate(java.util.Calendar component2) {
-		setComponent2(component2);
-		return this;
-	}
+    /**
+     * Gets the first occurrence form the tag list or null if not found.
+     * @return null if not found o block is null or empty
+     * @param block may be null or empty
+     */
+    public static Field37A get(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return null;
+        }
+        final Tag t = block.getTagByName(NAME);
+        if (t == null) {
+            return null;
+        }
+        return new Field37A(t) ;
+    }
 
-	/**
-	 * Set the component3 (D/M Mark).
-	 * @param component3 the component3 to set
-	 */
-	public Field37A setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the D/M Mark (component3).
-	 * @param component3 the D/M Mark to set
-	 */
-	public Field37A setDMMark(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
+    /**
+     * Gets the first instance of Field37A in the given message.
+     * @param msg may be empty or null
+     * @return null if not found or msg is empty or null
+     * @see #get(SwiftTagListBlock)
+     */
+    public static Field37A get(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return null;
+        return get(msg.getBlock4());
+    }
 
-	/**
-	 * Set the component4 (Number of Days/Months).
-	 * @param component4 the component4 to set
-	 */
-	public Field37A setComponent4(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the component4 from a Number object.
-	 * <br>
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
-	 * 	<li>Example: 1234 -&gt; 1234,</li>
-	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
-	 * </ul>
-	 * @param component4 the Number with the component4 content to set
-	 */
-	public Field37A setComponent4(java.lang.Number component4) {
-		setComponent(4, SwiftFormatUtils.getNumber(component4));
-		return this;
-	}
-	
-	/**
-	 * Set the Number of Days/Months (component4).
-	 * @param component4 the Number of Days/Months to set
-	 */
-	public Field37A setNumberofDaysMonths(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the Number of Days/Months (component4) from a Number object.
-	 * @see #setComponent4(java.lang.Number)
-	 * @param component4 Number with the Number of Days/Months content to set
-	 */
-	public Field37A setNumberofDaysMonths(java.lang.Number component4) {
-		setComponent4(component4);
-		return this;
-	}
+    /**
+     * Gets a list of all occurrences of the field Field37A in the given message
+     * an empty list is returned if none found.
+     * @param msg may be empty or null in which case an empty list is returned
+     * @see #getAll(SwiftTagListBlock)
+     */
+    public static List<Field37A> getAll(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return java.util.Collections.emptyList();
+        return getAll(msg.getBlock4());
+    }
 
-	/**
-	 * Set the component5 (Information).
-	 * @param component5 the component5 to set
-	 */
-	public Field37A setComponent5(String component5) {
-		setComponent(5, component5);
-		return this;
-	}
-	
-	/**
-	 * Set the Information (component5).
-	 * @param component5 the Information to set
-	 */
-	public Field37A setInformation(String component5) {
-		setComponent(5, component5);
-		return this;
-	}
+    /**
+     * Gets a list of all occurrences of the field Field37A from the given block
+     * an empty list is returned if none found.
+     *
+     * @param block may be empty or null in which case an empty list is returned
+     */
+    public static List<Field37A> getAll(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return java.util.Collections.emptyList();
+        }
+        final Tag[] arr = block.getTagsByName(NAME);
+        if (arr != null && arr.length > 0) {
+            final List<Field37A> result = new ArrayList<>(arr.length);
+            for (final Tag f : arr) {
+                result.add( new Field37A(f));
+            }
+            return result;
+        }
+        return java.util.Collections.emptyList();
+    }
 
-   
-	/**
-	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field37A.NAME
-	 */
-	@Override
-	public String getName() {
-		return NAME;
-	}
+    /**
+     * This method deserializes the JSON data into a Field37A object.
+     * @param json JSON structure including tuples with label and value for all field components
+     * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+     * @since 7.10.3
+     * @see Field#fromJson(String)
+     */
+    public static Field37A fromJson(final String json) {
 
-	/**
-	 * Gets the first occurrence form the tag list or null if not found.
-	 * @return null if not found o block is null or empty
-	 * @param block may be null or empty 
-	 */
-	public static Field37A get(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return null;
-		}
-		final Tag t = block.getTagByName(NAME);
-		if (t == null) {
-			return null;
-		}
-		return new Field37A(t) ;
-	}
-	
-	/**
-	 * Gets the first instance of Field37A in the given message.
-	 * @param msg may be empty or null
-	 * @return null if not found or msg is empty or null
-	 * @see #get(SwiftTagListBlock)
-	 */
-	public static Field37A get(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return null;
-		return get(msg.getBlock4());
-	}
+        Field37A field = new Field37A();
 
-	/**
-	 * Gets a list of all occurrences of the field Field37A in the given message
-	 * an empty list is returned if none found.
-	 * @param msg may be empty or null in which case an empty list is returned
-	 * @see #getAll(SwiftTagListBlock)
-	 */ 
-	public static List<Field37A> getAll(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return java.util.Collections.emptyList();
-		return getAll(msg.getBlock4());
-	}
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-	/**
-	 * Gets a list of all occurrences of the field Field37A from the given block
-	 * an empty list is returned if none found.
-	 *
-	 * @param block may be empty or null in which case an empty list is returned 
-	 */ 
-	public static List<Field37A> getAll(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return java.util.Collections.emptyList();
-		}
-		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length > 0) {
-			final List<Field37A> result = new ArrayList<>(arr.length);
-			for (final Tag f : arr) {
-				result.add( new Field37A(f));
-			}
-			return result;
-		}
-		return java.util.Collections.emptyList();
-	}
+        // **** COMPONENT 1 - Rate
 
-	/**
-	 * This method deserializes the JSON data into a Field37A object.
-	 * @param json JSON structure including tuples with label and value for all field components
-	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.3
-	 * @see Field#fromJson(String)
-	 */
-	public static Field37A fromJson(final String json) {
-		Field37A field = new Field37A();
-		JsonParser parser = new JsonParser();
-		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("rate") != null) {
-			field.setComponent1(jsonObject.get("rate").getAsString());
-		}
-		if (jsonObject.get("date") != null) {
-			field.setComponent2(jsonObject.get("date").getAsString());
-		}
-		if (jsonObject.get("dMMark") != null) {
-			field.setComponent3(jsonObject.get("dMMark").getAsString());
-		}
-		if (jsonObject.get("numberofDaysMonths") != null) {
-			field.setComponent4(jsonObject.get("numberofDaysMonths").getAsString());
-		}
-		if (jsonObject.get("information") != null) {
-			field.setComponent5(jsonObject.get("information").getAsString());
-		}
-		return field;
-	}
-	
+        if (jsonObject.get("rate") != null) {
+            field.setComponent1(jsonObject.get("rate").getAsString());
+        }
+
+        // **** COMPONENT 2 - Date
+
+        if (jsonObject.get("date") != null) {
+            field.setComponent2(jsonObject.get("date").getAsString());
+        }
+
+        // **** COMPONENT 3 - D/M Mark
+
+        if (jsonObject.get("dMMark") != null) {
+            field.setComponent3(jsonObject.get("dMMark").getAsString());
+        }
+
+        // **** COMPONENT 4 - Number of Days/Months
+
+        if (jsonObject.get("numberofDaysMonths") != null) {
+            field.setComponent4(jsonObject.get("numberofDaysMonths").getAsString());
+        }
+
+        // **** COMPONENT 5 - Information
+
+        if (jsonObject.get("information") != null) {
+            field.setComponent5(jsonObject.get("information").getAsString());
+        }
+
+        return field;
+    }
+
 
 }

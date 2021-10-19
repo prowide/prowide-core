@@ -15,13 +15,15 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import org.apache.commons.lang3.StringUtils;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.Validate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
+import com.prowidesoftware.swift.utils.ResolverUtils;
 
 /**
  * Helper API to detect amount component in fields.
@@ -31,7 +33,7 @@ public class AmountResolver {
 
     /**
      * Gets the amounts of the given field by reading it's components pattern.
-     * All index of 'N', number, in the pattern are looked for and returned as amount.
+     * All index of 'I', number, in the pattern are looked for and returned as amount.
      *
      * <em>See the returns notes</em>
      *
@@ -40,20 +42,25 @@ public class AmountResolver {
      * Missing or invalid numeric components are ignored; meaning if a components expected to be a number is not present
      * or it is not a valid number or Field.getComponent(index,Number.class) fails, that component is not included in the
      * result list.
-     * @see Field#getComponentAs(int, Class)
      * @since 7.8.9
      */
     public static List<BigDecimal> amounts(final Field f) {
+
+        // sanity check
         Validate.notNull(f);
+
+        // find all the non-null AMOUNT components
+        List<String> values = ResolverUtils.findNonNullWantedType(f.typesPattern(), 'I', f.getComponents());
+
+        // prepare the result and convert all that match
         List<BigDecimal> amounts = new ArrayList<>();
-        int i = StringUtils.indexOf(f.componentsPattern(), 'N');
-        while (i >= 0) {
-            BigDecimal amount = amount(f, i + 1);
-            if (amount != null) {
-                amounts.add(amount);
+        for(String value : values) {
+            BigDecimal bigDecimal = SwiftFormatUtils.getBigDecimal(value);
+            if (bigDecimal != null) {
+                amounts.add(bigDecimal);
             }
-            i = StringUtils.indexOf(f.componentsPattern(), 'N', i + 1);
         }
+
         return amounts;
     }
 
@@ -67,32 +74,20 @@ public class AmountResolver {
      * @return a BigDecimal with the number found in the first numeric component or null if there is
      * no numeric component in the field. It may also return null if Field.getComponent(index,Number.class) fails
      * for that component
-     * @see Field#getComponentAs(int, Class)
      * @since 7.8
      */
     public static BigDecimal amount(final Field f) {
+
+        // sanity check
         Validate.notNull(f);
-        final int i = StringUtils.indexOf(f.componentsPattern(), 'N');
-        if (i >= 0) {
-            return amount(f, i + 1);
+
+        // find the first AMOUNT component
+        String value = ResolverUtils.findFirstWantedType(f.typesPattern(), 'I', f.getComponents());
+
+        // if non-null => try to convert it
+        if (value != null) {
+            return SwiftFormatUtils.getBigDecimal(value);
         }
         return null;
-    }
-
-    /**
-     * Returns the indicated component as BigDecimal
-     *
-     * @param f         the field
-     * @param component a component number (1 based)
-     * @return the BigDecimal for the amount or null if component is not found or is not a Number
-     * @since 7.8.9
-     */
-    private static BigDecimal amount(final Field f, int component) {
-        final Number n = (Number) f.getComponentAs(component, Number.class);
-        if (n == null) {
-            log.warning("getComponentAs(" + (component) + ", Number.class) returned null for field " + f);
-            return null;
-        }
-        return new BigDecimal(n.toString());
     }
 }

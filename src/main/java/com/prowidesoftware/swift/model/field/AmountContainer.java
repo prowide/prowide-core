@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  *
  * @since 6.0
  */
-public interface AmountContainer {
+public interface AmountContainer extends PatternContainer {
 
     /**
      * Get the first amount in this field.

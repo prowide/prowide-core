@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 
 import java.util.*;
@@ -33,7 +35,23 @@ import java.util.*;
  */
 public abstract class StructuredNarrativeField extends Field implements NarrativeContainer {
     public static final String PARSER_PATTERN = "S";
+
+    /**
+     * Components pattern
+     *
+     * This is <em>DEPRECATED</em>, use <code>TYPES_PATTERN</code> instead.
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2= TargetYear.SRU2022)
     public static final String COMPONENTS_PATTERN = "S";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type of each component
+     */
+    public static final String TYPES_PATTERN = "S";
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -90,11 +108,28 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
     /**
      * Returns the field components pattern
      *
+     * This is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
      * @return the static value of COMPONENTS_PATTERN
+     * @see #typesPattern()
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     @Override
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @see #TYPES_PATTERN
+     * @return the static value of TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
     }
 
     /**
