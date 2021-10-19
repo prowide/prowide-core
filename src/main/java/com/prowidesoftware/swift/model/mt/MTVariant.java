@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model.mt;
 
+import java.util.Optional;
+
 /**
  * Official variants for MT messages (not including closed user groups version of messages)
  *
@@ -38,4 +40,22 @@ public enum MTVariant {
     public boolean isValidationFlag() {
         return this.validationFlag;
     }
+
+    /**
+     * Extract the variant from the given string, if any
+     * @param text a text optionally containing a variant code
+     * @return found variant if present in the parameter string
+     * @since 9.1.8
+     */
+    public static Optional<MTVariant> extract(String text) {
+        if (text != null) {
+            for (MTVariant variant : values()) {
+                if (text.contains(variant.name())) {
+                    return Optional.of(variant);
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
 }
