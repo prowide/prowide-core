@@ -115,6 +115,12 @@ public class Field12B extends Field implements Serializable, GenericField {
 	 */
 	public static final Integer INSTRUMENT_TYPE_CODE = 3;
 
+	/**
+     * Alternative constant name for field's Instrument Type Code Component number
+     * @see #INSTRUMENT_TYPE_CODE
+     */
+    public static final Integer TYPE = 3;
+
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
@@ -403,6 +409,15 @@ public class Field12B extends Field implements Serializable, GenericField {
     }
 
     /**
+     * Alternative method getter for field's Instrument Type Code
+     * @see #getInstrumentTypeCode()
+     * @since 9.2.7
+     */
+    public String getType() {
+        return getInstrumentTypeCode();
+    }
+
+    /**
      * Set the component 1 (Qualifier).
      *
      * @param component1 the Qualifier to set
@@ -463,6 +478,18 @@ public class Field12B extends Field implements Serializable, GenericField {
      */
     public Field12B setInstrumentTypeCode(String component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative method setter for field's Instrument Type Code
+     *
+     * @see #setInstrumentTypeCode(String)
+     *
+     * @param component3 the Instrument Type Code to set
+     * @return the field object to enable build pattern
+     */
+    public Field12B setType(String component3) {
+        return setInstrumentTypeCode(component3);
     }
 
 
@@ -599,6 +626,12 @@ public class Field12B extends Field implements Serializable, GenericField {
 
         // **** COMPONENT 3 - Instrument Type Code
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("type") != null) {
+            field.setComponent3(jsonObject.get("type").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("instrumentTypeCode") != null) {
             field.setComponent3(jsonObject.get("instrumentTypeCode").getAsString());
         }

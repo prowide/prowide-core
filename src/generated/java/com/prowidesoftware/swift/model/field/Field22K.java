@@ -104,6 +104,12 @@ public class Field22K extends Field implements Serializable {
 	public static final Integer TYPE_OF_EVENT = 1;
 
 	/**
+     * Alternative constant name for field's Type Of Event Component number
+     * @see #TYPE_OF_EVENT
+     */
+    public static final Integer CODE = 1;
+
+	/**
 	 * Component number for the Narrative subfield
 	 */
 	public static final Integer NARRATIVE = 2;
@@ -355,6 +361,15 @@ public class Field22K extends Field implements Serializable {
     }
 
     /**
+     * Alternative method getter for field's Type Of Event
+     * @see #getTypeOfEvent()
+     * @since 9.2.7
+     */
+    public String getCode() {
+        return getTypeOfEvent();
+    }
+
+    /**
      * Gets the component 2 (Narrative).
      * @return the component 2
      */
@@ -389,6 +404,18 @@ public class Field22K extends Field implements Serializable {
      */
     public Field22K setTypeOfEvent(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Type Of Event
+     *
+     * @see #setTypeOfEvent(String)
+     *
+     * @param component1 the Type Of Event to set
+     * @return the field object to enable build pattern
+     */
+    public Field22K setCode(String component1) {
+        return setTypeOfEvent(component1);
     }
 
     /**
@@ -500,6 +527,12 @@ public class Field22K extends Field implements Serializable {
 
         // **** COMPONENT 1 - Type Of Event
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("code") != null) {
+            field.setComponent1(jsonObject.get("code").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("typeOfEvent") != null) {
             field.setComponent1(jsonObject.get("typeOfEvent").getAsString());
         }

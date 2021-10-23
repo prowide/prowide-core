@@ -99,14 +99,30 @@ public class Field23A extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Type Of Swap subfield
 	 */
-	public static final Integer CODE = 1;
+	public static final Integer TYPE_OF_SWAP = 1;
 
 	/**
-	 * Component number for the Additional Information subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Type Of Swap Component number
+	 * @see #TYPE_OF_SWAP
 	 */
-	public static final Integer ADDITIONAL_INFORMATION = 2;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 1;
+
+	/**
+	 * Component number for the Settlement Method subfield
+	 */
+	public static final Integer SETTLEMENT_METHOD = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Settlement Method Component number
+	 * @see #SETTLEMENT_METHOD
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer ADDITIONAL_INFORMATION = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -316,8 +332,8 @@ public class Field23A extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Code");
-        result.add("Additional Information");
+        result.add("Type Of Swap");
+        result.add("Settlement Method");
         return result;
     }
 
@@ -328,14 +344,14 @@ public class Field23A extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "code");
-        result.put(2, "additionalInformation");
+        result.put(1, "typeOfSwap");
+        result.put(2, "settlementMethod");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Code).
+     * Gets the component 1 (Type Of Swap).
      * @return the component 1
      */
     public String getComponent1() {
@@ -343,15 +359,26 @@ public class Field23A extends Field implements Serializable {
     }
 
     /**
-     * Gets the Code (component 1).
-     * @return the Code from component 1
+     * Gets the Type Of Swap (component 1).
+     * @return the Type Of Swap from component 1
      */
-    public String getCode() {
+    public String getTypeOfSwap() {
         return getComponent1();
     }
 
     /**
-     * Gets the component 2 (Additional Information).
+     * Alternative <em>DEPRECATED</em> method getter for field's Type Of Swap
+     * @see #getTypeOfSwap()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getTypeOfSwap();
+    }
+
+    /**
+     * Gets the component 2 (Settlement Method).
      * @return the component 2
      */
     public String getComponent2() {
@@ -359,17 +386,28 @@ public class Field23A extends Field implements Serializable {
     }
 
     /**
-     * Gets the Additional Information (component 2).
-     * @return the Additional Information from component 2
+     * Gets the Settlement Method (component 2).
+     * @return the Settlement Method from component 2
      */
-    public String getAdditionalInformation() {
+    public String getSettlementMethod() {
         return getComponent2();
     }
 
     /**
-     * Set the component 1 (Code).
+     * Alternative <em>DEPRECATED</em> method getter for field's Settlement Method
+     * @see #getSettlementMethod()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAdditionalInformation() {
+        return getSettlementMethod();
+    }
+
+    /**
+     * Set the component 1 (Type Of Swap).
      *
-     * @param component1 the Code to set
+     * @param component1 the Type Of Swap to set
      * @return the field object to enable build pattern
      */
     public Field23A setComponent1(String component1) {
@@ -378,19 +416,33 @@ public class Field23A extends Field implements Serializable {
     }
 
     /**
-     * Set the Code (component 1).
+     * Set the Type Of Swap (component 1).
      *
-     * @param component1 the Code to set
+     * @param component1 the Type Of Swap to set
      * @return the field object to enable build pattern
      */
-    public Field23A setCode(String component1) {
+    public Field23A setTypeOfSwap(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the component 2 (Additional Information).
+     * Alternative <em>DEPRECATED</em> method setter for field's Type Of Swap
      *
-     * @param component2 the Additional Information to set
+     * @see #setTypeOfSwap(String)
+     *
+     * @param component1 the Type Of Swap to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field23A setCode(String component1) {
+        return setTypeOfSwap(component1);
+    }
+
+    /**
+     * Set the component 2 (Settlement Method).
+     *
+     * @param component2 the Settlement Method to set
      * @return the field object to enable build pattern
      */
     public Field23A setComponent2(String component2) {
@@ -399,13 +451,27 @@ public class Field23A extends Field implements Serializable {
     }
 
     /**
-     * Set the Additional Information (component 2).
+     * Set the Settlement Method (component 2).
      *
-     * @param component2 the Additional Information to set
+     * @param component2 the Settlement Method to set
      * @return the field object to enable build pattern
      */
-    public Field23A setAdditionalInformation(String component2) {
+    public Field23A setSettlementMethod(String component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Settlement Method
+     *
+     * @see #setSettlementMethod(String)
+     *
+     * @param component2 the Settlement Method to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field23A setAdditionalInformation(String component2) {
+        return setSettlementMethod(component2);
     }
 
 
@@ -494,16 +560,28 @@ public class Field23A extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Code
+        // **** COMPONENT 1 - Type Of Swap
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("code") != null) {
             field.setComponent1(jsonObject.get("code").getAsString());
         }
 
-        // **** COMPONENT 2 - Additional Information
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("typeOfSwap") != null) {
+            field.setComponent1(jsonObject.get("typeOfSwap").getAsString());
+        }
 
+        // **** COMPONENT 2 - Settlement Method
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("additionalInformation") != null) {
             field.setComponent2(jsonObject.get("additionalInformation").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("settlementMethod") != null) {
+            field.setComponent2(jsonObject.get("settlementMethod").getAsString());
         }
 
         return field;

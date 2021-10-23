@@ -109,14 +109,30 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Place Code subfield
 	 */
-	public static final Integer CODE = 2;
+	public static final Integer PLACE_CODE = 2;
 
 	/**
-	 * Component number for the BIC subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Place Code Component number
+	 * @see #PLACE_CODE
 	 */
-	public static final Integer BIC = 3;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 2;
+
+	/**
+	 * Component number for the Identifier Code subfield
+	 */
+	public static final Integer IDENTIFIER_CODE = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Identifier Code Component number
+	 * @see #IDENTIFIER_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer BIC = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -336,8 +352,8 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("Code");
-        result.add("BIC");
+        result.add("Place Code");
+        result.add("Identifier Code");
         return result;
     }
 
@@ -349,8 +365,8 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "code");
-        result.put(3, "bIC");
+        result.put(2, "placeCode");
+        result.put(3, "identifierCode");
         return result;
     }
 
@@ -372,7 +388,7 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     }
 
     /**
-     * Gets the component 2 (Code).
+     * Gets the component 2 (Place Code).
      * @return the component 2
      */
     public String getComponent2() {
@@ -380,15 +396,26 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     }
 
     /**
-     * Gets the Code (component 2).
-     * @return the Code from component 2
+     * Gets the Place Code (component 2).
+     * @return the Place Code from component 2
      */
-    public String getCode() {
+    public String getPlaceCode() {
         return getComponent2();
     }
 
     /**
-     * Gets the component 3 (BIC).
+     * Alternative <em>DEPRECATED</em> method getter for field's Place Code
+     * @see #getPlaceCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getPlaceCode();
+    }
+
+    /**
+     * Gets the component 3 (Identifier Code).
      * @return the component 3
      */
     public String getComponent3() {
@@ -405,19 +432,40 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     }
 
     /**
-     * Gets the BIC (component 3).
-     * @return the BIC from component 3
+     * Gets the Identifier Code (component 3).
+     * @return the Identifier Code from component 3
      */
-    public String getBIC() {
+    public String getIdentifierCode() {
         return getComponent3();
     }
 
     /**
-     * Get the BIC (component 3) as BIC
-     * @return the BIC from component 3 converted to BIC or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
+     * @see #getIdentifierCode()
+     * @since 9.2.7
      */
-    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getBIC() {
+        return getIdentifierCode();
+    }
+
+    /**
+     * Get the Identifier Code (component 3) as BIC
+     * @return the Identifier Code from component 3 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
         return getComponent3AsBIC();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code as BIC
+     * @see #getIdentifierCodeAsBIC()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+        return getIdentifierCodeAsBIC();
     }
 
     /**
@@ -442,9 +490,9 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     }
 
     /**
-     * Set the component 2 (Code).
+     * Set the component 2 (Place Code).
      *
-     * @param component2 the Code to set
+     * @param component2 the Place Code to set
      * @return the field object to enable build pattern
      */
     public Field94F setComponent2(String component2) {
@@ -453,19 +501,33 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     }
 
     /**
-     * Set the Code (component 2).
+     * Set the Place Code (component 2).
      *
-     * @param component2 the Code to set
+     * @param component2 the Place Code to set
      * @return the field object to enable build pattern
      */
-    public Field94F setCode(String component2) {
+    public Field94F setPlaceCode(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the component 3 (BIC).
+     * Alternative <em>DEPRECATED</em> method setter for field's Place Code
      *
-     * @param component3 the BIC to set
+     * @see #setPlaceCode(String)
+     *
+     * @param component2 the Place Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field94F setCode(String component2) {
+        return setPlaceCode(component2);
+    }
+
+    /**
+     * Set the component 3 (Identifier Code).
+     *
+     * @param component3 the Identifier Code to set
      * @return the field object to enable build pattern
      */
     public Field94F setComponent3(String component3) {
@@ -476,7 +538,7 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     /**
      * Set the component3 from a BIC object.
      *
-     * @param component3 the BIC with the BIC content to set
+     * @param component3 the BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
     public Field94F setComponent3(com.prowidesoftware.swift.model.BIC component3) {
@@ -485,25 +547,53 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     }
 
     /**
-     * Set the BIC (component 3).
+     * Set the Identifier Code (component 3).
      *
-     * @param component3 the BIC to set
+     * @param component3 the Identifier Code to set
      * @return the field object to enable build pattern
      */
-    public Field94F setBIC(String component3) {
+    public Field94F setIdentifierCode(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the BIC (component 3) from a BIC object.
+     * Set the Identifier Code (component 3) from a BIC object.
      *
      * @see #setComponent3(com.prowidesoftware.swift.model.BIC)
      *
-     * @param component3 BIC with the BIC content to set
+     * @param component3 BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
-    public Field94F setBIC(com.prowidesoftware.swift.model.BIC component3) {
+    public Field94F setIdentifierCode(com.prowidesoftware.swift.model.BIC component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code
+     *
+     * @see #setIdentifierCode(String)
+     *
+     * @param component3 the Identifier Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field94F setBIC(String component3) {
+        return setIdentifierCode(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code from a BIC object.
+     *
+     * @see #setComponent3(com.prowidesoftware.swift.model.BIC)
+     *
+     * @param component3 BIC with the Identifier Code content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field94F setBIC(com.prowidesoftware.swift.model.BIC component3) {
+        return setIdentifierCode(component3);
     }
 
 
@@ -640,16 +730,28 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
             field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - Code
+        // **** COMPONENT 2 - Place Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("code") != null) {
             field.setComponent2(jsonObject.get("code").getAsString());
         }
 
-        // **** COMPONENT 3 - BIC
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("placeCode") != null) {
+            field.setComponent2(jsonObject.get("placeCode").getAsString());
+        }
 
+        // **** COMPONENT 3 - Identifier Code
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("bIC") != null) {
             field.setComponent3(jsonObject.get("bIC").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("identifierCode") != null) {
+            field.setComponent3(jsonObject.get("identifierCode").getAsString());
         }
 
         return field;

@@ -103,9 +103,17 @@ public class Field41A extends Field implements Serializable, BICContainer, Multi
 	public static final String TYPES_PATTERN = "BS";
 
 	/**
-	 * Component number for the BIC subfield
+	 * Component number for the Identifier Code subfield
 	 */
-	public static final Integer BIC = 1;
+	public static final Integer IDENTIFIER_CODE = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Identifier Code Component number
+	 * @see #IDENTIFIER_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer BIC = 1;
 
 	/**
 	 * Component number for the Code subfield
@@ -323,7 +331,7 @@ public class Field41A extends Field implements Serializable, BICContainer, Multi
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("BIC");
+        result.add("Identifier Code");
         result.add("Code");
         return result;
     }
@@ -335,14 +343,14 @@ public class Field41A extends Field implements Serializable, BICContainer, Multi
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "bIC");
+        result.put(1, "identifierCode");
         result.put(2, "code");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (BIC).
+     * Gets the component 1 (Identifier Code).
      * @return the component 1
      */
     public String getComponent1() {
@@ -359,19 +367,40 @@ public class Field41A extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Gets the BIC (component 1).
-     * @return the BIC from component 1
+     * Gets the Identifier Code (component 1).
+     * @return the Identifier Code from component 1
      */
-    public String getBIC() {
+    public String getIdentifierCode() {
         return getComponent1();
     }
 
     /**
-     * Get the BIC (component 1) as BIC
-     * @return the BIC from component 1 converted to BIC or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
+     * @see #getIdentifierCode()
+     * @since 9.2.7
      */
-    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getBIC() {
+        return getIdentifierCode();
+    }
+
+    /**
+     * Get the Identifier Code (component 1) as BIC
+     * @return the Identifier Code from component 1 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
         return getComponent1AsBIC();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code as BIC
+     * @see #getIdentifierCodeAsBIC()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+        return getIdentifierCodeAsBIC();
     }
 
     /**
@@ -391,9 +420,9 @@ public class Field41A extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Set the component 1 (BIC).
+     * Set the component 1 (Identifier Code).
      *
-     * @param component1 the BIC to set
+     * @param component1 the Identifier Code to set
      * @return the field object to enable build pattern
      */
     public Field41A setComponent1(String component1) {
@@ -404,7 +433,7 @@ public class Field41A extends Field implements Serializable, BICContainer, Multi
     /**
      * Set the component1 from a BIC object.
      *
-     * @param component1 the BIC with the BIC content to set
+     * @param component1 the BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
     public Field41A setComponent1(com.prowidesoftware.swift.model.BIC component1) {
@@ -413,25 +442,53 @@ public class Field41A extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Set the BIC (component 1).
+     * Set the Identifier Code (component 1).
      *
-     * @param component1 the BIC to set
+     * @param component1 the Identifier Code to set
      * @return the field object to enable build pattern
      */
-    public Field41A setBIC(String component1) {
+    public Field41A setIdentifierCode(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the BIC (component 1) from a BIC object.
+     * Set the Identifier Code (component 1) from a BIC object.
      *
      * @see #setComponent1(com.prowidesoftware.swift.model.BIC)
      *
-     * @param component1 BIC with the BIC content to set
+     * @param component1 BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
-    public Field41A setBIC(com.prowidesoftware.swift.model.BIC component1) {
+    public Field41A setIdentifierCode(com.prowidesoftware.swift.model.BIC component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code
+     *
+     * @see #setIdentifierCode(String)
+     *
+     * @param component1 the Identifier Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field41A setBIC(String component1) {
+        return setIdentifierCode(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code from a BIC object.
+     *
+     * @see #setComponent1(com.prowidesoftware.swift.model.BIC)
+     *
+     * @param component1 BIC with the Identifier Code content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field41A setBIC(com.prowidesoftware.swift.model.BIC component1) {
+        return setIdentifierCode(component1);
     }
 
     /**
@@ -627,10 +684,16 @@ public class Field41A extends Field implements Serializable, BICContainer, Multi
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - BIC
+        // **** COMPONENT 1 - Identifier Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("bIC") != null) {
             field.setComponent1(jsonObject.get("bIC").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("identifierCode") != null) {
+            field.setComponent1(jsonObject.get("identifierCode").getAsString());
         }
 
         // **** COMPONENT 2 - Code

@@ -105,9 +105,17 @@ public class Field97C extends Field implements Serializable, GenericField {
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Account Code subfield
 	 */
-	public static final Integer CODE = 2;
+	public static final Integer ACCOUNT_CODE = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Account Code Component number
+	 * @see #ACCOUNT_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -319,7 +327,7 @@ public class Field97C extends Field implements Serializable, GenericField {
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("Code");
+        result.add("Account Code");
         return result;
     }
 
@@ -331,7 +339,7 @@ public class Field97C extends Field implements Serializable, GenericField {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "code");
+        result.put(2, "accountCode");
         return result;
     }
 
@@ -353,7 +361,7 @@ public class Field97C extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 2 (Code).
+     * Gets the component 2 (Account Code).
      * @return the component 2
      */
     public String getComponent2() {
@@ -361,11 +369,22 @@ public class Field97C extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the Code (component 2).
-     * @return the Code from component 2
+     * Gets the Account Code (component 2).
+     * @return the Account Code from component 2
      */
-    public String getCode() {
+    public String getAccountCode() {
         return getComponent2();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Account Code
+     * @see #getAccountCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getAccountCode();
     }
 
     /**
@@ -390,9 +409,9 @@ public class Field97C extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 2 (Code).
+     * Set the component 2 (Account Code).
      *
-     * @param component2 the Code to set
+     * @param component2 the Account Code to set
      * @return the field object to enable build pattern
      */
     public Field97C setComponent2(String component2) {
@@ -401,13 +420,27 @@ public class Field97C extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Code (component 2).
+     * Set the Account Code (component 2).
      *
-     * @param component2 the Code to set
+     * @param component2 the Account Code to set
      * @return the field object to enable build pattern
      */
-    public Field97C setCode(String component2) {
+    public Field97C setAccountCode(String component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Account Code
+     *
+     * @see #setAccountCode(String)
+     *
+     * @param component2 the Account Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field97C setCode(String component2) {
+        return setAccountCode(component2);
     }
 
 
@@ -536,10 +569,16 @@ public class Field97C extends Field implements Serializable, GenericField {
             field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - Code
+        // **** COMPONENT 2 - Account Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("code") != null) {
             field.setComponent2(jsonObject.get("code").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("accountCode") != null) {
+            field.setComponent2(jsonObject.get("accountCode").getAsString());
         }
 
         return field;

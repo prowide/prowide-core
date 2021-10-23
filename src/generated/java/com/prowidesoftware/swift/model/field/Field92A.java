@@ -115,9 +115,17 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer SIGN = 2;
 
 	/**
-	 * Component number for the Rate Amount subfield
+	 * Component number for the Rate subfield
 	 */
-	public static final Integer RATE_AMOUNT = 3;
+	public static final Integer RATE = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Rate Component number
+	 * @see #RATE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer RATE_AMOUNT = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -345,7 +353,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Sign");
-        result.add("Rate Amount");
+        result.add("Rate");
         return result;
     }
 
@@ -358,7 +366,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "sign");
-        result.put(3, "rateAmount");
+        result.put(3, "rate");
         return result;
     }
 
@@ -396,7 +404,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the component 3 (Rate Amount).
+     * Gets the component 3 (Rate).
      * @return the component 3
      */
     public String getComponent3() {
@@ -429,35 +437,71 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the Rate Amount (component 3).
-     * @return the Rate Amount from component 3
+     * Gets the Rate (component 3).
+     * @return the Rate from component 3
      */
-    public String getRateAmount() {
+    public String getRate() {
         return getComponent3();
     }
 
     /**
-     * Get the Rate Amount (component 3) as BigDecimal
-     * @return the Rate Amount from component 3 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Rate
+     * @see #getRate()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getRateAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getRateAmount() {
+        return getRate();
+    }
+
+    /**
+     * Get the Rate (component 3) as BigDecimal
+     * @return the Rate from component 3 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getRateAsBigDecimal() {
         return getComponent3AsBigDecimal();
     }
 
     /**
-     * Get the Rate Amount (component 3) as as Number (BigDecimal)
+     * Get the Rate (component 3) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getRateAmountAsBigDecimal()
+     * @see #getRateAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getRateAsNumber() {
+        return getComponent3AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Rate as BigDecimal
+     * @see #getRateAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getRateAmountAsBigDecimal() {
+        return getRateAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Rate (component 3) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getRateAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getRateAmountAsNumber() {
-        return getComponent3AsNumber();
+        return getRateAsNumber();
     }
 
     /**
@@ -503,9 +547,9 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the component 3 (Rate Amount).
+     * Set the component 3 (Rate).
      *
-     * @param component3 the Rate Amount to set
+     * @param component3 the Rate to set
      * @return the field object to enable build pattern
      */
     public Field92A setComponent3(String component3) {
@@ -524,7 +568,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * </ul>
      * @since 9.2.7
      *
-     * @param component3 the BigDecimal with the Rate Amount content to set
+     * @param component3 the BigDecimal with the Rate content to set
      * @return the field object to enable build pattern
      */
     public Field92A setComponent3(java.math.BigDecimal component3) {
@@ -532,13 +576,13 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
         return this;
     }
     /**
-     * Alternative method setter for field's Rate Amount (component 3) as as Number
+     * Alternative method setter for field's Rate (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component3 the Number with the Rate Amount content to set
+     * @param component3 the Number with the Rate content to set
      * @return the field object to enable build pattern
-     * @see #setRateAmount(java.math.BigDecimal)
+     * @see #setRate(java.math.BigDecimal)
      */
     public Field92A setComponent3(java.lang.Number component3) {
 
@@ -561,39 +605,83 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the Rate Amount (component 3).
+     * Set the Rate (component 3).
      *
-     * @param component3 the Rate Amount to set
+     * @param component3 the Rate to set
      * @return the field object to enable build pattern
      */
-    public Field92A setRateAmount(String component3) {
+    public Field92A setRate(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the Rate Amount (component 3) from a BigDecimal object.
+     * Set the Rate (component 3) from a BigDecimal object.
      *
      * @see #setComponent3(java.math.BigDecimal)
      *
-     * @param component3 BigDecimal with the Rate Amount content to set
+     * @param component3 BigDecimal with the Rate content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field92A setRateAmount(java.math.BigDecimal component3) {
+    public Field92A setRate(java.math.BigDecimal component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Alternative method setter for field's Rate Amount (component 3) as as Number
+     * Alternative method setter for field's Rate (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component3 the Number with the Rate Amount content to set
+     * @param component3 the Number with the Rate content to set
      * @return the field object to enable build pattern
-     * @see #setRateAmount(java.math.BigDecimal)
+     * @see #setRate(java.math.BigDecimal)
      */
-    public Field92A setRateAmount(java.lang.Number component3) {
+    public Field92A setRate(java.lang.Number component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Rate
+     *
+     * @see #setRate(String)
+     *
+     * @param component3 the Rate to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field92A setRateAmount(String component3) {
+        return setRate(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Rate from a BigDecimal object.
+     *
+     * @see #setComponent3(java.math.BigDecimal)
+     *
+     * @param component3 BigDecimal with the Rate content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field92A setRateAmount(java.math.BigDecimal component3) {
+        return setRate(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Rate (component 3) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component3 the Number with the Rate content to set
+     * @return the field object to enable build pattern
+     * @see #setRate(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field92A setRateAmount(java.lang.Number component3) {
+        return setRate(component3);
     }
 
 
@@ -748,10 +836,16 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
             field.setComponent2(jsonObject.get("sign").getAsString());
         }
 
-        // **** COMPONENT 3 - Rate Amount
+        // **** COMPONENT 3 - Rate
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("rateAmount") != null) {
             field.setComponent3(jsonObject.get("rateAmount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("rate") != null) {
+            field.setComponent3(jsonObject.get("rate").getAsString());
         }
 
         return field;

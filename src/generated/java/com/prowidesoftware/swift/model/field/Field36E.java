@@ -121,9 +121,17 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer SIGN = 3;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Quantity subfield
 	 */
-	public static final Integer AMOUNT = 4;
+	public static final Integer QUANTITY = 4;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Quantity Component number
+	 * @see #QUANTITY
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -360,7 +368,7 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
         result.add("Qualifier");
         result.add("Quantity Type Code");
         result.add("Sign");
-        result.add("Amount");
+        result.add("Quantity");
         return result;
     }
 
@@ -374,7 +382,7 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
         result.put(1, "qualifier");
         result.put(2, "quantityTypeCode");
         result.put(3, "sign");
-        result.put(4, "amount");
+        result.put(4, "quantity");
         return result;
     }
 
@@ -428,7 +436,7 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the component 4 (Amount).
+     * Gets the component 4 (Quantity).
      * @return the component 4
      */
     public String getComponent4() {
@@ -461,35 +469,71 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the Amount (component 4).
-     * @return the Amount from component 4
+     * Gets the Quantity (component 4).
+     * @return the Quantity from component 4
      */
-    public String getAmount() {
+    public String getQuantity() {
         return getComponent4();
     }
 
     /**
-     * Get the Amount (component 4) as BigDecimal
-     * @return the Amount from component 4 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Quantity
+     * @see #getQuantity()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getQuantity();
+    }
+
+    /**
+     * Get the Quantity (component 4) as BigDecimal
+     * @return the Quantity from component 4 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getQuantityAsBigDecimal() {
         return getComponent4AsBigDecimal();
     }
 
     /**
-     * Get the Amount (component 4) as as Number (BigDecimal)
+     * Get the Quantity (component 4) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @see #getQuantityAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getQuantityAsNumber() {
+        return getComponent4AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Quantity as BigDecimal
+     * @see #getQuantityAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getQuantityAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Quantity (component 4) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getQuantityAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
-        return getComponent4AsNumber();
+        return getQuantityAsNumber();
     }
 
     /**
@@ -556,9 +600,9 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the component 4 (Amount).
+     * Set the component 4 (Quantity).
      *
-     * @param component4 the Amount to set
+     * @param component4 the Quantity to set
      * @return the field object to enable build pattern
      */
     public Field36E setComponent4(String component4) {
@@ -577,7 +621,7 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
      * </ul>
      * @since 9.2.7
      *
-     * @param component4 the BigDecimal with the Amount content to set
+     * @param component4 the BigDecimal with the Quantity content to set
      * @return the field object to enable build pattern
      */
     public Field36E setComponent4(java.math.BigDecimal component4) {
@@ -585,13 +629,13 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 4) as as Number
+     * Alternative method setter for field's Quantity (component 4) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component4 the Number with the Amount content to set
+     * @param component4 the Number with the Quantity content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setQuantity(java.math.BigDecimal)
      */
     public Field36E setComponent4(java.lang.Number component4) {
 
@@ -614,39 +658,83 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the Amount (component 4).
+     * Set the Quantity (component 4).
      *
-     * @param component4 the Amount to set
+     * @param component4 the Quantity to set
      * @return the field object to enable build pattern
      */
-    public Field36E setAmount(String component4) {
+    public Field36E setQuantity(String component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Set the Amount (component 4) from a BigDecimal object.
+     * Set the Quantity (component 4) from a BigDecimal object.
      *
      * @see #setComponent4(java.math.BigDecimal)
      *
-     * @param component4 BigDecimal with the Amount content to set
+     * @param component4 BigDecimal with the Quantity content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field36E setAmount(java.math.BigDecimal component4) {
+    public Field36E setQuantity(java.math.BigDecimal component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 4) as as Number
+     * Alternative method setter for field's Quantity (component 4) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component4 the Number with the Amount content to set
+     * @param component4 the Number with the Quantity content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setQuantity(java.math.BigDecimal)
      */
-    public Field36E setAmount(java.lang.Number component4) {
+    public Field36E setQuantity(java.lang.Number component4) {
         return setComponent4(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Quantity
+     *
+     * @see #setQuantity(String)
+     *
+     * @param component4 the Quantity to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field36E setAmount(String component4) {
+        return setQuantity(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Quantity from a BigDecimal object.
+     *
+     * @see #setComponent4(java.math.BigDecimal)
+     *
+     * @param component4 BigDecimal with the Quantity content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field36E setAmount(java.math.BigDecimal component4) {
+        return setQuantity(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Quantity (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component4 the Number with the Quantity content to set
+     * @return the field object to enable build pattern
+     * @see #setQuantity(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field36E setAmount(java.lang.Number component4) {
+        return setQuantity(component4);
     }
 
 
@@ -807,10 +895,16 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
             field.setComponent3(jsonObject.get("sign").getAsString());
         }
 
-        // **** COMPONENT 4 - Amount
+        // **** COMPONENT 4 - Quantity
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent4(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("quantity") != null) {
+            field.setComponent4(jsonObject.get("quantity").getAsString());
         }
 
         return field;

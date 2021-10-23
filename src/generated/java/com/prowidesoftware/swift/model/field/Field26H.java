@@ -98,9 +98,23 @@ public class Field26H extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Reference subfield
+	 * Component number for the Counterparty Reference subfield
 	 */
-	public static final Integer REFERENCE = 1;
+	public static final Integer COUNTERPARTY_REFERENCE = 1;
+
+	/**
+     * Alternative constant name for field's Counterparty Reference Component number
+     * @see #COUNTERPARTY_REFERENCE
+     */
+    public static final Integer COLLATERAL_TYPE = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Counterparty Reference Component number
+	 * @see #COUNTERPARTY_REFERENCE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer REFERENCE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -303,7 +317,7 @@ public class Field26H extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Reference");
+        result.add("Counterparty Reference");
         return result;
     }
 
@@ -314,13 +328,13 @@ public class Field26H extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "reference");
+        result.put(1, "counterpartyReference");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Reference).
+     * Gets the component 1 (Counterparty Reference).
      * @return the component 1
      */
     public String getComponent1() {
@@ -328,17 +342,37 @@ public class Field26H extends Field implements Serializable {
     }
 
     /**
-     * Gets the Reference (component 1).
-     * @return the Reference from component 1
+     * Gets the Counterparty Reference (component 1).
+     * @return the Counterparty Reference from component 1
      */
-    public String getReference() {
+    public String getCounterpartyReference() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Reference).
+     * Alternative method getter for field's Counterparty Reference
+     * @see #getCounterpartyReference()
+     * @since 9.2.7
+     */
+    public String getCollateralType() {
+        return getCounterpartyReference();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Counterparty Reference
+     * @see #getCounterpartyReference()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getReference() {
+        return getCounterpartyReference();
+    }
+
+    /**
+     * Set the component 1 (Counterparty Reference).
      *
-     * @param component1 the Reference to set
+     * @param component1 the Counterparty Reference to set
      * @return the field object to enable build pattern
      */
     public Field26H setComponent1(String component1) {
@@ -347,13 +381,39 @@ public class Field26H extends Field implements Serializable {
     }
 
     /**
-     * Set the Reference (component 1).
+     * Set the Counterparty Reference (component 1).
      *
-     * @param component1 the Reference to set
+     * @param component1 the Counterparty Reference to set
      * @return the field object to enable build pattern
      */
-    public Field26H setReference(String component1) {
+    public Field26H setCounterpartyReference(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Counterparty Reference
+     *
+     * @see #setCounterpartyReference(String)
+     *
+     * @param component1 the Counterparty Reference to set
+     * @return the field object to enable build pattern
+     */
+    public Field26H setCollateralType(String component1) {
+        return setCounterpartyReference(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Counterparty Reference
+     *
+     * @see #setCounterpartyReference(String)
+     *
+     * @param component1 the Counterparty Reference to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field26H setReference(String component1) {
+        return setCounterpartyReference(component1);
     }
 
 
@@ -442,10 +502,19 @@ public class Field26H extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Reference
+        // **** COMPONENT 1 - Counterparty Reference
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("collateralType") != null) {
+            field.setComponent1(jsonObject.get("collateralType").getAsString());
+        }
         if (jsonObject.get("reference") != null) {
             field.setComponent1(jsonObject.get("reference").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("counterpartyReference") != null) {
+            field.setComponent1(jsonObject.get("counterpartyReference").getAsString());
         }
 
         return field;

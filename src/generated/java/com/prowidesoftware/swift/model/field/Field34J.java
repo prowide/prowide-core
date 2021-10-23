@@ -109,9 +109,17 @@ public class Field34J extends Field implements Serializable, AmountContainer {
 	public static final Integer SIGN = 1;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Unit subfield
 	 */
-	public static final Integer CURRENCY = 2;
+	public static final Integer UNIT = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Unit Component number
+	 * @see #UNIT
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CURRENCY = 2;
 
 	/**
 	 * Component number for the Amount subfield
@@ -345,7 +353,7 @@ public class Field34J extends Field implements Serializable, AmountContainer {
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Sign");
-        result.add("Currency");
+        result.add("Unit");
         result.add("Amount");
         return result;
     }
@@ -358,7 +366,7 @@ public class Field34J extends Field implements Serializable, AmountContainer {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "sign");
-        result.put(2, "currency");
+        result.put(2, "unit");
         result.put(3, "amount");
         return result;
     }
@@ -381,7 +389,7 @@ public class Field34J extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets the component 2 (Currency).
+     * Gets the component 2 (Unit).
      * @return the component 2
      */
     public String getComponent2() {
@@ -389,11 +397,22 @@ public class Field34J extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets the Currency (component 2).
-     * @return the Currency from component 2
+     * Gets the Unit (component 2).
+     * @return the Unit from component 2
      */
-    public String getCurrency() {
+    public String getUnit() {
         return getComponent2();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Unit
+     * @see #getUnit()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCurrency() {
+        return getUnit();
     }
 
     /**
@@ -483,9 +502,9 @@ public class Field34J extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the component 2 (Currency).
+     * Set the component 2 (Unit).
      *
-     * @param component2 the Currency to set
+     * @param component2 the Unit to set
      * @return the field object to enable build pattern
      */
     public Field34J setComponent2(String component2) {
@@ -494,13 +513,27 @@ public class Field34J extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the Currency (component 2).
+     * Set the Unit (component 2).
      *
-     * @param component2 the Currency to set
+     * @param component2 the Unit to set
      * @return the field object to enable build pattern
      */
-    public Field34J setCurrency(String component2) {
+    public Field34J setUnit(String component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Unit
+     *
+     * @see #setUnit(String)
+     *
+     * @param component2 the Unit to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field34J setCurrency(String component2) {
+        return setUnit(component2);
     }
 
     /**
@@ -709,10 +742,16 @@ public class Field34J extends Field implements Serializable, AmountContainer {
             field.setComponent1(jsonObject.get("sign").getAsString());
         }
 
-        // **** COMPONENT 2 - Currency
+        // **** COMPONENT 2 - Unit
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("currency") != null) {
             field.setComponent2(jsonObject.get("currency").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("unit") != null) {
+            field.setComponent2(jsonObject.get("unit").getAsString());
         }
 
         // **** COMPONENT 3 - Amount

@@ -123,6 +123,12 @@ public class Field65 extends Field implements Serializable, DateContainer, Amoun
 	public static final Integer CURRENCY = 3;
 
 	/**
+     * Alternative constant name for field's Currency Component number
+     * @see #CURRENCY
+     */
+    public static final Integer UNIT = 3;
+
+	/**
 	 * Component number for the Amount subfield
 	 */
 	public static final Integer AMOUNT = 4;
@@ -445,6 +451,15 @@ public class Field65 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
+     * Alternative method getter for field's Currency
+     * @see #getCurrency()
+     * @since 9.2.7
+     */
+    public String getUnit() {
+        return getCurrency();
+    }
+
+    /**
      * Gets the component 4 (Amount).
      * @return the component 4
      */
@@ -593,6 +608,18 @@ public class Field65 extends Field implements Serializable, DateContainer, Amoun
      */
     public Field65 setCurrency(String component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative method setter for field's Currency
+     *
+     * @see #setCurrency(String)
+     *
+     * @param component3 the Currency to set
+     * @return the field object to enable build pattern
+     */
+    public Field65 setUnit(String component3) {
+        return setCurrency(component3);
     }
 
     /**
@@ -827,6 +854,12 @@ public class Field65 extends Field implements Serializable, DateContainer, Amoun
 
         // **** COMPONENT 3 - Currency
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("unit") != null) {
+            field.setComponent3(jsonObject.get("unit").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("currency") != null) {
             field.setComponent3(jsonObject.get("currency").getAsString());
         }

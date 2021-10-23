@@ -98,9 +98,17 @@ public class Field22J extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Type Of Barrier subfield
+	 * Component number for the Type Of Trigger subfield
 	 */
-	public static final Integer TYPE_OF_BARRIER = 1;
+	public static final Integer TYPE_OF_TRIGGER = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Type Of Trigger Component number
+	 * @see #TYPE_OF_TRIGGER
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer TYPE_OF_BARRIER = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -303,7 +311,7 @@ public class Field22J extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Type Of Barrier");
+        result.add("Type Of Trigger");
         return result;
     }
 
@@ -314,13 +322,13 @@ public class Field22J extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "typeOfBarrier");
+        result.put(1, "typeOfTrigger");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Type Of Barrier).
+     * Gets the component 1 (Type Of Trigger).
      * @return the component 1
      */
     public String getComponent1() {
@@ -328,17 +336,28 @@ public class Field22J extends Field implements Serializable {
     }
 
     /**
-     * Gets the Type Of Barrier (component 1).
-     * @return the Type Of Barrier from component 1
+     * Gets the Type Of Trigger (component 1).
+     * @return the Type Of Trigger from component 1
      */
-    public String getTypeOfBarrier() {
+    public String getTypeOfTrigger() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Type Of Barrier).
+     * Alternative <em>DEPRECATED</em> method getter for field's Type Of Trigger
+     * @see #getTypeOfTrigger()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getTypeOfBarrier() {
+        return getTypeOfTrigger();
+    }
+
+    /**
+     * Set the component 1 (Type Of Trigger).
      *
-     * @param component1 the Type Of Barrier to set
+     * @param component1 the Type Of Trigger to set
      * @return the field object to enable build pattern
      */
     public Field22J setComponent1(String component1) {
@@ -347,13 +366,27 @@ public class Field22J extends Field implements Serializable {
     }
 
     /**
-     * Set the Type Of Barrier (component 1).
+     * Set the Type Of Trigger (component 1).
      *
-     * @param component1 the Type Of Barrier to set
+     * @param component1 the Type Of Trigger to set
      * @return the field object to enable build pattern
      */
-    public Field22J setTypeOfBarrier(String component1) {
+    public Field22J setTypeOfTrigger(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Type Of Trigger
+     *
+     * @see #setTypeOfTrigger(String)
+     *
+     * @param component1 the Type Of Trigger to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field22J setTypeOfBarrier(String component1) {
+        return setTypeOfTrigger(component1);
     }
 
 
@@ -442,10 +475,16 @@ public class Field22J extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Type Of Barrier
+        // **** COMPONENT 1 - Type Of Trigger
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("typeOfBarrier") != null) {
             field.setComponent1(jsonObject.get("typeOfBarrier").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("typeOfTrigger") != null) {
+            field.setComponent1(jsonObject.get("typeOfTrigger").getAsString());
         }
 
         return field;

@@ -109,9 +109,17 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Date Code subfield
 	 */
-	public static final Integer CODE = 2;
+	public static final Integer DATE_CODE = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date Code Component number
+	 * @see #DATE_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 2;
 
 	/**
 	 * Component number for the Date subfield
@@ -340,7 +348,7 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("Code");
+        result.add("Date Code");
         result.add("Date");
         return result;
     }
@@ -353,7 +361,7 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "code");
+        result.put(2, "dateCode");
         result.put(3, "date");
         return result;
     }
@@ -376,7 +384,7 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Gets the component 2 (Code).
+     * Gets the component 2 (Date Code).
      * @return the component 2
      */
     public String getComponent2() {
@@ -384,11 +392,22 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Gets the Code (component 2).
-     * @return the Code from component 2
+     * Gets the Date Code (component 2).
+     * @return the Date Code from component 2
      */
-    public String getCode() {
+    public String getDateCode() {
         return getComponent2();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Date Code
+     * @see #getDateCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getDateCode();
     }
 
     /**
@@ -446,9 +465,9 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Set the component 2 (Code).
+     * Set the component 2 (Date Code).
      *
-     * @param component2 the Code to set
+     * @param component2 the Date Code to set
      * @return the field object to enable build pattern
      */
     public Field69E setComponent2(String component2) {
@@ -457,13 +476,27 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Set the Code (component 2).
+     * Set the Date Code (component 2).
      *
-     * @param component2 the Code to set
+     * @param component2 the Date Code to set
      * @return the field object to enable build pattern
      */
-    public Field69E setCode(String component2) {
+    public Field69E setDateCode(String component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Date Code
+     *
+     * @see #setDateCode(String)
+     *
+     * @param component2 the Date Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69E setCode(String component2) {
+        return setDateCode(component2);
     }
 
     /**
@@ -654,10 +687,16 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
             field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - Code
+        // **** COMPONENT 2 - Date Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("code") != null) {
             field.setComponent2(jsonObject.get("code").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("dateCode") != null) {
+            field.setComponent2(jsonObject.get("dateCode").getAsString());
         }
 
         // **** COMPONENT 3 - Date

@@ -114,19 +114,43 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
 	public static final Integer RATE = 1;
 
 	/**
-	 * Component number for the Date subfield
+	 * Component number for the End Date subfield
 	 */
-	public static final Integer DATE = 2;
+	public static final Integer END_DATE = 2;
 
 	/**
-	 * Component number for the D/M Mark subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's End Date Component number
+	 * @see #END_DATE
 	 */
-	public static final Integer DM_MARK = 3;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer DATE = 2;
 
 	/**
-	 * Component number for the Number of Days/Months subfield
+	 * Component number for the Period subfield
 	 */
-	public static final Integer NUMBER_OF_DAYSMONTHS = 4;
+	public static final Integer PERIOD = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Period Component number
+	 * @see #PERIOD
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer DM_MARK = 3;
+
+	/**
+	 * Component number for the Number subfield
+	 */
+	public static final Integer NUMBER = 4;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Number Component number
+	 * @see #NUMBER
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer NUMBER_OF_DAYSMONTHS = 4;
 
 	/**
 	 * Component number for the Information subfield
@@ -400,9 +424,9 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Rate");
-        result.add("Date");
-        result.add("D/M Mark");
-        result.add("Number of Days/Months");
+        result.add("End Date");
+        result.add("Period");
+        result.add("Number");
         result.add("Information");
         return result;
     }
@@ -415,9 +439,9 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "rate");
-        result.put(2, "date");
-        result.put(3, "dMMark");
-        result.put(4, "numberofDaysMonths");
+        result.put(2, "endDate");
+        result.put(3, "period");
+        result.put(4, "number");
         result.put(5, "information");
         return result;
     }
@@ -489,7 +513,7 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Gets the component 2 (Date).
+     * Gets the component 2 (End Date).
      * @return the component 2
      */
     public String getComponent2() {
@@ -506,23 +530,44 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Gets the Date (component 2).
-     * @return the Date from component 2
+     * Gets the End Date (component 2).
+     * @return the End Date from component 2
      */
-    public String getDate() {
+    public String getEndDate() {
         return getComponent2();
     }
 
     /**
-     * Get the Date (component 2) as Calendar
-     * @return the Date from component 2 converted to Calendar or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's End Date
+     * @see #getEndDate()
+     * @since 9.2.7
      */
-    public java.util.Calendar getDateAsCalendar() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getDate() {
+        return getEndDate();
+    }
+
+    /**
+     * Get the End Date (component 2) as Calendar
+     * @return the End Date from component 2 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getEndDateAsCalendar() {
         return getComponent2AsCalendar();
     }
 
     /**
-     * Gets the component 3 (D/M Mark).
+     * Alternative <em>DEPRECATED</em> method getter for field's End Date as Calendar
+     * @see #getEndDateAsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getDateAsCalendar() {
+        return getEndDateAsCalendar();
+    }
+
+    /**
+     * Gets the component 3 (Period).
      * @return the component 3
      */
     public String getComponent3() {
@@ -530,15 +575,26 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Gets the D/M Mark (component 3).
-     * @return the D/M Mark from component 3
+     * Gets the Period (component 3).
+     * @return the Period from component 3
      */
-    public String getDMMark() {
+    public String getPeriod() {
         return getComponent3();
     }
 
     /**
-     * Gets the component 4 (Number of Days/Months).
+     * Alternative <em>DEPRECATED</em> method getter for field's Period
+     * @see #getPeriod()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getDMMark() {
+        return getPeriod();
+    }
+
+    /**
+     * Gets the component 4 (Number).
      * @return the component 4
      */
     public String getComponent4() {
@@ -572,35 +628,71 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Gets the Number of Days/Months (component 4).
-     * @return the Number of Days/Months from component 4
+     * Gets the Number (component 4).
+     * @return the Number from component 4
      */
-    public String getNumberofDaysMonths() {
+    public String getNumber() {
         return getComponent4();
     }
 
     /**
-     * Get the Number of Days/Months (component 4) as Long
-     * @return the Number of Days/Months from component 4 converted to Long or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Number
+     * @see #getNumber()
      * @since 9.2.7
      */
-    public java.lang.Long getNumberofDaysMonthsAsLong() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getNumberofDaysMonths() {
+        return getNumber();
+    }
+
+    /**
+     * Get the Number (component 4) as Long
+     * @return the Number from component 4 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumberAsLong() {
         return getComponent4AsLong();
     }
 
     /**
-     * Get the Number of Days/Months (component 4) as as Number (BigDecimal)
+     * Get the Number (component 4) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent4AsLong()</code> to get the proper value.
      *
      * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberofDaysMonthsAsLong()
+     * @see #getNumberAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumberAsNumber() {
+        return getComponent4AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number as Long
+     * @see #getNumberAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getNumberofDaysMonthsAsLong() {
+        return getNumberAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number (component 4) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsLong()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getNumberofDaysMonthsAsNumber() {
-        return getComponent4AsNumber();
+        return getNumberAsNumber();
     }
 
     /**
@@ -714,9 +806,9 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Set the component 2 (Date).
+     * Set the component 2 (End Date).
      *
-     * @param component2 the Date to set
+     * @param component2 the End Date to set
      * @return the field object to enable build pattern
      */
     public Field37C setComponent2(String component2) {
@@ -727,7 +819,7 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     /**
      * Set the component2 from a Calendar object.
      *
-     * @param component2 the Calendar with the Date content to set
+     * @param component2 the Calendar with the End Date content to set
      * @return the field object to enable build pattern
      */
     public Field37C setComponent2(java.util.Calendar component2) {
@@ -736,31 +828,59 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Set the Date (component 2).
+     * Set the End Date (component 2).
      *
-     * @param component2 the Date to set
+     * @param component2 the End Date to set
      * @return the field object to enable build pattern
      */
-    public Field37C setDate(String component2) {
+    public Field37C setEndDate(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Date (component 2) from a Calendar object.
+     * Set the End Date (component 2) from a Calendar object.
      *
      * @see #setComponent2(java.util.Calendar)
      *
-     * @param component2 Calendar with the Date content to set
+     * @param component2 Calendar with the End Date content to set
      * @return the field object to enable build pattern
      */
-    public Field37C setDate(java.util.Calendar component2) {
+    public Field37C setEndDate(java.util.Calendar component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the component 3 (D/M Mark).
+     * Alternative <em>DEPRECATED</em> method setter for field's End Date
      *
-     * @param component3 the D/M Mark to set
+     * @see #setEndDate(String)
+     *
+     * @param component2 the End Date to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field37C setDate(String component2) {
+        return setEndDate(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's End Date from a Calendar object.
+     *
+     * @see #setComponent2(java.util.Calendar)
+     *
+     * @param component2 Calendar with the End Date content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field37C setDate(java.util.Calendar component2) {
+        return setEndDate(component2);
+    }
+
+    /**
+     * Set the component 3 (Period).
+     *
+     * @param component3 the Period to set
      * @return the field object to enable build pattern
      */
     public Field37C setComponent3(String component3) {
@@ -769,19 +889,33 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Set the D/M Mark (component 3).
+     * Set the Period (component 3).
      *
-     * @param component3 the D/M Mark to set
+     * @param component3 the Period to set
      * @return the field object to enable build pattern
      */
-    public Field37C setDMMark(String component3) {
+    public Field37C setPeriod(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the component 4 (Number of Days/Months).
+     * Alternative <em>DEPRECATED</em> method setter for field's Period
      *
-     * @param component4 the Number of Days/Months to set
+     * @see #setPeriod(String)
+     *
+     * @param component3 the Period to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field37C setDMMark(String component3) {
+        return setPeriod(component3);
+    }
+
+    /**
+     * Set the component 4 (Number).
+     *
+     * @param component4 the Number to set
      * @return the field object to enable build pattern
      */
     public Field37C setComponent4(String component4) {
@@ -799,7 +933,7 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
      * @see #setComponent4(String)
      * @since 9.2.7
      *
-     * @param component4 the Long with the Number of Days/Months content to set
+     * @param component4 the Long with the Number content to set
      * @return the field object to enable build pattern
      */
     public Field37C setComponent4(java.lang.Long component4) {
@@ -808,13 +942,13 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Alternative method setter for field's Number of Days/Months (component 4) as as Number
+     * Alternative method setter for field's Number (component 4) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component4 the Number with the Number of Days/Months content to set
+     * @param component4 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumberofDaysMonths(java.lang.Long)
+     * @see #setNumber(java.lang.Long)
      */
     public Field37C setComponent4(java.lang.Number component4) {
 
@@ -836,39 +970,83 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Set the Number of Days/Months (component 4).
+     * Set the Number (component 4).
      *
-     * @param component4 the Number of Days/Months to set
+     * @param component4 the Number to set
      * @return the field object to enable build pattern
      */
-    public Field37C setNumberofDaysMonths(String component4) {
+    public Field37C setNumber(String component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Set the Number of Days/Months (component 4) from a Long object.
+     * Set the Number (component 4) from a Long object.
      *
      * @see #setComponent4(java.lang.Long)
      *
-     * @param component4 Long with the Number of Days/Months content to set
+     * @param component4 Long with the Number content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field37C setNumberofDaysMonths(java.lang.Long component4) {
+    public Field37C setNumber(java.lang.Long component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Alternative method setter for field's Number of Days/Months (component 4) as as Number
+     * Alternative method setter for field's Number (component 4) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component4 the Number with the Number of Days/Months content to set
+     * @param component4 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumberofDaysMonths(java.lang.Long)
+     * @see #setNumber(java.lang.Long)
      */
-    public Field37C setNumberofDaysMonths(java.lang.Number component4) {
+    public Field37C setNumber(java.lang.Number component4) {
         return setComponent4(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number
+     *
+     * @see #setNumber(String)
+     *
+     * @param component4 the Number to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field37C setNumberofDaysMonths(String component4) {
+        return setNumber(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number from a Long object.
+     *
+     * @see #setComponent4(java.lang.Long)
+     *
+     * @param component4 Long with the Number content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field37C setNumberofDaysMonths(java.lang.Long component4) {
+        return setNumber(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component4 the Number with the Number content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field37C setNumberofDaysMonths(java.lang.Number component4) {
+        return setNumber(component4);
     }
 
     /**
@@ -1022,22 +1200,40 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
             field.setComponent1(jsonObject.get("rate").getAsString());
         }
 
-        // **** COMPONENT 2 - Date
+        // **** COMPONENT 2 - End Date
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("date") != null) {
             field.setComponent2(jsonObject.get("date").getAsString());
         }
 
-        // **** COMPONENT 3 - D/M Mark
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("endDate") != null) {
+            field.setComponent2(jsonObject.get("endDate").getAsString());
+        }
 
+        // **** COMPONENT 3 - Period
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("dMMark") != null) {
             field.setComponent3(jsonObject.get("dMMark").getAsString());
         }
 
-        // **** COMPONENT 4 - Number of Days/Months
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("period") != null) {
+            field.setComponent3(jsonObject.get("period").getAsString());
+        }
 
+        // **** COMPONENT 4 - Number
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("numberofDaysMonths") != null) {
             field.setComponent4(jsonObject.get("numberofDaysMonths").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("number") != null) {
+            field.setComponent4(jsonObject.get("number").getAsString());
         }
 
         // **** COMPONENT 5 - Information

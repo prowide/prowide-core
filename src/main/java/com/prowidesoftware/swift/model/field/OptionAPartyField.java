@@ -72,8 +72,17 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
     public static final Integer ACCOUNT = 2;
 
     /**
-     * Component number for the BIC subfield
+     * Component number for the Identifier Code subfield
      */
+    public static final Integer IDENTIFIER_CODE = 3;
+
+    /**
+     * Component number for the BIC subfield
+     *
+     * Use <code>IDENTIFIER_CODE</code> instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public static final Integer BIC = 3;
 
     /**
@@ -265,7 +274,7 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
         List<String> result = new ArrayList<>();
         result.add("D/C Mark");
         result.add("Account");
-        result.add("BIC");
+        result.add("Identifier Code");
         return result;
     }
 
@@ -279,7 +288,7 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "dCMark");
         result.put(2, "account");
-        result.put(3, "bIC");
+        result.put(3, "identifierCode");
         return result;
     }
 
@@ -347,21 +356,49 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
     }
 
     /**
-     * Gets the BIC (component3).
+     * Gets the Identifier Code (component3).
      *
      * @return the BIC from component3
      */
+    public String getIdentifierCode() {
+        return getComponent3();
+    }
+
+    /**
+     * Get the Identifier Code (component3) as BIC
+     *
+     * @return the BIC from component3 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
+        return getComponent3AsBIC();
+    }
+
+    /**
+     * Gets the BIC (component3).
+     *
+     * Use <code>getIdentifierCode</code> instead
+     *
+     * @return the BIC from component3
+     * @see #getIdentifierCode()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public String getBIC() {
-        return getComponent(3);
+        return getComponent3();
     }
 
     /**
      * Get the BIC (component3) as BIC
      *
+     * Use <code>getIdentifierCodeAsBIC</code> instead
+     *
      * @return the BIC from component3 converted to BIC or null if cannot be converted
+     * @see #getIdentifierCodeAsBIC()
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-        return SwiftFormatUtils.getBIC(getComponent(3));
+        return getComponent3AsBIC();
     }
 
     @Override

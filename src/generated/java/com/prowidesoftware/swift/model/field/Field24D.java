@@ -104,6 +104,12 @@ public class Field24D extends Field implements Serializable {
 	public static final Integer CODE = 1;
 
 	/**
+     * Alternative constant name for field's Code Component number
+     * @see #CODE
+     */
+    public static final Integer METHOD = 1;
+
+	/**
 	 * Component number for the Additional Information subfield
 	 */
 	public static final Integer ADDITIONAL_INFORMATION = 2;
@@ -355,6 +361,15 @@ public class Field24D extends Field implements Serializable {
     }
 
     /**
+     * Alternative method getter for field's Code
+     * @see #getCode()
+     * @since 9.2.7
+     */
+    public String getMethod() {
+        return getCode();
+    }
+
+    /**
      * Gets the component 2 (Additional Information).
      * @return the component 2
      */
@@ -389,6 +404,18 @@ public class Field24D extends Field implements Serializable {
      */
     public Field24D setCode(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Code
+     *
+     * @see #setCode(String)
+     *
+     * @param component1 the Code to set
+     * @return the field object to enable build pattern
+     */
+    public Field24D setMethod(String component1) {
+        return setCode(component1);
     }
 
     /**
@@ -500,6 +527,12 @@ public class Field24D extends Field implements Serializable {
 
         // **** COMPONENT 1 - Code
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("method") != null) {
+            field.setComponent1(jsonObject.get("method").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("code") != null) {
             field.setComponent1(jsonObject.get("code").getAsString());
         }

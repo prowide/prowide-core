@@ -109,9 +109,21 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 	public static final Integer CODE_1 = 1;
 
 	/**
+     * Alternative constant name for field's Code 1 Component number
+     * @see #CODE_1
+     */
+    public static final Integer BUY_SELL_INDICATOR = 1;
+
+	/**
 	 * Component number for the Code 2 subfield
 	 */
 	public static final Integer CODE_2 = 2;
+
+	/**
+     * Alternative constant name for field's Code 2 Component number
+     * @see #CODE_2
+     */
+    public static final Integer CALL_PUT_INDICATOR = 2;
 
 	/**
 	 * Component number for the Code 3 subfield
@@ -119,9 +131,21 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 	public static final Integer CODE_3 = 3;
 
 	/**
+     * Alternative constant name for field's Code 3 Component number
+     * @see #CODE_3
+     */
+    public static final Integer STYLE_INDICATOR = 3;
+
+	/**
 	 * Component number for the Currency subfield
 	 */
 	public static final Integer CURRENCY = 4;
+
+	/**
+     * Alternative constant name for field's Currency Component number
+     * @see #CURRENCY
+     */
+    public static final Integer MANUAL_AUTOMATIC_INDICATOR = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -219,14 +243,18 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
-        if (getComponent2() != null) {
-            result.append("/").append(getComponent2());
-        }
-        if (getComponent3() != null) {
-            result.append("/").append(getComponent3());
-        }
-        if (getComponent4() != null) {
-            result.append("/").append(getComponent4());
+        if (getComponent2() != null || getComponent3() != null || getComponent4() != null) {
+            result.append("/");
+            if (getComponent2() != null) {
+                result.append(getComponent2());
+            }
+            result.append("/");
+            if (getComponent3() != null) {
+                result.append(getComponent3());
+            }
+            if (getComponent4() != null) {
+                result.append("/").append(getComponent4());
+            }
         }
         return result.toString();
     }
@@ -402,6 +430,15 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
+     * Alternative method getter for field's Code 1
+     * @see #getCode1()
+     * @since 9.2.7
+     */
+    public String getBuySellIndicator() {
+        return getCode1();
+    }
+
+    /**
      * Gets the component 2 (Code 2).
      * @return the component 2
      */
@@ -418,6 +455,15 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
+     * Alternative method getter for field's Code 2
+     * @see #getCode2()
+     * @since 9.2.7
+     */
+    public String getCallPutIndicator() {
+        return getCode2();
+    }
+
+    /**
      * Gets the component 3 (Code 3).
      * @return the component 3
      */
@@ -431,6 +477,15 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      */
     public String getCode3() {
         return getComponent3();
+    }
+
+    /**
+     * Alternative method getter for field's Code 3
+     * @see #getCode3()
+     * @since 9.2.7
+     */
+    public String getStyleIndicator() {
+        return getCode3();
     }
 
     /**
@@ -459,11 +514,29 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
+     * Alternative method getter for field's Currency
+     * @see #getCurrency()
+     * @since 9.2.7
+     */
+    public String getManualAutomaticIndicator() {
+        return getCurrency();
+    }
+
+    /**
      * Get the Currency (component 4) as Currency
      * @return the Currency from component 4 converted to Currency or null if cannot be converted
      */
     public java.util.Currency getCurrencyAsCurrency() {
         return getComponent4AsCurrency();
+    }
+
+    /**
+     * Alternative method getter for field's Currency as Currency
+     * @see #getCurrencyAsCurrency()
+     * @since 9.2.7
+     */
+    public java.util.Currency getManualAutomaticIndicatorAsCurrency() {
+        return getCurrencyAsCurrency();
     }
 
     /**
@@ -488,6 +561,18 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
+     * Alternative method setter for field's Code 1
+     *
+     * @see #setCode1(String)
+     *
+     * @param component1 the Code 1 to set
+     * @return the field object to enable build pattern
+     */
+    public Field23 setBuySellIndicator(String component1) {
+        return setCode1(component1);
+    }
+
+    /**
      * Set the component 2 (Code 2).
      *
      * @param component2 the Code 2 to set
@@ -509,6 +594,18 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
+     * Alternative method setter for field's Code 2
+     *
+     * @see #setCode2(String)
+     *
+     * @param component2 the Code 2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field23 setCallPutIndicator(String component2) {
+        return setCode2(component2);
+    }
+
+    /**
      * Set the component 3 (Code 3).
      *
      * @param component3 the Code 3 to set
@@ -527,6 +624,18 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      */
     public Field23 setCode3(String component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative method setter for field's Code 3
+     *
+     * @see #setCode3(String)
+     *
+     * @param component3 the Code 3 to set
+     * @return the field object to enable build pattern
+     */
+    public Field23 setStyleIndicator(String component3) {
+        return setCode3(component3);
     }
 
     /**
@@ -571,6 +680,30 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      */
     public Field23 setCurrency(java.util.Currency component4) {
         return setComponent4(component4);
+    }
+
+    /**
+     * Alternative method setter for field's Currency
+     *
+     * @see #setCurrency(String)
+     *
+     * @param component4 the Currency to set
+     * @return the field object to enable build pattern
+     */
+    public Field23 setManualAutomaticIndicator(String component4) {
+        return setCurrency(component4);
+    }
+
+    /**
+     * Alternative method setter for field's Currency from a Currency object.
+     *
+     * @see #setComponent4(java.util.Currency)
+     *
+     * @param component4 Currency with the Currency content to set
+     * @return the field object to enable build pattern
+     */
+    public Field23 setManualAutomaticIndicator(java.util.Currency component4) {
+        return setCurrency(component4);
     }
 
 
@@ -685,24 +818,48 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
         // **** COMPONENT 1 - Code 1
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("buySellIndicator") != null) {
+            field.setComponent1(jsonObject.get("buySellIndicator").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("code1") != null) {
             field.setComponent1(jsonObject.get("code1").getAsString());
         }
 
         // **** COMPONENT 2 - Code 2
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("callPutIndicator") != null) {
+            field.setComponent2(jsonObject.get("callPutIndicator").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("code2") != null) {
             field.setComponent2(jsonObject.get("code2").getAsString());
         }
 
         // **** COMPONENT 3 - Code 3
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("styleIndicator") != null) {
+            field.setComponent3(jsonObject.get("styleIndicator").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("code3") != null) {
             field.setComponent3(jsonObject.get("code3").getAsString());
         }
 
         // **** COMPONENT 4 - Currency
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("manualAutomaticIndicator") != null) {
+            field.setComponent4(jsonObject.get("manualAutomaticIndicator").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("currency") != null) {
             field.setComponent4(jsonObject.get("currency").getAsString());
         }

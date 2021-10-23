@@ -737,4 +737,57 @@ public class Field95L extends Field implements Serializable, GenericField {
     }
 
 
+	/**
+	 * Component number for the Legal Entity Identifier
+	 *
+	 * <em>IMPORTANT</em>: this constant is kept for (future) compatibility, but getting component 2
+	 * will return only part of the Legal Entity Identifier (the Code).
+     * @since 9.2.7
+	 */
+	public static final Integer LEGAL_ENTITY_IDENTIFIER = 2;
+
+	/**
+	 * Gets the Legal Entity Identifier (components 2 and 3) as a unit
+	 *
+	 * <em>Note</em> this method was created for (future) compatibility.
+	 *
+	 * @return the concatenated values of component 2 and 3
+     * @since 9.2.7
+	 */
+	public String getLegalEntityIdentifier() {
+
+        // if both empty => just nothing
+        if (StringUtils.isBlank(getComponent2()) && StringUtils.isBlank(getComponent3())) {
+            return null;
+        }
+
+        // build
+        final StringBuilder result = new StringBuilder();
+        append(result, 2);
+        append(result, 3);
+        return result.toString();
+	}
+
+	/**
+	 * Sets the Legal Entity Identifier (components 2 and 3) as a unit
+	 *
+	 * <em>Note</em> this method was created for (future) compatibility.
+     *
+	 * @param legalEntityIdentifier the new expected value for components 2 and 3 concatenated
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+	 */
+	public Field95L setLegalEntityIdentifier(final String legalEntityIdentifier) {
+
+        setComponent2(null);
+        setComponent3( (String) null);
+        if (legalEntityIdentifier != null) {
+            setComponent2(StringUtils.substring(legalEntityIdentifier, 0, 18));
+            if (legalEntityIdentifier.length() > 18) {
+                setComponent3(StringUtils.substring(legalEntityIdentifier, 18));
+            }
+        }
+        return this;
+	}
+
 }

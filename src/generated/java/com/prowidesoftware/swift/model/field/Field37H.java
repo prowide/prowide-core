@@ -104,9 +104,17 @@ public class Field37H extends Field implements Serializable, AmountContainer {
 	public static final String TYPES_PATTERN = "SSI";
 
 	/**
-	 * Component number for the D/C Mark subfield
+	 * Component number for the Indicator subfield
 	 */
-	public static final Integer DC_MARK = 1;
+	public static final Integer INDICATOR = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Indicator Component number
+	 * @see #INDICATOR
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer DC_MARK = 1;
 
 	/**
 	 * Component number for the Sign subfield
@@ -344,7 +352,7 @@ public class Field37H extends Field implements Serializable, AmountContainer {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("D/C Mark");
+        result.add("Indicator");
         result.add("Sign");
         result.add("Rate");
         return result;
@@ -357,7 +365,7 @@ public class Field37H extends Field implements Serializable, AmountContainer {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "dCMark");
+        result.put(1, "indicator");
         result.put(2, "sign");
         result.put(3, "rate");
         return result;
@@ -365,7 +373,7 @@ public class Field37H extends Field implements Serializable, AmountContainer {
 
 
     /**
-     * Gets the component 1 (D/C Mark).
+     * Gets the component 1 (Indicator).
      * @return the component 1
      */
     public String getComponent1() {
@@ -373,11 +381,22 @@ public class Field37H extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets the D/C Mark (component 1).
-     * @return the D/C Mark from component 1
+     * Gets the Indicator (component 1).
+     * @return the Indicator from component 1
      */
-    public String getDCMark() {
+    public String getIndicator() {
         return getComponent1();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Indicator
+     * @see #getIndicator()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getDCMark() {
+        return getIndicator();
     }
 
     /**
@@ -462,9 +481,9 @@ public class Field37H extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the component 1 (D/C Mark).
+     * Set the component 1 (Indicator).
      *
-     * @param component1 the D/C Mark to set
+     * @param component1 the Indicator to set
      * @return the field object to enable build pattern
      */
     public Field37H setComponent1(String component1) {
@@ -473,13 +492,27 @@ public class Field37H extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the D/C Mark (component 1).
+     * Set the Indicator (component 1).
      *
-     * @param component1 the D/C Mark to set
+     * @param component1 the Indicator to set
      * @return the field object to enable build pattern
      */
-    public Field37H setDCMark(String component1) {
+    public Field37H setIndicator(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Indicator
+     *
+     * @see #setIndicator(String)
+     *
+     * @param component1 the Indicator to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field37H setDCMark(String component1) {
+        return setIndicator(component1);
     }
 
     /**
@@ -703,10 +736,16 @@ public class Field37H extends Field implements Serializable, AmountContainer {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - D/C Mark
+        // **** COMPONENT 1 - Indicator
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("dCMark") != null) {
             field.setComponent1(jsonObject.get("dCMark").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("indicator") != null) {
+            field.setComponent1(jsonObject.get("indicator").getAsString());
         }
 
         // **** COMPONENT 2 - Sign

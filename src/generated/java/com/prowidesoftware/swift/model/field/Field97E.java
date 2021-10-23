@@ -105,9 +105,17 @@ public class Field97E extends Field implements Serializable, GenericField {
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Account subfield
+	 * Component number for the International Bank Account Number subfield
 	 */
-	public static final Integer ACCOUNT = 2;
+	public static final Integer INTERNATIONAL_BANK_ACCOUNT_NUMBER = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's International Bank Account Number Component number
+	 * @see #INTERNATIONAL_BANK_ACCOUNT_NUMBER
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer ACCOUNT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -319,7 +327,7 @@ public class Field97E extends Field implements Serializable, GenericField {
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("Account");
+        result.add("International Bank Account Number");
         return result;
     }
 
@@ -331,7 +339,7 @@ public class Field97E extends Field implements Serializable, GenericField {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "account");
+        result.put(2, "internationalBankAccountNumber");
         return result;
     }
 
@@ -353,7 +361,7 @@ public class Field97E extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 2 (Account).
+     * Gets the component 2 (International Bank Account Number).
      * @return the component 2
      */
     public String getComponent2() {
@@ -361,10 +369,10 @@ public class Field97E extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the Account (component 2) removing its starting slashes if any.
-     * @return the Account from component 2
+     * Gets the International Bank Account Number (component 2) removing its starting slashes if any.
+     * @return the International Bank Account Number from component 2
      */
-    public String getAccount() {
+    public String getInternationalBankAccountNumber() {
         String account = getComponent(2);
         if (account != null) {
             for(int i = 0; i < account.length(); i++) {
@@ -375,6 +383,17 @@ public class Field97E extends Field implements Serializable, GenericField {
             return "";
         }
         return null;
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's International Bank Account Number
+     * @see #getInternationalBankAccountNumber()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAccount() {
+        return getInternationalBankAccountNumber();
     }
 
     /**
@@ -399,9 +418,9 @@ public class Field97E extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 2 (Account).
+     * Set the component 2 (International Bank Account Number).
      *
-     * @param component2 the Account to set
+     * @param component2 the International Bank Account Number to set
      * @return the field object to enable build pattern
      */
     public Field97E setComponent2(String component2) {
@@ -410,13 +429,27 @@ public class Field97E extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Account (component 2).
+     * Set the International Bank Account Number (component 2).
      *
-     * @param component2 the Account to set
+     * @param component2 the International Bank Account Number to set
      * @return the field object to enable build pattern
      */
-    public Field97E setAccount(String component2) {
+    public Field97E setInternationalBankAccountNumber(String component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's International Bank Account Number
+     *
+     * @see #setInternationalBankAccountNumber(String)
+     *
+     * @param component2 the International Bank Account Number to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field97E setAccount(String component2) {
+        return setInternationalBankAccountNumber(component2);
     }
 
 
@@ -545,10 +578,16 @@ public class Field97E extends Field implements Serializable, GenericField {
             field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - Account
+        // **** COMPONENT 2 - International Bank Account Number
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("account") != null) {
             field.setComponent2(jsonObject.get("account").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("internationalBankAccountNumber") != null) {
+            field.setComponent2(jsonObject.get("internationalBankAccountNumber").getAsString());
         }
 
         return field;

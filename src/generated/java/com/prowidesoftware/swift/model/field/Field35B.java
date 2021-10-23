@@ -114,9 +114,33 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 	public static final Integer ISIN = 2;
 
 	/**
+     * Alternative constant name for field's ISIN Component number
+     * @see #ISIN
+     */
+    public static final Integer IDENTIFICATION_OF_INSTRUMENT = 2;
+
+	/**
+     * Alternative constant name for field's ISIN Component number
+     * @see #ISIN
+     */
+    public static final Integer IDENTIFICATION_OF_SECURITY = 2;
+
+	/**
 	 * Component number for the Description subfield
 	 */
 	public static final Integer DESCRIPTION = 3;
+
+	/**
+     * Alternative constant name for field's Description Component number
+     * @see #DESCRIPTION
+     */
+    public static final Integer DESCRIPTION_OF_INSTRUMENT = 3;
+
+	/**
+     * Alternative constant name for field's Description Component number
+     * @see #DESCRIPTION
+     */
+    public static final Integer DESCRIPTION_OF_SECURITY = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -430,6 +454,24 @@ public class Field35B extends Field implements Serializable, MultiLineField {
     }
 
     /**
+     * Alternative method getter for field's ISIN
+     * @see #getISIN()
+     * @since 9.2.7
+     */
+    public String getIdentificationOfInstrument() {
+        return getISIN();
+    }
+
+    /**
+     * Alternative method getter for field's ISIN
+     * @see #getISIN()
+     * @since 9.2.7
+     */
+    public String getIdentificationOfSecurity() {
+        return getISIN();
+    }
+
+    /**
      * Gets the component 3 (Description).
      * @return the component 3
      */
@@ -443,6 +485,24 @@ public class Field35B extends Field implements Serializable, MultiLineField {
      */
     public String getDescriptionLine1() {
         return getComponent3();
+    }
+
+    /**
+     * Alternative method getter for field's Description
+     * @see #getDescriptionLine1()
+     * @since 9.2.7
+     */
+    public String getDescriptionOfInstrumentLine1() {
+        return getDescriptionLine1();
+    }
+
+    /**
+     * Alternative method getter for field's Description
+     * @see #getDescriptionLine1()
+     * @since 9.2.7
+     */
+    public String getDescriptionOfSecurityLine1() {
+        return getDescriptionLine1();
     }
 
     /**
@@ -474,6 +534,52 @@ public class Field35B extends Field implements Serializable, MultiLineField {
     }
 
     /**
+     * Alternative method getter for concatenation
+     * of component 3 to component 6 joined together with a copy of the
+     * specified delimiter.
+     * @return the Description from components
+     * @see #getDescription()
+     */
+    public String getDescriptionOfInstrument() {
+        return getDescription();
+    }
+
+    /**
+     * Alternative method getter for concatenation
+     * of component 3 to component 6 joined together with a copy of the
+     * specified delimiter.
+     * @param deli the delimiter that separates each component
+     * @return the Description from components
+     * @see #getDescription()
+     */
+    public String getDescriptionOfInstrument(CharSequence deli) {
+        return getDescription(deli);
+    }
+
+    /**
+     * Alternative method getter for concatenation
+     * of component 3 to component 6 joined together with a copy of the
+     * specified delimiter.
+     * @return the Description from components
+     * @see #getDescription()
+     */
+    public String getDescriptionOfSecurity() {
+        return getDescription();
+    }
+
+    /**
+     * Alternative method getter for concatenation
+     * of component 3 to component 6 joined together with a copy of the
+     * specified delimiter.
+     * @param deli the delimiter that separates each component
+     * @return the Description from components
+     * @see #getDescription()
+     */
+    public String getDescriptionOfSecurity(CharSequence deli) {
+        return getDescription(deli);
+    }
+
+    /**
      * Gets the component 4 (Description 2).
      * @return the component 4
      */
@@ -487,6 +593,24 @@ public class Field35B extends Field implements Serializable, MultiLineField {
      */
     public String getDescriptionLine2() {
         return getComponent4();
+    }
+
+    /**
+     * Alternative method getter for field's Description 2
+     * @see #getDescriptionLine2()
+     * @since 9.2.7
+     */
+    public String getDescriptionOfInstrumentLine2() {
+        return getDescriptionLine2();
+    }
+
+    /**
+     * Alternative method getter for field's Description 2
+     * @see #getDescriptionLine2()
+     * @since 9.2.7
+     */
+    public String getDescriptionOfSecurityLine2() {
+        return getDescriptionLine2();
     }
 
     /**
@@ -506,6 +630,24 @@ public class Field35B extends Field implements Serializable, MultiLineField {
     }
 
     /**
+     * Alternative method getter for field's Description 3
+     * @see #getDescriptionLine3()
+     * @since 9.2.7
+     */
+    public String getDescriptionOfInstrumentLine3() {
+        return getDescriptionLine3();
+    }
+
+    /**
+     * Alternative method getter for field's Description 3
+     * @see #getDescriptionLine3()
+     * @since 9.2.7
+     */
+    public String getDescriptionOfSecurityLine3() {
+        return getDescriptionLine3();
+    }
+
+    /**
      * Gets the component 6 (Description 4).
      * @return the component 6
      */
@@ -519,6 +661,24 @@ public class Field35B extends Field implements Serializable, MultiLineField {
      */
     public String getDescriptionLine4() {
         return getComponent6();
+    }
+
+    /**
+     * Alternative method getter for field's Description 4
+     * @see #getDescriptionLine4()
+     * @since 9.2.7
+     */
+    public String getDescriptionOfInstrumentLine4() {
+        return getDescriptionLine4();
+    }
+
+    /**
+     * Alternative method getter for field's Description 4
+     * @see #getDescriptionLine4()
+     * @since 9.2.7
+     */
+    public String getDescriptionOfSecurityLine4() {
+        return getDescriptionLine4();
     }
 
     /**
@@ -564,6 +724,30 @@ public class Field35B extends Field implements Serializable, MultiLineField {
     }
 
     /**
+     * Alternative method setter for field's ISIN
+     *
+     * @see #setISIN(String)
+     *
+     * @param component2 the ISIN to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setIdentificationOfInstrument(String component2) {
+        return setISIN(component2);
+    }
+
+    /**
+     * Alternative method setter for field's ISIN
+     *
+     * @see #setISIN(String)
+     *
+     * @param component2 the ISIN to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setIdentificationOfSecurity(String component2) {
+        return setISIN(component2);
+    }
+
+    /**
      * Set the component 3 (Description).
      *
      * @param component3 the Description to set
@@ -585,6 +769,30 @@ public class Field35B extends Field implements Serializable, MultiLineField {
     }
 
     /**
+     * Alternative method setter for field's Description
+     *
+     * @see #setDescriptionLine1(String)
+     *
+     * @param component3 the Description to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setDescriptionOfInstrumentLine1(String component3) {
+        return setDescriptionLine1(component3);
+    }
+
+    /**
+     * Alternative method setter for field's Description
+     *
+     * @see #setDescriptionLine1(String)
+     *
+     * @param component3 the Description to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setDescriptionOfSecurityLine1(String component3) {
+        return setDescriptionLine1(component3);
+    }
+
+    /**
      * Set the Description splitting the parameter lines into components 3 to 6.
      *
      * @param value the Description to set, may contain line ends and each line will be set to its correspondent component attribute
@@ -594,6 +802,30 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         List<String> lines = SwiftParseUtils.getLines(value);
         SwiftParseUtils.setComponentsFromLines(this, 3, 4, 0, lines);
         return this;
+    }
+
+    /**
+     * Alternative method setter for
+     * the Description splitting the parameter lines into components 3 to 6.
+     *
+     * @param value the Description to set, may contain line ends and each line will be set to its correspondent component attribute
+     * @return the field object to enable build pattern
+     * @see #setDescription(String)
+     */
+    public Field35B setDescriptionOfInstrument(String value) {
+        return setDescription(value);
+    }
+
+    /**
+     * Alternative method setter for
+     * the Description splitting the parameter lines into components 3 to 6.
+     *
+     * @param value the Description to set, may contain line ends and each line will be set to its correspondent component attribute
+     * @return the field object to enable build pattern
+     * @see #setDescription(String)
+     */
+    public Field35B setDescriptionOfSecurity(String value) {
+        return setDescription(value);
     }
 
     /**
@@ -618,6 +850,30 @@ public class Field35B extends Field implements Serializable, MultiLineField {
     }
 
     /**
+     * Alternative method setter for field's Description 2
+     *
+     * @see #setDescriptionLine2(String)
+     *
+     * @param component4 the Description 2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setDescriptionOfInstrumentLine2(String component4) {
+        return setDescriptionLine2(component4);
+    }
+
+    /**
+     * Alternative method setter for field's Description 2
+     *
+     * @see #setDescriptionLine2(String)
+     *
+     * @param component4 the Description 2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setDescriptionOfSecurityLine2(String component4) {
+        return setDescriptionLine2(component4);
+    }
+
+    /**
      * Set the component 5 (Description 3).
      *
      * @param component5 the Description 3 to set
@@ -639,6 +895,30 @@ public class Field35B extends Field implements Serializable, MultiLineField {
     }
 
     /**
+     * Alternative method setter for field's Description 3
+     *
+     * @see #setDescriptionLine3(String)
+     *
+     * @param component5 the Description 3 to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setDescriptionOfInstrumentLine3(String component5) {
+        return setDescriptionLine3(component5);
+    }
+
+    /**
+     * Alternative method setter for field's Description 3
+     *
+     * @see #setDescriptionLine3(String)
+     *
+     * @param component5 the Description 3 to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setDescriptionOfSecurityLine3(String component5) {
+        return setDescriptionLine3(component5);
+    }
+
+    /**
      * Set the component 6 (Description 4).
      *
      * @param component6 the Description 4 to set
@@ -657,6 +937,30 @@ public class Field35B extends Field implements Serializable, MultiLineField {
      */
     public Field35B setDescriptionLine4(String component6) {
         return setComponent6(component6);
+    }
+
+    /**
+     * Alternative method setter for field's Description 4
+     *
+     * @see #setDescriptionLine4(String)
+     *
+     * @param component6 the Description 4 to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setDescriptionOfInstrumentLine4(String component6) {
+        return setDescriptionLine4(component6);
+    }
+
+    /**
+     * Alternative method setter for field's Description 4
+     *
+     * @see #setDescriptionLine4(String)
+     *
+     * @param component6 the Description 4 to set
+     * @return the field object to enable build pattern
+     */
+    public Field35B setDescriptionOfSecurityLine4(String component6) {
+        return setDescriptionLine4(component6);
     }
 
 
@@ -831,30 +1135,75 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
         // **** COMPONENT 2 - ISIN
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("identificationOfInstrument") != null) {
+            field.setComponent2(jsonObject.get("identificationOfInstrument").getAsString());
+        }
+        if (jsonObject.get("identificationOfSecurity") != null) {
+            field.setComponent2(jsonObject.get("identificationOfSecurity").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("iSIN") != null) {
             field.setComponent2(jsonObject.get("iSIN").getAsString());
         }
 
         // **** COMPONENT 3 - Description
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("descriptionOfInstrument") != null) {
+            field.setComponent3(jsonObject.get("descriptionOfInstrument").getAsString());
+        }
+        if (jsonObject.get("descriptionOfSecurity") != null) {
+            field.setComponent3(jsonObject.get("descriptionOfSecurity").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("description") != null) {
             field.setComponent3(jsonObject.get("description").getAsString());
         }
 
         // **** COMPONENT 4 - Description 2
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("descriptionOfInstrument2") != null) {
+            field.setComponent4(jsonObject.get("descriptionOfInstrument2").getAsString());
+        }
+        if (jsonObject.get("descriptionOfSecurity2") != null) {
+            field.setComponent4(jsonObject.get("descriptionOfSecurity2").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("description2") != null) {
             field.setComponent4(jsonObject.get("description2").getAsString());
         }
 
         // **** COMPONENT 5 - Description 3
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("descriptionOfInstrument3") != null) {
+            field.setComponent5(jsonObject.get("descriptionOfInstrument3").getAsString());
+        }
+        if (jsonObject.get("descriptionOfSecurity3") != null) {
+            field.setComponent5(jsonObject.get("descriptionOfSecurity3").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("description3") != null) {
             field.setComponent5(jsonObject.get("description3").getAsString());
         }
 
         // **** COMPONENT 6 - Description 4
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("descriptionOfInstrument4") != null) {
+            field.setComponent6(jsonObject.get("descriptionOfInstrument4").getAsString());
+        }
+        if (jsonObject.get("descriptionOfSecurity4") != null) {
+            field.setComponent6(jsonObject.get("descriptionOfSecurity4").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("description4") != null) {
             field.setComponent6(jsonObject.get("description4").getAsString());
         }

@@ -100,9 +100,17 @@ public class Field49A extends Field implements Serializable, MultiLineField {
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
-	 * Component number for the Instruction subfield
+	 * Component number for the Code subfield
 	 */
-	public static final Integer INSTRUCTION = 1;
+	public static final Integer CODE = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Code Component number
+	 * @see #CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer INSTRUCTION = 1;
 
 	/**
 	 * Component number for the Narrative subfield
@@ -324,7 +332,7 @@ public class Field49A extends Field implements Serializable, MultiLineField {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Instruction");
+        result.add("Code");
         result.add("Narrative");
         return result;
     }
@@ -336,14 +344,14 @@ public class Field49A extends Field implements Serializable, MultiLineField {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "instruction");
+        result.put(1, "code");
         result.put(2, "narrative");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Instruction).
+     * Gets the component 1 (Code).
      * @return the component 1
      */
     public String getComponent1() {
@@ -351,11 +359,22 @@ public class Field49A extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Instruction (component 1).
-     * @return the Instruction from component 1
+     * Gets the Code (component 1).
+     * @return the Code from component 1
      */
-    public String getInstruction() {
+    public String getCode() {
         return getComponent1();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Code
+     * @see #getCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getInstruction() {
+        return getCode();
     }
 
     /**
@@ -375,9 +394,9 @@ public class Field49A extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the component 1 (Instruction).
+     * Set the component 1 (Code).
      *
-     * @param component1 the Instruction to set
+     * @param component1 the Code to set
      * @return the field object to enable build pattern
      */
     public Field49A setComponent1(String component1) {
@@ -386,13 +405,27 @@ public class Field49A extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Instruction (component 1).
+     * Set the Code (component 1).
      *
-     * @param component1 the Instruction to set
+     * @param component1 the Code to set
      * @return the field object to enable build pattern
      */
-    public Field49A setInstruction(String component1) {
+    public Field49A setCode(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Code
+     *
+     * @see #setCode(String)
+     *
+     * @param component1 the Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field49A setInstruction(String component1) {
+        return setCode(component1);
     }
 
     /**
@@ -580,10 +613,16 @@ public class Field49A extends Field implements Serializable, MultiLineField {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Instruction
+        // **** COMPONENT 1 - Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("instruction") != null) {
             field.setComponent1(jsonObject.get("instruction").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("code") != null) {
+            field.setComponent1(jsonObject.get("code").getAsString());
         }
 
         // **** COMPONENT 2 - Narrative

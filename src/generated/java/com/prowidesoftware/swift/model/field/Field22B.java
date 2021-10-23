@@ -102,6 +102,18 @@ public class Field22B extends Field implements Serializable {
 	 */
 	public static final Integer TYPE = 1;
 
+	/**
+     * Alternative constant name for field's Type Component number
+     * @see #TYPE
+     */
+    public static final Integer CENTRE = 1;
+
+	/**
+     * Alternative constant name for field's Type Component number
+     * @see #TYPE
+     */
+    public static final Integer FINANCIAL_CENTRE = 1;
+
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
@@ -336,6 +348,24 @@ public class Field22B extends Field implements Serializable {
     }
 
     /**
+     * Alternative method getter for field's Type
+     * @see #getType()
+     * @since 9.2.7
+     */
+    public String getCentre() {
+        return getType();
+    }
+
+    /**
+     * Alternative method getter for field's Type
+     * @see #getType()
+     * @since 9.2.7
+     */
+    public String getFinancialCentre() {
+        return getType();
+    }
+
+    /**
      * Set the component 1 (Type).
      *
      * @param component1 the Type to set
@@ -354,6 +384,30 @@ public class Field22B extends Field implements Serializable {
      */
     public Field22B setType(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Type
+     *
+     * @see #setType(String)
+     *
+     * @param component1 the Type to set
+     * @return the field object to enable build pattern
+     */
+    public Field22B setCentre(String component1) {
+        return setType(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Type
+     *
+     * @see #setType(String)
+     *
+     * @param component1 the Type to set
+     * @return the field object to enable build pattern
+     */
+    public Field22B setFinancialCentre(String component1) {
+        return setType(component1);
     }
 
 
@@ -444,6 +498,15 @@ public class Field22B extends Field implements Serializable {
 
         // **** COMPONENT 1 - Type
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("centre") != null) {
+            field.setComponent1(jsonObject.get("centre").getAsString());
+        }
+        if (jsonObject.get("financialCentre") != null) {
+            field.setComponent1(jsonObject.get("financialCentre").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("type") != null) {
             field.setComponent1(jsonObject.get("type").getAsString());
         }

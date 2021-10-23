@@ -107,9 +107,17 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
 	public static final String TYPES_PATTERN = "MENN";
 
 	/**
-	 * Component number for the MT subfield
+	 * Component number for the MT Number subfield
 	 */
-	public static final Integer MT = 1;
+	public static final Integer MT_NUMBER = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's MT Number Component number
+	 * @see #MT_NUMBER
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer MT = 1;
 
 	/**
 	 * Component number for the Date subfield
@@ -385,7 +393,7 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("MT");
+        result.add("MT Number");
         result.add("Date");
         result.add("Session Number");
         result.add("ISN");
@@ -399,7 +407,7 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "mT");
+        result.put(1, "mTNumber");
         result.put(2, "date");
         result.put(3, "sessionNumber");
         result.put(4, "iSN");
@@ -408,7 +416,7 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
 
 
     /**
-     * Gets the component 1 (MT).
+     * Gets the component 1 (MT Number).
      * @return the component 1
      */
     public String getComponent1() {
@@ -416,11 +424,22 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Gets the MT (component 1).
-     * @return the MT from component 1
+     * Gets the MT Number (component 1).
+     * @return the MT Number from component 1
      */
-    public String getMT() {
+    public String getMTNumber() {
         return getComponent1();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's MT Number
+     * @see #getMTNumber()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getMT() {
+        return getMTNumber();
     }
 
     /**
@@ -589,9 +608,9 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Set the component 1 (MT).
+     * Set the component 1 (MT Number).
      *
-     * @param component1 the MT to set
+     * @param component1 the MT Number to set
      * @return the field object to enable build pattern
      */
     public Field11R setComponent1(String component1) {
@@ -600,13 +619,27 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Set the MT (component 1).
+     * Set the MT Number (component 1).
      *
-     * @param component1 the MT to set
+     * @param component1 the MT Number to set
      * @return the field object to enable build pattern
      */
-    public Field11R setMT(String component1) {
+    public Field11R setMTNumber(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's MT Number
+     *
+     * @see #setMTNumber(String)
+     *
+     * @param component1 the MT Number to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field11R setMT(String component1) {
+        return setMTNumber(component1);
     }
 
     /**
@@ -1021,10 +1054,16 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - MT
+        // **** COMPONENT 1 - MT Number
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("mT") != null) {
             field.setComponent1(jsonObject.get("mT").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("mTNumber") != null) {
+            field.setComponent1(jsonObject.get("mTNumber").getAsString());
         }
 
         // **** COMPONENT 2 - Date

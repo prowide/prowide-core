@@ -112,9 +112,17 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	public static final Integer CURRENCY = 1;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Price subfield
 	 */
-	public static final Integer AMOUNT = 2;
+	public static final Integer PRICE = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Price Component number
+	 * @see #PRICE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 2;
 
 	/**
 	 * Component number for the Code subfield
@@ -339,7 +347,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Currency");
-        result.add("Amount");
+        result.add("Price");
         result.add("Code");
         return result;
     }
@@ -352,7 +360,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "currency");
-        result.put(2, "amount");
+        result.put(2, "price");
         result.put(3, "code");
         return result;
     }
@@ -392,7 +400,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the component 2 (Amount).
+     * Gets the component 2 (Price).
      * @return the component 2
      */
     public String getComponent2() {
@@ -425,35 +433,71 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the Amount (component 2).
-     * @return the Amount from component 2
+     * Gets the Price (component 2).
+     * @return the Price from component 2
      */
-    public String getAmount() {
+    public String getPrice() {
         return getComponent2();
     }
 
     /**
-     * Get the Amount (component 2) as BigDecimal
-     * @return the Amount from component 2 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Price
+     * @see #getPrice()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getPrice();
+    }
+
+    /**
+     * Get the Price (component 2) as BigDecimal
+     * @return the Price from component 2 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getPriceAsBigDecimal() {
         return getComponent2AsBigDecimal();
     }
 
     /**
-     * Get the Amount (component 2) as as Number (BigDecimal)
+     * Get the Price (component 2) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @see #getPriceAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getPriceAsNumber() {
+        return getComponent2AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Price as BigDecimal
+     * @see #getPriceAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getPriceAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Price (component 2) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getPriceAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
-        return getComponent2AsNumber();
+        return getPriceAsNumber();
     }
 
     /**
@@ -517,9 +561,9 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the component 2 (Amount).
+     * Set the component 2 (Price).
      *
-     * @param component2 the Amount to set
+     * @param component2 the Price to set
      * @return the field object to enable build pattern
      */
     public Field33G setComponent2(String component2) {
@@ -538,7 +582,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
      * </ul>
      * @since 9.2.7
      *
-     * @param component2 the BigDecimal with the Amount content to set
+     * @param component2 the BigDecimal with the Price content to set
      * @return the field object to enable build pattern
      */
     public Field33G setComponent2(java.math.BigDecimal component2) {
@@ -546,13 +590,13 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Alternative method setter for field's Price (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component2 the Number with the Amount content to set
+     * @param component2 the Number with the Price content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setPrice(java.math.BigDecimal)
      */
     public Field33G setComponent2(java.lang.Number component2) {
 
@@ -575,39 +619,83 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the Amount (component 2).
+     * Set the Price (component 2).
      *
-     * @param component2 the Amount to set
+     * @param component2 the Price to set
      * @return the field object to enable build pattern
      */
-    public Field33G setAmount(String component2) {
+    public Field33G setPrice(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Amount (component 2) from a BigDecimal object.
+     * Set the Price (component 2) from a BigDecimal object.
      *
      * @see #setComponent2(java.math.BigDecimal)
      *
-     * @param component2 BigDecimal with the Amount content to set
+     * @param component2 BigDecimal with the Price content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field33G setAmount(java.math.BigDecimal component2) {
+    public Field33G setPrice(java.math.BigDecimal component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Alternative method setter for field's Price (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Amount content to set
+     * @param component2 the Number with the Price content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setPrice(java.math.BigDecimal)
      */
-    public Field33G setAmount(java.lang.Number component2) {
+    public Field33G setPrice(java.lang.Number component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Price
+     *
+     * @see #setPrice(String)
+     *
+     * @param component2 the Price to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field33G setAmount(String component2) {
+        return setPrice(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Price from a BigDecimal object.
+     *
+     * @see #setComponent2(java.math.BigDecimal)
+     *
+     * @param component2 BigDecimal with the Price content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field33G setAmount(java.math.BigDecimal component2) {
+        return setPrice(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Price (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Price content to set
+     * @return the field object to enable build pattern
+     * @see #setPrice(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field33G setAmount(java.lang.Number component2) {
+        return setPrice(component2);
     }
 
     /**
@@ -767,10 +855,16 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
             field.setComponent1(jsonObject.get("currency").getAsString());
         }
 
-        // **** COMPONENT 2 - Amount
+        // **** COMPONENT 2 - Price
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent2(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("price") != null) {
+            field.setComponent2(jsonObject.get("price").getAsString());
         }
 
         // **** COMPONENT 3 - Code

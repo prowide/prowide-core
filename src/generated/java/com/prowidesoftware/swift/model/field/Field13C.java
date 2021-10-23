@@ -107,9 +107,17 @@ public class Field13C extends Field implements Serializable {
 	public static final Integer CODE = 1;
 
 	/**
-	 * Component number for the Time subfield
+	 * Component number for the Time Indication subfield
 	 */
-	public static final Integer TIME = 2;
+	public static final Integer TIME_INDICATION = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Time Indication Component number
+	 * @see #TIME_INDICATION
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer TIME = 2;
 
 	/**
 	 * Component number for the Sign subfield
@@ -117,9 +125,17 @@ public class Field13C extends Field implements Serializable {
 	public static final Integer SIGN = 3;
 
 	/**
-	 * Component number for the Offset subfield
+	 * Component number for the Time Offset subfield
 	 */
-	public static final Integer OFFSET = 4;
+	public static final Integer TIME_OFFSET = 4;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Time Offset Component number
+	 * @see #TIME_OFFSET
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer OFFSET = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -356,9 +372,9 @@ public class Field13C extends Field implements Serializable {
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Code");
-        result.add("Time");
+        result.add("Time Indication");
         result.add("Sign");
-        result.add("Offset");
+        result.add("Time Offset");
         return result;
     }
 
@@ -370,9 +386,9 @@ public class Field13C extends Field implements Serializable {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "code");
-        result.put(2, "time");
+        result.put(2, "timeIndication");
         result.put(3, "sign");
-        result.put(4, "offset");
+        result.put(4, "timeOffset");
         return result;
     }
 
@@ -394,7 +410,7 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Gets the component 2 (Time).
+     * Gets the component 2 (Time Indication).
      * @return the component 2
      */
     public String getComponent2() {
@@ -411,19 +427,40 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Gets the Time (component 2).
-     * @return the Time from component 2
+     * Gets the Time Indication (component 2).
+     * @return the Time Indication from component 2
      */
-    public String getTime() {
+    public String getTimeIndication() {
         return getComponent2();
     }
 
     /**
-     * Get the Time (component 2) as Calendar
-     * @return the Time from component 2 converted to Calendar or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Time Indication
+     * @see #getTimeIndication()
+     * @since 9.2.7
      */
-    public java.util.Calendar getTimeAsCalendar() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getTime() {
+        return getTimeIndication();
+    }
+
+    /**
+     * Get the Time Indication (component 2) as Calendar
+     * @return the Time Indication from component 2 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getTimeIndicationAsCalendar() {
         return getComponent2AsCalendar();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Time Indication as Calendar
+     * @see #getTimeIndicationAsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getTimeAsCalendar() {
+        return getTimeIndicationAsCalendar();
     }
 
     /**
@@ -443,7 +480,7 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Gets the component 4 (Offset).
+     * Gets the component 4 (Time Offset).
      * @return the component 4
      */
     public String getComponent4() {
@@ -460,19 +497,40 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Gets the Offset (component 4).
-     * @return the Offset from component 4
+     * Gets the Time Offset (component 4).
+     * @return the Time Offset from component 4
      */
-    public String getOffset() {
+    public String getTimeOffset() {
         return getComponent4();
     }
 
     /**
-     * Get the Offset (component 4) as Calendar
-     * @return the Offset from component 4 converted to Calendar or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Time Offset
+     * @see #getTimeOffset()
+     * @since 9.2.7
      */
-    public java.util.Calendar getOffsetAsCalendar() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getOffset() {
+        return getTimeOffset();
+    }
+
+    /**
+     * Get the Time Offset (component 4) as Calendar
+     * @return the Time Offset from component 4 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getTimeOffsetAsCalendar() {
         return getComponent4AsCalendar();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Time Offset as Calendar
+     * @see #getTimeOffsetAsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getOffsetAsCalendar() {
+        return getTimeOffsetAsCalendar();
     }
 
     /**
@@ -497,9 +555,9 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Set the component 2 (Time).
+     * Set the component 2 (Time Indication).
      *
-     * @param component2 the Time to set
+     * @param component2 the Time Indication to set
      * @return the field object to enable build pattern
      */
     public Field13C setComponent2(String component2) {
@@ -510,7 +568,7 @@ public class Field13C extends Field implements Serializable {
     /**
      * Set the component2 from a Calendar object.
      *
-     * @param component2 the Calendar with the Time content to set
+     * @param component2 the Calendar with the Time Indication content to set
      * @return the field object to enable build pattern
      */
     public Field13C setComponent2(java.util.Calendar component2) {
@@ -519,25 +577,53 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Set the Time (component 2).
+     * Set the Time Indication (component 2).
      *
-     * @param component2 the Time to set
+     * @param component2 the Time Indication to set
      * @return the field object to enable build pattern
      */
-    public Field13C setTime(String component2) {
+    public Field13C setTimeIndication(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Time (component 2) from a Calendar object.
+     * Set the Time Indication (component 2) from a Calendar object.
      *
      * @see #setComponent2(java.util.Calendar)
      *
-     * @param component2 Calendar with the Time content to set
+     * @param component2 Calendar with the Time Indication content to set
      * @return the field object to enable build pattern
      */
-    public Field13C setTime(java.util.Calendar component2) {
+    public Field13C setTimeIndication(java.util.Calendar component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time Indication
+     *
+     * @see #setTimeIndication(String)
+     *
+     * @param component2 the Time Indication to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field13C setTime(String component2) {
+        return setTimeIndication(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time Indication from a Calendar object.
+     *
+     * @see #setComponent2(java.util.Calendar)
+     *
+     * @param component2 Calendar with the Time Indication content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field13C setTime(java.util.Calendar component2) {
+        return setTimeIndication(component2);
     }
 
     /**
@@ -562,9 +648,9 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Set the component 4 (Offset).
+     * Set the component 4 (Time Offset).
      *
-     * @param component4 the Offset to set
+     * @param component4 the Time Offset to set
      * @return the field object to enable build pattern
      */
     public Field13C setComponent4(String component4) {
@@ -575,7 +661,7 @@ public class Field13C extends Field implements Serializable {
     /**
      * Set the component4 from a Calendar object.
      *
-     * @param component4 the Calendar with the Offset content to set
+     * @param component4 the Calendar with the Time Offset content to set
      * @return the field object to enable build pattern
      */
     public Field13C setComponent4(java.util.Calendar component4) {
@@ -584,25 +670,53 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Set the Offset (component 4).
+     * Set the Time Offset (component 4).
      *
-     * @param component4 the Offset to set
+     * @param component4 the Time Offset to set
      * @return the field object to enable build pattern
      */
-    public Field13C setOffset(String component4) {
+    public Field13C setTimeOffset(String component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Set the Offset (component 4) from a Calendar object.
+     * Set the Time Offset (component 4) from a Calendar object.
      *
      * @see #setComponent4(java.util.Calendar)
      *
-     * @param component4 Calendar with the Offset content to set
+     * @param component4 Calendar with the Time Offset content to set
      * @return the field object to enable build pattern
      */
-    public Field13C setOffset(java.util.Calendar component4) {
+    public Field13C setTimeOffset(java.util.Calendar component4) {
         return setComponent4(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time Offset
+     *
+     * @see #setTimeOffset(String)
+     *
+     * @param component4 the Time Offset to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field13C setOffset(String component4) {
+        return setTimeOffset(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time Offset from a Calendar object.
+     *
+     * @see #setComponent4(java.util.Calendar)
+     *
+     * @param component4 Calendar with the Time Offset content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field13C setOffset(java.util.Calendar component4) {
+        return setTimeOffset(component4);
     }
 
 
@@ -697,10 +811,16 @@ public class Field13C extends Field implements Serializable {
             field.setComponent1(jsonObject.get("code").getAsString());
         }
 
-        // **** COMPONENT 2 - Time
+        // **** COMPONENT 2 - Time Indication
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("time") != null) {
             field.setComponent2(jsonObject.get("time").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("timeIndication") != null) {
+            field.setComponent2(jsonObject.get("timeIndication").getAsString());
         }
 
         // **** COMPONENT 3 - Sign
@@ -709,10 +829,16 @@ public class Field13C extends Field implements Serializable {
             field.setComponent3(jsonObject.get("sign").getAsString());
         }
 
-        // **** COMPONENT 4 - Offset
+        // **** COMPONENT 4 - Time Offset
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("offset") != null) {
             field.setComponent4(jsonObject.get("offset").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("timeOffset") != null) {
+            field.setComponent4(jsonObject.get("timeOffset").getAsString());
         }
 
         return field;

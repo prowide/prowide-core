@@ -108,9 +108,17 @@ public class Field19C extends Field implements Serializable, AmountContainer {
 	public static final Integer SIGN = 1;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Adjustment Factor subfield
 	 */
-	public static final Integer AMOUNT = 2;
+	public static final Integer ADJUSTMENT_FACTOR = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Adjustment Factor Component number
+	 * @see #ADJUSTMENT_FACTOR
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -327,7 +335,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Sign");
-        result.add("Amount");
+        result.add("Adjustment Factor");
         return result;
     }
 
@@ -339,7 +347,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "sign");
-        result.put(2, "amount");
+        result.put(2, "adjustmentFactor");
         return result;
     }
 
@@ -361,7 +369,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets the component 2 (Amount).
+     * Gets the component 2 (Adjustment Factor).
      * @return the component 2
      */
     public String getComponent2() {
@@ -394,35 +402,71 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets the Amount (component 2).
-     * @return the Amount from component 2
+     * Gets the Adjustment Factor (component 2).
+     * @return the Adjustment Factor from component 2
      */
-    public String getAmount() {
+    public String getAdjustmentFactor() {
         return getComponent2();
     }
 
     /**
-     * Get the Amount (component 2) as BigDecimal
-     * @return the Amount from component 2 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Adjustment Factor
+     * @see #getAdjustmentFactor()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getAdjustmentFactor();
+    }
+
+    /**
+     * Get the Adjustment Factor (component 2) as BigDecimal
+     * @return the Adjustment Factor from component 2 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getAdjustmentFactorAsBigDecimal() {
         return getComponent2AsBigDecimal();
     }
 
     /**
-     * Get the Amount (component 2) as as Number (BigDecimal)
+     * Get the Adjustment Factor (component 2) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @see #getAdjustmentFactorAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getAdjustmentFactorAsNumber() {
+        return getComponent2AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Adjustment Factor as BigDecimal
+     * @see #getAdjustmentFactorAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getAdjustmentFactorAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Adjustment Factor (component 2) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getAdjustmentFactorAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
-        return getComponent2AsNumber();
+        return getAdjustmentFactorAsNumber();
     }
 
     /**
@@ -447,9 +491,9 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the component 2 (Amount).
+     * Set the component 2 (Adjustment Factor).
      *
-     * @param component2 the Amount to set
+     * @param component2 the Adjustment Factor to set
      * @return the field object to enable build pattern
      */
     public Field19C setComponent2(String component2) {
@@ -468,7 +512,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * </ul>
      * @since 9.2.7
      *
-     * @param component2 the BigDecimal with the Amount content to set
+     * @param component2 the BigDecimal with the Adjustment Factor content to set
      * @return the field object to enable build pattern
      */
     public Field19C setComponent2(java.math.BigDecimal component2) {
@@ -476,13 +520,13 @@ public class Field19C extends Field implements Serializable, AmountContainer {
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Alternative method setter for field's Adjustment Factor (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component2 the Number with the Amount content to set
+     * @param component2 the Number with the Adjustment Factor content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setAdjustmentFactor(java.math.BigDecimal)
      */
     public Field19C setComponent2(java.lang.Number component2) {
 
@@ -505,39 +549,83 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the Amount (component 2).
+     * Set the Adjustment Factor (component 2).
      *
-     * @param component2 the Amount to set
+     * @param component2 the Adjustment Factor to set
      * @return the field object to enable build pattern
      */
-    public Field19C setAmount(String component2) {
+    public Field19C setAdjustmentFactor(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Amount (component 2) from a BigDecimal object.
+     * Set the Adjustment Factor (component 2) from a BigDecimal object.
      *
      * @see #setComponent2(java.math.BigDecimal)
      *
-     * @param component2 BigDecimal with the Amount content to set
+     * @param component2 BigDecimal with the Adjustment Factor content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field19C setAmount(java.math.BigDecimal component2) {
+    public Field19C setAdjustmentFactor(java.math.BigDecimal component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Alternative method setter for field's Adjustment Factor (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Amount content to set
+     * @param component2 the Number with the Adjustment Factor content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setAdjustmentFactor(java.math.BigDecimal)
      */
-    public Field19C setAmount(java.lang.Number component2) {
+    public Field19C setAdjustmentFactor(java.lang.Number component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Adjustment Factor
+     *
+     * @see #setAdjustmentFactor(String)
+     *
+     * @param component2 the Adjustment Factor to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field19C setAmount(String component2) {
+        return setAdjustmentFactor(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Adjustment Factor from a BigDecimal object.
+     *
+     * @see #setComponent2(java.math.BigDecimal)
+     *
+     * @param component2 BigDecimal with the Adjustment Factor content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field19C setAmount(java.math.BigDecimal component2) {
+        return setAdjustmentFactor(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Adjustment Factor (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Adjustment Factor content to set
+     * @return the field object to enable build pattern
+     * @see #setAdjustmentFactor(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field19C setAmount(java.lang.Number component2) {
+        return setAdjustmentFactor(component2);
     }
 
 
@@ -652,10 +740,16 @@ public class Field19C extends Field implements Serializable, AmountContainer {
             field.setComponent1(jsonObject.get("sign").getAsString());
         }
 
-        // **** COMPONENT 2 - Amount
+        // **** COMPONENT 2 - Adjustment Factor
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent2(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("adjustmentFactor") != null) {
+            field.setComponent2(jsonObject.get("adjustmentFactor").getAsString());
         }
 
         return field;

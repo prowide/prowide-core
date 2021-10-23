@@ -198,9 +198,9 @@ public class Field88A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Set the component 3 (BIC).
+     * Set the component 3 (Identifier Code).
      *
-     * @param component3 the BIC to set
+     * @param component3 the Identifier Code to set
      * @return the field object to enable build pattern
      */
     public Field88A setComponent3(String component3) {
@@ -211,7 +211,7 @@ public class Field88A extends OptionAPartyField implements Serializable, BICCont
     /**
      * Set the component3 from a BIC object.
      *
-     * @param component3 the BIC with the BIC content to set
+     * @param component3 the BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
     public Field88A setComponent3(com.prowidesoftware.swift.model.BIC component3) {
@@ -220,25 +220,53 @@ public class Field88A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Set the BIC (component 3).
+     * Set the Identifier Code (component 3).
      *
-     * @param component3 the BIC to set
+     * @param component3 the Identifier Code to set
      * @return the field object to enable build pattern
      */
-    public Field88A setBIC(String component3) {
+    public Field88A setIdentifierCode(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the BIC (component 3) from a BIC object.
+     * Set the Identifier Code (component 3) from a BIC object.
      *
      * @see #setComponent3(com.prowidesoftware.swift.model.BIC)
      *
-     * @param component3 BIC with the BIC content to set
+     * @param component3 BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
-    public Field88A setBIC(com.prowidesoftware.swift.model.BIC component3) {
+    public Field88A setIdentifierCode(com.prowidesoftware.swift.model.BIC component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code
+     *
+     * @see #setIdentifierCode(String)
+     *
+     * @param component3 the Identifier Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field88A setBIC(String component3) {
+        return setIdentifierCode(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code from a BIC object.
+     *
+     * @see #setComponent3(com.prowidesoftware.swift.model.BIC)
+     *
+     * @param component3 BIC with the Identifier Code content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field88A setBIC(com.prowidesoftware.swift.model.BIC component3) {
+        return setIdentifierCode(component3);
     }
 
 
@@ -425,10 +453,16 @@ public class Field88A extends OptionAPartyField implements Serializable, BICCont
             field.setComponent2(jsonObject.get("account").getAsString());
         }
 
-        // **** COMPONENT 3 - BIC
+        // **** COMPONENT 3 - Identifier Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("bIC") != null) {
             field.setComponent3(jsonObject.get("bIC").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("identifierCode") != null) {
+            field.setComponent3(jsonObject.get("identifierCode").getAsString());
         }
 
         return field;

@@ -111,24 +111,56 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Start Date subfield
+	 * Component number for the Date1 subfield
 	 */
-	public static final Integer START_DATE = 2;
+	public static final Integer DATE1 = 2;
 
 	/**
-	 * Component number for the Start Time subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date1 Component number
+	 * @see #DATE1
 	 */
-	public static final Integer START_TIME = 3;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer START_DATE = 2;
 
 	/**
-	 * Component number for the End Date subfield
+	 * Component number for the Time1 subfield
 	 */
-	public static final Integer END_DATE = 4;
+	public static final Integer TIME1 = 3;
 
 	/**
-	 * Component number for the End Time subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Time1 Component number
+	 * @see #TIME1
 	 */
-	public static final Integer END_TIME = 5;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer START_TIME = 3;
+
+	/**
+	 * Component number for the Date2 subfield
+	 */
+	public static final Integer DATE2 = 4;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date2 Component number
+	 * @see #DATE2
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer END_DATE = 4;
+
+	/**
+	 * Component number for the Time2 subfield
+	 */
+	public static final Integer TIME2 = 5;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Time2 Component number
+	 * @see #TIME2
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer END_TIME = 5;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -390,10 +422,10 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("Start Date");
-        result.add("Start Time");
-        result.add("End Date");
-        result.add("End Time");
+        result.add("Date1");
+        result.add("Time1");
+        result.add("Date2");
+        result.add("Time2");
         return result;
     }
 
@@ -405,10 +437,10 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "startDate");
-        result.put(3, "startTime");
-        result.put(4, "endDate");
-        result.put(5, "endTime");
+        result.put(2, "date1");
+        result.put(3, "time1");
+        result.put(4, "date2");
+        result.put(5, "time2");
         return result;
     }
 
@@ -430,7 +462,7 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Gets the component 2 (Start Date).
+     * Gets the component 2 (Date1).
      * @return the component 2
      */
     public String getComponent2() {
@@ -447,23 +479,44 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Gets the Start Date (component 2).
-     * @return the Start Date from component 2
+     * Gets the Date1 (component 2).
+     * @return the Date1 from component 2
      */
-    public String getStartDate() {
+    public String getDate1() {
         return getComponent2();
     }
 
     /**
-     * Get the Start Date (component 2) as Calendar
-     * @return the Start Date from component 2 converted to Calendar or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Date1
+     * @see #getDate1()
+     * @since 9.2.7
      */
-    public java.util.Calendar getStartDateAsCalendar() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getStartDate() {
+        return getDate1();
+    }
+
+    /**
+     * Get the Date1 (component 2) as Calendar
+     * @return the Date1 from component 2 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getDate1AsCalendar() {
         return getComponent2AsCalendar();
     }
 
     /**
-     * Gets the component 3 (Start Time).
+     * Alternative <em>DEPRECATED</em> method getter for field's Date1 as Calendar
+     * @see #getDate1AsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getStartDateAsCalendar() {
+        return getDate1AsCalendar();
+    }
+
+    /**
+     * Gets the component 3 (Time1).
      * @return the component 3
      */
     public String getComponent3() {
@@ -480,23 +533,44 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Gets the Start Time (component 3).
-     * @return the Start Time from component 3
+     * Gets the Time1 (component 3).
+     * @return the Time1 from component 3
      */
-    public String getStartTime() {
+    public String getTime1() {
         return getComponent3();
     }
 
     /**
-     * Get the Start Time (component 3) as Calendar
-     * @return the Start Time from component 3 converted to Calendar or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Time1
+     * @see #getTime1()
+     * @since 9.2.7
      */
-    public java.util.Calendar getStartTimeAsCalendar() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getStartTime() {
+        return getTime1();
+    }
+
+    /**
+     * Get the Time1 (component 3) as Calendar
+     * @return the Time1 from component 3 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getTime1AsCalendar() {
         return getComponent3AsCalendar();
     }
 
     /**
-     * Gets the component 4 (End Date).
+     * Alternative <em>DEPRECATED</em> method getter for field's Time1 as Calendar
+     * @see #getTime1AsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getStartTimeAsCalendar() {
+        return getTime1AsCalendar();
+    }
+
+    /**
+     * Gets the component 4 (Date2).
      * @return the component 4
      */
     public String getComponent4() {
@@ -513,23 +587,44 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Gets the End Date (component 4).
-     * @return the End Date from component 4
+     * Gets the Date2 (component 4).
+     * @return the Date2 from component 4
      */
-    public String getEndDate() {
+    public String getDate2() {
         return getComponent4();
     }
 
     /**
-     * Get the End Date (component 4) as Calendar
-     * @return the End Date from component 4 converted to Calendar or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Date2
+     * @see #getDate2()
+     * @since 9.2.7
      */
-    public java.util.Calendar getEndDateAsCalendar() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getEndDate() {
+        return getDate2();
+    }
+
+    /**
+     * Get the Date2 (component 4) as Calendar
+     * @return the Date2 from component 4 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getDate2AsCalendar() {
         return getComponent4AsCalendar();
     }
 
     /**
-     * Gets the component 5 (End Time).
+     * Alternative <em>DEPRECATED</em> method getter for field's Date2 as Calendar
+     * @see #getDate2AsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getEndDateAsCalendar() {
+        return getDate2AsCalendar();
+    }
+
+    /**
+     * Gets the component 5 (Time2).
      * @return the component 5
      */
     public String getComponent5() {
@@ -546,19 +641,40 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Gets the End Time (component 5).
-     * @return the End Time from component 5
+     * Gets the Time2 (component 5).
+     * @return the Time2 from component 5
      */
-    public String getEndTime() {
+    public String getTime2() {
         return getComponent5();
     }
 
     /**
-     * Get the End Time (component 5) as Calendar
-     * @return the End Time from component 5 converted to Calendar or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Time2
+     * @see #getTime2()
+     * @since 9.2.7
      */
-    public java.util.Calendar getEndTimeAsCalendar() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getEndTime() {
+        return getTime2();
+    }
+
+    /**
+     * Get the Time2 (component 5) as Calendar
+     * @return the Time2 from component 5 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getTime2AsCalendar() {
         return getComponent5AsCalendar();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Time2 as Calendar
+     * @see #getTime2AsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getEndTimeAsCalendar() {
+        return getTime2AsCalendar();
     }
 
     /**
@@ -583,9 +699,9 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Set the component 2 (Start Date).
+     * Set the component 2 (Date1).
      *
-     * @param component2 the Start Date to set
+     * @param component2 the Date1 to set
      * @return the field object to enable build pattern
      */
     public Field69B setComponent2(String component2) {
@@ -596,7 +712,7 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     /**
      * Set the component2 from a Calendar object.
      *
-     * @param component2 the Calendar with the Start Date content to set
+     * @param component2 the Calendar with the Date1 content to set
      * @return the field object to enable build pattern
      */
     public Field69B setComponent2(java.util.Calendar component2) {
@@ -605,31 +721,59 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Set the Start Date (component 2).
+     * Set the Date1 (component 2).
      *
-     * @param component2 the Start Date to set
+     * @param component2 the Date1 to set
      * @return the field object to enable build pattern
      */
-    public Field69B setStartDate(String component2) {
+    public Field69B setDate1(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Start Date (component 2) from a Calendar object.
+     * Set the Date1 (component 2) from a Calendar object.
      *
      * @see #setComponent2(java.util.Calendar)
      *
-     * @param component2 Calendar with the Start Date content to set
+     * @param component2 Calendar with the Date1 content to set
      * @return the field object to enable build pattern
      */
-    public Field69B setStartDate(java.util.Calendar component2) {
+    public Field69B setDate1(java.util.Calendar component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the component 3 (Start Time).
+     * Alternative <em>DEPRECATED</em> method setter for field's Date1
      *
-     * @param component3 the Start Time to set
+     * @see #setDate1(String)
+     *
+     * @param component2 the Date1 to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setStartDate(String component2) {
+        return setDate1(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Date1 from a Calendar object.
+     *
+     * @see #setComponent2(java.util.Calendar)
+     *
+     * @param component2 Calendar with the Date1 content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setStartDate(java.util.Calendar component2) {
+        return setDate1(component2);
+    }
+
+    /**
+     * Set the component 3 (Time1).
+     *
+     * @param component3 the Time1 to set
      * @return the field object to enable build pattern
      */
     public Field69B setComponent3(String component3) {
@@ -640,7 +784,7 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     /**
      * Set the component3 from a Calendar object.
      *
-     * @param component3 the Calendar with the Start Time content to set
+     * @param component3 the Calendar with the Time1 content to set
      * @return the field object to enable build pattern
      */
     public Field69B setComponent3(java.util.Calendar component3) {
@@ -649,31 +793,59 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Set the Start Time (component 3).
+     * Set the Time1 (component 3).
      *
-     * @param component3 the Start Time to set
+     * @param component3 the Time1 to set
      * @return the field object to enable build pattern
      */
-    public Field69B setStartTime(String component3) {
+    public Field69B setTime1(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the Start Time (component 3) from a Calendar object.
+     * Set the Time1 (component 3) from a Calendar object.
      *
      * @see #setComponent3(java.util.Calendar)
      *
-     * @param component3 Calendar with the Start Time content to set
+     * @param component3 Calendar with the Time1 content to set
      * @return the field object to enable build pattern
      */
-    public Field69B setStartTime(java.util.Calendar component3) {
+    public Field69B setTime1(java.util.Calendar component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the component 4 (End Date).
+     * Alternative <em>DEPRECATED</em> method setter for field's Time1
      *
-     * @param component4 the End Date to set
+     * @see #setTime1(String)
+     *
+     * @param component3 the Time1 to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setStartTime(String component3) {
+        return setTime1(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time1 from a Calendar object.
+     *
+     * @see #setComponent3(java.util.Calendar)
+     *
+     * @param component3 Calendar with the Time1 content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setStartTime(java.util.Calendar component3) {
+        return setTime1(component3);
+    }
+
+    /**
+     * Set the component 4 (Date2).
+     *
+     * @param component4 the Date2 to set
      * @return the field object to enable build pattern
      */
     public Field69B setComponent4(String component4) {
@@ -684,7 +856,7 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     /**
      * Set the component4 from a Calendar object.
      *
-     * @param component4 the Calendar with the End Date content to set
+     * @param component4 the Calendar with the Date2 content to set
      * @return the field object to enable build pattern
      */
     public Field69B setComponent4(java.util.Calendar component4) {
@@ -693,31 +865,59 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Set the End Date (component 4).
+     * Set the Date2 (component 4).
      *
-     * @param component4 the End Date to set
+     * @param component4 the Date2 to set
      * @return the field object to enable build pattern
      */
-    public Field69B setEndDate(String component4) {
+    public Field69B setDate2(String component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Set the End Date (component 4) from a Calendar object.
+     * Set the Date2 (component 4) from a Calendar object.
      *
      * @see #setComponent4(java.util.Calendar)
      *
-     * @param component4 Calendar with the End Date content to set
+     * @param component4 Calendar with the Date2 content to set
      * @return the field object to enable build pattern
      */
-    public Field69B setEndDate(java.util.Calendar component4) {
+    public Field69B setDate2(java.util.Calendar component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Set the component 5 (End Time).
+     * Alternative <em>DEPRECATED</em> method setter for field's Date2
      *
-     * @param component5 the End Time to set
+     * @see #setDate2(String)
+     *
+     * @param component4 the Date2 to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setEndDate(String component4) {
+        return setDate2(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Date2 from a Calendar object.
+     *
+     * @see #setComponent4(java.util.Calendar)
+     *
+     * @param component4 Calendar with the Date2 content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setEndDate(java.util.Calendar component4) {
+        return setDate2(component4);
+    }
+
+    /**
+     * Set the component 5 (Time2).
+     *
+     * @param component5 the Time2 to set
      * @return the field object to enable build pattern
      */
     public Field69B setComponent5(String component5) {
@@ -728,7 +928,7 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     /**
      * Set the component5 from a Calendar object.
      *
-     * @param component5 the Calendar with the End Time content to set
+     * @param component5 the Calendar with the Time2 content to set
      * @return the field object to enable build pattern
      */
     public Field69B setComponent5(java.util.Calendar component5) {
@@ -737,25 +937,53 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Set the End Time (component 5).
+     * Set the Time2 (component 5).
      *
-     * @param component5 the End Time to set
+     * @param component5 the Time2 to set
      * @return the field object to enable build pattern
      */
-    public Field69B setEndTime(String component5) {
+    public Field69B setTime2(String component5) {
         return setComponent5(component5);
     }
 
     /**
-     * Set the End Time (component 5) from a Calendar object.
+     * Set the Time2 (component 5) from a Calendar object.
      *
      * @see #setComponent5(java.util.Calendar)
      *
-     * @param component5 Calendar with the End Time content to set
+     * @param component5 Calendar with the Time2 content to set
      * @return the field object to enable build pattern
      */
-    public Field69B setEndTime(java.util.Calendar component5) {
+    public Field69B setTime2(java.util.Calendar component5) {
         return setComponent5(component5);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time2
+     *
+     * @see #setTime2(String)
+     *
+     * @param component5 the Time2 to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setEndTime(String component5) {
+        return setTime2(component5);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time2 from a Calendar object.
+     *
+     * @see #setComponent5(java.util.Calendar)
+     *
+     * @param component5 Calendar with the Time2 content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setEndTime(java.util.Calendar component5) {
+        return setTime2(component5);
     }
 
 
@@ -902,28 +1130,52 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
             field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - Start Date
+        // **** COMPONENT 2 - Date1
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("startDate") != null) {
             field.setComponent2(jsonObject.get("startDate").getAsString());
         }
 
-        // **** COMPONENT 3 - Start Time
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("date1") != null) {
+            field.setComponent2(jsonObject.get("date1").getAsString());
+        }
 
+        // **** COMPONENT 3 - Time1
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("startTime") != null) {
             field.setComponent3(jsonObject.get("startTime").getAsString());
         }
 
-        // **** COMPONENT 4 - End Date
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("time1") != null) {
+            field.setComponent3(jsonObject.get("time1").getAsString());
+        }
 
+        // **** COMPONENT 4 - Date2
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("endDate") != null) {
             field.setComponent4(jsonObject.get("endDate").getAsString());
         }
 
-        // **** COMPONENT 5 - End Time
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("date2") != null) {
+            field.setComponent4(jsonObject.get("date2").getAsString());
+        }
 
+        // **** COMPONENT 5 - Time2
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("endTime") != null) {
             field.setComponent5(jsonObject.get("endTime").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("time2") != null) {
+            field.setComponent5(jsonObject.get("time2").getAsString());
         }
 
         return field;

@@ -109,9 +109,17 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Index Points subfield
 	 */
-	public static final Integer AMOUNT = 2;
+	public static final Integer INDEX_POINTS = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Index Points Component number
+	 * @see #INDEX_POINTS
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -328,7 +336,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("Amount");
+        result.add("Index Points");
         return result;
     }
 
@@ -340,7 +348,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "amount");
+        result.put(2, "indexPoints");
         return result;
     }
 
@@ -362,7 +370,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the component 2 (Amount).
+     * Gets the component 2 (Index Points).
      * @return the component 2
      */
     public String getComponent2() {
@@ -395,35 +403,71 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the Amount (component 2).
-     * @return the Amount from component 2
+     * Gets the Index Points (component 2).
+     * @return the Index Points from component 2
      */
-    public String getAmount() {
+    public String getIndexPoints() {
         return getComponent2();
     }
 
     /**
-     * Get the Amount (component 2) as BigDecimal
-     * @return the Amount from component 2 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Index Points
+     * @see #getIndexPoints()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getIndexPoints();
+    }
+
+    /**
+     * Get the Index Points (component 2) as BigDecimal
+     * @return the Index Points from component 2 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getIndexPointsAsBigDecimal() {
         return getComponent2AsBigDecimal();
     }
 
     /**
-     * Get the Amount (component 2) as as Number (BigDecimal)
+     * Get the Index Points (component 2) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @see #getIndexPointsAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getIndexPointsAsNumber() {
+        return getComponent2AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Index Points as BigDecimal
+     * @see #getIndexPointsAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getIndexPointsAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Index Points (component 2) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getIndexPointsAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
-        return getComponent2AsNumber();
+        return getIndexPointsAsNumber();
     }
 
     /**
@@ -448,9 +492,9 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the component 2 (Amount).
+     * Set the component 2 (Index Points).
      *
-     * @param component2 the Amount to set
+     * @param component2 the Index Points to set
      * @return the field object to enable build pattern
      */
     public Field90K setComponent2(String component2) {
@@ -469,7 +513,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * </ul>
      * @since 9.2.7
      *
-     * @param component2 the BigDecimal with the Amount content to set
+     * @param component2 the BigDecimal with the Index Points content to set
      * @return the field object to enable build pattern
      */
     public Field90K setComponent2(java.math.BigDecimal component2) {
@@ -477,13 +521,13 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Alternative method setter for field's Index Points (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component2 the Number with the Amount content to set
+     * @param component2 the Number with the Index Points content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setIndexPoints(java.math.BigDecimal)
      */
     public Field90K setComponent2(java.lang.Number component2) {
 
@@ -506,39 +550,83 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the Amount (component 2).
+     * Set the Index Points (component 2).
      *
-     * @param component2 the Amount to set
+     * @param component2 the Index Points to set
      * @return the field object to enable build pattern
      */
-    public Field90K setAmount(String component2) {
+    public Field90K setIndexPoints(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Amount (component 2) from a BigDecimal object.
+     * Set the Index Points (component 2) from a BigDecimal object.
      *
      * @see #setComponent2(java.math.BigDecimal)
      *
-     * @param component2 BigDecimal with the Amount content to set
+     * @param component2 BigDecimal with the Index Points content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field90K setAmount(java.math.BigDecimal component2) {
+    public Field90K setIndexPoints(java.math.BigDecimal component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Alternative method setter for field's Index Points (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Amount content to set
+     * @param component2 the Number with the Index Points content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setIndexPoints(java.math.BigDecimal)
      */
-    public Field90K setAmount(java.lang.Number component2) {
+    public Field90K setIndexPoints(java.lang.Number component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Index Points
+     *
+     * @see #setIndexPoints(String)
+     *
+     * @param component2 the Index Points to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field90K setAmount(String component2) {
+        return setIndexPoints(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Index Points from a BigDecimal object.
+     *
+     * @see #setComponent2(java.math.BigDecimal)
+     *
+     * @param component2 BigDecimal with the Index Points content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field90K setAmount(java.math.BigDecimal component2) {
+        return setIndexPoints(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Index Points (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Index Points content to set
+     * @return the field object to enable build pattern
+     * @see #setIndexPoints(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field90K setAmount(java.lang.Number component2) {
+        return setIndexPoints(component2);
     }
 
 
@@ -687,10 +775,16 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
             field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - Amount
+        // **** COMPONENT 2 - Index Points
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent2(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("indexPoints") != null) {
+            field.setComponent2(jsonObject.get("indexPoints").getAsString());
         }
 
         return field;

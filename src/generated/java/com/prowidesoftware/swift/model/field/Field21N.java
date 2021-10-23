@@ -102,6 +102,18 @@ public class Field21N extends Field implements Serializable {
 	 */
 	public static final Integer REFERENCE = 1;
 
+	/**
+     * Alternative constant name for field's Reference Component number
+     * @see #REFERENCE
+     */
+    public static final Integer CONTRACT_NUMBER = 1;
+
+	/**
+     * Alternative constant name for field's Reference Component number
+     * @see #REFERENCE
+     */
+    public static final Integer NUMBER = 1;
+
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
@@ -336,6 +348,24 @@ public class Field21N extends Field implements Serializable {
     }
 
     /**
+     * Alternative method getter for field's Reference
+     * @see #getReference()
+     * @since 9.2.7
+     */
+    public String getContractNumber() {
+        return getReference();
+    }
+
+    /**
+     * Alternative method getter for field's Reference
+     * @see #getReference()
+     * @since 9.2.7
+     */
+    public String getNumber() {
+        return getReference();
+    }
+
+    /**
      * Set the component 1 (Reference).
      *
      * @param component1 the Reference to set
@@ -354,6 +384,30 @@ public class Field21N extends Field implements Serializable {
      */
     public Field21N setReference(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Reference
+     *
+     * @see #setReference(String)
+     *
+     * @param component1 the Reference to set
+     * @return the field object to enable build pattern
+     */
+    public Field21N setContractNumber(String component1) {
+        return setReference(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Reference
+     *
+     * @see #setReference(String)
+     *
+     * @param component1 the Reference to set
+     * @return the field object to enable build pattern
+     */
+    public Field21N setNumber(String component1) {
+        return setReference(component1);
     }
 
 
@@ -444,6 +498,15 @@ public class Field21N extends Field implements Serializable {
 
         // **** COMPONENT 1 - Reference
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("contractNumber") != null) {
+            field.setComponent1(jsonObject.get("contractNumber").getAsString());
+        }
+        if (jsonObject.get("number") != null) {
+            field.setComponent1(jsonObject.get("number").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("reference") != null) {
             field.setComponent1(jsonObject.get("reference").getAsString());
         }

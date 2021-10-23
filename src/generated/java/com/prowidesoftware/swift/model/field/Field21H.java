@@ -99,9 +99,17 @@ public class Field21H extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Event Type subfield
 	 */
-	public static final Integer QUALIFIER = 1;
+	public static final Integer EVENT_TYPE = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Event Type Component number
+	 * @see #EVENT_TYPE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer QUALIFIER = 1;
 
 	/**
 	 * Component number for the Reference subfield
@@ -316,7 +324,7 @@ public class Field21H extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Qualifier");
+        result.add("Event Type");
         result.add("Reference");
         return result;
     }
@@ -328,14 +336,14 @@ public class Field21H extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "qualifier");
+        result.put(1, "eventType");
         result.put(2, "reference");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Qualifier).
+     * Gets the component 1 (Event Type).
      * @return the component 1
      */
     public String getComponent1() {
@@ -343,11 +351,22 @@ public class Field21H extends Field implements Serializable {
     }
 
     /**
-     * Gets the Qualifier (component 1).
-     * @return the Qualifier from component 1
+     * Gets the Event Type (component 1).
+     * @return the Event Type from component 1
      */
-    public String getQualifier() {
+    public String getEventType() {
         return getComponent1();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Event Type
+     * @see #getEventType()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getQualifier() {
+        return getEventType();
     }
 
     /**
@@ -367,9 +386,9 @@ public class Field21H extends Field implements Serializable {
     }
 
     /**
-     * Set the component 1 (Qualifier).
+     * Set the component 1 (Event Type).
      *
-     * @param component1 the Qualifier to set
+     * @param component1 the Event Type to set
      * @return the field object to enable build pattern
      */
     public Field21H setComponent1(String component1) {
@@ -378,13 +397,27 @@ public class Field21H extends Field implements Serializable {
     }
 
     /**
-     * Set the Qualifier (component 1).
+     * Set the Event Type (component 1).
      *
-     * @param component1 the Qualifier to set
+     * @param component1 the Event Type to set
      * @return the field object to enable build pattern
      */
-    public Field21H setQualifier(String component1) {
+    public Field21H setEventType(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Event Type
+     *
+     * @see #setEventType(String)
+     *
+     * @param component1 the Event Type to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field21H setQualifier(String component1) {
+        return setEventType(component1);
     }
 
     /**
@@ -494,10 +527,16 @@ public class Field21H extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Qualifier
+        // **** COMPONENT 1 - Event Type
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("qualifier") != null) {
             field.setComponent1(jsonObject.get("qualifier").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("eventType") != null) {
+            field.setComponent1(jsonObject.get("eventType").getAsString());
         }
 
         // **** COMPONENT 2 - Reference

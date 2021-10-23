@@ -98,9 +98,29 @@ public class Field22P extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Type subfield
+	 * Component number for the Namespace subfield
 	 */
-	public static final Integer TYPE = 1;
+	public static final Integer NAMESPACE = 1;
+
+	/**
+     * Alternative constant name for field's Namespace Component number
+     * @see #NAMESPACE
+     */
+    public static final Integer PUTI_NAMESPACE = 1;
+
+	/**
+     * Alternative constant name for field's Namespace Component number
+     * @see #NAMESPACE
+     */
+    public static final Integer ISSUER_CODE = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Namespace Component number
+	 * @see #NAMESPACE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer TYPE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -303,7 +323,7 @@ public class Field22P extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Type");
+        result.add("Namespace");
         return result;
     }
 
@@ -314,13 +334,13 @@ public class Field22P extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "type");
+        result.put(1, "namespace");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Type).
+     * Gets the component 1 (Namespace).
      * @return the component 1
      */
     public String getComponent1() {
@@ -328,17 +348,46 @@ public class Field22P extends Field implements Serializable {
     }
 
     /**
-     * Gets the Type (component 1).
-     * @return the Type from component 1
+     * Gets the Namespace (component 1).
+     * @return the Namespace from component 1
      */
-    public String getType() {
+    public String getNamespace() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Type).
+     * Alternative method getter for field's Namespace
+     * @see #getNamespace()
+     * @since 9.2.7
+     */
+    public String getPUTINamespace() {
+        return getNamespace();
+    }
+
+    /**
+     * Alternative method getter for field's Namespace
+     * @see #getNamespace()
+     * @since 9.2.7
+     */
+    public String getIssuerCode() {
+        return getNamespace();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Namespace
+     * @see #getNamespace()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getType() {
+        return getNamespace();
+    }
+
+    /**
+     * Set the component 1 (Namespace).
      *
-     * @param component1 the Type to set
+     * @param component1 the Namespace to set
      * @return the field object to enable build pattern
      */
     public Field22P setComponent1(String component1) {
@@ -347,13 +396,51 @@ public class Field22P extends Field implements Serializable {
     }
 
     /**
-     * Set the Type (component 1).
+     * Set the Namespace (component 1).
      *
-     * @param component1 the Type to set
+     * @param component1 the Namespace to set
      * @return the field object to enable build pattern
      */
-    public Field22P setType(String component1) {
+    public Field22P setNamespace(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Namespace
+     *
+     * @see #setNamespace(String)
+     *
+     * @param component1 the Namespace to set
+     * @return the field object to enable build pattern
+     */
+    public Field22P setPUTINamespace(String component1) {
+        return setNamespace(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Namespace
+     *
+     * @see #setNamespace(String)
+     *
+     * @param component1 the Namespace to set
+     * @return the field object to enable build pattern
+     */
+    public Field22P setIssuerCode(String component1) {
+        return setNamespace(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Namespace
+     *
+     * @see #setNamespace(String)
+     *
+     * @param component1 the Namespace to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field22P setType(String component1) {
+        return setNamespace(component1);
     }
 
 
@@ -442,10 +529,22 @@ public class Field22P extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Type
+        // **** COMPONENT 1 - Namespace
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("pUTINamespace") != null) {
+            field.setComponent1(jsonObject.get("pUTINamespace").getAsString());
+        }
+        if (jsonObject.get("issuerCode") != null) {
+            field.setComponent1(jsonObject.get("issuerCode").getAsString());
+        }
         if (jsonObject.get("type") != null) {
             field.setComponent1(jsonObject.get("type").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("namespace") != null) {
+            field.setComponent1(jsonObject.get("namespace").getAsString());
         }
 
         return field;

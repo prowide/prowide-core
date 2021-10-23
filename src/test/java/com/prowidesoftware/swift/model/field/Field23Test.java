@@ -115,4 +115,57 @@ public class Field23Test extends AbstractFieldTest {
         assertEquals("USD//aaa", f.getComponent4());
     }
 
+    @Test
+    public void testParse23_WithMissingParts() {
+        Field23 f = null;
+
+        f = new Field23("abcd/efgh/ijkl/mnop");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijkl", f.getComponent3());
+        assertEquals("mnop", f.getComponent4());
+        assertEquals("abcd/efgh/ijkl/mnop", f.getValue());
+
+        f = new Field23("/efgh/ijkl/mnop");
+        assertNull(f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijkl", f.getComponent3());
+        assertEquals("mnop", f.getComponent4());
+        assertEquals("/efgh/ijkl/mnop", f.getValue());
+
+        f = new Field23("abcd//ijkl/mnop");
+        assertEquals("abcd", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertEquals("ijkl", f.getComponent3());
+        assertEquals("mnop", f.getComponent4());
+        assertEquals("abcd//ijkl/mnop", f.getValue());
+
+        f = new Field23("abcd/efgh//mnop");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertNull(f.getComponent3());
+        assertEquals("mnop", f.getComponent4());
+        assertEquals("abcd/efgh//mnop", f.getValue());
+
+        f = new Field23("abcd///mnop");
+        assertEquals("abcd", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertNull(f.getComponent3());
+        assertEquals("mnop", f.getComponent4());
+        assertEquals("abcd///mnop", f.getValue());
+
+        f = new Field23("abcd/efgh/ijkl/");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijkl", f.getComponent3());
+        assertNull(f.getComponent4());
+        assertEquals("abcd/efgh/ijkl", f.getValue());
+
+        f = new Field23("abcd/efgh/ijkl");
+        assertEquals("abcd", f.getComponent1());
+        assertEquals("efgh", f.getComponent2());
+        assertEquals("ijkl", f.getComponent3());
+        assertNull(f.getComponent4());
+        assertEquals("abcd/efgh/ijkl", f.getValue());
+    }
 }

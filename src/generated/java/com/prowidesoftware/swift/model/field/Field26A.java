@@ -47,13 +47,14 @@ import com.google.gson.JsonParser;
  * <p>Subfields (components) Data types
  * <ol>
  * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;VAR-SEQU-2&gt;</code></li>
- * 		<li>parser pattern: <code>S</code></li>
- * 		<li>components pattern: <code>S</code></li>
+ * 		<li>parser pattern: <code>S[/S]</code></li>
+ * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
  * <p>
@@ -76,7 +77,7 @@ public class Field26A extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_26A = "26A";
-	public static final String PARSER_PATTERN = "S";
+	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * Components pattern
@@ -87,7 +88,7 @@ public class Field26A extends Field implements Serializable {
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-	public static final String COMPONENTS_PATTERN = "S";
+	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * Types pattern
@@ -95,18 +96,23 @@ public class Field26A extends Field implements Serializable {
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
      */
-	public static final String TYPES_PATTERN = "S";
+	public static final String TYPES_PATTERN = "SS";
 
 	/**
-	 * Component number for the Number subfield
+	 * Component number for the Number1 subfield
 	 */
-	public static final Integer NUMBER = 1;
+	public static final Integer NUMBER1 = 1;
+
+	/**
+	 * Component number for the Number2 subfield
+	 */
+	public static final Integer NUMBER2 = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field26A() {
-        super(1);
+        super(2);
     }
 
     /**
@@ -178,8 +184,9 @@ public class Field26A extends Field implements Serializable {
      */
     @Override
     public void parse(final String value) {
-        init(1);
-        setComponent1(value);
+        init(2);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
+        setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
     }
 
     /**
@@ -189,6 +196,9 @@ public class Field26A extends Field implements Serializable {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
+        if (getComponent2() != null) {
+            result.append("/").append(getComponent2());
+        }
         return result.toString();
     }
 
@@ -203,12 +213,16 @@ public class Field26A extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 26A");
         }
         if (component == 1) {
             //default format (as is)
             return getComponent(1);
+        }
+        if (component == 2) {
+            //default format (as is)
+            return getComponent(2);
         }
         return null;
     }
@@ -270,6 +284,9 @@ public class Field26A extends Field implements Serializable {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 2) {
+            return true;
+        }
         return false;
     }
 
@@ -290,7 +307,7 @@ public class Field26A extends Field implements Serializable {
      */
     @Override
     public int componentsSize() {
-        return 1;
+        return 2;
     }
 
     /**
@@ -303,7 +320,8 @@ public class Field26A extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Number");
+        result.add("Number1");
+        result.add("Number2");
         return result;
     }
 
@@ -314,13 +332,14 @@ public class Field26A extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "number");
+        result.put(1, "number1");
+        result.put(2, "number2");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Number).
+     * Gets the component 1 (Number1).
      * @return the component 1
      */
     public String getComponent1() {
@@ -328,17 +347,33 @@ public class Field26A extends Field implements Serializable {
     }
 
     /**
-     * Gets the Number (component 1).
-     * @return the Number from component 1
+     * Gets the Number1 (component 1).
+     * @return the Number1 from component 1
      */
-    public String getNumber() {
+    public String getNumber1() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Number).
+     * Gets the component 2 (Number2).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
+
+    /**
+     * Gets the Number2 (component 2).
+     * @return the Number2 from component 2
+     */
+    public String getNumber2() {
+        return getComponent2();
+    }
+
+    /**
+     * Set the component 1 (Number1).
      *
-     * @param component1 the Number to set
+     * @param component1 the Number1 to set
      * @return the field object to enable build pattern
      */
     public Field26A setComponent1(String component1) {
@@ -347,13 +382,34 @@ public class Field26A extends Field implements Serializable {
     }
 
     /**
-     * Set the Number (component 1).
+     * Set the Number1 (component 1).
      *
-     * @param component1 the Number to set
+     * @param component1 the Number1 to set
      * @return the field object to enable build pattern
      */
-    public Field26A setNumber(String component1) {
+    public Field26A setNumber1(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Number2).
+     *
+     * @param component2 the Number2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field26A setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the Number2 (component 2).
+     *
+     * @param component2 the Number2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field26A setNumber2(String component2) {
+        return setComponent2(component2);
     }
 
 
@@ -442,14 +498,67 @@ public class Field26A extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Number
+        // **** COMPONENT 1 - Number1
 
-        if (jsonObject.get("number") != null) {
-            field.setComponent1(jsonObject.get("number").getAsString());
+        if (jsonObject.get("number1") != null) {
+            field.setComponent1(jsonObject.get("number1").getAsString());
+        }
+
+        // **** COMPONENT 2 - Number2
+
+        if (jsonObject.get("number2") != null) {
+            field.setComponent2(jsonObject.get("number2").getAsString());
         }
 
         return field;
     }
 
+
+	/**
+	 * Component number for the Number 1 subfield.
+	 *
+	 * <em>IMPORTANT</em>: this constant is kept for compatibility, but getting component 1
+	 * will now return only part of the value (the Number 1) as the Form is now a separate
+	 * component.
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+	public static final Integer NUMBER = 1;
+
+	/**
+	 * Gets the Number (components 1 and 2) as a unit
+	 *
+	 * This method is a wrapper for <code>getValue</code>.
+	 *
+	 * <em>Note</em> that in previous versions, this field had only one component and now has two
+	 * because it's what the SWIFT specification indicates.
+	 *
+	 * @return the concatenated values of component 1 and 2
+	 * @see #getValue()
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+	public String getNumber() {
+        return getValue();
+	}
+
+	/**
+	 * Sets the Number (components 1 and 2) as a unit
+	 *
+	 * This method is a wrapper for <code>parse</code>.
+	 *
+	 * <em>Note</em> that in previous versions, this field had only one component and now has two
+	 * because it's what the SWIFT specification indicates.
+     *
+	 * @param number the new expected value for components 1 and 2 concatenated
+     * @return the field object to enable build pattern
+	 * @see #parse(String)
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+	public Field26A setNumber(final String number) {
+        parse(number);
+        return this;
+	}
 
 }

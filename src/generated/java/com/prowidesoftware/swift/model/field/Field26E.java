@@ -100,9 +100,23 @@ public class Field26E extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "N";
 
 	/**
-	 * Component number for the Number subfield
+	 * Component number for the Number Of Amendment subfield
 	 */
-	public static final Integer NUMBER = 1;
+	public static final Integer NUMBER_OF_AMENDMENT = 1;
+
+	/**
+     * Alternative constant name for field's Number Of Amendment Component number
+     * @see #NUMBER_OF_AMENDMENT
+     */
+    public static final Integer AUTOMATIC_EXTENSION_NOTIFICATION_PERIOD = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Number Of Amendment Component number
+	 * @see #NUMBER_OF_AMENDMENT
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer NUMBER = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -310,7 +324,7 @@ public class Field26E extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Number");
+        result.add("Number Of Amendment");
         return result;
     }
 
@@ -321,13 +335,13 @@ public class Field26E extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "number");
+        result.put(1, "numberOfAmendment");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Number).
+     * Gets the component 1 (Number Of Amendment).
      * @return the component 1
      */
     public String getComponent1() {
@@ -361,41 +375,110 @@ public class Field26E extends Field implements Serializable {
     }
 
     /**
-     * Gets the Number (component 1).
-     * @return the Number from component 1
+     * Gets the Number Of Amendment (component 1).
+     * @return the Number Of Amendment from component 1
      */
-    public String getNumber() {
+    public String getNumberOfAmendment() {
         return getComponent1();
     }
 
     /**
-     * Get the Number (component 1) as Long
-     * @return the Number from component 1 converted to Long or null if cannot be converted
+     * Alternative method getter for field's Number Of Amendment
+     * @see #getNumberOfAmendment()
      * @since 9.2.7
      */
-    public java.lang.Long getNumberAsLong() {
+    public String getAutomaticExtensionNotificationPeriod() {
+        return getNumberOfAmendment();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Amendment
+     * @see #getNumberOfAmendment()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getNumber() {
+        return getNumberOfAmendment();
+    }
+
+    /**
+     * Get the Number Of Amendment (component 1) as Long
+     * @return the Number Of Amendment from component 1 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumberOfAmendmentAsLong() {
         return getComponent1AsLong();
     }
 
     /**
-     * Get the Number (component 1) as as Number (BigDecimal)
+     * Get the Number Of Amendment (component 1) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent1AsLong()</code> to get the proper value.
      *
      * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
+     * @see #getNumberOfAmendmentAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public java.lang.Number getNumberAsNumber() {
+    public java.lang.Number getNumberOfAmendmentAsNumber() {
         return getComponent1AsNumber();
     }
 
     /**
-     * Set the component 1 (Number).
+     * Alternative method getter for field's Number Of Amendment as Long
+     * @see #getNumberOfAmendmentAsLong()
+     * @since 9.2.7
+     */
+    public java.lang.Long getAutomaticExtensionNotificationPeriodAsLong() {
+        return getNumberOfAmendmentAsLong();
+    }
+
+    /**
+     * Alternative method getter for field's Number Of Amendment (component 1) as as Number (BigDecimal)
      *
-     * @param component1 the Number to set
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsLong()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberOfAmendmentAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getAutomaticExtensionNotificationPeriodAsNumber() {
+        return getNumberOfAmendmentAsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Amendment as Long
+     * @see #getNumberOfAmendmentAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getNumberAsLong() {
+        return getNumberOfAmendmentAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Amendment (component 1) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsLong()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberOfAmendmentAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumberAsNumber() {
+        return getNumberOfAmendmentAsNumber();
+    }
+
+    /**
+     * Set the component 1 (Number Of Amendment).
+     *
+     * @param component1 the Number Of Amendment to set
      * @return the field object to enable build pattern
      */
     public Field26E setComponent1(String component1) {
@@ -413,7 +496,7 @@ public class Field26E extends Field implements Serializable {
      * @see #setComponent1(String)
      * @since 9.2.7
      *
-     * @param component1 the Long with the Number content to set
+     * @param component1 the Long with the Number Of Amendment content to set
      * @return the field object to enable build pattern
      */
     public Field26E setComponent1(java.lang.Long component1) {
@@ -422,13 +505,13 @@ public class Field26E extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Number (component 1) as as Number
+     * Alternative method setter for field's Number Of Amendment (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component1 the Number with the Number content to set
+     * @param component1 the Number with the Number Of Amendment content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @see #setNumberOfAmendment(java.lang.Long)
      */
     public Field26E setComponent1(java.lang.Number component1) {
 
@@ -450,39 +533,121 @@ public class Field26E extends Field implements Serializable {
     }
 
     /**
-     * Set the Number (component 1).
+     * Set the Number Of Amendment (component 1).
      *
-     * @param component1 the Number to set
+     * @param component1 the Number Of Amendment to set
      * @return the field object to enable build pattern
      */
-    public Field26E setNumber(String component1) {
+    public Field26E setNumberOfAmendment(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the Number (component 1) from a Long object.
+     * Set the Number Of Amendment (component 1) from a Long object.
      *
      * @see #setComponent1(java.lang.Long)
      *
-     * @param component1 Long with the Number content to set
+     * @param component1 Long with the Number Of Amendment content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field26E setNumber(java.lang.Long component1) {
+    public Field26E setNumberOfAmendment(java.lang.Long component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Alternative method setter for field's Number (component 1) as as Number
+     * Alternative method setter for field's Number Of Amendment (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component1 the Number with the Number content to set
+     * @param component1 the Number with the Number Of Amendment content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @see #setNumberOfAmendment(java.lang.Long)
      */
-    public Field26E setNumber(java.lang.Number component1) {
+    public Field26E setNumberOfAmendment(java.lang.Number component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Number Of Amendment
+     *
+     * @see #setNumberOfAmendment(String)
+     *
+     * @param component1 the Number Of Amendment to set
+     * @return the field object to enable build pattern
+     */
+    public Field26E setAutomaticExtensionNotificationPeriod(String component1) {
+        return setNumberOfAmendment(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Number Of Amendment from a Long object.
+     *
+     * @see #setComponent1(java.lang.Long)
+     *
+     * @param component1 Long with the Number Of Amendment content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field26E setAutomaticExtensionNotificationPeriod(java.lang.Long component1) {
+        return setNumberOfAmendment(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Number Of Amendment (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component1 the Number with the Number Of Amendment content to set
+     * @return the field object to enable build pattern
+     * @see #setNumberOfAmendment(java.lang.Long)
+     */
+    public Field26E setAutomaticExtensionNotificationPeriod(java.lang.Number component1) {
+        return setNumberOfAmendment(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number Of Amendment
+     *
+     * @see #setNumberOfAmendment(String)
+     *
+     * @param component1 the Number Of Amendment to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field26E setNumber(String component1) {
+        return setNumberOfAmendment(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number Of Amendment from a Long object.
+     *
+     * @see #setComponent1(java.lang.Long)
+     *
+     * @param component1 Long with the Number Of Amendment content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field26E setNumber(java.lang.Long component1) {
+        return setNumberOfAmendment(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number Of Amendment (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component1 the Number with the Number Of Amendment content to set
+     * @return the field object to enable build pattern
+     * @see #setNumberOfAmendment(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field26E setNumber(java.lang.Number component1) {
+        return setNumberOfAmendment(component1);
     }
 
 
@@ -571,10 +736,19 @@ public class Field26E extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Number
+        // **** COMPONENT 1 - Number Of Amendment
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("automaticExtensionNotificationPeriod") != null) {
+            field.setComponent1(jsonObject.get("automaticExtensionNotificationPeriod").getAsString());
+        }
         if (jsonObject.get("number") != null) {
             field.setComponent1(jsonObject.get("number").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("numberOfAmendment") != null) {
+            field.setComponent1(jsonObject.get("numberOfAmendment").getAsString());
         }
 
         return field;

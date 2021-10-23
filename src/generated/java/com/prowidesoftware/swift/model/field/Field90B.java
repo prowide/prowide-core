@@ -119,9 +119,17 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
 	public static final Integer AMOUNT_TYPE_CODE = 2;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency Code subfield
 	 */
-	public static final Integer CURRENCY = 3;
+	public static final Integer CURRENCY_CODE = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code Component number
+	 * @see #CURRENCY_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CURRENCY = 3;
 
 	/**
 	 * Component number for the Price subfield
@@ -358,7 +366,7 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Amount Type Code");
-        result.add("Currency");
+        result.add("Currency Code");
         result.add("Price");
         return result;
     }
@@ -372,7 +380,7 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "amountTypeCode");
-        result.put(3, "currency");
+        result.put(3, "currencyCode");
         result.put(4, "price");
         return result;
     }
@@ -411,7 +419,7 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the component 3 (Currency).
+     * Gets the component 3 (Currency Code).
      * @return the component 3
      */
     public String getComponent3() {
@@ -428,19 +436,40 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the Currency (component 3).
-     * @return the Currency from component 3
+     * Gets the Currency Code (component 3).
+     * @return the Currency Code from component 3
      */
-    public String getCurrency() {
+    public String getCurrencyCode() {
         return getComponent3();
     }
 
     /**
-     * Get the Currency (component 3) as Currency
-     * @return the Currency from component 3 converted to Currency or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Currency Code
+     * @see #getCurrencyCode()
+     * @since 9.2.7
      */
-    public java.util.Currency getCurrencyAsCurrency() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCurrency() {
+        return getCurrencyCode();
+    }
+
+    /**
+     * Get the Currency Code (component 3) as Currency
+     * @return the Currency Code from component 3 converted to Currency or null if cannot be converted
+     */
+    public java.util.Currency getCurrencyCodeAsCurrency() {
         return getComponent3AsCurrency();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Currency Code as Currency
+     * @see #getCurrencyCodeAsCurrency()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Currency getCurrencyAsCurrency() {
+        return getCurrencyCodeAsCurrency();
     }
 
     /**
@@ -551,9 +580,9 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the component 3 (Currency).
+     * Set the component 3 (Currency Code).
      *
-     * @param component3 the Currency to set
+     * @param component3 the Currency Code to set
      * @return the field object to enable build pattern
      */
     public Field90B setComponent3(String component3) {
@@ -564,7 +593,7 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
     /**
      * Set the component3 from a Currency object.
      *
-     * @param component3 the Currency with the Currency content to set
+     * @param component3 the Currency with the Currency Code content to set
      * @return the field object to enable build pattern
      */
     public Field90B setComponent3(java.util.Currency component3) {
@@ -573,25 +602,53 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the Currency (component 3).
+     * Set the Currency Code (component 3).
      *
-     * @param component3 the Currency to set
+     * @param component3 the Currency Code to set
      * @return the field object to enable build pattern
      */
-    public Field90B setCurrency(String component3) {
+    public Field90B setCurrencyCode(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the Currency (component 3) from a Currency object.
+     * Set the Currency Code (component 3) from a Currency object.
      *
      * @see #setComponent3(java.util.Currency)
      *
-     * @param component3 Currency with the Currency content to set
+     * @param component3 Currency with the Currency Code content to set
      * @return the field object to enable build pattern
      */
-    public Field90B setCurrency(java.util.Currency component3) {
+    public Field90B setCurrencyCode(java.util.Currency component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code
+     *
+     * @see #setCurrencyCode(String)
+     *
+     * @param component3 the Currency Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field90B setCurrency(String component3) {
+        return setCurrencyCode(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code from a Currency object.
+     *
+     * @see #setComponent3(java.util.Currency)
+     *
+     * @param component3 Currency with the Currency Code content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field90B setCurrency(java.util.Currency component3) {
+        return setCurrencyCode(component3);
     }
 
     /**
@@ -864,10 +921,16 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
             field.setComponent2(jsonObject.get("amountTypeCode").getAsString());
         }
 
-        // **** COMPONENT 3 - Currency
+        // **** COMPONENT 3 - Currency Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("currency") != null) {
             field.setComponent3(jsonObject.get("currency").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("currencyCode") != null) {
+            field.setComponent3(jsonObject.get("currencyCode").getAsString());
         }
 
         // **** COMPONENT 4 - Price

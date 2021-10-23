@@ -51,13 +51,14 @@ import com.google.gson.JsonParser;
  * 		<li><code>String</code></li>
  * 		<li><code>String</code></li>
  * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>[3!a]/15x/5!a4!a&lt;VAR-SEQU-4&gt;</code></li>
- * 		<li>parser pattern: <code>[S]/S/5!a4!aS</code></li>
- * 		<li>components pattern: <code>SSSSS</code></li>
+ * 		<li>parser pattern: <code>[S]/S/5!a4!aS[//S]</code></li>
+ * 		<li>components pattern: <code>SSSSSS</code></li>
  * </ul>
  *
  * <p>
@@ -80,7 +81,7 @@ public class Field26C extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_26C = "26C";
-	public static final String PARSER_PATTERN = "[S]/S/5!a4!aS";
+	public static final String PARSER_PATTERN = "[S]/S/5!a4!aS[//S]";
 
     /**
      * Components pattern
@@ -91,7 +92,7 @@ public class Field26C extends Field implements Serializable {
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-	public static final String COMPONENTS_PATTERN = "SSSSS";
+	public static final String COMPONENTS_PATTERN = "SSSSSS";
 
     /**
      * Types pattern
@@ -99,7 +100,7 @@ public class Field26C extends Field implements Serializable {
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
      */
-	public static final String TYPES_PATTERN = "SSSSS";
+	public static final String TYPES_PATTERN = "SSSSSS";
 
 	/**
 	 * Component number for the Delivery Details subfield
@@ -122,15 +123,20 @@ public class Field26C extends Field implements Serializable {
 	public static final Integer TYPE = 4;
 
 	/**
-	 * Component number for the Denomination Form subfield
+	 * Component number for the Denomination subfield
 	 */
-	public static final Integer DENOMINATION_FORM = 5;
+	public static final Integer DENOMINATION = 5;
+
+	/**
+	 * Component number for the Form subfield
+	 */
+	public static final Integer FORM = 6;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field26C() {
-        super(5);
+        super(6);
     }
 
     /**
@@ -202,10 +208,16 @@ public class Field26C extends Field implements Serializable {
      */
     @Override
     public void parse(final String value) {
-        init(5);
+        init(6);
         setComponent1(SwiftParseUtils.getTokenFirst(value, null, "/"));
         setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
         String toparse = SwiftParseUtils.getTokenThirdLast(value, "/");
+
+        // if a double slash ("//") => separate component 6
+        if (StringUtils.indexOf(toparse, "//") != -1) {
+            setComponent6(SwiftParseUtils.getTokenSecond(toparse, "//"));
+            toparse = SwiftParseUtils.getTokenFirst(toparse, "//");
+        }
         if (toparse != null) {
             if (toparse.length() < 5) {
                 setComponent3(toparse);
@@ -238,6 +250,9 @@ public class Field26C extends Field implements Serializable {
         append(result, 3);
         append(result, 4);
         append(result, 5);
+        if (getComponent6() != null) {
+            result.append("//").append(getComponent6());
+        }
         return result.toString();
     }
 
@@ -252,7 +267,7 @@ public class Field26C extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 5) {
+        if (component < 1 || component > 6) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 26C");
         }
         if (component == 1) {
@@ -274,6 +289,10 @@ public class Field26C extends Field implements Serializable {
         if (component == 5) {
             //default format (as is)
             return getComponent(5);
+        }
+        if (component == 6) {
+            //default format (as is)
+            return getComponent(6);
         }
         return null;
     }
@@ -338,6 +357,12 @@ public class Field26C extends Field implements Serializable {
         if (component == 1) {
             return true;
         }
+        if (component == 5) {
+            return true;
+        }
+        if (component == 6) {
+            return true;
+        }
         return false;
     }
 
@@ -358,7 +383,7 @@ public class Field26C extends Field implements Serializable {
      */
     @Override
     public int componentsSize() {
-        return 5;
+        return 6;
     }
 
     /**
@@ -375,7 +400,8 @@ public class Field26C extends Field implements Serializable {
         result.add("Delivery Location");
         result.add("Allocation");
         result.add("Type");
-        result.add("Denomination Form");
+        result.add("Denomination");
+        result.add("Form");
         return result;
     }
 
@@ -390,7 +416,8 @@ public class Field26C extends Field implements Serializable {
         result.put(2, "deliveryLocation");
         result.put(3, "allocation");
         result.put(4, "type");
-        result.put(5, "denominationForm");
+        result.put(5, "denomination");
+        result.put(6, "form");
         return result;
     }
 
@@ -460,7 +487,7 @@ public class Field26C extends Field implements Serializable {
     }
 
     /**
-     * Gets the component 5 (Denomination Form).
+     * Gets the component 5 (Denomination).
      * @return the component 5
      */
     public String getComponent5() {
@@ -468,11 +495,27 @@ public class Field26C extends Field implements Serializable {
     }
 
     /**
-     * Gets the Denomination Form (component 5).
-     * @return the Denomination Form from component 5
+     * Gets the Denomination (component 5).
+     * @return the Denomination from component 5
      */
-    public String getDenominationForm() {
+    public String getDenomination() {
         return getComponent5();
+    }
+
+    /**
+     * Gets the component 6 (Form).
+     * @return the component 6
+     */
+    public String getComponent6() {
+        return getComponent(6);
+    }
+
+    /**
+     * Gets the Form (component 6).
+     * @return the Form from component 6
+     */
+    public String getForm() {
+        return getComponent6();
     }
 
     /**
@@ -560,9 +603,9 @@ public class Field26C extends Field implements Serializable {
     }
 
     /**
-     * Set the component 5 (Denomination Form).
+     * Set the component 5 (Denomination).
      *
-     * @param component5 the Denomination Form to set
+     * @param component5 the Denomination to set
      * @return the field object to enable build pattern
      */
     public Field26C setComponent5(String component5) {
@@ -571,13 +614,34 @@ public class Field26C extends Field implements Serializable {
     }
 
     /**
-     * Set the Denomination Form (component 5).
+     * Set the Denomination (component 5).
      *
-     * @param component5 the Denomination Form to set
+     * @param component5 the Denomination to set
      * @return the field object to enable build pattern
      */
-    public Field26C setDenominationForm(String component5) {
+    public Field26C setDenomination(String component5) {
         return setComponent5(component5);
+    }
+
+    /**
+     * Set the component 6 (Form).
+     *
+     * @param component6 the Form to set
+     * @return the field object to enable build pattern
+     */
+    public Field26C setComponent6(String component6) {
+        setComponent(6, component6);
+        return this;
+    }
+
+    /**
+     * Set the Form (component 6).
+     *
+     * @param component6 the Form to set
+     * @return the field object to enable build pattern
+     */
+    public Field26C setForm(String component6) {
+        return setComponent6(component6);
     }
 
 
@@ -690,14 +754,63 @@ public class Field26C extends Field implements Serializable {
             field.setComponent4(jsonObject.get("type").getAsString());
         }
 
-        // **** COMPONENT 5 - Denomination Form
+        // **** COMPONENT 5 - Denomination
 
-        if (jsonObject.get("denominationForm") != null) {
-            field.setComponent5(jsonObject.get("denominationForm").getAsString());
+        if (jsonObject.get("denomination") != null) {
+            field.setComponent5(jsonObject.get("denomination").getAsString());
+        }
+
+        // **** COMPONENT 6 - Form
+
+        if (jsonObject.get("form") != null) {
+            field.setComponent6(jsonObject.get("form").getAsString());
         }
 
         return field;
     }
 
+
+	/**
+	 * Component number for the Denomination Form subfield.
+	 *
+	 * <em>IMPORTANT</em>: this constant is kept for compatibility, but getting component 5
+	 * will now return only part of the value (the Denomination) as the Form is now a separate
+	 * component.
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+	public static final Integer DENOMINATION_FORM = 5;
+
+    /**
+     * Gets the Denomination and Form as a unit (components 5 and 6).
+     * @return the Denomination and Form from components 5 and 6
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getDenominationForm() {
+
+        // build the field
+        final StringBuilder result = new StringBuilder();
+        append(result, 5);
+        if (getComponent6() != null) {
+            result.append("//").append(getComponent6());
+        }
+        return StringUtils.trimToNull(result.toString());
+    }
+
+    /**
+     * Set the Denomination and Form (components 5 and 6).
+     *
+     * @param denominationForm the Denomination and Form to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field26C setDenominationForm(final String denominationForm) {
+
+        setComponent5(SwiftParseUtils.getTokenFirst(denominationForm, "//"));
+        setComponent6(SwiftParseUtils.getTokenSecond(denominationForm, "//"));
+        return this;
+    }
 
 }

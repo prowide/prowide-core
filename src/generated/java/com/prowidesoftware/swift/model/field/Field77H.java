@@ -108,6 +108,12 @@ public class Field77H extends Field implements Serializable, DateContainer {
 	public static final Integer TYPE_OF_AGREEMENT = 1;
 
 	/**
+     * Alternative constant name for field's Type Of Agreement Component number
+     * @see #TYPE_OF_AGREEMENT
+     */
+    public static final Integer TYPE = 1;
+
+	/**
 	 * Component number for the Date subfield
 	 */
 	public static final Integer DATE = 2;
@@ -382,6 +388,15 @@ public class Field77H extends Field implements Serializable, DateContainer {
     }
 
     /**
+     * Alternative method getter for field's Type Of Agreement
+     * @see #getTypeOfAgreement()
+     * @since 9.2.7
+     */
+    public String getType() {
+        return getTypeOfAgreement();
+    }
+
+    /**
      * Gets the component 2 (Date).
      * @return the component 2
      */
@@ -466,6 +481,18 @@ public class Field77H extends Field implements Serializable, DateContainer {
      */
     public Field77H setTypeOfAgreement(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Type Of Agreement
+     *
+     * @see #setTypeOfAgreement(String)
+     *
+     * @param component1 the Type Of Agreement to set
+     * @return the field object to enable build pattern
+     */
+    public Field77H setType(String component1) {
+        return setTypeOfAgreement(component1);
     }
 
     /**
@@ -664,6 +691,12 @@ public class Field77H extends Field implements Serializable, DateContainer {
 
         // **** COMPONENT 1 - Type Of Agreement
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("type") != null) {
+            field.setComponent1(jsonObject.get("type").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("typeOfAgreement") != null) {
             field.setComponent1(jsonObject.get("typeOfAgreement").getAsString());
         }

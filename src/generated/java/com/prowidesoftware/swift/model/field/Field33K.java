@@ -109,12 +109,20 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
 	public static final String TYPES_PATTERN = "SNSCI";
 
 	/**
-	 * Component number for the D/M Mark subfield
+	 * Component number for the DayMonth subfield
 	 */
-	public static final Integer DM_MARK = 1;
+	public static final Integer DAYMONTH = 1;
 
 	/**
-	 * Component number for the Number of Days/Months subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's DayMonth Component number
+	 * @see #DAYMONTH
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer DM_MARK = 1;
+
+	/**
+	 * Component number for the Number Of Days/Months subfield
 	 */
 	public static final Integer NUMBER_OF_DAYSMONTHS = 2;
 
@@ -373,8 +381,8 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("D/M Mark");
-        result.add("Number of Days/Months");
+        result.add("DayMonth");
+        result.add("Number Of Days/Months");
         result.add("Code");
         result.add("Currency");
         result.add("Amount");
@@ -388,8 +396,8 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "dMMark");
-        result.put(2, "numberofDaysMonths");
+        result.put(1, "dayMonth");
+        result.put(2, "numberOfDaysMonths");
         result.put(3, "code");
         result.put(4, "currency");
         result.put(5, "amount");
@@ -398,7 +406,7 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
 
 
     /**
-     * Gets the component 1 (D/M Mark).
+     * Gets the component 1 (DayMonth).
      * @return the component 1
      */
     public String getComponent1() {
@@ -406,15 +414,26 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the D/M Mark (component 1).
-     * @return the D/M Mark from component 1
+     * Gets the DayMonth (component 1).
+     * @return the DayMonth from component 1
      */
-    public String getDMMark() {
+    public String getDayMonth() {
         return getComponent1();
     }
 
     /**
-     * Gets the component 2 (Number of Days/Months).
+     * Alternative <em>DEPRECATED</em> method getter for field's DayMonth
+     * @see #getDayMonth()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getDMMark() {
+        return getDayMonth();
+    }
+
+    /**
+     * Gets the component 2 (Number Of Days/Months).
      * @return the component 2
      */
     public String getComponent2() {
@@ -448,35 +467,71 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the Number of Days/Months (component 2).
-     * @return the Number of Days/Months from component 2
+     * Gets the Number Of Days/Months (component 2).
+     * @return the Number Of Days/Months from component 2
      */
-    public String getNumberofDaysMonths() {
+    public String getNumberOfDaysMonths() {
         return getComponent2();
     }
 
     /**
-     * Get the Number of Days/Months (component 2) as Long
-     * @return the Number of Days/Months from component 2 converted to Long or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Days/Months
+     * @see #getNumberOfDaysMonths()
      * @since 9.2.7
      */
-    public java.lang.Long getNumberofDaysMonthsAsLong() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getNumberofDaysMonths() {
+        return getNumberOfDaysMonths();
+    }
+
+    /**
+     * Get the Number Of Days/Months (component 2) as Long
+     * @return the Number Of Days/Months from component 2 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumberOfDaysMonthsAsLong() {
         return getComponent2AsLong();
     }
 
     /**
-     * Get the Number of Days/Months (component 2) as as Number (BigDecimal)
+     * Get the Number Of Days/Months (component 2) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent2AsLong()</code> to get the proper value.
      *
      * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberofDaysMonthsAsLong()
+     * @see #getNumberOfDaysMonthsAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumberOfDaysMonthsAsNumber() {
+        return getComponent2AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Days/Months as Long
+     * @see #getNumberOfDaysMonthsAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getNumberofDaysMonthsAsLong() {
+        return getNumberOfDaysMonthsAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Days/Months (component 2) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsLong()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberOfDaysMonthsAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getNumberofDaysMonthsAsNumber() {
-        return getComponent2AsNumber();
+        return getNumberOfDaysMonthsAsNumber();
     }
 
     /**
@@ -594,9 +649,9 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the component 1 (D/M Mark).
+     * Set the component 1 (DayMonth).
      *
-     * @param component1 the D/M Mark to set
+     * @param component1 the DayMonth to set
      * @return the field object to enable build pattern
      */
     public Field33K setComponent1(String component1) {
@@ -605,19 +660,33 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the D/M Mark (component 1).
+     * Set the DayMonth (component 1).
      *
-     * @param component1 the D/M Mark to set
+     * @param component1 the DayMonth to set
      * @return the field object to enable build pattern
      */
-    public Field33K setDMMark(String component1) {
+    public Field33K setDayMonth(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the component 2 (Number of Days/Months).
+     * Alternative <em>DEPRECATED</em> method setter for field's DayMonth
      *
-     * @param component2 the Number of Days/Months to set
+     * @see #setDayMonth(String)
+     *
+     * @param component1 the DayMonth to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field33K setDMMark(String component1) {
+        return setDayMonth(component1);
+    }
+
+    /**
+     * Set the component 2 (Number Of Days/Months).
+     *
+     * @param component2 the Number Of Days/Months to set
      * @return the field object to enable build pattern
      */
     public Field33K setComponent2(String component2) {
@@ -635,7 +704,7 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
      * @see #setComponent2(String)
      * @since 9.2.7
      *
-     * @param component2 the Long with the Number of Days/Months content to set
+     * @param component2 the Long with the Number Of Days/Months content to set
      * @return the field object to enable build pattern
      */
     public Field33K setComponent2(java.lang.Long component2) {
@@ -644,13 +713,13 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Alternative method setter for field's Number of Days/Months (component 2) as as Number
+     * Alternative method setter for field's Number Of Days/Months (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Number of Days/Months content to set
+     * @param component2 the Number with the Number Of Days/Months content to set
      * @return the field object to enable build pattern
-     * @see #setNumberofDaysMonths(java.lang.Long)
+     * @see #setNumberOfDaysMonths(java.lang.Long)
      */
     public Field33K setComponent2(java.lang.Number component2) {
 
@@ -672,39 +741,83 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the Number of Days/Months (component 2).
+     * Set the Number Of Days/Months (component 2).
      *
-     * @param component2 the Number of Days/Months to set
+     * @param component2 the Number Of Days/Months to set
      * @return the field object to enable build pattern
      */
-    public Field33K setNumberofDaysMonths(String component2) {
+    public Field33K setNumberOfDaysMonths(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Number of Days/Months (component 2) from a Long object.
+     * Set the Number Of Days/Months (component 2) from a Long object.
      *
      * @see #setComponent2(java.lang.Long)
      *
-     * @param component2 Long with the Number of Days/Months content to set
+     * @param component2 Long with the Number Of Days/Months content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field33K setNumberofDaysMonths(java.lang.Long component2) {
+    public Field33K setNumberOfDaysMonths(java.lang.Long component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Alternative method setter for field's Number of Days/Months (component 2) as as Number
+     * Alternative method setter for field's Number Of Days/Months (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Number of Days/Months content to set
+     * @param component2 the Number with the Number Of Days/Months content to set
      * @return the field object to enable build pattern
-     * @see #setNumberofDaysMonths(java.lang.Long)
+     * @see #setNumberOfDaysMonths(java.lang.Long)
      */
-    public Field33K setNumberofDaysMonths(java.lang.Number component2) {
+    public Field33K setNumberOfDaysMonths(java.lang.Number component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number Of Days/Months
+     *
+     * @see #setNumberOfDaysMonths(String)
+     *
+     * @param component2 the Number Of Days/Months to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field33K setNumberofDaysMonths(String component2) {
+        return setNumberOfDaysMonths(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number Of Days/Months from a Long object.
+     *
+     * @see #setComponent2(java.lang.Long)
+     *
+     * @param component2 Long with the Number Of Days/Months content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field33K setNumberofDaysMonths(java.lang.Long component2) {
+        return setNumberOfDaysMonths(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number Of Days/Months (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Number Of Days/Months content to set
+     * @return the field object to enable build pattern
+     * @see #setNumberOfDaysMonths(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field33K setNumberofDaysMonths(java.lang.Number component2) {
+        return setNumberOfDaysMonths(component2);
     }
 
     /**
@@ -996,16 +1109,28 @@ public class Field33K extends Field implements Serializable, CurrencyContainer, 
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - D/M Mark
+        // **** COMPONENT 1 - DayMonth
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("dMMark") != null) {
             field.setComponent1(jsonObject.get("dMMark").getAsString());
         }
 
-        // **** COMPONENT 2 - Number of Days/Months
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("dayMonth") != null) {
+            field.setComponent1(jsonObject.get("dayMonth").getAsString());
+        }
 
+        // **** COMPONENT 2 - Number Of Days/Months
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("numberofDaysMonths") != null) {
             field.setComponent2(jsonObject.get("numberofDaysMonths").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("numberOfDaysMonths") != null) {
+            field.setComponent2(jsonObject.get("numberOfDaysMonths").getAsString());
         }
 
         // **** COMPONENT 3 - Code

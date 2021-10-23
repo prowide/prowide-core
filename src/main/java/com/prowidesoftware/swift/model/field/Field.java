@@ -623,6 +623,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             } else if (c.equals(Integer.class)) {
                 return Integer.valueOf(s);
 
+            } else if (c.equals(Long.class)) {
+                return Long.valueOf(s);
+
             } else {
                 throw new IllegalArgumentException("Can't handle " + c.getName());
             }

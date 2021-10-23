@@ -115,9 +115,17 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer NUMBER_ID = 2;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Quantity subfield
 	 */
-	public static final Integer AMOUNT = 3;
+	public static final Integer QUANTITY = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Quantity Component number
+	 * @see #QUANTITY
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -343,7 +351,7 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Number Id");
-        result.add("Amount");
+        result.add("Quantity");
         return result;
     }
 
@@ -356,7 +364,7 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "numberId");
-        result.put(3, "amount");
+        result.put(3, "quantity");
         return result;
     }
 
@@ -394,7 +402,7 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the component 3 (Amount).
+     * Gets the component 3 (Quantity).
      * @return the component 3
      */
     public String getComponent3() {
@@ -427,35 +435,71 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the Amount (component 3).
-     * @return the Amount from component 3
+     * Gets the Quantity (component 3).
+     * @return the Quantity from component 3
      */
-    public String getAmount() {
+    public String getQuantity() {
         return getComponent3();
     }
 
     /**
-     * Get the Amount (component 3) as BigDecimal
-     * @return the Amount from component 3 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Quantity
+     * @see #getQuantity()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getQuantity();
+    }
+
+    /**
+     * Get the Quantity (component 3) as BigDecimal
+     * @return the Quantity from component 3 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getQuantityAsBigDecimal() {
         return getComponent3AsBigDecimal();
     }
 
     /**
-     * Get the Amount (component 3) as as Number (BigDecimal)
+     * Get the Quantity (component 3) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @see #getQuantityAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getQuantityAsNumber() {
+        return getComponent3AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Quantity as BigDecimal
+     * @see #getQuantityAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getQuantityAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Quantity (component 3) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getQuantityAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
-        return getComponent3AsNumber();
+        return getQuantityAsNumber();
     }
 
     /**
@@ -501,9 +545,9 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the component 3 (Amount).
+     * Set the component 3 (Quantity).
      *
-     * @param component3 the Amount to set
+     * @param component3 the Quantity to set
      * @return the field object to enable build pattern
      */
     public Field13K setComponent3(String component3) {
@@ -522,7 +566,7 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
      * </ul>
      * @since 9.2.7
      *
-     * @param component3 the BigDecimal with the Amount content to set
+     * @param component3 the BigDecimal with the Quantity content to set
      * @return the field object to enable build pattern
      */
     public Field13K setComponent3(java.math.BigDecimal component3) {
@@ -530,13 +574,13 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 3) as as Number
+     * Alternative method setter for field's Quantity (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component3 the Number with the Amount content to set
+     * @param component3 the Number with the Quantity content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setQuantity(java.math.BigDecimal)
      */
     public Field13K setComponent3(java.lang.Number component3) {
 
@@ -559,39 +603,83 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the Amount (component 3).
+     * Set the Quantity (component 3).
      *
-     * @param component3 the Amount to set
+     * @param component3 the Quantity to set
      * @return the field object to enable build pattern
      */
-    public Field13K setAmount(String component3) {
+    public Field13K setQuantity(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the Amount (component 3) from a BigDecimal object.
+     * Set the Quantity (component 3) from a BigDecimal object.
      *
      * @see #setComponent3(java.math.BigDecimal)
      *
-     * @param component3 BigDecimal with the Amount content to set
+     * @param component3 BigDecimal with the Quantity content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field13K setAmount(java.math.BigDecimal component3) {
+    public Field13K setQuantity(java.math.BigDecimal component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 3) as as Number
+     * Alternative method setter for field's Quantity (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component3 the Number with the Amount content to set
+     * @param component3 the Number with the Quantity content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setQuantity(java.math.BigDecimal)
      */
-    public Field13K setAmount(java.lang.Number component3) {
+    public Field13K setQuantity(java.lang.Number component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Quantity
+     *
+     * @see #setQuantity(String)
+     *
+     * @param component3 the Quantity to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field13K setAmount(String component3) {
+        return setQuantity(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Quantity from a BigDecimal object.
+     *
+     * @see #setComponent3(java.math.BigDecimal)
+     *
+     * @param component3 BigDecimal with the Quantity content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field13K setAmount(java.math.BigDecimal component3) {
+        return setQuantity(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Quantity (component 3) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component3 the Number with the Quantity content to set
+     * @return the field object to enable build pattern
+     * @see #setQuantity(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field13K setAmount(java.lang.Number component3) {
+        return setQuantity(component3);
     }
 
 
@@ -746,10 +834,16 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
             field.setComponent2(jsonObject.get("numberId").getAsString());
         }
 
-        // **** COMPONENT 3 - Amount
+        // **** COMPONENT 3 - Quantity
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent3(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("quantity") != null) {
+            field.setComponent3(jsonObject.get("quantity").getAsString());
         }
 
         return field;

@@ -100,9 +100,17 @@ public class Field38A extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "N";
 
 	/**
-	 * Component number for the Number subfield
+	 * Component number for the Period subfield
 	 */
-	public static final Integer NUMBER = 1;
+	public static final Integer PERIOD = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Period Component number
+	 * @see #PERIOD
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer NUMBER = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -310,7 +318,7 @@ public class Field38A extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Number");
+        result.add("Period");
         return result;
     }
 
@@ -321,13 +329,13 @@ public class Field38A extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "number");
+        result.put(1, "period");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Number).
+     * Gets the component 1 (Period).
      * @return the component 1
      */
     public String getComponent1() {
@@ -361,41 +369,77 @@ public class Field38A extends Field implements Serializable {
     }
 
     /**
-     * Gets the Number (component 1).
-     * @return the Number from component 1
+     * Gets the Period (component 1).
+     * @return the Period from component 1
      */
-    public String getNumber() {
+    public String getPeriod() {
         return getComponent1();
     }
 
     /**
-     * Get the Number (component 1) as Long
-     * @return the Number from component 1 converted to Long or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Period
+     * @see #getPeriod()
      * @since 9.2.7
      */
-    public java.lang.Long getNumberAsLong() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getNumber() {
+        return getPeriod();
+    }
+
+    /**
+     * Get the Period (component 1) as Long
+     * @return the Period from component 1 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getPeriodAsLong() {
         return getComponent1AsLong();
     }
 
     /**
-     * Get the Number (component 1) as as Number (BigDecimal)
+     * Get the Period (component 1) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent1AsLong()</code> to get the proper value.
      *
      * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
+     * @see #getPeriodAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public java.lang.Number getNumberAsNumber() {
+    public java.lang.Number getPeriodAsNumber() {
         return getComponent1AsNumber();
     }
 
     /**
-     * Set the component 1 (Number).
+     * Alternative <em>DEPRECATED</em> method getter for field's Period as Long
+     * @see #getPeriodAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getNumberAsLong() {
+        return getPeriodAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Period (component 1) as as Number (BigDecimal)
      *
-     * @param component1 the Number to set
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsLong()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getPeriodAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumberAsNumber() {
+        return getPeriodAsNumber();
+    }
+
+    /**
+     * Set the component 1 (Period).
+     *
+     * @param component1 the Period to set
      * @return the field object to enable build pattern
      */
     public Field38A setComponent1(String component1) {
@@ -413,7 +457,7 @@ public class Field38A extends Field implements Serializable {
      * @see #setComponent1(String)
      * @since 9.2.7
      *
-     * @param component1 the Long with the Number content to set
+     * @param component1 the Long with the Period content to set
      * @return the field object to enable build pattern
      */
     public Field38A setComponent1(java.lang.Long component1) {
@@ -422,13 +466,13 @@ public class Field38A extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Number (component 1) as as Number
+     * Alternative method setter for field's Period (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component1 the Number with the Number content to set
+     * @param component1 the Number with the Period content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @see #setPeriod(java.lang.Long)
      */
     public Field38A setComponent1(java.lang.Number component1) {
 
@@ -450,39 +494,83 @@ public class Field38A extends Field implements Serializable {
     }
 
     /**
-     * Set the Number (component 1).
+     * Set the Period (component 1).
      *
-     * @param component1 the Number to set
+     * @param component1 the Period to set
      * @return the field object to enable build pattern
      */
-    public Field38A setNumber(String component1) {
+    public Field38A setPeriod(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the Number (component 1) from a Long object.
+     * Set the Period (component 1) from a Long object.
      *
      * @see #setComponent1(java.lang.Long)
      *
-     * @param component1 Long with the Number content to set
+     * @param component1 Long with the Period content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field38A setNumber(java.lang.Long component1) {
+    public Field38A setPeriod(java.lang.Long component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Alternative method setter for field's Number (component 1) as as Number
+     * Alternative method setter for field's Period (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component1 the Number with the Number content to set
+     * @param component1 the Number with the Period content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @see #setPeriod(java.lang.Long)
      */
-    public Field38A setNumber(java.lang.Number component1) {
+    public Field38A setPeriod(java.lang.Number component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Period
+     *
+     * @see #setPeriod(String)
+     *
+     * @param component1 the Period to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field38A setNumber(String component1) {
+        return setPeriod(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Period from a Long object.
+     *
+     * @see #setComponent1(java.lang.Long)
+     *
+     * @param component1 Long with the Period content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field38A setNumber(java.lang.Long component1) {
+        return setPeriod(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Period (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component1 the Number with the Period content to set
+     * @return the field object to enable build pattern
+     * @see #setPeriod(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field38A setNumber(java.lang.Number component1) {
+        return setPeriod(component1);
     }
 
 
@@ -571,10 +659,16 @@ public class Field38A extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Number
+        // **** COMPONENT 1 - Period
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("number") != null) {
             field.setComponent1(jsonObject.get("number").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("period") != null) {
+            field.setComponent1(jsonObject.get("period").getAsString());
         }
 
         return field;

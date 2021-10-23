@@ -109,6 +109,12 @@ public class Field13A extends Field implements Serializable, GenericField {
 	 */
 	public static final Integer NUMBER_ID = 2;
 
+	/**
+     * Alternative constant name for field's Number Id Component number
+     * @see #NUMBER_ID
+     */
+    public static final Integer NUMBER_IDENTIFICATION = 2;
+
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
@@ -369,6 +375,15 @@ public class Field13A extends Field implements Serializable, GenericField {
     }
 
     /**
+     * Alternative method getter for field's Number Id
+     * @see #getNumberId()
+     * @since 9.2.7
+     */
+    public String getNumberIdentification() {
+        return getNumberId();
+    }
+
+    /**
      * Set the component 1 (Qualifier).
      *
      * @param component1 the Qualifier to set
@@ -408,6 +423,18 @@ public class Field13A extends Field implements Serializable, GenericField {
      */
     public Field13A setNumberId(String component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative method setter for field's Number Id
+     *
+     * @see #setNumberId(String)
+     *
+     * @param component2 the Number Id to set
+     * @return the field object to enable build pattern
+     */
+    public Field13A setNumberIdentification(String component2) {
+        return setNumberId(component2);
     }
 
 
@@ -538,6 +565,12 @@ public class Field13A extends Field implements Serializable, GenericField {
 
         // **** COMPONENT 2 - Number Id
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("numberIdentification") != null) {
+            field.setComponent2(jsonObject.get("numberIdentification").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("numberId") != null) {
             field.setComponent2(jsonObject.get("numberId").getAsString());
         }

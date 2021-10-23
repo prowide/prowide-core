@@ -103,14 +103,30 @@ public class Field35S extends Field implements Serializable, AmountContainer {
 	public static final String TYPES_PATTERN = "SI";
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Type subfield
 	 */
-	public static final Integer CURRENCY = 1;
+	public static final Integer TYPE = 1;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Type Component number
+	 * @see #TYPE
 	 */
-	public static final Integer AMOUNT = 2;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CURRENCY = 1;
+
+	/**
+	 * Component number for the Quantity subfield
+	 */
+	public static final Integer QUANTITY = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Quantity Component number
+	 * @see #QUANTITY
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -323,8 +339,8 @@ public class Field35S extends Field implements Serializable, AmountContainer {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Currency");
-        result.add("Amount");
+        result.add("Type");
+        result.add("Quantity");
         return result;
     }
 
@@ -335,14 +351,14 @@ public class Field35S extends Field implements Serializable, AmountContainer {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "currency");
-        result.put(2, "amount");
+        result.put(1, "type");
+        result.put(2, "quantity");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Currency).
+     * Gets the component 1 (Type).
      * @return the component 1
      */
     public String getComponent1() {
@@ -350,15 +366,26 @@ public class Field35S extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets the Currency (component 1).
-     * @return the Currency from component 1
+     * Gets the Type (component 1).
+     * @return the Type from component 1
      */
-    public String getCurrency() {
+    public String getType() {
         return getComponent1();
     }
 
     /**
-     * Gets the component 2 (Amount).
+     * Alternative <em>DEPRECATED</em> method getter for field's Type
+     * @see #getType()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCurrency() {
+        return getType();
+    }
+
+    /**
+     * Gets the component 2 (Quantity).
      * @return the component 2
      */
     public String getComponent2() {
@@ -391,41 +418,77 @@ public class Field35S extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets the Amount (component 2).
-     * @return the Amount from component 2
+     * Gets the Quantity (component 2).
+     * @return the Quantity from component 2
      */
-    public String getAmount() {
+    public String getQuantity() {
         return getComponent2();
     }
 
     /**
-     * Get the Amount (component 2) as BigDecimal
-     * @return the Amount from component 2 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Quantity
+     * @see #getQuantity()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getQuantity();
+    }
+
+    /**
+     * Get the Quantity (component 2) as BigDecimal
+     * @return the Quantity from component 2 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getQuantityAsBigDecimal() {
         return getComponent2AsBigDecimal();
     }
 
     /**
-     * Get the Amount (component 2) as as Number (BigDecimal)
+     * Get the Quantity (component 2) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @see #getQuantityAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public java.lang.Number getAmountAsNumber() {
+    public java.lang.Number getQuantityAsNumber() {
         return getComponent2AsNumber();
     }
 
     /**
-     * Set the component 1 (Currency).
+     * Alternative <em>DEPRECATED</em> method getter for field's Quantity as BigDecimal
+     * @see #getQuantityAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getQuantityAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Quantity (component 2) as as Number (BigDecimal)
      *
-     * @param component1 the Currency to set
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getQuantityAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getAmountAsNumber() {
+        return getQuantityAsNumber();
+    }
+
+    /**
+     * Set the component 1 (Type).
+     *
+     * @param component1 the Type to set
      * @return the field object to enable build pattern
      */
     public Field35S setComponent1(String component1) {
@@ -434,19 +497,33 @@ public class Field35S extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the Currency (component 1).
+     * Set the Type (component 1).
      *
-     * @param component1 the Currency to set
+     * @param component1 the Type to set
      * @return the field object to enable build pattern
      */
-    public Field35S setCurrency(String component1) {
+    public Field35S setType(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the component 2 (Amount).
+     * Alternative <em>DEPRECATED</em> method setter for field's Type
      *
-     * @param component2 the Amount to set
+     * @see #setType(String)
+     *
+     * @param component1 the Type to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field35S setCurrency(String component1) {
+        return setType(component1);
+    }
+
+    /**
+     * Set the component 2 (Quantity).
+     *
+     * @param component2 the Quantity to set
      * @return the field object to enable build pattern
      */
     public Field35S setComponent2(String component2) {
@@ -465,7 +542,7 @@ public class Field35S extends Field implements Serializable, AmountContainer {
      * </ul>
      * @since 9.2.7
      *
-     * @param component2 the BigDecimal with the Amount content to set
+     * @param component2 the BigDecimal with the Quantity content to set
      * @return the field object to enable build pattern
      */
     public Field35S setComponent2(java.math.BigDecimal component2) {
@@ -473,13 +550,13 @@ public class Field35S extends Field implements Serializable, AmountContainer {
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Alternative method setter for field's Quantity (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component2 the Number with the Amount content to set
+     * @param component2 the Number with the Quantity content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setQuantity(java.math.BigDecimal)
      */
     public Field35S setComponent2(java.lang.Number component2) {
 
@@ -502,39 +579,83 @@ public class Field35S extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the Amount (component 2).
+     * Set the Quantity (component 2).
      *
-     * @param component2 the Amount to set
+     * @param component2 the Quantity to set
      * @return the field object to enable build pattern
      */
-    public Field35S setAmount(String component2) {
+    public Field35S setQuantity(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Amount (component 2) from a BigDecimal object.
+     * Set the Quantity (component 2) from a BigDecimal object.
      *
      * @see #setComponent2(java.math.BigDecimal)
      *
-     * @param component2 BigDecimal with the Amount content to set
+     * @param component2 BigDecimal with the Quantity content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field35S setAmount(java.math.BigDecimal component2) {
+    public Field35S setQuantity(java.math.BigDecimal component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Alternative method setter for field's Quantity (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Amount content to set
+     * @param component2 the Number with the Quantity content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setQuantity(java.math.BigDecimal)
      */
-    public Field35S setAmount(java.lang.Number component2) {
+    public Field35S setQuantity(java.lang.Number component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Quantity
+     *
+     * @see #setQuantity(String)
+     *
+     * @param component2 the Quantity to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field35S setAmount(String component2) {
+        return setQuantity(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Quantity from a BigDecimal object.
+     *
+     * @see #setComponent2(java.math.BigDecimal)
+     *
+     * @param component2 BigDecimal with the Quantity content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field35S setAmount(java.math.BigDecimal component2) {
+        return setQuantity(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Quantity (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Quantity content to set
+     * @return the field object to enable build pattern
+     * @see #setQuantity(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field35S setAmount(java.lang.Number component2) {
+        return setQuantity(component2);
     }
 
 
@@ -643,16 +764,28 @@ public class Field35S extends Field implements Serializable, AmountContainer {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Currency
+        // **** COMPONENT 1 - Type
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("currency") != null) {
             field.setComponent1(jsonObject.get("currency").getAsString());
         }
 
-        // **** COMPONENT 2 - Amount
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("type") != null) {
+            field.setComponent1(jsonObject.get("type").getAsString());
+        }
 
+        // **** COMPONENT 2 - Quantity
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent2(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("quantity") != null) {
+            field.setComponent2(jsonObject.get("quantity").getAsString());
         }
 
         return field;

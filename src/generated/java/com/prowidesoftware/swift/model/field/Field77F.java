@@ -99,9 +99,17 @@ public class Field77F extends Field implements Serializable, MultiLineField {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the DIFACT Message subfield
+	 * Component number for the EDIFACT Message subfield
 	 */
-	public static final Integer DIFACT_MESSAGE = 1;
+	public static final Integer EDIFACT_MESSAGE = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's EDIFACT Message Component number
+	 * @see #EDIFACT_MESSAGE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer DIFACT_MESSAGE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -304,7 +312,7 @@ public class Field77F extends Field implements Serializable, MultiLineField {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("DIFACT Message");
+        result.add("EDIFACT Message");
         return result;
     }
 
@@ -315,13 +323,13 @@ public class Field77F extends Field implements Serializable, MultiLineField {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "dIFACTMessage");
+        result.put(1, "eDIFACTMessage");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (DIFACT Message).
+     * Gets the component 1 (EDIFACT Message).
      * @return the component 1
      */
     public String getComponent1() {
@@ -329,17 +337,28 @@ public class Field77F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the DIFACT Message (component 1).
-     * @return the DIFACT Message from component 1
+     * Gets the EDIFACT Message (component 1).
+     * @return the EDIFACT Message from component 1
      */
-    public String getDIFACTMessage() {
+    public String getEDIFACTMessage() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (DIFACT Message).
+     * Alternative <em>DEPRECATED</em> method getter for field's EDIFACT Message
+     * @see #getEDIFACTMessage()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getDIFACTMessage() {
+        return getEDIFACTMessage();
+    }
+
+    /**
+     * Set the component 1 (EDIFACT Message).
      *
-     * @param component1 the DIFACT Message to set
+     * @param component1 the EDIFACT Message to set
      * @return the field object to enable build pattern
      */
     public Field77F setComponent1(String component1) {
@@ -348,13 +367,27 @@ public class Field77F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the DIFACT Message (component 1).
+     * Set the EDIFACT Message (component 1).
      *
-     * @param component1 the DIFACT Message to set
+     * @param component1 the EDIFACT Message to set
      * @return the field object to enable build pattern
      */
-    public Field77F setDIFACTMessage(String component1) {
+    public Field77F setEDIFACTMessage(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's EDIFACT Message
+     *
+     * @see #setEDIFACTMessage(String)
+     *
+     * @param component1 the EDIFACT Message to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field77F setDIFACTMessage(String component1) {
+        return setEDIFACTMessage(component1);
     }
 
 
@@ -521,10 +554,16 @@ public class Field77F extends Field implements Serializable, MultiLineField {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - DIFACT Message
+        // **** COMPONENT 1 - EDIFACT Message
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("dIFACTMessage") != null) {
             field.setComponent1(jsonObject.get("dIFACTMessage").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("eDIFACTMessage") != null) {
+            field.setComponent1(jsonObject.get("eDIFACTMessage").getAsString());
         }
 
         return field;

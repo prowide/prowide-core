@@ -99,9 +99,17 @@ public class Field77L extends Field implements Serializable, MultiLineField {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Narrative subfield
+	 * Component number for the Line subfield
 	 */
-	public static final Integer NARRATIVE = 1;
+	public static final Integer LINE = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Line Component number
+	 * @see #LINE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer NARRATIVE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -304,7 +312,7 @@ public class Field77L extends Field implements Serializable, MultiLineField {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Narrative");
+        result.add("Line");
         return result;
     }
 
@@ -315,13 +323,13 @@ public class Field77L extends Field implements Serializable, MultiLineField {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "narrative");
+        result.put(1, "line");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Narrative).
+     * Gets the component 1 (Line).
      * @return the component 1
      */
     public String getComponent1() {
@@ -329,17 +337,28 @@ public class Field77L extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Narrative (component 1).
-     * @return the Narrative from component 1
+     * Gets the Line (component 1).
+     * @return the Line from component 1
      */
-    public String getNarrative() {
+    public String getLine() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Narrative).
+     * Alternative <em>DEPRECATED</em> method getter for field's Line
+     * @see #getLine()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getNarrative() {
+        return getLine();
+    }
+
+    /**
+     * Set the component 1 (Line).
      *
-     * @param component1 the Narrative to set
+     * @param component1 the Line to set
      * @return the field object to enable build pattern
      */
     public Field77L setComponent1(String component1) {
@@ -348,13 +367,27 @@ public class Field77L extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Narrative (component 1).
+     * Set the Line (component 1).
      *
-     * @param component1 the Narrative to set
+     * @param component1 the Line to set
      * @return the field object to enable build pattern
      */
-    public Field77L setNarrative(String component1) {
+    public Field77L setLine(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Line
+     *
+     * @see #setLine(String)
+     *
+     * @param component1 the Line to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field77L setNarrative(String component1) {
+        return setLine(component1);
     }
 
 
@@ -521,10 +554,16 @@ public class Field77L extends Field implements Serializable, MultiLineField {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Narrative
+        // **** COMPONENT 1 - Line
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("narrative") != null) {
             field.setComponent1(jsonObject.get("narrative").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("line") != null) {
+            field.setComponent1(jsonObject.get("line").getAsString());
         }
 
         return field;

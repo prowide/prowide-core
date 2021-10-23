@@ -113,9 +113,17 @@ public class Field99A extends Field implements Serializable, GenericField {
 	public static final Integer SIGN = 2;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Number subfield
 	 */
-	public static final Integer AMOUNT = 3;
+	public static final Integer NUMBER = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Number Component number
+	 * @see #NUMBER
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -343,7 +351,7 @@ public class Field99A extends Field implements Serializable, GenericField {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Sign");
-        result.add("Amount");
+        result.add("Number");
         return result;
     }
 
@@ -356,7 +364,7 @@ public class Field99A extends Field implements Serializable, GenericField {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "sign");
-        result.put(3, "amount");
+        result.put(3, "number");
         return result;
     }
 
@@ -394,7 +402,7 @@ public class Field99A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 3 (Amount).
+     * Gets the component 3 (Number).
      * @return the component 3
      */
     public String getComponent3() {
@@ -428,35 +436,71 @@ public class Field99A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the Amount (component 3).
-     * @return the Amount from component 3
+     * Gets the Number (component 3).
+     * @return the Number from component 3
      */
-    public String getAmount() {
+    public String getNumber() {
         return getComponent3();
     }
 
     /**
-     * Get the Amount (component 3) as Long
-     * @return the Amount from component 3 converted to Long or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Number
+     * @see #getNumber()
      * @since 9.2.7
      */
-    public java.lang.Long getAmountAsLong() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getNumber();
+    }
+
+    /**
+     * Get the Number (component 3) as Long
+     * @return the Number from component 3 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumberAsLong() {
         return getComponent3AsLong();
     }
 
     /**
-     * Get the Amount (component 3) as as Number (BigDecimal)
+     * Get the Number (component 3) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent3AsLong()</code> to get the proper value.
      *
      * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsLong()
+     * @see #getNumberAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumberAsNumber() {
+        return getComponent3AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number as Long
+     * @see #getNumberAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getAmountAsLong() {
+        return getNumberAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number (component 3) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent3AsLong()</code> to get the proper value.
+     *
+     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
-        return getComponent3AsNumber();
+        return getNumberAsNumber();
     }
 
     /**
@@ -502,9 +546,9 @@ public class Field99A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 3 (Amount).
+     * Set the component 3 (Number).
      *
-     * @param component3 the Amount to set
+     * @param component3 the Number to set
      * @return the field object to enable build pattern
      */
     public Field99A setComponent3(String component3) {
@@ -522,7 +566,7 @@ public class Field99A extends Field implements Serializable, GenericField {
      * @see #setComponent3(String)
      * @since 9.2.7
      *
-     * @param component3 the Long with the Amount content to set
+     * @param component3 the Long with the Number content to set
      * @return the field object to enable build pattern
      */
     public Field99A setComponent3(java.lang.Long component3) {
@@ -531,13 +575,13 @@ public class Field99A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative method setter for field's Amount (component 3) as as Number
+     * Alternative method setter for field's Number (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component3 the Number with the Amount content to set
+     * @param component3 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.lang.Long)
+     * @see #setNumber(java.lang.Long)
      */
     public Field99A setComponent3(java.lang.Number component3) {
 
@@ -559,39 +603,83 @@ public class Field99A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Amount (component 3).
+     * Set the Number (component 3).
      *
-     * @param component3 the Amount to set
+     * @param component3 the Number to set
      * @return the field object to enable build pattern
      */
-    public Field99A setAmount(String component3) {
+    public Field99A setNumber(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the Amount (component 3) from a Long object.
+     * Set the Number (component 3) from a Long object.
      *
      * @see #setComponent3(java.lang.Long)
      *
-     * @param component3 Long with the Amount content to set
+     * @param component3 Long with the Number content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field99A setAmount(java.lang.Long component3) {
+    public Field99A setNumber(java.lang.Long component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 3) as as Number
+     * Alternative method setter for field's Number (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component3 the Number with the Amount content to set
+     * @param component3 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.lang.Long)
+     * @see #setNumber(java.lang.Long)
      */
-    public Field99A setAmount(java.lang.Number component3) {
+    public Field99A setNumber(java.lang.Number component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number
+     *
+     * @see #setNumber(String)
+     *
+     * @param component3 the Number to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field99A setAmount(String component3) {
+        return setNumber(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number from a Long object.
+     *
+     * @see #setComponent3(java.lang.Long)
+     *
+     * @param component3 Long with the Number content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field99A setAmount(java.lang.Long component3) {
+        return setNumber(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number (component 3) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component3 the Number with the Number content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field99A setAmount(java.lang.Number component3) {
+        return setNumber(component3);
     }
 
 
@@ -726,10 +814,16 @@ public class Field99A extends Field implements Serializable, GenericField {
             field.setComponent2(jsonObject.get("sign").getAsString());
         }
 
-        // **** COMPONENT 3 - Amount
+        // **** COMPONENT 3 - Number
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent3(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("number") != null) {
+            field.setComponent3(jsonObject.get("number").getAsString());
         }
 
         return field;

@@ -98,9 +98,21 @@ public class Field22G extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Type Of Barrier subfield
+	 * Component number for the Type subfield
 	 */
-	public static final Integer TYPE_OF_BARRIER = 1;
+	public static final Integer TYPE = 1;
+
+	/**
+     * Alternative constant name for field's Type Component number
+     * @see #TYPE
+     */
+    public static final Integer TYPE_OF_BARRIER = 1;
+
+	/**
+     * Alternative constant name for field's Type Component number
+     * @see #TYPE
+     */
+    public static final Integer TYPE_OF_DEMAND = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -303,7 +315,7 @@ public class Field22G extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Type Of Barrier");
+        result.add("Type");
         return result;
     }
 
@@ -314,13 +326,13 @@ public class Field22G extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "typeOfBarrier");
+        result.put(1, "type");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Type Of Barrier).
+     * Gets the component 1 (Type).
      * @return the component 1
      */
     public String getComponent1() {
@@ -328,17 +340,35 @@ public class Field22G extends Field implements Serializable {
     }
 
     /**
-     * Gets the Type Of Barrier (component 1).
-     * @return the Type Of Barrier from component 1
+     * Gets the Type (component 1).
+     * @return the Type from component 1
      */
-    public String getTypeOfBarrier() {
+    public String getType() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Type Of Barrier).
+     * Alternative method getter for field's Type
+     * @see #getType()
+     * @since 9.2.7
+     */
+    public String getTypeOfBarrier() {
+        return getType();
+    }
+
+    /**
+     * Alternative method getter for field's Type
+     * @see #getType()
+     * @since 9.2.7
+     */
+    public String getTypeOfDemand() {
+        return getType();
+    }
+
+    /**
+     * Set the component 1 (Type).
      *
-     * @param component1 the Type Of Barrier to set
+     * @param component1 the Type to set
      * @return the field object to enable build pattern
      */
     public Field22G setComponent1(String component1) {
@@ -347,13 +377,37 @@ public class Field22G extends Field implements Serializable {
     }
 
     /**
-     * Set the Type Of Barrier (component 1).
+     * Set the Type (component 1).
      *
-     * @param component1 the Type Of Barrier to set
+     * @param component1 the Type to set
+     * @return the field object to enable build pattern
+     */
+    public Field22G setType(String component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Type
+     *
+     * @see #setType(String)
+     *
+     * @param component1 the Type to set
      * @return the field object to enable build pattern
      */
     public Field22G setTypeOfBarrier(String component1) {
-        return setComponent1(component1);
+        return setType(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Type
+     *
+     * @see #setType(String)
+     *
+     * @param component1 the Type to set
+     * @return the field object to enable build pattern
+     */
+    public Field22G setTypeOfDemand(String component1) {
+        return setType(component1);
     }
 
 
@@ -442,10 +496,19 @@ public class Field22G extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Type Of Barrier
+        // **** COMPONENT 1 - Type
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("typeOfBarrier") != null) {
             field.setComponent1(jsonObject.get("typeOfBarrier").getAsString());
+        }
+        if (jsonObject.get("typeOfDemand") != null) {
+            field.setComponent1(jsonObject.get("typeOfDemand").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("type") != null) {
+            field.setComponent1(jsonObject.get("type").getAsString());
         }
 
         return field;

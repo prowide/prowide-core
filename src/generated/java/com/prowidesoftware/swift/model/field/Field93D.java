@@ -115,9 +115,17 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer SIGN = 2;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Balance subfield
 	 */
-	public static final Integer AMOUNT = 3;
+	public static final Integer BALANCE = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Balance Component number
+	 * @see #BALANCE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -345,7 +353,7 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Sign");
-        result.add("Amount");
+        result.add("Balance");
         return result;
     }
 
@@ -358,7 +366,7 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "sign");
-        result.put(3, "amount");
+        result.put(3, "balance");
         return result;
     }
 
@@ -396,7 +404,7 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the component 3 (Amount).
+     * Gets the component 3 (Balance).
      * @return the component 3
      */
     public String getComponent3() {
@@ -429,35 +437,71 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the Amount (component 3).
-     * @return the Amount from component 3
+     * Gets the Balance (component 3).
+     * @return the Balance from component 3
      */
-    public String getAmount() {
+    public String getBalance() {
         return getComponent3();
     }
 
     /**
-     * Get the Amount (component 3) as BigDecimal
-     * @return the Amount from component 3 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Balance
+     * @see #getBalance()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getBalance();
+    }
+
+    /**
+     * Get the Balance (component 3) as BigDecimal
+     * @return the Balance from component 3 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getBalanceAsBigDecimal() {
         return getComponent3AsBigDecimal();
     }
 
     /**
-     * Get the Amount (component 3) as as Number (BigDecimal)
+     * Get the Balance (component 3) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @see #getBalanceAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getBalanceAsNumber() {
+        return getComponent3AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Balance as BigDecimal
+     * @see #getBalanceAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getBalanceAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Balance (component 3) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getBalanceAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
-        return getComponent3AsNumber();
+        return getBalanceAsNumber();
     }
 
     /**
@@ -503,9 +547,9 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the component 3 (Amount).
+     * Set the component 3 (Balance).
      *
-     * @param component3 the Amount to set
+     * @param component3 the Balance to set
      * @return the field object to enable build pattern
      */
     public Field93D setComponent3(String component3) {
@@ -524,7 +568,7 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
      * </ul>
      * @since 9.2.7
      *
-     * @param component3 the BigDecimal with the Amount content to set
+     * @param component3 the BigDecimal with the Balance content to set
      * @return the field object to enable build pattern
      */
     public Field93D setComponent3(java.math.BigDecimal component3) {
@@ -532,13 +576,13 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 3) as as Number
+     * Alternative method setter for field's Balance (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component3 the Number with the Amount content to set
+     * @param component3 the Number with the Balance content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setBalance(java.math.BigDecimal)
      */
     public Field93D setComponent3(java.lang.Number component3) {
 
@@ -561,39 +605,83 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the Amount (component 3).
+     * Set the Balance (component 3).
      *
-     * @param component3 the Amount to set
+     * @param component3 the Balance to set
      * @return the field object to enable build pattern
      */
-    public Field93D setAmount(String component3) {
+    public Field93D setBalance(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the Amount (component 3) from a BigDecimal object.
+     * Set the Balance (component 3) from a BigDecimal object.
      *
      * @see #setComponent3(java.math.BigDecimal)
      *
-     * @param component3 BigDecimal with the Amount content to set
+     * @param component3 BigDecimal with the Balance content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field93D setAmount(java.math.BigDecimal component3) {
+    public Field93D setBalance(java.math.BigDecimal component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 3) as as Number
+     * Alternative method setter for field's Balance (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component3 the Number with the Amount content to set
+     * @param component3 the Number with the Balance content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setBalance(java.math.BigDecimal)
      */
-    public Field93D setAmount(java.lang.Number component3) {
+    public Field93D setBalance(java.lang.Number component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Balance
+     *
+     * @see #setBalance(String)
+     *
+     * @param component3 the Balance to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field93D setAmount(String component3) {
+        return setBalance(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Balance from a BigDecimal object.
+     *
+     * @see #setComponent3(java.math.BigDecimal)
+     *
+     * @param component3 BigDecimal with the Balance content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field93D setAmount(java.math.BigDecimal component3) {
+        return setBalance(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Balance (component 3) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component3 the Number with the Balance content to set
+     * @return the field object to enable build pattern
+     * @see #setBalance(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field93D setAmount(java.lang.Number component3) {
+        return setBalance(component3);
     }
 
 
@@ -748,10 +836,16 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
             field.setComponent2(jsonObject.get("sign").getAsString());
         }
 
-        // **** COMPONENT 3 - Amount
+        // **** COMPONENT 3 - Balance
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent3(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("balance") != null) {
+            field.setComponent3(jsonObject.get("balance").getAsString());
         }
 
         return field;

@@ -98,9 +98,17 @@ public class Field23C extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Settlement Calculation subfield
 	 */
-	public static final Integer CODE = 1;
+	public static final Integer SETTLEMENT_CALCULATION = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Settlement Calculation Component number
+	 * @see #SETTLEMENT_CALCULATION
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -303,7 +311,7 @@ public class Field23C extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Code");
+        result.add("Settlement Calculation");
         return result;
     }
 
@@ -314,13 +322,13 @@ public class Field23C extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "code");
+        result.put(1, "settlementCalculation");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Code).
+     * Gets the component 1 (Settlement Calculation).
      * @return the component 1
      */
     public String getComponent1() {
@@ -328,17 +336,28 @@ public class Field23C extends Field implements Serializable {
     }
 
     /**
-     * Gets the Code (component 1).
-     * @return the Code from component 1
+     * Gets the Settlement Calculation (component 1).
+     * @return the Settlement Calculation from component 1
      */
-    public String getCode() {
+    public String getSettlementCalculation() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Code).
+     * Alternative <em>DEPRECATED</em> method getter for field's Settlement Calculation
+     * @see #getSettlementCalculation()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getSettlementCalculation();
+    }
+
+    /**
+     * Set the component 1 (Settlement Calculation).
      *
-     * @param component1 the Code to set
+     * @param component1 the Settlement Calculation to set
      * @return the field object to enable build pattern
      */
     public Field23C setComponent1(String component1) {
@@ -347,13 +366,27 @@ public class Field23C extends Field implements Serializable {
     }
 
     /**
-     * Set the Code (component 1).
+     * Set the Settlement Calculation (component 1).
      *
-     * @param component1 the Code to set
+     * @param component1 the Settlement Calculation to set
      * @return the field object to enable build pattern
      */
-    public Field23C setCode(String component1) {
+    public Field23C setSettlementCalculation(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Settlement Calculation
+     *
+     * @see #setSettlementCalculation(String)
+     *
+     * @param component1 the Settlement Calculation to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field23C setCode(String component1) {
+        return setSettlementCalculation(component1);
     }
 
 
@@ -442,10 +475,16 @@ public class Field23C extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Code
+        // **** COMPONENT 1 - Settlement Calculation
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("code") != null) {
             field.setComponent1(jsonObject.get("code").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("settlementCalculation") != null) {
+            field.setComponent1(jsonObject.get("settlementCalculation").getAsString());
         }
 
         return field;

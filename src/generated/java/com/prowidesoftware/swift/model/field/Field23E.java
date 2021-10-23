@@ -99,14 +99,34 @@ public class Field23E extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Instruction Code subfield
 	 */
-	public static final Integer CODE = 1;
+	public static final Integer INSTRUCTION_CODE = 1;
+
+	/**
+     * Alternative constant name for field's Instruction Code Component number
+     * @see #INSTRUCTION_CODE
+     */
+    public static final Integer TYPE = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Instruction Code Component number
+	 * @see #INSTRUCTION_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 1;
 
 	/**
 	 * Component number for the Additional Information subfield
 	 */
 	public static final Integer ADDITIONAL_INFORMATION = 2;
+
+	/**
+     * Alternative constant name for field's Additional Information Component number
+     * @see #ADDITIONAL_INFORMATION
+     */
+    public static final Integer NARRATIVE = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -320,7 +340,7 @@ public class Field23E extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Code");
+        result.add("Instruction Code");
         result.add("Additional Information");
         return result;
     }
@@ -332,14 +352,14 @@ public class Field23E extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "code");
+        result.put(1, "instructionCode");
         result.put(2, "additionalInformation");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Code).
+     * Gets the component 1 (Instruction Code).
      * @return the component 1
      */
     public String getComponent1() {
@@ -347,11 +367,31 @@ public class Field23E extends Field implements Serializable {
     }
 
     /**
-     * Gets the Code (component 1).
-     * @return the Code from component 1
+     * Gets the Instruction Code (component 1).
+     * @return the Instruction Code from component 1
      */
-    public String getCode() {
+    public String getInstructionCode() {
         return getComponent1();
+    }
+
+    /**
+     * Alternative method getter for field's Instruction Code
+     * @see #getInstructionCode()
+     * @since 9.2.7
+     */
+    public String getType() {
+        return getInstructionCode();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Instruction Code
+     * @see #getInstructionCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getInstructionCode();
     }
 
     /**
@@ -371,9 +411,18 @@ public class Field23E extends Field implements Serializable {
     }
 
     /**
-     * Set the component 1 (Code).
+     * Alternative method getter for field's Additional Information
+     * @see #getAdditionalInformation()
+     * @since 9.2.7
+     */
+    public String getNarrative() {
+        return getAdditionalInformation();
+    }
+
+    /**
+     * Set the component 1 (Instruction Code).
      *
-     * @param component1 the Code to set
+     * @param component1 the Instruction Code to set
      * @return the field object to enable build pattern
      */
     public Field23E setComponent1(String component1) {
@@ -382,13 +431,39 @@ public class Field23E extends Field implements Serializable {
     }
 
     /**
-     * Set the Code (component 1).
+     * Set the Instruction Code (component 1).
      *
-     * @param component1 the Code to set
+     * @param component1 the Instruction Code to set
      * @return the field object to enable build pattern
      */
-    public Field23E setCode(String component1) {
+    public Field23E setInstructionCode(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Instruction Code
+     *
+     * @see #setInstructionCode(String)
+     *
+     * @param component1 the Instruction Code to set
+     * @return the field object to enable build pattern
+     */
+    public Field23E setType(String component1) {
+        return setInstructionCode(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Instruction Code
+     *
+     * @see #setInstructionCode(String)
+     *
+     * @param component1 the Instruction Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field23E setCode(String component1) {
+        return setInstructionCode(component1);
     }
 
     /**
@@ -410,6 +485,18 @@ public class Field23E extends Field implements Serializable {
      */
     public Field23E setAdditionalInformation(String component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative method setter for field's Additional Information
+     *
+     * @see #setAdditionalInformation(String)
+     *
+     * @param component2 the Additional Information to set
+     * @return the field object to enable build pattern
+     */
+    public Field23E setNarrative(String component2) {
+        return setAdditionalInformation(component2);
     }
 
 
@@ -498,14 +585,29 @@ public class Field23E extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Code
+        // **** COMPONENT 1 - Instruction Code
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("type") != null) {
+            field.setComponent1(jsonObject.get("type").getAsString());
+        }
         if (jsonObject.get("code") != null) {
             field.setComponent1(jsonObject.get("code").getAsString());
         }
 
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("instructionCode") != null) {
+            field.setComponent1(jsonObject.get("instructionCode").getAsString());
+        }
+
         // **** COMPONENT 2 - Additional Information
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("narrative") != null) {
+            field.setComponent2(jsonObject.get("narrative").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("additionalInformation") != null) {
             field.setComponent2(jsonObject.get("additionalInformation").getAsString());
         }

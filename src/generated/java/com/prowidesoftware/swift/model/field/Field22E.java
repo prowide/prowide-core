@@ -102,6 +102,12 @@ public class Field22E extends Field implements Serializable {
 	 */
 	public static final Integer TYPE = 1;
 
+	/**
+     * Alternative constant name for field's Type Component number
+     * @see #TYPE
+     */
+    public static final Integer TYPE_OF_PAYMENT = 1;
+
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
@@ -336,6 +342,15 @@ public class Field22E extends Field implements Serializable {
     }
 
     /**
+     * Alternative method getter for field's Type
+     * @see #getType()
+     * @since 9.2.7
+     */
+    public String getTypeOfPayment() {
+        return getType();
+    }
+
+    /**
      * Set the component 1 (Type).
      *
      * @param component1 the Type to set
@@ -354,6 +369,18 @@ public class Field22E extends Field implements Serializable {
      */
     public Field22E setType(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Type
+     *
+     * @see #setType(String)
+     *
+     * @param component1 the Type to set
+     * @return the field object to enable build pattern
+     */
+    public Field22E setTypeOfPayment(String component1) {
+        return setType(component1);
     }
 
 
@@ -444,6 +471,12 @@ public class Field22E extends Field implements Serializable {
 
         // **** COMPONENT 1 - Type
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("typeOfPayment") != null) {
+            field.setComponent1(jsonObject.get("typeOfPayment").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("type") != null) {
             field.setComponent1(jsonObject.get("type").getAsString());
         }

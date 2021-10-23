@@ -111,9 +111,17 @@ public class Field98B extends Field implements Serializable, GenericField {
 	public static final Integer DATA_SOURCE_SCHEME = 2;
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Date Code subfield
 	 */
-	public static final Integer CODE = 3;
+	public static final Integer DATE_CODE = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date Code Component number
+	 * @see #DATE_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -336,7 +344,7 @@ public class Field98B extends Field implements Serializable, GenericField {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Data Source Scheme");
-        result.add("Code");
+        result.add("Date Code");
         return result;
     }
 
@@ -349,7 +357,7 @@ public class Field98B extends Field implements Serializable, GenericField {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "dataSourceScheme");
-        result.put(3, "code");
+        result.put(3, "dateCode");
         return result;
     }
 
@@ -387,7 +395,7 @@ public class Field98B extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 3 (Code).
+     * Gets the component 3 (Date Code).
      * @return the component 3
      */
     public String getComponent3() {
@@ -395,11 +403,22 @@ public class Field98B extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the Code (component 3).
-     * @return the Code from component 3
+     * Gets the Date Code (component 3).
+     * @return the Date Code from component 3
      */
-    public String getCode() {
+    public String getDateCode() {
         return getComponent3();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Date Code
+     * @see #getDateCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getDateCode();
     }
 
     /**
@@ -445,9 +464,9 @@ public class Field98B extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 3 (Code).
+     * Set the component 3 (Date Code).
      *
-     * @param component3 the Code to set
+     * @param component3 the Date Code to set
      * @return the field object to enable build pattern
      */
     public Field98B setComponent3(String component3) {
@@ -456,13 +475,27 @@ public class Field98B extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Code (component 3).
+     * Set the Date Code (component 3).
      *
-     * @param component3 the Code to set
+     * @param component3 the Date Code to set
      * @return the field object to enable build pattern
      */
-    public Field98B setCode(String component3) {
+    public Field98B setDateCode(String component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Date Code
+     *
+     * @see #setDateCode(String)
+     *
+     * @param component3 the Date Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field98B setCode(String component3) {
+        return setDateCode(component3);
     }
 
 
@@ -597,10 +630,16 @@ public class Field98B extends Field implements Serializable, GenericField {
             field.setComponent2(jsonObject.get("dataSourceScheme").getAsString());
         }
 
-        // **** COMPONENT 3 - Code
+        // **** COMPONENT 3 - Date Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("code") != null) {
             field.setComponent3(jsonObject.get("code").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("dateCode") != null) {
+            field.setComponent3(jsonObject.get("dateCode").getAsString());
         }
 
         return field;

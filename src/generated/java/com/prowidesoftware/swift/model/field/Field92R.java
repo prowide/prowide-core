@@ -116,14 +116,30 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer DATA_SOURCE_SCHEME = 2;
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Rate Type Code subfield
 	 */
-	public static final Integer CODE = 3;
+	public static final Integer RATE_TYPE_CODE = 3;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Rate Type Code Component number
+	 * @see #RATE_TYPE_CODE
 	 */
-	public static final Integer AMOUNT = 4;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 3;
+
+	/**
+	 * Component number for the Rate subfield
+	 */
+	public static final Integer RATE = 4;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Rate Component number
+	 * @see #RATE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -358,8 +374,8 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Data Source Scheme");
-        result.add("Code");
-        result.add("Amount");
+        result.add("Rate Type Code");
+        result.add("Rate");
         return result;
     }
 
@@ -372,8 +388,8 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "dataSourceScheme");
-        result.put(3, "code");
-        result.put(4, "amount");
+        result.put(3, "rateTypeCode");
+        result.put(4, "rate");
         return result;
     }
 
@@ -411,7 +427,7 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the component 3 (Code).
+     * Gets the component 3 (Rate Type Code).
      * @return the component 3
      */
     public String getComponent3() {
@@ -419,15 +435,26 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the Code (component 3).
-     * @return the Code from component 3
+     * Gets the Rate Type Code (component 3).
+     * @return the Rate Type Code from component 3
      */
-    public String getCode() {
+    public String getRateTypeCode() {
         return getComponent3();
     }
 
     /**
-     * Gets the component 4 (Amount).
+     * Alternative <em>DEPRECATED</em> method getter for field's Rate Type Code
+     * @see #getRateTypeCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getRateTypeCode();
+    }
+
+    /**
+     * Gets the component 4 (Rate).
      * @return the component 4
      */
     public String getComponent4() {
@@ -460,35 +487,71 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the Amount (component 4).
-     * @return the Amount from component 4
+     * Gets the Rate (component 4).
+     * @return the Rate from component 4
      */
-    public String getAmount() {
+    public String getRate() {
         return getComponent4();
     }
 
     /**
-     * Get the Amount (component 4) as BigDecimal
-     * @return the Amount from component 4 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Rate
+     * @see #getRate()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getRate();
+    }
+
+    /**
+     * Get the Rate (component 4) as BigDecimal
+     * @return the Rate from component 4 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getRateAsBigDecimal() {
         return getComponent4AsBigDecimal();
     }
 
     /**
-     * Get the Amount (component 4) as as Number (BigDecimal)
+     * Get the Rate (component 4) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @see #getRateAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getRateAsNumber() {
+        return getComponent4AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Rate as BigDecimal
+     * @see #getRateAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getRateAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Rate (component 4) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getRateAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
-        return getComponent4AsNumber();
+        return getRateAsNumber();
     }
 
     /**
@@ -534,9 +597,9 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the component 3 (Code).
+     * Set the component 3 (Rate Type Code).
      *
-     * @param component3 the Code to set
+     * @param component3 the Rate Type Code to set
      * @return the field object to enable build pattern
      */
     public Field92R setComponent3(String component3) {
@@ -545,19 +608,33 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the Code (component 3).
+     * Set the Rate Type Code (component 3).
      *
-     * @param component3 the Code to set
+     * @param component3 the Rate Type Code to set
      * @return the field object to enable build pattern
      */
-    public Field92R setCode(String component3) {
+    public Field92R setRateTypeCode(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the component 4 (Amount).
+     * Alternative <em>DEPRECATED</em> method setter for field's Rate Type Code
      *
-     * @param component4 the Amount to set
+     * @see #setRateTypeCode(String)
+     *
+     * @param component3 the Rate Type Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field92R setCode(String component3) {
+        return setRateTypeCode(component3);
+    }
+
+    /**
+     * Set the component 4 (Rate).
+     *
+     * @param component4 the Rate to set
      * @return the field object to enable build pattern
      */
     public Field92R setComponent4(String component4) {
@@ -576,7 +653,7 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
      * </ul>
      * @since 9.2.7
      *
-     * @param component4 the BigDecimal with the Amount content to set
+     * @param component4 the BigDecimal with the Rate content to set
      * @return the field object to enable build pattern
      */
     public Field92R setComponent4(java.math.BigDecimal component4) {
@@ -584,13 +661,13 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 4) as as Number
+     * Alternative method setter for field's Rate (component 4) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component4 the Number with the Amount content to set
+     * @param component4 the Number with the Rate content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setRate(java.math.BigDecimal)
      */
     public Field92R setComponent4(java.lang.Number component4) {
 
@@ -613,39 +690,83 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the Amount (component 4).
+     * Set the Rate (component 4).
      *
-     * @param component4 the Amount to set
+     * @param component4 the Rate to set
      * @return the field object to enable build pattern
      */
-    public Field92R setAmount(String component4) {
+    public Field92R setRate(String component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Set the Amount (component 4) from a BigDecimal object.
+     * Set the Rate (component 4) from a BigDecimal object.
      *
      * @see #setComponent4(java.math.BigDecimal)
      *
-     * @param component4 BigDecimal with the Amount content to set
+     * @param component4 BigDecimal with the Rate content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field92R setAmount(java.math.BigDecimal component4) {
+    public Field92R setRate(java.math.BigDecimal component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 4) as as Number
+     * Alternative method setter for field's Rate (component 4) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component4 the Number with the Amount content to set
+     * @param component4 the Number with the Rate content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setRate(java.math.BigDecimal)
      */
-    public Field92R setAmount(java.lang.Number component4) {
+    public Field92R setRate(java.lang.Number component4) {
         return setComponent4(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Rate
+     *
+     * @see #setRate(String)
+     *
+     * @param component4 the Rate to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field92R setAmount(String component4) {
+        return setRate(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Rate from a BigDecimal object.
+     *
+     * @see #setComponent4(java.math.BigDecimal)
+     *
+     * @param component4 BigDecimal with the Rate content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field92R setAmount(java.math.BigDecimal component4) {
+        return setRate(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Rate (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component4 the Number with the Rate content to set
+     * @return the field object to enable build pattern
+     * @see #setRate(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field92R setAmount(java.lang.Number component4) {
+        return setRate(component4);
     }
 
 
@@ -800,16 +921,28 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
             field.setComponent2(jsonObject.get("dataSourceScheme").getAsString());
         }
 
-        // **** COMPONENT 3 - Code
+        // **** COMPONENT 3 - Rate Type Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("code") != null) {
             field.setComponent3(jsonObject.get("code").getAsString());
         }
 
-        // **** COMPONENT 4 - Amount
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("rateTypeCode") != null) {
+            field.setComponent3(jsonObject.get("rateTypeCode").getAsString());
+        }
 
+        // **** COMPONENT 4 - Rate
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent4(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("rate") != null) {
+            field.setComponent4(jsonObject.get("rate").getAsString());
         }
 
         return field;

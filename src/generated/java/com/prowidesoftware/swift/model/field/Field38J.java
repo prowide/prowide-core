@@ -101,9 +101,17 @@ public class Field38J extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "SN";
 
 	/**
-	 * Component number for the D/M Mark subfield
+	 * Component number for the Indicator subfield
 	 */
-	public static final Integer DM_MARK = 1;
+	public static final Integer INDICATOR = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Indicator Component number
+	 * @see #INDICATOR
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer DM_MARK = 1;
 
 	/**
 	 * Component number for the Number subfield
@@ -321,7 +329,7 @@ public class Field38J extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("D/M Mark");
+        result.add("Indicator");
         result.add("Number");
         return result;
     }
@@ -333,14 +341,14 @@ public class Field38J extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "dMMark");
+        result.put(1, "indicator");
         result.put(2, "number");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (D/M Mark).
+     * Gets the component 1 (Indicator).
      * @return the component 1
      */
     public String getComponent1() {
@@ -348,11 +356,22 @@ public class Field38J extends Field implements Serializable {
     }
 
     /**
-     * Gets the D/M Mark (component 1).
-     * @return the D/M Mark from component 1
+     * Gets the Indicator (component 1).
+     * @return the Indicator from component 1
      */
-    public String getDMMark() {
+    public String getIndicator() {
         return getComponent1();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Indicator
+     * @see #getIndicator()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getDMMark() {
+        return getIndicator();
     }
 
     /**
@@ -422,9 +441,9 @@ public class Field38J extends Field implements Serializable {
     }
 
     /**
-     * Set the component 1 (D/M Mark).
+     * Set the component 1 (Indicator).
      *
-     * @param component1 the D/M Mark to set
+     * @param component1 the Indicator to set
      * @return the field object to enable build pattern
      */
     public Field38J setComponent1(String component1) {
@@ -433,13 +452,27 @@ public class Field38J extends Field implements Serializable {
     }
 
     /**
-     * Set the D/M Mark (component 1).
+     * Set the Indicator (component 1).
      *
-     * @param component1 the D/M Mark to set
+     * @param component1 the Indicator to set
      * @return the field object to enable build pattern
      */
-    public Field38J setDMMark(String component1) {
+    public Field38J setIndicator(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Indicator
+     *
+     * @see #setIndicator(String)
+     *
+     * @param component1 the Indicator to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field38J setDMMark(String component1) {
+        return setIndicator(component1);
     }
 
     /**
@@ -621,10 +654,16 @@ public class Field38J extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - D/M Mark
+        // **** COMPONENT 1 - Indicator
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("dMMark") != null) {
             field.setComponent1(jsonObject.get("dMMark").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("indicator") != null) {
+            field.setComponent1(jsonObject.get("indicator").getAsString());
         }
 
         // **** COMPONENT 2 - Number

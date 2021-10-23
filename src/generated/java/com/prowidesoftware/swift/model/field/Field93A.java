@@ -111,9 +111,17 @@ public class Field93A extends Field implements Serializable, GenericField {
 	public static final Integer DATA_SOURCE_SCHEME = 2;
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the Sub-balance Type subfield
 	 */
-	public static final Integer CODE = 3;
+	public static final Integer SUBBALANCE_TYPE = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Sub-balance Type Component number
+	 * @see #SUBBALANCE_TYPE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -336,7 +344,7 @@ public class Field93A extends Field implements Serializable, GenericField {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Data Source Scheme");
-        result.add("Code");
+        result.add("Sub-balance Type");
         return result;
     }
 
@@ -349,7 +357,7 @@ public class Field93A extends Field implements Serializable, GenericField {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "dataSourceScheme");
-        result.put(3, "code");
+        result.put(3, "subbalanceType");
         return result;
     }
 
@@ -387,7 +395,7 @@ public class Field93A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 3 (Code).
+     * Gets the component 3 (Sub-balance Type).
      * @return the component 3
      */
     public String getComponent3() {
@@ -395,11 +403,22 @@ public class Field93A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the Code (component 3).
-     * @return the Code from component 3
+     * Gets the Sub-balance Type (component 3).
+     * @return the Sub-balance Type from component 3
      */
-    public String getCode() {
+    public String getSubbalanceType() {
         return getComponent3();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Sub-balance Type
+     * @see #getSubbalanceType()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getSubbalanceType();
     }
 
     /**
@@ -445,9 +464,9 @@ public class Field93A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 3 (Code).
+     * Set the component 3 (Sub-balance Type).
      *
-     * @param component3 the Code to set
+     * @param component3 the Sub-balance Type to set
      * @return the field object to enable build pattern
      */
     public Field93A setComponent3(String component3) {
@@ -456,13 +475,27 @@ public class Field93A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Code (component 3).
+     * Set the Sub-balance Type (component 3).
      *
-     * @param component3 the Code to set
+     * @param component3 the Sub-balance Type to set
      * @return the field object to enable build pattern
      */
-    public Field93A setCode(String component3) {
+    public Field93A setSubbalanceType(String component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Sub-balance Type
+     *
+     * @see #setSubbalanceType(String)
+     *
+     * @param component3 the Sub-balance Type to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field93A setCode(String component3) {
+        return setSubbalanceType(component3);
     }
 
 
@@ -597,10 +630,16 @@ public class Field93A extends Field implements Serializable, GenericField {
             field.setComponent2(jsonObject.get("dataSourceScheme").getAsString());
         }
 
-        // **** COMPONENT 3 - Code
+        // **** COMPONENT 3 - Sub-balance Type
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("code") != null) {
             field.setComponent3(jsonObject.get("code").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("subbalanceType") != null) {
+            field.setComponent3(jsonObject.get("subbalanceType").getAsString());
         }
 
         return field;

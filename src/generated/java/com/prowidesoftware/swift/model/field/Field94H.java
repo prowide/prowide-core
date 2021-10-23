@@ -105,9 +105,17 @@ public class Field94H extends Field implements Serializable, GenericField {
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the BIC subfield
+	 * Component number for the Identifier Code subfield
 	 */
-	public static final Integer BIC = 2;
+	public static final Integer IDENTIFIER_CODE = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Identifier Code Component number
+	 * @see #IDENTIFIER_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer BIC = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -319,7 +327,7 @@ public class Field94H extends Field implements Serializable, GenericField {
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("BIC");
+        result.add("Identifier Code");
         return result;
     }
 
@@ -331,7 +339,7 @@ public class Field94H extends Field implements Serializable, GenericField {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "bIC");
+        result.put(2, "identifierCode");
         return result;
     }
 
@@ -353,7 +361,7 @@ public class Field94H extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 2 (BIC).
+     * Gets the component 2 (Identifier Code).
      * @return the component 2
      */
     public String getComponent2() {
@@ -361,11 +369,22 @@ public class Field94H extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the BIC (component 2).
-     * @return the BIC from component 2
+     * Gets the Identifier Code (component 2).
+     * @return the Identifier Code from component 2
      */
-    public String getBIC() {
+    public String getIdentifierCode() {
         return getComponent2();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
+     * @see #getIdentifierCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getBIC() {
+        return getIdentifierCode();
     }
 
     /**
@@ -390,9 +409,9 @@ public class Field94H extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 2 (BIC).
+     * Set the component 2 (Identifier Code).
      *
-     * @param component2 the BIC to set
+     * @param component2 the Identifier Code to set
      * @return the field object to enable build pattern
      */
     public Field94H setComponent2(String component2) {
@@ -401,13 +420,27 @@ public class Field94H extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the BIC (component 2).
+     * Set the Identifier Code (component 2).
      *
-     * @param component2 the BIC to set
+     * @param component2 the Identifier Code to set
      * @return the field object to enable build pattern
      */
-    public Field94H setBIC(String component2) {
+    public Field94H setIdentifierCode(String component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code
+     *
+     * @see #setIdentifierCode(String)
+     *
+     * @param component2 the Identifier Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field94H setBIC(String component2) {
+        return setIdentifierCode(component2);
     }
 
 
@@ -536,10 +569,16 @@ public class Field94H extends Field implements Serializable, GenericField {
             field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - BIC
+        // **** COMPONENT 2 - Identifier Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("bIC") != null) {
             field.setComponent2(jsonObject.get("bIC").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("identifierCode") != null) {
+            field.setComponent2(jsonObject.get("identifierCode").getAsString());
         }
 
         return field;

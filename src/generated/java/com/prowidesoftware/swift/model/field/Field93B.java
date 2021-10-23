@@ -127,9 +127,17 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer SIGN = 4;
 
 	/**
-	 * Component number for the Balance Amount subfield
+	 * Component number for the Balance subfield
 	 */
-	public static final Integer BALANCE_AMOUNT = 5;
+	public static final Integer BALANCE = 5;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Balance Component number
+	 * @see #BALANCE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer BALANCE_AMOUNT = 5;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -377,7 +385,7 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
         result.add("Data Source Scheme");
         result.add("Quantity Type Code");
         result.add("Sign");
-        result.add("Balance Amount");
+        result.add("Balance");
         return result;
     }
 
@@ -392,7 +400,7 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
         result.put(2, "dataSourceScheme");
         result.put(3, "quantityTypeCode");
         result.put(4, "sign");
-        result.put(5, "balanceAmount");
+        result.put(5, "balance");
         return result;
     }
 
@@ -462,7 +470,7 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the component 5 (Balance Amount).
+     * Gets the component 5 (Balance).
      * @return the component 5
      */
     public String getComponent5() {
@@ -495,35 +503,71 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Gets the Balance Amount (component 5).
-     * @return the Balance Amount from component 5
+     * Gets the Balance (component 5).
+     * @return the Balance from component 5
      */
-    public String getBalanceAmount() {
+    public String getBalance() {
         return getComponent5();
     }
 
     /**
-     * Get the Balance Amount (component 5) as BigDecimal
-     * @return the Balance Amount from component 5 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Balance
+     * @see #getBalance()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getBalanceAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getBalanceAmount() {
+        return getBalance();
+    }
+
+    /**
+     * Get the Balance (component 5) as BigDecimal
+     * @return the Balance from component 5 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getBalanceAsBigDecimal() {
         return getComponent5AsBigDecimal();
     }
 
     /**
-     * Get the Balance Amount (component 5) as as Number (BigDecimal)
+     * Get the Balance (component 5) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent5AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 5 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getBalanceAmountAsBigDecimal()
+     * @see #getBalanceAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getBalanceAsNumber() {
+        return getComponent5AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Balance as BigDecimal
+     * @see #getBalanceAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getBalanceAmountAsBigDecimal() {
+        return getBalanceAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Balance (component 5) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent5AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 5 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getBalanceAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getBalanceAmountAsNumber() {
-        return getComponent5AsNumber();
+        return getBalanceAsNumber();
     }
 
     /**
@@ -611,9 +655,9 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the component 5 (Balance Amount).
+     * Set the component 5 (Balance).
      *
-     * @param component5 the Balance Amount to set
+     * @param component5 the Balance to set
      * @return the field object to enable build pattern
      */
     public Field93B setComponent5(String component5) {
@@ -632,7 +676,7 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
      * </ul>
      * @since 9.2.7
      *
-     * @param component5 the BigDecimal with the Balance Amount content to set
+     * @param component5 the BigDecimal with the Balance content to set
      * @return the field object to enable build pattern
      */
     public Field93B setComponent5(java.math.BigDecimal component5) {
@@ -640,13 +684,13 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
         return this;
     }
     /**
-     * Alternative method setter for field's Balance Amount (component 5) as as Number
+     * Alternative method setter for field's Balance (component 5) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component5 the Number with the Balance Amount content to set
+     * @param component5 the Number with the Balance content to set
      * @return the field object to enable build pattern
-     * @see #setBalanceAmount(java.math.BigDecimal)
+     * @see #setBalance(java.math.BigDecimal)
      */
     public Field93B setComponent5(java.lang.Number component5) {
 
@@ -669,39 +713,83 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Set the Balance Amount (component 5).
+     * Set the Balance (component 5).
      *
-     * @param component5 the Balance Amount to set
+     * @param component5 the Balance to set
      * @return the field object to enable build pattern
      */
-    public Field93B setBalanceAmount(String component5) {
+    public Field93B setBalance(String component5) {
         return setComponent5(component5);
     }
 
     /**
-     * Set the Balance Amount (component 5) from a BigDecimal object.
+     * Set the Balance (component 5) from a BigDecimal object.
      *
      * @see #setComponent5(java.math.BigDecimal)
      *
-     * @param component5 BigDecimal with the Balance Amount content to set
+     * @param component5 BigDecimal with the Balance content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field93B setBalanceAmount(java.math.BigDecimal component5) {
+    public Field93B setBalance(java.math.BigDecimal component5) {
         return setComponent5(component5);
     }
 
     /**
-     * Alternative method setter for field's Balance Amount (component 5) as as Number
+     * Alternative method setter for field's Balance (component 5) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component5 the Number with the Balance Amount content to set
+     * @param component5 the Number with the Balance content to set
      * @return the field object to enable build pattern
-     * @see #setBalanceAmount(java.math.BigDecimal)
+     * @see #setBalance(java.math.BigDecimal)
      */
-    public Field93B setBalanceAmount(java.lang.Number component5) {
+    public Field93B setBalance(java.lang.Number component5) {
         return setComponent5(component5);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Balance
+     *
+     * @see #setBalance(String)
+     *
+     * @param component5 the Balance to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field93B setBalanceAmount(String component5) {
+        return setBalance(component5);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Balance from a BigDecimal object.
+     *
+     * @see #setComponent5(java.math.BigDecimal)
+     *
+     * @param component5 BigDecimal with the Balance content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field93B setBalanceAmount(java.math.BigDecimal component5) {
+        return setBalance(component5);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Balance (component 5) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component5 the Number with the Balance content to set
+     * @return the field object to enable build pattern
+     * @see #setBalance(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field93B setBalanceAmount(java.lang.Number component5) {
+        return setBalance(component5);
     }
 
 
@@ -868,10 +956,16 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
             field.setComponent4(jsonObject.get("sign").getAsString());
         }
 
-        // **** COMPONENT 5 - Balance Amount
+        // **** COMPONENT 5 - Balance
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("balanceAmount") != null) {
             field.setComponent5(jsonObject.get("balanceAmount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("balance") != null) {
+            field.setComponent5(jsonObject.get("balance").getAsString());
         }
 
         return field;

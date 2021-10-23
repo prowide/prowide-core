@@ -101,14 +101,30 @@ public class Field28D extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "NN";
 
 	/**
-	 * Component number for the Statement Number subfield
+	 * Component number for the Message Index subfield
 	 */
-	public static final Integer STATEMENT_NUMBER = 1;
+	public static final Integer MESSAGE_INDEX = 1;
 
 	/**
-	 * Component number for the Sequence Number subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Message Index Component number
+	 * @see #MESSAGE_INDEX
 	 */
-	public static final Integer SEQUENCE_NUMBER = 2;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer STATEMENT_NUMBER = 1;
+
+	/**
+	 * Component number for the Total subfield
+	 */
+	public static final Integer TOTAL = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Total Component number
+	 * @see #TOTAL
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer SEQUENCE_NUMBER = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -328,8 +344,8 @@ public class Field28D extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Statement Number");
-        result.add("Sequence Number");
+        result.add("Message Index");
+        result.add("Total");
         return result;
     }
 
@@ -340,14 +356,14 @@ public class Field28D extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "statementNumber");
-        result.put(2, "sequenceNumber");
+        result.put(1, "messageIndex");
+        result.put(2, "total");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Statement Number).
+     * Gets the component 1 (Message Index).
      * @return the component 1
      */
     public String getComponent1() {
@@ -381,39 +397,75 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Gets the Statement Number (component 1).
-     * @return the Statement Number from component 1
+     * Gets the Message Index (component 1).
+     * @return the Message Index from component 1
      */
-    public String getStatementNumber() {
+    public String getMessageIndex() {
         return getComponent1();
     }
 
     /**
-     * Get the Statement Number (component 1) as Long
-     * @return the Statement Number from component 1 converted to Long or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Message Index
+     * @see #getMessageIndex()
      * @since 9.2.7
      */
-    public java.lang.Long getStatementNumberAsLong() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getStatementNumber() {
+        return getMessageIndex();
+    }
+
+    /**
+     * Get the Message Index (component 1) as Long
+     * @return the Message Index from component 1 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getMessageIndexAsLong() {
         return getComponent1AsLong();
     }
 
     /**
-     * Get the Statement Number (component 1) as as Number (BigDecimal)
+     * Get the Message Index (component 1) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent1AsLong()</code> to get the proper value.
      *
      * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getStatementNumberAsLong()
+     * @see #getMessageIndexAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public java.lang.Number getStatementNumberAsNumber() {
+    public java.lang.Number getMessageIndexAsNumber() {
         return getComponent1AsNumber();
     }
 
     /**
-     * Gets the component 2 (Sequence Number).
+     * Alternative <em>DEPRECATED</em> method getter for field's Message Index as Long
+     * @see #getMessageIndexAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getStatementNumberAsLong() {
+        return getMessageIndexAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Message Index (component 1) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsLong()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getMessageIndexAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getStatementNumberAsNumber() {
+        return getMessageIndexAsNumber();
+    }
+
+    /**
+     * Gets the component 2 (Total).
      * @return the component 2
      */
     public String getComponent2() {
@@ -447,41 +499,77 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Gets the Sequence Number (component 2).
-     * @return the Sequence Number from component 2
+     * Gets the Total (component 2).
+     * @return the Total from component 2
      */
-    public String getSequenceNumber() {
+    public String getTotal() {
         return getComponent2();
     }
 
     /**
-     * Get the Sequence Number (component 2) as Long
-     * @return the Sequence Number from component 2 converted to Long or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Total
+     * @see #getTotal()
      * @since 9.2.7
      */
-    public java.lang.Long getSequenceNumberAsLong() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getSequenceNumber() {
+        return getTotal();
+    }
+
+    /**
+     * Get the Total (component 2) as Long
+     * @return the Total from component 2 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getTotalAsLong() {
         return getComponent2AsLong();
     }
 
     /**
-     * Get the Sequence Number (component 2) as as Number (BigDecimal)
+     * Get the Total (component 2) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent2AsLong()</code> to get the proper value.
      *
      * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getSequenceNumberAsLong()
+     * @see #getTotalAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public java.lang.Number getSequenceNumberAsNumber() {
+    public java.lang.Number getTotalAsNumber() {
         return getComponent2AsNumber();
     }
 
     /**
-     * Set the component 1 (Statement Number).
+     * Alternative <em>DEPRECATED</em> method getter for field's Total as Long
+     * @see #getTotalAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getSequenceNumberAsLong() {
+        return getTotalAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Total (component 2) as as Number (BigDecimal)
      *
-     * @param component1 the Statement Number to set
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsLong()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getTotalAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getSequenceNumberAsNumber() {
+        return getTotalAsNumber();
+    }
+
+    /**
+     * Set the component 1 (Message Index).
+     *
+     * @param component1 the Message Index to set
      * @return the field object to enable build pattern
      */
     public Field28D setComponent1(String component1) {
@@ -499,7 +587,7 @@ public class Field28D extends Field implements Serializable {
      * @see #setComponent1(String)
      * @since 9.2.7
      *
-     * @param component1 the Long with the Statement Number content to set
+     * @param component1 the Long with the Message Index content to set
      * @return the field object to enable build pattern
      */
     public Field28D setComponent1(java.lang.Long component1) {
@@ -508,13 +596,13 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Statement Number (component 1) as as Number
+     * Alternative method setter for field's Message Index (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component1 the Number with the Statement Number content to set
+     * @param component1 the Number with the Message Index content to set
      * @return the field object to enable build pattern
-     * @see #setStatementNumber(java.lang.Long)
+     * @see #setMessageIndex(java.lang.Long)
      */
     public Field28D setComponent1(java.lang.Number component1) {
 
@@ -536,45 +624,89 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Set the Statement Number (component 1).
+     * Set the Message Index (component 1).
      *
-     * @param component1 the Statement Number to set
+     * @param component1 the Message Index to set
      * @return the field object to enable build pattern
      */
-    public Field28D setStatementNumber(String component1) {
+    public Field28D setMessageIndex(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the Statement Number (component 1) from a Long object.
+     * Set the Message Index (component 1) from a Long object.
      *
      * @see #setComponent1(java.lang.Long)
      *
-     * @param component1 Long with the Statement Number content to set
+     * @param component1 Long with the Message Index content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field28D setStatementNumber(java.lang.Long component1) {
+    public Field28D setMessageIndex(java.lang.Long component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Alternative method setter for field's Statement Number (component 1) as as Number
+     * Alternative method setter for field's Message Index (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component1 the Number with the Statement Number content to set
+     * @param component1 the Number with the Message Index content to set
      * @return the field object to enable build pattern
-     * @see #setStatementNumber(java.lang.Long)
+     * @see #setMessageIndex(java.lang.Long)
      */
-    public Field28D setStatementNumber(java.lang.Number component1) {
+    public Field28D setMessageIndex(java.lang.Number component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the component 2 (Sequence Number).
+     * Alternative <em>DEPRECATED</em> method setter for field's Message Index
      *
-     * @param component2 the Sequence Number to set
+     * @see #setMessageIndex(String)
+     *
+     * @param component1 the Message Index to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field28D setStatementNumber(String component1) {
+        return setMessageIndex(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Message Index from a Long object.
+     *
+     * @see #setComponent1(java.lang.Long)
+     *
+     * @param component1 Long with the Message Index content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field28D setStatementNumber(java.lang.Long component1) {
+        return setMessageIndex(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Message Index (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component1 the Number with the Message Index content to set
+     * @return the field object to enable build pattern
+     * @see #setMessageIndex(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field28D setStatementNumber(java.lang.Number component1) {
+        return setMessageIndex(component1);
+    }
+
+    /**
+     * Set the component 2 (Total).
+     *
+     * @param component2 the Total to set
      * @return the field object to enable build pattern
      */
     public Field28D setComponent2(String component2) {
@@ -592,7 +724,7 @@ public class Field28D extends Field implements Serializable {
      * @see #setComponent2(String)
      * @since 9.2.7
      *
-     * @param component2 the Long with the Sequence Number content to set
+     * @param component2 the Long with the Total content to set
      * @return the field object to enable build pattern
      */
     public Field28D setComponent2(java.lang.Long component2) {
@@ -601,13 +733,13 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Sequence Number (component 2) as as Number
+     * Alternative method setter for field's Total (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Sequence Number content to set
+     * @param component2 the Number with the Total content to set
      * @return the field object to enable build pattern
-     * @see #setSequenceNumber(java.lang.Long)
+     * @see #setTotal(java.lang.Long)
      */
     public Field28D setComponent2(java.lang.Number component2) {
 
@@ -629,39 +761,83 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Set the Sequence Number (component 2).
+     * Set the Total (component 2).
      *
-     * @param component2 the Sequence Number to set
+     * @param component2 the Total to set
      * @return the field object to enable build pattern
      */
-    public Field28D setSequenceNumber(String component2) {
+    public Field28D setTotal(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Sequence Number (component 2) from a Long object.
+     * Set the Total (component 2) from a Long object.
      *
      * @see #setComponent2(java.lang.Long)
      *
-     * @param component2 Long with the Sequence Number content to set
+     * @param component2 Long with the Total content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field28D setSequenceNumber(java.lang.Long component2) {
+    public Field28D setTotal(java.lang.Long component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Alternative method setter for field's Sequence Number (component 2) as as Number
+     * Alternative method setter for field's Total (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Sequence Number content to set
+     * @param component2 the Number with the Total content to set
      * @return the field object to enable build pattern
-     * @see #setSequenceNumber(java.lang.Long)
+     * @see #setTotal(java.lang.Long)
      */
-    public Field28D setSequenceNumber(java.lang.Number component2) {
+    public Field28D setTotal(java.lang.Number component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Total
+     *
+     * @see #setTotal(String)
+     *
+     * @param component2 the Total to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field28D setSequenceNumber(String component2) {
+        return setTotal(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Total from a Long object.
+     *
+     * @see #setComponent2(java.lang.Long)
+     *
+     * @param component2 Long with the Total content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field28D setSequenceNumber(java.lang.Long component2) {
+        return setTotal(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Total (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Total content to set
+     * @return the field object to enable build pattern
+     * @see #setTotal(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field28D setSequenceNumber(java.lang.Number component2) {
+        return setTotal(component2);
     }
 
 
@@ -750,16 +926,28 @@ public class Field28D extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Statement Number
+        // **** COMPONENT 1 - Message Index
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("statementNumber") != null) {
             field.setComponent1(jsonObject.get("statementNumber").getAsString());
         }
 
-        // **** COMPONENT 2 - Sequence Number
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("messageIndex") != null) {
+            field.setComponent1(jsonObject.get("messageIndex").getAsString());
+        }
 
+        // **** COMPONENT 2 - Total
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("sequenceNumber") != null) {
             field.setComponent2(jsonObject.get("sequenceNumber").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("total") != null) {
+            field.setComponent2(jsonObject.get("total").getAsString());
         }
 
         return field;

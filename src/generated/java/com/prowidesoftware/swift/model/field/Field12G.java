@@ -98,9 +98,9 @@ public class Field12G extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Early Termination  Style subfield
+	 * Component number for the Early Termination Style subfield
 	 */
-	public static final Integer EARLY_TERMINATION__STYLE = 1;
+	public static final Integer EARLY_TERMINATION_STYLE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -303,7 +303,7 @@ public class Field12G extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Early Termination  Style");
+        result.add("Early Termination Style");
         return result;
     }
 
@@ -320,7 +320,7 @@ public class Field12G extends Field implements Serializable {
 
 
     /**
-     * Gets the component 1 (Early Termination  Style).
+     * Gets the component 1 (Early Termination Style).
      * @return the component 1
      */
     public String getComponent1() {
@@ -328,17 +328,17 @@ public class Field12G extends Field implements Serializable {
     }
 
     /**
-     * Gets the Early Termination  Style (component 1).
-     * @return the Early Termination  Style from component 1
+     * Gets the Early Termination Style (component 1).
+     * @return the Early Termination Style from component 1
      */
     public String getEarlyTerminationStyle() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Early Termination  Style).
+     * Set the component 1 (Early Termination Style).
      *
-     * @param component1 the Early Termination  Style to set
+     * @param component1 the Early Termination Style to set
      * @return the field object to enable build pattern
      */
     public Field12G setComponent1(String component1) {
@@ -347,9 +347,9 @@ public class Field12G extends Field implements Serializable {
     }
 
     /**
-     * Set the Early Termination  Style (component 1).
+     * Set the Early Termination Style (component 1).
      *
-     * @param component1 the Early Termination  Style to set
+     * @param component1 the Early Termination Style to set
      * @return the field object to enable build pattern
      */
     public Field12G setEarlyTerminationStyle(String component1) {
@@ -442,7 +442,7 @@ public class Field12G extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Early Termination  Style
+        // **** COMPONENT 1 - Early Termination Style
 
         if (jsonObject.get("earlyTerminationStyle") != null) {
             field.setComponent1(jsonObject.get("earlyTerminationStyle").getAsString());

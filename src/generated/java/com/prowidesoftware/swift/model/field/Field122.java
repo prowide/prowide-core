@@ -100,7 +100,7 @@ public class Field122 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "N";
 
 	/**
-	 * Component number for the Number of Messages subfield
+	 * Component number for the Number Of Messages subfield
 	 */
 	public static final Integer NUMBER_OF_MESSAGES = 1;
 
@@ -310,7 +310,7 @@ public class Field122 extends Field implements Serializable {
     @Override
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Number of Messages");
+        result.add("Number Of Messages");
         return result;
     }
 
@@ -321,13 +321,13 @@ public class Field122 extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "numberofMessages");
+        result.put(1, "numberOfMessages");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Number of Messages).
+     * Gets the component 1 (Number Of Messages).
      * @return the component 1
      */
     public String getComponent1() {
@@ -361,41 +361,77 @@ public class Field122 extends Field implements Serializable {
     }
 
     /**
-     * Gets the Number of Messages (component 1).
-     * @return the Number of Messages from component 1
+     * Gets the Number Of Messages (component 1).
+     * @return the Number Of Messages from component 1
      */
-    public String getNumberofMessages() {
+    public String getNumberOfMessages() {
         return getComponent1();
     }
 
     /**
-     * Get the Number of Messages (component 1) as Long
-     * @return the Number of Messages from component 1 converted to Long or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Messages
+     * @see #getNumberOfMessages()
      * @since 9.2.7
      */
-    public java.lang.Long getNumberofMessagesAsLong() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getNumberofMessages() {
+        return getNumberOfMessages();
+    }
+
+    /**
+     * Get the Number Of Messages (component 1) as Long
+     * @return the Number Of Messages from component 1 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumberOfMessagesAsLong() {
         return getComponent1AsLong();
     }
 
     /**
-     * Get the Number of Messages (component 1) as as Number (BigDecimal)
+     * Get the Number Of Messages (component 1) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent1AsLong()</code> to get the proper value.
      *
      * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberofMessagesAsLong()
+     * @see #getNumberOfMessagesAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public java.lang.Number getNumberofMessagesAsNumber() {
+    public java.lang.Number getNumberOfMessagesAsNumber() {
         return getComponent1AsNumber();
     }
 
     /**
-     * Set the component 1 (Number of Messages).
+     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Messages as Long
+     * @see #getNumberOfMessagesAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getNumberofMessagesAsLong() {
+        return getNumberOfMessagesAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Messages (component 1) as as Number (BigDecimal)
      *
-     * @param component1 the Number of Messages to set
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsLong()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberOfMessagesAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumberofMessagesAsNumber() {
+        return getNumberOfMessagesAsNumber();
+    }
+
+    /**
+     * Set the component 1 (Number Of Messages).
+     *
+     * @param component1 the Number Of Messages to set
      * @return the field object to enable build pattern
      */
     public Field122 setComponent1(String component1) {
@@ -413,7 +449,7 @@ public class Field122 extends Field implements Serializable {
      * @see #setComponent1(String)
      * @since 9.2.7
      *
-     * @param component1 the Long with the Number of Messages content to set
+     * @param component1 the Long with the Number Of Messages content to set
      * @return the field object to enable build pattern
      */
     public Field122 setComponent1(java.lang.Long component1) {
@@ -422,13 +458,13 @@ public class Field122 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Number of Messages (component 1) as as Number
+     * Alternative method setter for field's Number Of Messages (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component1 the Number with the Number of Messages content to set
+     * @param component1 the Number with the Number Of Messages content to set
      * @return the field object to enable build pattern
-     * @see #setNumberofMessages(java.lang.Long)
+     * @see #setNumberOfMessages(java.lang.Long)
      */
     public Field122 setComponent1(java.lang.Number component1) {
 
@@ -450,39 +486,83 @@ public class Field122 extends Field implements Serializable {
     }
 
     /**
-     * Set the Number of Messages (component 1).
+     * Set the Number Of Messages (component 1).
      *
-     * @param component1 the Number of Messages to set
+     * @param component1 the Number Of Messages to set
      * @return the field object to enable build pattern
      */
-    public Field122 setNumberofMessages(String component1) {
+    public Field122 setNumberOfMessages(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the Number of Messages (component 1) from a Long object.
+     * Set the Number Of Messages (component 1) from a Long object.
      *
      * @see #setComponent1(java.lang.Long)
      *
-     * @param component1 Long with the Number of Messages content to set
+     * @param component1 Long with the Number Of Messages content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field122 setNumberofMessages(java.lang.Long component1) {
+    public Field122 setNumberOfMessages(java.lang.Long component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Alternative method setter for field's Number of Messages (component 1) as as Number
+     * Alternative method setter for field's Number Of Messages (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component1 the Number with the Number of Messages content to set
+     * @param component1 the Number with the Number Of Messages content to set
      * @return the field object to enable build pattern
-     * @see #setNumberofMessages(java.lang.Long)
+     * @see #setNumberOfMessages(java.lang.Long)
      */
-    public Field122 setNumberofMessages(java.lang.Number component1) {
+    public Field122 setNumberOfMessages(java.lang.Number component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number Of Messages
+     *
+     * @see #setNumberOfMessages(String)
+     *
+     * @param component1 the Number Of Messages to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field122 setNumberofMessages(String component1) {
+        return setNumberOfMessages(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number Of Messages from a Long object.
+     *
+     * @see #setComponent1(java.lang.Long)
+     *
+     * @param component1 Long with the Number Of Messages content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field122 setNumberofMessages(java.lang.Long component1) {
+        return setNumberOfMessages(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number Of Messages (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component1 the Number with the Number Of Messages content to set
+     * @return the field object to enable build pattern
+     * @see #setNumberOfMessages(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field122 setNumberofMessages(java.lang.Number component1) {
+        return setNumberOfMessages(component1);
     }
 
 
@@ -571,10 +651,16 @@ public class Field122 extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Number of Messages
+        // **** COMPONENT 1 - Number Of Messages
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("numberofMessages") != null) {
             field.setComponent1(jsonObject.get("numberofMessages").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("numberOfMessages") != null) {
+            field.setComponent1(jsonObject.get("numberOfMessages").getAsString());
         }
 
         return field;

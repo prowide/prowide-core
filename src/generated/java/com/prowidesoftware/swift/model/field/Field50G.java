@@ -176,9 +176,9 @@ public class Field50G extends OptionGPartyField implements Serializable, BICCont
     }
 
     /**
-     * Set the component 2 (BIC).
+     * Set the component 2 (Identifier Code).
      *
-     * @param component2 the BIC to set
+     * @param component2 the Identifier Code to set
      * @return the field object to enable build pattern
      */
     public Field50G setComponent2(String component2) {
@@ -189,7 +189,7 @@ public class Field50G extends OptionGPartyField implements Serializable, BICCont
     /**
      * Set the component2 from a BIC object.
      *
-     * @param component2 the BIC with the BIC content to set
+     * @param component2 the BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
     public Field50G setComponent2(com.prowidesoftware.swift.model.BIC component2) {
@@ -198,25 +198,53 @@ public class Field50G extends OptionGPartyField implements Serializable, BICCont
     }
 
     /**
-     * Set the BIC (component 2).
+     * Set the Identifier Code (component 2).
      *
-     * @param component2 the BIC to set
+     * @param component2 the Identifier Code to set
      * @return the field object to enable build pattern
      */
-    public Field50G setBIC(String component2) {
+    public Field50G setIdentifierCode(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the BIC (component 2) from a BIC object.
+     * Set the Identifier Code (component 2) from a BIC object.
      *
      * @see #setComponent2(com.prowidesoftware.swift.model.BIC)
      *
-     * @param component2 BIC with the BIC content to set
+     * @param component2 BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
-    public Field50G setBIC(com.prowidesoftware.swift.model.BIC component2) {
+    public Field50G setIdentifierCode(com.prowidesoftware.swift.model.BIC component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code
+     *
+     * @see #setIdentifierCode(String)
+     *
+     * @param component2 the Identifier Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field50G setBIC(String component2) {
+        return setIdentifierCode(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code from a BIC object.
+     *
+     * @see #setComponent2(com.prowidesoftware.swift.model.BIC)
+     *
+     * @param component2 BIC with the Identifier Code content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field50G setBIC(com.prowidesoftware.swift.model.BIC component2) {
+        return setIdentifierCode(component2);
     }
 
 
@@ -397,10 +425,16 @@ public class Field50G extends OptionGPartyField implements Serializable, BICCont
             field.setComponent1(jsonObject.get("account").getAsString());
         }
 
-        // **** COMPONENT 2 - BIC
+        // **** COMPONENT 2 - Identifier Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("bIC") != null) {
             field.setComponent2(jsonObject.get("bIC").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("identifierCode") != null) {
+            field.setComponent2(jsonObject.get("identifierCode").getAsString());
         }
 
         return field;

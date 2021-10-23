@@ -111,9 +111,17 @@ public class Field12A extends Field implements Serializable, GenericField {
 	public static final Integer DATA_SOURCE_SCHEME = 2;
 
 	/**
-	 * Component number for the Instrument Code subfield
+	 * Component number for the Instrument Code Or Description subfield
 	 */
-	public static final Integer INSTRUMENT_CODE = 3;
+	public static final Integer INSTRUMENT_CODE_OR_DESCRIPTION = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Instrument Code Or Description Component number
+	 * @see #INSTRUMENT_CODE_OR_DESCRIPTION
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer INSTRUMENT_CODE = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -336,7 +344,7 @@ public class Field12A extends Field implements Serializable, GenericField {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Data Source Scheme");
-        result.add("Instrument Code");
+        result.add("Instrument Code Or Description");
         return result;
     }
 
@@ -349,7 +357,7 @@ public class Field12A extends Field implements Serializable, GenericField {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "dataSourceScheme");
-        result.put(3, "instrumentCode");
+        result.put(3, "instrumentCodeOrDescription");
         return result;
     }
 
@@ -387,7 +395,7 @@ public class Field12A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 3 (Instrument Code).
+     * Gets the component 3 (Instrument Code Or Description).
      * @return the component 3
      */
     public String getComponent3() {
@@ -395,11 +403,22 @@ public class Field12A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the Instrument Code (component 3).
-     * @return the Instrument Code from component 3
+     * Gets the Instrument Code Or Description (component 3).
+     * @return the Instrument Code Or Description from component 3
      */
-    public String getInstrumentCode() {
+    public String getInstrumentCodeOrDescription() {
         return getComponent3();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Instrument Code Or Description
+     * @see #getInstrumentCodeOrDescription()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getInstrumentCode() {
+        return getInstrumentCodeOrDescription();
     }
 
     /**
@@ -445,9 +464,9 @@ public class Field12A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 3 (Instrument Code).
+     * Set the component 3 (Instrument Code Or Description).
      *
-     * @param component3 the Instrument Code to set
+     * @param component3 the Instrument Code Or Description to set
      * @return the field object to enable build pattern
      */
     public Field12A setComponent3(String component3) {
@@ -456,13 +475,27 @@ public class Field12A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Instrument Code (component 3).
+     * Set the Instrument Code Or Description (component 3).
      *
-     * @param component3 the Instrument Code to set
+     * @param component3 the Instrument Code Or Description to set
      * @return the field object to enable build pattern
      */
-    public Field12A setInstrumentCode(String component3) {
+    public Field12A setInstrumentCodeOrDescription(String component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Instrument Code Or Description
+     *
+     * @see #setInstrumentCodeOrDescription(String)
+     *
+     * @param component3 the Instrument Code Or Description to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field12A setInstrumentCode(String component3) {
+        return setInstrumentCodeOrDescription(component3);
     }
 
 
@@ -597,10 +630,16 @@ public class Field12A extends Field implements Serializable, GenericField {
             field.setComponent2(jsonObject.get("dataSourceScheme").getAsString());
         }
 
-        // **** COMPONENT 3 - Instrument Code
+        // **** COMPONENT 3 - Instrument Code Or Description
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("instrumentCode") != null) {
             field.setComponent3(jsonObject.get("instrumentCode").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("instrumentCodeOrDescription") != null) {
+            field.setComponent3(jsonObject.get("instrumentCodeOrDescription").getAsString());
         }
 
         return field;

@@ -126,6 +126,12 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
 	public static final Integer CURRENCY = 3;
 
 	/**
+     * Alternative constant name for field's Currency Component number
+     * @see #CURRENCY
+     */
+    public static final Integer UNIT = 3;
+
+	/**
 	 * Component number for the Amount subfield
 	 */
 	public static final Integer AMOUNT = 4;
@@ -457,11 +463,29 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
+     * Alternative method getter for field's Currency
+     * @see #getCurrency()
+     * @since 9.2.7
+     */
+    public String getUnit() {
+        return getCurrency();
+    }
+
+    /**
      * Get the Currency (component 3) as Currency
      * @return the Currency from component 3 converted to Currency or null if cannot be converted
      */
     public java.util.Currency getCurrencyAsCurrency() {
         return getComponent3AsCurrency();
+    }
+
+    /**
+     * Alternative method getter for field's Currency as Currency
+     * @see #getCurrencyAsCurrency()
+     * @since 9.2.7
+     */
+    public java.util.Currency getUnitAsCurrency() {
+        return getCurrencyAsCurrency();
     }
 
     /**
@@ -636,6 +660,30 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
      */
     public Field60F setCurrency(java.util.Currency component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative method setter for field's Currency
+     *
+     * @see #setCurrency(String)
+     *
+     * @param component3 the Currency to set
+     * @return the field object to enable build pattern
+     */
+    public Field60F setUnit(String component3) {
+        return setCurrency(component3);
+    }
+
+    /**
+     * Alternative method setter for field's Currency from a Currency object.
+     *
+     * @see #setComponent3(java.util.Currency)
+     *
+     * @param component3 Currency with the Currency content to set
+     * @return the field object to enable build pattern
+     */
+    public Field60F setUnit(java.util.Currency component3) {
+        return setCurrency(component3);
     }
 
     /**
@@ -894,6 +942,12 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
 
         // **** COMPONENT 3 - Currency
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("unit") != null) {
+            field.setComponent3(jsonObject.get("unit").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("currency") != null) {
             field.setComponent3(jsonObject.get("currency").getAsString());
         }

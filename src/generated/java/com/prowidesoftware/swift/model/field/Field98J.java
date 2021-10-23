@@ -123,9 +123,17 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	public static final Integer TIME = 3;
 
 	/**
-	 * Component number for the BIC subfield
+	 * Component number for the Identifier Code subfield
 	 */
-	public static final Integer BIC = 4;
+	public static final Integer IDENTIFIER_CODE = 4;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Identifier Code Component number
+	 * @see #IDENTIFIER_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer BIC = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -368,7 +376,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
         result.add("Qualifier");
         result.add("Date");
         result.add("Time");
-        result.add("BIC");
+        result.add("Identifier Code");
         return result;
     }
 
@@ -382,7 +390,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
         result.put(1, "qualifier");
         result.put(2, "date");
         result.put(3, "time");
-        result.put(4, "bIC");
+        result.put(4, "identifierCode");
         return result;
     }
 
@@ -470,7 +478,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
     }
 
     /**
-     * Gets the component 4 (BIC).
+     * Gets the component 4 (Identifier Code).
      * @return the component 4
      */
     public String getComponent4() {
@@ -487,19 +495,40 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
     }
 
     /**
-     * Gets the BIC (component 4).
-     * @return the BIC from component 4
+     * Gets the Identifier Code (component 4).
+     * @return the Identifier Code from component 4
      */
-    public String getBIC() {
+    public String getIdentifierCode() {
         return getComponent4();
     }
 
     /**
-     * Get the BIC (component 4) as BIC
-     * @return the BIC from component 4 converted to BIC or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
+     * @see #getIdentifierCode()
+     * @since 9.2.7
      */
-    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getBIC() {
+        return getIdentifierCode();
+    }
+
+    /**
+     * Get the Identifier Code (component 4) as BIC
+     * @return the Identifier Code from component 4 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
         return getComponent4AsBIC();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code as BIC
+     * @see #getIdentifierCodeAsBIC()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+        return getIdentifierCodeAsBIC();
     }
 
     /**
@@ -612,9 +641,9 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
     }
 
     /**
-     * Set the component 4 (BIC).
+     * Set the component 4 (Identifier Code).
      *
-     * @param component4 the BIC to set
+     * @param component4 the Identifier Code to set
      * @return the field object to enable build pattern
      */
     public Field98J setComponent4(String component4) {
@@ -625,7 +654,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
     /**
      * Set the component4 from a BIC object.
      *
-     * @param component4 the BIC with the BIC content to set
+     * @param component4 the BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
     public Field98J setComponent4(com.prowidesoftware.swift.model.BIC component4) {
@@ -634,25 +663,53 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
     }
 
     /**
-     * Set the BIC (component 4).
+     * Set the Identifier Code (component 4).
      *
-     * @param component4 the BIC to set
+     * @param component4 the Identifier Code to set
      * @return the field object to enable build pattern
      */
-    public Field98J setBIC(String component4) {
+    public Field98J setIdentifierCode(String component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Set the BIC (component 4) from a BIC object.
+     * Set the Identifier Code (component 4) from a BIC object.
      *
      * @see #setComponent4(com.prowidesoftware.swift.model.BIC)
      *
-     * @param component4 BIC with the BIC content to set
+     * @param component4 BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
-    public Field98J setBIC(com.prowidesoftware.swift.model.BIC component4) {
+    public Field98J setIdentifierCode(com.prowidesoftware.swift.model.BIC component4) {
         return setComponent4(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code
+     *
+     * @see #setIdentifierCode(String)
+     *
+     * @param component4 the Identifier Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field98J setBIC(String component4) {
+        return setIdentifierCode(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code from a BIC object.
+     *
+     * @see #setComponent4(com.prowidesoftware.swift.model.BIC)
+     *
+     * @param component4 BIC with the Identifier Code content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field98J setBIC(com.prowidesoftware.swift.model.BIC component4) {
+        return setIdentifierCode(component4);
     }
 
 
@@ -819,10 +876,16 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
             field.setComponent3(jsonObject.get("time").getAsString());
         }
 
-        // **** COMPONENT 4 - BIC
+        // **** COMPONENT 4 - Identifier Code
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("bIC") != null) {
             field.setComponent4(jsonObject.get("bIC").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("identifierCode") != null) {
+            field.setComponent4(jsonObject.get("identifierCode").getAsString());
         }
 
         return field;

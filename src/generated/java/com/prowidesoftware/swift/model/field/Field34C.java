@@ -118,14 +118,30 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
 	public static final Integer SIGN = 2;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency/Percent subfield
 	 */
-	public static final Integer CURRENCY = 3;
+	public static final Integer CURRENCYPERCENT = 3;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency/Percent Component number
+	 * @see #CURRENCYPERCENT
 	 */
-	public static final Integer AMOUNT = 4;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CURRENCY = 3;
+
+	/**
+	 * Component number for the Amount/Rate subfield
+	 */
+	public static final Integer AMOUNTRATE = 4;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Amount/Rate Component number
+	 * @see #AMOUNTRATE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer AMOUNT = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -365,8 +381,8 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
         List<String> result = new ArrayList<>();
         result.add("Commission Type");
         result.add("Sign");
-        result.add("Currency");
-        result.add("Amount");
+        result.add("Currency/Percent");
+        result.add("Amount/Rate");
         return result;
     }
 
@@ -379,8 +395,8 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "commissionType");
         result.put(2, "sign");
-        result.put(3, "currency");
-        result.put(4, "amount");
+        result.put(3, "currencyPercent");
+        result.put(4, "amountRate");
         return result;
     }
 
@@ -418,7 +434,7 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the component 3 (Currency).
+     * Gets the component 3 (Currency/Percent).
      * @return the component 3
      */
     public String getComponent3() {
@@ -435,23 +451,44 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the Currency (component 3).
-     * @return the Currency from component 3
+     * Gets the Currency/Percent (component 3).
+     * @return the Currency/Percent from component 3
      */
-    public String getCurrency() {
+    public String getCurrencyPercent() {
         return getComponent3();
     }
 
     /**
-     * Get the Currency (component 3) as Currency
-     * @return the Currency from component 3 converted to Currency or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Currency/Percent
+     * @see #getCurrencyPercent()
+     * @since 9.2.7
      */
-    public java.util.Currency getCurrencyAsCurrency() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCurrency() {
+        return getCurrencyPercent();
+    }
+
+    /**
+     * Get the Currency/Percent (component 3) as Currency
+     * @return the Currency/Percent from component 3 converted to Currency or null if cannot be converted
+     */
+    public java.util.Currency getCurrencyPercentAsCurrency() {
         return getComponent3AsCurrency();
     }
 
     /**
-     * Gets the component 4 (Amount).
+     * Alternative <em>DEPRECATED</em> method getter for field's Currency/Percent as Currency
+     * @see #getCurrencyPercentAsCurrency()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Currency getCurrencyAsCurrency() {
+        return getCurrencyPercentAsCurrency();
+    }
+
+    /**
+     * Gets the component 4 (Amount/Rate).
      * @return the component 4
      */
     public String getComponent4() {
@@ -484,35 +521,71 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the Amount (component 4).
-     * @return the Amount from component 4
+     * Gets the Amount/Rate (component 4).
+     * @return the Amount/Rate from component 4
      */
-    public String getAmount() {
+    public String getAmountRate() {
         return getComponent4();
     }
 
     /**
-     * Get the Amount (component 4) as BigDecimal
-     * @return the Amount from component 4 converted to BigDecimal or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Amount/Rate
+     * @see #getAmountRate()
      * @since 9.2.7
      */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getAmount() {
+        return getAmountRate();
+    }
+
+    /**
+     * Get the Amount/Rate (component 4) as BigDecimal
+     * @return the Amount/Rate from component 4 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getAmountRateAsBigDecimal() {
         return getComponent4AsBigDecimal();
     }
 
     /**
-     * Get the Amount (component 4) as as Number (BigDecimal)
+     * Get the Amount/Rate (component 4) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
      *
      * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @see #getAmountRateAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getAmountRateAsNumber() {
+        return getComponent4AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Amount/Rate as BigDecimal
+     * @see #getAmountRateAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getAmountRateAsBigDecimal();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Amount/Rate (component 4) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getAmountRateAsBigDecimal()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
-        return getComponent4AsNumber();
+        return getAmountRateAsNumber();
     }
 
     /**
@@ -558,9 +631,9 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the component 3 (Currency).
+     * Set the component 3 (Currency/Percent).
      *
-     * @param component3 the Currency to set
+     * @param component3 the Currency/Percent to set
      * @return the field object to enable build pattern
      */
     public Field34C setComponent3(String component3) {
@@ -571,7 +644,7 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
     /**
      * Set the component3 from a Currency object.
      *
-     * @param component3 the Currency with the Currency content to set
+     * @param component3 the Currency with the Currency/Percent content to set
      * @return the field object to enable build pattern
      */
     public Field34C setComponent3(java.util.Currency component3) {
@@ -580,31 +653,59 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the Currency (component 3).
+     * Set the Currency/Percent (component 3).
      *
-     * @param component3 the Currency to set
+     * @param component3 the Currency/Percent to set
      * @return the field object to enable build pattern
      */
-    public Field34C setCurrency(String component3) {
+    public Field34C setCurrencyPercent(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the Currency (component 3) from a Currency object.
+     * Set the Currency/Percent (component 3) from a Currency object.
      *
      * @see #setComponent3(java.util.Currency)
      *
-     * @param component3 Currency with the Currency content to set
+     * @param component3 Currency with the Currency/Percent content to set
      * @return the field object to enable build pattern
      */
-    public Field34C setCurrency(java.util.Currency component3) {
+    public Field34C setCurrencyPercent(java.util.Currency component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the component 4 (Amount).
+     * Alternative <em>DEPRECATED</em> method setter for field's Currency/Percent
      *
-     * @param component4 the Amount to set
+     * @see #setCurrencyPercent(String)
+     *
+     * @param component3 the Currency/Percent to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field34C setCurrency(String component3) {
+        return setCurrencyPercent(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Currency/Percent from a Currency object.
+     *
+     * @see #setComponent3(java.util.Currency)
+     *
+     * @param component3 Currency with the Currency/Percent content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field34C setCurrency(java.util.Currency component3) {
+        return setCurrencyPercent(component3);
+    }
+
+    /**
+     * Set the component 4 (Amount/Rate).
+     *
+     * @param component4 the Amount/Rate to set
      * @return the field object to enable build pattern
      */
     public Field34C setComponent4(String component4) {
@@ -623,7 +724,7 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
      * </ul>
      * @since 9.2.7
      *
-     * @param component4 the BigDecimal with the Amount content to set
+     * @param component4 the BigDecimal with the Amount/Rate content to set
      * @return the field object to enable build pattern
      */
     public Field34C setComponent4(java.math.BigDecimal component4) {
@@ -631,13 +732,13 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 4) as as Number
+     * Alternative method setter for field's Amount/Rate (component 4) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
-     * @param component4 the Number with the Amount content to set
+     * @param component4 the Number with the Amount/Rate content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setAmountRate(java.math.BigDecimal)
      */
     public Field34C setComponent4(java.lang.Number component4) {
 
@@ -660,39 +761,83 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the Amount (component 4).
+     * Set the Amount/Rate (component 4).
      *
-     * @param component4 the Amount to set
+     * @param component4 the Amount/Rate to set
      * @return the field object to enable build pattern
      */
-    public Field34C setAmount(String component4) {
+    public Field34C setAmountRate(String component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Set the Amount (component 4) from a BigDecimal object.
+     * Set the Amount/Rate (component 4) from a BigDecimal object.
      *
      * @see #setComponent4(java.math.BigDecimal)
      *
-     * @param component4 BigDecimal with the Amount content to set
+     * @param component4 BigDecimal with the Amount/Rate content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field34C setAmount(java.math.BigDecimal component4) {
+    public Field34C setAmountRate(java.math.BigDecimal component4) {
         return setComponent4(component4);
     }
 
     /**
-     * Alternative method setter for field's Amount (component 4) as as Number
+     * Alternative method setter for field's Amount/Rate (component 4) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component4 the Number with the Amount content to set
+     * @param component4 the Number with the Amount/Rate content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
+     * @see #setAmountRate(java.math.BigDecimal)
      */
-    public Field34C setAmount(java.lang.Number component4) {
+    public Field34C setAmountRate(java.lang.Number component4) {
         return setComponent4(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Amount/Rate
+     *
+     * @see #setAmountRate(String)
+     *
+     * @param component4 the Amount/Rate to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field34C setAmount(String component4) {
+        return setAmountRate(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Amount/Rate from a BigDecimal object.
+     *
+     * @see #setComponent4(java.math.BigDecimal)
+     *
+     * @param component4 BigDecimal with the Amount/Rate content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field34C setAmount(java.math.BigDecimal component4) {
+        return setAmountRate(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Amount/Rate (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component4 the Number with the Amount/Rate content to set
+     * @return the field object to enable build pattern
+     * @see #setAmountRate(java.math.BigDecimal)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field34C setAmount(java.lang.Number component4) {
+        return setAmountRate(component4);
     }
 
 
@@ -837,16 +982,28 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
             field.setComponent2(jsonObject.get("sign").getAsString());
         }
 
-        // **** COMPONENT 3 - Currency
+        // **** COMPONENT 3 - Currency/Percent
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("currency") != null) {
             field.setComponent3(jsonObject.get("currency").getAsString());
         }
 
-        // **** COMPONENT 4 - Amount
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("currencyPercent") != null) {
+            field.setComponent3(jsonObject.get("currencyPercent").getAsString());
+        }
 
+        // **** COMPONENT 4 - Amount/Rate
+
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("amount") != null) {
             field.setComponent4(jsonObject.get("amount").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("amountRate") != null) {
+            field.setComponent4(jsonObject.get("amountRate").getAsString());
         }
 
         return field;

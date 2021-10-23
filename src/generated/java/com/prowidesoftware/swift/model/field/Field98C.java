@@ -201,21 +201,21 @@ public class Field98C extends Field implements Serializable, DateContainer, Gene
             setComponent2(StringUtils.substring(toparse, 0, 8));
             setComponent3(StringUtils.substring(toparse, 8));
 		}
-	}
+    }
 
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		result.append(":");
-		append(result, 1);
-		result.append("//");
-		append(result, 2);
-		append(result, 3);
-		return result.toString();
-	}
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        result.append(":");
+        append(result, 1);
+        result.append("//");
+        append(result, 2);
+        append(result, 3);
+        return result.toString();
+    }
 
     /**
      * Returns a localized suitable for showing to humans string of a field component.<br>
@@ -231,7 +231,6 @@ public class Field98C extends Field implements Serializable, DateContainer, Gene
         if (component < 1 || component > 3) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 98C");
         }
-
         if (component == 1) {
             //default format (as is)
             return getComponent(1);

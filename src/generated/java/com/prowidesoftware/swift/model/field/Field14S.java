@@ -819,5 +819,82 @@ public class Field14S extends Field implements Serializable {
         return field;
     }
 
+	/**
+	 * Gets the Rate Source (components 1 and 2) as a unit
+	 * @return the concatenated values of component 1 and 2
+     * @since 9.2.7
+	 */
+	public String getRateSource() {
+        final StringBuilder result = new StringBuilder();
+        append(result, 1);
+        append(result, 2);
+        return result.toString();
+	}
+
+	/**
+	 * Sets the Rate Source (components 1 and 2) as a unit
+	 * @param rateSource the new expected value for components 1 and 2 concatenated
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+	 */
+	public Field14S setRateSource(String rateSource) {
+
+        // get the parts
+        String source = SwiftParseUtils.getAlphaPrefix(rateSource);
+        String number = source == null ? rateSource : StringUtils.substringAfter(rateSource, source);
+
+        // set the values
+        setComponent1(StringUtils.trimToNull(source));
+        setComponent2(StringUtils.trimToNull(number));
+
+        return this;
+	}
+
+	/**
+	 * Gets the Time And Location (components 3 and 4) as a unit
+	 * @return the concatenated values of component 3 and 4 with the separating "/"
+     * @since 9.2.7
+	 */
+	public String getTimeAndLocation() {
+
+        // if both empty => just nothing
+        if (StringUtils.isBlank(getComponent3()) && StringUtils.isBlank(getComponent4())) {
+            return null;
+        }
+
+        // build
+        final StringBuilder result = new StringBuilder();
+        result.append("/");
+        append(result, 3);
+        result.append("/");
+        append(result, 4);
+        return result.toString();
+	}
+
+	/**
+	 * Sets the Time And Location (components 3 and 4) as a unit
+	 * @param timeAndLocation the new expected value for components 3 and 4 concatenated, including "/
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+	 */
+	public Field14S setTimeAndLocation(String timeAndLocation) {
+
+        // get the parts
+        String time = null;
+        String location = null;
+        if (StringUtils.indexOf(timeAndLocation, '/') != -1) {
+
+            // get the parts and
+            timeAndLocation = SwiftParseUtils.removePrefix(timeAndLocation, "/");
+            time = SwiftParseUtils.getTokenFirst(timeAndLocation, "/");
+            location = SwiftParseUtils.getTokenSecond(timeAndLocation, "/");
+        }
+
+        // set the new component values
+        setComponent3(StringUtils.trimToNull(time));
+        setComponent4(StringUtils.trimToNull(location));
+
+        return this;
+	}
 
 }

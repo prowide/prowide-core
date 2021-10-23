@@ -120,14 +120,28 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
 	public static final Integer VALUE_DATE = 1;
 
 	/**
+     * Alternative constant name for field's Value Date Component number
+     * @see #VALUE_DATE
+     */
+    public static final Integer DATE = 1;
+
+	/**
 	 * Component number for the Entry Date subfield
 	 */
 	public static final Integer ENTRY_DATE = 2;
 
 	/**
-	 * Component number for the D/C Mark subfield
+	 * Component number for the Debit/Credit Mark subfield
 	 */
-	public static final Integer DC_MARK = 3;
+	public static final Integer DEBITCREDIT_MARK = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Debit/Credit Mark Component number
+	 * @see #DEBITCREDIT_MARK
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer DC_MARK = 3;
 
 	/**
 	 * Component number for the Funds Code subfield
@@ -241,8 +255,8 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     @Override
     public void parse(final String value) {
         init(10);
-      //parse code from merge file
-      parseCustom(value);
+        //parse code from merge file
+        parseCustom(value);
     }
 
     /**
@@ -295,7 +309,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
         }
         if (component == 2) {
             //monthday
-            java.text.DateFormat f = new java.text.SimpleDateFormat("MMM", notNull(locale));
+            java.text.DateFormat f = new java.text.SimpleDateFormat("MMM dd", notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
                 return f.format(cal.getTime());
@@ -445,7 +459,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
         List<String> result = new ArrayList<>();
         result.add("Value Date");
         result.add("Entry Date");
-        result.add("D/C Mark");
+        result.add("Debit/Credit Mark");
         result.add("Funds Code");
         result.add("Amount");
         result.add("Transaction Type");
@@ -465,7 +479,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "valueDate");
         result.put(2, "entryDate");
-        result.put(3, "dCMark");
+        result.put(3, "debitCreditMark");
         result.put(4, "fundsCode");
         result.put(5, "amount");
         result.put(6, "transactionType");
@@ -503,11 +517,29 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
+     * Alternative method getter for field's Value Date
+     * @see #getValueDate()
+     * @since 9.2.7
+     */
+    public String getDate() {
+        return getValueDate();
+    }
+
+    /**
      * Get the Value Date (component 1) as Calendar
      * @return the Value Date from component 1 converted to Calendar or null if cannot be converted
      */
     public java.util.Calendar getValueDateAsCalendar() {
         return getComponent1AsCalendar();
+    }
+
+    /**
+     * Alternative method getter for field's Value Date as Calendar
+     * @see #getValueDateAsCalendar()
+     * @since 9.2.7
+     */
+    public java.util.Calendar getDateAsCalendar() {
+        return getValueDateAsCalendar();
     }
 
     /**
@@ -544,7 +576,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Gets the component 3 (D/C Mark).
+     * Gets the component 3 (Debit/Credit Mark).
      * @return the component 3
      */
     public String getComponent3() {
@@ -552,11 +584,22 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Gets the D/C Mark (component 3).
-     * @return the D/C Mark from component 3
+     * Gets the Debit/Credit Mark (component 3).
+     * @return the Debit/Credit Mark from component 3
      */
-    public String getDCMark() {
+    public String getDebitCreditMark() {
         return getComponent3();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Debit/Credit Mark
+     * @see #getDebitCreditMark()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getDCMark() {
+        return getDebitCreditMark();
     }
 
     /**
@@ -765,6 +808,30 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
+     * Alternative method setter for field's Value Date
+     *
+     * @see #setValueDate(String)
+     *
+     * @param component1 the Value Date to set
+     * @return the field object to enable build pattern
+     */
+    public Field61 setDate(String component1) {
+        return setValueDate(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Value Date from a Calendar object.
+     *
+     * @see #setComponent1(java.util.Calendar)
+     *
+     * @param component1 Calendar with the Value Date content to set
+     * @return the field object to enable build pattern
+     */
+    public Field61 setDate(java.util.Calendar component1) {
+        return setValueDate(component1);
+    }
+
+    /**
      * Set the component 2 (Entry Date).
      *
      * @param component2 the Entry Date to set
@@ -809,9 +876,9 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Set the component 3 (D/C Mark).
+     * Set the component 3 (Debit/Credit Mark).
      *
-     * @param component3 the D/C Mark to set
+     * @param component3 the Debit/Credit Mark to set
      * @return the field object to enable build pattern
      */
     public Field61 setComponent3(String component3) {
@@ -820,13 +887,27 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Set the D/C Mark (component 3).
+     * Set the Debit/Credit Mark (component 3).
      *
-     * @param component3 the D/C Mark to set
+     * @param component3 the Debit/Credit Mark to set
      * @return the field object to enable build pattern
      */
-    public Field61 setDCMark(String component3) {
+    public Field61 setDebitCreditMark(String component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Debit/Credit Mark
+     *
+     * @see #setDebitCreditMark(String)
+     *
+     * @param component3 the Debit/Credit Mark to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field61 setDCMark(String component3) {
+        return setDebitCreditMark(component3);
     }
 
     /**
@@ -1255,6 +1336,12 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
 
         // **** COMPONENT 1 - Value Date
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("date") != null) {
+            field.setComponent1(jsonObject.get("date").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("valueDate") != null) {
             field.setComponent1(jsonObject.get("valueDate").getAsString());
         }
@@ -1265,10 +1352,16 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
             field.setComponent2(jsonObject.get("entryDate").getAsString());
         }
 
-        // **** COMPONENT 3 - D/C Mark
+        // **** COMPONENT 3 - Debit/Credit Mark
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("dCMark") != null) {
             field.setComponent3(jsonObject.get("dCMark").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("debitCreditMark") != null) {
+            field.setComponent3(jsonObject.get("debitCreditMark").getAsString());
         }
 
         // **** COMPONENT 4 - Funds Code

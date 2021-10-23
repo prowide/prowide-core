@@ -115,6 +115,12 @@ public class Field32B extends Field implements Serializable, CurrencyContainer, 
 	 */
 	public static final Integer AMOUNT = 2;
 
+	/**
+     * Alternative constant name for field's Amount Component number
+     * @see #AMOUNT
+     */
+    public static final Integer PRICE = 2;
+
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
@@ -419,6 +425,15 @@ public class Field32B extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
+     * Alternative method getter for field's Amount
+     * @see #getAmount()
+     * @since 9.2.7
+     */
+    public String getPrice() {
+        return getAmount();
+    }
+
+    /**
      * Get the Amount (component 2) as BigDecimal
      * @return the Amount from component 2 converted to BigDecimal or null if cannot be converted
      * @since 9.2.7
@@ -440,6 +455,30 @@ public class Field32B extends Field implements Serializable, CurrencyContainer, 
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getComponent2AsNumber();
+    }
+
+    /**
+     * Alternative method getter for field's Amount as BigDecimal
+     * @see #getAmountAsBigDecimal()
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getPriceAsBigDecimal() {
+        return getAmountAsBigDecimal();
+    }
+
+    /**
+     * Alternative method getter for field's Amount (component 2) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getAmountAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getPriceAsNumber() {
+        return getAmountAsNumber();
     }
 
     /**
@@ -580,6 +619,44 @@ public class Field32B extends Field implements Serializable, CurrencyContainer, 
         return setComponent2(component2);
     }
 
+    /**
+     * Alternative method setter for field's Amount
+     *
+     * @see #setAmount(String)
+     *
+     * @param component2 the Amount to set
+     * @return the field object to enable build pattern
+     */
+    public Field32B setPrice(String component2) {
+        return setAmount(component2);
+    }
+
+    /**
+     * Alternative method setter for field's Amount from a BigDecimal object.
+     *
+     * @see #setComponent2(java.math.BigDecimal)
+     *
+     * @param component2 BigDecimal with the Amount content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field32B setPrice(java.math.BigDecimal component2) {
+        return setAmount(component2);
+    }
+
+    /**
+     * Alternative method setter for field's Amount (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Amount content to set
+     * @return the field object to enable build pattern
+     * @see #setAmount(java.math.BigDecimal)
+     */
+    public Field32B setPrice(java.lang.Number component2) {
+        return setAmount(component2);
+    }
+
 
     public List<String> currencyStrings() {
         return CurrencyResolver.currencyStrings(this);
@@ -718,6 +795,12 @@ public class Field32B extends Field implements Serializable, CurrencyContainer, 
 
         // **** COMPONENT 2 - Amount
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("price") != null) {
+            field.setComponent2(jsonObject.get("price").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("amount") != null) {
             field.setComponent2(jsonObject.get("amount").getAsString());
         }
