@@ -88,7 +88,7 @@ public class MtSwiftMessageTest {
         assertEquals("AGBLLT2XXXX", mt.getSender());
         assertEquals("TESTARZZXXX", mt.getReceiver());
         assertEquals("MYMUR123458", mt.getMur());
-        assertNull(mt.getReference());
+        assertEquals("MYMUR123458", mt.getReference());
         assertNull(mt.getCurrency());
         assertNull(mt.getAmount());
 
@@ -101,7 +101,7 @@ public class MtSwiftMessageTest {
         mt.updateMetadata(new DefaultMtMetadataStrategy());
         assertEquals("AGBLLT2XXXX", mt.getSender());
         assertEquals("TESTARZZXXX", mt.getReceiver());
-        assertEquals("MYREFERENCE", mt.getReference()); // preserved
+        assertEquals("MYMUR123458", mt.getReference()); // updated
         assertEquals(new BigDecimal("333.33"), mt.getAmount()); // preserved
         assertEquals("EUR", mt.getCurrency()); // preserved
         assertNull(mt.getValueDate());
