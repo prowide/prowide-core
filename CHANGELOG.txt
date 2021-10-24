@@ -3,9 +3,25 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.2.7
-  * (CR-23) Added SwiftMessage#getMOR
+  * Field 98D, 98E and 98G: removed invalid get{Component4|Sign}AsCurrency and set{Component4|Sign}(Currency) as no currency applies to these fields
+  * Fields 94L and 85L: separated component 2 (Legal Entity Identifier) into two (Legal Entity Identifier Code and Legal Entity Identifier Number). Kept get/setLegalEntityIdentifier for backwards compatibility
+  * Field 94H: second component now has get{name}AsBIC and set{name}(BIC) methods
+  * Field 56B: now inherits from OptionBPartyField (to have get/setPartyIdentifier)
+  * Field 26C: separated component 5 into 5 (Denomination) and 6 (Form) for compatibility with Swift. Kept get/setDenominationForm for backwards compatibility
+  * Field 26A: now has 2 components (Number 1 and Number 2) for compatibility with Swift. get/setNumber is kept for backwards compatibility
+  * Field 23: fixed getValue and parse to properly handle missing intermediate fields
+  * Field 14S: has 4 new compatibility methods: getRateSource/setRateSource for Source and Number components and getTimeAndLocation/setTimeAndLocation for Time and Location components
+  * Field 12: component is now of expected to have a numeric type
+  * Code cleanup for Fields and Date|BIC|Amount|Currency Container
+  * Added support for BigDecimal and Long component types (instead of just Number) in several fields
+  * Fixed display text generation for fields having a date with pattern MMDD (only the month was included in the text)
+  * OptionAPartyField: added set/getPartyIdentifier (for components 1 and 2) and renamed BIC to IdentifierCode. Affects fields 42A, 51A, 52A, 53A, 54A, 55A, 56A, 57A, 58A, 81A, 82A, 83A, 84A, 85A, 86A, 87A, 88A, 89A, 91A and 96A
+  * OptionDPartyField: added set/getPartyIdentifier (for components 1 and 2). Affects fields 42D, 50D, 51D, 52D, 53D, 54D, 55D, 56D, 57D, 58D, 81D, 82D, 83D, 84D, 85D, 86D, 87D, 88D, 89D, 91D and 96D
+  * OptionBPartyField: added set/getPartyIdentifier (for components 1 and 2). Affects fields 52B, 53B, 54B, 55B, 57B, 58B, 82B, 84B, 85B, 86B, 87B and 88B
+  * Prepared Option A, B and D classes to support the PartyIdentifier interface with methods getPartyIdentifier and setPartyIdentifier
   * Enhanced Block2 creation by enriching Block Type to "O" or "I".
   * (PW-746) Fixed MT reference extraction for 20C in categories other than 5, and with MUR as fallback option
+  * (CR-23) Added SwiftMessage#getMOR
 
 RELEASE 9.2.6 - October 2021
   * (GH-60) Enhanced parser for field 98C

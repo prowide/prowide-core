@@ -36,7 +36,7 @@ public class Field26CTest extends AbstractFieldTest {
     }
 
     /**
-     * [S]/S/5!a4!aS
+     * [S]/S/5!a4!aS[//S]
      */
     @Test
     public void testField26C() {
@@ -46,6 +46,7 @@ public class Field26CTest extends AbstractFieldTest {
         assertNull(f.getComponent3());
         assertNull(f.getComponent4());
         assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
         f = new Field26C("");
         assertNull(f.getComponent1());
@@ -53,6 +54,7 @@ public class Field26CTest extends AbstractFieldTest {
         assertNull(f.getComponent3());
         assertNull(f.getComponent4());
         assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
         f = new Field26C("A");
         assertEquals("A", f.getComponent1());
@@ -60,6 +62,7 @@ public class Field26CTest extends AbstractFieldTest {
         assertNull(f.getComponent3());
         assertNull(f.getComponent4());
         assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
         f = new Field26C("A/");
         assertEquals("A", f.getComponent1());
@@ -67,6 +70,7 @@ public class Field26CTest extends AbstractFieldTest {
         assertNull(f.getComponent3());
         assertNull(f.getComponent4());
         assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
         f = new Field26C("A/B");
         assertEquals("A", f.getComponent1());
@@ -74,6 +78,7 @@ public class Field26CTest extends AbstractFieldTest {
         assertNull(f.getComponent3());
         assertNull(f.getComponent4());
         assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
         f = new Field26C("A/B/C");
         assertEquals("A", f.getComponent1());
@@ -81,6 +86,7 @@ public class Field26CTest extends AbstractFieldTest {
         assertEquals("C", f.getComponent3());
         assertNull(f.getComponent4());
         assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
         f = new Field26C("A/B/CCCCC");
         assertEquals("A", f.getComponent1());
@@ -88,6 +94,7 @@ public class Field26CTest extends AbstractFieldTest {
         assertEquals("CCCCC", f.getComponent3());
         assertNull(f.getComponent4());
         assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
         f = new Field26C("A/B/CCCCCD");
         assertEquals("A", f.getComponent1());
@@ -95,6 +102,7 @@ public class Field26CTest extends AbstractFieldTest {
         assertEquals("CCCCC", f.getComponent3());
         assertEquals("D", f.getComponent4());
         assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
         f = new Field26C("A/B/CCCCCDDDD");
         assertEquals("A", f.getComponent1());
@@ -102,6 +110,7 @@ public class Field26CTest extends AbstractFieldTest {
         assertEquals("CCCCC", f.getComponent3());
         assertEquals("DDDD", f.getComponent4());
         assertNull(f.getComponent5());
+        assertNull(f.getComponent6());
 
         f = new Field26C("A/B/CCCCCDDDDEEEE");
         assertEquals("A", f.getComponent1());
@@ -109,6 +118,38 @@ public class Field26CTest extends AbstractFieldTest {
         assertEquals("CCCCC", f.getComponent3());
         assertEquals("DDDD", f.getComponent4());
         assertEquals("EEEE", f.getComponent5());
+        assertNull(f.getComponent6());
+
+        f = new Field26C("A/B/CCCCCDDDDEEEE//FFFFFFFF");
+        assertEquals("A", f.getComponent1());
+        assertEquals("B", f.getComponent2());
+        assertEquals("CCCCC", f.getComponent3());
+        assertEquals("DDDD", f.getComponent4());
+        assertEquals("EEEE", f.getComponent5());
+        assertEquals("FFFFFFFF", f.getComponent6());
     }
 
+    /**
+     * [S]/S/5!a4!aS[//S]
+     */
+    @Test
+    public void testField26C_DenominationForm() {
+
+        Field26C f = new Field26C("A/B/CCCCCDDDDEEEE//FFFFFFFF");
+        assertEquals("EEEE", f.getComponent5());
+        assertEquals("FFFFFFFF", f.getComponent6());
+        assertEquals("EEEE//FFFFFFFF", f.getDenominationForm());
+
+        f = new Field26C("A/B/CCCCCDDDD//FFFFFFFF");
+        assertNull(f.getComponent5());
+        assertEquals("FFFFFFFF", f.getComponent6());
+        assertEquals("//FFFFFFFF", f.getDenominationForm());
+
+        f = new Field26C("A/B/CCCCCDDDD");
+        f.setDenominationForm("EEEE//FFFFFFFF");
+        assertEquals("EEEE", f.getComponent5());
+        assertEquals("FFFFFFFF", f.getComponent6());
+        assertEquals("EEEE//FFFFFFFF", f.getDenominationForm());
+
+    }
 }

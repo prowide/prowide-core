@@ -72,6 +72,7 @@ public class RJEReader extends AbstractReader {
      * If the RJE file ends with a separator, this will return true, meaning the iteration will return a blank message
      * at the end.
      */
+    @Override
     public boolean hasNext() {
         try {
             return reader.ready();

@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -24,10 +26,12 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Calendar;
-import com.prowidesoftware.swift.model.field.DateContainer;
-import com.prowidesoftware.swift.model.field.GenericField;
 
+import java.util.Calendar;
+
+import com.prowidesoftware.swift.model.field.GenericField;
+import com.prowidesoftware.swift.model.field.DateContainer;
+import com.prowidesoftware.swift.model.field.DateResolver;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -80,8 +84,26 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_69B = "69B";
-	public static final String PARSER_PATTERN =":S//<DATE4><TIME2>/<DATE4><TIME2>";
+	public static final String PARSER_PATTERN = ":S//<DATE4><TIME2>/<DATE4><TIME2>";
+
+    /**
+     * Components pattern
+     *
+     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
+     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SDTDT";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
+     * @since 9.2.7
+     */
+	public static final String TYPES_PATTERN = "SDTDT";
 
 	/**
 	 * Component number for the Qualifier subfield
@@ -89,216 +111,270 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Start Date subfield
+	 * Component number for the Date1 subfield
 	 */
-	public static final Integer START_DATE = 2;
+	public static final Integer DATE1 = 2;
 
 	/**
-	 * Component number for the Start Time subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date1 Component number
+	 * @see #DATE1
 	 */
-	public static final Integer START_TIME = 3;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer START_DATE = 2;
 
 	/**
-	 * Component number for the End Date subfield
+	 * Component number for the Time1 subfield
 	 */
-	public static final Integer END_DATE = 4;
+	public static final Integer TIME1 = 3;
 
 	/**
-	 * Component number for the End Time subfield
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Time1 Component number
+	 * @see #TIME1
 	 */
-	public static final Integer END_TIME = 5;
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer START_TIME = 3;
 
 	/**
-	 * Default constructor. Creates a new field setting all components to null.
+	 * Component number for the Date2 subfield
 	 */
-	public Field69B() {
-		super(5);
-	}
-	    					
-	/**
-	 * Creates a new field and initializes its components with content from the parameter value.
-	 * @param value complete field value including separators and CRLF
-	 */
-	public Field69B(final String value) {
-		super(value);
-	}
-	
-	/**
-	 * Creates a new field and initializes its components with content from the parameter tag.
-	 * The value is parsed with {@link #parse(String)} 	 
-	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
-	 * @since 7.8
-	 */
-	public Field69B(final Tag tag) {
-		this();
-		if (tag == null) {
-			throw new IllegalArgumentException("tag cannot be null.");
-		}
-		if (!StringUtils.equals(tag.getName(), "69B")) {
-			throw new IllegalArgumentException("cannot create field 69B from tag "+tag.getName()+", tagname must match the name of the field.");
-		}
-		parse(tag.getValue());
-	}
+	public static final Integer DATE2 = 4;
 
 	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date2 Component number
+	 * @see #DATE2
 	 */
-	public static Field69B newInstance(Field69B source) {
-		Field69B cp = new Field69B();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer END_DATE = 4;
 
 	/**
-	 * Create a Tag with this field name and the given value.
-	 * Shorthand for <code>new Tag(NAME, value)</code>
-	 * @see #NAME
-	 * @since 7.5
+	 * Component number for the Time2 subfield
 	 */
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
-	}
+	public static final Integer TIME2 = 5;
 
 	/**
-	 * Create a Tag with this field name and an empty string as value
-	 * Shorthand for <code>new Tag(NAME, "")</code>
-	 * @see #NAME
-	 * @since 7.5
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Time2 Component number
+	 * @see #TIME2
 	 */
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer END_TIME = 5;
+
+    /**
+     * Default constructor. Creates a new field setting all components to null.
+     */
+    public Field69B() {
+        super(5);
+    }
+
+    /**
+     * Creates a new field and initializes its components with content from the parameter value.
+     * @param value complete field value including separators and CRLF
+     */
+    public Field69B(final String value) {
+        super(value);
+    }
+
+    /**
+     * Creates a new field and initializes its components with content from the parameter tag.
+     * The value is parsed with {@link #parse(String)}
+     * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
+     * @since 7.8
+     */
+    public Field69B(final Tag tag) {
+        this();
+        if (tag == null) {
+            throw new IllegalArgumentException("tag cannot be null.");
+        }
+        if (!StringUtils.equals(tag.getName(), "69B")) {
+            throw new IllegalArgumentException("cannot create field 69B from tag "+tag.getName()+", tagname must match the name of the field.");
+        }
+        parse(tag.getValue());
+    }
+
+    /**
+     * Copy constructor.<br>
+     * Initializes the components list with a deep copy of the source components list.
+     * @param source a field instance to copy
+     * @since 7.7
+     */
+    public static Field69B newInstance(Field69B source) {
+        Field69B cp = new Field69B();
+        cp.setComponents(new ArrayList<>(source.getComponents()));
+        return cp;
+    }
+
+    /**
+     * Create a Tag with this field name and the given value.
+     * Shorthand for <code>new Tag(NAME, value)</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag tag(final String value) {
+        return new Tag(NAME, value);
+    }
+
+    /**
+     * Create a Tag with this field name and an empty string as value
+     * Shorthand for <code>new Tag(NAME, "")</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag emptyTag() {
+        return new Tag(NAME, "");
+    }
 
 
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(5);
-		setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
-		String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
-		String toparse2 = SwiftParseUtils.getTokenFirst(toparse, "/");
-		String toparse3 = SwiftParseUtils.getTokenSecondLast(toparse, "/");
-		if (toparse2 != null) {
-			if (toparse2.length() >= 8) {
-				setComponent2(StringUtils.substring(toparse2, 0, 8));
-			}
-			if (toparse2.length() > 8) {
-				setComponent3(StringUtils.substring(toparse2, 8));
-			}
-		}
-		if (toparse3 != null) {
-			if (toparse3.length() >= 8) {
-				setComponent4(StringUtils.substring(toparse3, 0, 8));
-			}
-			if (toparse3.length() > 8) {
-				setComponent5(StringUtils.substring(toparse3, 8));
-			}
-		}
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		result.append(":");
-		append(result, 1);
-		result.append("//");
-		append(result, 2);
-		append(result, 3);
-		result.append("/");
-		append(result, 4);
-		append(result, 5);
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 5) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 69B");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
-			java.util.Calendar cal = getComponent2AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		if (component == 3) {
-			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
-			java.util.Calendar cal = getComponent3AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		if (component == 4) {
-			//date
-			java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
-			java.util.Calendar cal = getComponent4AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		if (component == 5) {
-			//time with seconds
-			java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
-			java.util.Calendar cal = getComponent5AsCalendar();
-			if (cal != null) {
-				return f.format(cal.getTime());
-			}
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field69B.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
+    /**
+     * Parses the parameter value into the internal components structure.
+     *
+     * <p>Used to update all components from a full new value, as an alternative
+     * to setting individual components. Previous component values are overwritten.
+     *
+     * @param value complete field value including separators and CRLF
+     * @since 7.8
+     */
+    @Override
+    public void parse(final String value) {
+        init(5);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
+        String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
+        String toparse2 = SwiftParseUtils.getTokenFirst(toparse, "/");
+        String toparse3 = SwiftParseUtils.getTokenSecondLast(toparse, "/");
+        if (toparse2 != null) {
+            if (toparse2.length() >= 8) {
+                setComponent2(StringUtils.substring(toparse2, 0, 8));
+            }
+            if (toparse2.length() > 8) {
+                setComponent3(StringUtils.substring(toparse2, 8));
+            }
+        }
+        if (toparse3 != null) {
+            if (toparse3.length() >= 8) {
+                setComponent4(StringUtils.substring(toparse3, 0, 8));
+            }
+            if (toparse3.length() > 8) {
+                setComponent5(StringUtils.substring(toparse3, 8));
+            }
+        }
+    }
 
-	/**
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        result.append(":");
+        append(result, 1);
+        result.append("//");
+        append(result, 2);
+        append(result, 3);
+        result.append("/");
+        append(result, 4);
+        append(result, 5);
+        return result.toString();
+    }
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param component number of the component to display
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component number is invalid or not present
+     * @throws IllegalArgumentException if component number is invalid for the field
+     * @since 7.8
+     */
+    @Override
+    public String getValueDisplay(int component, Locale locale) {
+        if (component < 1 || component > 5) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 69B");
+        }
+        if (component == 1) {
+            //default format (as is)
+            return getComponent(1);
+        }
+        if (component == 2) {
+            //date
+            java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+            java.util.Calendar cal = getComponent2AsCalendar();
+            if (cal != null) {
+                return f.format(cal.getTime());
+            }
+        }
+        if (component == 3) {
+            //time with seconds
+            java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
+            java.util.Calendar cal = getComponent3AsCalendar();
+            if (cal != null) {
+                return f.format(cal.getTime());
+            }
+        }
+        if (component == 4) {
+            //date
+            java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+            java.util.Calendar cal = getComponent4AsCalendar();
+            if (cal != null) {
+                return f.format(cal.getTime());
+            }
+        }
+        if (component == 5) {
+            //time with seconds
+            java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
+            java.util.Calendar cal = getComponent5AsCalendar();
+            if (cal != null) {
+                return f.format(cal.getTime());
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the field components pattern
+     *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field69B.COMPONENTS_PATTERN
+     */
+    @Override
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public final String componentsPattern() {
+        return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @since 9.2.7
+     * @see #TYPES_PATTERN
+     * @return the static value of Field69B.TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
+    }
+
+    /**
      * Returns the field parser pattern
      * @return the static value of Field69B.PARSER_PATTERN
      */
-	@Override
-	public final String parserPattern() {
+    @Override
+    public final String parserPattern() {
         return PARSER_PATTERN;
     }
 
-	/**
-	 * Returns the field validator pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return ":4!c//<DATE4><TIME2>/<DATE4><TIME2>";
-	}
+    /**
+     * Returns the field validator pattern
+     */
+    @Override
+    public final String validatorPattern() {
+        return ":4!c//<DATE4><TIME2>/<DATE4><TIME2>";
+    }
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -324,498 +400,785 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
         return true;
     }
 
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 5;
-	}
+    /**
+     * Returns the defined amount of components.<br>
+     * This is not the amount of components present in the field instance, but the total amount of components
+     * that this field accepts as defined.
+     * @since 7.7
+     */
+    @Override
+    public int componentsSize() {
+        return 5;
+    }
 
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Qualifier");
-		result.add("Start Date");
-		result.add("Start Time");
-		result.add("End Date");
-		result.add("End Time");
-		return result;
-	}
+    /**
+     * Returns english label for components.
+     * <br>
+     * The index in the list is in sync with specific field component structure.
+     * @see #getComponentLabel(int)
+     * @since 7.8.4
+     */
+    @Override
+    protected List<String> getComponentLabels() {
+        List<String> result = new ArrayList<>();
+        result.add("Qualifier");
+        result.add("Date1");
+        result.add("Time1");
+        result.add("Date2");
+        result.add("Time2");
+        return result;
+    }
 
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "qualifier");
-		result.put(2, "startDate");
-		result.put(3, "startTime");
-		result.put(4, "endDate");
-		result.put(5, "endTime");
-		return result;
-	}
-	/**
-	 * Gets the component 1 (Qualifier).
-	 * @return the component 1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
+    /**
+     * Returns a mapping between component numbers and their label in camel case format.
+     * @since 7.10.3
+     */
+    @Override
+    protected Map<Integer, String> getComponentMap() {
+        Map<Integer, String> result = new HashMap<>();
+        result.put(1, "qualifier");
+        result.put(2, "date1");
+        result.put(3, "time1");
+        result.put(4, "date2");
+        result.put(5, "time2");
+        return result;
+    }
 
-	/**
-	 * Gets the Qualifier (component 1).
-	 * @return the Qualifier from component 1
-	 */
-	public String getQualifier() {
-		return getComponent(1);
-	}
-	/**
-	 * Gets the component 2 (Start Date).
-	 * @return the component 2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
 
-	/**
-	 * Get the component 2 as Calendar
-	 * @return the component 2 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getComponent2AsCalendar() {
-		return SwiftFormatUtils.getDate4(getComponent(2));
-	}
+    /**
+     * Gets the component 1 (Qualifier).
+     * @return the component 1
+     */
+    public String getComponent1() {
+        return getComponent(1);
+    }
 
-	/**
-	 * Gets the Start Date (component 2).
-	 * @return the Start Date from component 2
-	 */
-	public String getStartDate() {
-		return getComponent(2);
-	}
-	
-	/**
-	 * Get the Start Date (component 2) as Calendar
-	 * @return the Start Date from component 2 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getStartDateAsCalendar() {
-		return SwiftFormatUtils.getDate4(getComponent(2));
-	}
-	/**
-	 * Gets the component 3 (Start Time).
-	 * @return the component 3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
+    /**
+     * Gets the Qualifier (component 1).
+     * @return the Qualifier from component 1
+     */
+    public String getQualifier() {
+        return getComponent1();
+    }
 
-	/**
-	 * Get the component 3 as Calendar
-	 * @return the component 3 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getComponent3AsCalendar() {
-		return SwiftFormatUtils.getTime2(getComponent(3));
-	}
+    /**
+     * Gets the component 2 (Date1).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
 
-	/**
-	 * Gets the Start Time (component 3).
-	 * @return the Start Time from component 3
-	 */
-	public String getStartTime() {
-		return getComponent(3);
-	}
-	
-	/**
-	 * Get the Start Time (component 3) as Calendar
-	 * @return the Start Time from component 3 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getStartTimeAsCalendar() {
-		return SwiftFormatUtils.getTime2(getComponent(3));
-	}
-	/**
-	 * Gets the component 4 (End Date).
-	 * @return the component 4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
+    /**
+     * Get the component 2 as Calendar
+     *
+     * @return the component 2 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getComponent2AsCalendar() {
+        return SwiftFormatUtils.getDate4(getComponent(2));
+    }
 
-	/**
-	 * Get the component 4 as Calendar
-	 * @return the component 4 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getComponent4AsCalendar() {
-		return SwiftFormatUtils.getDate4(getComponent(4));
-	}
+    /**
+     * Gets the Date1 (component 2).
+     * @return the Date1 from component 2
+     */
+    public String getDate1() {
+        return getComponent2();
+    }
 
-	/**
-	 * Gets the End Date (component 4).
-	 * @return the End Date from component 4
-	 */
-	public String getEndDate() {
-		return getComponent(4);
-	}
-	
-	/**
-	 * Get the End Date (component 4) as Calendar
-	 * @return the End Date from component 4 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getEndDateAsCalendar() {
-		return SwiftFormatUtils.getDate4(getComponent(4));
-	}
-	/**
-	 * Gets the component 5 (End Time).
-	 * @return the component 5
-	 */
-	public String getComponent5() {
-		return getComponent(5);
-	}
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Date1
+     * @see #getDate1()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getStartDate() {
+        return getDate1();
+    }
 
-	/**
-	 * Get the component 5 as Calendar
-	 * @return the component 5 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getComponent5AsCalendar() {
-		return SwiftFormatUtils.getTime2(getComponent(5));
-	}
+    /**
+     * Get the Date1 (component 2) as Calendar
+     * @return the Date1 from component 2 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getDate1AsCalendar() {
+        return getComponent2AsCalendar();
+    }
 
-	/**
-	 * Gets the End Time (component 5).
-	 * @return the End Time from component 5
-	 */
-	public String getEndTime() {
-		return getComponent(5);
-	}
-	
-	/**
-	 * Get the End Time (component 5) as Calendar
-	 * @return the End Time from component 5 converted to Calendar or null if cannot be converted
-	 */
-	public java.util.Calendar getEndTimeAsCalendar() {
-		return SwiftFormatUtils.getTime2(getComponent(5));
-	}
-    
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Date1 as Calendar
+     * @see #getDate1AsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getStartDateAsCalendar() {
+        return getDate1AsCalendar();
+    }
+
+    /**
+     * Gets the component 3 (Time1).
+     * @return the component 3
+     */
+    public String getComponent3() {
+        return getComponent(3);
+    }
+
+    /**
+     * Get the component 3 as Calendar
+     *
+     * @return the component 3 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getComponent3AsCalendar() {
+        return SwiftFormatUtils.getTime2(getComponent(3));
+    }
+
+    /**
+     * Gets the Time1 (component 3).
+     * @return the Time1 from component 3
+     */
+    public String getTime1() {
+        return getComponent3();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Time1
+     * @see #getTime1()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getStartTime() {
+        return getTime1();
+    }
+
+    /**
+     * Get the Time1 (component 3) as Calendar
+     * @return the Time1 from component 3 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getTime1AsCalendar() {
+        return getComponent3AsCalendar();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Time1 as Calendar
+     * @see #getTime1AsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getStartTimeAsCalendar() {
+        return getTime1AsCalendar();
+    }
+
+    /**
+     * Gets the component 4 (Date2).
+     * @return the component 4
+     */
+    public String getComponent4() {
+        return getComponent(4);
+    }
+
+    /**
+     * Get the component 4 as Calendar
+     *
+     * @return the component 4 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getComponent4AsCalendar() {
+        return SwiftFormatUtils.getDate4(getComponent(4));
+    }
+
+    /**
+     * Gets the Date2 (component 4).
+     * @return the Date2 from component 4
+     */
+    public String getDate2() {
+        return getComponent4();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Date2
+     * @see #getDate2()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getEndDate() {
+        return getDate2();
+    }
+
+    /**
+     * Get the Date2 (component 4) as Calendar
+     * @return the Date2 from component 4 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getDate2AsCalendar() {
+        return getComponent4AsCalendar();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Date2 as Calendar
+     * @see #getDate2AsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getEndDateAsCalendar() {
+        return getDate2AsCalendar();
+    }
+
+    /**
+     * Gets the component 5 (Time2).
+     * @return the component 5
+     */
+    public String getComponent5() {
+        return getComponent(5);
+    }
+
+    /**
+     * Get the component 5 as Calendar
+     *
+     * @return the component 5 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getComponent5AsCalendar() {
+        return SwiftFormatUtils.getTime2(getComponent(5));
+    }
+
+    /**
+     * Gets the Time2 (component 5).
+     * @return the Time2 from component 5
+     */
+    public String getTime2() {
+        return getComponent5();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Time2
+     * @see #getTime2()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getEndTime() {
+        return getTime2();
+    }
+
+    /**
+     * Get the Time2 (component 5) as Calendar
+     * @return the Time2 from component 5 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getTime2AsCalendar() {
+        return getComponent5AsCalendar();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Time2 as Calendar
+     * @see #getTime2AsCalendar()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Calendar getEndTimeAsCalendar() {
+        return getTime2AsCalendar();
+    }
+
+    /**
+     * Set the component 1 (Qualifier).
+     *
+     * @param component1 the Qualifier to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setComponent1(String component1) {
+        setComponent(1, component1);
+        return this;
+    }
+
+    /**
+     * Set the Qualifier (component 1).
+     *
+     * @param component1 the Qualifier to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setQualifier(String component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Date1).
+     *
+     * @param component2 the Date1 to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the component2 from a Calendar object.
+     *
+     * @param component2 the Calendar with the Date1 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setComponent2(java.util.Calendar component2) {
+        setComponent(2, SwiftFormatUtils.getDate4(component2));
+        return this;
+    }
+
+    /**
+     * Set the Date1 (component 2).
+     *
+     * @param component2 the Date1 to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setDate1(String component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the Date1 (component 2) from a Calendar object.
+     *
+     * @see #setComponent2(java.util.Calendar)
+     *
+     * @param component2 Calendar with the Date1 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setDate1(java.util.Calendar component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Date1
+     *
+     * @see #setDate1(String)
+     *
+     * @param component2 the Date1 to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setStartDate(String component2) {
+        return setDate1(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Date1 from a Calendar object.
+     *
+     * @see #setComponent2(java.util.Calendar)
+     *
+     * @param component2 Calendar with the Date1 content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setStartDate(java.util.Calendar component2) {
+        return setDate1(component2);
+    }
+
+    /**
+     * Set the component 3 (Time1).
+     *
+     * @param component3 the Time1 to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setComponent3(String component3) {
+        setComponent(3, component3);
+        return this;
+    }
+
+    /**
+     * Set the component3 from a Calendar object.
+     *
+     * @param component3 the Calendar with the Time1 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setComponent3(java.util.Calendar component3) {
+        setComponent(3, SwiftFormatUtils.getTime2(component3));
+        return this;
+    }
+
+    /**
+     * Set the Time1 (component 3).
+     *
+     * @param component3 the Time1 to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setTime1(String component3) {
+        return setComponent3(component3);
+    }
+
+    /**
+     * Set the Time1 (component 3) from a Calendar object.
+     *
+     * @see #setComponent3(java.util.Calendar)
+     *
+     * @param component3 Calendar with the Time1 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setTime1(java.util.Calendar component3) {
+        return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time1
+     *
+     * @see #setTime1(String)
+     *
+     * @param component3 the Time1 to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setStartTime(String component3) {
+        return setTime1(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time1 from a Calendar object.
+     *
+     * @see #setComponent3(java.util.Calendar)
+     *
+     * @param component3 Calendar with the Time1 content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setStartTime(java.util.Calendar component3) {
+        return setTime1(component3);
+    }
+
+    /**
+     * Set the component 4 (Date2).
+     *
+     * @param component4 the Date2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setComponent4(String component4) {
+        setComponent(4, component4);
+        return this;
+    }
+
+    /**
+     * Set the component4 from a Calendar object.
+     *
+     * @param component4 the Calendar with the Date2 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setComponent4(java.util.Calendar component4) {
+        setComponent(4, SwiftFormatUtils.getDate4(component4));
+        return this;
+    }
+
+    /**
+     * Set the Date2 (component 4).
+     *
+     * @param component4 the Date2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setDate2(String component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Set the Date2 (component 4) from a Calendar object.
+     *
+     * @see #setComponent4(java.util.Calendar)
+     *
+     * @param component4 Calendar with the Date2 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setDate2(java.util.Calendar component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Date2
+     *
+     * @see #setDate2(String)
+     *
+     * @param component4 the Date2 to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setEndDate(String component4) {
+        return setDate2(component4);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Date2 from a Calendar object.
+     *
+     * @see #setComponent4(java.util.Calendar)
+     *
+     * @param component4 Calendar with the Date2 content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setEndDate(java.util.Calendar component4) {
+        return setDate2(component4);
+    }
+
+    /**
+     * Set the component 5 (Time2).
+     *
+     * @param component5 the Time2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setComponent5(String component5) {
+        setComponent(5, component5);
+        return this;
+    }
+
+    /**
+     * Set the component5 from a Calendar object.
+     *
+     * @param component5 the Calendar with the Time2 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setComponent5(java.util.Calendar component5) {
+        setComponent(5, SwiftFormatUtils.getTime2(component5));
+        return this;
+    }
+
+    /**
+     * Set the Time2 (component 5).
+     *
+     * @param component5 the Time2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setTime2(String component5) {
+        return setComponent5(component5);
+    }
+
+    /**
+     * Set the Time2 (component 5) from a Calendar object.
+     *
+     * @see #setComponent5(java.util.Calendar)
+     *
+     * @param component5 Calendar with the Time2 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field69B setTime2(java.util.Calendar component5) {
+        return setComponent5(component5);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time2
+     *
+     * @see #setTime2(String)
+     *
+     * @param component5 the Time2 to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setEndTime(String component5) {
+        return setTime2(component5);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Time2 from a Calendar object.
+     *
+     * @see #setComponent5(java.util.Calendar)
+     *
+     * @param component5 Calendar with the Time2 content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field69B setEndTime(java.util.Calendar component5) {
+        return setTime2(component5);
+    }
+
+
+    /**
+     * Returns all components that can be converted to a Calendar
+     *
+     * @return the list of converted components (a Calendar object or null)
+     */
     public List<Calendar> dates() {
-		List<Calendar> result = new ArrayList<>();
-		result.add(SwiftFormatUtils.getDate4(getComponent(2)));
-		result.add(SwiftFormatUtils.getTime2(getComponent(3)));
-		result.add(SwiftFormatUtils.getDate4(getComponent(4)));
-		result.add(SwiftFormatUtils.getTime2(getComponent(5)));
-		return result;
-	}
+        return DateResolver.dates(this);
+    }
+
+    /**
+     * Returns the first component that can be converted to a Calendar
+     *
+     * @return the converted components (a Calendar object or null)
+     */
+    public Calendar date() {
+        return DateResolver.date(this);
+    }
 
 
-	/**
-	 * Set the component1 (Qualifier).
-	 * @param component1 the component1 to set
-	 */
-	public Field69B setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Qualifier (component1).
-	 * @param component1 the Qualifier to set
-	 */
-	public Field69B setQualifier(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
+    /**
+     * Returns the issuer code (or Data Source Scheme or DSS).
+     * The DSS is only present in some generic fields, when present, is equals to component two.
+     *
+     * @return DSS component value or null if the DSS is not set or not available for this field.
+     */
+    public String getDSS() {
+        return null;
+    }
 
-	/**
-	 * Set the component2 (Start Date).
-	 * @param component2 the component2 to set
-	 */
-	public Field69B setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the component2 from a Calendar object.
-	 * @param component2 the Calendar with the component2 content to set
-	 */
-	public Field69B setComponent2(java.util.Calendar component2) {
-		setComponent(2, SwiftFormatUtils.getDate4(component2));
-		return this;
-	}
-	
-	/**
-	 * Set the Start Date (component2).
-	 * @param component2 the Start Date to set
-	 */
-	public Field69B setStartDate(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Start Date (component2) from a Calendar object.
-	 * @see #setComponent2(java.util.Calendar)
-	 * @param component2 Calendar with the Start Date content to set
-	 */
-	public Field69B setStartDate(java.util.Calendar component2) {
-		setComponent2(component2);
-		return this;
-	}
+    /**
+     * Checks if the issuer code (or Data Source Scheme or DSS) is present.
+     *
+     * @see #getDSS()
+     * @return true if DSS is present, false otherwise.
+     */
+    public boolean isDSSPresent() {
+        return false;
+    }
 
-	/**
-	 * Set the component3 (Start Time).
-	 * @param component3 the component3 to set
-	 */
-	public Field69B setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the component3 from a Calendar object.
-	 * @param component3 the Calendar with the component3 content to set
-	 */
-	public Field69B setComponent3(java.util.Calendar component3) {
-		setComponent(3, SwiftFormatUtils.getTime2(component3));
-		return this;
-	}
-	
-	/**
-	 * Set the Start Time (component3).
-	 * @param component3 the Start Time to set
-	 */
-	public Field69B setStartTime(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the Start Time (component3) from a Calendar object.
-	 * @see #setComponent3(java.util.Calendar)
-	 * @param component3 Calendar with the Start Time content to set
-	 */
-	public Field69B setStartTime(java.util.Calendar component3) {
-		setComponent3(component3);
-		return this;
-	}
-
-	/**
-	 * Set the component4 (End Date).
-	 * @param component4 the component4 to set
-	 */
-	public Field69B setComponent4(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the component4 from a Calendar object.
-	 * @param component4 the Calendar with the component4 content to set
-	 */
-	public Field69B setComponent4(java.util.Calendar component4) {
-		setComponent(4, SwiftFormatUtils.getDate4(component4));
-		return this;
-	}
-	
-	/**
-	 * Set the End Date (component4).
-	 * @param component4 the End Date to set
-	 */
-	public Field69B setEndDate(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the End Date (component4) from a Calendar object.
-	 * @see #setComponent4(java.util.Calendar)
-	 * @param component4 Calendar with the End Date content to set
-	 */
-	public Field69B setEndDate(java.util.Calendar component4) {
-		setComponent4(component4);
-		return this;
-	}
-
-	/**
-	 * Set the component5 (End Time).
-	 * @param component5 the component5 to set
-	 */
-	public Field69B setComponent5(String component5) {
-		setComponent(5, component5);
-		return this;
-	}
-	
-	/**
-	 * Set the component5 from a Calendar object.
-	 * @param component5 the Calendar with the component5 content to set
-	 */
-	public Field69B setComponent5(java.util.Calendar component5) {
-		setComponent(5, SwiftFormatUtils.getTime2(component5));
-		return this;
-	}
-	
-	/**
-	 * Set the End Time (component5).
-	 * @param component5 the End Time to set
-	 */
-	public Field69B setEndTime(String component5) {
-		setComponent(5, component5);
-		return this;
-	}
-	
-	/**
-	 * Set the End Time (component5) from a Calendar object.
-	 * @see #setComponent5(java.util.Calendar)
-	 * @param component5 Calendar with the End Time content to set
-	 */
-	public Field69B setEndTime(java.util.Calendar component5) {
-		setComponent5(component5);
-		return this;
-	}
-
-
-   /**
-    * Returns the issuer code (or Data Source Scheme or DSS).
-    * The DSS is only present in some generic fields, when present, is equals to component two.
-    *
-    * @return DSS component value or null if the DSS is not set or not available for this field.
-    */
-   public String getDSS() {
-       return null;
-   }
-
-   /**
-    * Checks if the issuer code (or Data Source Scheme or DSS) is present.
-    *
-    * @see #getDSS()
-    * @return true if DSS is present, false otherwise.
-    */
-   public boolean isDSSPresent() {
-       return getDSS() != null;
-   }
-
-	/**
-	 * Component number for the conditional qualifier subfield
-	 */
+    /**
+     * Component number for the conditional qualifier subfield
+     */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
-   
-   /**
-    * Gets the component with the conditional (secondary) qualifier.
-    *
-    * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
-    */
-   public String getConditionalQualifier() {
-       return getComponent(CONDITIONAL_QUALIFIER);
-   }
-   
-	/**
-	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field69B.NAME
-	 */
-	@Override
-	public String getName() {
-		return NAME;
-	}
 
-	/**
-	 * Gets the first occurrence form the tag list or null if not found.
-	 * @return null if not found o block is null or empty
-	 * @param block may be null or empty 
-	 */
-	public static Field69B get(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return null;
-		}
-		final Tag t = block.getTagByName(NAME);
-		if (t == null) {
-			return null;
-		}
-		return new Field69B(t) ;
-	}
-	
-	/**
-	 * Gets the first instance of Field69B in the given message.
-	 * @param msg may be empty or null
-	 * @return null if not found or msg is empty or null
-	 * @see #get(SwiftTagListBlock)
-	 */
-	public static Field69B get(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return null;
-		return get(msg.getBlock4());
-	}
+    /**
+     * Gets the component with the conditional (secondary) qualifier.
+     *
+     * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
+     */
+    public String getConditionalQualifier() {
+        return getComponent(CONDITIONAL_QUALIFIER);
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field69B in the given message
-	 * an empty list is returned if none found.
-	 * @param msg may be empty or null in which case an empty list is returned
-	 * @see #getAll(SwiftTagListBlock)
-	 */ 
-	public static List<Field69B> getAll(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return java.util.Collections.emptyList();
-		return getAll(msg.getBlock4());
-	}
+    /**
+     * Returns the field's name composed by the field number and the letter option (if any)
+     * @return the static value of Field69B.NAME
+     */
+    @Override
+    public String getName() {
+        return NAME;
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field69B from the given block
-	 * an empty list is returned if none found.
-	 *
-	 * @param block may be empty or null in which case an empty list is returned 
-	 */ 
-	public static List<Field69B> getAll(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return java.util.Collections.emptyList();
-		}
-		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length > 0) {
-			final List<Field69B> result = new ArrayList<>(arr.length);
-			for (final Tag f : arr) {
-				result.add( new Field69B(f));
-			}
-			return result;
-		}
-		return java.util.Collections.emptyList();
-	}
+    /**
+     * Gets the first occurrence form the tag list or null if not found.
+     * @return null if not found o block is null or empty
+     * @param block may be null or empty
+     */
+    public static Field69B get(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return null;
+        }
+        final Tag t = block.getTagByName(NAME);
+        if (t == null) {
+            return null;
+        }
+        return new Field69B(t) ;
+    }
 
-	/**
-	 * This method deserializes the JSON data into a Field69B object.
-	 * @param json JSON structure including tuples with label and value for all field components
-	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.3
-	 * @see Field#fromJson(String)
-	 */
-	public static Field69B fromJson(final String json) {
-		Field69B field = new Field69B();
-		JsonParser parser = new JsonParser();
-		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("qualifier") != null) {
-			field.setComponent1(jsonObject.get("qualifier").getAsString());
-		}
-		if (jsonObject.get("startDate") != null) {
-			field.setComponent2(jsonObject.get("startDate").getAsString());
-		}
-		if (jsonObject.get("startTime") != null) {
-			field.setComponent3(jsonObject.get("startTime").getAsString());
-		}
-		if (jsonObject.get("endDate") != null) {
-			field.setComponent4(jsonObject.get("endDate").getAsString());
-		}
-		if (jsonObject.get("endTime") != null) {
-			field.setComponent5(jsonObject.get("endTime").getAsString());
-		}
-		return field;
-	}
-	
+    /**
+     * Gets the first instance of Field69B in the given message.
+     * @param msg may be empty or null
+     * @return null if not found or msg is empty or null
+     * @see #get(SwiftTagListBlock)
+     */
+    public static Field69B get(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return null;
+        return get(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field69B in the given message
+     * an empty list is returned if none found.
+     * @param msg may be empty or null in which case an empty list is returned
+     * @see #getAll(SwiftTagListBlock)
+     */
+    public static List<Field69B> getAll(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return java.util.Collections.emptyList();
+        return getAll(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field69B from the given block
+     * an empty list is returned if none found.
+     *
+     * @param block may be empty or null in which case an empty list is returned
+     */
+    public static List<Field69B> getAll(final SwiftTagListBlock block) {
+        final List<Field69B> result = new ArrayList<>();
+        if (block == null || block.isEmpty()) {
+            return result;
+        }
+        final Tag[] arr = block.getTagsByName(NAME);
+        if (arr != null && arr.length > 0) {
+            for (final Tag f : arr) {
+                result.add( new Field69B(f));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * This method deserializes the JSON data into a Field69B object.
+     * @param json JSON structure including tuples with label and value for all field components
+     * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+     * @since 7.10.3
+     * @see Field#fromJson(String)
+     */
+    public static Field69B fromJson(final String json) {
+
+        Field69B field = new Field69B();
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(json);
+
+        // **** COMPONENT 1 - Qualifier
+
+        if (jsonObject.get("qualifier") != null) {
+            field.setComponent1(jsonObject.get("qualifier").getAsString());
+        }
+
+        // **** COMPONENT 2 - Date1
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("startDate") != null) {
+            field.setComponent2(jsonObject.get("startDate").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("date1") != null) {
+            field.setComponent2(jsonObject.get("date1").getAsString());
+        }
+
+        // **** COMPONENT 3 - Time1
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("startTime") != null) {
+            field.setComponent3(jsonObject.get("startTime").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("time1") != null) {
+            field.setComponent3(jsonObject.get("time1").getAsString());
+        }
+
+        // **** COMPONENT 4 - Date2
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("endDate") != null) {
+            field.setComponent4(jsonObject.get("endDate").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("date2") != null) {
+            field.setComponent4(jsonObject.get("date2").getAsString());
+        }
+
+        // **** COMPONENT 5 - Time2
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("endTime") != null) {
+            field.setComponent5(jsonObject.get("endTime").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("time2") != null) {
+            field.setComponent5(jsonObject.get("time2").getAsString());
+        }
+
+        return field;
+    }
+
 
 }

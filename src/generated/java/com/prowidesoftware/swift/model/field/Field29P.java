@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -24,9 +26,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import com.prowidesoftware.swift.model.BIC;
-import com.prowidesoftware.swift.model.field.BICContainer;
 
+import com.prowidesoftware.swift.model.BIC;
+
+import com.prowidesoftware.swift.model.field.BICContainer;
+import com.prowidesoftware.swift.model.field.BICResolver;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -75,147 +79,187 @@ public class Field29P extends Field implements Serializable, BICContainer {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_29P = "29P";
-	public static final String PARSER_PATTERN ="S";
+	public static final String PARSER_PATTERN = "S";
+
+    /**
+     * Components pattern
+     *
+     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
+     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "B";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
+     * @since 9.2.7
+     */
+	public static final String TYPES_PATTERN = "B";
 
 	/**
 	 * Component number for the BIC subfield
 	 */
 	public static final Integer BIC = 1;
 
-	/**
-	 * Default constructor. Creates a new field setting all components to null.
-	 */
-	public Field29P() {
-		super(1);
-	}
-	    					
-	/**
-	 * Creates a new field and initializes its components with content from the parameter value.
-	 * @param value complete field value including separators and CRLF
-	 */
-	public Field29P(final String value) {
-		super(value);
-	}
-	
-	/**
-	 * Creates a new field and initializes its components with content from the parameter tag.
-	 * The value is parsed with {@link #parse(String)} 	 
-	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
-	 * @since 7.8
-	 */
-	public Field29P(final Tag tag) {
-		this();
-		if (tag == null) {
-			throw new IllegalArgumentException("tag cannot be null.");
-		}
-		if (!StringUtils.equals(tag.getName(), "29P")) {
-			throw new IllegalArgumentException("cannot create field 29P from tag "+tag.getName()+", tagname must match the name of the field.");
-		}
-		parse(tag.getValue());
-	}
+    /**
+     * Default constructor. Creates a new field setting all components to null.
+     */
+    public Field29P() {
+        super(1);
+    }
 
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field29P newInstance(Field29P source) {
-		Field29P cp = new Field29P();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter value.
+     * @param value complete field value including separators and CRLF
+     */
+    public Field29P(final String value) {
+        super(value);
+    }
 
-	/**
-	 * Create a Tag with this field name and the given value.
-	 * Shorthand for <code>new Tag(NAME, value)</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter tag.
+     * The value is parsed with {@link #parse(String)}
+     * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
+     * @since 7.8
+     */
+    public Field29P(final Tag tag) {
+        this();
+        if (tag == null) {
+            throw new IllegalArgumentException("tag cannot be null.");
+        }
+        if (!StringUtils.equals(tag.getName(), "29P")) {
+            throw new IllegalArgumentException("cannot create field 29P from tag "+tag.getName()+", tagname must match the name of the field.");
+        }
+        parse(tag.getValue());
+    }
 
-	/**
-	 * Create a Tag with this field name and an empty string as value
-	 * Shorthand for <code>new Tag(NAME, "")</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
+    /**
+     * Copy constructor.<br>
+     * Initializes the components list with a deep copy of the source components list.
+     * @param source a field instance to copy
+     * @since 7.7
+     */
+    public static Field29P newInstance(Field29P source) {
+        Field29P cp = new Field29P();
+        cp.setComponents(new ArrayList<>(source.getComponents()));
+        return cp;
+    }
+
+    /**
+     * Create a Tag with this field name and the given value.
+     * Shorthand for <code>new Tag(NAME, value)</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag tag(final String value) {
+        return new Tag(NAME, value);
+    }
+
+    /**
+     * Create a Tag with this field name and an empty string as value
+     * Shorthand for <code>new Tag(NAME, "")</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag emptyTag() {
+        return new Tag(NAME, "");
+    }
 
 
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(1);
-		setComponent1(value);
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		append(result, 1);
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 1) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 29P");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field29P.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
+    /**
+     * Parses the parameter value into the internal components structure.
+     *
+     * <p>Used to update all components from a full new value, as an alternative
+     * to setting individual components. Previous component values are overwritten.
+     *
+     * @param value complete field value including separators and CRLF
+     * @since 7.8
+     */
+    @Override
+    public void parse(final String value) {
+        init(1);
+        setComponent1(value);
+    }
 
-	/**
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        append(result, 1);
+        return result.toString();
+    }
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param component number of the component to display
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component number is invalid or not present
+     * @throws IllegalArgumentException if component number is invalid for the field
+     * @since 7.8
+     */
+    @Override
+    public String getValueDisplay(int component, Locale locale) {
+        if (component < 1 || component > 1) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 29P");
+        }
+        if (component == 1) {
+            //default format (as is)
+            return getComponent(1);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the field components pattern
+     *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field29P.COMPONENTS_PATTERN
+     */
+    @Override
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public final String componentsPattern() {
+        return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @since 9.2.7
+     * @see #TYPES_PATTERN
+     * @return the static value of Field29P.TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
+    }
+
+    /**
      * Returns the field parser pattern
      * @return the static value of Field29P.PARSER_PATTERN
      */
-	@Override
-	public final String parserPattern() {
+    @Override
+    public final String parserPattern() {
         return PARSER_PATTERN;
     }
 
-	/**
-	 * Returns the field validator pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "<BIC>";
-	}
+    /**
+     * Returns the field validator pattern
+     */
+    @Override
+    public final String validatorPattern() {
+        return "<BIC>";
+    }
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -241,210 +285,221 @@ public class Field29P extends Field implements Serializable, BICContainer {
         return false;
     }
 
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 1;
-	}
+    /**
+     * Returns the defined amount of components.<br>
+     * This is not the amount of components present in the field instance, but the total amount of components
+     * that this field accepts as defined.
+     * @since 7.7
+     */
+    @Override
+    public int componentsSize() {
+        return 1;
+    }
 
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("BIC");
-		return result;
-	}
+    /**
+     * Returns english label for components.
+     * <br>
+     * The index in the list is in sync with specific field component structure.
+     * @see #getComponentLabel(int)
+     * @since 7.8.4
+     */
+    @Override
+    protected List<String> getComponentLabels() {
+        List<String> result = new ArrayList<>();
+        result.add("BIC");
+        return result;
+    }
 
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "bIC");
-		return result;
-	}
-	/**
-	 * Gets the component 1 (BIC).
-	 * @return the component 1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Get the component 1 as BIC
-	 * @return the component 1 converted to BIC or null if cannot be converted
-	 */
-	public com.prowidesoftware.swift.model.BIC getComponent1AsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(1));
-	}
-
-	/**
-	 * Gets the BIC (component 1).
-	 * @return the BIC from component 1
-	 */
-	public String getBIC() {
-		return getComponent(1);
-	}
-	
-	/**
-	 * Get the BIC (component 1) as BIC
-	 * @return the BIC from component 1 converted to BIC or null if cannot be converted
-	 */
-	public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-		return SwiftFormatUtils.getBIC(getComponent(1));
-	}
-
-	public List<BIC> bics () {
-		final List<BIC> result = new ArrayList<>();
-		result.add(SwiftFormatUtils.getBIC(getComponent(1)));
-		return result;
-	}
-
-	public List<String> bicStrings () {
-		final List<String> result = new ArrayList<>();
-		result.add(getComponent(1));
-		return result;
-	}
+    /**
+     * Returns a mapping between component numbers and their label in camel case format.
+     * @since 7.10.3
+     */
+    @Override
+    protected Map<Integer, String> getComponentMap() {
+        Map<Integer, String> result = new HashMap<>();
+        result.put(1, "bIC");
+        return result;
+    }
 
 
-	/**
-	 * Set the component1 (BIC).
-	 * @param component1 the component1 to set
-	 */
-	public Field29P setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the component1 from a BIC object.
-	 * @param component1 the BIC with the component1 content to set
-	 */
-	public Field29P setComponent1(com.prowidesoftware.swift.model.BIC component1) {
-		setComponent(1, SwiftFormatUtils.getBIC(component1));
-		return this;
-	}
-	
-	/**
-	 * Set the BIC (component1).
-	 * @param component1 the BIC to set
-	 */
-	public Field29P setBIC(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the BIC (component1) from a BIC object.
-	 * @see #setComponent1(com.prowidesoftware.swift.model.BIC)
-	 * @param component1 BIC with the BIC content to set
-	 */
-	public Field29P setBIC(com.prowidesoftware.swift.model.BIC component1) {
-		setComponent1(component1);
-		return this;
-	}
+    /**
+     * Gets the component 1 (BIC).
+     * @return the component 1
+     */
+    public String getComponent1() {
+        return getComponent(1);
+    }
 
-   
-	/**
-	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field29P.NAME
-	 */
-	@Override
-	public String getName() {
-		return NAME;
-	}
+    /**
+     * Get the component 1 as BIC
+     *
+     * @return the component 1 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getComponent1AsBIC() {
+        return SwiftFormatUtils.getBIC(getComponent(1));
+    }
 
-	/**
-	 * Gets the first occurrence form the tag list or null if not found.
-	 * @return null if not found o block is null or empty
-	 * @param block may be null or empty 
-	 */
-	public static Field29P get(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return null;
-		}
-		final Tag t = block.getTagByName(NAME);
-		if (t == null) {
-			return null;
-		}
-		return new Field29P(t) ;
-	}
-	
-	/**
-	 * Gets the first instance of Field29P in the given message.
-	 * @param msg may be empty or null
-	 * @return null if not found or msg is empty or null
-	 * @see #get(SwiftTagListBlock)
-	 */
-	public static Field29P get(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return null;
-		return get(msg.getBlock4());
-	}
+    /**
+     * Gets the BIC (component 1).
+     * @return the BIC from component 1
+     */
+    public String getBIC() {
+        return getComponent1();
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field29P in the given message
-	 * an empty list is returned if none found.
-	 * @param msg may be empty or null in which case an empty list is returned
-	 * @see #getAll(SwiftTagListBlock)
-	 */ 
-	public static List<Field29P> getAll(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return java.util.Collections.emptyList();
-		return getAll(msg.getBlock4());
-	}
+    /**
+     * Get the BIC (component 1) as BIC
+     * @return the BIC from component 1 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+        return getComponent1AsBIC();
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field29P from the given block
-	 * an empty list is returned if none found.
-	 *
-	 * @param block may be empty or null in which case an empty list is returned 
-	 */ 
-	public static List<Field29P> getAll(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return java.util.Collections.emptyList();
-		}
-		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length > 0) {
-			final List<Field29P> result = new ArrayList<>(arr.length);
-			for (final Tag f : arr) {
-				result.add( new Field29P(f));
-			}
-			return result;
-		}
-		return java.util.Collections.emptyList();
-	}
+    /**
+     * Set the component 1 (BIC).
+     *
+     * @param component1 the BIC to set
+     * @return the field object to enable build pattern
+     */
+    public Field29P setComponent1(String component1) {
+        setComponent(1, component1);
+        return this;
+    }
 
-	/**
-	 * This method deserializes the JSON data into a Field29P object.
-	 * @param json JSON structure including tuples with label and value for all field components
-	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.3
-	 * @see Field#fromJson(String)
-	 */
-	public static Field29P fromJson(final String json) {
-		Field29P field = new Field29P();
-		JsonParser parser = new JsonParser();
-		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("bIC") != null) {
-			field.setComponent1(jsonObject.get("bIC").getAsString());
-		}
-		return field;
-	}
-	
+    /**
+     * Set the component1 from a BIC object.
+     *
+     * @param component1 the BIC with the BIC content to set
+     * @return the field object to enable build pattern
+     */
+    public Field29P setComponent1(com.prowidesoftware.swift.model.BIC component1) {
+        setComponent(1, SwiftFormatUtils.getBIC(component1));
+        return this;
+    }
+
+    /**
+     * Set the BIC (component 1).
+     *
+     * @param component1 the BIC to set
+     * @return the field object to enable build pattern
+     */
+    public Field29P setBIC(String component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Set the BIC (component 1) from a BIC object.
+     *
+     * @see #setComponent1(com.prowidesoftware.swift.model.BIC)
+     *
+     * @param component1 BIC with the BIC content to set
+     * @return the field object to enable build pattern
+     */
+    public Field29P setBIC(com.prowidesoftware.swift.model.BIC component1) {
+        return setComponent1(component1);
+    }
+
+
+    public List<BIC> bics() {
+        return BICResolver.bics(this);
+    }
+
+    public List<String> bicStrings () {
+        return BICResolver.bicStrings(this);
+    }
+
+
+    /**
+     * Returns the field's name composed by the field number and the letter option (if any)
+     * @return the static value of Field29P.NAME
+     */
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    /**
+     * Gets the first occurrence form the tag list or null if not found.
+     * @return null if not found o block is null or empty
+     * @param block may be null or empty
+     */
+    public static Field29P get(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return null;
+        }
+        final Tag t = block.getTagByName(NAME);
+        if (t == null) {
+            return null;
+        }
+        return new Field29P(t) ;
+    }
+
+    /**
+     * Gets the first instance of Field29P in the given message.
+     * @param msg may be empty or null
+     * @return null if not found or msg is empty or null
+     * @see #get(SwiftTagListBlock)
+     */
+    public static Field29P get(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return null;
+        return get(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field29P in the given message
+     * an empty list is returned if none found.
+     * @param msg may be empty or null in which case an empty list is returned
+     * @see #getAll(SwiftTagListBlock)
+     */
+    public static List<Field29P> getAll(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return java.util.Collections.emptyList();
+        return getAll(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field29P from the given block
+     * an empty list is returned if none found.
+     *
+     * @param block may be empty or null in which case an empty list is returned
+     */
+    public static List<Field29P> getAll(final SwiftTagListBlock block) {
+        final List<Field29P> result = new ArrayList<>();
+        if (block == null || block.isEmpty()) {
+            return result;
+        }
+        final Tag[] arr = block.getTagsByName(NAME);
+        if (arr != null && arr.length > 0) {
+            for (final Tag f : arr) {
+                result.add( new Field29P(f));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * This method deserializes the JSON data into a Field29P object.
+     * @param json JSON structure including tuples with label and value for all field components
+     * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+     * @since 7.10.3
+     * @see Field#fromJson(String)
+     */
+    public static Field29P fromJson(final String json) {
+
+        Field29P field = new Field29P();
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(json);
+
+        // **** COMPONENT 1 - BIC
+
+        if (jsonObject.get("bIC") != null) {
+            field.setComponent1(jsonObject.get("bIC").getAsString());
+        }
+
+        return field;
+    }
+
 
 }

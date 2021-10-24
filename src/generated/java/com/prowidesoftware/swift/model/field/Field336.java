@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -24,6 +26,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -44,7 +49,7 @@ import com.google.gson.JsonParser;
  * <p>Subfields (components) Data types
  * <ol>
  * 		<li><code>String</code></li>
- * 		<li><code>Number</code></li>
+ * 		<li><code>Long</code></li>
  * 		<li><code>String</code></li>
  * </ol>
  *
@@ -75,8 +80,26 @@ public class Field336 extends Field implements Serializable {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_336 = "336";
-	public static final String PARSER_PATTERN ="6!S5!NS";
+	public static final String PARSER_PATTERN = "6!S5!NS";
+
+    /**
+     * Components pattern
+     *
+     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
+     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SNS";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
+     * @since 9.2.7
+     */
+	public static final String TYPES_PATTERN = "SNS";
 
 	/**
 	 * Component number for the Delivery Subset Name subfield
@@ -93,162 +116,184 @@ public class Field336 extends Field implements Serializable {
 	 */
 	public static final Integer CODES = 3;
 
-	/**
-	 * Default constructor. Creates a new field setting all components to null.
-	 */
-	public Field336() {
-		super(3);
-	}
-	    					
-	/**
-	 * Creates a new field and initializes its components with content from the parameter value.
-	 * @param value complete field value including separators and CRLF
-	 */
-	public Field336(final String value) {
-		super(value);
-	}
-	
-	/**
-	 * Creates a new field and initializes its components with content from the parameter tag.
-	 * The value is parsed with {@link #parse(String)} 	 
-	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
-	 * @since 7.8
-	 */
-	public Field336(final Tag tag) {
-		this();
-		if (tag == null) {
-			throw new IllegalArgumentException("tag cannot be null.");
-		}
-		if (!StringUtils.equals(tag.getName(), "336")) {
-			throw new IllegalArgumentException("cannot create field 336 from tag "+tag.getName()+", tagname must match the name of the field.");
-		}
-		parse(tag.getValue());
-	}
+    /**
+     * Default constructor. Creates a new field setting all components to null.
+     */
+    public Field336() {
+        super(3);
+    }
 
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field336 newInstance(Field336 source) {
-		Field336 cp = new Field336();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter value.
+     * @param value complete field value including separators and CRLF
+     */
+    public Field336(final String value) {
+        super(value);
+    }
 
-	/**
-	 * Create a Tag with this field name and the given value.
-	 * Shorthand for <code>new Tag(NAME, value)</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter tag.
+     * The value is parsed with {@link #parse(String)}
+     * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
+     * @since 7.8
+     */
+    public Field336(final Tag tag) {
+        this();
+        if (tag == null) {
+            throw new IllegalArgumentException("tag cannot be null.");
+        }
+        if (!StringUtils.equals(tag.getName(), "336")) {
+            throw new IllegalArgumentException("cannot create field 336 from tag "+tag.getName()+", tagname must match the name of the field.");
+        }
+        parse(tag.getValue());
+    }
 
-	/**
-	 * Create a Tag with this field name and an empty string as value
-	 * Shorthand for <code>new Tag(NAME, "")</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
+    /**
+     * Copy constructor.<br>
+     * Initializes the components list with a deep copy of the source components list.
+     * @param source a field instance to copy
+     * @since 7.7
+     */
+    public static Field336 newInstance(Field336 source) {
+        Field336 cp = new Field336();
+        cp.setComponents(new ArrayList<>(source.getComponents()));
+        return cp;
+    }
+
+    /**
+     * Create a Tag with this field name and the given value.
+     * Shorthand for <code>new Tag(NAME, value)</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag tag(final String value) {
+        return new Tag(NAME, value);
+    }
+
+    /**
+     * Create a Tag with this field name and an empty string as value
+     * Shorthand for <code>new Tag(NAME, "")</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag emptyTag() {
+        return new Tag(NAME, "");
+    }
 
 
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(3);
-		if (value != null) {
-        	if (value.length() >= 6) {
-				setComponent1(StringUtils.substring(value, 0, 6));
-			}
-        	if (value.length() >= 11) {
-				setComponent2(StringUtils.substring(value, 6, 11));
-			}
-        	if (value.length() > 11) {
-				setComponent3(StringUtils.substring(value, 11));
-			}
-		}
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		result.append(joinComponents());
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 3) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 336");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent2AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field336.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
+    /**
+     * Parses the parameter value into the internal components structure.
+     *
+     * <p>Used to update all components from a full new value, as an alternative
+     * to setting individual components. Previous component values are overwritten.
+     *
+     * @param value complete field value including separators and CRLF
+     * @since 7.8
+     */
+    @Override
+    public void parse(final String value) {
+        init(3);
+        if (value != null) {
+            if (value.length() >= 6) {
+                setComponent1(StringUtils.substring(value, 0, 6));
+            }
+            if (value.length() >= 11) {
+                setComponent2(StringUtils.substring(value, 6, 11));
+            }
+            if (value.length() > 11) {
+                setComponent3(StringUtils.substring(value, 11));
+            }
+        }
+    }
 
-	/**
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        result.append(joinComponents());
+        return result.toString();
+    }
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param component number of the component to display
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component number is invalid or not present
+     * @throws IllegalArgumentException if component number is invalid for the field
+     * @since 7.8
+     */
+    @Override
+    public String getValueDisplay(int component, Locale locale) {
+        if (component < 1 || component > 3) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 336");
+        }
+        if (component == 1) {
+            //default format (as is)
+            return getComponent(1);
+        }
+        if (component == 2) {
+            //number, amount, rate
+            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+            f.setMaximumFractionDigits(13);
+            Number n = getComponent2AsNumber();
+            if (n != null) {
+                return f.format(n);
+            }
+        }
+        if (component == 3) {
+            //default format (as is)
+            return getComponent(3);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the field components pattern
+     *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field336.COMPONENTS_PATTERN
+     */
+    @Override
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public final String componentsPattern() {
+        return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @since 9.2.7
+     * @see #TYPES_PATTERN
+     * @return the static value of Field336.TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
+    }
+
+    /**
      * Returns the field parser pattern
      * @return the static value of Field336.PARSER_PATTERN
      */
-	@Override
-	public final String parserPattern() {
+    @Override
+    public final String parserPattern() {
         return PARSER_PATTERN;
     }
 
-	/**
-	 * Returns the field validator pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "6!c5!n[36c]";
-	}
+    /**
+     * Returns the field validator pattern
+     */
+    @Override
+    public final String validatorPattern() {
+        return "6!c5!n[36c]";
+    }
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -274,283 +319,385 @@ public class Field336 extends Field implements Serializable {
         return false;
     }
 
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 3;
-	}
+    /**
+     * Returns the defined amount of components.<br>
+     * This is not the amount of components present in the field instance, but the total amount of components
+     * that this field accepts as defined.
+     * @since 7.7
+     */
+    @Override
+    public int componentsSize() {
+        return 3;
+    }
 
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Delivery Subset Name");
-		result.add("Number Of Messages");
-		result.add("Codes");
-		return result;
-	}
+    /**
+     * Returns english label for components.
+     * <br>
+     * The index in the list is in sync with specific field component structure.
+     * @see #getComponentLabel(int)
+     * @since 7.8.4
+     */
+    @Override
+    protected List<String> getComponentLabels() {
+        List<String> result = new ArrayList<>();
+        result.add("Delivery Subset Name");
+        result.add("Number Of Messages");
+        result.add("Codes");
+        return result;
+    }
 
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "deliverySubsetName");
-		result.put(2, "numberOfMessages");
-		result.put(3, "codes");
-		return result;
-	}
-	/**
-	 * Gets the component 1 (Delivery Subset Name).
-	 * @return the component 1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Delivery Subset Name (component 1).
-	 * @return the Delivery Subset Name from component 1
-	 */
-	public String getDeliverySubsetName() {
-		return getComponent(1);
-	}
-	/**
-	 * Gets the component 2 (Number Of Messages).
-	 * @return the component 2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Get the component 2 as Number
-	 * @return the component 2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent2AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-
-	/**
-	 * Gets the Number Of Messages (component 2).
-	 * @return the Number Of Messages from component 2
-	 */
-	public String getNumberOfMessages() {
-		return getComponent(2);
-	}
-	
-	/**
-	 * Get the Number Of Messages (component 2) as Number
-	 * @return the Number Of Messages from component 2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumberOfMessagesAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-	/**
-	 * Gets the component 3 (Codes).
-	 * @return the component 3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Gets the Codes (component 3).
-	 * @return the Codes from component 3
-	 */
-	public String getCodes() {
-		return getComponent(3);
-	}
+    /**
+     * Returns a mapping between component numbers and their label in camel case format.
+     * @since 7.10.3
+     */
+    @Override
+    protected Map<Integer, String> getComponentMap() {
+        Map<Integer, String> result = new HashMap<>();
+        result.put(1, "deliverySubsetName");
+        result.put(2, "numberOfMessages");
+        result.put(3, "codes");
+        return result;
+    }
 
 
-	/**
-	 * Set the component1 (Delivery Subset Name).
-	 * @param component1 the component1 to set
-	 */
-	public Field336 setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Delivery Subset Name (component1).
-	 * @param component1 the Delivery Subset Name to set
-	 */
-	public Field336 setDeliverySubsetName(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
+    /**
+     * Gets the component 1 (Delivery Subset Name).
+     * @return the component 1
+     */
+    public String getComponent1() {
+        return getComponent(1);
+    }
 
-	/**
-	 * Set the component2 (Number Of Messages).
-	 * @param component2 the component2 to set
-	 */
-	public Field336 setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the component2 from a Number object.
-	 * <br>
-	 * <em>If the component being set is a fixed length number, the argument will not be 
-	 * padded.</em> It is recommended for these cases to use the setComponent2(String) 
-	 * method.
-	 * 
-	 * @see #setComponent2(String)
-	 *
-	 * @param component2 the Number with the component2 content to set
-	 */
-	public Field336 setComponent2(java.lang.Number component2) {
-		if (component2 != null) {
-			setComponent(2, Integer.toString(component2.intValue()));
-		}
-		return this;
-	}
-	
-	/**
-	 * Set the Number Of Messages (component2).
-	 * @param component2 the Number Of Messages to set
-	 */
-	public Field336 setNumberOfMessages(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Number Of Messages (component2) from a Number object.
-	 * @see #setComponent2(java.lang.Number)
-	 * @param component2 Number with the Number Of Messages content to set
-	 */
-	public Field336 setNumberOfMessages(java.lang.Number component2) {
-		setComponent2(component2);
-		return this;
-	}
+    /**
+     * Gets the Delivery Subset Name (component 1).
+     * @return the Delivery Subset Name from component 1
+     */
+    public String getDeliverySubsetName() {
+        return getComponent1();
+    }
 
-	/**
-	 * Set the component3 (Codes).
-	 * @param component3 the component3 to set
-	 */
-	public Field336 setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the Codes (component3).
-	 * @param component3 the Codes to set
-	 */
-	public Field336 setCodes(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
+    /**
+     * Gets the component 2 (Number Of Messages).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
 
-   
-	/**
-	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field336.NAME
-	 */
-	@Override
-	public String getName() {
-		return NAME;
-	}
+    /**
+     * Get the component 2 as Long
+     *
+     * @return the component 2 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getComponent2AsLong() {
+        return SwiftFormatUtils.getLong(getComponent(2));
+    }
 
-	/**
-	 * Gets the first occurrence form the tag list or null if not found.
-	 * @return null if not found o block is null or empty
-	 * @param block may be null or empty 
-	 */
-	public static Field336 get(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return null;
-		}
-		final Tag t = block.getTagByName(NAME);
-		if (t == null) {
-			return null;
-		}
-		return new Field336(t) ;
-	}
-	
-	/**
-	 * Gets the first instance of Field336 in the given message.
-	 * @param msg may be empty or null
-	 * @return null if not found or msg is empty or null
-	 * @see #get(SwiftTagListBlock)
-	 */
-	public static Field336 get(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return null;
-		return get(msg.getBlock4());
-	}
+    /**
+     * Get the component 2 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsLong()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent2AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getComponent2AsNumber() {
+        Long l = getComponent2AsLong();
+        return l != null ? new BigDecimal(l) : null;
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field336 in the given message
-	 * an empty list is returned if none found.
-	 * @param msg may be empty or null in which case an empty list is returned
-	 * @see #getAll(SwiftTagListBlock)
-	 */ 
-	public static List<Field336> getAll(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return java.util.Collections.emptyList();
-		return getAll(msg.getBlock4());
-	}
+    /**
+     * Gets the Number Of Messages (component 2).
+     * @return the Number Of Messages from component 2
+     */
+    public String getNumberOfMessages() {
+        return getComponent2();
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field336 from the given block
-	 * an empty list is returned if none found.
-	 *
-	 * @param block may be empty or null in which case an empty list is returned 
-	 */ 
-	public static List<Field336> getAll(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return java.util.Collections.emptyList();
-		}
-		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length > 0) {
-			final List<Field336> result = new ArrayList<>(arr.length);
-			for (final Tag f : arr) {
-				result.add( new Field336(f));
-			}
-			return result;
-		}
-		return java.util.Collections.emptyList();
-	}
+    /**
+     * Get the Number Of Messages (component 2) as Long
+     * @return the Number Of Messages from component 2 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumberOfMessagesAsLong() {
+        return getComponent2AsLong();
+    }
 
-	/**
-	 * This method deserializes the JSON data into a Field336 object.
-	 * @param json JSON structure including tuples with label and value for all field components
-	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.3
-	 * @see Field#fromJson(String)
-	 */
-	public static Field336 fromJson(final String json) {
-		Field336 field = new Field336();
-		JsonParser parser = new JsonParser();
-		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("deliverySubsetName") != null) {
-			field.setComponent1(jsonObject.get("deliverySubsetName").getAsString());
-		}
-		if (jsonObject.get("numberOfMessages") != null) {
-			field.setComponent2(jsonObject.get("numberOfMessages").getAsString());
-		}
-		if (jsonObject.get("codes") != null) {
-			field.setComponent3(jsonObject.get("codes").getAsString());
-		}
-		return field;
-	}
-	
+    /**
+     * Get the Number Of Messages (component 2) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsLong()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberOfMessagesAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumberOfMessagesAsNumber() {
+        return getComponent2AsNumber();
+    }
+
+    /**
+     * Gets the component 3 (Codes).
+     * @return the component 3
+     */
+    public String getComponent3() {
+        return getComponent(3);
+    }
+
+    /**
+     * Gets the Codes (component 3).
+     * @return the Codes from component 3
+     */
+    public String getCodes() {
+        return getComponent3();
+    }
+
+    /**
+     * Set the component 1 (Delivery Subset Name).
+     *
+     * @param component1 the Delivery Subset Name to set
+     * @return the field object to enable build pattern
+     */
+    public Field336 setComponent1(String component1) {
+        setComponent(1, component1);
+        return this;
+    }
+
+    /**
+     * Set the Delivery Subset Name (component 1).
+     *
+     * @param component1 the Delivery Subset Name to set
+     * @return the field object to enable build pattern
+     */
+    public Field336 setDeliverySubsetName(String component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Number Of Messages).
+     *
+     * @param component2 the Number Of Messages to set
+     * @return the field object to enable build pattern
+     */
+    public Field336 setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the component2 from a Long object.
+     * <br>
+     * <em>If the component being set is a fixed length number, the argument will not be
+     * padded.</em> It is recommended for these cases to use the setComponent2(String)
+     * method.
+     *
+     * @see #setComponent2(String)
+     * @since 9.2.7
+     *
+     * @param component2 the Long with the Number Of Messages content to set
+     * @return the field object to enable build pattern
+     */
+    public Field336 setComponent2(java.lang.Long component2) {
+        setComponent(2, SwiftFormatUtils.getLong(component2));
+        return this;
+    }
+
+    /**
+     * Alternative method setter for field's Number Of Messages (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Number Of Messages content to set
+     * @return the field object to enable build pattern
+     * @see #setNumberOfMessages(java.lang.Long)
+     */
+    public Field336 setComponent2(java.lang.Number component2) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component2 instanceof Long) {
+            setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
+        } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
+            setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
+        } else if (component2 instanceof Float || component2 instanceof Double ||
+                   component2 instanceof BigDecimal) {
+            // it's non null
+            setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
+        } else {
+            // so it's a Number that failed instanceof Number => it's null
+            setComponent(2, null);
+        }
+        return this;
+    }
+
+    /**
+     * Set the Number Of Messages (component 2).
+     *
+     * @param component2 the Number Of Messages to set
+     * @return the field object to enable build pattern
+     */
+    public Field336 setNumberOfMessages(String component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the Number Of Messages (component 2) from a Long object.
+     *
+     * @see #setComponent2(java.lang.Long)
+     *
+     * @param component2 Long with the Number Of Messages content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field336 setNumberOfMessages(java.lang.Long component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Alternative method setter for field's Number Of Messages (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Number Of Messages content to set
+     * @return the field object to enable build pattern
+     * @see #setNumberOfMessages(java.lang.Long)
+     */
+    public Field336 setNumberOfMessages(java.lang.Number component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the component 3 (Codes).
+     *
+     * @param component3 the Codes to set
+     * @return the field object to enable build pattern
+     */
+    public Field336 setComponent3(String component3) {
+        setComponent(3, component3);
+        return this;
+    }
+
+    /**
+     * Set the Codes (component 3).
+     *
+     * @param component3 the Codes to set
+     * @return the field object to enable build pattern
+     */
+    public Field336 setCodes(String component3) {
+        return setComponent3(component3);
+    }
+
+
+
+    /**
+     * Returns the field's name composed by the field number and the letter option (if any)
+     * @return the static value of Field336.NAME
+     */
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    /**
+     * Gets the first occurrence form the tag list or null if not found.
+     * @return null if not found o block is null or empty
+     * @param block may be null or empty
+     */
+    public static Field336 get(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return null;
+        }
+        final Tag t = block.getTagByName(NAME);
+        if (t == null) {
+            return null;
+        }
+        return new Field336(t) ;
+    }
+
+    /**
+     * Gets the first instance of Field336 in the given message.
+     * @param msg may be empty or null
+     * @return null if not found or msg is empty or null
+     * @see #get(SwiftTagListBlock)
+     */
+    public static Field336 get(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return null;
+        return get(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field336 in the given message
+     * an empty list is returned if none found.
+     * @param msg may be empty or null in which case an empty list is returned
+     * @see #getAll(SwiftTagListBlock)
+     */
+    public static List<Field336> getAll(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return java.util.Collections.emptyList();
+        return getAll(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field336 from the given block
+     * an empty list is returned if none found.
+     *
+     * @param block may be empty or null in which case an empty list is returned
+     */
+    public static List<Field336> getAll(final SwiftTagListBlock block) {
+        final List<Field336> result = new ArrayList<>();
+        if (block == null || block.isEmpty()) {
+            return result;
+        }
+        final Tag[] arr = block.getTagsByName(NAME);
+        if (arr != null && arr.length > 0) {
+            for (final Tag f : arr) {
+                result.add( new Field336(f));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * This method deserializes the JSON data into a Field336 object.
+     * @param json JSON structure including tuples with label and value for all field components
+     * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+     * @since 7.10.3
+     * @see Field#fromJson(String)
+     */
+    public static Field336 fromJson(final String json) {
+
+        Field336 field = new Field336();
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(json);
+
+        // **** COMPONENT 1 - Delivery Subset Name
+
+        if (jsonObject.get("deliverySubsetName") != null) {
+            field.setComponent1(jsonObject.get("deliverySubsetName").getAsString());
+        }
+
+        // **** COMPONENT 2 - Number Of Messages
+
+        if (jsonObject.get("numberOfMessages") != null) {
+            field.setComponent2(jsonObject.get("numberOfMessages").getAsString());
+        }
+
+        // **** COMPONENT 3 - Codes
+
+        if (jsonObject.get("codes") != null) {
+            field.setComponent3(jsonObject.get("codes").getAsString());
+        }
+
+        return field;
+    }
+
 
 }

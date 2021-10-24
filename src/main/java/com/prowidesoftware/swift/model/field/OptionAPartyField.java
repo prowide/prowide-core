@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -39,9 +41,25 @@ import java.util.*;
  *
  * @since 7.11.0
  */
-public abstract class OptionAPartyField extends Field implements BICContainer {
+public abstract class OptionAPartyField extends Field implements BICContainer, PartyIdentifier {
     public static final String PARSER_PATTERN = "[[/c][/S]$]S";
+
+    /**
+     * Components pattern
+     *
+     * This is <em>DEPRECATED</em>, use <code>TYPES_PATTERN</code> instead.
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public static final String COMPONENTS_PATTERN = "SSB";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type of each component
+     */
+    public static final String TYPES_PATTERN = "SSB";
 
     /**
      * Component number for the D/C Mark subfield
@@ -54,8 +72,17 @@ public abstract class OptionAPartyField extends Field implements BICContainer {
     public static final Integer ACCOUNT = 2;
 
     /**
-     * Component number for the BIC subfield
+     * Component number for the Identifier Code subfield
      */
+    public static final Integer IDENTIFIER_CODE = 3;
+
+    /**
+     * Component number for the BIC subfield
+     *
+     * Use <code>IDENTIFIER_CODE</code> instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public static final Integer BIC = 3;
 
     /**
@@ -154,11 +181,28 @@ public abstract class OptionAPartyField extends Field implements BICContainer {
     /**
      * Returns the field components pattern
      *
+     * This is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
      * @return the static value of COMPONENTS_PATTERN
+     * @see #typesPattern()
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     @Override
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @see #TYPES_PATTERN
+     * @return the static value of TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
     }
 
     /**
@@ -230,7 +274,7 @@ public abstract class OptionAPartyField extends Field implements BICContainer {
         List<String> result = new ArrayList<>();
         result.add("D/C Mark");
         result.add("Account");
-        result.add("BIC");
+        result.add("Identifier Code");
         return result;
     }
 
@@ -244,7 +288,7 @@ public abstract class OptionAPartyField extends Field implements BICContainer {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "dCMark");
         result.put(2, "account");
-        result.put(3, "bIC");
+        result.put(3, "identifierCode");
         return result;
     }
 
@@ -312,21 +356,49 @@ public abstract class OptionAPartyField extends Field implements BICContainer {
     }
 
     /**
-     * Gets the BIC (component3).
+     * Gets the Identifier Code (component3).
      *
      * @return the BIC from component3
      */
+    public String getIdentifierCode() {
+        return getComponent3();
+    }
+
+    /**
+     * Get the Identifier Code (component3) as BIC
+     *
+     * @return the BIC from component3 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
+        return getComponent3AsBIC();
+    }
+
+    /**
+     * Gets the BIC (component3).
+     *
+     * Use <code>getIdentifierCode</code> instead
+     *
+     * @return the BIC from component3
+     * @see #getIdentifierCode()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public String getBIC() {
-        return getComponent(3);
+        return getComponent3();
     }
 
     /**
      * Get the BIC (component3) as BIC
      *
+     * Use <code>getIdentifierCodeAsBIC</code> instead
+     *
      * @return the BIC from component3 converted to BIC or null if cannot be converted
+     * @see #getIdentifierCodeAsBIC()
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-        return SwiftFormatUtils.getBIC(getComponent(3));
+        return getComponent3AsBIC();
     }
 
     @Override
@@ -334,6 +406,35 @@ public abstract class OptionAPartyField extends Field implements BICContainer {
         final List<BIC> result = new ArrayList<>();
         result.add(SwiftFormatUtils.getBIC(getComponent(3)));
         return result;
+    }
+
+    /**
+     * Get the formatted Party Identifier (CD Mark + Account)
+     *
+     * The Party Indentifier has the following format:
+     *
+     * <code>[/{cd-mark}]/{account}</code>
+     *
+     * @return the formatted Party Identifier
+     */
+    public String getPartyIdentifier() {
+        return PartyIdentifierUtils.getPartyIdentifier(this, 1, 2);
+    }
+
+    /**
+     * Set the formatted Party Identifier (CD Mark + Account)
+     *
+     * The Party Indentifier has the following format:
+     *
+     * <code>[/{cd-mark}]/{account}</code>
+     *
+     * If the format is not valid
+     * @param partyIdentifier the formatted Party Identifier to set
+     * @return the current OptionAPartyField
+     */
+    @Override
+    public OptionAPartyField setPartyIdentifier(String partyIdentifier) {
+        return (OptionAPartyField) PartyIdentifierUtils.setPartyIdentifier(this, 1, 2, partyIdentifier);
     }
 
     @Override

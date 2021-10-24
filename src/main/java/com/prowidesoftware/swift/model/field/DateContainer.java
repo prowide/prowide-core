@@ -26,7 +26,7 @@ import java.util.List;
  *
  * @since 6.0
  */
-public interface DateContainer {
+public interface DateContainer extends PatternContainer {
 
     /**
      * Get a calendar for every date found
