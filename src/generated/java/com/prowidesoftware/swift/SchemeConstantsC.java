@@ -29,9 +29,9 @@ public interface SchemeConstantsC {
     String CRTS = "CRTS";
     String C = "C";
     String CANC = "CANC";
-    String CAMN = "CAMN";
     String CNEW = "CNEW";
     String CCAN = "CCAN";
+    String CAMN = "CAMN";
     String CLOSEOUT = "CLOSEOUT";
     String CANCEL = "CANCEL";
     String CLST = "CLST";

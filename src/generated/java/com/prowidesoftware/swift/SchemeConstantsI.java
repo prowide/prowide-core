@@ -19,6 +19,7 @@ public interface SchemeConstantsI {
     String INTC = "INTC";
     String ISDA = "ISDA";
     String ISDACN = "ISDACN";
+    String ISDACS = "ISDACS";
     String ICOM = "ICOM";
     String IFEMA = "IFEMA";
     String INVE = "INVE";
@@ -26,7 +27,6 @@ public interface SchemeConstantsI {
     String INT2 = "INT2";
     String INTE = "INTE";
     String ICM_ACT = "ICM/ACT";
-    String ISDACS = "ISDACS";
     String INT1 = "INT1";
     String INSI = "INSI";
     String INSF = "INSF";
