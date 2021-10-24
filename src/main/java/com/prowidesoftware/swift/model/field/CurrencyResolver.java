@@ -100,11 +100,15 @@ public class CurrencyResolver {
 
     public static void resolveSetCurrency(final CurrencyContainer cc, final String cur) {
 
-        // find the first currency component
-        Field f = (Field) cc;
-        int position = ResolverUtils.findFirstWantedTypePosition(f.typesPattern(), 'C');
-        if (position != -1) {
-            f.setComponent(position, cur);
+        // sanity check
+        if (cc instanceof Field) {
+
+            // find the first currency component
+            Field f = (Field) cc;
+            List<Integer> positions = ResolverUtils.findWantedTypesPosition(f.typesPattern(), 'C');
+            for (Integer position : positions) {
+                f.setComponent(position, cur);
+            }
         }
     }
 }

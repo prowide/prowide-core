@@ -27,8 +27,11 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+import com.prowidesoftware.swift.model.BIC;
 
 import com.prowidesoftware.swift.model.field.GenericField;
+import com.prowidesoftware.swift.model.field.BICContainer;
+import com.prowidesoftware.swift.model.field.BICResolver;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -48,14 +51,14 @@ import com.google.gson.JsonParser;
  * <p>Subfields (components) Data types
  * <ol>
  * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
+ * 		<li><code>BIC</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>:4!c//&lt;BIC&gt;</code></li>
  * 		<li>parser pattern: <code>:S//S</code></li>
- * 		<li>components pattern: <code>SS</code></li>
+ * 		<li>components pattern: <code>SB</code></li>
  * </ul>
  *
  * <p>
@@ -63,7 +66,7 @@ import com.google.gson.JsonParser;
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field94H extends Field implements Serializable, GenericField {
+public class Field94H extends Field implements Serializable, BICContainer, GenericField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -89,7 +92,7 @@ public class Field94H extends Field implements Serializable, GenericField {
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-	public static final String COMPONENTS_PATTERN = "SS";
+	public static final String COMPONENTS_PATTERN = "SB";
 
     /**
      * Types pattern
@@ -97,7 +100,7 @@ public class Field94H extends Field implements Serializable, GenericField {
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
      */
-	public static final String TYPES_PATTERN = "SS";
+	public static final String TYPES_PATTERN = "SB";
 
 	/**
 	 * Component number for the Qualifier subfield
@@ -369,6 +372,15 @@ public class Field94H extends Field implements Serializable, GenericField {
     }
 
     /**
+     * Get the component 2 as BIC
+     *
+     * @return the component 2 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getComponent2AsBIC() {
+        return SwiftFormatUtils.getBIC(getComponent(2));
+    }
+
+    /**
      * Gets the Identifier Code (component 2).
      * @return the Identifier Code from component 2
      */
@@ -385,6 +397,24 @@ public class Field94H extends Field implements Serializable, GenericField {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public String getBIC() {
         return getIdentifierCode();
+    }
+
+    /**
+     * Get the Identifier Code (component 2) as BIC
+     * @return the Identifier Code from component 2 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
+        return getComponent2AsBIC();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code as BIC
+     * @see #getIdentifierCodeAsBIC()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+        return getIdentifierCodeAsBIC();
     }
 
     /**
@@ -420,12 +450,35 @@ public class Field94H extends Field implements Serializable, GenericField {
     }
 
     /**
+     * Set the component2 from a BIC object.
+     *
+     * @param component2 the BIC with the Identifier Code content to set
+     * @return the field object to enable build pattern
+     */
+    public Field94H setComponent2(com.prowidesoftware.swift.model.BIC component2) {
+        setComponent(2, SwiftFormatUtils.getBIC(component2));
+        return this;
+    }
+
+    /**
      * Set the Identifier Code (component 2).
      *
      * @param component2 the Identifier Code to set
      * @return the field object to enable build pattern
      */
     public Field94H setIdentifierCode(String component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the Identifier Code (component 2) from a BIC object.
+     *
+     * @see #setComponent2(com.prowidesoftware.swift.model.BIC)
+     *
+     * @param component2 BIC with the Identifier Code content to set
+     * @return the field object to enable build pattern
+     */
+    public Field94H setIdentifierCode(com.prowidesoftware.swift.model.BIC component2) {
         return setComponent2(component2);
     }
 
@@ -443,6 +496,28 @@ public class Field94H extends Field implements Serializable, GenericField {
         return setIdentifierCode(component2);
     }
 
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code from a BIC object.
+     *
+     * @see #setComponent2(com.prowidesoftware.swift.model.BIC)
+     *
+     * @param component2 BIC with the Identifier Code content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field94H setBIC(com.prowidesoftware.swift.model.BIC component2) {
+        return setIdentifierCode(component2);
+    }
+
+
+    public List<BIC> bics() {
+        return BICResolver.bics(this);
+    }
+
+    public List<String> bicStrings () {
+        return BICResolver.bicStrings(this);
+    }
 
 
     /**

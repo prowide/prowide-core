@@ -65,6 +65,7 @@ public class AmountResolverTest {
         assertEquals(2, amounts.size());
         assertEquals(new BigDecimal("1234.56"), amounts.get(0));
         assertEquals(new BigDecimal("23456.78"), amounts.get(1));
+        assertEquals(new BigDecimal("1234.56"), _90F.amount());
     }
 
 }

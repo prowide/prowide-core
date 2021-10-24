@@ -164,11 +164,49 @@ public class ResolverUtils {
     }
 
     /**
+     * Returns the positions of the components based on the Types Pattern string and the wanted types
+     *
+     * @param pattern the Types Pattern as indicated in member TYPES_PATTERN
+     * @param types the list of requested types
+     * @return the list of components that have the requested types. Positions are 1 based
+     */
+    public static List<Integer> findWantedTypesPosition(String pattern, String types) {
+
+        final List<Integer> result = new ArrayList<>();
+        int len = pattern != null ? pattern.length() : 0;
+        for(int i = 0; i < len; i++) {
+            if (types.indexOf(pattern.charAt(i)) != -1) {
+                result.add(i + 1);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns the positions of the components based on the Types Pattern string and the wanted type
+     *
+     * @param pattern the Types Pattern as indicated in member TYPES_PATTERN
+     * @param type the requested type
+     * @return the list of components that have the requested types. Positions are 1 based
+     */
+    public static List<Integer> findWantedTypesPosition(String pattern, char type) {
+
+        final List<Integer> result = new ArrayList<>();
+        int len = pattern != null ? pattern.length() : 0;
+        for(int i = 0; i < len; i++) {
+            if (pattern.charAt(i) == type) {
+                result.add(i + 1);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Returns the position of the first component based on the Types Pattern string and the wanted types
      *
      * @param pattern the Types Pattern as indicated in member TYPES_PATTERN
      * @param type the string list
-     * @return the number of the first component that match any of the wanted types
+     * @return the number of the first component that match any of the wanted types. Positions are 1 based
      */
     public static int findFirstWantedTypePosition(String pattern, char type) {
 

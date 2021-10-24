@@ -45,7 +45,7 @@ public class BICResolver {
         // prepare the result and convert all that match
         List<BIC> bics = new ArrayList<>();
         for(String value : values) {
-            bics.add(SwiftFormatUtils.getBIC(value));
+            bics.add(value != null ? SwiftFormatUtils.getBIC(value) : (BIC) null);
         }
 
         return bics;
