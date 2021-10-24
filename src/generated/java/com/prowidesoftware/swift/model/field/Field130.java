@@ -597,7 +597,7 @@ public class Field130 extends Field implements Serializable, MultiLineField {
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 instanceof Float || component1 instanceof Double ||
-                   component1 instanceof BigDecimal || component1 instanceof Number) {
+                   component1 instanceof BigDecimal) {
             // it's non null
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else {
@@ -711,7 +711,7 @@ public class Field130 extends Field implements Serializable, MultiLineField {
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 instanceof Float || component3 instanceof Double ||
-                   component3 instanceof BigDecimal || component3 instanceof Number) {
+                   component3 instanceof BigDecimal) {
             // it's non null
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else {

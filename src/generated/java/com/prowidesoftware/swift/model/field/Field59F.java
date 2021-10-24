@@ -902,7 +902,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 instanceof Float || component2 instanceof Double ||
-                   component2 instanceof BigDecimal || component2 instanceof Number) {
+                   component2 instanceof BigDecimal) {
             // it's non null
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else {
@@ -1016,7 +1016,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 instanceof Float || component4 instanceof Double ||
-                   component4 instanceof BigDecimal || component4 instanceof Number) {
+                   component4 instanceof BigDecimal) {
             // it's non null
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {
@@ -1130,7 +1130,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else if (component6 instanceof Float || component6 instanceof Double ||
-                   component6 instanceof BigDecimal || component6 instanceof Number) {
+                   component6 instanceof BigDecimal) {
             // it's non null
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else {
@@ -1244,7 +1244,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         } else if (component8 instanceof BigInteger || component8 instanceof Integer) {
             setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else if (component8 instanceof Float || component8 instanceof Double ||
-                   component8 instanceof BigDecimal || component8 instanceof Number) {
+                   component8 instanceof BigDecimal) {
             // it's non null
             setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else {

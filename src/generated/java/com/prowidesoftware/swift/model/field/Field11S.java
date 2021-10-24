@@ -733,7 +733,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 instanceof Float || component3 instanceof Double ||
-                   component3 instanceof BigDecimal || component3 instanceof Number) {
+                   component3 instanceof BigDecimal) {
             // it's non null
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else {
@@ -826,7 +826,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 instanceof Float || component4 instanceof Double ||
-                   component4 instanceof BigDecimal || component4 instanceof Number) {
+                   component4 instanceof BigDecimal) {
             // it's non null
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {

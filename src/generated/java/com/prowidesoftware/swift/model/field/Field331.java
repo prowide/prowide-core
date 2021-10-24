@@ -1240,7 +1240,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 instanceof Float || component1 instanceof Double ||
-                   component1 instanceof BigDecimal || component1 instanceof Number) {
+                   component1 instanceof BigDecimal) {
             // it's non null
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else {
@@ -1509,7 +1509,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else if (component6 instanceof Float || component6 instanceof Double ||
-                   component6 instanceof BigDecimal || component6 instanceof Number) {
+                   component6 instanceof BigDecimal) {
             // it's non null
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else {
@@ -1602,7 +1602,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         } else if (component7 instanceof BigInteger || component7 instanceof Integer) {
             setComponent(7, SwiftFormatUtils.getLong(component7.longValue()));
         } else if (component7 instanceof Float || component7 instanceof Double ||
-                   component7 instanceof BigDecimal || component7 instanceof Number) {
+                   component7 instanceof BigDecimal) {
             // it's non null
             setComponent(7, SwiftFormatUtils.getLong(component7.longValue()));
         } else {
@@ -1695,7 +1695,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         } else if (component8 instanceof BigInteger || component8 instanceof Integer) {
             setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else if (component8 instanceof Float || component8 instanceof Double ||
-                   component8 instanceof BigDecimal || component8 instanceof Number) {
+                   component8 instanceof BigDecimal) {
             // it's non null
             setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else {
@@ -1788,7 +1788,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         } else if (component9 instanceof BigInteger || component9 instanceof Integer) {
             setComponent(9, SwiftFormatUtils.getLong(component9.longValue()));
         } else if (component9 instanceof Float || component9 instanceof Double ||
-                   component9 instanceof BigDecimal || component9 instanceof Number) {
+                   component9 instanceof BigDecimal) {
             // it's non null
             setComponent(9, SwiftFormatUtils.getLong(component9.longValue()));
         } else {
@@ -1881,7 +1881,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         } else if (component10 instanceof BigInteger || component10 instanceof Integer) {
             setComponent(10, SwiftFormatUtils.getLong(component10.longValue()));
         } else if (component10 instanceof Float || component10 instanceof Double ||
-                   component10 instanceof BigDecimal || component10 instanceof Number) {
+                   component10 instanceof BigDecimal) {
             // it's non null
             setComponent(10, SwiftFormatUtils.getLong(component10.longValue()));
         } else {
@@ -1974,7 +1974,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         } else if (component11 instanceof BigInteger || component11 instanceof Integer) {
             setComponent(11, SwiftFormatUtils.getLong(component11.longValue()));
         } else if (component11 instanceof Float || component11 instanceof Double ||
-                   component11 instanceof BigDecimal || component11 instanceof Number) {
+                   component11 instanceof BigDecimal) {
             // it's non null
             setComponent(11, SwiftFormatUtils.getLong(component11.longValue()));
         } else {
@@ -2067,7 +2067,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         } else if (component12 instanceof BigInteger || component12 instanceof Integer) {
             setComponent(12, SwiftFormatUtils.getLong(component12.longValue()));
         } else if (component12 instanceof Float || component12 instanceof Double ||
-                   component12 instanceof BigDecimal || component12 instanceof Number) {
+                   component12 instanceof BigDecimal) {
             // it's non null
             setComponent(12, SwiftFormatUtils.getLong(component12.longValue()));
         } else {

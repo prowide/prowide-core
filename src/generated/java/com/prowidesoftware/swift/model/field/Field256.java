@@ -786,7 +786,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 instanceof Float || component2 instanceof Double ||
-                   component2 instanceof BigDecimal || component2 instanceof Number) {
+                   component2 instanceof BigDecimal) {
             // it's non null
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else {
@@ -879,7 +879,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 instanceof Float || component3 instanceof Double ||
-                   component3 instanceof BigDecimal || component3 instanceof Number) {
+                   component3 instanceof BigDecimal) {
             // it's non null
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else {

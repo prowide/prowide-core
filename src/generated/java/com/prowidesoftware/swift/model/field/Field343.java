@@ -701,7 +701,7 @@ public class Field343 extends Field implements Serializable {
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 instanceof Float || component1 instanceof Double ||
-                   component1 instanceof BigDecimal || component1 instanceof Number) {
+                   component1 instanceof BigDecimal) {
             // it's non null
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else {
@@ -794,7 +794,7 @@ public class Field343 extends Field implements Serializable {
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 instanceof Float || component2 instanceof Double ||
-                   component2 instanceof BigDecimal || component2 instanceof Number) {
+                   component2 instanceof BigDecimal) {
             // it's non null
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else {
@@ -887,7 +887,7 @@ public class Field343 extends Field implements Serializable {
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 instanceof Float || component3 instanceof Double ||
-                   component3 instanceof BigDecimal || component3 instanceof Number) {
+                   component3 instanceof BigDecimal) {
             // it's non null
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else {
@@ -980,7 +980,7 @@ public class Field343 extends Field implements Serializable {
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 instanceof Float || component4 instanceof Double ||
-                   component4 instanceof BigDecimal || component4 instanceof Number) {
+                   component4 instanceof BigDecimal) {
             // it's non null
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {

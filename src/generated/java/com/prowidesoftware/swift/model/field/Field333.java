@@ -1000,7 +1000,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 instanceof Float || component3 instanceof Double ||
-                   component3 instanceof BigDecimal || component3 instanceof Number) {
+                   component3 instanceof BigDecimal) {
             // it's non null
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else {
@@ -1181,7 +1181,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
         } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else if (component6 instanceof Float || component6 instanceof Double ||
-                   component6 instanceof BigDecimal || component6 instanceof Number) {
+                   component6 instanceof BigDecimal) {
             // it's non null
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else {
@@ -1274,7 +1274,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
         } else if (component7 instanceof BigInteger || component7 instanceof Integer) {
             setComponent(7, SwiftFormatUtils.getLong(component7.longValue()));
         } else if (component7 instanceof Float || component7 instanceof Double ||
-                   component7 instanceof BigDecimal || component7 instanceof Number) {
+                   component7 instanceof BigDecimal) {
             // it's non null
             setComponent(7, SwiftFormatUtils.getLong(component7.longValue()));
         } else {
@@ -1367,7 +1367,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
         } else if (component8 instanceof BigInteger || component8 instanceof Integer) {
             setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else if (component8 instanceof Float || component8 instanceof Double ||
-                   component8 instanceof BigDecimal || component8 instanceof Number) {
+                   component8 instanceof BigDecimal) {
             // it's non null
             setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else {

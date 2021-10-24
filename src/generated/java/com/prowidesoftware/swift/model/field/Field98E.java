@@ -802,7 +802,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 instanceof Float || component4 instanceof Double ||
-                   component4 instanceof BigDecimal || component4 instanceof Number) {
+                   component4 instanceof BigDecimal) {
             // it's non null
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {

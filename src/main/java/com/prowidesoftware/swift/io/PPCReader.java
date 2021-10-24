@@ -67,6 +67,7 @@ public class PPCReader extends AbstractReader {
     /**
      * Returns true if the iterator has more messages
      */
+    @Override
     public boolean hasNext() {
         if (this.reader == null) {
             throw new IllegalStateException("reader is null");
@@ -109,4 +110,5 @@ public class PPCReader extends AbstractReader {
             throw new IllegalStateException("hasNext did not return true but this method was called");
         }
     }
+
 }

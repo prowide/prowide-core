@@ -495,7 +495,7 @@ public class Field405 extends Field implements Serializable {
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 instanceof Float || component2 instanceof Double ||
-                   component2 instanceof BigDecimal || component2 instanceof Number) {
+                   component2 instanceof BigDecimal) {
             // it's non null
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else {
