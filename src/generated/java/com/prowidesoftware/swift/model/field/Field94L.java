@@ -425,7 +425,7 @@ public class Field94L extends Field implements Serializable, GenericField {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -547,11 +547,11 @@ public class Field94L extends Field implements Serializable, GenericField {
         if (component3 instanceof Long) {
             setComponent(3, SwiftFormatUtils.getLong( (Long) component3));
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
-            setComponent(3, SwiftFormatUtils.getLong(new Long(component3.longValue())));
+            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 instanceof Float || component3 instanceof Double ||
                    component3 instanceof BigDecimal || component3 instanceof Number) {
             // it's non null
-            setComponent(3, SwiftFormatUtils.getLong(new Long(component3.longValue())));
+            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(3, null);
@@ -687,18 +687,17 @@ public class Field94L extends Field implements Serializable, GenericField {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field94L> getAll(final SwiftTagListBlock block) {
+        final List<Field94L> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field94L> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field94L(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

@@ -465,18 +465,17 @@ public class Field29U extends Field implements Serializable, BICContainer {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field29U> getAll(final SwiftTagListBlock block) {
+        final List<Field29U> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field29U> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field29U(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

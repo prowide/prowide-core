@@ -661,18 +661,17 @@ public class Field77H extends Field implements Serializable, DateContainer {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field77H> getAll(final SwiftTagListBlock block) {
+        final List<Field77H> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field77H> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field77H(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

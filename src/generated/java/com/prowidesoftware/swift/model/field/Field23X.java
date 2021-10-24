@@ -466,18 +466,17 @@ public class Field23X extends Field implements Serializable {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field23X> getAll(final SwiftTagListBlock block) {
+        final List<Field23X> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field23X> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field23X(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

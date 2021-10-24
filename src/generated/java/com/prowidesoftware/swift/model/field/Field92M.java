@@ -733,11 +733,11 @@ public class Field92M extends Field implements Serializable, CurrencyContainer, 
             setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component3)));
         } else if (component3 instanceof Long || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal(component3.longValue())));
-        } else if (component3 instanceof Float || component3 instanceof Double || component3 instanceof Number) {
+        } else if (component3 instanceof Float || component3 instanceof Double) {
             // it's non null
             setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal(component3.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // so it's a Number that failed instanceof => it's null
             setComponent(3, null);
         }
         return this;
@@ -827,11 +827,11 @@ public class Field92M extends Field implements Serializable, CurrencyContainer, 
             setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component4)));
         } else if (component4 instanceof Long || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal(component4.longValue())));
-        } else if (component4 instanceof Float || component4 instanceof Double || component4 instanceof Number) {
+        } else if (component4 instanceof Float || component4 instanceof Double) {
             // it's non null
             setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal(component4.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // so it's a Number that failed instanceof => it's null
             setComponent(4, null);
         }
         return this;
@@ -1009,18 +1009,17 @@ public class Field92M extends Field implements Serializable, CurrencyContainer, 
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field92M> getAll(final SwiftTagListBlock block) {
+        final List<Field92M> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field92M> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field92M(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

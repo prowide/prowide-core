@@ -702,11 +702,11 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
             setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component5)));
         } else if (component5 instanceof Long || component5 instanceof Integer) {
             setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal(component5.longValue())));
-        } else if (component5 instanceof Float || component5 instanceof Double || component5 instanceof Number) {
+        } else if (component5 instanceof Float || component5 instanceof Double) {
             // it's non null
             setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal(component5.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // so it's a Number that failed instanceof => it's null
             setComponent(5, null);
         }
         return this;
@@ -904,18 +904,17 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field93B> getAll(final SwiftTagListBlock block) {
+        final List<Field93B> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field93B> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field93B(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

@@ -624,7 +624,7 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -759,11 +759,11 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
             setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component1)));
         } else if (component1 instanceof Long || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal(component1.longValue())));
-        } else if (component1 instanceof Float || component1 instanceof Double || component1 instanceof Number) {
+        } else if (component1 instanceof Float || component1 instanceof Double) {
             // it's non null
             setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal(component1.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // so it's a Number that failed instanceof => it's null
             setComponent(1, null);
         }
         return this;
@@ -957,11 +957,11 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
         if (component4 instanceof Long) {
             setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
-            setComponent(4, SwiftFormatUtils.getLong(new Long(component4.longValue())));
+            setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 instanceof Float || component4 instanceof Double ||
                    component4 instanceof BigDecimal || component4 instanceof Number) {
             // it's non null
-            setComponent(4, SwiftFormatUtils.getLong(new Long(component4.longValue())));
+            setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(4, null);
@@ -1166,18 +1166,17 @@ public class Field37C extends Field implements Serializable, DateContainer, Amou
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field37C> getAll(final SwiftTagListBlock block) {
+        final List<Field37C> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field37C> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field37C(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

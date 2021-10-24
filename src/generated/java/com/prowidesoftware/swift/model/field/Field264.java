@@ -573,7 +573,7 @@ public class Field264 extends Field implements Serializable, DateContainer {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent5AsNumber() {
         Long l = getComponent5AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -829,11 +829,11 @@ public class Field264 extends Field implements Serializable, DateContainer {
         if (component5 instanceof Long) {
             setComponent(5, SwiftFormatUtils.getLong( (Long) component5));
         } else if (component5 instanceof BigInteger || component5 instanceof Integer) {
-            setComponent(5, SwiftFormatUtils.getLong(new Long(component5.longValue())));
+            setComponent(5, SwiftFormatUtils.getLong(component5.longValue()));
         } else if (component5 instanceof Float || component5 instanceof Double ||
                    component5 instanceof BigDecimal || component5 instanceof Number) {
             // it's non null
-            setComponent(5, SwiftFormatUtils.getLong(new Long(component5.longValue())));
+            setComponent(5, SwiftFormatUtils.getLong(component5.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(5, null);
@@ -953,18 +953,17 @@ public class Field264 extends Field implements Serializable, DateContainer {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field264> getAll(final SwiftTagListBlock block) {
+        final List<Field264> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field264> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field264(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

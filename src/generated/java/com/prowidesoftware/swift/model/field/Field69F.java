@@ -755,18 +755,17 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field69F> getAll(final SwiftTagListBlock block) {
+        final List<Field69F> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field69F> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field69F(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

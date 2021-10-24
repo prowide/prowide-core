@@ -461,7 +461,7 @@ public class Field330 extends Field implements Serializable {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -527,7 +527,7 @@ public class Field330 extends Field implements Serializable {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -593,7 +593,7 @@ public class Field330 extends Field implements Serializable {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -659,7 +659,7 @@ public class Field330 extends Field implements Serializable {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -725,7 +725,7 @@ public class Field330 extends Field implements Serializable {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent5AsNumber() {
         Long l = getComponent5AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -791,7 +791,7 @@ public class Field330 extends Field implements Serializable {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent6AsNumber() {
         Long l = getComponent6AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -871,11 +871,11 @@ public class Field330 extends Field implements Serializable {
         if (component1 instanceof Long) {
             setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
-            setComponent(1, SwiftFormatUtils.getLong(new Long(component1.longValue())));
+            setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 instanceof Float || component1 instanceof Double ||
                    component1 instanceof BigDecimal || component1 instanceof Number) {
             // it's non null
-            setComponent(1, SwiftFormatUtils.getLong(new Long(component1.longValue())));
+            setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(1, null);
@@ -964,11 +964,11 @@ public class Field330 extends Field implements Serializable {
         if (component2 instanceof Long) {
             setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
-            setComponent(2, SwiftFormatUtils.getLong(new Long(component2.longValue())));
+            setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 instanceof Float || component2 instanceof Double ||
                    component2 instanceof BigDecimal || component2 instanceof Number) {
             // it's non null
-            setComponent(2, SwiftFormatUtils.getLong(new Long(component2.longValue())));
+            setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(2, null);
@@ -1057,11 +1057,11 @@ public class Field330 extends Field implements Serializable {
         if (component3 instanceof Long) {
             setComponent(3, SwiftFormatUtils.getLong( (Long) component3));
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
-            setComponent(3, SwiftFormatUtils.getLong(new Long(component3.longValue())));
+            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 instanceof Float || component3 instanceof Double ||
                    component3 instanceof BigDecimal || component3 instanceof Number) {
             // it's non null
-            setComponent(3, SwiftFormatUtils.getLong(new Long(component3.longValue())));
+            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(3, null);
@@ -1150,11 +1150,11 @@ public class Field330 extends Field implements Serializable {
         if (component4 instanceof Long) {
             setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
-            setComponent(4, SwiftFormatUtils.getLong(new Long(component4.longValue())));
+            setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 instanceof Float || component4 instanceof Double ||
                    component4 instanceof BigDecimal || component4 instanceof Number) {
             // it's non null
-            setComponent(4, SwiftFormatUtils.getLong(new Long(component4.longValue())));
+            setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(4, null);
@@ -1243,11 +1243,11 @@ public class Field330 extends Field implements Serializable {
         if (component5 instanceof Long) {
             setComponent(5, SwiftFormatUtils.getLong( (Long) component5));
         } else if (component5 instanceof BigInteger || component5 instanceof Integer) {
-            setComponent(5, SwiftFormatUtils.getLong(new Long(component5.longValue())));
+            setComponent(5, SwiftFormatUtils.getLong(component5.longValue()));
         } else if (component5 instanceof Float || component5 instanceof Double ||
                    component5 instanceof BigDecimal || component5 instanceof Number) {
             // it's non null
-            setComponent(5, SwiftFormatUtils.getLong(new Long(component5.longValue())));
+            setComponent(5, SwiftFormatUtils.getLong(component5.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(5, null);
@@ -1336,11 +1336,11 @@ public class Field330 extends Field implements Serializable {
         if (component6 instanceof Long) {
             setComponent(6, SwiftFormatUtils.getLong( (Long) component6));
         } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
-            setComponent(6, SwiftFormatUtils.getLong(new Long(component6.longValue())));
+            setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else if (component6 instanceof Float || component6 instanceof Double ||
                    component6 instanceof BigDecimal || component6 instanceof Number) {
             // it's non null
-            setComponent(6, SwiftFormatUtils.getLong(new Long(component6.longValue())));
+            setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(6, null);
@@ -1442,18 +1442,17 @@ public class Field330 extends Field implements Serializable {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field330> getAll(final SwiftTagListBlock block) {
+        final List<Field330> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field330> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field330(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

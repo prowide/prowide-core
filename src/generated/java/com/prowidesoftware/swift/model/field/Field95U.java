@@ -342,18 +342,17 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field95U> getAll(final SwiftTagListBlock block) {
+        final List<Field95U> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field95U> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field95U(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

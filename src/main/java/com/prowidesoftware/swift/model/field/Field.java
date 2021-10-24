@@ -795,6 +795,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      */
+    @Override
     public abstract String typesPattern();
 
     /**

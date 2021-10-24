@@ -414,18 +414,17 @@ public class Field35C extends Field implements Serializable {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field35C> getAll(final SwiftTagListBlock block) {
+        final List<Field35C> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field35C> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field35C(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

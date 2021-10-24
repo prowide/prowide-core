@@ -537,7 +537,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -619,7 +619,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -701,7 +701,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent6AsNumber() {
         Long l = getComponent6AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -783,7 +783,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent8AsNumber() {
         Long l = getComponent8AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -900,11 +900,11 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         if (component2 instanceof Long) {
             setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
-            setComponent(2, SwiftFormatUtils.getLong(new Long(component2.longValue())));
+            setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 instanceof Float || component2 instanceof Double ||
                    component2 instanceof BigDecimal || component2 instanceof Number) {
             // it's non null
-            setComponent(2, SwiftFormatUtils.getLong(new Long(component2.longValue())));
+            setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(2, null);
@@ -1014,11 +1014,11 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         if (component4 instanceof Long) {
             setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
-            setComponent(4, SwiftFormatUtils.getLong(new Long(component4.longValue())));
+            setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 instanceof Float || component4 instanceof Double ||
                    component4 instanceof BigDecimal || component4 instanceof Number) {
             // it's non null
-            setComponent(4, SwiftFormatUtils.getLong(new Long(component4.longValue())));
+            setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(4, null);
@@ -1128,11 +1128,11 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         if (component6 instanceof Long) {
             setComponent(6, SwiftFormatUtils.getLong( (Long) component6));
         } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
-            setComponent(6, SwiftFormatUtils.getLong(new Long(component6.longValue())));
+            setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else if (component6 instanceof Float || component6 instanceof Double ||
                    component6 instanceof BigDecimal || component6 instanceof Number) {
             // it's non null
-            setComponent(6, SwiftFormatUtils.getLong(new Long(component6.longValue())));
+            setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(6, null);
@@ -1242,11 +1242,11 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         if (component8 instanceof Long) {
             setComponent(8, SwiftFormatUtils.getLong( (Long) component8));
         } else if (component8 instanceof BigInteger || component8 instanceof Integer) {
-            setComponent(8, SwiftFormatUtils.getLong(new Long(component8.longValue())));
+            setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else if (component8 instanceof Float || component8 instanceof Double ||
                    component8 instanceof BigDecimal || component8 instanceof Number) {
             // it's non null
-            setComponent(8, SwiftFormatUtils.getLong(new Long(component8.longValue())));
+            setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(8, null);
@@ -1369,18 +1369,17 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field59F> getAll(final SwiftTagListBlock block) {
+        final List<Field59F> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field59F> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field59F(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

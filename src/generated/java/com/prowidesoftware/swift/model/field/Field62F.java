@@ -670,11 +670,11 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
             setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component4)));
         } else if (component4 instanceof Long || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal(component4.longValue())));
-        } else if (component4 instanceof Float || component4 instanceof Double || component4 instanceof Number) {
+        } else if (component4 instanceof Float || component4 instanceof Double) {
             // it's non null
             setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal(component4.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // so it's a Number that failed instanceof => it's null
             setComponent(4, null);
         }
         return this;
@@ -812,18 +812,17 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field62F> getAll(final SwiftTagListBlock block) {
+        final List<Field62F> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field62F> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field62F(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

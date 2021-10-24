@@ -555,11 +555,11 @@ public class Field32R extends Field implements Serializable, AmountContainer {
             setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component3)));
         } else if (component3 instanceof Long || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal(component3.longValue())));
-        } else if (component3 instanceof Float || component3 instanceof Double || component3 instanceof Number) {
+        } else if (component3 instanceof Float || component3 instanceof Double) {
             // it's non null
             setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal(component3.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // so it's a Number that failed instanceof => it's null
             setComponent(3, null);
         }
         return this;
@@ -679,18 +679,17 @@ public class Field32R extends Field implements Serializable, AmountContainer {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field32R> getAll(final SwiftTagListBlock block) {
+        final List<Field32R> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field32R> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field32R(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

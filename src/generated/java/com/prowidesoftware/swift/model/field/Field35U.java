@@ -526,11 +526,11 @@ public class Field35U extends Field implements Serializable, AmountContainer {
             setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component2)));
         } else if (component2 instanceof Long || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal(component2.longValue())));
-        } else if (component2 instanceof Float || component2 instanceof Double || component2 instanceof Number) {
+        } else if (component2 instanceof Float || component2 instanceof Double) {
             // it's non null
             setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal(component2.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // so it's a Number that failed instanceof => it's null
             setComponent(2, null);
         }
         return this;
@@ -671,18 +671,17 @@ public class Field35U extends Field implements Serializable, AmountContainer {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field35U> getAll(final SwiftTagListBlock block) {
+        final List<Field35U> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field35U> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field35U(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

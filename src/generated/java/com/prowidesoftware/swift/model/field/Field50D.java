@@ -351,18 +351,17 @@ public class Field50D extends OptionDPartyField implements Serializable, MultiLi
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field50D> getAll(final SwiftTagListBlock block) {
+        final List<Field50D> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field50D> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field50D(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

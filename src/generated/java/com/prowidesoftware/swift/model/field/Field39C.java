@@ -597,18 +597,17 @@ public class Field39C extends Field implements Serializable, MultiLineField {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field39C> getAll(final SwiftTagListBlock block) {
+        final List<Field39C> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field39C> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field39C(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**

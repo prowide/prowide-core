@@ -566,7 +566,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -698,7 +698,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent6AsNumber() {
         Long l = getComponent6AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -764,7 +764,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent7AsNumber() {
         Long l = getComponent7AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -830,7 +830,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getComponent8AsNumber() {
         Long l = getComponent8AsLong();
-        return l != null ? new BigDecimal(l.longValue()) : null;
+        return l != null ? new BigDecimal(l) : null;
     }
 
     /**
@@ -998,11 +998,11 @@ public class Field333 extends Field implements Serializable, DateContainer {
         if (component3 instanceof Long) {
             setComponent(3, SwiftFormatUtils.getLong( (Long) component3));
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
-            setComponent(3, SwiftFormatUtils.getLong(new Long(component3.longValue())));
+            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 instanceof Float || component3 instanceof Double ||
                    component3 instanceof BigDecimal || component3 instanceof Number) {
             // it's non null
-            setComponent(3, SwiftFormatUtils.getLong(new Long(component3.longValue())));
+            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(3, null);
@@ -1179,11 +1179,11 @@ public class Field333 extends Field implements Serializable, DateContainer {
         if (component6 instanceof Long) {
             setComponent(6, SwiftFormatUtils.getLong( (Long) component6));
         } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
-            setComponent(6, SwiftFormatUtils.getLong(new Long(component6.longValue())));
+            setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else if (component6 instanceof Float || component6 instanceof Double ||
                    component6 instanceof BigDecimal || component6 instanceof Number) {
             // it's non null
-            setComponent(6, SwiftFormatUtils.getLong(new Long(component6.longValue())));
+            setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(6, null);
@@ -1272,11 +1272,11 @@ public class Field333 extends Field implements Serializable, DateContainer {
         if (component7 instanceof Long) {
             setComponent(7, SwiftFormatUtils.getLong( (Long) component7));
         } else if (component7 instanceof BigInteger || component7 instanceof Integer) {
-            setComponent(7, SwiftFormatUtils.getLong(new Long(component7.longValue())));
+            setComponent(7, SwiftFormatUtils.getLong(component7.longValue()));
         } else if (component7 instanceof Float || component7 instanceof Double ||
                    component7 instanceof BigDecimal || component7 instanceof Number) {
             // it's non null
-            setComponent(7, SwiftFormatUtils.getLong(new Long(component7.longValue())));
+            setComponent(7, SwiftFormatUtils.getLong(component7.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(7, null);
@@ -1365,11 +1365,11 @@ public class Field333 extends Field implements Serializable, DateContainer {
         if (component8 instanceof Long) {
             setComponent(8, SwiftFormatUtils.getLong( (Long) component8));
         } else if (component8 instanceof BigInteger || component8 instanceof Integer) {
-            setComponent(8, SwiftFormatUtils.getLong(new Long(component8.longValue())));
+            setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else if (component8 instanceof Float || component8 instanceof Double ||
                    component8 instanceof BigDecimal || component8 instanceof Number) {
             // it's non null
-            setComponent(8, SwiftFormatUtils.getLong(new Long(component8.longValue())));
+            setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else {
             // so it's a Number that failed instanceof Number => it's null
             setComponent(8, null);
@@ -1489,18 +1489,17 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @param block may be empty or null in which case an empty list is returned
      */
     public static List<Field333> getAll(final SwiftTagListBlock block) {
+        final List<Field333> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
-            return java.util.Collections.emptyList();
+            return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
-            final List<Field333> result = new ArrayList<>(arr.length);
             for (final Tag f : arr) {
                 result.add( new Field333(f));
             }
-            return result;
         }
-        return java.util.Collections.emptyList();
+        return result;
     }
 
     /**
