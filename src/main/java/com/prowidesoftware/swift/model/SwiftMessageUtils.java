@@ -464,17 +464,18 @@ public class SwiftMessageUtils {
                 if (t != null) {
                     return t.getValue();
                 }
-                if (m.getType() != null && m.getType().startsWith("5")) {
-                    final Field f = b4.getFieldByNumber(20, "SEME");
-                    if (f != null) {
-                        return f.getComponent(2);
-                    }
+                final Field f = b4.getFieldByNumber(20, "SEME");
+                if (f != null) {
+                    return f.getComponent(2);
                 }
-                final Tag mur = b4.getTagByName("108");
-                if (mur != null) {
-                    return mur.getValue();
+                final Tag murBlock4 = b4.getTagByName("108");
+                if (murBlock4 != null) {
+                    return murBlock4.getValue();
                 }
-
+            }
+            final String mur = m.getMUR();
+            if (mur != null) {
+                return mur;
             }
         }
         return null;
