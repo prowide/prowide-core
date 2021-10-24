@@ -2,7 +2,7 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.Validate;
 
 import java.util.Calendar;

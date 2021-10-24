@@ -1,6 +1,6 @@
 package com.prowidesoftware.swift.utils;
 
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class ResolverUtils {
         int len = pattern != null ? pattern.length() : 0;
         for(int i = 0; i < len; i++) {
             if (types.indexOf(pattern.charAt(i)) != -1) {
-                result.add(new Pair<>(pattern.charAt(i), components.get(i)));
+                result.add(Pair.of(pattern.charAt(i), components.get(i)));
             }
         }
         return result;
@@ -41,7 +41,7 @@ public class ResolverUtils {
         int len = pattern != null ? pattern.length() : 0;
         for(int i = 0; i < len; i++) {
             if (components.get(i) != null && types.indexOf(pattern.charAt(i)) != -1) {
-                result.add(new Pair<>(pattern.charAt(i), components.get(i)));
+                result.add(Pair.of(pattern.charAt(i), components.get(i)));
             }
         }
         return result;
@@ -60,7 +60,7 @@ public class ResolverUtils {
         int len = pattern != null ? pattern.length() : 0;
         for(int i = 0; i < len; i++) {
             if (types.indexOf(pattern.charAt(i)) != -1) {
-                return new Pair<Character, String>(pattern.charAt(i), components.get(i));
+                return Pair.of(pattern.charAt(i), components.get(i));
             }
         }
         return null;
@@ -79,7 +79,7 @@ public class ResolverUtils {
         int len = pattern != null ? pattern.length() : 0;
         for(int i = 0; i < len; i++) {
             if (components.get(i) != null && types.indexOf(pattern.charAt(i)) != -1) {
-                return new Pair<>(pattern.charAt(i), components.get(i));
+                return Pair.of(pattern.charAt(i), components.get(i));
             }
         }
         return null;
