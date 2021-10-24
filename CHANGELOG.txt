@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPTSHOT 9.1.9
+  * (PW-746) Fixed MT reference extraction for 20C in categories other than 5, and with MUR as fallback option
+
 RELEASE 9.1.8
   * (GH-60) Enhanced parser for field 98C
   * (PW-703) Enhanced SwiftParser in order to validate "Input" or "Output" Block 2 type

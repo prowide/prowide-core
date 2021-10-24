@@ -16,8 +16,11 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.model.field.*;
+import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT502;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
+import com.prowidesoftware.swift.model.mt.mt5xx.MT540;
+import com.prowidesoftware.swift.model.mt.mt6xx.MT670;
 import com.prowidesoftware.swift.utils.Lib;
 import org.junit.jupiter.api.Test;
 
@@ -220,7 +223,7 @@ public class SwiftMessageUtilsTest {
     }
 
     @Test
-    public void testcurrencyAmountFromMessage() throws IOException {
+    public void testCurrencyAmountFromMessage() throws IOException {
         final String fin = "{1:F01CCRTIT2TX36A0000000000}{2:I101PPABPLPKXXXXN}{3:{108:YSGU193268223XXX}}{4:\n" +
                 ":20:4C2W0S0V8AM6X7OH\n" +
                 ":28D:00001/00001\n" +
@@ -244,7 +247,7 @@ public class SwiftMessageUtilsTest {
     }
 
     @Test
-    public void testcurrencyAmountFromSystemMessage() throws IOException {
+    public void testCurrencyAmountFromSystemMessage() throws IOException {
         final String fin = "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}{4:\n" +
                 ":20:WITHMUR\n" +
                 "-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}";
@@ -291,7 +294,32 @@ public class SwiftMessageUtilsTest {
         sm = SwiftMessage.parse(Lib.readResource("MT362.fin"));
         date = SwiftMessageUtils.valueDate(sm);
         assertEquals(date.getTime(), sdf.parse("20090106"));
+    }
 
+    @Test
+    public void testReference() {
+        assertNull(SwiftMessageUtils.reference(null));
+
+        // no reference
+        MT103 mt = new MT103();
+        assertNull(SwiftMessageUtils.reference(mt.getSwiftMessage()));
+
+        // reference from MUR
+        mt.getSwiftMessage().getBlock3().builder().setField108(new Field108("MUR1234"));
+        assertEquals("MUR1234", SwiftMessageUtils.reference(mt.getSwiftMessage()));
+
+        // reference from field 20
+        mt.append(Field20.tag("REF1"));
+        assertEquals("REF1", SwiftMessageUtils.reference(mt.getSwiftMessage()));
+
+        // reference from field 20C:SEME
+        MT540 mt2 = new MT540();
+        mt2.append(Field20C.tag(":SEME//REF2"));
+        assertEquals("REF2", SwiftMessageUtils.reference(mt2.getSwiftMessage()));
+
+        MT670 mt3 = new MT670();
+        mt3.append(Field20C.tag(":SEME//REF3"));
+        assertEquals("REF3", SwiftMessageUtils.reference(mt3.getSwiftMessage()));
     }
 
 }
