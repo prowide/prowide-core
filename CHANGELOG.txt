@@ -5,6 +5,7 @@
 SNAPSHOT 9.2.7
   * (CR-23) Added SwiftMessage#getMOR
   * Enhanced Block2 creation by enriching Block Type to "O" or "I".
+  * (PW-746) Fixed MT reference extraction for 20C in categories other than 5, and with MUR as fallback option
 
 RELEASE 9.2.6 - October 2021
   * (GH-60) Enhanced parser for field 98C
