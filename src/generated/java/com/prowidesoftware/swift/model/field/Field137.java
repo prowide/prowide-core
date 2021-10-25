@@ -601,12 +601,11 @@ public class Field137 extends Field implements Serializable {
             setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
-        } else if (component4 instanceof Float || component4 instanceof Double ||
-                   component4 instanceof BigDecimal) {
-            // it's non null
+        } else if (component4 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(4, null);
         }
         return this;

@@ -817,12 +817,12 @@ public class Field90F extends Field implements Serializable, CurrencyContainer, 
         } else if (component4 instanceof BigInteger) {
             setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component4)));
         } else if (component4 instanceof Long || component4 instanceof Integer) {
-            setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal(component4.longValue())));
-        } else if (component4 instanceof Float || component4 instanceof Double) {
-            // it's non null
-            setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal(component4.doubleValue())));
+            setComponent(4, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component4.longValue())));
+        } else if (component4 != null) {
+            // it's other non-null Number (Float, Double, etc...)
+            setComponent(4, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component4.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof => it's null
+            // explicitly set component as null
             setComponent(4, null);
         }
         return this;
@@ -932,12 +932,12 @@ public class Field90F extends Field implements Serializable, CurrencyContainer, 
         } else if (component6 instanceof BigInteger) {
             setComponent(6, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component6)));
         } else if (component6 instanceof Long || component6 instanceof Integer) {
-            setComponent(6, SwiftFormatUtils.getBigDecimal(new BigDecimal(component6.longValue())));
-        } else if (component6 instanceof Float || component6 instanceof Double) {
-            // it's non null
-            setComponent(6, SwiftFormatUtils.getBigDecimal(new BigDecimal(component6.doubleValue())));
+            setComponent(6, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component6.longValue())));
+        } else if (component6 != null) {
+            // it's other non-null Number (Float, Double, etc...)
+            setComponent(6, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component6.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof => it's null
+            // explicitly set component as null
             setComponent(6, null);
         }
         return this;

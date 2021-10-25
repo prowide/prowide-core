@@ -732,12 +732,11 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
             setComponent(3, SwiftFormatUtils.getLong( (Long) component3));
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
-        } else if (component3 instanceof Float || component3 instanceof Double ||
-                   component3 instanceof BigDecimal) {
-            // it's non null
+        } else if (component3 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(3, null);
         }
         return this;
@@ -825,12 +824,11 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
             setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
-        } else if (component4 instanceof Float || component4 instanceof Double ||
-                   component4 instanceof BigDecimal) {
-            // it's non null
+        } else if (component4 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(4, null);
         }
         return this;

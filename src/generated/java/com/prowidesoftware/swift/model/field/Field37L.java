@@ -440,12 +440,12 @@ public class Field37L extends Field implements Serializable, AmountContainer {
         } else if (component1 instanceof BigInteger) {
             setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component1)));
         } else if (component1 instanceof Long || component1 instanceof Integer) {
-            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal(component1.longValue())));
-        } else if (component1 instanceof Float || component1 instanceof Double) {
-            // it's non null
-            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal(component1.doubleValue())));
+            setComponent(1, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component1.longValue())));
+        } else if (component1 != null) {
+            // it's other non-null Number (Float, Double, etc...)
+            setComponent(1, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component1.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof => it's null
+            // explicitly set component as null
             setComponent(1, null);
         }
         return this;

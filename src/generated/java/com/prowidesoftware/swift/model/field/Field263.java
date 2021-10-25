@@ -830,12 +830,11 @@ public class Field263 extends Field implements Serializable, DateContainer {
             setComponent(5, SwiftFormatUtils.getLong( (Long) component5));
         } else if (component5 instanceof BigInteger || component5 instanceof Integer) {
             setComponent(5, SwiftFormatUtils.getLong(component5.longValue()));
-        } else if (component5 instanceof Float || component5 instanceof Double ||
-                   component5 instanceof BigDecimal) {
-            // it's non null
+        } else if (component5 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(5, SwiftFormatUtils.getLong(component5.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(5, null);
         }
         return this;

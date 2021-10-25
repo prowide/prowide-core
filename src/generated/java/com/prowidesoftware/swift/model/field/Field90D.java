@@ -573,12 +573,11 @@ public class Field90D extends Field implements Serializable, CurrencyContainer, 
             setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
-        } else if (component1 instanceof Float || component1 instanceof Double ||
-                   component1 instanceof BigDecimal) {
-            // it's non null
+        } else if (component1 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(1, null);
         }
         return this;
@@ -711,12 +710,12 @@ public class Field90D extends Field implements Serializable, CurrencyContainer, 
         } else if (component3 instanceof BigInteger) {
             setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component3)));
         } else if (component3 instanceof Long || component3 instanceof Integer) {
-            setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal(component3.longValue())));
-        } else if (component3 instanceof Float || component3 instanceof Double) {
-            // it's non null
-            setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal(component3.doubleValue())));
+            setComponent(3, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component3.longValue())));
+        } else if (component3 != null) {
+            // it's other non-null Number (Float, Double, etc...)
+            setComponent(3, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component3.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof => it's null
+            // explicitly set component as null
             setComponent(3, null);
         }
         return this;

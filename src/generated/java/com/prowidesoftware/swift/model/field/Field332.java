@@ -528,12 +528,11 @@ public class Field332 extends Field implements Serializable {
             setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
-        } else if (component1 instanceof Float || component1 instanceof Double ||
-                   component1 instanceof BigDecimal) {
-            // it's non null
+        } else if (component1 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(1, null);
         }
         return this;
@@ -621,12 +620,11 @@ public class Field332 extends Field implements Serializable {
             setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
-        } else if (component2 instanceof Float || component2 instanceof Double ||
-                   component2 instanceof BigDecimal) {
-            // it's non null
+        } else if (component2 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(2, null);
         }
         return this;

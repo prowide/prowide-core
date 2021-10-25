@@ -978,12 +978,12 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
         } else if (component5 instanceof BigInteger) {
             setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component5)));
         } else if (component5 instanceof Long || component5 instanceof Integer) {
-            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal(component5.longValue())));
-        } else if (component5 instanceof Float || component5 instanceof Double) {
-            // it's non null
-            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal(component5.doubleValue())));
+            setComponent(5, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component5.longValue())));
+        } else if (component5 != null) {
+            // it's other non-null Number (Float, Double, etc...)
+            setComponent(5, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component5.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof => it's null
+            // explicitly set component as null
             setComponent(5, null);
         }
         return this;

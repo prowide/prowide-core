@@ -914,12 +914,11 @@ public class Field50F extends Field implements Serializable, MultiLineField {
             setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
-        } else if (component2 instanceof Float || component2 instanceof Double ||
-                   component2 instanceof BigDecimal) {
-            // it's non null
+        } else if (component2 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(2, null);
         }
         return this;
@@ -1028,12 +1027,11 @@ public class Field50F extends Field implements Serializable, MultiLineField {
             setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
-        } else if (component4 instanceof Float || component4 instanceof Double ||
-                   component4 instanceof BigDecimal) {
-            // it's non null
+        } else if (component4 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(4, null);
         }
         return this;
@@ -1142,12 +1140,11 @@ public class Field50F extends Field implements Serializable, MultiLineField {
             setComponent(6, SwiftFormatUtils.getLong( (Long) component6));
         } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
-        } else if (component6 instanceof Float || component6 instanceof Double ||
-                   component6 instanceof BigDecimal) {
-            // it's non null
+        } else if (component6 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(6, null);
         }
         return this;
@@ -1256,12 +1253,11 @@ public class Field50F extends Field implements Serializable, MultiLineField {
             setComponent(8, SwiftFormatUtils.getLong( (Long) component8));
         } else if (component8 instanceof BigInteger || component8 instanceof Integer) {
             setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
-        } else if (component8 instanceof Float || component8 instanceof Double ||
-                   component8 instanceof BigDecimal) {
-            // it's non null
+        } else if (component8 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(8, null);
         }
         return this;

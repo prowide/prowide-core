@@ -758,12 +758,12 @@ public class Field37D extends Field implements Serializable, DateContainer, Amou
         } else if (component1 instanceof BigInteger) {
             setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component1)));
         } else if (component1 instanceof Long || component1 instanceof Integer) {
-            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal(component1.longValue())));
-        } else if (component1 instanceof Float || component1 instanceof Double) {
-            // it's non null
-            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal(component1.doubleValue())));
+            setComponent(1, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component1.longValue())));
+        } else if (component1 != null) {
+            // it's other non-null Number (Float, Double, etc...)
+            setComponent(1, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component1.doubleValue())));
         } else {
-            // so it's a Number that failed instanceof => it's null
+            // explicitly set component as null
             setComponent(1, null);
         }
         return this;
@@ -958,12 +958,11 @@ public class Field37D extends Field implements Serializable, DateContainer, Amou
             setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
-        } else if (component4 instanceof Float || component4 instanceof Double ||
-                   component4 instanceof BigDecimal) {
-            // it's non null
+        } else if (component4 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else {
-            // so it's a Number that failed instanceof Number => it's null
+            // explicitly set component as null
             setComponent(4, null);
         }
         return this;
