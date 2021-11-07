@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT 9.2.8
+  * (PW-703) Block 2 parser: lenient parser to avoid exception on invalid Input/Output indicator
+
 RELEASE 9.2.7 - October 2021
   * Field 98D, 98E and 98G: removed invalid get{Component4|Sign}AsCurrency and set{Component4|Sign}(Currency) as no currency applies to these fields
   * Fields 94L and 85L: separated component 2 (Legal Entity Identifier) into two (Legal Entity Identifier Code and Legal Entity Identifier Number). Kept get/setLegalEntityIdentifier for backwards compatibility
@@ -25,8 +28,6 @@ RELEASE 9.2.7 - October 2021
   * Updated dependency: Apache Commons Lang 3.8.1 -> 3.12.0
   * Updated dependency: Apache Commons Text 1.6 -> 1.9
   * Updated dependency: Gson 2.8.2 -> 2.8.8
-  * Removing Regex error for Input/Output Blocks ("I<mt><address>[<pri>[<monitoring>[<obsolescence>]]]"|"O<mt><time><mir><date><time>[<pri>]")
-
 
 RELEASE 9.2.6 - October 2021
   * (GH-60) Enhanced parser for field 98C
