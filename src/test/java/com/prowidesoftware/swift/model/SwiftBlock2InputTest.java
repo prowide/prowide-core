@@ -135,13 +135,9 @@ public class SwiftBlock2InputTest {
 
     @Test
     public void testInput_6() {
-        try {
-            //set an invalid starting substring
-            in.setValue("O103BANKDEFFXXXXU3003");
-        } catch (IllegalArgumentException e) {
-            return;
-        }
-        fail("IllegalArgumentException not thrown");
+        SwiftBlock2Input nin = new SwiftBlock2Input("A103BANKDEFFXXXXU3003");
+        assertTrue(nin.isInput());
+        assertNull(nin.blockType);
     }
 
     @Test
