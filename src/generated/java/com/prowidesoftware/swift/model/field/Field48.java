@@ -219,13 +219,8 @@ public class Field48 extends Field implements Serializable {
             throw new IllegalArgumentException("invalid component number " + component + " for field 48");
         }
         if (component == 1) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent1AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(1);
         }
         if (component == 2) {
             //default format (as is)

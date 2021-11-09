@@ -264,7 +264,7 @@ public class Field98F extends Field implements Serializable, GenericField {
             return getComponent(3);
         }
         if (component == 4) {
-            //time with seconds
+            //time with seconds: HHmmss
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
             java.util.Calendar cal = getComponent4AsCalendar();
             if (cal != null) {

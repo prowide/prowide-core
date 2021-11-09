@@ -272,7 +272,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
             throw new IllegalArgumentException("invalid component number " + component + " for field 98G");
         }
         if (component == 1) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
             if (cal != null) {
@@ -280,7 +280,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
             }
         }
         if (component == 2) {
-            //time with seconds
+            //time with seconds: HHmmss
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
@@ -288,20 +288,15 @@ public class Field98G extends Field implements Serializable, DateContainer {
             }
         }
         if (component == 3) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent3AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(3);
         }
         if (component == 4) {
             //default format (as is)
             return getComponent(4);
         }
         if (component == 5) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent5AsCalendar();
             if (cal != null) {

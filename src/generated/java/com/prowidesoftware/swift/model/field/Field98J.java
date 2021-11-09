@@ -261,7 +261,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
             return getComponent(1);
         }
         if (component == 2) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
@@ -269,7 +269,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
             }
         }
         if (component == 3) {
-            //time with seconds
+            //time with seconds: HHmmss
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
             java.util.Calendar cal = getComponent3AsCalendar();
             if (cal != null) {

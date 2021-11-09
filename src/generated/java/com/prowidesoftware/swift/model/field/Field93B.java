@@ -274,7 +274,7 @@ public class Field93B extends Field implements Serializable, AmountContainer, Ge
             return getComponent(4);
         }
         if (component == 5) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent5AsBigDecimal();

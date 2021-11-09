@@ -221,7 +221,7 @@ public class Field29K extends Field implements Serializable {
             return getComponent(1);
         }
         if (component == 2) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {

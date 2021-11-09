@@ -240,7 +240,7 @@ public class Field36B extends Field implements Serializable, AmountContainer, Ge
             return getComponent(2);
         }
         if (component == 3) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent3AsBigDecimal();

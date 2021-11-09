@@ -309,52 +309,32 @@ public class Field50F extends Field implements Serializable, MultiLineField {
             }
         }
         if (component == 2) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent2AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(2);
         }
         if (component == 3) {
             //default format (as is)
             return getComponent(3);
         }
         if (component == 4) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent4AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(4);
         }
         if (component == 5) {
             //default format (as is)
             return getComponent(5);
         }
         if (component == 6) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent6AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(6);
         }
         if (component == 7) {
             //default format (as is)
             return getComponent(7);
         }
         if (component == 8) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent8AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(8);
         }
         if (component == 9) {
             //default format (as is)

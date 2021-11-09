@@ -285,7 +285,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
             throw new IllegalArgumentException("invalid component number " + component + " for field 37F");
         }
         if (component == 1) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent1AsBigDecimal();
@@ -294,7 +294,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
             }
         }
         if (component == 2) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
@@ -306,13 +306,8 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
             return getComponent(3);
         }
         if (component == 4) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent4AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(4);
         }
         if (component == 5) {
             //default format (as is)

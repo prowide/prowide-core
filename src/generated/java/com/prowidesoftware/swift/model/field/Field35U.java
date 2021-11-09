@@ -232,7 +232,7 @@ public class Field35U extends Field implements Serializable, AmountContainer {
             return getComponent(1);
         }
         if (component == 2) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent2AsBigDecimal();
