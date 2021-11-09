@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+RELEASE 9.2.8 - November 2021
+  * Added new variant values (RFDD, ISLFIN)
+
 RELEASE 9.2.7 - October 2021
   * Field 98D, 98E and 98G: removed invalid get{Component4|Sign}AsCurrency and set{Component4|Sign}(Currency) as no currency applies to these fields
   * Fields 94L and 85L: separated component 2 (Legal Entity Identifier) into two (Legal Entity Identifier Code and Legal Entity Identifier Number). Kept get/setLegalEntityIdentifier for backwards compatibility
