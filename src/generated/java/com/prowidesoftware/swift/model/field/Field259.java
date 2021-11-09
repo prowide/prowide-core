@@ -266,25 +266,15 @@ public class Field259 extends Field implements Serializable, DateContainer {
             return getComponent(1);
         }
         if (component == 2) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent2AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(2);
         }
         if (component == 3) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent3AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(3);
         }
         if (component == 4) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent4AsCalendar();
             if (cal != null) {
@@ -292,7 +282,7 @@ public class Field259 extends Field implements Serializable, DateContainer {
             }
         }
         if (component == 5) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent5AsCalendar();
             if (cal != null) {
@@ -300,7 +290,7 @@ public class Field259 extends Field implements Serializable, DateContainer {
             }
         }
         if (component == 6) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent6AsCalendar();
             if (cal != null) {

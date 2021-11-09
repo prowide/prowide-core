@@ -229,7 +229,7 @@ public class Field29L extends Field implements Serializable, DateContainer {
             throw new IllegalArgumentException("invalid component number " + component + " for field 29L");
         }
         if (component == 1) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
             if (cal != null) {
@@ -241,7 +241,7 @@ public class Field29L extends Field implements Serializable, DateContainer {
             return getComponent(2);
         }
         if (component == 3) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent3AsCalendar();
             if (cal != null) {

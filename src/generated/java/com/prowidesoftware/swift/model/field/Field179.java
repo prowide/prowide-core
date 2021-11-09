@@ -203,7 +203,7 @@ public class Field179 extends Field implements Serializable {
             throw new IllegalArgumentException("invalid component number " + component + " for field 179");
         }
         if (component == 1) {
-            //time with seconds
+            //time with seconds: HHmmss
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
             if (cal != null) {

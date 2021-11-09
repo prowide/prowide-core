@@ -261,7 +261,7 @@ public class Field264 extends Field implements Serializable, DateContainer {
             return getComponent(1);
         }
         if (component == 2) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
@@ -269,7 +269,7 @@ public class Field264 extends Field implements Serializable, DateContainer {
             }
         }
         if (component == 3) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent3AsCalendar();
             if (cal != null) {
@@ -277,7 +277,7 @@ public class Field264 extends Field implements Serializable, DateContainer {
             }
         }
         if (component == 4) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent4AsCalendar();
             if (cal != null) {
@@ -285,13 +285,8 @@ public class Field264 extends Field implements Serializable, DateContainer {
             }
         }
         if (component == 5) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent5AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(5);
         }
         return null;
     }

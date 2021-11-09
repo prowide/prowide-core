@@ -250,7 +250,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
             return getComponent(1);
         }
         if (component == 2) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
@@ -262,7 +262,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
             return getComponent(3);
         }
         if (component == 4) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent4AsBigDecimal();

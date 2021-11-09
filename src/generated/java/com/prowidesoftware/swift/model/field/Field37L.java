@@ -211,7 +211,7 @@ public class Field37L extends Field implements Serializable, AmountContainer {
             throw new IllegalArgumentException("invalid component number " + component + " for field 37L");
         }
         if (component == 1) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent1AsBigDecimal();

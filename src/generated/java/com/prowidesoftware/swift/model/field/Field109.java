@@ -232,7 +232,7 @@ public class Field109 extends Field implements Serializable, DateContainer {
             throw new IllegalArgumentException("invalid component number " + component + " for field 109");
         }
         if (component == 1) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
             if (cal != null) {
@@ -240,7 +240,7 @@ public class Field109 extends Field implements Serializable, DateContainer {
             }
         }
         if (component == 2) {
-            //time with seconds
+            //time with seconds: HHmmss
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {

@@ -236,7 +236,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
             throw new IllegalArgumentException("invalid component number " + component + " for field 32D");
         }
         if (component == 1) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
             if (cal != null) {
@@ -248,7 +248,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
             return getComponent(2);
         }
         if (component == 3) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent3AsBigDecimal();

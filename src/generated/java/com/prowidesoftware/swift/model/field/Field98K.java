@@ -263,7 +263,7 @@ public class Field98K extends Field implements Serializable, DateContainer, Gene
             return getComponent(2);
         }
         if (component == 3) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent3AsCalendar();
             if (cal != null) {
@@ -271,7 +271,7 @@ public class Field98K extends Field implements Serializable, DateContainer, Gene
             }
         }
         if (component == 4) {
-            //time with seconds
+            //time with seconds: HHmmss
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm:ss", notNull(locale));
             java.util.Calendar cal = getComponent4AsCalendar();
             if (cal != null) {

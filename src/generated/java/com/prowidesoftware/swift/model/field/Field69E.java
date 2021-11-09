@@ -247,7 +247,7 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
             return getComponent(2);
         }
         if (component == 3) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent3AsCalendar();
             if (cal != null) {

@@ -291,7 +291,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
             return getComponent(3);
         }
         if (component == 4) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent4AsBigDecimal();
@@ -304,7 +304,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
             return getComponent(5);
         }
         if (component == 6) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent6AsBigDecimal();

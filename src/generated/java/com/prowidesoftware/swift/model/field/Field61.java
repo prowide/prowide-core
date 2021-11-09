@@ -300,7 +300,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
             throw new IllegalArgumentException("invalid component number " + component + " for field 61");
         }
         if (component == 1) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
             if (cal != null) {
@@ -308,7 +308,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
             }
         }
         if (component == 2) {
-            //monthday
+            //month and day: MMDD
             java.text.DateFormat f = new java.text.SimpleDateFormat("MMM dd", notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
@@ -324,7 +324,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
             return getComponent(4);
         }
         if (component == 5) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent5AsBigDecimal();

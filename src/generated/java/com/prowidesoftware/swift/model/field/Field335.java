@@ -254,7 +254,7 @@ public class Field335 extends Field implements Serializable {
             throw new IllegalArgumentException("invalid component number " + component + " for field 335");
         }
         if (component == 1) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
             if (cal != null) {
@@ -274,7 +274,7 @@ public class Field335 extends Field implements Serializable {
             return getComponent(4);
         }
         if (component == 5) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent5AsCalendar();
             if (cal != null) {
