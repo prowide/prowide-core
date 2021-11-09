@@ -33,11 +33,30 @@ public class MTVariantTest {
         assertEquals(MTVariant.STP, MTVariant.extract("103STP").get());
         assertEquals(MTVariant.STP, MTVariant.extract("103_STP").get());
         assertEquals(MTVariant.STP, MTVariant.extract("fin.103.STP").get());
+
         assertEquals(MTVariant.COV, MTVariant.extract("COV").get());
         assertEquals(MTVariant.COV, MTVariant.extract("202.COV").get());
         assertEquals(MTVariant.COV, MTVariant.extract("202COV").get());
         assertEquals(MTVariant.COV, MTVariant.extract("202_COV").get());
         assertEquals(MTVariant.COV, MTVariant.extract("fin.202.COV").get());
+
+        assertEquals(MTVariant.REMIT, MTVariant.extract("REMIT").get());
+        assertEquals(MTVariant.REMIT, MTVariant.extract("202.REMIT").get());
+        assertEquals(MTVariant.REMIT, MTVariant.extract("202REMIT").get());
+        assertEquals(MTVariant.REMIT, MTVariant.extract("202_REMIT").get());
+        assertEquals(MTVariant.REMIT, MTVariant.extract("fin.202.REMIT").get());
+
+        assertEquals(MTVariant.RFDD, MTVariant.extract("RFDD").get());
+        assertEquals(MTVariant.RFDD, MTVariant.extract("202.RFDD").get());
+        assertEquals(MTVariant.RFDD, MTVariant.extract("202RFDD").get());
+        assertEquals(MTVariant.RFDD, MTVariant.extract("202_RFDD").get());
+        assertEquals(MTVariant.RFDD, MTVariant.extract("fin.202.RFDD").get());
+
+        assertEquals(MTVariant.ISLFIN, MTVariant.extract("ISLFIN").get());
+        assertEquals(MTVariant.ISLFIN, MTVariant.extract("202.ISLFIN").get());
+        assertEquals(MTVariant.ISLFIN, MTVariant.extract("202ISLFIN").get());
+        assertEquals(MTVariant.ISLFIN, MTVariant.extract("202_ISLFIN").get());
+        assertEquals(MTVariant.ISLFIN, MTVariant.extract("fin.202.ISLFIN").get());
     }
 
 }

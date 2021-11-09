@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.2.8
+  * (PW-764) Added new variant values (RFDD, ISLFIN)
   * (PW-703) Block 2 parser: lenient parser to avoid duplicate error when exception on invalid Input/Output indicator
   * (CR-23) Enhanced getValueDisplay for fields (no decimal separator for numbers that are not amounts)
 
