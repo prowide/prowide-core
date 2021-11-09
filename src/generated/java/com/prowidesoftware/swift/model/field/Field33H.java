@@ -225,7 +225,7 @@ public class Field33H extends Field implements Serializable, CurrencyContainer, 
             return getComponent(1);
         }
         if (component == 2) {
-            //number, amount, rate
+            //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
             BigDecimal n = getComponent2AsBigDecimal();

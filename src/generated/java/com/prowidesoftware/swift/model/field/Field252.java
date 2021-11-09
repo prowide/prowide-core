@@ -251,7 +251,7 @@ public class Field252 extends Field implements Serializable {
             return getComponent(2);
         }
         if (component == 3) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent3AsCalendar();
             if (cal != null) {
@@ -259,7 +259,7 @@ public class Field252 extends Field implements Serializable {
             }
         }
         if (component == 4) {
-            //time
+            //time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent4AsCalendar();
             if (cal != null) {

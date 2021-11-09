@@ -235,7 +235,7 @@ public class Field69A extends Field implements Serializable, DateContainer, Gene
             return getComponent(1);
         }
         if (component == 2) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
@@ -243,7 +243,7 @@ public class Field69A extends Field implements Serializable, DateContainer, Gene
             }
         }
         if (component == 3) {
-            //date
+            //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent3AsCalendar();
             if (cal != null) {

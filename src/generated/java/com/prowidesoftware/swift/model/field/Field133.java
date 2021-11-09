@@ -255,13 +255,8 @@ public class Field133 extends Field implements Serializable {
             return getComponent(3);
         }
         if (component == 4) {
-            //number, amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            Number n = getComponent4AsNumber();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(4);
         }
         return null;
     }

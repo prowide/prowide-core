@@ -210,7 +210,7 @@ public class Field142 extends Field implements Serializable, DateContainer {
             throw new IllegalArgumentException("invalid component number " + component + " for field 142");
         }
         if (component == 1) {
-            //date + time
+            //datetime: [YY]YYMMDDHHMM
             java.text.DateFormat df = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.text.DateFormat tf = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();

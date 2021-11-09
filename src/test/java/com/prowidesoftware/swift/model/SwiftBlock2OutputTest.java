@@ -101,13 +101,9 @@ public class SwiftBlock2OutputTest {
 
     @Test
     public void testOutput_6() {
-        try {
-            //set an invalid starting substring
-            out.setValue("I1001200010103BANKBEBBAXXX22221234560101031201N");
-        } catch (IllegalArgumentException e) {
-            return;
-        }
-        fail("IllegalArgumentException not thrown");
+        SwiftBlock2Output nout = new SwiftBlock2Output("A1001200010103BANKBEBBAXXX22221234560101031201N");
+        assertFalse(nout.isInput());
+        assertNull(nout.blockType);
     }
 
     @Test

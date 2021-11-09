@@ -431,9 +431,6 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
                 if (slen != 16 && slen != 17 && slen != 18 && slen != 21) {
                     throw new IllegalArgumentException("Value must match: I<mt><address>[<pri>[<monitoring>[<obsolescence>]]]");
                 }
-                if (Character.toUpperCase(value.charAt(offset)) != 'I') {
-                    throw new IllegalArgumentException("Value must match: I<mt><address>[<pri>[<monitoring>[<obsolescence>]]]");
-                }
             }
             offset++; // skip the input mark
 
