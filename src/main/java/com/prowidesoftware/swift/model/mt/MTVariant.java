@@ -26,6 +26,8 @@ import java.util.Optional;
 public enum MTVariant {
     STP(true),
     REMIT(true),
+    RFDD(true),
+    ISLFIN(true),
     COV(true);
 
     boolean validationFlag = false;
