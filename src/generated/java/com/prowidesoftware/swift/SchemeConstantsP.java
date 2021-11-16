@@ -22,6 +22,8 @@ public interface SchemeConstantsP {
     String PRUW = "PRUW";
     String PEAM = "PEAM";
     String P = "P";
+    String PTYB = "PTYB";
+    String PTYA = "PTYA";
     String PRUR = "PRUR";
     String PRINCIPAL = "PRINCIPAL";
     String PUTO = "PUTO";
@@ -35,8 +37,6 @@ public interface SchemeConstantsP {
     String PTRC = "PTRC";
     String PTRM = "PTRM";
     String PREP = "PREP";
-    String PTYB = "PTYB";
-    String PTYA = "PTYA";
     String PLIS = "PLIS";
     String POST = "POST";
     String PFRE = "PFRE";
@@ -117,5 +117,9 @@ public interface SchemeConstantsP {
     String PUT = "PUT";
     String PMTH = "PMTH";
     String PRCD = "PRCD";
+    String PREVINST = "PREVINST";
+    String PREDENOT = "PREDENOT";
+    String PERF = "PERF";
+    String PAEX = "PAEX";
 
 }

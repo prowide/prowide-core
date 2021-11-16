@@ -2,31 +2,66 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
-SNAPTSHOT 9.1.9
-  * (PW-746) Fixed MT reference extraction for 20C in categories other than 5, and with MUR as fallback option
+RELEASE 9.2.8 - November 2021
+  * (PW-764) Added new variant values (RFDD, ISLFIN)
+  * (PW-703) Block 2 parser: lenient parser to avoid duplicate error when exception on invalid Input/Output indicator
+  * (CR-23) Enhanced getValueDisplay for fields (no decimal separator for numbers that are not amounts)
 
-RELEASE 9.1.8
+RELEASE 9.2.7 - October 2021
+  * Field 98D, 98E and 98G: removed invalid get{Component4|Sign}AsCurrency and set{Component4|Sign}(Currency) as no currency applies to these fields
+  * Fields 94L and 85L: separated component 2 (Legal Entity Identifier) into two (Legal Entity Identifier Code and Legal Entity Identifier Number). Kept get/setLegalEntityIdentifier for backwards compatibility
+  * Field 94H: second component now has get{name}AsBIC and set{name}(BIC) methods
+  * Field 56B: now inherits from OptionBPartyField (to have get/setPartyIdentifier)
+  * Field 26C: separated component 5 into 5 (Denomination) and 6 (Form) for compatibility with Swift. Kept get/setDenominationForm for backwards compatibility
+  * Field 26A: now has 2 components (Number 1 and Number 2) for compatibility with Swift. get/setNumber is kept for backwards compatibility
+  * Field 23: fixed getValue and parse to properly handle missing intermediate fields
+  * Field 14S: has 4 new compatibility methods: getRateSource/setRateSource for Source and Number components and getTimeAndLocation/setTimeAndLocation for Time and Location components
+  * Field 12: component is now of expected to have a numeric type
+  * Code cleanup for Fields and Date|BIC|Amount|Currency Container
+  * Added support for BigDecimal and Long component types (instead of just Number) in several fields
+  * Fixed display text generation for fields having a date with pattern MMDD (only the month was included in the text)
+  * OptionAPartyField: added set/getPartyIdentifier (for components 1 and 2) and renamed BIC to IdentifierCode. Affects fields 42A, 51A, 52A, 53A, 54A, 55A, 56A, 57A, 58A, 81A, 82A, 83A, 84A, 85A, 86A, 87A, 88A, 89A, 91A and 96A
+  * OptionDPartyField: added set/getPartyIdentifier (for components 1 and 2). Affects fields 42D, 50D, 51D, 52D, 53D, 54D, 55D, 56D, 57D, 58D, 81D, 82D, 83D, 84D, 85D, 86D, 87D, 88D, 89D, 91D and 96D
+  * OptionBPartyField: added set/getPartyIdentifier (for components 1 and 2). Affects fields 52B, 53B, 54B, 55B, 57B, 58B, 82B, 84B, 85B, 86B, 87B and 88B
+  * Prepared Option A, B and D classes to support the PartyIdentifier interface with methods getPartyIdentifier and setPartyIdentifier
+  * Enhanced Block2 creation by enriching Block Type to "O" or "I".
+  * (PW-746) Fixed MT reference extraction for 20C in categories other than 5, and with MUR as fallback option
+  * (CR-23) Added SwiftMessage#getMOR
+  * Updated dependency: Apache Commons Lang 3.8.1 -> 3.12.0
+  * Updated dependency: Apache Commons Text 1.6 -> 1.9
+  * Updated dependency: Gson 2.8.2 -> 2.8.8
+
+RELEASE 9.2.6 - October 2021
   * (GH-60) Enhanced parser for field 98C
   * (PW-703) Enhanced SwiftParser in order to validate "Input" or "Output" Block 2 type
   * Enhanced the MtId to automatically extract the variant from String identifiers such as "fin.103.STP" or "202.COV"
 
-RELEASE 9.1.7 - September 2021
+RELEASE 9.2.5 - September 2021
   * (PW-664) Parser enhancement to be lenient on LF before block identifier
-  * MultiLineField: preserve starting component separator when getting lines with offset
-  * Added user assigned country codes (example "XE") as valid codes in the IsoUtils country validation
 
-RELEASE 9.1.6 - July 2021
+RELEASE 9.2.4 - August 2021
+  * MultiLineField: preserve starting component separator when getting lines with offset
+
+RELEASE 9.2.3 - August 2021
+  * Added user assigned country codes (example "XE") as valid codes in the IsoUtils country validation
+  * Added field classes for SCORE messages: 11T, 12[S,R], 25G, 31[J,K,T], 34[D,K,L,M,S,T,U,X,V,W], 49[J,K,L] (to be used in the proprietary payload of the MT798 envelop)
   * MT564: Minor scheme fix, 92a TAXR and WITL can be repeated in CASHMOVE (E2)
+
+RELEASE 9.2.2 - July 2021
   * (PW-627) fixed Narrative.builder() to compute "//" size in the lines wrapping
   * (PW-581) the MultiLineField API now preserves any starting and trailing spaces in field lines
   * MT565: fixed repetition of sequence B2 (multiple to single)
   * MT548: Minor scheme fix, added letter option "C" in field "98C:SCTS" in sequence "C1a1B1"
+
+RELEASE 9.2.1 - June 2021
   * Added "ignore block 3" and "ignore priority" options to the SwiftMessageComparator
   * Added field classes for SCORE messages: 12[H,K,L], 20E, 25F, 29[D,F], 31R, 78B (to be used in the proprietary payload of the MT798 envelop)
   * Enhanced parser for LogicalTerminalAddress when the parameter has 9 characters
-
-RELEASE 9.1.5 - June 2021
   * (PW-534) allowed null value for the Tag constructor
+
+RELEASE 9.2.0 - May 2021
+  * SWIFT Standard release update 2021 (live 21 November 2021)
+  * Yearly revision of deprecation phase (see http://www.prowidesoftware.com/resources/deprecation-policy)
   * Fixed the getSequence API in MT classes when the sequence boundary field is repetitive, in some scenarios produced invalid results
   * (PW-519) Field92H: Added "Rate Status" accessors
   * (PW-519) Field92J: Replaced "Narrative" accessors by "Rate Status" accessors

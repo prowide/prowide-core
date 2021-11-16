@@ -83,5 +83,8 @@ public interface SchemeConstantsD {
     String DIFF = "DIFF";
     String DGAR = "DGAR";
     String DOCR = "DOCR";
+    String DAYS = "DAYS";
+    String DEPU = "DEPU";
+    String DPAY = "DPAY";
 
 }

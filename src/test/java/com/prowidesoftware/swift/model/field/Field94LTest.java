@@ -40,6 +40,7 @@ public class Field94LTest extends AbstractFieldTest {
         assertEquals("ISSU", f.getComponent1());
         assertEquals("300300E10071420000", f.getComponent2());
         assertEquals("89", f.getComponent3());
+        assertEquals("300300E1007142000089", f.getLegalEntityIdentifier());
     }
 
     @Test
@@ -48,6 +49,7 @@ public class Field94LTest extends AbstractFieldTest {
         assertEquals("ISSU", f.getComponent1());
         assertEquals("300300E10071420000", f.getComponent2());
         assertEquals("FOO", f.getComponent3());
+        assertEquals("300300E10071420000FOO", f.getLegalEntityIdentifier());
     }
 
     @Test
@@ -56,6 +58,7 @@ public class Field94LTest extends AbstractFieldTest {
         assertEquals("ISSU", f.getComponent1());
         assertEquals("ABCD1234", f.getComponent2());
         assertNull(f.getComponent3());
+        assertEquals("ABCD1234", f.getLegalEntityIdentifier());
     }
 
     @Test
@@ -66,6 +69,22 @@ public class Field94LTest extends AbstractFieldTest {
         assertNotNull(f.getValueDisplay(Locale.getDefault()));
         f = new Field94L(":ISSU//300300E1007142000089234234234");
         assertNotNull(f.getValueDisplay(Locale.getDefault()));
+    }
+
+    @Test
+    public void test_setLegalEntityIdentifier() {
+
+        Field94L f = new Field94L(":ISSU//ABCD1234");
+        f.setLegalEntityIdentifier("300300E1007142000089");
+        assertEquals("300300E1007142000089", f.getLegalEntityIdentifier());
+        assertEquals("300300E10071420000", f.getComponent2());
+        assertEquals("89", f.getComponent3());
+
+        f = new Field94L(":ISSU//300300E1007142000089");
+        f.setLegalEntityIdentifier("ABCD1234");
+        assertEquals("ABCD1234", f.getComponent2());
+        assertNull(f.getComponent3());
+
     }
 
 }

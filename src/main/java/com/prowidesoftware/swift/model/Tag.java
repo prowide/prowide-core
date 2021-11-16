@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.field.Field;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -47,27 +44,6 @@ public class Tag implements Serializable {
     private static final long serialVersionUID = -1066430327311949399L;
 
     /**
-     * Unique identified when this tag is a persisted element
-     *
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    protected Long id;
-
-    /**
-     * Indicates the position of this tag in a message when persisted.
-     * This value is used to remember the positions of the tags inside
-     * a block when persisted. This value may not be set when persistence
-     * is not used and should not be used by clients.
-     *
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    @Deprecated
-    protected Integer sortKey;
-
-    /**
      * Name of the tag, usually a number that may be followed by a letter.
      * This value may be null.
      */
@@ -82,15 +58,6 @@ public class Tag implements Serializable {
      * List of unparsed texts. For performance reasons, this will be null until really needed.
      */
     protected UnparsedTextList unparsedTexts = null;
-
-    /**
-     * Reference to the sequence node, if any, that this tags belongs to.
-     *
-     * @deprecated to retrieve fields in sequences use the AbstractMT model
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    protected transient SequenceNode sequence = null;
 
     /**
      * Default constructor
@@ -251,62 +218,6 @@ public class Tag implements Serializable {
     }
 
     /**
-     * Get the unique identifier of the tag if it is persisted
-     *
-     * @return the unique id or null if it is not a persistent object
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public Long getId() {
-        DeprecationUtils.phase3(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-        return id;
-    }
-
-    /**
-     * Set the unique identifier of the tag if it is persisted
-     *
-     * @param id the id to be set
-     * @see #sortKey
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public void setId(Long id) {
-        DeprecationUtils.phase3(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-        this.id = id;
-    }
-
-    /**
-     * get the sortkey of this tag
-     *
-     * @return an integer with the current sortkey
-     * @see #sortKey
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public Integer getSortKey() {
-        DeprecationUtils.phase3(getClass(), "getSortKey()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-        return sortKey;
-    }
-
-    /**
-     * Set the sortkey of this tag.
-     * This value may be changed by clients when persistence is used and the order of the tags
-     * in a message are being modified.
-     *
-     * @param sortKey the new sortkey
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public void setSortKey(Integer sortKey) {
-        DeprecationUtils.phase3(getClass(), "setSortKey(Integer)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-        this.sortKey = sortKey;
-    }
-
-    /**
      * verifies that the unparsed text list exists
      */
     protected void unparsedTextVerify() {
@@ -453,11 +364,6 @@ public class Tag implements Serializable {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (sortKey == null) {
-            if (other.sortKey != null)
-                return false;
-        } else if (!sortKey.equals(other.sortKey))
-            return false;
         if (unparsedTexts == null) {
             if (other.unparsedTexts != null)
                 return false;
@@ -533,16 +439,6 @@ public class Tag implements Serializable {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated use {@link #asField()} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public Field getField() {
-        DeprecationUtils.phase3(getClass(), "getField()", "use asField() instead");
-        return Field.getField(this);
     }
 
     /**

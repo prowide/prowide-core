@@ -54,6 +54,7 @@ public interface SchemeConstantsF {
     String FROM = "FROM";
     String FORC = "FORC";
     String FMT = "FMT";
+    String FFRD = "FFRD";
     String FSBN = "FSBN";
     String FSSA = "FSSA";
     String FIN = "FIN";
@@ -76,5 +77,6 @@ public interface SchemeConstantsF {
     String FAS = "FAS";
     String FACT = "FACT";
     String FRAUDMSG = "FRAUDMSG";
+    String FIXD = "FIXD";
 
 }

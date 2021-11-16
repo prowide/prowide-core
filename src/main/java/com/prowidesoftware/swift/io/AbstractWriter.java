@@ -16,6 +16,7 @@
 package com.prowidesoftware.swift.io;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Base implementation for message writers.
@@ -35,7 +36,7 @@ import java.io.*;
  * @since 7.8
  */
 public abstract class AbstractWriter {
-    protected Writer writer = null;
+    protected Writer writer;
 
     /**
      * Constructs a writer to write content into a given Writer instance.

@@ -83,7 +83,8 @@ Fieldset 97
 Fieldset 19
  (O)<ul><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li></ul></li><li class="fieldset">
 Fieldset 93
- (O)<ul><li>FieldsetItem 93 B (O)</li><li>FieldsetItem 93 B (O)</li><li>FieldsetItem 93 B (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (O)<ul><li>FieldsetItem 93 B (O)</li><li>FieldsetItem 93 B (O)</li><li>FieldsetItem 93 B (O)</li></ul></li><li class="field">Field 17 B (O)</li>
+<li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence C - Additional Information (O)<ul><li class="field">Field 16 R (M)</li>
@@ -97,7 +98,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -106,7 +107,7 @@ public class MT567 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT567.class.getName());
 	
@@ -461,6 +462,24 @@ public class MT567 extends AbstractMT implements Serializable {
 		final Tag t = tag("35B");
 		if (t != null) {
 			return new Field35B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 17B, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 17B at MT567 is expected to be the only one.
+	 * 
+	 * @return a Field17B object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field17B getField17B() {
+		final Tag t = tag("17B");
+		if (t != null) {
+			return new Field17B(t.getValue());
 		} else {
 			return null;
 		}

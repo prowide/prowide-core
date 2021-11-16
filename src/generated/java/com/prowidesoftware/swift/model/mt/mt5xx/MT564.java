@@ -109,12 +109,12 @@ Fieldset 98
 Sequence D - Corporate Action Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 98
- (O)<ul><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li></ul></li><li class="fieldset">
 Fieldset 69
- (O)<ul><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li></ul></li><li class="field">Field 99 A (O)</li>
+ (O)<ul><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li></ul></li><li class="field">Field 99 A (O)</li>
 <li class="fieldset">
 Fieldset 92
- (O)<ul><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K,P (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K,P (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F,K (O)</li></ul></li><li class="fieldset">
 Fieldset 90
  (O)<ul><li>FieldsetItem 90 A,B,E,L (O)</li><li>FieldsetItem 90 A,B,E,L (O)</li></ul></li><li class="fieldset">
 Fieldset 36
@@ -134,7 +134,7 @@ Sequence E - Corporate Action Options (O) (repetitive)<ul><li class="field">Fiel
 <li class="field">Field 13 A (M)</li>
 <li class="fieldset">
 Fieldset 22
- (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 94
  (O) (repetitive)<ul><li>FieldsetItem 94 C (O) (repetitive)</li><li>FieldsetItem 94 C (O) (repetitive)</li></ul></li><li class="field">Field 11 A (O)</li>
 <li class="fieldset">
@@ -142,13 +142,13 @@ Fieldset 17
  (M) (repetitive)<ul><li>FieldsetItem 17 B (M)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="field">Field 35 B (O)</li>
 <li class="fieldset">
 Fieldset 98
- (O) (repetitive)<ul><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E,F (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E,J,K (O) (repetitive)</li></ul></li><li class="fieldset">
+ (O) (repetitive)<ul><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E,F (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E,J,K (O) (repetitive)</li><li>FieldsetItem 98 A,B,C,E (O)</li></ul></li><li class="fieldset">
 Fieldset 69
  (O)<ul><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li><li>FieldsetItem 69 A,B,C,D,E,F,J (O)</li></ul></li><li class="fieldset">
 Fieldset 92
- (O) (repetitive)<ul><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 A,F,K,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,J,K (O) (repetitive)</li><li>FieldsetItem 92 F,J,K (O) (repetitive)</li><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K,R (O) (repetitive)</li></ul></li><li class="fieldset">
+ (O) (repetitive)<ul><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 A,F,K,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,J,K (O) (repetitive)</li><li>FieldsetItem 92 F,J,K (O) (repetitive)</li><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,K,P (O)</li></ul></li><li class="fieldset">
 Fieldset 90
- (O)<ul><li>FieldsetItem 90 A,B,E (O)</li><li>FieldsetItem 90 A,B,E (O)</li><li>FieldsetItem 90 B,E (O)</li><li>FieldsetItem 90 B,E (O)</li><li>FieldsetItem 90 B,E (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 90 A,B,E (O)</li><li>FieldsetItem 90 A,B,E (O)</li><li>FieldsetItem 90 B,E (O)</li><li>FieldsetItem 90 B,E (O)</li><li>FieldsetItem 90 B,E (O)</li><li>FieldsetItem 90 A,B,E,L (O)</li><li>FieldsetItem 90 A,B,E,L (O)</li></ul></li><li class="fieldset">
 Fieldset 36
  (O)<ul><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li></ul></li><li class="sequence">
 Sequence E1 - Securities Movement (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -195,7 +195,7 @@ Fieldset 22
 Fieldset 19
  (O)<ul><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
 Fieldset 92
  (O) (repetitive)<ul><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 F,K (O)</li><li>FieldsetItem 92 A,F,K,M (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,J,K (O) (repetitive)</li><li>FieldsetItem 92 F,H,J,K (O) (repetitive)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,K,M (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,K,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,J,K,R (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 90
@@ -217,7 +217,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -226,7 +226,7 @@ public class MT564 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT564.class.getName());
 	
@@ -2303,7 +2303,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceB1_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceB1_sru2021(this);
 	}
 	
 	/**
@@ -3053,7 +3053,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceE1aList_sru2020(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceE1aList_sru2021(this);
 	}
 	/**
 	 * Get the list of SequenceE1a delimited by 16R/16S with value specified in {@link SequenceE1a#START_END_16RS}

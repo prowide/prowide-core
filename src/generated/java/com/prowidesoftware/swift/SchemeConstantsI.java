@@ -19,6 +19,7 @@ public interface SchemeConstantsI {
     String INTC = "INTC";
     String ISDA = "ISDA";
     String ISDACN = "ISDACN";
+    String ISDACS = "ISDACS";
     String ICOM = "ICOM";
     String IFEMA = "IFEMA";
     String INVE = "INVE";
@@ -45,6 +46,7 @@ public interface SchemeConstantsI {
     String IPRC = "IPRC";
     String INPOSDET = "INPOSDET";
     String INPA = "INPA";
+    String INPD = "INPD";
     String INOP = "INOP";
     String INCL = "INCL";
     String ILSH = "ILSH";
@@ -65,14 +67,17 @@ public interface SchemeConstantsI {
     String ITYP = "ITYP";
     String INPE = "INPE";
     String IRID = "IRID";
-    String IRREVOCABLE_STANDBY = "IRREVOCABLE_STANDBY";
     String IRREVOCABLE = "IRREVOCABLE";
     String IRREVOCABLE_TRANSFERABLE = "IRREVOCABLE_TRANSFERABLE";
-    String ISP_LATEST_VERSION = "ISP_LATEST_VERSION";
-    String IRREVOC_TRANS_STANDBY = "IRREVOC_TRANS_STANDBY";
     String INSU = "INSU";
     String ISSUANCE = "ISSUANCE";
     String ISSAMEND = "ISSAMEND";
     String ISPR = "ISPR";
+    String ICCO = "ICCO";
+    String ISCO = "ISCO";
+    String INCP = "INCP";
+    String ISCA = "ISCA";
+    String ISUA = "ISUA";
+    String ICCA = "ICCA";
 
 }

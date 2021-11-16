@@ -6,9 +6,9 @@ apply plugin: 'eclipse'
 
 archivesBaseName = 'pw-swift-core'
 
-def SRU = "2020"
+def SRU = "2021"
 
-version "SRU${SRU}-9.1.9-SNAPSHOT"
+version "SRU${SRU}-9.2.8"
 group 'com.prowidesoftware'
 	
 sourceCompatibility = '1.8'
@@ -27,17 +27,17 @@ repositories {
 }
 	
 dependencies {
-	implementation 'org.apache.commons:commons-lang3:3.8.1'
-	implementation 'org.apache.commons:commons-text:1.6'
-	implementation 'com.google.code.gson:gson:2.8.2'
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	implementation 'org.apache.commons:commons-text:1.9'
+	implementation 'com.google.code.gson:gson:2.8.8'
 
 	compileOnly 'javax.persistence:javax.persistence-api:2.2'
 	compileOnly group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
-	testImplementation('org.junit.jupiter:junit-jupiter:5.7.2')
-	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.20.2'
-	testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.8.2'
-	testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.8.2'
-	testImplementation group: 'org.xmlunit', name: 'xmlunit-assertj', version: '2.8.2'
+	testImplementation('org.junit.jupiter:junit-jupiter:5.8.1')
+	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
+	testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.8.3'
+	testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.8.3'
+	testImplementation group: 'org.xmlunit', name: 'xmlunit-assertj', version: '2.8.3'
 }
 
 sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']

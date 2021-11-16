@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -24,8 +26,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import com.prowidesoftware.swift.model.field.MultiLineField;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import com.prowidesoftware.swift.model.field.MultiLineField;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -45,13 +50,13 @@ import com.google.gson.JsonParser;
  * <p>Subfields (components) Data types
  * <ol>
  * 		<li><code>String</code></li>
- * 		<li><code>Number</code></li>
+ * 		<li><code>Long</code></li>
  * 		<li><code>String</code></li>
- * 		<li><code>Number</code></li>
+ * 		<li><code>Long</code></li>
  * 		<li><code>String</code></li>
- * 		<li><code>Number</code></li>
+ * 		<li><code>Long</code></li>
  * 		<li><code>String</code></li>
- * 		<li><code>Number</code></li>
+ * 		<li><code>Long</code></li>
  * 		<li><code>String</code></li>
  * </ol>
  *
@@ -63,7 +68,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2020</strong>
+ * This class complies with standard release <strong>SRU2021</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -71,7 +76,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -82,8 +87,26 @@ public class Field50F extends Field implements Serializable, MultiLineField {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_50F = "50F";
-	public static final String PARSER_PATTERN ="S$S/S[$S/S]0-3";
+	public static final String PARSER_PATTERN = "S$S/S[$S/S]0-3";
+
+    /**
+     * Components pattern
+     *
+     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
+     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SNSNSNSNS";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
+     * @since 9.2.7
+     */
+	public static final String TYPES_PATTERN = "SNSNSNSNS";
 
 	/**
 	 * Component number for the Party Identifier subfield
@@ -130,238 +153,240 @@ public class Field50F extends Field implements Serializable, MultiLineField {
 	 */
 	public static final Integer NAME_AND_ADDRESS_4 = 9;
 
-	/**
-	 * Default constructor. Creates a new field setting all components to null.
-	 */
-	public Field50F() {
-		super(9);
-	}
-	    					
-	/**
-	 * Creates a new field and initializes its components with content from the parameter value.
-	 * @param value complete field value including separators and CRLF
-	 */
-	public Field50F(final String value) {
-		super(value);
-	}
-	
-	/**
-	 * Creates a new field and initializes its components with content from the parameter tag.
-	 * The value is parsed with {@link #parse(String)} 	 
-	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
-	 * @since 7.8
-	 */
-	public Field50F(final Tag tag) {
-		this();
-		if (tag == null) {
-			throw new IllegalArgumentException("tag cannot be null.");
-		}
-		if (!StringUtils.equals(tag.getName(), "50F")) {
-			throw new IllegalArgumentException("cannot create field 50F from tag "+tag.getName()+", tagname must match the name of the field.");
-		}
-		parse(tag.getValue());
-	}
+    /**
+     * Default constructor. Creates a new field setting all components to null.
+     */
+    public Field50F() {
+        super(9);
+    }
 
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field50F newInstance(Field50F source) {
-		Field50F cp = new Field50F();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter value.
+     * @param value complete field value including separators and CRLF
+     */
+    public Field50F(final String value) {
+        super(value);
+    }
 
-	/**
-	 * Create a Tag with this field name and the given value.
-	 * Shorthand for <code>new Tag(NAME, value)</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter tag.
+     * The value is parsed with {@link #parse(String)}
+     * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
+     * @since 7.8
+     */
+    public Field50F(final Tag tag) {
+        this();
+        if (tag == null) {
+            throw new IllegalArgumentException("tag cannot be null.");
+        }
+        if (!StringUtils.equals(tag.getName(), "50F")) {
+            throw new IllegalArgumentException("cannot create field 50F from tag "+tag.getName()+", tagname must match the name of the field.");
+        }
+        parse(tag.getValue());
+    }
 
-	/**
-	 * Create a Tag with this field name and an empty string as value
-	 * Shorthand for <code>new Tag(NAME, "")</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
+    /**
+     * Copy constructor.<br>
+     * Initializes the components list with a deep copy of the source components list.
+     * @param source a field instance to copy
+     * @since 7.7
+     */
+    public static Field50F newInstance(Field50F source) {
+        Field50F cp = new Field50F();
+        cp.setComponents(new ArrayList<>(source.getComponents()));
+        return cp;
+    }
+
+    /**
+     * Create a Tag with this field name and the given value.
+     * Shorthand for <code>new Tag(NAME, value)</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag tag(final String value) {
+        return new Tag(NAME, value);
+    }
+
+    /**
+     * Create a Tag with this field name and an empty string as value
+     * Shorthand for <code>new Tag(NAME, "")</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag emptyTag() {
+        return new Tag(NAME, "");
+    }
 
 
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(9);
-		List<String> lines = SwiftParseUtils.getLines(value);
-		if (!lines.isEmpty()) {
-			setComponent1(lines.get(0));
-			if (lines.size() > 1) {
-				setComponent2(SwiftParseUtils.getTokenFirst(lines.get(1), "/"));
-				setComponent3(SwiftParseUtils.getTokenSecondLast(lines.get(1), "/"));
-			}
-			if (lines.size() > 2) {
-				setComponent4(SwiftParseUtils.getTokenFirst(lines.get(2), "/"));
-				setComponent5(SwiftParseUtils.getTokenSecondLast(lines.get(2), "/"));
-			} 
-			if (lines.size() > 3) {
-				setComponent6(SwiftParseUtils.getTokenFirst(lines.get(3), "/"));
-				setComponent7(SwiftParseUtils.getTokenSecondLast(lines.get(3), "/"));
-			}
-			if (lines.size() > 4) {
-				setComponent8(SwiftParseUtils.getTokenFirst(lines.get(4), "/"));
-				setComponent9(SwiftParseUtils.getTokenSecondLast(lines.get(4), "/"));
-			}	
-		}
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		append(result, 1);
-		if (getComponent2() != null || getComponent3() != null) {
-			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-			append(result, 2);
-			result.append("/");
-			append(result, 3);
-		}
-		if (getComponent4() != null || getComponent5() != null) {
-			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-			append(result, 4);
-			result.append("/");
-			append(result, 5);
-		}
-		if (getComponent6() != null || getComponent7() != null) {
-			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-			append(result, 6);
-			result.append("/");
-			append(result, 7);
-		}
-		if (getComponent8() != null || getComponent9() != null) {
-			result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-			append(result, 8);
-			result.append("/");
-			append(result, 9);
-		}
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 9) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 50F");
-		}
-		if (component == 1) {
-			//special case for party identifier in field 50F
-			if (StringUtils.startsWith(getComponent(1), "/")) {
-				return getComponent(1).substring(1);
-			} else {
-				return getComponent(1);
-			}
-		}
-		if (component == 2) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent2AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		if (component == 4) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent4AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 5) {
-			//default format (as is)
-			return getComponent(5);
-		}
-		if (component == 6) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent6AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 7) {
-			//default format (as is)
-			return getComponent(7);
-		}
-		if (component == 8) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent8AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 9) {
-			//default format (as is)
-			return getComponent(9);
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field50F.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
+    /**
+     * Parses the parameter value into the internal components structure.
+     *
+     * <p>Used to update all components from a full new value, as an alternative
+     * to setting individual components. Previous component values are overwritten.
+     *
+     * @param value complete field value including separators and CRLF
+     * @since 7.8
+     */
+    @Override
+    public void parse(final String value) {
+        init(9);
+        List<String> lines = SwiftParseUtils.getLines(value);
+        if (!lines.isEmpty()) {
+            setComponent1(lines.get(0));
+            if (lines.size() > 1) {
+                setComponent2(SwiftParseUtils.getTokenFirst(lines.get(1), "/"));
+                setComponent3(SwiftParseUtils.getTokenSecondLast(lines.get(1), "/"));
+            }
+            if (lines.size() > 2) {
+                setComponent4(SwiftParseUtils.getTokenFirst(lines.get(2), "/"));
+                setComponent5(SwiftParseUtils.getTokenSecondLast(lines.get(2), "/"));
+            }
+            if (lines.size() > 3) {
+                setComponent6(SwiftParseUtils.getTokenFirst(lines.get(3), "/"));
+                setComponent7(SwiftParseUtils.getTokenSecondLast(lines.get(3), "/"));
+            }
+            if (lines.size() > 4) {
+                setComponent8(SwiftParseUtils.getTokenFirst(lines.get(4), "/"));
+                setComponent9(SwiftParseUtils.getTokenSecondLast(lines.get(4), "/"));
+            }
+        }
+    }
 
-	/**
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        append(result, 1);
+        if (getComponent2() != null || getComponent3() != null) {
+            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
+            append(result, 2);
+            result.append("/");
+            append(result, 3);
+        }
+        if (getComponent4() != null || getComponent5() != null) {
+            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
+            append(result, 4);
+            result.append("/");
+            append(result, 5);
+        }
+        if (getComponent6() != null || getComponent7() != null) {
+            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
+            append(result, 6);
+            result.append("/");
+            append(result, 7);
+        }
+        if (getComponent8() != null || getComponent9() != null) {
+            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
+            append(result, 8);
+            result.append("/");
+            append(result, 9);
+        }
+        return result.toString();
+    }
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param component number of the component to display
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component number is invalid or not present
+     * @throws IllegalArgumentException if component number is invalid for the field
+     * @since 7.8
+     */
+    @Override
+    public String getValueDisplay(int component, Locale locale) {
+        if (component < 1 || component > 9) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 50F");
+        }
+        if (component == 1) {
+            //special case for party identifier in field 50F
+            if (StringUtils.startsWith(getComponent(1), "/")) {
+                return getComponent(1).substring(1);
+            } else {
+                return getComponent(1);
+            }
+        }
+        if (component == 2) {
+            //default format (as is)
+            return getComponent(2);
+        }
+        if (component == 3) {
+            //default format (as is)
+            return getComponent(3);
+        }
+        if (component == 4) {
+            //default format (as is)
+            return getComponent(4);
+        }
+        if (component == 5) {
+            //default format (as is)
+            return getComponent(5);
+        }
+        if (component == 6) {
+            //default format (as is)
+            return getComponent(6);
+        }
+        if (component == 7) {
+            //default format (as is)
+            return getComponent(7);
+        }
+        if (component == 8) {
+            //default format (as is)
+            return getComponent(8);
+        }
+        if (component == 9) {
+            //default format (as is)
+            return getComponent(9);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the field components pattern
+     *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field50F.COMPONENTS_PATTERN
+     */
+    @Override
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public final String componentsPattern() {
+        return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @since 9.2.7
+     * @see #TYPES_PATTERN
+     * @return the static value of Field50F.TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
+    }
+
+    /**
      * Returns the field parser pattern
      * @return the static value of Field50F.PARSER_PATTERN
      */
-	@Override
-	public final String parserPattern() {
+    @Override
+    public final String parserPattern() {
         return PARSER_PATTERN;
     }
 
-	/**
-	 * Returns the field validator pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return "CUSTOM";
-	}
+    /**
+     * Returns the field validator pattern
+     */
+    @Override
+    public final String validatorPattern() {
+        return "CUSTOM";
+    }
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -405,722 +430,1096 @@ public class Field50F extends Field implements Serializable, MultiLineField {
         return false;
     }
 
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 9;
-	}
+    /**
+     * Returns the defined amount of components.<br>
+     * This is not the amount of components present in the field instance, but the total amount of components
+     * that this field accepts as defined.
+     * @since 7.7
+     */
+    @Override
+    public int componentsSize() {
+        return 9;
+    }
 
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Party Identifier");
-		result.add("Number 1");
-		result.add("Name And Address 1");
-		result.add("Number 2");
-		result.add("Name And Address 2");
-		result.add("Number 3");
-		result.add("Name And Address 3");
-		result.add("Number 4");
-		result.add("Name And Address 4");
-		return result;
-	}
+    /**
+     * Returns english label for components.
+     * <br>
+     * The index in the list is in sync with specific field component structure.
+     * @see #getComponentLabel(int)
+     * @since 7.8.4
+     */
+    @Override
+    protected List<String> getComponentLabels() {
+        List<String> result = new ArrayList<>();
+        result.add("Party Identifier");
+        result.add("Number 1");
+        result.add("Name And Address 1");
+        result.add("Number 2");
+        result.add("Name And Address 2");
+        result.add("Number 3");
+        result.add("Name And Address 3");
+        result.add("Number 4");
+        result.add("Name And Address 4");
+        return result;
+    }
 
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "partyIdentifier");
-		result.put(2, "number1");
-		result.put(3, "nameAndAddress1");
-		result.put(4, "number2");
-		result.put(5, "nameAndAddress2");
-		result.put(6, "number3");
-		result.put(7, "nameAndAddress3");
-		result.put(8, "number4");
-		result.put(9, "nameAndAddress4");
-		return result;
-	}
-	/**
-	 * Gets the component 1 (Party Identifier).
-	 * @return the component 1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Party Identifier (component 1).
-	 * @return the Party Identifier from component 1
-	 */
-	public String getPartyIdentifier() {
-		return getComponent(1);
-	}
-	/**
-	 * Gets the component 2 (Number 1).
-	 * @return the component 2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Get the component 2 as Number
-	 * @return the component 2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent2AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-
-	/**
-	 * Gets the Number 1 (component 2).
-	 * @return the Number 1 from component 2
-	 */
-	public String getNumber1() {
-		return getComponent(2);
-	}
-	
-	/**
-	 * Get the Number 1 (component 2) as Number
-	 * @return the Number 1 from component 2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumber1AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-	/**
-	 * Gets the component 3 (Name And Address 1).
-	 * @return the component 3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Gets the Name And Address 1 (component 3).
-	 * @return the Name And Address 1 from component 3
-	 */
-	public String getNameAndAddress1() {
-		return getComponent(3);
-	}
-	/**
-	 * Gets the component 4 (Number 2).
-	 * @return the component 4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Get the component 4 as Number
-	 * @return the component 4 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent4AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(4));
-	}
-
-	/**
-	 * Gets the Number 2 (component 4).
-	 * @return the Number 2 from component 4
-	 */
-	public String getNumber2() {
-		return getComponent(4);
-	}
-	
-	/**
-	 * Get the Number 2 (component 4) as Number
-	 * @return the Number 2 from component 4 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumber2AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(4));
-	}
-	/**
-	 * Gets the component 5 (Name And Address 2).
-	 * @return the component 5
-	 */
-	public String getComponent5() {
-		return getComponent(5);
-	}
-
-	/**
-	 * Gets the Name And Address 2 (component 5).
-	 * @return the Name And Address 2 from component 5
-	 */
-	public String getNameAndAddress2() {
-		return getComponent(5);
-	}
-	/**
-	 * Gets the component 6 (Number 3).
-	 * @return the component 6
-	 */
-	public String getComponent6() {
-		return getComponent(6);
-	}
-
-	/**
-	 * Get the component 6 as Number
-	 * @return the component 6 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent6AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(6));
-	}
-
-	/**
-	 * Gets the Number 3 (component 6).
-	 * @return the Number 3 from component 6
-	 */
-	public String getNumber3() {
-		return getComponent(6);
-	}
-	
-	/**
-	 * Get the Number 3 (component 6) as Number
-	 * @return the Number 3 from component 6 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumber3AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(6));
-	}
-	/**
-	 * Gets the component 7 (Name And Address 3).
-	 * @return the component 7
-	 */
-	public String getComponent7() {
-		return getComponent(7);
-	}
-
-	/**
-	 * Gets the Name And Address 3 (component 7).
-	 * @return the Name And Address 3 from component 7
-	 */
-	public String getNameAndAddress3() {
-		return getComponent(7);
-	}
-	/**
-	 * Gets the component 8 (Number 4).
-	 * @return the component 8
-	 */
-	public String getComponent8() {
-		return getComponent(8);
-	}
-
-	/**
-	 * Get the component 8 as Number
-	 * @return the component 8 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent8AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(8));
-	}
-
-	/**
-	 * Gets the Number 4 (component 8).
-	 * @return the Number 4 from component 8
-	 */
-	public String getNumber4() {
-		return getComponent(8);
-	}
-	
-	/**
-	 * Get the Number 4 (component 8) as Number
-	 * @return the Number 4 from component 8 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getNumber4AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(8));
-	}
-	/**
-	 * Gets the component 9 (Name And Address 4).
-	 * @return the component 9
-	 */
-	public String getComponent9() {
-		return getComponent(9);
-	}
-
-	/**
-	 * Gets the Name And Address 4 (component 9).
-	 * @return the Name And Address 4 from component 9
-	 */
-	public String getNameAndAddress4() {
-		return getComponent(9);
-	}
+    /**
+     * Returns a mapping between component numbers and their label in camel case format.
+     * @since 7.10.3
+     */
+    @Override
+    protected Map<Integer, String> getComponentMap() {
+        Map<Integer, String> result = new HashMap<>();
+        result.put(1, "partyIdentifier");
+        result.put(2, "number1");
+        result.put(3, "nameAndAddress1");
+        result.put(4, "number2");
+        result.put(5, "nameAndAddress2");
+        result.put(6, "number3");
+        result.put(7, "nameAndAddress3");
+        result.put(8, "number4");
+        result.put(9, "nameAndAddress4");
+        return result;
+    }
 
 
-	/**
-	 * Set the component1 (Party Identifier).
-	 * @param component1 the component1 to set
-	 */
-	public Field50F setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Party Identifier (component1).
-	 * @param component1 the Party Identifier to set
-	 */
-	public Field50F setPartyIdentifier(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
+    /**
+     * Gets the component 1 (Party Identifier).
+     * @return the component 1
+     */
+    public String getComponent1() {
+        return getComponent(1);
+    }
 
-	/**
-	 * Set the component2 (Number 1).
-	 * @param component2 the component2 to set
-	 */
-	public Field50F setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the component2 from a Number object.
-	 * <br>
-	 * <em>If the component being set is a fixed length number, the argument will not be 
-	 * padded.</em> It is recommended for these cases to use the setComponent2(String) 
-	 * method.
-	 * 
-	 * @see #setComponent2(String)
-	 *
-	 * @param component2 the Number with the component2 content to set
-	 */
-	public Field50F setComponent2(java.lang.Number component2) {
-		if (component2 != null) {
-			setComponent(2, Integer.toString(component2.intValue()));
-		}
-		return this;
-	}
-	
-	/**
-	 * Set the Number 1 (component2).
-	 * @param component2 the Number 1 to set
-	 */
-	public Field50F setNumber1(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Number 1 (component2) from a Number object.
-	 * @see #setComponent2(java.lang.Number)
-	 * @param component2 Number with the Number 1 content to set
-	 */
-	public Field50F setNumber1(java.lang.Number component2) {
-		setComponent2(component2);
-		return this;
-	}
+    /**
+     * Gets the Party Identifier (component 1).
+     * @return the Party Identifier from component 1
+     */
+    public String getPartyIdentifier() {
+        return getComponent1();
+    }
 
-	/**
-	 * Set the component3 (Name And Address 1).
-	 * @param component3 the component3 to set
-	 */
-	public Field50F setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the Name And Address 1 (component3).
-	 * @param component3 the Name And Address 1 to set
-	 */
-	public Field50F setNameAndAddress1(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
+    /**
+     * Gets the component 2 (Number 1).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
 
-	/**
-	 * Set the component4 (Number 2).
-	 * @param component4 the component4 to set
-	 */
-	public Field50F setComponent4(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the component4 from a Number object.
-	 * <br>
-	 * <em>If the component being set is a fixed length number, the argument will not be 
-	 * padded.</em> It is recommended for these cases to use the setComponent4(String) 
-	 * method.
-	 * 
-	 * @see #setComponent4(String)
-	 *
-	 * @param component4 the Number with the component4 content to set
-	 */
-	public Field50F setComponent4(java.lang.Number component4) {
-		if (component4 != null) {
-			setComponent(4, Integer.toString(component4.intValue()));
-		}
-		return this;
-	}
-	
-	/**
-	 * Set the Number 2 (component4).
-	 * @param component4 the Number 2 to set
-	 */
-	public Field50F setNumber2(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the Number 2 (component4) from a Number object.
-	 * @see #setComponent4(java.lang.Number)
-	 * @param component4 Number with the Number 2 content to set
-	 */
-	public Field50F setNumber2(java.lang.Number component4) {
-		setComponent4(component4);
-		return this;
-	}
+    /**
+     * Get the component 2 as Long
+     *
+     * @return the component 2 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getComponent2AsLong() {
+        return SwiftFormatUtils.getLong(getComponent(2));
+    }
 
-	/**
-	 * Set the component5 (Name And Address 2).
-	 * @param component5 the component5 to set
-	 */
-	public Field50F setComponent5(String component5) {
-		setComponent(5, component5);
-		return this;
-	}
-	
-	/**
-	 * Set the Name And Address 2 (component5).
-	 * @param component5 the Name And Address 2 to set
-	 */
-	public Field50F setNameAndAddress2(String component5) {
-		setComponent(5, component5);
-		return this;
-	}
+    /**
+     * Get the component 2 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsLong()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent2AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getComponent2AsNumber() {
+        Long l = getComponent2AsLong();
+        return l != null ? new BigDecimal(l) : null;
+    }
 
-	/**
-	 * Set the component6 (Number 3).
-	 * @param component6 the component6 to set
-	 */
-	public Field50F setComponent6(String component6) {
-		setComponent(6, component6);
-		return this;
-	}
-	
-	/**
-	 * Set the component6 from a Number object.
-	 * <br>
-	 * <em>If the component being set is a fixed length number, the argument will not be 
-	 * padded.</em> It is recommended for these cases to use the setComponent6(String) 
-	 * method.
-	 * 
-	 * @see #setComponent6(String)
-	 *
-	 * @param component6 the Number with the component6 content to set
-	 */
-	public Field50F setComponent6(java.lang.Number component6) {
-		if (component6 != null) {
-			setComponent(6, Integer.toString(component6.intValue()));
-		}
-		return this;
-	}
-	
-	/**
-	 * Set the Number 3 (component6).
-	 * @param component6 the Number 3 to set
-	 */
-	public Field50F setNumber3(String component6) {
-		setComponent(6, component6);
-		return this;
-	}
-	
-	/**
-	 * Set the Number 3 (component6) from a Number object.
-	 * @see #setComponent6(java.lang.Number)
-	 * @param component6 Number with the Number 3 content to set
-	 */
-	public Field50F setNumber3(java.lang.Number component6) {
-		setComponent6(component6);
-		return this;
-	}
+    /**
+     * Gets the Number 1 (component 2).
+     * @return the Number 1 from component 2
+     */
+    public String getNumber1() {
+        return getComponent2();
+    }
 
-	/**
-	 * Set the component7 (Name And Address 3).
-	 * @param component7 the component7 to set
-	 */
-	public Field50F setComponent7(String component7) {
-		setComponent(7, component7);
-		return this;
-	}
-	
-	/**
-	 * Set the Name And Address 3 (component7).
-	 * @param component7 the Name And Address 3 to set
-	 */
-	public Field50F setNameAndAddress3(String component7) {
-		setComponent(7, component7);
-		return this;
-	}
+    /**
+     * Get the Number 1 (component 2) as Long
+     * @return the Number 1 from component 2 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumber1AsLong() {
+        return getComponent2AsLong();
+    }
 
-	/**
-	 * Set the component8 (Number 4).
-	 * @param component8 the component8 to set
-	 */
-	public Field50F setComponent8(String component8) {
-		setComponent(8, component8);
-		return this;
-	}
-	
-	/**
-	 * Set the component8 from a Number object.
-	 * <br>
-	 * <em>If the component being set is a fixed length number, the argument will not be 
-	 * padded.</em> It is recommended for these cases to use the setComponent8(String) 
-	 * method.
-	 * 
-	 * @see #setComponent8(String)
-	 *
-	 * @param component8 the Number with the component8 content to set
-	 */
-	public Field50F setComponent8(java.lang.Number component8) {
-		if (component8 != null) {
-			setComponent(8, Integer.toString(component8.intValue()));
-		}
-		return this;
-	}
-	
-	/**
-	 * Set the Number 4 (component8).
-	 * @param component8 the Number 4 to set
-	 */
-	public Field50F setNumber4(String component8) {
-		setComponent(8, component8);
-		return this;
-	}
-	
-	/**
-	 * Set the Number 4 (component8) from a Number object.
-	 * @see #setComponent8(java.lang.Number)
-	 * @param component8 Number with the Number 4 content to set
-	 */
-	public Field50F setNumber4(java.lang.Number component8) {
-		setComponent8(component8);
-		return this;
-	}
+    /**
+     * Get the Number 1 (component 2) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsLong()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumber1AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumber1AsNumber() {
+        return getComponent2AsNumber();
+    }
 
-	/**
-	 * Set the component9 (Name And Address 4).
-	 * @param component9 the component9 to set
-	 */
-	public Field50F setComponent9(String component9) {
-		setComponent(9, component9);
-		return this;
-	}
-	
-	/**
-	 * Set the Name And Address 4 (component9).
-	 * @param component9 the Name And Address 4 to set
-	 */
-	public Field50F setNameAndAddress4(String component9) {
-		setComponent(9, component9);
-		return this;
-	}
+    /**
+     * Gets the component 3 (Name And Address 1).
+     * @return the component 3
+     */
+    public String getComponent3() {
+        return getComponent(3);
+    }
 
-   
-	/**
-	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field50F.NAME
-	 */
-	@Override
-	public String getName() {
-		return NAME;
-	}
+    /**
+     * Gets the Name And Address 1 (component 3).
+     * @return the Name And Address 1 from component 3
+     */
+    public String getNameAndAddress1() {
+        return getComponent3();
+    }
 
-	/**
-	 * Gets the first occurrence form the tag list or null if not found.
-	 * @return null if not found o block is null or empty
-	 * @param block may be null or empty 
-	 */
-	public static Field50F get(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return null;
-		}
-		final Tag t = block.getTagByName(NAME);
-		if (t == null) {
-			return null;
-		}
-		return new Field50F(t) ;
-	}
-	
-	/**
-	 * Gets the first instance of Field50F in the given message.
-	 * @param msg may be empty or null
-	 * @return null if not found or msg is empty or null
-	 * @see #get(SwiftTagListBlock)
-	 */
-	public static Field50F get(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return null;
-		return get(msg.getBlock4());
-	}
+    /**
+     * Gets the component 4 (Number 2).
+     * @return the component 4
+     */
+    public String getComponent4() {
+        return getComponent(4);
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field50F in the given message
-	 * an empty list is returned if none found.
-	 * @param msg may be empty or null in which case an empty list is returned
-	 * @see #getAll(SwiftTagListBlock)
-	 */ 
-	public static List<Field50F> getAll(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return java.util.Collections.emptyList();
-		return getAll(msg.getBlock4());
-	}
+    /**
+     * Get the component 4 as Long
+     *
+     * @return the component 4 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getComponent4AsLong() {
+        return SwiftFormatUtils.getLong(getComponent(4));
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field50F from the given block
-	 * an empty list is returned if none found.
-	 *
-	 * @param block may be empty or null in which case an empty list is returned 
-	 */ 
-	public static List<Field50F> getAll(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return java.util.Collections.emptyList();
-		}
-		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length > 0) {
-			final List<Field50F> result = new ArrayList<>(arr.length);
-			for (final Tag f : arr) {
-				result.add( new Field50F(f));
-			}
-			return result;
-		}
-		return java.util.Collections.emptyList();
-	}
-	
-	/**
-	 * Returns a specific line from the field's value.<br>
-	 *
-	 * @see MultiLineField#getLine(int)
-	 * @param line a reference to a specific line in the field, first line being 1
-	 * @return line content or null if not present or if line number is above the expected
-	 * @since 7.7
-	 */
-	public String getLine(int line) {
-		return getLine(line, 0);
-	}
-	
-	/**
-	 * Returns a specific line from the field's value.<br>
-	 * 
-	 * @see MultiLineField#getLine(int, int)
-	 * @param line a reference to a specific line in the field, first line being 1
-	 * @param offset an optional component number used as offset when counting lines
-	 * @return line content or null if not present or if line number is above the expected
-	 * @since 7.7
-	 */
-	public String getLine(int line, int offset) {
-		Field50F cp = newInstance(this);
-		return getLine(cp, line, null, offset);
-	}
-	
-	/**
-	 * Returns the field value split into lines.<br>
-	 *
-	 * @see MultiLineField#getLines()
-	 * @return lines content or empty list if field's value is empty
-	 * @since 7.7
-	 */
-	public List<String> getLines() {
-		return SwiftParseUtils.getLines(getValue());
-	}
+    /**
+     * Get the component 4 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsLong()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent4AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getComponent4AsNumber() {
+        Long l = getComponent4AsLong();
+        return l != null ? new BigDecimal(l) : null;
+    }
 
-	/**
-	 * Returns the field value starting at the offset component, split into lines.<br>
-	 *
-	 * @see MultiLineField#getLines(int)
-	 * @param offset an optional component number used as offset when counting lines
-	 * @return found lines or empty list if lines are not present or the offset is invalid
-	 * @since 7.7
-	 */
-	public List<String> getLines(int offset) {
-		Field50F cp = newInstance(this);
-		return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
-	}
-	
-	/**
-	 * Returns a specific subset of lines from the field's value, given a range.<br>
-	 *
-	 * @see MultiLineField#getLinesBetween(int, int )
-	 * @param start a reference to a specific line in the field, first line being 1
-	 * @param end a reference to a specific line in the field, must be greater than start
-	 * @return found lines or empty list if value is empty
-	 * @since 7.7
-	 */
-	public List<String> getLinesBetween(int start, int end) {
-		return getLinesBetween(start, end, 0);
-	}
+    /**
+     * Gets the Number 2 (component 4).
+     * @return the Number 2 from component 4
+     */
+    public String getNumber2() {
+        return getComponent4();
+    }
 
-	/**
-	 * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
-	 *
-	 * @see MultiLineField#getLinesBetween(int start, int end, int offset)
-	 * @param start a reference to a specific line in the field, first line being 1
-	 * @param end a reference to a specific line in the field, must be greater than start
-	 * @param offset an optional component number used as offset when counting lines
-	 * @return found lines or empty list if lines are not present or the offset is invalid
-	 * @since 7.7
-	 */
-	public List<String> getLinesBetween(int start, int end, int offset) {
-		Field50F cp = newInstance(this);
-		return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
-	}
+    /**
+     * Get the Number 2 (component 4) as Long
+     * @return the Number 2 from component 4 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumber2AsLong() {
+        return getComponent4AsLong();
+    }
 
-	/**
-	 * This method deserializes the JSON data into a Field50F object.
-	 * @param json JSON structure including tuples with label and value for all field components
-	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.3
-	 * @see Field#fromJson(String)
-	 */
-	public static Field50F fromJson(final String json) {
-		Field50F field = new Field50F();
-		JsonParser parser = new JsonParser();
-		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("partyIdentifier") != null) {
-			field.setComponent1(jsonObject.get("partyIdentifier").getAsString());
-		}
-		if (jsonObject.get("number1") != null) {
-			field.setComponent2(jsonObject.get("number1").getAsString());
-		}
-		if (jsonObject.get("nameAndAddress1") != null) {
-			field.setComponent3(jsonObject.get("nameAndAddress1").getAsString());
-		}
-		if (jsonObject.get("number2") != null) {
-			field.setComponent4(jsonObject.get("number2").getAsString());
-		}
-		if (jsonObject.get("nameAndAddress2") != null) {
-			field.setComponent5(jsonObject.get("nameAndAddress2").getAsString());
-		}
-		if (jsonObject.get("number3") != null) {
-			field.setComponent6(jsonObject.get("number3").getAsString());
-		}
-		if (jsonObject.get("nameAndAddress3") != null) {
-			field.setComponent7(jsonObject.get("nameAndAddress3").getAsString());
-		}
-		if (jsonObject.get("number4") != null) {
-			field.setComponent8(jsonObject.get("number4").getAsString());
-		}
-		if (jsonObject.get("nameAndAddress4") != null) {
-			field.setComponent9(jsonObject.get("nameAndAddress4").getAsString());
-		}
-		return field;
-	}
-	
+    /**
+     * Get the Number 2 (component 4) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsLong()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumber2AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumber2AsNumber() {
+        return getComponent4AsNumber();
+    }
+
+    /**
+     * Gets the component 5 (Name And Address 2).
+     * @return the component 5
+     */
+    public String getComponent5() {
+        return getComponent(5);
+    }
+
+    /**
+     * Gets the Name And Address 2 (component 5).
+     * @return the Name And Address 2 from component 5
+     */
+    public String getNameAndAddress2() {
+        return getComponent5();
+    }
+
+    /**
+     * Gets the component 6 (Number 3).
+     * @return the component 6
+     */
+    public String getComponent6() {
+        return getComponent(6);
+    }
+
+    /**
+     * Get the component 6 as Long
+     *
+     * @return the component 6 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getComponent6AsLong() {
+        return SwiftFormatUtils.getLong(getComponent(6));
+    }
+
+    /**
+     * Get the component 6 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent6AsLong()</code> to get the proper value.
+     *
+     * @return the component 6 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent6AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getComponent6AsNumber() {
+        Long l = getComponent6AsLong();
+        return l != null ? new BigDecimal(l) : null;
+    }
+
+    /**
+     * Gets the Number 3 (component 6).
+     * @return the Number 3 from component 6
+     */
+    public String getNumber3() {
+        return getComponent6();
+    }
+
+    /**
+     * Get the Number 3 (component 6) as Long
+     * @return the Number 3 from component 6 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumber3AsLong() {
+        return getComponent6AsLong();
+    }
+
+    /**
+     * Get the Number 3 (component 6) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent6AsLong()</code> to get the proper value.
+     *
+     * @return the component 6 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumber3AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumber3AsNumber() {
+        return getComponent6AsNumber();
+    }
+
+    /**
+     * Gets the component 7 (Name And Address 3).
+     * @return the component 7
+     */
+    public String getComponent7() {
+        return getComponent(7);
+    }
+
+    /**
+     * Gets the Name And Address 3 (component 7).
+     * @return the Name And Address 3 from component 7
+     */
+    public String getNameAndAddress3() {
+        return getComponent7();
+    }
+
+    /**
+     * Gets the component 8 (Number 4).
+     * @return the component 8
+     */
+    public String getComponent8() {
+        return getComponent(8);
+    }
+
+    /**
+     * Get the component 8 as Long
+     *
+     * @return the component 8 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getComponent8AsLong() {
+        return SwiftFormatUtils.getLong(getComponent(8));
+    }
+
+    /**
+     * Get the component 8 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent8AsLong()</code> to get the proper value.
+     *
+     * @return the component 8 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent8AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getComponent8AsNumber() {
+        Long l = getComponent8AsLong();
+        return l != null ? new BigDecimal(l) : null;
+    }
+
+    /**
+     * Gets the Number 4 (component 8).
+     * @return the Number 4 from component 8
+     */
+    public String getNumber4() {
+        return getComponent8();
+    }
+
+    /**
+     * Get the Number 4 (component 8) as Long
+     * @return the Number 4 from component 8 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumber4AsLong() {
+        return getComponent8AsLong();
+    }
+
+    /**
+     * Get the Number 4 (component 8) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent8AsLong()</code> to get the proper value.
+     *
+     * @return the component 8 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumber4AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getNumber4AsNumber() {
+        return getComponent8AsNumber();
+    }
+
+    /**
+     * Gets the component 9 (Name And Address 4).
+     * @return the component 9
+     */
+    public String getComponent9() {
+        return getComponent(9);
+    }
+
+    /**
+     * Gets the Name And Address 4 (component 9).
+     * @return the Name And Address 4 from component 9
+     */
+    public String getNameAndAddress4() {
+        return getComponent9();
+    }
+
+    /**
+     * Set the component 1 (Party Identifier).
+     *
+     * @param component1 the Party Identifier to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent1(String component1) {
+        setComponent(1, component1);
+        return this;
+    }
+
+    /**
+     * Set the Party Identifier (component 1).
+     *
+     * @param component1 the Party Identifier to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setPartyIdentifier(String component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Number 1).
+     *
+     * @param component2 the Number 1 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the component2 from a Long object.
+     * <br>
+     * <em>If the component being set is a fixed length number, the argument will not be
+     * padded.</em> It is recommended for these cases to use the setComponent2(String)
+     * method.
+     *
+     * @see #setComponent2(String)
+     * @since 9.2.7
+     *
+     * @param component2 the Long with the Number 1 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent2(java.lang.Long component2) {
+        setComponent(2, SwiftFormatUtils.getLong(component2));
+        return this;
+    }
+
+    /**
+     * Alternative method setter for field's Number 1 (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Number 1 content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber1(java.lang.Long)
+     */
+    public Field50F setComponent2(java.lang.Number component2) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component2 instanceof Long) {
+            setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
+        } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
+            setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
+        } else if (component2 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
+            setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
+        } else {
+            // explicitly set component as null
+            setComponent(2, null);
+        }
+        return this;
+    }
+
+    /**
+     * Set the Number 1 (component 2).
+     *
+     * @param component2 the Number 1 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setNumber1(String component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the Number 1 (component 2) from a Long object.
+     *
+     * @see #setComponent2(java.lang.Long)
+     *
+     * @param component2 Long with the Number 1 content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field50F setNumber1(java.lang.Long component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Alternative method setter for field's Number 1 (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Number 1 content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber1(java.lang.Long)
+     */
+    public Field50F setNumber1(java.lang.Number component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the component 3 (Name And Address 1).
+     *
+     * @param component3 the Name And Address 1 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent3(String component3) {
+        setComponent(3, component3);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 1 (component 3).
+     *
+     * @param component3 the Name And Address 1 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setNameAndAddress1(String component3) {
+        return setComponent3(component3);
+    }
+
+    /**
+     * Set the component 4 (Number 2).
+     *
+     * @param component4 the Number 2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent4(String component4) {
+        setComponent(4, component4);
+        return this;
+    }
+
+    /**
+     * Set the component4 from a Long object.
+     * <br>
+     * <em>If the component being set is a fixed length number, the argument will not be
+     * padded.</em> It is recommended for these cases to use the setComponent4(String)
+     * method.
+     *
+     * @see #setComponent4(String)
+     * @since 9.2.7
+     *
+     * @param component4 the Long with the Number 2 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent4(java.lang.Long component4) {
+        setComponent(4, SwiftFormatUtils.getLong(component4));
+        return this;
+    }
+
+    /**
+     * Alternative method setter for field's Number 2 (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component4 the Number with the Number 2 content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber2(java.lang.Long)
+     */
+    public Field50F setComponent4(java.lang.Number component4) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component4 instanceof Long) {
+            setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
+        } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
+            setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
+        } else if (component4 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
+            setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
+        } else {
+            // explicitly set component as null
+            setComponent(4, null);
+        }
+        return this;
+    }
+
+    /**
+     * Set the Number 2 (component 4).
+     *
+     * @param component4 the Number 2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setNumber2(String component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Set the Number 2 (component 4) from a Long object.
+     *
+     * @see #setComponent4(java.lang.Long)
+     *
+     * @param component4 Long with the Number 2 content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field50F setNumber2(java.lang.Long component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Alternative method setter for field's Number 2 (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component4 the Number with the Number 2 content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber2(java.lang.Long)
+     */
+    public Field50F setNumber2(java.lang.Number component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Set the component 5 (Name And Address 2).
+     *
+     * @param component5 the Name And Address 2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent5(String component5) {
+        setComponent(5, component5);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 2 (component 5).
+     *
+     * @param component5 the Name And Address 2 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setNameAndAddress2(String component5) {
+        return setComponent5(component5);
+    }
+
+    /**
+     * Set the component 6 (Number 3).
+     *
+     * @param component6 the Number 3 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent6(String component6) {
+        setComponent(6, component6);
+        return this;
+    }
+
+    /**
+     * Set the component6 from a Long object.
+     * <br>
+     * <em>If the component being set is a fixed length number, the argument will not be
+     * padded.</em> It is recommended for these cases to use the setComponent6(String)
+     * method.
+     *
+     * @see #setComponent6(String)
+     * @since 9.2.7
+     *
+     * @param component6 the Long with the Number 3 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent6(java.lang.Long component6) {
+        setComponent(6, SwiftFormatUtils.getLong(component6));
+        return this;
+    }
+
+    /**
+     * Alternative method setter for field's Number 3 (component 6) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component6 the Number with the Number 3 content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber3(java.lang.Long)
+     */
+    public Field50F setComponent6(java.lang.Number component6) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component6 instanceof Long) {
+            setComponent(6, SwiftFormatUtils.getLong( (Long) component6));
+        } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
+            setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
+        } else if (component6 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
+            setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
+        } else {
+            // explicitly set component as null
+            setComponent(6, null);
+        }
+        return this;
+    }
+
+    /**
+     * Set the Number 3 (component 6).
+     *
+     * @param component6 the Number 3 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setNumber3(String component6) {
+        return setComponent6(component6);
+    }
+
+    /**
+     * Set the Number 3 (component 6) from a Long object.
+     *
+     * @see #setComponent6(java.lang.Long)
+     *
+     * @param component6 Long with the Number 3 content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field50F setNumber3(java.lang.Long component6) {
+        return setComponent6(component6);
+    }
+
+    /**
+     * Alternative method setter for field's Number 3 (component 6) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component6 the Number with the Number 3 content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber3(java.lang.Long)
+     */
+    public Field50F setNumber3(java.lang.Number component6) {
+        return setComponent6(component6);
+    }
+
+    /**
+     * Set the component 7 (Name And Address 3).
+     *
+     * @param component7 the Name And Address 3 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent7(String component7) {
+        setComponent(7, component7);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 3 (component 7).
+     *
+     * @param component7 the Name And Address 3 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setNameAndAddress3(String component7) {
+        return setComponent7(component7);
+    }
+
+    /**
+     * Set the component 8 (Number 4).
+     *
+     * @param component8 the Number 4 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent8(String component8) {
+        setComponent(8, component8);
+        return this;
+    }
+
+    /**
+     * Set the component8 from a Long object.
+     * <br>
+     * <em>If the component being set is a fixed length number, the argument will not be
+     * padded.</em> It is recommended for these cases to use the setComponent8(String)
+     * method.
+     *
+     * @see #setComponent8(String)
+     * @since 9.2.7
+     *
+     * @param component8 the Long with the Number 4 content to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent8(java.lang.Long component8) {
+        setComponent(8, SwiftFormatUtils.getLong(component8));
+        return this;
+    }
+
+    /**
+     * Alternative method setter for field's Number 4 (component 8) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component8 the Number with the Number 4 content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber4(java.lang.Long)
+     */
+    public Field50F setComponent8(java.lang.Number component8) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component8 instanceof Long) {
+            setComponent(8, SwiftFormatUtils.getLong( (Long) component8));
+        } else if (component8 instanceof BigInteger || component8 instanceof Integer) {
+            setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
+        } else if (component8 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
+            setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
+        } else {
+            // explicitly set component as null
+            setComponent(8, null);
+        }
+        return this;
+    }
+
+    /**
+     * Set the Number 4 (component 8).
+     *
+     * @param component8 the Number 4 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setNumber4(String component8) {
+        return setComponent8(component8);
+    }
+
+    /**
+     * Set the Number 4 (component 8) from a Long object.
+     *
+     * @see #setComponent8(java.lang.Long)
+     *
+     * @param component8 Long with the Number 4 content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field50F setNumber4(java.lang.Long component8) {
+        return setComponent8(component8);
+    }
+
+    /**
+     * Alternative method setter for field's Number 4 (component 8) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component8 the Number with the Number 4 content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber4(java.lang.Long)
+     */
+    public Field50F setNumber4(java.lang.Number component8) {
+        return setComponent8(component8);
+    }
+
+    /**
+     * Set the component 9 (Name And Address 4).
+     *
+     * @param component9 the Name And Address 4 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setComponent9(String component9) {
+        setComponent(9, component9);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 4 (component 9).
+     *
+     * @param component9 the Name And Address 4 to set
+     * @return the field object to enable build pattern
+     */
+    public Field50F setNameAndAddress4(String component9) {
+        return setComponent9(component9);
+    }
+
+
+
+    /**
+     * Returns the field's name composed by the field number and the letter option (if any)
+     * @return the static value of Field50F.NAME
+     */
+    @Override
+    public String getName() {
+        return NAME;
+    }
+
+    /**
+     * Gets the first occurrence form the tag list or null if not found.
+     * @return null if not found o block is null or empty
+     * @param block may be null or empty
+     */
+    public static Field50F get(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return null;
+        }
+        final Tag t = block.getTagByName(NAME);
+        if (t == null) {
+            return null;
+        }
+        return new Field50F(t) ;
+    }
+
+    /**
+     * Gets the first instance of Field50F in the given message.
+     * @param msg may be empty or null
+     * @return null if not found or msg is empty or null
+     * @see #get(SwiftTagListBlock)
+     */
+    public static Field50F get(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return null;
+        return get(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field50F in the given message
+     * an empty list is returned if none found.
+     * @param msg may be empty or null in which case an empty list is returned
+     * @see #getAll(SwiftTagListBlock)
+     */
+    public static List<Field50F> getAll(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return java.util.Collections.emptyList();
+        return getAll(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field50F from the given block
+     * an empty list is returned if none found.
+     *
+     * @param block may be empty or null in which case an empty list is returned
+     */
+    public static List<Field50F> getAll(final SwiftTagListBlock block) {
+        final List<Field50F> result = new ArrayList<>();
+        if (block == null || block.isEmpty()) {
+            return result;
+        }
+        final Tag[] arr = block.getTagsByName(NAME);
+        if (arr != null && arr.length > 0) {
+            for (final Tag f : arr) {
+                result.add( new Field50F(f));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns a specific line from the field's value.<br>
+     *
+     * @see MultiLineField#getLine(int)
+     * @param line a reference to a specific line in the field, first line being 1
+     * @return line content or null if not present or if line number is above the expected
+     * @since 7.7
+     */
+    public String getLine(int line) {
+        return getLine(line, 0);
+    }
+
+    /**
+     * Returns a specific line from the field's value.<br>
+     *
+     * @see MultiLineField#getLine(int, int)
+     * @param line a reference to a specific line in the field, first line being 1
+     * @param offset an optional component number used as offset when counting lines
+     * @return line content or null if not present or if line number is above the expected
+     * @since 7.7
+     */
+    public String getLine(int line, int offset) {
+        Field50F cp = newInstance(this);
+        return getLine(cp, line, null, offset);
+    }
+
+    /**
+     * Returns the field value split into lines.<br>
+     *
+     * @see MultiLineField#getLines()
+     * @return lines content or empty list if field's value is empty
+     * @since 7.7
+     */
+    public List<String> getLines() {
+        return SwiftParseUtils.getLines(getValue());
+    }
+
+    /**
+     * Returns the field value starting at the offset component, split into lines.<br>
+     *
+     * @see MultiLineField#getLines(int)
+     * @param offset an optional component number used as offset when counting lines
+     * @return found lines or empty list if lines are not present or the offset is invalid
+     * @since 7.7
+     */
+    public List<String> getLines(int offset) {
+        Field50F cp = newInstance(this);
+        return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
+    }
+
+    /**
+     * Returns a specific subset of lines from the field's value, given a range.<br>
+     *
+     * @see MultiLineField#getLinesBetween(int, int )
+     * @param start a reference to a specific line in the field, first line being 1
+     * @param end a reference to a specific line in the field, must be greater than start
+     * @return found lines or empty list if value is empty
+     * @since 7.7
+     */
+    public List<String> getLinesBetween(int start, int end) {
+        return getLinesBetween(start, end, 0);
+    }
+
+    /**
+     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     *
+     * @see MultiLineField#getLinesBetween(int start, int end, int offset)
+     * @param start a reference to a specific line in the field, first line being 1
+     * @param end a reference to a specific line in the field, must be greater than start
+     * @param offset an optional component number used as offset when counting lines
+     * @return found lines or empty list if lines are not present or the offset is invalid
+     * @since 7.7
+     */
+    public List<String> getLinesBetween(int start, int end, int offset) {
+        Field50F cp = newInstance(this);
+        return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
+    }
+
+    /**
+     * This method deserializes the JSON data into a Field50F object.
+     * @param json JSON structure including tuples with label and value for all field components
+     * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+     * @since 7.10.3
+     * @see Field#fromJson(String)
+     */
+    public static Field50F fromJson(final String json) {
+
+        Field50F field = new Field50F();
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(json);
+
+        // **** COMPONENT 1 - Party Identifier
+
+        if (jsonObject.get("partyIdentifier") != null) {
+            field.setComponent1(jsonObject.get("partyIdentifier").getAsString());
+        }
+
+        // **** COMPONENT 2 - Number 1
+
+        if (jsonObject.get("number1") != null) {
+            field.setComponent2(jsonObject.get("number1").getAsString());
+        }
+
+        // **** COMPONENT 3 - Name And Address 1
+
+        if (jsonObject.get("nameAndAddress1") != null) {
+            field.setComponent3(jsonObject.get("nameAndAddress1").getAsString());
+        }
+
+        // **** COMPONENT 4 - Number 2
+
+        if (jsonObject.get("number2") != null) {
+            field.setComponent4(jsonObject.get("number2").getAsString());
+        }
+
+        // **** COMPONENT 5 - Name And Address 2
+
+        if (jsonObject.get("nameAndAddress2") != null) {
+            field.setComponent5(jsonObject.get("nameAndAddress2").getAsString());
+        }
+
+        // **** COMPONENT 6 - Number 3
+
+        if (jsonObject.get("number3") != null) {
+            field.setComponent6(jsonObject.get("number3").getAsString());
+        }
+
+        // **** COMPONENT 7 - Name And Address 3
+
+        if (jsonObject.get("nameAndAddress3") != null) {
+            field.setComponent7(jsonObject.get("nameAndAddress3").getAsString());
+        }
+
+        // **** COMPONENT 8 - Number 4
+
+        if (jsonObject.get("number4") != null) {
+            field.setComponent8(jsonObject.get("number4").getAsString());
+        }
+
+        // **** COMPONENT 9 - Name And Address 4
+
+        if (jsonObject.get("nameAndAddress4") != null) {
+            field.setComponent9(jsonObject.get("nameAndAddress4").getAsString());
+        }
+
+        return field;
+    }
+
 	/**
 	 * Specific implementation for field 50F using dynamic labels based on line identifiers.
 	 * 

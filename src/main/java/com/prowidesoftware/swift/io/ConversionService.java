@@ -34,7 +34,7 @@ import java.io.StringWriter;
  *  <li><b>SwiftMessage</b>: Java model of SWIFT MT messages.</li>
  * </ul>
  * <p>This class may be used as a serializer.
- * <p>All methods in this class are <b>threadsafe</b>.
+ * <p>All methods in this class are <b>thread safe</b>.
  */
 public class ConversionService implements IConversionService {
 
@@ -44,6 +44,7 @@ public class ConversionService implements IConversionService {
      *
      * @see com.prowidesoftware.swift.io.IConversionService#getFIN(com.prowidesoftware.swift.model.SwiftMessage)
      */
+    @Override
     public String getFIN(final SwiftMessage msg) {
         Validate.notNull(msg);
 
@@ -61,6 +62,7 @@ public class ConversionService implements IConversionService {
      *
      * @see com.prowidesoftware.swift.io.IConversionService#getFIN(java.lang.String)
      */
+    @Override
     public String getFIN(final String xml) {
         Validate.notNull(xml);
         final SwiftMessage msg = getMessageFromXML(xml);
@@ -75,6 +77,7 @@ public class ConversionService implements IConversionService {
      *
      * @see com.prowidesoftware.swift.io.IConversionService#getXml(com.prowidesoftware.swift.model.SwiftMessage)
      */
+    @Override
     public String getXml(final SwiftMessage msg) {
         return getXml(msg, false);
     }
@@ -96,6 +99,7 @@ public class ConversionService implements IConversionService {
      *
      * @see com.prowidesoftware.swift.io.IConversionService#getXml(java.lang.String)
      */
+    @Override
     public String getXml(final String fin) {
         return getXml(fin, false);
     }
@@ -117,6 +121,7 @@ public class ConversionService implements IConversionService {
      *
      * @see com.prowidesoftware.swift.io.IConversionService#getMessageFromFIN(java.lang.String)
      */
+    @Override
     public SwiftMessage getMessageFromFIN(final String fin) {
         Validate.notNull(fin);
         try {
@@ -131,6 +136,7 @@ public class ConversionService implements IConversionService {
      *
      * @see com.prowidesoftware.swift.io.IConversionService#getMessageFromXML(java.lang.String)
      */
+    @Override
     public SwiftMessage getMessageFromXML(final String xml) {
         return new XMLParser().parse(xml);
     }

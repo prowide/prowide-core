@@ -38,6 +38,7 @@ public interface SchemeConstantsO {
     String ODDL = "ODDL";
     String OPC = "OPC";
     String OPS = "OPS";
+    String OFRF = "OFRF";
     String OKPE = "OKPE";
     String OMAT = "OMAT";
     String OPTF = "OPTF";
@@ -57,5 +58,7 @@ public interface SchemeConstantsO {
     String OTHRDET = "OTHRDET";
     String OVER = "OVER";
     String OTHERFNC = "OTHERFNC";
+    String OPEN = "OPEN";
+    String ONEY = "ONEY";
 
 }

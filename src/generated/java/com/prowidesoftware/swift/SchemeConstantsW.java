@@ -29,5 +29,6 @@ public interface SchemeConstantsW {
     String WITHOUT = "WITHOUT";
     String WITHOUT_OUR_CONFIRMATION = "WITHOUT_OUR_CONFIRMATION";
     String WINF = "WINF";
+    String WARR = "WARR";
 
 }

@@ -15,8 +15,6 @@
  */
 package com.prowidesoftware.swift.io;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import org.apache.commons.lang3.StringUtils;
@@ -35,6 +33,12 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     private static final Logger log = Logger.getLogger(AbstractReader.class.getName());
     protected Reader reader;
     private boolean usedAsIterable = false;
+
+    @Override
+    public abstract String next();
+
+    @Override
+    public abstract boolean hasNext();
 
     /**
      * Constructs a reader to read messages from a given Reader instance
@@ -77,35 +81,25 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     /**
      * @return this object as an Iterator
      * @throws IllegalArgumentException if the iteration is attempted more than once
-     * @deprecated the use of this object as Iterator is discourage because its internal reader can be iterated just once, use it as Iterable instead
      */
-    @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2021)
     public Iterator<String> iterator() throws IllegalArgumentException {
         if (usedAsIterable) {
-            throw new IllegalStateException("This reader has already been used as iterator and the implementation does not support multiple iterations, create another reader instead");
+            throw new IllegalStateException("This reader has already been used as Iterator and the implementation does not support multiple iterations, create another reader instance instead");
         }
         usedAsIterable = true;
         return this;
     }
 
-    public abstract String next();
-
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("remove() not available in this implementation");
-    }
-
     /**
      * Reads the next raw content from the iterator and returns the message parsed into an MT.
+     *
      * <p>IMPORTANT:<br>
-     * Since MTnnn model classes are implemented only for system and user-to-user messages
-     * (categories 0 to 9) if an ACK/NAK (service id 21) message is found, the MT following
-     * the system message is returned (not the ACK/NAK).<br>
-     * For other service messages (login, select, quit) this method will return null because
-     * there is no MT representation to create.<br>
-     * If you need to deal with all type of messages (including service, system and user-to-user)
-     * you can use {@link #nextSwiftMessage()} instead.
+     * Since MTnnn model classes are implemented only for system and user-to-user messages (categories 0 to 9) if an
+     * ACK/NAK (service id 21) message is found, the MT following the system message is returned (not the ACK/NAK).<br>
+     * For other service messages (login, select, quit) this method will return null because there is no MT
+     * representation to create.<br>
+     * If you need to deal with all type of messages (including service, system and user-to-user) you can use
+     * {@link #nextSwiftMessage()} instead.
      *
      * @return parsed message or null if content is blank
      * @throws IOException if the message content cannot be parsed into an MT
@@ -114,9 +108,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
         SwiftMessage candidate = nextSwiftMessage();
         if (candidate != null) {
             if (candidate.isServiceMessage21()) {
-                /*
-                 * message is an ACK/NACK, we parse the appended original message instead
-                 */
+                // message is an ACK/NACK, we parse the appended original message instead
                 final String fin = candidate.getUnparsedTexts().getAsFINString();
                 return AbstractMT.parse(fin);
             } else if (candidate.isServiceMessage()) {
@@ -131,8 +123,8 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 
     /**
      * Reads the next raw content from the iterator and returns the message parsed as a generic SwiftMessage.
-     * This method is convenient where the RJE content can include any type of message including
-     * service messages, system messages and user-to-user messages.
+     * This method is convenient where the RJE content can include any type of message including service messages,
+     * system messages and user-to-user messages.
      *
      * @return parsed message or null if content is blank
      * @throws IOException if the message content cannot be parsed into a SwiftMessage

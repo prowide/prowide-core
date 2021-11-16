@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -42,16 +39,6 @@ public abstract class SwiftBlock implements Serializable {
     private static final long serialVersionUID = -6993261477630953757L;
 
     /**
-     * Unique identifier of the swift block.
-     * Mainly used for persistence services.
-     *
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    protected Long id;
-
-    /**
      * List of unparsed texts. For performance reasons, this will be null until really needed.
      */
     protected UnparsedTextList unparsedTexts = null;
@@ -73,8 +60,7 @@ public abstract class SwiftBlock implements Serializable {
      * Default constructor, shouldn't be used normally.
      * <b>DO NOT USE</b>: present only for subclasses
      */
-    public SwiftBlock() {
-
+    protected SwiftBlock() {
     }
 
     /**
@@ -146,32 +132,6 @@ public abstract class SwiftBlock implements Serializable {
      * @since 5.0
      */
     public abstract String getName();
-
-    /**
-     * Get the unique identifier of this block or null if it is not set
-     *
-     * @return the unique identifier
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public Long getId() {
-        DeprecationUtils.phase3(getClass(), "getId()", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-        return id;
-    }
-
-    /**
-     * Sets the unique identifier of this block
-     *
-     * @param id the unique identifier to set.
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public void setId(final Long id) {
-        DeprecationUtils.phase3(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-        this.id = id;
-    }
 
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

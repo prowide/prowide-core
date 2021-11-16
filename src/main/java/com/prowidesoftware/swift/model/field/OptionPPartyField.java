@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 
@@ -39,7 +41,23 @@ import java.util.*;
  */
 public abstract class OptionPPartyField extends Field implements BICContainer {
     public static final String PARSER_PATTERN = ":S//S";
+
+    /**
+     * Components pattern
+     *
+     * This is <em>DEPRECATED</em>, use <code>TYPES_PATTERN</code> instead.
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public static final String COMPONENTS_PATTERN = "SB";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type of each component
+     */
+    public static final String TYPES_PATTERN = "SB";
 
     /**
      * Component number for the Qualifier subfield
@@ -47,8 +65,17 @@ public abstract class OptionPPartyField extends Field implements BICContainer {
     public static final Integer QUALIFIER = 1;
 
     /**
-     * Component number for the BIC subfield
+     * Component number for the Identifier Code subfield
      */
+    public static final Integer IDENTIFIER_CODE = 2;
+
+    /**
+     * Component number for the BIC subfield
+     *
+     * Use <code>IDENTIFIER_CODE</code> instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public static final Integer BIC = 2;
 
     /**
@@ -117,11 +144,28 @@ public abstract class OptionPPartyField extends Field implements BICContainer {
     /**
      * Returns the field components pattern
      *
+     * This is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
      * @return the static value of COMPONENTS_PATTERN
+     * @see #typesPattern()
      */
+    @Deprecated
+    @ProwideDeprecated(phase2= TargetYear.SRU2022)
     @Override
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @see #TYPES_PATTERN
+     * @return the static value of TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
     }
 
     /**
@@ -189,7 +233,7 @@ public abstract class OptionPPartyField extends Field implements BICContainer {
     protected List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("BIC");
+        result.add("Identifier Code");
         return result;
     }
 
@@ -202,7 +246,7 @@ public abstract class OptionPPartyField extends Field implements BICContainer {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "bIC");
+        result.put(2, "identifierCode");
         return result;
     }
 
@@ -249,21 +293,49 @@ public abstract class OptionPPartyField extends Field implements BICContainer {
     }
 
     /**
+     * Gets the Identifier Code (component3).
+     *
+     * @return the BIC from component3
+     */
+    public String getIdentifierCode() {
+        return getComponent2();
+    }
+
+    /**
+     * Get the Identifier Code (component3) as BIC
+     *
+     * @return the BIC from component3 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
+        return getComponent2AsBIC();
+    }
+
+    /**
      * Gets the BIC (component2).
      *
+     * Use <code>getIdentifierCode</code> instead
+     *
      * @return the BIC from component2
+     * @see #getIdentifierCode()
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public String getBIC() {
-        return getComponent(2);
+        return getComponent2();
     }
 
     /**
      * Get the BIC (component2) as BIC
      *
+     * Use <code>getIdentifierCodeAsBIC</code> instead
+     *
      * @return the BIC from component2 converted to BIC or null if cannot be converted
+     * @see #getIdentifierCodeAsBIC()
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-        return SwiftFormatUtils.getBIC(getComponent(2));
+        return getComponent2AsBIC();
     }
 
     @Override

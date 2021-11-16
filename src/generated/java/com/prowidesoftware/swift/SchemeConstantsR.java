@@ -107,12 +107,15 @@ public interface SchemeConstantsR {
     String RHOD = "RHOD";
     String RUTH = "RUTH";
     String REPALL = "REPALL";
+    String RETURN = "RETURN";
     String RETD = "RETD";
     String REFE = "REFE";
     String REQISSUE = "REQISSUE";
     String REQAMEND = "REQAMEND";
     String REIMBURS = "REIMBURS";
     String REQFINAN = "REQFINAN";
+    String RETN = "RETN";
+    String REGM = "REGM";
     String RC = "RC";
     String RD = "RD";
 

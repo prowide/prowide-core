@@ -67,6 +67,8 @@ public interface SchemeConstantsT {
     String TSTA = "TSTA";
     String TRAA = "TRAA";
     String TRCI = "TRCI";
+    String TRTI = "TRTI";
+    String TENO = "TENO";
     String TOVA = "TOVA";
     String TCPI = "TCPI";
     String TRANSDET = "TRANSDET";
@@ -114,5 +116,6 @@ public interface SchemeConstantsT {
     String TAL = "TAL";
     String TTNA = "TTNA";
     String TRANSFER = "TRANSFER";
+    String TEND = "TEND";
 
 }

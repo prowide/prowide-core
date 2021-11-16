@@ -39,6 +39,7 @@ import java.io.IOException;
  <div class="scheme"><ul>
 <li class="field">Field 27  (M)</li>
 <li class="field">Field 20  (M)</li>
+<li class="field">Field 21  (M)</li>
 <li class="field">Field 23  (M)</li>
 <li class="field">Field 26 E (M)</li>
 <li class="field">Field 30  (M)</li>
@@ -51,7 +52,7 @@ import java.io.IOException;
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2020</strong>
+ * This source code is specific to release <strong>SRU 2021</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -60,7 +61,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT708.class.getName());
 	
@@ -325,6 +326,24 @@ public class MT708 extends AbstractMT implements Serializable {
 		final Tag t = tag("20");
 		if (t != null) {
 			return new Field20(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 21, 
+	 * or null if none is found.<br>
+	 * The first occurrence of field 21 at MT708 is expected to be the only one.
+	 * 
+	 * @return a Field21 object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field21 getField21() {
+		final Tag t = tag("21");
+		if (t != null) {
+			return new Field21(t.getValue());
 		} else {
 			return null;
 		}

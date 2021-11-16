@@ -17,9 +17,6 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import org.apache.commons.lang3.Validate;
 
 import java.io.Serializable;
@@ -434,9 +431,6 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
                 if (slen != 16 && slen != 17 && slen != 18 && slen != 21) {
                     throw new IllegalArgumentException("Value must match: I<mt><address>[<pri>[<monitoring>[<obsolescence>]]]");
                 }
-                if (Character.toUpperCase(value.charAt(offset)) != 'I') {
-                    throw new IllegalArgumentException("Value must match: I<mt><address>[<pri>[<monitoring>[<obsolescence>]]]");
-                }
             }
             offset++; // skip the input mark
 
@@ -495,31 +489,6 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), receiverAddress, deliveryMonitoring, obsolescencePeriod);
-    }
-
-    /**
-     * Legacy (version 1) json representation of this object.
-     *
-     * <p>This implementation has been replaced by version 2, based on Gson.
-     *
-     * @since 7.9.8
-     * @deprecated use {@link #toJson()} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String toJsonV1() {
-        DeprecationUtils.phase3(getClass(), "toJsonV1()", "use toJson() instead");
-        final StringBuilder sb = new StringBuilder();
-        sb.append("{ \n");
-
-        sb.append(" \"messageType\" : \"").append(messageType).append(SEPARATOR);
-        sb.append(" \"receiverAddress\" : \"").append(receiverAddress).append(SEPARATOR);
-        sb.append(" \"messagePriority\" : \"").append(messagePriority).append(SEPARATOR);
-        sb.append(" \"deliveryMonitoring\" : \"").append(deliveryMonitoring).append(SEPARATOR);
-        sb.append(" \"obsolescencePeriod\" : \"").append(obsolescencePeriod).append("\" \n");
-
-        sb.append("} ");
-        return sb.toString();
     }
 
     /**

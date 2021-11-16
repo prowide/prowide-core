@@ -63,6 +63,7 @@ public interface SchemeConstantsA {
     String ALLO = "ALLO";
     String AKTI = "AKTI";
     String AUTA = "AUTA";
+    String ALTA = "ALTA";
     String AVAI = "AVAI";
     String ACTI = "ACTI";
     String AGGR = "AGGR";
@@ -74,6 +75,7 @@ public interface SchemeConstantsA {
     String AGDE = "AGDE";
     String ACTV = "ACTV";
     String AMCO = "AMCO";
+    String ALRP = "ALRP";
     String AMNT = "AMNT";
     String ASRF = "ASRF";
     String ALOC = "ALOC";
@@ -105,5 +107,9 @@ public interface SchemeConstantsA {
     String ACNF = "ACNF";
     String APPL = "APPL";
     String ADDING_OUR_CONFIRMATION = "ADDING_OUR_CONFIRMATION";
+    String APAY = "APAY";
+    String ACNA = "ACNA";
+    String ADVA = "ADVA";
+    String ACCP = "ACCP";
 
 }

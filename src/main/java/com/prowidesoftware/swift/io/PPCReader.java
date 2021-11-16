@@ -23,7 +23,9 @@ import java.util.logging.Logger;
  * <p>
  * File content is split, and the iterator returns the raw message content of each SWIFT message found in the file.
  * API is also provided to read each message parsed into an MT.
- * The reader can be initialized with a File, Stream or String.
+ * <p>
+ * The reader can be created from a String but also from a Reader, File or Stream; thus when used as an iterator you
+ * can iterate it just once, it is not re-entrant.
  *
  * @since 7.8
  */
@@ -65,6 +67,7 @@ public class PPCReader extends AbstractReader {
     /**
      * Returns true if the iterator has more messages
      */
+    @Override
     public boolean hasNext() {
         if (this.reader == null) {
             throw new IllegalStateException("reader is null");
@@ -107,4 +110,5 @@ public class PPCReader extends AbstractReader {
             throw new IllegalStateException("hasNext did not return true but this method was called");
         }
     }
+
 }

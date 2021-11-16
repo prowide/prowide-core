@@ -42,6 +42,7 @@ public interface SchemeConstantsL {
     String LIDT = "LIDT";
     String LYDT = "LYDT";
     String LOTE = "LOTE";
+    String LKBD = "LKBD";
     String LIQU = "LIQU";
     String LISH = "LISH";
     String LAPD = "LAPD";
@@ -54,5 +55,6 @@ public interface SchemeConstantsL {
     String LBTY = "LBTY";
     String LIT = "LIT";
     String LEAD = "LEAD";
+    String LEAS = "LEAS";
 
 }

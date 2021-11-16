@@ -65,6 +65,7 @@ public interface SchemeConstantsS {
     String SEBL = "SEBL";
     String SUBS = "SUBS";
     String SHS = "SHS";
+    String SPIA = "SPIA";
     String SECMOVE = "SECMOVE";
     String STTP = "STTP";
     String SPLT = "SPLT";
@@ -94,6 +95,7 @@ public interface SchemeConstantsS {
     String STIN = "STIN";
     String SHRT = "SHRT";
     String SXDT = "SXDT";
+    String SODF = "SODF";
     String STAC = "STAC";
     String STAQ = "STAQ";
     String SECDET = "SECDET";
@@ -108,5 +110,6 @@ public interface SchemeConstantsS {
     String SSIR = "SSIR";
     String SSIDET = "SSIDET";
     String STBY = "STBY";
+    String STND = "STND";
 
 }

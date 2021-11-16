@@ -55,15 +55,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     protected List<String> components;
 
     /**
-     * @deprecated use {@link #Field(int)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    protected Field() {
-        DeprecationUtils.phase3(getClass(), "Field() no args constructor", "Use the constructor Field(int) with the number of components parameter instead");
-    }
-
-    /**
      * Creates a field with the list of components initialized to the given number of components.
      *
      * @param components the number of components to initialize
@@ -614,8 +605,11 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             if (c.equals(String.class)) {
                 return s;
 
-            } else if (c.equals(Number.class) || c.equals(BigDecimal.class)) {
+            } else if (c.equals(Number.class)) {
                 return SwiftFormatUtils.getNumber(s);
+
+            } else if (c.equals(BigDecimal.class)) {
+                return SwiftFormatUtils.getBigDecimal(s);
 
             } else if (c.equals(BIC.class)) {
                 return new BIC(s);
@@ -628,6 +622,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
 
             } else if (c.equals(Integer.class)) {
                 return Integer.valueOf(s);
+
+            } else if (c.equals(Long.class)) {
+                return Long.valueOf(s);
 
             } else {
                 throw new IllegalArgumentException("Can't handle " + c.getName());
@@ -781,11 +778,25 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public abstract String getName();
 
     /**
-     * Returns the field's components pattern
+     * Returns the field components pattern
      *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field${dto.getField()}.COMPONENTS_PATTERN
      * @since 7.8
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public abstract String componentsPattern();
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     */
+    @Override
+    public abstract String typesPattern();
 
     /**
      * Returns the field's validator pattern
@@ -797,35 +808,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public abstract boolean isOptional(int component);
 
     public abstract boolean isGeneric();
-
-    /**
-     * Moved to GenericField Interface
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String getDSS() {
-        return null;
-    }
-
-    // FIXME debido a esto: el nombre del field deberia ser validado y eliminado como atributo dinamico
-
-    /**
-     * Moved to GenericField Interface
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public boolean isDSSPresent() {
-        return false;
-    }
-
-    /**
-     * Moved to GenericField Interface
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String getConditionalQualifier() {
-        return null;
-    }
 
     /**
      * Return the letter option of this field as given by it classname or null if this field has no letter option

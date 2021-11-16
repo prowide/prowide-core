@@ -18,9 +18,6 @@ package com.prowidesoftware.swift.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.prowidesoftware.JsonSerializable;
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.parser.SwiftParserConfiguration;
 import com.prowidesoftware.swift.io.parser.XMLParser;
@@ -36,7 +33,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
@@ -61,42 +57,13 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftMessage.class.getName());
     private static final String INVALID_NAME_BLOCK = "Invalid name for User Defined Blocks (";
     private static final String MESSAGE_IS_NOT_A_FRAGMENT = "message is not a fragment";
-    /**
-     * Identification of the message when persisted
-     *
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    protected Long id;
-    /**
-     * Block 1
-     */
+
     private SwiftBlock1 block1;
-    /**
-     * Block 2
-     */
     private SwiftBlock2 block2;
-    /**
-     * Block 3
-     */
     private SwiftBlock3 block3;
-    /**
-     * Block 4
-     */
     private SwiftBlock4 block4;
-    /**
-     * Block 5
-     */
     private SwiftBlock5 block5;
-    /**
-     * Placeholder for the root of the sequences parsed in this message
-     *
-     * @deprecated to retrieve fields in sequences use the AbstractMT model
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    private SequenceNode parsedSequences;
+
     /**
      * User defined blocks
      * List of {@link SwiftBlockUser}.
@@ -104,6 +71,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @since 5.0
      */
     private List<SwiftBlockUser> userBlocks;
+
     /**
      * List of unparsed texts. For performance reasons, this will be null until really needed.
      */
@@ -473,20 +441,6 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
         // stop visiting
         visitor.endMessage(this);
-    }
-
-    /**
-     * Set the unique identifier of this message
-     *
-     * @param id the id to be set
-     * @see #id
-     * @deprecated use persistence mapping in the AbstractSwiftMessage model instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public void setId(final Long id) {
-        DeprecationUtils.phase3(getClass(), "setId(Long)", "The SwiftMessage model is no more intended for persistence, use the more effective JPA annotated model in AbstractSwiftMessage instead");
-        this.id = id;
     }
 
     /**
@@ -1336,6 +1290,29 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
+     * The MOR (Message Output Reference) is a String of 28 characters, always local to the receiver of the message.
+     * It includes the message output date, the address of the receiver, the output session number, and the output
+     * sequence number.: YYMMDD BANKBEBBAXXX 2222 123456.
+     * It is only available in incoming messages (received from SWIFT).
+     *
+     * @since 9.2.7
+     */
+    public String getMOR() {
+        if (this.block2 != null && this.block2.isOutput()) {
+            SwiftBlock2Output swiftBlock2Output = ((SwiftBlock2Output) this.block2);
+            String date = swiftBlock2Output.getReceiverOutputDate();
+            if (this.block1 != null) {
+                String logicalTerminal = this.block1.getLogicalTerminal();
+                String sessionNumber = this.block1.getSessionNumber();
+                String sequenceNumber = this.block1.getSequenceNumber();
+                MOR mor = new MOR(date, logicalTerminal, sessionNumber, sequenceNumber);
+                return mor.getMOR();
+            }
+        }
+        return null;
+    }
+
+    /**
      * Gets MUR (Message User Reference) from field 108 in the user header block (block 3) or in the text block
      * (block 4). Notice for user to user messages this field is located at the user header, however for system messages
      * (category 0) the field is located at the text block.
@@ -1436,20 +1413,6 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         return getUUID() + suffix;
     }
 
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public SequenceNode getParsedSequences() {
-        DeprecationUtils.phase3(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
-        return parsedSequences;
-    }
-
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public void setParsedSequences(final SequenceNode parsedSequences) {
-        DeprecationUtils.phase3(getClass(), "getParsedSequences()", "This is part of an discarded attempt to provide a structured model in the SwiftMessage object, it is still kept for backward compatibility but should not be used");
-        this.parsedSequences = parsedSequences;
-    }
-
     /**
      * return first results of fields() or null if none
      *
@@ -1488,78 +1451,6 @@ public class SwiftMessage implements Serializable, JsonSerializable {
             return this.block4.getSubBlocks("LINK");
         }
         return null;
-    }
-
-    /**
-     * Legacy (version 1) json representation of this object.
-     *
-     * <p>This implementation has been replaced by version 2, based on Gson.
-     * The main difference is in block4 where the new version serializes the list
-     * of Tag under a field named "tags", and in block 2 where the direction (I/O)
-     * has been explicitly added.
-     *
-     * @since 7.9.8
-     * @deprecated use {@link #toJson()} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public String toJsonV1() {
-        DeprecationUtils.phase3(getClass(), "toJsonV1()", "use toJson() instead");
-        /*
-         * Return an ISO 8601 combined date and time string for current timestamp
-         */
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
-        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        final String ts = dateFormat.format(Calendar.getInstance().getTime());
-
-        final StringBuilder sb = new StringBuilder();
-        sb.append("{ \"version\" : ").append(JSON_VERSION).append(",\n");
-
-        sb.append(" \"timestamp\" : \"").append(ts).append("\",\n");
-
-        sb.append(" \"data\" : { \n");
-
-        sb.append("\"block1\" : \n");
-        if (this.block1 == null) {
-            sb.append(" {}");
-        } else {
-            sb.append(this.block1.toJson());
-        }
-        sb.append(",\n");
-
-        sb.append("\"block2\" : \n");
-        if (this.block2 == null) {
-            sb.append(" {}");
-        } else {
-            sb.append(this.block2.toJson());
-        }
-        sb.append(",\n"); // block
-
-        appendBlock("3", sb, this.block3);
-        sb.append(',');
-        appendBlock("4", sb, this.block4);
-        sb.append(',');
-        appendBlock("5", sb, this.block5);
-
-        // add user blocks add if present - requires starting with a comma
-        if (this.userBlocks != null && !this.userBlocks.isEmpty()) {
-            final Iterator<SwiftBlockUser> ubit = this.userBlocks.iterator();
-            sb.append(',');
-            sb.append("\"userblocks\" : [ \n");
-            while (ubit.hasNext()) {
-                final SwiftBlockUser ub = ubit.next();
-                sb.append("{ ");
-                sb.append("\"name\" :  \"").append(ub.getName()).append("\",\n \"tags\" : ");
-                sb.append(ub.toJson());
-                sb.append("}\n");
-            }
-            sb.append("] \n");
-        }
-
-        sb.append("}\n"); // data
-        sb.append("}\n"); // message
-
-        return sb.toString();
     }
 
     /**

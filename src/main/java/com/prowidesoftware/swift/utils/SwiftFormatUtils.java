@@ -109,8 +109,9 @@ public class SwiftFormatUtils {
      * @since 7.8.8
      * @deprecated use Year.now().isLeap() instead
      */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2021)
-    public static boolean isLeapYear() {
+    @ProwideDeprecated(phase3 = TargetYear.SRU2022)
+    public static final boolean isLeapYear() {
+        DeprecationUtils.phase2(SwiftFormatUtils.class, "isLeapYear()", "use Year.now().isLeap() instead");
         return Year.now().isLeap();
     }
 
@@ -215,6 +216,34 @@ public class SwiftFormatUtils {
     /**
      * Parses a value into a java Number (BigDecimal) using the comma for decimal separator.
      *
+     * @param value to parse
+     * @return Long of the parsed value or null if the number could not be parsed
+     */
+    public static Long getLong(final String value) {
+        Long number = null;
+        if (value != null) {
+            try {
+                number = Long.valueOf(value);
+            } catch (final NumberFormatException e) {
+                log.log(java.util.logging.Level.WARNING, "Error parsing number", e);
+            }
+        }
+        return number;
+    }
+
+    /**
+     * Converts a Long into a SWIFT string number
+     *
+     * @param number to convert
+     * @return String representation of the converted number
+     */
+    public static String getLong(final Long number) {
+        return number != null ? number.toString() : null;
+    }
+
+    /**
+     * Parses a value into a java Number (BigDecimal) using the comma for decimal separator.
+     *
      * @param amount to parse
      * @return Number of the parsed amount or null if the number could not be parsed
      */
@@ -253,6 +282,52 @@ public class SwiftFormatUtils {
             df.setParseBigDecimal(true);
             df.setDecimalSeparatorAlwaysShown(true);
             final String formatted = df.format(number);
+            return StringUtils.replaceChars(formatted, '.', ',');
+        }
+        return null;
+    }
+
+    /**
+     * Parses a value into a java Number (BigDecimal) using the comma for decimal separator.
+     *
+     * @param amount to parse
+     * @return Number of the parsed amount or null if the number could not be parsed
+     */
+    public static BigDecimal getBigDecimal(final String amount) {
+        BigDecimal bigDecimal = null;
+        if (amount != null) {
+            try {
+                final DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                symbols.setDecimalSeparator(',');
+                final DecimalFormat df = new DecimalFormat("00.##", symbols);
+                df.setParseBigDecimal(true);
+                bigDecimal = (BigDecimal) df.parse(amount);
+            } catch (final ParseException e) {
+                log.log(java.util.logging.Level.WARNING, "Error parsing number", e);
+            }
+        }
+        return bigDecimal;
+    }
+
+    /**
+     * Parses a Number into a SWIFT string number ####,## with truncated zero decimals and mandatory decimal separator.
+     * <ul>
+     * 	<li>Example: 1234.00 -&gt; 1234,</li>
+     * 	<li>Example: 1234 -&gt; 1234,</li>
+     * 	<li>Example: 1234.56 -&gt; 1234,56</li>
+     * </ul>
+     *
+     * @param bigDecimal to parse
+     * @return Number of the parsed amount or null if the number is null
+     */
+    public static String getBigDecimal(final BigDecimal bigDecimal) {
+        if (bigDecimal != null) {
+            final DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setDecimalSeparator(',');
+            final DecimalFormat df = new DecimalFormat("0.##########", symbols);
+            df.setParseBigDecimal(true);
+            df.setDecimalSeparatorAlwaysShown(true);
+            final String formatted = df.format(bigDecimal);
             return StringUtils.replaceChars(formatted, '.', ',');
         }
         return null;
@@ -660,26 +735,6 @@ public class SwiftFormatUtils {
         } else {
             return null;
         }
-    }
-
-    /**
-     * Tell if <code>string</code> is a valid currency code using Currency isntances from Java
-     *
-     * @param string the string to test for a currency code
-     * @return true if string is a valid currency code and false in other case, including null and empty
-     * @deprecated use {@link IsoUtils#isValidISOCurrency(String)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2021)
-    public static boolean isCurrency(final String string) {
-        DeprecationUtils.phase3(SwiftFormatUtils.class, "isCurrency(String)", "use IsoUtils#isValidISOCurrency(String) instead");
-        if (StringUtils.isNotBlank(string)) {
-            try {
-                return Currency.getInstance(string) != null;
-            } catch (final Exception ignored) {
-            }
-        }
-        return false;
     }
 
     /**

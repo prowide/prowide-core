@@ -38,16 +38,17 @@ public interface SchemeConstantsB {
     String BCOL = "BCOL";
     String BAKL = "BAKL";
     String BON = "BON";
+    String BREAK = "BREAK";
     String BORR = "BORR";
     String BYIY = "BYIY";
     String BCAM = "BCAM";
     String BDEF = "BDEF";
-    String BREAK = "BREAK";
     String BOOK = "BOOK";
     String BDEV = "BDEV";
     String BYSTAREA = "BYSTAREA";
     String BWIT = "BWIT";
     String BOLQ = "BOLQ";
+    String BIRI = "BIRI";
     String BASE = "BASE";
     String BIDI = "BIDI";
     String BORD = "BORD";
@@ -60,5 +61,6 @@ public interface SchemeConstantsB {
     String BMRB = "BMRB";
     String BRIT = "BRIT";
     String BUY = "BUY";
+    String BILL = "BILL";
 
 }

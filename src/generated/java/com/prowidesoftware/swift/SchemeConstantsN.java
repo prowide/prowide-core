@@ -68,7 +68,11 @@ public interface SchemeConstantsN {
     String NBUF = "NBUF";
     String NOBL = "NOBL";
     String NOT_ALLOWED = "NOT_ALLOWED";
+    String NOTIFY = "NOTIFY";
     String NOTURR = "NOTURR";
     String NONE = "NONE";
+    String NPRT = "NPRT";
+    String NMLT = "NMLT";
+    String NMPT = "NMPT";
 
 }

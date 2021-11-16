@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -24,14 +26,16 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Currency;
-import com.prowidesoftware.swift.model.field.CurrencyContainer;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
+
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Currency;
+
+import com.prowidesoftware.swift.model.field.GenericField;
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.AmountResolver;
-import com.prowidesoftware.swift.model.field.GenericField;
-
+import com.prowidesoftware.swift.model.field.CurrencyContainer;
+import com.prowidesoftware.swift.model.field.CurrencyResolver;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -51,9 +55,9 @@ import com.google.gson.JsonParser;
  * <p>Subfields (components) Data types
  * <ol>
  * 		<li><code>String</code></li>
- * 		<li><code>Number</code></li>
+ * 		<li><code>BigDecimal</code></li>
  * 		<li><code>Currency</code></li>
- * 		<li><code>Number</code></li>
+ * 		<li><code>BigDecimal</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -64,7 +68,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2020</strong>
+ * This class complies with standard release <strong>SRU2021</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -72,7 +76,7 @@ public class Field92N extends Field implements Serializable, CurrencyContainer, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -83,8 +87,26 @@ public class Field92N extends Field implements Serializable, CurrencyContainer, 
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_92N = "92N";
-	public static final String PARSER_PATTERN =":S//N/SN";
+	public static final String PARSER_PATTERN = ":S//N/SN";
+
+    /**
+     * Components pattern
+     *
+     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
+     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SNCN";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
+     * @since 9.2.7
+     */
+	public static final String TYPES_PATTERN = "SICI";
 
 	/**
 	 * Component number for the Qualifier subfield
@@ -97,180 +119,210 @@ public class Field92N extends Field implements Serializable, CurrencyContainer, 
 	public static final Integer QUANTITY = 2;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency Code subfield
 	 */
-	public static final Integer CURRENCY = 3;
+	public static final Integer CURRENCY_CODE = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code Component number
+	 * @see #CURRENCY_CODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CURRENCY = 3;
 
 	/**
 	 * Component number for the Amount subfield
 	 */
 	public static final Integer AMOUNT = 4;
 
-	/**
-	 * Default constructor. Creates a new field setting all components to null.
-	 */
-	public Field92N() {
-		super(4);
-	}
-	    					
-	/**
-	 * Creates a new field and initializes its components with content from the parameter value.
-	 * @param value complete field value including separators and CRLF
-	 */
-	public Field92N(final String value) {
-		super(value);
-	}
-	
-	/**
-	 * Creates a new field and initializes its components with content from the parameter tag.
-	 * The value is parsed with {@link #parse(String)} 	 
-	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
-	 * @since 7.8
-	 */
-	public Field92N(final Tag tag) {
-		this();
-		if (tag == null) {
-			throw new IllegalArgumentException("tag cannot be null.");
-		}
-		if (!StringUtils.equals(tag.getName(), "92N")) {
-			throw new IllegalArgumentException("cannot create field 92N from tag "+tag.getName()+", tagname must match the name of the field.");
-		}
-		parse(tag.getValue());
-	}
+    /**
+     * Default constructor. Creates a new field setting all components to null.
+     */
+    public Field92N() {
+        super(4);
+    }
 
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field92N newInstance(Field92N source) {
-		Field92N cp = new Field92N();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter value.
+     * @param value complete field value including separators and CRLF
+     */
+    public Field92N(final String value) {
+        super(value);
+    }
 
-	/**
-	 * Create a Tag with this field name and the given value.
-	 * Shorthand for <code>new Tag(NAME, value)</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter tag.
+     * The value is parsed with {@link #parse(String)}
+     * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
+     * @since 7.8
+     */
+    public Field92N(final Tag tag) {
+        this();
+        if (tag == null) {
+            throw new IllegalArgumentException("tag cannot be null.");
+        }
+        if (!StringUtils.equals(tag.getName(), "92N")) {
+            throw new IllegalArgumentException("cannot create field 92N from tag "+tag.getName()+", tagname must match the name of the field.");
+        }
+        parse(tag.getValue());
+    }
 
-	/**
-	 * Create a Tag with this field name and an empty string as value
-	 * Shorthand for <code>new Tag(NAME, "")</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
+    /**
+     * Copy constructor.<br>
+     * Initializes the components list with a deep copy of the source components list.
+     * @param source a field instance to copy
+     * @since 7.7
+     */
+    public static Field92N newInstance(Field92N source) {
+        Field92N cp = new Field92N();
+        cp.setComponents(new ArrayList<>(source.getComponents()));
+        return cp;
+    }
+
+    /**
+     * Create a Tag with this field name and the given value.
+     * Shorthand for <code>new Tag(NAME, value)</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag tag(final String value) {
+        return new Tag(NAME, value);
+    }
+
+    /**
+     * Create a Tag with this field name and an empty string as value
+     * Shorthand for <code>new Tag(NAME, "")</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag emptyTag() {
+        return new Tag(NAME, "");
+    }
 
 
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(4);
-		setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
-		String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
-		setComponent2(SwiftParseUtils.getTokenFirst(toparse, "/"));
-		setComponent3(SwiftParseUtils.getAlphaPrefix(SwiftParseUtils.getTokenSecondLast(toparse, "/")));
-		setComponent4(SwiftParseUtils.getNumericSuffix(SwiftParseUtils.getTokenSecondLast(toparse, "/")));
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		result.append(":");
-		append(result, 1);
-		result.append("//");
-		append(result, 2);
-		result.append("/");
-		append(result, 3);
-		append(result, 4);
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 4) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 92N");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent2AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		if (component == 4) {
-			//number, amount, rate
-			java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-			f.setMaximumFractionDigits(13);
-    		Number n = getComponent4AsNumber();
-			if (n != null) {
-				return f.format(n);
-			}
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field92N.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
+    /**
+     * Parses the parameter value into the internal components structure.
+     *
+     * <p>Used to update all components from a full new value, as an alternative
+     * to setting individual components. Previous component values are overwritten.
+     *
+     * @param value complete field value including separators and CRLF
+     * @since 7.8
+     */
+    @Override
+    public void parse(final String value) {
+        init(4);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
+        String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
+        setComponent2(SwiftParseUtils.getTokenFirst(toparse, "/"));
+        setComponent3(SwiftParseUtils.getAlphaPrefix(SwiftParseUtils.getTokenSecondLast(toparse, "/")));
+        setComponent4(SwiftParseUtils.getNumericSuffix(SwiftParseUtils.getTokenSecondLast(toparse, "/")));
+    }
 
-	/**
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        result.append(":");
+        append(result, 1);
+        result.append("//");
+        append(result, 2);
+        result.append("/");
+        append(result, 3);
+        append(result, 4);
+        return result.toString();
+    }
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param component number of the component to display
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component number is invalid or not present
+     * @throws IllegalArgumentException if component number is invalid for the field
+     * @since 7.8
+     */
+    @Override
+    public String getValueDisplay(int component, Locale locale) {
+        if (component < 1 || component > 4) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 92N");
+        }
+        if (component == 1) {
+            //default format (as is)
+            return getComponent(1);
+        }
+        if (component == 2) {
+            //amount, rate
+            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+            f.setMaximumFractionDigits(13);
+            BigDecimal n = getComponent2AsBigDecimal();
+            if (n != null) {
+                return f.format(n);
+            }
+        }
+        if (component == 3) {
+            //default format (as is)
+            return getComponent(3);
+        }
+        if (component == 4) {
+            //amount, rate
+            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+            f.setMaximumFractionDigits(13);
+            BigDecimal n = getComponent4AsBigDecimal();
+            if (n != null) {
+                return f.format(n);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the field components pattern
+     *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field92N.COMPONENTS_PATTERN
+     */
+    @Override
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public final String componentsPattern() {
+        return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @since 9.2.7
+     * @see #TYPES_PATTERN
+     * @return the static value of Field92N.TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
+    }
+
+    /**
      * Returns the field parser pattern
      * @return the static value of Field92N.PARSER_PATTERN
      */
-	@Override
-	public final String parserPattern() {
+    @Override
+    public final String parserPattern() {
         return PARSER_PATTERN;
     }
 
-	/**
-	 * Returns the field validator pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return ":4!c//<AMOUNT>15/<CUR><AMOUNT>15";
-	}
+    /**
+     * Returns the field validator pattern
+     */
+    @Override
+    public final String validatorPattern() {
+        return ":4!c//<AMOUNT>15/<CUR><AMOUNT>15";
+    }
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -296,483 +348,725 @@ public class Field92N extends Field implements Serializable, CurrencyContainer, 
         return true;
     }
 
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 4;
-	}
+    /**
+     * Returns the defined amount of components.<br>
+     * This is not the amount of components present in the field instance, but the total amount of components
+     * that this field accepts as defined.
+     * @since 7.7
+     */
+    @Override
+    public int componentsSize() {
+        return 4;
+    }
 
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Qualifier");
-		result.add("Quantity");
-		result.add("Currency");
-		result.add("Amount");
-		return result;
-	}
+    /**
+     * Returns english label for components.
+     * <br>
+     * The index in the list is in sync with specific field component structure.
+     * @see #getComponentLabel(int)
+     * @since 7.8.4
+     */
+    @Override
+    protected List<String> getComponentLabels() {
+        List<String> result = new ArrayList<>();
+        result.add("Qualifier");
+        result.add("Quantity");
+        result.add("Currency Code");
+        result.add("Amount");
+        return result;
+    }
 
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "qualifier");
-		result.put(2, "quantity");
-		result.put(3, "currency");
-		result.put(4, "amount");
-		return result;
-	}
-	/**
-	 * Gets the component 1 (Qualifier).
-	 * @return the component 1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Qualifier (component 1).
-	 * @return the Qualifier from component 1
-	 */
-	public String getQualifier() {
-		return getComponent(1);
-	}
-	/**
-	 * Gets the component 2 (Quantity).
-	 * @return the component 2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Get the component 2 as Number
-	 * @return the component 2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent2AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-
-	/**
-	 * Gets the Quantity (component 2).
-	 * @return the Quantity from component 2
-	 */
-	public String getQuantity() {
-		return getComponent(2);
-	}
-	
-	/**
-	 * Get the Quantity (component 2) as Number
-	 * @return the Quantity from component 2 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getQuantityAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(2));
-	}
-	/**
-	 * Gets the component 3 (Currency).
-	 * @return the component 3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Get the component 3 as Currency
-	 * @return the component 3 converted to Currency or null if cannot be converted
-	 */
-	public java.util.Currency getComponent3AsCurrency() {
-		return SwiftFormatUtils.getCurrency(getComponent(3));
-	}
-
-	/**
-	 * Gets the Currency (component 3).
-	 * @return the Currency from component 3
-	 */
-	public String getCurrency() {
-		return getComponent(3);
-	}
-	
-	/**
-	 * Get the Currency (component 3) as Currency
-	 * @return the Currency from component 3 converted to Currency or null if cannot be converted
-	 */
-	public java.util.Currency getCurrencyAsCurrency() {
-		return SwiftFormatUtils.getCurrency(getComponent(3));
-	}
-	/**
-	 * Gets the component 4 (Amount).
-	 * @return the component 4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Get the component 4 as Number
-	 * @return the component 4 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getComponent4AsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(4));
-	}
-
-	/**
-	 * Gets the Amount (component 4).
-	 * @return the Amount from component 4
-	 */
-	public String getAmount() {
-		return getComponent(4);
-	}
-	
-	/**
-	 * Get the Amount (component 4) as Number
-	 * @return the Amount from component 4 converted to Number or null if cannot be converted
-	 */
-	public java.lang.Number getAmountAsNumber() {
-		return SwiftFormatUtils.getNumber(getComponent(4));
-	}
-    
-	public List<String> currencyStrings() {
-		return CurrencyResolver.resolveComponentsPattern(COMPONENTS_PATTERN, components);
-	}
-
-	public List<Currency> currencies() {
-		final List<String> l = currencyStrings();
-		if (l.isEmpty()) {
-			return java.util.Collections.emptyList();
-		}
-		final List<Currency> result = new ArrayList<>();
-		for (String s: l) {
-			result.add(Currency.getInstance(s));
-		}
-		return result;
-	}
-    
-	public Currency currency() {
-		return CurrencyResolver.resolveCurrency(this);
-	}
-
-	public String currencyString() {
-		return CurrencyResolver.resolveCurrencyString(this);
-	}
-
-	public void initializeCurrencies(String cur) {
-		CurrencyResolver.resolveSetCurrency(this, cur);
-	}
-
-	public void initializeCurrencies(Currency cur) {
-		CurrencyResolver.resolveSetCurrency(this, cur);
-	}
-    
-	/**
-	 * @see AmountResolver#amounts(Field)
-	 */
-	public List<BigDecimal> amounts() {
-		return AmountResolver.amounts(this);
-	}
-	
-	/**
-	 * @see AmountResolver#amount(Field)
-	 */
-	public BigDecimal amount() {
-		return AmountResolver.amount(this);
-	}
+    /**
+     * Returns a mapping between component numbers and their label in camel case format.
+     * @since 7.10.3
+     */
+    @Override
+    protected Map<Integer, String> getComponentMap() {
+        Map<Integer, String> result = new HashMap<>();
+        result.put(1, "qualifier");
+        result.put(2, "quantity");
+        result.put(3, "currencyCode");
+        result.put(4, "amount");
+        return result;
+    }
 
 
-	/**
-	 * Set the component1 (Qualifier).
-	 * @param component1 the component1 to set
-	 */
-	public Field92N setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Qualifier (component1).
-	 * @param component1 the Qualifier to set
-	 */
-	public Field92N setQualifier(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
+    /**
+     * Gets the component 1 (Qualifier).
+     * @return the component 1
+     */
+    public String getComponent1() {
+        return getComponent(1);
+    }
 
-	/**
-	 * Set the component2 (Quantity).
-	 * @param component2 the component2 to set
-	 */
-	public Field92N setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the component2 from a Number object.
-	 * <br>
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
-	 * 	<li>Example: 1234 -&gt; 1234,</li>
-	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
-	 * </ul>
-	 * @param component2 the Number with the component2 content to set
-	 */
-	public Field92N setComponent2(java.lang.Number component2) {
-		setComponent(2, SwiftFormatUtils.getNumber(component2));
-		return this;
-	}
-	
-	/**
-	 * Set the Quantity (component2).
-	 * @param component2 the Quantity to set
-	 */
-	public Field92N setQuantity(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Quantity (component2) from a Number object.
-	 * @see #setComponent2(java.lang.Number)
-	 * @param component2 Number with the Quantity content to set
-	 */
-	public Field92N setQuantity(java.lang.Number component2) {
-		setComponent2(component2);
-		return this;
-	}
+    /**
+     * Gets the Qualifier (component 1).
+     * @return the Qualifier from component 1
+     */
+    public String getQualifier() {
+        return getComponent1();
+    }
 
-	/**
-	 * Set the component3 (Currency).
-	 * @param component3 the component3 to set
-	 */
-	public Field92N setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the component3 from a Currency object.
-	 * <br>
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
-	 * 	<li>Example: 1234 -&gt; 1234,</li>
-	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
-	 * </ul>
-	 * @param component3 the Currency with the component3 content to set
-	 */
-	public Field92N setComponent3(java.util.Currency component3) {
-		setComponent(3, SwiftFormatUtils.getCurrency(component3));
-		return this;
-	}
-	
-	/**
-	 * Set the Currency (component3).
-	 * @param component3 the Currency to set
-	 */
-	public Field92N setCurrency(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the Currency (component3) from a Currency object.
-	 * @see #setComponent3(java.util.Currency)
-	 * @param component3 Currency with the Currency content to set
-	 */
-	public Field92N setCurrency(java.util.Currency component3) {
-		setComponent3(component3);
-		return this;
-	}
+    /**
+     * Gets the component 2 (Quantity).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
 
-	/**
-	 * Set the component4 (Amount).
-	 * @param component4 the component4 to set
-	 */
-	public Field92N setComponent4(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the component4 from a Number object.
-	 * <br>
-	 * Parses the Number into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-	 * <ul>
-	 * 	<li>Example: 1234.00 -&gt; 1234,</li>
-	 * 	<li>Example: 1234 -&gt; 1234,</li>
-	 * 	<li>Example: 1234.56 -&gt; 1234,56</li>
-	 * </ul>
-	 * @param component4 the Number with the component4 content to set
-	 */
-	public Field92N setComponent4(java.lang.Number component4) {
-		setComponent(4, SwiftFormatUtils.getNumber(component4));
-		return this;
-	}
-	
-	/**
-	 * Set the Amount (component4).
-	 * @param component4 the Amount to set
-	 */
-	public Field92N setAmount(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the Amount (component4) from a Number object.
-	 * @see #setComponent4(java.lang.Number)
-	 * @param component4 Number with the Amount content to set
-	 */
-	public Field92N setAmount(java.lang.Number component4) {
-		setComponent4(component4);
-		return this;
-	}
+    /**
+     * Get the component 2 as BigDecimal
+     *
+     * @return the component 2 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getComponent2AsBigDecimal() {
+        return SwiftFormatUtils.getBigDecimal(getComponent(2));
+    }
+
+    /**
+     * Get the component 2 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent2AsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getComponent2AsNumber() {
+        return getComponent2AsBigDecimal();
+    }
+
+    /**
+     * Gets the Quantity (component 2).
+     * @return the Quantity from component 2
+     */
+    public String getQuantity() {
+        return getComponent2();
+    }
+
+    /**
+     * Get the Quantity (component 2) as BigDecimal
+     * @return the Quantity from component 2 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getQuantityAsBigDecimal() {
+        return getComponent2AsBigDecimal();
+    }
+
+    /**
+     * Get the Quantity (component 2) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getQuantityAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getQuantityAsNumber() {
+        return getComponent2AsNumber();
+    }
+
+    /**
+     * Gets the component 3 (Currency Code).
+     * @return the component 3
+     */
+    public String getComponent3() {
+        return getComponent(3);
+    }
+
+    /**
+     * Get the component 3 as Currency
+     *
+     * @return the component 3 converted to Currency or null if cannot be converted
+     */
+    public java.util.Currency getComponent3AsCurrency() {
+        return SwiftFormatUtils.getCurrency(getComponent(3));
+    }
+
+    /**
+     * Gets the Currency Code (component 3).
+     * @return the Currency Code from component 3
+     */
+    public String getCurrencyCode() {
+        return getComponent3();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Currency Code
+     * @see #getCurrencyCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCurrency() {
+        return getCurrencyCode();
+    }
+
+    /**
+     * Get the Currency Code (component 3) as Currency
+     * @return the Currency Code from component 3 converted to Currency or null if cannot be converted
+     */
+    public java.util.Currency getCurrencyCodeAsCurrency() {
+        return getComponent3AsCurrency();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Currency Code as Currency
+     * @see #getCurrencyCodeAsCurrency()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.util.Currency getCurrencyAsCurrency() {
+        return getCurrencyCodeAsCurrency();
+    }
+
+    /**
+     * Gets the component 4 (Amount).
+     * @return the component 4
+     */
+    public String getComponent4() {
+        return getComponent(4);
+    }
+
+    /**
+     * Get the component 4 as BigDecimal
+     *
+     * @return the component 4 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getComponent4AsBigDecimal() {
+        return SwiftFormatUtils.getBigDecimal(getComponent(4));
+    }
+
+    /**
+     * Get the component 4 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent4AsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getComponent4AsNumber() {
+        return getComponent4AsBigDecimal();
+    }
+
+    /**
+     * Gets the Amount (component 4).
+     * @return the Amount from component 4
+     */
+    public String getAmount() {
+        return getComponent4();
+    }
+
+    /**
+     * Get the Amount (component 4) as BigDecimal
+     * @return the Amount from component 4 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getComponent4AsBigDecimal();
+    }
+
+    /**
+     * Get the Amount (component 4) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
+     *
+     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getAmountAsBigDecimal()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getAmountAsNumber() {
+        return getComponent4AsNumber();
+    }
+
+    /**
+     * Set the component 1 (Qualifier).
+     *
+     * @param component1 the Qualifier to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setComponent1(String component1) {
+        setComponent(1, component1);
+        return this;
+    }
+
+    /**
+     * Set the Qualifier (component 1).
+     *
+     * @param component1 the Qualifier to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setQualifier(String component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Quantity).
+     *
+     * @param component2 the Quantity to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the component2 from a BigDecimal object.
+     * <br>
+     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+     * <ul>
+     *     <li>Example: 1234.00 -&gt; 1234,</li>
+     *     <li>Example: 1234 -&gt; 1234,</li>
+     *     <li>Example: 1234.56 -&gt; 1234,56</li>
+     * </ul>
+     * @since 9.2.7
+     *
+     * @param component2 the BigDecimal with the Quantity content to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setComponent2(java.math.BigDecimal component2) {
+        setComponent(2, SwiftFormatUtils.getBigDecimal(component2));
+        return this;
+    }
+    /**
+     * Alternative method setter for field's Quantity (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
+     *
+     * @param component2 the Number with the Quantity content to set
+     * @return the field object to enable build pattern
+     * @see #setQuantity(java.math.BigDecimal)
+     */
+    public Field92N setComponent2(java.lang.Number component2) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component2 instanceof BigDecimal) {
+            setComponent(2, SwiftFormatUtils.getBigDecimal( (BigDecimal) component2));
+        } else if (component2 instanceof BigInteger) {
+            setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component2)));
+        } else if (component2 instanceof Long || component2 instanceof Integer) {
+            setComponent(2, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component2.longValue())));
+        } else if (component2 != null) {
+            // it's other non-null Number (Float, Double, etc...)
+            setComponent(2, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component2.doubleValue())));
+        } else {
+            // explicitly set component as null
+            setComponent(2, null);
+        }
+        return this;
+    }
+
+    /**
+     * Set the Quantity (component 2).
+     *
+     * @param component2 the Quantity to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setQuantity(String component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the Quantity (component 2) from a BigDecimal object.
+     *
+     * @see #setComponent2(java.math.BigDecimal)
+     *
+     * @param component2 BigDecimal with the Quantity content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field92N setQuantity(java.math.BigDecimal component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Alternative method setter for field's Quantity (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Quantity content to set
+     * @return the field object to enable build pattern
+     * @see #setQuantity(java.math.BigDecimal)
+     */
+    public Field92N setQuantity(java.lang.Number component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the component 3 (Currency Code).
+     *
+     * @param component3 the Currency Code to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setComponent3(String component3) {
+        setComponent(3, component3);
+        return this;
+    }
+
+    /**
+     * Set the component3 from a Currency object.
+     *
+     * @param component3 the Currency with the Currency Code content to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setComponent3(java.util.Currency component3) {
+        setComponent(3, SwiftFormatUtils.getCurrency(component3));
+        return this;
+    }
+
+    /**
+     * Set the Currency Code (component 3).
+     *
+     * @param component3 the Currency Code to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setCurrencyCode(String component3) {
+        return setComponent3(component3);
+    }
+
+    /**
+     * Set the Currency Code (component 3) from a Currency object.
+     *
+     * @see #setComponent3(java.util.Currency)
+     *
+     * @param component3 Currency with the Currency Code content to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setCurrencyCode(java.util.Currency component3) {
+        return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code
+     *
+     * @see #setCurrencyCode(String)
+     *
+     * @param component3 the Currency Code to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field92N setCurrency(String component3) {
+        return setCurrencyCode(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code from a Currency object.
+     *
+     * @see #setComponent3(java.util.Currency)
+     *
+     * @param component3 Currency with the Currency Code content to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field92N setCurrency(java.util.Currency component3) {
+        return setCurrencyCode(component3);
+    }
+
+    /**
+     * Set the component 4 (Amount).
+     *
+     * @param component4 the Amount to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setComponent4(String component4) {
+        setComponent(4, component4);
+        return this;
+    }
+
+    /**
+     * Set the component4 from a BigDecimal object.
+     * <br>
+     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+     * <ul>
+     *     <li>Example: 1234.00 -&gt; 1234,</li>
+     *     <li>Example: 1234 -&gt; 1234,</li>
+     *     <li>Example: 1234.56 -&gt; 1234,56</li>
+     * </ul>
+     * @since 9.2.7
+     *
+     * @param component4 the BigDecimal with the Amount content to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setComponent4(java.math.BigDecimal component4) {
+        setComponent(4, SwiftFormatUtils.getBigDecimal(component4));
+        return this;
+    }
+    /**
+     * Alternative method setter for field's Amount (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
+     *
+     * @param component4 the Number with the Amount content to set
+     * @return the field object to enable build pattern
+     * @see #setAmount(java.math.BigDecimal)
+     */
+    public Field92N setComponent4(java.lang.Number component4) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component4 instanceof BigDecimal) {
+            setComponent(4, SwiftFormatUtils.getBigDecimal( (BigDecimal) component4));
+        } else if (component4 instanceof BigInteger) {
+            setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component4)));
+        } else if (component4 instanceof Long || component4 instanceof Integer) {
+            setComponent(4, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component4.longValue())));
+        } else if (component4 != null) {
+            // it's other non-null Number (Float, Double, etc...)
+            setComponent(4, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component4.doubleValue())));
+        } else {
+            // explicitly set component as null
+            setComponent(4, null);
+        }
+        return this;
+    }
+
+    /**
+     * Set the Amount (component 4).
+     *
+     * @param component4 the Amount to set
+     * @return the field object to enable build pattern
+     */
+    public Field92N setAmount(String component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Set the Amount (component 4) from a BigDecimal object.
+     *
+     * @see #setComponent4(java.math.BigDecimal)
+     *
+     * @param component4 BigDecimal with the Amount content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field92N setAmount(java.math.BigDecimal component4) {
+        return setComponent4(component4);
+    }
+
+    /**
+     * Alternative method setter for field's Amount (component 4) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component4 the Number with the Amount content to set
+     * @return the field object to enable build pattern
+     * @see #setAmount(java.math.BigDecimal)
+     */
+    public Field92N setAmount(java.lang.Number component4) {
+        return setComponent4(component4);
+    }
 
 
-   /**
-    * Returns the issuer code (or Data Source Scheme or DSS).
-    * The DSS is only present in some generic fields, when present, is equals to component two.
-    *
-    * @return DSS component value or null if the DSS is not set or not available for this field.
-    */
-   public String getDSS() {
-       return null;
-   }
+    public List<String> currencyStrings() {
+        return CurrencyResolver.currencyStrings(this);
+    }
 
-   /**
-    * Checks if the issuer code (or Data Source Scheme or DSS) is present.
-    *
-    * @see #getDSS()
-    * @return true if DSS is present, false otherwise.
-    */
-   public boolean isDSSPresent() {
-       return getDSS() != null;
-   }
+    public List<Currency> currencies() {
+        return CurrencyResolver.currencies(this);
+    }
 
-	/**
-	 * Component number for the conditional qualifier subfield
-	 */
+    public Currency currency() {
+        return CurrencyResolver.resolveCurrency(this);
+    }
+
+    public String currencyString() {
+        return CurrencyResolver.resolveCurrencyString(this);
+    }
+
+    public void initializeCurrencies(String cur) {
+        CurrencyResolver.resolveSetCurrency(this, cur);
+    }
+
+    public void initializeCurrencies(Currency cur) {
+        CurrencyResolver.resolveSetCurrency(this, cur);
+    }
+
+    /**
+     * Returns the list of all NON-NULL amounts as BigDecimal
+     *
+     * @return the list of NON-NULL amounts as BigDecimal values
+     * @see AmountResolver#amounts(Field)
+     */
+    public List<BigDecimal> amounts() {
+        return AmountResolver.amounts(this);
+    }
+
+    /**
+     * Returns the first amounts as BigDecimal
+     *
+     * @return the first amount as BigDecimal value. Can be null
+     * @see AmountResolver#amount(Field)
+     */
+    public BigDecimal amount() {
+        return AmountResolver.amount(this);
+    }
+
+
+    /**
+     * Returns the issuer code (or Data Source Scheme or DSS).
+     * The DSS is only present in some generic fields, when present, is equals to component two.
+     *
+     * @return DSS component value or null if the DSS is not set or not available for this field.
+     */
+    public String getDSS() {
+        return null;
+    }
+
+    /**
+     * Checks if the issuer code (or Data Source Scheme or DSS) is present.
+     *
+     * @see #getDSS()
+     * @return true if DSS is present, false otherwise.
+     */
+    public boolean isDSSPresent() {
+        return false;
+    }
+
+    /**
+     * Component number for the conditional qualifier subfield
+     */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
-   
-   /**
-    * Gets the component with the conditional (secondary) qualifier.
-    *
-    * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
-    */
-   public String getConditionalQualifier() {
-       return getComponent(CONDITIONAL_QUALIFIER);
-   }
-   
-	/**
-	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field92N.NAME
-	 */
-	@Override
-	public String getName() {
-		return NAME;
-	}
 
-	/**
-	 * Gets the first occurrence form the tag list or null if not found.
-	 * @return null if not found o block is null or empty
-	 * @param block may be null or empty 
-	 */
-	public static Field92N get(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return null;
-		}
-		final Tag t = block.getTagByName(NAME);
-		if (t == null) {
-			return null;
-		}
-		return new Field92N(t) ;
-	}
-	
-	/**
-	 * Gets the first instance of Field92N in the given message.
-	 * @param msg may be empty or null
-	 * @return null if not found or msg is empty or null
-	 * @see #get(SwiftTagListBlock)
-	 */
-	public static Field92N get(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return null;
-		return get(msg.getBlock4());
-	}
+    /**
+     * Gets the component with the conditional (secondary) qualifier.
+     *
+     * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
+     */
+    public String getConditionalQualifier() {
+        return getComponent(CONDITIONAL_QUALIFIER);
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field92N in the given message
-	 * an empty list is returned if none found.
-	 * @param msg may be empty or null in which case an empty list is returned
-	 * @see #getAll(SwiftTagListBlock)
-	 */ 
-	public static List<Field92N> getAll(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return java.util.Collections.emptyList();
-		return getAll(msg.getBlock4());
-	}
+    /**
+     * Returns the field's name composed by the field number and the letter option (if any)
+     * @return the static value of Field92N.NAME
+     */
+    @Override
+    public String getName() {
+        return NAME;
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field92N from the given block
-	 * an empty list is returned if none found.
-	 *
-	 * @param block may be empty or null in which case an empty list is returned 
-	 */ 
-	public static List<Field92N> getAll(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return java.util.Collections.emptyList();
-		}
-		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length > 0) {
-			final List<Field92N> result = new ArrayList<>(arr.length);
-			for (final Tag f : arr) {
-				result.add( new Field92N(f));
-			}
-			return result;
-		}
-		return java.util.Collections.emptyList();
-	}
+    /**
+     * Gets the first occurrence form the tag list or null if not found.
+     * @return null if not found o block is null or empty
+     * @param block may be null or empty
+     */
+    public static Field92N get(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return null;
+        }
+        final Tag t = block.getTagByName(NAME);
+        if (t == null) {
+            return null;
+        }
+        return new Field92N(t) ;
+    }
 
-	/**
-	 * This method deserializes the JSON data into a Field92N object.
-	 * @param json JSON structure including tuples with label and value for all field components
-	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.3
-	 * @see Field#fromJson(String)
-	 */
-	public static Field92N fromJson(final String json) {
-		Field92N field = new Field92N();
-		JsonParser parser = new JsonParser();
-		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("qualifier") != null) {
-			field.setComponent1(jsonObject.get("qualifier").getAsString());
-		}
-		if (jsonObject.get("quantity") != null) {
-			field.setComponent2(jsonObject.get("quantity").getAsString());
-		}
-		if (jsonObject.get("currency") != null) {
-			field.setComponent3(jsonObject.get("currency").getAsString());
-		}
-		if (jsonObject.get("amount") != null) {
-			field.setComponent4(jsonObject.get("amount").getAsString());
-		}
-		return field;
-	}
-	
+    /**
+     * Gets the first instance of Field92N in the given message.
+     * @param msg may be empty or null
+     * @return null if not found or msg is empty or null
+     * @see #get(SwiftTagListBlock)
+     */
+    public static Field92N get(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return null;
+        return get(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field92N in the given message
+     * an empty list is returned if none found.
+     * @param msg may be empty or null in which case an empty list is returned
+     * @see #getAll(SwiftTagListBlock)
+     */
+    public static List<Field92N> getAll(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return java.util.Collections.emptyList();
+        return getAll(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field92N from the given block
+     * an empty list is returned if none found.
+     *
+     * @param block may be empty or null in which case an empty list is returned
+     */
+    public static List<Field92N> getAll(final SwiftTagListBlock block) {
+        final List<Field92N> result = new ArrayList<>();
+        if (block == null || block.isEmpty()) {
+            return result;
+        }
+        final Tag[] arr = block.getTagsByName(NAME);
+        if (arr != null && arr.length > 0) {
+            for (final Tag f : arr) {
+                result.add( new Field92N(f));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * This method deserializes the JSON data into a Field92N object.
+     * @param json JSON structure including tuples with label and value for all field components
+     * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+     * @since 7.10.3
+     * @see Field#fromJson(String)
+     */
+    public static Field92N fromJson(final String json) {
+
+        Field92N field = new Field92N();
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(json);
+
+        // **** COMPONENT 1 - Qualifier
+
+        if (jsonObject.get("qualifier") != null) {
+            field.setComponent1(jsonObject.get("qualifier").getAsString());
+        }
+
+        // **** COMPONENT 2 - Quantity
+
+        if (jsonObject.get("quantity") != null) {
+            field.setComponent2(jsonObject.get("quantity").getAsString());
+        }
+
+        // **** COMPONENT 3 - Currency Code
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("currency") != null) {
+            field.setComponent3(jsonObject.get("currency").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("currencyCode") != null) {
+            field.setComponent3(jsonObject.get("currencyCode").getAsString());
+        }
+
+        // **** COMPONENT 4 - Amount
+
+        if (jsonObject.get("amount") != null) {
+            field.setComponent4(jsonObject.get("amount").getAsString());
+        }
+
+        return field;
+    }
+
 
 }

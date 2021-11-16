@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 
 import java.io.Serializable;
 import java.util.Locale;
@@ -24,8 +26,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import com.prowidesoftware.swift.model.field.GenericField;
 
+
+import com.prowidesoftware.swift.model.field.GenericField;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -58,7 +61,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2020</strong>
+ * This class complies with standard release <strong>SRU2021</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -66,7 +69,7 @@ public class Field94B extends Field implements Serializable, GenericField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2020;
+	public static final int SRU = 2021;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -77,8 +80,26 @@ public class Field94B extends Field implements Serializable, GenericField {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_94B = "94B";
-	public static final String PARSER_PATTERN =":S/[S]/S[/S]";
+	public static final String PARSER_PATTERN = ":S/[S]/S[/S]";
+
+    /**
+     * Components pattern
+     *
+     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
+     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
+     * @see #TYPES_PATTERN
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSSS";
+
+    /**
+     * Types pattern
+     *
+     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
+     * @since 9.2.7
+     */
+	public static final String TYPES_PATTERN = "SSSS";
 
 	/**
 	 * Component number for the Qualifier subfield
@@ -100,162 +121,184 @@ public class Field94B extends Field implements Serializable, GenericField {
 	 */
 	public static final Integer NARRATIVE = 4;
 
-	/**
-	 * Default constructor. Creates a new field setting all components to null.
-	 */
-	public Field94B() {
-		super(4);
-	}
-	    					
-	/**
-	 * Creates a new field and initializes its components with content from the parameter value.
-	 * @param value complete field value including separators and CRLF
-	 */
-	public Field94B(final String value) {
-		super(value);
-	}
-	
-	/**
-	 * Creates a new field and initializes its components with content from the parameter tag.
-	 * The value is parsed with {@link #parse(String)} 	 
-	 * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
-	 * @since 7.8
-	 */
-	public Field94B(final Tag tag) {
-		this();
-		if (tag == null) {
-			throw new IllegalArgumentException("tag cannot be null.");
-		}
-		if (!StringUtils.equals(tag.getName(), "94B")) {
-			throw new IllegalArgumentException("cannot create field 94B from tag "+tag.getName()+", tagname must match the name of the field.");
-		}
-		parse(tag.getValue());
-	}
+    /**
+     * Default constructor. Creates a new field setting all components to null.
+     */
+    public Field94B() {
+        super(4);
+    }
 
-	/**
-	 * Copy constructor.<br>
-	 * Initializes the components list with a deep copy of the source components list.
-	 * @param source a field instance to copy
-	 * @since 7.7
-	 */
-	public static Field94B newInstance(Field94B source) {
-		Field94B cp = new Field94B();
-		cp.setComponents(new ArrayList<>(source.getComponents()));
-		return cp;
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter value.
+     * @param value complete field value including separators and CRLF
+     */
+    public Field94B(final String value) {
+        super(value);
+    }
 
-	/**
-	 * Create a Tag with this field name and the given value.
-	 * Shorthand for <code>new Tag(NAME, value)</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag tag(final String value) {
-		return new Tag(NAME, value);
-	}
+    /**
+     * Creates a new field and initializes its components with content from the parameter tag.
+     * The value is parsed with {@link #parse(String)}
+     * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
+     * @since 7.8
+     */
+    public Field94B(final Tag tag) {
+        this();
+        if (tag == null) {
+            throw new IllegalArgumentException("tag cannot be null.");
+        }
+        if (!StringUtils.equals(tag.getName(), "94B")) {
+            throw new IllegalArgumentException("cannot create field 94B from tag "+tag.getName()+", tagname must match the name of the field.");
+        }
+        parse(tag.getValue());
+    }
 
-	/**
-	 * Create a Tag with this field name and an empty string as value
-	 * Shorthand for <code>new Tag(NAME, "")</code>
-	 * @see #NAME
-	 * @since 7.5
-	 */
-	public static Tag emptyTag() {
-		return new Tag(NAME, "");
-	}
+    /**
+     * Copy constructor.<br>
+     * Initializes the components list with a deep copy of the source components list.
+     * @param source a field instance to copy
+     * @since 7.7
+     */
+    public static Field94B newInstance(Field94B source) {
+        Field94B cp = new Field94B();
+        cp.setComponents(new ArrayList<>(source.getComponents()));
+        return cp;
+    }
+
+    /**
+     * Create a Tag with this field name and the given value.
+     * Shorthand for <code>new Tag(NAME, value)</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag tag(final String value) {
+        return new Tag(NAME, value);
+    }
+
+    /**
+     * Create a Tag with this field name and an empty string as value
+     * Shorthand for <code>new Tag(NAME, "")</code>
+     * @see #NAME
+     * @since 7.5
+     */
+    public static Tag emptyTag() {
+        return new Tag(NAME, "");
+    }
 
 
-	/**
-	 * Parses the parameter value into the internal components structure.
-	 *
-	 * <p>Used to update all components from a full new value, as an alternative
-	 * to setting individual components. Previous component values are overwritten.
-	 *
-	 * @param value complete field value including separators and CRLF
-	 * @since 7.8
-	 */
-	@Override
-	public void parse(final String value) {
-		init(4);
-		setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "/"));
-		setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
-		setComponent3(SwiftParseUtils.getTokenThird(value, "/"));
-		setComponent4(SwiftParseUtils.getTokenForthLast(value, "/"));
-	}
-	/**
-	 * Serializes the fields' components into the single string value (SWIFT format)
-	 */
-	@Override
-	public String getValue() {
-		final StringBuilder result = new StringBuilder();
-		result.append(":");
-		append(result, 1);
-		result.append("/");
-		append(result, 2);
-		result.append("/");
-		append(result, 3);
-		if (getComponent4() != null) {
-			result.append("/").append(getComponent4());
-		}
-		return result.toString();
-	}
-	/**
-	 * Returns a localized suitable for showing to humans string of a field component.<br>
-	 *
-	 * @param component number of the component to display
-	 * @param locale optional locale to format date and amounts, if null, the default locale is used
-	 * @return formatted component value or null if component number is invalid or not present
-	 * @throws IllegalArgumentException if component number is invalid for the field
-	 * @since 7.8
-	 */
-	@Override
-	public String getValueDisplay(int component, Locale locale) {
-		if (component < 1 || component > 4) {
-			throw new IllegalArgumentException("invalid component number "+component+" for field 94B");
-		}
-		if (component == 1) {
-			//default format (as is)
-			return getComponent(1);
-		}
-		if (component == 2) {
-			//default format (as is)
-			return getComponent(2);
-		}
-		if (component == 3) {
-			//default format (as is)
-			return getComponent(3);
-		}
-		if (component == 4) {
-			//default format (as is)
-			return getComponent(4);
-		}
-		return null;
-	}
-	/**
-	 * Returns the field components pattern
-	 * @return the static value of Field94B.COMPONENTS_PATTERN
-	 */
-	@Override
-	public final String componentsPattern() {
-		return COMPONENTS_PATTERN;
-	}
+    /**
+     * Parses the parameter value into the internal components structure.
+     *
+     * <p>Used to update all components from a full new value, as an alternative
+     * to setting individual components. Previous component values are overwritten.
+     *
+     * @param value complete field value including separators and CRLF
+     * @since 7.8
+     */
+    @Override
+    public void parse(final String value) {
+        init(4);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "/"));
+        setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
+        setComponent3(SwiftParseUtils.getTokenThird(value, "/"));
+        setComponent4(SwiftParseUtils.getTokenForthLast(value, "/"));
+    }
 
-	/**
+    /**
+     * Serializes the fields' components into the single string value (SWIFT format)
+     */
+    @Override
+    public String getValue() {
+        final StringBuilder result = new StringBuilder();
+        result.append(":");
+        append(result, 1);
+        result.append("/");
+        append(result, 2);
+        result.append("/");
+        append(result, 3);
+        if (getComponent4() != null) {
+            result.append("/").append(getComponent4());
+        }
+        return result.toString();
+    }
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param component number of the component to display
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component number is invalid or not present
+     * @throws IllegalArgumentException if component number is invalid for the field
+     * @since 7.8
+     */
+    @Override
+    public String getValueDisplay(int component, Locale locale) {
+        if (component < 1 || component > 4) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 94B");
+        }
+        if (component == 1) {
+            //default format (as is)
+            return getComponent(1);
+        }
+        if (component == 2) {
+            //default format (as is)
+            return getComponent(2);
+        }
+        if (component == 3) {
+            //default format (as is)
+            return getComponent(3);
+        }
+        if (component == 4) {
+            //default format (as is)
+            return getComponent(4);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the field components pattern
+     *
+     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
+     * @see #typesPattern()
+     * @return the static value of Field94B.COMPONENTS_PATTERN
+     */
+    @Override
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public final String componentsPattern() {
+        return COMPONENTS_PATTERN;
+    }
+
+    /**
+     * Returns the field component types pattern
+     *
+     * This method returns a letter representing the type for each component in the Field. It supersedes
+     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
+     * @since 9.2.7
+     * @see #TYPES_PATTERN
+     * @return the static value of Field94B.TYPES_PATTERN
+     */
+    @Override
+    public final String typesPattern() {
+        return TYPES_PATTERN;
+    }
+
+    /**
      * Returns the field parser pattern
      * @return the static value of Field94B.PARSER_PATTERN
      */
-	@Override
-	public final String parserPattern() {
+    @Override
+    public final String parserPattern() {
         return PARSER_PATTERN;
     }
 
-	/**
-	 * Returns the field validator pattern
-	 */
-	@Override
-	public final String validatorPattern() {
-		return ":4!c/[8c]/4!c[/30x](***)";
-	}
+    /**
+     * Returns the field validator pattern
+     */
+    @Override
+    public final String validatorPattern() {
+        return ":4!c/[8c]/4!c[/30x](***)";
+    }
 
     /**
      * Given a component number it returns true if the component is optional,
@@ -287,311 +330,342 @@ public class Field94B extends Field implements Serializable, GenericField {
         return true;
     }
 
-	/**
-	 * Returns the defined amount of components.<br>
-	 * This is not the amount of components present in the field instance, but the total amount of components
-	 * that this field accepts as defined.
-	 * @since 7.7
-	 */
-	@Override
-	public int componentsSize() {
-		return 4;
-	}
+    /**
+     * Returns the defined amount of components.<br>
+     * This is not the amount of components present in the field instance, but the total amount of components
+     * that this field accepts as defined.
+     * @since 7.7
+     */
+    @Override
+    public int componentsSize() {
+        return 4;
+    }
 
-	/**
-	 * Returns english label for components.
-	 * <br>
-	 * The index in the list is in sync with specific field component structure.
-	 * @see #getComponentLabel(int)
-	 * @since 7.8.4
-	 */
-	@Override
-	protected List<String> getComponentLabels() {
-		List<String> result = new ArrayList<>();
-		result.add("Qualifier");
-		result.add("Data Source Scheme");
-		result.add("Place Code");
-		result.add("Narrative");
-		return result;
-	}
+    /**
+     * Returns english label for components.
+     * <br>
+     * The index in the list is in sync with specific field component structure.
+     * @see #getComponentLabel(int)
+     * @since 7.8.4
+     */
+    @Override
+    protected List<String> getComponentLabels() {
+        List<String> result = new ArrayList<>();
+        result.add("Qualifier");
+        result.add("Data Source Scheme");
+        result.add("Place Code");
+        result.add("Narrative");
+        return result;
+    }
 
-	/**
-	 * Returns a mapping between component numbers and their label in camel case format.
-	 * @since 7.10.3
-	 */
-	@Override
-	protected Map<Integer, String> getComponentMap() {
-		Map<Integer, String> result = new HashMap<>();
-		result.put(1, "qualifier");
-		result.put(2, "dataSourceScheme");
-		result.put(3, "placeCode");
-		result.put(4, "narrative");
-		return result;
-	}
-	/**
-	 * Gets the component 1 (Qualifier).
-	 * @return the component 1
-	 */
-	public String getComponent1() {
-		return getComponent(1);
-	}
-
-	/**
-	 * Gets the Qualifier (component 1).
-	 * @return the Qualifier from component 1
-	 */
-	public String getQualifier() {
-		return getComponent(1);
-	}
-	/**
-	 * Gets the component 2 (Data Source Scheme).
-	 * @return the component 2
-	 */
-	public String getComponent2() {
-		return getComponent(2);
-	}
-
-	/**
-	 * Gets the Data Source Scheme (component 2).
-	 * @return the Data Source Scheme from component 2
-	 */
-	public String getDataSourceScheme() {
-		return getComponent(2);
-	}
-	/**
-	 * Gets the component 3 (Place Code).
-	 * @return the component 3
-	 */
-	public String getComponent3() {
-		return getComponent(3);
-	}
-
-	/**
-	 * Gets the Place Code (component 3).
-	 * @return the Place Code from component 3
-	 */
-	public String getPlaceCode() {
-		return getComponent(3);
-	}
-	/**
-	 * Gets the component 4 (Narrative).
-	 * @return the component 4
-	 */
-	public String getComponent4() {
-		return getComponent(4);
-	}
-
-	/**
-	 * Gets the Narrative (component 4).
-	 * @return the Narrative from component 4
-	 */
-	public String getNarrative() {
-		return getComponent(4);
-	}
+    /**
+     * Returns a mapping between component numbers and their label in camel case format.
+     * @since 7.10.3
+     */
+    @Override
+    protected Map<Integer, String> getComponentMap() {
+        Map<Integer, String> result = new HashMap<>();
+        result.put(1, "qualifier");
+        result.put(2, "dataSourceScheme");
+        result.put(3, "placeCode");
+        result.put(4, "narrative");
+        return result;
+    }
 
 
-	/**
-	 * Set the component1 (Qualifier).
-	 * @param component1 the component1 to set
-	 */
-	public Field94B setComponent1(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
-	
-	/**
-	 * Set the Qualifier (component1).
-	 * @param component1 the Qualifier to set
-	 */
-	public Field94B setQualifier(String component1) {
-		setComponent(1, component1);
-		return this;
-	}
+    /**
+     * Gets the component 1 (Qualifier).
+     * @return the component 1
+     */
+    public String getComponent1() {
+        return getComponent(1);
+    }
 
-	/**
-	 * Set the component2 (Data Source Scheme).
-	 * @param component2 the component2 to set
-	 */
-	public Field94B setComponent2(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
-	
-	/**
-	 * Set the Data Source Scheme (component2).
-	 * @param component2 the Data Source Scheme to set
-	 */
-	public Field94B setDataSourceScheme(String component2) {
-		setComponent(2, component2);
-		return this;
-	}
+    /**
+     * Gets the Qualifier (component 1).
+     * @return the Qualifier from component 1
+     */
+    public String getQualifier() {
+        return getComponent1();
+    }
 
-	/**
-	 * Set the component3 (Place Code).
-	 * @param component3 the component3 to set
-	 */
-	public Field94B setComponent3(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
-	
-	/**
-	 * Set the Place Code (component3).
-	 * @param component3 the Place Code to set
-	 */
-	public Field94B setPlaceCode(String component3) {
-		setComponent(3, component3);
-		return this;
-	}
+    /**
+     * Gets the component 2 (Data Source Scheme).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
 
-	/**
-	 * Set the component4 (Narrative).
-	 * @param component4 the component4 to set
-	 */
-	public Field94B setComponent4(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
-	
-	/**
-	 * Set the Narrative (component4).
-	 * @param component4 the Narrative to set
-	 */
-	public Field94B setNarrative(String component4) {
-		setComponent(4, component4);
-		return this;
-	}
+    /**
+     * Gets the Data Source Scheme (component 2).
+     * @return the Data Source Scheme from component 2
+     */
+    public String getDataSourceScheme() {
+        return getComponent2();
+    }
+
+    /**
+     * Gets the component 3 (Place Code).
+     * @return the component 3
+     */
+    public String getComponent3() {
+        return getComponent(3);
+    }
+
+    /**
+     * Gets the Place Code (component 3).
+     * @return the Place Code from component 3
+     */
+    public String getPlaceCode() {
+        return getComponent3();
+    }
+
+    /**
+     * Gets the component 4 (Narrative).
+     * @return the component 4
+     */
+    public String getComponent4() {
+        return getComponent(4);
+    }
+
+    /**
+     * Gets the Narrative (component 4).
+     * @return the Narrative from component 4
+     */
+    public String getNarrative() {
+        return getComponent4();
+    }
+
+    /**
+     * Set the component 1 (Qualifier).
+     *
+     * @param component1 the Qualifier to set
+     * @return the field object to enable build pattern
+     */
+    public Field94B setComponent1(String component1) {
+        setComponent(1, component1);
+        return this;
+    }
+
+    /**
+     * Set the Qualifier (component 1).
+     *
+     * @param component1 the Qualifier to set
+     * @return the field object to enable build pattern
+     */
+    public Field94B setQualifier(String component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Data Source Scheme).
+     *
+     * @param component2 the Data Source Scheme to set
+     * @return the field object to enable build pattern
+     */
+    public Field94B setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the Data Source Scheme (component 2).
+     *
+     * @param component2 the Data Source Scheme to set
+     * @return the field object to enable build pattern
+     */
+    public Field94B setDataSourceScheme(String component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the component 3 (Place Code).
+     *
+     * @param component3 the Place Code to set
+     * @return the field object to enable build pattern
+     */
+    public Field94B setComponent3(String component3) {
+        setComponent(3, component3);
+        return this;
+    }
+
+    /**
+     * Set the Place Code (component 3).
+     *
+     * @param component3 the Place Code to set
+     * @return the field object to enable build pattern
+     */
+    public Field94B setPlaceCode(String component3) {
+        return setComponent3(component3);
+    }
+
+    /**
+     * Set the component 4 (Narrative).
+     *
+     * @param component4 the Narrative to set
+     * @return the field object to enable build pattern
+     */
+    public Field94B setComponent4(String component4) {
+        setComponent(4, component4);
+        return this;
+    }
+
+    /**
+     * Set the Narrative (component 4).
+     *
+     * @param component4 the Narrative to set
+     * @return the field object to enable build pattern
+     */
+    public Field94B setNarrative(String component4) {
+        return setComponent4(component4);
+    }
 
 
-   /**
-    * Returns the issuer code (or Data Source Scheme or DSS).
-    * The DSS is only present in some generic fields, when present, is equals to component two.
-    *
-    * @return DSS component value or null if the DSS is not set or not available for this field.
-    */
-   public String getDSS() {
-       return getComponent2();
-   }
 
-   /**
-    * Checks if the issuer code (or Data Source Scheme or DSS) is present.
-    *
-    * @see #getDSS()
-    * @return true if DSS is present, false otherwise.
-    */
-   public boolean isDSSPresent() {
-       return getDSS() != null;
-   }
+    /**
+     * Returns the issuer code (or Data Source Scheme or DSS).
+     * The DSS is only present in some generic fields, when present, is equals to component two.
+     *
+     * @return DSS component value or null if the DSS is not set or not available for this field.
+     */
+    public String getDSS() {
+        return getComponent2();
+    }
 
-	/**
-	 * Component number for the conditional qualifier subfield
-	 */
+    /**
+     * Checks if the issuer code (or Data Source Scheme or DSS) is present.
+     *
+     * @see #getDSS()
+     * @return true if DSS is present, false otherwise.
+     */
+    public boolean isDSSPresent() {
+        return getComponent2() != null;
+    }
+
+    /**
+     * Component number for the conditional qualifier subfield
+     */
     public static final Integer CONDITIONAL_QUALIFIER = 3;
-   
-   /**
-    * Gets the component with the conditional (secondary) qualifier.
-    *
-    * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
-    */
-   public String getConditionalQualifier() {
-       return getComponent(CONDITIONAL_QUALIFIER);
-   }
-   
-	/**
-	 * Returns the field's name composed by the field number and the letter option (if any)
-	 * @return the static value of Field94B.NAME
-	 */
-	@Override
-	public String getName() {
-		return NAME;
-	}
 
-	/**
-	 * Gets the first occurrence form the tag list or null if not found.
-	 * @return null if not found o block is null or empty
-	 * @param block may be null or empty 
-	 */
-	public static Field94B get(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return null;
-		}
-		final Tag t = block.getTagByName(NAME);
-		if (t == null) {
-			return null;
-		}
-		return new Field94B(t) ;
-	}
-	
-	/**
-	 * Gets the first instance of Field94B in the given message.
-	 * @param msg may be empty or null
-	 * @return null if not found or msg is empty or null
-	 * @see #get(SwiftTagListBlock)
-	 */
-	public static Field94B get(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return null;
-		return get(msg.getBlock4());
-	}
+    /**
+     * Gets the component with the conditional (secondary) qualifier.
+     *
+     * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
+     */
+    public String getConditionalQualifier() {
+        return getComponent(CONDITIONAL_QUALIFIER);
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field94B in the given message
-	 * an empty list is returned if none found.
-	 * @param msg may be empty or null in which case an empty list is returned
-	 * @see #getAll(SwiftTagListBlock)
-	 */ 
-	public static List<Field94B> getAll(final SwiftMessage msg) {
-		if (msg == null || msg.getBlock4()==null || msg.getBlock4().isEmpty())
-			return java.util.Collections.emptyList();
-		return getAll(msg.getBlock4());
-	}
+    /**
+     * Returns the field's name composed by the field number and the letter option (if any)
+     * @return the static value of Field94B.NAME
+     */
+    @Override
+    public String getName() {
+        return NAME;
+    }
 
-	/**
-	 * Gets a list of all occurrences of the field Field94B from the given block
-	 * an empty list is returned if none found.
-	 *
-	 * @param block may be empty or null in which case an empty list is returned 
-	 */ 
-	public static List<Field94B> getAll(final SwiftTagListBlock block) {
-		if (block == null || block.isEmpty()) {
-			return java.util.Collections.emptyList();
-		}
-		final Tag[] arr = block.getTagsByName(NAME);
-		if (arr != null && arr.length > 0) {
-			final List<Field94B> result = new ArrayList<>(arr.length);
-			for (final Tag f : arr) {
-				result.add( new Field94B(f));
-			}
-			return result;
-		}
-		return java.util.Collections.emptyList();
-	}
+    /**
+     * Gets the first occurrence form the tag list or null if not found.
+     * @return null if not found o block is null or empty
+     * @param block may be null or empty
+     */
+    public static Field94B get(final SwiftTagListBlock block) {
+        if (block == null || block.isEmpty()) {
+            return null;
+        }
+        final Tag t = block.getTagByName(NAME);
+        if (t == null) {
+            return null;
+        }
+        return new Field94B(t) ;
+    }
 
-	/**
-	 * This method deserializes the JSON data into a Field94B object.
-	 * @param json JSON structure including tuples with label and value for all field components
-	 * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-	 * @since 7.10.3
-	 * @see Field#fromJson(String)
-	 */
-	public static Field94B fromJson(final String json) {
-		Field94B field = new Field94B();
-		JsonParser parser = new JsonParser();
-		JsonObject jsonObject = (JsonObject) parser.parse(json);
-		if (jsonObject.get("qualifier") != null) {
-			field.setComponent1(jsonObject.get("qualifier").getAsString());
-		}
-		if (jsonObject.get("dataSourceScheme") != null) {
-			field.setComponent2(jsonObject.get("dataSourceScheme").getAsString());
-		}
-		if (jsonObject.get("placeCode") != null) {
-			field.setComponent3(jsonObject.get("placeCode").getAsString());
-		}
-		if (jsonObject.get("narrative") != null) {
-			field.setComponent4(jsonObject.get("narrative").getAsString());
-		}
-		return field;
-	}
-	
+    /**
+     * Gets the first instance of Field94B in the given message.
+     * @param msg may be empty or null
+     * @return null if not found or msg is empty or null
+     * @see #get(SwiftTagListBlock)
+     */
+    public static Field94B get(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return null;
+        return get(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field94B in the given message
+     * an empty list is returned if none found.
+     * @param msg may be empty or null in which case an empty list is returned
+     * @see #getAll(SwiftTagListBlock)
+     */
+    public static List<Field94B> getAll(final SwiftMessage msg) {
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+            return java.util.Collections.emptyList();
+        return getAll(msg.getBlock4());
+    }
+
+    /**
+     * Gets a list of all occurrences of the field Field94B from the given block
+     * an empty list is returned if none found.
+     *
+     * @param block may be empty or null in which case an empty list is returned
+     */
+    public static List<Field94B> getAll(final SwiftTagListBlock block) {
+        final List<Field94B> result = new ArrayList<>();
+        if (block == null || block.isEmpty()) {
+            return result;
+        }
+        final Tag[] arr = block.getTagsByName(NAME);
+        if (arr != null && arr.length > 0) {
+            for (final Tag f : arr) {
+                result.add( new Field94B(f));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * This method deserializes the JSON data into a Field94B object.
+     * @param json JSON structure including tuples with label and value for all field components
+     * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
+     * @since 7.10.3
+     * @see Field#fromJson(String)
+     */
+    public static Field94B fromJson(final String json) {
+
+        Field94B field = new Field94B();
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(json);
+
+        // **** COMPONENT 1 - Qualifier
+
+        if (jsonObject.get("qualifier") != null) {
+            field.setComponent1(jsonObject.get("qualifier").getAsString());
+        }
+
+        // **** COMPONENT 2 - Data Source Scheme
+
+        if (jsonObject.get("dataSourceScheme") != null) {
+            field.setComponent2(jsonObject.get("dataSourceScheme").getAsString());
+        }
+
+        // **** COMPONENT 3 - Place Code
+
+        if (jsonObject.get("placeCode") != null) {
+            field.setComponent3(jsonObject.get("placeCode").getAsString());
+        }
+
+        // **** COMPONENT 4 - Narrative
+
+        if (jsonObject.get("narrative") != null) {
+            field.setComponent4(jsonObject.get("narrative").getAsString());
+        }
+
+        return field;
+    }
+
 
 }
