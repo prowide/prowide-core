@@ -455,7 +455,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Value Date");
         result.add("Entry Date");

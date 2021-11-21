@@ -336,7 +336,7 @@ public class Field90C extends Field implements Serializable, CurrencyContainer, 
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Number");
         result.add("Currency");

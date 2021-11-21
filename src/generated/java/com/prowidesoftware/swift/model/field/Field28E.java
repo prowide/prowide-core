@@ -316,7 +316,7 @@ public class Field28E extends Field implements Serializable {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Page Number");
         result.add("Continuation Indicator");

@@ -317,7 +317,7 @@ public class Field128 extends Field implements Serializable, BICContainer {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Priority");
         result.add("BIC");

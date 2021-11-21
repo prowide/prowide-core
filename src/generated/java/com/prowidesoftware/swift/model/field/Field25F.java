@@ -301,7 +301,7 @@ public class Field25F extends Field implements Serializable {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("TextPurpose");
         return result;

@@ -316,7 +316,7 @@ public class Field39A extends Field implements Serializable {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Tolerance 1");
         result.add("Tolerance 2");

@@ -453,7 +453,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Session Number");
         result.add("Date Session Opened");

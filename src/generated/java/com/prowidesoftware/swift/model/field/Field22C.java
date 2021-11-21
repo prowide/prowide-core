@@ -359,7 +359,7 @@ public class Field22C extends Field implements Serializable {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Party Prefix 1");
         result.add("Party Suffix 1");

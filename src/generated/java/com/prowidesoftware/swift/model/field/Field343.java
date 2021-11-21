@@ -346,7 +346,7 @@ public class Field343 extends Field implements Serializable {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Region Time Count 1");
         result.add("Region Time Count 2");

@@ -355,7 +355,7 @@ public class Field92B extends Field implements Serializable, CurrencyContainer, 
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("First Currency Code");

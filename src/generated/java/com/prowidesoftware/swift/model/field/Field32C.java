@@ -347,7 +347,7 @@ public class Field32C extends Field implements Serializable, CurrencyContainer, 
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Date");
         result.add("Currency");

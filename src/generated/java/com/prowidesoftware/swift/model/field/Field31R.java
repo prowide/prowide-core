@@ -329,7 +329,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Date 1");
         result.add("Date 2");

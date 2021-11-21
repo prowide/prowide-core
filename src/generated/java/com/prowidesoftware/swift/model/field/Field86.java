@@ -343,7 +343,7 @@ public class Field86 extends Field implements Serializable, MultiLineField {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Narrative");
         result.add("Narrative 2");

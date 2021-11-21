@@ -315,7 +315,7 @@ public class Field433 extends Field implements Serializable {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Screening Results");
         result.add("Additional Information");

@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT 9.2.9
+  * Fields getComponentLabel is now public, returning the specific label for each field component
+
 RELEASE 9.2.8 - November 2021
   * (PW-764) Added new variant values (RFDD, ISLFIN)
   * (PW-703) Block 2 parser: lenient parser to avoid duplicate error when exception on invalid Input/Output indicator

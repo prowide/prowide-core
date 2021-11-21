@@ -329,7 +329,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Currency");
         result.add("Price");

@@ -389,7 +389,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Code 1");
         result.add("Code 2");
