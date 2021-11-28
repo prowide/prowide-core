@@ -193,7 +193,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Narrative");
         return result;

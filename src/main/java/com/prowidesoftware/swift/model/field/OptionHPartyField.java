@@ -236,7 +236,7 @@ public abstract class OptionHPartyField extends Field {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Account");
         result.add("Name And Address");
