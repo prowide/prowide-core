@@ -1066,7 +1066,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @see #getComponentLabel(int)
      * @since 7.8.4
      */
-    protected abstract List<String> getComponentLabels();
+    public abstract List<String> getComponentLabels();
 
     /**
      * Returns english label for the component.

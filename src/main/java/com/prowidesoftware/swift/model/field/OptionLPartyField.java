@@ -209,7 +209,7 @@ public abstract class OptionLPartyField extends Field {
      * @since 7.8.4
      */
     @Override
-    protected List<String> getComponentLabels() {
+    public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Party Identifier");
         return result;
