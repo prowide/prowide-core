@@ -12,7 +12,7 @@ public class PartyIdentifierUtils {
 
         // build the parts (prepend a slash if part is not null)
         String cdPart = cd != null ? "/" + cd : null;
-        String accountPart = cd != null ? "/" + cd : null;
+        String accountPart = account != null ? "/" + account : null;
 
         // if we have a CD but not an account, we need the extra "/" so that CD is not mistaken as account
         if (cdPart != null && accountPart == null) {
@@ -20,12 +20,7 @@ public class PartyIdentifierUtils {
         }
 
         // build the party identifier
-        String partyIdentifier = accountPart;
-        if (cdPart != null) {
-            partyIdentifier = cdPart + partyIdentifier;
-        }
-
-        return partyIdentifier;
+        return StringUtils.trimToNull( (cdPart != null ? cdPart : "") + (accountPart != null ? accountPart : "") );
     }
 
     public static Field setPartyIdentifier(Field field, int cdComponent, int accountComponent, String partyIdentifier) {

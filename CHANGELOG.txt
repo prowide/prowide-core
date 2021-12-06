@@ -4,6 +4,7 @@
 
 SNAPSHOT 9.2.9
   * Fields getComponentLabel is now public, returning the specific label for each field component
+  * Fixed bug in PartyIdentifierUtils.getPartyIdentifier
 
 RELEASE 9.2.8 - November 2021
   * (PW-764) Added new variant values (RFDD, ISLFIN)
