@@ -210,7 +210,12 @@ public class Field451 extends Field implements Serializable {
         }
         if (component == 1) {
             //default format (as is)
-            return getComponent(1);
+            String componentValue = getComponent(1);
+            if(componentValue=="0"){
+                return "Accepted";
+            } else {
+                return "Rejected";
+            }
         }
         return null;
     }
