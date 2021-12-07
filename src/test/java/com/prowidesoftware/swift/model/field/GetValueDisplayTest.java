@@ -18,6 +18,9 @@ package com.prowidesoftware.swift.model.field;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,17 +85,6 @@ public class GetValueDisplayTest {
         Field95L f = new Field95L(":ISSU//300300E1007142000089");
         f.setComponent3("300300E1007142000089");
         assertNotNull(f.getValueDisplay(Locale.getDefault()));
-    }
-
-    @Test
-    public void test451() {
-        Field451 f = new Field451("0");
-        f.setComponent1("0");
-        assertEquals(f.getValueDisplay(Locale.getDefault()), "Accepted");
-
-        f.setComponent1("1");
-        assertEquals(f.getValueDisplay(Locale.getDefault()), "Rejected");
-
     }
 
 }
