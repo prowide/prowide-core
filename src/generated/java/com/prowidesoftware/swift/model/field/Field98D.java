@@ -230,7 +230,7 @@ public class Field98D extends Field implements Serializable, DateContainer {
                         setComponent4(StringUtils.substring(toparse3, 0, 1));
                         setComponent5(StringUtils.substring(toparse3, 1));
                     } else if (toparse3.length() > 4) {
-                        setComponent4(SwiftParseUtils.getAlphaPrefix(toparse3));
+                        setComponent4(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse3));
                         setComponent5(SwiftParseUtils.getNumericSuffix(toparse3));
                     }
                 }

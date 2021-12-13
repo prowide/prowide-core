@@ -201,7 +201,7 @@ public class Field30G extends Field implements Serializable, DateContainer {
     public void parse(final String value) {
         init(2);
         setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
-        setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
+        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
     }
 
     /**

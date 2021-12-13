@@ -221,7 +221,7 @@ public class Field34C extends Field implements Serializable, CurrencyContainer, 
     public void parse(final String value) {
         init(4);
         setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
-        String toparse = SwiftParseUtils.getTokenSecond(value, "/");
+        String toparse = SwiftParseUtils.getTokenSecondLast(value, "/");
         String prefix = SwiftParseUtils.getAlphaPrefix(toparse);
         if (prefix != null) {
             if (prefix.length() > 3) {

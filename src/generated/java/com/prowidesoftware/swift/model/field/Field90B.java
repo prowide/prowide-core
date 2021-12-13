@@ -216,7 +216,7 @@ public class Field90B extends Field implements Serializable, CurrencyContainer, 
         setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
         String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
         setComponent2(SwiftParseUtils.getTokenFirst(toparse, "/"));
-        setComponent3(SwiftParseUtils.getAlphaPrefix(SwiftParseUtils.getTokenSecondLast(toparse, "/")));
+        setComponent3(SwiftParseUtils.getAlphaPrefixTrimSlash(SwiftParseUtils.getTokenSecondLast(toparse, "/")));
         setComponent4(SwiftParseUtils.getNumericSuffix(SwiftParseUtils.getTokenSecondLast(toparse, "/")));
     }
 

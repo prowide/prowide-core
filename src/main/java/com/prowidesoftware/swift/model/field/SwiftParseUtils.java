@@ -281,6 +281,21 @@ public class SwiftParseUtils {
     }
 
     /**
+     * Same as {@link #getAlphaPrefix(String)} but if the result consist only of slash characters, then null is returned.
+     * This implementation variant is helpful when parsing fields that uses the slash as component separator, to avoid
+     * spurious components consisting of just the separator, when a malformed field is parsed.
+     * @since 9.2.9
+     */
+    public static String getAlphaPrefixTrimSlash(final String value) {
+        String prefix = getAlphaPrefix(value);
+        if (StringUtils.containsOnly(prefix, '/')) {
+            return null;
+        } else {
+            return prefix;
+        }
+    }
+
+    /**
      * Returns the numeric starting substring of the value.
      * The split is made when the first alpha character (not number or comma) is found.
      * For example:<br>

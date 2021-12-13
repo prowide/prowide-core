@@ -239,7 +239,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
         setComponent3(SwiftParseUtils.getTokenFirst(toparse, null, "/"));
         String toparse2 = SwiftParseUtils.getTokenSecond(toparse, "/");
         setComponent6(SwiftParseUtils.getTokenThirdLast(toparse, "/"));
-        setComponent4(SwiftParseUtils.getAlphaPrefix(toparse2));
+        setComponent4(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse2));
         setComponent5(SwiftParseUtils.getNumericSuffix(toparse2));
     }
 

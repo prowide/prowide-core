@@ -223,7 +223,7 @@ public class Field98H extends Field implements Serializable {
                     setComponent3(StringUtils.substring(right, 0, 1));
                     setComponent4(StringUtils.substring(right, 1));
                 } else if (right.length() > 4) {
-                    setComponent3(SwiftParseUtils.getAlphaPrefix(right));
+                    setComponent3(SwiftParseUtils.getAlphaPrefixTrimSlash(right));
                     setComponent4(SwiftParseUtils.getNumericSuffix(right));
                 }
             }

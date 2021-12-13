@@ -219,12 +219,12 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
         String toparse = SwiftParseUtils.getTokenFirst(value, "/");
         setComponent1(SwiftParseUtils.getNumericPrefix(toparse));
         String toparse2 = SwiftParseUtils.getAlphaSuffix(toparse);
-        setComponent2(SwiftParseUtils.getAlphaPrefix(toparse2));
+        setComponent2(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse2));
         setComponent3(SwiftParseUtils.getNumericSuffix(toparse2));
         setComponent4(SwiftParseUtils.getTokenSecond(value, "/"));
         toparse = SwiftParseUtils.getTokenThirdLast(value, "/");
         setComponent5(SwiftParseUtils.getTokenFirst(toparse, "//"));
-        setComponent6(SwiftParseUtils.getTokenSecond(toparse, "//"));
+        setComponent6(SwiftParseUtils.getTokenSecondLast(toparse, "//"));
     }
 
     /**

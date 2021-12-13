@@ -221,7 +221,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
         setComponent2(SwiftParseUtils.getTokenFirst(toparse, "/"));
         setComponent3(SwiftParseUtils.getTokenSecond(toparse, "/"));
         String toparse2 = SwiftParseUtils.getTokenThirdLast(toparse, "/"); /* [c]N */
-        setComponent4(SwiftParseUtils.getAlphaPrefix(toparse2));
+        setComponent4(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse2));
         setComponent5(SwiftParseUtils.getNumericSuffix(toparse2));
     }
 

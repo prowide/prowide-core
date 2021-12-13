@@ -235,7 +235,7 @@ public class Field37E extends Field implements Serializable, DateContainer, Amou
     public void parse(final String value) {
         init(5);
         setComponent1(SwiftParseUtils.getTokenFirst(value, "//"));
-        String toparse = SwiftParseUtils.getTokenSecond(value, "//");
+        String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
         if (toparse != null) {
             if (toparse.length() >= 6) {
                 setComponent2(StringUtils.substring(toparse, 0, 6));

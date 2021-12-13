@@ -239,7 +239,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
 					    setComponent5(StringUtils.substring(toparse3, 0, 1));
 					    setComponent6(StringUtils.substring(toparse3, 1));
 					} else if (toparse3.length() > 4) {
-					    setComponent5(SwiftParseUtils.getAlphaPrefix(toparse3));
+					    setComponent5(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse3));
 					    setComponent6(SwiftParseUtils.getNumericSuffix(toparse3));
 					}
 			    }

@@ -228,12 +228,12 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
     public void parse(final String value) {
         init(5);
         setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
-        String toparse = SwiftParseUtils.getTokenSecond(value, "//");
+        String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
         String toparse2 = SwiftParseUtils.getTokenFirst(toparse, "/");
-        setComponent2(SwiftParseUtils.getAlphaPrefix(toparse2));
+        setComponent2(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse2));
         setComponent3(SwiftParseUtils.getNumericSuffix(toparse2));
         String toparse3 = SwiftParseUtils.getTokenSecondLast(toparse, "/");
-        setComponent4(SwiftParseUtils.getAlphaPrefix(toparse3));
+        setComponent4(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse3));
         setComponent5(SwiftParseUtils.getNumericSuffix(toparse3));
     }
 

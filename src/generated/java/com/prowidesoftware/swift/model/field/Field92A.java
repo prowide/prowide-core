@@ -206,7 +206,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
         init(3);
         setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
         String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
-        setComponent2(SwiftParseUtils.getAlphaPrefix(toparse));
+        setComponent2(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse));
         setComponent3(SwiftParseUtils.getNumericSuffix(toparse));
     }
 

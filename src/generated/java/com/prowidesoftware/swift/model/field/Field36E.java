@@ -214,7 +214,7 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
         String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
         setComponent2(SwiftParseUtils.getTokenFirst(toparse, "/"));
         String toparse2 = SwiftParseUtils.getTokenSecondLast(toparse, "/");
-        setComponent3(SwiftParseUtils.getAlphaPrefix(toparse2));
+        setComponent3(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse2));
         setComponent4(SwiftParseUtils.getNumericSuffix(toparse2));
     }
 

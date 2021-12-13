@@ -201,7 +201,7 @@ public class Field38H extends Field implements Serializable {
         init(4);
         setComponent1(SwiftParseUtils.getNumericPrefix(StringUtils.substringBefore(value, "/")));
         setComponent2(SwiftParseUtils.getAlphaSuffix(StringUtils.substringBefore(value, "/")));
-        String toparse = SwiftParseUtils.getTokenSecond(value, "/");
+        String toparse = SwiftParseUtils.getTokenSecondLast(value, "/");
         setComponent3(SwiftParseUtils.getNumericPrefix(toparse));
         setComponent4(SwiftParseUtils.getAlphaSuffix(toparse));
     }

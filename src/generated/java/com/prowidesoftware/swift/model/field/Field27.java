@@ -200,7 +200,7 @@ public class Field27 extends Field implements Serializable {
     public void parse(final String value) {
         init(2);
         setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
-        setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
+        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
     }
 
     /**

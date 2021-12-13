@@ -19,12 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for SwiftParseUtils.
- *
- * @author sebastian
- * @since 6.0
- */
 public class SwiftParseUtilsTest {
 
     @Test
@@ -71,6 +65,21 @@ public class SwiftParseUtilsTest {
         assertEquals("ABC", SwiftParseUtils.getAlphaPrefix("ABC"));
         assertEquals("ABC", SwiftParseUtils.getAlphaPrefix("ABC234234"));
         assertEquals("ABC", SwiftParseUtils.getAlphaPrefix("ABC234234asd"));
+        assertEquals("///", SwiftParseUtils.getAlphaPrefix("///"));
+        assertEquals("/", SwiftParseUtils.getAlphaPrefix("/123"));
+    }
+
+    @Test
+    void getAlphaPrefixTrimSlash() {
+        assertNull(SwiftParseUtils.getAlphaPrefixTrimSlash(null));
+        assertNull(SwiftParseUtils.getAlphaPrefixTrimSlash(""));
+        assertNull(SwiftParseUtils.getAlphaPrefixTrimSlash("/"));
+        assertNull(SwiftParseUtils.getAlphaPrefixTrimSlash("//"));
+        assertNull(SwiftParseUtils.getAlphaPrefixTrimSlash("/1234"));
+        assertEquals("a/", SwiftParseUtils.getAlphaPrefixTrimSlash("a/"));
+        assertEquals("/ABC", SwiftParseUtils.getAlphaPrefixTrimSlash("/ABC"));
+        assertEquals("AB//C", SwiftParseUtils.getAlphaPrefixTrimSlash("AB//C234234"));
+        assertEquals("ABC", SwiftParseUtils.getAlphaPrefixTrimSlash("ABC2/3/4234asd"));
     }
 
     @Test
