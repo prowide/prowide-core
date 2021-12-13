@@ -79,6 +79,15 @@ public class FieldJsonTest {
     }
 
     @Test
+    public void toJsonField70E() {
+        Field70E f = new Field70E(":INST//first line\nsecond line\nthird line\nforth line");
+
+        JsonObject o = parser.parse(f.toJson()).getAsJsonObject();
+        assertEquals("first line", o.get("narrative").getAsString());
+        assertEquals("second line", o.get("narrative2").getAsString());
+    }
+
+    @Test
     public void fromJson32A() {
         // check fromJson in specific Field classes
         String json32A = "{\"name\":\"32A\",\"date\":\"010203\",\"currency\":\"USD\",\"amount\":\"123,45\"}";
