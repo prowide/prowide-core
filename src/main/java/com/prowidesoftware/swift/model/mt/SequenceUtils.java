@@ -16,6 +16,7 @@
 package com.prowidesoftware.swift.model.mt;
 
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
+import com.prowidesoftware.swift.model.field.Field16R;
 import com.prowidesoftware.swift.model.field.Field16S;
 import com.prowidesoftware.swift.model.mt.mt5xx.*;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT537.SequenceB;
@@ -98,14 +99,22 @@ public class SequenceUtils {
 
     public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2021(final MT537 mt) {
         return resolveMT537GetSequenceBList_sru2021(mt.getSwiftMessage().getBlock4());
-
     }
 
+    /**
+     * Custom heuristic to deal with B delimiter "STAT" overlapping C3 and D1a1B1a delimiters
+     */
     public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2021(final SwiftTagListBlock mt /* block 4 */) {
         Validate.notNull(mt);
         final List<SequenceB> result = new ArrayList<>();
-        // B delimiter overlaps with C3 delimiter, everything after and including C and use standard getter for B
-        final List<SwiftTagListBlock> raw = mt.getSubBlockBeforeFirst(MT537.SequenceC.START_END_16RS, false).getSubBlocks(MT537.SequenceB.START_END_16RS);
+
+        // We first remove everything after and including C or D
+        // Then we use use the standard getter for B
+        List<SwiftTagListBlock> raw = mt
+                .getSubBlockBeforeFirst(Field16R.tag(MT537.SequenceC.START_END_16RS), false)
+                .getSubBlockBeforeFirst(Field16R.tag(MT537.SequenceD.START_END_16RS), false)
+                .getSubBlocks(MT537.SequenceB.START_END_16RS);
+
         if (raw == null) {
             return null;
         } else {

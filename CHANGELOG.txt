@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT 9.2.9
+  * (GH-78) Fixed MT537#getSequenceBList where sequence B delimiter "STAT" overlaps with C3 and D1a1B1a delimiters
   * (GH-74) Fixed parser for Field48 and similar cases to avoid trimming content when the component contains also the slash separator as part of the value
   * Fields getComponentLabel is now public, returning the specific label for each field component
   * Fixed bug in PartyIdentifierUtils.getPartyIdentifier

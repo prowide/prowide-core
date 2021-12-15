@@ -1070,7 +1070,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * Creates a new {@link SwiftTagListBlock} that contains all tags after the first instance
      * of a tag with the given tagname.
      *
-     * @param tagname                 the tag that will be used for splitting
+     * @param tagname                 the tag that will be used for splitting (value is set to empty)
      * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned block
      * @return a new block with the trimmed content
      */
@@ -1102,7 +1102,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * All elements after the last instance of a tag with the given name will be included in the result.
      * If the tag name is null or no tag with the given name is found in the block, an empty block will be returned.
      *
-     * @param tagname                 the name of the tag that will be used for for splitting
+     * @param tagname                 the name of the tag that will be used for for splitting (value is set to empty)
      * @param includeBoundaryInResult if true, the found boundary tag will be the first item in the returned block
      * @return a new block with the trimmed content
      */
@@ -1117,7 +1117,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * Creates a new {@link SwiftTagListBlock} that contains all tags before the first instance
      * of a tag with the given tagname.
      *
-     * @param tagname                 the name of the tag that will be used for splitting
+     * @param tagname                 the name of the tag that will be used for splitting (value is set to empty)
      * @param includeBoundaryInResult if true, the found boundary tag will be the last item in the returned block
      * @return a new block with the trimmed content
      */
@@ -1127,9 +1127,24 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
     }
 
     /**
+     * Gets the subblock before the first tag with the given tagname.
+     * <br>
+     * Creates a new {@link SwiftTagListBlock} that contains all tags before the first instance
+     * of a tag with the given tagname.
+     *
+     * @param tag                     the tag that will be used for splitting
+     * @param includeBoundaryInResult if true, the found boundary tag will be the last item in the returned block
+     * @return a new block with the trimmed content
+     * @since 9.2.9
+     */
+    public SwiftTagListBlock getSubBlockBeforeFirst(final Tag tag, final boolean includeBoundaryInResult) {
+        return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.BEFORE, SearchBoundary.FIRST_TAG_IGNORE_CR);
+    }
+
+    /**
      * Gets the subblock with all tags until tha last tag with the given name
      *
-     * @param tagname                 the name of the tag that will be used for splitting
+     * @param tagname                 the name of the tag that will be used for splitting (value is set to empty)
      * @param includeBoundaryInResult if true, the found boundary tag will be the last item in the returned block
      * @return the tags contained until the first instance of tagname
      */

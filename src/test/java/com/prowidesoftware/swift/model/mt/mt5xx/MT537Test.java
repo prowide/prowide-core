@@ -21,8 +21,9 @@ import com.prowidesoftware.swift.model.field.Field22H;
 import com.prowidesoftware.swift.model.field.Field95C;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class MT537Test {
@@ -114,6 +115,81 @@ public class MT537Test {
         m.append(MT537.SequenceD1a1B.newInstance(MT537.SequenceD1a1B1.newInstance()));
         assertTrue(m.getSequenceB2List().isEmpty());
         assertEquals(1, m.getSequenceD1a1B1List().size());
+    }
+
+    /**
+     * B and C3 use delimiter STAT
+     */
+    @Test
+    public void testB_overlappingC3_1() {
+        MT537 m = new MT537();
+        m.append(MT537.SequenceB.newInstance(MT537.SequenceB1.newInstance()));
+        List<MT537.SequenceB> sequences = m.getSequenceBList();
+        assertFalse(sequences.isEmpty());
+        assertEquals(1, sequences.size());
+    }
+
+    /**
+     * B and C3 use delimiter STAT
+     */
+    @Test
+    public void testB_overlappingC3_2() {
+        MT537 m = new MT537();
+        m.append(MT537.SequenceB.newInstance(MT537.SequenceB1.newInstance()));
+        m.append(MT537.SequenceB.newInstance(MT537.SequenceB1.newInstance()));
+        List<MT537.SequenceB> sequences = m.getSequenceBList();
+        assertFalse(sequences.isEmpty());
+        assertEquals(2, sequences.size());
+    }
+
+    /**
+     * B and C3 use delimiter STAT
+     */
+    @Test
+    public void testB_overlappingC3_3() {
+        MT537 m = new MT537();
+        m.append(MT537.SequenceB.newInstance(MT537.SequenceB1.newInstance()));
+        m.append(MT537.SequenceB.newInstance(MT537.SequenceB1.newInstance()));
+        m.append(MT537.SequenceC.newInstance(MT537.SequenceC1.newInstance(MT537.SequenceC3.newInstance())));
+        List<MT537.SequenceB> sequences = m.getSequenceBList();
+        assertFalse(sequences.isEmpty());
+        assertEquals(2, sequences.size());
+    }
+
+    /**
+     * B and C3 use delimiter STAT
+     */
+    @Test
+    public void testB_overlappingC3_4() {
+        MT537 m = new MT537();
+        m.append(MT537.SequenceC.newInstance(MT537.SequenceC1.newInstance(MT537.SequenceC3.newInstance())));
+        List<MT537.SequenceB> sequences = m.getSequenceBList();
+        assertTrue(sequences.isEmpty());
+    }
+
+    /**
+     * B and D1a1B1a use delimiter STAT
+     */
+    @Test
+    public void testB_overlappingD1a1B1a() {
+        MT537 m = new MT537();
+        m.append(MT537.SequenceB.newInstance(MT537.SequenceB1.newInstance()));
+        m.append(MT537.SequenceB.newInstance(MT537.SequenceB1.newInstance()));
+        m.append(MT537.SequenceD.newInstance(MT537.SequenceD1.newInstance(MT537.SequenceD1a.newInstance(MT537.SequenceD1a1.newInstance(MT537.SequenceD1a1B.newInstance(MT537.SequenceD1a1B1.newInstance(MT537.SequenceD1a1B1a.newInstance())))))));
+        List<MT537.SequenceB> sequences = m.getSequenceBList();
+        assertFalse(sequences.isEmpty());
+        assertEquals(2, sequences.size());
+    }
+
+    /**
+     * B and D1a1B1a use delimiter STAT
+     */
+    @Test
+    public void testB_overlappingD1a1B1a_2() {
+        MT537 m = new MT537();
+        m.append(MT537.SequenceD.newInstance(MT537.SequenceD1.newInstance(MT537.SequenceD1a.newInstance(MT537.SequenceD1a1.newInstance(MT537.SequenceD1a1B.newInstance(MT537.SequenceD1a1B1.newInstance(MT537.SequenceD1a1B1a.newInstance())))))));
+        List<MT537.SequenceB> sequences = m.getSequenceBList();
+        assertTrue(sequences.isEmpty());
     }
 
 }
