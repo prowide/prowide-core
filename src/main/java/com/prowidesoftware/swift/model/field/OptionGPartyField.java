@@ -65,8 +65,16 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     public static final Integer ACCOUNT = 1;
 
     /**
-     * Component number for the BIC subfield
+     * Component number for the Identifier Code subfield
      */
+    public static final Integer IDENTIFIER_CODE = 2;
+
+    /**
+     * Alternative (<em>DEPRECATED</em>) constant name for field's Identifier Code Component number
+     * @see #IDENTIFIER_CODE
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public static final Integer BIC = 2;
 
     /**
@@ -230,7 +238,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Account");
-        result.add("BIC");
+        result.add("Identifier Code");
         return result;
     }
 
@@ -243,7 +251,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "account");
-        result.put(2, "bIC");
+        result.put(2, "identifierCode");
         return result;
     }
 
@@ -299,21 +307,40 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     }
 
     /**
-     * Gets the BIC (component2).
-     *
-     * @return the BIC from component2
+     * Gets the Identifier Code (component 2).
+     * @return the Identifier Code from component 2
      */
-    public String getBIC() {
-        return getComponent(2);
+    public String getIdentifierCode() {
+        return getComponent2();
     }
 
     /**
-     * Get the BIC (component2) as BIC
-     *
-     * @return the BIC from component2 converted to BIC or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
+     * @see #getIdentifierCode()
+     * @since 9.2.7
      */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getBIC() {
+        return getIdentifierCode();
+    }
+
+    /**
+     * Get the Identifier Code (component 2) as BIC
+     * @return the Identifier Code from component 2 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
+        return getComponent2AsBIC();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code as BIC
+     * @see #getIdentifierCodeAsBIC()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-        return SwiftFormatUtils.getBIC(getComponent(2));
+        return getIdentifierCodeAsBIC();
     }
 
     @Override

@@ -98,9 +98,17 @@ public class Field12K extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Version subfield
+	 * Component number for the Number subfield
 	 */
-	public static final Integer VERSION = 1;
+	public static final Integer NUMBER = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Number Component number
+	 * @see #NUMBER
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer VERSION = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -303,7 +311,7 @@ public class Field12K extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Version");
+        result.add("Number");
         return result;
     }
 
@@ -314,13 +322,13 @@ public class Field12K extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "version");
+        result.put(1, "number");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Version).
+     * Gets the component 1 (Number).
      * @return the component 1
      */
     public String getComponent1() {
@@ -328,17 +336,28 @@ public class Field12K extends Field implements Serializable {
     }
 
     /**
-     * Gets the Version (component 1).
-     * @return the Version from component 1
+     * Gets the Number (component 1).
+     * @return the Number from component 1
      */
-    public String getVersion() {
+    public String getNumber() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Version).
+     * Alternative <em>DEPRECATED</em> method getter for field's Number
+     * @see #getNumber()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getVersion() {
+        return getNumber();
+    }
+
+    /**
+     * Set the component 1 (Number).
      *
-     * @param component1 the Version to set
+     * @param component1 the Number to set
      * @return the field object to enable build pattern
      */
     public Field12K setComponent1(String component1) {
@@ -347,13 +366,27 @@ public class Field12K extends Field implements Serializable {
     }
 
     /**
-     * Set the Version (component 1).
+     * Set the Number (component 1).
      *
-     * @param component1 the Version to set
+     * @param component1 the Number to set
      * @return the field object to enable build pattern
      */
-    public Field12K setVersion(String component1) {
+    public Field12K setNumber(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number
+     *
+     * @see #setNumber(String)
+     *
+     * @param component1 the Number to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field12K setVersion(String component1) {
+        return setNumber(component1);
     }
 
 
@@ -441,10 +474,16 @@ public class Field12K extends Field implements Serializable {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Version
+        // **** COMPONENT 1 - Number
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("version") != null) {
             field.setComponent1(jsonObject.get("version").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("number") != null) {
+            field.setComponent1(jsonObject.get("number").getAsString());
         }
 
         return field;

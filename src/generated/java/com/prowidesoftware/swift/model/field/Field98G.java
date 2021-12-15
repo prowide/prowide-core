@@ -117,9 +117,17 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	public static final Integer TIME = 2;
 
 	/**
-	 * Component number for the Number subfield
+	 * Component number for the Decimals subfield
 	 */
-	public static final Integer NUMBER = 3;
+	public static final Integer DECIMALS = 3;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Decimals Component number
+	 * @see #DECIMALS
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer NUMBER = 3;
 
 	/**
 	 * Component number for the Sign subfield
@@ -369,6 +377,9 @@ public class Field98G extends Field implements Serializable, DateContainer {
         if (component == 4) {
             return true;
         }
+        if (component == 5) {
+            return true;
+        }
         return false;
     }
 
@@ -404,7 +415,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
         List<String> result = new ArrayList<>();
         result.add("Date");
         result.add("Time");
-        result.add("Number");
+        result.add("Decimals");
         result.add("Sign");
         result.add("Offset");
         return result;
@@ -419,7 +430,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "date");
         result.put(2, "time");
-        result.put(3, "number");
+        result.put(3, "decimals");
         result.put(4, "sign");
         result.put(5, "offset");
         return result;
@@ -493,7 +504,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Gets the component 3 (Number).
+     * Gets the component 3 (Decimals).
      * @return the component 3
      */
     public String getComponent3() {
@@ -527,35 +538,71 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Gets the Number (component 3).
-     * @return the Number from component 3
+     * Gets the Decimals (component 3).
+     * @return the Decimals from component 3
      */
-    public String getNumber() {
+    public String getDecimals() {
         return getComponent3();
     }
 
     /**
-     * Get the Number (component 3) as Long
-     * @return the Number from component 3 converted to Long or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Decimals
+     * @see #getDecimals()
      * @since 9.2.7
      */
-    public java.lang.Long getNumberAsLong() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getNumber() {
+        return getDecimals();
+    }
+
+    /**
+     * Get the Decimals (component 3) as Long
+     * @return the Decimals from component 3 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getDecimalsAsLong() {
         return getComponent3AsLong();
     }
 
     /**
-     * Get the Number (component 3) as as Number (BigDecimal)
+     * Get the Decimals (component 3) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent3AsLong()</code> to get the proper value.
      *
      * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
+     * @see #getDecimalsAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getDecimalsAsNumber() {
+        return getComponent3AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Decimals as Long
+     * @see #getDecimalsAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getNumberAsLong() {
+        return getDecimalsAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Decimals (component 3) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent3AsLong()</code> to get the proper value.
+     *
+     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getDecimalsAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getNumberAsNumber() {
-        return getComponent3AsNumber();
+        return getDecimalsAsNumber();
     }
 
     /**
@@ -696,9 +743,9 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the component 3 (Number).
+     * Set the component 3 (Decimals).
      *
-     * @param component3 the Number to set
+     * @param component3 the Decimals to set
      * @return the field object to enable build pattern
      */
     public Field98G setComponent3(String component3) {
@@ -716,7 +763,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * @see #setComponent3(String)
      * @since 9.2.7
      *
-     * @param component3 the Long with the Number content to set
+     * @param component3 the Long with the Decimals content to set
      * @return the field object to enable build pattern
      */
     public Field98G setComponent3(java.lang.Long component3) {
@@ -725,13 +772,13 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Alternative method setter for field's Number (component 3) as as Number
+     * Alternative method setter for field's Decimals (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component3 the Number with the Number content to set
+     * @param component3 the Number with the Decimals content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @see #setDecimals(java.lang.Long)
      */
     public Field98G setComponent3(java.lang.Number component3) {
 
@@ -752,39 +799,83 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Number (component 3).
+     * Set the Decimals (component 3).
      *
-     * @param component3 the Number to set
+     * @param component3 the Decimals to set
      * @return the field object to enable build pattern
      */
-    public Field98G setNumber(String component3) {
+    public Field98G setDecimals(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the Number (component 3) from a Long object.
+     * Set the Decimals (component 3) from a Long object.
      *
      * @see #setComponent3(java.lang.Long)
      *
-     * @param component3 Long with the Number content to set
+     * @param component3 Long with the Decimals content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field98G setNumber(java.lang.Long component3) {
+    public Field98G setDecimals(java.lang.Long component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Alternative method setter for field's Number (component 3) as as Number
+     * Alternative method setter for field's Decimals (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component3 the Number with the Number content to set
+     * @param component3 the Number with the Decimals content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @see #setDecimals(java.lang.Long)
      */
-    public Field98G setNumber(java.lang.Number component3) {
+    public Field98G setDecimals(java.lang.Number component3) {
         return setComponent3(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Decimals
+     *
+     * @see #setDecimals(String)
+     *
+     * @param component3 the Decimals to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field98G setNumber(String component3) {
+        return setDecimals(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Decimals from a Long object.
+     *
+     * @see #setComponent3(java.lang.Long)
+     *
+     * @param component3 Long with the Decimals content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field98G setNumber(java.lang.Long component3) {
+        return setDecimals(component3);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Decimals (component 3) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component3 the Number with the Decimals content to set
+     * @return the field object to enable build pattern
+     * @see #setDecimals(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field98G setNumber(java.lang.Number component3) {
+        return setDecimals(component3);
     }
 
     /**
@@ -967,10 +1058,16 @@ public class Field98G extends Field implements Serializable, DateContainer {
             field.setComponent2(jsonObject.get("time").getAsString());
         }
 
-        // **** COMPONENT 3 - Number
+        // **** COMPONENT 3 - Decimals
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("number") != null) {
             field.setComponent3(jsonObject.get("number").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("decimals") != null) {
+            field.setComponent3(jsonObject.get("decimals").getAsString());
         }
 
         // **** COMPONENT 4 - Sign

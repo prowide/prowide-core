@@ -25,13 +25,13 @@ public class Field11TTest extends AbstractFieldTest {
     @Test
     public void testSerialization() {
         testSerializationImpl("11T",
-                "195202110191023"
+                "195\n202110191023"
         );
     }
 
     @Test
     public void testParse() {
-        Field11T f = new Field11T("195202110191023");
+        Field11T f = new Field11T("195\n202110191023");
         assertEquals("195", f.getComponent1());
         assertEquals("20211019", f.getComponent2());
         assertEquals("1023", f.getComponent3());

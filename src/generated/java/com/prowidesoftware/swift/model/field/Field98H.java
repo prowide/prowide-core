@@ -109,9 +109,17 @@ public class Field98H extends Field implements Serializable {
 	public static final Integer TIME = 1;
 
 	/**
-	 * Component number for the Number subfield
+	 * Component number for the Decimals subfield
 	 */
-	public static final Integer NUMBER = 2;
+	public static final Integer DECIMALS = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Decimals Component number
+	 * @see #DECIMALS
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer NUMBER = 2;
 
 	/**
 	 * Component number for the Sign subfield
@@ -352,6 +360,9 @@ public class Field98H extends Field implements Serializable {
         if (component == 3) {
             return true;
         }
+        if (component == 4) {
+            return true;
+        }
         return false;
     }
 
@@ -386,7 +397,7 @@ public class Field98H extends Field implements Serializable {
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Time");
-        result.add("Number");
+        result.add("Decimals");
         result.add("Sign");
         result.add("Offset");
         return result;
@@ -400,7 +411,7 @@ public class Field98H extends Field implements Serializable {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "time");
-        result.put(2, "number");
+        result.put(2, "decimals");
         result.put(3, "sign");
         result.put(4, "offset");
         return result;
@@ -441,7 +452,7 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Gets the component 2 (Number).
+     * Gets the component 2 (Decimals).
      * @return the component 2
      */
     public String getComponent2() {
@@ -475,35 +486,71 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Gets the Number (component 2).
-     * @return the Number from component 2
+     * Gets the Decimals (component 2).
+     * @return the Decimals from component 2
      */
-    public String getNumber() {
+    public String getDecimals() {
         return getComponent2();
     }
 
     /**
-     * Get the Number (component 2) as Long
-     * @return the Number from component 2 converted to Long or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Decimals
+     * @see #getDecimals()
      * @since 9.2.7
      */
-    public java.lang.Long getNumberAsLong() {
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getNumber() {
+        return getDecimals();
+    }
+
+    /**
+     * Get the Decimals (component 2) as Long
+     * @return the Decimals from component 2 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getDecimalsAsLong() {
         return getComponent2AsLong();
     }
 
     /**
-     * Get the Number (component 2) as as Number (BigDecimal)
+     * Get the Decimals (component 2) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent2AsLong()</code> to get the proper value.
      *
      * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
+     * @see #getDecimalsAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Number getDecimalsAsNumber() {
+        return getComponent2AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Decimals as Long
+     * @see #getDecimalsAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public java.lang.Long getNumberAsLong() {
+        return getDecimalsAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Decimals (component 2) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent2AsLong()</code> to get the proper value.
+     *
+     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getDecimalsAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
     public java.lang.Number getNumberAsNumber() {
-        return getComponent2AsNumber();
+        return getDecimalsAsNumber();
     }
 
     /**
@@ -600,9 +647,9 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Set the component 2 (Number).
+     * Set the component 2 (Decimals).
      *
-     * @param component2 the Number to set
+     * @param component2 the Decimals to set
      * @return the field object to enable build pattern
      */
     public Field98H setComponent2(String component2) {
@@ -620,7 +667,7 @@ public class Field98H extends Field implements Serializable {
      * @see #setComponent2(String)
      * @since 9.2.7
      *
-     * @param component2 the Long with the Number content to set
+     * @param component2 the Long with the Decimals content to set
      * @return the field object to enable build pattern
      */
     public Field98H setComponent2(java.lang.Long component2) {
@@ -629,13 +676,13 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Number (component 2) as as Number
+     * Alternative method setter for field's Decimals (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Number content to set
+     * @param component2 the Number with the Decimals content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @see #setDecimals(java.lang.Long)
      */
     public Field98H setComponent2(java.lang.Number component2) {
 
@@ -656,39 +703,83 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Set the Number (component 2).
+     * Set the Decimals (component 2).
      *
-     * @param component2 the Number to set
+     * @param component2 the Decimals to set
      * @return the field object to enable build pattern
      */
-    public Field98H setNumber(String component2) {
+    public Field98H setDecimals(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the Number (component 2) from a Long object.
+     * Set the Decimals (component 2) from a Long object.
      *
      * @see #setComponent2(java.lang.Long)
      *
-     * @param component2 Long with the Number content to set
+     * @param component2 Long with the Decimals content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field98H setNumber(java.lang.Long component2) {
+    public Field98H setDecimals(java.lang.Long component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Alternative method setter for field's Number (component 2) as as Number
+     * Alternative method setter for field's Decimals (component 2) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Number content to set
+     * @param component2 the Number with the Decimals content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @see #setDecimals(java.lang.Long)
      */
-    public Field98H setNumber(java.lang.Number component2) {
+    public Field98H setDecimals(java.lang.Number component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Decimals
+     *
+     * @see #setDecimals(String)
+     *
+     * @param component2 the Decimals to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field98H setNumber(String component2) {
+        return setDecimals(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Decimals from a Long object.
+     *
+     * @see #setComponent2(java.lang.Long)
+     *
+     * @param component2 Long with the Decimals content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field98H setNumber(java.lang.Long component2) {
+        return setDecimals(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Decimals (component 2) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component2 the Number with the Decimals content to set
+     * @return the field object to enable build pattern
+     * @see #setDecimals(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field98H setNumber(java.lang.Number component2) {
+        return setDecimals(component2);
     }
 
     /**
@@ -847,10 +938,16 @@ public class Field98H extends Field implements Serializable {
             field.setComponent1(jsonObject.get("time").getAsString());
         }
 
-        // **** COMPONENT 2 - Number
+        // **** COMPONENT 2 - Decimals
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("number") != null) {
             field.setComponent2(jsonObject.get("number").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("decimals") != null) {
+            field.setComponent2(jsonObject.get("decimals").getAsString());
         }
 
         // **** COMPONENT 3 - Sign

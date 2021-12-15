@@ -41,6 +41,23 @@ public class SwiftParseUtils {
     }
 
     /**
+     * Checks if a string contains only ASCII digits
+     * @param value the value to check
+     * @return true if all the characters are ASCII digits, false otherwise
+     */
+    public static boolean isAllAsciiDigits(final String value) {
+        if (value == null) {
+            return false;
+        }
+        for(char c : value.toCharArray()) {
+            if (c < '0' || '9' < c) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Split components of a line, with an optional starting string and a component separator.
      * Adjacent separators are treated as one separator.
      * This method does not validate the starting string presence, it just strips it if present.

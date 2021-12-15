@@ -62,7 +62,7 @@ import com.google.gson.JsonParser;
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field47B extends Field implements Serializable, MultiLineField {
+public class Field47B extends StructuredNarrativeField implements Serializable, NarrativeContainer, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -77,37 +77,12 @@ public class Field47B extends Field implements Serializable, MultiLineField {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_47B = "47B";
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * Components pattern
-     *
-     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
-     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
-     * @see #TYPES_PATTERN
-     */
-    @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * Types pattern
-     *
-     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
-     * @since 9.2.7
-     */
-	public static final String TYPES_PATTERN = "S";
-
-	/**
-	 * Component number for the Narrative subfield
-	 */
-	public static final Integer NARRATIVE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field47B() {
-        super(1);
+        super();
     }
 
     /**
@@ -133,6 +108,16 @@ public class Field47B extends Field implements Serializable, MultiLineField {
             throw new IllegalArgumentException("cannot create field 47B from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
+    }
+
+    /**
+     * Creates a new field from a Narrative instance.
+     * @see Narrative#builder
+     * @param narrative a not-null narrative to use as field value
+     * @since 8.1.0
+     */
+    public Field47B(final Narrative narrative) {
+        this(narrative.getValue());
     }
 
     /**
@@ -167,173 +152,12 @@ public class Field47B extends Field implements Serializable, MultiLineField {
         return new Tag(NAME, "");
     }
 
-
-    /**
-     * Parses the parameter value into the internal components structure.
-     *
-     * <p>Used to update all components from a full new value, as an alternative
-     * to setting individual components. Previous component values are overwritten.
-     *
-     * @param value complete field value including separators and CRLF
-     * @since 7.8
-     */
-    @Override
-    public void parse(final String value) {
-        init(1);
-        setComponent1(value);
-    }
-
-    /**
-     * Serializes the fields' components into the single string value (SWIFT format)
-     */
-    @Override
-    public String getValue() {
-        final StringBuilder result = new StringBuilder();
-        append(result, 1);
-        return result.toString();
-    }
-
-    /**
-     * Returns a localized suitable for showing to humans string of a field component.<br>
-     *
-     * @param component number of the component to display
-     * @param locale optional locale to format date and amounts, if null, the default locale is used
-     * @return formatted component value or null if component number is invalid or not present
-     * @throws IllegalArgumentException if component number is invalid for the field
-     * @since 7.8
-     */
-    @Override
-    public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
-            throw new IllegalArgumentException("invalid component number " + component + " for field 47B");
-        }
-        if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
-        }
-        return null;
-    }
-
-    /**
-     * Returns the field components pattern
-     *
-     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
-     * @see #typesPattern()
-     * @return the static value of Field47B.COMPONENTS_PATTERN
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public final String componentsPattern() {
-        return COMPONENTS_PATTERN;
-    }
-
-    /**
-     * Returns the field component types pattern
-     *
-     * This method returns a letter representing the type for each component in the Field. It supersedes
-     * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
-     * @since 9.2.7
-     * @see #TYPES_PATTERN
-     * @return the static value of Field47B.TYPES_PATTERN
-     */
-    @Override
-    public final String typesPattern() {
-        return TYPES_PATTERN;
-    }
-
-    /**
-     * Returns the field parser pattern
-     * @return the static value of Field47B.PARSER_PATTERN
-     */
-    @Override
-    public final String parserPattern() {
-        return PARSER_PATTERN;
-    }
-
     /**
      * Returns the field validator pattern
      */
     @Override
     public final String validatorPattern() {
         return "CUSTOM";
-    }
-
-    /**
-     * Given a component number it returns true if the component is optional,
-     * regardless of the field being mandatory in a particular message.<br>
-     * Being the field's value conformed by a composition of one or several
-     * internal component values, the field may be present in a message with
-     * a proper value but with some of its internal components not set.
-     *
-     * @param component component number, first component of a field is referenced as 1
-     * @return true if the component is optional for this field, false otherwise
-     */
-    @Override
-    public boolean isOptional(int component) {
-        return false;
-    }
-
-    /**
-     * Returns true if the field is a GENERIC FIELD as specified by the standard.
-     * @return true if the field is generic, false otherwise
-     */
-    @Override
-    public boolean isGeneric() {
-        return false;
-    }
-
-    /**
-     * Returns the defined amount of components.<br>
-     * This is not the amount of components present in the field instance, but the total amount of components
-     * that this field accepts as defined.
-     * @since 7.7
-     */
-    @Override
-    public int componentsSize() {
-        return 1;
-    }
-
-    /**
-     * Returns english label for components.
-     * <br>
-     * The index in the list is in sync with specific field component structure.
-     * @see #getComponentLabel(int)
-     * @since 7.8.4
-     */
-    @Override
-    public List<String> getComponentLabels() {
-        List<String> result = new ArrayList<>();
-        result.add("Narrative");
-        return result;
-    }
-
-    /**
-     * Returns a mapping between component numbers and their label in camel case format.
-     * @since 7.10.3
-     */
-    @Override
-    protected Map<Integer, String> getComponentMap() {
-        Map<Integer, String> result = new HashMap<>();
-        result.put(1, "narrative");
-        return result;
-    }
-
-
-    /**
-     * Gets the component 1 (Narrative).
-     * @return the component 1
-     */
-    public String getComponent1() {
-        return getComponent(1);
-    }
-
-    /**
-     * Gets the Narrative (component 1).
-     * @return the Narrative from component 1
-     */
-    public String getNarrative() {
-        return getComponent1();
     }
 
     /**
@@ -520,14 +344,23 @@ public class Field47B extends Field implements Serializable, MultiLineField {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Narrative
-
-        if (jsonObject.get("narrative") != null) {
-            field.setComponent1(jsonObject.get("narrative").getAsString());
-        }
+        NarrativeContainerJsonUtils.fromJson(jsonObject, json, field);
 
         return field;
     }
 
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+	public static final Integer NARRATIVE = 1;
+
+	/**
+     * @deprecated use getValue() instead
+     */
+    @Deprecated
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    public String getNarrative() {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrative()", "Use getValue() instead");
+        return getValue();
+    }
 
 }

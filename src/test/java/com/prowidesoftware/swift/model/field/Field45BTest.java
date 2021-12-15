@@ -19,6 +19,7 @@ import com.prowidesoftware.swift.model.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Field45BTest {
 
@@ -28,6 +29,13 @@ public class Field45BTest {
         Tag tag = field.asTag();
         assertEquals(Field45B.NAME, tag.getName());
         assertEquals("/INSTR/Narrative text", tag.getValue());
+    }
+
+    @Test
+    public void testWithNull() {
+        Field45B field = new Field45B( (String) null);
+        Narrative narrative = field.narrative();
+        assertTrue(narrative.isEmpty());
     }
 
 }

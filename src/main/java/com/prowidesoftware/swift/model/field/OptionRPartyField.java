@@ -194,7 +194,7 @@ public abstract class OptionRPartyField extends Field {
      */
     @Override
     public boolean isOptional(int component) {
-        return component == 2;
+        return false;
     }
 
     /**

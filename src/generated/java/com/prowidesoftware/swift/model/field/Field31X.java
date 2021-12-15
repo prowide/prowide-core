@@ -195,12 +195,14 @@ public class Field31X extends Field implements Serializable, DateContainer {
     public void parse(final String value) {
         init(3);
         if (value != null) {
-            if (value.length() == 6) {
-                setComponent1(StringUtils.substring(value, 0, 6));
-            } else if (value.length() == 10) {
-                setComponent1(StringUtils.substring(value, 0, 6));
-                setComponent2(StringUtils.substring(value, 6, 10));
-            } else if (value.length() > 0) {
+            if (SwiftParseUtils.isAllAsciiDigits(value)) {
+                if (value.length() > 6) {
+                    setComponent1(StringUtils.substring(value, 0, 6));
+                    setComponent2(StringUtils.substring(value, 6));
+                } else {
+                    setComponent1(value);
+                }
+            } else {
                 setComponent3(value);
             }
         }
@@ -315,7 +317,13 @@ public class Field31X extends Field implements Serializable, DateContainer {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 1) {
+            return true;
+        }
         if (component == 2) {
+            return true;
+        }
+        if (component == 3) {
             return true;
         }
         return false;

@@ -116,9 +116,17 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Code subfield
+	 * Component number for the AmountTypeCode subfield
 	 */
-	public static final Integer CODE = 2;
+	public static final Integer AMOUNTTYPECODE = 2;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's AmountTypeCode Component number
+	 * @see #AMOUNTTYPECODE
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public static final Integer CODE = 2;
 
 	/**
 	 * Component number for the Currency Code1 subfield
@@ -406,7 +414,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("Code");
+        result.add("AmountTypeCode");
         result.add("Currency Code1");
         result.add("Amount1");
         result.add("Currency Code2");
@@ -422,7 +430,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "code");
+        result.put(2, "amountTypeCode");
         result.put(3, "currencyCode1");
         result.put(4, "amount1");
         result.put(5, "currencyCode2");
@@ -448,7 +456,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the component 2 (Code).
+     * Gets the component 2 (AmountTypeCode).
      * @return the component 2
      */
     public String getComponent2() {
@@ -456,11 +464,22 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Gets the Code (component 2).
-     * @return the Code from component 2
+     * Gets the AmountTypeCode (component 2).
+     * @return the AmountTypeCode from component 2
      */
-    public String getCode() {
+    public String getAmountTypeCode() {
         return getComponent2();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's AmountTypeCode
+     * @see #getAmountTypeCode()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public String getCode() {
+        return getAmountTypeCode();
     }
 
     /**
@@ -723,9 +742,9 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the component 2 (Code).
+     * Set the component 2 (AmountTypeCode).
      *
-     * @param component2 the Code to set
+     * @param component2 the AmountTypeCode to set
      * @return the field object to enable build pattern
      */
     public Field90J setComponent2(String component2) {
@@ -734,13 +753,27 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Set the Code (component 2).
+     * Set the AmountTypeCode (component 2).
      *
-     * @param component2 the Code to set
+     * @param component2 the AmountTypeCode to set
      * @return the field object to enable build pattern
      */
-    public Field90J setCode(String component2) {
+    public Field90J setAmountTypeCode(String component2) {
         return setComponent2(component2);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's AmountTypeCode
+     *
+     * @see #setAmountTypeCode(String)
+     *
+     * @param component2 the AmountTypeCode to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    public Field90J setCode(String component2) {
+        return setAmountTypeCode(component2);
     }
 
     /**
@@ -1244,10 +1277,16 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
             field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - Code
+        // **** COMPONENT 2 - AmountTypeCode
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("code") != null) {
             field.setComponent2(jsonObject.get("code").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("amountTypeCode") != null) {
+            field.setComponent2(jsonObject.get("amountTypeCode").getAsString());
         }
 
         // **** COMPONENT 3 - Currency Code1

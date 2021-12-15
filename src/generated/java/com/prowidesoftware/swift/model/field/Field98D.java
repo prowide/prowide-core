@@ -363,6 +363,15 @@ public class Field98D extends Field implements Serializable, DateContainer {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 3) {
+            return true;
+        }
+        if (component == 4) {
+            return true;
+        }
+        if (component == 5) {
+            return true;
+        }
         return false;
     }
 

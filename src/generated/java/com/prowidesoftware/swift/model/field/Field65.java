@@ -327,9 +327,6 @@ public class Field65 extends Field implements Serializable, DateContainer, Amoun
      */
     @Override
     public boolean isOptional(int component) {
-        if (component == 1) {
-            return true;
-        }
         return false;
     }
 
