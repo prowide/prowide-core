@@ -385,6 +385,9 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
         if (component == 5) {
             return true;
         }
+        if (component == 6) {
+            return true;
+        }
         return false;
     }
 

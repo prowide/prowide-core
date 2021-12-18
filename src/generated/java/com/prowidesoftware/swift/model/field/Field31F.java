@@ -195,9 +195,9 @@ public class Field31F extends Field implements Serializable, DateContainer {
     public void parse(final String value) {
         init(3);
         setComponent1(SwiftParseUtils.getTokenFirst(value, null, "/"));
-        String toparse = SwiftParseUtils.getTokenSecondLast(value, "/");
-        setComponent2(SwiftParseUtils.getTokenFirst(toparse, "//"));
-        setComponent3(SwiftParseUtils.getTokenSecondLast(toparse, "//"));
+        setComponent3(SwiftParseUtils.getTokenSecondLast(value, "//"));
+        String toparse = SwiftParseUtils.getTokenFirst(value, "//");
+        setComponent2(SwiftParseUtils.getTokenSecondLast(toparse, "/"));
     }
 
     /**

@@ -299,6 +299,9 @@ public class Field49A extends Field implements Serializable, MultiLineField {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 2) {
+            return true;
+        }
         return false;
     }
 

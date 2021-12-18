@@ -330,9 +330,6 @@ public class Field60M extends Field implements Serializable, CurrencyContainer, 
      */
     @Override
     public boolean isOptional(int component) {
-        if (component == 1) {
-            return true;
-        }
         return false;
     }
 

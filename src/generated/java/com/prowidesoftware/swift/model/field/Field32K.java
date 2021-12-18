@@ -224,12 +224,24 @@ public class Field32K extends Field implements Serializable, CurrencyContainer, 
         String toparse2 = SwiftParseUtils.getAlphaSuffix(toparse);
         setComponent5(SwiftParseUtils.getNumericSuffix(toparse2));
         String toparse3 = SwiftParseUtils.getAlphaPrefix(toparse2);
-        if (toparse3 != null) {
-            if (toparse3.length() >= 3) {
-                setComponent4(StringUtils.substring(toparse3, toparse3.length()-3, toparse3.length()));
-            }
+        if (toparse3 != null && toparse3.length() > 0) {
             if (toparse3.length() >= 4) {
-                setComponent3(StringUtils.substring(toparse3, 0, toparse3.length()-3));
+
+                // set currency (comp 4, last 3 chars)
+                // set code (comp 3, all but last 3 chars)
+                String currency = StringUtils.substring(toparse3, -3);
+                String code = StringUtils.removeEnd(toparse3, currency);
+                setComponent3(code);
+                setComponent4(currency);
+
+            } else if (toparse3.length() == 3) {
+
+                // set currency (comp 4, all 3 chars)
+                setComponent4(toparse3);
+            } else {
+
+                // set code (comp 3, all chars 1 or 2)
+                setComponent3(toparse3);
             }
         }
     }

@@ -99,17 +99,17 @@ public class Field77L extends Field implements Serializable, MultiLineField {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Line subfield
+	 * Component number for the Narrative subfield
 	 */
-	public static final Integer LINE = 1;
+	public static final Integer NARRATIVE = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Line Component number
-	 * @see #LINE
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Narrative Component number
+	 * @see #NARRATIVE
 	 */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public static final Integer NARRATIVE = 1;
+    public static final Integer LINE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -312,7 +312,7 @@ public class Field77L extends Field implements Serializable, MultiLineField {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Line");
+        result.add("Narrative");
         return result;
     }
 
@@ -323,13 +323,13 @@ public class Field77L extends Field implements Serializable, MultiLineField {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "line");
+        result.put(1, "narrative");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Line).
+     * Gets the component 1 (Narrative).
      * @return the component 1
      */
     public String getComponent1() {
@@ -337,28 +337,28 @@ public class Field77L extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Line (component 1).
-     * @return the Line from component 1
+     * Gets the Narrative (component 1).
+     * @return the Narrative from component 1
      */
-    public String getLine() {
+    public String getNarrative() {
         return getComponent1();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Line
-     * @see #getLine()
+     * Alternative <em>DEPRECATED</em> method getter for field's Narrative
+     * @see #getNarrative()
      * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public String getNarrative() {
-        return getLine();
+    public String getLine() {
+        return getNarrative();
     }
 
     /**
-     * Set the component 1 (Line).
+     * Set the component 1 (Narrative).
      *
-     * @param component1 the Line to set
+     * @param component1 the Narrative to set
      * @return the field object to enable build pattern
      */
     public Field77L setComponent1(String component1) {
@@ -367,27 +367,27 @@ public class Field77L extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Line (component 1).
+     * Set the Narrative (component 1).
      *
-     * @param component1 the Line to set
+     * @param component1 the Narrative to set
      * @return the field object to enable build pattern
      */
-    public Field77L setLine(String component1) {
+    public Field77L setNarrative(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Line
+     * Alternative <em>DEPRECATED</em> method setter for field's Narrative
      *
-     * @see #setLine(String)
+     * @see #setNarrative(String)
      *
-     * @param component1 the Line to set
+     * @param component1 the Narrative to set
      * @return the field object to enable build pattern
      */
     @Deprecated
     @ProwideDeprecated(phase2=TargetYear.SRU2022)
-    public Field77L setNarrative(String component1) {
-        return setLine(component1);
+    public Field77L setLine(String component1) {
+        return setNarrative(component1);
     }
 
 
@@ -553,16 +553,16 @@ public class Field77L extends Field implements Serializable, MultiLineField {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(json);
 
-        // **** COMPONENT 1 - Line
+        // **** COMPONENT 1 - Narrative
 
         // first try using alias's names (including deprecated ones, if any)
-        if (jsonObject.get("narrative") != null) {
-            field.setComponent1(jsonObject.get("narrative").getAsString());
+        if (jsonObject.get("line") != null) {
+            field.setComponent1(jsonObject.get("line").getAsString());
         }
 
         // last try using the official component's name (overwrites alternatives and DEPRECATED)
-        if (jsonObject.get("line") != null) {
-            field.setComponent1(jsonObject.get("line").getAsString());
+        if (jsonObject.get("narrative") != null) {
+            field.setComponent1(jsonObject.get("narrative").getAsString());
         }
 
         return field;

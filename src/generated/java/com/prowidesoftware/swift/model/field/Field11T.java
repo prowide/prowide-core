@@ -31,6 +31,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Calendar;
 
+import com.prowidesoftware.swift.model.field.MultiLineField;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
@@ -58,8 +59,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>&lt;MT&gt;&lt;DATE4&gt;&lt;HHMM&gt;</code></li>
- * 		<li>parser pattern: <code>3!S&lt;DATE4&gt;&lt;HHMM&gt;</code></li>
+ * 		<li>validation pattern: <code>&lt;MT&gt;$&lt;DATE4&gt;&lt;HHMM&gt;</code></li>
+ * 		<li>parser pattern: <code>S$&lt;DATE4&gt;&lt;HHMM&gt;</code></li>
  * 		<li>components pattern: <code>NDH</code></li>
  * </ul>
  *
@@ -68,7 +69,7 @@ import com.google.gson.JsonParser;
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field11T extends Field implements Serializable, DateContainer {
+public class Field11T extends Field implements Serializable, DateContainer, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -83,7 +84,7 @@ public class Field11T extends Field implements Serializable, DateContainer {
      * same as NAME, intended to be clear when using static imports
      */
     public static final String F_11T = "11T";
-	public static final String PARSER_PATTERN = "3!S<DATE4><HHMM>";
+	public static final String PARSER_PATTERN = "S$<DATE4><HHMM>";
 
     /**
      * Components pattern
@@ -196,9 +197,18 @@ public class Field11T extends Field implements Serializable, DateContainer {
     @Override
     public void parse(final String value) {
         init(3);
-        setComponent1(StringUtils.substring(value, 0, 3));
-        setComponent2(StringUtils.substring(value, 3, 11));
-        setComponent3(StringUtils.substring(value, 11));
+        List<String> lines = SwiftParseUtils.getLines(value);
+        if (lines.isEmpty()) {
+            return;
+        }
+        setComponent1(lines.get(0));
+        if (lines.size() > 1 && lines.get(1) != null) {
+            String line = lines.get(1);
+            setComponent2(StringUtils.substring(line, 0, 8));
+            if (line.length() > 8) {
+                setComponent3(StringUtils.substring(line, 8));
+            }
+        }
     }
 
     /**
@@ -207,9 +217,12 @@ public class Field11T extends Field implements Serializable, DateContainer {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        append(result, 1);
+    append(result, 1);
+    if (getComponent2() != null || getComponent3() != null) {
+        result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
         append(result, 2);
         append(result, 3);
+    }
         return result.toString();
     }
 
@@ -292,7 +305,7 @@ public class Field11T extends Field implements Serializable, DateContainer {
      */
     @Override
     public final String validatorPattern() {
-        return "<MT><DATE4><HHMM>";
+        return "<MT>$<DATE4><HHMM>";
     }
 
     /**
@@ -759,6 +772,84 @@ public class Field11T extends Field implements Serializable, DateContainer {
             }
         }
         return result;
+    }
+
+    /**
+     * Returns a specific line from the field's value.<br>
+     *
+     * @see MultiLineField#getLine(int)
+     * @param line a reference to a specific line in the field, first line being 1
+     * @return line content or null if not present or if line number is above the expected
+     * @since 7.7
+     */
+    public String getLine(int line) {
+        return getLine(line, 0);
+    }
+
+    /**
+     * Returns a specific line from the field's value.<br>
+     *
+     * @see MultiLineField#getLine(int, int)
+     * @param line a reference to a specific line in the field, first line being 1
+     * @param offset an optional component number used as offset when counting lines
+     * @return line content or null if not present or if line number is above the expected
+     * @since 7.7
+     */
+    public String getLine(int line, int offset) {
+        Field11T cp = newInstance(this);
+        return getLine(cp, line, null, offset);
+    }
+
+    /**
+     * Returns the field value split into lines.<br>
+     *
+     * @see MultiLineField#getLines()
+     * @return lines content or empty list if field's value is empty
+     * @since 7.7
+     */
+    public List<String> getLines() {
+        return SwiftParseUtils.getLines(getValue());
+    }
+
+    /**
+     * Returns the field value starting at the offset component, split into lines.<br>
+     *
+     * @see MultiLineField#getLines(int)
+     * @param offset an optional component number used as offset when counting lines
+     * @return found lines or empty list if lines are not present or the offset is invalid
+     * @since 7.7
+     */
+    public List<String> getLines(int offset) {
+        Field11T cp = newInstance(this);
+        return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
+    }
+
+    /**
+     * Returns a specific subset of lines from the field's value, given a range.<br>
+     *
+     * @see MultiLineField#getLinesBetween(int, int )
+     * @param start a reference to a specific line in the field, first line being 1
+     * @param end a reference to a specific line in the field, must be greater than start
+     * @return found lines or empty list if value is empty
+     * @since 7.7
+     */
+    public List<String> getLinesBetween(int start, int end) {
+        return getLinesBetween(start, end, 0);
+    }
+
+    /**
+     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     *
+     * @see MultiLineField#getLinesBetween(int start, int end, int offset)
+     * @param start a reference to a specific line in the field, first line being 1
+     * @param end a reference to a specific line in the field, must be greater than start
+     * @param offset an optional component number used as offset when counting lines
+     * @return found lines or empty list if lines are not present or the offset is invalid
+     * @since 7.7
+     */
+    public List<String> getLinesBetween(int start, int end, int offset) {
+        Field11T cp = newInstance(this);
+        return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
     }
 
     /**

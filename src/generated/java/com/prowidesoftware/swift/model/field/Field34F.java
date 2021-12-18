@@ -311,6 +311,9 @@ public class Field34F extends Field implements Serializable, CurrencyContainer, 
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 2) {
+            return true;
+        }
         return false;
     }
 

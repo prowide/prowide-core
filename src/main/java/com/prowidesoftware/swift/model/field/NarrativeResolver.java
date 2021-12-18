@@ -65,6 +65,7 @@ public class NarrativeResolver {
             case Field49N.NAME:
             case Field45B.NAME:
             case Field46B.NAME:
+            case Field47B.NAME:
             case Field49M.NAME:
                 return parseFormat6(f);
             case Field70.NAME:
@@ -84,11 +85,15 @@ public class NarrativeResolver {
 
     private static Narrative parseFormat(Field f, int codewordMaxSize, int codewordType, boolean supportsCountry, boolean supportsCurrency, boolean supportsSupplement, boolean additionalNarrativesStartWithDoubleSlash) {
 
+        // create an empty narrative, get the value and check there's something to do
         Narrative narrative = new Narrative();
-
         String value = f.getValue();
-        boolean unstructuredSection = !value.startsWith("/") || value.startsWith("//");
+        if (value == null) {
+            return narrative;
+        }
 
+        // start processing
+        boolean unstructuredSection = !value.startsWith("/") || value.startsWith("//");
         StructuredNarrative structured = null;
         boolean firstSupplementAdded = false;
         for (String line : notEmptyLines(value)) {

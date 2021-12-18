@@ -8,6 +8,11 @@ SNAPSHOT 9.2.9
   * (GH-62) Added com.prowidesoftware.core as automatic module name in the MANIFEST for JPMS support
   * Fields getComponentLabel is now public, returning the specific label for each field component
   * Fixed bug in PartyIdentifierUtils.getPartyIdentifier
+  * Fixes in field component names and optional status
+  * Fixes in field parsing
+  * Incompatible change in field 71N (changed from 7 Narrative lines to Code + 6 Narrative lines)
+  * Incompatible change for field 11T to have two lines (MT new-line DATE + TIME)
+  * Fixed Structured Narrative parsing to return an empty Narrative object with null string values
 
 RELEASE 9.2.8 - November 2021
   * (PW-764) Added new variant values (RFDD, ISLFIN)

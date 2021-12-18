@@ -327,9 +327,6 @@ public class Field62M extends Field implements Serializable, DateContainer, Amou
      */
     @Override
     public boolean isOptional(int component) {
-        if (component == 1) {
-            return true;
-        }
         return false;
     }
 
