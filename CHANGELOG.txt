@@ -2,7 +2,7 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
-SNAPSHOT 9.2.9
+RELEASE 9.2.9 - December 2021
   * (GH-78) Fixed MT537#getSequenceBList where sequence B delimiter "STAT" overlaps with C3 and D1a1B1a delimiters
   * (GH-74) Fixed parser for Field48 and similar cases to avoid trimming content when the component contains also the slash separator as part of the value
   * (GH-62) Added com.prowidesoftware.core as automatic module name in the MANIFEST for JPMS support
