@@ -57,7 +57,8 @@ tasks.withType(Jar) {
 			'Built-OS': System.getProperty('os.name'),
 			'Source-Compatibility': project.sourceCompatibility,
 			'Target-Compatibility': project.targetCompatibility,
-			'Built-Date': new Date().format("yyyy-MM-dd")
+			'Built-Date': new Date().format("yyyy-MM-dd"),
+			'Automatic-Module-Name': 'com.prowidesoftware.core'
 	)
 }
 
