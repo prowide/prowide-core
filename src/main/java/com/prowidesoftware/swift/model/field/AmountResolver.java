@@ -29,6 +29,7 @@ import com.prowidesoftware.swift.utils.ResolverUtils;
  * Helper API to detect amount component in fields.
  */
 public class AmountResolver {
+    @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(AmountResolver.class.getName());
 
     /**

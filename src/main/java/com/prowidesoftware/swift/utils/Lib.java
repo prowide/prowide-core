@@ -111,7 +111,7 @@ public class Lib {
      * @throws IOException if the resource stream cannot be read
      * @since 8.0.3
      */
-    public static String readResource(final String resource, final String encoding, Class clazz) throws IOException {
+    public static String readResource(final String resource, final String encoding, Class<?> clazz) throws IOException {
         InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
         if (is == null && clazz != null) {
             // if not found we fallback with this loading object classloader

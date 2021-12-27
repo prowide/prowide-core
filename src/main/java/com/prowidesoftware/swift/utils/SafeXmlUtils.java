@@ -38,6 +38,7 @@ import javax.xml.validation.Validator;
  * @since 8.0.5
  */
 public class SafeXmlUtils {
+    @SuppressWarnings("unused")
     private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(SafeXmlUtils.class.getName());
 
     // Suppress default constructor for noninstantiability
