@@ -172,7 +172,7 @@ public class UnparsedTextList implements Serializable {
      */
     public Integer size() {
         // sanity check and evaluation
-        return new Integer(this.texts.size());
+        return Integer.valueOf(this.texts.size());
     }
 
     /**

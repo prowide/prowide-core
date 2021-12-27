@@ -18,6 +18,8 @@ package com.prowidesoftware.deprecation;
 import com.prowidesoftware.deprecation.DeprecationUtils.EnvironmentVariableKey;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledForJreRange;
+import org.junit.jupiter.api.condition.JRE;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -45,6 +47,7 @@ public class DeprecationUtilTest {
      * Log and delay switched off
      */
     @Test
+    @DisabledForJreRange(min = JRE.JAVA_17, disabledReason="Consider rewrite or removal. Due to JPMS this case requires: --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED")
     public void testPhase2_off() {
         DeprecationUtils.setEnv(EnvironmentVariableKey.NOLOG, EnvironmentVariableKey.NODELAY);
         long t0 = System.currentTimeMillis();
@@ -67,6 +70,7 @@ public class DeprecationUtilTest {
      * Exception switched off
      */
     @Test
+    @DisabledForJreRange(min = JRE.JAVA_17, disabledReason="Consider rewrite or removal. Due to JPMS this case requires: --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED")
     public void testPhase3_off() {
         DeprecationUtils.setEnv(EnvironmentVariableKey.NOLOG, EnvironmentVariableKey.NODELAY, EnvironmentVariableKey.NOEXCEPTION);
         DeprecationUtils.phase3(this.getClass(), null, "phase 3 message");
