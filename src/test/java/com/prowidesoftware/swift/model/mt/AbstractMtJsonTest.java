@@ -85,8 +85,7 @@ public class AbstractMtJsonTest {
         MT547 mt = new MT547(fin);
         String toJson = mt.toJson();
 
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(toJson).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(toJson).getAsJsonObject();
 
         assertEquals("FMACUS33AXXX", o.get("basicHeaderBlock").getAsJsonObject().get("logicalTerminal").getAsString());
         assertEquals("CHASUSU9AXXX", o.get("applicationHeaderBlock").getAsJsonObject().get("MIRLogicalTerminal").getAsString());
@@ -424,8 +423,7 @@ public class AbstractMtJsonTest {
 
         String toJsonV1SwiftMessage = m.toJson();
 
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(toJsonV1SwiftMessage).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(toJsonV1SwiftMessage).getAsJsonObject();
 
         assertNotNull(o);
         assertEquals("/ES0123456789012345671234\nFOOOOO 1000 FOOBAR S.A.", o.get("data").getAsJsonObject().get("block4").getAsJsonObject().getAsJsonArray("tags").get(8).getAsJsonObject().get("value").getAsString());
