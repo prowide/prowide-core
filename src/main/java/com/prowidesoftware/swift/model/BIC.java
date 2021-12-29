@@ -217,7 +217,7 @@ public class BIC {
 
     /**
      * Returns the branch code or XXX as default
-     *
+     * @return branch code or default string
      * @since 7.10.3
      */
     public String getBranchOrDefault() {
@@ -227,7 +227,7 @@ public class BIC {
     /**
      * Returns ths subtype code.
      * Notice this information is not part of the BIC code, it must be explicitly set with {@link #setSubtype(String)}
-     *
+     * @return subtype code
      * @since 7.4
      */
     public String getSubtype() {
@@ -236,6 +236,7 @@ public class BIC {
 
     /**
      * Sets a subtype code
+     * @param subtype subtype code to set
      *
      * @since 7.4
      */
@@ -425,7 +426,7 @@ public class BIC {
      * Returns a new BIC with second character of the location set to zero.
      * If the location is invalid it is set with a default value. Also if it has more than 2 characters it is trimmed
      * to two with a zero in the second position.
-     *
+     * @return test BIC
      * @since 9.1.3
      */
     public BIC asTestBic() {

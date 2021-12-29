@@ -31,6 +31,7 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractReader implements Iterator<String>, Iterable<String> {
     private static final Logger log = Logger.getLogger(AbstractReader.class.getName());
+    /** The wrapped reader instance. */
     protected Reader reader;
     private boolean usedAsIterable = false;
 
@@ -42,6 +43,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 
     /**
      * Constructs a reader to read messages from a given Reader instance
+     * @param r reader instance
      */
     public AbstractReader(Reader r) {
         this.reader = r;
@@ -49,7 +51,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
 
     /**
      * Constructs a reader to read messages from a string
-     *
+     * @param string  String providing the character stream.
      * @throws IllegalArgumentException if string is null
      */
     public AbstractReader(final String string) {
@@ -60,6 +62,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     /**
      * Constructs a reader to read messages from a stream
      *
+     * @param stream input stream
      * @throws IllegalArgumentException if stream is null
      */
     public AbstractReader(final InputStream stream) {
@@ -70,6 +73,8 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     /**
      * Constructs a reader to read messages from a file
      *
+     * @param file file
+     * @throws FileNotFoundException if the file does not exist, is a directory or cannot be opened
      * @throws IllegalArgumentException if file is null
      */
     public AbstractReader(final File file) throws FileNotFoundException {

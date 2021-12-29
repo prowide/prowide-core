@@ -806,6 +806,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     /**
      * Finds the first status info from the status trail, with a name matching any of the given status names, or returns <code>null</code> if not found
      * This method is similar to {@link #findStatusInfoLast(String...)} but checks the status trail in ascending order from oldest to latest.
+     * @param statusNames status name candidates
      *
      * @since 7.8.8
      */

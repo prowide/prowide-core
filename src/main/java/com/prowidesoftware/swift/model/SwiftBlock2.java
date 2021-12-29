@@ -217,8 +217,8 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
     }
 
     /**
-     * Specific serialization is provided for block 2 input and output
-     *
+     * Specific serialization is provided for block 2 input and output.
+     * @return JSON representation of this block 2
      * @since 7.9.8 current block 2 implementation, based on Gson (method signature with null implementation is available since 7.5)
      */
     public String toJson() {

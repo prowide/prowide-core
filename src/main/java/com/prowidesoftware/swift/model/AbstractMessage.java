@@ -24,13 +24,17 @@ public abstract class AbstractMessage {
 
     MessageStandardType type = null;
 
-    /*
-     * necessary for jaxb in MX
+    /**
+     * Protected constructor necessary for jaxb in MX.
      */
     protected AbstractMessage() {
         super();
     }
 
+    /**
+     * Constructor for an {@link MessageStandardType#MT} or {@link MessageStandardType#MX} message.
+     * @param type message type
+     */
     protected AbstractMessage(MessageStandardType type) {
         super();
         this.type = type;

@@ -45,6 +45,9 @@ public final class ProwideLocale {
      * Safe get locale, checking if current locale is supported Same as
      * <code>getBundle(clazz, Locale.getDefault()))</code>
      *
+     * @param clazz class object for lookup of the resource bundle
+     * @return resource bundle
+     *
      * @see #getBundle(Class, Locale)
      * @since 7.7
      */
@@ -55,7 +58,7 @@ public final class ProwideLocale {
     /**
      * Get requested bundle or ENGLISH if missing resource for the given locale.
      *
-     * @param resource the name ot the resource bundle to loaded
+     * @param resource the name of the resource bundle to loaded
      * @param locale   a locale
      * @return the bundle for the given resource name and locale or English if not
      * found.
@@ -72,6 +75,9 @@ public final class ProwideLocale {
     /**
      * Safe get locale, checking if current locale is supported Same as
      * <code>getBundle(resource, Locale.getDefault()))</code>
+     *
+     * @param resource name of the resource bundle, a fully qualified class name
+     * @return resource bundle
      *
      * @see #getBundle(String, Locale)
      * @since 7.9.7

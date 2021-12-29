@@ -189,7 +189,8 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 
     /**
      * This method deserializes the JSON data into an block 1 object.
-     *
+     * @param json json representation
+     * @return block 1 object
      * @see #toJson()
      * @since 7.9.8
      */
@@ -570,6 +571,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * }
      *  </pre>
      *
+     * @return json representation
      * @since 7.5
      */
     public String toJson() {
