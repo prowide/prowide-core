@@ -1201,6 +1201,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * Returns true if the message is outgoing (sent to SWIFT), false other case; using the direction attribute.
      * If block 2 is missign or direction cannot be determined, returns false.
      *
+     * @return true if message is outgoing
      * @since 7.8.4
      */
     public boolean isOutgoing() {
@@ -1208,6 +1209,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
+     * Synonym to {@link #isOutgoing()}.
+     *
+     * @return true if message is outgoing
      * @see #isOutgoing()
      * @since 7.8.4
      */
@@ -1219,6 +1223,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * Returns true if the message is incoming (received from SWIFT), false other case; using the direction attribute.
      * If block 2 is missign or direction cannot be determined, returns false.
      *
+     * @return true if message is incoming
      * @since 7.8.4
      */
     public boolean isIncoming() {
@@ -1226,6 +1231,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
+     * Synonym to {@link #isIncoming()}.
+     *
+     * @return true if message is incoming
      * @see #isIncoming()
      * @since 7.8.4
      */
@@ -1378,6 +1386,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * since all its values could be repeated from one installation to another. To make it completely unique in your
      * application context, consider using {@link #getUID(Calendar, Long)}
      *
+     * @return UUID
      * @since 7.0
      */
     public String getUUID() {
@@ -1426,6 +1435,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     /**
      * return first results of fields() or null if none
      *
+     * @param name name of field in block 4
      * @return null if not found
      * @see #fields(String...)
      */
@@ -1666,6 +1676,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     /**
      * Returns true if message service id is anything but 01 = GPA/FIN Message (system and user-to-user)
      *
+     * @return true if message is a service message, false otherwise
      * @since 7.8.8
      */
     public final boolean isServiceMessage() {
@@ -1693,6 +1704,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * This is determined by testing first if it is a system message, and second
      * the value of tag 451
      *
+     * @return true if ACK, false otherwise
      * @since 7.8
      */
     public boolean isAck() {
@@ -1710,6 +1722,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * This is determined by testing first if it is a system message, and second
      * the value of tag 451
      *
+     * @return true if NACK, false otherwise
      * @since 7.8
      */
     public boolean isNack() {

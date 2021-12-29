@@ -53,6 +53,7 @@ public class SwiftMessageUtils {
 
     /**
      * @deprecated use the static API instead
+     * @param m message
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
@@ -358,8 +359,10 @@ public class SwiftMessageUtils {
     }
 
     /**
-     * Split the given message by the field 15, returning the letter option in the field 15 as the key in the map.
+     * Splits the given message by field 15, returning the letter option in field 15 as the key in the map.
      *
+     * @param msg message to split
+     * @return map with key being the letter option in field 15
      * @see #splitByField15(SwiftTagListBlock)
      */
     public static Map<String, SwiftTagListBlock> splitByField15(final SwiftMessage msg) {
@@ -371,7 +374,7 @@ public class SwiftMessageUtils {
     }
 
     /**
-     * Split the given block content by the field 15, returning the letter option in the field 15 as the key in the map
+     * Split the given block content by the field 15, returning the letter option in field 15 as the key in the map
      *
      * @param block the content to split
      * @return a map with letter options as keys, and blocks as value

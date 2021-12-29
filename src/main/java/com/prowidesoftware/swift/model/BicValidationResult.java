@@ -47,7 +47,9 @@ public enum BicValidationResult {
     }
 
     /**
-     * Validation problem description including expected and found content when necessary
+     * Validation problem description including expected and found content when necessary.
+     *
+     * @return message with variables replaced
      */
     public String message() {
         final StringSubstitutor sub = new StringSubstitutor(this.vars);

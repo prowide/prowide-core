@@ -42,6 +42,8 @@ public class Lib {
      * Read the content of the given file into a string, using UTF8 as default encoding
      *
      * @param file the file to read
+     * @return file contents
+     * @throws IOException if an error occurs during read
      * @see #readFile(File, String)
      */
     public static String readFile(final File file) throws IOException {
