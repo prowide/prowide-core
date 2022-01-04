@@ -381,8 +381,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @see #toJson()
      */
     public static Field fromJson(final String json) {
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
         JsonElement nameElement = jsonObject.get("name");
         if (nameElement != null) {
             String name = nameElement.getAsString();

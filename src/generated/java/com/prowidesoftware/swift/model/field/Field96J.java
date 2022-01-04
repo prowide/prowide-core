@@ -40,7 +40,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 96J</strong>
+ * SWIFT MT Field 96J.
  * <p>
  * Model and parser for field 96J of a SWIFT MT message.
  *
@@ -69,11 +69,11 @@ public class Field96J extends OptionJPartyField implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 96J
+	 * Constant with the field name 96J.
 	 */
     public static final String NAME = "96J";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_96J = "96J";
 
@@ -110,7 +110,7 @@ public class Field96J extends OptionJPartyField implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -132,7 +132,7 @@ public class Field96J extends OptionJPartyField implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -142,7 +142,7 @@ public class Field96J extends OptionJPartyField implements Serializable {
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
      */
     @Override
     public final String validatorPattern() {
@@ -173,7 +173,7 @@ public class Field96J extends OptionJPartyField implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field96J.NAME
      */
     @Override
@@ -194,7 +194,7 @@ public class Field96J extends OptionJPartyField implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field96J(t) ;
+        return new Field96J(t);
     }
 
     /**
@@ -204,8 +204,9 @@ public class Field96J extends OptionJPartyField implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field96J get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -216,8 +217,9 @@ public class Field96J extends OptionJPartyField implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field96J> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -235,7 +237,7 @@ public class Field96J extends OptionJPartyField implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field96J(f));
+                result.add(new Field96J(f));
             }
         }
         return result;
@@ -250,10 +252,9 @@ public class Field96J extends OptionJPartyField implements Serializable {
      */
     public static Field96J fromJson(final String json) {
 
-        Field96J field = new Field96J();
+        final Field96J field = new Field96J();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Party Identification
 

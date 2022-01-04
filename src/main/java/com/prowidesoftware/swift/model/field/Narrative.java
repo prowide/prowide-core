@@ -502,11 +502,9 @@ public class Narrative {
             String wrap = WordUtils.wrap(narrative, lineLength - prefix.length(), "\n", true);
             String[] lines = wrap.split("\n");
 
-            if (lines.length >= 0) {
-                String firstLine = StringUtils.trimToNull(lines[0]);
-                if (firstLine != null) {
-                    fragments.add(firstLine);
-                }
+            String firstLine = StringUtils.trimToNull(lines[0]);
+            if (firstLine != null) {
+                fragments.add(firstLine);
             }
 
             if (!fragments.isEmpty()) {

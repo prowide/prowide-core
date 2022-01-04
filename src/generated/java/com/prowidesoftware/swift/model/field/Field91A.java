@@ -44,7 +44,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 91A</strong>
+ * SWIFT MT Field 91A.
  * <p>
  * Model and parser for field 91A of a SWIFT MT message.
  *
@@ -75,11 +75,11 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 91A
+	 * Constant with the field name 91A.
 	 */
     public static final String NAME = "91A";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_91A = "91A";
 
@@ -116,7 +116,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -138,7 +138,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -148,7 +148,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
      */
     @Override
     public final String validatorPattern() {
@@ -250,7 +250,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field91A setBIC(String component3) {
         return setIdentifierCode(component3);
     }
@@ -264,7 +264,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field91A setBIC(com.prowidesoftware.swift.model.BIC component3) {
         return setIdentifierCode(component3);
     }
@@ -280,7 +280,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field91A.NAME
      */
     @Override
@@ -301,7 +301,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
         if (t == null) {
             return null;
         }
-        return new Field91A(t) ;
+        return new Field91A(t);
     }
 
     /**
@@ -311,8 +311,9 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
      * @see #get(SwiftTagListBlock)
      */
     public static Field91A get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -323,8 +324,9 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field91A> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -342,14 +344,14 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field91A(f));
+                result.add(new Field91A(f));
             }
         }
         return result;
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -361,7 +363,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int, int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -375,7 +377,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Returns the field value split into lines.<br>
+     * Returns the field value split into lines.
      *
      * @see MultiLineField#getLines()
      * @return lines content or empty list if field's value is empty
@@ -386,7 +388,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Returns the field value starting at the offset component, split into lines.<br>
+     * Returns the field value starting at the offset component, split into lines.
      *
      * @see MultiLineField#getLines(int)
      * @param offset an optional component number used as offset when counting lines
@@ -399,7 +401,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, given a range.<br>
+     * Returns a specific subset of lines from the field's value, given a range.
      *
      * @see MultiLineField#getLinesBetween(int, int )
      * @param start a reference to a specific line in the field, first line being 1
@@ -412,7 +414,7 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     * Returns a specific subset of lines from the field's value, starting at the offset component.
      *
      * @see MultiLineField#getLinesBetween(int start, int end, int offset)
      * @param start a reference to a specific line in the field, first line being 1
@@ -435,10 +437,9 @@ public class Field91A extends OptionAPartyField implements Serializable, BICCont
      */
     public static Field91A fromJson(final String json) {
 
-        Field91A field = new Field91A();
+        final Field91A field = new Field91A();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - D/C Mark
 

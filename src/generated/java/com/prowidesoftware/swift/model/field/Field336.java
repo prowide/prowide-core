@@ -42,7 +42,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 336</strong>
+ * SWIFT MT Field 336.
  * <p>
  * Model and parser for field 336 of a SWIFT MT message.
  *
@@ -73,28 +73,28 @@ public class Field336 extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 336
+	 * Constant with the field name 336.
 	 */
     public static final String NAME = "336";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_336 = "336";
 	public static final String PARSER_PATTERN = "6!S5!NS";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SNS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -102,17 +102,17 @@ public class Field336 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "SNS";
 
 	/**
-	 * Component number for the Delivery Subset Name subfield
+	 * Component number for the Delivery Subset Name subfield.
 	 */
 	public static final Integer DELIVERY_SUBSET_NAME = 1;
 
 	/**
-	 * Component number for the Number Of Messages subfield
+	 * Component number for the Number Of Messages subfield.
 	 */
 	public static final Integer NUMBER_OF_MESSAGES = 2;
 
 	/**
-	 * Component number for the Codes subfield
+	 * Component number for the Codes subfield.
 	 */
 	public static final Integer CODES = 3;
 
@@ -149,7 +149,7 @@ public class Field336 extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -171,7 +171,7 @@ public class Field336 extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -254,7 +254,7 @@ public class Field336 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -399,7 +399,7 @@ public class Field336 extends Field implements Serializable {
      * @see #getComponent2AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -432,7 +432,7 @@ public class Field336 extends Field implements Serializable {
      * @see #getNumberOfMessagesAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getNumberOfMessagesAsNumber() {
         return getComponent2AsNumber();
     }
@@ -517,7 +517,7 @@ public class Field336 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component2 instanceof Long) {
-            setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
+            setComponent(2, SwiftFormatUtils.getLong((Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 != null) {
@@ -590,7 +590,7 @@ public class Field336 extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field336.NAME
      */
     @Override
@@ -611,7 +611,7 @@ public class Field336 extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field336(t) ;
+        return new Field336(t);
     }
 
     /**
@@ -621,8 +621,9 @@ public class Field336 extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field336 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -633,8 +634,9 @@ public class Field336 extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field336> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -652,7 +654,7 @@ public class Field336 extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field336(f));
+                result.add(new Field336(f));
             }
         }
         return result;
@@ -667,10 +669,9 @@ public class Field336 extends Field implements Serializable {
      */
     public static Field336 fromJson(final String json) {
 
-        Field336 field = new Field336();
+        final Field336 field = new Field336();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Delivery Subset Name
 

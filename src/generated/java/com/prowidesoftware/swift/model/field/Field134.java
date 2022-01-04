@@ -44,7 +44,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 134</strong>
+ * SWIFT MT Field 134.
  * <p>
  * Model and parser for field 134 of a SWIFT MT message.
  *
@@ -75,28 +75,28 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 134
+	 * Constant with the field name 134.
 	 */
     public static final String NAME = "134";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_134 = "134";
 	public static final String PARSER_PATTERN = "S$S$S";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "BSS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -104,17 +104,17 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
 	public static final String TYPES_PATTERN = "BSS";
 
 	/**
-	 * Component number for the BIC subfield
+	 * Component number for the BIC subfield.
 	 */
 	public static final Integer BIC = 1;
 
 	/**
-	 * Component number for the Broadcast Requester Name subfield
+	 * Component number for the Broadcast Requester Name subfield.
 	 */
 	public static final Integer BROADCAST_REQUESTER_NAME = 2;
 
 	/**
-	 * Component number for the Broadcast Requester City subfield
+	 * Component number for the Broadcast Requester City subfield.
 	 */
 	public static final Integer BROADCAST_REQUESTER_CITY = 3;
 
@@ -151,7 +151,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -173,7 +173,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -255,7 +255,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -518,7 +518,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field134.NAME
      */
     @Override
@@ -539,7 +539,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
         if (t == null) {
             return null;
         }
-        return new Field134(t) ;
+        return new Field134(t);
     }
 
     /**
@@ -549,8 +549,9 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
      * @see #get(SwiftTagListBlock)
      */
     public static Field134 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -561,8 +562,9 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field134> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -580,14 +582,14 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field134(f));
+                result.add(new Field134(f));
             }
         }
         return result;
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -599,7 +601,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int, int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -613,7 +615,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Returns the field value split into lines.<br>
+     * Returns the field value split into lines.
      *
      * @see MultiLineField#getLines()
      * @return lines content or empty list if field's value is empty
@@ -624,7 +626,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Returns the field value starting at the offset component, split into lines.<br>
+     * Returns the field value starting at the offset component, split into lines.
      *
      * @see MultiLineField#getLines(int)
      * @param offset an optional component number used as offset when counting lines
@@ -637,7 +639,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, given a range.<br>
+     * Returns a specific subset of lines from the field's value, given a range.
      *
      * @see MultiLineField#getLinesBetween(int, int )
      * @param start a reference to a specific line in the field, first line being 1
@@ -650,7 +652,7 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     * Returns a specific subset of lines from the field's value, starting at the offset component.
      *
      * @see MultiLineField#getLinesBetween(int start, int end, int offset)
      * @param start a reference to a specific line in the field, first line being 1
@@ -673,10 +675,9 @@ public class Field134 extends Field implements Serializable, BICContainer, Multi
      */
     public static Field134 fromJson(final String json) {
 
-        Field134 field = new Field134();
+        final Field134 field = new Field134();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - BIC
 

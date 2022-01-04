@@ -44,18 +44,17 @@ public class SwiftBlock5Test {
 
         SwiftBlock5 b5 = new SwiftBlock5(tagList);
         String s = b5.toJson();
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(s).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(s).getAsJsonObject();
 
         assertNotNull(o);
-        assertTrue(o.get("tags").getAsJsonArray().size() == 2);
+        assertEquals(2, o.get("tags").getAsJsonArray().size());
     }
 
     @Test
     public void testBlock5FromJson() {
         String json = "{\"tags\":[{\"name\":\"113\",\"value\":\"SEPA\"},{\"name\":\"108\",\"value\":\"ILOVESEPA\"}]}";
         SwiftBlock5 b5 = SwiftBlock5.fromJson(json);
-        assertTrue(b5.getTags().size() == 2);
+        assertEquals(2, b5.getTags().size());
         assertEquals("SEPA", b5.getTagValue("113"));
         assertEquals("ILOVESEPA", b5.getTagValue("108"));
     }

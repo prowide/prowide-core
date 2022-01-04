@@ -21,13 +21,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test for Field90F and similar fields.
- * Pattern: ":S//S/SN/S/N"
- *
- * @author sebastian
- * @since 6.0
- */
 public class Field90FTest extends AbstractFieldTest {
 
     @Override

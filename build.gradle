@@ -158,18 +158,23 @@ publishing {
 			}
 		}
 	}
+
 	if (project.version.endsWith('-SNAPSHOT')) {
-		repositories {
-			maven {
-				url "${project.prowideRepo1}/repository/maven-snapshots/"
-				credentials {
-					username project.prowideRepoUser1
-					password project.prowideRepoPass1
+		if (project.hasProperty('prowideRepo')) {
+			repositories {
+				maven {
+					url "${project.prowideRepo}/repository/maven-snapshots/"
+					credentials {
+						username "${project.prowideRepoUser}"
+						password "${project.prowideRepoPass}"
+					}
 				}
 			}
+		} else {
+			project.logger.info('Snapshot publishing disabled because repository properties are undefined')
 		}
 	} else {
-		println "Current version is a release ${project.version} thus it must be manually published to OSS sonatype as bundle"
+		project.logger.info("Current version is a release ${project.version} thus it must be manually published to OSS sonatype as bundle")
 	}
 }
 jar.finalizedBy generatePomFileForMavenJavaPublication
@@ -243,14 +248,38 @@ task bundle(type: Zip, dependsOn: build) {
 	archiveName 'bundle.zip'
 }
 
-task('testsOn11', type: Test) {
+tasks.withType(JavaCompile) {
+	doFirst {
+		println 'Compiling with ' + getJavaCompiler().get().getMetadata().getInstallationPath()
+	}
+}
+tasks.withType(Test) {
+	doFirst {
+		println 'Running test on ' + getJavaLauncher().get().getMetadata().getInstallationPath()
+	}
+}
+
+task('testOn11', type: Test) {
 	javaLauncher = javaToolchains.launcherFor {
 		languageVersion = JavaLanguageVersion.of(11)
 	}
 }
 
+task('testOn17', type: Test) {
+	javaLauncher = javaToolchains.launcherFor {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
 quality {
 	strict = false
+	// we limit this to spotbugs for the moment
+	checkstyle = false
+	codenarc = false
+	cpd = false
+	pmd = false
 	spotbugsEffort = 'min'
-	spotbugsMaxRank = 4
+	spotbugsMaxRank = 7
+
+	exclude '**/mt0xx/MT**', '**/mt1xx/MT**', '**/mt2xx/MT**', '**/mt3xx/MT**', '**/mt4xx/MT**', '**/mt5xx/MT**', '**/mt6xx/MT**', '**/mt7xx/MT**', '**/mt8xx/MT**', '**/mt9xx/MT**'
 }

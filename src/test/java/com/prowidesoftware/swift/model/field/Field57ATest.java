@@ -20,11 +20,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test for Field57A and similar fields.
- *
- * @since 7.7
- */
 public class Field57ATest extends AbstractFieldTest {
 
     @Override

@@ -21,11 +21,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for Field257 and similar fields.
- *
- * @since 7.8.8
- */
 public class Field257Test extends AbstractFieldTest {
 
     /**

@@ -20,14 +20,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field13D and similar fields.
- *
- * @since 6.0
- */
 public class Field13DTest extends AbstractFieldTest {
-    @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field13DTest.class.getName());
 
     @Override
     @Test

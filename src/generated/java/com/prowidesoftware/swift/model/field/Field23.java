@@ -43,7 +43,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 23</strong>
+ * SWIFT MT Field 23.
  * <p>
  * Model and parser for field 23 of a SWIFT MT message.
  *
@@ -75,28 +75,28 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 23
+	 * Constant with the field name 23.
 	 */
     public static final String NAME = "23";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_23 = "23";
 	public static final String PARSER_PATTERN = "S[/S/S[/S]]";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSSC";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -104,45 +104,45 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 	public static final String TYPES_PATTERN = "SSSC";
 
 	/**
-	 * Component number for the Code 1 subfield
+	 * Component number for the Code 1 subfield.
 	 */
 	public static final Integer CODE_1 = 1;
 
 	/**
-     * Alternative constant name for field's Code 1 Component number
+     * Alternative constant name for field's Code 1 Component number.
      * @see #CODE_1
      */
     public static final Integer BUY_SELL_INDICATOR = 1;
 
 	/**
-	 * Component number for the Code 2 subfield
+	 * Component number for the Code 2 subfield.
 	 */
 	public static final Integer CODE_2 = 2;
 
 	/**
-     * Alternative constant name for field's Code 2 Component number
+     * Alternative constant name for field's Code 2 Component number.
      * @see #CODE_2
      */
     public static final Integer CALL_PUT_INDICATOR = 2;
 
 	/**
-	 * Component number for the Code 3 subfield
+	 * Component number for the Code 3 subfield.
 	 */
 	public static final Integer CODE_3 = 3;
 
 	/**
-     * Alternative constant name for field's Code 3 Component number
+     * Alternative constant name for field's Code 3 Component number.
      * @see #CODE_3
      */
     public static final Integer STYLE_INDICATOR = 3;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency subfield.
 	 */
 	public static final Integer CURRENCY = 4;
 
 	/**
-     * Alternative constant name for field's Currency Component number
+     * Alternative constant name for field's Currency Component number.
      * @see #CURRENCY
      */
     public static final Integer MANUAL_AUTOMATIC_INDICATOR = 4;
@@ -180,7 +180,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -202,7 +202,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -301,7 +301,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -733,7 +733,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field23.NAME
      */
     @Override
@@ -754,7 +754,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
         if (t == null) {
             return null;
         }
-        return new Field23(t) ;
+        return new Field23(t);
     }
 
     /**
@@ -764,8 +764,9 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      * @see #get(SwiftTagListBlock)
      */
     public static Field23 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -776,8 +777,9 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field23> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -795,7 +797,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field23(f));
+                result.add(new Field23(f));
             }
         }
         return result;
@@ -810,10 +812,9 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      */
     public static Field23 fromJson(final String json) {
 
-        Field23 field = new Field23();
+        final Field23 field = new Field23();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Code 1
 

@@ -20,13 +20,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field98D and similar fields.
- * <DATE4><TIME2>[,S][/[c]<TIME3>]
- *
- * @author sebastian
- * @since 7.8.8
- */
 public class Field98DTest extends AbstractFieldTest {
 
     @Override

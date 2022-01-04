@@ -41,7 +41,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 342</strong>
+ * SWIFT MT Field 342.
  * <p>
  * Model and parser for field 342 of a SWIFT MT message.
  *
@@ -71,28 +71,28 @@ public class Field342 extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 342
+	 * Constant with the field name 342.
 	 */
     public static final String NAME = "342";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_342 = "342";
 	public static final String PARSER_PATTERN = "3!SN";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SH";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -100,12 +100,12 @@ public class Field342 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "SH";
 
 	/**
-	 * Component number for the Region subfield
+	 * Component number for the Region subfield.
 	 */
 	public static final Integer REGION = 1;
 
 	/**
-	 * Component number for the Time subfield
+	 * Component number for the Time subfield.
 	 */
 	public static final Integer TIME = 2;
 
@@ -142,7 +142,7 @@ public class Field342 extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -164,7 +164,7 @@ public class Field342 extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -244,7 +244,7 @@ public class Field342 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -460,7 +460,7 @@ public class Field342 extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field342.NAME
      */
     @Override
@@ -481,7 +481,7 @@ public class Field342 extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field342(t) ;
+        return new Field342(t);
     }
 
     /**
@@ -491,8 +491,9 @@ public class Field342 extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field342 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -503,8 +504,9 @@ public class Field342 extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field342> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -522,7 +524,7 @@ public class Field342 extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field342(f));
+                result.add(new Field342(f));
             }
         }
         return result;
@@ -537,10 +539,9 @@ public class Field342 extends Field implements Serializable {
      */
     public static Field342 fromJson(final String json) {
 
-        Field342 field = new Field342();
+        final Field342 field = new Field342();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Region
 

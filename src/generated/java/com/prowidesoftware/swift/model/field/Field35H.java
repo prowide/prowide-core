@@ -44,7 +44,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 35H</strong>
+ * SWIFT MT Field 35H.
  * <p>
  * Model and parser for field 35H of a SWIFT MT message.
  *
@@ -75,28 +75,28 @@ public class Field35H extends Field implements Serializable, AmountContainer {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 35H
+	 * Constant with the field name 35H.
 	 */
     public static final String NAME = "35H";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_35H = "35H";
 	public static final String PARSER_PATTERN = "[c]<CUR>N";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -104,26 +104,26 @@ public class Field35H extends Field implements Serializable, AmountContainer {
 	public static final String TYPES_PATTERN = "SSI";
 
 	/**
-	 * Component number for the Sign subfield
+	 * Component number for the Sign subfield.
 	 */
 	public static final Integer SIGN = 1;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency subfield.
 	 */
 	public static final Integer CURRENCY = 2;
 
 	/**
-	 * Component number for the Quantity subfield
+	 * Component number for the Quantity subfield.
 	 */
 	public static final Integer QUANTITY = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Quantity Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Quantity Component number.
 	 * @see #QUANTITY
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer AMOUNT = 3;
 
     /**
@@ -159,7 +159,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -181,7 +181,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -268,7 +268,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -432,7 +432,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @see #getComponent3AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         return getComponent3AsBigDecimal();
     }
@@ -451,7 +451,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getAmount() {
         return getQuantity();
     }
@@ -475,7 +475,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @see #getQuantityAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getQuantityAsNumber() {
         return getComponent3AsNumber();
     }
@@ -485,7 +485,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @see #getQuantityAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getQuantityAsBigDecimal();
     }
@@ -500,7 +500,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @see #getQuantityAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getQuantityAsNumber();
     }
@@ -590,9 +590,9 @@ public class Field35H extends Field implements Serializable, AmountContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component3 instanceof BigDecimal) {
-            setComponent(3, SwiftFormatUtils.getBigDecimal( (BigDecimal) component3));
+            setComponent(3, SwiftFormatUtils.getBigDecimal((BigDecimal) component3));
         } else if (component3 instanceof BigInteger) {
-            setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component3)));
+            setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component3)));
         } else if (component3 instanceof Long || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component3.longValue())));
         } else if (component3 != null) {
@@ -650,7 +650,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field35H setAmount(String component3) {
         return setQuantity(component3);
     }
@@ -665,7 +665,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field35H setAmount(java.math.BigDecimal component3) {
         return setQuantity(component3);
     }
@@ -680,7 +680,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @see #setQuantity(java.math.BigDecimal)
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field35H setAmount(java.lang.Number component3) {
         return setQuantity(component3);
     }
@@ -708,7 +708,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field35H.NAME
      */
     @Override
@@ -729,7 +729,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
         if (t == null) {
             return null;
         }
-        return new Field35H(t) ;
+        return new Field35H(t);
     }
 
     /**
@@ -739,8 +739,9 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @see #get(SwiftTagListBlock)
      */
     public static Field35H get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -751,8 +752,9 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field35H> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -770,7 +772,7 @@ public class Field35H extends Field implements Serializable, AmountContainer {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field35H(f));
+                result.add(new Field35H(f));
             }
         }
         return result;
@@ -785,10 +787,9 @@ public class Field35H extends Field implements Serializable, AmountContainer {
      */
     public static Field35H fromJson(final String json) {
 
-        Field35H field = new Field35H();
+        final Field35H field = new Field35H();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Sign
 

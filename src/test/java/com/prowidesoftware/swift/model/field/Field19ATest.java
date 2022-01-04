@@ -21,11 +21,6 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for Field19A and similar fields.
- *
- * @since 6.0
- */
 public class Field19ATest extends AbstractFieldTest {
 
     @Override
@@ -39,7 +34,7 @@ public class Field19ATest extends AbstractFieldTest {
 
     @Test
     public void testField19AString() {
-        Field19A f = null;
+        Field19A f;
 
         f = new Field19A((String) null);
         assertNull(f.getComponent1());
@@ -129,19 +124,19 @@ public class Field19ATest extends AbstractFieldTest {
         assertEquals("abc", f.getComponent1());
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
-        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent4AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent4AsBigDecimal());
 
         f = new Field19A(":abc//errr123,");
         assertEquals("abc", f.getComponent1());
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
-        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent4AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent4AsBigDecimal());
 
         f = new Field19A(":abc//errr123,45");
         assertEquals("abc", f.getComponent1());
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
-        assertEquals(new BigDecimal("123.45"), BigDecimal.valueOf(f.getComponent4AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123.45"), f.getComponent4AsBigDecimal());
 
         f = new Field19A(":abc//errr123,45,");
         assertEquals("abc", f.getComponent1());

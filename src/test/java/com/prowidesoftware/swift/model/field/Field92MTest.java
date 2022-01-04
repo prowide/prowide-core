@@ -21,11 +21,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test for Field92M and similar fields.
- *
- * @since 6.0
- */
 public class Field92MTest extends AbstractFieldTest {
 
     @Override

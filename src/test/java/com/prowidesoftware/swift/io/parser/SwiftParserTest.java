@@ -275,7 +275,7 @@ public class SwiftParserTest {
                 "-}foo";
         SwiftParser p = new SwiftParser(fin);
         SwiftMessage m = p.message();
-        assertFalse(m.getUnparsedTextsSize() == 0);
+        assertNotEquals(0, (int) m.getUnparsedTextsSize());
     }
 
     /**
@@ -303,7 +303,7 @@ public class SwiftParserTest {
                 "-}}}}}";
         SwiftParser p = new SwiftParser(fin);
         SwiftMessage m = p.message();
-        assertFalse(m.getUnparsedTextsSize() == 0);
+        assertNotEquals(0, (int) m.getUnparsedTextsSize());
     }
 
     /*
@@ -378,12 +378,12 @@ public class SwiftParserTest {
         SwiftTagListBlock contentMessage = mt798.getSwiftMessage().getBlock4().getSubBlockAfterFirst("77E", false);
 
         Field27A field27A = (Field27A) contentMessage.getFieldByName("27A");
-        assertEquals(2, field27A.getNumberAsNumber().intValue());
-        assertEquals(3, field27A.getTotalAsNumber().intValue());
+        assertEquals(2, field27A.getNumberAsLong());
+        assertEquals(3, field27A.getTotalAsLong());
 
         Field27 field27 = (Field27) contentMessage.getFieldByName("27");
-        assertEquals(3, field27.getNumberAsNumber().intValue());
-        assertEquals(5, field27.getTotalAsNumber().intValue());
+        assertEquals(3, field27.getNumberAsLong());
+        assertEquals(5, field27.getTotalAsLong());
         assertNull(contentMessage.getFieldByName("52A"));
     }
 
@@ -447,12 +447,12 @@ public class SwiftParserTest {
         SwiftTagListBlock contentMessage = mt798.getSwiftMessage().getBlock4().getSubBlockAfterFirst("77E", false);
 
         Field27A field27A = (Field27A) contentMessage.getFieldByName("27A");
-        assertEquals(2, field27A.getNumberAsNumber().intValue());
-        assertEquals(3, field27A.getTotalAsNumber().intValue());
+        assertEquals(2, field27A.getNumberAsLong());
+        assertEquals(3, field27A.getTotalAsLong());
 
         Field27 field27 = (Field27) contentMessage.getFieldByName("27");
-        assertEquals(3, field27.getNumberAsNumber().intValue());
-        assertEquals(5, field27.getTotalAsNumber().intValue());
+        assertEquals(3, field27.getNumberAsLong());
+        assertEquals(5, field27.getTotalAsLong());
         assertNull(contentMessage.getFieldByName("52A"));
     }
 
@@ -497,9 +497,7 @@ public class SwiftParserTest {
         configuration.setLenient(false);
         parser.setConfiguration(configuration);
 
-        Assertions.assertThrows(ProwideException.class, () -> {
-            parser.message();
-        });
+        Assertions.assertThrows(ProwideException.class, parser::message);
     }
 
 }

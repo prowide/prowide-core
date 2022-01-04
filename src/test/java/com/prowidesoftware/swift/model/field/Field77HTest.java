@@ -19,11 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for Field77H and similar fields.
- *
- * @since 6.0
- */
 public class Field77HTest extends AbstractFieldTest {
 
     @Override

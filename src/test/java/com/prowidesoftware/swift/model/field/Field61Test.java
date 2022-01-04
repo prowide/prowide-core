@@ -22,11 +22,6 @@ import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for Field61 and similar fields.
- *
- * @since 6.0
- */
 public class Field61Test extends AbstractFieldTest {
 
     @Override
@@ -67,7 +62,7 @@ public class Field61Test extends AbstractFieldTest {
 
         f = new Field61(v3);
         assertNotNull(f);
-        assertEquals(new BigDecimal("10215.0"), BigDecimal.valueOf(f.getComponent5AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("10215"), f.getComponent5AsBigDecimal());
         assertEquals("N", f.getComponent(Field61.TRANSACTION_TYPE));
         assertEquals("OPT", f.getComponent(Field61.IDENTIFICATION_CODE));
         assertEquals("12710361", f.getComponent8());
@@ -79,9 +74,9 @@ public class Field61Test extends AbstractFieldTest {
 
         f = new Field61("090227C291553,62NAYG13391140" + "\n" + "1524/6009/TRASPASO AUTOMATICO AL");
         assertNotNull(f);
-        assertEquals(new BigDecimal("291553.62"), BigDecimal.valueOf(f.getComponent5AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("291553.62"), f.getComponent5AsBigDecimal());
 
-        assertFalse(291553.9962 == f.getComponent5AsNumber().doubleValue());
+        assertNotEquals(new BigDecimal("291553.9962"), f.getComponent5AsBigDecimal());
     }
 
     @Test
@@ -93,7 +88,7 @@ public class Field61Test extends AbstractFieldTest {
         assertEquals(2008, f.getComponent1AsCalendar().get(Calendar.YEAR));
         assertEquals(Calendar.OCTOBER, f.getComponent1AsCalendar().get(Calendar.MONTH));
         assertEquals(24, f.getComponent1AsCalendar().get(Calendar.DAY_OF_MONTH));
-        assertEquals(new BigDecimal("10215.0"), BigDecimal.valueOf(f.getComponent5AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("10215"), f.getComponent5AsBigDecimal());
         assertEquals("10215,", f.getComponent5());
     }
 
@@ -117,7 +112,7 @@ public class Field61Test extends AbstractFieldTest {
         Field61 f = new Field61("020626D120000,NCOLABCD//12345");
         assertNotNull(f);
         assertEquals("020626", f.getComponent(Field61.VALUE_DATE));
-        assertEquals("D", f.getComponent(Field61.DC_MARK));
+        assertEquals("D", f.getComponent(Field61.DEBITCREDIT_MARK));
         assertEquals("120000,", f.getComponent(Field61.AMOUNT));
         assertEquals("N", f.getComponent(Field61.TRANSACTION_TYPE));
         assertEquals("COL", f.getComponent(Field61.IDENTIFICATION_CODE));
@@ -130,7 +125,7 @@ public class Field61Test extends AbstractFieldTest {
         Field61 f = new Field61("150903C41,98N059NONREF");
         assertNotNull(f);
         assertEquals("150903", f.getComponent(Field61.VALUE_DATE));
-        assertEquals("C", f.getComponent(Field61.DC_MARK));
+        assertEquals("C", f.getComponent(Field61.DEBITCREDIT_MARK));
         assertEquals("41,98", f.getComponent(Field61.AMOUNT));
         assertEquals("N", f.getComponent(Field61.TRANSACTION_TYPE));
         assertEquals("059", f.getComponent(Field61.IDENTIFICATION_CODE));
@@ -167,25 +162,25 @@ public class Field61Test extends AbstractFieldTest {
          RC Reversal of Credit (debit entry)
          RD Reversal of Debit (credit entry)
          */
-        Field61 field61 = null;
+        Field61 field61;
 
         field61 = new Field61("1512290201C0000000002,2222FBNKNONREF");
-        assertEquals("C", field61.getDCMark());
+        assertEquals("C", field61.getDebitCreditMark());
 
         field61 = new Field61("1512290201D0000000002,2222FBNKNONREF");
-        assertEquals("D", field61.getDCMark());
+        assertEquals("D", field61.getDebitCreditMark());
 
         field61 = new Field61("1512290201RC0000000002,2222FBNKNONREF");
-        assertEquals("RC", field61.getDCMark());
+        assertEquals("RC", field61.getDebitCreditMark());
 
         field61 = new Field61("1512290201RD0000000002,2222FBNKNONREF");
-        assertEquals("RD", field61.getDCMark());
+        assertEquals("RD", field61.getDebitCreditMark());
 
         field61 = new Field61("1512290201EC0000000002,2222FBNKNONREF");
-        assertEquals("EC", field61.getDCMark());
+        assertEquals("EC", field61.getDebitCreditMark());
 
         field61 = new Field61("1512290201ED0000000002,2222FBNKNONREF");
-        assertEquals("ED", field61.getDCMark());
+        assertEquals("ED", field61.getDebitCreditMark());
     }
 
     @Test
@@ -201,27 +196,27 @@ public class Field61Test extends AbstractFieldTest {
         Field61 field61 = null;
 
         field61 = new Field61("1512290201CZ0000000002,2222FBNKNONREF");
-        assertEquals("C", field61.getDCMark());
+        assertEquals("C", field61.getDebitCreditMark());
         assertEquals("Z", field61.getFundsCode());
 
         field61 = new Field61("1512290201DZ0000000002,2222FBNKNONREF");
-        assertEquals("D", field61.getDCMark());
+        assertEquals("D", field61.getDebitCreditMark());
         assertEquals("Z", field61.getFundsCode());
 
         field61 = new Field61("1512290201RCZ0000000002,2222FBNKNONREF");
-        assertEquals("RC", field61.getDCMark());
+        assertEquals("RC", field61.getDebitCreditMark());
         assertEquals("Z", field61.getFundsCode());
 
         field61 = new Field61("1512290201RDZ0000000002,2222FBNKNONREF");
-        assertEquals("RD", field61.getDCMark());
+        assertEquals("RD", field61.getDebitCreditMark());
         assertEquals("Z", field61.getFundsCode());
 
         field61 = new Field61("1512290201ECZ0000000002,2222FBNKNONREF");
-        assertEquals("EC", field61.getDCMark());
+        assertEquals("EC", field61.getDebitCreditMark());
         assertEquals("Z", field61.getFundsCode());
 
         field61 = new Field61("1512290201EDZ0000000002,2222FBNKNONREF");
-        assertEquals("ED", field61.getDCMark());
+        assertEquals("ED", field61.getDebitCreditMark());
         assertEquals("Z", field61.getFundsCode());
     }
 

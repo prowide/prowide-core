@@ -36,11 +36,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <strong>MT 526 - General Securities Lending/Borrowing Message</strong>
+ * MT 526 - General Securities Lending/Borrowing Message.
  *
  * <p>
  * SWIFT MT526 (ISO 15022) message structure:
- * <br>
+ *
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A (M)<ul><li class="field">Field 20  (M)</li>
@@ -76,15 +76,15 @@ public class MT526 extends AbstractMT implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT526.class.getName());
 	
 	/**
-	* Constant for MT name, this is part of the classname, after <code>MT</code>
-	*/
+	 * Constant for MT name, this is part of the classname, after MT.
+	 */
 	public static final String NAME = "526";
 
 	/**
-	 * Creates an MT526 initialized with the parameter SwiftMessage
+	 * Creates an MT526 initialized with the parameter SwiftMessage.
 	 * @param m swift message with the MT526 content
 	 */
-	public MT526(SwiftMessage m) {
+	public MT526(final SwiftMessage m) {
 		super(m);
 		sanityCheck(m);
 	}
@@ -94,7 +94,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	 * @param m swift message with the MT526 content, the parameter can not be null
 	 * @see #MT526(String)
 	 */
-	public MT526(MtSwiftMessage m) {
+	public MT526(final MtSwiftMessage m) {
 		this(m.message());
 	}
 	
@@ -106,7 +106,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	 * @see #MT526(String)
 	 * @since 7.7
 	 */
-	public static MT526 parse(MtSwiftMessage m) {
+	public static MT526 parse(final MtSwiftMessage m) {
 		if (m == null) {
 			return null;
 		}
@@ -114,7 +114,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT526 input message setting TEST BICS as sender and receiver.<br>
+	 * Creates and initializes a new MT526 input message setting TEST BICS as sender and receiver.
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -124,7 +124,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT526 input message from sender to receiver.<br>
+	 * Creates and initializes a new MT526 input message from sender to receiver.
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -138,9 +138,9 @@ public class MT526 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates a new MT526 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT526 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -160,15 +160,15 @@ public class MT526 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT526 object from FIN content with a Service Message. Check if the MT526 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+		} else if (!StringUtils.equals(param.getType(), "526")) {
 			log.warning("Creating an MT526 object from FIN content with message type "+param.getType());
 		}
     }
 	
 	/**
-	 * Creates a new MT526 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT526 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter cannot be parsed, the returned MT526 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br>
+	 * initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
 	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
@@ -183,9 +183,9 @@ public class MT526 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT526 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT526 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -197,7 +197,7 @@ public class MT526 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT526 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT526 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -213,9 +213,9 @@ public class MT526 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT526 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT526 by parsing a file with the message content in its swift FIN format.
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -227,7 +227,7 @@ public class MT526 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT526 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT526 by parsing a file with the message content in its swift FIN format.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -243,7 +243,7 @@ public class MT526 extends AbstractMT implements Serializable {
     }
     
 	/**
-	 * Returns this MT number
+	 * Returns this MT number.
 	 * @return the message type number of this MT
 	 * @since 6.4
 	 */
@@ -273,7 +273,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT526 append(final Tag ... tags) {
+	public MT526 append(final Tag... tags) {
 		super.append(tags);
 		return this;
 	}
@@ -286,28 +286,28 @@ public class MT526 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT526 append(final Field ... fields) {
+	public MT526 append(final Field... fields) {
 		super.append(fields);
 		return this;
 	}
 
-    /**
-	 * Creates an MT526 messages from its JSON representation.
-	 * <p>
-	 * For generic conversion of JSON into the corresopnding MT instance
-	 * see {@link AbstractMT#fromJson(String)}
-	 *
-	 * @param json a JSON representation of an MT526 message
-	 * @return a new instance of MT526
-	 * @since 7.10.3
-	 */
-	public static MT526 fromJson(String json) {
+   /**
+	* Creates an MT526 messages from its JSON representation.
+	* <p>
+	* For generic conversion of JSON into the corresponding MT instance
+	* see {@link AbstractMT#fromJson(String)}
+	*
+	* @param json a JSON representation of an MT526 message
+	* @return a new instance of MT526
+	* @since 7.10.3
+	*/
+	public static MT526 fromJson(final String json) {
 		return (MT526) AbstractMT.fromJson(json);
 	}
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 20 at MT526 is expected to be the only one.
 	 * 
 	 * @return a Field20 object or null if the field is not found
@@ -325,7 +325,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21 at MT526 is expected to be the only one.
 	 * 
 	 * @return a Field21 object or null if the field is not found
@@ -343,7 +343,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 23, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 23 at MT526 is expected to be the only one.
 	 * 
 	 * @return a Field23 object or null if the field is not found
@@ -361,7 +361,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83C, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 83C at MT526 is expected to be the only one.
 	 * 
 	 * @return a Field83C object or null if the field is not found
@@ -379,7 +379,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 29A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 29A at MT526 is expected to be the only one.
 	 * 
 	 * @return a Field29A object or null if the field is not found
@@ -397,7 +397,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 29B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 29B at MT526 is expected to be the only one.
 	 * 
 	 * @return a Field29B object or null if the field is not found
@@ -415,7 +415,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 35B at MT526 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
@@ -435,7 +435,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 35A at MT526 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field35A objects or <code>Collections.emptyList()</code> if none is not found
@@ -455,7 +455,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 30, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 30 at MT526 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field30 objects or <code>Collections.emptyList()</code> if none is not found
@@ -475,7 +475,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 31F, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 31F at MT526 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field31F objects or <code>Collections.emptyList()</code> if none is not found
@@ -495,7 +495,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 87A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 87A at MT526 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field87A objects or <code>Collections.emptyList()</code> if none is not found
@@ -515,7 +515,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 87D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 87D at MT526 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field87D objects or <code>Collections.emptyList()</code> if none is not found
@@ -535,7 +535,7 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 72, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 72 at MT526 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field72 objects or <code>Collections.emptyList()</code> if none is not found
@@ -555,13 +555,13 @@ public class MT526 extends AbstractMT implements Serializable {
 	
 
 	/**
-	 * Class to model Sequence "A" in MT 526
+	 * Class to model Sequence "A" in MT 526.
 	 */
 	public static class SequenceA extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
 			super(new ArrayList<Tag>());
@@ -588,17 +588,17 @@ public class MT526 extends AbstractMT implements Serializable {
 		protected static final String[] END = { "23"   };
 
 		/**
-		 * List of optional tags after the last mandatory tag
+		 * List of optional tags after the last mandatory tag.
 		 */
 		protected static final String[] TAIL = new String[]{ "83C", "29A", "29B"   };
 
 		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
 		 * @param tags the list of tags to set as sequence content
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceA newInstance(final Tag ... tags) {
+		public static SequenceA newInstance(final Tag... tags) {
 			return newInstance(0, 0, tags);
 		}
 
@@ -613,7 +613,7 @@ public class MT526 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceA newInstance(final int start, final int end, final Tag ... tags) {
+		public static SequenceA newInstance(final int start, final int end, final Tag... tags) {
 			final SequenceA result = new SequenceA();
 			result.append(new Tag(START[start], ""));
 			if (tags != null && tags.length > 0) {
@@ -670,13 +670,13 @@ public class MT526 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B" in MT 526
+	 * Class to model Sequence "B" in MT 526.
 	 */
 	public static class SequenceB extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
 			super(new ArrayList<Tag>());
