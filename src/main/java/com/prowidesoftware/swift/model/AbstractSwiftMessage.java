@@ -281,9 +281,10 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * <p>The complete file content will be read and set as raw message content, but if the file contains
      * multiple messages, only the first one will be used for metadata and message identification.
      *
-     * @param file             an existing file containing the message payload
+     * @param file             an existing file containing message payload
      * @param fileFormat       the source file format
      * @param metadataStrategy the specific metadata extraction to apply
+     * @throws IOException     on error during file reading
      * @since 9.1.4
      */
     protected AbstractSwiftMessage(final File file, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
@@ -806,6 +807,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     /**
      * Finds the first status info from the status trail, with a name matching any of the given status names, or returns <code>null</code> if not found
      * This method is similar to {@link #findStatusInfoLast(String...)} but checks the status trail in ascending order from oldest to latest.
+     * @param statusNames status name candidates
      *
      * @since 7.8.8
      */

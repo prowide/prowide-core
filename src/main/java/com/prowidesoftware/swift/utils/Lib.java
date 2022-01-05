@@ -41,6 +41,9 @@ public class Lib {
     /**
      * Read the content of the given file into a string, using UTF8 as default encoding
      *
+     * @param file the file to read
+     * @return file contents
+     * @throws IOException if an error occurs during read
      * @see #readFile(File, String)
      */
     public static String readFile(final File file) throws IOException {
@@ -76,6 +79,7 @@ public class Lib {
     /**
      * Read a resource from classpath using the context classloader, using UTF8 as default encoding
      *
+     * @param resource the resource name to read, must not be null
      * @see #readResource(String, String)
      * @since 7.10.0
      */
