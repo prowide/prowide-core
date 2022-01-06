@@ -76,7 +76,7 @@ public class Field90ATest extends AbstractFieldTest {
         assertEquals("1234,5", f.getPrice());
         assertEquals("1234,5", f.getComponent(Field90A.PRICE));
         assertEquals("1234,5", f.getComponent4());
-        assertEquals(new BigDecimal("1234.5"), f.getPriceAsNumber());
+        assertEquals(new BigDecimal("1234.5"), f.getPriceAsBigDecimal());
     }
 
 }

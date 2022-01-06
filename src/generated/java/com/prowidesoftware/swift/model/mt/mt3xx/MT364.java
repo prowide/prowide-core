@@ -36,11 +36,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <strong>MT 364 - Single Currency Interest Rate Derivative Termination/Recouponing Confirmation</strong>
+ * MT 364 - Single Currency Interest Rate Derivative Termination/Recouponing Confirmation.
  *
  * <p>
  * SWIFT MT364 (ISO 15022) message structure:
- * <br>
+ *
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
@@ -113,15 +113,15 @@ public class MT364 extends AbstractMT implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT364.class.getName());
 	
 	/**
-	* Constant for MT name, this is part of the classname, after <code>MT</code>
-	*/
+	 * Constant for MT name, this is part of the classname, after MT.
+	 */
 	public static final String NAME = "364";
 
 	/**
-	 * Creates an MT364 initialized with the parameter SwiftMessage
+	 * Creates an MT364 initialized with the parameter SwiftMessage.
 	 * @param m swift message with the MT364 content
 	 */
-	public MT364(SwiftMessage m) {
+	public MT364(final SwiftMessage m) {
 		super(m);
 		sanityCheck(m);
 	}
@@ -131,7 +131,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	 * @param m swift message with the MT364 content, the parameter can not be null
 	 * @see #MT364(String)
 	 */
-	public MT364(MtSwiftMessage m) {
+	public MT364(final MtSwiftMessage m) {
 		this(m.message());
 	}
 	
@@ -143,7 +143,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	 * @see #MT364(String)
 	 * @since 7.7
 	 */
-	public static MT364 parse(MtSwiftMessage m) {
+	public static MT364 parse(final MtSwiftMessage m) {
 		if (m == null) {
 			return null;
 		}
@@ -151,7 +151,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT364 input message setting TEST BICS as sender and receiver.<br>
+	 * Creates and initializes a new MT364 input message setting TEST BICS as sender and receiver.
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -161,7 +161,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT364 input message from sender to receiver.<br>
+	 * Creates and initializes a new MT364 input message from sender to receiver.
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -175,9 +175,9 @@ public class MT364 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates a new MT364 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT364 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -197,15 +197,15 @@ public class MT364 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT364 object from FIN content with a Service Message. Check if the MT364 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+		} else if (!StringUtils.equals(param.getType(), "364")) {
 			log.warning("Creating an MT364 object from FIN content with message type "+param.getType());
 		}
     }
 	
 	/**
-	 * Creates a new MT364 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT364 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter cannot be parsed, the returned MT364 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br>
+	 * initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
 	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
@@ -220,9 +220,9 @@ public class MT364 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT364 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT364 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -234,7 +234,7 @@ public class MT364 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT364 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT364 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -250,9 +250,9 @@ public class MT364 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT364 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT364 by parsing a file with the message content in its swift FIN format.
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -264,7 +264,7 @@ public class MT364 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT364 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT364 by parsing a file with the message content in its swift FIN format.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -280,7 +280,7 @@ public class MT364 extends AbstractMT implements Serializable {
     }
     
 	/**
-	 * Returns this MT number
+	 * Returns this MT number.
 	 * @return the message type number of this MT
 	 * @since 6.4
 	 */
@@ -310,7 +310,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT364 append(final Tag ... tags) {
+	public MT364 append(final Tag... tags) {
 		super.append(tags);
 		return this;
 	}
@@ -323,28 +323,28 @@ public class MT364 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT364 append(final Field ... fields) {
+	public MT364 append(final Field... fields) {
 		super.append(fields);
 		return this;
 	}
 
-    /**
-	 * Creates an MT364 messages from its JSON representation.
-	 * <p>
-	 * For generic conversion of JSON into the corresopnding MT instance
-	 * see {@link AbstractMT#fromJson(String)}
-	 *
-	 * @param json a JSON representation of an MT364 message
-	 * @return a new instance of MT364
-	 * @since 7.10.3
-	 */
-	public static MT364 fromJson(String json) {
+   /**
+	* Creates an MT364 messages from its JSON representation.
+	* <p>
+	* For generic conversion of JSON into the corresponding MT instance
+	* see {@link AbstractMT#fromJson(String)}
+	*
+	* @param json a JSON representation of an MT364 message
+	* @return a new instance of MT364
+	* @since 7.10.3
+	*/
+	public static MT364 fromJson(final String json) {
 		return (MT364) AbstractMT.fromJson(json);
 	}
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15A at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field15A object or null if the field is not found
@@ -362,7 +362,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 20 at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field20 object or null if the field is not found
@@ -380,7 +380,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21 at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field21 object or null if the field is not found
@@ -398,7 +398,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22A at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field22A object or null if the field is not found
@@ -416,7 +416,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 94A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 94A at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field94A object or null if the field is not found
@@ -434,7 +434,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22B at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field22B object or null if the field is not found
@@ -452,7 +452,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22C, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22C at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field22C object or null if the field is not found
@@ -470,7 +470,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 23A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 23A at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field23A object or null if the field is not found
@@ -488,7 +488,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21N, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21N at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field21N object or null if the field is not found
@@ -506,7 +506,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21B at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field21B object or null if the field is not found
@@ -524,7 +524,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30T, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 30T at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field30T object or null if the field is not found
@@ -542,7 +542,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30Q, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 30Q at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field30Q object or null if the field is not found
@@ -560,7 +560,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30P, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 30P at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field30P object or null if the field is not found
@@ -578,7 +578,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30V, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 30V at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field30V object or null if the field is not found
@@ -596,7 +596,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 32B at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field32B object or null if the field is not found
@@ -614,7 +614,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 82A at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field82A object or null if the field is not found
@@ -632,7 +632,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 82D at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field82D object or null if the field is not found
@@ -650,7 +650,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 87A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 87A at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field87A object or null if the field is not found
@@ -668,7 +668,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 87D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 87D at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field87D object or null if the field is not found
@@ -686,7 +686,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 83A at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field83A object or null if the field is not found
@@ -704,7 +704,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 83D at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field83D object or null if the field is not found
@@ -722,7 +722,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 83J at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field83J object or null if the field is not found
@@ -740,7 +740,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22D at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field22D object or null if the field is not found
@@ -758,7 +758,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32G, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 32G at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field32G object or null if the field is not found
@@ -776,7 +776,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37N, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 37N at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field37N object or null if the field is not found
@@ -794,7 +794,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 29A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 29A at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field29A object or null if the field is not found
@@ -812,7 +812,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 72, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 72 at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field72 object or null if the field is not found
@@ -830,7 +830,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15B at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field15B object or null if the field is not found
@@ -848,7 +848,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15E, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15E at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field15E object or null if the field is not found
@@ -866,7 +866,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15L, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15L at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field15L object or null if the field is not found
@@ -884,7 +884,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15M, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15M at MT364 is expected to be the only one.
 	 * 
 	 * @return a Field15M object or null if the field is not found
@@ -902,7 +902,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 37M, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 37M at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field37M objects or <code>Collections.emptyList()</code> if none is not found
@@ -922,7 +922,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 37G, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 37G at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field37G objects or <code>Collections.emptyList()</code> if none is not found
@@ -942,7 +942,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 30F, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 30F at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field30F objects or <code>Collections.emptyList()</code> if none is not found
@@ -962,7 +962,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 32M, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 32M at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field32M objects or <code>Collections.emptyList()</code> if none is not found
@@ -982,7 +982,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 53A at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field53A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1002,7 +1002,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 53D at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field53D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1022,7 +1022,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 56A at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field56A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1042,7 +1042,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 56D at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field56D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1062,7 +1062,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 86A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 86A at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field86A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1082,7 +1082,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 86D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 86D at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field86D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1102,7 +1102,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 57A at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field57A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1122,7 +1122,7 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 57D at MT364 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field57D objects or <code>Collections.emptyList()</code> if none is not found
@@ -1142,14 +1142,14 @@ public class MT364 extends AbstractMT implements Serializable {
 	
 
 	/**
-	 * Class to model Sequence "A" in MT 364
+	 * Class to model Sequence "A" in MT 364.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceA extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
 			super(new ArrayList<Tag>());
@@ -1164,14 +1164,15 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15A.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceA newInstance(final Tag ... tags) {
+		public static SequenceA newInstance(final Tag... tags) {
 			final SequenceA result = new SequenceA();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1183,11 +1184,11 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceA newInstance() {
 			final SequenceA result = new SequenceA();
 			result.append(START_TAG);
@@ -1201,7 +1202,7 @@ public class MT364 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceA newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceA newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceA result = new SequenceA();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -1244,14 +1245,14 @@ public class MT364 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "B" in MT 364
+	 * Class to model Sequence "B" in MT 364.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceB extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
 			super(new ArrayList<Tag>());
@@ -1266,14 +1267,15 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15B.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceB newInstance(final Tag ... tags) {
+		public static SequenceB newInstance(final Tag... tags) {
 			final SequenceB result = new SequenceB();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1285,11 +1287,11 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceB newInstance() {
 			final SequenceB result = new SequenceB();
 			result.append(START_TAG);
@@ -1303,7 +1305,7 @@ public class MT364 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceB newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB result = new SequenceB();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -1346,14 +1348,14 @@ public class MT364 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "E" in MT 364
+	 * Class to model Sequence "E" in MT 364.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceE extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceE() {
 			super(new ArrayList<Tag>());
@@ -1368,14 +1370,15 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15E.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceE newInstance(final Tag ... tags) {
+		public static SequenceE newInstance(final Tag... tags) {
 			final SequenceE result = new SequenceE();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1387,11 +1390,11 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceE newInstance() {
 			final SequenceE result = new SequenceE();
 			result.append(START_TAG);
@@ -1405,7 +1408,7 @@ public class MT364 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceE newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceE newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceE result = new SequenceE();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -1448,14 +1451,14 @@ public class MT364 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "L" in MT 364
+	 * Class to model Sequence "L" in MT 364.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceL extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceL() {
 			super(new ArrayList<Tag>());
@@ -1470,14 +1473,15 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15L.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceL newInstance(final Tag ... tags) {
+		public static SequenceL newInstance(final Tag... tags) {
 			final SequenceL result = new SequenceL();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1489,11 +1493,11 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceL newInstance() {
 			final SequenceL result = new SequenceL();
 			result.append(START_TAG);
@@ -1507,7 +1511,7 @@ public class MT364 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceL newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceL newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceL result = new SequenceL();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -1550,14 +1554,14 @@ public class MT364 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "M" in MT 364
+	 * Class to model Sequence "M" in MT 364.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceM extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceM() {
 			super(new ArrayList<Tag>());
@@ -1572,14 +1576,15 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15M.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceM newInstance(final Tag ... tags) {
+		public static SequenceM newInstance(final Tag... tags) {
 			final SequenceM result = new SequenceM();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1591,11 +1596,11 @@ public class MT364 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceM newInstance() {
 			final SequenceM result = new SequenceM();
 			result.append(START_TAG);
@@ -1609,7 +1614,7 @@ public class MT364 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceM newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceM newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceM result = new SequenceM();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {

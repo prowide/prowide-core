@@ -53,8 +53,7 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
     @Override
     public JsonElement serialize(AbstractMT src, Type typeOfSrc, JsonSerializationContext context) {
         String json = src.m.toJson();
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(json).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(json).getAsJsonObject();
         JsonObject response = new JsonObject();
 
         response.addProperty("type", "MT");
@@ -170,10 +169,9 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
      */
     private JsonArray getFieldsFromTags(List<Tag> tags) {
         JsonArray fields = new JsonArray();
-        JsonParser parser = new JsonParser();
         for (Tag tag : tags) {
             String json = tag.asField().toJson();
-            JsonObject jsonObj = parser.parse(json).getAsJsonObject();
+            JsonObject jsonObj = JsonParser.parseString(json).getAsJsonObject();
             fields.add(jsonObj);
         }
         return fields;

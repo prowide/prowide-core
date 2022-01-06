@@ -300,7 +300,9 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     private boolean compareLTAddress(String logicalTerminalLeft, String logicalTerminalRight) {
         LogicalTerminalAddress leftLTAddress = new LogicalTerminalAddress(logicalTerminalLeft);
         LogicalTerminalAddress rightLTAddress = new LogicalTerminalAddress(logicalTerminalRight);
-        boolean sameLTIdentifier = this.ignoreLT || leftLTAddress.getLTIdentifier() == rightLTAddress.getLTIdentifier();
+        String left = leftLTAddress != null? String.valueOf(leftLTAddress.getLTIdentifier()) : null;
+        String right = rightLTAddress != null? String.valueOf(rightLTAddress.getLTIdentifier()) : null;
+        boolean sameLTIdentifier = this.ignoreLT || StringUtils.equals(left, right);
         boolean sameBic11 = compareBic(leftLTAddress, rightLTAddress);
         return sameLTIdentifier && sameBic11;
     }

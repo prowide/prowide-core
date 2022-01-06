@@ -41,7 +41,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 13B</strong>
+ * SWIFT MT Field 13B.
  * <p>
  * Model and parser for field 13B of a SWIFT MT message.
  *
@@ -72,28 +72,28 @@ public class Field13B extends Field implements Serializable, GenericField {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 13B
+	 * Constant with the field name 13B.
 	 */
     public static final String NAME = "13B";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_13B = "13B";
 	public static final String PARSER_PATTERN = ":S/[S]/S";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -101,17 +101,17 @@ public class Field13B extends Field implements Serializable, GenericField {
 	public static final String TYPES_PATTERN = "SSS";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Data Source Scheme subfield
+	 * Component number for the Data Source Scheme subfield.
 	 */
 	public static final Integer DATA_SOURCE_SCHEME = 2;
 
 	/**
-	 * Component number for the Number subfield
+	 * Component number for the Number subfield.
 	 */
 	public static final Integer NUMBER = 3;
 
@@ -148,7 +148,7 @@ public class Field13B extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -170,7 +170,7 @@ public class Field13B extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -250,7 +250,7 @@ public class Field13B extends Field implements Serializable, GenericField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -488,7 +488,7 @@ public class Field13B extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 3;
 
@@ -502,7 +502,7 @@ public class Field13B extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field13B.NAME
      */
     @Override
@@ -523,7 +523,7 @@ public class Field13B extends Field implements Serializable, GenericField {
         if (t == null) {
             return null;
         }
-        return new Field13B(t) ;
+        return new Field13B(t);
     }
 
     /**
@@ -533,8 +533,9 @@ public class Field13B extends Field implements Serializable, GenericField {
      * @see #get(SwiftTagListBlock)
      */
     public static Field13B get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -545,8 +546,9 @@ public class Field13B extends Field implements Serializable, GenericField {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field13B> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -564,7 +566,7 @@ public class Field13B extends Field implements Serializable, GenericField {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field13B(f));
+                result.add(new Field13B(f));
             }
         }
         return result;
@@ -579,10 +581,9 @@ public class Field13B extends Field implements Serializable, GenericField {
      */
     public static Field13B fromJson(final String json) {
 
-        Field13B field = new Field13B();
+        final Field13B field = new Field13B();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 

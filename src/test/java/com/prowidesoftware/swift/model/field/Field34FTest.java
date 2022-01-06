@@ -22,14 +22,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field34F and similar fields.
- *
- * @since 6.0
- */
 public class Field34FTest extends AbstractFieldTest {
-    @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field34FTest.class.getName());
 
     @Override
     @Test
@@ -41,7 +34,7 @@ public class Field34FTest extends AbstractFieldTest {
 
     @Test
     public void testField19AString() {
-        Field34F f = null;
+        Field34F f;
 
         f = new Field34F((String) null);
         assertNull(f.getComponent1());
@@ -97,20 +90,19 @@ public class Field34FTest extends AbstractFieldTest {
         assertEquals("aaa", f.getComponent1());
         assertEquals("b", f.getComponent2());
         assertEquals("123", f.getComponent3());
-        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent3AsBigDecimal());
 
         f = new Field34F("aaab123,");
         assertEquals("aaa", f.getComponent1());
         assertEquals("b", f.getComponent2());
         assertEquals("123,", f.getComponent3());
-        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent3AsBigDecimal());
 
         f = new Field34F("aaab123,45");
         assertEquals("aaa", f.getComponent1());
         assertEquals("b", f.getComponent2());
         assertEquals("123,45", f.getComponent3());
-        assertEquals(new BigDecimal("123.45"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
-
+        assertEquals(new BigDecimal("123.45"), f.getComponent3AsBigDecimal());
     }
 
 }

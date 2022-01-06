@@ -21,14 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 
-/**
- * Test for Field23 and similar fields.
- *
- * @since 6.0
- */
 public class Field23Test extends AbstractFieldTest {
-    @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field23Test.class.getName());
 
     @Override
     @Test

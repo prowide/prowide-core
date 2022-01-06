@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<!-- Empty suppressions file: copy it into gradle/config/checkstyle and specify required suppressions
+     (https://checkstyle.sourceforge.io/config_filters.html#SuppressionFilter)-->
+<suppressions>
+
+    <suppress id="LineLength" files="." />
+    <suppress id="CommentsIndentation" files="." />
+
+    <!--<suppress checks="NewlineAtEndOfFileCheck" files="Sample.java"/>-->
+
+    <!--<suppress message="Missing a Javadoc comment."/>-->
+
+</suppressions>

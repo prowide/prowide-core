@@ -46,7 +46,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 256</strong>
+ * SWIFT MT Field 256.
  * <p>
  * Model and parser for field 256 of a SWIFT MT message.
  *
@@ -80,28 +80,28 @@ public class Field256 extends Field implements Serializable, DateContainer {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 256
+	 * Constant with the field name 256.
 	 */
     public static final String NAME = "256";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_256 = "256";
 	public static final String PARSER_PATTERN = "<LT>4!Nc<DATE2>[<HHMM><HHMM>]";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "ZNNEHH";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -109,32 +109,32 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	public static final String TYPES_PATTERN = "ZNNEHH";
 
 	/**
-	 * Component number for the LT Address subfield
+	 * Component number for the LT Address subfield.
 	 */
 	public static final Integer LT_ADDRESS = 1;
 
 	/**
-	 * Component number for the Session Number subfield
+	 * Component number for the Session Number subfield.
 	 */
 	public static final Integer SESSION_NUMBER = 2;
 
 	/**
-	 * Component number for the Message Category subfield
+	 * Component number for the Message Category subfield.
 	 */
 	public static final Integer MESSAGE_CATEGORY = 3;
 
 	/**
-	 * Component number for the Date subfield
+	 * Component number for the Date subfield.
 	 */
 	public static final Integer DATE = 4;
 
 	/**
-	 * Component number for the Start Time subfield
+	 * Component number for the Start Time subfield.
 	 */
 	public static final Integer START_TIME = 5;
 
 	/**
-	 * Component number for the End Time subfield
+	 * Component number for the End Time subfield.
 	 */
 	public static final Integer END_TIME = 6;
 
@@ -171,7 +171,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -193,7 +193,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -314,7 +314,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -482,7 +482,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #getComponent2AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -515,7 +515,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #getSessionNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getSessionNumberAsNumber() {
         return getComponent2AsNumber();
     }
@@ -548,7 +548,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #getComponent3AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -581,7 +581,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #getMessageCategoryAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getMessageCategoryAsNumber() {
         return getComponent3AsNumber();
     }
@@ -772,7 +772,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component2 instanceof Long) {
-            setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
+            setComponent(2, SwiftFormatUtils.getLong((Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 != null) {
@@ -864,7 +864,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component3 instanceof Long) {
-            setComponent(3, SwiftFormatUtils.getLong( (Long) component3));
+            setComponent(3, SwiftFormatUtils.getLong((Long) component3));
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 != null) {
@@ -1066,7 +1066,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field256.NAME
      */
     @Override
@@ -1087,7 +1087,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
         if (t == null) {
             return null;
         }
-        return new Field256(t) ;
+        return new Field256(t);
     }
 
     /**
@@ -1097,8 +1097,9 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #get(SwiftTagListBlock)
      */
     public static Field256 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -1109,8 +1110,9 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field256> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -1128,7 +1130,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field256(f));
+                result.add(new Field256(f));
             }
         }
         return result;
@@ -1143,10 +1145,9 @@ public class Field256 extends Field implements Serializable, DateContainer {
      */
     public static Field256 fromJson(final String json) {
 
-        Field256 field = new Field256();
+        final Field256 field = new Field256();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - LT Address
 

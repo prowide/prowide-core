@@ -48,7 +48,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 90J</strong>
+ * SWIFT MT Field 90J.
  * <p>
  * Model and parser for field 90J of a SWIFT MT message.
  *
@@ -82,28 +82,28 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 90J
+	 * Constant with the field name 90J.
 	 */
     public static final String NAME = "90J";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_90J = "90J";
 	public static final String PARSER_PATTERN = ":S//S/SN/SN";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSCNCN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -111,56 +111,56 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
 	public static final String TYPES_PATTERN = "SSCICI";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the AmountTypeCode subfield
+	 * Component number for the AmountTypeCode subfield.
 	 */
 	public static final Integer AMOUNTTYPECODE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's AmountTypeCode Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's AmountTypeCode Component number.
 	 * @see #AMOUNTTYPECODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer CODE = 2;
 
 	/**
-	 * Component number for the Currency Code1 subfield
+	 * Component number for the Currency Code1 subfield.
 	 */
 	public static final Integer CURRENCY_CODE1 = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code1 Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code1 Component number.
 	 * @see #CURRENCY_CODE1
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer CURRENCY1 = 3;
 
 	/**
-	 * Component number for the Amount1 subfield
+	 * Component number for the Amount1 subfield.
 	 */
 	public static final Integer AMOUNT1 = 4;
 
 	/**
-	 * Component number for the Currency Code2 subfield
+	 * Component number for the Currency Code2 subfield.
 	 */
 	public static final Integer CURRENCY_CODE2 = 5;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code2 Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code2 Component number.
 	 * @see #CURRENCY_CODE2
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer CURRENCY2 = 5;
 
 	/**
-	 * Component number for the Amount2 subfield
+	 * Component number for the Amount2 subfield.
 	 */
 	public static final Integer AMOUNT2 = 6;
 
@@ -197,7 +197,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -219,7 +219,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -332,7 +332,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -477,7 +477,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getCode() {
         return getAmountTypeCode();
     }
@@ -513,7 +513,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getCurrency1() {
         return getCurrencyCode1();
     }
@@ -531,7 +531,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @see #getCurrencyCode1AsCurrency()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.util.Currency getCurrency1AsCurrency() {
         return getCurrencyCode1AsCurrency();
     }
@@ -564,7 +564,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent4AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         return getComponent4AsBigDecimal();
     }
@@ -596,7 +596,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @see #getAmount1AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmount1AsNumber() {
         return getComponent4AsNumber();
     }
@@ -632,7 +632,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getCurrency2() {
         return getCurrencyCode2();
     }
@@ -650,7 +650,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @see #getCurrencyCode2AsCurrency()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.util.Currency getCurrency2AsCurrency() {
         return getCurrencyCode2AsCurrency();
     }
@@ -683,7 +683,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent6AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent6AsNumber() {
         return getComponent6AsBigDecimal();
     }
@@ -715,7 +715,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @see #getAmount2AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmount2AsNumber() {
         return getComponent6AsNumber();
     }
@@ -771,7 +771,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field90J setCode(String component2) {
         return setAmountTypeCode(component2);
     }
@@ -829,7 +829,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field90J setCurrency1(String component3) {
         return setCurrencyCode1(component3);
     }
@@ -843,7 +843,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field90J setCurrency1(java.util.Currency component3) {
         return setCurrencyCode1(component3);
     }
@@ -891,9 +891,9 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component4 instanceof BigDecimal) {
-            setComponent(4, SwiftFormatUtils.getBigDecimal( (BigDecimal) component4));
+            setComponent(4, SwiftFormatUtils.getBigDecimal((BigDecimal) component4));
         } else if (component4 instanceof BigInteger) {
-            setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component4)));
+            setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component4)));
         } else if (component4 instanceof Long || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component4.longValue())));
         } else if (component4 != null) {
@@ -995,7 +995,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field90J setCurrency2(String component5) {
         return setCurrencyCode2(component5);
     }
@@ -1009,7 +1009,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field90J setCurrency2(java.util.Currency component5) {
         return setCurrencyCode2(component5);
     }
@@ -1057,9 +1057,9 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component6 instanceof BigDecimal) {
-            setComponent(6, SwiftFormatUtils.getBigDecimal( (BigDecimal) component6));
+            setComponent(6, SwiftFormatUtils.getBigDecimal((BigDecimal) component6));
         } else if (component6 instanceof BigInteger) {
-            setComponent(6, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component6)));
+            setComponent(6, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component6)));
         } else if (component6 instanceof Long || component6 instanceof Integer) {
             setComponent(6, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component6.longValue())));
         } else if (component6 != null) {
@@ -1175,7 +1175,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
 
@@ -1189,7 +1189,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field90J.NAME
      */
     @Override
@@ -1210,7 +1210,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
         if (t == null) {
             return null;
         }
-        return new Field90J(t) ;
+        return new Field90J(t);
     }
 
     /**
@@ -1220,8 +1220,9 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @see #get(SwiftTagListBlock)
      */
     public static Field90J get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -1232,8 +1233,9 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field90J> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -1251,7 +1253,7 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field90J(f));
+                result.add(new Field90J(f));
             }
         }
         return result;
@@ -1266,10 +1268,9 @@ public class Field90J extends Field implements Serializable, CurrencyContainer, 
      */
     public static Field90J fromJson(final String json) {
 
-        Field90J field = new Field90J();
+        final Field90J field = new Field90J();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 

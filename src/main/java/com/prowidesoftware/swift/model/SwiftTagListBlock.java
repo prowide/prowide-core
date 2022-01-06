@@ -1626,10 +1626,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 
     /**
      * Similar to {@link #getSubBlockByTagNames(Integer, String...)} but will return
-     * all matches for the indicated subblock
+     * all matches for the indicated subblock.
      *
      * @return a list of found subblocks or empty if non matched
-     * @return a list with the found blocks
      * @since 7.8.5
      */
     public List<SwiftTagListBlock> getSubBlocksByTagNames(final Integer startIndex, final String... searchTags) {
@@ -1710,7 +1709,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
     }
 
     /**
-     * Get the first found sub block in message that start with tag with tagname, end with tag named endName and optionally, may be null, have optionalTail tag names at the end of the secuence
+     * Get the first found sub block in message that start with tag with tag name, end with tag named endName and optionally, may be null, have optionalTail tag names at the end of the sequence
      *
      * @param start name of the tag that identifies the begin of the sequence
      * @param end   name of the tag that identifies the end of the sequence

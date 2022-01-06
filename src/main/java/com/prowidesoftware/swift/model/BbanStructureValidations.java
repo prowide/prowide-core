@@ -125,6 +125,7 @@ public class BbanStructureValidations {
 
     /**
      * Gets the list of countries configured for BBAN validation
+     * @return list of countries
      */
     public List<String> supportedCountries() {
         final List<String> countryCodes = new ArrayList<>(bbanStructures.size());
@@ -138,6 +139,7 @@ public class BbanStructureValidations {
      * Adds a new country BBAN structure configuration
      *
      * @param bbanStructure the specific BBAN configuration to add
+     * @return this object
      */
     public BbanStructureValidations add(final BbanStructureDTO bbanStructure) {
         if (this.bbanStructures == null) {

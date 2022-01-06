@@ -41,7 +41,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 12A</strong>
+ * SWIFT MT Field 12A.
  * <p>
  * Model and parser for field 12A of a SWIFT MT message.
  *
@@ -72,28 +72,28 @@ public class Field12A extends Field implements Serializable, GenericField {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 12A
+	 * Constant with the field name 12A.
 	 */
     public static final String NAME = "12A";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_12A = "12A";
 	public static final String PARSER_PATTERN = ":S/[S]/S";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -101,26 +101,26 @@ public class Field12A extends Field implements Serializable, GenericField {
 	public static final String TYPES_PATTERN = "SSS";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Data Source Scheme subfield
+	 * Component number for the Data Source Scheme subfield.
 	 */
 	public static final Integer DATA_SOURCE_SCHEME = 2;
 
 	/**
-	 * Component number for the Instrument Code Or Description subfield
+	 * Component number for the Instrument Code Or Description subfield.
 	 */
 	public static final Integer INSTRUMENT_CODE_OR_DESCRIPTION = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Instrument Code Or Description Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Instrument Code Or Description Component number.
 	 * @see #INSTRUMENT_CODE_OR_DESCRIPTION
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer INSTRUMENT_CODE = 3;
 
     /**
@@ -156,7 +156,7 @@ public class Field12A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -178,7 +178,7 @@ public class Field12A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -258,7 +258,7 @@ public class Field12A extends Field implements Serializable, GenericField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -416,7 +416,7 @@ public class Field12A extends Field implements Serializable, GenericField {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getInstrumentCode() {
         return getInstrumentCodeOrDescription();
     }
@@ -493,7 +493,7 @@ public class Field12A extends Field implements Serializable, GenericField {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field12A setInstrumentCode(String component3) {
         return setInstrumentCodeOrDescription(component3);
     }
@@ -521,7 +521,7 @@ public class Field12A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 3;
 
@@ -535,7 +535,7 @@ public class Field12A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field12A.NAME
      */
     @Override
@@ -556,7 +556,7 @@ public class Field12A extends Field implements Serializable, GenericField {
         if (t == null) {
             return null;
         }
-        return new Field12A(t) ;
+        return new Field12A(t);
     }
 
     /**
@@ -566,8 +566,9 @@ public class Field12A extends Field implements Serializable, GenericField {
      * @see #get(SwiftTagListBlock)
      */
     public static Field12A get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -578,8 +579,9 @@ public class Field12A extends Field implements Serializable, GenericField {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field12A> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -597,7 +599,7 @@ public class Field12A extends Field implements Serializable, GenericField {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field12A(f));
+                result.add(new Field12A(f));
             }
         }
         return result;
@@ -612,10 +614,9 @@ public class Field12A extends Field implements Serializable, GenericField {
      */
     public static Field12A fromJson(final String json) {
 
-        Field12A field = new Field12A();
+        final Field12A field = new Field12A();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 

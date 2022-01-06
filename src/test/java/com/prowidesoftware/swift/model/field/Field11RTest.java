@@ -23,11 +23,6 @@ import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for Field11R and similar fields.
- *
- * @since 6.0
- */
 public class Field11RTest extends AbstractFieldTest {
 
     @Override
@@ -58,14 +53,14 @@ public class Field11RTest extends AbstractFieldTest {
 
         f = new Field11R("100");
         assertEquals("100", f.getComponent1());
-        assertEquals("100", f.getMT());
+        assertEquals("100", f.getMTNumber());
         assertNull(f.getComponent2());
         assertNull(f.getComponent3());
         assertNull(f.getComponent4());
 
         f = new Field11R("100\n091019");
         assertEquals("100", f.getComponent1());
-        assertEquals("100", f.getMT());
+        assertEquals("100", f.getMTNumber());
         assertEquals("091019", f.getComponent2());
         assertEquals(2009, f.getComponent2AsCalendar().get(Calendar.YEAR));
         assertEquals(10, f.getComponent2AsCalendar().get(Calendar.MONTH) + 1); //MONTH is zero based at Calendar
@@ -75,7 +70,7 @@ public class Field11RTest extends AbstractFieldTest {
 
         f = new Field11R("100\n091019\nabc");
         assertEquals("100", f.getComponent1());
-        assertEquals("100", f.getMT());
+        assertEquals("100", f.getMTNumber());
         assertEquals("091019", f.getComponent2());
         assertEquals(2009, f.getComponent2AsCalendar().get(Calendar.YEAR));
         assertEquals(10, f.getComponent2AsCalendar().get(Calendar.MONTH) + 1);

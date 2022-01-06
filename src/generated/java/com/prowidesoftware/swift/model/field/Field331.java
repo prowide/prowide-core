@@ -45,7 +45,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 331</strong>
+ * SWIFT MT Field 331.
  * <p>
  * Model and parser for field 331 of a SWIFT MT message.
  *
@@ -85,28 +85,28 @@ public class Field331 extends Field implements Serializable, DateContainer {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 331
+	 * Constant with the field name 331.
 	 */
     public static final String NAME = "331";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_331 = "331";
 	public static final String PARSER_PATTERN = "4!N<DATE2><HHMM><DATE2><HHMM>3!N6!N6!N6!N6!N6!N6!N";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NEHEHNNNNNNN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -114,62 +114,62 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	public static final String TYPES_PATTERN = "NEHEHNNNNNNN";
 
 	/**
-	 * Component number for the Session Number subfield
+	 * Component number for the Session Number subfield.
 	 */
 	public static final Integer SESSION_NUMBER = 1;
 
 	/**
-	 * Component number for the Date Session Opened subfield
+	 * Component number for the Date Session Opened subfield.
 	 */
 	public static final Integer DATE_SESSION_OPENED = 2;
 
 	/**
-	 * Component number for the Time Session Opened subfield
+	 * Component number for the Time Session Opened subfield.
 	 */
 	public static final Integer TIME_SESSION_OPENED = 3;
 
 	/**
-	 * Component number for the Date Session Closed subfield
+	 * Component number for the Date Session Closed subfield.
 	 */
 	public static final Integer DATE_SESSION_CLOSED = 4;
 
 	/**
-	 * Component number for the Time Session Closed subfield
+	 * Component number for the Time Session Closed subfield.
 	 */
 	public static final Integer TIME_SESSION_CLOSED = 5;
 
 	/**
-	 * Component number for the Reason For Closure subfield
+	 * Component number for the Reason For Closure subfield.
 	 */
 	public static final Integer REASON_FOR_CLOSURE = 6;
 
 	/**
-	 * Component number for the Quantity Of Messages Sent subfield
+	 * Component number for the Quantity Of Messages Sent subfield.
 	 */
 	public static final Integer QUANTITY_OF_MESSAGES_SENT = 7;
 
 	/**
-	 * Component number for the Quantity Of Messages Received subfield
+	 * Component number for the Quantity Of Messages Received subfield.
 	 */
 	public static final Integer QUANTITY_OF_MESSAGES_RECEIVED = 8;
 
 	/**
-	 * Component number for the First Input Sequence Number subfield
+	 * Component number for the First Input Sequence Number subfield.
 	 */
 	public static final Integer FIRST_INPUT_SEQUENCE_NUMBER = 9;
 
 	/**
-	 * Component number for the Last Input Sequence Number subfield
+	 * Component number for the Last Input Sequence Number subfield.
 	 */
 	public static final Integer LAST_INPUT_SEQUENCE_NUMBER = 10;
 
 	/**
-	 * Component number for the First Output Sequence Number subfield
+	 * Component number for the First Output Sequence Number subfield.
 	 */
 	public static final Integer FIRST_OUTPUT_SEQUENCE_NUMBER = 11;
 
 	/**
-	 * Component number for the Last Output Sequence Number subfield
+	 * Component number for the Last Output Sequence Number subfield.
 	 */
 	public static final Integer LAST_OUTPUT_SEQUENCE_NUMBER = 12;
 
@@ -206,7 +206,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -228,7 +228,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -374,7 +374,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -521,7 +521,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -554,7 +554,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getSessionNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getSessionNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -719,7 +719,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getComponent6AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent6AsNumber() {
         Long l = getComponent6AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -752,7 +752,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getReasonForClosureAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getReasonForClosureAsNumber() {
         return getComponent6AsNumber();
     }
@@ -785,7 +785,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getComponent7AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent7AsNumber() {
         Long l = getComponent7AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -818,7 +818,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getQuantityOfMessagesSentAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getQuantityOfMessagesSentAsNumber() {
         return getComponent7AsNumber();
     }
@@ -851,7 +851,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getComponent8AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent8AsNumber() {
         Long l = getComponent8AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -884,7 +884,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getQuantityOfMessagesReceivedAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getQuantityOfMessagesReceivedAsNumber() {
         return getComponent8AsNumber();
     }
@@ -917,7 +917,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getComponent9AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent9AsNumber() {
         Long l = getComponent9AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -950,7 +950,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getFirstInputSequenceNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getFirstInputSequenceNumberAsNumber() {
         return getComponent9AsNumber();
     }
@@ -983,7 +983,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getComponent10AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent10AsNumber() {
         Long l = getComponent10AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -1016,7 +1016,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getLastInputSequenceNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getLastInputSequenceNumberAsNumber() {
         return getComponent10AsNumber();
     }
@@ -1049,7 +1049,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getComponent11AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent11AsNumber() {
         Long l = getComponent11AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -1082,7 +1082,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getFirstOutputSequenceNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getFirstOutputSequenceNumberAsNumber() {
         return getComponent11AsNumber();
     }
@@ -1115,7 +1115,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getComponent12AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent12AsNumber() {
         Long l = getComponent12AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -1148,7 +1148,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getLastOutputSequenceNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getLastOutputSequenceNumberAsNumber() {
         return getComponent12AsNumber();
     }
@@ -1196,7 +1196,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component1 instanceof Long) {
-            setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
+            setComponent(1, SwiftFormatUtils.getLong((Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 != null) {
@@ -1464,7 +1464,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component6 instanceof Long) {
-            setComponent(6, SwiftFormatUtils.getLong( (Long) component6));
+            setComponent(6, SwiftFormatUtils.getLong((Long) component6));
         } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else if (component6 != null) {
@@ -1556,7 +1556,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component7 instanceof Long) {
-            setComponent(7, SwiftFormatUtils.getLong( (Long) component7));
+            setComponent(7, SwiftFormatUtils.getLong((Long) component7));
         } else if (component7 instanceof BigInteger || component7 instanceof Integer) {
             setComponent(7, SwiftFormatUtils.getLong(component7.longValue()));
         } else if (component7 != null) {
@@ -1648,7 +1648,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component8 instanceof Long) {
-            setComponent(8, SwiftFormatUtils.getLong( (Long) component8));
+            setComponent(8, SwiftFormatUtils.getLong((Long) component8));
         } else if (component8 instanceof BigInteger || component8 instanceof Integer) {
             setComponent(8, SwiftFormatUtils.getLong(component8.longValue()));
         } else if (component8 != null) {
@@ -1740,7 +1740,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component9 instanceof Long) {
-            setComponent(9, SwiftFormatUtils.getLong( (Long) component9));
+            setComponent(9, SwiftFormatUtils.getLong((Long) component9));
         } else if (component9 instanceof BigInteger || component9 instanceof Integer) {
             setComponent(9, SwiftFormatUtils.getLong(component9.longValue()));
         } else if (component9 != null) {
@@ -1832,7 +1832,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component10 instanceof Long) {
-            setComponent(10, SwiftFormatUtils.getLong( (Long) component10));
+            setComponent(10, SwiftFormatUtils.getLong((Long) component10));
         } else if (component10 instanceof BigInteger || component10 instanceof Integer) {
             setComponent(10, SwiftFormatUtils.getLong(component10.longValue()));
         } else if (component10 != null) {
@@ -1924,7 +1924,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component11 instanceof Long) {
-            setComponent(11, SwiftFormatUtils.getLong( (Long) component11));
+            setComponent(11, SwiftFormatUtils.getLong((Long) component11));
         } else if (component11 instanceof BigInteger || component11 instanceof Integer) {
             setComponent(11, SwiftFormatUtils.getLong(component11.longValue()));
         } else if (component11 != null) {
@@ -2016,7 +2016,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component12 instanceof Long) {
-            setComponent(12, SwiftFormatUtils.getLong( (Long) component12));
+            setComponent(12, SwiftFormatUtils.getLong((Long) component12));
         } else if (component12 instanceof BigInteger || component12 instanceof Integer) {
             setComponent(12, SwiftFormatUtils.getLong(component12.longValue()));
         } else if (component12 != null) {
@@ -2086,7 +2086,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field331.NAME
      */
     @Override
@@ -2107,7 +2107,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         if (t == null) {
             return null;
         }
-        return new Field331(t) ;
+        return new Field331(t);
     }
 
     /**
@@ -2117,8 +2117,9 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #get(SwiftTagListBlock)
      */
     public static Field331 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -2129,8 +2130,9 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field331> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -2148,7 +2150,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field331(f));
+                result.add(new Field331(f));
             }
         }
         return result;
@@ -2163,10 +2165,9 @@ public class Field331 extends Field implements Serializable, DateContainer {
      */
     public static Field331 fromJson(final String json) {
 
-        Field331 field = new Field331();
+        final Field331 field = new Field331();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Session Number
 

@@ -85,8 +85,7 @@ public class AbstractMtJsonTest {
         MT547 mt = new MT547(fin);
         String toJson = mt.toJson();
 
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(toJson).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(toJson).getAsJsonObject();
 
         assertEquals("FMACUS33AXXX", o.get("basicHeaderBlock").getAsJsonObject().get("logicalTerminal").getAsString());
         assertEquals("CHASUSU9AXXX", o.get("applicationHeaderBlock").getAsJsonObject().get("MIRLogicalTerminal").getAsString());
@@ -355,10 +354,10 @@ public class AbstractMtJsonTest {
         assertEquals("NEWM", mt.getField23G().getValue());
         assertEquals("8217083,72", mt.getField19A().get(0).getAmount());
 
-        assertTrue(mt.m.getBlock3().getTags().size() == 1);
+        assertEquals(1, mt.m.getBlock3().getTags().size());
         assertEquals("001823CQ1833911", mt.m.getBlock3().getTag(0).getValue());
 
-        assertTrue(mt.m.getBlock4().getTags().size() == 45);
+        assertEquals(45, mt.m.getBlock4().getTags().size());
         assertEquals(":TRAD//20141107", mt.m.getBlock4().getTag(9).getValue());
     }
 
@@ -390,13 +389,13 @@ public class AbstractMtJsonTest {
          * Generic fromJson implementation
          */
         MT103 mt2 = (MT103) AbstractMT.fromJson(json);
-        assertTrue(comp.compare(original, mt2.getSwiftMessage()) == 0);
+        assertEquals(0, comp.compare(original, mt2.getSwiftMessage()));
 
         /*
          * Specific MT class fromJson implementation
          */
         MT103 mt3 = MT103.fromJson(json);
-        assertTrue(comp.compare(original, mt3.getSwiftMessage()) == 0);
+        assertEquals(0, comp.compare(original, mt3.getSwiftMessage()));
     }
 
     /**
@@ -424,8 +423,7 @@ public class AbstractMtJsonTest {
 
         String toJsonV1SwiftMessage = m.toJson();
 
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(toJsonV1SwiftMessage).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(toJsonV1SwiftMessage).getAsJsonObject();
 
         assertNotNull(o);
         assertEquals("/ES0123456789012345671234\nFOOOOO 1000 FOOBAR S.A.", o.get("data").getAsJsonObject().get("block4").getAsJsonObject().getAsJsonArray("tags").get(8).getAsJsonObject().get("value").getAsString());

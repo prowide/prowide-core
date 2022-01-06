@@ -22,13 +22,6 @@ import java.util.Calendar;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field69B and similar fields.
- * Pattern: ":S//<DATE4><TIME2>/<DATE4><TIME2>"
- *
- * @author sebastian
- * @since 6.0
- */
 public class Field69BTest extends AbstractFieldTest {
 
     @Override

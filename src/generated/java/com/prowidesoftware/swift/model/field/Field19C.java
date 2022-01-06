@@ -44,7 +44,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 19C</strong>
+ * SWIFT MT Field 19C.
  * <p>
  * Model and parser for field 19C of a SWIFT MT message.
  *
@@ -74,28 +74,28 @@ public class Field19C extends Field implements Serializable, AmountContainer {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 19C
+	 * Constant with the field name 19C.
 	 */
     public static final String NAME = "19C";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_19C = "19C";
 	public static final String PARSER_PATTERN = "[S]N";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -103,21 +103,21 @@ public class Field19C extends Field implements Serializable, AmountContainer {
 	public static final String TYPES_PATTERN = "SI";
 
 	/**
-	 * Component number for the Sign subfield
+	 * Component number for the Sign subfield.
 	 */
 	public static final Integer SIGN = 1;
 
 	/**
-	 * Component number for the Adjustment Factor subfield
+	 * Component number for the Adjustment Factor subfield.
 	 */
 	public static final Integer ADJUSTMENT_FACTOR = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Adjustment Factor Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Adjustment Factor Component number.
 	 * @see #ADJUSTMENT_FACTOR
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer AMOUNT = 2;
 
     /**
@@ -153,7 +153,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -175,7 +175,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -250,7 +250,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -396,7 +396,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @see #getComponent2AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         return getComponent2AsBigDecimal();
     }
@@ -415,7 +415,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getAmount() {
         return getAdjustmentFactor();
     }
@@ -439,7 +439,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @see #getAdjustmentFactorAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAdjustmentFactorAsNumber() {
         return getComponent2AsNumber();
     }
@@ -449,7 +449,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @see #getAdjustmentFactorAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getAdjustmentFactorAsBigDecimal();
     }
@@ -464,7 +464,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @see #getAdjustmentFactorAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getAdjustmentFactorAsNumber();
     }
@@ -533,9 +533,9 @@ public class Field19C extends Field implements Serializable, AmountContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component2 instanceof BigDecimal) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal( (BigDecimal) component2));
+            setComponent(2, SwiftFormatUtils.getBigDecimal((BigDecimal) component2));
         } else if (component2 instanceof BigInteger) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component2)));
+            setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component2)));
         } else if (component2 instanceof Long || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component2.longValue())));
         } else if (component2 != null) {
@@ -593,7 +593,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field19C setAmount(String component2) {
         return setAdjustmentFactor(component2);
     }
@@ -608,7 +608,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field19C setAmount(java.math.BigDecimal component2) {
         return setAdjustmentFactor(component2);
     }
@@ -623,7 +623,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @see #setAdjustmentFactor(java.math.BigDecimal)
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field19C setAmount(java.lang.Number component2) {
         return setAdjustmentFactor(component2);
     }
@@ -651,7 +651,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field19C.NAME
      */
     @Override
@@ -672,7 +672,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
         if (t == null) {
             return null;
         }
-        return new Field19C(t) ;
+        return new Field19C(t);
     }
 
     /**
@@ -682,8 +682,9 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @see #get(SwiftTagListBlock)
      */
     public static Field19C get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -694,8 +695,9 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field19C> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -713,7 +715,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field19C(f));
+                result.add(new Field19C(f));
             }
         }
         return result;
@@ -728,10 +730,9 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      */
     public static Field19C fromJson(final String json) {
 
-        Field19C field = new Field19C();
+        final Field19C field = new Field19C();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Sign
 

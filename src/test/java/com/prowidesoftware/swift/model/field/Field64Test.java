@@ -20,15 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for Field64 and similar fields.
- *
- * @author sebastian
- * @since 6.0
- */
 public class Field64Test extends AbstractFieldTest {
-    @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field64Test.class.getName());
 
     @Override
     @Test

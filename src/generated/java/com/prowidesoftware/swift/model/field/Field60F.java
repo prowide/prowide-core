@@ -50,7 +50,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 60F</strong>
+ * SWIFT MT Field 60F.
  * <p>
  * Model and parser for field 60F of a SWIFT MT message.
  *
@@ -82,28 +82,28 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 60F
+	 * Constant with the field name 60F.
 	 */
     public static final String NAME = "60F";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_60F = "60F";
 	public static final String PARSER_PATTERN = "[c]<DATE2>SN";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SECN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -111,28 +111,28 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
 	public static final String TYPES_PATTERN = "SECI";
 
 	/**
-	 * Component number for the D/C Mark subfield
+	 * Component number for the D/C Mark subfield.
 	 */
 	public static final Integer DC_MARK = 1;
 
 	/**
-	 * Component number for the Date subfield
+	 * Component number for the Date subfield.
 	 */
 	public static final Integer DATE = 2;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency subfield.
 	 */
 	public static final Integer CURRENCY = 3;
 
 	/**
-     * Alternative constant name for field's Currency Component number
+     * Alternative constant name for field's Currency Component number.
      * @see #CURRENCY
      */
     public static final Integer UNIT = 3;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Amount subfield.
 	 */
 	public static final Integer AMOUNT = 4;
 
@@ -169,7 +169,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -191,7 +191,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -282,7 +282,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -513,7 +513,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent4AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         return getComponent4AsBigDecimal();
     }
@@ -545,7 +545,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
      * @see #getAmountAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getComponent4AsNumber();
     }
@@ -726,9 +726,9 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component4 instanceof BigDecimal) {
-            setComponent(4, SwiftFormatUtils.getBigDecimal( (BigDecimal) component4));
+            setComponent(4, SwiftFormatUtils.getBigDecimal((BigDecimal) component4));
         } else if (component4 instanceof BigInteger) {
-            setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component4)));
+            setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component4)));
         } else if (component4 instanceof Long || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component4.longValue())));
         } else if (component4 != null) {
@@ -842,7 +842,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field60F.NAME
      */
     @Override
@@ -863,7 +863,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
         if (t == null) {
             return null;
         }
-        return new Field60F(t) ;
+        return new Field60F(t);
     }
 
     /**
@@ -873,8 +873,9 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
      * @see #get(SwiftTagListBlock)
      */
     public static Field60F get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -885,8 +886,9 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field60F> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -904,7 +906,7 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field60F(f));
+                result.add(new Field60F(f));
             }
         }
         return result;
@@ -919,10 +921,9 @@ public class Field60F extends Field implements Serializable, CurrencyContainer, 
      */
     public static Field60F fromJson(final String json) {
 
-        Field60F field = new Field60F();
+        final Field60F field = new Field60F();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - D/C Mark
 

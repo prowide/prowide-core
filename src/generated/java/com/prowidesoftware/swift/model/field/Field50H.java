@@ -41,7 +41,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 50H</strong>
+ * SWIFT MT Field 50H.
  * <p>
  * Model and parser for field 50H of a SWIFT MT message.
  *
@@ -74,11 +74,11 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 50H
+	 * Constant with the field name 50H.
 	 */
     public static final String NAME = "50H";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_50H = "50H";
 
@@ -115,7 +115,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -137,7 +137,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -147,7 +147,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
      */
     @Override
     public final String validatorPattern() {
@@ -274,7 +274,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field50H.NAME
      */
     @Override
@@ -295,7 +295,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
         if (t == null) {
             return null;
         }
-        return new Field50H(t) ;
+        return new Field50H(t);
     }
 
     /**
@@ -305,8 +305,9 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
      * @see #get(SwiftTagListBlock)
      */
     public static Field50H get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -317,8 +318,9 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field50H> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -336,14 +338,14 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field50H(f));
+                result.add(new Field50H(f));
             }
         }
         return result;
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -355,7 +357,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int, int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -369,7 +371,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
     }
 
     /**
-     * Returns the field value split into lines.<br>
+     * Returns the field value split into lines.
      *
      * @see MultiLineField#getLines()
      * @return lines content or empty list if field's value is empty
@@ -380,7 +382,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
     }
 
     /**
-     * Returns the field value starting at the offset component, split into lines.<br>
+     * Returns the field value starting at the offset component, split into lines.
      *
      * @see MultiLineField#getLines(int)
      * @param offset an optional component number used as offset when counting lines
@@ -393,7 +395,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, given a range.<br>
+     * Returns a specific subset of lines from the field's value, given a range.
      *
      * @see MultiLineField#getLinesBetween(int, int )
      * @param start a reference to a specific line in the field, first line being 1
@@ -406,7 +408,7 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     * Returns a specific subset of lines from the field's value, starting at the offset component.
      *
      * @see MultiLineField#getLinesBetween(int start, int end, int offset)
      * @param start a reference to a specific line in the field, first line being 1
@@ -429,10 +431,9 @@ public class Field50H extends OptionHPartyField implements Serializable, MultiLi
      */
     public static Field50H fromJson(final String json) {
 
-        Field50H field = new Field50H();
+        final Field50H field = new Field50H();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Account
 

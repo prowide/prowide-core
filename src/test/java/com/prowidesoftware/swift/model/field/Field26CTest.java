@@ -138,18 +138,16 @@ public class Field26CTest extends AbstractFieldTest {
         Field26C f = new Field26C("A/B/CCCCCDDDDEEEE//FFFFFFFF");
         assertEquals("EEEE", f.getComponent5());
         assertEquals("FFFFFFFF", f.getComponent6());
-        assertEquals("EEEE//FFFFFFFF", f.getDenominationForm());
 
         f = new Field26C("A/B/CCCCCDDDD//FFFFFFFF");
         assertNull(f.getComponent5());
         assertEquals("FFFFFFFF", f.getComponent6());
-        assertEquals("//FFFFFFFF", f.getDenominationForm());
 
         f = new Field26C("A/B/CCCCCDDDD");
-        f.setDenominationForm("EEEE//FFFFFFFF");
+        f.setDenomination("EEEE");
+        f.setForm("FFFFFFFF");
         assertEquals("EEEE", f.getComponent5());
         assertEquals("FFFFFFFF", f.getComponent6());
-        assertEquals("EEEE//FFFFFFFF", f.getDenominationForm());
-
     }
+
 }

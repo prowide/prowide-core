@@ -22,10 +22,6 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field90L and similar fields.
- * Pattern: ":S//[S]N"
- */
 public class Field90LTest extends AbstractFieldTest {
 
     @Override
@@ -76,13 +72,13 @@ public class Field90LTest extends AbstractFieldTest {
     public void testGetters() {
         Field90L f = new Field90L(":MAXP//235,06");
         assertNull(f.getSign());
-        assertEquals("235,06", f.getAmount());
-        assertEquals(new BigDecimal("235.06"), f.getAmountAsNumber());
+        assertEquals("235,06", f.getIndexPoints());
+        assertEquals(new BigDecimal("235.06"), f.getIndexPointsAsBigDecimal());
 
         f = new Field90L(":OFFR//N3,");
         assertEquals("N", f.getSign());
-        assertEquals("3,", f.getAmount());
-        assertEquals(new BigDecimal("3"), f.getAmountAsNumber());
+        assertEquals("3,", f.getIndexPoints());
+        assertEquals(new BigDecimal("3"), f.getIndexPointsAsBigDecimal());
     }
 
 }
