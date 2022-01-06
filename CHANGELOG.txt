@@ -3,6 +3,8 @@
 -----------------------------------------------------------------------------------------------------------------------
   * (PW-815) Fixed getValue in field 12H (SCORE) where narrative is optional
   * (GH-89) MT530: Fixed repetition of sequence C ADDINFO
+  * Updated dependency: gson:2.8.8 -> gson:2.8.9
+  * Java 11 and 17 compatibility updates
   * Added plugins for automatic versioning and code quality reporting
 
 RELEASE 9.2.9 - December 2021
