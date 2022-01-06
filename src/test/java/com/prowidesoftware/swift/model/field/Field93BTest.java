@@ -21,12 +21,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test for Field93B and similar fields.
- *
- * @author sebastian
- * @since 6.0
- */
 public class Field93BTest extends AbstractFieldTest {
 
     @Override

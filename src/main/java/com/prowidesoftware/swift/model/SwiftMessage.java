@@ -142,14 +142,15 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * If the string is empty, does not contain any MT message, the message type is not set or
      * an error occurs reading and parsing the message content; this method returns null.
      *
-     * <p>The implementation uses the default parser behaviour which is lenient and will do a best effort to
+     * <p>The implementation uses the default parser behavior which is lenient and will do a best effort to
      * read as much from the message content as possible regardless of the content and block boundaries
-     * beeing valid or not. For instance, it will read the headers even if the value length is incorrect,
+     * being valid or not. For instance, it will read the headers even if the value length is incorrect,
      * and it will read the text block (block 4) even if it is missing the closing hyphen and bracket. For
      * more options check {@link SwiftParser#setConfiguration(SwiftParserConfiguration)}
      *
      * @param fin string a string containing a swift MT message
      * @return parser message or null if string content could not be parsed
+     * @throws IOException if an error occurs in the parser during reading
      * @since 7.8.8
      */
     public static SwiftMessage parse(final String fin) throws IOException {
@@ -249,6 +250,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
     /**
      * This method deserializes the JSON data into a message object.
+     * @param json JSON data
+     * @return message object
      *
      * @see #toJson()
      * @since 7.9.8
@@ -1126,6 +1129,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
     /**
      * Checks all blocks (1 to 5) and if a block is empty, it is removed from the message.
+     * @return the message
      *
      * @since 6.4
      * @since 8.0.3 returns this
@@ -1150,9 +1154,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
-     * Gets message type as an int or -1 if an error occurs or it is not set
+     * Gets message type as an integer or <code>-1</code> if an error occurs or it is not set.
      *
-     * @return the message type number or -1 if the message type is invalid or block 2 not present (for instance if the message is a service message)
+     * @return the message type number or <code>-1</code> if the message type is invalid or block 2 not present (for instance if the message is a service message)
      * @since 6.4.1
      */
     public int getTypeInt() {
@@ -1170,8 +1174,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
-     * Returns the message direction from block 2 or null if block 2 is not found or incomplete
+     * Returns the message direction from block 2 or null if block 2 is not found or incomplete.
      *
+     * @return message direction (i.e. {@link MessageIOType#incoming} or {@link MessageIOType#outgoing})
      * @since 7.0
      */
     public MessageIOType getDirection() {
@@ -1196,6 +1201,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * Returns true if the message is outgoing (sent to SWIFT), false other case; using the direction attribute.
      * If block 2 is missign or direction cannot be determined, returns false.
      *
+     * @return true if message is outgoing
      * @since 7.8.4
      */
     public boolean isOutgoing() {
@@ -1203,6 +1209,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
+     * Synonym to {@link #isOutgoing()}.
+     *
+     * @return true if message is outgoing
      * @see #isOutgoing()
      * @since 7.8.4
      */
@@ -1214,6 +1223,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * Returns true if the message is incoming (received from SWIFT), false other case; using the direction attribute.
      * If block 2 is missign or direction cannot be determined, returns false.
      *
+     * @return true if message is incoming
      * @since 7.8.4
      */
     public boolean isIncoming() {
@@ -1221,6 +1231,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
+     * Synonym to {@link #isIncoming()}.
+     *
+     * @return true if message is incoming
      * @see #isIncoming()
      * @since 7.8.4
      */
@@ -1231,6 +1244,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     /**
      * Gets PDE (Possible Duplicate Emission) flag from the trailer block or null if the trailer or the PDE field is not present
      * <p>Notice the PDE tag could hold no value, so in that case empty string is returned, meaning the flag is set but with no value.
+     * @return PDE
      *
      * @since 7.0
      */
@@ -1247,6 +1261,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     /**
      * Sets the Possible Duplicate Emission tag with no value, in the trailer block (block 5),
      * <p>If the field exists, its value will be overwritten.
+     * @return the swift message object
      *
      * @since 8.0.2
      */
@@ -1260,6 +1275,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
     /**
      * Gets PDM from the trailer block or null if the trailer or the PDM field is not present
+     * @return PDM
      *
      * @since 7.0
      */
@@ -1278,6 +1294,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * It includes the date the sender sent the message to SWIFT, followed by the full LT address of the sender of the
      * message, and the sender's session and sequence to SWIFT: YYMMDD BANKBEBBAXXX 2222 123456.
      * It is only available in incoming messages (received from SWIFT).
+     * @return MIR string
      *
      * @since 7.0
      */
@@ -1294,6 +1311,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * It includes the message output date, the address of the receiver, the output session number, and the output
      * sequence number.: YYMMDD BANKBEBBAXXX 2222 123456.
      * It is only available in incoming messages (received from SWIFT).
+     * @return MOR string
      *
      * @since 9.2.7
      */
@@ -1368,6 +1386,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * since all its values could be repeated from one installation to another. To make it completely unique in your
      * application context, consider using {@link #getUID(Calendar, Long)}
      *
+     * @return UUID
      * @since 7.0
      */
     public String getUUID() {
@@ -1416,6 +1435,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     /**
      * return first results of fields() or null if none
      *
+     * @param name name of field in block 4
      * @return null if not found
      * @see #fields(String...)
      */
@@ -1656,6 +1676,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     /**
      * Returns true if message service id is anything but 01 = GPA/FIN Message (system and user-to-user)
      *
+     * @return true if message is a service message, false otherwise
      * @since 7.8.8
      */
     public final boolean isServiceMessage() {
@@ -1683,6 +1704,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * This is determined by testing first if it is a system message, and second
      * the value of tag 451
      *
+     * @return true if ACK, false otherwise
      * @since 7.8
      */
     public boolean isAck() {
@@ -1700,6 +1722,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * This is determined by testing first if it is a system message, and second
      * the value of tag 451
      *
+     * @return true if NACK, false otherwise
      * @since 7.8
      */
     public boolean isNack() {

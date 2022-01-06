@@ -22,11 +22,6 @@ import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for Field32A and similar fields.
- *
- * @since 6.0
- */
 public class Field32ATest extends AbstractFieldTest {
 
     @Override
@@ -46,7 +41,7 @@ public class Field32ATest extends AbstractFieldTest {
         assertEquals(1, f.getComponent1AsCalendar().get(Calendar.MONTH));
         assertEquals(3, f.getComponent1AsCalendar().get(Calendar.DATE));
         assertEquals("USD", f.getComponent2());
-        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent3AsBigDecimal());
         //081001USD30625,00
     }
 
@@ -60,7 +55,7 @@ public class Field32ATest extends AbstractFieldTest {
         assertEquals(3, f.getComponent1AsCalendar().get(Calendar.DAY_OF_MONTH));
         assertEquals("USD", f.getComponent2());
         assertEquals("123dss", f.getComponent3());
-        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent3AsBigDecimal());
     }
 
     @Test
@@ -69,7 +64,7 @@ public class Field32ATest extends AbstractFieldTest {
         assertNotNull(f, "Parse of field failed");
         assertNull(f.getComponent1AsCalendar());
         assertEquals("USD", f.getComponent2());
-        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent3AsBigDecimal());
     }
 
     @Test
@@ -78,13 +73,13 @@ public class Field32ATest extends AbstractFieldTest {
         assertNotNull(f, "Parse of field failed");
         assertNotNull(f.getComponent1AsCalendar());
         assertEquals("USD", f.getComponent2());
-        assertEquals(new BigDecimal("30625.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("30625"), f.getComponent3AsBigDecimal());
 
         f = new Field32A("081001USD30625,00");
         assertNotNull(f, "Parse of field failed");
         assertNotNull(f.getComponent1AsCalendar());
         assertEquals("USD", f.getComponent2());
-        assertEquals(new BigDecimal("30625.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("30625.00"), f.getComponent3AsBigDecimal());
     }
 
     @Test
@@ -92,7 +87,7 @@ public class Field32ATest extends AbstractFieldTest {
         Field32A f = new Field32A("081001USD30625,00");
         assertNotNull(f, "Parse of field failed");
         assertEquals("USD", f.getComponent2());
-        assertEquals(new BigDecimal("30625.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("30625.00"), f.getComponent3AsBigDecimal());
     }
 
     @Test
@@ -100,14 +95,13 @@ public class Field32ATest extends AbstractFieldTest {
         Field32A f = new Field32A("081001USD30625,67");
         assertNotNull(f, "Parse of field failed");
         assertEquals("USD", f.getComponent2());
-        assertEquals(new BigDecimal("30625.67"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("30625.67"), f.getComponent3AsBigDecimal());
     }
 
     @Test
     public void testTicket32() {
         Field32A f = new Field32A("070813GBP,");
         assertEquals(null, f.getAmount());
-
     }
 
     @Test
@@ -115,7 +109,7 @@ public class Field32ATest extends AbstractFieldTest {
         Field32A f = new Field32A("051028EUR1765432,");
         assertNotNull(f, "Parse of field failed");
         assertEquals("EUR", f.getComponent2());
-        assertEquals(new BigDecimal("1765432.0"), BigDecimal.valueOf(f.getComponent3AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("1765432"), f.getComponent3AsBigDecimal());
     }
 
 }

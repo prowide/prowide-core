@@ -46,7 +46,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 11T</strong>
+ * SWIFT MT Field 11T.
  * <p>
  * Model and parser for field 11T of a SWIFT MT message.
  *
@@ -77,28 +77,28 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 11T
+	 * Constant with the field name 11T.
 	 */
     public static final String NAME = "11T";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_11T = "11T";
 	public static final String PARSER_PATTERN = "S$<DATE4><HHMM>";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NDH";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -106,17 +106,17 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
 	public static final String TYPES_PATTERN = "NDH";
 
 	/**
-	 * Component number for the Type subfield
+	 * Component number for the Type subfield.
 	 */
 	public static final Integer TYPE = 1;
 
 	/**
-	 * Component number for the Date subfield
+	 * Component number for the Date subfield.
 	 */
 	public static final Integer DATE = 2;
 
 	/**
-	 * Component number for the Time subfield
+	 * Component number for the Time subfield.
 	 */
 	public static final Integer TIME = 3;
 
@@ -153,7 +153,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -175,7 +175,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -272,7 +272,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -401,7 +401,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -434,7 +434,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @see #getTypeAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getTypeAsNumber() {
         return getComponent1AsNumber();
     }
@@ -548,7 +548,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component1 instanceof Long) {
-            setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
+            setComponent(1, SwiftFormatUtils.getLong((Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 != null) {
@@ -706,7 +706,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field11T.NAME
      */
     @Override
@@ -727,7 +727,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
         if (t == null) {
             return null;
         }
-        return new Field11T(t) ;
+        return new Field11T(t);
     }
 
     /**
@@ -737,8 +737,9 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @see #get(SwiftTagListBlock)
      */
     public static Field11T get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -749,8 +750,9 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field11T> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -768,14 +770,14 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field11T(f));
+                result.add(new Field11T(f));
             }
         }
         return result;
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -787,7 +789,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int, int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -801,7 +803,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Returns the field value split into lines.<br>
+     * Returns the field value split into lines.
      *
      * @see MultiLineField#getLines()
      * @return lines content or empty list if field's value is empty
@@ -812,7 +814,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Returns the field value starting at the offset component, split into lines.<br>
+     * Returns the field value starting at the offset component, split into lines.
      *
      * @see MultiLineField#getLines(int)
      * @param offset an optional component number used as offset when counting lines
@@ -825,7 +827,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, given a range.<br>
+     * Returns a specific subset of lines from the field's value, given a range.
      *
      * @see MultiLineField#getLinesBetween(int, int )
      * @param start a reference to a specific line in the field, first line being 1
@@ -838,7 +840,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     * Returns a specific subset of lines from the field's value, starting at the offset component.
      *
      * @see MultiLineField#getLinesBetween(int start, int end, int offset)
      * @param start a reference to a specific line in the field, first line being 1
@@ -861,10 +863,9 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      */
     public static Field11T fromJson(final String json) {
 
-        Field11T field = new Field11T();
+        final Field11T field = new Field11T();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Type
 

@@ -26,9 +26,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for base class Field.
- *
- * @author sebastian
- * @since 6.0
  */
 public class FieldTest {
 
@@ -58,7 +55,7 @@ public class FieldTest {
 
         f.setComponent(2, null);
         assertEquals("cruel", f.getComponent(1));
-        assertEquals(null, f.getComponent(2));
+        assertNull(f.getComponent(2));
         assertNull(f.getComponent(3));
         assertNull(f.getComponent(4));
         assertNull(f.getComponent(5));
@@ -181,7 +178,7 @@ public class FieldTest {
     @Test
     public void testLetterOption() {
         assertEquals(Character.valueOf('A'), new Field59A().letterOption());
-        assertEquals(null, new Field59().letterOption());
+        assertNull(new Field59().letterOption());
     }
 
     @Test
@@ -195,7 +192,7 @@ public class FieldTest {
     public void testNumericConversion() {
         final Field32A f = new Field32A("130901USD10,1");
         assertEquals(new BigDecimal("10.1"), f.getAmountBigDecimal());
-        assertEquals(new BigDecimal("10.1"), f.getComponent3AsNumber());
+        assertEquals(new BigDecimal("10.1"), f.getComponent3AsBigDecimal());
     }
 
     @Test

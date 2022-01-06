@@ -42,7 +42,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 28</strong>
+ * SWIFT MT Field 28.
  * <p>
  * Model and parser for field 28 of a SWIFT MT message.
  *
@@ -72,28 +72,28 @@ public class Field28 extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 28
+	 * Constant with the field name 28.
 	 */
     public static final String NAME = "28";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_28 = "28";
 	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -101,23 +101,23 @@ public class Field28 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "NN";
 
 	/**
-	 * Component number for the Statement Number subfield
+	 * Component number for the Statement Number subfield.
 	 */
 	public static final Integer STATEMENT_NUMBER = 1;
 
 	/**
-     * Alternative constant name for field's Statement Number Component number
+     * Alternative constant name for field's Statement Number Component number.
      * @see #STATEMENT_NUMBER
      */
     public static final Integer SETTLEMENT_NUMBER = 1;
 
 	/**
-	 * Component number for the Sequence Number subfield
+	 * Component number for the Sequence Number subfield.
 	 */
 	public static final Integer SEQUENCE_NUMBER = 2;
 
 	/**
-     * Alternative constant name for field's Sequence Number Component number
+     * Alternative constant name for field's Sequence Number Component number.
      * @see #SEQUENCE_NUMBER
      */
     public static final Integer PAGE_NUMBER = 2;
@@ -155,7 +155,7 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -177,7 +177,7 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -250,7 +250,7 @@ public class Field28 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -380,7 +380,7 @@ public class Field28 extends Field implements Serializable {
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -422,7 +422,7 @@ public class Field28 extends Field implements Serializable {
      * @see #getStatementNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getStatementNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -446,7 +446,7 @@ public class Field28 extends Field implements Serializable {
      * @see #getStatementNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getSettlementNumberAsNumber() {
         return getStatementNumberAsNumber();
     }
@@ -479,7 +479,7 @@ public class Field28 extends Field implements Serializable {
      * @see #getComponent2AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -521,7 +521,7 @@ public class Field28 extends Field implements Serializable {
      * @see #getSequenceNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getSequenceNumberAsNumber() {
         return getComponent2AsNumber();
     }
@@ -545,7 +545,7 @@ public class Field28 extends Field implements Serializable {
      * @see #getSequenceNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getPageNumberAsNumber() {
         return getSequenceNumberAsNumber();
     }
@@ -593,7 +593,7 @@ public class Field28 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component1 instanceof Long) {
-            setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
+            setComponent(1, SwiftFormatUtils.getLong((Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 != null) {
@@ -723,7 +723,7 @@ public class Field28 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component2 instanceof Long) {
-            setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
+            setComponent(2, SwiftFormatUtils.getLong((Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 != null) {
@@ -813,7 +813,7 @@ public class Field28 extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field28.NAME
      */
     @Override
@@ -834,7 +834,7 @@ public class Field28 extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field28(t) ;
+        return new Field28(t);
     }
 
     /**
@@ -844,8 +844,9 @@ public class Field28 extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field28 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -856,8 +857,9 @@ public class Field28 extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field28> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -875,7 +877,7 @@ public class Field28 extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field28(f));
+                result.add(new Field28(f));
             }
         }
         return result;
@@ -890,10 +892,9 @@ public class Field28 extends Field implements Serializable {
      */
     public static Field28 fromJson(final String json) {
 
-        Field28 field = new Field28();
+        final Field28 field = new Field28();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Statement Number
 

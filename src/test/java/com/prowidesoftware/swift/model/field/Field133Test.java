@@ -22,11 +22,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field133 and similar fields.
- *
- * @since 7.8.8
- */
 public class Field133Test extends AbstractFieldTest {
 
     /**

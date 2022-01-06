@@ -42,7 +42,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 343</strong>
+ * SWIFT MT Field 343.
  * <p>
  * Model and parser for field 343 of a SWIFT MT message.
  *
@@ -74,28 +74,28 @@ public class Field343 extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 343
+	 * Constant with the field name 343.
 	 */
     public static final String NAME = "343";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_343 = "343";
 	public static final String PARSER_PATTERN = "N<SPACE>N<SPACE>N<SPACE>N";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NNNN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -103,22 +103,22 @@ public class Field343 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "NNNN";
 
 	/**
-	 * Component number for the Region Time Count 1 subfield
+	 * Component number for the Region Time Count 1 subfield.
 	 */
 	public static final Integer REGION_TIME_COUNT_1 = 1;
 
 	/**
-	 * Component number for the Region Time Count 2 subfield
+	 * Component number for the Region Time Count 2 subfield.
 	 */
 	public static final Integer REGION_TIME_COUNT_2 = 2;
 
 	/**
-	 * Component number for the Region Time Count 3 subfield
+	 * Component number for the Region Time Count 3 subfield.
 	 */
 	public static final Integer REGION_TIME_COUNT_3 = 3;
 
 	/**
-	 * Component number for the Region Time Count 4 subfield
+	 * Component number for the Region Time Count 4 subfield.
 	 */
 	public static final Integer REGION_TIME_COUNT_4 = 4;
 
@@ -155,7 +155,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -177,7 +177,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -267,7 +267,7 @@ public class Field343 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -398,7 +398,7 @@ public class Field343 extends Field implements Serializable {
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -431,7 +431,7 @@ public class Field343 extends Field implements Serializable {
      * @see #getRegionTimeCount1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getRegionTimeCount1AsNumber() {
         return getComponent1AsNumber();
     }
@@ -464,7 +464,7 @@ public class Field343 extends Field implements Serializable {
      * @see #getComponent2AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -497,7 +497,7 @@ public class Field343 extends Field implements Serializable {
      * @see #getRegionTimeCount2AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getRegionTimeCount2AsNumber() {
         return getComponent2AsNumber();
     }
@@ -530,7 +530,7 @@ public class Field343 extends Field implements Serializable {
      * @see #getComponent3AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -563,7 +563,7 @@ public class Field343 extends Field implements Serializable {
      * @see #getRegionTimeCount3AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getRegionTimeCount3AsNumber() {
         return getComponent3AsNumber();
     }
@@ -596,7 +596,7 @@ public class Field343 extends Field implements Serializable {
      * @see #getComponent4AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -629,7 +629,7 @@ public class Field343 extends Field implements Serializable {
      * @see #getRegionTimeCount4AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getRegionTimeCount4AsNumber() {
         return getComponent4AsNumber();
     }
@@ -677,7 +677,7 @@ public class Field343 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component1 instanceof Long) {
-            setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
+            setComponent(1, SwiftFormatUtils.getLong((Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 != null) {
@@ -769,7 +769,7 @@ public class Field343 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component2 instanceof Long) {
-            setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
+            setComponent(2, SwiftFormatUtils.getLong((Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 != null) {
@@ -861,7 +861,7 @@ public class Field343 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component3 instanceof Long) {
-            setComponent(3, SwiftFormatUtils.getLong( (Long) component3));
+            setComponent(3, SwiftFormatUtils.getLong((Long) component3));
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 != null) {
@@ -953,7 +953,7 @@ public class Field343 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component4 instanceof Long) {
-            setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
+            setComponent(4, SwiftFormatUtils.getLong((Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 != null) {
@@ -1005,7 +1005,7 @@ public class Field343 extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field343.NAME
      */
     @Override
@@ -1026,7 +1026,7 @@ public class Field343 extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field343(t) ;
+        return new Field343(t);
     }
 
     /**
@@ -1036,8 +1036,9 @@ public class Field343 extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field343 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -1048,8 +1049,9 @@ public class Field343 extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field343> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -1067,7 +1069,7 @@ public class Field343 extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field343(f));
+                result.add(new Field343(f));
             }
         }
         return result;
@@ -1082,10 +1084,9 @@ public class Field343 extends Field implements Serializable {
      */
     public static Field343 fromJson(final String json) {
 
-        Field343 field = new Field343();
+        final Field343 field = new Field343();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Region Time Count 1
 

@@ -43,7 +43,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 29P</strong>
+ * SWIFT MT Field 29P.
  * <p>
  * Model and parser for field 29P of a SWIFT MT message.
  *
@@ -72,28 +72,28 @@ public class Field29P extends Field implements Serializable, BICContainer {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 29P
+	 * Constant with the field name 29P.
 	 */
     public static final String NAME = "29P";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_29P = "29P";
 	public static final String PARSER_PATTERN = "S";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "B";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -101,16 +101,16 @@ public class Field29P extends Field implements Serializable, BICContainer {
 	public static final String TYPES_PATTERN = "B";
 
 	/**
-	 * Component number for the IdentifierCode subfield
+	 * Component number for the IdentifierCode subfield.
 	 */
 	public static final Integer IDENTIFIERCODE = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's IdentifierCode Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's IdentifierCode Component number.
 	 * @see #IDENTIFIERCODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer BIC = 1;
 
     /**
@@ -146,7 +146,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -168,7 +168,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -233,7 +233,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -361,7 +361,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getBIC() {
         return getIdentifierCode();
     }
@@ -379,7 +379,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
      * @see #getIdentifierCodeAsBIC()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
         return getIdentifierCodeAsBIC();
     }
@@ -437,7 +437,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field29P setBIC(String component1) {
         return setIdentifierCode(component1);
     }
@@ -451,7 +451,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field29P setBIC(com.prowidesoftware.swift.model.BIC component1) {
         return setIdentifierCode(component1);
     }
@@ -467,7 +467,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field29P.NAME
      */
     @Override
@@ -488,7 +488,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
         if (t == null) {
             return null;
         }
-        return new Field29P(t) ;
+        return new Field29P(t);
     }
 
     /**
@@ -498,8 +498,9 @@ public class Field29P extends Field implements Serializable, BICContainer {
      * @see #get(SwiftTagListBlock)
      */
     public static Field29P get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -510,8 +511,9 @@ public class Field29P extends Field implements Serializable, BICContainer {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field29P> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -529,7 +531,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field29P(f));
+                result.add(new Field29P(f));
             }
         }
         return result;
@@ -544,10 +546,9 @@ public class Field29P extends Field implements Serializable, BICContainer {
      */
     public static Field29P fromJson(final String json) {
 
-        Field29P field = new Field29P();
+        final Field29P field = new Field29P();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - IdentifierCode
 

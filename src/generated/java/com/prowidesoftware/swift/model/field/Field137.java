@@ -42,7 +42,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 137</strong>
+ * SWIFT MT Field 137.
  * <p>
  * Model and parser for field 137 of a SWIFT MT message.
  *
@@ -74,28 +74,28 @@ public class Field137 extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 137
+	 * Constant with the field name 137.
 	 */
     public static final String NAME = "137";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_137 = "137";
 	public static final String PARSER_PATTERN = "c3!S<CC>N";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "cSKN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -103,22 +103,22 @@ public class Field137 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "cSKN";
 
 	/**
-	 * Component number for the Broadcast Indicator subfield
+	 * Component number for the Broadcast Indicator subfield.
 	 */
 	public static final Integer BROADCAST_INDICATOR = 1;
 
 	/**
-	 * Component number for the Unsequenced Broadcast subfield
+	 * Component number for the Unsequenced Broadcast subfield.
 	 */
 	public static final Integer UNSEQUENCED_BROADCAST = 2;
 
 	/**
-	 * Component number for the Broadcast Issuer subfield
+	 * Component number for the Broadcast Issuer subfield.
 	 */
 	public static final Integer BROADCAST_ISSUER = 3;
 
 	/**
-	 * Component number for the Broadcast Number subfield
+	 * Component number for the Broadcast Number subfield.
 	 */
 	public static final Integer BROADCAST_NUMBER = 4;
 
@@ -155,7 +155,7 @@ public class Field137 extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -177,7 +177,7 @@ public class Field137 extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -270,7 +270,7 @@ public class Field137 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -449,7 +449,7 @@ public class Field137 extends Field implements Serializable {
      * @see #getComponent4AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -482,7 +482,7 @@ public class Field137 extends Field implements Serializable {
      * @see #getBroadcastNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getBroadcastNumberAsNumber() {
         return getComponent4AsNumber();
     }
@@ -593,7 +593,7 @@ public class Field137 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component4 instanceof Long) {
-            setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
+            setComponent(4, SwiftFormatUtils.getLong((Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 != null) {
@@ -645,7 +645,7 @@ public class Field137 extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field137.NAME
      */
     @Override
@@ -666,7 +666,7 @@ public class Field137 extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field137(t) ;
+        return new Field137(t);
     }
 
     /**
@@ -676,8 +676,9 @@ public class Field137 extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field137 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -688,8 +689,9 @@ public class Field137 extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field137> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -707,7 +709,7 @@ public class Field137 extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field137(f));
+                result.add(new Field137(f));
             }
         }
         return result;
@@ -722,10 +724,9 @@ public class Field137 extends Field implements Serializable {
      */
     public static Field137 fromJson(final String json) {
 
-        Field137 field = new Field137();
+        final Field137 field = new Field137();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Broadcast Indicator
 

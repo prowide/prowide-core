@@ -27,6 +27,7 @@ public interface AmountContainer extends PatternContainer {
 
     /**
      * Get the first amount in this field.
+     * @return first amount
      */
     BigDecimal amount();
 }

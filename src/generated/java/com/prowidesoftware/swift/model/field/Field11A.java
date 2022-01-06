@@ -44,7 +44,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 11A</strong>
+ * SWIFT MT Field 11A.
  * <p>
  * Model and parser for field 11A of a SWIFT MT message.
  *
@@ -74,28 +74,28 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 11A
+	 * Constant with the field name 11A.
 	 */
     public static final String NAME = "11A";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_11A = "11A";
 	public static final String PARSER_PATTERN = ":S//S";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SC";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -103,21 +103,21 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
 	public static final String TYPES_PATTERN = "SC";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Currency Code subfield
+	 * Component number for the Currency Code subfield.
 	 */
 	public static final Integer CURRENCY_CODE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code Component number.
 	 * @see #CURRENCY_CODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer CURRENCY = 2;
 
     /**
@@ -153,7 +153,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -175,7 +175,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -248,7 +248,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -394,7 +394,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getCurrency() {
         return getCurrencyCode();
     }
@@ -412,7 +412,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      * @see #getCurrencyCodeAsCurrency()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.util.Currency getCurrencyAsCurrency() {
         return getCurrencyCodeAsCurrency();
     }
@@ -491,7 +491,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field11A setCurrency(String component2) {
         return setCurrencyCode(component2);
     }
@@ -505,7 +505,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field11A setCurrency(java.util.Currency component2) {
         return setCurrencyCode(component2);
     }
@@ -557,7 +557,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
 
@@ -571,7 +571,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field11A.NAME
      */
     @Override
@@ -592,7 +592,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
         if (t == null) {
             return null;
         }
-        return new Field11A(t) ;
+        return new Field11A(t);
     }
 
     /**
@@ -602,8 +602,9 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      * @see #get(SwiftTagListBlock)
      */
     public static Field11A get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -614,8 +615,9 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field11A> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -633,7 +635,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field11A(f));
+                result.add(new Field11A(f));
             }
         }
         return result;
@@ -648,10 +650,9 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      */
     public static Field11A fromJson(final String json) {
 
-        Field11A field = new Field11A();
+        final Field11A field = new Field11A();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 

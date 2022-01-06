@@ -25,8 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Test for fields getValueDisplay API.
- *
- * @since 7.9.5
  */
 public class GetValueDisplayTest {
 

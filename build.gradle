@@ -1,24 +1,43 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		gradlePluginPortal()
+	}
+	dependencies {
+		classpath 'ru.vyarus:gradle-quality-plugin:4.7.0'
+		classpath 'pl.allegro.tech.build:axion-release-plugin:1.13.6'
+	}
+}
 apply plugin: 'java-library-distribution'
 apply plugin: 'maven-publish'
 apply plugin: 'jacoco'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'ru.vyarus.quality'
+apply plugin: 'pl.allegro.tech.build.axion-release'
 
 archivesBaseName = 'pw-swift-core'
-
-def SRU = "2021"
-
-version "SRU${SRU}-9.2.9"
 group 'com.prowidesoftware'
-	
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+
+project.ext {
+	SRU = 'SRU2021'
+}
+
+scmVersion {
+	tag {
+		prefix = "${SRU}"
+		versionSeparator = '-'
+	}
+}
+project.version = "${SRU}-${scmVersion.version}"
+
+java {
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(8))
+	}
+}
 	
 tasks.withType(JavaCompile) {
-	options.fork = true
-	if (project.hasProperty('JDK8_HOME')) {
-		options.forkOptions.executable = "$JDK8_HOME/bin/javac"
-	}
 	options.encoding = 'UTF-8'
 }
 	
@@ -138,10 +157,25 @@ publishing {
 					}
 				}
 			}
-			//pom.withXml {
-			//	replaceDependencyVersion(asNode(), 'pw-swift-integrator-sdk', rootProject.version)
-			//}
 		}
+	}
+
+	if (project.version.endsWith('-SNAPSHOT')) {
+		if (project.hasProperty('prowideRepo')) {
+			repositories {
+				maven {
+					url "${project.prowideRepo}/repository/maven-snapshots/"
+					credentials {
+						username "${project.prowideRepoUser}"
+						password "${project.prowideRepoPass}"
+					}
+				}
+			}
+		} else {
+			project.logger.info('Snapshot publishing disabled because repository properties are undefined')
+		}
+	} else {
+		project.logger.info("Current version is a release ${project.version} thus it must be manually published to OSS sonatype as bundle")
 	}
 }
 jar.finalizedBy generatePomFileForMavenJavaPublication
@@ -172,11 +206,6 @@ distTar.enabled = false
 
 distZip {
     dependsOn generatePomFileForMavenJavaPublication
-	doLast {
-		if (!project.hasProperty('JDK8_HOME')) {
-			println "*** WARNING: For releases an explicit JDK8_HOME variable must be set in gradle.properties ***"
-		}
-	}
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
@@ -218,4 +247,40 @@ task bundle(type: Zip, dependsOn: build) {
 		rename ".*", "pom.xml"
 	}
 	archiveName 'bundle.zip'
+}
+
+tasks.withType(JavaCompile) {
+	doFirst {
+		println 'Compiling with ' + getJavaCompiler().get().getMetadata().getInstallationPath()
+	}
+}
+tasks.withType(Test) {
+	doFirst {
+		println 'Running test on ' + getJavaLauncher().get().getMetadata().getInstallationPath()
+	}
+}
+
+task('testOn11', type: Test) {
+	javaLauncher = javaToolchains.launcherFor {
+		languageVersion = JavaLanguageVersion.of(11)
+	}
+}
+
+task('testOn17', type: Test) {
+	javaLauncher = javaToolchains.launcherFor {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+quality {
+	strict = false
+	// we limit this to spotbugs for the moment
+	checkstyle = false
+	codenarc = false
+	cpd = false
+	pmd = false
+	spotbugsEffort = 'min'
+	spotbugsMaxRank = 7
+
+	exclude '**/mt0xx/MT**', '**/mt1xx/MT**', '**/mt2xx/MT**', '**/mt3xx/MT**', '**/mt4xx/MT**', '**/mt5xx/MT**', '**/mt6xx/MT**', '**/mt7xx/MT**', '**/mt8xx/MT**', '**/mt9xx/MT**'
 }

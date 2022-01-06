@@ -354,10 +354,10 @@ public class AbstractMtJsonTest {
         assertEquals("NEWM", mt.getField23G().getValue());
         assertEquals("8217083,72", mt.getField19A().get(0).getAmount());
 
-        assertTrue(mt.m.getBlock3().getTags().size() == 1);
+        assertEquals(1, mt.m.getBlock3().getTags().size());
         assertEquals("001823CQ1833911", mt.m.getBlock3().getTag(0).getValue());
 
-        assertTrue(mt.m.getBlock4().getTags().size() == 45);
+        assertEquals(45, mt.m.getBlock4().getTags().size());
         assertEquals(":TRAD//20141107", mt.m.getBlock4().getTag(9).getValue());
     }
 
@@ -389,13 +389,13 @@ public class AbstractMtJsonTest {
          * Generic fromJson implementation
          */
         MT103 mt2 = (MT103) AbstractMT.fromJson(json);
-        assertTrue(comp.compare(original, mt2.getSwiftMessage()) == 0);
+        assertEquals(0, comp.compare(original, mt2.getSwiftMessage()));
 
         /*
          * Specific MT class fromJson implementation
          */
         MT103 mt3 = MT103.fromJson(json);
-        assertTrue(comp.compare(original, mt3.getSwiftMessage()) == 0);
+        assertEquals(0, comp.compare(original, mt3.getSwiftMessage()));
     }
 
     /**

@@ -20,11 +20,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field26C and similar fields.
- *
- * @since 6.4
- */
 public class Field26ATest extends AbstractFieldTest {
 
     @Override
@@ -94,16 +89,14 @@ public class Field26ATest extends AbstractFieldTest {
     @Test
     public void testField26A_Number() {
 
-        Field26A f = new Field26A((String) null);
-        f.setNumber("68371148100/8104");
+        Field26A f = new Field26A("68371148100/8104");
         assertEquals("68371148100", f.getComponent1());
         assertEquals("8104", f.getComponent2());
-        assertEquals("68371148100/8104", f.getNumber());
+        assertEquals("68371148100/8104", f.getValue());
 
-        f = new Field26A((String) null);
-        f.setNumber("68371148100");
+        f = new Field26A("68371148100");
         assertEquals("68371148100", f.getComponent1());
         assertNull(f.getComponent2());
-        assertEquals("68371148100", f.getNumber());
+        assertEquals("68371148100", f.getValue());
     }
 }

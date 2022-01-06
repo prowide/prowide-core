@@ -36,11 +36,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <strong>MT 300 - Foreign Exchange Confirmation</strong>
+ * MT 300 - Foreign Exchange Confirmation.
  *
  * <p>
  * SWIFT MT300 (ISO 15022) message structure:
- * <br>
+ *
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
@@ -178,15 +178,15 @@ public class MT300 extends AbstractMT implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT300.class.getName());
 	
 	/**
-	* Constant for MT name, this is part of the classname, after <code>MT</code>
-	*/
+	 * Constant for MT name, this is part of the classname, after MT.
+	 */
 	public static final String NAME = "300";
 
 	/**
-	 * Creates an MT300 initialized with the parameter SwiftMessage
+	 * Creates an MT300 initialized with the parameter SwiftMessage.
 	 * @param m swift message with the MT300 content
 	 */
-	public MT300(SwiftMessage m) {
+	public MT300(final SwiftMessage m) {
 		super(m);
 		sanityCheck(m);
 	}
@@ -196,7 +196,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	 * @param m swift message with the MT300 content, the parameter can not be null
 	 * @see #MT300(String)
 	 */
-	public MT300(MtSwiftMessage m) {
+	public MT300(final MtSwiftMessage m) {
 		this(m.message());
 	}
 	
@@ -208,7 +208,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	 * @see #MT300(String)
 	 * @since 7.7
 	 */
-	public static MT300 parse(MtSwiftMessage m) {
+	public static MT300 parse(final MtSwiftMessage m) {
 		if (m == null) {
 			return null;
 		}
@@ -216,7 +216,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT300 input message setting TEST BICS as sender and receiver.<br>
+	 * Creates and initializes a new MT300 input message setting TEST BICS as sender and receiver.
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -226,7 +226,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT300 input message from sender to receiver.<br>
+	 * Creates and initializes a new MT300 input message from sender to receiver.
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -240,9 +240,9 @@ public class MT300 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates a new MT300 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT300 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -262,15 +262,15 @@ public class MT300 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT300 object from FIN content with a Service Message. Check if the MT300 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+		} else if (!StringUtils.equals(param.getType(), "300")) {
 			log.warning("Creating an MT300 object from FIN content with message type "+param.getType());
 		}
     }
 	
 	/**
-	 * Creates a new MT300 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT300 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter cannot be parsed, the returned MT300 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br>
+	 * initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
 	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
@@ -285,9 +285,9 @@ public class MT300 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT300 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT300 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -299,7 +299,7 @@ public class MT300 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT300 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT300 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -315,9 +315,9 @@ public class MT300 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT300 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT300 by parsing a file with the message content in its swift FIN format.
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -329,7 +329,7 @@ public class MT300 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT300 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT300 by parsing a file with the message content in its swift FIN format.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -345,7 +345,7 @@ public class MT300 extends AbstractMT implements Serializable {
     }
     
 	/**
-	 * Returns this MT number
+	 * Returns this MT number.
 	 * @return the message type number of this MT
 	 * @since 6.4
 	 */
@@ -375,7 +375,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT300 append(final Tag ... tags) {
+	public MT300 append(final Tag... tags) {
 		super.append(tags);
 		return this;
 	}
@@ -388,28 +388,28 @@ public class MT300 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT300 append(final Field ... fields) {
+	public MT300 append(final Field... fields) {
 		super.append(fields);
 		return this;
 	}
 
-    /**
-	 * Creates an MT300 messages from its JSON representation.
-	 * <p>
-	 * For generic conversion of JSON into the corresopnding MT instance
-	 * see {@link AbstractMT#fromJson(String)}
-	 *
-	 * @param json a JSON representation of an MT300 message
-	 * @return a new instance of MT300
-	 * @since 7.10.3
-	 */
-	public static MT300 fromJson(String json) {
+   /**
+	* Creates an MT300 messages from its JSON representation.
+	* <p>
+	* For generic conversion of JSON into the corresponding MT instance
+	* see {@link AbstractMT#fromJson(String)}
+	*
+	* @param json a JSON representation of an MT300 message
+	* @return a new instance of MT300
+	* @since 7.10.3
+	*/
+	public static MT300 fromJson(final String json) {
 		return (MT300) AbstractMT.fromJson(json);
 	}
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field15A object or null if the field is not found
@@ -427,7 +427,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 20 at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field20 object or null if the field is not found
@@ -445,7 +445,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21 at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field21 object or null if the field is not found
@@ -463,7 +463,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field22A object or null if the field is not found
@@ -481,7 +481,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 94A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 94A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field94A object or null if the field is not found
@@ -499,7 +499,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22C, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22C at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field22C object or null if the field is not found
@@ -517,7 +517,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17T, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17T at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17T object or null if the field is not found
@@ -535,7 +535,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17U, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17U at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17U object or null if the field is not found
@@ -553,7 +553,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17I, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17I at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17I object or null if the field is not found
@@ -571,7 +571,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 82A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field82A object or null if the field is not found
@@ -589,7 +589,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 82J at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field82J object or null if the field is not found
@@ -607,7 +607,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 87A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 87A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field87A object or null if the field is not found
@@ -625,7 +625,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 87J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 87J at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field87J object or null if the field is not found
@@ -643,7 +643,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 83A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field83A object or null if the field is not found
@@ -661,7 +661,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 83J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 83J at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field83J object or null if the field is not found
@@ -679,7 +679,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77H, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 77H at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field77H object or null if the field is not found
@@ -697,7 +697,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 77D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field77D object or null if the field is not found
@@ -715,7 +715,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 14C, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 14C at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field14C object or null if the field is not found
@@ -733,7 +733,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17F, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17F at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17F object or null if the field is not found
@@ -751,7 +751,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17O, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17O at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17O object or null if the field is not found
@@ -769,7 +769,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32E, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 32E at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field32E object or null if the field is not found
@@ -787,7 +787,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30U, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 30U at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field30U object or null if the field is not found
@@ -805,7 +805,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 26K, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 26K at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field26K object or null if the field is not found
@@ -823,7 +823,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field21A object or null if the field is not found
@@ -841,7 +841,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 14E, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 14E at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field14E object or null if the field is not found
@@ -859,7 +859,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15B at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field15B object or null if the field is not found
@@ -877,7 +877,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30T, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 30T at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field30T object or null if the field is not found
@@ -895,7 +895,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30V, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 30V at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field30V object or null if the field is not found
@@ -913,7 +913,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 36, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 36 at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field36 object or null if the field is not found
@@ -931,7 +931,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 39M, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 39M at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field39M object or null if the field is not found
@@ -949,7 +949,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 33B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 33B at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field33B object or null if the field is not found
@@ -967,7 +967,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15C, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15C at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field15C object or null if the field is not found
@@ -985,7 +985,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 29A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 29A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field29A object or null if the field is not found
@@ -1003,7 +1003,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 24D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 24D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field24D object or null if the field is not found
@@ -1021,7 +1021,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 84A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 84A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field84A object or null if the field is not found
@@ -1039,7 +1039,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 84B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 84B at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field84B object or null if the field is not found
@@ -1057,7 +1057,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 84D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 84D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field84D object or null if the field is not found
@@ -1075,7 +1075,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 84J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 84J at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field84J object or null if the field is not found
@@ -1093,7 +1093,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 85A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 85A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field85A object or null if the field is not found
@@ -1111,7 +1111,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 85B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 85B at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field85B object or null if the field is not found
@@ -1129,7 +1129,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 85D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 85D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field85D object or null if the field is not found
@@ -1147,7 +1147,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 85J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 85J at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field85J object or null if the field is not found
@@ -1165,7 +1165,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 88A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 88A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field88A object or null if the field is not found
@@ -1183,7 +1183,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 88D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 88D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field88D object or null if the field is not found
@@ -1201,7 +1201,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 88J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 88J at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field88J object or null if the field is not found
@@ -1219,7 +1219,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 71F, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 71F at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field71F object or null if the field is not found
@@ -1237,7 +1237,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 26H, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 26H at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field26H object or null if the field is not found
@@ -1255,7 +1255,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21G, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21G at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field21G object or null if the field is not found
@@ -1273,7 +1273,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 72, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 72 at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field72 object or null if the field is not found
@@ -1291,7 +1291,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field15D object or null if the field is not found
@@ -1309,7 +1309,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 16A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 16A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field16A object or null if the field is not found
@@ -1327,7 +1327,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15E, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15E at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field15E object or null if the field is not found
@@ -1345,7 +1345,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 81A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 81A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field81A object or null if the field is not found
@@ -1363,7 +1363,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 81D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 81D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field81D object or null if the field is not found
@@ -1381,7 +1381,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 81J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 81J at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field81J object or null if the field is not found
@@ -1399,7 +1399,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 89A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 89A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field89A object or null if the field is not found
@@ -1417,7 +1417,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 89D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 89D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field89D object or null if the field is not found
@@ -1435,7 +1435,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 89J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 89J at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field89J object or null if the field is not found
@@ -1453,7 +1453,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 96A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 96A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field96A object or null if the field is not found
@@ -1471,7 +1471,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 96D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 96D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field96D object or null if the field is not found
@@ -1489,7 +1489,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 96J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 96J at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field96J object or null if the field is not found
@@ -1507,7 +1507,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22T, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22T at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field22T object or null if the field is not found
@@ -1525,7 +1525,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17E, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17E at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17E object or null if the field is not found
@@ -1543,7 +1543,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22U, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22U at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field22U object or null if the field is not found
@@ -1561,7 +1561,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 35B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 35B at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field35B object or null if the field is not found
@@ -1579,7 +1579,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17H, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17H at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17H object or null if the field is not found
@@ -1597,7 +1597,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17P, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17P at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17P object or null if the field is not found
@@ -1615,7 +1615,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22V, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22V at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field22V object or null if the field is not found
@@ -1633,7 +1633,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 98D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 98D at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field98D object or null if the field is not found
@@ -1651,7 +1651,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17W, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17W at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17W object or null if the field is not found
@@ -1669,7 +1669,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22W, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22W at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field22W object or null if the field is not found
@@ -1687,7 +1687,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17Y, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17Y at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17Y object or null if the field is not found
@@ -1705,7 +1705,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17Z, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17Z at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17Z object or null if the field is not found
@@ -1723,7 +1723,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 22Q, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 22Q at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field22Q object or null if the field is not found
@@ -1741,7 +1741,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17L, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17L at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17L object or null if the field is not found
@@ -1759,7 +1759,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17M, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17M at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17M object or null if the field is not found
@@ -1777,7 +1777,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17Q, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17Q at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17Q object or null if the field is not found
@@ -1795,7 +1795,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17S, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17S at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17S object or null if the field is not found
@@ -1813,7 +1813,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 17X, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 17X at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field17X object or null if the field is not found
@@ -1831,7 +1831,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 98G, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 98G at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field98G object or null if the field is not found
@@ -1849,7 +1849,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 98H, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 98H at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field98H object or null if the field is not found
@@ -1867,7 +1867,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 77A at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field77A object or null if the field is not found
@@ -1885,7 +1885,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 15F, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 15F at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field15F object or null if the field is not found
@@ -1903,7 +1903,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21H, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21H at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field21H object or null if the field is not found
@@ -1921,7 +1921,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21F, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21F at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field21F object or null if the field is not found
@@ -1939,7 +1939,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30F, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 30F at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field30F object or null if the field is not found
@@ -1957,7 +1957,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32H, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 32H at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field32H object or null if the field is not found
@@ -1975,7 +1975,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 33E, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 33E at MT300 is expected to be the only one.
 	 * 
 	 * @return a Field33E object or null if the field is not found
@@ -1993,7 +1993,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 14S, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 14S at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field14S objects or <code>Collections.emptyList()</code> if none is not found
@@ -2013,7 +2013,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 53A at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field53A objects or <code>Collections.emptyList()</code> if none is not found
@@ -2033,7 +2033,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 53J at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field53J objects or <code>Collections.emptyList()</code> if none is not found
@@ -2053,7 +2053,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 56A at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field56A objects or <code>Collections.emptyList()</code> if none is not found
@@ -2073,7 +2073,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 56J at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field56J objects or <code>Collections.emptyList()</code> if none is not found
@@ -2093,7 +2093,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 57A at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field57A objects or <code>Collections.emptyList()</code> if none is not found
@@ -2113,7 +2113,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 57J at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field57J objects or <code>Collections.emptyList()</code> if none is not found
@@ -2133,7 +2133,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 17A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 17A at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field17A objects or <code>Collections.emptyList()</code> if none is not found
@@ -2153,7 +2153,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 32B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 32B at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field32B objects or <code>Collections.emptyList()</code> if none is not found
@@ -2173,7 +2173,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 53D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 53D at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field53D objects or <code>Collections.emptyList()</code> if none is not found
@@ -2193,7 +2193,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 56D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 56D at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field56D objects or <code>Collections.emptyList()</code> if none is not found
@@ -2213,7 +2213,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 57D at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field57D objects or <code>Collections.emptyList()</code> if none is not found
@@ -2233,7 +2233,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 58A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 58A at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field58A objects or <code>Collections.emptyList()</code> if none is not found
@@ -2253,7 +2253,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 58D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 58D at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field58D objects or <code>Collections.emptyList()</code> if none is not found
@@ -2273,7 +2273,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 58J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 58J at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field58J objects or <code>Collections.emptyList()</code> if none is not found
@@ -2293,7 +2293,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22L, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22L at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field22L objects or <code>Collections.emptyList()</code> if none is not found
@@ -2313,7 +2313,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 91A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 91A at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field91A objects or <code>Collections.emptyList()</code> if none is not found
@@ -2333,7 +2333,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 91D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 91D at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field91D objects or <code>Collections.emptyList()</code> if none is not found
@@ -2353,7 +2353,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 91J, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 91J at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field91J objects or <code>Collections.emptyList()</code> if none is not found
@@ -2373,7 +2373,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22M, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22M at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field22M objects or <code>Collections.emptyList()</code> if none is not found
@@ -2393,7 +2393,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22N, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22N at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field22N objects or <code>Collections.emptyList()</code> if none is not found
@@ -2413,7 +2413,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22P, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22P at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field22P objects or <code>Collections.emptyList()</code> if none is not found
@@ -2433,7 +2433,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22R, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22R at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field22R objects or <code>Collections.emptyList()</code> if none is not found
@@ -2453,7 +2453,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22S, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22S at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field22S objects or <code>Collections.emptyList()</code> if none is not found
@@ -2473,7 +2473,7 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 34C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 34C at MT300 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field34C objects or <code>Collections.emptyList()</code> if none is not found
@@ -2493,14 +2493,14 @@ public class MT300 extends AbstractMT implements Serializable {
 	
 
 	/**
-	 * Class to model Sequence "A" in MT 300
+	 * Class to model Sequence "A" in MT 300.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceA extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
 			super(new ArrayList<Tag>());
@@ -2515,14 +2515,15 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15A.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceA newInstance(final Tag ... tags) {
+		public static SequenceA newInstance(final Tag... tags) {
 			final SequenceA result = new SequenceA();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2534,11 +2535,11 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceA newInstance() {
 			final SequenceA result = new SequenceA();
 			result.append(START_TAG);
@@ -2552,7 +2553,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceA newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceA newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceA result = new SequenceA();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2595,14 +2596,14 @@ public class MT300 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "B" in MT 300
+	 * Class to model Sequence "B" in MT 300.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceB extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
 			super(new ArrayList<Tag>());
@@ -2617,14 +2618,15 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15B.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceB newInstance(final Tag ... tags) {
+		public static SequenceB newInstance(final Tag... tags) {
 			final SequenceB result = new SequenceB();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2636,11 +2638,11 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceB newInstance() {
 			final SequenceB result = new SequenceB();
 			result.append(START_TAG);
@@ -2654,7 +2656,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceB newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB result = new SequenceB();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2697,13 +2699,13 @@ public class MT300 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "B1" in MT 300
+	 * Class to model Sequence "B1" in MT 300.
 	 */
 	public static class SequenceB1 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB1() {
 			super(new ArrayList<Tag>());
@@ -2730,17 +2732,17 @@ public class MT300 extends AbstractMT implements Serializable {
 		protected static final String[] END = { "57A", "57J"   };
 
 		/**
-		 * List of optional tags after the last mandatory tag
+		 * List of optional tags after the last mandatory tag.
 		 */
 		protected static final String[] TAIL = new String[]{  };
 
 		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
 		 * @param tags the list of tags to set as sequence content
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceB1 newInstance(final Tag ... tags) {
+		public static SequenceB1 newInstance(final Tag... tags) {
 			return newInstance(0, 0, tags);
 		}
 
@@ -2755,7 +2757,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceB1 newInstance(final int start, final int end, final Tag ... tags) {
+		public static SequenceB1 newInstance(final int start, final int end, final Tag... tags) {
 			final SequenceB1 result = new SequenceB1();
 			result.append(new Tag(START[start], ""));
 			if (tags != null && tags.length > 0) {
@@ -2812,13 +2814,13 @@ public class MT300 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B2" in MT 300
+	 * Class to model Sequence "B2" in MT 300.
 	 */
 	public static class SequenceB2 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB2() {
 			super(new ArrayList<Tag>());
@@ -2845,17 +2847,17 @@ public class MT300 extends AbstractMT implements Serializable {
 		protected static final String[] END = { "57A", "57J"   };
 
 		/**
-		 * List of optional tags after the last mandatory tag
+		 * List of optional tags after the last mandatory tag.
 		 */
 		protected static final String[] TAIL = new String[]{ "58A", "58J"   };
 
 		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
 		 * @param tags the list of tags to set as sequence content
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceB2 newInstance(final Tag ... tags) {
+		public static SequenceB2 newInstance(final Tag... tags) {
 			return newInstance(0, 0, tags);
 		}
 
@@ -2870,7 +2872,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceB2 newInstance(final int start, final int end, final Tag ... tags) {
+		public static SequenceB2 newInstance(final int start, final int end, final Tag... tags) {
 			final SequenceB2 result = new SequenceB2();
 			result.append(new Tag(START[start], ""));
 			if (tags != null && tags.length > 0) {
@@ -2927,14 +2929,14 @@ public class MT300 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "C" in MT 300
+	 * Class to model Sequence "C" in MT 300.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceC extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceC() {
 			super(new ArrayList<Tag>());
@@ -2949,14 +2951,15 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15C.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceC newInstance(final Tag ... tags) {
+		public static SequenceC newInstance(final Tag... tags) {
 			final SequenceC result = new SequenceC();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2968,11 +2971,11 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceC newInstance() {
 			final SequenceC result = new SequenceC();
 			result.append(START_TAG);
@@ -2986,7 +2989,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceC newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceC newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceC result = new SequenceC();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -3029,14 +3032,14 @@ public class MT300 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "D" in MT 300
+	 * Class to model Sequence "D" in MT 300.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceD extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceD() {
 			super(new ArrayList<Tag>());
@@ -3051,14 +3054,15 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15D.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceD newInstance(final Tag ... tags) {
+		public static SequenceD newInstance(final Tag... tags) {
 			final SequenceD result = new SequenceD();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -3070,11 +3074,11 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceD newInstance() {
 			final SequenceD result = new SequenceD();
 			result.append(START_TAG);
@@ -3088,7 +3092,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceD newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceD newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceD result = new SequenceD();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -3131,13 +3135,13 @@ public class MT300 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "D1" in MT 300
+	 * Class to model Sequence "D1" in MT 300.
 	 */
 	public static class SequenceD1 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceD1() {
 			super(new ArrayList<Tag>());
@@ -3164,17 +3168,17 @@ public class MT300 extends AbstractMT implements Serializable {
 		protected static final String[] END = { "32B"   };
 
 		/**
-		 * List of optional tags after the last mandatory tag
+		 * List of optional tags after the last mandatory tag.
 		 */
 		protected static final String[] TAIL = new String[]{ "53A", "53D", "53J", "56A", "56D", "56J", "57A", "57D", "57J", "58A", "58D", "58J"   };
 
 		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
 		 * @param tags the list of tags to set as sequence content
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceD1 newInstance(final Tag ... tags) {
+		public static SequenceD1 newInstance(final Tag... tags) {
 			return newInstance(0, 0, tags);
 		}
 
@@ -3189,7 +3193,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceD1 newInstance(final int start, final int end, final Tag ... tags) {
+		public static SequenceD1 newInstance(final int start, final int end, final Tag... tags) {
 			final SequenceD1 result = new SequenceD1();
 			result.append(new Tag(START[start], ""));
 			if (tags != null && tags.length > 0) {
@@ -3241,14 +3245,14 @@ public class MT300 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "E" in MT 300
+	 * Class to model Sequence "E" in MT 300.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceE extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceE() {
 			super(new ArrayList<Tag>());
@@ -3263,14 +3267,15 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15E.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceE newInstance(final Tag ... tags) {
+		public static SequenceE newInstance(final Tag... tags) {
 			final SequenceE result = new SequenceE();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -3282,11 +3287,11 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceE newInstance() {
 			final SequenceE result = new SequenceE();
 			result.append(START_TAG);
@@ -3300,7 +3305,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceE newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceE newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceE result = new SequenceE();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -3343,13 +3348,13 @@ public class MT300 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "E1" in MT 300
+	 * Class to model Sequence "E1" in MT 300.
 	 */
 	public static class SequenceE1 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceE1() {
 			super(new ArrayList<Tag>());
@@ -3372,13 +3377,13 @@ public class MT300 extends AbstractMT implements Serializable {
 
 
 	/**
-	 * Class to model Sequence "E1a" in MT 300
+	 * Class to model Sequence "E1a" in MT 300.
 	 */
 	public static class SequenceE1a extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceE1a() {
 			super(new ArrayList<Tag>());
@@ -3405,17 +3410,17 @@ public class MT300 extends AbstractMT implements Serializable {
 		protected static final String[] END = { "22N"   };
 
 		/**
-		 * List of optional tags after the last mandatory tag
+		 * List of optional tags after the last mandatory tag.
 		 */
 		protected static final String[] TAIL = new String[]{  };
 
 		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
 		 * @param tags the list of tags to set as sequence content
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceE1a newInstance(final Tag ... tags) {
+		public static SequenceE1a newInstance(final Tag... tags) {
 			return newInstance(0, 0, tags);
 		}
 
@@ -3430,7 +3435,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceE1a newInstance(final int start, final int end, final Tag ... tags) {
+		public static SequenceE1a newInstance(final int start, final int end, final Tag... tags) {
 			final SequenceE1a result = new SequenceE1a();
 			result.append(new Tag(START[start], ""));
 			if (tags != null && tags.length > 0) {
@@ -3482,13 +3487,13 @@ public class MT300 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "E1a1" in MT 300
+	 * Class to model Sequence "E1a1" in MT 300.
 	 */
 	public static class SequenceE1a1 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceE1a1() {
 			super(new ArrayList<Tag>());
@@ -3515,17 +3520,17 @@ public class MT300 extends AbstractMT implements Serializable {
 		protected static final String[] END = { "22R"   };
 
 		/**
-		 * List of optional tags after the last mandatory tag
+		 * List of optional tags after the last mandatory tag.
 		 */
 		protected static final String[] TAIL = new String[]{  };
 
 		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
 		 * @param tags the list of tags to set as sequence content
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceE1a1 newInstance(final Tag ... tags) {
+		public static SequenceE1a1 newInstance(final Tag... tags) {
 			return newInstance(0, 0, tags);
 		}
 
@@ -3540,7 +3545,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceE1a1 newInstance(final int start, final int end, final Tag ... tags) {
+		public static SequenceE1a1 newInstance(final int start, final int end, final Tag... tags) {
 			final SequenceE1a1 result = new SequenceE1a1();
 			result.append(new Tag(START[start], ""));
 			if (tags != null && tags.length > 0) {
@@ -3592,14 +3597,14 @@ public class MT300 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "F" in MT 300
+	 * Class to model Sequence "F" in MT 300.
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
 	public static class SequenceF extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceF() {
 			super(new ArrayList<Tag>());
@@ -3614,14 +3619,15 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		public static final Tag START_TAG = Field15F.emptyTag();
+
 		/**
-		* Creates a new instance of this sequence with the given tags inside.
-		* @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
-		* @return a new instance of the sequence, initialized with the parameter tags
-		* @since 7.7
-		*/
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 * @since 7.7
+		 */
 		@SequenceStyle(Type.SPLIT_BY_15)
-		public static SequenceF newInstance(final Tag ... tags) {
+		public static SequenceF newInstance(final Tag... tags) {
 			final SequenceF result = new SequenceF();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -3633,11 +3639,11 @@ public class MT300 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		* Create an empty $sequenceClassname.
-		* This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
-		* @return a new instance of the sequence
-		* @since 7.7
-		*/
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.7
+		 */
 		public static SequenceF newInstance() {
 			final SequenceF result = new SequenceF();
 			result.append(START_TAG);
@@ -3651,7 +3657,7 @@ public class MT300 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.7
 		 */
-		public static SequenceF newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceF newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceF result = new SequenceF();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {

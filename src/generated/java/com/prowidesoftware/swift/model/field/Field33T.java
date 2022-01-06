@@ -44,7 +44,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 33T</strong>
+ * SWIFT MT Field 33T.
  * <p>
  * Model and parser for field 33T of a SWIFT MT message.
  *
@@ -74,28 +74,28 @@ public class Field33T extends Field implements Serializable, AmountContainer {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 33T
+	 * Constant with the field name 33T.
 	 */
     public static final String NAME = "33T";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_33T = "33T";
 	public static final String PARSER_PATTERN = "SN";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -103,21 +103,21 @@ public class Field33T extends Field implements Serializable, AmountContainer {
 	public static final String TYPES_PATTERN = "SI";
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency subfield.
 	 */
 	public static final Integer CURRENCY = 1;
 
 	/**
-	 * Component number for the Price subfield
+	 * Component number for the Price subfield.
 	 */
 	public static final Integer PRICE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Price Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Price Component number.
 	 * @see #PRICE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer AMOUNT = 2;
 
     /**
@@ -153,7 +153,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -175,7 +175,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -250,7 +250,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -393,7 +393,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @see #getComponent2AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         return getComponent2AsBigDecimal();
     }
@@ -412,7 +412,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getAmount() {
         return getPrice();
     }
@@ -436,7 +436,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @see #getPriceAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getPriceAsNumber() {
         return getComponent2AsNumber();
     }
@@ -446,7 +446,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @see #getPriceAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getPriceAsBigDecimal();
     }
@@ -461,7 +461,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @see #getPriceAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getPriceAsNumber();
     }
@@ -530,9 +530,9 @@ public class Field33T extends Field implements Serializable, AmountContainer {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component2 instanceof BigDecimal) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal( (BigDecimal) component2));
+            setComponent(2, SwiftFormatUtils.getBigDecimal((BigDecimal) component2));
         } else if (component2 instanceof BigInteger) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component2)));
+            setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component2)));
         } else if (component2 instanceof Long || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component2.longValue())));
         } else if (component2 != null) {
@@ -590,7 +590,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field33T setAmount(String component2) {
         return setPrice(component2);
     }
@@ -605,7 +605,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field33T setAmount(java.math.BigDecimal component2) {
         return setPrice(component2);
     }
@@ -620,7 +620,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @see #setPrice(java.math.BigDecimal)
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field33T setAmount(java.lang.Number component2) {
         return setPrice(component2);
     }
@@ -648,7 +648,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field33T.NAME
      */
     @Override
@@ -669,7 +669,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
         if (t == null) {
             return null;
         }
-        return new Field33T(t) ;
+        return new Field33T(t);
     }
 
     /**
@@ -679,8 +679,9 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @see #get(SwiftTagListBlock)
      */
     public static Field33T get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -691,8 +692,9 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field33T> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -710,7 +712,7 @@ public class Field33T extends Field implements Serializable, AmountContainer {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field33T(f));
+                result.add(new Field33T(f));
             }
         }
         return result;
@@ -725,10 +727,9 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      */
     public static Field33T fromJson(final String json) {
 
-        Field33T field = new Field33T();
+        final Field33T field = new Field33T();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Currency
 

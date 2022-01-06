@@ -41,7 +41,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 95S</strong>
+ * SWIFT MT Field 95S.
  * <p>
  * Model and parser for field 95S of a SWIFT MT message.
  *
@@ -74,11 +74,11 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 95S
+	 * Constant with the field name 95S.
 	 */
     public static final String NAME = "95S";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_95S = "95S";
 
@@ -115,7 +115,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -137,7 +137,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -147,7 +147,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
      */
     @Override
     public final String validatorPattern() {
@@ -282,7 +282,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 3;
 
@@ -296,7 +296,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field95S.NAME
      */
     @Override
@@ -317,7 +317,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
         if (t == null) {
             return null;
         }
-        return new Field95S(t) ;
+        return new Field95S(t);
     }
 
     /**
@@ -327,8 +327,9 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
      * @see #get(SwiftTagListBlock)
      */
     public static Field95S get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -339,8 +340,9 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field95S> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -358,7 +360,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field95S(f));
+                result.add(new Field95S(f));
             }
         }
         return result;
@@ -373,10 +375,9 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
      */
     public static Field95S fromJson(final String json) {
 
-        Field95S field = new Field95S();
+        final Field95S field = new Field95S();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 

@@ -36,11 +36,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <strong>MT 586 - Statement of Settlement Allegements</strong>
+ * MT 586 - Statement of Settlement Allegements.
  *
  * <p>
  * SWIFT MT586 (ISO 15022) message structure:
- * <br>
+ *
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
@@ -194,15 +194,15 @@ public class MT586 extends AbstractMT implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT586.class.getName());
 	
 	/**
-	* Constant for MT name, this is part of the classname, after <code>MT</code>
-	*/
+	 * Constant for MT name, this is part of the classname, after MT.
+	 */
 	public static final String NAME = "586";
 
 	/**
-	 * Creates an MT586 initialized with the parameter SwiftMessage
+	 * Creates an MT586 initialized with the parameter SwiftMessage.
 	 * @param m swift message with the MT586 content
 	 */
-	public MT586(SwiftMessage m) {
+	public MT586(final SwiftMessage m) {
 		super(m);
 		sanityCheck(m);
 	}
@@ -212,7 +212,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	 * @param m swift message with the MT586 content, the parameter can not be null
 	 * @see #MT586(String)
 	 */
-	public MT586(MtSwiftMessage m) {
+	public MT586(final MtSwiftMessage m) {
 		this(m.message());
 	}
 	
@@ -224,7 +224,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	 * @see #MT586(String)
 	 * @since 7.7
 	 */
-	public static MT586 parse(MtSwiftMessage m) {
+	public static MT586 parse(final MtSwiftMessage m) {
 		if (m == null) {
 			return null;
 		}
@@ -232,7 +232,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT586 input message setting TEST BICS as sender and receiver.<br>
+	 * Creates and initializes a new MT586 input message setting TEST BICS as sender and receiver.
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -242,7 +242,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT586 input message from sender to receiver.<br>
+	 * Creates and initializes a new MT586 input message from sender to receiver.
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -256,9 +256,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates a new MT586 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT586 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -278,15 +278,15 @@ public class MT586 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT586 object from FIN content with a Service Message. Check if the MT586 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+		} else if (!StringUtils.equals(param.getType(), "586")) {
 			log.warning("Creating an MT586 object from FIN content with message type "+param.getType());
 		}
     }
 	
 	/**
-	 * Creates a new MT586 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT586 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter cannot be parsed, the returned MT586 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br>
+	 * initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
 	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
@@ -301,9 +301,9 @@ public class MT586 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT586 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT586 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -315,7 +315,7 @@ public class MT586 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT586 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT586 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -331,9 +331,9 @@ public class MT586 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT586 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT586 by parsing a file with the message content in its swift FIN format.
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -345,7 +345,7 @@ public class MT586 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT586 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT586 by parsing a file with the message content in its swift FIN format.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -361,7 +361,7 @@ public class MT586 extends AbstractMT implements Serializable {
     }
     
 	/**
-	 * Returns this MT number
+	 * Returns this MT number.
 	 * @return the message type number of this MT
 	 * @since 6.4
 	 */
@@ -391,7 +391,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT586 append(final Tag ... tags) {
+	public MT586 append(final Tag... tags) {
 		super.append(tags);
 		return this;
 	}
@@ -404,28 +404,28 @@ public class MT586 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT586 append(final Field ... fields) {
+	public MT586 append(final Field... fields) {
 		super.append(fields);
 		return this;
 	}
 
-    /**
-	 * Creates an MT586 messages from its JSON representation.
-	 * <p>
-	 * For generic conversion of JSON into the corresopnding MT instance
-	 * see {@link AbstractMT#fromJson(String)}
-	 *
-	 * @param json a JSON representation of an MT586 message
-	 * @return a new instance of MT586
-	 * @since 7.10.3
-	 */
-	public static MT586 fromJson(String json) {
+   /**
+	* Creates an MT586 messages from its JSON representation.
+	* <p>
+	* For generic conversion of JSON into the corresponding MT instance
+	* see {@link AbstractMT#fromJson(String)}
+	*
+	* @param json a JSON representation of an MT586 message
+	* @return a new instance of MT586
+	* @since 7.10.3
+	*/
+	public static MT586 fromJson(final String json) {
 		return (MT586) AbstractMT.fromJson(json);
 	}
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 28E, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 28E at MT586 is expected to be the only one.
 	 * 
 	 * @return a Field28E object or null if the field is not found
@@ -443,7 +443,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 13J, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 13J at MT586 is expected to be the only one.
 	 * 
 	 * @return a Field13J object or null if the field is not found
@@ -461,7 +461,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 23G, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 23G at MT586 is expected to be the only one.
 	 * 
 	 * @return a Field23G object or null if the field is not found
@@ -479,7 +479,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 11A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 11A at MT586 is expected to be the only one.
 	 * 
 	 * @return a Field11A object or null if the field is not found
@@ -497,7 +497,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 97E, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 97E at MT586 is expected to be the only one.
 	 * 
 	 * @return a Field97E object or null if the field is not found
@@ -515,7 +515,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 99B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 99B at MT586 is expected to be the only one.
 	 * 
 	 * @return a Field99B object or null if the field is not found
@@ -533,7 +533,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 98A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 98A at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field98A objects or <code>Collections.emptyList()</code> if none is not found
@@ -553,7 +553,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 98C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 98C at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field98C objects or <code>Collections.emptyList()</code> if none is not found
@@ -573,7 +573,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 98E, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 98E at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field98E objects or <code>Collections.emptyList()</code> if none is not found
@@ -593,7 +593,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22F, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22F at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field22F objects or <code>Collections.emptyList()</code> if none is not found
@@ -613,7 +613,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 16R, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 16R at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field16R objects or <code>Collections.emptyList()</code> if none is not found
@@ -633,7 +633,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 13A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 13A at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field13A objects or <code>Collections.emptyList()</code> if none is not found
@@ -653,7 +653,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 13B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 13B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field13B objects or <code>Collections.emptyList()</code> if none is not found
@@ -673,7 +673,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 20C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 20C at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field20C objects or <code>Collections.emptyList()</code> if none is not found
@@ -693,7 +693,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 16S, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 16S at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field16S objects or <code>Collections.emptyList()</code> if none is not found
@@ -713,7 +713,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95P, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 95P at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95P objects or <code>Collections.emptyList()</code> if none is not found
@@ -733,7 +733,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95Q, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 95Q at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95Q objects or <code>Collections.emptyList()</code> if none is not found
@@ -753,7 +753,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95R, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 95R at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95R objects or <code>Collections.emptyList()</code> if none is not found
@@ -773,7 +773,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95L, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 95L at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95L objects or <code>Collections.emptyList()</code> if none is not found
@@ -793,7 +793,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 20U, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 20U at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field20U objects or <code>Collections.emptyList()</code> if none is not found
@@ -813,7 +813,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 25D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 25D at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field25D objects or <code>Collections.emptyList()</code> if none is not found
@@ -833,7 +833,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 24B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 24B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field24B objects or <code>Collections.emptyList()</code> if none is not found
@@ -853,7 +853,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 70D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 70D at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field70D objects or <code>Collections.emptyList()</code> if none is not found
@@ -873,7 +873,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 94B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field94B objects or <code>Collections.emptyList()</code> if none is not found
@@ -893,7 +893,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94H, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 94H at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field94H objects or <code>Collections.emptyList()</code> if none is not found
@@ -913,7 +913,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94L, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 94L at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field94L objects or <code>Collections.emptyList()</code> if none is not found
@@ -933,7 +933,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 98B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 98B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field98B objects or <code>Collections.emptyList()</code> if none is not found
@@ -953,7 +953,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 90A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 90A at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field90A objects or <code>Collections.emptyList()</code> if none is not found
@@ -973,7 +973,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 90B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 90B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field90B objects or <code>Collections.emptyList()</code> if none is not found
@@ -993,7 +993,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 99A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 99A at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field99A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1013,7 +1013,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 35B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1033,7 +1033,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 12A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 12A at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field12A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1053,7 +1053,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 12C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 12C at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field12C objects or <code>Collections.emptyList()</code> if none is not found
@@ -1073,7 +1073,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 12B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 12B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field12B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1093,7 +1093,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 92A at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field92A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1113,7 +1113,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 17B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 17B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field17B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1133,7 +1133,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 36B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field36B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1153,7 +1153,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22H, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22H at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field22H objects or <code>Collections.emptyList()</code> if none is not found
@@ -1173,7 +1173,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 97A at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field97A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1193,7 +1193,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 94C at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field94C objects or <code>Collections.emptyList()</code> if none is not found
@@ -1213,7 +1213,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94F, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 94F at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field94F objects or <code>Collections.emptyList()</code> if none is not found
@@ -1233,7 +1233,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 92C at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field92C objects or <code>Collections.emptyList()</code> if none is not found
@@ -1253,7 +1253,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 19A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 19A at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field19A objects or <code>Collections.emptyList()</code> if none is not found
@@ -1273,7 +1273,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 95C at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95C objects or <code>Collections.emptyList()</code> if none is not found
@@ -1293,7 +1293,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95S, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 95S at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field95S objects or <code>Collections.emptyList()</code> if none is not found
@@ -1313,7 +1313,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 97B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field97B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1333,7 +1333,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 70C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 70C at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field70C objects or <code>Collections.emptyList()</code> if none is not found
@@ -1353,7 +1353,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 70E, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 70E at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field70E objects or <code>Collections.emptyList()</code> if none is not found
@@ -1373,7 +1373,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 92B at MT586 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field92B objects or <code>Collections.emptyList()</code> if none is not found
@@ -1393,14 +1393,14 @@ public class MT586 extends AbstractMT implements Serializable {
 	
 
 	/**
-	 * Class to model Sequence "A" in MT 586
+	 * Class to model Sequence "A" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceA extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
 			super(new ArrayList<Tag>());
@@ -1415,7 +1415,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>GENL</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>GENL</em>.
 		 */
 		public static final String START_END_16RS = "GENL";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -1427,7 +1427,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceA newInstance(final Tag ... tags) {
+		public static SequenceA newInstance(final Tag... tags) {
 			final SequenceA result = new SequenceA();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1459,7 +1459,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceA newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceA newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceA result = new SequenceA();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -1510,7 +1510,7 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "A1" in MT 586
+	 * Class to model Sequence "A1" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	@NonUniqueSeparator
@@ -1518,7 +1518,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceA1() {
 			super(new ArrayList<Tag>());
@@ -1533,7 +1533,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>LINK</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>LINK</em>.
 		 */
 		public static final String START_END_16RS = "LINK";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -1546,7 +1546,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 */
 	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceA1 newInstance(final Tag ... tags) {
+		public static SequenceA1 newInstance(final Tag... tags) {
 			final SequenceA1 result = new SequenceA1();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1578,7 +1578,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceA1 newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceA1 newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceA1 result = new SequenceA1();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -1601,7 +1601,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}
+	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -1625,8 +1625,9 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceA1List_sru2021(this);
 	}
+
 	/**
-	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}
+	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -1658,14 +1659,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B" in MT 586
+	 * Class to model Sequence "B" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
 			super(new ArrayList<Tag>());
@@ -1680,7 +1681,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>ALLDET</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>ALLDET</em>.
 		 */
 		public static final String START_END_16RS = "ALLDET";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -1692,7 +1693,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB newInstance(final Tag ... tags) {
+		public static SequenceB newInstance(final Tag... tags) {
 			final SequenceB result = new SequenceB();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1724,7 +1725,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB result = new SequenceB();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -1747,7 +1748,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB delimited by 16R/16S with value specified in {@link SequenceB#START_END_16RS}
+	 * Get the list of SequenceB delimited by 16R/16S with value specified in {@link SequenceB#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -1757,8 +1758,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceB> getSequenceBList() {
 		return getSequenceBList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceB delimited by 16R/16S with value specified in {@link SequenceB#START_END_16RS}
+	 * Get the list of SequenceB delimited by 16R/16S with value specified in {@link SequenceB#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB#START_END_16RS
@@ -1785,7 +1787,7 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B1" in MT 586
+	 * Class to model Sequence "B1" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	@NonUniqueSeparator
@@ -1793,7 +1795,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB1() {
 			super(new ArrayList<Tag>());
@@ -1808,7 +1810,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>LINK</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>LINK</em>.
 		 */
 		public static final String START_END_16RS = "LINK";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -1821,7 +1823,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 */
 	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB1 newInstance(final Tag ... tags) {
+		public static SequenceB1 newInstance(final Tag... tags) {
 			final SequenceB1 result = new SequenceB1();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1853,7 +1855,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB1 newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB1 newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB1 result = new SequenceB1();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -1876,7 +1878,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
+	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -1900,8 +1902,9 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceB1List_sru2021(this);
 	}
+
 	/**
-	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}
+	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
@@ -1933,14 +1936,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B2" in MT 586
+	 * Class to model Sequence "B2" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB2 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB2() {
 			super(new ArrayList<Tag>());
@@ -1955,7 +1958,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>REAS</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>REAS</em>.
 		 */
 		public static final String START_END_16RS = "REAS";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -1967,7 +1970,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB2 newInstance(final Tag ... tags) {
+		public static SequenceB2 newInstance(final Tag... tags) {
 			final SequenceB2 result = new SequenceB2();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -1999,7 +2002,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB2 newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB2 newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB2 result = new SequenceB2();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2022,7 +2025,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB2 delimited by 16R/16S with value specified in {@link SequenceB2#START_END_16RS}
+	 * Get the list of SequenceB2 delimited by 16R/16S with value specified in {@link SequenceB2#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -2032,8 +2035,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceB2> getSequenceB2List() {
 		return getSequenceB2List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceB2 delimited by 16R/16S with value specified in {@link SequenceB2#START_END_16RS}
+	 * Get the list of SequenceB2 delimited by 16R/16S with value specified in {@link SequenceB2#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB2#START_END_16RS
@@ -2060,14 +2064,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B3" in MT 586
+	 * Class to model Sequence "B3" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB3 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB3() {
 			super(new ArrayList<Tag>());
@@ -2082,7 +2086,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>FIA</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>FIA</em>.
 		 */
 		public static final String START_END_16RS = "FIA";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -2094,7 +2098,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB3 newInstance(final Tag ... tags) {
+		public static SequenceB3 newInstance(final Tag... tags) {
 			final SequenceB3 result = new SequenceB3();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2126,7 +2130,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB3 newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB3 newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB3 result = new SequenceB3();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2149,7 +2153,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB3 delimited by 16R/16S with value specified in {@link SequenceB3#START_END_16RS}
+	 * Get the list of SequenceB3 delimited by 16R/16S with value specified in {@link SequenceB3#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -2159,8 +2163,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceB3> getSequenceB3List() {
 		return getSequenceB3List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceB3 delimited by 16R/16S with value specified in {@link SequenceB3#START_END_16RS}
+	 * Get the list of SequenceB3 delimited by 16R/16S with value specified in {@link SequenceB3#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB3#START_END_16RS
@@ -2187,14 +2192,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B4" in MT 586
+	 * Class to model Sequence "B4" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB4 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB4() {
 			super(new ArrayList<Tag>());
@@ -2209,7 +2214,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>FIAC</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>FIAC</em>.
 		 */
 		public static final String START_END_16RS = "FIAC";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -2221,7 +2226,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB4 newInstance(final Tag ... tags) {
+		public static SequenceB4 newInstance(final Tag... tags) {
 			final SequenceB4 result = new SequenceB4();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2253,7 +2258,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB4 newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB4 newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB4 result = new SequenceB4();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2276,7 +2281,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB4 delimited by 16R/16S with value specified in {@link SequenceB4#START_END_16RS}
+	 * Get the list of SequenceB4 delimited by 16R/16S with value specified in {@link SequenceB4#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -2286,8 +2291,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceB4> getSequenceB4List() {
 		return getSequenceB4List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceB4 delimited by 16R/16S with value specified in {@link SequenceB4#START_END_16RS}
+	 * Get the list of SequenceB4 delimited by 16R/16S with value specified in {@link SequenceB4#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB4#START_END_16RS
@@ -2314,14 +2320,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B4a" in MT 586
+	 * Class to model Sequence "B4a" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB4a extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB4a() {
 			super(new ArrayList<Tag>());
@@ -2336,7 +2342,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>BREAK</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>BREAK</em>.
 		 */
 		public static final String START_END_16RS = "BREAK";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -2348,7 +2354,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB4a newInstance(final Tag ... tags) {
+		public static SequenceB4a newInstance(final Tag... tags) {
 			final SequenceB4a result = new SequenceB4a();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2380,7 +2386,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB4a newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB4a newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB4a result = new SequenceB4a();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2403,7 +2409,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB4a delimited by 16R/16S with value specified in {@link SequenceB4a#START_END_16RS}
+	 * Get the list of SequenceB4a delimited by 16R/16S with value specified in {@link SequenceB4a#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -2413,8 +2419,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceB4a> getSequenceB4aList() {
 		return getSequenceB4aList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceB4a delimited by 16R/16S with value specified in {@link SequenceB4a#START_END_16RS}
+	 * Get the list of SequenceB4a delimited by 16R/16S with value specified in {@link SequenceB4a#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB4a#START_END_16RS
@@ -2441,14 +2448,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B5" in MT 586
+	 * Class to model Sequence "B5" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB5 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB5() {
 			super(new ArrayList<Tag>());
@@ -2463,7 +2470,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>REPO</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>REPO</em>.
 		 */
 		public static final String START_END_16RS = "REPO";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -2475,7 +2482,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB5 newInstance(final Tag ... tags) {
+		public static SequenceB5 newInstance(final Tag... tags) {
 			final SequenceB5 result = new SequenceB5();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2507,7 +2514,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB5 newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB5 newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB5 result = new SequenceB5();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2530,7 +2537,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB5 delimited by 16R/16S with value specified in {@link SequenceB5#START_END_16RS}
+	 * Get the list of SequenceB5 delimited by 16R/16S with value specified in {@link SequenceB5#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -2540,8 +2547,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceB5> getSequenceB5List() {
 		return getSequenceB5List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceB5 delimited by 16R/16S with value specified in {@link SequenceB5#START_END_16RS}
+	 * Get the list of SequenceB5 delimited by 16R/16S with value specified in {@link SequenceB5#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB5#START_END_16RS
@@ -2568,14 +2576,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B6" in MT 586
+	 * Class to model Sequence "B6" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB6 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB6() {
 			super(new ArrayList<Tag>());
@@ -2590,7 +2598,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>SETDET</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>SETDET</em>.
 		 */
 		public static final String START_END_16RS = "SETDET";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -2602,7 +2610,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB6 newInstance(final Tag ... tags) {
+		public static SequenceB6 newInstance(final Tag... tags) {
 			final SequenceB6 result = new SequenceB6();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2634,7 +2642,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB6 newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB6 newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB6 result = new SequenceB6();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2657,7 +2665,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB6 delimited by 16R/16S with value specified in {@link SequenceB6#START_END_16RS}
+	 * Get the list of SequenceB6 delimited by 16R/16S with value specified in {@link SequenceB6#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -2667,8 +2675,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceB6> getSequenceB6List() {
 		return getSequenceB6List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceB6 delimited by 16R/16S with value specified in {@link SequenceB6#START_END_16RS}
+	 * Get the list of SequenceB6 delimited by 16R/16S with value specified in {@link SequenceB6#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB6#START_END_16RS
@@ -2695,14 +2704,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B6a" in MT 586
+	 * Class to model Sequence "B6a" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB6a extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB6a() {
 			super(new ArrayList<Tag>());
@@ -2717,7 +2726,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>SETPRTY</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>SETPRTY</em>.
 		 */
 		public static final String START_END_16RS = "SETPRTY";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -2729,7 +2738,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB6a newInstance(final Tag ... tags) {
+		public static SequenceB6a newInstance(final Tag... tags) {
 			final SequenceB6a result = new SequenceB6a();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2761,7 +2770,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB6a newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB6a newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB6a result = new SequenceB6a();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2784,7 +2793,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB6a delimited by 16R/16S with value specified in {@link SequenceB6a#START_END_16RS}
+	 * Get the list of SequenceB6a delimited by 16R/16S with value specified in {@link SequenceB6a#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -2794,8 +2803,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceB6a> getSequenceB6aList() {
 		return getSequenceB6aList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceB6a delimited by 16R/16S with value specified in {@link SequenceB6a#START_END_16RS}
+	 * Get the list of SequenceB6a delimited by 16R/16S with value specified in {@link SequenceB6a#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB6a#START_END_16RS
@@ -2822,14 +2832,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B6b" in MT 586
+	 * Class to model Sequence "B6b" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceB6b extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB6b() {
 			super(new ArrayList<Tag>());
@@ -2844,7 +2854,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>AMT</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>AMT</em>.
 		 */
 		public static final String START_END_16RS = "AMT";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -2856,7 +2866,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceB6b newInstance(final Tag ... tags) {
+		public static SequenceB6b newInstance(final Tag... tags) {
 			final SequenceB6b result = new SequenceB6b();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -2888,7 +2898,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceB6b newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceB6b newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceB6b result = new SequenceB6b();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -2911,7 +2921,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceB6b delimited by 16R/16S with value specified in {@link SequenceB6b#START_END_16RS}
+	 * Get the list of SequenceB6b delimited by 16R/16S with value specified in {@link SequenceB6b#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -2921,8 +2931,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceB6b> getSequenceB6bList() {
 		return getSequenceB6bList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceB6b delimited by 16R/16S with value specified in {@link SequenceB6b#START_END_16RS}
+	 * Get the list of SequenceB6b delimited by 16R/16S with value specified in {@link SequenceB6b#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceB6b#START_END_16RS
@@ -2949,14 +2960,14 @@ public class MT586 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "C" in MT 586
+	 * Class to model Sequence "C" in MT 586.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
 	public static class SequenceC extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceC() {
 			super(new ArrayList<Tag>());
@@ -2971,7 +2982,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>ADDINFO</em>
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>ADDINFO</em>.
 		 */
 		public static final String START_END_16RS = "ADDINFO";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
@@ -2983,7 +2994,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_16RS)
-		public static SequenceC newInstance(final Tag ... tags) {
+		public static SequenceC newInstance(final Tag... tags) {
 			final SequenceC result = new SequenceC();
 			result.append(START_TAG);
 			if (tags != null && tags.length > 0) {
@@ -3015,7 +3026,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter sequences content
 		 * @since 7.6
 		 */
-		public static SequenceC newInstance(final SwiftTagListBlock ... sequences) {
+		public static SequenceC newInstance(final SwiftTagListBlock... sequences) {
 			final SequenceC result = new SequenceC();
 			result.append(START_TAG);
 			if (sequences != null && sequences.length > 0) {
@@ -3038,7 +3049,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the list of SequenceC delimited by 16R/16S with value specified in {@link SequenceC#START_END_16RS}
+	 * Get the list of SequenceC delimited by 16R/16S with value specified in {@link SequenceC#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * @return the found sequences or an empty list if none is found
@@ -3048,8 +3059,9 @@ public class MT586 extends AbstractMT implements Serializable {
 	public List<SequenceC> getSequenceCList() {
 		return getSequenceCList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
+
 	/**
-	 * Get the list of SequenceC delimited by 16R/16S with value specified in {@link SequenceC#START_END_16RS}
+	 * Get the list of SequenceC delimited by 16R/16S with value specified in {@link SequenceC#START_END_16RS}.
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceC#START_END_16RS

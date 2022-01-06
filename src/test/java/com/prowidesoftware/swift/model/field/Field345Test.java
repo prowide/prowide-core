@@ -20,11 +20,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-/**
- * Test for Field345 and similar fields.
- *
- * @since 7.8.8
- */
 public class Field345Test extends AbstractFieldTest {
 
     @Override

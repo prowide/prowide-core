@@ -42,7 +42,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 28E</strong>
+ * SWIFT MT Field 28E.
  * <p>
  * Model and parser for field 28E of a SWIFT MT message.
  *
@@ -72,28 +72,28 @@ public class Field28E extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 28E
+	 * Constant with the field name 28E.
 	 */
     public static final String NAME = "28E";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_28E = "28E";
 	public static final String PARSER_PATTERN = "S/S";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -101,12 +101,12 @@ public class Field28E extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "NS";
 
 	/**
-	 * Component number for the Page Number subfield
+	 * Component number for the Page Number subfield.
 	 */
 	public static final Integer PAGE_NUMBER = 1;
 
 	/**
-	 * Component number for the Continuation Indicator subfield
+	 * Component number for the Continuation Indicator subfield.
 	 */
 	public static final Integer CONTINUATION_INDICATOR = 2;
 
@@ -143,7 +143,7 @@ public class Field28E extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -165,7 +165,7 @@ public class Field28E extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -237,7 +237,7 @@ public class Field28E extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -364,7 +364,7 @@ public class Field28E extends Field implements Serializable {
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -397,7 +397,7 @@ public class Field28E extends Field implements Serializable {
      * @see #getPageNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getPageNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -461,7 +461,7 @@ public class Field28E extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component1 instanceof Long) {
-            setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
+            setComponent(1, SwiftFormatUtils.getLong((Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 != null) {
@@ -534,7 +534,7 @@ public class Field28E extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field28E.NAME
      */
     @Override
@@ -555,7 +555,7 @@ public class Field28E extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field28E(t) ;
+        return new Field28E(t);
     }
 
     /**
@@ -565,8 +565,9 @@ public class Field28E extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field28E get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -577,8 +578,9 @@ public class Field28E extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field28E> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -596,7 +598,7 @@ public class Field28E extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field28E(f));
+                result.add(new Field28E(f));
             }
         }
         return result;
@@ -611,10 +613,9 @@ public class Field28E extends Field implements Serializable {
      */
     public static Field28E fromJson(final String json) {
 
-        Field28E field = new Field28E();
+        final Field28E field = new Field28E();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Page Number
 

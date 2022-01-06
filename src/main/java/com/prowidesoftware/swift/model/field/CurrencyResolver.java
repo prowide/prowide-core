@@ -31,7 +31,7 @@ public class CurrencyResolver {
     /**
      * Returns the list of Currency values (as String) given an MT Field
      *
-     * If you want a <code>List<Currency></code>, use <code>currencies</code> instead
+     * If you want a list of <code>Currency</code>, use <code>currencies</code> instead
      * @param f the field
      * @return the list of currencies
      * @see #currencies(Field)
@@ -60,9 +60,9 @@ public class CurrencyResolver {
     }
 
     /**
-     * Returns the list of Currency values (as Currency) given an MT Field
+     * Returns the list of Currency values (as Currency) given an MT Field.
      *
-     * If you want a <code>List<String></code>, use <code>currencyStrings</code> instead
+     * If you want a list of currency strings, use <code>currencyStrings</code> instead
      * @param f the field
      * @return the list of currencies
      * @see #currencyStrings(Field)

@@ -48,7 +48,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 92L</strong>
+ * SWIFT MT Field 92L.
  * <p>
  * Model and parser for field 92L of a SWIFT MT message.
  *
@@ -81,28 +81,28 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 92L
+	 * Constant with the field name 92L.
 	 */
     public static final String NAME = "92L";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_92L = "92L";
 	public static final String PARSER_PATTERN = ":S//SN/SN";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SCNCN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -110,43 +110,43 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
 	public static final String TYPES_PATTERN = "SCICI";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the First Currency Code subfield
+	 * Component number for the First Currency Code subfield.
 	 */
 	public static final Integer FIRST_CURRENCY_CODE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's First Currency Code Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's First Currency Code Component number.
 	 * @see #FIRST_CURRENCY_CODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer CURRENCY1 = 2;
 
 	/**
-	 * Component number for the Amount1 subfield
+	 * Component number for the Amount1 subfield.
 	 */
 	public static final Integer AMOUNT1 = 3;
 
 	/**
-	 * Component number for the Second Currency Code subfield
+	 * Component number for the Second Currency Code subfield.
 	 */
 	public static final Integer SECOND_CURRENCY_CODE = 4;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Second Currency Code Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Second Currency Code Component number.
 	 * @see #SECOND_CURRENCY_CODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer CURRENCY2 = 4;
 
 	/**
-	 * Component number for the Amount2 subfield
+	 * Component number for the Amount2 subfield.
 	 */
 	public static final Integer AMOUNT2 = 5;
 
@@ -183,7 +183,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -205,7 +205,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -310,7 +310,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -462,7 +462,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getCurrency1() {
         return getFirstCurrencyCode();
     }
@@ -480,7 +480,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @see #getFirstCurrencyCodeAsCurrency()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.util.Currency getCurrency1AsCurrency() {
         return getFirstCurrencyCodeAsCurrency();
     }
@@ -513,7 +513,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent3AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         return getComponent3AsBigDecimal();
     }
@@ -545,7 +545,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @see #getAmount1AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmount1AsNumber() {
         return getComponent3AsNumber();
     }
@@ -581,7 +581,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getCurrency2() {
         return getSecondCurrencyCode();
     }
@@ -599,7 +599,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @see #getSecondCurrencyCodeAsCurrency()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.util.Currency getCurrency2AsCurrency() {
         return getSecondCurrencyCodeAsCurrency();
     }
@@ -632,7 +632,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent5AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent5AsNumber() {
         return getComponent5AsBigDecimal();
     }
@@ -664,7 +664,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @see #getAmount2AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmount2AsNumber() {
         return getComponent5AsNumber();
     }
@@ -743,7 +743,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field92L setCurrency1(String component2) {
         return setFirstCurrencyCode(component2);
     }
@@ -757,7 +757,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field92L setCurrency1(java.util.Currency component2) {
         return setFirstCurrencyCode(component2);
     }
@@ -805,9 +805,9 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component3 instanceof BigDecimal) {
-            setComponent(3, SwiftFormatUtils.getBigDecimal( (BigDecimal) component3));
+            setComponent(3, SwiftFormatUtils.getBigDecimal((BigDecimal) component3));
         } else if (component3 instanceof BigInteger) {
-            setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component3)));
+            setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component3)));
         } else if (component3 instanceof Long || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component3.longValue())));
         } else if (component3 != null) {
@@ -909,7 +909,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field92L setCurrency2(String component4) {
         return setSecondCurrencyCode(component4);
     }
@@ -923,7 +923,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field92L setCurrency2(java.util.Currency component4) {
         return setSecondCurrencyCode(component4);
     }
@@ -971,9 +971,9 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component5 instanceof BigDecimal) {
-            setComponent(5, SwiftFormatUtils.getBigDecimal( (BigDecimal) component5));
+            setComponent(5, SwiftFormatUtils.getBigDecimal((BigDecimal) component5));
         } else if (component5 instanceof BigInteger) {
-            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component5)));
+            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component5)));
         } else if (component5 instanceof Long || component5 instanceof Integer) {
             setComponent(5, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component5.longValue())));
         } else if (component5 != null) {
@@ -1089,7 +1089,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
 
@@ -1103,7 +1103,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field92L.NAME
      */
     @Override
@@ -1124,7 +1124,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
         if (t == null) {
             return null;
         }
-        return new Field92L(t) ;
+        return new Field92L(t);
     }
 
     /**
@@ -1134,8 +1134,9 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @see #get(SwiftTagListBlock)
      */
     public static Field92L get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -1146,8 +1147,9 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field92L> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -1165,7 +1167,7 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field92L(f));
+                result.add(new Field92L(f));
             }
         }
         return result;
@@ -1180,10 +1182,9 @@ public class Field92L extends Field implements Serializable, CurrencyContainer, 
      */
     public static Field92L fromJson(final String json) {
 
-        Field92L field = new Field92L();
+        final Field92L field = new Field92L();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 

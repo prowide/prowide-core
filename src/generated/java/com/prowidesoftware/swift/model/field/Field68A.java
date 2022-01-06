@@ -47,7 +47,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 68A</strong>
+ * SWIFT MT Field 68A.
  * <p>
  * Model and parser for field 68A of a SWIFT MT message.
  *
@@ -81,28 +81,28 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 68A
+	 * Constant with the field name 68A.
 	 */
     public static final String NAME = "68A";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_68A = "68A";
 	public static final String PARSER_PATTERN = "NSN/N[/N][//S]";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NCNNNS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -110,32 +110,32 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	public static final String TYPES_PATTERN = "NCNNIS";
 
 	/**
-	 * Component number for the Number subfield
+	 * Component number for the Number subfield.
 	 */
 	public static final Integer NUMBER = 1;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency subfield.
 	 */
 	public static final Integer CURRENCY = 2;
 
 	/**
-	 * Component number for the Denomination subfield
+	 * Component number for the Denomination subfield.
 	 */
 	public static final Integer DENOMINATION = 3;
 
 	/**
-	 * Component number for the Mode subfield
+	 * Component number for the Mode subfield.
 	 */
 	public static final Integer MODE = 4;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Amount subfield.
 	 */
 	public static final Integer AMOUNT = 5;
 
 	/**
-	 * Component number for the Product Code subfield
+	 * Component number for the Product Code subfield.
 	 */
 	public static final Integer PRODUCT_CODE = 6;
 
@@ -172,7 +172,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -194,7 +194,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -302,7 +302,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -443,7 +443,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -476,7 +476,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -542,7 +542,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent3AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -575,7 +575,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getDenominationAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getDenominationAsNumber() {
         return getComponent3AsNumber();
     }
@@ -608,7 +608,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent4AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -641,7 +641,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getModeAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getModeAsNumber() {
         return getComponent4AsNumber();
     }
@@ -674,7 +674,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent5AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent5AsNumber() {
         return getComponent5AsBigDecimal();
     }
@@ -706,7 +706,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getAmountAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getComponent5AsNumber();
     }
@@ -770,7 +770,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component1 instanceof Long) {
-            setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
+            setComponent(1, SwiftFormatUtils.getLong((Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 != null) {
@@ -906,7 +906,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component3 instanceof Long) {
-            setComponent(3, SwiftFormatUtils.getLong( (Long) component3));
+            setComponent(3, SwiftFormatUtils.getLong((Long) component3));
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 != null) {
@@ -998,7 +998,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component4 instanceof Long) {
-            setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
+            setComponent(4, SwiftFormatUtils.getLong((Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 != null) {
@@ -1090,9 +1090,9 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component5 instanceof BigDecimal) {
-            setComponent(5, SwiftFormatUtils.getBigDecimal( (BigDecimal) component5));
+            setComponent(5, SwiftFormatUtils.getBigDecimal((BigDecimal) component5));
         } else if (component5 instanceof BigInteger) {
-            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component5)));
+            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component5)));
         } else if (component5 instanceof Long || component5 instanceof Integer) {
             setComponent(5, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component5.longValue())));
         } else if (component5 != null) {
@@ -1209,7 +1209,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field68A.NAME
      */
     @Override
@@ -1230,7 +1230,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
         if (t == null) {
             return null;
         }
-        return new Field68A(t) ;
+        return new Field68A(t);
     }
 
     /**
@@ -1240,8 +1240,9 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #get(SwiftTagListBlock)
      */
     public static Field68A get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -1252,8 +1253,9 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field68A> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -1271,7 +1273,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field68A(f));
+                result.add(new Field68A(f));
             }
         }
         return result;
@@ -1286,10 +1288,9 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      */
     public static Field68A fromJson(final String json) {
 
-        Field68A field = new Field68A();
+        final Field68A field = new Field68A();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Number
 

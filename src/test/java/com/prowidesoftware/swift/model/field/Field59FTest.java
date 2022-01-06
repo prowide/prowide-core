@@ -19,11 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for Field59F and similar fields.
- *
- * @since 7.8.9
- */
 public class Field59FTest extends AbstractFieldTest {
 
     @Override

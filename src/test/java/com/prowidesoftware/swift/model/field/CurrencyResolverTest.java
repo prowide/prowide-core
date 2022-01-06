@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model.field;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
@@ -97,30 +96,6 @@ public class CurrencyResolverTest {
     }
 
     @Test
-    public void testResolveComponentsPattern() {
-        List<String> components = new ArrayList<>();
-        components.add("c1");
-        components.add("c2");
-        components.add("c3");
-        components.add("c4");
-        components.add("c5");
-
-        List<String> o = CurrencyResolver.resolveComponentsPattern("SC", components);
-        assertEquals(1, o.size());
-        assertEquals("c2", o.get(0));
-
-        o = CurrencyResolver.resolveComponentsPattern("CS", components);
-        assertEquals(1, o.size());
-        assertEquals("c1", o.get(0));
-
-        o = CurrencyResolver.resolveComponentsPattern("SCS", components);
-        assertEquals(1, o.size());
-        assertEquals("c2", o.get(0));
-
-    }
-
-    // FIXME fallo por un refactor que dejo mal el dummy container
-    @Test
     public void testResolveCurrency() {
         List<String> list = new ArrayList<>();
         list.add("USD");
@@ -136,17 +111,14 @@ public class CurrencyResolverTest {
         }
 
         public String componentsPattern() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         public String typesPattern() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         public String parserPattern() {
-            // TODO Auto-generated method stub
             return null;
         }
 
@@ -155,29 +127,22 @@ public class CurrencyResolverTest {
         }
 
         public String currencyString() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         public List<Currency> currencies() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         public Currency currency() {
-            // TODO Auto-generated method stub
             return null;
         }
 
         public void initializeCurrencies(String cur) {
-            // TODO Auto-generated method stub
-
         }
 
         public void initializeCurrencies(Currency cur) {
-            // TODO Auto-generated method stub
-
         }
-
     }
+
 }

@@ -50,7 +50,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 32D</strong>
+ * SWIFT MT Field 32D.
  * <p>
  * Model and parser for field 32D of a SWIFT MT message.
  *
@@ -81,28 +81,28 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 32D
+	 * Constant with the field name 32D.
 	 */
     public static final String NAME = "32D";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_32D = "32D";
 	public static final String PARSER_PATTERN = "<DATE2>SN";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "ECN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -110,17 +110,17 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
 	public static final String TYPES_PATTERN = "ECI";
 
 	/**
-	 * Component number for the Date subfield
+	 * Component number for the Date subfield.
 	 */
 	public static final Integer DATE = 1;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency subfield.
 	 */
 	public static final Integer CURRENCY = 2;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Amount subfield.
 	 */
 	public static final Integer AMOUNT = 3;
 
@@ -157,7 +157,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -179,7 +179,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -268,7 +268,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -463,7 +463,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent3AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         return getComponent3AsBigDecimal();
     }
@@ -495,7 +495,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
      * @see #getAmountAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getComponent3AsNumber();
     }
@@ -631,9 +631,9 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component3 instanceof BigDecimal) {
-            setComponent(3, SwiftFormatUtils.getBigDecimal( (BigDecimal) component3));
+            setComponent(3, SwiftFormatUtils.getBigDecimal((BigDecimal) component3));
         } else if (component3 instanceof BigInteger) {
-            setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component3)));
+            setComponent(3, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component3)));
         } else if (component3 instanceof Long || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component3.longValue())));
         } else if (component3 != null) {
@@ -747,7 +747,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field32D.NAME
      */
     @Override
@@ -768,7 +768,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
         if (t == null) {
             return null;
         }
-        return new Field32D(t) ;
+        return new Field32D(t);
     }
 
     /**
@@ -778,8 +778,9 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
      * @see #get(SwiftTagListBlock)
      */
     public static Field32D get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -790,8 +791,9 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field32D> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -809,7 +811,7 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field32D(f));
+                result.add(new Field32D(f));
             }
         }
         return result;
@@ -824,10 +826,9 @@ public class Field32D extends Field implements Serializable, CurrencyContainer, 
      */
     public static Field32D fromJson(final String json) {
 
-        Field32D field = new Field32D();
+        final Field32D field = new Field32D();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Date
 

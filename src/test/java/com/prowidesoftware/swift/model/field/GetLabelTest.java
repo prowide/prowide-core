@@ -21,9 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for fields getLabel API.
- *
- * @author sebastian
- * @since 7.8.4
  */
 public class GetLabelTest {
 

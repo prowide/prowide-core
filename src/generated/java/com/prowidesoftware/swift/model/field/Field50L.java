@@ -40,7 +40,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 50L</strong>
+ * SWIFT MT Field 50L.
  * <p>
  * Model and parser for field 50L of a SWIFT MT message.
  *
@@ -69,11 +69,11 @@ public class Field50L extends OptionLPartyField implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 50L
+	 * Constant with the field name 50L.
 	 */
     public static final String NAME = "50L";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_50L = "50L";
 
@@ -110,7 +110,7 @@ public class Field50L extends OptionLPartyField implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -132,7 +132,7 @@ public class Field50L extends OptionLPartyField implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -142,7 +142,7 @@ public class Field50L extends OptionLPartyField implements Serializable {
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
      */
     @Override
     public final String validatorPattern() {
@@ -173,7 +173,7 @@ public class Field50L extends OptionLPartyField implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field50L.NAME
      */
     @Override
@@ -194,7 +194,7 @@ public class Field50L extends OptionLPartyField implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field50L(t) ;
+        return new Field50L(t);
     }
 
     /**
@@ -204,8 +204,9 @@ public class Field50L extends OptionLPartyField implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field50L get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -216,8 +217,9 @@ public class Field50L extends OptionLPartyField implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field50L> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -235,7 +237,7 @@ public class Field50L extends OptionLPartyField implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field50L(f));
+                result.add(new Field50L(f));
             }
         }
         return result;
@@ -250,10 +252,9 @@ public class Field50L extends OptionLPartyField implements Serializable {
      */
     public static Field50L fromJson(final String json) {
 
-        Field50L field = new Field50L();
+        final Field50L field = new Field50L();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Party Identifier
 
