@@ -53,7 +53,7 @@ import com.google.gson.JsonParser;
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>4!c[/35x]</code></li>
- * 		<li>parser pattern: <code>S/S</code></li>
+ * 		<li>parser pattern: <code>S[/S]</code></li>
  * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
@@ -77,7 +77,7 @@ public class Field12H extends Field implements Serializable {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_12H = "12H";
-	public static final String PARSER_PATTERN = "S/S";
+	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * Components pattern.
@@ -196,8 +196,9 @@ public class Field12H extends Field implements Serializable {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
-        result.append("/");
-        append(result, 2);
+        if (getComponent2() != null) {
+            result.append("/").append(getComponent2());
+        }
         return result.toString();
     }
 

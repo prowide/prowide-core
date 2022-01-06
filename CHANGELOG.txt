@@ -1,6 +1,7 @@
 -----------------------------------------------------------------------------------------------------------------------
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
+  * (PW-815) Fixed getValue in field 12H (SCORE) where narrative is optional
   * (GH-89) MT530: Fixed repetition of sequence C ADDINFO
   * Added plugins for automatic versioning and code quality reporting
 
