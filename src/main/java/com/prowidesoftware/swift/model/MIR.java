@@ -77,8 +77,6 @@ public class MIR {
      */
     private String sequenceNumber;
 
-    /**
-     */
     public MIR(String date, String logicalTerminal, String sessionNumber, String sequenceNumber) {
         super();
         this.date = date;
@@ -158,8 +156,6 @@ public class MIR {
         return logicalTerminal;
     }
 
-    /**
-     */
     public void setLogicalTerminal(String logicalTerminal) {
         this.logicalTerminal = logicalTerminal;
     }
@@ -171,8 +167,6 @@ public class MIR {
         return sessionNumber;
     }
 
-    /**
-     */
     public void setSessionNumber(String sessionNumber) {
         this.sessionNumber = sessionNumber;
     }
@@ -184,8 +178,6 @@ public class MIR {
         return sequenceNumber;
     }
 
-    /**
-     */
     public void setSequenceNumber(String sequenceNumber) {
         this.sequenceNumber = sequenceNumber;
     }

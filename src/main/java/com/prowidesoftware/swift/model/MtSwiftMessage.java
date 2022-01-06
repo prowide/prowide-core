@@ -73,6 +73,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
     /**
      * Calls {@link #MtSwiftMessage(String, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     * @param fin the plain FIN message content
      */
     public MtSwiftMessage(final String fin) {
         this(fin, new DefaultMtMetadataStrategy());
@@ -100,6 +101,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
     /**
      * Calls {@link #MtSwiftMessage(InputStream, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     * @param stream input stream to read
+     * @throws IOException on error during file reading
      */
     public MtSwiftMessage(final InputStream stream) throws IOException {
         this(stream, new DefaultMtMetadataStrategy());
@@ -108,9 +111,11 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     /**
      * Creates a new message reading the message the content from an input stream.
      * <br>
-     * File format is set to {@link FileFormat#FIN}
+     * File format is set to {@link FileFormat#FIN}.
      *
+     * @param stream input stream to read
      * @param metadataStrategy a strategy for metadata extraction
+     * @throws IOException on error during file reading
      * @since 9.1.4
      */
     public MtSwiftMessage(final InputStream stream, final MessageMetadataStrategy metadataStrategy) throws IOException {
@@ -119,6 +124,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
     /**
      * Calls {@link #MtSwiftMessage(File, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     *
+     * @param file file holding message content
+     * @throws IOException on error during file reading
      */
     public MtSwiftMessage(final File file) throws IOException {
         this(file, new DefaultMtMetadataStrategy());
@@ -129,7 +137,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * <br>
      * File format is set to {@link FileFormat#FIN}
      *
+     * @param file file holding message content
      * @param metadataStrategy a strategy for metadata extraction
+     * @throws IOException on error during file reading
      * @since 9.1.4
      */
     public MtSwiftMessage(final File file, final MessageMetadataStrategy metadataStrategy) throws IOException {
@@ -211,6 +221,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     /**
      * This method deserializes the JSON data into an MT message object.
      *
+     * @param json JSON representation
+     * @return message object
      * @since 7.10.3
      */
     public static MtSwiftMessage fromJson(String json) {
@@ -333,6 +345,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
     /**
      * Calls {@link #updateFromFIN(String, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     * @param fin raw (FIN) message content to update from
      */
     public void updateFromFIN(final String fin) {
         updateFromFIN(fin, new DefaultMtMetadataStrategy());
@@ -367,6 +380,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
     /**
      * Calls {@link #updateFromModel(SwiftMessage, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     *
+     * @param model model to update from
      */
     public void updateFromModel(final SwiftMessage model) {
         updateFromModel(model, new DefaultMtMetadataStrategy());
@@ -393,6 +408,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     /**
      * Calls {@link #updateFromModel(AbstractMT, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
      *
+     * @param mt message to update from
      * @since 7.8.4
      */
     public void updateFromModel(final AbstractMT mt) {
@@ -433,7 +449,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
     /**
      * Get the integer value of the {@link #getMessageType()}
-     * or null if the identifier attribute is not set or not a number
+     * or null if the identifier attribute is not set or not a number.
+     *
+     * @return message type as integer
      */
     public Integer getMessageTypeInt() {
         final String number = getMessageType();
@@ -540,6 +558,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     /**
      * Gets the MIR (Message Input Reference)
      *
+     * @return MIR
      * @see SwiftMessage#getMIR()
      */
     public String getMir() {
@@ -583,8 +602,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     }
 
     /**
-     * Gets a UUID (User Unique Identifier)
+     * Gets a UUID (User Unique Identifier).
      *
+     * @return UUID
      * @see SwiftMessage#getUUID()
      */
     public String getUuid() {
@@ -592,9 +612,10 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     }
 
     /**
-     * Sets a UUID
-     * This field is automatically updated on message update from FIN or model
+     * Sets a UUID.
+     * This field is automatically updated on message update from FIN or model.
      *
+     * @param uuid UUID to set
      * @see #updateFromFIN(String)
      * @see #updateFromModel(AbstractMT)
      * @see #updateFromModel(SwiftMessage)
@@ -680,6 +701,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * Enables injecting your own implementation for the entity metadata extraction, to set the generic properties
      * shared by all message types: main reference, main amount and currency, value date, trade date.
      *
+     * @param strategy meta data strategy
      * @since 9.1.4
      */
     public void updateMetadata(MessageMetadataStrategy strategy) {

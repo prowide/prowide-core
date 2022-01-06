@@ -42,7 +42,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 48</strong>
+ * SWIFT MT Field 48.
  * <p>
  * Model and parser for field 48 of a SWIFT MT message.
  *
@@ -72,28 +72,28 @@ public class Field48 extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 48
+	 * Constant with the field name 48.
 	 */
     public static final String NAME = "48";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_48 = "48";
 	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -101,12 +101,12 @@ public class Field48 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "NS";
 
 	/**
-	 * Component number for the Days subfield
+	 * Component number for the Days subfield.
 	 */
 	public static final Integer DAYS = 1;
 
 	/**
-	 * Component number for the Narrative subfield
+	 * Component number for the Narrative subfield.
 	 */
 	public static final Integer NARRATIVE = 2;
 
@@ -143,7 +143,7 @@ public class Field48 extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -165,7 +165,7 @@ public class Field48 extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -238,7 +238,7 @@ public class Field48 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -368,7 +368,7 @@ public class Field48 extends Field implements Serializable {
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -401,7 +401,7 @@ public class Field48 extends Field implements Serializable {
      * @see #getDaysAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getDaysAsNumber() {
         return getComponent1AsNumber();
     }
@@ -465,7 +465,7 @@ public class Field48 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component1 instanceof Long) {
-            setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
+            setComponent(1, SwiftFormatUtils.getLong((Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 != null) {
@@ -538,7 +538,7 @@ public class Field48 extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field48.NAME
      */
     @Override
@@ -559,7 +559,7 @@ public class Field48 extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field48(t) ;
+        return new Field48(t);
     }
 
     /**
@@ -569,8 +569,9 @@ public class Field48 extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field48 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -581,8 +582,9 @@ public class Field48 extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field48> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -600,7 +602,7 @@ public class Field48 extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field48(f));
+                result.add(new Field48(f));
             }
         }
         return result;
@@ -615,10 +617,9 @@ public class Field48 extends Field implements Serializable {
      */
     public static Field48 fromJson(final String json) {
 
-        Field48 field = new Field48();
+        final Field48 field = new Field48();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Days
 

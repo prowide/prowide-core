@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * Base implementation for field test cases
  *
- * @author sebastian
  * @since 7.9.3
  */
 @Disabled

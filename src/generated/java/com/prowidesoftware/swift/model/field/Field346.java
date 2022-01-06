@@ -40,7 +40,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 346</strong>
+ * SWIFT MT Field 346.
  * <p>
  * Model and parser for field 346 of a SWIFT MT message.
  *
@@ -78,28 +78,28 @@ public class Field346 extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 346
+	 * Constant with the field name 346.
 	 */
     public static final String NAME = "346";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_346 = "346";
 	public static final String PARSER_PATTERN = "3!S*10";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSSSSSSSSS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -107,52 +107,52 @@ public class Field346 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "SSSSSSSSSS";
 
 	/**
-	 * Component number for the Branch1 subfield
+	 * Component number for the Branch1 subfield.
 	 */
 	public static final Integer BRANCH1 = 1;
 
 	/**
-	 * Component number for the Branch2 subfield
+	 * Component number for the Branch2 subfield.
 	 */
 	public static final Integer BRANCH2 = 2;
 
 	/**
-	 * Component number for the Branch3 subfield
+	 * Component number for the Branch3 subfield.
 	 */
 	public static final Integer BRANCH3 = 3;
 
 	/**
-	 * Component number for the Branch4 subfield
+	 * Component number for the Branch4 subfield.
 	 */
 	public static final Integer BRANCH4 = 4;
 
 	/**
-	 * Component number for the Branch5 subfield
+	 * Component number for the Branch5 subfield.
 	 */
 	public static final Integer BRANCH5 = 5;
 
 	/**
-	 * Component number for the Branch6 subfield
+	 * Component number for the Branch6 subfield.
 	 */
 	public static final Integer BRANCH6 = 6;
 
 	/**
-	 * Component number for the Branch7 subfield
+	 * Component number for the Branch7 subfield.
 	 */
 	public static final Integer BRANCH7 = 7;
 
 	/**
-	 * Component number for the Branch8 subfield
+	 * Component number for the Branch8 subfield.
 	 */
 	public static final Integer BRANCH8 = 8;
 
 	/**
-	 * Component number for the Branch9 subfield
+	 * Component number for the Branch9 subfield.
 	 */
 	public static final Integer BRANCH9 = 9;
 
 	/**
-	 * Component number for the Branch10 subfield
+	 * Component number for the Branch10 subfield.
 	 */
 	public static final Integer BRANCH10 = 10;
 
@@ -189,7 +189,7 @@ public class Field346 extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -211,7 +211,7 @@ public class Field346 extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -314,7 +314,7 @@ public class Field346 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -802,7 +802,7 @@ public class Field346 extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field346.NAME
      */
     @Override
@@ -823,7 +823,7 @@ public class Field346 extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field346(t) ;
+        return new Field346(t);
     }
 
     /**
@@ -833,8 +833,9 @@ public class Field346 extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field346 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -845,8 +846,9 @@ public class Field346 extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field346> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -864,7 +866,7 @@ public class Field346 extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field346(f));
+                result.add(new Field346(f));
             }
         }
         return result;
@@ -879,10 +881,9 @@ public class Field346 extends Field implements Serializable {
      */
     public static Field346 fromJson(final String json) {
 
-        Field346 field = new Field346();
+        final Field346 field = new Field346();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Branch1
 

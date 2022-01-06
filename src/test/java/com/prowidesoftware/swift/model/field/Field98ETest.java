@@ -21,12 +21,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test for Field98E and similar fields.
- * :S//<DATE4><TIME2>[,S][/[c]<TIME3>]
- *
- * @since 6.0
- */
 public class Field98ETest extends AbstractFieldTest {
     private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field98ETest.class.getName());
 

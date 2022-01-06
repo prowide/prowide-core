@@ -43,7 +43,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 13E</strong>
+ * SWIFT MT Field 13E.
  * <p>
  * Model and parser for field 13E of a SWIFT MT message.
  *
@@ -73,28 +73,28 @@ public class Field13E extends Field implements Serializable, DateContainer {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 13E
+	 * Constant with the field name 13E.
 	 */
     public static final String NAME = "13E";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_13E = "13E";
 	public static final String PARSER_PATTERN = "<DATE4><HHMM>";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "DH";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -102,12 +102,12 @@ public class Field13E extends Field implements Serializable, DateContainer {
 	public static final String TYPES_PATTERN = "DH";
 
 	/**
-	 * Component number for the Date subfield
+	 * Component number for the Date subfield.
 	 */
 	public static final Integer DATE = 1;
 
 	/**
-	 * Component number for the Time subfield
+	 * Component number for the Time subfield.
 	 */
 	public static final Integer TIME = 2;
 
@@ -144,7 +144,7 @@ public class Field13E extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -166,7 +166,7 @@ public class Field13E extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -250,7 +250,7 @@ public class Field13E extends Field implements Serializable, DateContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -524,7 +524,7 @@ public class Field13E extends Field implements Serializable, DateContainer {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field13E.NAME
      */
     @Override
@@ -545,7 +545,7 @@ public class Field13E extends Field implements Serializable, DateContainer {
         if (t == null) {
             return null;
         }
-        return new Field13E(t) ;
+        return new Field13E(t);
     }
 
     /**
@@ -555,8 +555,9 @@ public class Field13E extends Field implements Serializable, DateContainer {
      * @see #get(SwiftTagListBlock)
      */
     public static Field13E get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -567,8 +568,9 @@ public class Field13E extends Field implements Serializable, DateContainer {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field13E> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -586,7 +588,7 @@ public class Field13E extends Field implements Serializable, DateContainer {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field13E(f));
+                result.add(new Field13E(f));
             }
         }
         return result;
@@ -601,10 +603,9 @@ public class Field13E extends Field implements Serializable, DateContainer {
      */
     public static Field13E fromJson(final String json) {
 
-        Field13E field = new Field13E();
+        final Field13E field = new Field13E();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Date
 

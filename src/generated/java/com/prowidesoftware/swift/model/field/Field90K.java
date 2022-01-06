@@ -45,7 +45,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 90K</strong>
+ * SWIFT MT Field 90K.
  * <p>
  * Model and parser for field 90K of a SWIFT MT message.
  *
@@ -75,28 +75,28 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 90K
+	 * Constant with the field name 90K.
 	 */
     public static final String NAME = "90K";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_90K = "90K";
 	public static final String PARSER_PATTERN = ":S//N";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -104,21 +104,21 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
 	public static final String TYPES_PATTERN = "SI";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Index Points subfield
+	 * Component number for the Index Points subfield.
 	 */
 	public static final Integer INDEX_POINTS = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Index Points Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Index Points Component number.
 	 * @see #INDEX_POINTS
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer AMOUNT = 2;
 
     /**
@@ -154,7 +154,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -176,7 +176,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -254,7 +254,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -397,7 +397,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @see #getComponent2AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         return getComponent2AsBigDecimal();
     }
@@ -416,7 +416,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getAmount() {
         return getIndexPoints();
     }
@@ -440,7 +440,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @see #getIndexPointsAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getIndexPointsAsNumber() {
         return getComponent2AsNumber();
     }
@@ -450,7 +450,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @see #getIndexPointsAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getIndexPointsAsBigDecimal();
     }
@@ -465,7 +465,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @see #getIndexPointsAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getIndexPointsAsNumber();
     }
@@ -534,9 +534,9 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component2 instanceof BigDecimal) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal( (BigDecimal) component2));
+            setComponent(2, SwiftFormatUtils.getBigDecimal((BigDecimal) component2));
         } else if (component2 instanceof BigInteger) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component2)));
+            setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component2)));
         } else if (component2 instanceof Long || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component2.longValue())));
         } else if (component2 != null) {
@@ -594,7 +594,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field90K setAmount(String component2) {
         return setIndexPoints(component2);
     }
@@ -609,7 +609,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field90K setAmount(java.math.BigDecimal component2) {
         return setIndexPoints(component2);
     }
@@ -624,7 +624,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @see #setIndexPoints(java.math.BigDecimal)
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field90K setAmount(java.lang.Number component2) {
         return setIndexPoints(component2);
     }
@@ -672,7 +672,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
 
@@ -686,7 +686,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field90K.NAME
      */
     @Override
@@ -707,7 +707,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
         if (t == null) {
             return null;
         }
-        return new Field90K(t) ;
+        return new Field90K(t);
     }
 
     /**
@@ -717,8 +717,9 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @see #get(SwiftTagListBlock)
      */
     public static Field90K get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -729,8 +730,9 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field90K> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -748,7 +750,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field90K(f));
+                result.add(new Field90K(f));
             }
         }
         return result;
@@ -763,10 +765,9 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
      */
     public static Field90K fromJson(final String json) {
 
-        Field90K field = new Field90K();
+        final Field90K field = new Field90K();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 

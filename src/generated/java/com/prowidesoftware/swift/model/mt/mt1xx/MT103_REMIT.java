@@ -33,11 +33,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <strong>MT 103_REMIT - Single Customer Credit Transfer</strong>
+ * MT 103_REMIT - Single Customer Credit Transfer.
  *
  * <p>
  * SWIFT MT103_REMIT (ISO 15022) message structure:
- * <br>
+ *
  <div class="scheme"><ul>
 <li class="field">Field 20  (M)</li>
 <li class="field">Field 13 C (O) (repetitive)</li>
@@ -80,15 +80,15 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT103_REMIT.class.getName());
 	
 	/**
-	* Constant for MT name, this is part of the classname, after <code>MT</code>
-	*/
+	 * Constant for MT name, this is part of the classname, after MT.
+	 */
 	public static final String NAME = "103_REMIT";
 
 	/**
-	 * Creates an MT103_REMIT initialized with the parameter SwiftMessage
+	 * Creates an MT103_REMIT initialized with the parameter SwiftMessage.
 	 * @param m swift message with the MT103_REMIT content
 	 */
-	public MT103_REMIT(SwiftMessage m) {
+	public MT103_REMIT(final SwiftMessage m) {
 		super(m);
 		sanityCheck(m);
 	}
@@ -98,7 +98,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	 * @param m swift message with the MT103_REMIT content, the parameter can not be null
 	 * @see #MT103_REMIT(String)
 	 */
-	public MT103_REMIT(MtSwiftMessage m) {
+	public MT103_REMIT(final MtSwiftMessage m) {
 		this(m.message());
 	}
 	
@@ -110,7 +110,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	 * @see #MT103_REMIT(String)
 	 * @since 7.7
 	 */
-	public static MT103_REMIT parse(MtSwiftMessage m) {
+	public static MT103_REMIT parse(final MtSwiftMessage m) {
 		if (m == null) {
 			return null;
 		}
@@ -118,7 +118,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT103_REMIT input message setting TEST BICS as sender and receiver.<br>
+	 * Creates and initializes a new MT103_REMIT input message setting TEST BICS as sender and receiver.
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -128,7 +128,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT103_REMIT input message from sender to receiver.<br>
+	 * Creates and initializes a new MT103_REMIT input message from sender to receiver.
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -145,9 +145,9 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates a new MT103_REMIT by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT103_REMIT by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -167,15 +167,15 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT103_REMIT object from FIN content with a Service Message. Check if the MT103_REMIT you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+		} else if (!StringUtils.equals(param.getType(), "103")) {
 			log.warning("Creating an MT103_REMIT object from FIN content with message type "+param.getType());
 		}
     }
 	
 	/**
-	 * Creates a new MT103_REMIT by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT103_REMIT by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter cannot be parsed, the returned MT103_REMIT will have its internal message object
-	 * initialized (blocks will be created) but empty.<br>
+	 * initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
 	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
@@ -190,9 +190,9 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT103_REMIT by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT103_REMIT by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -204,7 +204,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT103_REMIT by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT103_REMIT by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -220,9 +220,9 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT103_REMIT by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT103_REMIT by parsing a file with the message content in its swift FIN format.
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -234,7 +234,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT103_REMIT by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT103_REMIT by parsing a file with the message content in its swift FIN format.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -250,7 +250,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
     }
     
 	/**
-	 * Returns this MT number
+	 * Returns this MT number.
 	 * @return the message type number of this MT
 	 * @since 6.4
 	 */
@@ -296,7 +296,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT103_REMIT append(final Tag ... tags) {
+	public MT103_REMIT append(final Tag... tags) {
 		super.append(tags);
 		return this;
 	}
@@ -309,28 +309,28 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT103_REMIT append(final Field ... fields) {
+	public MT103_REMIT append(final Field... fields) {
 		super.append(fields);
 		return this;
 	}
 
-    /**
-	 * Creates an MT103_REMIT messages from its JSON representation.
-	 * <p>
-	 * For generic conversion of JSON into the corresopnding MT instance
-	 * see {@link AbstractMT#fromJson(String)}
-	 *
-	 * @param json a JSON representation of an MT103_REMIT message
-	 * @return a new instance of MT103_REMIT
-	 * @since 7.10.3
-	 */
-	public static MT103_REMIT fromJson(String json) {
+   /**
+	* Creates an MT103_REMIT messages from its JSON representation.
+	* <p>
+	* For generic conversion of JSON into the corresponding MT instance
+	* see {@link AbstractMT#fromJson(String)}
+	*
+	* @param json a JSON representation of an MT103_REMIT message
+	* @return a new instance of MT103_REMIT
+	* @since 7.10.3
+	*/
+	public static MT103_REMIT fromJson(final String json) {
 		return (MT103_REMIT) AbstractMT.fromJson(json);
 	}
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 20 at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field20 object or null if the field is not found
@@ -348,7 +348,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 23B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 23B at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field23B object or null if the field is not found
@@ -366,7 +366,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 26T, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 26T at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field26T object or null if the field is not found
@@ -384,7 +384,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 32A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 32A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field32A object or null if the field is not found
@@ -402,7 +402,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 33B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 33B at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field33B object or null if the field is not found
@@ -420,7 +420,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 36, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 36 at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field36 object or null if the field is not found
@@ -438,7 +438,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 50A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 50A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field50A object or null if the field is not found
@@ -456,7 +456,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 50F, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 50F at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field50F object or null if the field is not found
@@ -474,7 +474,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 50K, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 50K at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field50K object or null if the field is not found
@@ -492,7 +492,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 51A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 51A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field51A object or null if the field is not found
@@ -510,7 +510,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 52A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 52A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field52A object or null if the field is not found
@@ -528,7 +528,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 52D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 52D at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field52D object or null if the field is not found
@@ -546,7 +546,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 53A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 53A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field53A object or null if the field is not found
@@ -564,7 +564,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 53B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 53B at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field53B object or null if the field is not found
@@ -582,7 +582,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 53D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 53D at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field53D object or null if the field is not found
@@ -600,7 +600,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 54A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 54A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field54A object or null if the field is not found
@@ -618,7 +618,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 54B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 54B at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field54B object or null if the field is not found
@@ -636,7 +636,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 54D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 54D at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field54D object or null if the field is not found
@@ -654,7 +654,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 55A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 55A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field55A object or null if the field is not found
@@ -672,7 +672,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 55B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 55B at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field55B object or null if the field is not found
@@ -690,7 +690,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 55D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 55D at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field55D object or null if the field is not found
@@ -708,7 +708,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 56A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 56A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field56A object or null if the field is not found
@@ -726,7 +726,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 56C, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 56C at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field56C object or null if the field is not found
@@ -744,7 +744,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 56D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 56D at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field56D object or null if the field is not found
@@ -762,7 +762,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 57A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field57A object or null if the field is not found
@@ -780,7 +780,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 57B at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field57B object or null if the field is not found
@@ -798,7 +798,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57C, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 57C at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field57C object or null if the field is not found
@@ -816,7 +816,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 57D, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 57D at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field57D object or null if the field is not found
@@ -834,7 +834,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 59A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 59A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field59A object or null if the field is not found
@@ -852,7 +852,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 59F, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 59F at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field59F object or null if the field is not found
@@ -870,7 +870,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 59, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 59 at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field59 object or null if the field is not found
@@ -888,7 +888,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 71A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 71A at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field71A object or null if the field is not found
@@ -906,7 +906,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 71G, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 71G at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field71G object or null if the field is not found
@@ -924,7 +924,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 72, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 72 at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field72 object or null if the field is not found
@@ -942,7 +942,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 77B at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field77B object or null if the field is not found
@@ -960,7 +960,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77T, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 77T at MT103_REMIT is expected to be the only one.
 	 * 
 	 * @return a Field77T object or null if the field is not found
@@ -978,7 +978,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 13C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 13C at MT103_REMIT are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field13C objects or <code>Collections.emptyList()</code> if none is not found
@@ -998,7 +998,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 23E, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 23E at MT103_REMIT are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field23E objects or <code>Collections.emptyList()</code> if none is not found
@@ -1018,7 +1018,7 @@ public class MT103_REMIT extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 71F, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 71F at MT103_REMIT are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field71F objects or <code>Collections.emptyList()</code> if none is not found

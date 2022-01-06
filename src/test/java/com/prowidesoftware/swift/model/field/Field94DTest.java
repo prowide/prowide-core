@@ -21,9 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 
-/**
- * Test for Field94D and similar fields.
- */
 public class Field94DTest extends AbstractFieldTest {
 
     @Override

@@ -43,7 +43,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 98H</strong>
+ * SWIFT MT Field 98H.
  * <p>
  * Model and parser for field 98H of a SWIFT MT message.
  *
@@ -75,28 +75,28 @@ public class Field98H extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 98H
+	 * Constant with the field name 98H.
 	 */
     public static final String NAME = "98H";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_98H = "98H";
 	public static final String PARSER_PATTERN = "<TIME2>[,S][/[c]<TIME3>]";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "TNSW";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -104,30 +104,30 @@ public class Field98H extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "TNSW";
 
 	/**
-	 * Component number for the Time subfield
+	 * Component number for the Time subfield.
 	 */
 	public static final Integer TIME = 1;
 
 	/**
-	 * Component number for the Decimals subfield
+	 * Component number for the Decimals subfield.
 	 */
 	public static final Integer DECIMALS = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Decimals Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Decimals Component number.
 	 * @see #DECIMALS
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer NUMBER = 2;
 
 	/**
-	 * Component number for the Sign subfield
+	 * Component number for the Sign subfield.
 	 */
 	public static final Integer SIGN = 3;
 
 	/**
-	 * Component number for the Offset subfield
+	 * Component number for the Offset subfield.
 	 */
 	public static final Integer OFFSET = 4;
 
@@ -164,7 +164,7 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -186,7 +186,7 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -306,7 +306,7 @@ public class Field98H extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -479,7 +479,7 @@ public class Field98H extends Field implements Serializable {
      * @see #getComponent2AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -499,7 +499,7 @@ public class Field98H extends Field implements Serializable {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getNumber() {
         return getDecimals();
     }
@@ -523,7 +523,7 @@ public class Field98H extends Field implements Serializable {
      * @see #getDecimalsAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getDecimalsAsNumber() {
         return getComponent2AsNumber();
     }
@@ -533,7 +533,7 @@ public class Field98H extends Field implements Serializable {
      * @see #getDecimalsAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Long getNumberAsLong() {
         return getDecimalsAsLong();
     }
@@ -548,7 +548,7 @@ public class Field98H extends Field implements Serializable {
      * @see #getDecimalsAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getNumberAsNumber() {
         return getDecimalsAsNumber();
     }
@@ -689,7 +689,7 @@ public class Field98H extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component2 instanceof Long) {
-            setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
+            setComponent(2, SwiftFormatUtils.getLong((Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 != null) {
@@ -747,7 +747,7 @@ public class Field98H extends Field implements Serializable {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field98H setNumber(String component2) {
         return setDecimals(component2);
     }
@@ -762,7 +762,7 @@ public class Field98H extends Field implements Serializable {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field98H setNumber(java.lang.Long component2) {
         return setDecimals(component2);
     }
@@ -777,7 +777,7 @@ public class Field98H extends Field implements Serializable {
      * @see #setDecimals(java.lang.Long)
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field98H setNumber(java.lang.Number component2) {
         return setDecimals(component2);
     }
@@ -850,7 +850,7 @@ public class Field98H extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field98H.NAME
      */
     @Override
@@ -871,7 +871,7 @@ public class Field98H extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field98H(t) ;
+        return new Field98H(t);
     }
 
     /**
@@ -881,8 +881,9 @@ public class Field98H extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field98H get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -893,8 +894,9 @@ public class Field98H extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field98H> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -912,7 +914,7 @@ public class Field98H extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field98H(f));
+                result.add(new Field98H(f));
             }
         }
         return result;
@@ -927,10 +929,9 @@ public class Field98H extends Field implements Serializable {
      */
     public static Field98H fromJson(final String json) {
 
-        Field98H field = new Field98H();
+        final Field98H field = new Field98H();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Time
 

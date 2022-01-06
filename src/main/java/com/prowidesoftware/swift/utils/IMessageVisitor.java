@@ -101,35 +101,20 @@ public interface IMessageVisitor {
      */
     void endBlockUser(SwiftBlockUser b);
 
-    /**
-     */
     void tag(SwiftBlock3 b, Tag t);
 
-    /**
-     */
     void tag(SwiftBlock4 b, Tag t);
 
-    /**
-     */
     void tag(SwiftBlock5 b, Tag t);
 
-    /**
-     */
     void tag(SwiftBlockUser b, Tag t);
 
-    /**
-     */
     void value(SwiftBlock1 b, String v);
 
-    /**
-     */
     void value(SwiftBlock2 b, String v);
 
-    /**
-     */
     void startMessage(SwiftMessage m);
 
-    /**
-     */
     void endMessage(SwiftMessage m);
+
 }

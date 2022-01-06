@@ -94,33 +94,17 @@ public class ConversionService implements IConversionService {
         return w.getBuffer().toString();
     }
 
-    /**
-     * Given a Swift message String returns a String containing WIFE internal XML representation of the message.
-     *
-     * @see com.prowidesoftware.swift.io.IConversionService#getXml(java.lang.String)
-     */
     @Override
     public String getXml(final String fin) {
         return getXml(fin, false);
     }
 
-    /**
-     * Given a Swift message String returns a String containing WIFE internal XML representation of the message, use field (true) or tag (false) depending on the value of useField
-     *
-     * @see #getXml(String)
-     * @since 7.6
-     */
     public String getXml(final String fin, final boolean useField) {
         Validate.notNull(fin);
         final SwiftMessage msg = this.getMessageFromFIN(fin);
         return getXml(msg, useField);
     }
 
-    /**
-     * Given a Swift message String returns a SwiftMessage object.
-     *
-     * @see com.prowidesoftware.swift.io.IConversionService#getMessageFromFIN(java.lang.String)
-     */
     @Override
     public SwiftMessage getMessageFromFIN(final String fin) {
         Validate.notNull(fin);

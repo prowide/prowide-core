@@ -19,7 +19,7 @@ package com.prowidesoftware;
  * Interface implemented by classes that can be copied to another live object.
  * Implementors of this interface define copyTo(...) which is a deep copy of the current object.
  *
- * @param <T>
+ * @param <T> the type of target
  * @author mgriffa
  * @since 7.8
  */

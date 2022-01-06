@@ -40,7 +40,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 347</strong>
+ * SWIFT MT Field 347.
  * <p>
  * Model and parser for field 347 of a SWIFT MT message.
  *
@@ -78,28 +78,28 @@ public class Field347 extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 347
+	 * Constant with the field name 347.
 	 */
     public static final String NAME = "347";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_347 = "347";
 	public static final String PARSER_PATTERN = "3!S*10";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSSSSSSSSS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -107,52 +107,52 @@ public class Field347 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "SSSSSSSSSS";
 
 	/**
-	 * Component number for the Field 1 subfield
+	 * Component number for the Field 1 subfield.
 	 */
 	public static final Integer FIELD_1 = 1;
 
 	/**
-	 * Component number for the Field 2 subfield
+	 * Component number for the Field 2 subfield.
 	 */
 	public static final Integer FIELD_2 = 2;
 
 	/**
-	 * Component number for the Field 3 subfield
+	 * Component number for the Field 3 subfield.
 	 */
 	public static final Integer FIELD_3 = 3;
 
 	/**
-	 * Component number for the Field 4 subfield
+	 * Component number for the Field 4 subfield.
 	 */
 	public static final Integer FIELD_4 = 4;
 
 	/**
-	 * Component number for the Field 5 subfield
+	 * Component number for the Field 5 subfield.
 	 */
 	public static final Integer FIELD_5 = 5;
 
 	/**
-	 * Component number for the Field 6 subfield
+	 * Component number for the Field 6 subfield.
 	 */
 	public static final Integer FIELD_6 = 6;
 
 	/**
-	 * Component number for the Field 7 subfield
+	 * Component number for the Field 7 subfield.
 	 */
 	public static final Integer FIELD_7 = 7;
 
 	/**
-	 * Component number for the Field 8 subfield
+	 * Component number for the Field 8 subfield.
 	 */
 	public static final Integer FIELD_8 = 8;
 
 	/**
-	 * Component number for the Field 9 subfield
+	 * Component number for the Field 9 subfield.
 	 */
 	public static final Integer FIELD_9 = 9;
 
 	/**
-	 * Component number for the Field 10 subfield
+	 * Component number for the Field 10 subfield.
 	 */
 	public static final Integer FIELD_10 = 10;
 
@@ -189,7 +189,7 @@ public class Field347 extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -211,7 +211,7 @@ public class Field347 extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -314,7 +314,7 @@ public class Field347 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -802,7 +802,7 @@ public class Field347 extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field347.NAME
      */
     @Override
@@ -823,7 +823,7 @@ public class Field347 extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field347(t) ;
+        return new Field347(t);
     }
 
     /**
@@ -833,8 +833,9 @@ public class Field347 extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field347 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -845,8 +846,9 @@ public class Field347 extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field347> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -864,7 +866,7 @@ public class Field347 extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field347(f));
+                result.add(new Field347(f));
             }
         }
         return result;
@@ -879,10 +881,9 @@ public class Field347 extends Field implements Serializable {
      */
     public static Field347 fromJson(final String json) {
 
-        Field347 field = new Field347();
+        final Field347 field = new Field347();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Field 1
 

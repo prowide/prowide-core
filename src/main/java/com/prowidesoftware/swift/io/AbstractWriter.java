@@ -16,7 +16,6 @@
 package com.prowidesoftware.swift.io;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Base implementation for message writers.

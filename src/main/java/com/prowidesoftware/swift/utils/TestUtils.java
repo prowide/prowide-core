@@ -31,8 +31,6 @@ import java.util.List;
  */
 public class TestUtils {
 
-    private static final String MTXXXMESSAGE = "Use new MTxxx plus the append methods instead.";
-
     // Suppress default constructor for noninstantiability
     private TestUtils() {
         throw new AssertionError();

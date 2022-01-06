@@ -44,6 +44,8 @@ public class DeprecationUtils {
      * According to the deprecation policy this method implements the phase 2 which
      * involves logging a warning and making a small pause in the execution thread.
      *
+     * @param clazz deprecated class
+     * @param method name of deprecated method
      * @param message the log message
      */
     @SuppressWarnings("rawtypes")
@@ -76,6 +78,8 @@ public class DeprecationUtils {
      * According to the deprecation policy this method implements the phase 3 which
      * involves throwing a runtime exception.
      *
+     * @param clazz deprecated class
+     * @param method name of deprecated method
      * @param message the log message
      */
     @SuppressWarnings("rawtypes")

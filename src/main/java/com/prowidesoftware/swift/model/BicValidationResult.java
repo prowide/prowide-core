@@ -47,7 +47,9 @@ public enum BicValidationResult {
     }
 
     /**
-     * Validation problem description including expected and found content when necessary
+     * Validation problem description including expected and found content when necessary.
+     *
+     * @return message with variables replaced
      */
     public String message() {
         final StringSubstitutor sub = new StringSubstitutor(this.vars);
@@ -62,13 +64,6 @@ public enum BicValidationResult {
         if (found != null) {
             this.vars.put("length", String.valueOf(found.length()));
         }
-    }
-
-    /**
-     * @return the validation message parameters set to the enum value
-     */
-    private Map<String, String> vars() {
-        return this.vars;
     }
 
 }

@@ -32,7 +32,7 @@ import java.util.Objects;
  * @since 7.6
  */
 public class LogicalTerminalAddress extends BIC {
-    private Character LTIdentifier;
+    private Character LTIdentifier = null;
 
     /**
      * Creates an LT address from its string value.

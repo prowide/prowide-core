@@ -22,9 +22,6 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * @since 8.1.0
- */
 public class NarrativeResolverTest {
 
     Narrative n;

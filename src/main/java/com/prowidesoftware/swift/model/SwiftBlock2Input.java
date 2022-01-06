@@ -149,6 +149,8 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
     /**
      * This method deserializes the JSON data into an outgoing (input) block 2 object.
      *
+     * @param json JSON representation
+     * @return block 2 object
      * @see #toJson()
      * @since 7.9.8
      */
@@ -174,6 +176,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
     /**
      * Creates a full LT address using the parameter BIC code and a default LT identifier.
      *
+     * @param bic receiver
      * @see #setReceiverAddress(LogicalTerminalAddress)
      * @since 7.6
      */
@@ -185,6 +188,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      * Completes if necessary and sets the LT address of the receiver.<br>
      * The receiver addresses will be filled with proper default LT identifier and branch codes if not provided.
      *
+     * @param receiver receiver
      * @see #setReceiverAddress(LogicalTerminalAddress)
      * @since 7.6
      */
@@ -214,6 +218,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
 
     /**
      * Sets the receiver's address.<br>
+     * @param logicalTerminal the address
      *
      * @see LogicalTerminalAddress#getReceiverLogicalTerminalAddress()
      * @since 7.6

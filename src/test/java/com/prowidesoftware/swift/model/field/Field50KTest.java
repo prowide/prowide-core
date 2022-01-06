@@ -20,11 +20,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test for Field50K and similar fields.
- *
- * @since 6.0
- */
 public class Field50KTest extends AbstractFieldTest {
 
     @Override

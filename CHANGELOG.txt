@@ -1,6 +1,9 @@
 -----------------------------------------------------------------------------------------------------------------------
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
+  * (PW-815) Fixed getValue in field 12H (SCORE) where narrative is optional
+  * (GH-89) MT530: Fixed repetition of sequence C ADDINFO
+  * Added plugins for automatic versioning and code quality reporting
 
 RELEASE 9.2.9 - December 2021
   * (GH-78) Fixed MT537#getSequenceBList where sequence B delimiter "STAT" overlaps with C3 and D1a1B1a delimiters

@@ -45,7 +45,7 @@ public class NationalClearingSystemComponentTest {
         assertNull(f.getComponent1());
         assertEquals("/ATBBBBB", f.getComponent2());    //component getter will keep the extra slash
         assertEquals("ATBBBBB", f.getAccount());    //account getter will trims the starting slash
-        assertEquals("ABNANL2A", f.getBIC());
+        assertEquals("ABNANL2A", f.getIdentifierCode());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class NationalClearingSystemComponentTest {
         assertNull(f.getComponent1());
         assertEquals("ATBBBBB", f.getComponent2());
         assertEquals("ATBBBBB", f.getAccount());
-        assertEquals("ABNANL2A", f.getBIC());
+        assertEquals("ABNANL2A", f.getIdentifierCode());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class NationalClearingSystemComponentTest {
         assertEquals("D", f.getComponent1());
         assertEquals("ATBBBBB", f.getComponent2());
         assertEquals("ATBBBBB", f.getAccount());
-        assertEquals("ABNANL2A", f.getBIC());
+        assertEquals("ABNANL2A", f.getIdentifierCode());
     }
 
     @Test
@@ -90,7 +90,7 @@ public class NationalClearingSystemComponentTest {
         assertNull(f.getComponent1());
         assertEquals("DA/TBBBBB", f.getComponent2());
         assertEquals("DA/TBBBBB", f.getAccount());
-        assertEquals("ABNANL2A", f.getBIC());
+        assertEquals("ABNANL2A", f.getIdentifierCode());
     }
 
     @Test

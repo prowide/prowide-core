@@ -44,7 +44,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 69F</strong>
+ * SWIFT MT Field 69F.
  * <p>
  * Model and parser for field 69F of a SWIFT MT message.
  *
@@ -76,28 +76,28 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 69F
+	 * Constant with the field name 69F.
 	 */
     public static final String NAME = "69F";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_69F = "69F";
 	public static final String PARSER_PATTERN = ":S//S/<DATE4><TIME2>";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSDT";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -105,30 +105,30 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
 	public static final String TYPES_PATTERN = "SSDT";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Date Code subfield
+	 * Component number for the Date Code subfield.
 	 */
 	public static final Integer DATE_CODE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date Code Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date Code Component number.
 	 * @see #DATE_CODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer CODE = 2;
 
 	/**
-	 * Component number for the Date subfield
+	 * Component number for the Date subfield.
 	 */
 	public static final Integer DATE = 3;
 
 	/**
-	 * Component number for the Time subfield
+	 * Component number for the Time subfield.
 	 */
 	public static final Integer TIME = 4;
 
@@ -165,7 +165,7 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -187,7 +187,7 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -289,7 +289,7 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -430,7 +430,7 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getCode() {
         return getDateCode();
     }
@@ -552,7 +552,7 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field69F setCode(String component2) {
         return setDateCode(component2);
     }
@@ -686,7 +686,7 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
 
@@ -700,7 +700,7 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field69F.NAME
      */
     @Override
@@ -721,7 +721,7 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
         if (t == null) {
             return null;
         }
-        return new Field69F(t) ;
+        return new Field69F(t);
     }
 
     /**
@@ -731,8 +731,9 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
      * @see #get(SwiftTagListBlock)
      */
     public static Field69F get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -743,8 +744,9 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field69F> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -762,7 +764,7 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field69F(f));
+                result.add(new Field69F(f));
             }
         }
         return result;
@@ -777,10 +779,9 @@ public class Field69F extends Field implements Serializable, DateContainer, Gene
      */
     public static Field69F fromJson(final String json) {
 
-        Field69F field = new Field69F();
+        final Field69F field = new Field69F();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 
