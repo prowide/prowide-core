@@ -48,7 +48,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 61</strong>
+ * SWIFT MT Field 61.
  * <p>
  * Model and parser for field 61 of a SWIFT MT message.
  *
@@ -86,28 +86,28 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 61
+	 * Constant with the field name 61.
 	 */
     public static final String NAME = "61";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_61 = "61";
 	public static final String PARSER_PATTERN = "CUSTOM";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "EJSSNSSSSS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -115,66 +115,66 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
 	public static final String TYPES_PATTERN = "EJSSISSSSS";
 
 	/**
-	 * Component number for the Value Date subfield
+	 * Component number for the Value Date subfield.
 	 */
 	public static final Integer VALUE_DATE = 1;
 
 	/**
-     * Alternative constant name for field's Value Date Component number
+     * Alternative constant name for field's Value Date Component number.
      * @see #VALUE_DATE
      */
     public static final Integer DATE = 1;
 
 	/**
-	 * Component number for the Entry Date subfield
+	 * Component number for the Entry Date subfield.
 	 */
 	public static final Integer ENTRY_DATE = 2;
 
 	/**
-	 * Component number for the Debit/Credit Mark subfield
+	 * Component number for the Debit/Credit Mark subfield.
 	 */
 	public static final Integer DEBITCREDIT_MARK = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Debit/Credit Mark Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Debit/Credit Mark Component number.
 	 * @see #DEBITCREDIT_MARK
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer DC_MARK = 3;
 
 	/**
-	 * Component number for the Funds Code subfield
+	 * Component number for the Funds Code subfield.
 	 */
 	public static final Integer FUNDS_CODE = 4;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Amount subfield.
 	 */
 	public static final Integer AMOUNT = 5;
 
 	/**
-	 * Component number for the Transaction Type subfield
+	 * Component number for the Transaction Type subfield.
 	 */
 	public static final Integer TRANSACTION_TYPE = 6;
 
 	/**
-	 * Component number for the Identification Code subfield
+	 * Component number for the Identification Code subfield.
 	 */
 	public static final Integer IDENTIFICATION_CODE = 7;
 
 	/**
-	 * Component number for the Reference For The Account Owner subfield
+	 * Component number for the Reference For The Account Owner subfield.
 	 */
 	public static final Integer REFERENCE_FOR_THE_ACCOUNT_OWNER = 8;
 
 	/**
-	 * Component number for the Reference Of The Account Servicing Institution subfield
+	 * Component number for the Reference Of The Account Servicing Institution subfield.
 	 */
 	public static final Integer REFERENCE_OF_THE_ACCOUNT_SERVICING_INSTITUTION = 9;
 
 	/**
-	 * Component number for the Supplementary Details subfield
+	 * Component number for the Supplementary Details subfield.
 	 */
 	public static final Integer SUPPLEMENTARY_DETAILS = 10;
 
@@ -211,7 +211,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -233,7 +233,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -364,7 +364,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -597,7 +597,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getDCMark() {
         return getDebitCreditMark();
     }
@@ -646,7 +646,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
      * @see #getComponent5AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent5AsNumber() {
         return getComponent5AsBigDecimal();
     }
@@ -678,7 +678,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
      * @see #getAmountAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getComponent5AsNumber();
     }
@@ -905,7 +905,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field61 setDCMark(String component3) {
         return setDebitCreditMark(component3);
     }
@@ -974,9 +974,9 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component5 instanceof BigDecimal) {
-            setComponent(5, SwiftFormatUtils.getBigDecimal( (BigDecimal) component5));
+            setComponent(5, SwiftFormatUtils.getBigDecimal((BigDecimal) component5));
         } else if (component5 instanceof BigInteger) {
-            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component5)));
+            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component5)));
         } else if (component5 instanceof Long || component5 instanceof Integer) {
             setComponent(5, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component5.longValue())));
         } else if (component5 != null) {
@@ -1173,7 +1173,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field61.NAME
      */
     @Override
@@ -1194,7 +1194,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
         if (t == null) {
             return null;
         }
-        return new Field61(t) ;
+        return new Field61(t);
     }
 
     /**
@@ -1204,8 +1204,9 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
      * @see #get(SwiftTagListBlock)
      */
     public static Field61 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -1216,8 +1217,9 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field61> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -1235,14 +1237,14 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field61(f));
+                result.add(new Field61(f));
             }
         }
         return result;
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -1254,7 +1256,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int, int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -1268,7 +1270,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Returns the field value split into lines.<br>
+     * Returns the field value split into lines.
      *
      * @see MultiLineField#getLines()
      * @return lines content or empty list if field's value is empty
@@ -1279,7 +1281,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Returns the field value starting at the offset component, split into lines.<br>
+     * Returns the field value starting at the offset component, split into lines.
      *
      * @see MultiLineField#getLines(int)
      * @param offset an optional component number used as offset when counting lines
@@ -1292,7 +1294,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, given a range.<br>
+     * Returns a specific subset of lines from the field's value, given a range.
      *
      * @see MultiLineField#getLinesBetween(int, int )
      * @param start a reference to a specific line in the field, first line being 1
@@ -1305,7 +1307,7 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     * Returns a specific subset of lines from the field's value, starting at the offset component.
      *
      * @see MultiLineField#getLinesBetween(int start, int end, int offset)
      * @param start a reference to a specific line in the field, first line being 1
@@ -1328,10 +1330,9 @@ public class Field61 extends Field implements Serializable, DateContainer, Amoun
      */
     public static Field61 fromJson(final String json) {
 
-        Field61 field = new Field61();
+        final Field61 field = new Field61();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Value Date
 

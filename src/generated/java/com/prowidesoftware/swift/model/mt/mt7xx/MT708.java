@@ -31,11 +31,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <strong>MT 708 - Amendment to a Documentary Credit</strong>
+ * MT 708 - Amendment to a Documentary Credit.
  *
  * <p>
  * SWIFT MT708 (ISO 15022) message structure:
- * <br>
+ *
  <div class="scheme"><ul>
 <li class="field">Field 27  (M)</li>
 <li class="field">Field 20  (M)</li>
@@ -66,15 +66,15 @@ public class MT708 extends AbstractMT implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT708.class.getName());
 	
 	/**
-	* Constant for MT name, this is part of the classname, after <code>MT</code>
-	*/
+	 * Constant for MT name, this is part of the classname, after MT.
+	 */
 	public static final String NAME = "708";
 
 	/**
-	 * Creates an MT708 initialized with the parameter SwiftMessage
+	 * Creates an MT708 initialized with the parameter SwiftMessage.
 	 * @param m swift message with the MT708 content
 	 */
-	public MT708(SwiftMessage m) {
+	public MT708(final SwiftMessage m) {
 		super(m);
 		sanityCheck(m);
 	}
@@ -84,7 +84,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	 * @param m swift message with the MT708 content, the parameter can not be null
 	 * @see #MT708(String)
 	 */
-	public MT708(MtSwiftMessage m) {
+	public MT708(final MtSwiftMessage m) {
 		this(m.message());
 	}
 	
@@ -96,7 +96,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	 * @see #MT708(String)
 	 * @since 7.7
 	 */
-	public static MT708 parse(MtSwiftMessage m) {
+	public static MT708 parse(final MtSwiftMessage m) {
 		if (m == null) {
 			return null;
 		}
@@ -104,7 +104,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT708 input message setting TEST BICS as sender and receiver.<br>
+	 * Creates and initializes a new MT708 input message setting TEST BICS as sender and receiver.
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -114,7 +114,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT708 input message from sender to receiver.<br>
+	 * Creates and initializes a new MT708 input message from sender to receiver.
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -128,9 +128,9 @@ public class MT708 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates a new MT708 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT708 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -150,15 +150,15 @@ public class MT708 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT708 object from FIN content with a Service Message. Check if the MT708 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+		} else if (!StringUtils.equals(param.getType(), "708")) {
 			log.warning("Creating an MT708 object from FIN content with message type "+param.getType());
 		}
     }
 	
 	/**
-	 * Creates a new MT708 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT708 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter cannot be parsed, the returned MT708 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br>
+	 * initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
 	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
@@ -173,9 +173,9 @@ public class MT708 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT708 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT708 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -187,7 +187,7 @@ public class MT708 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT708 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT708 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -203,9 +203,9 @@ public class MT708 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT708 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT708 by parsing a file with the message content in its swift FIN format.
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -217,7 +217,7 @@ public class MT708 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT708 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT708 by parsing a file with the message content in its swift FIN format.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -233,7 +233,7 @@ public class MT708 extends AbstractMT implements Serializable {
     }
     
 	/**
-	 * Returns this MT number
+	 * Returns this MT number.
 	 * @return the message type number of this MT
 	 * @since 6.4
 	 */
@@ -263,7 +263,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT708 append(final Tag ... tags) {
+	public MT708 append(final Tag... tags) {
 		super.append(tags);
 		return this;
 	}
@@ -276,28 +276,28 @@ public class MT708 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT708 append(final Field ... fields) {
+	public MT708 append(final Field... fields) {
 		super.append(fields);
 		return this;
 	}
 
-    /**
-	 * Creates an MT708 messages from its JSON representation.
-	 * <p>
-	 * For generic conversion of JSON into the corresopnding MT instance
-	 * see {@link AbstractMT#fromJson(String)}
-	 *
-	 * @param json a JSON representation of an MT708 message
-	 * @return a new instance of MT708
-	 * @since 7.10.3
-	 */
-	public static MT708 fromJson(String json) {
+   /**
+	* Creates an MT708 messages from its JSON representation.
+	* <p>
+	* For generic conversion of JSON into the corresponding MT instance
+	* see {@link AbstractMT#fromJson(String)}
+	*
+	* @param json a JSON representation of an MT708 message
+	* @return a new instance of MT708
+	* @since 7.10.3
+	*/
+	public static MT708 fromJson(final String json) {
 		return (MT708) AbstractMT.fromJson(json);
 	}
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 27, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 27 at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field27 object or null if the field is not found
@@ -315,7 +315,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 20 at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field20 object or null if the field is not found
@@ -333,7 +333,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21 at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field21 object or null if the field is not found
@@ -351,7 +351,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 23, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 23 at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field23 object or null if the field is not found
@@ -369,7 +369,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 26E, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 26E at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field26E object or null if the field is not found
@@ -387,7 +387,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 30, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 30 at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field30 object or null if the field is not found
@@ -405,7 +405,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 45B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 45B at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field45B object or null if the field is not found
@@ -423,7 +423,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 46B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 46B at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field46B object or null if the field is not found
@@ -441,7 +441,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 47B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 47B at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field47B object or null if the field is not found
@@ -459,7 +459,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 49M, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 49M at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field49M object or null if the field is not found
@@ -477,7 +477,7 @@ public class MT708 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 49N, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 49N at MT708 is expected to be the only one.
 	 * 
 	 * @return a Field49N object or null if the field is not found

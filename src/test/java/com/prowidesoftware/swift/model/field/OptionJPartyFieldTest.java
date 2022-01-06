@@ -23,8 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test for API in the party field option J classes.
- *
- * @since 7.11.0
  */
 public class OptionJPartyFieldTest {
 

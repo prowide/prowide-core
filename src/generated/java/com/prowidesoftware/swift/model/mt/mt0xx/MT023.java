@@ -33,11 +33,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <strong>MT 023 - Retrieved Message (History)</strong>
+ * MT 023 - Retrieved Message (History).
  *
  * <p>
  * SWIFT MT023 (ISO 15022) message structure:
- * <br>
+ *
  <div class="scheme"><ul>
 <li class="field">Field 202  (M)</li>
 <li class="field">Field 203  (M)</li>
@@ -108,15 +108,15 @@ public class MT023 extends AbstractMT implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT023.class.getName());
 	
 	/**
-	* Constant for MT name, this is part of the classname, after <code>MT</code>
-	*/
+	 * Constant for MT name, this is part of the classname, after MT.
+	 */
 	public static final String NAME = "023";
 
 	/**
-	 * Creates an MT023 initialized with the parameter SwiftMessage
+	 * Creates an MT023 initialized with the parameter SwiftMessage.
 	 * @param m swift message with the MT023 content
 	 */
-	public MT023(SwiftMessage m) {
+	public MT023(final SwiftMessage m) {
 		super(m);
 		sanityCheck(m);
 	}
@@ -126,7 +126,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	 * @param m swift message with the MT023 content, the parameter can not be null
 	 * @see #MT023(String)
 	 */
-	public MT023(MtSwiftMessage m) {
+	public MT023(final MtSwiftMessage m) {
 		this(m.message());
 	}
 	
@@ -138,7 +138,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	 * @see #MT023(String)
 	 * @since 7.7
 	 */
-	public static MT023 parse(MtSwiftMessage m) {
+	public static MT023 parse(final MtSwiftMessage m) {
 		if (m == null) {
 			return null;
 		}
@@ -146,7 +146,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT023 input message setting TEST BICS as sender and receiver.<br>
+	 * Creates and initializes a new MT023 input message setting TEST BICS as sender and receiver.
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -156,7 +156,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT023 input message from sender to receiver.<br>
+	 * Creates and initializes a new MT023 input message from sender to receiver.
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -170,9 +170,9 @@ public class MT023 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates a new MT023 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT023 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -192,15 +192,15 @@ public class MT023 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT023 object from FIN content with a Service Message. Check if the MT023 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+		} else if (!StringUtils.equals(param.getType(), "023")) {
 			log.warning("Creating an MT023 object from FIN content with message type "+param.getType());
 		}
     }
 	
 	/**
-	 * Creates a new MT023 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT023 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter cannot be parsed, the returned MT023 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br>
+	 * initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
 	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
@@ -215,9 +215,9 @@ public class MT023 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT023 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT023 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -229,7 +229,7 @@ public class MT023 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT023 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT023 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -245,9 +245,9 @@ public class MT023 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT023 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT023 by parsing a file with the message content in its swift FIN format.
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -259,7 +259,7 @@ public class MT023 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT023 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT023 by parsing a file with the message content in its swift FIN format.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -275,7 +275,7 @@ public class MT023 extends AbstractMT implements Serializable {
     }
     
 	/**
-	 * Returns this MT number
+	 * Returns this MT number.
 	 * @return the message type number of this MT
 	 * @since 6.4
 	 */
@@ -305,7 +305,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT023 append(final Tag ... tags) {
+	public MT023 append(final Tag... tags) {
 		super.append(tags);
 		return this;
 	}
@@ -318,28 +318,28 @@ public class MT023 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT023 append(final Field ... fields) {
+	public MT023 append(final Field... fields) {
 		super.append(fields);
 		return this;
 	}
 
-    /**
-	 * Creates an MT023 messages from its JSON representation.
-	 * <p>
-	 * For generic conversion of JSON into the corresopnding MT instance
-	 * see {@link AbstractMT#fromJson(String)}
-	 *
-	 * @param json a JSON representation of an MT023 message
-	 * @return a new instance of MT023
-	 * @since 7.10.3
-	 */
-	public static MT023 fromJson(String json) {
+   /**
+	* Creates an MT023 messages from its JSON representation.
+	* <p>
+	* For generic conversion of JSON into the corresponding MT instance
+	* see {@link AbstractMT#fromJson(String)}
+	*
+	* @param json a JSON representation of an MT023 message
+	* @return a new instance of MT023
+	* @since 7.10.3
+	*/
+	public static MT023 fromJson(final String json) {
 		return (MT023) AbstractMT.fromJson(json);
 	}
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 252, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 252 at MT023 is expected to be the only one.
 	 * 
 	 * @return a Field252 object or null if the field is not found
@@ -357,7 +357,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 254, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 254 at MT023 is expected to be the only one.
 	 * 
 	 * @return a Field254 object or null if the field is not found
@@ -375,7 +375,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 255, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 255 at MT023 is expected to be the only one.
 	 * 
 	 * @return a Field255 object or null if the field is not found
@@ -393,7 +393,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 256, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 256 at MT023 is expected to be the only one.
 	 * 
 	 * @return a Field256 object or null if the field is not found
@@ -411,7 +411,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 257, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 257 at MT023 is expected to be the only one.
 	 * 
 	 * @return a Field257 object or null if the field is not found
@@ -429,7 +429,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 258, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 258 at MT023 is expected to be the only one.
 	 * 
 	 * @return a Field258 object or null if the field is not found
@@ -447,7 +447,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 259, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 259 at MT023 is expected to be the only one.
 	 * 
 	 * @return a Field259 object or null if the field is not found
@@ -465,7 +465,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 260, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 260 at MT023 is expected to be the only one.
 	 * 
 	 * @return a Field260 object or null if the field is not found
@@ -483,7 +483,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 280, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 280 at MT023 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field280 objects or <code>Collections.emptyList()</code> if none is not found
@@ -503,7 +503,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 108, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 108 at MT023 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field108 objects or <code>Collections.emptyList()</code> if none is not found
@@ -523,7 +523,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 431, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 431 at MT023 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field431 objects or <code>Collections.emptyList()</code> if none is not found
@@ -543,7 +543,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 281, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 281 at MT023 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field281 objects or <code>Collections.emptyList()</code> if none is not found
@@ -563,7 +563,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 152, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 152 at MT023 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field152 objects or <code>Collections.emptyList()</code> if none is not found
@@ -583,7 +583,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 153, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 153 at MT023 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field153 objects or <code>Collections.emptyList()</code> if none is not found
@@ -603,7 +603,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 421, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 421 at MT023 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field421 objects or <code>Collections.emptyList()</code> if none is not found
@@ -623,7 +623,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 202, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 202 at MT023 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field202 objects or <code>Collections.emptyList()</code> if none is not found
@@ -643,7 +643,7 @@ public class MT023 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 203, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 203 at MT023 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field203 objects or <code>Collections.emptyList()</code> if none is not found

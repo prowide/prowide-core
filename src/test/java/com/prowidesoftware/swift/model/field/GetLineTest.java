@@ -24,8 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test for fields getLine API.
- *
- * @since 7.7
  */
 public class GetLineTest {
 

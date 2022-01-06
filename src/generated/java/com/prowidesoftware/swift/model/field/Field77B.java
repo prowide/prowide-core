@@ -41,7 +41,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 77B</strong>
+ * SWIFT MT Field 77B.
  * <p>
  * Model and parser for field 77B of a SWIFT MT message.
  *
@@ -70,11 +70,11 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 77B
+	 * Constant with the field name 77B.
 	 */
     public static final String NAME = "77B";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_77B = "77B";
 
@@ -121,7 +121,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -143,7 +143,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -153,7 +153,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
      */
     @Override
     public final String validatorPattern() {
@@ -184,7 +184,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field77B.NAME
      */
     @Override
@@ -205,7 +205,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
         if (t == null) {
             return null;
         }
-        return new Field77B(t) ;
+        return new Field77B(t);
     }
 
     /**
@@ -215,8 +215,9 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
      * @see #get(SwiftTagListBlock)
      */
     public static Field77B get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -227,8 +228,9 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field77B> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -246,14 +248,14 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field77B(f));
+                result.add(new Field77B(f));
             }
         }
         return result;
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -265,7 +267,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int, int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -279,7 +281,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
     }
 
     /**
-     * Returns the field value split into lines.<br>
+     * Returns the field value split into lines.
      *
      * @see MultiLineField#getLines()
      * @return lines content or empty list if field's value is empty
@@ -290,7 +292,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
     }
 
     /**
-     * Returns the field value starting at the offset component, split into lines.<br>
+     * Returns the field value starting at the offset component, split into lines.
      *
      * @see MultiLineField#getLines(int)
      * @param offset an optional component number used as offset when counting lines
@@ -303,7 +305,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, given a range.<br>
+     * Returns a specific subset of lines from the field's value, given a range.
      *
      * @see MultiLineField#getLinesBetween(int, int )
      * @param start a reference to a specific line in the field, first line being 1
@@ -316,7 +318,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     * Returns a specific subset of lines from the field's value, starting at the offset component.
      *
      * @see MultiLineField#getLinesBetween(int start, int end, int offset)
      * @param start a reference to a specific line in the field, first line being 1
@@ -339,10 +341,9 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
      */
     public static Field77B fromJson(final String json) {
 
-        Field77B field = new Field77B();
+        final Field77B field = new Field77B();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         NarrativeContainerJsonUtils.fromJson(jsonObject, json, field);
 

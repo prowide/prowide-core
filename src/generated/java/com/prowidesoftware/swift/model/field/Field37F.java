@@ -47,7 +47,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 37F</strong>
+ * SWIFT MT Field 37F.
  * <p>
  * Model and parser for field 37F of a SWIFT MT message.
  *
@@ -80,28 +80,28 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 37F
+	 * Constant with the field name 37F.
 	 */
     public static final String NAME = "37F";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_37F = "37F";
 	public static final String PARSER_PATTERN = "N[//<DATE2>cS][/S]";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NESNS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -109,51 +109,51 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
 	public static final String TYPES_PATTERN = "IESNS";
 
 	/**
-	 * Component number for the Rate subfield
+	 * Component number for the Rate subfield.
 	 */
 	public static final Integer RATE = 1;
 
 	/**
-	 * Component number for the End Date subfield
+	 * Component number for the End Date subfield.
 	 */
 	public static final Integer END_DATE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's End Date Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's End Date Component number.
 	 * @see #END_DATE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer DATE = 2;
 
 	/**
-	 * Component number for the Period subfield
+	 * Component number for the Period subfield.
 	 */
 	public static final Integer PERIOD = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Period Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Period Component number.
 	 * @see #PERIOD
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer DM_MARK = 3;
 
 	/**
-	 * Component number for the Number subfield
+	 * Component number for the Number subfield.
 	 */
 	public static final Integer NUMBER = 4;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Number Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Number Component number.
 	 * @see #NUMBER
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer NUMBER_OF_DAYSMONTHS = 4;
 
 	/**
-	 * Component number for the Information subfield
+	 * Component number for the Information subfield.
 	 */
 	public static final Integer INFORMATION = 5;
 
@@ -190,7 +190,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -212,7 +212,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -325,7 +325,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -470,7 +470,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #getComponent1AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         return getComponent1AsBigDecimal();
     }
@@ -502,7 +502,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #getRateAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getRateAsNumber() {
         return getComponent1AsNumber();
     }
@@ -538,7 +538,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getDate() {
         return getEndDate();
     }
@@ -556,7 +556,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #getEndDateAsCalendar()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.util.Calendar getDateAsCalendar() {
         return getEndDateAsCalendar();
     }
@@ -583,7 +583,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getDMMark() {
         return getPeriod();
     }
@@ -616,7 +616,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #getComponent4AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -636,7 +636,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getNumberofDaysMonths() {
         return getNumber();
     }
@@ -660,7 +660,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getNumberAsNumber() {
         return getComponent4AsNumber();
     }
@@ -670,7 +670,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Long getNumberofDaysMonthsAsLong() {
         return getNumberAsLong();
     }
@@ -685,7 +685,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getNumberofDaysMonthsAsNumber() {
         return getNumberAsNumber();
     }
@@ -749,9 +749,9 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component1 instanceof BigDecimal) {
-            setComponent(1, SwiftFormatUtils.getBigDecimal( (BigDecimal) component1));
+            setComponent(1, SwiftFormatUtils.getBigDecimal((BigDecimal) component1));
         } else if (component1 instanceof BigInteger) {
-            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component1)));
+            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component1)));
         } else if (component1 instanceof Long || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component1.longValue())));
         } else if (component1 != null) {
@@ -853,7 +853,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field37F setDate(String component2) {
         return setEndDate(component2);
     }
@@ -867,7 +867,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field37F setDate(java.util.Calendar component2) {
         return setEndDate(component2);
     }
@@ -902,7 +902,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field37F setDMMark(String component3) {
         return setPeriod(component3);
     }
@@ -950,7 +950,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component4 instanceof Long) {
-            setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
+            setComponent(4, SwiftFormatUtils.getLong((Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 != null) {
@@ -1008,7 +1008,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field37F setNumberofDaysMonths(String component4) {
         return setNumber(component4);
     }
@@ -1023,7 +1023,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field37F setNumberofDaysMonths(java.lang.Long component4) {
         return setNumber(component4);
     }
@@ -1038,7 +1038,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #setNumber(java.lang.Long)
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field37F setNumberofDaysMonths(java.lang.Number component4) {
         return setNumber(component4);
     }
@@ -1105,7 +1105,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field37F.NAME
      */
     @Override
@@ -1126,7 +1126,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
         if (t == null) {
             return null;
         }
-        return new Field37F(t) ;
+        return new Field37F(t);
     }
 
     /**
@@ -1136,8 +1136,9 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #get(SwiftTagListBlock)
      */
     public static Field37F get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -1148,8 +1149,9 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field37F> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -1167,7 +1169,7 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field37F(f));
+                result.add(new Field37F(f));
             }
         }
         return result;
@@ -1182,10 +1184,9 @@ public class Field37F extends Field implements Serializable, DateContainer, Amou
      */
     public static Field37F fromJson(final String json) {
 
-        Field37F field = new Field37F();
+        final Field37F field = new Field37F();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Rate
 

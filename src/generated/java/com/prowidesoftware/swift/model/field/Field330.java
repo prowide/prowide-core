@@ -42,7 +42,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 330</strong>
+ * SWIFT MT Field 330.
  * <p>
  * Model and parser for field 330 of a SWIFT MT message.
  *
@@ -76,28 +76,28 @@ public class Field330 extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 330
+	 * Constant with the field name 330.
 	 */
     public static final String NAME = "330";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_330 = "330";
 	public static final String PARSER_PATTERN = "4!N6!N6!N6!N6!N1!N";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NNNNNN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -105,32 +105,32 @@ public class Field330 extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "NNNNNN";
 
 	/**
-	 * Component number for the Session Number subfield
+	 * Component number for the Session Number subfield.
 	 */
 	public static final Integer SESSION_NUMBER = 1;
 
 	/**
-	 * Component number for the ISN subfield
+	 * Component number for the ISN subfield.
 	 */
 	public static final Integer ISN = 2;
 
 	/**
-	 * Component number for the ISN NAK subfield
+	 * Component number for the ISN NAK subfield.
 	 */
 	public static final Integer ISN_NAK = 3;
 
 	/**
-	 * Component number for the OSN subfield
+	 * Component number for the OSN subfield.
 	 */
 	public static final Integer OSN = 4;
 
 	/**
-	 * Component number for the OSN NAK subfield
+	 * Component number for the OSN NAK subfield.
 	 */
 	public static final Integer OSN_NAK = 5;
 
 	/**
-	 * Component number for the ACK Replay Indicator subfield
+	 * Component number for the ACK Replay Indicator subfield.
 	 */
 	public static final Integer ACK_REPLAY_INDICATOR = 6;
 
@@ -167,7 +167,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -189,7 +189,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -293,7 +293,7 @@ public class Field330 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -428,7 +428,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -461,7 +461,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getSessionNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getSessionNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -494,7 +494,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getComponent2AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -527,7 +527,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getISNAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getISNAsNumber() {
         return getComponent2AsNumber();
     }
@@ -560,7 +560,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getComponent3AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -593,7 +593,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getISNNAKAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getISNNAKAsNumber() {
         return getComponent3AsNumber();
     }
@@ -626,7 +626,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getComponent4AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -659,7 +659,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getOSNAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getOSNAsNumber() {
         return getComponent4AsNumber();
     }
@@ -692,7 +692,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getComponent5AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent5AsNumber() {
         Long l = getComponent5AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -725,7 +725,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getOSNNAKAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getOSNNAKAsNumber() {
         return getComponent5AsNumber();
     }
@@ -758,7 +758,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getComponent6AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent6AsNumber() {
         Long l = getComponent6AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -791,7 +791,7 @@ public class Field330 extends Field implements Serializable {
      * @see #getACKReplayIndicatorAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getACKReplayIndicatorAsNumber() {
         return getComponent6AsNumber();
     }
@@ -839,7 +839,7 @@ public class Field330 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component1 instanceof Long) {
-            setComponent(1, SwiftFormatUtils.getLong( (Long) component1));
+            setComponent(1, SwiftFormatUtils.getLong((Long) component1));
         } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
             setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
         } else if (component1 != null) {
@@ -931,7 +931,7 @@ public class Field330 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component2 instanceof Long) {
-            setComponent(2, SwiftFormatUtils.getLong( (Long) component2));
+            setComponent(2, SwiftFormatUtils.getLong((Long) component2));
         } else if (component2 instanceof BigInteger || component2 instanceof Integer) {
             setComponent(2, SwiftFormatUtils.getLong(component2.longValue()));
         } else if (component2 != null) {
@@ -1023,7 +1023,7 @@ public class Field330 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component3 instanceof Long) {
-            setComponent(3, SwiftFormatUtils.getLong( (Long) component3));
+            setComponent(3, SwiftFormatUtils.getLong((Long) component3));
         } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
             setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
         } else if (component3 != null) {
@@ -1115,7 +1115,7 @@ public class Field330 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component4 instanceof Long) {
-            setComponent(4, SwiftFormatUtils.getLong( (Long) component4));
+            setComponent(4, SwiftFormatUtils.getLong((Long) component4));
         } else if (component4 instanceof BigInteger || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getLong(component4.longValue()));
         } else if (component4 != null) {
@@ -1207,7 +1207,7 @@ public class Field330 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component5 instanceof Long) {
-            setComponent(5, SwiftFormatUtils.getLong( (Long) component5));
+            setComponent(5, SwiftFormatUtils.getLong((Long) component5));
         } else if (component5 instanceof BigInteger || component5 instanceof Integer) {
             setComponent(5, SwiftFormatUtils.getLong(component5.longValue()));
         } else if (component5 != null) {
@@ -1299,7 +1299,7 @@ public class Field330 extends Field implements Serializable {
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component6 instanceof Long) {
-            setComponent(6, SwiftFormatUtils.getLong( (Long) component6));
+            setComponent(6, SwiftFormatUtils.getLong((Long) component6));
         } else if (component6 instanceof BigInteger || component6 instanceof Integer) {
             setComponent(6, SwiftFormatUtils.getLong(component6.longValue()));
         } else if (component6 != null) {
@@ -1351,7 +1351,7 @@ public class Field330 extends Field implements Serializable {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field330.NAME
      */
     @Override
@@ -1372,7 +1372,7 @@ public class Field330 extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field330(t) ;
+        return new Field330(t);
     }
 
     /**
@@ -1382,8 +1382,9 @@ public class Field330 extends Field implements Serializable {
      * @see #get(SwiftTagListBlock)
      */
     public static Field330 get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -1394,8 +1395,9 @@ public class Field330 extends Field implements Serializable {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field330> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -1413,7 +1415,7 @@ public class Field330 extends Field implements Serializable {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field330(f));
+                result.add(new Field330(f));
             }
         }
         return result;
@@ -1428,10 +1430,9 @@ public class Field330 extends Field implements Serializable {
      */
     public static Field330 fromJson(final String json) {
 
-        Field330 field = new Field330();
+        final Field330 field = new Field330();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Session Number
 

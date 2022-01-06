@@ -38,6 +38,8 @@ public interface BICContainer extends PatternContainer {
 
     /**
      * Utility method that creates a BIC for every string returned by {@link #bicStrings()}
+     *
+     * @return list of BIC objects
      */
     List<BIC> bics();
 }

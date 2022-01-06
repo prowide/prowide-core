@@ -47,6 +47,7 @@ import java.util.logging.Logger;
 public abstract class AbstractMT extends AbstractMessage implements JsonSerializable {
     private static final transient Logger log = Logger.getLogger(AbstractMT.class.getName());
     private static final String GETSEQUENCE = "getSequence";
+    /** The internal swift message. */
     protected SwiftMessage m;
 
     /**
@@ -802,6 +803,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * The XML created is the internal format defined and used by Prowide Core.<br>
      * Notice: it is neither a standard nor the MX version of this MT.
      *
+     * @return message content xml
      * @since 7.7
      */
     public String xml() {
@@ -828,6 +830,10 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
         return this.m.getVariant();
     }
 
+    /**
+     * Derives the message name (substring after <code>.MT</code>) from the class name.
+     * @return message name
+     */
     public String nameFromClass() {
         return StringUtils.substringAfter(getClass().getName(), ".MT");
     }

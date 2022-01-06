@@ -45,7 +45,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 93C</strong>
+ * SWIFT MT Field 93C.
  * <p>
  * Model and parser for field 93C of a SWIFT MT message.
  *
@@ -78,28 +78,28 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 93C
+	 * Constant with the field name 93C.
 	 */
     public static final String NAME = "93C";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_93C = "93C";
 	public static final String PARSER_PATTERN = ":S//S/S/[S]N";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSSSN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -107,36 +107,36 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
 	public static final String TYPES_PATTERN = "SSSSI";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Quantity Type Code subfield
+	 * Component number for the Quantity Type Code subfield.
 	 */
 	public static final Integer QUANTITY_TYPE_CODE = 2;
 
 	/**
-	 * Component number for the Balance Type Code subfield
+	 * Component number for the Balance Type Code subfield.
 	 */
 	public static final Integer BALANCE_TYPE_CODE = 3;
 
 	/**
-	 * Component number for the Sign subfield
+	 * Component number for the Sign subfield.
 	 */
 	public static final Integer SIGN = 4;
 
 	/**
-	 * Component number for the Balance subfield
+	 * Component number for the Balance subfield.
 	 */
 	public static final Integer BALANCE = 5;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Balance Component number
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Balance Component number.
 	 * @see #BALANCE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public static final Integer AMOUNT = 5;
 
     /**
@@ -172,7 +172,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -194,7 +194,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -294,7 +294,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -494,7 +494,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @see #getComponent5AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent5AsNumber() {
         return getComponent5AsBigDecimal();
     }
@@ -513,7 +513,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String getAmount() {
         return getBalance();
     }
@@ -537,7 +537,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @see #getBalanceAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getBalanceAsNumber() {
         return getComponent5AsNumber();
     }
@@ -547,7 +547,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @see #getBalanceAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getBalanceAsBigDecimal();
     }
@@ -562,7 +562,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @see #getBalanceAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getBalanceAsNumber();
     }
@@ -694,9 +694,9 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component5 instanceof BigDecimal) {
-            setComponent(5, SwiftFormatUtils.getBigDecimal( (BigDecimal) component5));
+            setComponent(5, SwiftFormatUtils.getBigDecimal((BigDecimal) component5));
         } else if (component5 instanceof BigInteger) {
-            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component5)));
+            setComponent(5, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component5)));
         } else if (component5 instanceof Long || component5 instanceof Integer) {
             setComponent(5, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component5.longValue())));
         } else if (component5 != null) {
@@ -754,7 +754,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field93C setAmount(String component5) {
         return setBalance(component5);
     }
@@ -769,7 +769,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field93C setAmount(java.math.BigDecimal component5) {
         return setBalance(component5);
     }
@@ -784,7 +784,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @see #setBalance(java.math.BigDecimal)
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field93C setAmount(java.lang.Number component5) {
         return setBalance(component5);
     }
@@ -832,7 +832,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
 
@@ -846,7 +846,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field93C.NAME
      */
     @Override
@@ -867,7 +867,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
         if (t == null) {
             return null;
         }
-        return new Field93C(t) ;
+        return new Field93C(t);
     }
 
     /**
@@ -877,8 +877,9 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @see #get(SwiftTagListBlock)
      */
     public static Field93C get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -889,8 +890,9 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field93C> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -908,7 +910,7 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field93C(f));
+                result.add(new Field93C(f));
             }
         }
         return result;
@@ -923,10 +925,9 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      */
     public static Field93C fromJson(final String json) {
 
-        Field93C field = new Field93C();
+        final Field93C field = new Field93C();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 

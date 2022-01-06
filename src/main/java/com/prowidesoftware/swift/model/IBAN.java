@@ -50,6 +50,7 @@ public class IBAN {
     /**
      * Create an IBAN object with the given iban code.
      * This constructor does not perform any validation on the iban, only
+     * @param iban the IBAN string
      *
      */
     public IBAN(String iban) {
@@ -199,13 +200,13 @@ public class IBAN {
 
     /**
      * Translate letters to numbers, also ignoring non alphanumeric characters
-     *
+     * @param str input string
      * @return the translated value
      */
-    public String translateChars(final StringBuilder bban) {
+    public String translateChars(final StringBuilder str) {
         final StringBuilder result = new StringBuilder();
-        for (int i = 0; i < bban.length(); i++) {
-            char c = bban.charAt(i);
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
             if (Character.isLetter(c)) {
                 result.append(Character.getNumericValue(c));
             } else {
@@ -217,7 +218,7 @@ public class IBAN {
 
     /**
      * Removes all non alpha-numeric characters in the IBAN code
-     *
+     * @param iban IBAN string
      * @return the resulting IBAN
      */
     public String removeNonAlpha(final String iban) {

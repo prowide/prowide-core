@@ -41,7 +41,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 35E</strong>
+ * SWIFT MT Field 35E.
  * <p>
  * Model and parser for field 35E of a SWIFT MT message.
  *
@@ -75,28 +75,28 @@ public class Field35E extends Field implements Serializable, MultiLineField {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 35E
+	 * Constant with the field name 35E.
 	 */
     public static final String NAME = "35E";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_35E = "35E";
 	public static final String PARSER_PATTERN = "S[$S]0-5";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSSSSS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -104,7 +104,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
 	public static final String TYPES_PATTERN = "SSSSSS";
 
 	/**
-	 * Component number for the Narrative subfield
+	 * Component number for the Narrative subfield.
 	 */
 	public static final Integer NARRATIVE = 1;
 
@@ -141,7 +141,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -163,7 +163,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -249,7 +249,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -636,7 +636,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field35E.NAME
      */
     @Override
@@ -657,7 +657,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
         if (t == null) {
             return null;
         }
-        return new Field35E(t) ;
+        return new Field35E(t);
     }
 
     /**
@@ -667,8 +667,9 @@ public class Field35E extends Field implements Serializable, MultiLineField {
      * @see #get(SwiftTagListBlock)
      */
     public static Field35E get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -679,8 +680,9 @@ public class Field35E extends Field implements Serializable, MultiLineField {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field35E> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -698,14 +700,14 @@ public class Field35E extends Field implements Serializable, MultiLineField {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field35E(f));
+                result.add(new Field35E(f));
             }
         }
         return result;
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -717,7 +719,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int, int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -731,7 +733,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Returns the field value split into lines.<br>
+     * Returns the field value split into lines.
      *
      * @see MultiLineField#getLines()
      * @return lines content or empty list if field's value is empty
@@ -742,7 +744,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Returns the field value starting at the offset component, split into lines.<br>
+     * Returns the field value starting at the offset component, split into lines.
      *
      * @see MultiLineField#getLines(int)
      * @param offset an optional component number used as offset when counting lines
@@ -755,7 +757,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, given a range.<br>
+     * Returns a specific subset of lines from the field's value, given a range.
      *
      * @see MultiLineField#getLinesBetween(int, int )
      * @param start a reference to a specific line in the field, first line being 1
@@ -768,7 +770,7 @@ public class Field35E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     * Returns a specific subset of lines from the field's value, starting at the offset component.
      *
      * @see MultiLineField#getLinesBetween(int start, int end, int offset)
      * @param start a reference to a specific line in the field, first line being 1
@@ -791,10 +793,9 @@ public class Field35E extends Field implements Serializable, MultiLineField {
      */
     public static Field35E fromJson(final String json) {
 
-        Field35E field = new Field35E();
+        final Field35E field = new Field35E();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Narrative
 

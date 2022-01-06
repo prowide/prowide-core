@@ -17,14 +17,11 @@ package com.prowidesoftware.swift.model.field;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field32B and similar fields.
- *
- * @since 6.0
- */
 public class Field32BTest extends AbstractFieldTest {
 
     @Override
@@ -40,27 +37,27 @@ public class Field32BTest extends AbstractFieldTest {
         Field32B f = new Field32B("USD123");
         assertEquals("USD", f.getComponent1());
         assertEquals("123", f.getComponent2());
-        assertEquals(new Double(123), new Double(f.getComponent2AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent2AsBigDecimal());
 
         f = new Field32B("123");
         assertNull(f.getComponent1());
         assertEquals("123", f.getComponent2());
-        assertEquals(new Double(123), new Double(f.getComponent2AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent2AsBigDecimal());
 
         f = new Field32B("USD");
         assertEquals("USD", f.getComponent1());
         assertNull(f.getComponent2());
-        assertNull(f.getComponent2AsNumber());
+        assertNull(f.getComponent2AsBigDecimal());
 
         f = new Field32B("USD123,");
         assertEquals("USD", f.getComponent1());
         assertEquals("123,", f.getComponent2());
-        assertEquals(new Double(123), new Double(f.getComponent2AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123"), f.getComponent2AsBigDecimal());
 
         f = new Field32B("USD123,45");
         assertEquals("USD", f.getComponent1());
         assertEquals("123,45", f.getComponent2());
-        assertEquals(new Double(123.45), new Double(f.getComponent2AsNumber().doubleValue()));
+        assertEquals(new BigDecimal("123.45"), f.getComponent2AsBigDecimal());
     }
 
 }

@@ -27,7 +27,7 @@ import static java.lang.annotation.ElementType.*;
 /**
  * Bean validation for ISO currency codes.
  *
- * <p><p>It will validate true for null, empty or blank values to bypass validation when
+ * <p>It will validate true for null, empty or blank values to bypass validation when
  * the field is optional. If you require a currency code to be mandatory, combine this
  * constraint with @NotBlank.
  *

@@ -13,9 +13,9 @@ public class BICResolver {
     /**
      * Returns the list of BIC values (as String) given an MT Field
      *
-     * If you want a <code>List<BIC></code>, use <code>bics</code> instead
+     * If you want a list of BIC coes, use <code>bics</code> instead
      * @param f the field
-     * @return the list of bics
+     * @return the list of BICs
      * @see #bics(Field)
      */
     public static List<String> bicStrings(final Field f) {
@@ -29,7 +29,7 @@ public class BICResolver {
     /**
      * Returns the list of BIC values (as BIC) given an MT Field
      *
-     * If you want a <code>List<String></code>, use <code>bicStrings</code> instead
+     * If you want a list of Strings, use <code>bicStrings</code> instead
      * @param f the field
      * @return the list of currencies
      * @see #bicStrings(Field)

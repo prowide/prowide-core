@@ -47,7 +47,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 62F</strong>
+ * SWIFT MT Field 62F.
  * <p>
  * Model and parser for field 62F of a SWIFT MT message.
  *
@@ -79,28 +79,28 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 62F
+	 * Constant with the field name 62F.
 	 */
     public static final String NAME = "62F";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_62F = "62F";
 	public static final String PARSER_PATTERN = "[c]<DATE2>SN";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SESN";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -108,28 +108,28 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 	public static final String TYPES_PATTERN = "SESI";
 
 	/**
-	 * Component number for the D/C Mark subfield
+	 * Component number for the D/C Mark subfield.
 	 */
 	public static final Integer DC_MARK = 1;
 
 	/**
-	 * Component number for the Date subfield
+	 * Component number for the Date subfield.
 	 */
 	public static final Integer DATE = 2;
 
 	/**
-	 * Component number for the Currency subfield
+	 * Component number for the Currency subfield.
 	 */
 	public static final Integer CURRENCY = 3;
 
 	/**
-     * Alternative constant name for field's Currency Component number
+     * Alternative constant name for field's Currency Component number.
      * @see #CURRENCY
      */
     public static final Integer UNIT = 3;
 
 	/**
-	 * Component number for the Amount subfield
+	 * Component number for the Amount subfield.
 	 */
 	public static final Integer AMOUNT = 4;
 
@@ -166,7 +166,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -188,7 +188,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -279,7 +279,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -484,7 +484,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
      * @see #getComponent4AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getComponent4AsNumber() {
         return getComponent4AsBigDecimal();
     }
@@ -516,7 +516,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
      * @see #getAmountAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public java.lang.Number getAmountAsNumber() {
         return getComponent4AsNumber();
     }
@@ -662,9 +662,9 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
         // NOTE: remember instanceof implicitly checks for non-null
 
         if (component4 instanceof BigDecimal) {
-            setComponent(4, SwiftFormatUtils.getBigDecimal( (BigDecimal) component4));
+            setComponent(4, SwiftFormatUtils.getBigDecimal((BigDecimal) component4));
         } else if (component4 instanceof BigInteger) {
-            setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal( (BigInteger) component4)));
+            setComponent(4, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component4)));
         } else if (component4 instanceof Long || component4 instanceof Integer) {
             setComponent(4, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component4.longValue())));
         } else if (component4 != null) {
@@ -754,7 +754,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
 
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field62F.NAME
      */
     @Override
@@ -775,7 +775,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
         if (t == null) {
             return null;
         }
-        return new Field62F(t) ;
+        return new Field62F(t);
     }
 
     /**
@@ -785,8 +785,9 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
      * @see #get(SwiftTagListBlock)
      */
     public static Field62F get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -797,8 +798,9 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field62F> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -816,7 +818,7 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field62F(f));
+                result.add(new Field62F(f));
             }
         }
         return result;
@@ -831,10 +833,9 @@ public class Field62F extends Field implements Serializable, DateContainer, Amou
      */
     public static Field62F fromJson(final String json) {
 
-        Field62F field = new Field62F();
+        final Field62F field = new Field62F();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - D/C Mark
 

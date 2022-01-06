@@ -41,8 +41,6 @@ public class FINWriterVisitor implements IMessageVisitor {
     private boolean block4asText = true;
     private boolean trimTagValues = false;
 
-    /**
-     */
     public FINWriterVisitor(Writer writer) {
         this.writer = writer;
     }

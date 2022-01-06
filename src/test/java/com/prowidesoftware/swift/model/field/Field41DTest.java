@@ -21,12 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * @author sebastian
- */
 public class Field41DTest extends AbstractFieldTest {
-    @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field41DTest.class.getName());
     Field41D f = null;
 
     @BeforeEach

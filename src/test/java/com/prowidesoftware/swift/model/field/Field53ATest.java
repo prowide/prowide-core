@@ -20,11 +20,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field53A and similar fields.
- *
- * @since 8.0.2
- */
 public class Field53ATest extends AbstractFieldTest {
 
     @Override
@@ -44,57 +39,57 @@ public class Field53ATest extends AbstractFieldTest {
         Field53A f = new Field53A((String) null);
         assertNull(f.getDCMark());
         assertNull(f.getAccount());
-        assertNull(f.getBIC());
+        assertNull(f.getIdentifierCode());
 
         f = new Field53A("");
         assertNull(f.getDCMark());
         assertNull(f.getAccount());
-        assertNull(f.getBIC());
+        assertNull(f.getIdentifierCode());
 
         f = new Field53A("/D");
         assertNull(f.getDCMark());
         assertEquals("D", f.getAccount());
-        assertNull(f.getBIC());
+        assertNull(f.getIdentifierCode());
 
         f = new Field53A("/D/");
         assertEquals("D", f.getDCMark());
         assertNull(f.getAccount());
-        assertNull(f.getBIC());
+        assertNull(f.getIdentifierCode());
 
         f = new Field53A("/D/1234");
         assertEquals("D", f.getDCMark());
         assertEquals("1234", f.getAccount());
-        assertNull(f.getBIC());
+        assertNull(f.getIdentifierCode());
 
         f = new Field53A("/D/1234/56");
         assertEquals("D", f.getDCMark());
         assertEquals("1234/56", f.getAccount());
-        assertNull(f.getBIC());
+        assertNull(f.getIdentifierCode());
 
         f = new Field53A("ABCDAEAD");
         assertNull(f.getDCMark());
         assertNull(f.getAccount());
-        assertEquals("ABCDAEAD", f.getBIC());
+        assertEquals("ABCDAEAD", f.getIdentifierCode());
 
         f = new Field53A("/C/1234\nABCDAEAD");
         assertEquals("C", f.getDCMark());
         assertEquals("1234", f.getAccount());
-        assertEquals("ABCDAEAD", f.getBIC());
+        assertEquals("ABCDAEAD", f.getIdentifierCode());
 
         f = new Field53A("/D\nABCDAEAD");
         assertNull(f.getDCMark());
         assertEquals("D", f.getAccount());
-        assertEquals("ABCDAEAD", f.getBIC());
+        assertEquals("ABCDAEAD", f.getIdentifierCode());
 
         f = new Field53A("/1234\nABCDAEAD");
         assertNull(f.getDCMark());
         assertEquals("1234", f.getAccount());
-        assertEquals("ABCDAEAD", f.getBIC());
+        assertEquals("ABCDAEAD", f.getIdentifierCode());
 
         f = new Field53A("/00010001380002000114");
         assertEquals("00010001380002000114", f.getAccount());
         assertNull(f.getDCMark());
-        assertNull(f.getBIC());
+        assertNull(f.getIdentifierCode());
     }
 
     /**
@@ -144,7 +139,7 @@ public class Field53ATest extends AbstractFieldTest {
         Field53A f = new Field53A("/00010001380002000114");
         assertEquals("00010001380002000114", f.getAccount());
         assertNull(f.getDCMark());
-        assertNull(f.getBIC());
+        assertNull(f.getIdentifierCode());
     }
 
 }

@@ -27,14 +27,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 public class FieldJsonTest {
 
-    private final JsonParser parser = new JsonParser();
-
     @Test
     public void toJsonField32A() {
         Field32A f32A = new Field32A("010203USD123,45");
         //{"name":"32A","date":"010203","currency":"USD","amount":"123"}
 
-        JsonObject o = parser.parse(f32A.toJson()).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(f32A.toJson()).getAsJsonObject();
         assertEquals("32A", o.get("name").getAsString());
         assertEquals("010203", o.get("date").getAsString());
         assertEquals("USD", o.get("currency").getAsString());
@@ -46,7 +44,7 @@ public class FieldJsonTest {
         Field50D f50D = new Field50D("/D/1234\nFoo1\nFoo2\nFoo3");
         // {"name":"50D","dCMark":"D","account":"1234","nameAndAddress":"Foo1","nameAndAddress2":"Foo2","nameAndAddress3":"Foo3"}
 
-        JsonObject o = parser.parse(f50D.toJson()).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(f50D.toJson()).getAsJsonObject();
         assertEquals("50D", o.get("name").getAsString());
         assertEquals("D", o.get("dCMark").getAsString());
         assertEquals("1234", o.get("account").getAsString());
@@ -60,7 +58,7 @@ public class FieldJsonTest {
         Field15A f15A = new Field15A();
         // {"name":"15A"}
 
-        JsonObject o = parser.parse(f15A.toJson()).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(f15A.toJson()).getAsJsonObject();
         assertEquals("15A", o.get("name").getAsString());
         assertNull(o.get("value"));
     }
@@ -74,7 +72,7 @@ public class FieldJsonTest {
         Field70 f70 = new Field70(narrative);
         //{"name":"70","narrative":"\"VALUE 1 \\r\\nVALUE 2 \\r\\nVALUE 3\"";}
 
-        JsonObject o = parser.parse(f70.toJson()).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(f70.toJson()).getAsJsonObject();
         assertEquals("VALUE 1 VALUE 2 VALUE 3", o.get("narrative").getAsString().replace("\n", "").replace("\r", ""));
     }
 
@@ -82,7 +80,7 @@ public class FieldJsonTest {
     public void toJsonField70E() {
         Field70E f = new Field70E(":INST//first line\nsecond line\nthird line\nforth line");
 
-        JsonObject o = parser.parse(f.toJson()).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(f.toJson()).getAsJsonObject();
         assertEquals("first line", o.get("narrative").getAsString());
         assertEquals("second line", o.get("narrative2").getAsString());
     }

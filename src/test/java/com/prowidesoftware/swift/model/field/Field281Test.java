@@ -20,11 +20,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-/**
- * Test for Field281 and similar fields.
- *
- * @since 7.8.8
- */
 public class Field281Test extends AbstractFieldTest {
 
     @Override

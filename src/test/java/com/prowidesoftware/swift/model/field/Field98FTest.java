@@ -20,12 +20,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Test for Field98F and similar fields.
- * :S/[S]/S<TIME2>
- *
- * @since 6.0
- */
 public class Field98FTest extends AbstractFieldTest {
 
     @Override

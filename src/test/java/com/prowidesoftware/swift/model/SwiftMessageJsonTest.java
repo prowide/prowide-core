@@ -38,8 +38,7 @@ public class SwiftMessageJsonTest {
         SwiftBlock1 b1 = new SwiftBlock1("F", "01", "FOOSEDR0AXXX", "0000", "000000");
         String s = b1.toJson();
 
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(s).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(s).getAsJsonObject();
 
         assertNotNull(o);
         assertEquals("F", o.get("applicationId").getAsString());
@@ -65,8 +64,7 @@ public class SwiftMessageJsonTest {
         SwiftBlock2Input b1 = new SwiftBlock2Input("I103BBBBUSC0XXXXN");
         String s = b1.toJson();
 
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(s).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(s).getAsJsonObject();
 
         assertNotNull(o);
         assertEquals("I", o.get("direction").getAsString());
@@ -80,8 +78,7 @@ public class SwiftMessageJsonTest {
         SwiftBlock2Output nout = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
         String s = nout.toJson();
 
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(s).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(s).getAsJsonObject();
 
         assertNotNull(o);
         assertFalse(nout.isInput());
@@ -125,8 +122,7 @@ public class SwiftMessageJsonTest {
         b3.append(new Tag("108", "ILOVESEPA"));
 
         String s = b3.toJson();
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(s).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(s).getAsJsonObject();
 
         assertNotNull(o);
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
@@ -149,8 +145,7 @@ public class SwiftMessageJsonTest {
         b4.append(new Tag("23B", "CRED"));
 
         String s = b4.toJson();
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(s).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(s).getAsJsonObject();
 
         assertNotNull(o);
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
@@ -176,8 +171,7 @@ public class SwiftMessageJsonTest {
         b5.append(new Tag("CHK", "aaaa1111bbbb2222"));
 
         String s = b5.toJson();
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(s).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(s).getAsJsonObject();
 
         assertNotNull(o);
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
@@ -205,8 +199,7 @@ public class SwiftMessageJsonTest {
         bu.append(new Tag("CHK", "aaaa1111bbbb2222"));
 
         String s = bu.toJson();
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(s).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(s).getAsJsonObject();
 
         assertNotNull(o);
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
@@ -241,8 +234,7 @@ public class SwiftMessageJsonTest {
                 "-}").getSwiftMessage();
         final String json = m.toJson();
 
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(json).getAsJsonObject();
+        JsonObject o = JsonParser.parseString(json).getAsJsonObject();
 
         assertNotNull(o);
         assertEquals(SwiftMessage.JSON_VERSION, o.get("version").getAsInt());

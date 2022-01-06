@@ -41,7 +41,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 12C</strong>
+ * SWIFT MT Field 12C.
  * <p>
  * Model and parser for field 12C of a SWIFT MT message.
  *
@@ -71,28 +71,28 @@ public class Field12C extends Field implements Serializable, GenericField {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 12C
+	 * Constant with the field name 12C.
 	 */
     public static final String NAME = "12C";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_12C = "12C";
 	public static final String PARSER_PATTERN = ":S//S";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -100,12 +100,12 @@ public class Field12C extends Field implements Serializable, GenericField {
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the CFI Code subfield
+	 * Component number for the CFI Code subfield.
 	 */
 	public static final Integer CFI_CODE = 2;
 
@@ -142,7 +142,7 @@ public class Field12C extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -164,7 +164,7 @@ public class Field12C extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -237,7 +237,7 @@ public class Field12C extends Field implements Serializable, GenericField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -433,7 +433,7 @@ public class Field12C extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
 
@@ -447,7 +447,7 @@ public class Field12C extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field12C.NAME
      */
     @Override
@@ -468,7 +468,7 @@ public class Field12C extends Field implements Serializable, GenericField {
         if (t == null) {
             return null;
         }
-        return new Field12C(t) ;
+        return new Field12C(t);
     }
 
     /**
@@ -478,8 +478,9 @@ public class Field12C extends Field implements Serializable, GenericField {
      * @see #get(SwiftTagListBlock)
      */
     public static Field12C get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -490,8 +491,9 @@ public class Field12C extends Field implements Serializable, GenericField {
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field12C> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -509,7 +511,7 @@ public class Field12C extends Field implements Serializable, GenericField {
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field12C(f));
+                result.add(new Field12C(f));
             }
         }
         return result;
@@ -524,10 +526,9 @@ public class Field12C extends Field implements Serializable, GenericField {
      */
     public static Field12C fromJson(final String json) {
 
-        Field12C field = new Field12C();
+        final Field12C field = new Field12C();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 

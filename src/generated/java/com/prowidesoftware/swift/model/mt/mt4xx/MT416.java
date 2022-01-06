@@ -36,11 +36,11 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * <strong>MT 416 - Advice of Non-Payment/Non-Acceptance</strong>
+ * MT 416 - Advice of Non-Payment/Non-Acceptance.
  *
  * <p>
  * SWIFT MT416 (ISO 15022) message structure:
- * <br>
+ *
  <div class="scheme"><ul>
 <li class="sequence">
 Sequence A - General Information (M)<ul><li class="field">Field 20  (M)</li>
@@ -79,15 +79,15 @@ public class MT416 extends AbstractMT implements Serializable {
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT416.class.getName());
 	
 	/**
-	* Constant for MT name, this is part of the classname, after <code>MT</code>
-	*/
+	 * Constant for MT name, this is part of the classname, after MT.
+	 */
 	public static final String NAME = "416";
 
 	/**
-	 * Creates an MT416 initialized with the parameter SwiftMessage
+	 * Creates an MT416 initialized with the parameter SwiftMessage.
 	 * @param m swift message with the MT416 content
 	 */
-	public MT416(SwiftMessage m) {
+	public MT416(final SwiftMessage m) {
 		super(m);
 		sanityCheck(m);
 	}
@@ -97,7 +97,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	 * @param m swift message with the MT416 content, the parameter can not be null
 	 * @see #MT416(String)
 	 */
-	public MT416(MtSwiftMessage m) {
+	public MT416(final MtSwiftMessage m) {
 		this(m.message());
 	}
 	
@@ -109,7 +109,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	 * @see #MT416(String)
 	 * @since 7.7
 	 */
-	public static MT416 parse(MtSwiftMessage m) {
+	public static MT416 parse(final MtSwiftMessage m) {
 		if (m == null) {
 			return null;
 		}
@@ -117,7 +117,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT416 input message setting TEST BICS as sender and receiver.<br>
+	 * Creates and initializes a new MT416 input message setting TEST BICS as sender and receiver.
 	 * All mandatory header attributes are completed with default values.
 	 *
 	 * @since 7.6
@@ -127,7 +127,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates and initializes a new MT416 input message from sender to receiver.<br>
+	 * Creates and initializes a new MT416 input message from sender to receiver.
 	 * All mandatory header attributes are completed with default values. 
 	 * In particular the sender and receiver addresses will be filled with proper default LT identifier 
 	 * and branch codes if not provided,
@@ -141,9 +141,9 @@ public class MT416 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Creates a new MT416 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT416 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter is null or the message cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param fin a string with the MT message in its FIN swift format
@@ -163,15 +163,15 @@ public class MT416 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT416 object from FIN content with a Service Message. Check if the MT416 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), getMessageType())) {
+		} else if (!StringUtils.equals(param.getType(), "416")) {
 			log.warning("Creating an MT416 object from FIN content with message type "+param.getType());
 		}
     }
 	
 	/**
-	 * Creates a new MT416 by parsing a String with the message content in its swift FIN format.<br>
+	 * Creates a new MT416 by parsing a String with the message content in its swift FIN format.
 	 * If the fin parameter cannot be parsed, the returned MT416 will have its internal message object
-	 * initialized (blocks will be created) but empty.<br>
+	 * initialized (blocks will be created) but empty.
 	 * If the string contains multiple messages, only the first one will be parsed. 
 	 *
 	 * @param fin a string with the MT message in its FIN swift format. <em>fin may be null in which case this method returns null</em>
@@ -186,9 +186,9 @@ public class MT416 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT416 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT416 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the message content is null or cannot be parsed, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -200,7 +200,7 @@ public class MT416 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT416 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.<br>
+	 * Creates a new MT416 by parsing a input stream with the message content in its swift FIN format, using "UTF-8" as encoding.
 	 * If the stream contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param stream an input stream in UTF-8 encoding with the MT message in its FIN swift format.
@@ -216,9 +216,9 @@ public class MT416 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT416 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT416 by parsing a file with the message content in its swift FIN format.
 	 * If the file content is null or cannot be parsed as a message, the internal message object
-	 * will be initialized (blocks will be created) but empty.<br>
+	 * will be initialized (blocks will be created) but empty.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -230,7 +230,7 @@ public class MT416 extends AbstractMT implements Serializable {
     }
     
     /**
-	 * Creates a new MT416 by parsing a file with the message content in its swift FIN format.<br>
+	 * Creates a new MT416 by parsing a file with the message content in its swift FIN format.
 	 * If the file contains multiple messages, only the first one will be parsed.
 	 *
 	 * @param file a file with the MT message in its FIN swift format.
@@ -246,7 +246,7 @@ public class MT416 extends AbstractMT implements Serializable {
     }
     
 	/**
-	 * Returns this MT number
+	 * Returns this MT number.
 	 * @return the message type number of this MT
 	 * @since 6.4
 	 */
@@ -276,7 +276,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT416 append(final Tag ... tags) {
+	public MT416 append(final Tag... tags) {
 		super.append(tags);
 		return this;
 	}
@@ -289,28 +289,28 @@ public class MT416 extends AbstractMT implements Serializable {
 	 * @since 7.6
 	 */
 	@Override
-	public MT416 append(final Field ... fields) {
+	public MT416 append(final Field... fields) {
 		super.append(fields);
 		return this;
 	}
 
-    /**
-	 * Creates an MT416 messages from its JSON representation.
-	 * <p>
-	 * For generic conversion of JSON into the corresopnding MT instance
-	 * see {@link AbstractMT#fromJson(String)}
-	 *
-	 * @param json a JSON representation of an MT416 message
-	 * @return a new instance of MT416
-	 * @since 7.10.3
-	 */
-	public static MT416 fromJson(String json) {
+   /**
+	* Creates an MT416 messages from its JSON representation.
+	* <p>
+	* For generic conversion of JSON into the corresponding MT instance
+	* see {@link AbstractMT#fromJson(String)}
+	*
+	* @param json a JSON representation of an MT416 message
+	* @return a new instance of MT416
+	* @since 7.10.3
+	*/
+	public static MT416 fromJson(final String json) {
 		return (MT416) AbstractMT.fromJson(json);
 	}
 
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 20, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 20 at MT416 is expected to be the only one.
 	 * 
 	 * @return a Field20 object or null if the field is not found
@@ -328,7 +328,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 21, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 21 at MT416 is expected to be the only one.
 	 * 
 	 * @return a Field21 object or null if the field is not found
@@ -346,7 +346,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 51A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 51A at MT416 is expected to be the only one.
 	 * 
 	 * @return a Field51A object or null if the field is not found
@@ -364,7 +364,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 53A, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 53A at MT416 is expected to be the only one.
 	 * 
 	 * @return a Field53A object or null if the field is not found
@@ -382,7 +382,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return the first one whose name matches 53B, 
-	 * or null if none is found.<br>
+	 * or null if none is found.
 	 * The first occurrence of field 53B at MT416 is expected to be the only one.
 	 * 
 	 * @return a Field53B object or null if the field is not found
@@ -400,7 +400,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 21A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 21A at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field21A objects or <code>Collections.emptyList()</code> if none is not found
@@ -420,7 +420,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 23E, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 23E at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field23E objects or <code>Collections.emptyList()</code> if none is not found
@@ -440,7 +440,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 21C, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 21C at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field21C objects or <code>Collections.emptyList()</code> if none is not found
@@ -460,7 +460,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 32A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 32A at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field32A objects or <code>Collections.emptyList()</code> if none is not found
@@ -480,7 +480,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 32B, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 32B at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field32B objects or <code>Collections.emptyList()</code> if none is not found
@@ -500,7 +500,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 32K, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 32K at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field32K objects or <code>Collections.emptyList()</code> if none is not found
@@ -520,7 +520,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 50D, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 50D at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field50D objects or <code>Collections.emptyList()</code> if none is not found
@@ -540,7 +540,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 59, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 59 at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field59 objects or <code>Collections.emptyList()</code> if none is not found
@@ -560,7 +560,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 71F, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 71F at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field71F objects or <code>Collections.emptyList()</code> if none is not found
@@ -580,7 +580,7 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 77A, 
-	 * or <code>Collections.emptyList()</code> if none is found.<br>
+	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 77A at MT416 are expected at one sequence or across several sequences.
 	 * 
 	 * @return a List of Field77A objects or <code>Collections.emptyList()</code> if none is not found
@@ -600,13 +600,13 @@ public class MT416 extends AbstractMT implements Serializable {
 	
 
 	/**
-	 * Class to model Sequence "A" in MT 416
+	 * Class to model Sequence "A" in MT 416.
 	 */
 	public static class SequenceA extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
 			super(new ArrayList<Tag>());
@@ -633,17 +633,17 @@ public class MT416 extends AbstractMT implements Serializable {
 		protected static final String[] END = { "21"   };
 
 		/**
-		 * List of optional tags after the last mandatory tag
+		 * List of optional tags after the last mandatory tag.
 		 */
 		protected static final String[] TAIL = new String[]{ "23E", "51A", "53A", "53B", "71F", "77A"   };
 
 		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
 		 * @param tags the list of tags to set as sequence content
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceA newInstance(final Tag ... tags) {
+		public static SequenceA newInstance(final Tag... tags) {
 			return newInstance(0, 0, tags);
 		}
 
@@ -658,7 +658,7 @@ public class MT416 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceA newInstance(final int start, final int end, final Tag ... tags) {
+		public static SequenceA newInstance(final int start, final int end, final Tag... tags) {
 			final SequenceA result = new SequenceA();
 			result.append(new Tag(START[start], ""));
 			if (tags != null && tags.length > 0) {
@@ -715,13 +715,13 @@ public class MT416 extends AbstractMT implements Serializable {
  
 
 	/**
-	 * Class to model Sequence "B" in MT 416
+	 * Class to model Sequence "B" in MT 416.
 	 */
 	public static class SequenceB extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
-		 * Constructs an empty sequence
+		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
 			super(new ArrayList<Tag>());
@@ -748,17 +748,17 @@ public class MT416 extends AbstractMT implements Serializable {
 		protected static final String[] END = { "32A", "32B", "32K"   };
 
 		/**
-		 * List of optional tags after the last mandatory tag
+		 * List of optional tags after the last mandatory tag.
 		 */
 		protected static final String[] TAIL = new String[]{ "50D", "59", "71F", "77A"   };
 
 		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
 		 * @param tags the list of tags to set as sequence content
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceB newInstance(final Tag ... tags) {
+		public static SequenceB newInstance(final Tag... tags) {
 			return newInstance(0, 0, tags);
 		}
 
@@ -773,7 +773,7 @@ public class MT416 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceB newInstance(final int start, final int end, final Tag ... tags) {
+		public static SequenceB newInstance(final int start, final int end, final Tag... tags) {
 			final SequenceB result = new SequenceB();
 			result.append(new Tag(START[start], ""));
 			if (tags != null && tags.length > 0) {

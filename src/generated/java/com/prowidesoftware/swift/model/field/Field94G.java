@@ -42,7 +42,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * <strong>SWIFT MT Field 94G</strong>
+ * SWIFT MT Field 94G.
  * <p>
  * Model and parser for field 94G of a SWIFT MT message.
  *
@@ -73,28 +73,28 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 94G
+	 * Constant with the field name 94G.
 	 */
     public static final String NAME = "94G";
     /**
-     * same as NAME, intended to be clear when using static imports
+     * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_94G = "94G";
 	public static final String PARSER_PATTERN = ":S//S[$S]";
 
     /**
-     * Components pattern
+     * Components pattern.
      *
      * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
      * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
      * @see #TYPES_PATTERN
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSS";
 
     /**
-     * Types pattern
+     * Types pattern.
      *
      * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
      * @since 9.2.7
@@ -102,12 +102,12 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
 	public static final String TYPES_PATTERN = "SSS";
 
 	/**
-	 * Component number for the Qualifier subfield
+	 * Component number for the Qualifier subfield.
 	 */
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Address subfield
+	 * Component number for the Address subfield.
 	 */
 	public static final Integer ADDRESS = 2;
 
@@ -144,7 +144,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Copy constructor.<br>
+     * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
      * @param source a field instance to copy
      * @since 7.7
@@ -166,7 +166,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Create a Tag with this field name and an empty string as value
+     * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
      * @see #NAME
      * @since 7.5
@@ -250,7 +250,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public final String componentsPattern() {
         return COMPONENTS_PATTERN;
     }
@@ -528,7 +528,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Component number for the conditional qualifier subfield
+     * Component number for the conditional qualifier subfield.
      */
     public static final Integer CONDITIONAL_QUALIFIER = 2;
 
@@ -542,7 +542,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Returns the field's name composed by the field number and the letter option (if any)
+     * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field94G.NAME
      */
     @Override
@@ -563,7 +563,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
         if (t == null) {
             return null;
         }
-        return new Field94G(t) ;
+        return new Field94G(t);
     }
 
     /**
@@ -573,8 +573,9 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
      * @see #get(SwiftTagListBlock)
      */
     public static Field94G get(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
+        }
         return get(msg.getBlock4());
     }
 
@@ -585,8 +586,9 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
      * @see #getAll(SwiftTagListBlock)
      */
     public static List<Field94G> getAll(final SwiftMessage msg) {
-        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty())
+        if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
+        }
         return getAll(msg.getBlock4());
     }
 
@@ -604,14 +606,14 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add( new Field94G(f));
+                result.add(new Field94G(f));
             }
         }
         return result;
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -623,7 +625,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Returns a specific line from the field's value.<br>
+     * Returns a specific line from the field's value.
      *
      * @see MultiLineField#getLine(int, int)
      * @param line a reference to a specific line in the field, first line being 1
@@ -637,7 +639,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Returns the field value split into lines.<br>
+     * Returns the field value split into lines.
      *
      * @see MultiLineField#getLines()
      * @return lines content or empty list if field's value is empty
@@ -648,7 +650,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Returns the field value starting at the offset component, split into lines.<br>
+     * Returns the field value starting at the offset component, split into lines.
      *
      * @see MultiLineField#getLines(int)
      * @param offset an optional component number used as offset when counting lines
@@ -661,7 +663,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, given a range.<br>
+     * Returns a specific subset of lines from the field's value, given a range.
      *
      * @see MultiLineField#getLinesBetween(int, int )
      * @param start a reference to a specific line in the field, first line being 1
@@ -674,7 +676,7 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.<br>
+     * Returns a specific subset of lines from the field's value, starting at the offset component.
      *
      * @see MultiLineField#getLinesBetween(int start, int end, int offset)
      * @param start a reference to a specific line in the field, first line being 1
@@ -697,10 +699,9 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
      */
     public static Field94G fromJson(final String json) {
 
-        Field94G field = new Field94G();
+        final Field94G field = new Field94G();
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(json);
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
         // **** COMPONENT 1 - Qualifier
 
