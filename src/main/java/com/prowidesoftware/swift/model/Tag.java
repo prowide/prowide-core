@@ -39,6 +39,7 @@ import java.util.Objects;
  * @author sebastian
  */
 public class Tag implements Serializable {
+    @SuppressWarnings("unused")
     private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Tag.class.getName());
 
     private static final long serialVersionUID = -1066430327311949399L;

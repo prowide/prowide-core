@@ -66,11 +66,4 @@ public enum BicValidationResult {
         }
     }
 
-    /**
-     * @return the validation message parameters set to the enum value
-     */
-    private Map<String, String> vars() {
-        return this.vars;
-    }
-
 }

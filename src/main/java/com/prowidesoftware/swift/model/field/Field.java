@@ -19,7 +19,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.prowidesoftware.JsonSerializable;
-import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
@@ -385,7 +384,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         JsonElement nameElement = jsonObject.get("name");
         if (nameElement != null) {
             String name = nameElement.getAsString();
-            Object r = null;
             try {
                 final Class<?> c = Class.forName("com.prowidesoftware.swift.model.field.Field" + name);
                 Method method = c.getMethod("fromJson", String.class);
