@@ -805,7 +805,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     public Integer fragmentCount() {
         // if this is not a fragment => 0
         if (!this.isFragment().booleanValue()) {
-            return new Integer(0);
+            return Integer.valueOf(0);
         }
 
         // get the block 4 and tag 203 (they BOTH exists here)
@@ -814,7 +814,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         // process the number
         Integer _t203;
         try {
-            _t203 = new Integer(Integer.parseInt(t203, 10));
+            _t203 = Integer.valueOf(Integer.parseInt(t203, 10));
         } catch (final NumberFormatException nfe) {
             throw new UnsupportedOperationException(MESSAGE_IS_NOT_A_FRAGMENT);
         }
@@ -841,7 +841,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         // process the number
         Integer _t202;
         try {
-            _t202 = new Integer(Integer.parseInt(t202, 10));
+            _t202 = Integer.valueOf(Integer.parseInt(t202, 10));
         } catch (final NumberFormatException nfe) {
             throw new UnsupportedOperationException(MESSAGE_IS_NOT_A_FRAGMENT);
         }
@@ -949,7 +949,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     public Integer getUnparsedTextsSize() {
         // no list => size is zero...
         if (this.unparsedTexts == null) {
-            return new Integer(0);
+            return Integer.valueOf(0);
         }
         return this.unparsedTexts.size();
     }

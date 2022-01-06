@@ -40,6 +40,7 @@ public class GetValueDisplayTest {
         f = new Field36("1234,234567890120");
         assertEquals("1,234.23456789012", f.getValueDisplay(Locale.US));
         assertEquals("1.234,23456789012", f.getValueDisplay(Locale.GERMANY));
+        // TODO this statement fails in Java 17. has to do with String compaction, need to examine further:
         assertEquals("1 234,23456789012", f.getValueDisplay(Locale.FRANCE));
     }
 
@@ -55,6 +56,7 @@ public class GetValueDisplayTest {
         f = new Field32A("121212USD1234,5670");
         assertEquals("1,234.567", f.getValueDisplay(3, Locale.US));
         assertEquals("1.234,567", f.getValueDisplay(3, Locale.GERMANY));
+        // TODO this statement fails in Java 17. has to do with String compaction, need to examine further:
         assertEquals("1 234,567", f.getValueDisplay(3, Locale.FRANCE));
     }
 

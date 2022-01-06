@@ -257,7 +257,7 @@ public class Tag implements Serializable {
 
         // no list => size is zero...
         if (this.unparsedTexts == null)
-            return new Integer(0);
+            return Integer.valueOf(0);
         return this.unparsedTexts.size();
     }
 

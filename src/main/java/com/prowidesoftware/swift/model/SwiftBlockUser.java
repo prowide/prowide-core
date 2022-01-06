@@ -222,7 +222,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
      */
     public Integer getNumber() {
         // assume -1 (not numeric) and try to convert
-        Integer blockNumber = new Integer(-1);
+        Integer blockNumber = Integer.valueOf(-1);
         try {
             blockNumber = Integer.decode(blockName);
         } catch (NumberFormatException ignored) {
