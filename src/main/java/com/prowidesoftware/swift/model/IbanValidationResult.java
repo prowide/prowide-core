@@ -15,10 +15,9 @@
  */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.text.StringSubstitutor;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * To indicate the validation problem found when validating an IBAN
@@ -64,8 +63,11 @@ public enum IbanValidationResult {
      * Validation problem description including expected and found content when necessary
      */
     public String message() {
-        final StringSubstitutor sub = new StringSubstitutor(this.vars);
-        return sub.replace(this.message);
+        String msg = this.message;
+        for (Entry<String, String> e : vars.entrySet()) {
+            msg = msg.replace("${" + e.getKey() + "}", e.getValue());
+        }
+        return msg;
     }
 
     /**

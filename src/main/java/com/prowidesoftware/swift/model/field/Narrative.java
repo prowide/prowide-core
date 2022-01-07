@@ -16,8 +16,8 @@
 package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import com.prowidesoftware.swift.utils.LineWrapper;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.text.WordUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -481,9 +481,8 @@ public class Narrative {
          * Adds unstructured narrative content wrapped into lines without any format or slash separator
          */
         public Builder addUnstructured(String narrative) {
-            String wrapped = WordUtils.wrap(narrative, lineLength, FINWriterVisitor.SWIFT_EOL, true);
-            String[] lines = wrapped.split(FINWriterVisitor.SWIFT_EOL);
-            this.unstructuredFragments.addAll(Arrays.asList(lines));
+            List<String> lines = LineWrapper.wrapIntoList(narrative, lineLength);
+            this.unstructuredFragments.addAll(lines);
             return this;
         }
 
@@ -499,12 +498,13 @@ public class Narrative {
             List<String> fragments = new ArrayList<>();
 
             // first line wrap should discount the prefix size
-            String wrap = WordUtils.wrap(narrative, lineLength - prefix.length(), "\n", true);
-            String[] lines = wrap.split("\n");
+            List<String> lines = LineWrapper.wrapIntoList(narrative, lineLength - prefix.length());
 
-            String firstLine = StringUtils.trimToNull(lines[0]);
-            if (firstLine != null) {
-                fragments.add(firstLine);
+            if (!lines.isEmpty()) {
+                String firstLine = StringUtils.trimToNull(lines.get(0));
+                if (firstLine != null) {
+                    fragments.add(firstLine);
+                }
             }
 
             if (!fragments.isEmpty()) {
@@ -514,15 +514,9 @@ public class Narrative {
                 if (remainder != null) {
 
                     // following lines wrap should discount the "//" that would be added in the serialization
-                    wrap = WordUtils.wrap(remainder, lineLength - 2, "\n", true);
-                    lines = wrap.split("\n");
+                    lines = LineWrapper.wrapIntoList(remainder, lineLength - 2);
 
-                    for (String line : lines) {
-                        String fragment = StringUtils.trimToNull(line);
-                        if (fragment != null) {
-                            fragments.add(fragment);
-                        }
-                    }
+                    fragments.addAll(lines);
                 }
             }
 

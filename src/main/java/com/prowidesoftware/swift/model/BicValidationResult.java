@@ -15,10 +15,7 @@
  */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.text.StringSubstitutor;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Objects;
 
 /**
  * To indicate the validation problem found when validating a BIC
@@ -41,7 +38,8 @@ public enum BicValidationResult {
     INVALID_BRANCH_CHARSET("The branch code can only contain uppercase letters or digits and ${found} was found");
 
     private final String message;
-    private final Map<String, String> vars = new HashMap<>();
+    private String found;
+
     BicValidationResult(final String message) {
         this.message = message;
     }
@@ -52,18 +50,20 @@ public enum BicValidationResult {
      * @return message with variables replaced
      */
     public String message() {
-        final StringSubstitutor sub = new StringSubstitutor(this.vars);
-        return sub.replace(this.message);
+        String msg = this.message
+                .replace("${found}", Objects.toString(found))
+                .replace("${length}", found == null ? "-1" : String.valueOf(found.length()));
+        return msg;
     }
 
     /**
-     * Sets a "found" and "length" variable for messages text
+     * Sets the content of the {@code found} placeholder in the message text.
+     * @param found content
+     * @return this
      */
-    void setFound(final String found) {
-        this.vars.put("found", found);
-        if (found != null) {
-            this.vars.put("length", String.valueOf(found.length()));
-        }
+    BicValidationResult setFound(final String found) {
+        this.found = found;
+        return this;
     }
 
 }
