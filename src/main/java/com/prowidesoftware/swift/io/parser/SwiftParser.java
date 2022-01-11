@@ -666,7 +666,7 @@ public class SwiftParser {
                      */
                     /// TODO review this log seems to be part of an infinite loop
                     log.severe("malformed message: exit by bracket");
-                    //				break;
+                    // break;
                 case ':':
                     // get the tag text
                     end = findEndOfTagByLineFeed(s, start, isTextBlock);

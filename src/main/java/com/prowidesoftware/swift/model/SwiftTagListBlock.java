@@ -1653,9 +1653,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * <p>
      * For example given the block [20, 21, 32A, 54, 36, 36, 58B, 72]
      * <ul>
-     * 	<li>search tags [32A, 36, 72] will return the subblock [32A, 36, 36, 72] notice repetitions are returned</li>
-     * 	<li>search tags [36, 32A, 72] will return the subblock [36, 36, 72] notice order in search is important</li>
-     * 	<li>search tags [36, 99, 72] will return the subblock [36, 36, 72] notice partial match is also returned</li>
+     *   <li>search tags [32A, 36, 72] will return the subblock [32A, 36, 36, 72] notice repetitions are returned</li>
+     *   <li>search tags [36, 32A, 72] will return the subblock [36, 36, 72] notice order in search is important</li>
+     *   <li>search tags [36, 99, 72] will return the subblock [36, 36, 72] notice partial match is also returned</li>
      * </ul>
      *
      * @param startIndex optional starting offset, defaults to zero to search from the beginning of the block

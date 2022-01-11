@@ -107,4 +107,5 @@ public class Field69DTest extends AbstractFieldTest {
         assertEquals("ONGO", f.getComponent4());
     }
 
-}	
+}
+
