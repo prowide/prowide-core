@@ -52,7 +52,7 @@ dependencies {
 
 	compileOnly 'javax.persistence:javax.persistence-api:2.2'
 	compileOnly 'javax.xml.bind:jaxb-api:2.3.1'
-  compileOnly 'javax.validation:validation-api:2.0.1.Final'
+  	compileOnly 'javax.validation:validation-api:2.0.1.Final'
 	testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
 	testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.8.4'
