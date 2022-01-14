@@ -1,9 +1,24 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -14,11 +29,11 @@ public class LineWrapperTest {
 
     @Test
     public void testWrapIntoList() {
-        assertEquals(List.of(), LineWrapper.wrapIntoList(null, -1));
-        assertEquals(List.of(), LineWrapper.wrapIntoList(null, 20));
-        assertEquals(List.of(""), LineWrapper.wrapIntoList("", 20));
-        assertEquals(List.of("abc"), LineWrapper.wrapIntoList("abc", 3));
-        assertEquals(List.of("abc"), LineWrapper.wrapIntoList("     abc", 3));
+        assertEquals(Collections.emptyList(), LineWrapper.wrapIntoList(null, -1));
+        assertEquals(Collections.emptyList(), LineWrapper.wrapIntoList(null, 20));
+        assertEquals(Arrays.asList(""), LineWrapper.wrapIntoList("", 20));
+        assertEquals(Arrays.asList("abc"), LineWrapper.wrapIntoList("abc", 3));
+        assertEquals(Arrays.asList("abc"), LineWrapper.wrapIntoList("     abc", 3));
     }
 
     @Test

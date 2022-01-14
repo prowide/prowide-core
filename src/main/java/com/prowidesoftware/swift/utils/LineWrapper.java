@@ -1,14 +1,24 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.prowidesoftware.swift.utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Static utility class to wrap character data into lines.
  *
- * @since SRU2021-9.2.9
+ * @since 9.2.11
  * @author Markus Spann
  */
 public final class LineWrapper {
@@ -34,7 +44,7 @@ public final class LineWrapper {
         if (wrapped.isEmpty()) {
             return null;
         }
-        CharSequence newLineSeq = Objects.requireNonNullElse(_newLineSeq, System.lineSeparator());
+        CharSequence newLineSeq = _newLineSeq != null? _newLineSeq : System.lineSeparator();
         return String.join(newLineSeq, wrapped);
     }
 
@@ -48,7 +58,7 @@ public final class LineWrapper {
      */
     public static List<String> wrapIntoList(final CharSequence _str, final int _width) {
         if (_str == null) {
-            return List.of();
+            return Collections.emptyList();
         }
 
         final int width = Math.max(1, _width);
@@ -56,7 +66,7 @@ public final class LineWrapper {
         final String str = lstripChar(_str, wrapChar);
 
         if (str.length() <= width) {
-            return List.of(str); // no wrapping required
+            return Collections.unmodifiableList(Arrays.asList(str)); // no wrapping required
         }
 
         final int strLen = str.length();
