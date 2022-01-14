@@ -266,12 +266,12 @@ RELEASE 7.9.3 - October 2017 - LTS version for SRU2017
   * JRE requirement increased to Java 1.6
   * Added API in BIC to return the distinguished name (DN) for a BIC
   * Added equalsIgnoreCR in Tag to compare values regardless of carriage return character being present or not in new lines
-  *	Fixed MxParser#parseBusinessApplicationHeaderV01 (it was setting the FinInstnId/Nm as BIC)
+  * Fixed MxParser#parseBusinessApplicationHeaderV01 (it was setting the FinInstnId/Nm as BIC)
   * Removed invalid component in field 86J
   * Fixed order of components in fields 98J and 98K
-  *	Completed the component labels for all fields
-  *	Changed field 22C structure into individual components for the <SB-LC> function
-  *	Enhanced fields parse/serialization to preserve any whitespace in a component
+  * Completed the component labels for all fields
+  * Changed field 22C structure into individual components for the <SB-LC> function
+  * Enhanced fields parse/serialization to preserve any whitespace in a component
 
 RELEASE 7.9.2 - August 2017
   * Fixed FINWriterVisitor to prevent printing 'null' tag values
@@ -453,7 +453,7 @@ RELEASE 7.7
   * Changed sender and receiver attributes for MtSwiftMessage to hold BIC8 instead of full LT identifiers.
   * Deprecated the use of model message inside MtSwiftMessage
   * Simplified distribution zip with -sources and -javadoc jars
- 
+
 RELEASE 7.6 - October 2014
   * New BIC API: isTestAndTraining(), getLogicalTerminalIdentifier(), bic8() and bic11()
   * New model for LT addresses, and its related API in header classes
@@ -492,7 +492,7 @@ RELEASE 7.5 - August 2014
   * In Field* void set changed to Class set so we can support the code style new Field().setThis().setThat().setThatToo()
   * Added Field.asTag()
   * Added option in XMLWriterVisitor to serialize field instead of tag
-	
+
 RELEASE 7.4 - March 2014
   * In BIC added subtype attribute and getBranch method
   * ReaderIterator to read a file from a classpath resource and split its content by the '$' symbol
@@ -531,7 +531,7 @@ RELEASE 7.3 - January 2014
   * Added Tag.startsWith
   * Added Tag.contains
   * Added PPCFileReader iterator to read and split pc connect files
-		
+
 RELEASE 7.2 - September 2013
   * Added Field.letterOption
   * Added SwiftTagListBlock.getSubBlockBeforeFirst
@@ -718,7 +718,7 @@ RELEASE 5.0 - June 2007
   * Added constant for possible values for application id to SwiftBlock1.
   * Updated dependency: hsqldb 1.8.0.4 -> hsqldb 1.8.0.7.
   * Updated dependency: hibernate 3.1.3 -> hibernate 3.2.3.ga.
-	
+
 RELEASE 4.0 - April 2007
   * Moving to junit 4 - some new tests are being written with junit4, this should make testing some features singificantly easier.
   * Move size and isEmpty methods to subclasses.
@@ -784,12 +784,12 @@ RELEASE 3.1
 
 RELEASE 3.0-RC2
   * Build: Added release.name property to manifest.
-	
+
 RELEASE 3.0-RC1
   * Build: added selection of tests known to fail and those known to pass.
   * Fixed persistence mapping.
   * Improved build and added control to exclude tests that are know to fail.
-  * Model simplification: SwiftBlockN classes are being removed in favor of base class SwiftBlock	removed list of blocks in message which was confusing when not all blocks present.
+  * Model simplification: SwiftBlockN classes are being removed in favor of base class SwiftBlock removed list of blocks in message which was confusing when not all blocks present.
   * SwiftBlock (base class) and subclasses are mapped and persisted ok, either the base class or the subclasses.
   * Added many tests for hiberante persistence of SwiftMessage hierarchy.
   * Added XML Visitor to write a swift message to an XML representation.

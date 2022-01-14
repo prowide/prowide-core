@@ -30,9 +30,9 @@ import java.util.logging.Level;
  * Exampe usage scenario<br>
  * <pre>IBAN iban = new IBAN("ES2153893489");
  * if (iban.isValid())
- * 		System.out.println("ok");
+ *     System.out.println("ok");
  * else
- * 		System.out.println("problem with iban: "+iban.getInvalidCause());
+ *     System.out.println("problem with iban: "+iban.getInvalidCause());
  * </pre>
  *
  * @since 3.3

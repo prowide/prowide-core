@@ -367,11 +367,11 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     /**
      * Message type identification as specify by SWIFT.
      * <ul>
-     * 	<li>For MT: fin.type[.variant] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
-     * 	<li>For MX: the message business area, type, variant and version; for example: camt.034.001.02</li>
-     * 	<li>For acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
-     * 	<li>For non-acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
-     * 	<li>For other service messages the identifier is left <code>null</code></li>
+     *   <li>For MT: fin.type[.variant] for example fin.103.STP, fin.103.REMIT, fin.202, fin.202.COV</li>
+     *   <li>For MX: the message business area, type, variant and version; for example: camt.034.001.02</li>
+     *   <li>For acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_ACK}</li>
+     *   <li>For non-acknowledge service messages {@link AbstractSwiftMessage#IDENTIFIER_NAK}</li>
+     *   <li>For other service messages the identifier is left <code>null</code></li>
      * </ul>
      */
     public String getIdentifier() {

@@ -1376,10 +1376,10 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * Gets a UUID (User Unique Identifier) for the message conformed by:
      *
      * <ul>
-     * 	<li>Direction: A single-character direction indicator; "I" for an outgoing message (input to the network) and "O" for an incoming message (output from the network). Defaults to "I".</li>
-     * 	<li>The correspondent BIC 11 code; the receiver for an outgoing messages and the sender for an incoming message.</li>
-     * 	<li>Message type: the 3-character number identifying the specific message.</li>
-     * 	<li>Reference: field 20 or field 20C:SEME returned by {@link SwiftMessageUtils#reference(SwiftMessage)}</li>
+     *   <li>Direction: A single-character direction indicator; "I" for an outgoing message (input to the network) and "O" for an incoming message (output from the network). Defaults to "I".</li>
+     *   <li>The correspondent BIC 11 code; the receiver for an outgoing messages and the sender for an incoming message.</li>
+     *   <li>Message type: the 3-character number identifying the specific message.</li>
+     *   <li>Reference: field 20 or field 20C:SEME returned by {@link SwiftMessageUtils#reference(SwiftMessage)}</li>
      * </ul>
      *
      * <p>Notice despite the name this identifier is unique only in the context of a specific message management platform,
@@ -1484,28 +1484,28 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * <pre>
      * { "version": 2, "timestamp": "2016-08-26T23:57:36Z", data": {
      * "block1": {
-     * 		"applicationId": "F",
-     * 		"serviceId": "01",
-     * 		"logicalTerminal": "FOOSEDR0AXXX",
-     * 		"sessionNumber": "0000",
-     * 		"sequenceNumber": "000000"
+     *     "applicationId": "F",
+     *     "serviceId": "01",
+     *     "logicalTerminal": "FOOSEDR0AXXX",
+     *     "sessionNumber": "0000",
+     *     "sequenceNumber": "000000"
      * } ,
      * "block2": {
-     *  	"messageType": "103",
-     *  	"receiverAddress": "FOORECV0XXXX",
-     *  	"messagePriority": "N",
-     *  	"deliveryMonitoring": "null",
-     *  	"obsolescencePeriod": "null"
+     *     "messageType": "103",
+     *     "receiverAddress": "FOORECV0XXXX",
+     *     "messagePriority": "N",
+     *     "deliveryMonitoring": "null",
+     *     "obsolescencePeriod": "null"
      *  }
      *  "block4": {
-     *  	"tags": [
-     *        { "20": "REFERENCE" },
-     *        { "23B": "CRED" },
-     *        { "32A": "130204USD1234567,89" },
-     *        { "50K": "/12345678901234567890\nFOOBANKXXXXX" },
-     *        { "59": "/12345678901234567890\nJOE DOE" },
-     *        { "71A": "OUR" }
-     *  		]
+     *      "tags": [
+     *          { "20": "REFERENCE" },
+     *          { "23B": "CRED" },
+     *          { "32A": "130204USD1234567,89" },
+     *          { "50K": "/12345678901234567890\nFOOBANKXXXXX" },
+     *          { "59": "/12345678901234567890\nJOE DOE" },
+     *          { "71A": "OUR" }
+     *      ]
      *    }
      *  }
      *  </pre>

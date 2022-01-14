@@ -40,21 +40,21 @@ import java.util.GregorianCalendar;
  * This class provides methods to convert field components to objects.
  * It handles for example; dates, currencies and general functions defined in the SWIFT standard.
  * <ul>
- * 		<li>DATE1 MMDD</li>
- * 		<li>DATE2 YYMMDD</li>
- * 		<li>DATE3 YYMM</li>
- * 		<li>DATE4 YYYYMMDD</li>
- * 		<li>YEAR YYYY</li>
- * 		<li>AMOUNT ###,### (digits with comma as decimal separator)</li>
- * 		<li>TIME2 HHmmss</li>
- * 		<li>TIME3 HH[mm]</li>
- * 		<li>BOOL Y/N</li>
- * 		<li>DATETIME YYYYMMDDHHMM</li>
- * 		<li>DATETIME with short year YYMMDDHHMM</li>
- * 		<li>DAYTIME DDHHMM</li>
- * 		<li>MONTHDAY MMDD</li>
- * 		<li>MIR</li>
- * 		<li>MOR</li>
+ *   <li>DATE1 MMDD</li>
+ *   <li>DATE2 YYMMDD</li>
+ *   <li>DATE3 YYMM</li>
+ *   <li>DATE4 YYYYMMDD</li>
+ *   <li>YEAR YYYY</li>
+ *   <li>AMOUNT ###,### (digits with comma as decimal separator)</li>
+ *   <li>TIME2 HHmmss</li>
+ *   <li>TIME3 HH[mm]</li>
+ *   <li>BOOL Y/N</li>
+ *   <li>DATETIME YYYYMMDDHHMM</li>
+ *   <li>DATETIME with short year YYMMDDHHMM</li>
+ *   <li>DAYTIME DDHHMM</li>
+ *   <li>MONTHDAY MMDD</li>
+ *   <li>MIR</li>
+ *   <li>MOR</li>
  * </ul>
  *
  * @author sebastian
@@ -266,9 +266,9 @@ public class SwiftFormatUtils {
     /**
      * Parses a Number into a SWIFT string number ####,## with truncated zero decimals and mandatory decimal separator.
      * <ul>
-     * 	<li>Example: 1234.00 -&gt; 1234,</li>
-     * 	<li>Example: 1234 -&gt; 1234,</li>
-     * 	<li>Example: 1234.56 -&gt; 1234,56</li>
+     *   <li>Example: 1234.00 -&gt; 1234,</li>
+     *   <li>Example: 1234 -&gt; 1234,</li>
+     *   <li>Example: 1234.56 -&gt; 1234,56</li>
      * </ul>
      *
      * @param number to parse
@@ -312,9 +312,9 @@ public class SwiftFormatUtils {
     /**
      * Parses a Number into a SWIFT string number ####,## with truncated zero decimals and mandatory decimal separator.
      * <ul>
-     * 	<li>Example: 1234.00 -&gt; 1234,</li>
-     * 	<li>Example: 1234 -&gt; 1234,</li>
-     * 	<li>Example: 1234.56 -&gt; 1234,56</li>
+     *   <li>Example: 1234.00 -&gt; 1234,</li>
+     *   <li>Example: 1234 -&gt; 1234,</li>
+     *   <li>Example: 1234.56 -&gt; 1234,56</li>
      * </ul>
      *
      * @param bigDecimal to parse

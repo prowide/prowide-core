@@ -102,7 +102,7 @@ public class GeneralAPITest {
         assertNotNull(b4);
         assertEquals("TCPLO200919447", b4.getTagByName("20").getValue());
         assertEquals("091118USD2345234,3", b4.getTagByName("32A").getValue());
-//		assertEquals((new Double(2345234.3)).doubleValue(), mt202.getField32A().getComponent3AsNumber().doubleValue());
+     // assertEquals((new Double(2345234.3)).doubleValue(), mt202.getField32A().getComponent3AsNumber().doubleValue());
     }
 
 }

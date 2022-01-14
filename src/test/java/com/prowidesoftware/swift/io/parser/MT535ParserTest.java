@@ -114,4 +114,4 @@ public class MT535ParserTest extends BaseMessageTestcase {
     }
 
 }
-	
+
