@@ -137,44 +137,36 @@ public class BIC {
             return BicValidationResult.INVALID_LENGTH;
         }
         if (this.institution.length() != 4) {
-            BicValidationResult result = BicValidationResult.INVALID_INSTITUTION_LENGTH;
-            result.setFound(this.institution);
-            return result;
+            return BicValidationResult.INVALID_INSTITUTION_LENGTH
+                    .setFound(this.institution);
         }
         if (this.country.length() != 2) {
-            BicValidationResult result = BicValidationResult.INVALID_COUNTRY_LENGTH;
-            result.setFound(this.country);
-            return result;
+            return BicValidationResult.INVALID_COUNTRY_LENGTH
+                    .setFound(this.country);
         }
         if (this.location.length() != 2) {
-            BicValidationResult result = BicValidationResult.INVALID_LOCATION_LENGTH;
-            result.setFound(this.location);
-            return result;
+            return BicValidationResult.INVALID_LOCATION_LENGTH
+                    .setFound(this.location);
         }
         if (this.branch != null && this.branch.length() != 3) {
-            BicValidationResult result = BicValidationResult.INVALID_BRANCH_LENGTH;
-            result.setFound(this.branch);
-            return result;
+            return BicValidationResult.INVALID_BRANCH_LENGTH
+                    .setFound(this.branch);
         }
         if (!isUpperCase(this.institution)) {
-            BicValidationResult result = BicValidationResult.INVALID_INSTITUTION_CHARSET;
-            result.setFound(this.institution);
-            return result;
+            return BicValidationResult.INVALID_INSTITUTION_CHARSET
+                    .setFound(this.institution);
         }
         if (!IsoUtils.getInstance().isValidISOCountry(this.country)) {
-            BicValidationResult result = BicValidationResult.INVALID_COUNTRY;
-            result.setFound(this.country);
-            return result;
+            return BicValidationResult.INVALID_COUNTRY
+                    .setFound(this.country);
         }
         if (!isUpperCaseOrDigit(this.location)) {
-            BicValidationResult result = BicValidationResult.INVALID_LOCATION_CHARSET;
-            result.setFound(this.location);
-            return result;
+            return BicValidationResult.INVALID_LOCATION_CHARSET
+                    .setFound(this.location);
         }
         if (this.branch != null && !isUpperCaseOrDigit(this.branch)) {
-            BicValidationResult result = BicValidationResult.INVALID_BRANCH_CHARSET;
-            result.setFound(this.branch);
-            return result;
+            return BicValidationResult.INVALID_BRANCH_CHARSET
+                    .setFound(this.branch);
         }
         return BicValidationResult.OK;
     }

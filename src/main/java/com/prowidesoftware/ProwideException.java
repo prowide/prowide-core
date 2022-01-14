@@ -15,9 +15,13 @@
  */
 package com.prowidesoftware;
 
-import org.apache.commons.text.StringSubstitutor;
-
-import java.util.*;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.MissingResourceException;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 
 /**
@@ -29,7 +33,7 @@ public class ProwideException extends RuntimeException {
     private static final long serialVersionUID = 4645197208853563727L;
     private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(ProwideException.class.getName());
 
-    private Map<String, String> variables = null;
+    private final Map<String, String> variables = new HashMap<>();
 
     public ProwideException() {
         super();
@@ -93,18 +97,26 @@ public class ProwideException extends RuntimeException {
         }
         final String key = this.getClass().getSimpleName();
         try {
-            final String msg = bundle.getString(key);
-            if (this.variables != null) {
-                final StringSubstitutor sub = new StringSubstitutor(this.variables);
-                return sub.replace(msg);
-            } else {
-                return msg;
-            }
+            String msg = bundle.getString(key);
+            msg = substitute(msg, this.variables);
+            msg = substitute(msg, variables);
+            return msg;
         } catch (final MissingResourceException ignored) {
             log.fine("No localized message found for exception key '" + key + "'");
             return super.getMessage();
         }
 
+    }
+
+    static String substitute(String message, Map<String, String> variables) {
+        if (message == null) {
+            return null;
+        } else if (variables != null && !variables.isEmpty()) {
+            for (Entry<String, String> e : variables.entrySet()) {
+                message = message.replace("${" + e.getKey() + "}", e.getValue());
+            }
+        }
+        return message;
     }
 
     /**
@@ -114,9 +126,7 @@ public class ProwideException extends RuntimeException {
      * @param value variable value
      */
     protected void addVariable(final String key, final String value) {
-        if (this.variables == null) {
-            this.variables = new HashMap<>();
-        }
+        Objects.requireNonNull(key, "Key required");
         this.variables.put(key, value);
     }
 
@@ -127,10 +137,7 @@ public class ProwideException extends RuntimeException {
      * @return found variable value or null if not found
      */
     protected String getVariable(final String key) {
-        if (this.variables != null) {
-            return this.variables.get(key);
-        } else {
-            return null;
-        }
+        Objects.requireNonNull(key, "Key required");
+        return this.variables.get(key);
     }
 }
