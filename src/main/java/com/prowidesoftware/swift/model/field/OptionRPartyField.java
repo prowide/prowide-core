@@ -25,15 +25,15 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
+ *   <li><code>String</code></li>
+ *   <li><code>String</code></li>
+ *   <li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>parser pattern: <code>:S/S/S</code></li>
- * 		<li>components pattern: <code>SSS</code></li>
+ *   <li>parser pattern: <code>:S/S/S</code></li>
+ *   <li>components pattern: <code>SSS</code></li>
  * </ul>
  *
  * @since 7.11.0

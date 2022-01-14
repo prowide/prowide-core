@@ -13,7 +13,7 @@ out
 **/target/
 .checkstyle
 pom.xml
-
+release.sh
 .idea/gradle.xml
 .idea/jarRepositories.xml
 .idea/misc.xml

@@ -29,9 +29,9 @@ import java.io.StringWriter;
 /**
  * This interface provides a general conversion service between three different formats:
  * <ul>
- * 	<li><b>FIN</b>: SWIFT raw format for MT messages (ISO 15022).</li>
- *  <li><b>XML</b>: A proprietary XML representation of SWIFT MT messages.</li>
- *  <li><b>SwiftMessage</b>: Java model of SWIFT MT messages.</li>
+ *   <li><b>FIN</b>: SWIFT raw format for MT messages (ISO 15022).</li>
+ *   <li><b>XML</b>: A proprietary XML representation of SWIFT MT messages.</li>
+ *   <li><b>SwiftMessage</b>: Java model of SWIFT MT messages.</li>
  * </ul>
  * <p>This class may be used as a serializer.
  * <p>All methods in this class are <b>thread safe</b>.

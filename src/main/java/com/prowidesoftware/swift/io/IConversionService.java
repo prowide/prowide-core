@@ -20,9 +20,9 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 /**
  * This interface provides a general conversion service between three different formats:
  * <ul>
- * 	<li><b>FIN</b>: SWIFT message format as used by SWIFTNet (ISO 15022 compliance).</li>
- *  <li><b>XML</b>: WIFE's XML representation of SWIFT messages.</li>
- *  <li><b>SwiftMessage</b>: WIFE's java object model of SWIFT messages.</li>
+ *   <li><b>FIN</b>: SWIFT message format as used by SWIFTNet (ISO 15022 compliance).</li>
+ *   <li><b>XML</b>: WIFE's XML representation of SWIFT messages.</li>
+ *   <li><b>SwiftMessage</b>: WIFE's java object model of SWIFT messages.</li>
  * </ul>
  *
  * @author sebastian

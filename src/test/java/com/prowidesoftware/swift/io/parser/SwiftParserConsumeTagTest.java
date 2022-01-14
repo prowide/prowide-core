@@ -294,7 +294,7 @@ public class SwiftParserConsumeTagTest {
                 ":16S:GENL\r\n" +
                 ":16R:SUBSAFE\r\n" +
                 ":16R:FIN\r\n" +
-                //				:35B:ISIN XS0222550880 4,125? LANXESS FIN.B.V.NT.V.05 21.6 :12
+                //  :35B:ISIN XS0222550880 4,125? LANXESS FIN.B.V.NT.V.05 21.6 :12
                 ":35B:/US/AGGR_AVAI\r\n" +
                 "AGGR=300, AVAI:=200\r\n" +
                 ":16R:FIA\r\n" +

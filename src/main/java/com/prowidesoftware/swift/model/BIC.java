@@ -29,10 +29,10 @@ import java.util.Objects;
  *
  * <p>It is composed by:
  * <ul>
- * 	<li>4 letters: institution code or bank code.
- * 	<li>2 letters: ISO 3166-1 alpha-2 country code
- * 	<li>2 letters or digits: location code
- * 	<li>3 letters: branch code
+ *   <li>4 letters: institution code or bank code.
+ *   <li>2 letters: ISO 3166-1 alpha-2 country code
+ *   <li>2 letters or digits: location code
+ *   <li>3 letters: branch code
  * </ul>
  *
  * @since 3.3

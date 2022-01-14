@@ -73,24 +73,24 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
 
     /**
      * String of 2 characters containing Service ID as follows:<br>
-     * 01 = GPA/FIN	Message (system and user-to-user)<br>
-     * 02 = GPA	Login<br>
-     * 03 = GPA	Select<br>
-     * 05 = FIN	Quit<br>
-     * 06 = GPA	Logout<br>
-     * 12 = GPA	System Remove AP Request<br>
-     * 13 = GPA	System Abort AP Confirmation<br>
-     * 14 = GPA	System Remove LT Request<br>
-     * 15 = GPA	System Abort LT Confirmation<br>
-     * 21 = GPA/FIN	Message (ACK/NAK/UAK/UNK)<br>
-     * 22 = GPA	Login ACK (LAK)<br>
-     * 23 = GPA	Select ACK (SAK)<br>
-     * 25 = FIN	Quit ACK<br>
-     * 26 = GPA	Logout ACK<br>
-     * 33 = GPA	User Abort AP Request<br>
-     * 35 = GPA	User Abort LT Request<br>
-     * 42 = GPA	Login NAK (LNK)<br>
-     * 43 = GPA	Select NAK (SNK)
+     * 01 = GPA/FIN Message (system and user-to-user)<br>
+     * 02 = GPA Login<br>
+     * 03 = GPA Select<br>
+     * 05 = FIN Quit<br>
+     * 06 = GPA Logout<br>
+     * 12 = GPA System Remove AP Request<br>
+     * 13 = GPA System Abort AP Confirmation<br>
+     * 14 = GPA System Remove LT Request<br>
+     * 15 = GPA System Abort LT Confirmation<br>
+     * 21 = GPA/FIN Message (ACK/NAK/UAK/UNK)<br>
+     * 22 = GPA Login ACK (LAK)<br>
+     * 23 = GPA Select ACK (SAK)<br>
+     * 25 = FIN Quit ACK<br>
+     * 26 = GPA Logout ACK<br>
+     * 33 = GPA User Abort AP Request<br>
+     * 35 = GPA User Abort LT Request<br>
+     * 42 = GPA Login NAK (LNK)<br>
+     * 43 = GPA Select NAK (SNK)
      * It is set by default to 01 (FIN messages).
      */
     private String serviceId = "01";

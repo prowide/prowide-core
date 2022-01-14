@@ -26,18 +26,18 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
+ *   <li><code>String</code></li>
+ *   <li><code>String</code></li>
+ *   <li><code>String</code></li>
+ *   <li><code>String</code></li>
+ *   <li><code>String</code></li>
+ *   <li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>parser pattern: <code>[[/c][/S]$]S[$S]0-3</code></li>
- * 		<li>components pattern: <code>SSSSSS</code></li>
+ *   <li>parser pattern: <code>[[/c][/S]$]S[$S]0-3</code></li>
+ *   <li>components pattern: <code>SSSSSS</code></li>
  * </ul>
  *
  * @since 7.11.0

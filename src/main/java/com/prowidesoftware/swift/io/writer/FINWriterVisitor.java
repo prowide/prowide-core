@@ -71,9 +71,9 @@ public class FINWriterVisitor implements IMessageVisitor {
         // initialize status
         this.block4asText = true;
 
-        // If app identifier NOT 'F' OR service identifier NOT '01'  	=> USE TAG-BLOCK  syntax
-        // If message type is category 0                      			=> USE TAG-BLOCK  syntax
-        // Otherwise													=> USE TEXT-BLOCK syntax
+        // If app identifier NOT 'F' OR service identifier NOT '01'  => USE TAG-BLOCK  syntax
+        // If message type is category 0                             => USE TAG-BLOCK  syntax
+        // Otherwise                                                 => USE TEXT-BLOCK syntax
 
         SwiftBlock1 b1 = m != null ? m.getBlock1() : null;
         // if b1 not empty
