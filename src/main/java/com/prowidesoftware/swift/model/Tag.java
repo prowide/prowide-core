@@ -23,30 +23,16 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Representation of a swift field in a message.
+ * Representation of an MT field in a message as a plain key/value tuple.
  *
- * <p>The "Tag" naming is used in the SWIFT standard to refer the fields identifiers
- * composed by a number and an optional letter option, for example 32A. This class
- * is used to model the complete field structure including both the field name ("Tag")
- * and the field value.
- *
- * <p>Instances of this class may have a list of unparsed texts (UnparsedTextList).
- * For easy access, methods have been created that first ensure the lists exists (the
- * real object is created and then call the base method).<br>
- * However, not all the base list methods have been implemented. If you need to use not
- * exposed functionality, retrieve the underlying list with (see {@link #getUnparsedTexts()})
- *
- * @author sebastian
+ * <p>The "Tag" naming is used in the SWIFT standard to refer the fields identifiers composed by a number and an
+ * optional letter option, for example 32A. This class is used to model the complete field structure including both
+ * the field name ("Tag") and the field value.
  */
 public class Tag implements Serializable {
-    @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Tag.class.getName());
-
-    private static final long serialVersionUID = -1066430327311949399L;
 
     /**
      * Name of the tag, usually a number that may be followed by a letter.
-     * This value may be null.
      */
     protected String name;
 
@@ -61,9 +47,20 @@ public class Tag implements Serializable {
     protected UnparsedTextList unparsedTexts = null;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public Tag() {
+    }
+
+    /**
+     * Copy constructor.
+     *
+     * @param tag source tag to copy content from
+     * @since 9.2.11
+     */
+    public Tag(Tag tag) {
+        this.name = tag.getName();
+        this.value = tag.getValue();
     }
 
     /**
@@ -200,7 +197,6 @@ public class Tag implements Serializable {
      *
      * @return a string with the value of the tag or null if the value was not set
      */
-    //TODO review parser implementation and check if always null is set or empty string
     public String getValue() {
         return value;
     }

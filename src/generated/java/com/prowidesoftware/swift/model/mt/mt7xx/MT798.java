@@ -343,5 +343,63 @@ public class MT798 extends AbstractMT implements Serializable {
 	
 
 
+	/**
+	 * Creates a new messages with the content of the enclosed sub-message type.
+	 *
+	 * The headers are a clone to the actual envelop MT798 headers, changing the message type in block 2 with the
+	 * value of field 12 in the envelop. The block4 will contain all fields following 77E in the envelop (including
+	 * for example the message index in 27A and customer reference in 21P when present).
+	 *
+	 * Notice the return type is a {@link SwiftMessage} since this model has a very lenient structure. If the sub-message
+	 * type is a well-formed and known MT you can further transform it into a specific MT object with the
+	 * {@link SwiftMessage#toMT()} method.
+	 *
+ 	 * @return a model containing the fields from the enclosed sub message
+	 * @since 9.2.11
+	 */
+	public SwiftMessage getSubMessage() {
+		Field12 field12 = getField12();
+		if (field12 == null) {
+			return null;
+		}
+		SwiftMessage result = new SwiftMessage(true);
 
+		if (this.m.getBlock1() != null) {
+			result.getBlock1().setValue(this.m.getBlock1().getValue());
+		}
+
+		if (this.m.getBlock2() != null) {
+			if (this.m.isInput()) {
+				SwiftBlock2Input currentBlock2 = (SwiftBlock2Input) this.m.getBlock2();
+				SwiftBlock2Input newBlock2 = new SwiftBlock2Input(currentBlock2.getValue());
+				newBlock2.setMessageType(field12.getValue());
+				result.setBlock2(newBlock2);
+			} else {
+				SwiftBlock2Output currentBlock2 = (SwiftBlock2Output) this.m.getBlock2();
+				SwiftBlock2Output newBlock2 = new SwiftBlock2Output(currentBlock2.getValue());
+				newBlock2.setMessageType(field12.getValue());
+				result.setBlock2(newBlock2);
+			}
+		}
+
+		if (this.m.getBlock3() != null) {
+			for (Tag tag : this.m.getBlock3().getTags()) {
+				result.getBlock3().append(new Tag(tag));
+			}
+		}
+
+		if (this.m.getBlock4() != null) {
+			boolean found77E = false;
+			for (Tag tag : this.m.getBlock4().getTags()) {
+				if (found77E) {
+					result.getBlock4().append(new Tag(tag));
+				}
+				if (Field77E.NAME.equals(tag.getName())) {
+					found77E = true;
+				}
+			}
+		}
+
+		return result;
+	}
 }
