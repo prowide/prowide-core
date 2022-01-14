@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 RELEASE 9.2.11
+  * Added LineWrapper (utils) to replace Apache's WordUtils.wrap and thus the commons-text dependency
   * Added convenient method in the envelop message MT798 to get the sub-message type as a SwiftMessage
   * Added a copy constructor to the Tag class
 
