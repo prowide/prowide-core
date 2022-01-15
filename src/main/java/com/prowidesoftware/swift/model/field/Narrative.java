@@ -16,8 +16,8 @@
 package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import com.prowidesoftware.swift.utils.LineWrapper;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.text.WordUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -34,36 +34,36 @@ import java.util.*;
  * <p>Supported line formats are:
  * <pre>
  * Format 1
- *      Line 1: 	    /8a/[additional information] 			    (Code)(Narrative)
- *      Lines 2-n:      /8a/[additional information] 			    (Code)(Narrative)
- *                      [//continuation of additional information] 	(Narrative)
+ *      Line 1:         /8a/[additional information]               (Code)(Narrative)
+ *      Lines 2-n:      /8a/[additional information]               (Code)(Narrative)
+ *                      [//continuation of additional information] (Narrative)
  *
  * Format 2
- *      Line 1: 	    /8c/[additional information] 			    (Code)(Narrative)
- *      Lines 2-n:      /8c/[additional information] 			    (Code)(Narrative)
- *                      [//continuation of additional information] 	(Narrative)
+ *      Line 1:         /8c/[additional information]                Code)(Narrative)
+ *      Lines 2-n:      /8c/[additional information]               (Code)(Narrative)
+ *                      [//continuation of additional information] (Narrative)
  *
  * Format 3
- *      Line 1: 	    /8c/[3!a13d][additional information] 		(Code)(Currency)(Amount)(Narrative)
- *      Lines 2-6: 	    /8c/[3!a13d][additional information] 		(Code)(Currency)(Amount)(Narrative)
- *                      [//continuation of additional information] 	(Narrative)
+ *      Line 1:         /8c/[3!a13d][additional information]       (Code)(Currency)(Amount)(Narrative)
+ *      Lines 2-6:      /8c/[3!a13d][additional information]       (Code)(Currency)(Amount)(Narrative)
+ *                      [//continuation of additional information] (Narrative)
  *
  * Format 4
- *      Line 1: 	    /8c/[additional information] 			    (Code)(Narrative)
- *      Lines 2-3: 	    [//continuation of additional information] 	(Narrative)
+ *      Line 1:         /8c/[additional information]               (Code)(Narrative)
+ *      Lines 2-3:      [//continuation of additional information] (Narrative)
  *      Variant for cat 1 with country
- *      Line 1: 	    /8c/2!a[//additional information] 		    (Code)(Country)(Narrative)
- *      Lines 2-3: 	    [//continuation of additional information] 	(Narrative)
+ *      Line 1:         /8c/2!a[//additional information]          (Code)(Country)(Narrative)
+ *      Lines 2-3:      [//continuation of additional information] (Narrative)
  *
  * Format 5
- *      Line 1:		    /2n/[supplement 1][/supplement2]		    (Query Number)(Narrative 1)(Narrative 2)
- *      Lines 2-6	    /2n/[supplement 1][/supplement2]
+ *      Line 1:         /2n/[supplement 1][/supplement2]           (Query Number)(Narrative 1)(Narrative 2)
+ *      Lines 2-6       /2n/[supplement 1][/supplement2]
  *                      [//continuation of supplementary information]
  *
  * Format 6
- *      Line 1: 	    /6c/[additional information] 		        (Code)(Narrative)
- *      Lines 2-100:	/6c/[additional information] 	            (Code)(Narrative)
- *                      [continuation of additional information] 	(Narrative) (cannot start with slash)
+ *      Line 1:         /6c/[additional information]               (Code)(Narrative)
+ *      Lines 2-100:    /6c/[additional information]               (Code)(Narrative)
+ *                      [continuation of additional information]   (Narrative) (cannot start with slash)
  *
  * Format 7
  *      Code between slashes at the beginning of a line
@@ -368,7 +368,7 @@ public class Narrative {
          * Adds structured narrative content composed by codeword and wrapped text.
          * Will be serialized as:
          * <pre>
-         * Line 1: 	    /codeword/[narrative]
+         * Line 1:      /codeword/[narrative]
          * Lines 2-n:   [//continuation of narrative]
          * </pre>
          *
@@ -389,7 +389,7 @@ public class Narrative {
          * Adds structured narrative content composed by codeword, currency, amount and optional wrapped text.
          * Will be serialized as:
          * <pre>
-         * Line 1: 	    /codeword/[currency][amount][narrative]
+         * Line 1:      /codeword/[currency][amount][narrative]
          * Lines 2-n:   [//continuation of narrative]
          * </pre>
          *
@@ -415,8 +415,8 @@ public class Narrative {
          * Adds structured narrative content composed by codeword, country code and optional wrapped text.
          * Will be serialized as:
          * <pre>
-         * Line 1: 	    /codeword/country[//narrative]
-         * Lines 2-3: 	[//continuation of narrative]
+         * Line 1:      /codeword/country[//narrative]
+         * Lines 2-3:   [//continuation of narrative]
          * </pre>
          */
         public Builder addCodewordWithCountry(String codeword, String country, String narrative) {
@@ -437,11 +437,11 @@ public class Narrative {
          * This line formats are used for fields with query and response numbers.
          * Will be serialized as:
          * <pre>
-         * Line 1:		    /number/[narrative][/supplement]
-         * Lines 2-6	    [//continuation of supplement]
+         * Line 1:      /number/[narrative][/supplement]
+         * Lines 2-6    [//continuation of supplement]
          * or
-         * Line 1:		    /number/[narrative][/supplement]
-         * Lines 2-6	    [//continuation of narrative][/supplement]
+         * Line 1:      /number/[narrative][/supplement]
+         * Lines 2-6    [//continuation of narrative][/supplement]
          * </pre>
          *
          * @param number     the API accepts a String however this line structure is normally used with query/answer numbers as codewords
@@ -481,9 +481,8 @@ public class Narrative {
          * Adds unstructured narrative content wrapped into lines without any format or slash separator
          */
         public Builder addUnstructured(String narrative) {
-            String wrapped = WordUtils.wrap(narrative, lineLength, FINWriterVisitor.SWIFT_EOL, true);
-            String[] lines = wrapped.split(FINWriterVisitor.SWIFT_EOL);
-            this.unstructuredFragments.addAll(Arrays.asList(lines));
+            List<String> lines = LineWrapper.wrapIntoList(narrative, lineLength);
+            this.unstructuredFragments.addAll(lines);
             return this;
         }
 
@@ -499,12 +498,13 @@ public class Narrative {
             List<String> fragments = new ArrayList<>();
 
             // first line wrap should discount the prefix size
-            String wrap = WordUtils.wrap(narrative, lineLength - prefix.length(), "\n", true);
-            String[] lines = wrap.split("\n");
+            List<String> lines = LineWrapper.wrapIntoList(narrative, lineLength - prefix.length());
 
-            String firstLine = StringUtils.trimToNull(lines[0]);
-            if (firstLine != null) {
-                fragments.add(firstLine);
+            if (!lines.isEmpty()) {
+                String firstLine = StringUtils.trimToNull(lines.get(0));
+                if (firstLine != null) {
+                    fragments.add(firstLine);
+                }
             }
 
             if (!fragments.isEmpty()) {
@@ -514,15 +514,9 @@ public class Narrative {
                 if (remainder != null) {
 
                     // following lines wrap should discount the "//" that would be added in the serialization
-                    wrap = WordUtils.wrap(remainder, lineLength - 2, "\n", true);
-                    lines = wrap.split("\n");
+                    lines = LineWrapper.wrapIntoList(remainder, lineLength - 2);
 
-                    for (String line : lines) {
-                        String fragment = StringUtils.trimToNull(line);
-                        if (fragment != null) {
-                            fragments.add(fragment);
-                        }
-                    }
+                    fragments.addAll(lines);
                 }
             }
 

@@ -186,54 +186,54 @@ public class AbstractMTTest {
         }
     }
 
-	/*
-	@Test 
-	public void testRemoveInnerSequences1() {
-		SwiftTagListBlock s1 = new SwiftTagListBlock();
-		s1.append(TestUtils.newSeq("FOO", "20", "20"));
-		SwiftTagListBlock s2 = AbstractMT.removeInnerSequences(s1);
-		assertEquals(4, s2.size());
-		assertEquals(new Tag("16R", "FOO"), s2.getTag(0));
-		assertEquals(new Tag("20", ""), s2.getTag(1));
-		assertEquals(new Tag("20", ""), s2.getTag(2));
-		assertEquals(new Tag("16S", "FOO"), s2.getTag(3));
-	}
+    /*
+    @Test
+    public void testRemoveInnerSequences1() {
+        SwiftTagListBlock s1 = new SwiftTagListBlock();
+        s1.append(TestUtils.newSeq("FOO", "20", "20"));
+        SwiftTagListBlock s2 = SwiftMessageUtils.removeInnerSequences(s1);
+        assertEquals(4, s2.size());
+        assertEquals(new Tag("16R", "FOO"), s2.getTag(0));
+        assertEquals(new Tag("20", ""), s2.getTag(1));
+        assertEquals(new Tag("20", ""), s2.getTag(2));
+        assertEquals(new Tag("16S", "FOO"), s2.getTag(3));
+    }
 
-	@Test 
-	public void testRemoveInnerSequences2() {
-		SwiftTagListBlock s1 = new SwiftTagListBlock();
-		s1.append(new Tag("16R", "ABC"));
-		s1.append(new Tag("21", ""));
-		s1.append(TestUtils.newSeq("FOO", "20", "20"));
-		s1.append(new Tag("21", ""));
-		s1.append(new Tag("16S", "ABC"));
-		
-		SwiftTagListBlock s2 = AbstractMT.removeInnerSequences(s1);
-		assertEquals(4, s2.size());
-		assertEquals(new Tag("16R", "ABC"), s2.getTag(0));
-		assertEquals(new Tag("21", ""), s2.getTag(1));
-		assertEquals(new Tag("21", ""), s2.getTag(2));
-		assertEquals(new Tag("16S", "ABC"), s2.getTag(3));
-	}
-	
-	@Test 
-	public void testRemoveInnerSequences3() {
-		SwiftTagListBlock s1 = new SwiftTagListBlock();
-		s1.append(new Tag("16R", "ABC"));
-		s1.append(new Tag("21", ""));
-		s1.append(TestUtils.newSeq("FOO", "20", "20"));
-		s1.append(TestUtils.newSeq("FO2", "59", "59"));
-		s1.append(new Tag("21", ""));
-		s1.append(new Tag("16S", "ABC"));
-		
-		SwiftTagListBlock s2 = AbstractMT.removeInnerSequences(s1);
-		assertEquals(4, s2.size());
-		assertEquals(new Tag("16R", "ABC"), s2.getTag(0));
-		assertEquals(new Tag("21", ""), s2.getTag(1));
-		assertEquals(new Tag("21", ""), s2.getTag(2));
-		assertEquals(new Tag("16S", "ABC"), s2.getTag(3));
-	}
-	*/
+    @Test
+    public void testRemoveInnerSequences2() {
+        SwiftTagListBlock s1 = new SwiftTagListBlock();
+        s1.append(new Tag("16R", "ABC"));
+        s1.append(new Tag("21", ""));
+        s1.append(TestUtils.newSeq("FOO", "20", "20"));
+        s1.append(new Tag("21", ""));
+        s1.append(new Tag("16S", "ABC"));
+
+        SwiftTagListBlock s2 = SwiftMessageUtils.removeInnerSequences(s1);
+        assertEquals(4, s2.size());
+        assertEquals(new Tag("16R", "ABC"), s2.getTag(0));
+        assertEquals(new Tag("21", ""), s2.getTag(1));
+        assertEquals(new Tag("21", ""), s2.getTag(2));
+        assertEquals(new Tag("16S", "ABC"), s2.getTag(3));
+    }
+
+    @Test
+    public void testRemoveInnerSequences3() {
+        SwiftTagListBlock s1 = new SwiftTagListBlock();
+        s1.append(new Tag("16R", "ABC"));
+        s1.append(new Tag("21", ""));
+        s1.append(TestUtils.newSeq("FOO", "20", "20"));
+        s1.append(TestUtils.newSeq("FO2", "59", "59"));
+        s1.append(new Tag("21", ""));
+        s1.append(new Tag("16S", "ABC"));
+
+        SwiftTagListBlock s2 = SwiftMessageUtils.removeInnerSequences(s1);
+        assertEquals(4, s2.size());
+        assertEquals(new Tag("16R", "ABC"), s2.getTag(0));
+        assertEquals(new Tag("21", ""), s2.getTag(1));
+        assertEquals(new Tag("21", ""), s2.getTag(2));
+        assertEquals(new Tag("16S", "ABC"), s2.getTag(3));
+    }
+    */
 
     @Test
     public void testGetFields() throws IOException {

@@ -339,46 +339,46 @@ public class NarrativeResolver {
     }
 
     /**
-     * Line 1: 	    /8a/[additional information] 			    (Code)(Narrative)
-     * Lines 2-n:   /8a/[additional information] 			    (Code)(Narrative)
-     * [//continuation of additional information] 	(Narrative)
+     * Line 1:       /8a/[additional information]   (Code)(Narrative)
+     * Lines 2-n:    /8a/[additional information]   (Code)(Narrative)
+     * [//continuation of additional information]   (Narrative)
      */
     public static Narrative parseFormat1(Field f) {
         return parseFormat(f, 8, CODEWORDTYPE_UCASE, false, false, false, true);
     }
 
     /**
-     * Line 1: 	    /8c/[additional information] 			    (Code)(Narrative)
-     * Lines 2-n:   /8c/[additional information] 			    (Code)(Narrative)
-     * [//continuation of additional information] 	(Narrative)
+     * Line 1:       /8c/[additional information]   (Code)(Narrative)
+     * Lines 2-n:    /8c/[additional information]   (Code)(Narrative)
+     * [//continuation of additional information]   (Narrative)
      */
     public static Narrative parseFormat2(Field f) {
         return parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, false, false, true);
     }
 
     /**
-     * Line 1: 	    /8c/[3!a13d][additional information] 		(Code)(Currency)(Amount)(Narrative)
-     * Lines 2-6: 	/8c/[3!a13d][additional information] 		(Code)(Currency)(Amount)(Narrative)
-     * [//continuation of additional information] 	(Narrative)
+     * Line 1:       /8c/[3!a13d][additional information]  (Code)(Currency)(Amount)(Narrative)
+     * Lines 2-6:   /8c/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
+     * [//continuation of additional information]          (Narrative)
      */
     public static Narrative parseFormat3(Field f) {
         return parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, true, false, true);
     }
 
     /**
-     * Line 1: 	    /8c/[additional information] 			    (Code)(Narrative)
-     * Lines 2-3: 	[//continuation of additional information] 	(Narrative)
+     * Line 1:       /8c/[additional information]              (Code)(Narrative)
+     * Lines 2-3:   [//continuation of additional information] (Narrative)
      * Variant for cat 1 with country
-     * Line 1: 	    /8c/2!a[//additional information] 		    (Code)(Country)(Narrative)
-     * Lines 2-3: 	[//continuation of additional information] 	(Narrative)
+     * Line 1:       /8c/2!a[//additional information]         (Code)(Country)(Narrative)
+     * Lines 2-3:   [//continuation of additional information] (Narrative)
      */
     public static Narrative parseFormat4(Field f) {
         return parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, true, false, false, true);
     }
 
     /**
-     * Line 1:		/2n/[supplement 1][/supplement2]		        (Query Number)(Narrative 1)(Narrative 2)
-     * Lines 2-6	/2n/[supplement 1][/supplement2]
+     * Line 1:    /2n/[supplement 1][/supplement2]             (Query Number)(Narrative 1)(Narrative 2)
+     * Lines 2-6  /2n/[supplement 1][/supplement2]
      * [//continuation of supplementary information]
      */
     public static Narrative parseFormat5(Field f) {
@@ -386,9 +386,9 @@ public class NarrativeResolver {
     }
 
     /**
-     * Line 1: 	/6c/[additional information] 		(Code)(Narrative)
-     * Lines 2-100:	/6c/[additional information] 	(Code)(Narrative)
-     * [continuation of additional information] 	(Narrative) (cannot start with slash)
+     * Line 1:   /6c/[additional information]         (Code)(Narrative)
+     * Lines 2-100:  /6c/[additional information]     (Code)(Narrative)
+     * [continuation of additional information]       (Narrative) (cannot start with slash)
      */
     public static Narrative parseFormat6(Field f) {
         return parseFormat(f, 6, CODEWORDTYPE_UCASE_NUMBER, false, false, false, false);

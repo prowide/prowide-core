@@ -408,7 +408,7 @@ public class MT103ParserTest extends BaseMessageTestcase {
         assertEquals("0511029000000056", b3.getTagValue("108"));
 
         //check b4
-//		assertEquals(13, b4.countAll());
+     // assertEquals(13, b4.countAll());
         assertEquals("0511029000000056", b4.getTagValue("20"));
         assertEquals("/RNCTIME/1101+0000", b4.getTagValue("13C"));
         assertEquals("CRED", b4.getTagValue("23B"));

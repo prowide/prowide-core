@@ -523,28 +523,28 @@ public class SwiftMessageUtils {
      * This method is mainly useful for writing test cases. Instead of writing:
      * <pre><code>
      * MT535.SequenceB.newInstance(
-     * 		MT535.SequenceB1b.newInstance(
-     * 			MT535.SequenceB1b.newInstance(
-     * 				MT535.SequenceB1b1.newInstance(
-     * 					tags
-     * 				)
-     * 			)
-     * 		)
+     *     MT535.SequenceB1b.newInstance(
+     *         MT535.SequenceB1b.newInstance(
+     *             MT535.SequenceB1b1.newInstance(
+     *                 tags
+     *             )
+     *         )
+     *     )
      * );
      * </code></pre>
      * This method is the same with a much cleaner code literature:
      * <pre><code>
-     * 	SwiftMessageUtils.createSequenceWithParents(MT535.class, "B1b1", tags);
+     *   SwiftMessageUtils.createSequenceWithParents(MT535.class, "B1b1", tags);
      * </code></pre>
      *
      * <em>Note:</em><br>
      * Using
      * <pre><code>
-     * 	SwiftMessageUtils.createSequenceWithParents(MT535.class, "B", tags);
+     *   SwiftMessageUtils.createSequenceWithParents(MT535.class, "B", tags);
      * </code></pre>
      * Is virtually the same as:
      * <pre><code>
-     * 	MT535.SequenceB.newInstance(tags);
+     *   MT535.SequenceB.newInstance(tags);
      * </code></pre>
      *
      * @param mt           the MT class for which the sequence is to be created
