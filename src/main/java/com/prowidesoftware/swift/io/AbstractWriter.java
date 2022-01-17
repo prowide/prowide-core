@@ -15,7 +15,11 @@
  */
 package com.prowidesoftware.swift.io;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.*;
+import java.nio.charset.Charset;
 
 /**
  * Base implementation for message writers.
@@ -46,28 +50,48 @@ public abstract class AbstractWriter {
     }
 
     /**
-     * Constructs a writer to write content into a file.
-     *
+     * @deprecated use constructor signature with {@link Charset} parameter instead
      */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public AbstractWriter(final File file) throws FileNotFoundException {
         this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
     }
 
     /**
-     * Constructs a writer to write content into a file.
+     * @deprecated use constructor signature with {@link Charset} parameter instead
+     */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
+    public AbstractWriter(final String filename) throws FileNotFoundException {
+        this(new File(filename));
+    }
+
+    /**
+     * Constructs a writer to write content into a file using the specified charset.
      *
      * @param filename file to create
+     * @param _charset  charset
+     * @throws FileNotFoundException if file does not exist
      */
-    public AbstractWriter(final String filename) throws FileNotFoundException {
-        this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename)));
+    public AbstractWriter(final File _file, final Charset _charset) throws FileNotFoundException {
+        this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(_file), _charset != null ? _charset : Charset.defaultCharset()));
+    }
+
+    /**
+     * @deprecated use constructor signature with {@link Charset} parameter instead
+     */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
+    public AbstractWriter(final OutputStream stream) {
+        this.writer = new BufferedWriter(new OutputStreamWriter(stream, Charset.defaultCharset()));
     }
 
     /**
      * Constructs a writer to write content into a given stream.
      *
+     * @param _stream stream to write to
+     * @param _charset charset
      */
-    public AbstractWriter(final OutputStream stream) {
-        this.writer = new BufferedWriter(new OutputStreamWriter(stream));
+    public AbstractWriter(final OutputStream _stream, Charset _charset) {
+        this.writer = new BufferedWriter(new OutputStreamWriter(_stream, _charset != null ? _charset : Charset.defaultCharset()));
     }
 
     /**

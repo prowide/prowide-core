@@ -53,7 +53,6 @@ public final class Money implements Serializable {
      * @param amount   the value for the amount, may be null
      */
     public Money(final String currency, final BigDecimal amount) {
-        super();
         Validate.notNull(currency, "currency can not be null");
         this.currency = currency;
         if (amount == null) {
@@ -76,7 +75,6 @@ public final class Money implements Serializable {
      * @param amount   the value for the amount, may be null
      */
     public Money(final String currency, Number amount) {
-        super();
         this.currency = currency;
         if (amount == null) {
             this.amount = BigDecimal.ZERO;

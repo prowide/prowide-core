@@ -56,7 +56,6 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * present only for subclasses
      */
     public SwiftTagListBlock() {
-        super();
     }
 
     /**

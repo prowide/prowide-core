@@ -15,14 +15,18 @@
  */
 package com.prowidesoftware.swift.io;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.logging.Logger;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for message reader iterators.
@@ -64,10 +68,16 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      *
      * @param stream input stream
      * @throws IllegalArgumentException if stream is null
+     * @deprecated use constructor signature with charset instead
      */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with charset instead")
     public AbstractReader(final InputStream stream) {
-        Validate.notNull(stream, "stream must not be null");
-        this.reader = new InputStreamReader(stream);
+        this(stream, null);
+    }
+
+    public AbstractReader(final InputStream _stream, final Charset _charset) {
+        Validate.notNull(_stream, "stream must not be null");
+        this.reader = new InputStreamReader(_stream, _charset != null ? _charset : Charset.defaultCharset());
     }
 
     /**
@@ -76,11 +86,17 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      * @param file file
      * @throws FileNotFoundException if the file does not exist, is a directory or cannot be opened
      * @throws IllegalArgumentException if file is null
+     * @deprecated use constructor signature with charset instead
      */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with charset instead")
     public AbstractReader(final File file) throws FileNotFoundException {
-        Validate.notNull(file, "file must not be null");
-        Validate.isTrue(file.exists(), "Non existent file: " + file.getAbsolutePath());
-        this.reader = new FileReader(file);
+        this(file, null);
+    }
+
+    public AbstractReader(final File _file, Charset _charset) throws FileNotFoundException {
+        Validate.notNull(_file, "file must not be null");
+        Validate.isTrue(_file.exists(), "Non existent file: " + _file.getAbsolutePath());
+        this.reader = new BufferedReader(new InputStreamReader(new FileInputStream(_file), _charset != null ? _charset : Charset.defaultCharset()));
     }
 
     /**

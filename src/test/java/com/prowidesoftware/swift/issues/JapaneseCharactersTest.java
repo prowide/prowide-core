@@ -22,6 +22,7 @@ import com.prowidesoftware.swift.utils.Lib;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -33,7 +34,7 @@ public class JapaneseCharactersTest {
 
     @Test
     public void testRJEFromFile() throws IOException {
-        RJEReader reader = new RJEReader(this.getClass().getResourceAsStream("/sample_JPchar.txt"));
+        RJEReader reader = new RJEReader(this.getClass().getResourceAsStream("/sample_JPchar.txt"), StandardCharsets.UTF_8);
         MT940 mt = (MT940) reader.nextMT();
         assertNotNull(mt);
         Field86 field86 = mt.getField86().get(0);
@@ -43,7 +44,7 @@ public class JapaneseCharactersTest {
 
     @Test
     public void testRJEFromFile2() throws IOException {
-        RJEReader reader = new RJEReader(Lib.readStream(this.getClass().getResourceAsStream("/sample_JPchar.txt")));
+        RJEReader reader = new RJEReader(Lib.readStream(this.getClass().getResourceAsStream("/sample_JPchar.txt"), StandardCharsets.UTF_8));
         MT940 mt = (MT940) reader.nextMT();
         assertNotNull(mt);
         Field86 field86 = mt.getField86().get(0);

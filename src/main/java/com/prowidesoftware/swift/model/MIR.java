@@ -78,7 +78,6 @@ public class MIR {
     private String sequenceNumber;
 
     public MIR(String date, String logicalTerminal, String sessionNumber, String sequenceNumber) {
-        super();
         this.date = date;
         this.logicalTerminal = logicalTerminal;
         this.sessionNumber = sessionNumber;
@@ -92,7 +91,6 @@ public class MIR {
      * @param value the MIR value, it is expected to 28 characters length
      */
     public MIR(String value) {
-        super();
         if (value != null && value.length() == 28) {
             final StringBuilder sb = new StringBuilder(value);
 
@@ -122,7 +120,6 @@ public class MIR {
      * Default constructor
      */
     public MIR() {
-        super();
     }
 
     /**

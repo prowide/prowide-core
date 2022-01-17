@@ -28,7 +28,6 @@ public abstract class AbstractMessage {
      * Protected constructor necessary for jaxb in MX.
      */
     protected AbstractMessage() {
-        super();
     }
 
     /**
@@ -36,7 +35,6 @@ public abstract class AbstractMessage {
      * @param type message type
      */
     protected AbstractMessage(MessageStandardType type) {
-        super();
         this.type = type;
     }
 

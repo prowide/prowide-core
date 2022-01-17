@@ -84,7 +84,6 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @see #SwiftMessage(boolean)
      */
     public SwiftMessage() {
-        super();
     }
 
     /**
@@ -93,7 +92,6 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @param initBlocks when false the message will not have any blocks when constructed, if true blocks are created, just like with default constructor
      */
     public SwiftMessage(final boolean initBlocks) {
-        super();
         if (initBlocks) {
             this.block1 = new SwiftBlock1();
             this.block2 = new SwiftBlock2Input();
@@ -1164,7 +1162,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
             return -1;
         }
         try {
-            return Integer.valueOf(getType());
+            return Integer.parseInt(getType());
         } catch (final NumberFormatException e) {
             final String text = "Error converting type to int " + getType();
             log.warning(text);

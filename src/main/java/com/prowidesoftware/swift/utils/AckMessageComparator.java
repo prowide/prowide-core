@@ -28,7 +28,6 @@ package com.prowidesoftware.swift.utils;
 public class AckMessageComparator extends SwiftMessageComparator {
 
     public AckMessageComparator() {
-        super();
         super.ignoreEolsInMultiline = true;
         super.ignoreTrailer = true;
         super.ignoreHeaderSession = true;

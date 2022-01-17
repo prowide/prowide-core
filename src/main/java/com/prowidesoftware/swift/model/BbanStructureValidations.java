@@ -18,6 +18,8 @@ package com.prowidesoftware.swift.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.Lib;
 import org.apache.commons.lang3.StringUtils;
 
@@ -39,11 +41,10 @@ import java.util.logging.Level;
  * @author psantamarina
  * @since 7.9.7
  */
-public class BbanStructureValidations {
+public final class BbanStructureValidations {
     private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(BbanStructureValidations.class.getName());
-    private static final Type REVIEW_TYPE = new TypeToken<List<BbanStructureDTO>>() {
-    }.getType();
-    private volatile static BbanStructureValidations instance = null;
+    private static final Type REVIEW_TYPE = new TypeToken<List<BbanStructureDTO>>() {}.getType();
+    private static final BbanStructureValidations INSTANCE = new BbanStructureValidations();
     private static final String JSON_FILE = "BbanStructureValidations.json";
 
     private List<BbanStructureDTO> bbanStructures = null;
@@ -64,14 +65,7 @@ public class BbanStructureValidations {
     }
 
     public static BbanStructureValidations getInstance() {
-        if (instance == null) {
-            synchronized (BbanStructureValidations.class) {
-                if (instance == null) {
-                    instance = new BbanStructureValidations();
-                }
-            }
-        }
-        return instance;
+        return INSTANCE;
     }
 
     /**
@@ -89,6 +83,7 @@ public class BbanStructureValidations {
      * @param bbanStructures the list of BBAN structures entries to set.
      * @see #add(BbanStructureDTO)
      */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "singleton should be immutable, method can be package protected for testing")
     public void setBbanStructures(List<BbanStructureDTO> bbanStructures) {
         this.bbanStructures = bbanStructures;
     }
@@ -141,6 +136,7 @@ public class BbanStructureValidations {
      * @param bbanStructure the specific BBAN configuration to add
      * @return this object
      */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "singleton should be immutable, method can be package protected for testing")
     public BbanStructureValidations add(final BbanStructureDTO bbanStructure) {
         if (this.bbanStructures == null) {
             this.bbanStructures = new ArrayList<BbanStructureDTO>();

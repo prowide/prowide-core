@@ -36,7 +36,6 @@ public class ProwideException extends RuntimeException {
     private final Map<String, String> variables = new HashMap<>();
 
     public ProwideException() {
-        super();
     }
 
     public ProwideException(final String message, final Throwable cause) {
