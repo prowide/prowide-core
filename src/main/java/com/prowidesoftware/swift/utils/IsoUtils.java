@@ -18,6 +18,9 @@ package com.prowidesoftware.swift.utils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -33,7 +36,7 @@ import java.util.logging.Logger;
  */
 public final class IsoUtils {
     private static final transient Logger log = Logger.getLogger(IsoUtils.class.getName());
-    private volatile static IsoUtils instance;
+    private static final IsoUtils INSTANCE = new IsoUtils();
     private Set<String> currencies;
     private Set<String> countries;
 
@@ -51,21 +54,15 @@ public final class IsoUtils {
         log.fine("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size() + " country codes");
     }
 
-    public static synchronized IsoUtils getInstance() {
-        if (instance == null) {
-            synchronized (IsoUtils.class) {
-                if (instance == null) {
-                    instance = new IsoUtils();
-                }
-            }
-        }
-        return instance;
+    public static IsoUtils getInstance() {
+        return INSTANCE;
     }
 
     public Set<String> getCurrencies() {
         return currencies;
     }
 
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "singleton should be immutable, method can be package protected for testing")
     public void setCurrencies(Set<String> currencies) {
         this.currencies = currencies;
     }
@@ -74,6 +71,7 @@ public final class IsoUtils {
         return countries;
     }
 
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "singleton should be immutable, method can be package protected for testing")
     public void setCountries(Set<String> countries) {
         this.countries = countries;
     }
@@ -115,6 +113,7 @@ public final class IsoUtils {
      * @throws IllegalArgumentException if the parameter code is null or not two uppercase letters
      * @since 7.9.7
      */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "singleton should be immutable, method can be package protected for testing")
     public void addCountry(final String countryCode) {
         Validate.isTrue(countryCode != null && countryCode.length() == 2 && countryCode.matches("[A-Z]*"), "The country code must by indicated with two uppercase letters");
         countries.add(countryCode);
@@ -127,6 +126,7 @@ public final class IsoUtils {
      * @throws IllegalArgumentException if the parameter code is null or not three uppercase letters
      * @since 7.9.7
      */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "singleton should be immutable, method can be package protected for testing")
     public void addCurrency(final String currencyCode) {
         Validate.isTrue(currencyCode != null && currencyCode.length() == 3 && currencyCode.matches("[A-Z]*"), "The currency code must by indicated with three uppercase letters");
         currencies.add(currencyCode);

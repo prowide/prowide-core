@@ -62,7 +62,6 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
      * Default Constructor
      */
     public SwiftBlock2() {
-        super();
     }
 
     /**

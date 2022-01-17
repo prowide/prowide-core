@@ -379,7 +379,7 @@ public class XMLParser {
                         String text = getText(n);
                         //normalize line feeds (DOM parser removes carriage return characters from original XML file)
                         text = StringUtils.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
-                        field.setComponent(Integer.valueOf(number), text);
+                        field.setComponent(Integer.parseInt(number), text);
                     }
                 }
             }

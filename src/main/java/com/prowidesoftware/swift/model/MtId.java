@@ -38,7 +38,6 @@ public class MtId {
      * @since @since 8.0.3
      */
     public MtId() {
-        super();
     }
 
     /**
@@ -69,7 +68,6 @@ public class MtId {
      * @param variant     An MT variant (STP, REMIT, COV), a MUG identifier or null if none applies
      */
     public MtId(String messageType, String variant) {
-        super();
         if (StringUtils.startsWith(messageType, "fin.")) {
             this.messageType = StringUtils.substringAfter(messageType, "fin.");
         } else {

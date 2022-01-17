@@ -60,7 +60,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @see #init(int)
      */
     protected Field(final int components) {
-        super();
         init(components);
     }
 
@@ -71,7 +70,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @param value complete field value including separators and CRLF
      */
     protected Field(final String value) {
-        super();
         parse(value);
         /*
          * trim empty components to null

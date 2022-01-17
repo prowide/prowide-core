@@ -35,7 +35,6 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
      * present only for subclasses
      */
     protected SwiftValueBlock() {
-        super();
     }
 
     /**

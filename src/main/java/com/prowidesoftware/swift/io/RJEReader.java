@@ -15,7 +15,11 @@
  */
 package com.prowidesoftware.swift.io;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 import java.io.*;
+import java.nio.charset.Charset;
 
 /**
  * Helper class to read RJE files.
@@ -49,22 +53,36 @@ public class RJEReader extends AbstractReader {
         super(string);
     }
 
-    /**
-     * Constructs a RJEReader to read messages from a stream using the default encoding
-     *
-     * <p>If you need to read the stream with a different encoding you can use
-     * {@link com.prowidesoftware.swift.utils.Lib#readStream(InputStream, String)}
-     * with the constructor receiving the String content
-     */
+    /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public RJEReader(final InputStream stream) {
-        super(stream);
+        super(stream, null);
     }
 
     /**
-     * Constructs a RJEReader to read messages from a file
+     * Constructs a {@link RJEReader} to read messages from an input stream using the specified charset.
+     * @param _stream stream to read
+     * @param _charset charset
      */
+    public RJEReader(final InputStream _stream, final Charset _charset) {
+        super(_stream, _charset);
+    }
+
+    /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public RJEReader(final File file) throws FileNotFoundException {
-        super(file);
+        super(file, null);
+    }
+
+    /**
+     * Constructs a {@link RJEReader} to read messages from a file using the specified charset.
+     *
+     * @param _file file to read
+     * @param _charset charset
+     * @throws FileNotFoundException if file does not exist
+     */
+    public RJEReader(final File _file, final Charset _charset) throws FileNotFoundException {
+        super(_file, _charset);
     }
 
     /**

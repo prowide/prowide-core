@@ -52,7 +52,6 @@ public class SwiftMessageRevision {
     private String json;
 
     public SwiftMessageRevision() {
-        super();
     }
 
     /**
@@ -65,7 +64,6 @@ public class SwiftMessageRevision {
      * @param msg message for the snapshot
      */
     public SwiftMessageRevision(AbstractSwiftMessage msg) {
-        super();
         SwiftMessageStatusInfo status = msg.getStatusInfo();
         if (status != null) {
             this.creationDate = status.getCreationDate();

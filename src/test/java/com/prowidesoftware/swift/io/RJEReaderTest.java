@@ -17,9 +17,11 @@ package com.prowidesoftware.swift.io;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,7 +36,7 @@ public class RJEReaderTest {
 
     @Test
     public void testIterator() {
-        RJEReader r = new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"));
+        RJEReader r = new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"), StandardCharsets.US_ASCII);
         int count = 0;
         for (String m : r) {
             assertNotNull(m);
@@ -70,7 +72,7 @@ public class RJEReaderTest {
 
     @Test
     public void testIterableWithNextMT() throws IOException {
-        RJEReader r = new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"));
+        RJEReader r = new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"), StandardCharsets.US_ASCII);
         assertTrue(r.hasNext());
         AbstractMT mt = r.nextMT();
         assertNotNull(mt);
@@ -97,7 +99,7 @@ public class RJEReaderTest {
 
     @Test
     public void testBulkFileWithAcks() throws IOException {
-        RJEReader r = new RJEReader(this.getClass().getResourceAsStream("/MT103-bulk-with-ack.rje"));
+        RJEReader r = new RJEReader(this.getClass().getResourceAsStream("/MT103-bulk-with-ack.rje"), StandardCharsets.US_ASCII);
         int count = 0;
         while (r.hasNext()) {
             SwiftMessage ack = r.nextSwiftMessage();
