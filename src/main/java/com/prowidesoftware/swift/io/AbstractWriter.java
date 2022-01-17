@@ -68,7 +68,7 @@ public abstract class AbstractWriter {
     /**
      * Constructs a writer to write content into a file using the specified charset.
      *
-     * @param filename file to create
+     * @param _file file to create
      * @param _charset  charset
      * @throws FileNotFoundException if file does not exist
      */
