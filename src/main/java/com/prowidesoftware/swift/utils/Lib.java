@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -141,7 +138,6 @@ public class Lib {
      * @see #readStream(InputStream, String)
      * @since 7.7
      */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public static String readStream(final InputStream stream) throws IOException {
         return readStream(stream, (Charset) null);
     }
@@ -154,9 +150,7 @@ public class Lib {
      * @return the read content
      * @throws IOException if the resource stream cannot be read
      * @since 7.7
-     * @deprecated use constructor signature with {@link Charset} parameter instead
      */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public static String readStream(final InputStream stream, final String enconding) throws IOException {
         if (stream == null) {
             return null;

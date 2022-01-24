@@ -15,8 +15,6 @@
  */
 package com.prowidesoftware.swift.io;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 
@@ -47,14 +45,10 @@ public class RJEWriter extends AbstractWriter {
         super(writer);
     }
 
-    /** @deprecated use constructor signature with {@link Charset} parameter instead */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public RJEWriter(final File file) throws FileNotFoundException {
         super(file);
     }
 
-    /** @deprecated use constructor signature with {@link Charset} parameter instead */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public RJEWriter(final String filename) throws FileNotFoundException {
         super(filename);
     }
@@ -69,8 +63,6 @@ public class RJEWriter extends AbstractWriter {
         super(_file, _charset);
     }
 
-    /** @deprecated use constructor signature with {@link Charset} parameter instead */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public RJEWriter(final OutputStream stream) {
         super(stream);
     }

@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.io;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.logging.Logger;
@@ -54,8 +51,6 @@ public class PPCReader extends AbstractReader {
         super(string);
     }
 
-    /** @deprecated use constructor signature with {@link Charset} parameter instead */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public PPCReader(final InputStream stream) {
         super(stream, null);
     }
@@ -70,8 +65,6 @@ public class PPCReader extends AbstractReader {
         super(_stream, _charset);
     }
 
-    /** @deprecated use constructor signature with {@link Charset} parameter instead */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public PPCReader(final File file) throws FileNotFoundException {
         super(file, null);
     }

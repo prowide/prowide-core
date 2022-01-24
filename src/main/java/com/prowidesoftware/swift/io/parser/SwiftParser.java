@@ -23,7 +23,7 @@ import com.prowidesoftware.swift.utils.Lib;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -67,12 +67,12 @@ public class SwiftParser {
     private SwiftParserConfiguration configuration = new SwiftParserConfiguration();
 
     /**
-     * Constructor with an input stream for parsing a message
+     * Constructor with an input stream for parsing a message encoded in {@link StandardCharsets#UTF_8}.
      *
      * @param is stream to read
      */
     public SwiftParser(final InputStream is) {
-        this(new InputStreamReader(is, Charset.defaultCharset()));
+        this(new InputStreamReader(is, StandardCharsets.UTF_8));
     }
 
     /**
