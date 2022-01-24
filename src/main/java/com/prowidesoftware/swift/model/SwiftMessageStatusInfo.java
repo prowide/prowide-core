@@ -66,7 +66,6 @@ public class SwiftMessageStatusInfo implements Cloneable {
      * No arguments constructor
      */
     public SwiftMessageStatusInfo() {
-        super();
         this.creationDate = Calendar.getInstance();    //this cannot be null, default to now
     }
 

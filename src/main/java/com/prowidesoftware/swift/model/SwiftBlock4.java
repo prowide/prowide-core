@@ -43,7 +43,6 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
      * Default constructor
      */
     public SwiftBlock4() {
-        super();
     }
 
     /**

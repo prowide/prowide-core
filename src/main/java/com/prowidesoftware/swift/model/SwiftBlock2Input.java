@@ -125,7 +125,6 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      * @since 7.7
      */
     public SwiftBlock2Input(final String value, boolean lenient) {
-        super();
         this.setValue(value, lenient);
     }
 
@@ -133,7 +132,6 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      * Default constructor
      */
     public SwiftBlock2Input() {
-        super();
     }
 
     /**

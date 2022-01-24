@@ -84,7 +84,6 @@ public class BIC {
      * @param bic the BIC code to use in this BIC (8 or 11 chars)
      */
     public BIC(final String bic) {
-        super();
         parse(bic);
     }
 
@@ -92,7 +91,6 @@ public class BIC {
      * Default constructor
      */
     public BIC() {
-        super();
     }
 
     protected void parse(final String bic) {

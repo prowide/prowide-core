@@ -44,7 +44,6 @@ public class StructuredNarrative {
     private final List<String> narrativeSupplementFragments = new ArrayList<>();
 
     public StructuredNarrative() {
-        super();
     }
 
     /**

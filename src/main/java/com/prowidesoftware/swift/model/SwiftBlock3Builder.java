@@ -55,7 +55,6 @@ public class SwiftBlock3Builder {
      * @param b3 an existing block3
      */
     SwiftBlock3Builder(final SwiftBlock3 b3) {
-        super();
         Validate.notNull(b3, "SwiftBlock3 parameter cannot be null");
         this.b3 = b3;
         this.field103 = b3.getTagByName(Field103.NAME);

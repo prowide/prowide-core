@@ -44,11 +44,9 @@ public class SwiftMessageNote {
     private String text;
 
     public SwiftMessageNote() {
-        super();
     }
 
     public SwiftMessageNote(String creationUser, String text) {
-        super();
         this.creationDate = Calendar.getInstance();
         this.creationUser = creationUser;
         this.text = text;

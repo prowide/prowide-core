@@ -28,7 +28,6 @@ import java.io.IOException;
 final class VisibleParser extends SwiftParser {
 
     public VisibleParser() {
-        super();
     }
 
     @Override
