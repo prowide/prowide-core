@@ -18,8 +18,6 @@ package com.prowidesoftware.swift.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.Lib;
 import org.apache.commons.lang3.StringUtils;
 
@@ -83,7 +81,6 @@ public final class BbanStructureValidations {
      * @param bbanStructures the list of BBAN structures entries to set.
      * @see #add(BbanStructureDTO)
      */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "singleton should be immutable, method can be package protected for testing")
     public void setBbanStructures(List<BbanStructureDTO> bbanStructures) {
         this.bbanStructures = bbanStructures;
     }
@@ -136,7 +133,6 @@ public final class BbanStructureValidations {
      * @param bbanStructure the specific BBAN configuration to add
      * @return this object
      */
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "singleton should be immutable, method can be package protected for testing")
     public BbanStructureValidations add(final BbanStructureDTO bbanStructure) {
         if (this.bbanStructures == null) {
             this.bbanStructures = new ArrayList<BbanStructureDTO>();
