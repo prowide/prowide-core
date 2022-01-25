@@ -17,12 +17,15 @@ package com.prowidesoftware.swift.io;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.logging.Logger;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for message reader iterators.
@@ -66,8 +69,12 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      * @throws IllegalArgumentException if stream is null
      */
     public AbstractReader(final InputStream stream) {
-        Validate.notNull(stream, "stream must not be null");
-        this.reader = new InputStreamReader(stream);
+        this(stream, null);
+    }
+
+    public AbstractReader(final InputStream _stream, final Charset _charset) {
+        Validate.notNull(_stream, "stream must not be null");
+        this.reader = new InputStreamReader(_stream, _charset != null ? _charset : StandardCharsets.UTF_8);
     }
 
     /**
@@ -78,9 +85,13 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      * @throws IllegalArgumentException if file is null
      */
     public AbstractReader(final File file) throws FileNotFoundException {
-        Validate.notNull(file, "file must not be null");
-        Validate.isTrue(file.exists(), "Non existent file: " + file.getAbsolutePath());
-        this.reader = new FileReader(file);
+        this(file, null);
+    }
+
+    public AbstractReader(final File _file, Charset _charset) throws FileNotFoundException {
+        Validate.notNull(_file, "file must not be null");
+        Validate.isTrue(_file.exists(), "Non existent file: " + _file.getAbsolutePath());
+        this.reader = new BufferedReader(new InputStreamReader(new FileInputStream(_file), _charset != null ? _charset : StandardCharsets.UTF_8));
     }
 
     /**

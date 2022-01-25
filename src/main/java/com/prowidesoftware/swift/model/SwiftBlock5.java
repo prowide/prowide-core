@@ -42,7 +42,6 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
      * Default constructor
      */
     public SwiftBlock5() {
-        super();
     }
 
     /**

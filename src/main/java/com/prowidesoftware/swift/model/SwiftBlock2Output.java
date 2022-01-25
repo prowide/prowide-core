@@ -108,7 +108,6 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      * @param messagePriority    the message priority (S=system, U=urgent, N=normal)
      */
     public SwiftBlock2Output(final String messageType, final String senderInputTime, final String MIRDate, final String MIRLogicalTerminal, final String MIRSessionNumber, final String MIRSequenceNumber, final String receiverOutputDate, final String receiverOutputTime, final String messagePriority) {
-        super();
         this.output = true;
         this.messageType = messageType;
         this.senderInputTime = senderInputTime;
@@ -144,7 +143,6 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      * @since 7.7
      */
     public SwiftBlock2Output(final String value, boolean lenient) {
-        super();
         this.setValue(value, lenient);
     }
 
@@ -152,7 +150,6 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      * Default Constructor
      */
     public SwiftBlock2Output() {
-        super();
     }
 
     /**

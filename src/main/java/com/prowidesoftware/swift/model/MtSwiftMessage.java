@@ -68,7 +68,6 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     private String uuid;
 
     public MtSwiftMessage() {
-        super();
     }
 
     /**

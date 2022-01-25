@@ -20,12 +20,9 @@ import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.xml.sax.SAXException;
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.Diff;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 

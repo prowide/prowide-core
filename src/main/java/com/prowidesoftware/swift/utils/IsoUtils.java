@@ -33,7 +33,7 @@ import java.util.logging.Logger;
  */
 public final class IsoUtils {
     private static final transient Logger log = Logger.getLogger(IsoUtils.class.getName());
-    private volatile static IsoUtils instance;
+    private static final IsoUtils INSTANCE = new IsoUtils();
     private Set<String> currencies;
     private Set<String> countries;
 
@@ -51,15 +51,8 @@ public final class IsoUtils {
         log.fine("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size() + " country codes");
     }
 
-    public static synchronized IsoUtils getInstance() {
-        if (instance == null) {
-            synchronized (IsoUtils.class) {
-                if (instance == null) {
-                    instance = new IsoUtils();
-                }
-            }
-        }
-        return instance;
+    public static IsoUtils getInstance() {
+        return INSTANCE;
     }
 
     public Set<String> getCurrencies() {

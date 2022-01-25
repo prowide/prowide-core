@@ -15,10 +15,14 @@
  */
 package com.prowidesoftware.swift.io;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.apache.commons.lang3.Validate;
 
 import java.io.*;
+import java.nio.charset.Charset;
+
+import org.apache.commons.lang3.Validate;
 
 /**
  * Helper API to write MT messages into DOS-PCC files.
@@ -43,29 +47,42 @@ public class PPCWriter extends AbstractWriter {
         super(writer);
     }
 
-    /**
-     * Constructs a PPCWriter to write content into a file.
-     *
-     */
+    /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public PPCWriter(final File file) throws FileNotFoundException {
         super(file);
     }
 
-    /**
-     * Constructs a PPCWriter to write content into a file.
-     *
-     * @param filename file to create
-     */
+    /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public PPCWriter(final String filename) throws FileNotFoundException {
         super(filename);
     }
 
     /**
-     * Constructs a PPCWriter to write content into a given stream.
+     * Constructs a {@link PPCWriter} to write content into a file using the specified charset.
      *
+     * @param _file file to write to
+     * @param _charset charset
      */
+    public PPCWriter(final File _file, final Charset _charset) throws FileNotFoundException {
+        super(_file, _charset);
+    }
+
+    /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public PPCWriter(final OutputStream stream) {
         super(stream);
+    }
+
+    /**
+     * Constructs a {@link PPCWriter} to write content to the specified output stream using the specified charset.
+     *
+     * @param _stream stream to write to
+     * @param _charset charset
+     */
+    public PPCWriter(final OutputStream _stream, final Charset _charset) {
+        super(_stream, _charset);
     }
 
     /**

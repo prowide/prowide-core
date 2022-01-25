@@ -517,13 +517,14 @@ public class SwiftFormatUtils {
      * @since 7.4
      */
     public static Boolean getBoolean(final String string) {
-        if (StringUtils.equals("Y", string)) {
-            return Boolean.TRUE;
-        } else if (StringUtils.equals("N", string)) {
-            return Boolean.FALSE;
-        } else {
+        if (string == null) {
             return null;
+        } if ("Y".equals(string)) {
+            return Boolean.TRUE;
+        } if ("N".equals(string)) {
+            return Boolean.FALSE;
         }
+        return null;
     }
 
     /**

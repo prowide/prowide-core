@@ -15,9 +15,11 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Miscellaneous helper functions.
@@ -137,7 +139,7 @@ public class Lib {
      * @since 7.7
      */
     public static String readStream(final InputStream stream) throws IOException {
-        return readStream(stream, null);
+        return readStream(stream, (Charset) null);
     }
 
     /**
@@ -156,6 +158,29 @@ public class Lib {
         final StringBuilder out = new StringBuilder();
         final String enc = enconding != null ? enconding : "UTF-8";
         try (Reader in = new InputStreamReader(stream, enc)) {
+            int c;
+            while ((c = in.read()) != -1) {
+                out.append((char) c);
+            }
+        }
+        return out.toString();
+    }
+
+    /**
+     * Reads the content of the given input stream into a string using the specified encoding.
+     *
+     * @param stream    the contents to read
+     * @param charset   the encoding to use, defaults to UTF-8 if null
+     * @return the read content
+     * @throws IOException if the resource stream cannot be read
+     * @since 9.2.11
+     */
+    public static String readStream(final InputStream stream, final Charset charset) throws IOException {
+        if (stream == null) {
+            return null;
+        }
+        final StringBuilder out = new StringBuilder();
+        try (Reader in = new InputStreamReader(stream, charset != null ? charset : StandardCharsets.UTF_8)) {
             int c;
             while ((c = in.read()) != -1) {
                 out.append((char) c);

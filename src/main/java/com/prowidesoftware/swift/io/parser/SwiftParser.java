@@ -23,8 +23,8 @@ import com.prowidesoftware.swift.utils.Lib;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 /**
  * FIN Parser. This implementation now properly supports all system messages (i.e: messages for MT 0xx) and
@@ -67,12 +67,12 @@ public class SwiftParser {
     private SwiftParserConfiguration configuration = new SwiftParserConfiguration();
 
     /**
-     * Constructor with an input stream for parsing a message
+     * Constructor with an input stream for parsing a message encoded in {@link StandardCharsets#UTF_8}.
      *
      * @param is stream to read
      */
     public SwiftParser(final InputStream is) {
-        this(new InputStreamReader(is));
+        this(new InputStreamReader(is, StandardCharsets.UTF_8));
     }
 
     /**
@@ -99,7 +99,6 @@ public class SwiftParser {
      * <b>NOTE</b>: If this constructor is called, setReader must be called to use the parser
      */
     public SwiftParser() {
-        super();
     }
 
     /**
@@ -895,6 +894,7 @@ public class SwiftParser {
                 case '}':
                     balance--;
                     break;
+                default:
             }
         } while (start < s.length() && balance >= 0);
         return start;

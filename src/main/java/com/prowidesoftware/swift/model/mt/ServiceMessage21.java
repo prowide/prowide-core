@@ -82,7 +82,6 @@ public class ServiceMessage21 extends AbstractMT {
      * @throws RuntimeException if the message is not a service message with service id 21 (meaning positive or negative acknowledge)
      */
     public ServiceMessage21(final String fin) {
-        super();
         if (fin != null) {
             final SwiftMessage parsed = read(fin);
             if (parsed != null) {

@@ -83,11 +83,9 @@ public class Narrative {
     private List<String> unstructuredFragments = new ArrayList<>();
 
     Narrative() {
-        super();
     }
 
     private Narrative(Builder builder) {
-        super();
         this.structured = builder.structured;
         this.unstructuredFragments = builder.unstructuredFragments;
     }

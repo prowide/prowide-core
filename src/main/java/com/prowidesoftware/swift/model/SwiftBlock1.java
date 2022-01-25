@@ -148,7 +148,6 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * Default constructor
      */
     public SwiftBlock1() {
-        super();
     }
 
     /**
@@ -173,7 +172,6 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * @since 7.7
      */
     public SwiftBlock1(final String value, boolean lenient) {
-        super();
         this.setValue(value, lenient);
     }
 

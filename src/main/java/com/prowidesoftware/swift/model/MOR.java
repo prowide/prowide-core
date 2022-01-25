@@ -36,7 +36,6 @@ public class MOR extends MIR {
     }
 
     public MOR() {
-        super();
     }
 
     /**

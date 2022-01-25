@@ -17,9 +17,11 @@ package com.prowidesoftware.swift.io;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.apache.commons.lang3.Validate;
 
 import java.io.*;
+import java.nio.charset.Charset;
+
+import org.apache.commons.lang3.Validate;
 
 /**
  * Helper API to write MT messages into RJE files.
@@ -43,29 +45,36 @@ public class RJEWriter extends AbstractWriter {
         super(writer);
     }
 
-    /**
-     * Constructs a RJEWriter to write content into a file.
-     *
-     */
     public RJEWriter(final File file) throws FileNotFoundException {
         super(file);
     }
 
-    /**
-     * Constructs a RJEWriter to write content into a file.
-     *
-     * @param filename file to create
-     */
     public RJEWriter(final String filename) throws FileNotFoundException {
         super(filename);
     }
 
     /**
-     * Constructs a RJEWriter to write content into a given stream.
+     * Constructs a {@link RJEWriter} to write content into a file using the specified charset.
      *
+     * @param _file file to write to
+     * @param _charset charset
      */
+    public RJEWriter(final File _file, final Charset _charset) throws FileNotFoundException {
+        super(_file, _charset);
+    }
+
     public RJEWriter(final OutputStream stream) {
         super(stream);
+    }
+
+    /**
+     * Constructs a {@link RJEWriter} to write content to the specified output stream using the specified charset.
+     *
+     * @param _stream stream to write to
+     * @param _charset charset
+     */
+    public RJEWriter(final OutputStream _stream, final Charset _charset) {
+        super(_stream, _charset);
     }
 
     /**

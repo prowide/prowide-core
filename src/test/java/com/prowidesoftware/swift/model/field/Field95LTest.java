@@ -15,7 +15,6 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
@@ -36,7 +35,6 @@ public class Field95LTest extends AbstractFieldTest {
     @Test
     public void testParser1() {
         Field95L f = new Field95L(":ISSU//300300E1007142000089");
-        Tag t = f.asTag();
         assertEquals("ISSU", f.getComponent1());
         assertEquals("300300E10071420000", f.getComponent2());
         assertEquals("89", f.getComponent3());

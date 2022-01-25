@@ -39,7 +39,6 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
      * Default constructor
      */
     public SwiftBlock3() {
-        super();
     }
 
     /**
