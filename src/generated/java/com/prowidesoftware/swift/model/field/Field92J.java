@@ -89,25 +89,26 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_92J = "92J";
+
+    /**
+     * @deprecated use {@link #parserPattern()} method instead.
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String PARSER_PATTERN = ":S/[S]/S/SN[/S]";
 
     /**
-     * Components pattern.
-     *
-     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
-     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
-     * @see #TYPES_PATTERN
+     * @deprecated use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SSSCNS";
 
     /**
-     * Types pattern.
-     *
-     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
-     * @since 9.2.7
+     * @deprecated use {@link #typesPattern()} method instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String TYPES_PATTERN = "SSSCIS";
 
 	/**
@@ -311,47 +312,40 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Returns the field components pattern
-     *
-     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
-     * @see #typesPattern()
-     * @return the static value of Field92J.COMPONENTS_PATTERN
+     * @deprecated use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
-    public final String componentsPattern() {
-        return COMPONENTS_PATTERN;
+    public String componentsPattern() {
+        return "SSSCNS";
     }
 
     /**
-     * Returns the field component types pattern
+     * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
-     * @see #TYPES_PATTERN
-     * @return the static value of Field92J.TYPES_PATTERN
      */
     @Override
-    public final String typesPattern() {
-        return TYPES_PATTERN;
+    public String typesPattern() {
+        return "SSSCIS";
     }
 
     /**
-     * Returns the field parser pattern
-     * @return the static value of Field92J.PARSER_PATTERN
+     * Returns the field parser pattern.
      */
     @Override
-    public final String parserPattern() {
-        return PARSER_PATTERN;
+    public String parserPattern() {
+        return ":S/[S]/S/SN[/S]";
     }
 
     /**
      * Returns the field validator pattern
      */
     @Override
-    public final String validatorPattern() {
+    public String validatorPattern() {
         return ":4!c/[8c]/4!c/<CUR><AMOUNT>15[/4!c]";
     }
 

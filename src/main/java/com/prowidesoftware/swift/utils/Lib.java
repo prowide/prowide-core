@@ -173,7 +173,7 @@ public class Lib {
      * @param charset   the encoding to use, defaults to UTF-8 if null
      * @return the read content
      * @throws IOException if the resource stream cannot be read
-     * @since 9.2.11
+     * @since 9.2.12
      */
     public static String readStream(final InputStream stream, final Charset charset) throws IOException {
         if (stream == null) {

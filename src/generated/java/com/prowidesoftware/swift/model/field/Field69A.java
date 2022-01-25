@@ -82,25 +82,26 @@ public class Field69A extends Field implements Serializable, DateContainer, Gene
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_69A = "69A";
+
+    /**
+     * @deprecated use {@link #parserPattern()} method instead.
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String PARSER_PATTERN = ":S//S/S";
 
     /**
-     * Components pattern.
-     *
-     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
-     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
-     * @see #TYPES_PATTERN
+     * @deprecated use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SDD";
 
     /**
-     * Types pattern.
-     *
-     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
-     * @since 9.2.7
+     * @deprecated use {@link #typesPattern()} method instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String TYPES_PATTERN = "SDD";
 
 	/**
@@ -254,47 +255,40 @@ public class Field69A extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Returns the field components pattern
-     *
-     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
-     * @see #typesPattern()
-     * @return the static value of Field69A.COMPONENTS_PATTERN
+     * @deprecated use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
-    public final String componentsPattern() {
-        return COMPONENTS_PATTERN;
+    public String componentsPattern() {
+        return "SDD";
     }
 
     /**
-     * Returns the field component types pattern
+     * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
-     * @see #TYPES_PATTERN
-     * @return the static value of Field69A.TYPES_PATTERN
      */
     @Override
-    public final String typesPattern() {
-        return TYPES_PATTERN;
+    public String typesPattern() {
+        return "SDD";
     }
 
     /**
-     * Returns the field parser pattern
-     * @return the static value of Field69A.PARSER_PATTERN
+     * Returns the field parser pattern.
      */
     @Override
-    public final String parserPattern() {
-        return PARSER_PATTERN;
+    public String parserPattern() {
+        return ":S//S/S";
     }
 
     /**
      * Returns the field validator pattern
      */
     @Override
-    public final String validatorPattern() {
+    public String validatorPattern() {
         return ":4!c//<DATE4>/<DATE4>";
     }
 

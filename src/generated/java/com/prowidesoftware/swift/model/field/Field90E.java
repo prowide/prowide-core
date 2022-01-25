@@ -78,25 +78,26 @@ public class Field90E extends Field implements Serializable, GenericField {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_90E = "90E";
+
+    /**
+     * @deprecated use {@link #parserPattern()} method instead.
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String PARSER_PATTERN = ":S//S";
 
     /**
-     * Components pattern.
-     *
-     * Contains a description of the type for every component. This is <em>DEPRECATED</em>,
-     * use TYPES_PATTERN instead, because it distinguishes between N (number) and I (BigDecimal)
-     * @see #TYPES_PATTERN
+     * @deprecated use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
-     * Types pattern.
-     *
-     * Contains a description of the type for every component, use instead of COMPONENTS_PATTERN.
-     * @since 9.2.7
+     * @deprecated use {@link #typesPattern()} method instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
@@ -237,47 +238,40 @@ public class Field90E extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Returns the field components pattern
-     *
-     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
-     * @see #typesPattern()
-     * @return the static value of Field90E.COMPONENTS_PATTERN
+     * @deprecated use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
-    public final String componentsPattern() {
-        return COMPONENTS_PATTERN;
+    public String componentsPattern() {
+        return "SS";
     }
 
     /**
-     * Returns the field component types pattern
+     * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
-     * @see #TYPES_PATTERN
-     * @return the static value of Field90E.TYPES_PATTERN
      */
     @Override
-    public final String typesPattern() {
-        return TYPES_PATTERN;
+    public String typesPattern() {
+        return "SS";
     }
 
     /**
-     * Returns the field parser pattern
-     * @return the static value of Field90E.PARSER_PATTERN
+     * Returns the field parser pattern.
      */
     @Override
-    public final String parserPattern() {
-        return PARSER_PATTERN;
+    public String parserPattern() {
+        return ":S//S";
     }
 
     /**
      * Returns the field validator pattern
      */
     @Override
-    public final String validatorPattern() {
+    public String validatorPattern() {
         return ":4!c//4!c";
     }
 
