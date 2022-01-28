@@ -280,7 +280,5 @@ quality {
     cpd = false
     pmd = false
     spotbugsEffort = 'min'
-    spotbugsMaxRank = 7
-
-    exclude '**/mt0xx/MT**', '**/mt1xx/MT**', '**/mt2xx/MT**', '**/mt3xx/MT**', '**/mt4xx/MT**', '**/mt5xx/MT**', '**/mt6xx/MT**', '**/mt7xx/MT**', '**/mt8xx/MT**', '**/mt9xx/MT**'
+    spotbugsMaxRank = 8
 }
