@@ -16,6 +16,8 @@
 package com.prowidesoftware.swift.io.writer;
 
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.model.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,8 +27,6 @@ import org.xmlunit.diff.Diff;
 
 import java.io.StringWriter;
 import java.io.Writer;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * XML writer tests

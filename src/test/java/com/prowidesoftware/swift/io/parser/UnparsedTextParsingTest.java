@@ -15,14 +15,14 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * MT940 tests

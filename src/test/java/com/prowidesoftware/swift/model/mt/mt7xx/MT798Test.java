@@ -1,9 +1,9 @@
 package com.prowidesoftware.swift.model.mt.mt7xx;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.prowidesoftware.swift.model.SwiftMessage;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MT798Test {
 

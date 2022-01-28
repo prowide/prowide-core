@@ -15,14 +15,14 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.model.field.Field106;
 import com.prowidesoftware.swift.model.field.Field108;
 import com.prowidesoftware.swift.model.field.Field121;
 import com.prowidesoftware.swift.model.field.Field165;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Block3 tests.

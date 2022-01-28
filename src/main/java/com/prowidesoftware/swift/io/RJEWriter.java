@@ -17,11 +17,10 @@ package com.prowidesoftware.swift.io;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
+import org.apache.commons.lang3.Validate;
 
 import java.io.*;
 import java.nio.charset.Charset;
-
-import org.apache.commons.lang3.Validate;
 
 /**
  * Helper API to write MT messages into RJE files.

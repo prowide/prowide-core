@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.model.field.*;
 import org.junit.jupiter.api.Assertions;
@@ -24,8 +26,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tag list block tests.

@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.SwiftMessage;
@@ -23,8 +25,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringReader;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test cases for readUntilBlockEnds and related methods in the parser implementation

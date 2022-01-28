@@ -16,10 +16,10 @@
 
 package com.prowidesoftware.swift.model.mt.mt5xx;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MT535Test {
 

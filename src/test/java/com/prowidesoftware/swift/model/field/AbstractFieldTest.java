@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import org.junit.jupiter.api.Disabled;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import com.prowidesoftware.swift.model.Tag;
+import org.junit.jupiter.api.Disabled;
 
 /**
  * Base implementation for field test cases

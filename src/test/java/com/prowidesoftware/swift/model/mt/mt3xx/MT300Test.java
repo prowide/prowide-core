@@ -16,11 +16,11 @@
 
 package com.prowidesoftware.swift.model.mt.mt3xx;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MT300Test {
 

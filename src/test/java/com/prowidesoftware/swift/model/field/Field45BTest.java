@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.prowidesoftware.swift.model.Tag;
+import org.junit.jupiter.api.Test;
 
 public class Field45BTest {
 

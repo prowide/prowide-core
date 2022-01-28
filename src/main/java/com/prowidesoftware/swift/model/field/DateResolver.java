@@ -2,12 +2,11 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.Validate;
-
-import java.util.Calendar;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DateResolver {

@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
 
 
 public class Field70ETest extends AbstractFieldTest {
