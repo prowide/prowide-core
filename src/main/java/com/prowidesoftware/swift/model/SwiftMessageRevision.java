@@ -15,11 +15,12 @@
  */
 package com.prowidesoftware.swift.model;
 
-import javax.persistence.*;
+import static javax.persistence.FetchType.LAZY;
+
 import java.util.Calendar;
 import java.util.Objects;
 
-import static javax.persistence.FetchType.LAZY;
+import javax.persistence.*;
 
 /**
  * A revision is a snapshot of message content and is used to track the history of changes in a message.

@@ -16,14 +16,14 @@
 
 package com.prowidesoftware.swift.model.mt.mt5xx;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field22H;
 import com.prowidesoftware.swift.model.field.Field95C;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class MT537Test {

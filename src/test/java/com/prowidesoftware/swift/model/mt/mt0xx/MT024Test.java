@@ -16,13 +16,13 @@
 
 package com.prowidesoftware.swift.model.mt.mt0xx;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import com.prowidesoftware.swift.model.field.Field140;
 import com.prowidesoftware.swift.model.field.Field142;
 import com.prowidesoftware.swift.model.field.Field143;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class MT024Test {
 

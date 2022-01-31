@@ -15,16 +15,15 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import java.util.Currency;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.Validate;
+
+import java.util.ArrayList;
+import java.util.Currency;
+import java.util.List;
 
 public class CurrencyResolver {
 

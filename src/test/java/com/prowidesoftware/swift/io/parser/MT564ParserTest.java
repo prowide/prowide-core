@@ -15,13 +15,13 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * MT564 tests

@@ -15,14 +15,15 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
-import java.util.*;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Currency;
+import java.util.List;
 
 public class CurrencyResolverTest {
 

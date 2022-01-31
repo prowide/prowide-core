@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
@@ -23,8 +25,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringReader;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test cases for the consumeTag and related methos in the parser implementation

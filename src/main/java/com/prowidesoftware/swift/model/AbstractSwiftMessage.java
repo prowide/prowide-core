@@ -25,8 +25,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,6 +32,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.*;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Base entity for MT and MX message persistence.

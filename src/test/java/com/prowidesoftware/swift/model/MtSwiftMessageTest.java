@@ -15,6 +15,9 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import com.prowidesoftware.swift.model.mt.DefaultMtMetadataStrategy;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt7xx.MT798;
@@ -23,9 +26,6 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class MtSwiftMessageTest {
 

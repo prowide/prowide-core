@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
@@ -25,13 +27,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.jupiter.api.Assertions.*;
+import javax.xml.parsers.DocumentBuilder;
 
 /**
  * Test cases for the Prowide Core proprietary XML format parser

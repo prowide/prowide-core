@@ -15,13 +15,13 @@
  */
 package com.prowidesoftware.deprecation;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.prowidesoftware.deprecation.DeprecationUtils.EnvironmentVariableKey;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledForJreRange;
 import org.junit.jupiter.api.condition.JRE;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test cases for the deprecation policy implementation

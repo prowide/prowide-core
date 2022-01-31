@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.utils.SwiftMessageComparator;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * test cases for block 4 API

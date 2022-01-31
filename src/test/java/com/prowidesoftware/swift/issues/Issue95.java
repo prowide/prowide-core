@@ -1,9 +1,9 @@
 package com.prowidesoftware.swift.issues;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.prowidesoftware.swift.model.field.Field32A;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Issue95 {
 

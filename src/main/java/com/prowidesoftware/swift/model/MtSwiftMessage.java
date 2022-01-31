@@ -27,9 +27,6 @@ import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +34,10 @@ import java.util.Calendar;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Level;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 
 /**

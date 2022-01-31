@@ -8,6 +8,7 @@ out
 *.iml
 *.ipr
 **/.settings
+*.prefs
 **/.classpath*
 **/.project
 **/target/

@@ -15,10 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class Field50KTest extends AbstractFieldTest {
 

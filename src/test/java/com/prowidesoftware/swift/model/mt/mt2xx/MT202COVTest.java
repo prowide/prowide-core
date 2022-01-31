@@ -16,11 +16,11 @@
 
 package com.prowidesoftware.swift.model.mt.mt2xx;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.model.field.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class MT202COVTest {
 

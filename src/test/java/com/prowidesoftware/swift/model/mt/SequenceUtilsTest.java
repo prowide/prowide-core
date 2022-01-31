@@ -16,12 +16,12 @@
 
 package com.prowidesoftware.swift.model.mt;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.prowidesoftware.swift.model.mt.mt5xx.*;
 import com.prowidesoftware.swift.model.mt.mt6xx.MT670;
 import com.prowidesoftware.swift.model.mt.mt6xx.MT671;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SequenceUtilsTest {
     /*

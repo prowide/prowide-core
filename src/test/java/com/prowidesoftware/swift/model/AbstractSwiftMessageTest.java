@@ -16,9 +16,9 @@
 
 package com.prowidesoftware.swift.model;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for {@link AbstractSwiftMessage} model API

@@ -15,14 +15,14 @@
  */
 package com.prowidesoftware.swift.io;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test cases for the {@link RJEWriter} class

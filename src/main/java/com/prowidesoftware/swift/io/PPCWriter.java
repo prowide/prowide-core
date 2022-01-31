@@ -18,11 +18,10 @@ package com.prowidesoftware.swift.io;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
+import org.apache.commons.lang3.Validate;
 
 import java.io.*;
 import java.nio.charset.Charset;
-
-import org.apache.commons.lang3.Validate;
 
 /**
  * Helper API to write MT messages into DOS-PCC files.

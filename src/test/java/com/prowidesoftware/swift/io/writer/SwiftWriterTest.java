@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.model.SwiftBlock3;
@@ -27,8 +29,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Swift writer tests
