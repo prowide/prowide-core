@@ -5,9 +5,9 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DateResolver {
 
@@ -34,12 +34,9 @@ public class DateResolver {
         List<Pair<Character, String>> values = ResolverUtils.findWantedType(f.typesPattern(), "DEFYAUPJ", f.getComponents());
 
         // prepare the result and convert all that match
-        List<Calendar> dates = new ArrayList<>();
-        for(Pair<Character, String> pair : values) {
-            dates.add(_convert(pair.getKey(), pair.getValue()));
-        }
-
-        return dates;
+        return values.stream()
+                .map(pair -> _convert(pair.getKey(), pair.getValue()))
+                .collect(Collectors.toList());
     }
 
     /**

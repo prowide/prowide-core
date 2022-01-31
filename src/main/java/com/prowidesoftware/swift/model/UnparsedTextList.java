@@ -111,7 +111,7 @@ public class UnparsedTextList implements Serializable {
      */
     static public Boolean isMessage(final String text) {
         // sanity check and evaluation
-        return Boolean.valueOf((text != null && (text.indexOf("{1:") >= 0)));
+        return (text != null && (text.contains("{1:")));
     }
 
     /**
@@ -127,11 +127,11 @@ public class UnparsedTextList implements Serializable {
 
         // visit every unparsed text
         final StringBuilder s = new StringBuilder();
-        for (final Iterator<String> itr = this.texts.iterator(); itr.hasNext(); ) {
-            s.append(itr.next());
+        for (String text : this.texts) {
+            s.append(text);
         }
 
-        return (s.toString());
+        return s.toString();
     }
 
     /**
@@ -171,7 +171,7 @@ public class UnparsedTextList implements Serializable {
      */
     public Integer size() {
         // sanity check and evaluation
-        return Integer.valueOf(this.texts.size());
+        return this.texts.size();
     }
 
     /**
@@ -199,7 +199,7 @@ public class UnparsedTextList implements Serializable {
         // sanity check
         Validate.notNull(index, WRITER_MESSAGE);
 
-        return this.texts.get(index.intValue());
+        return this.texts.get(index);
     }
 
     /**
@@ -216,7 +216,7 @@ public class UnparsedTextList implements Serializable {
 
         // create a conversion class
         final ConversionService cService = new ConversionService();
-        return (cService.getMessageFromFIN(this.texts.get(index.intValue())));
+        return (cService.getMessageFromFIN(this.texts.get(index)));
     }
 
     /**

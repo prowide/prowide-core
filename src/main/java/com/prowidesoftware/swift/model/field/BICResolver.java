@@ -5,8 +5,8 @@ import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.Validate;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BICResolver {
 
@@ -43,12 +43,9 @@ public class BICResolver {
         List<String> values = ResolverUtils.findWantedType(f.typesPattern(), 'B', f.getComponents());
 
         // prepare the result and convert all that match
-        List<BIC> bics = new ArrayList<>();
-        for(String value : values) {
-            bics.add(value != null ? SwiftFormatUtils.getBIC(value) : (BIC) null);
-        }
-
-        return bics;
+        return values.stream()
+                .map(v -> v != null ? SwiftFormatUtils.getBIC(v) : null)
+                .collect(Collectors.toList());
     }
 
 }

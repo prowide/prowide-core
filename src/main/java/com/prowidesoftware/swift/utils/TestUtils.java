@@ -105,7 +105,7 @@ public class TestUtils {
                 predicate = StringUtils.substringBetween(s, "[", "]");
                 localName = s.substring(0, s.indexOf('['));
             }
-            result.append("/*[local-name()='" + localName + "']");
+            result.append("/*[local-name()='").append(localName).append("']");
             if (predicate != null) {
                 result.append('[').append(predicate).append(']');
             }

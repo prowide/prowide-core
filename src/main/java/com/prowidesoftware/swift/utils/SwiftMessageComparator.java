@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -262,9 +261,8 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     }
 
     private boolean tagNameIgnored(final String name1, final String name2) {
-        if (this.tagnamesToIgnore != null && !this.tagnamesToIgnore.isEmpty()) {
-            for (final Iterator<String> it = this.tagnamesToIgnore.iterator(); it.hasNext(); ) {
-                final String name = it.next();
+        if (this.tagnamesToIgnore != null) {
+            for (final String name : this.tagnamesToIgnore) {
                 if (StringUtils.equals(name, name1) || StringUtils.equals(name, name2)) {
                     return true;
                 }

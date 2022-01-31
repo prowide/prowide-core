@@ -374,9 +374,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
     public void setMIR(final String mir, boolean lenient) {
         if (!lenient) {
             Validate.notNull(mir);
-            if (mir != null) {
-                Validate.isTrue(mir.length() == 28, "expected a 28 characters string for MIR value and found a " + mir.length() + " string:" + mir);
-            }
+            Validate.isTrue(mir.length() == 28, "expected a 28 characters string for MIR value and found a " + mir.length() + " string:" + mir);
         }
         if (mir != null) {
             int offset = 0;

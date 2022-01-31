@@ -17,7 +17,7 @@ public interface PartyIdentifier {
      *
      * @return the formatted Party Identifier
      */
-    public String getPartyIdentifier();
+    String getPartyIdentifier();
 
     /**
      * Set the formatted Party Identifier (CD Mark + Account)
@@ -30,6 +30,6 @@ public interface PartyIdentifier {
      * @param partyIdentifier the formatted Party Identifier to set
      * @return the current OptionAPartyField
      */
-    public PartyIdentifier setPartyIdentifier(String partyIdentifier);
+    PartyIdentifier setPartyIdentifier(String partyIdentifier);
 
 }

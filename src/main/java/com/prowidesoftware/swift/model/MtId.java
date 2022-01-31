@@ -52,10 +52,7 @@ public class MtId {
 
             if (StringUtils.isNotBlank(this.messageType)) {
                 // if message type was extracted, we try to extract the variant as well
-                MTVariant variant = MTVariant.extract(identifier).orElse(null);
-                if (variant != null) {
-                    this.variant = variant.name();
-                }
+                MTVariant.extract(identifier).ifPresent(variant -> this.variant = variant.name());
             } else {
                 // otherwise we just use the parameter as type
                 this.messageType = identifier;
@@ -156,12 +153,12 @@ public class MtId {
             return null;
         }
         if (messageType != null) {
-            sb.append("." + messageType);
+            sb.append(".").append(messageType);
         } else {
             return null;
         }
         if (variant != null) {
-            sb.append("." + variant);
+            sb.append(".").append(variant);
         }
         return sb.toString();
     }

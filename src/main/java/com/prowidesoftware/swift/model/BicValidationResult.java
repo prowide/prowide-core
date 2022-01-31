@@ -50,10 +50,9 @@ public enum BicValidationResult {
      * @return message with variables replaced
      */
     public String message() {
-        String msg = this.message
+        return this.message
                 .replace("${found}", Objects.toString(found))
                 .replace("${length}", found == null ? "-1" : String.valueOf(found.length()));
-        return msg;
     }
 
     /**

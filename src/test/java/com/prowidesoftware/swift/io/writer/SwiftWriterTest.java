@@ -104,7 +104,7 @@ public class SwiftWriterTest {
         l2 = obtained.readLine();
         while (l1 != null && l2 != null) {
             // There is a known issue in block 5 writing
-            if (l1.indexOf("{5:") < 0) {
+            if (!l1.contains("{5:")) {
                 assertEquals(l1, l2);
             }
             l1 = expected.readLine();

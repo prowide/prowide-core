@@ -80,7 +80,7 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
     protected void setBlockNumber(final Integer blockNumber) {
         // sanity check
         Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-        Validate.isTrue(blockNumber.intValue() == 5, "blockNumber must be 5");
+        Validate.isTrue(blockNumber == 5, "blockNumber must be 5");
     }
 
     /**
@@ -102,7 +102,7 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
      * @return Integer containing the block's number
      */
     public Integer getNumber() {
-        return Integer.valueOf(5);
+        return 5;
     }
 
     /**

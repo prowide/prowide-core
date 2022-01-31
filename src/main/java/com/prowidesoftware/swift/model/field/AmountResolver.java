@@ -20,9 +20,10 @@ import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.Validate;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * Helper API to detect amount component in fields.
@@ -53,15 +54,10 @@ public class AmountResolver {
         List<String> values = ResolverUtils.findNonNullWantedType(f.typesPattern(), 'I', f.getComponents());
 
         // prepare the result and convert all that match
-        List<BigDecimal> amounts = new ArrayList<>();
-        for(String value : values) {
-            BigDecimal bigDecimal = SwiftFormatUtils.getBigDecimal(value);
-            if (bigDecimal != null) {
-                amounts.add(bigDecimal);
-            }
-        }
-
-        return amounts;
+        return values.stream()
+                .map(SwiftFormatUtils::getBigDecimal)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     /**

@@ -78,7 +78,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
     public SwiftBlockUser(Integer blockNumber) {
         // sanity check
         Validate.notNull(blockNumber, MESSAGE_VALIDATOR);
-        Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), "'blockNumber' is not a valid User Defined Block number");
+        Validate.isTrue(SwiftBlockUser.isValidName(blockNumber), "'blockNumber' is not a valid User Defined Block number");
 
         this.setBlockNumber(blockNumber);
     }
@@ -96,7 +96,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
     public SwiftBlockUser(Integer blockNumber, List<Tag> tags) {
         // sanity check
         Validate.notNull(blockNumber, MESSAGE_VALIDATOR);
-        Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), "'blockNumber' is not a valid User Defined Block number");
+        Validate.isTrue(SwiftBlockUser.isValidName(blockNumber), "'blockNumber' is not a valid User Defined Block number");
 
         this.setBlockNumber(blockNumber);
         this.addTags(tags);
@@ -113,7 +113,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
     public SwiftBlockUser(String blockName) {
         // sanity check
         Validate.notNull(blockName, "parameter 'blockName' cannot be null");
-        Validate.isTrue(SwiftBlockUser.isValidName(blockName).booleanValue(), "'blockName' is not a valid User Defined Block name");
+        Validate.isTrue(SwiftBlockUser.isValidName(blockName), "'blockName' is not a valid User Defined Block name");
 
         this.setBlockName(blockName);
     }
@@ -131,7 +131,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
     public SwiftBlockUser(String blockName, List<Tag> tags) {
         // sanity check
         Validate.notNull(blockName, "parameter 'blockName' cannot be null");
-        Validate.isTrue(SwiftBlockUser.isValidName(blockName).booleanValue(), "'blockName' is not a valid User Defined Block name");
+        Validate.isTrue(SwiftBlockUser.isValidName(blockName), "'blockName' is not a valid User Defined Block name");
 
         this.setBlockName(blockName);
         this.addTags(tags);
@@ -146,7 +146,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
      * @since 5.0
      */
     static public Boolean isValidName(String blockName, Integer blockNumber) {
-        return Boolean.valueOf(SwiftBlockUser.isValidName(blockName).booleanValue() && SwiftBlockUser.isValidName(blockNumber).booleanValue());
+        return SwiftBlockUser.isValidName(blockName) && SwiftBlockUser.isValidName(blockNumber);
     }
 
     /**
@@ -164,7 +164,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
         // try as a number
         try {
             Integer num = Integer.decode(blockName);
-            if (!SwiftBlockUser.isValidName(num).booleanValue())
+            if (!SwiftBlockUser.isValidName(num))
                 return (Boolean.FALSE);
         } catch (NumberFormatException nfe) {
             // do nothing (it was not a number)
@@ -196,8 +196,8 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
             return (Boolean.FALSE);
 
         // block number must not be 1-5
-        if (blockNumber.intValue() != -1) {
-            if (1 <= blockNumber.intValue() && blockNumber.intValue() <= 5)
+        if (blockNumber != -1) {
+            if (1 <= blockNumber && blockNumber <= 5)
                 return (Boolean.FALSE);
         }
 
@@ -222,7 +222,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
      */
     public Integer getNumber() {
         // assume -1 (not numeric) and try to convert
-        Integer blockNumber = Integer.valueOf(-1);
+        int blockNumber = -1;
         try {
             blockNumber = Integer.decode(blockName);
         } catch (NumberFormatException ignored) {
@@ -258,7 +258,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
     protected void setBlockName(String blockName) {
         // sanity check
         Validate.notNull(blockName, "parameter 'blockName' cannot be null");
-        Validate.isTrue(SwiftBlockUser.isValidName(blockName).booleanValue(), "'" + blockName + "' is not a valid User Defined Block name");
+        Validate.isTrue(SwiftBlockUser.isValidName(blockName), "'" + blockName + "' is not a valid User Defined Block name");
 
         // store the new name
         this.blockName = blockName;
@@ -275,9 +275,9 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
     protected void setBlockNumber(Integer blockNumber) {
         // sanity check
         Validate.notNull(blockNumber, MESSAGE_VALIDATOR);
-        Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), "'" + blockNumber + "' is not a valid User Defined Block number");
+        Validate.isTrue(SwiftBlockUser.isValidName(blockNumber), "'" + blockNumber + "' is not a valid User Defined Block number");
 
-        this.blockName = blockNumber != null ? blockNumber.toString() : null;
+        this.blockName = blockNumber.toString();
     }
 
     /**

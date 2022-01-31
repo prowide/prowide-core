@@ -335,7 +335,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
             addUserBlock((SwiftBlockUser) b);
         } else {
             Validate.notNull(b.getNumber(), "SwiftBlock.getNumber() is null");
-            final int index = b.getNumber().intValue();
+            final int index = b.getNumber();
             Validate.isTrue(index >= 1 && index <= 5, "SwiftBlock.getNumber int did not return an int between 1-5");
             switch (index) {
                 case 1:
@@ -429,9 +429,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         if (this.userBlocks != null) {
 
             // visit every user defined block
-            for (int i = 0; i < this.userBlocks.size(); i++) {
+            for (final SwiftBlockUser userBlock : this.userBlocks) {
 
-                final SwiftBlockUser userBlock = this.userBlocks.get(i);
                 if (userBlock != null) {
                     visitor.startBlockUser(userBlock);
                     visit(userBlock, visitor);
@@ -489,7 +488,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         }
 
         // count user defined blocks (if requested to do so)
-        if (includeUserBlocks.booleanValue() && this.userBlocks != null) {
+        if (includeUserBlocks && this.userBlocks != null) {
             count += this.userBlocks.size();
         }
 
@@ -689,7 +688,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     public void addUserBlock(final SwiftBlockUser userBlock) {
         // sanity check
         Validate.notNull(userBlock);
-        Validate.isTrue(userBlock.isValidName().booleanValue(), INVALID_NAME_BLOCK + userBlock.getName() + ")");
+        Validate.isTrue(userBlock.isValidName(), INVALID_NAME_BLOCK + userBlock.getName() + ")");
 
         if (this.userBlocks == null) {
             this.userBlocks = new ArrayList<>();
@@ -716,7 +715,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     public void removeUserBlock(final Integer blockNumber) {
         // sanity check
         Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-        Validate.isTrue(SwiftBlockUser.isValidName(blockNumber).booleanValue(), INVALID_NAME_BLOCK + blockNumber + ")");
+        Validate.isTrue(SwiftBlockUser.isValidName(blockNumber), INVALID_NAME_BLOCK + blockNumber + ")");
 
         this.removeUserBlock(blockNumber.toString());
     }
@@ -732,7 +731,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     public void removeUserBlock(final String blockName) {
         // sanity check
         Validate.notNull(blockName, "parameter 'blockName' cannot be null");
-        Validate.isTrue(SwiftBlockUser.isValidName(blockName).booleanValue(), INVALID_NAME_BLOCK + blockName + ")");
+        Validate.isTrue(SwiftBlockUser.isValidName(blockName), INVALID_NAME_BLOCK + blockName + ")");
 
         // find the block position (if it's there)
         final int pos = getUserBlockPosition(blockName);
@@ -782,7 +781,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @since 5.0
      */
     public Boolean isLastFragment() {
-        if (!this.isFragment().booleanValue()) {
+        if (!this.isFragment()) {
             return (Boolean.FALSE);
         }
         final Integer count = this.fragmentCount();
@@ -802,17 +801,17 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public Integer fragmentCount() {
         // if this is not a fragment => 0
-        if (!this.isFragment().booleanValue()) {
-            return Integer.valueOf(0);
+        if (!this.isFragment()) {
+            return 0;
         }
 
         // get the block 4 and tag 203 (they BOTH exists here)
         final String t203 = this.block4.getTagValue("203");
 
         // process the number
-        Integer _t203;
+        int _t203;
         try {
-            _t203 = Integer.valueOf(Integer.parseInt(t203, 10));
+            _t203 = Integer.parseInt(t203, 10);
         } catch (final NumberFormatException nfe) {
             throw new UnsupportedOperationException(MESSAGE_IS_NOT_A_FRAGMENT);
         }
@@ -829,7 +828,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public Integer fragmentNumber() {
         // if this is not a fragment => 0
-        if (!this.isFragment().booleanValue()) {
+        if (!this.isFragment()) {
             throw new UnsupportedOperationException(MESSAGE_IS_NOT_A_FRAGMENT);
         }
 
@@ -837,9 +836,9 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         final String t202 = this.block4.getTagValue("202");
 
         // process the number
-        Integer _t202;
+        int _t202;
         try {
-            _t202 = Integer.valueOf(Integer.parseInt(t202, 10));
+            _t202 = Integer.parseInt(t202, 10);
         } catch (final NumberFormatException nfe) {
             throw new UnsupportedOperationException(MESSAGE_IS_NOT_A_FRAGMENT);
         }
@@ -947,7 +946,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     public Integer getUnparsedTextsSize() {
         // no list => size is zero...
         if (this.unparsedTexts == null) {
-            return Integer.valueOf(0);
+            return 0;
         }
         return this.unparsedTexts.size();
     }
@@ -1540,7 +1539,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     private void appendBlock(final String blockName, final StringBuilder sb, final SwiftTagListBlock b) {
-        sb.append("\"block" + blockName + "\" : \n");
+        sb.append("\"block").append(blockName).append("\" : \n");
         if (b == null) {
             sb.append("{ }");
         } else {

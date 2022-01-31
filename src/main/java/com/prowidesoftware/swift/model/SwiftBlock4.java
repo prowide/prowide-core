@@ -78,7 +78,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
         if (b4 == null) {
             return null;
         }
-        final Stack<Tag> stack = new Stack<Tag>();
+        final Stack<Tag> stack = new Stack<>();
         for (Tag t : b4.getTags()) {
             if (!stack.isEmpty() &&
                     StringUtils.equals(t.getName(), "16S") &&
@@ -129,7 +129,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
     protected void setBlockNumber(Integer blockNumber) {
         // sanity check
         Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-        Validate.isTrue(blockNumber.intValue() == 4, "blockNumber must be 4");
+        Validate.isTrue(blockNumber == 4, "blockNumber must be 4");
     }
 
     /**
@@ -151,7 +151,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
      * @return Integer containing the block's number
      */
     public Integer getNumber() {
-        return Integer.valueOf(4);
+        return 4;
     }
 
     /**

@@ -69,7 +69,7 @@ public class SwiftParseUtils {
      * @return a list of String with the found components or an empty list if none is found
      */
     public static List<String> splitComponents(final String line, final String starting, final String separator) {
-        final ArrayList<String> result = new ArrayList<>();
+        final List<String> result = new ArrayList<>();
 
         if (StringUtils.isNotBlank(line)) {
             String lineNoPrefix = removePrefix(line, starting);
@@ -77,9 +77,9 @@ public class SwiftParseUtils {
             if (StringUtils.isNotBlank(separator)) {
                 final String[] tokens = StringUtils.splitByWholeSeparator(lineNoPrefix, separator);
                 //add not empty tokens to result
-                for (int i = 0; i < tokens.length; i++) {
-                    if (StringUtils.isNotBlank(tokens[i])) {
-                        result.add(tokens[i]);
+                for (String token : tokens) {
+                    if (StringUtils.isNotBlank(token)) {
+                        result.add(token);
                     }
                 }
             } else {

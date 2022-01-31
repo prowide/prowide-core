@@ -51,7 +51,7 @@ public enum FileFormat {
      */
     XML_V2("xml");
 
-    private String extension = null;
+    private String extension;
 
     FileFormat(final String extension) {
         this.extension = extension;

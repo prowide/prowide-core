@@ -391,15 +391,15 @@ public class SwiftCharsetUtils {
      * @return a string describing the charset
      */
     public static String getAsString(char[] charset) {
-        StringBuffer result = new StringBuffer();
-        for (int i = 0; i < charset.length; i++) {
+        StringBuilder result = new StringBuilder();
+        for (char c : charset) {
             String ch = null;
-            if (charset[i] == '\n') {
+            if (c == '\n') {
                 ch = "LF";
-            } else if (charset[i] == '\r') {
+            } else if (c == '\r') {
                 ch = "CR";
             } else {
-                ch = "" + charset[i];
+                ch = "" + c;
             }
             result.append("[");
             result.append(ch);

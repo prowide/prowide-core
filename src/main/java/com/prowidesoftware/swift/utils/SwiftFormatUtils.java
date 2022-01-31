@@ -435,7 +435,7 @@ public class SwiftFormatUtils {
      */
     public static Character getSign(final String string) {
         if (StringUtils.isNotEmpty(string)) {
-            return Character.valueOf(string.charAt(0));
+            return string.charAt(0);
         }
         return null;
     }

@@ -332,15 +332,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
             setAmount(money.get().getAmount());
         }
 
-        Calendar valueDate = strategy.valueDate(mt).orElse(null);
-        if (valueDate != null) {
-            setValueDate(valueDate);
-        }
+        strategy.valueDate(mt).ifPresent(this::setValueDate);
 
-        Calendar tradeDate = strategy.tradeDate(mt).orElse(null);
-        if (tradeDate != null) {
-            setTradeDate(tradeDate);
-        }
+        strategy.tradeDate(mt).ifPresent(this::setTradeDate);
     }
 
     /**

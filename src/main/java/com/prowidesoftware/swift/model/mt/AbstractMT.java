@@ -588,7 +588,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public boolean containsSequenceList(final String name) {
         try {
-            return getClass().getMethod(GETSEQUENCE + name + "List") != null;
+            getClass().getMethod(GETSEQUENCE + name + "List");
+            return true;
         } catch (Exception e) {
             return false;
         }

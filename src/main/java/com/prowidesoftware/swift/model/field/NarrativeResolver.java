@@ -22,6 +22,7 @@ import org.apache.commons.lang3.tuple.Triple;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementation for {@link StructuredNarrativeField}
@@ -175,9 +176,9 @@ public class NarrativeResolver {
     }
 
     private static List<String> notEmptyLines(String value) {
-        List<String> lines = SwiftParseUtils.getLines(value);
-        lines.removeIf(item -> item == null || item.isEmpty());
-        return lines;
+        return SwiftParseUtils.getLines(value).stream()
+                .filter(StringUtils::isNotEmpty)
+                .collect(Collectors.toList());
     }
 
     //returns true if it's the first supplement added
@@ -332,7 +333,7 @@ public class NarrativeResolver {
             }
         }
 
-        return new ImmutableTriple<String, BigDecimal, String>
+        return new ImmutableTriple<>
                 ((currency.length() == 0) ? null : currency.toString(),
                         (amount.length() == 0) ? null : new BigDecimal(amount.toString()),
                         (narrative.length() == 0) ? null : narrative.toString());

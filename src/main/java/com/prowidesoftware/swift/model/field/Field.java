@@ -36,6 +36,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 
 /**
@@ -89,7 +90,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 7.7
      */
     protected Field(final Field source) {
-        this.components = new ArrayList<String>(source.getComponents());
+        this.components = new ArrayList<>(source.getComponents());
     }
 
     /**
@@ -701,8 +702,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return s
      */
     public String findComponentStartingWith(final String prefix) {
-        for (int i = 0; i < this.components.size(); i++) {
-            final String c = this.components.get(i);
+        for (final String c : this.components) {
             if (StringUtils.startsWith(c, prefix)) {
                 return c;
             }
@@ -823,7 +823,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public boolean isLetterOption(final char c) {
         final Character l = letterOption();
         if (l != null) {
-            return l.charValue() == c;
+            return l == c;
         }
         return false;
     }
@@ -948,18 +948,16 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         }
 
         // get all meaningful lines from value
-        final List<String> lines = new ArrayList<>();
-        for (final String l : SwiftParseUtils.getLines(cp.getValue())) {
-            if (StringUtils.isNotEmpty(l) && !onlySlashes(l)) {
-                lines.add(l);
-            }
-        }
+        final List<String> lines = SwiftParseUtils.getLines(cp.getValue()).stream()
+                .filter(StringUtils::isNotEmpty)
+                .filter(l -> !onlySlashes(l))
+                .collect(Collectors.toList());
 
         if (start != null) {
             if (lines.size() >= start) {
                 if (end != null) {
                     if (end >= start) {
-                        Integer trimmedEnd = end;
+                        int trimmedEnd = end;
                         if (end > lines.size()) {
                             trimmedEnd = lines.size() - 1;
                         }
@@ -1003,8 +1001,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     private String asString(final String hash, final List<String> list) {
         final StringBuilder result = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            final String l = list.get(i);
+        for (final String l : list) {
             final String trimmed = clean(hash, l);
             if (trimmed != null) {
                 if (result.length() > 0) {

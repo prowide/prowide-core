@@ -52,12 +52,12 @@ public class MtSwiftMessageJsonTest {
         MtSwiftMessage m = new MtSwiftMessage(fin);
 
         SwiftMessageStatusInfo statusInfo = new SwiftMessageStatusInfo("comments", "creationUser", "name", "data");
-        List<SwiftMessageStatusInfo> statusTrial = new ArrayList<SwiftMessageStatusInfo>();
+        List<SwiftMessageStatusInfo> statusTrial = new ArrayList<>();
         statusTrial.add(statusInfo);
         m.setStatusTrail(statusTrial);
 
         SwiftMessageNote swiftMessageNote = new SwiftMessageNote("creationUser", "text");
-        List<SwiftMessageNote> notes = new ArrayList<SwiftMessageNote>();
+        List<SwiftMessageNote> notes = new ArrayList<>();
         notes.add(swiftMessageNote);
         m.setNotes(notes);
         assertNotNull(m);

@@ -75,7 +75,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (m.getUnparsedTextsSize().intValue() > 0)
+        if (m.getUnparsedTextsSize() > 0)
             write(m.getUnparsedTexts(), 0);
 
         write(EOL + "</message>");
@@ -116,7 +116,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -190,7 +190,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -217,7 +217,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -248,7 +248,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -275,7 +275,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -302,7 +302,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -353,7 +353,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (t.getUnparsedTextsSize().intValue() > 0)
+        if (t.getUnparsedTextsSize() > 0)
             write(t.getUnparsedTexts(), 2);
 
         // write tag termination
@@ -390,7 +390,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
     }
 
     private void appendElement(StringBuilder sb, String element, String value) {
-        sb.append(EOL + "\t<").append(element).append('>')
+        sb.append(EOL).append("\t<").append(element).append('>')
                 .append(value)
                 .append("</").append(element).append('>');
     }
@@ -411,11 +411,11 @@ public class XMLWriterVisitor implements IMessageVisitor {
         }
 
         // write the unparsed texts (if any)
-        if (texts.size().intValue() > 0) {
+        if (texts.size() > 0) {
             write(EOL + prefix + "<unparsedTexts>");
-            for (int i = 0; i < texts.size().intValue(); i++) {
+            for (int i = 0; i < texts.size(); i++) {
                 write(EOL + prefix + "\t<text>");
-                write(texts.getText(Integer.valueOf(i)));
+                write(texts.getText(i));
                 write("</text>");
             }
             write(EOL + prefix + "</unparsedTexts>");
