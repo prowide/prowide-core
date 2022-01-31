@@ -39,7 +39,7 @@ public class BicValidator implements ConstraintValidator<BicConstraint, String> 
         if (StringUtils.isBlank(bic)) {
             return true;
         }
-        BicValidationResult result = (new BIC(bic)).validate();
+        BicValidationResult result = new BIC(bic).validate();
         if (result == BicValidationResult.OK) {
             return true;
         } else {

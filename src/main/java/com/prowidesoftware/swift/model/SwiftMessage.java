@@ -152,7 +152,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @since 7.8.8
      */
     public static SwiftMessage parse(final String fin) throws IOException {
-        return (new SwiftParser(fin)).message();
+        return new SwiftParser(fin).message();
     }
 
     /**
@@ -430,7 +430,6 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
             // visit every user defined block
             for (final SwiftBlockUser userBlock : this.userBlocks) {
-
                 if (userBlock != null) {
                     visitor.startBlockUser(userBlock);
                     visit(userBlock, visitor);
@@ -595,7 +594,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     public int getUserBlockPosition(final String blockName) {
         // check parameters
         if (StringUtils.isBlank(blockName) || //check user blocks array
-                (this.userBlocks == null)) {
+                this.userBlocks == null) {
             return -1;
         }
 
@@ -781,8 +780,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @since 5.0
      */
     public Boolean isLastFragment() {
-        if (!this.isFragment()) {
-            return (Boolean.FALSE);
+        if (!isFragment()) {
+            return Boolean.FALSE;
         }
         final Integer count = this.fragmentCount();
         try {
@@ -1066,10 +1065,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         try {
             if (isServiceMessage() || getDirection() == MessageIOType.outgoing) {
                 return this.block1 == null ? null : this.block1.getLogicalTerminal();
-            } else if (getDirection() == MessageIOType.incoming) {
-                if (this.block2 != null) {
-                    return ((SwiftBlock2Output) this.block2).getMIRLogicalTerminal();
-                }
+            } else if ((getDirection() == MessageIOType.incoming) && (this.block2 != null)) {
+                return ((SwiftBlock2Output) this.block2).getMIRLogicalTerminal();
             }
         } catch (final Exception e) {
             log.severe("Exception occurred while retrieving sender's BIC from message data: " + e);
@@ -1314,7 +1311,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public String getMOR() {
         if (this.block2 != null && this.block2.isOutput()) {
-            SwiftBlock2Output swiftBlock2Output = ((SwiftBlock2Output) this.block2);
+            SwiftBlock2Output swiftBlock2Output = (SwiftBlock2Output) this.block2;
             String date = swiftBlock2Output.getReceiverOutputDate();
             if (this.block1 != null) {
                 String logicalTerminal = this.block1.getLogicalTerminal();
@@ -1539,7 +1536,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     private void appendBlock(final String blockName, final StringBuilder sb, final SwiftTagListBlock b) {
-        sb.append("\"block").append(blockName).append("\" : \n");
+        sb.append("\"block" + blockName + "\" : \n");
         if (b == null) {
             sb.append("{ }");
         } else {
@@ -1901,7 +1898,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @since 7.10.0
      */
     public boolean isGpi() {
-        return isType(103, 199, 299, 192, 196) || (isType(202, 205) && isCOV());
+        return isType(103, 199, 299, 192, 196) || isType(202, 205) && isCOV();
     }
 
 }

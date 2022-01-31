@@ -105,6 +105,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
      * @see #compareB2(SwiftBlock2, SwiftBlock2)
      * @see #compareTagListBlock(SwiftTagListBlock, SwiftTagListBlock)
      */
+    @Override
     public int compare(final SwiftMessage left, final SwiftMessage right) {
         Validate.notNull(left);
         Validate.notNull(right);
@@ -114,7 +115,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         final boolean b4 = compareTagListBlock(left.getBlock4(), right.getBlock4());
         final boolean b5 = this.ignoreTrailer || compareTagListBlock(left.getBlock5(), right.getBlock5());
         log.finest("b1=" + b1 + ", b2=" + b2 + ", b3=" + b3 + ", b4=" + b4 + ", b5=" + b5);
-        return (b1 && b2 && b3 && b4 && b5) ? 0 : 1;
+        return b1 && b2 && b3 && b4 && b5 ? 0 : 1;
     }
 
     /**

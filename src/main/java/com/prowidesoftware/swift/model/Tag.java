@@ -211,6 +211,7 @@ public class Tag implements Serializable {
         this.value = value;
     }
 
+    @Override
     public String toString() {
         return "Tag[" + name + ":" + value + "]";
     }
@@ -232,7 +233,7 @@ public class Tag implements Serializable {
 
         // create the list if needed
         unparsedTextVerify();
-        return (this.unparsedTexts);
+        return this.unparsedTexts;
     }
 
     /**
@@ -271,7 +272,7 @@ public class Tag implements Serializable {
 
         // create the list if needed
         unparsedTextVerify();
-        return (this.unparsedTexts.isMessage(index));
+        return this.unparsedTexts.isMessage(index);
     }
 
     /**
@@ -286,7 +287,7 @@ public class Tag implements Serializable {
 
         // create the list if needed
         unparsedTextVerify();
-        return (this.unparsedTexts.getText(index));
+        return this.unparsedTexts.getText(index);
     }
 
     /**
@@ -300,7 +301,7 @@ public class Tag implements Serializable {
 
         // create the list if needed
         unparsedTextVerify();
-        return (this.unparsedTexts.getTextAsMessage(index));
+        return this.unparsedTexts.getTextAsMessage(index);
     }
 
     /**

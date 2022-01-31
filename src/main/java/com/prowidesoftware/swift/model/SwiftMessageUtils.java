@@ -476,8 +476,7 @@ public class SwiftMessageUtils {
                     return murBlock4.getValue();
                 }
             }
-            final String mur = m.getMUR();
-            return mur;
+            return m.getMUR();
         }
         return null;
     }

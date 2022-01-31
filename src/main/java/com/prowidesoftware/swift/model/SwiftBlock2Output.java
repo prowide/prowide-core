@@ -49,12 +49,9 @@ import java.util.Objects;
  * @see MIR
  * @since 4.0
  */
-//TODO: add parameter checks (Validate.*) and complete javadocs 
+// TODO: add parameter checks (Validate.*) and complete javadocs
 public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
     private static final long serialVersionUID = 6067091531833134527L;
-    @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock2.class.getName());
-    private static final String SEPARATOR = "\", \n";
 
     /**
      * String of 4 characters containing the input time with respect to the sender
@@ -457,6 +454,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      *
      * @return <code>true</code> if all fields are null and false in other case
      */
+    @Override
     public boolean isEmpty() {
         return messageType == null && senderInputTime == null && getMIR() == null && receiverOutputDate == null && receiverOutputTime == null && messagePriority == null;
     }
@@ -471,6 +469,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      * Receiver Output Time +
      * Message Priority.
      */
+    @Override
     public String getValue() {
         if (isEmpty()) {
             return null;
@@ -504,6 +503,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      * @throws IllegalArgumentException if parameter has an invalid total size.
      * @see #setValue(String, boolean)
      */
+    @Override
     public void setValue(final String value) {
         setValue(value, false);
     }
@@ -511,6 +511,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
     /**
      * @see #getValue()
      */
+    @Override
     public String getBlockValue() {
         return getValue();
     }
@@ -518,6 +519,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
     /**
      * @see #setValue(String)
      */
+    @Override
     public void setBlockValue(final String value) {
         setValue(value);
     }
@@ -562,10 +564,8 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
             }
 
             slen -= offset;
-            if (!lenient) {
-                if (slen != 46 && slen != 47) {
-                    throw new IllegalArgumentException("Value must match: O<mt><time><mir><date><time>[<pri>]");
-                }
+            if (!lenient && slen != 46 && slen != 47) {
+                throw new IllegalArgumentException("Value must match: O<mt><time><mir><date><time>[<pri>]");
             }
             offset++; // skip the output mark
 

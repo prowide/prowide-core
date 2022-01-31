@@ -393,7 +393,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     public void updateFromModel(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
         Validate.notNull(model, "the model message cannot be null");
         Validate.notNull(metadataStrategy, "the metadata strategy cannot be null");
-        final String fin = (new ConversionService()).getFIN(model);
+        final String fin = new ConversionService().getFIN(model);
         Validate.notNull(fin, "the raw message could not be created from the SwiftMessage parameter");
         setMessage(fin);
         updateAttributes(model, metadataStrategy);
@@ -686,7 +686,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     @Override
     public String getCategory() {
         if (!StringUtils.isBlank(this.identifier)) {
-            return (new MtId(this.identifier)).category();
+            return new MtId(this.identifier).category();
         }
         return "";
     }

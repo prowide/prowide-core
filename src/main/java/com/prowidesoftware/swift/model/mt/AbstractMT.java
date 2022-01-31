@@ -125,7 +125,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.7
      */
     public static AbstractMT parse(final String fin) throws IOException {
-        return (new SwiftParser(fin)).message().toMT();
+        return new SwiftParser(fin).message().toMT();
     }
 
     /**
@@ -138,7 +138,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.7
      */
     public static AbstractMT parse(final InputStream stream) throws IOException {
-        return (new SwiftParser(stream)).message().toMT();
+        return new SwiftParser(stream).message().toMT();
     }
 
     /**
@@ -151,7 +151,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.7
      */
     public static AbstractMT parse(final File file) throws IOException {
-        return (new SwiftParser(Lib.readFile(file))).message().toMT();
+        return new SwiftParser(Lib.readFile(file)).message().toMT();
     }
 
     /**
@@ -219,6 +219,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.7
      * @deprecated use <code>msg.toMT().getSequence(sequence)</code> instead of this method
      */
+    @Deprecated
     public static SwiftTagListBlock getSequence(final SwiftMessage msg, final String sequence) {
         if (msg != null && sequence != null) {
             final AbstractMT amt = msg.toMT();
@@ -680,7 +681,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public String getSignature() {
 
-        return (getSwiftMessage() != null ? getSwiftMessage().getSignature() : null);
+        return getSwiftMessage() != null ? getSwiftMessage().getSignature() : null;
     }
 
     /**
@@ -701,7 +702,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
         // set the signature
         getSwiftMessage().setSignature(signature);
 
-        return (this);
+        return this;
     }
 
     /**

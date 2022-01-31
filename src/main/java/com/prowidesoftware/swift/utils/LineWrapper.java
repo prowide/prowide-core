@@ -72,7 +72,7 @@ public final class LineWrapper {
         }
 
         final int strLen = str.length();
-        final List<String> wrapped = new ArrayList<>((strLen / _width) + 2);
+        final List<String> wrapped = new ArrayList<>(strLen / _width + 2);
         int offset = 0, idxSpace = -1, idxSpaceWrap = -1;
 
         while (offset < strLen) {

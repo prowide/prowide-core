@@ -31,13 +31,13 @@ public class Issue74 {
         String formattedValue = swift48Tag.getValue();
 
         System.out.println("swift48Tag.getValue: " + formattedValue);
-        assert("30/BUT WITHIN L/C VALIDITY".equals(formattedValue));
+        assert "30/BUT WITHIN L/C VALIDITY".equals(formattedValue);
 
         if (swift48Tag.asField() != null) {
             formattedValue = swift48Tag.asField().getValue();
         }
         System.out.println("swift48Tag.asField.getValue: " + formattedValue);
-        assert("30/BUT WITHIN L/C VALIDITY".equals(formattedValue));
+        assert "30/BUT WITHIN L/C VALIDITY".equals(formattedValue);
     }
 
 }

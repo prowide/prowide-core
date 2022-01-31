@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
  * @since 7.7
  */
 public final class ProwideLocale {
-    public static String[] SUPPORTED_LANGS = new String[]{"en", "es", "fr", "it", "ru"};
+    public static String[] SUPPORTED_LANGS = {"en", "es", "fr", "it", "ru"};
 
     /**
      * Get requested bundle or ENGLISH if missing resource for the given locale.

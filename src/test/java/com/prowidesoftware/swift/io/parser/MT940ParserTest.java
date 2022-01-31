@@ -51,7 +51,7 @@ public class MT940ParserTest extends BaseMessageTestcase {
                 ":86:Message de bienvenue\n" +
                 "-}";
 
-        assertEquals("940", (parseMessage(messageToParse)).getType());
+        assertEquals("940", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARXXAXXX0000000000", b1.getBlockValue());

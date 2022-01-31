@@ -33,7 +33,7 @@ public class Field23Test extends AbstractFieldTest {
 
     @Test
     public void testParse23() {
-        Field23 f = null;
+        Field23 f;
 
         f = new Field23((String) null);
         assertNull(f.getComponent1());
@@ -110,7 +110,7 @@ public class Field23Test extends AbstractFieldTest {
 
     @Test
     public void testParse23_WithMissingParts() {
-        Field23 f = null;
+        Field23 f;
 
         f = new Field23("abcd/efgh/ijkl/mnop");
         assertEquals("abcd", f.getComponent1());

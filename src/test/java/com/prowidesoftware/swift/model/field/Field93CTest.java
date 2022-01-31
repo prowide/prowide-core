@@ -36,7 +36,7 @@ public class Field93CTest extends AbstractFieldTest {
      */
     @Test
     public void testField93CString() {
-        Field93C f = null;
+        Field93C f;
 
         f = new Field93C("");
         assertTrue(StringUtils.isBlank(f.getComponent1()));

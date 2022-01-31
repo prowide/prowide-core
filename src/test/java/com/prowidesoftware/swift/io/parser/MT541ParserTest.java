@@ -69,7 +69,7 @@ public class MT541ParserTest extends BaseMessageTestcase {
                 ":16S:SETDET\n" +
                 "-}";
 
-        assertEquals("541", (parseMessage(messageToParse)).getType());
+        assertEquals("541", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARXXXXXX1234123456", b1.getBlockValue());
@@ -258,7 +258,7 @@ public class MT541ParserTest extends BaseMessageTestcase {
                 ":16S:AMT\n" +
                 ":16S:SETDET\n" +
                 "-}";
-        assertEquals("541", (parseMessage(messageToParse)).getType());
+        assertEquals("541", parseMessage(messageToParse).getType());
         assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
         assertEquals("I541FOOOFRPPXXXXN", b2.getBlockValue());
         assertEquals(32, b4.countAll());
@@ -301,7 +301,7 @@ public class MT541ParserTest extends BaseMessageTestcase {
                 ":16S:AMT\n" +
                 ":16S:SETDET\n" +
                 "-}";
-        assertEquals("541", (parseMessage(messageToParse)).getType());
+        assertEquals("541", parseMessage(messageToParse).getType());
         assertEquals("F01FOOBARXXXXXX4321654321", b1.getBlockValue());
         assertEquals("I541FOOOARPPXXXXN", b2.getBlockValue());
         assertEquals(32, b4.countAll());
@@ -342,7 +342,7 @@ public class MT541ParserTest extends BaseMessageTestcase {
                 ":16S:AMT\n" +
                 ":16S:SETDET\n" +
                 "-}";
-        assertEquals("541", (parseMessage(messageToParse)).getType());
+        assertEquals("541", parseMessage(messageToParse).getType());
         assertEquals("F01FOOBARXXXXXX1234123456", b1.getBlockValue());
         assertEquals("I541FOOODEFFXCUSN", b2.getBlockValue());
         assertEquals(30, b4.countAll());
@@ -384,7 +384,7 @@ public class MT541ParserTest extends BaseMessageTestcase {
                 ":16S:AMT\n" +
                 ":16S:SETDET\n" +
                 "-}";
-        assertEquals("541", (parseMessage(messageToParse)).getType());
+        assertEquals("541", parseMessage(messageToParse).getType());
         assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
         assertEquals("I541FOOOUS33XASTN", b2.getBlockValue());
         assertEquals(31, b4.countAll());

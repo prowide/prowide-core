@@ -44,7 +44,7 @@ public class Field61Test extends AbstractFieldTest {
         String v3 = "081024C10215,NOPT12710361";
         String v4 = "081027C858,28NOPT12716219\n1524/6006/TESORO NACIONAL";
 
-        Field61 f = null;
+        Field61 f;
 
         f = new Field61(v1);
         assertNotNull(f);
@@ -193,7 +193,7 @@ public class Field61Test extends AbstractFieldTest {
          RC Reversal of Credit (debit entry)
          RD Reversal of Debit (credit entry)
          */
-        Field61 field61 = null;
+        Field61 field61;
 
         field61 = new Field61("1512290201CZ0000000002,2222FBNKNONREF");
         assertEquals("C", field61.getDebitCreditMark());

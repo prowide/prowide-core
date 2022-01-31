@@ -51,7 +51,7 @@ public class MT535ParserTest extends BaseMessageTestcase {
                 ":16S:ADDINFO\n" +
                 "-}{5:{MAC:8A1FADA1}{CHK:B018C2CA74CD}}{S:{REF:I20070328.386482886.out/1/1}}";
 
-        assertEquals("535", (parseMessage(messageToParse)).getType());
+        assertEquals("535", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARXXAXXX3219604112", b1.getBlockValue());

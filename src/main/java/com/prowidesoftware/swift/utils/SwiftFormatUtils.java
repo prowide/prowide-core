@@ -75,7 +75,7 @@ public class SwiftFormatUtils {
      * @return parsed date or null if the argument did not matched the expected date format
      */
     public static Calendar getDate2(final String strDate) {
-        if ((strDate != null) && (strDate.length() == 6)) {
+        if (strDate != null && strDate.length() == 6) {
             return getCalendar(strDate, "yyMMdd");
         } else {
             return null;
@@ -109,6 +109,7 @@ public class SwiftFormatUtils {
      * @since 7.8.8
      * @deprecated use Year.now().isLeap() instead
      */
+    @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2022)
     public static final boolean isLeapYear() {
         DeprecationUtils.phase2(SwiftFormatUtils.class, "isLeapYear()", "use Year.now().isLeap() instead");
@@ -145,7 +146,7 @@ public class SwiftFormatUtils {
      * @return parsed date or null if the argument did not matched the expected date format
      */
     public static Calendar getDate3(final String strDate) {
-        if ((strDate != null) && (strDate.length() == 4)) {
+        if (strDate != null && strDate.length() == 4) {
             return getCalendar(strDate, "yyMM");
         } else {
             return null;
@@ -170,7 +171,7 @@ public class SwiftFormatUtils {
      * @return parsed date or null if the argument did not matched the expected date format
      */
     public static Calendar getDate4(final String strDate) {
-        if ((strDate != null) && (strDate.length() == 8)) {
+        if (strDate != null && strDate.length() == 8) {
             return getCalendar(strDate, "yyyyMMdd");
         } else {
             return null;
@@ -195,7 +196,7 @@ public class SwiftFormatUtils {
      * @return parsed date or null if the argument did not matched the expected date format
      */
     public static Calendar getYear(final String strDate) {
-        if ((strDate != null) && (strDate.length() == 4)) {
+        if (strDate != null && strDate.length() == 4) {
             return getCalendar(strDate, "yyyy");
         } else {
             return null;
@@ -341,7 +342,7 @@ public class SwiftFormatUtils {
      * @return a Calendar set with the given hour and minutes
      */
     public static Calendar getHhmm(final String hhmm) {
-        if ((hhmm != null) && (hhmm.length() == 4)) {
+        if (hhmm != null && hhmm.length() == 4) {
             return getCalendar(hhmm, "HHmm");
         } else {
             return null;
@@ -382,7 +383,7 @@ public class SwiftFormatUtils {
      * @return a Calendar set with the given hour, minutes and seconds
      */
     public static Calendar getTime2(final String hhmmss) {
-        if ((hhmmss != null) && (hhmmss.length() == 6)) {
+        if (hhmmss != null && hhmmss.length() == 6) {
             return getCalendar(hhmmss, "HHmmss");
         } else {
             return null;
@@ -549,7 +550,7 @@ public class SwiftFormatUtils {
      * @since 7.4
      */
     public static Calendar getDateTime(final String strDate) {
-        if ((strDate != null) && (strDate.length() == 12)) {
+        if (strDate != null && strDate.length() == 12) {
             return getCalendar(strDate, "yyyyMMddHHmm");
         } else {
             return null;
@@ -575,7 +576,7 @@ public class SwiftFormatUtils {
      * @since 7.4
      */
     public static Calendar getDateTimeShortYear(final String strDate) {
-        if ((strDate != null) && (strDate.length() == 10)) {
+        if (strDate != null && strDate.length() == 10) {
             return getCalendar(strDate, "yyMMddHHmm");
         } else {
             return null;
@@ -601,7 +602,7 @@ public class SwiftFormatUtils {
      * @since 7.4
      */
     public static Calendar getDayTime(final String strDate) {
-        if ((strDate != null) && (strDate.length() == 6)) {
+        if (strDate != null && strDate.length() == 6) {
             return getCalendar(strDate, "ddHHmm");
         } else {
             return null;
@@ -630,7 +631,7 @@ public class SwiftFormatUtils {
      * @since 7.4
      */
     public static Calendar getMonthDay(final String strDate) {
-        if ((strDate != null) && (strDate.length() == 4)) {
+        if (strDate != null && strDate.length() == 4) {
             String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
             return getCalendar(year + strDate, "yyyyMMdd");
         } else {
@@ -658,7 +659,7 @@ public class SwiftFormatUtils {
      * @since 7.4
      */
     public static Calendar getHour(final String strDate) {
-        if ((strDate != null) && (strDate.length() == 2)) {
+        if (strDate != null && strDate.length() == 2) {
             return getCalendar(strDate, "HH");
         } else {
             return null;
@@ -760,10 +761,8 @@ public class SwiftFormatUtils {
      * @since 7.8
      */
     public static int decimalsInAmount(final BigDecimal amount) {
-        if (amount != null) {
-            if (amount.scale() != 0) {
-                return amount.scale();
-            }
+        if (amount != null && amount.scale() != 0) {
+            return amount.scale();
         }
         return 0;
     }

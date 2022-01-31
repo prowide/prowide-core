@@ -42,15 +42,15 @@ public class SwiftCharsetUtils {
     }
 
     private static boolean isNumber(char character) {
-        return (character >= '0') && (character <= '9');
+        return character >= '0' && character <= '9';
     }
 
     private static boolean isLowercaseLetter(char character) {
-        return (character >= 'a') && (character <= 'z');
+        return character >= 'a' && character <= 'z';
     }
 
     private static boolean isUppercaseLetter(char character) {
-        return (character >= 'A') && (character <= 'Z');
+        return character >= 'A' && character <= 'Z';
     }
 
     /**
@@ -298,8 +298,7 @@ public class SwiftCharsetUtils {
         }
         result = StringUtils.replace(result, getAsString(get_n()), "[0-9]");
         result = StringUtils.replace(result, getAsString(get_a()), "[A-Z]");
-        result = StringUtils.replace(result, getAsString(azLowerCase), "[a-z]");
-        return result;
+        return StringUtils.replace(result, getAsString(azLowerCase), "[a-z]");
     }
 
     /**
@@ -344,8 +343,7 @@ public class SwiftCharsetUtils {
     public static char[] get_x() {
         char[] result = specialCharacters_x;
         result = ArrayUtils.addAll(result, get_A());
-        result = ArrayUtils.addAll(result, get_n());
-        return result;
+        return ArrayUtils.addAll(result, get_n());
     }
 
     /**
@@ -354,8 +352,7 @@ public class SwiftCharsetUtils {
     public static char[] get_y() {
         char[] result = specialCharacters_y;
         result = ArrayUtils.addAll(result, get_a());
-        result = ArrayUtils.addAll(result, get_n());
-        return result;
+        return ArrayUtils.addAll(result, get_n());
     }
 
     /**
@@ -364,8 +361,7 @@ public class SwiftCharsetUtils {
     public static char[] get_z() {
         char[] result = specialCharacters_z;
         result = ArrayUtils.addAll(result, get_A());
-        result = ArrayUtils.addAll(result, get_n());
-        return result;
+        return ArrayUtils.addAll(result, get_n());
     }
 
     /**

@@ -51,10 +51,10 @@ public enum FileFormat {
      */
     XML_V2("xml");
 
-    private String extension;
+    private final String extension;
 
-    FileFormat(final String extension) {
-        this.extension = extension;
+    FileFormat(String _extension) {
+        extension = _extension;
     }
 
     public String extension() {

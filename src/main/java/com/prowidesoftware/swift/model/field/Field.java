@@ -191,9 +191,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         Object r = null;
         try {
             final Class<?> c = Class.forName("com.prowidesoftware.swift.model.field.Field" + name);
-            @SuppressWarnings("rawtypes") final Class[] argsClass = new Class[]{String.class};
+            @SuppressWarnings("rawtypes") final Class[] argsClass = {String.class};
             @SuppressWarnings("rawtypes") final Constructor ct = c.getConstructor(argsClass);
-            final Object[] arglist = new Object[]{value};
+            final Object[] arglist = {value};
             r = ct.newInstance(arglist);
         } catch (final ClassNotFoundException e) {
             log.warning("Field class for Field" + name
@@ -257,7 +257,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         //try {
         final ResourceBundle labels = ResourceBundle.getBundle(bundle, locale);
         if (labels != null) {
-            if ((sequence != null) && (mt != null)) {
+            if (sequence != null && mt != null) {
                 /*
                  * sequence + mt
                  */
@@ -271,7 +271,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
                     result = getString(labels, key);
                 }
             }
-            if ((result == null) && (mt != null)) {
+            if (result == null && mt != null) {
                 /*
                  * mt only
                  */
@@ -366,7 +366,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             return false;
         }
         //log.warning("letter option if present should be a single capital letter or an 'a' for all letter options, and found: "+field.charAt(2));
-        return name.length() != 3 || (Character.isDigit(name.charAt(2)) || name.charAt(2) == 'a' || Character.isUpperCase(name.charAt(2)));
+        return name.length() != 3 || Character.isDigit(name.charAt(2)) || name.charAt(2) == 'a' || Character.isUpperCase(name.charAt(2));
     }
 
     /**
@@ -392,7 +392,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             } catch (final Exception e) {
                 log.log(Level.WARNING, "An error occured while creating an instance of " + name, e);
             }
-            return (Field) null;
+            return null;
         }
         return null;
     }
@@ -536,10 +536,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         //internal position index is zero based
         final int position = number - 1;
 
-        if (this.components != null) {
-            if ((position >= 0) && (position < this.components.size())) {
-                return this.components.get(position);
-            }
+        if (this.components != null && position >= 0 && position < this.components.size()) {
+            return this.components.get(position);
         }
         return null;
     }
@@ -1072,10 +1070,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         //internal position index is zero based
         final int position = number - 1;
         final List<String> labels = getComponentLabels();
-        if (labels != null) {
-            if ((position >= 0) && (position < labels.size())) {
-                return labels.get(position);
-            }
+        if (labels != null && position >= 0 && position < labels.size()) {
+            return labels.get(position);
         }
         return null;
     }
@@ -1097,10 +1093,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     private String getComponentLabelCamelCase(final int number) {
         final Map<Integer, String> labels = getComponentMap();
-        if (labels != null) {
-            if (number >= 0) {
-                return labels.get(number);
-            }
+        if (labels != null && number >= 0) {
+            return labels.get(number);
         }
         return null;
     }

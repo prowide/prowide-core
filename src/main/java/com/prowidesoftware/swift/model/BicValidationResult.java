@@ -38,7 +38,7 @@ public enum BicValidationResult {
     INVALID_BRANCH_CHARSET("The branch code can only contain uppercase letters or digits and ${found} was found");
 
     private final String message;
-    private String found;
+    private String       found;
 
     BicValidationResult(final String message) {
         this.message = message;
@@ -60,6 +60,7 @@ public enum BicValidationResult {
      * @param found content
      * @return this
      */
+    @Deprecated // enums should be immutable
     BicValidationResult setFound(final String found) {
         this.found = found;
         return this;

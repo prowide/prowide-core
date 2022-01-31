@@ -268,7 +268,7 @@ public class SwiftMessageTest {
         SwiftMessage m = new SwiftMessage();
         m.setBlock5(new SwiftBlock5());
         m.getBlock5().append(new Tag("PDE", ""));
-        String fin = (new ConversionService()).getFIN(m);
+        String fin = new ConversionService().getFIN(m);
         assertEquals("{5:{PDE:}}", fin);
     }
 
@@ -443,21 +443,21 @@ public class SwiftMessageTest {
 
     @Test
     public void testIsGpi() {
-        assertTrue((new MT103()).getSwiftMessage().isGpi());
-        assertTrue((new MT103_STP()).getSwiftMessage().isGpi());
-        assertTrue((new MT103_REMIT()).getSwiftMessage().isGpi());
-        assertTrue((new MT199()).getSwiftMessage().isGpi());
-        assertTrue((new MT299()).getSwiftMessage().isGpi());
-        assertTrue((new MT192()).getSwiftMessage().isGpi());
-        assertTrue((new MT196()).getSwiftMessage().isGpi());
-        assertTrue((new MT202COV()).getSwiftMessage().isGpi());
-        assertTrue((new MT205COV()).getSwiftMessage().isGpi());
+        assertTrue(new MT103().getSwiftMessage().isGpi());
+        assertTrue(new MT103_STP().getSwiftMessage().isGpi());
+        assertTrue(new MT103_REMIT().getSwiftMessage().isGpi());
+        assertTrue(new MT199().getSwiftMessage().isGpi());
+        assertTrue(new MT299().getSwiftMessage().isGpi());
+        assertTrue(new MT192().getSwiftMessage().isGpi());
+        assertTrue(new MT196().getSwiftMessage().isGpi());
+        assertTrue(new MT202COV().getSwiftMessage().isGpi());
+        assertTrue(new MT205COV().getSwiftMessage().isGpi());
 
-        assertFalse((new MT202()).getSwiftMessage().isGpi());
-        assertFalse((new MT205()).getSwiftMessage().isGpi());
-        assertFalse((new MT540()).getSwiftMessage().isGpi());
-        assertFalse((new MT300()).getSwiftMessage().isGpi());
-        assertFalse((new MT198()).getSwiftMessage().isGpi());
+        assertFalse(new MT202().getSwiftMessage().isGpi());
+        assertFalse(new MT205().getSwiftMessage().isGpi());
+        assertFalse(new MT540().getSwiftMessage().isGpi());
+        assertFalse(new MT300().getSwiftMessage().isGpi());
+        assertFalse(new MT198().getSwiftMessage().isGpi());
     }
 
 }

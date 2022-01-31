@@ -1303,7 +1303,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof AbstractSwiftMessage)) return false;
         AbstractSwiftMessage that = (AbstractSwiftMessage) o;
         return Objects.equals(message, that.message) &&
                 Objects.equals(identifier, that.identifier) &&
@@ -1361,7 +1361,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      */
     protected String bic11(String address) {
         if (address != null) {
-            return (new BIC(address)).getBic11();
+            return new BIC(address).getBic11();
         }
         return null;
     }

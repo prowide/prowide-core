@@ -134,6 +134,7 @@ public abstract class SwiftBlock implements Serializable {
      */
     public abstract String getName();
 
+    @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
@@ -261,6 +262,7 @@ public abstract class SwiftBlock implements Serializable {
      * @return true if the message block type is <code>2I</code>
      * @deprecated use {@link #getBlockType()}
      */
+    @Deprecated
     public Boolean getInput() {
         return StringUtils.equals(getBlockType(), "2I");
     }
@@ -280,6 +282,7 @@ public abstract class SwiftBlock implements Serializable {
      * @return <code>true</code> if message block type is <code>2O</code>
      * @deprecated use {@link #getBlockType()}
      */
+    @Deprecated
     public Boolean getOutput() {
         return StringUtils.equals(getBlockType(), "2O");
     }

@@ -34,7 +34,7 @@ public class Field98CTest extends AbstractFieldTest {
 
     @Test
     public void testField98CString() {
-        Field98C f = null;
+        Field98C f;
 
         f = new Field98C("");
         assertTrue(StringUtils.isBlank(f.getComponent1()));

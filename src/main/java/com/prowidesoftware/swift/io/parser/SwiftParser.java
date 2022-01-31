@@ -124,7 +124,7 @@ public class SwiftParser {
         // try to find out the in/out type
         final int i = s.indexOf(':');
         Character ch = null;
-        if (i >= 0 && (i + 1) < s.length()) {
+        if (i >= 0 && i + 1 < s.length()) {
             // check for input mark after ':'
             ch = s.charAt(i + 1);
         } else if (s.length() > 0) {
@@ -544,7 +544,7 @@ public class SwiftParser {
     protected SwiftTagListBlock consumeTagListBlock(final SwiftTagListBlock b, final String s) {
         // start processing the block data
         final int start = s.indexOf(':');
-        if (start >= 0 && (start + 1) < s.length()) {
+        if (start >= 0 && start + 1 < s.length()) {
             final String data = s.substring(start + 1);
 
             /*
@@ -633,10 +633,8 @@ public class SwiftParser {
 
             // check if we must correct end of unparsed text by "-}" (we don't want "-" to be unparsed text)
             int ignore = 0;
-            if (c == '}') {
-                if (s.charAt(start - 1) == '-') {
-                    ignore = 1;
-                }
+            if (c == '}' && s.charAt(start - 1) == '-') {
+                ignore = 1;
             }
 
             // check if we skipped a block unparsed text
@@ -784,7 +782,7 @@ public class SwiftParser {
                 int begin = i;
 
                 // look-ahead one character
-                if ((i + 1) == s.length()) {
+                if (i + 1 == s.length()) {
                     break;
                 }
                 c = s.charAt(++i);
@@ -795,18 +793,15 @@ public class SwiftParser {
                     // found it
                     i = begin;
                     break;
-                }
                 // if it's a colon followed by a character different than CR or LF (':x') => it's a proper tag end
                 // because we have reached a new line with a beginning new tag.
                 // Note: It is note sufficient to check for a starting colon because for some fields like
                 // 77E for example, it is allowed the field content to have a ':<CR><LF>' as the second line
                 // of its content.
-                else if (c == ':') {
-                    // check if :xxx matches a new starting tag or not, break only if matches valid start of tag
-                    if (isTagStart(s, (i + 1))) {
-                        i = begin;
-                        break;
-                    }
+                // check if :xxx matches a new starting tag or not, break only if matches valid start of tag
+                } else if (c == ':' && isTagStart(s, i + 1)) {
+                    i = begin;
+                    break;
                 }
 
                 // not matched => skip current char and continue
@@ -818,7 +813,7 @@ public class SwiftParser {
             if (c == '-') {
 
                 // check for closing brace
-                c = (i + 1) < s.length() ? s.charAt(i + 1) : ' ';
+                c = i + 1 < s.length() ? s.charAt(i + 1) : ' ';
                 if (c == '}' && isTextBlock) {
                     break;
                 }
@@ -831,7 +826,7 @@ public class SwiftParser {
         }
 
         // check if previous character was a CR
-        if ((i - 1) >= start && s.charAt(i - 1) == '\r') {
+        if (i - 1 >= start && s.charAt(i - 1) == '\r') {
             // fix return position
             return i - 1;
         } else {
@@ -868,7 +863,7 @@ public class SwiftParser {
                  * no letter option
                  */
                 return true;
-            } else return Character.isUpperCase(c3) && (i + 3) < length && s.charAt(i + 3) == ':';
+            } else return Character.isUpperCase(c3) && i + 3 < length && s.charAt(i + 3) == ':';
         }
         return false;
     }
@@ -982,7 +977,7 @@ public class SwiftParser {
 
             // find the block end (balancing braces)
             int end = start + 1;
-            while ((end + 1) < unparsedText.length() && !unparsedText.startsWith("{1:", end)) {
+            while (end + 1 < unparsedText.length() && !unparsedText.startsWith("{1:", end)) {
                 end = findEndOfTagByBraces(unparsedText, end + 1);
 
                 // include trailing white spaces
@@ -1144,7 +1139,7 @@ public class SwiftParser {
         if (c1 == '4' && c2 == ':') {
             int c = offset + 2;
             char tmp;
-            while ((offset + c) < s.length()) {
+            while (offset + c < s.length()) {
                 tmp = s.charAt(offset + c);
                 c++;
                 if (tmp == '{') {

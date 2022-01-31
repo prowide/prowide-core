@@ -54,7 +54,7 @@ public class XMLWriterVisitorTest {
 
     @SuppressWarnings("unused")
     private String getResult() {
-        return (this.getResult(""));
+        return this.getResult("");
     }
 
     private String getResult(String testName) {

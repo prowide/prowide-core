@@ -286,9 +286,9 @@ public class NarrativeResolver {
                 return false;
             else if (Character.isLowerCase(c) && (codewordType == CODEWORDTYPE_UCASE || codewordType == CODEWORDTYPE_UCASE_NUMBER))
                 return false;
-            else if (Character.isLetter(c) && (codewordType == CODEWORDTYPE_NUMBER))
+            else if (Character.isLetter(c) && codewordType == CODEWORDTYPE_NUMBER)
                 return false;
-            else if (Character.isDigit(c) && (codewordType == CODEWORDTYPE_UCASE))
+            else if (Character.isDigit(c) && codewordType == CODEWORDTYPE_UCASE)
                 return false;
         }
 
@@ -321,7 +321,7 @@ public class NarrativeResolver {
                     break;
                 case 2: //amount section
                     if (Character.isDigit(c) || c == '.' || c == ',')
-                        amount.append((c == ',') ? '.' : c);
+                        amount.append(c == ',' ? '.' : c);
                     else {
                         section = 3;
                         narrative.append(c);
@@ -334,9 +334,9 @@ public class NarrativeResolver {
         }
 
         return new ImmutableTriple<>
-                ((currency.length() == 0) ? null : currency.toString(),
-                        (amount.length() == 0) ? null : new BigDecimal(amount.toString()),
-                        (narrative.length() == 0) ? null : narrative.toString());
+                (currency.length() == 0 ? null : currency.toString(),
+                        amount.length() == 0 ? null : new BigDecimal(amount.toString()),
+                        narrative.length() == 0 ? null : narrative.toString());
     }
 
     /**

@@ -93,8 +93,7 @@ public class ProwideException extends RuntimeException {
         try {
             String msg = bundle.getString(key);
             msg = substitute(msg, this.variables);
-            msg = substitute(msg, variables);
-            return msg;
+            return substitute(msg, variables);
         } catch (final MissingResourceException ignored) {
             log.fine("No localized message found for exception key '" + key + "'");
             return super.getMessage();
