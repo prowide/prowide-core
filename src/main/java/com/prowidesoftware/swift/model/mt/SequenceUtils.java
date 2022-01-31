@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model.mt;
 
+import static com.prowidesoftware.swift.model.SwiftMessageUtils.join;
+
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field16R;
 import com.prowidesoftware.swift.model.field.Field16S;
@@ -27,8 +29,6 @@ import org.apache.commons.lang3.Validate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static com.prowidesoftware.swift.model.SwiftMessageUtils.join;
 
 
 /**

@@ -15,13 +15,13 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class Field11RTest extends AbstractFieldTest {
 

@@ -24,7 +24,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * FIN Parser. This implementation now properly supports all system messages (i.e: messages for MT 0xx) and

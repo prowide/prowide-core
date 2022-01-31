@@ -16,6 +16,8 @@
 package com.prowidesoftware.swift.io.writer;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.model.SwiftBlock1;
 import com.prowidesoftware.swift.model.SwiftBlock2Input;
@@ -26,8 +28,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.StringWriter;
 import java.io.Writer;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Swift writer tests

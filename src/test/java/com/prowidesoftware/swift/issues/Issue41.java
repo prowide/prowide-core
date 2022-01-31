@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.issues;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.model.SwiftMessageUtils;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field;
@@ -22,8 +24,6 @@ import com.prowidesoftware.swift.model.mt.mt5xx.MT564;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * https://github.com/prowide/prowide-core/issues/41

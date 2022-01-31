@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.field.OptionJPartyField.Codeword;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import com.prowidesoftware.swift.model.field.OptionJPartyField.Codeword;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for API in the party field option J classes.

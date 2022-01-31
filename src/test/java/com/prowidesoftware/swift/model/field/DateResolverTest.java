@@ -15,14 +15,13 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
 import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class DateResolverTest {
 /*

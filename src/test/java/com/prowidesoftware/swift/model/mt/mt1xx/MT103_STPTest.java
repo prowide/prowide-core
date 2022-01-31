@@ -16,10 +16,10 @@
 
 package com.prowidesoftware.swift.model.mt.mt1xx;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class MT103_STPTest {
 

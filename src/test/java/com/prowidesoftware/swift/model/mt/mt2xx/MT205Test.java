@@ -16,9 +16,9 @@
 
 package com.prowidesoftware.swift.model.mt.mt2xx;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
 
 public class MT205Test {
 

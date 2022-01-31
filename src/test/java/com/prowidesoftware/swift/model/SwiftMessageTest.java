@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
@@ -36,8 +38,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * General swift message tests.

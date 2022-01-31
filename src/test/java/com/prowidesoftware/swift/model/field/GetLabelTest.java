@@ -15,9 +15,9 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for fields getLabel API.

@@ -25,10 +25,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
+
+import javax.xml.parsers.DocumentBuilder;
 
 /**
  * This is the main parser for WIFE's XML internal representation.<br>

@@ -1,11 +1,11 @@
 package com.prowidesoftware.swift.issues;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.prowidesoftware.swift.model.mt.mt5xx.MT537;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Issue78 {
 

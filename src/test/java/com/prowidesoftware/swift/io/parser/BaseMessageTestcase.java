@@ -15,14 +15,14 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import com.prowidesoftware.swift.model.*;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Base class for tests of specific message types

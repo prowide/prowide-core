@@ -13,7 +13,10 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Static utility class to wrap character data into lines.

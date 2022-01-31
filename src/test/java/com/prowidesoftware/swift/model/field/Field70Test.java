@@ -15,9 +15,9 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 public class Field70Test extends AbstractFieldTest {
 
