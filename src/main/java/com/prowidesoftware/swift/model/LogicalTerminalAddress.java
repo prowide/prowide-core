@@ -32,7 +32,7 @@ import java.util.Objects;
  * @since 7.6
  */
 public class LogicalTerminalAddress extends BIC {
-    private Character ltIdentifier = null;
+    private Character lTIdentifier = null;
 
     /**
      * Creates an LT address from its string value.
@@ -51,10 +51,10 @@ public class LogicalTerminalAddress extends BIC {
                 // after the BIC 8 we expect the LT, the LT + branch o just the branch
                 if (code.length() == 9) {
                     // if it has just 9 characters we assume it is a BIC8 plus the LT without branch
-                    this.ltIdentifier = code.charAt(8);
+                    this.lTIdentifier = code.charAt(8);
                 } else if (code.length() >= 12) {
                     // for 12 or more characters we extract both the LT and the branch
-                    this.ltIdentifier = code.charAt(8);
+                    this.lTIdentifier = code.charAt(8);
                     super.branch = StringUtils.trimToNull(StringUtils.substring(code, 9));
                 } else {
                     // otherwise we take the part after the BIC8 as the branch
@@ -65,11 +65,11 @@ public class LogicalTerminalAddress extends BIC {
     }
 
     public Character getLTIdentifier() {
-        return ltIdentifier;
+        return lTIdentifier;
     }
 
-    public void setLTIdentifier(final Character _ltIdentifier) {
-        ltIdentifier = _ltIdentifier;
+    public void setLTIdentifier(final Character _lTIdentifier) {
+        lTIdentifier = _lTIdentifier;
     }
 
     /**
@@ -84,7 +84,7 @@ public class LogicalTerminalAddress extends BIC {
      * @return the 12 characters address or null if the BIC has less than 8 characters
      */
     public String getSenderLogicalTerminalAddress() {
-        char LT = this.ltIdentifier == null || this.ltIdentifier.equals('X') ? 'A' : this.ltIdentifier;
+        char LT = this.lTIdentifier == null || this.lTIdentifier.equals('X') ? 'A' : this.lTIdentifier;
         if (getBic8() != null) {
             return getBic8() + LT + getBranchOrDefault();
         }
@@ -112,11 +112,11 @@ public class LogicalTerminalAddress extends BIC {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         LogicalTerminalAddress that = (LogicalTerminalAddress) o;
-        return Objects.equals(ltIdentifier, that.ltIdentifier);
+        return Objects.equals(lTIdentifier, that.lTIdentifier);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), ltIdentifier);
+        return Objects.hash(super.hashCode(), lTIdentifier);
     }
 }

@@ -293,7 +293,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         boolean sameSession = this.ignoreHeaderSession || StringUtils.equals(left.getSessionNumber(), right.getSessionNumber());
         boolean sameSequence = this.ignoreHeaderSession || StringUtils.equals(left.getSequenceNumber(), right.getSequenceNumber());
         boolean sameLTAddress = compareLTAddress(left.getLogicalTerminal(), right.getLogicalTerminal());
-        return sameApplicationId && sameServiceId && sameSequence && sameSession & sameLTAddress;
+        return sameApplicationId && sameServiceId && sameSequence && sameSession && sameLTAddress;
     }
 
     private boolean compareLTAddress(String logicalTerminalLeft, String logicalTerminalRight) {
@@ -341,8 +341,8 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
      * Sets a new list of tags in the block 4 that will be ignored in the comparison.
      *
      */
-    public void setTagnamesToIgnore(final List<String> tagNamesToIgnore) {
-        this.tagnamesToIgnore = tagNamesToIgnore;
+    public void setTagnamesToIgnore(final List<String> tagnamesToIgnore) {
+        this.tagnamesToIgnore = tagnamesToIgnore;
     }
 
     /**

@@ -60,7 +60,7 @@ public enum BicValidationResult {
      * @param found content
      * @return this
      */
-    @Deprecated // enums should be immutable
+    //TODO: enums should be immutable
     BicValidationResult setFound(final String found) {
         this.found = found;
         return this;

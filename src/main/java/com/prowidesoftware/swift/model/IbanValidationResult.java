@@ -73,7 +73,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "found" variable for messages text
      */
-    @Deprecated // enums should be immutable
+    //TODO enums should be immutable
     void setFound(final String found) {
         this.vars.put("found", found);
     }
@@ -81,7 +81,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "expectedLength" variable for messages text
      */
-    @Deprecated // enums should be immutable
+    //TODO enums should be immutable
     void setExpectedLength(final int expectedLength) {
         this.vars.put("expectedLength", String.valueOf(expectedLength));
     }
@@ -89,7 +89,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "foundLength" variable for messages text
      */
-    @Deprecated // enums should be immutable
+    //TODO enums should be immutable
     void setFoundLength(final int foundLength) {
         this.vars.put("foundLength", String.valueOf(foundLength));
     }
@@ -97,7 +97,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "bbanEntryType" variable for messages text
      */
-    @Deprecated // enums should be immutable
+    //TODO enums should be immutable
     void setBbanEntryType(final BbanEntryType type) {
         this.vars.put("bbanEntryType", type.name());
     }
@@ -105,7 +105,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "expectedCheckDigit" variable for messages text
      */
-    @Deprecated // enums should be immutable
+    //TODO enums should be immutable
     void setExpectedCheckDigit(final String expectedCheckDigit) {
         this.vars.put("expectedCheckDigit", expectedCheckDigit);
     }

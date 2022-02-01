@@ -1898,7 +1898,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @since 7.10.0
      */
     public boolean isGpi() {
-        return isType(103, 199, 299, 192, 196) || isType(202, 205) && isCOV();
+        return isType(103, 199, 299, 192, 196) || (isType(202, 205) && isCOV());
     }
 
 }

@@ -17,11 +17,13 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import org.apache.commons.lang3.Validate;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
 
 /**
  * Base class for SWIFT <b>User "ad-hoc" Blocks</b> (blocks with number other than 1-5 or names).<br>
@@ -40,6 +42,7 @@ import java.util.Objects;
 public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
     private static final long serialVersionUID = -6506492203870561424L;
     private static final String MESSAGE_VALIDATOR = "parameter 'blockNumber' cannot be null";
+    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(DeprecationUtils.class.getName());
 
     /**
      * Indicates the position of this user block in a message when persisted.
@@ -176,7 +179,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
 
         // only upper or lower case letters
         char c = Character.toLowerCase(blockName.charAt(0));
-        if (!('0' <= c && c <= '9' || 'a' <= c && c <= 'z'))
+        if (!(('0' <= c && c <= '9') || ('a' <= c && c <= 'z')))
             return Boolean.FALSE;
 
         return Boolean.TRUE;
@@ -225,6 +228,7 @@ public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {
         try {
             blockNumber = Integer.decode(blockName);
         } catch (NumberFormatException ignored) {
+            log.log(Level.FINE, "Could not get int from " + blockName);
         }
         return blockNumber;
     }

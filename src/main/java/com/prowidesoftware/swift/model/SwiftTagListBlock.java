@@ -831,15 +831,15 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         for (Tag t : this.tags) {
             if (blockFound) {
                 toAdd.append(t);
-                if (endTagLetter != null && StringUtils.equals(t.getName(), endTagNumber + endTagLetter) ||
-                        endTagLetter == null && t.isNumber(endTagNumber)) {
+                if ((endTagLetter != null && StringUtils.equals(t.getName(), endTagNumber + endTagLetter)) ||
+                        (endTagLetter == null && t.isNumber(endTagNumber))) {
                     result.add(toAdd);
                     blockFound = false;
                     toAdd = null;
                 }
             } else {
-                if (startTagLetter != null && StringUtils.equals(t.getName(), startTagNumber + startTagLetter) ||
-                        startTagLetter == null && t.isNumber(startTagNumber)) {
+                if ((startTagLetter != null && StringUtils.equals(t.getName(), startTagNumber + startTagLetter)) ||
+                        (startTagLetter == null && t.isNumber(startTagNumber))) {
                     toAdd = new SwiftTagListBlock();
                     toAdd.append(t);
                     blockFound = true;
@@ -940,7 +940,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         if (tags == null || tags.isEmpty()) {
             throw new IllegalStateException("No tags in this list");
         }
-        if (start != null && start < 0 || end != null && end + 1 > this.tags.size() || start != null && end != null && start > end) {
+        if ((start != null && start < 0) || (end != null && (end + 1) > this.tags.size()) || (start != null && end != null && start > end)) {
             throw new IllegalArgumentException("start: " + start + ", end: " + end + ", size=" + this.tags.size());
         }
         final SwiftTagListBlock result = new SwiftTagListBlock();
@@ -977,7 +977,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
                 }
             } else {
 
-                boolean hasDelimiterCriteria = searchSelection == SearchSelection.AFTER && index < this.tags.size() - 1 || searchSelection == SearchSelection.BEFORE && index < this.tags.size();
+                boolean hasDelimiterCriteria = (searchSelection == SearchSelection.AFTER && index < this.tags.size() - 1) || (searchSelection == SearchSelection.BEFORE && index < this.tags.size());
 
                 if (hasDelimiterCriteria) {
                     if (searchSelection == SearchSelection.AFTER) {
@@ -1312,8 +1312,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         if (this.tags != null && !this.tags.isEmpty()) {
             for (int i = 0; i < this.tags.size(); i++) {
                 final Tag t = this.tags.get(i);
-                if (ignoreCR && t.equalsIgnoreCR(new Tag(tagname, value)) ||
-                        !ignoreCR && StringUtils.equals(tagname, t.getName()) && StringUtils.equals(value, t.getValue())) {
+                if ((ignoreCR && t.equalsIgnoreCR(new Tag(tagname, value))) ||
+                        (!ignoreCR && StringUtils.equals(tagname, t.getName()) && StringUtils.equals(value, t.getValue()))) {
                     return i;
                 }
             }
