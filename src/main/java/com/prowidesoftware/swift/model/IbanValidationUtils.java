@@ -253,7 +253,7 @@ class IbanValidationUtils {
     private static String calculateCheckDigit(final String iban) {
         final String reformattedIban = replaceCheckDigit(iban, IBAN_DEFAULT_CHECK_DIGIT);
         final int modResult = calculateMod(reformattedIban);
-        final int checkDigitIntValue = (98 - modResult);
+        final int checkDigitIntValue = 98 - modResult;
         final String checkDigit = Integer.toString(checkDigitIntValue);
         return checkDigitIntValue > 9 ? checkDigit : "0" + checkDigit;
     }
@@ -284,7 +284,7 @@ class IbanValidationUtils {
             final int numericValue = Character.getNumericValue(reformattedIban.charAt(i));
             total = (numericValue > 9 ? total * 100 : total * 10) + numericValue;
             if (total > MAX) {
-                total = (total % MOD);
+                total = total % MOD;
             }
         }
         return (int) (total % MOD);

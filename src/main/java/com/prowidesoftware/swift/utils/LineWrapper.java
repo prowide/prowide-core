@@ -14,7 +14,6 @@
 package com.prowidesoftware.swift.utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -69,11 +68,11 @@ public final class LineWrapper {
         final String str = lstripChar(_str, wrapChar);
 
         if (str.length() <= width) {
-            return Collections.unmodifiableList(Arrays.asList(str)); // no wrapping required
+            return Collections.singletonList(str); // no wrapping required
         }
 
         final int strLen = str.length();
-        final List<String> wrapped = new ArrayList<>((strLen / _width) + 2);
+        final List<String> wrapped = new ArrayList<>(strLen / _width + 2);
         int offset = 0, idxSpace = -1, idxSpaceWrap = -1;
 
         while (offset < strLen) {

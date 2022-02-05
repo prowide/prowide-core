@@ -28,6 +28,7 @@ import org.apache.commons.lang3.Validate;
 import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 /**
  * Base class for SWIFT blocks that contain and arbitrary <b>set of fields</b> (3, 4, 5 and user blocks).<br>
@@ -102,8 +103,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see #setTags(List)
      */
     public void setTags(final Tag[] tags) {
-        List<Tag> list = new ArrayList<>();
-        list.addAll(Arrays.asList(tags));
+        List<Tag> list = new ArrayList<>(Arrays.asList(tags));
         setTags(list);
     }
 
@@ -185,13 +185,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public Tag[] getTagsByName(final String name) {
         Validate.notNull(name, NAME_VALIDATION_MESSAGE);
-        final List<Tag> l = new ArrayList<>();
-        for (Tag tag : this.tags) {
-            if (StringUtils.equals(tag.getName(), name)) {
-                l.add(tag);
-            }
-        }
-        return l.toArray(new Tag[l.size()]);
+        return this.tags.stream()
+                .filter(tag -> StringUtils.equals(tag.getName(), name))
+                .toArray(Tag[]::new);
     }
 
     /**
@@ -237,13 +233,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return the tags matching the given number or an empty list if none is found.
      */
     public List<Tag> getTagsByNumber(final int tagNumber) {
-        final List<Tag> result = new ArrayList<>();
-        for (Tag tag : this.tags) {
-            if (tag.isNumber(tagNumber)) {
-                result.add(tag);
-            }
-        }
-        return result;
+        return tags.stream()
+                .filter(tag -> tag.isNumber(tagNumber))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -256,13 +248,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 6.0
      */
     public List<Tag> getTagsByValue(final String value) {
-        final List<Tag> result = new ArrayList<>();
-        for (Tag tag : this.tags) {
-            if (StringUtils.equals(tag.getValue(), value)) {
-                result.add(tag);
-            }
-        }
-        return result;
+        return tags.stream()
+                .filter(tag -> StringUtils.equals(tag.getValue(), value))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -275,13 +263,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 6.0
      */
     public List<Tag> getTagsByContent(final String content) {
-        final List<Tag> result = new ArrayList<>();
-        for (Tag tag : this.tags) {
-            if (StringUtils.contains(tag.getValue(), content)) {
-                result.add(tag);
-            }
-        }
-        return result;
+        return tags.stream()
+                .filter(tag -> StringUtils.contains(tag.getValue(), content))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -295,11 +279,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public String[] getTagValues(final String name) {
         Validate.notNull(name, NAME_VALIDATION_MESSAGE);
-        final ArrayList<String> result = new ArrayList<>();
-        for (Tag tag : getTagsByName(name)) {
-            result.add(tag.getValue());
-        }
-        return result.toArray(new String[result.size()]);
+        return Arrays.stream(getTagsByName(name))
+                .map(Tag::getValue)
+                .toArray(String[]::new);
     }
 
     /**
@@ -309,13 +291,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return a Map for the tags name and values
      */
     public Map<String, String> getTagMap() {
-        final Map<String, String> map = new HashMap<>(this.tags.size());
-        for (Tag tag : this.tags) {
-            if (!map.containsKey(tag.getName())) {
-                map.put(tag.getName(), tag.getValue());
-            }
-        }
-        return map;
+        return tags.stream()
+                .collect(Collectors.toMap(Tag::getName, Tag::getValue, (k1, k2) -> k1, HashMap::new));
     }
 
     /**
@@ -337,8 +314,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @throws IllegalArgumentException if the name parameter is null
      */
     public Field[] getFieldsByName(final String name) {
-        final List<? extends Field> fields = getFieldsByName(name, null);
-        return fields.toArray(new Field[fields.size()]);
+        return getFieldsByName(name, null).toArray(new Field[0]);
     }
 
     /**
@@ -450,11 +426,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see #getTag(int)
      */
     public Field getField(final int index) {
-        final Tag tag = getTag(index);
-        if (tag != null) {
-            return tag.asField();
-        }
-        return null;
+        return Optional.ofNullable(getTag(index)).map(Tag::asField).orElse(null);
     }
 
     /**
@@ -469,12 +441,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.5
      */
     public Field getFieldByName(final String name, final String component1, final String component2) {
-        for (Field field : getFieldsByName(name, component1)) {
-            if (StringUtils.equals(field.getComponent(2), component2)) {
-                return field;
-            }
-        }
-        return null;
+        return getFieldsByName(name, component1).stream()
+                .filter(field -> StringUtils.equals(field.getComponent(2), component2))
+                .findFirst().orElse(null);
     }
 
     /**
@@ -489,14 +458,10 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see GenericField
      */
     public Field getFieldByQualifiers(final String name, final String qualifier, final String conditionalQualifier) {
-        for (Field field : getFieldsByName(name, qualifier)) {
-            if (field instanceof GenericField) {
-                if (StringUtils.equals(((GenericField) field).getConditionalQualifier(), conditionalQualifier)) {
-                    return field;
-                }
-            }
-        }
-        return null;
+        return getFieldsByName(name, qualifier).stream()
+                .filter(GenericField.class::isInstance)
+                .filter(f -> StringUtils.equals(((GenericField) f).getConditionalQualifier(), conditionalQualifier))
+                .findFirst().orElse(null);
     }
 
     /**
@@ -508,11 +473,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see #getTagByNumber(int)
      */
     public Field getFieldByNumber(final int fieldNumber) {
-        final Tag t = getTagByNumber(fieldNumber);
-        if (t != null) {
-            return t.asField();
-        }
-        return null;
+        return Optional.ofNullable(getTagByNumber(fieldNumber)).map(Tag::asField).orElse(null);
     }
 
     /**
@@ -545,12 +506,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return the first matching field or null if none is found
      */
     public Field getFieldByNumber(final int fieldNumber, final String componentValue) {
-        for (Field field : getFieldsByNumber(fieldNumber)) {
-            if (field.is(componentValue)) {
-                return field;
-            }
-        }
-        return null;
+        return getFieldsByNumber(fieldNumber).stream()
+                .filter(field -> field.is(componentValue))
+                .findFirst().orElse(null);
     }
 
     /**
@@ -561,8 +519,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see #getFieldsByName(String)
      */
     public boolean containsField(final String name) {
-        final Field[] arr = getFieldsByName(name);
-        return (arr != null) && arr.length > 0;
+        return Optional.ofNullable(getFieldsByName(name)).map(a -> a.length).orElse(0) > 0;
     }
 
     /**
@@ -574,24 +531,20 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public int countByName(final String name) {
         Validate.notNull(name, NAME_VALIDATION_MESSAGE);
-        int count = 0;
-        for (final Tag tag : this.tags) {
-            if (StringUtils.equals(tag.getName(), name)) {
-                count++;
-            }
-        }
-        return count;
+        return tags.stream()
+                .filter(tag -> StringUtils.equals(tag.getName(), name))
+                .mapToInt(i -> 1)
+                .sum();
     }
 
     /**
      * convert this to string
      */
+    @Override
     public String toString() {
-        return new StringBuilder()
-                .append(getClass().getName()).append("[")
-                .append(tags == null ? "tags=null" : tags.toString())
-                .append("]")
-                .toString();
+        return getClass().getName() + "[" +
+                (tags == null ? "tags=null" : tags.toString()) +
+                "]";
     }
 
     /**
@@ -698,7 +651,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return zero or the amount of tags contained in the block
      */
     public int countAll() {
-        return (this.tags == null ? 0 : tags.size());
+        return this.tags == null ? 0 : tags.size();
     }
 
     /**
@@ -723,7 +676,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return true if the block contains at least one Tag and false in other case
      */
     public boolean isEmpty() {
-        return (this.tags == null || this.tags.isEmpty());
+        return this.tags == null || this.tags.isEmpty();
     }
 
     /**
@@ -732,7 +685,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return zero if tags is null or empty or the amount of tags in this object
      */
     public int size() {
-        return (this.tags == null ? 0 : this.tags.size());
+        return this.tags == null ? 0 : this.tags.size();
     }
 
     @Override
@@ -1539,7 +1492,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
                 if (matched && include) {
                     result.append(t);
                 }
-                if ((!matched) && !include) {
+                if (!matched && !include) {
                     result.append(t);
                 }
             }
@@ -1786,8 +1739,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
     private int findTagInRowSince(final Tag tag, final int rowPointer, final String[][] optionalTags) {
         for (int r = rowPointer; r < optionalTags.length; r++) {
             final String[] row = optionalTags[r];
-            for (int i = 0; i < row.length; i++) {
-                final String op = row[i];
+            for (final String op : row) {
                 if (StringUtils.equals(tag.getName(), op)) {
                     return r;
                 }
@@ -1906,7 +1858,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return the current instance
      */
     public SwiftTagListBlock append(final SwiftTagListBlock block) {
-        if ((block != null) && !block.isEmpty()) {
+        if (block != null && !block.isEmpty()) {
             this.tags.addAll(block.getTags());
         }
         return this;
@@ -1920,7 +1872,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.8
      */
     public SwiftTagListBlock append(final SwiftTagListBlock... blocks) {
-        if ((blocks != null) && blocks.length > 0) {
+        if (blocks != null && blocks.length > 0) {
             for (final SwiftTagListBlock b : blocks) {
                 this.tags.addAll(b.getTags());
             }
@@ -1950,7 +1902,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.8
      */
     public SwiftTagListBlock append(final Tag... tags) {
-        if ((tags != null) && tags.length > 0) {
+        if (tags != null && tags.length > 0) {
             this.tags.addAll(Arrays.asList(tags));
         }
         return this;
@@ -1981,7 +1933,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.8
      */
     public SwiftTagListBlock append(final Field... fields) {
-        if ((fields != null) && fields.length > 0) {
+        if (fields != null && fields.length > 0) {
             for (final Field f : fields) {
                 append(f);
             }
@@ -1989,6 +1941,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         return this;
     }
 
+    @Override
     public Iterator<Tag> iterator() {
         if (this.tags == null) {
             return Collections.emptyIterator();
@@ -2028,30 +1981,32 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         return this;
     }
 
+    @Override
     public String getName() {
         //unused
         return null;
     }
 
+    @Override
     public Integer getNumber() {
         //unused
         return null;
     }
 
+    @Override
     protected void setBlockName(final String blockName) {
         //unused
     }
 
+    @Override
     protected void setBlockNumber(final Integer blockNumber) {
         //unused
     }
 
     public void visit(final TagVisitor visitor) {
-        if (visitor != null) {
-            if (this.tags != null && !this.tags.isEmpty()) {
-                for (final Tag t : this.tags) {
-                    visitor.onTag(t);
-                }
+        if (visitor != null && this.tags != null && !this.tags.isEmpty()) {
+            for (final Tag t : this.tags) {
+                visitor.onTag(t);
             }
         }
     }
@@ -2137,14 +2092,17 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * Empty iterator to be used when an API that returns an Iterator does not return null.
      */
     private static final class EmptyItr implements Iterator<Tag> {
+        @Override
         public boolean hasNext() {
             return false;
         }
 
+        @Override
         public Tag next() {
             throw new NoSuchElementException();
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException("Can't remove on an empty iterator");
         }

@@ -23,35 +23,35 @@ public class SwiftParseUtilsTest {
 
     @Test
     public void testSplitComponents() {
-        assertEquals(0, (SwiftParseUtils.splitComponents(null, null, null)).size());
-        assertEquals(0, (SwiftParseUtils.splitComponents(null, null, "/")).size());
-        assertEquals(0, (SwiftParseUtils.splitComponents(null, ":", null)).size());
+        assertEquals(0, SwiftParseUtils.splitComponents(null, null, null).size());
+        assertEquals(0, SwiftParseUtils.splitComponents(null, null, "/").size());
+        assertEquals(0, SwiftParseUtils.splitComponents(null, ":", null).size());
 
-        assertEquals(1, (SwiftParseUtils.splitComponents("foo", null, null)).size());
-        assertEquals("foo", (SwiftParseUtils.splitComponents("foo", null, null)).get(0));
+        assertEquals(1, SwiftParseUtils.splitComponents("foo", null, null).size());
+        assertEquals("foo", SwiftParseUtils.splitComponents("foo", null, null).get(0));
 
-        assertEquals(1, (SwiftParseUtils.splitComponents("foo", ":", null)).size());
-        assertEquals("foo", (SwiftParseUtils.splitComponents("foo", ":", null)).get(0));
+        assertEquals(1, SwiftParseUtils.splitComponents("foo", ":", null).size());
+        assertEquals("foo", SwiftParseUtils.splitComponents("foo", ":", null).get(0));
 
-        assertEquals(1, (SwiftParseUtils.splitComponents(":foo", ":", null)).size());
-        assertEquals("foo", (SwiftParseUtils.splitComponents(":foo", ":", null)).get(0));
+        assertEquals(1, SwiftParseUtils.splitComponents(":foo", ":", null).size());
+        assertEquals("foo", SwiftParseUtils.splitComponents(":foo", ":", null).get(0));
 
-        assertEquals(1, (SwiftParseUtils.splitComponents("::foo", ":", null)).size());
-        assertEquals(":foo", (SwiftParseUtils.splitComponents("::foo", ":", null)).get(0));
+        assertEquals(1, SwiftParseUtils.splitComponents("::foo", ":", null).size());
+        assertEquals(":foo", SwiftParseUtils.splitComponents("::foo", ":", null).get(0));
 
-        assertEquals(1, (SwiftParseUtils.splitComponents(":foo//", ":", "//")).size());
-        assertEquals("foo", (SwiftParseUtils.splitComponents(":foo//", ":", "//")).get(0));
+        assertEquals(1, SwiftParseUtils.splitComponents(":foo//", ":", "//").size());
+        assertEquals("foo", SwiftParseUtils.splitComponents(":foo//", ":", "//").get(0));
 
-        assertEquals(2, (SwiftParseUtils.splitComponents(":foo//abc", ":", "//")).size());
-        assertEquals("foo", (SwiftParseUtils.splitComponents(":foo//abc", ":", "//")).get(0));
-        assertEquals("abc", (SwiftParseUtils.splitComponents(":foo//abc", ":", "//")).get(1));
+        assertEquals(2, SwiftParseUtils.splitComponents(":foo//abc", ":", "//").size());
+        assertEquals("foo", SwiftParseUtils.splitComponents(":foo//abc", ":", "//").get(0));
+        assertEquals("abc", SwiftParseUtils.splitComponents(":foo//abc", ":", "//").get(1));
 
-        assertEquals(2, (SwiftParseUtils.splitComponents("foo//abc", ":", "//")).size());
-        assertEquals("foo", (SwiftParseUtils.splitComponents("foo//abc", ":", "//")).get(0));
-        assertEquals("abc", (SwiftParseUtils.splitComponents("foo//abc", ":", "//")).get(1));
+        assertEquals(2, SwiftParseUtils.splitComponents("foo//abc", ":", "//").size());
+        assertEquals("foo", SwiftParseUtils.splitComponents("foo//abc", ":", "//").get(0));
+        assertEquals("abc", SwiftParseUtils.splitComponents("foo//abc", ":", "//").get(1));
 
-        assertEquals(1, (SwiftParseUtils.splitComponents(":foo/abc", ":", "//")).size());
-        assertEquals("foo/abc", (SwiftParseUtils.splitComponents(":foo/abc", ":", "//")).get(0));
+        assertEquals(1, SwiftParseUtils.splitComponents(":foo/abc", ":", "//").size());
+        assertEquals("foo/abc", SwiftParseUtils.splitComponents(":foo/abc", ":", "//").get(0));
     }
 
     @Test

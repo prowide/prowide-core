@@ -33,7 +33,7 @@ public class Field64Test extends AbstractFieldTest {
 
     @Test
     public void testField64String() {
-        Field64 f = null;
+        Field64 f;
 
         f = new Field64("");
         assertTrue(StringUtils.isBlank(f.getComponent1()));

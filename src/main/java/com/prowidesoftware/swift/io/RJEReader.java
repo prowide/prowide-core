@@ -101,7 +101,7 @@ public class RJEReader extends AbstractReader {
             int c;
             StringBuilder sb = new StringBuilder();
             try {
-                while ((c = reader.read()) != -1 && (c != splitChar)) {
+                while ((c = reader.read()) != -1 && c != splitChar) {
                     sb.append((char) c);
                 }
                 if (c == -1) {

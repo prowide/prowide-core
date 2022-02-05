@@ -70,10 +70,11 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
      * @throws IllegalArgumentException if parameter blockName is not the integer 3
      * @since 5.0
      */
+    @Override
     protected void setBlockNumber(final Integer blockNumber) {
         // sanity check
         Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-        Validate.isTrue(blockNumber.intValue() == 3, "blockNumber must be 3");
+        Validate.isTrue(blockNumber == 3, "blockNumber must be 3");
     }
 
     /**
@@ -83,6 +84,7 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
      * @throws IllegalArgumentException if parameter blockName is not the string "3"
      * @since 5.0
      */
+    @Override
     protected void setBlockName(final String blockName) {
         // sanity check
         Validate.notNull(blockName, "parameter 'blockName' cannot be null");
@@ -94,8 +96,9 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
      *
      * @return Integer containing the block's number
      */
+    @Override
     public Integer getNumber() {
-        return Integer.valueOf(3);
+        return 3;
     }
 
     /**
@@ -105,6 +108,7 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
      * st
      * @since 5.0
      */
+    @Override
     public String getName() {
         return "3";
     }
@@ -129,7 +133,7 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
      * @since 7.8.8
      */
     public void generateMUR(boolean overwriteIfExist) {
-        final String MUR = (new SimpleDateFormat("yyMMddHHmmssSSSS").format(Calendar.getInstance().getTime()));
+        final String MUR = new SimpleDateFormat("yyMMddHHmmssSSSS").format(Calendar.getInstance().getTime());
         Tag t = getTagByName("108");
         if (t == null) {
             builder().setField108(new Field108(MUR));

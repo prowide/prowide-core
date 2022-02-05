@@ -39,7 +39,7 @@ public class IbanValidator implements ConstraintValidator<IbanConstraint, String
         if (StringUtils.isBlank(iban)) {
             return true;
         }
-        IbanValidationResult result = (new IBAN(iban)).validate();
+        IbanValidationResult result = new IBAN(iban).validate();
         if (result == IbanValidationResult.OK) {
             return true;
         } else {

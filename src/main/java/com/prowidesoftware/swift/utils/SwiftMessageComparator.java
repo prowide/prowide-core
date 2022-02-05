@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -106,6 +105,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
      * @see #compareB2(SwiftBlock2, SwiftBlock2)
      * @see #compareTagListBlock(SwiftTagListBlock, SwiftTagListBlock)
      */
+    @Override
     public int compare(final SwiftMessage left, final SwiftMessage right) {
         Validate.notNull(left);
         Validate.notNull(right);
@@ -115,7 +115,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         final boolean b4 = compareTagListBlock(left.getBlock4(), right.getBlock4());
         final boolean b5 = this.ignoreTrailer || compareTagListBlock(left.getBlock5(), right.getBlock5());
         log.finest("b1=" + b1 + ", b2=" + b2 + ", b3=" + b3 + ", b4=" + b4 + ", b5=" + b5);
-        return (b1 && b2 && b3 && b4 && b5) ? 0 : 1;
+        return b1 && b2 && b3 && b4 && b5 ? 0 : 1;
     }
 
     /**
@@ -262,9 +262,8 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     }
 
     private boolean tagNameIgnored(final String name1, final String name2) {
-        if (this.tagnamesToIgnore != null && !this.tagnamesToIgnore.isEmpty()) {
-            for (final Iterator<String> it = this.tagnamesToIgnore.iterator(); it.hasNext(); ) {
-                final String name = it.next();
+        if (this.tagnamesToIgnore != null) {
+            for (final String name : this.tagnamesToIgnore) {
                 if (StringUtils.equals(name, name1) || StringUtils.equals(name, name2)) {
                     return true;
                 }
@@ -294,7 +293,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         boolean sameSession = this.ignoreHeaderSession || StringUtils.equals(left.getSessionNumber(), right.getSessionNumber());
         boolean sameSequence = this.ignoreHeaderSession || StringUtils.equals(left.getSequenceNumber(), right.getSequenceNumber());
         boolean sameLTAddress = compareLTAddress(left.getLogicalTerminal(), right.getLogicalTerminal());
-        return sameApplicationId && sameServiceId && sameSequence && sameSession & sameLTAddress;
+        return sameApplicationId && sameServiceId && sameSequence && sameSession && sameLTAddress;
     }
 
     private boolean compareLTAddress(String logicalTerminalLeft, String logicalTerminalRight) {
@@ -342,8 +341,8 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
      * Sets a new list of tags in the block 4 that will be ignored in the comparison.
      *
      */
-    public void setTagnamesToIgnore(final List<String> tagNamesToIgnore) {
-        this.tagnamesToIgnore = tagNamesToIgnore;
+    public void setTagnamesToIgnore(final List<String> tagnamesToIgnore) {
+        this.tagnamesToIgnore = tagnamesToIgnore;
     }
 
     /**

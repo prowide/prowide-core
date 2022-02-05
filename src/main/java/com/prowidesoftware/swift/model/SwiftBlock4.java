@@ -78,7 +78,8 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
         if (b4 == null) {
             return null;
         }
-        final Stack<Tag> stack = new Stack<Tag>();
+        // TODO find replacement for Stack
+        final Stack<Tag> stack = new Stack<>();
         for (Tag t : b4.getTags()) {
             if (!stack.isEmpty() &&
                     StringUtils.equals(t.getName(), "16S") &&
@@ -126,10 +127,11 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
      * @throws IllegalArgumentException if parameter blockName is not the integer 4
      * @since 5.0
      */
+    @Override
     protected void setBlockNumber(Integer blockNumber) {
         // sanity check
         Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-        Validate.isTrue(blockNumber.intValue() == 4, "blockNumber must be 4");
+        Validate.isTrue(blockNumber == 4, "blockNumber must be 4");
     }
 
     /**
@@ -139,6 +141,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
      * @throws IllegalArgumentException if parameter blockName is not the string "4"
      * @since 5.0
      */
+    @Override
     protected void setBlockName(String blockName) {
         // sanity check
         Validate.notNull(blockName, "parameter 'blockName' cannot be null");
@@ -150,8 +153,9 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
      *
      * @return Integer containing the block's number
      */
+    @Override
     public Integer getNumber() {
-        return Integer.valueOf(4);
+        return 4;
     }
 
     /**
@@ -160,8 +164,9 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
      * @return block name
      * @since 5.0
      */
+    @Override
     public String getName() {
-        return ("4");
+        return "4";
     }
 
 }

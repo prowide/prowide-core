@@ -32,6 +32,7 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     /**
      * Extracts the MT main reference using {@link SwiftMessageUtils#reference(SwiftMessage)}
      */
+    @Override
     public Optional<String> reference(AbstractMessage message) {
         return Optional.ofNullable(SwiftMessageUtils.reference(asSwiftMessage(message)));
     }
@@ -39,6 +40,7 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     /**
      * Extracts the MT main amount, if present, using {@link SwiftMessageUtils#money(SwiftMessage)}
      */
+    @Override
     public Optional<Money> amount(AbstractMessage message) {
         return Optional.ofNullable(SwiftMessageUtils.money(asSwiftMessage(message)));
     }
@@ -46,6 +48,7 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     /**
      * Extracts the MT value date, if any, using {@link SwiftMessageUtils#valueDate(SwiftMessage)}
      */
+    @Override
     public Optional<Calendar> valueDate(AbstractMessage message) {
         return Optional.ofNullable(SwiftMessageUtils.valueDate(asSwiftMessage(message)));
     }
@@ -53,6 +56,7 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     /**
      * Extracts the MT trade date, if any, using {@link SwiftMessageUtils#tradeDate(SwiftMessage)}
      */
+    @Override
     public Optional<Calendar> tradeDate(AbstractMessage message) {
         return Optional.ofNullable(SwiftMessageUtils.tradeDate(asSwiftMessage(message)));
     }

@@ -86,7 +86,7 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
      * @return <code>true</code> if getValue returns a non null object
      */
     public boolean isEmpty() {
-        return (this.getValue() == null);
+        return this.getValue() == null;
     }
 
     /**
@@ -99,7 +99,7 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
      * @return the size of the value or zero if value is null
      */
     public int size() {
-        return (this.getValue() == null ? 0 : this.getValue().length());
+        return this.getValue() == null ? 0 : this.getValue().length();
     }
 
     /**
@@ -120,7 +120,7 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
 
             // check start+size is within bounds
             int boundedSize;
-            if ((start + size) >= value.length()) {
+            if (start + size >= value.length()) {
                 boundedSize = value.length() - start;
             } else {
                 boundedSize = size;

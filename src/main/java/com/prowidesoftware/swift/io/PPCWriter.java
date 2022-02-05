@@ -47,12 +47,14 @@ public class PPCWriter extends AbstractWriter {
     }
 
     /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public PPCWriter(final File file) throws FileNotFoundException {
         super(file);
     }
 
     /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public PPCWriter(final String filename) throws FileNotFoundException {
         super(filename);
@@ -69,6 +71,7 @@ public class PPCWriter extends AbstractWriter {
     }
 
     /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
     public PPCWriter(final OutputStream stream) {
         super(stream);
@@ -128,7 +131,7 @@ public class PPCWriter extends AbstractWriter {
      * @return number of empty characters to append as padding
      */
     private static int requiredPadding(int length) {
-        return (SECTOR - (length % SECTOR)) % SECTOR;
+        return (SECTOR - length % SECTOR) % SECTOR;
     }
 
     /**

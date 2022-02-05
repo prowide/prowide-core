@@ -32,7 +32,7 @@ public class Field13DTest extends AbstractFieldTest {
 
     @Test
     public void testField13DString() {
-        Field13D f = null;
+        Field13D f;
 
         f = new Field13D((String) null);
         assertNull(f.getComponent1());

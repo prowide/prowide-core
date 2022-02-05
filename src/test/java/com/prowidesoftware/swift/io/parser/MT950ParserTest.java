@@ -39,7 +39,7 @@ public class MT950ParserTest extends BaseMessageTestcase {
                 ":62M:C070403USD115454,92\n" +
                 "-}{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}";
 
-        assertEquals("950", (parseMessage(messageToParse)).getType());
+        assertEquals("950", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARXXAXXX3227607589", b1.getBlockValue());

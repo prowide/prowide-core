@@ -77,10 +77,11 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
      * @throws IllegalArgumentException if parameter blockName is not the integer 5
      * @since 5.0
      */
+    @Override
     protected void setBlockNumber(final Integer blockNumber) {
         // sanity check
         Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
-        Validate.isTrue(blockNumber.intValue() == 5, "blockNumber must be 5");
+        Validate.isTrue(blockNumber == 5, "blockNumber must be 5");
     }
 
     /**
@@ -90,6 +91,7 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
      * @throws IllegalArgumentException if parameter blockName is not the string "5"
      * @since 5.0
      */
+    @Override
     protected void setBlockName(final String blockName) {
         // sanity check
         Validate.notNull(blockName, "parameter 'blockName' cannot be null");
@@ -101,8 +103,9 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
      *
      * @return Integer containing the block's number
      */
+    @Override
     public Integer getNumber() {
-        return Integer.valueOf(5);
+        return 5;
     }
 
     /**
@@ -111,6 +114,7 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
      * @return block name
      * @since 5.0
      */
+    @Override
     public String getName() {
         return "5";
     }

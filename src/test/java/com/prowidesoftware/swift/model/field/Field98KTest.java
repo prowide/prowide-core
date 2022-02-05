@@ -32,7 +32,7 @@ public class Field98KTest extends AbstractFieldTest {
 
     @Test
     public void testField98KString() {
-        Field98K f = null;
+        Field98K f;
 
         f = new Field98K("");
         assertNull(f.getComponent1());

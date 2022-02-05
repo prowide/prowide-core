@@ -47,11 +47,10 @@ import java.util.logging.Level;
  * @see MIR
  * @since 4.0
  */
-//TODO: add parameter checks (Validate.*) and complete javadocs 
+// TODO: add parameter checks (Validate.*) and complete javadocs
 public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
     private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock2.class.getName());
     private static final long serialVersionUID = 6094810199379196198L;
-    private static final String SEPARATOR = "\", \n";
 
 
     /**
@@ -157,6 +156,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
         return gson.fromJson(json, SwiftBlock2Input.class);
     }
 
+    @Override
     public String getMessageType() {
         return messageType;
     }
@@ -167,6 +167,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      *
      * @param messageType String of 3 character
      */
+    @Override
     public void setMessageType(final String messageType) {
         this.messageType = messageType;
     }
@@ -241,6 +242,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      *
      * @return message priority
      */
+    @Override
     public String getMessagePriority() {
         return messagePriority;
     }
@@ -253,6 +255,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      *
      * @param messagePriority String of 1 character
      */
+    @Override
     public void setMessagePriority(final String messagePriority) {
         this.messagePriority = messagePriority;
     }
@@ -328,6 +331,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      *
      * @return <code>true</code> if all fields are null and false in other case
      */
+    @Override
     public boolean isEmpty() {
         return messageType == null && receiverAddress == null && messagePriority == null && deliveryMonitoring == null && obsolescencePeriod == null;
     }
@@ -341,6 +345,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      * Delivery Monitoring +
      * Obsolescence Period.
      */
+    @Override
     public String getValue() {
         if (isEmpty()) {
             return null;
@@ -371,6 +376,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      * @throws IllegalArgumentException if parameter has an invalid total size.
      * @see #setValue(String, boolean)
      */
+    @Override
     public void setValue(final String value) {
         setValue(value, false);
     }
@@ -380,6 +386,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      *
      * @see #getValue()
      */
+    @Override
     public String getBlockValue() {
         return getValue();
     }
@@ -387,6 +394,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
     /**
      * @see #setValue(String)
      */
+    @Override
     public void setBlockValue(final String value) {
         setValue(value);
     }
@@ -470,6 +478,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      *
      * @since 6.4
      */
+    @Override
     public void clean() {
         super.messagePriority = null;
         super.messageType = null;

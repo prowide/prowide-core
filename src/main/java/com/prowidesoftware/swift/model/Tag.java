@@ -61,6 +61,7 @@ public class Tag implements Serializable {
     public Tag(Tag tag) {
         this.name = tag.getName();
         this.value = tag.getValue();
+        this.unparsedTexts = tag.unparsedTexts;
     }
 
     /**
@@ -210,8 +211,9 @@ public class Tag implements Serializable {
         this.value = value;
     }
 
+    @Override
     public String toString() {
-        return new StringBuilder().append("Tag[").append(name).append(":").append(value).append("]").toString();
+        return "Tag[" + name + ":" + value + "]";
     }
 
     /**
@@ -231,7 +233,7 @@ public class Tag implements Serializable {
 
         // create the list if needed
         unparsedTextVerify();
-        return (this.unparsedTexts);
+        return this.unparsedTexts;
     }
 
     /**
@@ -253,7 +255,7 @@ public class Tag implements Serializable {
 
         // no list => size is zero...
         if (this.unparsedTexts == null)
-            return Integer.valueOf(0);
+            return 0;
         return this.unparsedTexts.size();
     }
 
@@ -270,7 +272,7 @@ public class Tag implements Serializable {
 
         // create the list if needed
         unparsedTextVerify();
-        return (this.unparsedTexts.isMessage(index));
+        return this.unparsedTexts.isMessage(index);
     }
 
     /**
@@ -285,7 +287,7 @@ public class Tag implements Serializable {
 
         // create the list if needed
         unparsedTextVerify();
-        return (this.unparsedTexts.getText(index));
+        return this.unparsedTexts.getText(index);
     }
 
     /**
@@ -299,7 +301,7 @@ public class Tag implements Serializable {
 
         // create the list if needed
         unparsedTextVerify();
-        return (this.unparsedTexts.getTextAsMessage(index));
+        return this.unparsedTexts.getTextAsMessage(index);
     }
 
     /**

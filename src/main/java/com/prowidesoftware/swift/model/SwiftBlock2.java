@@ -71,6 +71,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
      * @throws IllegalArgumentException if parameter blockName is not the integer 2
      * @since 5.0
      */
+    @Override
     protected void setBlockNumber(final Integer blockNumber) {
         // sanity check
         Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
@@ -84,6 +85,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
      * @throws IllegalArgumentException if parameter blockName is not the string "2"
      * @since 5.0
      */
+    @Override
     protected void setBlockName(final String blockName) {
         // sanity check
         Validate.notNull(blockName, "parameter 'blockName' cannot be null");
@@ -95,6 +97,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
      *
      * @return Integer containing the block's number
      */
+    @Override
     public Integer getNumber() {
         return 2;
     }
@@ -105,6 +108,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
      * @return block name
      * @since 5.0
      */
+    @Override
     public String getName() {
         return "2";
     }
@@ -112,6 +116,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
     /**
      * convert this to string
      */
+    @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }

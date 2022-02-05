@@ -34,7 +34,7 @@ public class Field36ETest extends AbstractFieldTest {
 
     @Test
     public void testParse() {
-        Field36E f = null;
+        Field36E f;
 
         f = new Field36E((String) null);
         assertNull(f.getComponent1());

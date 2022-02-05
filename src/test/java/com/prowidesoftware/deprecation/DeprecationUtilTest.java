@@ -53,7 +53,7 @@ public class DeprecationUtilTest {
         long t0 = System.currentTimeMillis();
         DeprecationUtils.phase2(this.getClass(), null, "another phase 2 message");
         long t1 = System.currentTimeMillis();
-        assertTrue((t1 - t0) < 4000);
+        assertTrue(t1 - t0 < 4000);
         DeprecationUtils.clearEnv();
     }
 

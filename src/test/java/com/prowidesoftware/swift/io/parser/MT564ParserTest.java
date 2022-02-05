@@ -175,7 +175,7 @@ public class MT564ParserTest extends BaseMessageTestcase {
                 ":16S:CASHMOVE\n" +
                 ":16S:CAOPTN\n" +
                 "-}";
-        assertEquals("564", (parseMessage(messageToParse)).getType());
+        assertEquals("564", parseMessage(messageToParse).getType());
         assertEquals("F01MTGSUS6SAXXX3206837054", b1.getBlockValue());
         assertEquals("O5641435070316CHASGB2LDGST07128160300703160735N", b2.getBlockValue());
         assertEquals(42, b4.countAll());
@@ -234,7 +234,7 @@ public class MT564ParserTest extends BaseMessageTestcase {
                 ":16S:ADDINFO\n" +
                 "-}{5:{CHK:000000000000}}";
 
-        assertEquals("564", (parseMessage(messageToParse)).getType());
+        assertEquals("564", parseMessage(messageToParse).getType());
         assertEquals(":SETT//UNIT/14586,", b4.getTagValue("93B"));
 
         b4.getTagByName("93B").setValue(":SETT//UNIT/0000,");

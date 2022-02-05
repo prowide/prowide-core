@@ -97,6 +97,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      * @return this object as an Iterator
      * @throws IllegalArgumentException if the iteration is attempted more than once
      */
+    @Override
     public Iterator<String> iterator() throws IllegalArgumentException {
         if (usedAsIterable) {
             throw new IllegalStateException("This reader has already been used as Iterator and the implementation does not support multiple iterations, create another reader instance instead");

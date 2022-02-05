@@ -40,7 +40,7 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
      * Parses the JSON array with fields into specific Field instances
      */
     private static List<Field> parseFields(JsonElement fieldsElement) {
-        List<Field> fields = new ArrayList<Field>();
+        List<Field> fields = new ArrayList<>();
         for (JsonElement element : fieldsElement.getAsJsonArray()) {
             Field field = Field.fromJson(element.toString());
             if (field != null) {

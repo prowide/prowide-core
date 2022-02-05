@@ -417,6 +417,7 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
      *
      * @return the formatted Party Identifier
      */
+    @Override
     public String getPartyIdentifier() {
         return PartyIdentifierUtils.getPartyIdentifier(this, 1, 2);
     }

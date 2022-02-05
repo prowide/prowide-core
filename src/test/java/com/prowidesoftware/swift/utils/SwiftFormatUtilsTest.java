@@ -34,7 +34,7 @@ public class SwiftFormatUtilsTest {
     @Test
     public void testGetNumber() {
         assertNotNull(SwiftFormatUtils.getNumber("123"));
-        assertEquals(123, (SwiftFormatUtils.getNumber("123").intValue()));
+        assertEquals(123, SwiftFormatUtils.getNumber("123").intValue());
 
         assertNotNull(SwiftFormatUtils.getNumber("123,"));
         assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(SwiftFormatUtils.getNumber("123,").doubleValue()));

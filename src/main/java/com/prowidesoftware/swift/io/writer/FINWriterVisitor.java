@@ -66,6 +66,7 @@ public class FINWriterVisitor implements IMessageVisitor {
     // MESSAGE HANDLING
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startMessage(SwiftMessage m) {
 
         // initialize status
@@ -98,6 +99,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         }
     }
 
+    @Override
     public void endMessage(SwiftMessage m) {
 
         // if message has unparsed texts, write them down
@@ -117,16 +119,19 @@ public class FINWriterVisitor implements IMessageVisitor {
     // BLOCK 1
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock1(SwiftBlock1 b) {
         write("{1:");
     }
 
+    @Override
     public void value(SwiftBlock1 b, String v) {
         if (StringUtils.isNotEmpty(v)) {
             write(v);
         }
     }
 
+    @Override
     public void endBlock1(SwiftBlock1 b) {
 
         // if block has unparsed texts, write them down
@@ -146,16 +151,19 @@ public class FINWriterVisitor implements IMessageVisitor {
     // BLOCK 2
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock2(SwiftBlock2 b) {
         write("{2:");
     }
 
+    @Override
     public void value(SwiftBlock2 b, String v) {
         if (StringUtils.isNotEmpty(v)) {
             write(v);
         }
     }
 
+    @Override
     public void endBlock2(SwiftBlock2 b) {
 
         // if block has unparsed texts, write them down
@@ -175,14 +183,17 @@ public class FINWriterVisitor implements IMessageVisitor {
     // BLOCK 3
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock3(SwiftBlock3 b) {
         write("{3:");
     }
 
+    @Override
     public void tag(SwiftBlock3 b, Tag t) {
         appendBlockTag(t);
     }
 
+    @Override
     public void endBlock3(SwiftBlock3 b) {
 
         // if block has unparsed texts, write them down
@@ -202,10 +213,12 @@ public class FINWriterVisitor implements IMessageVisitor {
     // BLOCK 4
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock4(SwiftBlock4 b) {
         write("{4:" + (this.block4asText ? SWIFT_EOL : ""));
     }
 
+    @Override
     public void tag(SwiftBlock4 b, Tag t) {
         if (this.block4asText) {
             appendTextTag(t);
@@ -214,6 +227,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         }
     }
 
+    @Override
     public void endBlock4(SwiftBlock4 b) {
 
         // if block has unparsed texts, write them down
@@ -233,14 +247,17 @@ public class FINWriterVisitor implements IMessageVisitor {
     // BLOCK 5
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock5(SwiftBlock5 b) {
         write("{5:");
     }
 
+    @Override
     public void tag(SwiftBlock5 b, Tag t) {
         appendBlockTag(t);
     }
 
+    @Override
     public void endBlock5(SwiftBlock5 b) {
 
         // if block has unparsed texts, write them down
@@ -260,14 +277,17 @@ public class FINWriterVisitor implements IMessageVisitor {
     // USER DEFINED BLOCK
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlockUser(SwiftBlockUser b) {
         write("{" + b.getName() + ":");
     }
 
+    @Override
     public void tag(SwiftBlockUser b, Tag t) {
         appendBlockTag(t);
     }
 
+    @Override
     public void endBlockUser(SwiftBlockUser b) {
 
         // if block has unparsed texts, write them down
