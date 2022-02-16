@@ -142,17 +142,17 @@ public class TagTest {
 
     @Test
     public void testEqualsIgnoreCR() {
-        assertTrue((new Tag()).equalsIgnoreCR(new Tag()));
-        assertTrue((new Tag("a")).equalsIgnoreCR(new Tag("a")));
-        assertTrue((new Tag("20:a")).equalsIgnoreCR(new Tag("20:a")));
-        assertTrue((new Tag("50K:FOO1\nFOO2")).equalsIgnoreCR(new Tag("50K:FOO1\nFOO2")));
-        assertTrue((new Tag("50K:FOO1\r\nFOO2")).equalsIgnoreCR(new Tag("50K:FOO1\r\nFOO2")));
-        assertTrue((new Tag("50K:FOO1\r\nFOO2")).equalsIgnoreCR(new Tag("50K:FOO1\nFOO2")));
-        assertTrue((new Tag("50K:FOO1\nFOO2")).equalsIgnoreCR(new Tag("50K:FOO1\r\nFOO2")));
+        assertTrue(new Tag().equalsIgnoreCR(new Tag()));
+        assertTrue(new Tag("a").equalsIgnoreCR(new Tag("a")));
+        assertTrue(new Tag("20:a").equalsIgnoreCR(new Tag("20:a")));
+        assertTrue(new Tag("50K:FOO1\nFOO2").equalsIgnoreCR(new Tag("50K:FOO1\nFOO2")));
+        assertTrue(new Tag("50K:FOO1\r\nFOO2").equalsIgnoreCR(new Tag("50K:FOO1\r\nFOO2")));
+        assertTrue(new Tag("50K:FOO1\r\nFOO2").equalsIgnoreCR(new Tag("50K:FOO1\nFOO2")));
+        assertTrue(new Tag("50K:FOO1\nFOO2").equalsIgnoreCR(new Tag("50K:FOO1\r\nFOO2")));
         /*
          * not equals
          */
-        assertFalse((new Tag("50K:FOO1\nFOO2")).equalsIgnoreCR(new Tag("50K:FOO1\nFOO3")));
+        assertFalse(new Tag("50K:FOO1\nFOO2").equalsIgnoreCR(new Tag("50K:FOO1\nFOO3")));
     }
 
 }

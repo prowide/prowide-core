@@ -22,6 +22,7 @@ import org.apache.commons.lang3.tuple.Triple;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementation for {@link StructuredNarrativeField}
@@ -175,9 +176,9 @@ public class NarrativeResolver {
     }
 
     private static List<String> notEmptyLines(String value) {
-        List<String> lines = SwiftParseUtils.getLines(value);
-        lines.removeIf(item -> item == null || item.isEmpty());
-        return lines;
+        return SwiftParseUtils.getLines(value).stream()
+                .filter(StringUtils::isNotEmpty)
+                .collect(Collectors.toList());
     }
 
     //returns true if it's the first supplement added
@@ -285,9 +286,9 @@ public class NarrativeResolver {
                 return false;
             else if (Character.isLowerCase(c) && (codewordType == CODEWORDTYPE_UCASE || codewordType == CODEWORDTYPE_UCASE_NUMBER))
                 return false;
-            else if (Character.isLetter(c) && (codewordType == CODEWORDTYPE_NUMBER))
+            else if (Character.isLetter(c) && codewordType == CODEWORDTYPE_NUMBER)
                 return false;
-            else if (Character.isDigit(c) && (codewordType == CODEWORDTYPE_UCASE))
+            else if (Character.isDigit(c) && codewordType == CODEWORDTYPE_UCASE)
                 return false;
         }
 
@@ -320,7 +321,7 @@ public class NarrativeResolver {
                     break;
                 case 2: //amount section
                     if (Character.isDigit(c) || c == '.' || c == ',')
-                        amount.append((c == ',') ? '.' : c);
+                        amount.append(c == ',' ? '.' : c);
                     else {
                         section = 3;
                         narrative.append(c);
@@ -332,10 +333,10 @@ public class NarrativeResolver {
             }
         }
 
-        return new ImmutableTriple<String, BigDecimal, String>
-                ((currency.length() == 0) ? null : currency.toString(),
-                        (amount.length() == 0) ? null : new BigDecimal(amount.toString()),
-                        (narrative.length() == 0) ? null : narrative.toString());
+        return new ImmutableTriple<>
+                (currency.length() == 0 ? null : currency.toString(),
+                        amount.length() == 0 ? null : new BigDecimal(amount.toString()),
+                        narrative.length() == 0 ? null : narrative.toString());
     }
 
     /**

@@ -110,37 +110,41 @@ public class CurrencyResolverTest {
             this.currencies = list;
         }
 
-        public String componentsPattern() {
-            return null;
-        }
-
+        @Override
         public String typesPattern() {
             return null;
         }
 
+        @Override
         public String parserPattern() {
             return null;
         }
 
+        @Override
         public List<String> currencyStrings() {
             return this.currencies;
         }
 
+        @Override
         public String currencyString() {
             return null;
         }
 
+        @Override
         public List<Currency> currencies() {
             return null;
         }
 
+        @Override
         public Currency currency() {
             return null;
         }
 
+        @Override
         public void initializeCurrencies(String cur) {
         }
 
+        @Override
         public void initializeCurrencies(Currency cur) {
         }
     }

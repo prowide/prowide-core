@@ -204,6 +204,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * @throws IllegalArgumentException if parameter blockName is not the integer 1
      * @since 5.0
      */
+    @Override
     protected void setBlockNumber(final Integer blockNumber) {
 
         // sanity check
@@ -218,6 +219,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * @throws IllegalArgumentException if parameter blockName is not the string "1"
      * @since 5.0
      */
+    @Override
     protected void setBlockName(final String blockName) {
 
         // sanity check
@@ -230,6 +232,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      *
      * @return Integer containing the block's number
      */
+    @Override
     public Integer getNumber() {
         return 1;
     }
@@ -240,6 +243,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * @return block name
      * @since 5.0
      */
+    @Override
     public String getName() {
         return "1";
     }
@@ -400,6 +404,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      *
      * @return <code>true</code> if all fields are null and false in other case
      */
+    @Override
     public boolean isEmpty() {
         return applicationId == null && serviceId == null && logicalTerminal == null && sessionNumber == null && sequenceNumber == null;
     }
@@ -413,6 +418,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * Sequence number.<br>
      * Notice that this method does not return the "1:" string.
      */
+    @Override
     public String getValue() {
         if (isEmpty()) {
             return null;
@@ -443,6 +449,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * @throws IllegalArgumentException if parameter is not between 24 and 27 characters.
      * @see #setValue(String, boolean)
      */
+    @Override
     public void setValue(final String value) {
         setValue(value, false);
     }
@@ -450,6 +457,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
     /**
      * @see #getValue()
      */
+    @Override
     public String getBlockValue() {
         return getValue();
     }
@@ -457,6 +465,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
     /**
      * @see #setValue(String)
      */
+    @Override
     public void setBlockValue(final String value) {
         setValue(value);
     }

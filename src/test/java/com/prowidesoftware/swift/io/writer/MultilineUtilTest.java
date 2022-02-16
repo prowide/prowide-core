@@ -39,7 +39,7 @@ public class MultilineUtilTest {
      */
     @Test
     public void testEmpty() {
-        final String[] lines = new String[0];
+        final String[] lines = {};
         String[] got = util.removeInnerEmptyLines(lines);
         assertSame(lines, got);
     }

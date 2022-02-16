@@ -43,6 +43,7 @@ public class MurMessageComparator implements Comparator<SwiftMessage> {
      * @param left  a non-null message
      * @param right a non-null message
      */
+    @Override
     public int compare(final SwiftMessage left, final SwiftMessage right) {
         Validate.notNull(left);
         Validate.notNull(right);

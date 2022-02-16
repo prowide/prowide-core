@@ -34,7 +34,7 @@ public class Field69FTest extends AbstractFieldTest {
 
     @Test
     public void testParse69F() {
-        Field69F f = null;
+        Field69F f;
 
         f = new Field69F((String) null);
         assertNull(f.getComponent1());

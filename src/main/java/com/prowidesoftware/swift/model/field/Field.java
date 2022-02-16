@@ -36,6 +36,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 
 /**
@@ -89,7 +90,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 7.7
      */
     protected Field(final Field source) {
-        this.components = new ArrayList<String>(source.getComponents());
+        this.components = new ArrayList<>(source.getComponents());
     }
 
     /**
@@ -190,9 +191,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         Object r = null;
         try {
             final Class<?> c = Class.forName("com.prowidesoftware.swift.model.field.Field" + name);
-            @SuppressWarnings("rawtypes") final Class[] argsClass = new Class[]{String.class};
+            @SuppressWarnings("rawtypes") final Class[] argsClass = {String.class};
             @SuppressWarnings("rawtypes") final Constructor ct = c.getConstructor(argsClass);
-            final Object[] arglist = new Object[]{value};
+            final Object[] arglist = {value};
             r = ct.newInstance(arglist);
         } catch (final ClassNotFoundException e) {
             log.warning("Field class for Field" + name
@@ -256,7 +257,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         //try {
         final ResourceBundle labels = ResourceBundle.getBundle(bundle, locale);
         if (labels != null) {
-            if ((sequence != null) && (mt != null)) {
+            if (sequence != null && mt != null) {
                 /*
                  * sequence + mt
                  */
@@ -270,7 +271,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
                     result = getString(labels, key);
                 }
             }
-            if ((result == null) && (mt != null)) {
+            if (result == null && mt != null) {
                 /*
                  * mt only
                  */
@@ -365,7 +366,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             return false;
         }
         //log.warning("letter option if present should be a single capital letter or an 'a' for all letter options, and found: "+field.charAt(2));
-        return name.length() != 3 || (Character.isDigit(name.charAt(2)) || name.charAt(2) == 'a' || Character.isUpperCase(name.charAt(2)));
+        return name.length() != 3 || Character.isDigit(name.charAt(2)) || name.charAt(2) == 'a' || Character.isUpperCase(name.charAt(2));
     }
 
     /**
@@ -391,7 +392,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             } catch (final Exception e) {
                 log.log(Level.WARNING, "An error occured while creating an instance of " + name, e);
             }
-            return (Field) null;
+            return null;
         }
         return null;
     }
@@ -535,10 +536,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         //internal position index is zero based
         final int position = number - 1;
 
-        if (this.components != null) {
-            if ((position >= 0) && (position < this.components.size())) {
-                return this.components.get(position);
-            }
+        if (this.components != null && position >= 0 && position < this.components.size()) {
+            return this.components.get(position);
         }
         return null;
     }
@@ -701,8 +700,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return s
      */
     public String findComponentStartingWith(final String prefix) {
-        for (int i = 0; i < this.components.size(); i++) {
-            final String c = this.components.get(i);
+        for (final String c : this.components) {
             if (StringUtils.startsWith(c, prefix)) {
                 return c;
             }
@@ -823,7 +821,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public boolean isLetterOption(final char c) {
         final Character l = letterOption();
         if (l != null) {
-            return l.charValue() == c;
+            return l == c;
         }
         return false;
     }
@@ -948,18 +946,16 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         }
 
         // get all meaningful lines from value
-        final List<String> lines = new ArrayList<>();
-        for (final String l : SwiftParseUtils.getLines(cp.getValue())) {
-            if (StringUtils.isNotEmpty(l) && !onlySlashes(l)) {
-                lines.add(l);
-            }
-        }
+        final List<String> lines = SwiftParseUtils.getLines(cp.getValue()).stream()
+                .filter(StringUtils::isNotEmpty)
+                .filter(l -> !onlySlashes(l))
+                .collect(Collectors.toList());
 
         if (start != null) {
             if (lines.size() >= start) {
                 if (end != null) {
                     if (end >= start) {
-                        Integer trimmedEnd = end;
+                        int trimmedEnd = end;
                         if (end > lines.size()) {
                             trimmedEnd = lines.size() - 1;
                         }
@@ -1003,8 +999,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     private String asString(final String hash, final List<String> list) {
         final StringBuilder result = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            final String l = list.get(i);
+        for (final String l : list) {
             final String trimmed = clean(hash, l);
             if (trimmed != null) {
                 if (result.length() > 0) {
@@ -1075,10 +1070,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         //internal position index is zero based
         final int position = number - 1;
         final List<String> labels = getComponentLabels();
-        if (labels != null) {
-            if ((position >= 0) && (position < labels.size())) {
-                return labels.get(position);
-            }
+        if (labels != null && position >= 0 && position < labels.size()) {
+            return labels.get(position);
         }
         return null;
     }
@@ -1100,10 +1093,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     private String getComponentLabelCamelCase(final int number) {
         final Map<Integer, String> labels = getComponentMap();
-        if (labels != null) {
-            if (number >= 0) {
-                return labels.get(number);
-            }
+        if (labels != null && number >= 0) {
+            return labels.get(number);
         }
         return null;
     }

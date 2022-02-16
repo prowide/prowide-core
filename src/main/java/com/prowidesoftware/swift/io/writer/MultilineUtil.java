@@ -18,6 +18,7 @@ package com.prowidesoftware.swift.io.writer;
 import org.apache.commons.lang3.Validate;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -51,25 +52,25 @@ public class MultilineUtil {
         Validate.notNull(lines, "lines cannot be null");
         if (lines.length == 0)
             return lines;
-        final ArrayList<String> text = new ArrayList<>();
-        ArrayList<String> empty = null;
+        final List<String> text = new ArrayList<>();
+        List<String> empty = null;
         if (keepAll) {
             empty = new ArrayList<>();
         }
-        for (int i = 0; i < lines.length; i++) {
-            if (isEmpty(lines[i])) {
+        for (String line : lines) {
+            if (isEmpty(line)) {
                 if (keepAll) {
-                    empty.add(lines[i]);
+                    empty.add(line);
                 }
             } else {
-                text.add(lines[i]);
+                text.add(line);
             }
         }
         if (keepAll) {
             text.addAll(empty);
         }
         if (log.isLoggable(Level.FINE)) log.fine("text: " + text);
-        return text.toArray(new String[text.size()]);
+        return text.toArray(new String[0]);
     }
 
     /**

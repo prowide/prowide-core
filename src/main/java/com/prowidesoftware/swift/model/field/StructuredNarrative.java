@@ -214,7 +214,7 @@ public class StructuredNarrative {
      */
     public boolean valid() {
         return StringUtils.isNotBlank(this.codeword) &&
-                ((this.currency != null && this.amount != null) ||
+                (this.currency != null && this.amount != null ||
                         this.country != null || !this.narrativeFragments.isEmpty());
     }
 

@@ -356,6 +356,7 @@ public abstract class OptionBPartyField extends Field implements PartyIdentifier
      *
      * @return the formatted Party Identifier
      */
+    @Override
     public String getPartyIdentifier() {
         return PartyIdentifierUtils.getPartyIdentifier(this, 1, 2);
     }

@@ -135,7 +135,7 @@ public final class BbanStructureValidations {
      */
     public BbanStructureValidations add(final BbanStructureDTO bbanStructure) {
         if (this.bbanStructures == null) {
-            this.bbanStructures = new ArrayList<BbanStructureDTO>();
+            this.bbanStructures = new ArrayList<>();
         }
         if (contains(bbanStructure.getCountry_coode())) {
             log.warning("Duplicate BBAN configuration for country " + bbanStructure.getCountry_coode());

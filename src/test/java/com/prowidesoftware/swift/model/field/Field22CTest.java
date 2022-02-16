@@ -34,7 +34,7 @@ public class Field22CTest extends AbstractFieldTest {
 
     @Test
     public void testParse22C() {
-        Field22C f = null;
+        Field22C f;
 
         f = new Field22C((String) null);
         assertNull(f.getComponent1());

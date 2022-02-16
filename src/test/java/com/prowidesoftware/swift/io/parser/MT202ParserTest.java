@@ -49,7 +49,7 @@ public class MT202ParserTest extends BaseMessageTestcase {
                 "//EQUITY FOOOBAR EUROPE\n" +
                 "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
 
-        assertEquals("202", (parseMessage(messageToParse)).getType());
+        assertEquals("202", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
@@ -125,7 +125,7 @@ public class MT202ParserTest extends BaseMessageTestcase {
                 "//TE RETURN BOND\n" +
                 "-}{5:{MAC:2424F8B6}{CHK:F76887F6C516}}";
 
-        assertEquals("202", (parseMessage(messageToParse)).getType());
+        assertEquals("202", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
@@ -186,7 +186,7 @@ public class MT202ParserTest extends BaseMessageTestcase {
                 "//LINKED\n" +
                 "-}{5:{MAC:CF70285B}{CHK:51C671F55CB7}}";
 
-        assertEquals("202", (parseMessage(messageToParse)).getType());
+        assertEquals("202", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
@@ -245,7 +245,7 @@ public class MT202ParserTest extends BaseMessageTestcase {
                 "//B/O FOOBAR X YYYY BOND EURO\n" +
                 "-}{5:{MAC:D45AA0E8}{CHK:3406C04414BD}}";
 
-        assertEquals("202", (parseMessage(messageToParse)).getType());
+        assertEquals("202", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
@@ -297,7 +297,7 @@ public class MT202ParserTest extends BaseMessageTestcase {
                 "//F.N.IBEX 35 FI\n" +
                 "-}{5:{MAC:00EAF2F1}{CHK:5A1A7D7807F7}}";
 
-        assertEquals("202", (parseMessage(messageToParse)).getType());
+        assertEquals("202", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());

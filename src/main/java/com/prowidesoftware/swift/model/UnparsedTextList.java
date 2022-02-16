@@ -111,7 +111,7 @@ public class UnparsedTextList implements Serializable {
      */
     static public Boolean isMessage(final String text) {
         // sanity check and evaluation
-        return Boolean.valueOf((text != null && (text.indexOf("{1:") >= 0)));
+        return text != null && text.contains("{1:");
     }
 
     /**
@@ -122,23 +122,24 @@ public class UnparsedTextList implements Serializable {
     public String getAsFINString() {
         // performance optimization
         if (this.texts.isEmpty()) {
-            return ("");
+            return "";
         }
 
         // visit every unparsed text
         final StringBuilder s = new StringBuilder();
-        for (final Iterator<String> itr = this.texts.iterator(); itr.hasNext(); ) {
-            s.append(itr.next());
+        for (String text : this.texts) {
+            s.append(text);
         }
 
-        return (s.toString());
+        return s.toString();
     }
 
     /**
      * convert this to string
      */
+    @Override
     public String toString() {
-        return (ToStringBuilder.reflectionToString(this));
+        return ToStringBuilder.reflectionToString(this);
     }
 
     /**
@@ -147,7 +148,7 @@ public class UnparsedTextList implements Serializable {
      * @return the list of texts
      */
     public List<String> getTexts() {
-        return (this.texts);
+        return this.texts;
     }
 
     /**
@@ -171,7 +172,7 @@ public class UnparsedTextList implements Serializable {
      */
     public Integer size() {
         // sanity check and evaluation
-        return Integer.valueOf(this.texts.size());
+        return this.texts.size();
     }
 
     /**
@@ -184,7 +185,7 @@ public class UnparsedTextList implements Serializable {
      * @throws IndexOutOfBoundsException if parameter index is out of bounds
      */
     public Boolean isMessage(final Integer index) {
-        return (UnparsedTextList.isMessage(this.getText(index)));
+        return UnparsedTextList.isMessage(this.getText(index));
     }
 
     /**
@@ -199,7 +200,7 @@ public class UnparsedTextList implements Serializable {
         // sanity check
         Validate.notNull(index, WRITER_MESSAGE);
 
-        return this.texts.get(index.intValue());
+        return this.texts.get(index);
     }
 
     /**
@@ -214,9 +215,7 @@ public class UnparsedTextList implements Serializable {
         // sanity check
         Validate.notNull(index, WRITER_MESSAGE);
 
-        // create a conversion class
-        final ConversionService cService = new ConversionService();
-        return (cService.getMessageFromFIN(this.texts.get(index.intValue())));
+        return new ConversionService().getMessageFromFIN(texts.get(index.intValue()));
     }
 
     /**

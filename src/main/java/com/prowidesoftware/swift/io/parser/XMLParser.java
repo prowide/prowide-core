@@ -424,7 +424,7 @@ public class XMLParser {
      */
     private String getNodeAttribute(final Node n, final String attributeName) {
         final Node attr = n.getAttributes().getNamedItem(attributeName);
-        if ((attr == null) || !attr.getNodeName().equals(attributeName)) {
+        if (attr == null || !attr.getNodeName().equals(attributeName)) {
             return null;
         } else {
             return attr.getNodeValue();

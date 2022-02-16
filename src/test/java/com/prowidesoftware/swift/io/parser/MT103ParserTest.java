@@ -45,7 +45,7 @@ public class MT103ParserTest extends BaseMessageTestcase {
                 ":71A:SHA\n" +
                 "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
 
-        assertEquals("103", (parseMessage(messageToParse)).getType());
+        assertEquals("103", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
@@ -113,7 +113,7 @@ public class MT103ParserTest extends BaseMessageTestcase {
                 ":71A:OUR\n" +
                 "-}{5:{MAC:184123B4}{CHK:5EFE8E14DF81}}";
 
-        assertEquals("103", (parseMessage(messageToParse)).getType());
+        assertEquals("103", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARXXAXXX1234123456", b1.getBlockValue());
@@ -186,7 +186,7 @@ public class MT103ParserTest extends BaseMessageTestcase {
                 "//MADRID,\n" +
                 "-}{5:{MAC:07CDCC9A}{CHK:AD1FAEE8537B}}";
 
-        assertEquals("103", (parseMessage(messageToParse)).getType());
+        assertEquals("103", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
@@ -260,7 +260,7 @@ public class MT103ParserTest extends BaseMessageTestcase {
                 ":77B:/ORDERRES///123123123\n" +
                 "-}{5:{MAC:17F13741}{CHK:802BE35B36EB}}";
 
-        assertEquals("103", (parseMessage(messageToParse)).getType());
+        assertEquals("103", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
@@ -326,7 +326,7 @@ public class MT103ParserTest extends BaseMessageTestcase {
                 ":77B:/ORDERRES///000000\n" +
                 "-}{5:{MAC:17F13741}{CHK:802BE35B36EB}}";
 
-        assertEquals("103", (parseMessage(messageToParse)).getType());
+        assertEquals("103", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
@@ -394,7 +394,7 @@ public class MT103ParserTest extends BaseMessageTestcase {
                 ":77B:/ORDERRES///000000\n" +
                 "-}{5:{MAC:17F13741}{CHK:802BE35B36EB}}";
 
-        assertEquals("103", (parseMessage(messageToParse)).getType());
+        assertEquals("103", parseMessage(messageToParse).getType());
 
         //check b1
         assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
@@ -452,7 +452,7 @@ public class MT103ParserTest extends BaseMessageTestcase {
                 ":71A:SHA" +
                 "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
 
-        assertEquals("103", (parseMessage(messageToParse)).getType());
+        assertEquals("103", parseMessage(messageToParse).getType());
     }
 
 }

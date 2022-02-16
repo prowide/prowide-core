@@ -161,10 +161,10 @@ public class DeprecationUtils {
                     }
                 }
             } catch (Exception e2) {
-                e2.printStackTrace();
+                log.log(Level.WARNING, e2.getMessage(), e2);
             }
         } catch (Exception e1) {
-            e1.printStackTrace();
+            log.log(Level.WARNING, e1.getMessage(), e1);
         }
     }
 

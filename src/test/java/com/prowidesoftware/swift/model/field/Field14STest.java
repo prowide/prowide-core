@@ -40,7 +40,7 @@ public class Field14STest extends AbstractFieldTest {
     @Test
     public void testField14SRateSource() {
 
-        Field14S f = null;
+        Field14S f;
 
         f = new Field14S("EMT00");
         assertEquals("EMT", f.getComponent1());
@@ -64,7 +64,7 @@ public class Field14STest extends AbstractFieldTest {
     @Test
     public void testField14STimeAndLocation() {
 
-        Field14S f = null;
+        Field14S f;
 
         f = new Field14S("EMT00");
         assertEquals("EMT", f.getComponent1());

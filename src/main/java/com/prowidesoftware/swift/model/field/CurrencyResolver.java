@@ -21,9 +21,9 @@ import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.Validate;
 
-import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CurrencyResolver {
 
@@ -75,12 +75,9 @@ public class CurrencyResolver {
         List<String> values = ResolverUtils.findWantedType(f.typesPattern(), 'C', f.getComponents());
 
         // prepare the result and convert all that match
-        List<Currency> currencies = new ArrayList<>();
-        for(String value : values) {
-            currencies.add(SwiftFormatUtils.getCurrency(value));
-        }
-
-        return currencies;
+        return values.stream()
+                .map(SwiftFormatUtils::getCurrency)
+                .collect(Collectors.toList());
     }
 
     public static Currency resolveCurrency(CurrencyContainer o) {

@@ -33,7 +33,7 @@ public class Field92MTest extends AbstractFieldTest {
 
     @Test
     public void testField92MString() {
-        Field92M f = null;
+        Field92M f;
 
         f = new Field92M("");
         assertTrue(StringUtils.isBlank(f.getComponent1()));

@@ -64,10 +64,12 @@ public class XMLWriterVisitor implements IMessageVisitor {
     // MESSAGE HANDLING
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startMessage(SwiftMessage m) {
         write("<message>");
     }
 
+    @Override
     public void endMessage(SwiftMessage m) {
 
         // if message has unparsed texts, write them down
@@ -75,7 +77,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (m.getUnparsedTextsSize().intValue() > 0)
+        if (m.getUnparsedTextsSize() > 0)
             write(m.getUnparsedTexts(), 0);
 
         write(EOL + "</message>");
@@ -86,10 +88,12 @@ public class XMLWriterVisitor implements IMessageVisitor {
     // BLOCK 1
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock1(SwiftBlock1 b) {
         write(EOL + "<block1>");
     }
 
+    @Override
     public void value(SwiftBlock1 b, String v) {
         // generate the attributes for this block
         final StringBuilder sb = new StringBuilder();
@@ -109,6 +113,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         }
     }
 
+    @Override
     public void endBlock1(SwiftBlock1 b) {
 
         // if block has unparsed texts, write them down
@@ -116,7 +121,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -128,6 +133,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
     // BLOCK 2
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock2(SwiftBlock2 b) {
         // decide on the tag to use
         String xmlTag = "<block2>";
@@ -140,6 +146,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         write(EOL + xmlTag);
     }
 
+    @Override
     public void value(SwiftBlock2 b, String v) {
 
         // if there is no value (null or empty) => add no nodes
@@ -183,6 +190,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         write(sb.toString());
     }
 
+    @Override
     public void endBlock2(SwiftBlock2 b) {
 
         // if block has unparsed texts, write them down
@@ -190,7 +198,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -202,14 +210,17 @@ public class XMLWriterVisitor implements IMessageVisitor {
     // BLOCK 3
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock3(SwiftBlock3 b) {
         write(EOL + "<block3>");
     }
 
+    @Override
     public void tag(SwiftBlock3 b, Tag t) {
         appendTag(t);
     }
 
+    @Override
     public void endBlock3(SwiftBlock3 b) {
 
         // if block has unparsed texts, write them down
@@ -217,7 +228,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -229,10 +240,12 @@ public class XMLWriterVisitor implements IMessageVisitor {
     // BLOCK 4
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock4(SwiftBlock4 b) {
         write(EOL + "<block4>");
     }
 
+    @Override
     public void tag(SwiftBlock4 b, Tag t) {
         if (useField) {
             appendField(t);
@@ -241,6 +254,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         }
     }
 
+    @Override
     public void endBlock4(SwiftBlock4 b) {
 
         // if block has unparsed texts, write them down
@@ -248,7 +262,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -260,14 +274,17 @@ public class XMLWriterVisitor implements IMessageVisitor {
     // BLOCK 5
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlock5(SwiftBlock5 b) {
         write(EOL + "<block5>");
     }
 
+    @Override
     public void tag(SwiftBlock5 b, Tag t) {
         appendTag(t);
     }
 
+    @Override
     public void endBlock5(SwiftBlock5 b) {
 
         // if block has unparsed texts, write them down
@@ -275,7 +292,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -287,14 +304,17 @@ public class XMLWriterVisitor implements IMessageVisitor {
     // USER DEFINED BLOCK
     //
     ////////////////////////////////////////////////////////////
+    @Override
     public void startBlockUser(SwiftBlockUser b) {
         write(EOL + "<block name=\"" + b.getName() + "\">");
     }
 
+    @Override
     public void tag(SwiftBlockUser b, Tag t) {
         appendTag(t);
     }
 
+    @Override
     public void endBlockUser(SwiftBlockUser b) {
 
         // if block has unparsed texts, write them down
@@ -302,7 +322,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize().intValue() > 0)
+        if (b.getUnparsedTextsSize() > 0)
             write(b.getUnparsedTexts(), 1);
 
         // write block termination
@@ -353,7 +373,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (t.getUnparsedTextsSize().intValue() > 0)
+        if (t.getUnparsedTextsSize() > 0)
             write(t.getUnparsedTexts(), 2);
 
         // write tag termination
@@ -390,7 +410,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
     }
 
     private void appendElement(StringBuilder sb, String element, String value) {
-        sb.append(EOL + "\t<").append(element).append('>')
+        sb.append(EOL).append("\t<").append(element).append('>')
                 .append(value)
                 .append("</").append(element).append('>');
     }
@@ -411,11 +431,11 @@ public class XMLWriterVisitor implements IMessageVisitor {
         }
 
         // write the unparsed texts (if any)
-        if (texts.size().intValue() > 0) {
+        if (texts.size() > 0) {
             write(EOL + prefix + "<unparsedTexts>");
-            for (int i = 0; i < texts.size().intValue(); i++) {
+            for (int i = 0; i < texts.size(); i++) {
                 write(EOL + prefix + "\t<text>");
-                write(texts.getText(Integer.valueOf(i)));
+                write(texts.getText(i));
                 write("</text>");
             }
             write(EOL + prefix + "</unparsedTexts>");

@@ -57,7 +57,7 @@ public class SwiftBlock2Adapter implements JsonSerializer<SwiftBlock2>, JsonDese
     public SwiftBlock2 deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
 
-        if ((jsonObject.get(DIRECTION) != null && jsonObject.get(DIRECTION).getAsString().equals("O"))) {
+        if (jsonObject.get(DIRECTION) != null && jsonObject.get(DIRECTION).getAsString().equals("O")) {
             return getSwiftBlock2OutputObject(jsonObject);
         } else {
             // defult to INPUT

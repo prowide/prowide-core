@@ -53,7 +53,7 @@ public class SwiftParserTest {
                 ":71A:SHA\n" +
                 "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
 
-        SwiftMessage m = (new SwiftParser(messageToParse)).message();
+        SwiftMessage m = new SwiftParser(messageToParse).message();
 
         //get a simple value tag
         @SuppressWarnings("unused")
@@ -330,7 +330,7 @@ public class SwiftParserTest {
                 ":70:/RFB/C767405OCP021001\n" +
                 ":71A:SHA\n" +
                 "-}{5:{CHK:B3BF0D846AFD}}";
-        SwiftMessage msg = (new SwiftParser(fin)).message();
+        SwiftMessage msg = new SwiftParser(fin).message();
         assertNotNull(msg);
         assertNotNull(msg.getBlock1());
         assertNotNull(msg.getBlock2());

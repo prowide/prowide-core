@@ -32,7 +32,7 @@ public class Field98JTest extends AbstractFieldTest {
 
     @Test
     public void testField98JString() {
-        Field98J f = null;
+        Field98J f;
 
         f = new Field98J("");
         assertNull(f.getComponent1());

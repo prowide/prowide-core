@@ -71,8 +71,8 @@ public class SwiftMessageUtils {
         if (m != null) {
             final SwiftBlock4 b4 = m.getBlock4();
             if (b4 != null && !b4.isEmpty()) {
-                final ArrayList<String> curs = new ArrayList<>();
-                for (final Tag t : b4.getTags()) {
+                final List<String> curs = new ArrayList<>();
+                for (Tag t : b4.getTags()) {
                     final Field f = t.asField();
                     if (f instanceof CurrencyContainer) {
                         final CurrencyContainer cc = (CurrencyContainer) f;
@@ -476,10 +476,7 @@ public class SwiftMessageUtils {
                     return murBlock4.getValue();
                 }
             }
-            final String mur = m.getMUR();
-            if (mur != null) {
-                return mur;
-            }
+            return m.getMUR();
         }
         return null;
     }

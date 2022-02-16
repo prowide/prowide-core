@@ -74,7 +74,7 @@ public abstract class BaseMessageTestcase {
         } catch (IOException e) {
             fail("Reading input file: FAILED [" + e.getMessage() + "]");
         }
-        return (s);
+        return s;
     }
 
     protected SwiftMessage parseMessage(String msg) {

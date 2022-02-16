@@ -622,7 +622,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     public void addStatus(SwiftMessageStatusInfo status) {
         if (status != null) {
             if (this.getStatusTrail() == null) {
-                this.setStatusTrail(new ArrayList<SwiftMessageStatusInfo>());
+                this.setStatusTrail(new ArrayList<>());
             }
             this.statusTrail.add(status);
             setStatus(status.getName());
@@ -711,7 +711,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     public boolean contains(Enum... statuses) {
         boolean result = false;
         List<SwiftMessageStatusInfo> l = getStatusTrail();
-        if (l != null && !l.isEmpty()) {
+        if (l != null) {
             for (SwiftMessageStatusInfo s : getStatusTrail()) {
                 for (Enum e : statuses) {
                     if (e != null && StringUtils.equals(s.getName(), e.name())) {
@@ -731,7 +731,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     public boolean contains(String... statuses) {
         boolean result = false;
         List<SwiftMessageStatusInfo> l = getStatusTrail();
-        if (l != null && !l.isEmpty()) {
+        if (l != null) {
             for (SwiftMessageStatusInfo s : getStatusTrail()) {
                 for (String e : statuses) {
                     if (e != null && StringUtils.equals(s.getName(), e)) {
@@ -780,7 +780,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      */
     public String getLastData(String... statuses) {
         List<SwiftMessageStatusInfo> l = getStatusTrail();
-        if (l != null && !l.isEmpty()) {
+        if (l != null) {
             for (int i = l.size() - 1; i >= 0; i--) {
                 String d = l.get(i).getData();
                 if (d != null && (statuses == null || ArrayUtils.contains(statuses, l.get(i).getName()))) {
@@ -807,7 +807,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      */
     public SwiftMessageStatusInfo findStatusInfo(String... statusNames) {
         List<SwiftMessageStatusInfo> l = getStatusTrail();
-        if (l != null && !l.isEmpty()) {
+        if (l != null) {
             for (SwiftMessageStatusInfo sms : l) {
                 if (ArrayUtils.contains(statusNames, sms.getName())) {
                     return sms;
@@ -835,7 +835,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      */
     public SwiftMessageStatusInfo findStatusInfoLast(String... statusNames) {
         final List<SwiftMessageStatusInfo> l = getStatusTrail();
-        if (l != null && !l.isEmpty()) {
+        if (l != null) {
             for (int i = l.size() - 1; i >= 0; i--) {
                 if (ArrayUtils.contains(statusNames, l.get(i).getName())) {
                     return l.get(i);
@@ -1303,7 +1303,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof AbstractSwiftMessage)) return false;
         AbstractSwiftMessage that = (AbstractSwiftMessage) o;
         return Objects.equals(message, that.message) &&
                 Objects.equals(identifier, that.identifier) &&
@@ -1361,7 +1361,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      */
     protected String bic11(String address) {
         if (address != null) {
-            return (new BIC(address)).getBic11();
+            return new BIC(address).getBic11();
         }
         return null;
     }
