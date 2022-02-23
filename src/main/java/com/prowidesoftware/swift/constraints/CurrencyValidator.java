@@ -22,15 +22,15 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * Implementation of the ISO Alpha-2 country validation constraint
+ * Implementation of the ISO currency code validation constraint
  *
- * @see IsoUtils#isValidISOCountry(String) for implementation details
+ * @see IsoUtils#isValidISOCurrency(String) for implementation details
  * @since 7.10.3
  */
-public class CurrencyValidator implements ConstraintValidator<CountryConstraint, String> {
+public class CurrencyValidator implements ConstraintValidator<CurrencyConstraint, String> {
 
     @Override
-    public void initialize(CountryConstraint currency) {
+    public void initialize(CurrencyConstraint currency) {
     }
 
     @Override
