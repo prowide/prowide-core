@@ -168,8 +168,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public static void visit(final SwiftBlock3 block, final IMessageVisitor visitor) {
         // sanity check
-        Validate.notNull(block);
-        Validate.notNull(visitor);
+        Objects.requireNonNull(block);
+        Objects.requireNonNull(visitor);
 
         // iterate thru tags
         for (final Iterator<Tag> it = block.tagIterator(); it.hasNext(); ) {
@@ -190,8 +190,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public static void visit(final SwiftBlock4 block, final IMessageVisitor visitor) {
         // sanity check
-        Validate.notNull(block);
-        Validate.notNull(visitor);
+        Objects.requireNonNull(block);
+        Objects.requireNonNull(visitor);
 
         // iterate thru tags
         for (final Iterator<Tag> it = block.tagIterator(); it.hasNext(); ) {
@@ -213,8 +213,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public static void visit(final SwiftBlock5 block, final IMessageVisitor visitor) {
         // sanity check
-        Validate.notNull(block);
-        Validate.notNull(visitor);
+        Objects.requireNonNull(block);
+        Objects.requireNonNull(visitor);
 
         // iterate thru tags
         for (final Iterator<Tag> it = block.tagIterator(); it.hasNext(); ) {
@@ -235,8 +235,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public static void visit(final SwiftBlockUser block, final IMessageVisitor visitor) {
         // sanity check
-        Validate.notNull(block);
-        Validate.notNull(visitor);
+        Objects.requireNonNull(block);
+        Objects.requireNonNull(visitor);
 
         // iterate thru tags
         for (final Iterator<Tag> it = block.tagIterator(); it.hasNext(); ) {
@@ -327,14 +327,14 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @throws IllegalArgumentException b is null or the method getInt in the block returns a value out of range (non user blocks)
      */
     public void addBlock(final SwiftBlock b) {
-        Validate.notNull(b);
+        Objects.requireNonNull(b);
 
         // support for user blocks in this method is useful for XML parser and other code that
         // takes advantages of using SwiftTagListBlock
         if (b instanceof SwiftBlockUser) {
             addUserBlock((SwiftBlockUser) b);
         } else {
-            Validate.notNull(b.getNumber(), "SwiftBlock.getNumber() is null");
+            Objects.requireNonNull(b.getNumber(), "SwiftBlock.getNumber() is null");
             final int index = b.getNumber();
             Validate.isTrue(index >= 1 && index <= 5, "SwiftBlock.getNumber int did not return an int between 1-5");
             switch (index) {
@@ -383,7 +383,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @see SwiftWriter#writeMessage(SwiftMessage, java.io.Writer)
      */
     public void visit(final IMessageVisitor visitor) {
-        Validate.notNull(visitor);
+        Objects.requireNonNull(visitor);
 
         // start visiting
         visitor.startMessage(this);
@@ -632,7 +632,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public void setUserBlocks(final List<SwiftBlockUser> userBlocks) {
         // sanity check
-        Validate.notNull(userBlocks, "parameter 'userBlocks' cannot be null");
+        Objects.requireNonNull(userBlocks, "parameter 'userBlocks' cannot be null");
 
         // setup the new list
         this.userBlocks = userBlocks;
@@ -649,7 +649,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public SwiftBlockUser getUserBlock(final String blockName) {
         // sanity check
-        Validate.notNull(blockName, "parameter 'blockName' cannot be null");
+        Objects.requireNonNull(blockName, "parameter 'blockName' cannot be null");
 
         // find the block position
         final int pos = getUserBlockPosition(blockName);
@@ -671,7 +671,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public SwiftBlockUser getUserBlock(final Integer blockNumber) {
         // sanity check
-        Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
+        Objects.requireNonNull(blockNumber, "parameter 'blockNumber' cannot be null");
 
         return this.getUserBlock(blockNumber.toString());
     }
@@ -686,7 +686,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public void addUserBlock(final SwiftBlockUser userBlock) {
         // sanity check
-        Validate.notNull(userBlock);
+        Objects.requireNonNull(userBlock);
         Validate.isTrue(userBlock.isValidName(), INVALID_NAME_BLOCK + userBlock.getName() + ")");
 
         if (this.userBlocks == null) {
@@ -713,7 +713,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public void removeUserBlock(final Integer blockNumber) {
         // sanity check
-        Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
+        Objects.requireNonNull(blockNumber, "parameter 'blockNumber' cannot be null");
         Validate.isTrue(SwiftBlockUser.isValidName(blockNumber), INVALID_NAME_BLOCK + blockNumber + ")");
 
         this.removeUserBlock(blockNumber.toString());
@@ -729,7 +729,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public void removeUserBlock(final String blockName) {
         // sanity check
-        Validate.notNull(blockName, "parameter 'blockName' cannot be null");
+        Objects.requireNonNull(blockName, "parameter 'blockName' cannot be null");
         Validate.isTrue(SwiftBlockUser.isValidName(blockName), INVALID_NAME_BLOCK + blockName + ")");
 
         // find the block position (if it's there)
@@ -1108,7 +1108,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      * @throws IllegalArgumentException if names is null
      */
     public List<Field> fields(final String... names) {
-        Validate.notNull(names, "names is null");
+        Objects.requireNonNull(names, "names is null");
         final List<Field> result = new ArrayList<>();
         for (final String n : names) {
             final Tag[] tl = this.block4.getTagsByName(n);

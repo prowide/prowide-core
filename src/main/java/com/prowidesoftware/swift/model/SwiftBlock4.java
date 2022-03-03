@@ -23,6 +23,7 @@ import org.apache.commons.lang3.Validate;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Stack;
 
 /**
@@ -55,7 +56,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
      */
     public SwiftBlock4(List<Tag> tags) {
         // sanity check
-        Validate.notNull(tags, "parameter 'tags' cannot be null");
+        Objects.requireNonNull(tags, "parameter 'tags' cannot be null");
 
         this.addTags(tags);
     }
@@ -130,7 +131,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
     @Override
     protected void setBlockNumber(Integer blockNumber) {
         // sanity check
-        Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
+        Objects.requireNonNull(blockNumber, "parameter 'blockNumber' cannot be null");
         Validate.isTrue(blockNumber == 4, "blockNumber must be 4");
     }
 
@@ -144,7 +145,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
     @Override
     protected void setBlockName(String blockName) {
         // sanity check
-        Validate.notNull(blockName, "parameter 'blockName' cannot be null");
+        Objects.requireNonNull(blockName, "parameter 'blockName' cannot be null");
         Validate.isTrue(blockName.compareTo("4") == 0, "blockName must be string '4'");
     }
 

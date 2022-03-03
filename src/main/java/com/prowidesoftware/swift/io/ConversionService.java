@@ -24,6 +24,7 @@ import org.apache.commons.lang3.Validate;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Objects;
 
 
 /**
@@ -46,7 +47,7 @@ public class ConversionService implements IConversionService {
      */
     @Override
     public String getFIN(final SwiftMessage msg) {
-        Validate.notNull(msg);
+        Objects.requireNonNull(msg);
 
         final StringWriter writer = new StringWriter();
         SwiftWriter.writeMessage(msg, writer, true);
@@ -64,7 +65,7 @@ public class ConversionService implements IConversionService {
      */
     @Override
     public String getFIN(final String xml) {
-        Validate.notNull(xml);
+        Objects.requireNonNull(xml);
         final SwiftMessage msg = getMessageFromXML(xml);
         if (msg == null) {
             throw new ProwideException("parsed SwiftMessage from XML is null");
@@ -88,7 +89,7 @@ public class ConversionService implements IConversionService {
      * @since 7.6
      */
     public String getXml(final SwiftMessage msg, final boolean useField) {
-        Validate.notNull(msg);
+        Objects.requireNonNull(msg);
         final StringWriter w = new StringWriter();
         msg.visit(new XMLWriterVisitor(w, useField));
         return w.getBuffer().toString();
@@ -100,14 +101,14 @@ public class ConversionService implements IConversionService {
     }
 
     public String getXml(final String fin, final boolean useField) {
-        Validate.notNull(fin);
+        Objects.requireNonNull(fin);
         final SwiftMessage msg = this.getMessageFromFIN(fin);
         return getXml(msg, useField);
     }
 
     @Override
     public SwiftMessage getMessageFromFIN(final String fin) {
-        Validate.notNull(fin);
+        Objects.requireNonNull(fin);
         try {
             return SwiftMessage.parse(fin);
         } catch (final IOException e) {

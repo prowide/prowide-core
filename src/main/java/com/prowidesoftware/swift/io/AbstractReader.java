@@ -24,6 +24,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
@@ -57,7 +58,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      * @throws IllegalArgumentException if string is null
      */
     public AbstractReader(final String string) {
-        Validate.notNull(string, "string must not be null");
+        Objects.requireNonNull(string, "string must not be null");
         this.reader = new StringReader(string);
     }
 
@@ -72,7 +73,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     }
 
     public AbstractReader(final InputStream _stream, final Charset _charset) {
-        Validate.notNull(_stream, "stream must not be null");
+        Objects.requireNonNull(_stream, "stream must not be null");
         this.reader = new InputStreamReader(_stream, _charset != null ? _charset : StandardCharsets.UTF_8);
     }
 
@@ -88,7 +89,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     }
 
     public AbstractReader(final File _file, Charset _charset) throws FileNotFoundException {
-        Validate.notNull(_file, "file must not be null");
+        Objects.requireNonNull(_file, "file must not be null");
         Validate.isTrue(_file.exists(), "Non existent file: " + _file.getAbsolutePath());
         this.reader = new BufferedReader(new InputStreamReader(new FileInputStream(_file), _charset != null ? _charset : StandardCharsets.UTF_8));
     }

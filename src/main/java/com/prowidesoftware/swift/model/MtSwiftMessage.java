@@ -163,8 +163,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * @since 9.1.4
      */
     public MtSwiftMessage(final AbstractMT mt, final MessageMetadataStrategy metadataStrategy) {
-        Validate.notNull(mt, "the mt message cannot be null");
-        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        Objects.requireNonNull(mt, "the mt message cannot be null");
+        Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
         updateFromModel(mt.getSwiftMessage(), metadataStrategy);
     }
 
@@ -183,8 +183,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * @since 9.1.4
      */
     public MtSwiftMessage(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-        Validate.notNull(model, "the message model cannot be null");
-        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        Objects.requireNonNull(model, "the message model cannot be null");
+        Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
         updateFromModel(model, metadataStrategy);
     }
 
@@ -247,8 +247,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      */
     @Override
     protected void updateFromMessage(MessageMetadataStrategy metadataStrategy) throws IllegalArgumentException {
-        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-        Validate.notNull(getMessage(), "the raw message attribute cannot be null");
+        Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        Objects.requireNonNull(getMessage(), "the raw message attribute cannot be null");
         if (getFileFormat() != FileFormat.FIN) {
             throw new IllegalArgumentException("expected source format " + FileFormat.FIN + " and found " + getFileFormat());
         }
@@ -353,8 +353,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * @since 9.1.4
      */
     public void updateFromFIN(final String fin, final MessageMetadataStrategy metadataStrategy) {
-        Validate.notNull(fin, "the raw message parameter cannot be null");
-        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        Objects.requireNonNull(fin, "the raw message parameter cannot be null");
+        Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
         setMessage(fin);
         setFileFormat(FileFormat.FIN);
         updateFromMessage(metadataStrategy);
@@ -391,10 +391,10 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * @since 9.1.4
      */
     public void updateFromModel(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-        Validate.notNull(model, "the model message cannot be null");
-        Validate.notNull(metadataStrategy, "the metadata strategy cannot be null");
+        Objects.requireNonNull(model, "the model message cannot be null");
+        Objects.requireNonNull(metadataStrategy, "the metadata strategy cannot be null");
         final String fin = new ConversionService().getFIN(model);
-        Validate.notNull(fin, "the raw message could not be created from the SwiftMessage parameter");
+        Objects.requireNonNull(fin, "the raw message could not be created from the SwiftMessage parameter");
         setMessage(fin);
         updateAttributes(model, metadataStrategy);
     }
@@ -419,8 +419,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * @since 9.1.4
      */
     public void updateFromModel(final AbstractMT mt, final MessageMetadataStrategy metadataStrategy) {
-        Validate.notNull(mt, "the model message cannot be null");
-        Validate.notNull(metadataStrategy, "the metadata strategy cannot be null");
+        Objects.requireNonNull(mt, "the model message cannot be null");
+        Objects.requireNonNull(metadataStrategy, "the metadata strategy cannot be null");
         updateFromModel(mt.getSwiftMessage(), metadataStrategy);
     }
 
@@ -699,7 +699,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * @since 9.1.4
      */
     public void updateMetadata(MessageMetadataStrategy strategy) {
-        Validate.notNull(strategy, "the strategy for metadata extraction cannot be null");
+        Objects.requireNonNull(strategy, "the strategy for metadata extraction cannot be null");
         applyStrategy(modelMessage(), strategy);
     }
 

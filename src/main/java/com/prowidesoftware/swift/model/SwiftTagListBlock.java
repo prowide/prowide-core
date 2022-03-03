@@ -115,7 +115,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @throws IllegalArgumentException if the name parameter is null
      */
     public Tag getTagByName(final String name) {
-        Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+        Objects.requireNonNull(name, NAME_VALIDATION_MESSAGE);
         for (Tag tag : this.tags) {
             if (StringUtils.equals(tag.getName(), name)) {
                 return tag;
@@ -184,7 +184,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see #getTagsByName(String, String) to find tags with letter option wildcard
      */
     public Tag[] getTagsByName(final String name) {
-        Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+        Objects.requireNonNull(name, NAME_VALIDATION_MESSAGE);
         return this.tags.stream()
                 .filter(tag -> StringUtils.equals(tag.getName(), name))
                 .toArray(Tag[]::new);
@@ -278,7 +278,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see #getTagsByName(String)
      */
     public String[] getTagValues(final String name) {
-        Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+        Objects.requireNonNull(name, NAME_VALIDATION_MESSAGE);
         return Arrays.stream(getTagsByName(name))
                 .map(Tag::getValue)
                 .toArray(String[]::new);
@@ -328,7 +328,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.5
      */
     public Field getFieldByName(final String name, final String componentValue) {
-        Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+        Objects.requireNonNull(name, NAME_VALIDATION_MESSAGE);
 
         final boolean wildcard = name.endsWith("a");
         for (Tag tag : this.tags) {
@@ -354,7 +354,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.6
      */
     public List<? extends Field> getFieldsByName(final String name, final String componentValue) {
-        Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+        Objects.requireNonNull(name, NAME_VALIDATION_MESSAGE);
 
         final boolean wildcard = name.endsWith("a");
         final List<Field> l = new ArrayList<>();
@@ -381,7 +381,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.10.6
      */
     public List<Tag> getTagsByName(final String name, final String componentValue) {
-        Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+        Objects.requireNonNull(name, NAME_VALIDATION_MESSAGE);
 
         final boolean wildcard = name.endsWith("a");
         final List<Tag> l = new ArrayList<>();
@@ -530,7 +530,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @throws IllegalArgumentException if tagname key is null
      */
     public int countByName(final String name) {
-        Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+        Objects.requireNonNull(name, NAME_VALIDATION_MESSAGE);
         return tags.stream()
                 .filter(tag -> StringUtils.equals(tag.getName(), name))
                 .mapToInt(i -> 1)
@@ -559,7 +559,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see #removeAll(String)
      */
     public String removeTag(final String name) {
-        Validate.notNull(name, NAME_VALIDATION_MESSAGE);
+        Objects.requireNonNull(name, NAME_VALIDATION_MESSAGE);
         int i = 0;
         for (Tag t : tags) {
             if (StringUtils.equals(t.getName(), name)) {
@@ -583,7 +583,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see #removeTag(String)
      */
     public int removeAll(final String name) {
-        Validate.notNull(name, "parameter 'name' cannot not be null");
+        Objects.requireNonNull(name, "parameter 'name' cannot not be null");
         int removed = 0;
         for (Tag t : getTagsByName(name)) {
             this.tags.remove(t);
@@ -615,7 +615,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @throws IllegalArgumentException if parameter name is null
      */
     public void addTags(final List<Tag> tags) {
-        Validate.notNull(tags, "parameter 'tags' cannot not be null");
+        Objects.requireNonNull(tags, "parameter 'tags' cannot not be null");
         thisTagsNotNull().addAll(tags);
     }
 
@@ -631,7 +631,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public void addTag(int index, final Tag tag) {
         // sanity check
-        Validate.notNull(tag, TAG_VALIDATION_MESSAGE);
+        Objects.requireNonNull(tag, TAG_VALIDATION_MESSAGE);
         thisTagsNotNull().add(index, tag);
     }
 
@@ -666,7 +666,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public Tag setTag(int index, Tag tag) {
         // sanity check
-        Validate.notNull(tag, TAG_VALIDATION_MESSAGE);
+        Objects.requireNonNull(tag, TAG_VALIDATION_MESSAGE);
         return this.tags.set(index, tag);
     }
 

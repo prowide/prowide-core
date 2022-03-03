@@ -23,6 +23,7 @@ import org.apache.commons.lang3.Validate;
 
 import java.util.Currency;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class CurrencyResolver {
@@ -38,7 +39,7 @@ public class CurrencyResolver {
     public static List<String> currencyStrings(final Field f) {
 
         // sanity check
-        Validate.notNull(f);
+        Objects.requireNonNull(f);
 
         return ResolverUtils.findWantedType(f.typesPattern(), 'C', f.getComponents());
     }
@@ -69,7 +70,7 @@ public class CurrencyResolver {
     public static List<Currency> currencies(final Field f) {
 
         // sanity check
-        Validate.notNull(f);
+        Objects.requireNonNull(f);
 
         // find all the non-null AMOUNT components
         List<String> values = ResolverUtils.findWantedType(f.typesPattern(), 'C', f.getComponents());

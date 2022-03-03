@@ -419,7 +419,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
             clean();
         } else {
             // check parameters
-            Validate.notNull(value, "value must not be null");
+            Objects.requireNonNull(value, "value must not be null");
         }
 
         if (value != null) {
@@ -427,7 +427,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
 
             if (!lenient) {
                 // check parameters
-                Validate.notNull(value, "value must not be null");
+                Objects.requireNonNull(value, "value must not be null");
                 Validate.isTrue(slen >= 16 && slen <= 23, "expected a string value of 17 up to 23 chars and obtained a " + slen + " chars string: '" + value + "'");
             }
 

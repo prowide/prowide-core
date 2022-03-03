@@ -425,7 +425,7 @@ public class SwiftMessageUtils {
      * @since 7.7
      */
     public static List<SwiftTagListBlock> splitByField15(final SwiftTagListBlock block, final String letterOption) {
-        Validate.notNull(letterOption);
+        Objects.requireNonNull(letterOption);
         Validate.isTrue(StringUtils.length(letterOption) == 1, "letter option must be only one character");
         final List<SwiftTagListBlock> result = new ArrayList<>();
         if (block != null) {

@@ -6,6 +6,7 @@ SNAPSHOT 9.2.12
   * (GH-103) fixed invalid ConstraintValidator annotation on CurrencyValidator
   * (GH-95) patterns getters are now non-final to avoid overwriting; static constants have been deprecated
   * RJE and PPC readers, added a constructor with explicit charset (same in swift parser from input stream)
+  * Validate.notNull -> Objects.requireNonNull
   * Spotbugs code review
 
 RELEASE 9.2.11

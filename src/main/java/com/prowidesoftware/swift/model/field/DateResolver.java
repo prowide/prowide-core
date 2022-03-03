@@ -2,11 +2,11 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DateResolver {
@@ -28,7 +28,7 @@ public class DateResolver {
     public static List<Calendar> dates(final Field f) {
 
         // sanity check
-        Validate.notNull(f);
+        Objects.requireNonNull(f);
 
         // find all the non-null AMOUNT components
         List<Pair<Character, String>> values = ResolverUtils.findWantedType(f.typesPattern(), "DEFYAUPJ", f.getComponents());
@@ -53,7 +53,7 @@ public class DateResolver {
     public static Calendar date(final Field f) {
 
         // sanity check
-        Validate.notNull(f);
+        Objects.requireNonNull(f);
 
         // find the first DATE component
         Pair<Character, String> value = ResolverUtils.findFirstWantedType(f.typesPattern(), "DEFYAUPJ", f.getComponents());

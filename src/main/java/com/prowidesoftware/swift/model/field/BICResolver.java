@@ -3,9 +3,9 @@ package com.prowidesoftware.swift.model.field;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.apache.commons.lang3.Validate;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class BICResolver {
@@ -21,7 +21,7 @@ public class BICResolver {
     public static List<String> bicStrings(final Field f) {
 
         // sanity check
-        Validate.notNull(f);
+        Objects.requireNonNull(f);
 
         return ResolverUtils.findWantedType(f.typesPattern(), 'B', f.getComponents());
     }
@@ -37,7 +37,7 @@ public class BICResolver {
     public static List<BIC> bics(final Field f) {
 
         // sanity check
-        Validate.notNull(f);
+        Objects.requireNonNull(f);
 
         // find all the non-null AMOUNT components
         List<String> values = ResolverUtils.findWantedType(f.typesPattern(), 'B', f.getComponents());

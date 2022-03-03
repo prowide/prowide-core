@@ -19,6 +19,7 @@ import org.apache.commons.lang3.Validate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 
 /**
@@ -49,7 +50,7 @@ public class MultilineUtil {
      * @return a String array with all nonempty lines contained in the lines array, the string may be empty if lines is empty, or no non-empty lines are present
      */
     public String[] removeInnerEmptyLines(final String[] lines, final boolean keepAll) {
-        Validate.notNull(lines, "lines cannot be null");
+        Objects.requireNonNull(lines, "lines cannot be null");
         if (lines.length == 0)
             return lines;
         final List<String> text = new ArrayList<>();
