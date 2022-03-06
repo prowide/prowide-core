@@ -20,9 +20,9 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.Tag;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Utility methods for test cases
@@ -87,8 +87,8 @@ public class TestUtils {
      * @throws java.lang.IllegalArgumentException if m or block is null
      */
     public static void append(final SwiftMessage m, final SwiftTagListBlock block) {
-        Validate.notNull(m, "message must not be null");
-        Validate.notNull(block, "block must not be null");
+        Objects.requireNonNull(m, "message must not be null");
+        Objects.requireNonNull(block, "block must not be null");
         m.getBlock4().append(block);
     }
 

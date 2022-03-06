@@ -208,7 +208,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
     protected void setBlockNumber(final Integer blockNumber) {
 
         // sanity check
-        Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
+        Objects.requireNonNull(blockNumber, "parameter 'blockNumber' cannot be null");
         Validate.isTrue(blockNumber == 1, "blockNumber must be 1");
     }
 
@@ -223,7 +223,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
     protected void setBlockName(final String blockName) {
 
         // sanity check
-        Validate.notNull(blockName, "parameter 'blockName' cannot be null");
+        Objects.requireNonNull(blockName, "parameter 'blockName' cannot be null");
         Validate.isTrue(blockName.compareTo("1") == 0, "blockName must be string '1'");
     }
 
@@ -484,7 +484,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
             clean();
         } else {
             // check parameters
-            Validate.notNull(value, "value must not be null");
+            Objects.requireNonNull(value, "value must not be null");
         }
 
         if (value != null) {

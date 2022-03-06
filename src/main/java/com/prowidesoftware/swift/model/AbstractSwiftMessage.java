@@ -197,7 +197,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 9.1.4
      */
     protected AbstractSwiftMessage(final String content, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) {
-        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
         this.message = content;
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
@@ -238,7 +238,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 9.1.4
      */
     protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
-        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
         this.message = Lib.readStream(stream);
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
@@ -282,8 +282,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 9.1.4
      */
     protected AbstractSwiftMessage(final File file, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
-        Validate.notNull(file, "the file parameter cannot be null");
-        Validate.notNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
+        Objects.requireNonNull(file, "the file parameter cannot be null");
+        Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
         this.message = Lib.readFile(file);
         this.filename = file.getAbsolutePath();
         this.fileFormat = fileFormat;

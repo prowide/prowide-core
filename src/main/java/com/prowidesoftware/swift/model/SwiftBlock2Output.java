@@ -370,7 +370,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      */
     public void setMIR(final String mir, boolean lenient) {
         if (!lenient) {
-            Validate.notNull(mir);
+            Objects.requireNonNull(mir);
             Validate.isTrue(mir.length() == 28, "expected a 28 characters string for MIR value and found a " + mir.length() + " string:" + mir);
         }
         if (mir != null) {
@@ -544,7 +544,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
             clean();
         } else {
             // check parameters
-            Validate.notNull(value, "value must not be null");
+            Objects.requireNonNull(value, "value must not be null");
         }
 
         if (value != null) {
@@ -553,7 +553,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
 
             if (!lenient) {
                 // check parameters
-                Validate.notNull(value, "value must not be null");
+                Objects.requireNonNull(value, "value must not be null");
                 Validate.isTrue(slen == 46 || slen == 48 || slen == 47 || slen == 49, "expected a string value of 46 and up to 49 chars and obtained a " + slen + " chars string: '" + value + "'");
             }
 

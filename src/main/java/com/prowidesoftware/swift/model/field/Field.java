@@ -453,7 +453,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @param lines may be null or empty, nothing is done in this case
      */
     protected void appendInLines(final StringBuilder sb, final String... lines) {
-        Validate.notNull(sb);
+        Objects.requireNonNull(sb);
         if (lines == null) {
             log.finest("lines is null");
         } else {
@@ -476,7 +476,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @param componentEnd   ending component number to add
      */
     protected void appendInLines(final StringBuilder sb, final int componentStart, final int componentEnd) {
-        Validate.notNull(sb);
+        Objects.requireNonNull(sb);
         boolean first = true;
         for (int i = componentStart; i <= componentEnd; i++) {
             final String c = getComponent(i);

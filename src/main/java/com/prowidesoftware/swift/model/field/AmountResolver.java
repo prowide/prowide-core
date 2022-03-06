@@ -48,7 +48,7 @@ public class AmountResolver {
     public static List<BigDecimal> amounts(final Field f) {
 
         // sanity check
-        Validate.notNull(f);
+        Objects.requireNonNull(f);
 
         // find all the non-null AMOUNT components
         List<String> values = ResolverUtils.findNonNullWantedType(f.typesPattern(), 'I', f.getComponents());
@@ -75,7 +75,7 @@ public class AmountResolver {
     public static BigDecimal amount(final Field f) {
 
         // sanity check
-        Validate.notNull(f);
+        Objects.requireNonNull(f);
 
         // find the first AMOUNT component
         String value = ResolverUtils.findFirstWantedType(f.typesPattern(), 'I', f.getComponents());

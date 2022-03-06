@@ -24,6 +24,7 @@ import org.apache.commons.lang3.Validate;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
@@ -53,7 +54,7 @@ public final class Money implements Serializable {
      * @param amount   the value for the amount, may be null
      */
     public Money(final String currency, final BigDecimal amount) {
-        Validate.notNull(currency, "currency can not be null");
+        Objects.requireNonNull(currency, "currency can not be null");
         this.currency = currency;
         if (amount == null) {
             this.amount = BigDecimal.ZERO;

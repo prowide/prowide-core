@@ -21,6 +21,7 @@ import org.apache.commons.lang3.Validate;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.Objects;
 
 /**
  * Helper API to write MT messages into RJE files.
@@ -82,7 +83,7 @@ public class RJEWriter extends AbstractWriter {
      * @see #write(String, Writer)
      */
     public static void write(final AbstractMT msg, final Writer writer) throws IOException {
-        Validate.notNull(msg, MESSAGE_TO_WRITE_CONDITION);
+        Objects.requireNonNull(msg, MESSAGE_TO_WRITE_CONDITION);
         write(msg.message(), writer);
     }
 
@@ -99,8 +100,8 @@ public class RJEWriter extends AbstractWriter {
      * @throws IOException if an I/O error occurs
      */
     public static void write(final String msg, final Writer writer) throws IOException {
-        Validate.notNull(writer, WRITER_MESSAGE);
-        Validate.notNull(msg, MESSAGE_TO_WRITE_CONDITION);
+        Objects.requireNonNull(writer, WRITER_MESSAGE);
+        Objects.requireNonNull(msg, MESSAGE_TO_WRITE_CONDITION);
         writer.write(msg);
         writer.write(FINWriterVisitor.SWIFT_EOL);
         writer.write(RJEReader.SPLITCHAR);
@@ -128,8 +129,8 @@ public class RJEWriter extends AbstractWriter {
     }
 
     private void _write(final String msg, final Writer writer) throws IOException {
-        Validate.notNull(writer, WRITER_MESSAGE);
-        Validate.notNull(msg, MESSAGE_TO_WRITE_CONDITION);
+        Objects.requireNonNull(writer, WRITER_MESSAGE);
+        Objects.requireNonNull(msg, MESSAGE_TO_WRITE_CONDITION);
         if (count > 0) {
             writer.write(FINWriterVisitor.SWIFT_EOL);
             writer.write(splitChar);

@@ -24,6 +24,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Base class for SWIFT <b>User Header Block (block 3)</b>.
@@ -73,7 +74,7 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
     @Override
     protected void setBlockNumber(final Integer blockNumber) {
         // sanity check
-        Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
+        Objects.requireNonNull(blockNumber, "parameter 'blockNumber' cannot be null");
         Validate.isTrue(blockNumber == 3, "blockNumber must be 3");
     }
 
@@ -87,7 +88,7 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
     @Override
     protected void setBlockName(final String blockName) {
         // sanity check
-        Validate.notNull(blockName, "parameter 'blockName' cannot be null");
+        Objects.requireNonNull(blockName, "parameter 'blockName' cannot be null");
         Validate.isTrue(blockName.compareTo("3") == 0, "blockName must be string '3'");
     }
 

@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.utils;
 import com.prowidesoftware.ProwideException;
 import com.prowidesoftware.swift.model.*;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +25,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * An MT message comparator that compares all values from block 1 2 3, 4 and 5.
@@ -107,8 +107,8 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
      */
     @Override
     public int compare(final SwiftMessage left, final SwiftMessage right) {
-        Validate.notNull(left);
-        Validate.notNull(right);
+        Objects.requireNonNull(left);
+        Objects.requireNonNull(right);
         final boolean b1 = compareB1(left.getBlock1(), right.getBlock1());
         final boolean b2 = compareB2(left.getBlock2(), right.getBlock2());
         final boolean b3 = ignoreBlock3 || compareTagListBlock(left.getBlock3(), right.getBlock3());

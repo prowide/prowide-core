@@ -15,8 +15,6 @@
  */
 package com.prowidesoftware.swift.model.mt;
 
-import static com.prowidesoftware.swift.model.SwiftMessageUtils.join;
-
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field16R;
 import com.prowidesoftware.swift.model.field.Field16S;
@@ -24,11 +22,13 @@ import com.prowidesoftware.swift.model.mt.mt5xx.*;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT537.SequenceB;
 import com.prowidesoftware.swift.model.mt.mt6xx.MT670;
 import com.prowidesoftware.swift.model.mt.mt6xx.MT671;
-import org.apache.commons.lang3.Validate;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+
+import static com.prowidesoftware.swift.model.SwiftMessageUtils.join;
 
 
 /**
@@ -105,7 +105,7 @@ public class SequenceUtils {
      * Custom heuristic to deal with B delimiter "STAT" overlapping C3 and D1a1B1a delimiters
      */
     public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2021(final SwiftTagListBlock mt /* block 4 */) {
-        Validate.notNull(mt);
+        Objects.requireNonNull(mt);
         final List<SequenceB> result = new ArrayList<>();
 
         // We first remove everything after and including C or D
@@ -344,7 +344,7 @@ public class SequenceUtils {
     }
 
     public static MT564.SequenceB1 resolveMT564GetSequenceB1_sru2021(final MT564 mt) {
-        Validate.notNull(mt);
+        Objects.requireNonNull(mt);
         final MT564.SequenceB1 result = MT564.SequenceB1.newInstance();
         // we just get the first subblock
         result.clear().append(mt.getSequenceB().getSubBlock(MT564.SequenceB1.START_END_16RS));
@@ -482,7 +482,7 @@ public class SequenceUtils {
     }
 
     public static MT670.SequenceC resolveMT670GetSequenceC_sru2021(final MT670 mt) {
-        Validate.notNull(mt);
+        Objects.requireNonNull(mt);
         final MT670.SequenceC result = MT670.SequenceC.newInstance();
         result.clear().append(getMT670_1_C(mt.getSwiftMessage().getBlock4(), MT670.SequenceB.START_END_16RS));
         return result;
@@ -499,7 +499,7 @@ public class SequenceUtils {
     }
 
     public static MT671.SequenceC resolveMT671GetSequenceC_sru2021(final MT671 mt) {
-        Validate.notNull(mt);
+        Objects.requireNonNull(mt);
         final MT671.SequenceC result = MT671.SequenceC.newInstance();
         result.clear().append(getMT670_1_C(mt.getSwiftMessage().getBlock4(), MT671.SequenceB.START_END_16RS));
         return result;

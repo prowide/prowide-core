@@ -16,9 +16,9 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.model.field.*;
-import org.apache.commons.lang3.Validate;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Helper class to fill a User Header block 3 ensuring only expected
@@ -55,7 +55,7 @@ public class SwiftBlock3Builder {
      * @param b3 an existing block3
      */
     SwiftBlock3Builder(final SwiftBlock3 b3) {
-        Validate.notNull(b3, "SwiftBlock3 parameter cannot be null");
+        Objects.requireNonNull(b3, "SwiftBlock3 parameter cannot be null");
         this.b3 = b3;
         this.field103 = b3.getTagByName(Field103.NAME);
         this.field113 = b3.getTagByName(Field113.NAME);

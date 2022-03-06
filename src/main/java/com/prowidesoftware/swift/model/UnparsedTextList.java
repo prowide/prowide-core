@@ -97,7 +97,7 @@ public class UnparsedTextList implements Serializable {
      */
     public UnparsedTextList(final Collection<String> texts) {
         // sanity check
-        Validate.notNull(texts, "parameter 'texts' cannot be null");
+        Objects.requireNonNull(texts, "parameter 'texts' cannot be null");
         this.texts = new ArrayList<>(texts);
     }
 
@@ -198,7 +198,7 @@ public class UnparsedTextList implements Serializable {
      */
     public String getText(final Integer index) {
         // sanity check
-        Validate.notNull(index, WRITER_MESSAGE);
+        Objects.requireNonNull(index, WRITER_MESSAGE);
 
         return this.texts.get(index);
     }
@@ -213,7 +213,7 @@ public class UnparsedTextList implements Serializable {
      */
     public SwiftMessage getTextAsMessage(final Integer index) {
         // sanity check
-        Validate.notNull(index, WRITER_MESSAGE);
+        Objects.requireNonNull(index, WRITER_MESSAGE);
 
         return new ConversionService().getMessageFromFIN(texts.get(index.intValue()));
     }
@@ -226,7 +226,7 @@ public class UnparsedTextList implements Serializable {
      */
     public void addText(final String text) {
         // sanity check
-        Validate.notNull(text, "parameter 'text' cannot be null");
+        Objects.requireNonNull(text, "parameter 'text' cannot be null");
 
         // append the text
         this.texts.add(text);
@@ -240,7 +240,7 @@ public class UnparsedTextList implements Serializable {
      */
     public void addText(final SwiftMessage message) {
         // sanity check
-        Validate.notNull(message, "parameter 'message' cannot be null");
+        Objects.requireNonNull(message, "parameter 'message' cannot be null");
 
         // get the text version of the message
         final ConversionService cService = new ConversionService();
@@ -259,7 +259,7 @@ public class UnparsedTextList implements Serializable {
      */
     public void removeText(final Integer index) {
         // sanity check
-        Validate.notNull(index, WRITER_MESSAGE);
+        Objects.requireNonNull(index, WRITER_MESSAGE);
 
         // remove the text
         this.texts.remove(index.intValue());
@@ -284,7 +284,7 @@ public class UnparsedTextList implements Serializable {
      */
     public void removeText(final String text) {
         // sanity check
-        Validate.notNull(text, "parameter 'text' cannot be null");
+        Objects.requireNonNull(text, "parameter 'text' cannot be null");
 
         // remove the text (if it exists)
         final int pos = this.texts.indexOf(text);

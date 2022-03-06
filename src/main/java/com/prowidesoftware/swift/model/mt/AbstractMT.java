@@ -26,13 +26,13 @@ import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.utils.Lib;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 
 import java.io.*;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -713,7 +713,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.6
      */
     public AbstractMT append(final SwiftTagListBlock block) {
-        Validate.notNull(block);
+        Objects.requireNonNull(block);
         if (!block.isEmpty())
             b4().addTags(block.getTags());
         return this;
@@ -727,7 +727,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.6
      */
     public AbstractMT append(final Tag... tags) {
-        Validate.notNull(tags);
+        Objects.requireNonNull(tags);
         if (tags.length > 0) {
             for (final Tag t : tags) {
                 b4().append(t);
@@ -744,7 +744,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.6
      */
     public AbstractMT append(final Field... fields) {
-        Validate.notNull(fields);
+        Objects.requireNonNull(fields);
         if (fields.length > 0) {
             for (final Field t : fields) {
                 b4().append(t);
@@ -775,8 +775,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.7
      */
     public void write(File file) throws IOException {
-        Validate.notNull(file, "the file to write cannot be null");
-        Validate.notNull(this.m, "the message to write cannot be null");
+        Objects.requireNonNull(file, "the file to write cannot be null");
+        Objects.requireNonNull(this.m, "the message to write cannot be null");
         boolean created = file.createNewFile();
         if (created) {
             log.fine("new file created: " + file.getAbsolutePath());
@@ -795,8 +795,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.7
      */
     public void write(OutputStream stream) throws IOException {
-        Validate.notNull(stream, "the stream to write cannot be null");
-        Validate.notNull(this.m, "the message to write cannot be null");
+        Objects.requireNonNull(stream, "the stream to write cannot be null");
+        Objects.requireNonNull(this.m, "the message to write cannot be null");
         stream.write(message().getBytes(StandardCharsets.UTF_8));
     }
 
@@ -809,7 +809,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.7
      */
     public String xml() {
-        Validate.notNull(this.m, "the message cannot be null");
+        Objects.requireNonNull(this.m, "the message cannot be null");
         return this.m.toXml();
     }
 

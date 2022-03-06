@@ -22,6 +22,7 @@ import org.apache.commons.lang3.Validate;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.Objects;
 
 /**
  * Helper API to write MT messages into DOS-PCC files.
@@ -94,7 +95,7 @@ public class PPCWriter extends AbstractWriter {
      * @throws IOException if an I/O error occurs
      */
     public static void write(final AbstractMT msg, final Writer writer) throws IOException {
-        Validate.notNull(msg, "message to write cannot be null");
+        Objects.requireNonNull(msg, "message to write cannot be null");
         write(msg.message(), writer);
     }
 
@@ -109,8 +110,8 @@ public class PPCWriter extends AbstractWriter {
      * We use Java default, UTF-8, that is compatible for SWIFT message content.
      */
     public static void write(final String msg, final Writer writer) throws IOException {
-        Validate.notNull(writer, "writer has not been initialized");
-        Validate.notNull(msg, "message to write cannot be null");
+        Objects.requireNonNull(writer, "writer has not been initialized");
+        Objects.requireNonNull(msg, "message to write cannot be null");
         writer.write(PPCReader.BEGIN);
         writer.write(msg);
         writer.write(PPCReader.END);

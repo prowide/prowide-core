@@ -87,7 +87,7 @@ public class Tag implements Serializable {
     public Tag(String inner) {
 
         // sanity check
-        Validate.notNull(inner, "parameter 'inner' cannot be null");
+        Objects.requireNonNull(inner, "parameter 'inner' cannot be null");
 
         // analyze how to split the inner value
         int i = inner.indexOf(':');
@@ -112,7 +112,7 @@ public class Tag implements Serializable {
      * @throws IllegalArgumentException if parameter tagname is null
      */
     public Tag(String tagname, String value) {
-        Validate.notNull(tagname, "tag name cannot be null");
+        Objects.requireNonNull(tagname, "tag name cannot be null");
         this.name = tagname;
         this.value = value;
     }
@@ -185,7 +185,7 @@ public class Tag implements Serializable {
     public void setName(String name) {
 
         // sanity check
-        Validate.notNull(name, "parameter 'name' cannot be null");
+        Objects.requireNonNull(name, "parameter 'name' cannot be null");
 
         this.name = name;
     }

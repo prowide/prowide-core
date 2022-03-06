@@ -74,7 +74,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
     @Override
     protected void setBlockNumber(final Integer blockNumber) {
         // sanity check
-        Validate.notNull(blockNumber, "parameter 'blockNumber' cannot be null");
+        Objects.requireNonNull(blockNumber, "parameter 'blockNumber' cannot be null");
         Validate.isTrue(blockNumber == 2, "blockNumber must be 2");
     }
 
@@ -88,7 +88,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
     @Override
     protected void setBlockName(final String blockName) {
         // sanity check
-        Validate.notNull(blockName, "parameter 'blockName' cannot be null");
+        Objects.requireNonNull(blockName, "parameter 'blockName' cannot be null");
         Validate.isTrue(blockName.compareTo("2") == 0, "blockName must be string '2'");
     }
 
