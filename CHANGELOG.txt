@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+SNAPSHOT - Apr 2022
+  * Fixed error in Field 94G getValue
+
 RELEASE 9.2.12 - March 2022
   * (GH-103) fixed invalid ConstraintValidator annotation on CurrencyValidator
   * (GH-95) patterns getters are now non-final to avoid overwriting; static constants have been deprecated

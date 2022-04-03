@@ -209,7 +209,8 @@ public class Field94G extends Field implements Serializable, GenericField, Multi
         result.append(":");
         append(result, 1);
         result.append("//");
-        appendInLines(result, 2, 3);
+        append(result, 2);
+        appendInLines(result, 3, 3);
         return result.toString();
     }
 
