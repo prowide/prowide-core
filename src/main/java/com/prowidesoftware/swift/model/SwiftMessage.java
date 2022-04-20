@@ -18,6 +18,8 @@ package com.prowidesoftware.swift.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.prowidesoftware.JsonSerializable;
+import com.prowidesoftware.swift.io.ConversionService;
+import com.prowidesoftware.swift.io.IConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.parser.SwiftParserConfiguration;
 import com.prowidesoftware.swift.io.parser.XMLParser;
@@ -1899,6 +1901,17 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public boolean isGpi() {
         return isType(103, 199, 299, 192, 196) || (isType(202, 205) && isCOV());
+    }
+
+    /**
+     * Serializes this message object into a String containing the FIN message.
+     *
+     * @return a string with the FIN format representation of the message
+     * @since 9.2.13
+     */
+    public String message() {
+        IConversionService srv = new ConversionService();
+        return srv.getFIN(this);
     }
 
 }
