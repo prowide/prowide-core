@@ -297,4 +297,16 @@ public class AbstractMTTest {
         assertEquals(ServiceIdType._01, mt.getSwiftMessage().getBlock1().getServiceIdType());
     }
 
+    @Test
+    public void testAbstractMt() throws IOException {
+        Integer type = 9;
+
+        try {
+            AbstractMT aMt = AbstractMT.create(type);
+        } catch (Exception e) {
+            fail("No exception expected");
+        }
+
+    }
+
 }

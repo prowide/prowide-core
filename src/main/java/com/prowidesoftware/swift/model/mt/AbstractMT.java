@@ -47,7 +47,9 @@ import java.util.logging.Logger;
 public abstract class AbstractMT extends AbstractMessage implements JsonSerializable {
     private static final transient Logger log = Logger.getLogger(AbstractMT.class.getName());
     private static final String GETSEQUENCE = "getSequence";
-    /** The internal swift message. */
+    /**
+     * The internal swift message.
+     */
     protected SwiftMessage m;
 
     /**
@@ -178,7 +180,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
     public static AbstractMT create(final int messageType, final String sender, final String receiver) {
         final SwiftMessage sm = new SwiftMessage(true);
         final SwiftBlock2Input b2 = new SwiftBlock2Input();
-        b2.setMessageType(Integer.valueOf(messageType).toString());
+        String msgType = getMessageTypeAsString(messageType);
+        b2.setMessageType(msgType);
         b2.setInput(true);
         // TODO revisar valores de inicializacion
         b2.setMessagePriority("N");
@@ -189,6 +192,16 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
         result.setSender(StringUtils.rightPad(sender, 12, 'X'));
         result.setReceiver(StringUtils.rightPad(receiver, 12, 'X'));
         return result;
+    }
+
+    private static String getMessageTypeAsString(int messageType) {
+        if (messageType < 10) {
+            return "00" + Integer.valueOf(messageType).toString();
+        }
+        if (messageType < 100) {
+            return "0" + Integer.valueOf(messageType).toString();
+        }
+        return Integer.valueOf(messageType).toString();
     }
 
     /**
@@ -834,6 +847,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 
     /**
      * Derives the message name (substring after <code>.MT</code>) from the class name.
+     *
      * @return message name
      */
     public String nameFromClass() {
