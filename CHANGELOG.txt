@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT - Apr 2022
+  * PW-892: Fixed AbstractMT#create when the message type number is less than 100
   * Fixed error in Field 94G getValue
 
 RELEASE 9.2.12 - March 2022
