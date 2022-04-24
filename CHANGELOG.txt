@@ -3,6 +3,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 SNAPSHOT - Apr 2022
+  * PW-892: Fixed AbstractMT#create when the message type number is less than 100
   * Added a convenient String message() method in the SwiftMessage object to get the FIN serialization of the message
   * Fixed error in Field 94G getValue
 
