@@ -8,13 +8,13 @@ buildscript {
         classpath 'pl.allegro.tech.build:axion-release-plugin:1.13.6'
     }
 }
+apply plugin: 'pl.allegro.tech.build.axion-release'
 apply plugin: 'java-library-distribution'
 apply plugin: 'maven-publish'
 apply plugin: 'jacoco'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'ru.vyarus.quality'
-apply plugin: 'pl.allegro.tech.build.axion-release'
 
 archivesBaseName = 'pw-swift-core'
 group 'com.prowidesoftware'
