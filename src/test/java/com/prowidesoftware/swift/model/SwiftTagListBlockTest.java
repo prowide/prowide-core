@@ -27,11 +27,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Tag list block tests.
- *
- * @since 4.0
- */
 public class SwiftTagListBlockTest {
 
     private SwiftTagListBlock b;
@@ -1206,8 +1201,91 @@ public class SwiftTagListBlockTest {
         String[] end = {"5c", "5b", "5"};
         String[] tail = {};
         SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
+        assertEquals(result.getTag(0).getValue(), "val1");
+        assertEquals(result.getTag(1).getValue(), "val2");
+        assertEquals(result.getTag(2).getValue(), "val3");
+        assertEquals(result.getTag(3).getValue(), "val4");
+        assertEquals(result.getTag(4).getValue(), "val5");
         assertEquals(5, result.size(), "" + result.tagNamesList());
+    }
 
+    @Test
+    public void testGetSubBlockDelimitedWithOptionalTail_02() {
+        appends(b, 1, 9);
+
+        String[] start = {"1"};
+        String[] end = {"3"};
+        String[] tail = {"6", "7"};
+        SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
+
+        assertNotNull(result);
+        assertEquals(result.getTag(0).getValue(), "val1");
+        assertEquals(result.getTag(1).getValue(), "val2");
+        assertEquals(result.getTag(2).getValue(), "val3");
+        assertEquals(3, result.size(), "returned: " + result.tagNamesList());
+    }
+
+    @Test
+    public void testGetSubBlockDelimitedWithOptionalTail_03() {
+        appends(b, 1, 4);
+
+        String[] start = {"1"};
+        String[] end = {"2"};
+        String[] tail = {"3", "4"};
+        SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
+
+        assertNotNull(result);
+        assertEquals(result.getTag(0).getValue(), "val1");
+        assertEquals(result.getTag(1).getValue(), "val2");
+        assertEquals(result.getTag(2).getValue(), "val3");
+        assertEquals(result.getTag(3).getValue(), "val4");
+        assertEquals(4, result.size());
+    }
+
+    @Test
+    public void testGetSubBlockDelimitedWithOptionalTail_04() {
+        appends(b, 1, 8);
+
+        String[] start = {"3"};
+        String[] end = {"5c", "5b", "5"};
+        String[] tail = {};
+        SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
+        assertEquals(result.getTag(0).getValue(), "val3");
+        assertEquals(result.getTag(1).getValue(), "val4");
+        assertEquals(result.getTag(2).getValue(), "val5");
+        assertEquals(3, result.size(), "" + result.tagNamesList());
+    }
+
+    @Test
+    public void testGetSubBlockDelimitedWithOptionalTail_05() {
+        appends(b, 1, 8);
+
+        String[] start = {"3"};
+        String[] end = {"5c", "5b", "5"};
+        String[] tail = {"6", "7"};
+        SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
+        assertEquals(result.getTag(0).getValue(), "val3");
+        assertEquals(result.getTag(1).getValue(), "val4");
+        assertEquals(result.getTag(2).getValue(), "val5");
+        assertEquals(result.getTag(3).getValue(), "val6");
+        assertEquals(result.getTag(4).getValue(), "val7");
+        assertEquals(5, result.size(), "" + result.tagNamesList());
+    }
+
+    @Test
+    public void testGetSubBlockDelimitedWithOptionalTail_06() {
+        appends(b, 1, 9);
+
+        String[] start = {"2"};
+        String[] end = {"4"};
+        String[] tail = {"6", "7"};
+        SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
+
+        assertNotNull(result);
+        assertEquals(result.getTag(0).getValue(), "val2");
+        assertEquals(result.getTag(1).getValue(), "val3");
+        assertEquals(result.getTag(2).getValue(), "val4");
+        assertEquals(3, result.size(), "returned: " + result.tagNamesList());
     }
 
     @Test
@@ -1229,33 +1307,6 @@ public class SwiftTagListBlockTest {
         assertEquals(2, result.size());
         assertEquals(6, result.get(0).size());
         assertEquals(6, result.get(1).size());
-    }
-
-    @Test
-    public void testGetSubBlockDelimitedWithOptionalTail_304bugNPE() {
-        appends(b, 1, 4);
-
-        String[] start = {"1"};
-        String[] end = {"2"};
-        String[] tail = {"3", "4"};
-        SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
-
-        assertNotNull(result);
-        assertEquals(4, result.size());
-    }
-
-    @Test
-    public void testGetSubBlockDelimitedWithOptionalTail_Bug1() {
-        appends(b, 1, 9);
-
-        String[] start = {"1"};
-        String[] end = {"3"};
-        String[] tail = {"6", "7"};
-        SwiftTagListBlock result = b.getSubBlockDelimitedWithOptionalTail(start, end, tail);
-
-        assertNotNull(result);
-        assertEquals(3, result.size(), "returned: " + result.tagNamesList());
-
     }
 
     /*
