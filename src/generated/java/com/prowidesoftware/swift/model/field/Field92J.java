@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -78,7 +78,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -91,24 +91,24 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
     public static final String F_92J = "92J";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = ":S/[S]/S/SN[/S]";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "SSSCNS";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "SSSCIS";
 
 	/**
@@ -131,7 +131,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	 * @see #RATE_TYPE_CODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer CODE = 3;
 
 	/**
@@ -144,7 +144,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
 	 * @see #CURRENCY_CODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer CURRENCY = 4;
 
 	/**
@@ -312,11 +312,11 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "SSSCNS";
     }
@@ -480,7 +480,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getCode() {
         return getRateTypeCode();
     }
@@ -516,7 +516,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getCurrency() {
         return getCurrencyCode();
     }
@@ -534,7 +534,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
      * @see #getCurrencyCodeAsCurrency()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.util.Currency getCurrencyAsCurrency() {
         return getCurrencyCodeAsCurrency();
     }
@@ -567,7 +567,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent5AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent5AsNumber() {
         return getComponent5AsBigDecimal();
     }
@@ -599,7 +599,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
      * @see #getAmountAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getAmountAsNumber() {
         return getComponent5AsNumber();
     }
@@ -692,7 +692,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field92J setCode(String component3) {
         return setRateTypeCode(component3);
     }
@@ -750,7 +750,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field92J setCurrency(String component4) {
         return setCurrencyCode(component4);
     }
@@ -764,7 +764,7 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field92J setCurrency(java.util.Currency component4) {
         return setCurrencyCode(component4);
     }
@@ -1100,27 +1100,29 @@ public class Field92J extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * @deprecated use RATE_STATUS instead
+     * @deprecated Use RATE_STATUS instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public static final Integer NARRATIVE = 6;
 
     /**
-     * @deprecated use getRateStatus instead
+     * @deprecated Use getRateStatus instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrative() {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrative()", "Use getRateStatus() instead");
         return getRateStatus();
     }
 
     /**
-     * @deprecated use setRateStatus instead
+     * @deprecated Use setRateStatus instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field92J setNarrative(String narrative) {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrative(String)", "Use setRateStatus(String) instead");
         return setRateStatus(narrative);
     }
 

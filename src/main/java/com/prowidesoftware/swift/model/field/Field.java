@@ -771,15 +771,10 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public abstract String getName();
 
     /**
-     * Returns the field components pattern
-     *
-     * This method is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
-     * @see #typesPattern()
-     * @return the static value of Field${dto.getField()}.COMPONENTS_PATTERN
-     * @since 7.8
+     * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public abstract String componentsPattern();
 
     /**

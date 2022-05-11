@@ -17,8 +17,6 @@ import com.prowidesoftware.Generated;
 public interface SchemeConstantsY {
 
     String Y = "Y";
-    String YY = "YY";
-    String YN = "YN";
     String YTMR = "YTMR";
     String YIEL = "YIEL";
 

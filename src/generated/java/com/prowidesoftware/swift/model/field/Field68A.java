@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -77,7 +77,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -90,24 +90,24 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
     public static final String F_68A = "68A";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = "NSN/N[/N][//S]";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "NCNNNS";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "NCNNIS";
 
 	/**
@@ -295,11 +295,11 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "NCNNNS";
     }
@@ -437,7 +437,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -470,7 +470,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -536,7 +536,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent3AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -569,7 +569,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getDenominationAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getDenominationAsNumber() {
         return getComponent3AsNumber();
     }
@@ -602,7 +602,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent4AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -635,7 +635,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getModeAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getModeAsNumber() {
         return getComponent4AsNumber();
     }
@@ -668,7 +668,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent5AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent5AsNumber() {
         return getComponent5AsBigDecimal();
     }
@@ -700,7 +700,7 @@ public class Field68A extends Field implements Serializable, CurrencyContainer, 
      * @see #getAmountAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getAmountAsNumber() {
         return getComponent5AsNumber();
     }

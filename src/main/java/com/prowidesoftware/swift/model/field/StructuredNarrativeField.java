@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
@@ -37,13 +38,10 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
     public static final String PARSER_PATTERN = "S";
 
     /**
-     * Components pattern
-     *
-     * This is <em>DEPRECATED</em>, use <code>TYPES_PATTERN</code> instead.
-     * @see #TYPES_PATTERN
+     * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2= TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public static final String COMPONENTS_PATTERN = "S";
 
     /**
@@ -106,17 +104,14 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
     public abstract String getName();
 
     /**
-     * Returns the field components pattern
-     *
-     * This is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
-     * @return the static value of COMPONENTS_PATTERN
-     * @see #typesPattern()
+     * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     @Override
     public final String componentsPattern() {
-        return COMPONENTS_PATTERN;
+        DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");
+        return typesPattern();
     }
 
     /**

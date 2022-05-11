@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -69,7 +69,7 @@ public class Field13C extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -82,24 +82,24 @@ public class Field13C extends Field implements Serializable {
     public static final String F_13C = "13C";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = "/S/<HHMM><SIGN><OFFSET>";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "SHGO";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "SHGO";
 
 	/**
@@ -117,7 +117,7 @@ public class Field13C extends Field implements Serializable {
 	 * @see #TIME_INDICATION
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer TIME = 2;
 
 	/**
@@ -135,7 +135,7 @@ public class Field13C extends Field implements Serializable {
 	 * @see #TIME_OFFSET
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer OFFSET = 4;
 
     /**
@@ -283,11 +283,11 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "SHGO";
     }
@@ -434,7 +434,7 @@ public class Field13C extends Field implements Serializable {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getTime() {
         return getTimeIndication();
     }
@@ -452,7 +452,7 @@ public class Field13C extends Field implements Serializable {
      * @see #getTimeIndicationAsCalendar()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.util.Calendar getTimeAsCalendar() {
         return getTimeIndicationAsCalendar();
     }
@@ -504,7 +504,7 @@ public class Field13C extends Field implements Serializable {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getOffset() {
         return getTimeOffset();
     }
@@ -522,7 +522,7 @@ public class Field13C extends Field implements Serializable {
      * @see #getTimeOffsetAsCalendar()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.util.Calendar getOffsetAsCalendar() {
         return getTimeOffsetAsCalendar();
     }
@@ -601,7 +601,7 @@ public class Field13C extends Field implements Serializable {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field13C setTime(String component2) {
         return setTimeIndication(component2);
     }
@@ -615,7 +615,7 @@ public class Field13C extends Field implements Serializable {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field13C setTime(java.util.Calendar component2) {
         return setTimeIndication(component2);
     }
@@ -694,7 +694,7 @@ public class Field13C extends Field implements Serializable {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field13C setOffset(String component4) {
         return setTimeOffset(component4);
     }
@@ -708,7 +708,7 @@ public class Field13C extends Field implements Serializable {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field13C setOffset(java.util.Calendar component4) {
         return setTimeOffset(component4);
     }

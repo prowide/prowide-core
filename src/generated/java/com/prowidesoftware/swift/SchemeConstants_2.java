@@ -16,7 +16,6 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstants_2 {
 
-    String _2 = "2";
     String _252_ANN = "252/ANN";
 
 }

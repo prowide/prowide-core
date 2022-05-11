@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 
@@ -44,13 +45,10 @@ public abstract class OptionSPartyField extends Field {
     public static final String PARSER_PATTERN = ":S/[S]/S/S/S";
 
     /**
-     * Components pattern
-     *
-     * This is <em>DEPRECATED</em>, use <code>TYPES_PATTERN</code> instead.
-     * @see #TYPES_PATTERN
+     * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public static final String COMPONENTS_PATTERN = "SSSKS";
 
     /**
@@ -159,17 +157,14 @@ public abstract class OptionSPartyField extends Field {
     }
 
     /**
-     * Returns the field components pattern
-     *
-     * This is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
-     * @return the static value of COMPONENTS_PATTERN
-     * @see #typesPattern()
+     * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2= TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     @Override
     public final String componentsPattern() {
-        return COMPONENTS_PATTERN;
+        DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");
+        return typesPattern();
     }
 
     /**

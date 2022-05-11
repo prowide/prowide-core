@@ -16,7 +16,6 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstants_3 {
 
-    String _3 = "3";
     String _30E_360 = "30E/360";
     String _360_360 = "360/360";
 

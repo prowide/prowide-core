@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -74,7 +74,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -87,24 +87,24 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
     public static final String F_33G = "33G";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = "SNS";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "CNS";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "CIS";
 
 	/**
@@ -122,7 +122,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
 	 * @see #PRICE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer AMOUNT = 2;
 
 	/**
@@ -258,11 +258,11 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "CNS";
     }
@@ -424,7 +424,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
      * @see #getComponent2AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent2AsNumber() {
         return getComponent2AsBigDecimal();
     }
@@ -443,7 +443,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getAmount() {
         return getPrice();
     }
@@ -467,7 +467,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
      * @see #getPriceAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getPriceAsNumber() {
         return getComponent2AsNumber();
     }
@@ -477,7 +477,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
      * @see #getPriceAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getPriceAsBigDecimal();
     }
@@ -492,7 +492,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
      * @see #getPriceAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getAmountAsNumber() {
         return getPriceAsNumber();
     }
@@ -660,7 +660,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field33G setAmount(String component2) {
         return setPrice(component2);
     }
@@ -675,7 +675,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field33G setAmount(java.math.BigDecimal component2) {
         return setPrice(component2);
     }
@@ -690,7 +690,7 @@ public class Field33G extends Field implements Serializable, CurrencyContainer, 
      * @see #setPrice(java.math.BigDecimal)
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field33G setAmount(java.lang.Number component2) {
         return setPrice(component2);
     }

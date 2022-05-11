@@ -16,10 +16,10 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsU {
 
-    String U = "U";
     String URGP = "URGP";
     String UNWD = "UNWD";
     String UNWR = "UNWR";
+    String U = "U";
     String UNWEIGHT = "UNWEIGHT";
     String UNDE = "UNDE";
     String UNT = "UNT";

@@ -79,6 +79,7 @@ public interface SchemeConstantsP {
     String PECU = "PECU";
     String PREF = "PREF";
     String PDRA = "PDRA";
+    String PREL = "PREL";
     String PPRF = "PPRF";
     String PPRC = "PPRC";
     String PEDA = "PEDA";
@@ -97,6 +98,7 @@ public interface SchemeConstantsP {
     String PREC = "PREC";
     String PWAL = "PWAL";
     String PENR = "PENR";
+    String PTNI = "PTNI";
     String PAYA = "PAYA";
     String PPDT = "PPDT";
     String PODT = "PODT";
@@ -108,6 +110,8 @@ public interface SchemeConstantsP {
     String PRPP = "PRPP";
     String PLDT = "PLDT";
     String PARL = "PARL";
+    String PTBA = "PTBA";
+    String PNTI = "PNTI";
     String PORT = "PORT";
     String PND = "PND";
     String PLAT = "PLAT";

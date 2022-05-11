@@ -32,6 +32,7 @@ public interface SchemeConstantsB {
     String BPAR = "BPAR";
     String BREF = "BREF";
     String BENE = "BENE";
+    String BCAW = "BCAW";
     String BRCR = "BRCR";
     String BUYR = "BUYR";
     String BASK = "BASK";

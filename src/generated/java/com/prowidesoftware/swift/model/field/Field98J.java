@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -75,7 +75,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -88,24 +88,24 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
     public static final String F_98J = "98J";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = ":S//<DATE4><TIME2>/S";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "SDTB";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "SDTB";
 
 	/**
@@ -133,7 +133,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	 * @see #IDENTIFIER_CODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer BIC = 4;
 
     /**
@@ -285,11 +285,11 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "SDTB";
     }
@@ -502,7 +502,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getBIC() {
         return getIdentifierCode();
     }
@@ -520,7 +520,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
      * @see #getIdentifierCodeAsBIC()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
         return getIdentifierCodeAsBIC();
     }
@@ -687,7 +687,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field98J setBIC(String component4) {
         return setIdentifierCode(component4);
     }
@@ -701,7 +701,7 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field98J setBIC(com.prowidesoftware.swift.model.BIC component4) {
         return setIdentifierCode(component4);
     }

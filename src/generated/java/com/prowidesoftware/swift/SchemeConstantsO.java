@@ -16,9 +16,9 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsO {
 
-    String O = "O";
     String OTHR = "OTHR";
     String OUR = "OUR";
+    String O = "O";
     String OTHER = "OTHER";
     String OTHRPRTY = "OTHRPRTY";
     String ORDRPRTY = "ORDRPRTY";
@@ -51,6 +51,7 @@ public interface SchemeConstantsO {
     String OSUB = "OSUB";
     String OAPD = "OAPD";
     String OSTA = "OSTA";
+    String OTYP = "OTYP";
     String ORDER = "ORDER";
     String OTH = "OTH";
     String OSMI = "OSMI";

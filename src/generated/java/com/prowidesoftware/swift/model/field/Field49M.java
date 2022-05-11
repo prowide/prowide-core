@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -66,7 +66,7 @@ public class Field49M extends StructuredNarrativeField implements Serializable, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -351,16 +351,16 @@ public class Field49M extends StructuredNarrativeField implements Serializable, 
     }
 
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public static final Integer NARRATIVE = 1;
 
 	/**
-     * @deprecated use getValue() instead
+     * @deprecated Use getValue() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrative() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrative()", "Use getValue() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrative()", "Use getValue() instead");
         return getValue();
     }
 }

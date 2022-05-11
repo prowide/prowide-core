@@ -16,8 +16,6 @@
 package com.prowidesoftware.swift.io.parser;
 
 import com.prowidesoftware.ProwideException;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.Lib;
 import org.apache.commons.lang3.StringUtils;
@@ -39,13 +37,6 @@ import java.util.List;
  * This is based in the old SwiftParser2, that is now deprecated.<br>
  */
 public class SwiftParser {
-
-    /**
-     * Helper constant with the content of <code>System.getProperty("line.separator", "\n")</code>
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2022)
-    public static final String EOL = System.getProperty("line.separator", "\n");
 
     private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftParser.class.getName());
     /**

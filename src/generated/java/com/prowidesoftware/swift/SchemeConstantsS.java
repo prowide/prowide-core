@@ -16,13 +16,13 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsS {
 
-    String S = "S";
     String SHA = "SHA";
     String SPAY = "SPAY";
     String SPRI = "SPRI";
     String SSTD = "SSTD";
     String SDVA = "SDVA";
     String SKOT = "SKOT";
+    String S = "S";
     String SKIN = "SKIN";
     String SITR = "SITR";
     String SAFE = "SAFE";

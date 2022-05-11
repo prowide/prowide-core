@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ Fieldset 22
 <li class="sequence">
 Sequence C1 - Securities Collateral Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 35 B (M)</li>
-<li class="field">Field 36 B (M)</li>
+<li class="field">Field 36 B,D (M)</li>
 <li class="field">Field 17 B (O)</li>
 <li class="sequence">
 Sequence C1a - Settlements Details (O)<ul><li class="field">Field 16 R (M)</li>
@@ -103,7 +103,7 @@ Fieldset 22
 Sequence C1a1 - Settlements Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 S (O)</li></ul></li><li class="field">Field 97 A,B (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 S (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
 <li class="field">Field 70 C (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -151,7 +151,7 @@ Fieldset 22
 Sequence D1 - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 S (O)</li></ul></li><li class="field">Field 97 A,B (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 S (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
 <li class="field">Field 70 C (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -181,7 +181,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2021</strong>
+ * This source code is specific to release <strong>SRU 2022</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -190,7 +190,7 @@ public class MT504 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT504.class.getName());
 	
@@ -491,6 +491,24 @@ public class MT504 extends AbstractMT implements Serializable {
 		final Tag t = tag("36B");
 		if (t != null) {
 			return new Field36B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 36D, 
+	 * or null if none is found.
+	 * The first occurrence of field 36D at MT504 is expected to be the only one.
+	 * 
+	 * @return a Field36D object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field36D getField36D() {
+		final Tag t = tag("36D");
+		if (t != null) {
+			return new Field36D(t.getValue());
 		} else {
 			return null;
 		}
@@ -869,6 +887,26 @@ public class MT504 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field97B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97D, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 97D at MT504 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field97D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field97D> getField97D() {
+		final List<Field97D> result = new ArrayList<>();
+		final Tag[] tags = tags("97D");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field97D(tag.getValue()));
             }
 		}
 		return result;

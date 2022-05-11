@@ -104,15 +104,12 @@ public class SwiftFormatUtils {
     }
 
     /**
-     * returns true if the the current year is a leap year
-     *
-     * @since 7.8.8
-     * @deprecated use Year.now().isLeap() instead
+     * @deprecated Use Year.now().isLeap() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2023)
     public static final boolean isLeapYear() {
-        DeprecationUtils.phase2(SwiftFormatUtils.class, "isLeapYear()", "use Year.now().isLeap() instead");
+        DeprecationUtils.phase3(SwiftFormatUtils.class, "isLeapYear()", "Use Year.now().isLeap() instead");
         return Year.now().isLeap();
     }
 

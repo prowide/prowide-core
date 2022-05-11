@@ -16,7 +16,6 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsM {
 
-    String MIDE = "MIDE";
     String M = "M";
     String MATU = "MATU";
     String MICO = "MICO";

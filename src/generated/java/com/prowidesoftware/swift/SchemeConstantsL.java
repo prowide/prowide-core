@@ -17,8 +17,6 @@ import com.prowidesoftware.Generated;
 public interface SchemeConstantsL {
 
     String L = "L";
-    String LC = "LC";
-    String LF = "LF";
     String LDDET = "LDDET";
     String LDCR = "LDCR";
     String LDCO = "LDCO";
@@ -48,6 +46,7 @@ public interface SchemeConstantsL {
     String LAPD = "LAPD";
     String LOAN = "LOAN";
     String LOTO = "LOTO";
+    String LBIP = "LBIP";
     String LTRD = "LTRD";
     String LICO = "LICO";
     String LOC = "LOC";

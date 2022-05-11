@@ -2,6 +2,10 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+9.3.0-SNAPSHOT
+  * SWIFT Standard release update 2022 (live 20 November 2022)
+  * Yearly revision of deprecation phase (see http://www.prowidesoftware.com/resources/deprecation-policy)
+
 RELEASE 9.2.13 - April 2022
   * PW-892: Fixed AbstractMT#create when the message type number is less than 100
   * Added a convenient String message() method in the SwiftMessage object to get the FIN serialization of the message

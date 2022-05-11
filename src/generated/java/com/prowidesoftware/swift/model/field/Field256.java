@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -76,7 +76,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -89,24 +89,24 @@ public class Field256 extends Field implements Serializable, DateContainer {
     public static final String F_256 = "256";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = "<LT>4!Nc<DATE2>[<HHMM><HHMM>]";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "ZNNEHH";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "ZNNEHH";
 
 	/**
@@ -307,11 +307,11 @@ public class Field256 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "ZNNEHH";
     }
@@ -476,7 +476,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #getComponent2AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -509,7 +509,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #getSessionNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getSessionNumberAsNumber() {
         return getComponent2AsNumber();
     }
@@ -542,7 +542,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #getComponent3AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -575,7 +575,7 @@ public class Field256 extends Field implements Serializable, DateContainer {
      * @see #getMessageCategoryAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getMessageCategoryAsNumber() {
         return getComponent3AsNumber();
     }

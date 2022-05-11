@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.BIC;
@@ -43,13 +44,10 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     public static final String PARSER_PATTERN = "/S$S";
 
     /**
-     * Components pattern
-     *
-     * This is <em>DEPRECATED</em>, use <code>TYPES_PATTERN</code> instead.
-     * @see #TYPES_PATTERN
+     * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public static final String COMPONENTS_PATTERN = "SB";
 
     /**
@@ -70,11 +68,10 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     public static final Integer IDENTIFIER_CODE = 2;
 
     /**
-     * Alternative (<em>DEPRECATED</em>) constant name for field's Identifier Code Component number
-     * @see #IDENTIFIER_CODE
+     * @deprecated Use {@link #IDENTIFIER_CODE} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public static final Integer BIC = 2;
 
     /**
@@ -147,17 +144,14 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     }
 
     /**
-     * Returns the field components pattern
-     *
-     * This is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
-     * @return the static value of COMPONENTS_PATTERN
-     * @see #typesPattern()
+     * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2= TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     @Override
     public final String componentsPattern() {
-        return COMPONENTS_PATTERN;
+        DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");
+        return typesPattern();
     }
 
     /**
@@ -315,13 +309,12 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
-     * @see #getIdentifierCode()
-     * @since 9.2.7
+     * @deprecated Use {@link #getIdentifierCode()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public String getBIC() {
+        DeprecationUtils.phase2(getClass(), "getBIC()", "Use getIdentifierCode() instead.");
         return getIdentifierCode();
     }
 
@@ -334,12 +327,12 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code as BIC
-     * @see #getIdentifierCodeAsBIC()
+     * @deprecated Use #getIdentifierCodeAsBIC() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
+        DeprecationUtils.phase2(getClass(), "getBICAsBIC()", "Use getIdentifierCodeAsBIC() instead.");
         return getIdentifierCodeAsBIC();
     }
 

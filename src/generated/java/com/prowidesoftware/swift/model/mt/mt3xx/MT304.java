@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,6 +72,7 @@ Sequence B (M)<ul><li class="field">Field 15 B (M)</li>
 <li class="field">Field 30 V (M)</li>
 <li class="field">Field 36  (M)</li>
 <li class="field">Field 39 M (O)</li>
+<li class="field">Field 35 C (O)</li>
 <li class="sequence">
 Sequence B1 (M)<ul><li class="field">Field 32 B (M)</li>
 <li class="field">Field 53 A,J (M)</li>
@@ -130,7 +131,7 @@ Sequence E (O)<ul><li class="field">Field 15 E (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2021</strong>
+ * This source code is specific to release <strong>SRU 2022</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -139,7 +140,7 @@ public class MT304 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT304.class.getName());
 	
@@ -944,6 +945,24 @@ public class MT304 extends AbstractMT implements Serializable {
 		final Tag t = tag("39M");
 		if (t != null) {
 			return new Field39M(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 35C, 
+	 * or null if none is found.
+	 * The first occurrence of field 35C at MT304 is expected to be the only one.
+	 * 
+	 * @return a Field35C object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field35C getField35C() {
+		final Tag t = tag("35C");
+		if (t != null) {
+			return new Field35C(t.getValue());
 		} else {
 			return null;
 		}

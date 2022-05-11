@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.BIC;
@@ -45,13 +46,10 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
     public static final String PARSER_PATTERN = "[[/c][/S]$]S";
 
     /**
-     * Components pattern
-     *
-     * This is <em>DEPRECATED</em>, use <code>TYPES_PATTERN</code> instead.
-     * @see #TYPES_PATTERN
+     * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public static final String COMPONENTS_PATTERN = "SSB";
 
     /**
@@ -82,7 +80,7 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
      * Use <code>IDENTIFIER_CODE</code> instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public static final Integer BIC = 3;
 
     /**
@@ -179,17 +177,14 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
     public abstract String getName();
 
     /**
-     * Returns the field components pattern
-     *
-     * This is <em>DEPRECATED</em>, use <code>typesPattern()</code> instead.
-     * @return the static value of COMPONENTS_PATTERN
-     * @see #typesPattern()
+     * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     @Override
     public final String componentsPattern() {
-        return COMPONENTS_PATTERN;
+        DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");
+        return typesPattern();
     }
 
     /**
@@ -374,31 +369,23 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
     }
 
     /**
-     * Gets the BIC (component3).
-     *
-     * Use <code>getIdentifierCode</code> instead
-     *
-     * @return the BIC from component3
-     * @see #getIdentifierCode()
+     * @deprecated Use {@link #getIdentifierCode()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public String getBIC() {
-        return getComponent3();
+        DeprecationUtils.phase2(getClass(), "getBIC()", "Use getIdentifierCode() instead.");
+        return getIdentifierCode();
     }
 
     /**
-     * Get the BIC (component3) as BIC
-     *
-     * Use <code>getIdentifierCodeAsBIC</code> instead
-     *
-     * @return the BIC from component3 converted to BIC or null if cannot be converted
-     * @see #getIdentifierCodeAsBIC()
+     * @deprecated Use {@link #getIdentifierCodeAsBIC()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2=TargetYear.SRU2022)
+    @ProwideDeprecated(phase3=TargetYear.SRU2023)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-        return getComponent3AsBIC();
+        DeprecationUtils.phase2(getClass(), "getBICAsBIC()", "Use getIdentifierCodeAsBIC() instead.");
+        return getIdentifierCodeAsBIC();
     }
 
     @Override

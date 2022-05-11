@@ -16,8 +16,6 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsA {
 
-    String AFRI = "AFRI";
-    String APAC = "APAC";
     String AUTH = "AUTH";
     String A = "A";
     String AGNT = "AGNT";

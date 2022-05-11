@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -74,7 +74,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -87,24 +87,24 @@ public class Field98G extends Field implements Serializable, DateContainer {
     public static final String F_98G = "98G";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = "<DATE4><TIME2>[,S][/[c]<TIME3>]";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "DTNSW";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "DTNSW";
 
 	/**
@@ -127,7 +127,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	 * @see #DECIMALS
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer NUMBER = 3;
 
 	/**
@@ -316,11 +316,11 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "DTNSW";
     }
@@ -525,7 +525,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * @see #getComponent3AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -545,7 +545,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getNumber() {
         return getDecimals();
     }
@@ -569,7 +569,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * @see #getDecimalsAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getDecimalsAsNumber() {
         return getComponent3AsNumber();
     }
@@ -579,7 +579,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * @see #getDecimalsAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Long getNumberAsLong() {
         return getDecimalsAsLong();
     }
@@ -594,7 +594,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * @see #getDecimalsAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getNumberAsNumber() {
         return getDecimalsAsNumber();
     }
@@ -837,7 +837,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field98G setNumber(String component3) {
         return setDecimals(component3);
     }
@@ -852,7 +852,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field98G setNumber(java.lang.Long component3) {
         return setDecimals(component3);
     }
@@ -867,7 +867,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * @see #setDecimals(java.lang.Long)
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field98G setNumber(java.lang.Number component3) {
         return setDecimals(component3);
     }
@@ -1081,10 +1081,10 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
 	/**
-	 * @deprecated use OFFSET instead
+	 * @deprecated Use OFFSET instead
 	 */
 	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public static final Integer TIME_2 = 5;
 
 	/**
@@ -1104,42 +1104,42 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-     * @deprecated use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
+     * @deprecated Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getTime2() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getTime2()", "Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getTime2()", "Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset");
         return getOffset();
     }
 
     /**
-     * @deprecated use getOffsetAsCalendar() instead
+     * @deprecated Use getOffsetAsCalendar() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public java.util.Calendar getTime2AsCalendar() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getTime2AsCalendar()", "Use getOffsetAsCalendar() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getTime2AsCalendar()", "Use getOffsetAsCalendar() instead");
         return SwiftFormatUtils.getTime3(getOffset());
     }
 
     /**
-     * @deprecated use setOffset(String) instead
+     * @deprecated Use setOffset(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public Field98G setTime2(String component) {
-	    com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setTime2(String)", "Use setOffset(String) instead");
+	    com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setTime2(String)", "Use setOffset(String) instead");
 	    return setOffset(component);
 	}
 
 	/**
-     * @deprecated use setOffset(Calendar) instead
+     * @deprecated Use setOffset(Calendar) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public Field98G setTime2(java.util.Calendar cal) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setTime2(Calendar)", "Use setOffset(Calendar) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setTime2(Calendar)", "Use setOffset(Calendar) instead");
         return setOffset(cal);
 	}
 }

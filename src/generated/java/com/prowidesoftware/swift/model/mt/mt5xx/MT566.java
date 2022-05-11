@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="sequence">
 Sequence B - Underlying Securities (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 95 P,R (O)</li>
-<li class="field">Field 97 A (M)</li>
+<li class="field">Field 97 A,D (M)</li>
 <li class="field">Field 94 B,C,F (O)</li>
 <li class="field">Field 35 B (M)</li>
 <li class="sequence">
@@ -76,11 +76,11 @@ Fieldset 98
 Fieldset 92
  (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 D (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (O)<ul><li>FieldsetItem 36 B (O)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (O)<ul><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="fieldset">
 Fieldset 93
- (O) (repetitive)<ul><li>FieldsetItem 93 B,C (O) (repetitive)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O) (repetitive)</li><li>FieldsetItem 93 B,C (O) (repetitive)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O) (repetitive)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li><li>FieldsetItem 93 B,C (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (O) (repetitive)<ul><li>FieldsetItem 93 B,C,E,F (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence C - Corporate Action Details (O)<ul><li class="field">Field 16 R (M)</li>
@@ -95,7 +95,7 @@ Fieldset 92
 Fieldset 90
  (O)<ul><li>FieldsetItem 90 A,B (O)</li><li>FieldsetItem 90 A,B,L (O)</li><li>FieldsetItem 90 A,B,L (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (O)<ul><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B (O)</li><li>FieldsetItem 36 B (O)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="field">Field 13 A,B (O) (repetitive)</li>
+ (O)<ul><li>FieldsetItem 36 B,C,D (O)</li><li>FieldsetItem 36 B,C,D (O)</li><li>FieldsetItem 36 B,C,D (O)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 13 A,B (O) (repetitive)</li>
 <li class="fieldset">
 Fieldset 17
  (O)<ul><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="fieldset">
@@ -121,7 +121,7 @@ Fieldset 90
 Sequence D1 - Securities Movement (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 22
- (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="field">Field 35 B (M)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li></ul></li><li class="field">Field 35 B (M)</li>
 <li class="sequence">
 Sequence D1a - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 94 B (O)</li>
@@ -135,9 +135,9 @@ Fieldset 98
 Fieldset 92
  (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (O)<ul><li>FieldsetItem 36 B (O)</li><li>FieldsetItem 36 B (O)</li><li>FieldsetItem 36 B (O)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (O)<ul><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
-<li class="field">Field 36 B (O) (repetitive)</li>
+<li class="field">Field 36 B,D (O) (repetitive)</li>
 <li class="fieldset">
 Fieldset 94
  (O)<ul><li>FieldsetItem 94 B,C,F (O)</li><li>FieldsetItem 94 C (O)</li></ul></li><li class="field">Field 22 F (O)</li>
@@ -152,7 +152,7 @@ Fieldset 98
 Sequence D1b - Receive/Deliver (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 S (O) (repetitive)</li></ul></li><li class="field">Field 97 A (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 S (O) (repetitive)</li></ul></li><li class="field">Field 97 A,D (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -162,7 +162,7 @@ Fieldset 95
 Sequence D2 - Cash Movements (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 22
- (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="field">Field 94 C (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li></ul></li><li class="field">Field 94 C (O)</li>
 <li class="field">Field 97 A,E (O)</li>
 <li class="sequence">
 Sequence D2a - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -203,7 +203,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2021</strong>
+ * This source code is specific to release <strong>SRU 2022</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -212,7 +212,7 @@ public class MT566 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 	private static final long serialVersionUID = 1L;
 	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT566.class.getName());
 	
@@ -763,6 +763,26 @@ public class MT566 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36D, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 36D at MT566 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field36D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field36D> getField36D() {
+		final List<Field36D> result = new ArrayList<>();
+		final Tag[] tags = tags("36D");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field36D(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 93B, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 93B at MT566 are expected at one sequence or across several sequences.
@@ -797,6 +817,46 @@ public class MT566 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field93C(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 93E, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 93E at MT566 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field93E objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field93E> getField93E() {
+		final List<Field93E> result = new ArrayList<>();
+		final Tag[] tags = tags("93E");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field93E(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 93F, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 93F at MT566 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field93F objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field93F> getField93F() {
+		final List<Field93F> result = new ArrayList<>();
+		final Tag[] tags = tags("93F");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field93F(tag.getValue()));
             }
 		}
 		return result;
@@ -1543,6 +1603,26 @@ public class MT566 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97D, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 97D at MT566 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field97D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field97D> getField97D() {
+		final List<Field97D> result = new ArrayList<>();
+		final Tag[] tags = tags("97D");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field97D(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97E, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 97E at MT566 are expected at one sequence or across several sequences.
@@ -2099,7 +2179,7 @@ public class MT566 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceB1List_sru2021(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceB1List_sru2022(this);
 	}
 
 	/**
@@ -2610,7 +2690,7 @@ public class MT566 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceD1aList_sru2021(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceD1aList_sru2022(this);
 	}
 
 	/**
