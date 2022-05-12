@@ -56,7 +56,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>:4!c//4!c/&lt;NUMBER&gt;30</code></li>
+ * 		<li>validation pattern: <code>:4!c//4!c/&lt;AMOUNT&gt;30</code></li>
  * 		<li>parser pattern: <code>:S//S/N</code></li>
  * 		<li>components pattern: <code>SSN</code></li>
  * </ul>
@@ -280,7 +280,7 @@ public class Field36D extends Field implements Serializable, GenericField {
      */
     @Override
     public String validatorPattern() {
-        return ":4!c//4!c/<NUMBER>30";
+        return ":4!c//4!c/<AMOUNT>30";
     }
 
     /**

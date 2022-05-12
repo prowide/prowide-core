@@ -60,7 +60,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>:4!c//[8c]/4!c/[&lt;N&gt;]&lt;AMOUNT&gt;30</code></li>
+ * 		<li>validation pattern: <code>:4!c/[8c]/4!c/[&lt;N&gt;]&lt;AMOUNT&gt;30</code></li>
  * 		<li>parser pattern: <code>:S/[S]/S/[S]N</code></li>
  * 		<li>components pattern: <code>SSSSN</code></li>
  * </ul>
@@ -313,7 +313,7 @@ public class Field93F extends Field implements Serializable, AmountContainer, Ge
      */
     @Override
     public String validatorPattern() {
-        return ":4!c//[8c]/4!c/[<N>]<AMOUNT>30";
+        return ":4!c/[8c]/4!c/[<N>]<AMOUNT>30";
     }
 
     /**
