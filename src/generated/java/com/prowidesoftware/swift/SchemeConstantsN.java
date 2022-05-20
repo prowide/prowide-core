@@ -16,9 +16,12 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsN {
 
+    String N = "N";
+    String NN = "NN";
+    String NY = "NY";
+    String NAMR = "NAMR";
     String NETS = "NETS";
     String NAUT = "NAUT";
-    String N = "N";
     String NEWT = "NEWT";
     String NEW = "NEW";
     String NETCASH = "NETCASH";
@@ -34,10 +37,10 @@ public interface SchemeConstantsN {
     String NMAT = "NMAT";
     String NPAY = "NPAY";
     String NACC = "NACC";
-    String NXRT = "NXRT";
     String NOMI = "NOMI";
     String NATO = "NATO";
     String NWFC = "NWFC";
+    String NXRT = "NXRT";
     String NAVD = "NAVD";
     String NRAD = "NRAD";
     String NAFI = "NAFI";

@@ -16,18 +16,18 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsO {
 
+    String O = "O";
     String OTHR = "OTHR";
     String OUR = "OUR";
-    String O = "O";
     String OTHER = "OTHER";
     String OTHRPRTY = "OTHRPRTY";
     String ORDRPRTY = "ORDRPRTY";
     String ORDR = "ORDR";
-    String OWNT = "OWNT";
     String OPST = "OPST";
     String OPTI = "OPTI";
-    String OWND = "OWND";
     String OCCU = "OCCU";
+    String OWNT = "OWNT";
+    String OWND = "OWND";
     String ODDC = "ODDC";
     String ORGV = "ORGV";
     String OCMT = "OCMT";

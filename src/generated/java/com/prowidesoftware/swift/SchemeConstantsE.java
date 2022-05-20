@@ -16,6 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsE {
 
+    String EEAR = "EEAR";
+    String EUZN = "EUZN";
     String EQUI = "EQUI";
     String EAMT = "EAMT";
     String ELEC = "ELEC";

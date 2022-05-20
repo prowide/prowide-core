@@ -16,6 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsC {
 
+    String CLAM = "CLAM";
+    String CEEE = "CEEE";
     String CHQB = "CHQB";
     String CMZB = "CMZB";
     String CMSW = "CMSW";
@@ -55,12 +57,12 @@ public interface SchemeConstantsC {
     String COLN = "COLN";
     String COUP = "COUP";
     String CADETL = "CADETL";
-    String CLTDET = "CLTDET";
-    String CUFC = "CUFC";
     String CERT = "CERT";
     String CLAS = "CLAS";
     String CALD = "CALD";
     String CITY = "CITY";
+    String CLTDET = "CLTDET";
+    String CUFC = "CUFC";
     String COVE = "COVE";
     String COMM = "COMM";
     String COWA = "COWA";
@@ -173,7 +175,6 @@ public interface SchemeConstantsC {
     String CODO = "CODO";
     String CAINST = "CAINST";
     String COND = "COND";
-    String CLAM = "CLAM";
     String CACONF = "CACONF";
     String CABF = "CABF";
     String CONB = "CONB";

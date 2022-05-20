@@ -16,6 +16,8 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsF {
 
+    String FF = "FF";
+    String FC = "FC";
     String F = "F";
     String FBF = "FBF";
     String FAXT = "FAXT";
@@ -40,9 +42,9 @@ public interface SchemeConstantsF {
     String FRWD = "FRWD";
     String FIAC = "FIAC";
     String FIAN = "FIAN";
+    String FCOU = "FCOU";
     String FRNF = "FRNF";
     String FRNR = "FRNR";
-    String FCOU = "FCOU";
     String FIA = "FIA";
     String FORM = "FORM";
     String FICL = "FICL";
