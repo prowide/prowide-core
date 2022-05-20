@@ -53,7 +53,7 @@ import com.google.gson.JsonParser;
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>8x[/30x]</code></li>
- * 		<li>parser pattern: <code>S/S</code></li>
+ * 		<li>parser pattern: <code>S[/S]</code></li>
  * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
@@ -83,7 +83,7 @@ public class Field35C extends Field implements Serializable {
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String PARSER_PATTERN = "S/S";
+	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
@@ -197,8 +197,9 @@ public class Field35C extends Field implements Serializable {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
-        result.append("/");
-        append(result, 2);
+        if (getComponent2() != null) {
+            result.append("/").append(getComponent2());
+        }
         return result.toString();
     }
 
@@ -254,7 +255,7 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S/S";
+        return "S[/S]";
     }
 
     /**
