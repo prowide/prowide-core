@@ -5,6 +5,7 @@
 9.3.0-SNAPSHOT
   * SWIFT Standard release update 2022 (live 20 November 2022)
   * Yearly revision of deprecation phase (see http://www.prowidesoftware.com/resources/deprecation-policy)
+  * Updated gson dependency to 2.9.0
 
 RELEASE 9.2.13 - April 2022
   * PW-892: Fixed AbstractMT#create when the message type number is less than 100
