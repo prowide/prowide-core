@@ -30,7 +30,7 @@ scmVersion {
     }
 }
 //project.version = "${SRU}-${scmVersion.version}"
-project.version = "${SRU}-9.3.0-SNAPSHOT"
+project.version = "${SRU}-9.3.0"
 
 java {
     toolchain {

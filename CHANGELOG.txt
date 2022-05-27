@@ -2,7 +2,7 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
-9.3.0-SNAPSHOT
+RELEASE 9.3.0 - May 2022
   * SWIFT Standard release update 2022 (live 20 November 2022)
   * Yearly revision of deprecation phase (see http://www.prowidesoftware.com/resources/deprecation-policy)
 

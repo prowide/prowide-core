@@ -26,4 +26,5 @@ release.sh
 .idea/libraries-with-intellij-classes.xml
 .idea/jpa-buddy.xml
 .idea/runConfigurations.xml
+.idea/.name
 
