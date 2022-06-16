@@ -89,21 +89,21 @@ public class Field259 extends Field implements Serializable, DateContainer {
     public static final String F_259 = "259";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String PARSER_PATTERN = "<LT>4!Nc<DATE2><HHMM><HHMM>";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "ZNNEHH";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
@@ -302,7 +302,7 @@ public class Field259 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated

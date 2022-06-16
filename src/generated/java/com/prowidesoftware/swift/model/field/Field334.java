@@ -80,21 +80,21 @@ public class Field334 extends Field implements Serializable {
     public static final String F_334 = "334";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String PARSER_PATTERN = "S<HHMM>";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SH";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
@@ -233,7 +233,7 @@ public class Field334 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
