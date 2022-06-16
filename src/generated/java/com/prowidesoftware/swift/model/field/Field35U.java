@@ -84,21 +84,21 @@ public class Field35U extends Field implements Serializable, AmountContainer {
     public static final String F_35U = "35U";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String PARSER_PATTERN = "SN[S]";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "SNS";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
@@ -257,7 +257,7 @@ public class Field35U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated

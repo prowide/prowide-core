@@ -89,21 +89,21 @@ public class Field37B extends Field implements Serializable, DateContainer, Amou
     public static final String F_37B = "37B";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String PARSER_PATTERN = "N[//<DATE2>cS][/S]";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "NESNS";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
@@ -318,7 +318,7 @@ public class Field37B extends Field implements Serializable, DateContainer, Amou
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated

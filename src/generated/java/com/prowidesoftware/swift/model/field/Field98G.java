@@ -87,21 +87,21 @@ public class Field98G extends Field implements Serializable, DateContainer {
     public static final String F_98G = "98G";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String PARSER_PATTERN = "<DATE4><TIME2>[,S][/[c]<TIME3>]";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "DTNSW";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
@@ -316,7 +316,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
@@ -1081,7 +1081,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
 	/**
-	 * @deprecated use OFFSET instead
+	 * @deprecated Use OFFSET instead
 	 */
 	@Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -1104,7 +1104,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-     * @deprecated use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
+     * @deprecated Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -1114,7 +1114,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use getOffsetAsCalendar() instead
+     * @deprecated Use getOffsetAsCalendar() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -1124,7 +1124,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use setOffset(String) instead
+     * @deprecated Use setOffset(String) instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -1134,7 +1134,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	}
 
 	/**
-     * @deprecated use setOffset(Calendar) instead
+     * @deprecated Use setOffset(Calendar) instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)

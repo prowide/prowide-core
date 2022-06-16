@@ -84,21 +84,21 @@ public class Field98H extends Field implements Serializable {
     public static final String F_98H = "98H";
 
     /**
-     * @deprecated use {@link #parserPattern()} method instead.
+     * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String PARSER_PATTERN = "<TIME2>[,S][/[c]<TIME3>]";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
 	public static final String COMPONENTS_PATTERN = "TNSW";
 
     /**
-     * @deprecated use {@link #typesPattern()} method instead.
+     * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
@@ -299,7 +299,7 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use {@link #typesPattern()} instead.
+     * @deprecated Use {@link #typesPattern()} instead.
      */
     @Override
     @Deprecated
@@ -961,7 +961,7 @@ public class Field98H extends Field implements Serializable {
     }
 
 	/**
-	 * @deprecated use OFFSET instead
+	 * @deprecated Use OFFSET instead
 	 */
 	@Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -984,7 +984,7 @@ public class Field98H extends Field implements Serializable {
 	}
 
 	/**
-     * @deprecated use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
+     * @deprecated Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -994,7 +994,7 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use getOffsetAsCalendar() instead
+     * @deprecated Use getOffsetAsCalendar() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -1004,7 +1004,7 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use setOffset(String) instead
+     * @deprecated Use setOffset(String) instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -1014,7 +1014,7 @@ public class Field98H extends Field implements Serializable {
 	}
 
 	/**
-     * @deprecated use setOffset(Calendar) instead
+     * @deprecated Use setOffset(Calendar) instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)

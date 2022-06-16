@@ -355,7 +355,7 @@ public class Field77J extends StructuredNarrativeField implements Serializable, 
 	public static final Integer NARRATIVE = 1;
 
 	/**
-     * @deprecated use getValue() instead
+     * @deprecated Use getValue() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)

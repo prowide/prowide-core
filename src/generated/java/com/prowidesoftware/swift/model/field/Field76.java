@@ -355,7 +355,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
 	public static final Integer NARRATIVE = 1;
 
 	/**
-     * @deprecated use getValue() instead
+     * @deprecated Use getValue() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -367,7 +367,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     // changed component 1
 
 	/**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -390,7 +390,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     // deprecated component 2
 
 	/**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -411,7 +411,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     }
 
     /**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -434,7 +434,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     // deprecated component 3
 
 	/**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -455,7 +455,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     }
 
     /**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -478,7 +478,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     // deprecated component 4
 
 	/**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -499,7 +499,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     }
 
     /**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -522,7 +522,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     // deprecated component 5
 
 	/**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -543,7 +543,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     }
 
     /**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -566,7 +566,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     // deprecated component 6
 
 	/**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
@@ -587,7 +587,7 @@ public class Field76 extends StructuredNarrativeField implements Serializable, N
     }
 
     /**
-     * @deprecated use getLine(int) or narrative() instead
+     * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
