@@ -106,7 +106,7 @@ public abstract class OptionBPartyField extends Field implements PartyIdentifier
         }
         if (lines.get(0).startsWith("/")) {
             String party = lines.get(0);
-            if (party.length() >= 3 && party.charAt(1) != '/' && party.charAt(2) == '/') {
+            if (StringUtils.startsWith(party, "/C/") || StringUtils.startsWith(party, "/D/")) {
                 setComponent(1, String.valueOf(party.charAt(1)));
                 setComponent(2, StringUtils.substring(party, 3));
             } else {

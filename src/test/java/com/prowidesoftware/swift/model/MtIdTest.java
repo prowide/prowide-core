@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.prowidesoftware.swift.model.field.Field32A;
 import org.junit.jupiter.api.Test;
 
 class MtIdTest {
@@ -38,6 +39,26 @@ class MtIdTest {
         assertEquals("fin.ACK", new MtId("ACK").id());
         assertEquals("fin.NAK", new MtId("NAK").id());
         assertEquals("fin.BypassFoobar", new MtId("BypassFoobar").id());
+    }
+
+    @Test
+    public void testNamespaceURI() {
+        int current = Field32A.SRU;
+        assertEquals("urn:swift:xsd:fin.103." + current, new MtId("103").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.103." + current, new MtId("fin.103").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.103.REMIT." + current, new MtId("fin.103.REMIT").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.103.REMIT." + current, new MtId("103.REMIT").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.103.STP." + current, new MtId("fin.103.STP").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.103.STP." + current, new MtId("103.STP").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.202.COV." + current, new MtId("fin.202.COV").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.202.COV." + current, new MtId("202.COV").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.103.STP." + current, new MtId("fin.103_STP").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.103.STP." + current, new MtId("fin.103STP").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.202.COV." + current, new MtId("fin.202_COV").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.202.COV." + current, new MtId("fin.202COV").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.ACK." + current, new MtId("ACK").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.NAK." + current, new MtId("NAK").namespaceURI());
+        assertEquals("urn:swift:xsd:fin.BypassFoobar." + current, new MtId("BypassFoobar").namespaceURI());
     }
 
 }
