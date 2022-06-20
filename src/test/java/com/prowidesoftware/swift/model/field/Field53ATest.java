@@ -118,8 +118,8 @@ public class Field53ATest extends AbstractFieldTest {
         assertNull(f.getAccount());
 
         f = new Field53A("/A/");
-        assertEquals("A", f.getDCMark());
-        assertNull(f.getAccount());
+        assertNull(f.getDCMark());
+        assertEquals("A/", f.getAccount());
 
         f = new Field53A("/D");
         assertNull(f.getDCMark());
