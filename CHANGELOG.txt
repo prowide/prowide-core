@@ -2,7 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+9.2.14 SNAPSHOT
   * PW-867: Enhanced the parsing of party fields A, B and D, to be more strict when splitting the /D/ or /C/ prefix from the account
+  * Added method namespaceURI() in the MtId class to return for example "urn:swift:xsd:fin.103.2021" for the MT103
 
 RELEASE 9.2.13 - April 2022
   * PW-892: Fixed AbstractMT#create when the message type number is less than 100
