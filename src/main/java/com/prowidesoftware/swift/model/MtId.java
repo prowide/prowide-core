@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.swift.model.field.Field32A;
 import com.prowidesoftware.swift.model.mt.MTVariant;
 import org.apache.commons.lang3.StringUtils;
 
@@ -193,6 +194,16 @@ public class MtId {
             }
         }
         return "";
+    }
+
+    /**
+     * Creates the corresponding ISO 15022 namespace URI for this MT, for example: urn:swift:xsd:fin.103.2021
+     *
+     * @return a string representing the namespace URI for the MT
+     * @since 9.2.14
+     */
+    public String namespaceURI() {
+        return new StringBuilder("urn:swift:xsd:").append(id()).append(".").append(Field32A.SRU).toString();
     }
 
 }

@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+9.2.14 SNAPSHOT
+  * Added method namespaceURI() in the MtId class to return for example "urn:swift:xsd:fin.103.2021" for the MT103
+
 RELEASE 9.2.13 - April 2022
   * PW-892: Fixed AbstractMT#create when the message type number is less than 100
   * Added a convenient String message() method in the SwiftMessage object to get the FIN serialization of the message
