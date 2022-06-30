@@ -20,6 +20,8 @@ import com.prowidesoftware.swift.model.mt.MTVariant;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Structured identification of MT message types, composed by the business process, actual type and variant.
@@ -31,6 +33,7 @@ import java.util.Objects;
  * @since 7.8.4
  */
 public class MtId {
+    private static final Pattern TYPE_PATTERN = Pattern.compile("\\d{3}");
     private String businessProcess = "fin";
     private String messageType;
     private String variant;
@@ -49,7 +52,11 @@ public class MtId {
     public MtId(String identifier) {
         this();
         if (identifier != null) {
-            this.messageType = identifier.replaceAll("\\D+", "");
+            // match exactly three digits from the identifier string
+            Matcher matcher = TYPE_PATTERN.matcher(identifier);
+            if (matcher.find()) {
+                this.messageType = matcher.group(0);
+            }
 
             if (StringUtils.isNotBlank(this.messageType)) {
                 // if message type was extracted, we try to extract the variant as well

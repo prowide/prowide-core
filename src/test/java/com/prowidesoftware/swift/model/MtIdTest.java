@@ -23,7 +23,8 @@ import org.junit.jupiter.api.Test;
 class MtIdTest {
 
     @Test
-    public void test() {
+    public void testConstructor() {
+        // from well defined identifier
         assertEquals("fin.103", new MtId("103").id());
         assertEquals("fin.103", new MtId("fin.103").id());
         assertEquals("fin.103.REMIT", new MtId("fin.103.REMIT").id());
@@ -36,8 +37,17 @@ class MtIdTest {
         assertEquals("fin.103.STP", new MtId("fin.103STP").id());
         assertEquals("fin.202.COV", new MtId("fin.202_COV").id());
         assertEquals("fin.202.COV", new MtId("fin.202COV").id());
+
+        // from ISO 15022 namespaces
+        assertEquals("fin.103", new MtId("urn:swift:xsd:fin.103.2021").id());
+        assertEquals("fin.103.REMIT", new MtId("urn:swift:xsd:fin.103.REMIT.2022").id());
+        assertEquals("fin.103.STP", new MtId("urn:swift:xsd:fin.103.STP.2022").id());
+
+        // ACK/NACK
         assertEquals("fin.ACK", new MtId("ACK").id());
         assertEquals("fin.NAK", new MtId("NAK").id());
+
+        // Other strings
         assertEquals("fin.BypassFoobar", new MtId("BypassFoobar").id());
     }
 
