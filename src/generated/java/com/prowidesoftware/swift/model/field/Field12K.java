@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -46,14 +48,14 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
+ * 		<li><code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>2!n</code></li>
  * 		<li>parser pattern: <code>S</code></li>
- * 		<li>components pattern: <code>S</code></li>
+ * 		<li>components pattern: <code>N</code></li>
  * </ul>
  *
  * <p>
@@ -89,14 +91,14 @@ public class Field12K extends Field implements Serializable {
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	public static final String COMPONENTS_PATTERN = "S";
+	public static final String COMPONENTS_PATTERN = "N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	public static final String TYPES_PATTERN = "S";
+	public static final String TYPES_PATTERN = "N";
 
 	/**
 	 * Component number for the Number subfield.
@@ -229,7 +231,7 @@ public class Field12K extends Field implements Serializable {
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public String componentsPattern() {
-        return "S";
+        return "N";
     }
 
     /**
@@ -241,7 +243,7 @@ public class Field12K extends Field implements Serializable {
      */
     @Override
     public String typesPattern() {
-        return "S";
+        return "N";
     }
 
     /**
@@ -330,6 +332,32 @@ public class Field12K extends Field implements Serializable {
     }
 
     /**
+     * Get the component 1 as Long
+     *
+     * @return the component 1 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getComponent1AsLong() {
+        return SwiftFormatUtils.getLong(getComponent(1));
+    }
+
+    /**
+     * Get the component 1 as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsLong()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getComponent1AsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public java.lang.Number getComponent1AsNumber() {
+        Long l = getComponent1AsLong();
+        return l != null ? new BigDecimal(l) : null;
+    }
+
+    /**
      * Gets the Number (component 1).
      * @return the Number from component 1
      */
@@ -349,6 +377,55 @@ public class Field12K extends Field implements Serializable {
     }
 
     /**
+     * Get the Number (component 1) as Long
+     * @return the Number from component 1 converted to Long or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.lang.Long getNumberAsLong() {
+        return getComponent1AsLong();
+    }
+
+    /**
+     * Get the Number (component 1) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsLong()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public java.lang.Number getNumberAsNumber() {
+        return getComponent1AsNumber();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number as Long
+     * @see #getNumberAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public java.lang.Long getVersionAsLong() {
+        return getNumberAsLong();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Number (component 1) as as Number (BigDecimal)
+     *
+     * The value is returned as BigDecimal to keep compatibility with previous API. You should
+     * use <code>getComponent1AsLong()</code> to get the proper value.
+     *
+     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
+     * @see #getNumberAsLong()
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public java.lang.Number getVersionAsNumber() {
+        return getNumberAsNumber();
+    }
+
+    /**
      * Set the component 1 (Number).
      *
      * @param component1 the Number to set
@@ -356,6 +433,51 @@ public class Field12K extends Field implements Serializable {
      */
     public Field12K setComponent1(String component1) {
         setComponent(1, component1);
+        return this;
+    }
+
+    /**
+     * Set the component1 from a Long object.
+     * <br>
+     * <em>If the component being set is a fixed length number, the argument will not be
+     * padded.</em> It is recommended for these cases to use the setComponent1(String)
+     * method.
+     *
+     * @see #setComponent1(String)
+     * @since 9.2.7
+     *
+     * @param component1 the Long with the Number content to set
+     * @return the field object to enable build pattern
+     */
+    public Field12K setComponent1(java.lang.Long component1) {
+        setComponent(1, SwiftFormatUtils.getLong(component1));
+        return this;
+    }
+
+    /**
+     * Alternative method setter for field's Number (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component1 the Number with the Number content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber(java.lang.Long)
+     */
+    public Field12K setComponent1(java.lang.Number component1) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component1 instanceof Long) {
+            setComponent(1, SwiftFormatUtils.getLong((Long) component1));
+        } else if (component1 instanceof BigInteger || component1 instanceof Integer) {
+            setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
+        } else if (component1 != null) {
+            // it's another non-null Number (Float, Double, BigDecimal, etc...)
+            setComponent(1, SwiftFormatUtils.getLong(component1.longValue()));
+        } else {
+            // explicitly set component as null
+            setComponent(1, null);
+        }
         return this;
     }
 
@@ -370,6 +492,32 @@ public class Field12K extends Field implements Serializable {
     }
 
     /**
+     * Set the Number (component 1) from a Long object.
+     *
+     * @see #setComponent1(java.lang.Long)
+     *
+     * @param component1 Long with the Number content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    public Field12K setNumber(java.lang.Long component1) {
+        return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Number (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component1 the Number with the Number content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber(java.lang.Long)
+     */
+    public Field12K setNumber(java.lang.Number component1) {
+        return setComponent1(component1);
+    }
+
+    /**
      * Alternative <em>DEPRECATED</em> method setter for field's Number
      *
      * @see #setNumber(String)
@@ -380,6 +528,36 @@ public class Field12K extends Field implements Serializable {
     @Deprecated
     @ProwideDeprecated(phase2 = TargetYear.SRU2022)
     public Field12K setVersion(String component1) {
+        return setNumber(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number from a Long object.
+     *
+     * @see #setComponent1(java.lang.Long)
+     *
+     * @param component1 Long with the Number content to set
+     * @return the field object to enable build pattern
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public Field12K setVersion(java.lang.Long component1) {
+        return setNumber(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Number (component 1) as as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
+     *
+     * @param component1 the Number with the Number content to set
+     * @return the field object to enable build pattern
+     * @see #setNumber(java.lang.Long)
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public Field12K setVersion(java.lang.Number component1) {
         return setNumber(component1);
     }
 
