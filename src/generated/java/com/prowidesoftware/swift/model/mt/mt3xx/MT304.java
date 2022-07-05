@@ -1917,7 +1917,7 @@ public class MT304 extends AbstractMT implements Serializable {
 			super(content.getTags());
 		}
 
-		/**
+        /**
 		 * First mandatory tag name of the sequence: <em>"32B"  </em>.
 		 * Array format is for cases when more than one letter options is allowed
 		 */
@@ -1968,48 +1968,43 @@ public class MT304 extends AbstractMT implements Serializable {
 		}
 	}
 	/**
-	 * Get the single occurrence of SequenceB1 delimited by leading tag and end, with an optional tail.
-	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
-	 * If block 4 is empty this method returns null.
+	 * Custom heuristic for Sequence B1 of MT300 and MT304.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
-	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
 	 */
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+	@SequenceStyle(Type.CUSTOM)
 	public SequenceB1 getSequenceB1() {
-		return getSequenceB1(super.getSwiftMessageNotNullOrException().getBlock4());
+        return getSequenceB1(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
-	
-	/**
-	 * Get the single occurrence of SequenceB1 delimited by leading tag and end, with an optional tail.
-	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
-	 * If block 4 is empty this method returns null.
-	 *
-	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence a not null parent sequence to find SequenceB1 within it
-	 * @return the found sequence or an empty sequence if none is found, or null if the parent sequence is null or empty
-	 * @since 7.7
-	 */
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public SequenceB1 getSequenceB1(SwiftTagListBlock parentSequence) {
-		if (parentSequence != null && !parentSequence.isEmpty()) {
-			final SwiftTagListBlock content = parentSequence.getSubBlockDelimitedWithOptionalTail(SequenceB1.START, SequenceB1.END, SequenceB1.TAIL);
-			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				if (content == null) {
-					log.fine("content for sequence SequenceB1: is null");
-				} else {
-					log.fine("content for sequence SequenceB1: "+content.tagNamesList());
-				}
-			}
-			if (content == null) {
-				return new SequenceB1();
-			} else {
-				return new SequenceB1(content);
-			}
-		}
-		return null;
-	}
- 
+
+    /**
+     * Custom heuristic for Sequence B1 of MT300 and MT304.
+     *
+     * @param parentSequence a not null parent sequence to find SequenceB1 within it
+     * @return the found sequence or an empty sequence if none is found, or null if the parent sequence is null or empty
+     * @since 7.7
+     */
+    @SequenceStyle(Type.CUSTOM)
+    public SequenceB1 getSequenceB1(SwiftTagListBlock parentSequence) {
+        if (parentSequence != null && !parentSequence.isEmpty()) {
+            final SwiftTagListBlock content = parentSequence.getSubBlock("32B", "33B");
+            content.removeTag("33B");
+            if (log.isLoggable(java.util.logging.Level.FINE)) {
+                if (content == null) {
+                    log.fine("content for sequence SequenceB1: is null");
+                } else {
+                    log.fine("content for sequence SequenceB1: "+content.tagNamesList());
+                }
+            }
+            if (content == null) {
+                return new SequenceB1();
+            } else {
+                return new SequenceB1(content);
+            }
+        }
+        return null;
+    }
+
 
 	/**
 	 * Class to model Sequence "B2" in MT 304.
