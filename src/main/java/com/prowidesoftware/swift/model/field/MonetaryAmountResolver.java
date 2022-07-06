@@ -15,107 +15,71 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.utils.ResolverUtils;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  * Helper API to detect amount component in fields.
+ * @since 9.2.15
  */
 public class MonetaryAmountResolver {
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(MonetaryAmountResolver.class.getName());
 
     /**
-     * Gets the amounts of the given field by reading it's components pattern.
-     * All index of 'I', number, in the pattern are looked for and returned as amount.
-     *
-     * <em>See the returns notes</em>
-     *
-     * @param f the field where to extract the amounts, must not be null
-     * @return a list of BigDecimal with the numbers found in the numeric components or an empty list if none is found.
-     * Missing or invalid numeric components are ignored; meaning if a components expected to be a number is not present
-     * or it is not a valid number or Field.getComponent(index,Number.class) fails, that component is not included in the
-     * result list.
+     * @see AmountResolver#amounts(Field)
      */
     public static List<BigDecimal> amounts(final Field f) {
         return AmountResolver.amounts(f);
     }
 
     /**
-     * Gets the amount of the given field by reading it's components pattern.
-     * The first index of 'N', number, is returned as amount.
-     *
-     * <em>See the returns notes</em>
-     *
-     * @param f the field where to extract the amount, must not be null
-     * @return a BigDecimal with the number found in the first numeric component or null if there is
-     * no numeric component in the field. It may also return null if Field.getComponent(index,Number.class) fails
-     * for that component
+     * @see AmountResolver#amount(Field)
      */
     public static BigDecimal amount(final Field f) {
         return AmountResolver.amount(f);
     }
 
     /**
-     * Returns the list of Currency values (as String) given an MT Field
-     *
-     * If you want a list of <code>Currency</code>, use <code>currencies</code> instead
-     * @param f the field
-     * @return the list of currencies
-     * @see #currencies(Field)
+     * @see CurrencyResolver#currencyStrings(Field)
      */
     public static List<String> currencyStrings(final Field f) {
         return CurrencyResolver.currencyStrings(f);
     }
 
     /**
-     * Returns the list of Currency values (as String) given the Types Pattern and the list of values
-     *
-     * This is <EM>DEPRECATED</EM>, use currencyStrings instead
-     * @param pattern the Types Pattern
-     * @param components the list of Component Values
-     * @return the list of currencies
-     * @see #currencyStrings(Field)
-     */
-    @Deprecated
-    @ProwideDeprecated(phase2= TargetYear.SRU2022)
-    public static List<String> resolveComponentsPattern(String pattern, List<String> components) {
-        return CurrencyResolver.resolveComponentsPattern(pattern,components);
-    }
-
-    /**
-     * Returns the list of Currency values (as Currency) given an MT Field.
-     *
-     * If you want a list of currency strings, use <code>currencyStrings</code> instead
-     * @param f the field
-     * @return the list of currencies
-     * @see #currencyStrings(Field)
+     * @see CurrencyResolver#currencies(Field)
      */
     public static List<Currency> currencies(final Field f) {
         return CurrencyResolver.currencies(f);
     }
 
+    /**
+     * @see CurrencyResolver#resolveCurrency(CurrencyContainer)
+     */
     public static Currency resolveCurrency(CurrencyContainer o) {
         return CurrencyResolver.resolveCurrency(o);
     }
 
+    /**
+     * @see CurrencyResolver#resolveCurrencyString(CurrencyContainer)
+     */
     public static String resolveCurrencyString(CurrencyContainer o) {
         return CurrencyResolver.resolveCurrencyString(o);
     }
 
+    /**
+     * @see CurrencyResolver#resolveSetCurrency(CurrencyContainer, Currency)
+     */
     public static void resolveSetCurrency(final CurrencyContainer cc, final Currency cur) {
         CurrencyResolver.resolveSetCurrency(cc, cur);
     }
 
+    /**
+     * @see CurrencyResolver#resolveSetCurrency(CurrencyContainer, String)
+     */
     public static void resolveSetCurrency(final CurrencyContainer cc, final String cur) {
         CurrencyResolver.resolveSetCurrency(cc, cur);
     }
