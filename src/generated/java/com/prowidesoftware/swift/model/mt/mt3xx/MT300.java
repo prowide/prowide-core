@@ -2719,78 +2719,63 @@ public class MT300 extends AbstractMT implements Serializable {
 			super(content.getTags());
 		}
 
+		/**
+         * First mandatory tag name of the sequence: <em>"32B"</em>.
+         */
+        public static final String START = "32B" ;
+
         /**
-		 * First mandatory tag name of the sequence: <em>"32B"  </em>.
-		 * Array format is for cases when more than one letter options is allowed
-		 */
-		public static final String[] START = { "32B"   } ;
-
-		/**
-		 * Last mandatory tag name of the sequence: <em>"57A", "57J"  </em>
-		 * Array format is for cases when more than one letter options is allowed
-		 */
-		protected static final String[] END = { "57A", "57J"   };
-
-		/**
-		 * List of optional tags after the last mandatory tag.
-		 */
-		protected static final String[] TAIL = new String[]{  };
-
-		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
-		 * @param tags the list of tags to set as sequence content
-		 * @return a new instance of the sequence, initialized with the parameter tags
-		 */
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceB1 newInstance(final Tag... tags) {
-			return newInstance(0, 0, tags);
-		}
+         * Last mandatory tag name of the sequence: <em>"33B"</em>
+         */
+        protected static final String END = "33B";
 
 		/**
 		 * Creates a sequence with starting and ending tags set to the indicated tags in from the
 		 * {@link #START} and {@link #END} lists of mandatory fields, and with the content between
 		 * the starting and ending tag initialized with the given optional tags.
 		 *
-		 * @param start a zero-based index within the list of mandatory starting tags in the sequence
-		 * @param end a zero-based index within the list of mandatory ending tags in the sequence
 		 * @param tags the list of tags to set as sequence content
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceB1 newInstance(final int start, final int end, final Tag... tags) {
+		@SequenceStyle(Type.GENERATED_BETWEEN_TAGS)
+		public static SequenceB1 newInstance(final Tag... tags) {
 			final SequenceB1 result = new SequenceB1();
-			result.append(new Tag(START[start], ""));
+			result.append(new Tag(START, ""));
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
 					result.append(t);
 				}
 			}
-			result.append(new Tag(END[end], ""));
+			result.append(new Tag(END, ""));
 			return result;
 		}
 	}
 	/**
-	 * Custom heuristic for Sequence B1 of MT300 and MT304.
+	 * Get the single occurrence of SequenceB1 delimited by start tag and end tag (the end tag is excluded).
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * If block 4 is empty this method returns null.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
 	 */
-	@SequenceStyle(Type.CUSTOM)
+	@SequenceStyle(Type.GENERATED_BETWEEN_TAGS)
 	public SequenceB1 getSequenceB1() {
         return getSequenceB1(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
-    /**
-     * Custom heuristic for Sequence B1 of MT300 and MT304.
-     *
-     * @param parentSequence a not null parent sequence to find SequenceB1 within it
-     * @return the found sequence or an empty sequence if none is found, or null if the parent sequence is null or empty
-     * @since 7.7
-     */
-    @SequenceStyle(Type.CUSTOM)
+	/**
+	 * Get the single occurrence of SequenceB1 delimited by start tag and end tag (the end tag is excluded).
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * If block 4 is empty this method returns null.
+	 *
+	 * @param parentSequence a not null parent sequence to find SequenceB1 within it
+	 * @return the found sequence or an empty sequence if none is found, or null if the parent sequence is null or empty
+	 * @since 9.2.7
+	 */
+    @SequenceStyle(Type.GENERATED_BETWEEN_TAGS)
     public SequenceB1 getSequenceB1(SwiftTagListBlock parentSequence) {
         if (parentSequence != null && !parentSequence.isEmpty()) {
-            final SwiftTagListBlock content = parentSequence.getSubBlock("32B", "33B");
-            content.removeTag("33B");
+            final SwiftTagListBlock content = parentSequence.getSubBlock(SequenceB1.START, SequenceB1.END);
+            content.removeTag(SequenceB1.END);
             if (log.isLoggable(java.util.logging.Level.FINE)) {
                 if (content == null) {
                     log.fine("content for sequence SequenceB1: is null");
