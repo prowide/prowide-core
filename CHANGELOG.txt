@@ -3,7 +3,9 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 RELEASE 9.2.15 SNAPSHOT
-  * PW-969: Modified field 12E, 12K and 12R
+  * PW-976: Added new MonetaryAmountContainer interface for fields having both an Amount and Currency
+  * PW-969: Modified field 12E, 12K and 12R labels
+  * PW-969: Added an optional narrative component to field 12R (required when the field is used in SCORE messages)
 
 RELEASE 9.2.14 - June 2022
   * PW-867: Enhanced the parsing of party fields A, B and D, to be more strict when splitting the /D/ or /C/ prefix from the account

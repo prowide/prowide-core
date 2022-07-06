@@ -32,10 +32,8 @@ import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Currency;
 
-import com.prowidesoftware.swift.model.field.AmountContainer;
-import com.prowidesoftware.swift.model.field.AmountResolver;
-import com.prowidesoftware.swift.model.field.CurrencyContainer;
-import com.prowidesoftware.swift.model.field.CurrencyResolver;
+import com.prowidesoftware.swift.model.field.MonetaryAmountContainer;
+import com.prowidesoftware.swift.model.field.MonetaryAmountResolver;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
@@ -73,7 +71,7 @@ import com.google.gson.JsonParser;
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field34P extends Field implements Serializable, CurrencyContainer, DateContainer, AmountContainer {
+public class Field34P extends Field implements Serializable, MonetaryAmountContainer, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -678,27 +676,47 @@ public class Field34P extends Field implements Serializable, CurrencyContainer, 
 
 
     public List<String> currencyStrings() {
-        return CurrencyResolver.currencyStrings(this);
+        return MonetaryAmountResolver.currencyStrings(this);
     }
 
     public List<Currency> currencies() {
-        return CurrencyResolver.currencies(this);
+        return MonetaryAmountResolver.currencies(this);
     }
 
     public Currency currency() {
-        return CurrencyResolver.resolveCurrency(this);
+        return MonetaryAmountResolver.resolveCurrency(this);
     }
 
     public String currencyString() {
-        return CurrencyResolver.resolveCurrencyString(this);
+        return MonetaryAmountResolver.resolveCurrencyString(this);
     }
 
     public void initializeCurrencies(String cur) {
-        CurrencyResolver.resolveSetCurrency(this, cur);
+        MonetaryAmountResolver.resolveSetCurrency(this, cur);
     }
 
     public void initializeCurrencies(Currency cur) {
-        CurrencyResolver.resolveSetCurrency(this, cur);
+        MonetaryAmountResolver.resolveSetCurrency(this, cur);
+    }
+
+    /**
+     * Returns the list of all NON-NULL amounts as BigDecimal
+     *
+     * @return the list of NON-NULL amounts as BigDecimal values
+     * @see MonetaryAmountResolver#amounts(Field)
+     */
+    public List<BigDecimal> amounts() {
+        return MonetaryAmountResolver.amounts(this);
+    }
+
+    /**
+     * Returns the first amounts as BigDecimal
+     *
+     * @return the first amount as BigDecimal value. Can be null
+     * @see MonetaryAmountResolver#amount(Field)
+     */
+    public BigDecimal amount() {
+        return MonetaryAmountResolver.amount(this);
     }
 
     /**
@@ -717,26 +735,6 @@ public class Field34P extends Field implements Serializable, CurrencyContainer, 
      */
     public Calendar date() {
         return DateResolver.date(this);
-    }
-
-    /**
-     * Returns the list of all NON-NULL amounts as BigDecimal
-     *
-     * @return the list of NON-NULL amounts as BigDecimal values
-     * @see AmountResolver#amounts(Field)
-     */
-    public List<BigDecimal> amounts() {
-        return AmountResolver.amounts(this);
-    }
-
-    /**
-     * Returns the first amounts as BigDecimal
-     *
-     * @return the first amount as BigDecimal value. Can be null
-     * @see AmountResolver#amount(Field)
-     */
-    public BigDecimal amount() {
-        return AmountResolver.amount(this);
     }
 
 
