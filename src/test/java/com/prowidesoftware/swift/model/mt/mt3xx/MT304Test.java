@@ -21,7 +21,7 @@ import com.prowidesoftware.swift.model.Tag;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled("MT304 getSequenceB1 returns invalid messages if the message is not well-formed")
+
 public class MT304Test {
 
     @Test
@@ -52,7 +52,7 @@ public class MT304Test {
                 ":57A:AAAAUS30XXX\n" +
                 "-}";
         MT304 mt304 = new MT304(msg);
-        MT304.SequenceB1 b1 = mt304. getSequenceB1();
+        MT304.SequenceB1 b1 = mt304.getSequenceB1();
 
         assertEquals(2, b1.size());
         assertEquals(new Tag("32B", "HKD1947,"), b1.getTags().get(0));
