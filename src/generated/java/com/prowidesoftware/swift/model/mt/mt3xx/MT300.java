@@ -2725,7 +2725,7 @@ public class MT300 extends AbstractMT implements Serializable {
         public static final String START = "32B" ;
 
         /**
-         * Last mandatory tag name of the sequence: <em>"33B"</em>
+         * Boundary mandatory tag indicating the end of the sequence (excluded from the actual sequence): <em>"33B"</em>
          */
         protected static final String END = "33B";
 

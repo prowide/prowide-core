@@ -1923,7 +1923,7 @@ public class MT304 extends AbstractMT implements Serializable {
         public static final String START = "32B" ;
 
         /**
-         * Last mandatory tag name of the sequence: <em>"33B"</em>
+         * Boundary mandatory tag indicating the end of the sequence (excluded from the actual sequence): <em>"33B"</em>
          */
         protected static final String END = "33B";
 
@@ -1949,7 +1949,7 @@ public class MT304 extends AbstractMT implements Serializable {
 		}
 	}
 	/**
-	 * Get the single occurrence of SequenceB1 delimited by leading tag and end.
+	 * Get the single occurrence of SequenceB1 delimited by start tag and end tag (the end tag is excluded).
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * If block 4 is empty this method returns null.
 	 *
@@ -1961,7 +1961,7 @@ public class MT304 extends AbstractMT implements Serializable {
 	}
 
 	/**
-	 * Get the single occurrence of SequenceB1 delimited by leading tag and end.
+	 * Get the single occurrence of SequenceB1 delimited by start tag and end tag (the end tag is excluded).
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * If block 4 is empty this method returns null.
 	 *
