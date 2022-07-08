@@ -3,10 +3,10 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 RELEASE 9.2.15 - July 2022
-  * (PW-989) Changed the heuristic to retrieve sequence B1 from MT300 and MT304 to be more efficient even if the message structure is invalid
   * (PW-976) Added new MonetaryAmountContainer interface for fields having both an Amount and Currency
   * (PW-969) Modified field 12E, 12K and 12R labels
   * (PW-969) Added an optional narrative component to field 12R (required when the field is used in SCORE messages)
+  * (PW-898) Changed the heuristic to retrieve sequence B1 from MT300 and MT304 to be more efficient even if the message structure is invalid
 
 RELEASE 9.2.14 - June 2022
   * (PW-867) Enhanced the parsing of party fields A, B and D, to be more strict when splitting the /D/ or /C/ prefix from the account
