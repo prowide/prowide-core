@@ -39,7 +39,7 @@ import java.io.IOException;
  <div class="scheme"><ul>
 <li class="field">Field 20  (M)</li>
 <li class="field">Field 12  (M)</li>
-<li class="field">Field 77 E (O)</li>
+<li class="field">Field 77 E (M)</li>
 </ul></div>
 
  *
