@@ -3700,7 +3700,6 @@ public class MT300 extends AbstractMT implements Serializable {
 
 
 	/**
-
      * Get the list of SequenceE1a1 delimited by leading tag and end, with an optional tail.
      * The presence of this method indicates that this sequence can occur more than once according to the Standard.
      * If message is empty or no sequences are found <em>an empty list</em> is returned.

@@ -2,7 +2,7 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
-9.3.1 SNAPSHOT
+RELEASE 9.3.1 - July 2022
   * (PW-976) Added new MonetaryAmountContainer interface for fields having both an Amount and Currency
   * (PW-969) Modified field 12E, 12K and 12R labels
   * (PW-969) Added an optional narrative component to field 12R (required when the field is used in SCORE messages)

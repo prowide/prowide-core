@@ -114,7 +114,7 @@ public class Field12E extends Field implements Serializable {
 	 * @see #STATUS
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer EXPIRATION_STYLE = 1;
 
     /**
@@ -358,7 +358,7 @@ public class Field12E extends Field implements Serializable {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getExpirationStyle() {
         return getStatus();
     }
@@ -405,7 +405,7 @@ public class Field12E extends Field implements Serializable {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field12E setExpirationStyle(String component1) {
         return setStatus(component1);
     }

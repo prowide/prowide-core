@@ -351,7 +351,7 @@ public class Field12K extends Field implements Serializable {
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -395,7 +395,7 @@ public class Field12K extends Field implements Serializable {
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -405,7 +405,7 @@ public class Field12K extends Field implements Serializable {
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Long getVersionAsLong() {
         return getNumberAsLong();
     }
@@ -420,7 +420,7 @@ public class Field12K extends Field implements Serializable {
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getVersionAsNumber() {
         return getNumberAsNumber();
     }
@@ -541,7 +541,7 @@ public class Field12K extends Field implements Serializable {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field12K setVersion(java.lang.Long component1) {
         return setNumber(component1);
     }
@@ -556,7 +556,7 @@ public class Field12K extends Field implements Serializable {
      * @see #setNumber(java.lang.Long)
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field12K setVersion(java.lang.Number component1) {
         return setNumber(component1);
     }

@@ -168,7 +168,7 @@ Fieldset 97
 Fieldset 95
  (O) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (M) (repetitive)<ul><li>FieldsetItem 36 B (M) (repetitive)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 36 B,D (M) (repetitive)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="fieldset">
 Fieldset 19
  (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="sequence">
 Sequence C1a1B1a - Status (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
