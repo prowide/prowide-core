@@ -47,13 +47,14 @@ import com.google.gson.JsonParser;
  * <p>Subfields (components) Data types
  * <ol>
  * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>4!c</code></li>
- * 		<li>parser pattern: <code>S</code></li>
- * 		<li>components pattern: <code>S</code></li>
+ * 		<li>validation pattern: <code>4!c[/35x]</code></li>
+ * 		<li>parser pattern: <code>S[/S]</code></li>
+ * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
  * <p>
@@ -82,32 +83,37 @@ public class Field12R extends Field implements Serializable {
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String PARSER_PATTERN = "S";
+	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String COMPONENTS_PATTERN = "S";
+	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String TYPES_PATTERN = "S";
+	public static final String TYPES_PATTERN = "SS";
 
 	/**
 	 * Component number for the Code subfield.
 	 */
 	public static final Integer CODE = 1;
 
+	/**
+	 * Component number for the Narrative subfield.
+	 */
+	public static final Integer NARRATIVE = 2;
+
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field12R() {
-        super(1);
+        super(2);
     }
 
     /**
@@ -179,8 +185,9 @@ public class Field12R extends Field implements Serializable {
      */
     @Override
     public void parse(final String value) {
-        init(1);
-        setComponent1(value);
+        init(2);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
+        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
     }
 
     /**
@@ -190,6 +197,9 @@ public class Field12R extends Field implements Serializable {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
+        if (getComponent2() != null) {
+            result.append("/").append(getComponent2());
+        }
         return result.toString();
     }
 
@@ -204,12 +214,16 @@ public class Field12R extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 12R");
         }
         if (component == 1) {
             //default format (as is)
             return getComponent(1);
+        }
+        if (component == 2) {
+            //default format (as is)
+            return getComponent(2);
         }
         return null;
     }
@@ -221,7 +235,7 @@ public class Field12R extends Field implements Serializable {
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
-        return "S";
+        return "SS";
     }
 
     /**
@@ -233,7 +247,7 @@ public class Field12R extends Field implements Serializable {
      */
     @Override
     public String typesPattern() {
-        return "S";
+        return "SS";
     }
 
     /**
@@ -241,7 +255,7 @@ public class Field12R extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S";
+        return "S[/S]";
     }
 
     /**
@@ -249,7 +263,7 @@ public class Field12R extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "4!c";
+        return "4!c[/35x]";
     }
 
     /**
@@ -264,6 +278,9 @@ public class Field12R extends Field implements Serializable {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 2) {
+            return true;
+        }
         return false;
     }
 
@@ -284,7 +301,7 @@ public class Field12R extends Field implements Serializable {
      */
     @Override
     public int componentsSize() {
-        return 1;
+        return 2;
     }
 
     /**
@@ -298,6 +315,7 @@ public class Field12R extends Field implements Serializable {
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Code");
+        result.add("Narrative");
         return result;
     }
 
@@ -309,6 +327,7 @@ public class Field12R extends Field implements Serializable {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "code");
+        result.put(2, "narrative");
         return result;
     }
 
@@ -330,6 +349,22 @@ public class Field12R extends Field implements Serializable {
     }
 
     /**
+     * Gets the component 2 (Narrative).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
+
+    /**
+     * Gets the Narrative (component 2).
+     * @return the Narrative from component 2
+     */
+    public String getNarrative() {
+        return getComponent2();
+    }
+
+    /**
      * Set the component 1 (Code).
      *
      * @param component1 the Code to set
@@ -348,6 +383,27 @@ public class Field12R extends Field implements Serializable {
      */
     public Field12R setCode(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Narrative).
+     *
+     * @param component2 the Narrative to set
+     * @return the field object to enable build pattern
+     */
+    public Field12R setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the Narrative (component 2).
+     *
+     * @param component2 the Narrative to set
+     * @return the field object to enable build pattern
+     */
+    public Field12R setNarrative(String component2) {
+        return setComponent2(component2);
     }
 
 
@@ -440,6 +496,12 @@ public class Field12R extends Field implements Serializable {
 
         if (jsonObject.get("code") != null) {
             field.setComponent1(jsonObject.get("code").getAsString());
+        }
+
+        // **** COMPONENT 2 - Narrative
+
+        if (jsonObject.get("narrative") != null) {
+            field.setComponent2(jsonObject.get("narrative").getAsString());
         }
 
         return field;

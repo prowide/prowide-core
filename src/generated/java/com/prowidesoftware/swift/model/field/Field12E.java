@@ -99,9 +99,23 @@ public class Field12E extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "S";
 
 	/**
-	 * Component number for the Expiration Style subfield.
+	 * Component number for the Status subfield.
 	 */
-	public static final Integer EXPIRATION_STYLE = 1;
+	public static final Integer STATUS = 1;
+
+	/**
+     * Alternative constant name for field's Status Component number.
+     * @see #STATUS
+     */
+    public static final Integer CODE = 1;
+
+	/**
+	 * Alternative (<em>DEPRECATED</em>) constant name for field's Status Component number.
+	 * @see #STATUS
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public static final Integer EXPIRATION_STYLE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -297,7 +311,7 @@ public class Field12E extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Expiration Style");
+        result.add("Status");
         return result;
     }
 
@@ -308,13 +322,13 @@ public class Field12E extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "expirationStyle");
+        result.put(1, "status");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Expiration Style).
+     * Gets the component 1 (Status).
      * @return the component 1
      */
     public String getComponent1() {
@@ -322,17 +336,37 @@ public class Field12E extends Field implements Serializable {
     }
 
     /**
-     * Gets the Expiration Style (component 1).
-     * @return the Expiration Style from component 1
+     * Gets the Status (component 1).
+     * @return the Status from component 1
      */
-    public String getExpirationStyle() {
+    public String getStatus() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Expiration Style).
+     * Alternative method getter for field's Status
+     * @see #getStatus()
+     * @since 9.2.7
+     */
+    public String getCode() {
+        return getStatus();
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method getter for field's Status
+     * @see #getStatus()
+     * @since 9.2.7
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public String getExpirationStyle() {
+        return getStatus();
+    }
+
+    /**
+     * Set the component 1 (Status).
      *
-     * @param component1 the Expiration Style to set
+     * @param component1 the Status to set
      * @return the field object to enable build pattern
      */
     public Field12E setComponent1(String component1) {
@@ -341,13 +375,39 @@ public class Field12E extends Field implements Serializable {
     }
 
     /**
-     * Set the Expiration Style (component 1).
+     * Set the Status (component 1).
      *
-     * @param component1 the Expiration Style to set
+     * @param component1 the Status to set
      * @return the field object to enable build pattern
      */
-    public Field12E setExpirationStyle(String component1) {
+    public Field12E setStatus(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Alternative method setter for field's Status
+     *
+     * @see #setStatus(String)
+     *
+     * @param component1 the Status to set
+     * @return the field object to enable build pattern
+     */
+    public Field12E setCode(String component1) {
+        return setStatus(component1);
+    }
+
+    /**
+     * Alternative <em>DEPRECATED</em> method setter for field's Status
+     *
+     * @see #setStatus(String)
+     *
+     * @param component1 the Status to set
+     * @return the field object to enable build pattern
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    public Field12E setExpirationStyle(String component1) {
+        return setStatus(component1);
     }
 
 
@@ -436,10 +496,19 @@ public class Field12E extends Field implements Serializable {
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Expiration Style
+        // **** COMPONENT 1 - Status
 
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("code") != null) {
+            field.setComponent1(jsonObject.get("code").getAsString());
+        }
         if (jsonObject.get("expirationStyle") != null) {
             field.setComponent1(jsonObject.get("expirationStyle").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("status") != null) {
+            field.setComponent1(jsonObject.get("status").getAsString());
         }
 
         return field;
