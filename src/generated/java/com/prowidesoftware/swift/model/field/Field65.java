@@ -71,7 +71,7 @@ import com.google.gson.JsonParser;
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field65 extends Field implements Serializable, DateContainer, AmountContainer {
+public class Field65 extends Field implements Serializable, AmountContainer, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -709,24 +709,6 @@ public class Field65 extends Field implements Serializable, DateContainer, Amoun
 
 
     /**
-     * Returns all components that can be converted to a Calendar
-     *
-     * @return the list of converted components (a Calendar object or null)
-     */
-    public List<Calendar> dates() {
-        return DateResolver.dates(this);
-    }
-
-    /**
-     * Returns the first component that can be converted to a Calendar
-     *
-     * @return the converted components (a Calendar object or null)
-     */
-    public Calendar date() {
-        return DateResolver.date(this);
-    }
-
-    /**
      * Returns the list of all NON-NULL amounts as BigDecimal
      *
      * @return the list of NON-NULL amounts as BigDecimal values
@@ -744,6 +726,24 @@ public class Field65 extends Field implements Serializable, DateContainer, Amoun
      */
     public BigDecimal amount() {
         return AmountResolver.amount(this);
+    }
+
+    /**
+     * Returns all components that can be converted to a Calendar
+     *
+     * @return the list of converted components (a Calendar object or null)
+     */
+    public List<Calendar> dates() {
+        return DateResolver.dates(this);
+    }
+
+    /**
+     * Returns the first component that can be converted to a Calendar
+     *
+     * @return the converted components (a Calendar object or null)
+     */
+    public Calendar date() {
+        return DateResolver.date(this);
     }
 
 
