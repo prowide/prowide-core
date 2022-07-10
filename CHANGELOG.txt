@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+9.2.16 SNAPSHOT
+  * (PW-977) Changed MT210 inner structure from sequence to inner loop
+
 RELEASE 9.2.15 - July 2022
   * (PW-976) Added new MonetaryAmountContainer interface for fields having both an Amount and Currency
   * (PW-969) Modified field 12E, 12K and 12R labels
