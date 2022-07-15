@@ -143,7 +143,7 @@ public class MT565 extends AbstractMT implements Serializable {
 	 */
 	public static final int SRU = 2021;
 	private static final long serialVersionUID = 1L;
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT565.class.getName());
+	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT565.class.getName());
 	
 	/**
 	 * Constant for MT name, this is part of the classname, after MT.
@@ -1235,7 +1235,7 @@ public class MT565 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1352,7 +1352,7 @@ public class MT565 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA1() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1480,7 +1480,7 @@ public class MT565 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1597,7 +1597,7 @@ public class MT565 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB1() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1725,7 +1725,7 @@ public class MT565 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB2() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1842,7 +1842,7 @@ public class MT565 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1970,7 +1970,7 @@ public class MT565 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceD() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -2087,7 +2087,7 @@ public class MT565 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceE() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
