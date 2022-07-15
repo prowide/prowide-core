@@ -109,7 +109,7 @@ public class MT530 extends AbstractMT implements Serializable {
 	 */
 	public static final int SRU = 2022;
 	private static final long serialVersionUID = 1L;
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT530.class.getName());
+	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT530.class.getName());
 	
 	/**
 	 * Constant for MT name, this is part of the classname, after MT.
@@ -927,7 +927,7 @@ public class MT530 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1044,7 +1044,7 @@ public class MT530 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1172,7 +1172,7 @@ public class MT530 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB1() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1300,7 +1300,7 @@ public class MT530 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1428,7 +1428,7 @@ public class MT530 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC1() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1556,7 +1556,7 @@ public class MT530 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC1a() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**

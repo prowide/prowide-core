@@ -3,7 +3,8 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 9.3.2 SNAPSHOT
-  * (PW-977) Changed MT210 inner structure from sequence to inner loop
+  * (PW-977) Changed the MT203 and MT210 inner structure from regular sequence to inner loop named Loop1
+  * Added Loop1 getter API to MTs: 110, 201, 203, 210, 410, 412, 420, 422, 450, 456, 604, 605, 801, 920, 973
 
 RELEASE 9.3.1 - July 2022
   * (PW-976) Added new MonetaryAmountContainer interface for fields having both an Amount and Currency

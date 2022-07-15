@@ -21,10 +21,13 @@ import com.prowidesoftware.Generated;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.internal.*;
+import com.prowidesoftware.swift.internal.SequenceStyle.Type;
 import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.utils.Lib;
@@ -41,7 +44,7 @@ import java.io.IOException;
  <div class="scheme"><ul>
 <li class="field">Field 20  (M)</li>
 <li class="sequence">
-Sequence _A (M) (repetitive)<ul><li class="field">Field 12  (M)</li>
+Sequence Loop1 (M) (repetitive)<ul><li class="field">Field 12  (M)</li>
 <li class="field">Field 25  (M)</li>
 <li class="field">Field 34 F (O)</li>
 <li class="field">Field 34 F (O)</li>
@@ -61,7 +64,7 @@ public class MT920 extends AbstractMT implements Serializable {
 	 */
 	public static final int SRU = 2022;
 	private static final long serialVersionUID = 1L;
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT920.class.getName());
+	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT920.class.getName());
 	
 	/**
 	 * Constant for MT name, this is part of the classname, after MT.
@@ -371,6 +374,116 @@ public class MT920 extends AbstractMT implements Serializable {
 		return result;
 	}
 	
+
+	/**
+	 * Class to model Sequence "Loop1" in MT 920.
+	 */
+	public static class Loop1 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence.
+		 */
+	    private Loop1() {
+			super(new ArrayList<>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private Loop1(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * First mandatory tag name of the sequence: <em>"12"  </em>.
+		 * Array format is for cases when more than one letter options is allowed
+		 */
+		public static final String[] START = { "12"   } ;
+
+		/**
+		 * Last mandatory tag name of the sequence: <em>"25"  </em>
+		 * Array format is for cases when more than one letter options is allowed
+		 */
+		protected static final String[] END = { "25"   };
+
+		/**
+		 * List of optional tags after the last mandatory tag.
+		 */
+		protected static final String[] TAIL = new String[]{ "34F", "34F"   };
+
+		/**
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
+		 * @param tags the list of tags to set as sequence content
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+		public static Loop1 newInstance(final Tag... tags) {
+			return newInstance(0, 0, tags);
+		}
+
+		/**
+		 * Creates a sequence with starting and ending tags set to the indicated tags in from the
+		 * {@link #START} and {@link #END} lists of mandatory fields, and with the content between
+		 * the starting and ending tag initialized with the given optional tags.
+		 *
+		 * @param start a zero-based index within the list of mandatory starting tags in the sequence
+		 * @param end a zero-based index within the list of mandatory ending tags in the sequence
+		 * @param tags the list of tags to set as sequence content
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+		public static Loop1 newInstance(final int start, final int end, final Tag... tags) {
+			final Loop1 result = new Loop1();
+			result.append(new Tag(START[start], ""));
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(new Tag(END[end], ""));
+			return result;
+		}
+	}
+	/**
+	 * Get the list of Loop1 delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
+	 *
+	 * @return the found sequences or an empty list if none is found
+	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
+	 */
+	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+	public List<Loop1> getLoop1List() {
+		return getLoop1List(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	
+	/**
+	 * Get the list of Loop1 delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
+	 *
+	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
+	 * @param parentSequence a not null parent sequence to find Loop1 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+	public static List<Loop1> getLoop1List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocksDelimitedWithOptionalTail(Loop1.START, Loop1.END, Loop1.TAIL);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<Loop1> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    result.add(new Loop1(b));
+                }
+                return result;
+            }
+        }
+        return Collections.emptyList();
+	}
+ 
 
 
 

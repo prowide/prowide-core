@@ -61,7 +61,7 @@ public class MT730 extends AbstractMT implements Serializable {
 	 */
 	public static final int SRU = 2022;
 	private static final long serialVersionUID = 1L;
-	private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT730.class.getName());
+	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT730.class.getName());
 	
 	/**
 	 * Constant for MT name, this is part of the classname, after MT.
