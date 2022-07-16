@@ -581,7 +581,7 @@ public class MT204 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -696,7 +696,7 @@ public class MT204 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**

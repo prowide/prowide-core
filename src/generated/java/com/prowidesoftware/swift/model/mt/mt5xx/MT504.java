@@ -964,7 +964,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -1081,7 +1081,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA1() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -1209,7 +1209,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA2() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -1337,7 +1337,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -1454,7 +1454,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB1() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -1571,7 +1571,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -1699,7 +1699,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC1() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -1827,7 +1827,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC1a() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -1955,7 +1955,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC1a1() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -2083,7 +2083,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC2() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -2211,7 +2211,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC2a() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -2339,7 +2339,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC2a1() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -2467,7 +2467,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC3() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -2595,7 +2595,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceD() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -2712,7 +2712,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceD1() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -2840,7 +2840,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceE() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -2957,7 +2957,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceE1() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -3085,7 +3085,7 @@ public class MT504 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceF() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**

@@ -913,7 +913,7 @@ public class MT516 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**

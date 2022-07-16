@@ -696,7 +696,7 @@ public class MT110 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private Loop1() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**

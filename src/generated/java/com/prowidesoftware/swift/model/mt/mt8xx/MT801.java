@@ -530,7 +530,7 @@ public class MT801 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private Loop1() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
@@ -640,7 +640,7 @@ public class MT801 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private Loop2() {
-			super(new ArrayList<>());
+			super(new ArrayList<Tag>());
 		}
 
 		/**
