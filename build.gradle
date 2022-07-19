@@ -6,15 +6,18 @@ buildscript {
     dependencies {
         classpath 'ru.vyarus:gradle-quality-plugin:4.7.0'
         classpath 'pl.allegro.tech.build:axion-release-plugin:1.13.6'
+        classpath 'io.github.gradle-nexus:publish-plugin:1.1.0'
     }
 }
 apply plugin: 'pl.allegro.tech.build.axion-release'
 apply plugin: 'java-library-distribution'
 apply plugin: 'maven-publish'
+apply plugin: 'signing'
 apply plugin: 'jacoco'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'ru.vyarus.quality'
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
 
 archivesBaseName = 'pw-swift-core'
 group 'com.prowidesoftware'
@@ -36,9 +39,11 @@ java {
         languageVersion.set(JavaLanguageVersion.of(8))
     }
 }
-
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+    doFirst {
+        println 'Compiling with ' + getJavaCompiler().get().getMetadata().getInstallationPath()
+    }
 }
 
 repositories {
@@ -108,6 +113,19 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    required { project.hasProperty('SONATYPE_RELEASE') }
+    sign configurations.archives
+}
+
+project.ext {
+    nexusRepo = project.version.endsWith('-SNAPSHOT') ? 'maven-snapshots' : 'maven-releases'
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -156,31 +174,53 @@ publishing {
         }
     }
 
-    if (project.version.endsWith('-SNAPSHOT')) {
-        if (project.hasProperty('prowideRepo')) {
-            repositories {
-                maven {
-                    url "${project.prowideRepo}/repository/maven-snapshots/"
-                    credentials {
-                        username "${project.prowideRepoUser}"
-                        password "${project.prowideRepoPass}"
-                    }
+    // Prowide repo releases
+    if (project.hasProperty('prowideRepo')) {
+        repositories {
+            maven {
+                url "${project.prowideRepo}/repository/${nexusRepo}/"
+                credentials {
+                    username "${project.prowideRepoUser}"
+                    password "${project.prowideRepoPass}"
                 }
             }
-        } else {
-            project.logger.info('Snapshot publishing disabled because repository properties are undefined')
         }
     } else {
-        project.logger.info("Current version is a release ${project.version} thus it must be manually published to OSS sonatype as bundle")
+        project.logger.info('Prowide publishing disabled because repository properties are undefined')
     }
 }
 jar.finalizedBy generatePomFileForMavenJavaPublication
 
-// to avoid metadata in the generated pom.xml files
 tasks.withType(GenerateModuleMetadata) {
+    // to avoid metadata in the generated pom.xml files
     enabled = false
 }
 
+// Sonatype OSS releases
+nexusPublishing {
+    repositories {
+        sonatype()
+    }
+}
+
+task bundle(type: Jar, dependsOn: build) {
+    onlyIf {
+        project.hasProperty('SONATYPE_RELEASE')
+    }
+    description 'Creates the bundle.jar for Maven Central distribution'
+    from jar
+    from sourcesJar
+    from javadocJar
+    from ("$buildDir/publications/mavenJava/pom-default.xml") {
+        rename ".*", "pom.xml"
+    }
+    from ("$buildDir/libs") {
+        include '*.asc'
+    }
+    archiveName 'bundle.jar'
+}
+
+// Zip GitHub releases
 distributions {
     main {
         contents {
@@ -203,6 +243,24 @@ distTar.enabled = false
 distZip {
     dependsOn generatePomFileForMavenJavaPublication
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(Test) {
+    doFirst {
+        println 'Running test on ' + getJavaLauncher().get().getMetadata().getInstallationPath()
+    }
+}
+
+task('testOn11', type: Test) {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+task('testOn17', type: Test) {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 jacocoTestReport {
@@ -233,40 +291,6 @@ jacocoTestReport {
 }
 
 test.finalizedBy jacocoTestReport
-
-task bundle(type: Zip, dependsOn: build) {
-    description 'Creates the bundle.jar for Maven Central distribution'
-    from jar
-    from sourcesJar
-    from javadocJar
-    from ("$buildDir/publications/mavenJava/pom-default.xml") {
-        rename ".*", "pom.xml"
-    }
-    archiveName 'bundle.zip'
-}
-
-tasks.withType(JavaCompile) {
-    doFirst {
-        println 'Compiling with ' + getJavaCompiler().get().getMetadata().getInstallationPath()
-    }
-}
-tasks.withType(Test) {
-    doFirst {
-        println 'Running test on ' + getJavaLauncher().get().getMetadata().getInstallationPath()
-    }
-}
-
-task('testOn11', type: Test) {
-    javaLauncher = javaToolchains.launcherFor {
-        languageVersion = JavaLanguageVersion.of(11)
-    }
-}
-
-task('testOn17', type: Test) {
-    javaLauncher = javaToolchains.launcherFor {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
 
 quality {
     strict = false
