@@ -117,11 +117,6 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
-signing {
-    required { project.hasProperty('SONATYPE_RELEASE') }
-    sign configurations.archives
-}
-
 project.ext {
     nexusRepo = project.version.endsWith('-SNAPSHOT') ? 'maven-snapshots' : 'maven-releases'
 }
@@ -196,13 +191,22 @@ tasks.withType(GenerateModuleMetadata) {
     enabled = false
 }
 
-// Sonatype OSS releases
+// OSS Sonatype releases
+signing {
+    required { project.hasProperty('SONATYPE_RELEASE') }
+    sign publishing.publications.mavenJava
+}
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
 nexusPublishing {
     repositories {
         sonatype()
     }
 }
 
+// Alternative (manual) staging upload to OSS Sonatype
 task bundle(type: Jar, dependsOn: build) {
     onlyIf {
         project.hasProperty('SONATYPE_RELEASE')
@@ -213,6 +217,9 @@ task bundle(type: Jar, dependsOn: build) {
     from javadocJar
     from ("$buildDir/publications/mavenJava/pom-default.xml") {
         rename ".*", "pom.xml"
+    }
+    from ("$buildDir/publications/mavenJava/pom-default.xml.asc") {
+        rename ".*", "pom.xml.asc"
     }
     from ("$buildDir/libs") {
         include '*.asc'
