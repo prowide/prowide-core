@@ -2,7 +2,7 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
-9.3.2 SNAPSHOT
+RELEASE 9.3.2 - July 2022
   * (PW-977) Changed the MT203 and MT210 inner structure from regular sequence to inner loop named Loop1
   * Added Loop1 getter API to MTs: 110, 201, 203, 210, 410, 412, 420, 422, 450, 456, 604, 605, 801, 920, 973
 
