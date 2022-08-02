@@ -58,6 +58,7 @@ dependencies {
     compileOnly 'javax.persistence:javax.persistence-api:2.2'
     compileOnly 'javax.xml.bind:jaxb-api:2.3.1'
     compileOnly 'javax.validation:validation-api:2.0.1.Final'
+
     testImplementation 'javax.persistence:javax.persistence-api:2.2'
     testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.22.0'
@@ -70,21 +71,22 @@ sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']
 
 tasks.withType(Jar) {
     manifest.attributes(
-            'Specification-Title': 'Prowide Core',
-            'Specification-Version': project.version,
-            'Specification-Vendor': "SRU${SRU}",
-            'Implementation-Title': 'Prowide Core',
-            'Implementation-Version': project.version,
-            'Implementation-Vendor': 'www.prowidesoftware.com',
-            'Built-OS': System.getProperty('os.name'),
-            'Source-Compatibility': project.sourceCompatibility,
-            'Target-Compatibility': project.targetCompatibility,
-            'Built-Date': new Date().format("yyyy-MM-dd"),
-            'Automatic-Module-Name': 'com.prowidesoftware.core'
+        'Specification-Title': 'Prowide Core',
+        'Specification-Version': project.version,
+        'Specification-Vendor': "${SRU}",
+        'Implementation-Title': 'Prowide Core',
+        'Implementation-Version': project.version,
+        'Implementation-Vendor': 'www.prowidesoftware.com',
+        'Built-OS': System.getProperty('os.name'),
+        'Source-Compatibility': project.sourceCompatibility,
+        'Target-Compatibility': project.targetCompatibility,
+        'Built-Date': new Date().format("yyyy-MM-dd"),
+        'Automatic-Module-Name': 'com.prowidesoftware.core'
     )
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
+tasks.register('sourcesJar', Jar) {
+    dependsOn classes
     archiveClassifier = 'sources'
     from sourceSets.main.allSource
 }
@@ -98,7 +100,7 @@ javadoc {
     options.overview = "overview.html"
     options.header = "${version}"
     options.windowTitle = "Prowide Core API Reference"
-    options.footer="SRU${SRU}, generated ${formattedDate()}"
+    options.footer="${SRU}, generated ${formattedDate()}"
 
     // this will fail when the option is not available (older JDK)
     options.addBooleanOption("-allow-script-in-comments", true)
@@ -109,7 +111,8 @@ javadoc {
     options.addStringOption('Xdoclint:none', '-quiet')
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
+tasks.register('javadocJar', Jar) {
+    dependsOn javadoc
     archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
@@ -207,27 +210,6 @@ nexusPublishing {
     }
 }
 
-// Alternative (manual) staging upload to OSS Sonatype
-task bundle(type: Jar, dependsOn: build) {
-    onlyIf {
-        project.hasProperty('SONATYPE_RELEASE')
-    }
-    description 'Creates the bundle.jar for Maven Central distribution'
-    from jar
-    from sourcesJar
-    from javadocJar
-    from ("$buildDir/publications/mavenJava/pom-default.xml") {
-        rename ".*", "pom.xml"
-    }
-    from ("$buildDir/publications/mavenJava/pom-default.xml.asc") {
-        rename ".*", "pom.xml.asc"
-    }
-    from ("$buildDir/libs") {
-        include '*.asc'
-    }
-    archiveName 'bundle.jar'
-}
-
 // Zip GitHub releases
 distributions {
     main {
@@ -251,6 +233,28 @@ distTar.enabled = false
 distZip {
     dependsOn generatePomFileForMavenJavaPublication
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+// Alternative (manual) staging upload to OSS Sonatype
+tasks.register('bundle', Jar) {
+    dependsOn build
+    onlyIf {
+        project.hasProperty('SONATYPE_RELEASE')
+    }
+    description 'Creates the bundle.jar for Maven Central distribution'
+    from jar
+    from sourcesJar
+    from javadocJar
+    from ("$buildDir/publications/mavenJava/pom-default.xml") {
+        rename ".*", "pom.xml"
+    }
+    from ("$buildDir/publications/mavenJava/pom-default.xml.asc") {
+        rename ".*", "pom.xml.asc"
+    }
+    from ("$buildDir/libs") {
+        include '*.asc'
+    }
+    archiveName 'bundle.jar'
 }
 
 tasks.withType(Test) {
