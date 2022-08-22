@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+RELEASE 9.3.3 - August 2022
+  * (PW-1015) Added field model classes for 47E, 49D and 49F (required in SCORE MT798_774)
+
 RELEASE 9.3.2 - July 2022
   * (PW-977) Changed the MT203 and MT210 inner structure from regular sequence to inner loop named Loop1
   * Added Loop1 getter API to MTs: 110, 201, 203, 210, 410, 412, 420, 422, 450, 456, 604, 605, 801, 920, 973
