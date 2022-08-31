@@ -2,6 +2,9 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
+RELEASE 9.2.18-SNAPSHOT
+  * Added getCADETL method for "CADETL" separator sequences
+
 RELEASE 9.2.17 - August 2022
   * (PW-1015) Added field model classes for 47E, 49D and 49F (required in SCORE MT798_774)
 
