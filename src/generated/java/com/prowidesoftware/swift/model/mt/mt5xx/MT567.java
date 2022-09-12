@@ -1542,6 +1542,18 @@ public class MT567 extends AbstractMT implements Serializable {
 		}
 		return s;
 	}
+    /**
+	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @see SequenceB#getSequenceB(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceB within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static SequenceB getCADETL(SwiftTagListBlock parentSequence) {
+		return getSequenceB(parentSequence);
+	}
  
 
 	/**

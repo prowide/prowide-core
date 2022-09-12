@@ -2329,6 +2329,18 @@ public class MT566 extends AbstractMT implements Serializable {
 		}
 		return s;
 	}
+    /**
+	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @see SequenceC#getSequenceC(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceC within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static SequenceC getCADETL(SwiftTagListBlock parentSequence) {
+		return getSequenceC(parentSequence);
+	}
  
 
 	/**
