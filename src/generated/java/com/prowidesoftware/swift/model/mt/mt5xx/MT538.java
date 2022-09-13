@@ -1172,6 +1172,16 @@ public class MT538 extends AbstractMT implements Serializable {
 	public SequenceA getSequenceA() {
 		return new SequenceA(super.getSwiftMessageNotNullOrException());
 	}
+
+    /**
+     * Same as getSequenceA using the sequence delimiter field qualifier
+     * @see SequenceA#getSequenceA()
+     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+     * @since 9.2.18
+     */
+    public SequenceA getSequenceGENL() {
+        return getSequenceA();
+    }
 	
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
@@ -1188,6 +1198,17 @@ public class MT538 extends AbstractMT implements Serializable {
 		    s.setTags(parentSequence.getSubBlock(SequenceA.START_END_16RS).getTags());
 		}
 		return s;
+	}
+
+    /**
+	 * Same as getSequenceA using the sequence delimiter field qualifier
+	 * @see SequenceA#getSequenceA(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceA within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2.18
+	 */
+	public static SequenceA getSequenceGENL(SwiftTagListBlock parentSequence) {
+		return getSequenceA(parentSequence);
 	}
  
 
@@ -1308,6 +1329,7 @@ public class MT538 extends AbstractMT implements Serializable {
 		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT538GetSequenceA1List_sru2021(this);
 	}
 
+
 	/**
 	 * Get the list of SequenceA1 delimited by 16R/16S with value specified in {@link SequenceA1#START_END_16RS}.
 	 *
@@ -1338,6 +1360,7 @@ public class MT538 extends AbstractMT implements Serializable {
 		}
 		return Collections.emptyList();
 	}
+
  
 
 	/**
@@ -1441,6 +1464,16 @@ public class MT538 extends AbstractMT implements Serializable {
 		return getSequenceBList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
+    /**
+     * Same as getSequenceBList using the sequence delimiter field qualifier
+     * @see SequenceB#getSequenceBList()
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public List<SequenceB> getSequenceListFIN() {
+        return getSequenceBList();
+     }
+
 	/**
 	 * Get the list of SequenceB delimited by 16R/16S with value specified in {@link SequenceB#START_END_16RS}.
 	 *
@@ -1466,6 +1499,17 @@ public class MT538 extends AbstractMT implements Serializable {
 		}
 		return Collections.emptyList();
 	}
+
+    /**
+     * Same as getSequenceBList using the sequence delimiter field qualifier
+     * @see SequenceB#getSequenceBList(SwiftTagListBlock)
+     * @param parentSequence a not null parent sequence to find SequenceB within it
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public static List<SequenceB> getSequenceListFIN(final SwiftTagListBlock parentSequence) {
+        return getSequenceBList(parentSequence);
+    }
  
 
 	/**
@@ -1569,6 +1613,16 @@ public class MT538 extends AbstractMT implements Serializable {
 		return getSequenceB1List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
+    /**
+     * Same as getSequenceB1List using the sequence delimiter field qualifier
+     * @see SequenceB1#getSequenceB1List()
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public List<SequenceB1> getSequenceListFIA() {
+        return getSequenceB1List();
+     }
+
 	/**
 	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}.
 	 *
@@ -1594,6 +1648,17 @@ public class MT538 extends AbstractMT implements Serializable {
 		}
 		return Collections.emptyList();
 	}
+
+    /**
+     * Same as getSequenceB1List using the sequence delimiter field qualifier
+     * @see SequenceB1#getSequenceB1List(SwiftTagListBlock)
+     * @param parentSequence a not null parent sequence to find SequenceB1 within it
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public static List<SequenceB1> getSequenceListFIA(final SwiftTagListBlock parentSequence) {
+        return getSequenceB1List(parentSequence);
+    }
  
 
 	/**
@@ -1697,6 +1762,16 @@ public class MT538 extends AbstractMT implements Serializable {
 		return getSequenceB2List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
+    /**
+     * Same as getSequenceB2List using the sequence delimiter field qualifier
+     * @see SequenceB2#getSequenceB2List()
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public List<SequenceB2> getSequenceListSUBBAL() {
+        return getSequenceB2List();
+     }
+
 	/**
 	 * Get the list of SequenceB2 delimited by 16R/16S with value specified in {@link SequenceB2#START_END_16RS}.
 	 *
@@ -1722,6 +1797,17 @@ public class MT538 extends AbstractMT implements Serializable {
 		}
 		return Collections.emptyList();
 	}
+
+    /**
+     * Same as getSequenceB2List using the sequence delimiter field qualifier
+     * @see SequenceB2#getSequenceB2List(SwiftTagListBlock)
+     * @param parentSequence a not null parent sequence to find SequenceB2 within it
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public static List<SequenceB2> getSequenceListSUBBAL(final SwiftTagListBlock parentSequence) {
+        return getSequenceB2List(parentSequence);
+    }
  
 
 	/**
@@ -1825,6 +1911,16 @@ public class MT538 extends AbstractMT implements Serializable {
 		return getSequenceB2aList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
+    /**
+     * Same as getSequenceB2aList using the sequence delimiter field qualifier
+     * @see SequenceB2a#getSequenceB2aList()
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public List<SequenceB2a> getSequenceListINPOS() {
+        return getSequenceB2aList();
+     }
+
 	/**
 	 * Get the list of SequenceB2a delimited by 16R/16S with value specified in {@link SequenceB2a#START_END_16RS}.
 	 *
@@ -1850,6 +1946,17 @@ public class MT538 extends AbstractMT implements Serializable {
 		}
 		return Collections.emptyList();
 	}
+
+    /**
+     * Same as getSequenceB2aList using the sequence delimiter field qualifier
+     * @see SequenceB2a#getSequenceB2aList(SwiftTagListBlock)
+     * @param parentSequence a not null parent sequence to find SequenceB2a within it
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public static List<SequenceB2a> getSequenceListINPOS(final SwiftTagListBlock parentSequence) {
+        return getSequenceB2aList(parentSequence);
+    }
  
 
 	/**
@@ -1969,6 +2076,7 @@ public class MT538 extends AbstractMT implements Serializable {
 		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT538GetSequenceB2a1List_sru2021(this);
 	}
 
+
 	/**
 	 * Get the list of SequenceB2a1 delimited by 16R/16S with value specified in {@link SequenceB2a1#START_END_16RS}.
 	 *
@@ -1999,6 +2107,7 @@ public class MT538 extends AbstractMT implements Serializable {
 		}
 		return Collections.emptyList();
 	}
+
  
 
 	/**
@@ -2102,6 +2211,16 @@ public class MT538 extends AbstractMT implements Serializable {
 		return getSequenceCList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
+    /**
+     * Same as getSequenceCList using the sequence delimiter field qualifier
+     * @see SequenceC#getSequenceCList()
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public List<SequenceC> getSequenceListADDINFO() {
+        return getSequenceCList();
+     }
+
 	/**
 	 * Get the list of SequenceC delimited by 16R/16S with value specified in {@link SequenceC#START_END_16RS}.
 	 *
@@ -2127,6 +2246,17 @@ public class MT538 extends AbstractMT implements Serializable {
 		}
 		return Collections.emptyList();
 	}
+
+    /**
+     * Same as getSequenceCList using the sequence delimiter field qualifier
+     * @see SequenceC#getSequenceCList(SwiftTagListBlock)
+     * @param parentSequence a not null parent sequence to find SequenceC within it
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public static List<SequenceC> getSequenceListADDINFO(final SwiftTagListBlock parentSequence) {
+        return getSequenceCList(parentSequence);
+    }
  
 
 
