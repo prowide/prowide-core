@@ -859,7 +859,7 @@ public class MT671 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceA1> getSequenceListLINK() {
+     public List<SequenceA1> getSequenceLINKList() {
         return getSequenceA1List();
      }
 
@@ -896,7 +896,7 @@ public class MT671 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceA1> getSequenceListLINK(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceA1> getSequenceLINKList(final SwiftTagListBlock parentSequence) {
         return getSequenceA1List(parentSequence);
     }
  
@@ -1008,7 +1008,7 @@ public class MT671 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceB> getSequenceListSSIDET() {
+     public List<SequenceB> getSequenceSSIDETList() {
         return getSequenceBList();
      }
 
@@ -1045,7 +1045,7 @@ public class MT671 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceB> getSequenceListSSIDET(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceB> getSequenceSSIDETList(final SwiftTagListBlock parentSequence) {
         return getSequenceBList(parentSequence);
     }
  
@@ -1157,7 +1157,7 @@ public class MT671 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceB1> getSequenceListCSHPRTY() {
+     public List<SequenceB1> getSequenceCSHPRTYList() {
         return getSequenceB1List();
      }
 
@@ -1194,7 +1194,7 @@ public class MT671 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceB1> getSequenceListCSHPRTY(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceB1> getSequenceCSHPRTYList(final SwiftTagListBlock parentSequence) {
         return getSequenceB1List(parentSequence);
     }
  

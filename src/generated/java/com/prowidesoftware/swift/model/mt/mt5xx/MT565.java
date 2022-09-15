@@ -1469,7 +1469,7 @@ public class MT565 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceA1> getSequenceListLINK() {
+     public List<SequenceA1> getSequenceLINKList() {
         return getSequenceA1List();
      }
 
@@ -1506,7 +1506,7 @@ public class MT565 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceA1> getSequenceListLINK(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceA1> getSequenceLINKList(final SwiftTagListBlock parentSequence) {
         return getSequenceA1List(parentSequence);
     }
  
@@ -1756,7 +1756,7 @@ public class MT565 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceB1> getSequenceListFIA() {
+     public List<SequenceB1> getSequenceFIAList() {
         return getSequenceB1List();
      }
 
@@ -1793,7 +1793,7 @@ public class MT565 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceB1> getSequenceListFIA(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceB1> getSequenceFIAList(final SwiftTagListBlock parentSequence) {
         return getSequenceB1List(parentSequence);
     }
  
@@ -2043,7 +2043,7 @@ public class MT565 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceC> getSequenceListBENODET() {
+     public List<SequenceC> getSequenceBENODETList() {
         return getSequenceCList();
      }
 
@@ -2080,7 +2080,7 @@ public class MT565 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceC> getSequenceListBENODET(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceC> getSequenceBENODETList(final SwiftTagListBlock parentSequence) {
         return getSequenceCList(parentSequence);
     }
  

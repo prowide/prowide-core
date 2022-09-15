@@ -2723,7 +2723,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceC> getSequenceListTRANS() {
+     public List<SequenceC> getSequenceTRANSList() {
         return getSequenceCList();
      }
 
@@ -2760,7 +2760,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceC> getSequenceListTRANS(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceC> getSequenceTRANSList(final SwiftTagListBlock parentSequence) {
         return getSequenceCList(parentSequence);
     }
  
@@ -3627,7 +3627,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceD> getSequenceListPENA() {
+     public List<SequenceD> getSequencePENAList() {
         return getSequenceDList();
      }
 
@@ -3664,7 +3664,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceD> getSequenceListPENA(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceD> getSequencePENAList(final SwiftTagListBlock parentSequence) {
         return getSequenceDList(parentSequence);
     }
  
@@ -3776,7 +3776,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceD1> getSequenceListPENACUR() {
+     public List<SequenceD1> getSequencePENACURList() {
         return getSequenceD1List();
      }
 
@@ -3813,7 +3813,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceD1> getSequenceListPENACUR(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceD1> getSequencePENACURList(final SwiftTagListBlock parentSequence) {
         return getSequenceD1List(parentSequence);
     }
  
@@ -3925,7 +3925,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceD1a> getSequenceListPENACOUNT() {
+     public List<SequenceD1a> getSequencePENACOUNTList() {
         return getSequenceD1aList();
      }
 
@@ -3962,7 +3962,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceD1a> getSequenceListPENACOUNT(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceD1a> getSequencePENACOUNTList(final SwiftTagListBlock parentSequence) {
         return getSequenceD1aList(parentSequence);
     }
  
@@ -4074,7 +4074,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceD1a1> getSequenceListPENDET() {
+     public List<SequenceD1a1> getSequencePENDETList() {
         return getSequenceD1a1List();
      }
 
@@ -4111,7 +4111,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceD1a1> getSequenceListPENDET(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceD1a1> getSequencePENDETList(final SwiftTagListBlock parentSequence) {
         return getSequenceD1a1List(parentSequence);
     }
  
@@ -4223,7 +4223,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceD1a1A> getSequenceListCALDET() {
+     public List<SequenceD1a1A> getSequenceCALDETList() {
         return getSequenceD1a1AList();
      }
 
@@ -4260,7 +4260,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceD1a1A> getSequenceListCALDET(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceD1a1A> getSequenceCALDETList(final SwiftTagListBlock parentSequence) {
         return getSequenceD1a1AList(parentSequence);
     }
  
@@ -4372,7 +4372,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceD1a1A1> getSequenceListFIA() {
+     public List<SequenceD1a1A1> getSequenceFIAList() {
         return getSequenceD1a1A1List();
      }
 
@@ -4409,7 +4409,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceD1a1A1> getSequenceListFIA(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceD1a1A1> getSequenceFIAList(final SwiftTagListBlock parentSequence) {
         return getSequenceD1a1A1List(parentSequence);
     }
  
@@ -4521,7 +4521,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceD1a1B> getSequenceListRELTRAN() {
+     public List<SequenceD1a1B> getSequenceRELTRANList() {
         return getSequenceD1a1BList();
      }
 
@@ -4558,7 +4558,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceD1a1B> getSequenceListRELTRAN(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceD1a1B> getSequenceRELTRANList(final SwiftTagListBlock parentSequence) {
         return getSequenceD1a1BList(parentSequence);
     }
  
@@ -5123,7 +5123,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceE> getSequenceListADDINFO() {
+     public List<SequenceE> getSequenceADDINFOList() {
         return getSequenceEList();
      }
 
@@ -5160,7 +5160,7 @@ public class MT537 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceE> getSequenceListADDINFO(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceE> getSequenceADDINFOList(final SwiftTagListBlock parentSequence) {
         return getSequenceEList(parentSequence);
     }
  

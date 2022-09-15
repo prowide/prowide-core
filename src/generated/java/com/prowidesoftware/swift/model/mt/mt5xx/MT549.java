@@ -980,7 +980,7 @@ public class MT549 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceA1> getSequenceListLINK() {
+     public List<SequenceA1> getSequenceLINKList() {
         return getSequenceA1List();
      }
 
@@ -1017,7 +1017,7 @@ public class MT549 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceA1> getSequenceListLINK(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceA1> getSequenceLINKList(final SwiftTagListBlock parentSequence) {
         return getSequenceA1List(parentSequence);
     }
  
@@ -1129,7 +1129,7 @@ public class MT549 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceB> getSequenceListBYSTAREA() {
+     public List<SequenceB> getSequenceBYSTAREAList() {
         return getSequenceBList();
      }
 
@@ -1166,7 +1166,7 @@ public class MT549 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceB> getSequenceListBYSTAREA(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceB> getSequenceBYSTAREAList(final SwiftTagListBlock parentSequence) {
         return getSequenceBList(parentSequence);
     }
  
@@ -1278,7 +1278,7 @@ public class MT549 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceC> getSequenceListREF() {
+     public List<SequenceC> getSequenceREFList() {
         return getSequenceCList();
      }
 
@@ -1315,7 +1315,7 @@ public class MT549 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceC> getSequenceListREF(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceC> getSequenceREFList(final SwiftTagListBlock parentSequence) {
         return getSequenceCList(parentSequence);
     }
  
