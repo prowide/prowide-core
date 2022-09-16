@@ -361,13 +361,11 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT566.SequenceB1> resolveMT566GetSequenceB1List_sru2021(final MT566 mt) {
-        final List<MT566.SequenceB1> result = new ArrayList<>();
-        for (final SwiftTagListBlock seq : resolveNotUniqueSeparator(mt.getSequenceB(), MT566.SequenceB1.START_END_16RS)) {
-            final MT566.SequenceB1 s = MT566.SequenceB1.newInstance();
-            s.clear().append(seq);
-            result.add(s);
-        }
+    public static MT566.SequenceB1 resolveMT566GetSequenceB1_sru2021(final MT566 mt) {
+        Objects.requireNonNull(mt);
+        final MT566.SequenceB1 result = MT566.SequenceB1.newInstance();
+        // we just get the first subblock
+        result.clear().append(mt.getSequenceB().getSubBlock(MT566.SequenceB1.START_END_16RS));
         return result;
     }
 
