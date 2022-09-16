@@ -65,7 +65,7 @@ Sequence B - Underlying Securities (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 94 B,C,F (O)</li>
 <li class="field">Field 35 B (M)</li>
 <li class="sequence">
-Sequence B1 - Financial Instrument Attributes (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence B1 - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 94 B (O)</li>
 <li class="field">Field 22 F (O)</li>
 <li class="field">Field 12 A,C (O)</li>
@@ -623,66 +623,6 @@ public class MT566 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 12A, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 12A at MT566 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field12A objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field12A> getField12A() {
-		final List<Field12A> result = new ArrayList<>();
-		final Tag[] tags = tags("12A");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field12A(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 12C, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 12C at MT566 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field12C objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field12C> getField12C() {
-		final List<Field12C> result = new ArrayList<>();
-		final Tag[] tags = tags("12C");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field12C(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 11A, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 11A at MT566 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field11A objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field11A> getField11A() {
-		final List<Field11A> result = new ArrayList<>();
-		final Tag[] tags = tags("11A");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field11A(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 98A, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 98A at MT566 are expected at one sequence or across several sequences.
@@ -1163,6 +1103,26 @@ public class MT566 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 11A, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 11A at MT566 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field11A objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field11A> getField11A() {
+		final List<Field11A> result = new ArrayList<>();
+		final Tag[] tags = tags("11A");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field11A(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 98F, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 98F at MT566 are expected at one sequence or across several sequences.
@@ -1257,6 +1217,46 @@ public class MT566 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field35B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 12A, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 12A at MT566 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field12A objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field12A> getField12A() {
+		final List<Field12A> result = new ArrayList<>();
+		final Tag[] tags = tags("12A");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field12A(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 12C, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 12C at MT566 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field12C objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field12C> getField12C() {
+		final List<Field12C> result = new ArrayList<>();
+		final Tag[] tags = tags("12C");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field12C(tag.getValue()));
             }
 		}
 		return result;
@@ -2138,65 +2138,67 @@ public class MT566 extends AbstractMT implements Serializable {
 		}
 
 	}
-
 	/**
-	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceB1 delimited by 16R/16S the value of SequenceB1#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
      *
      * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
      * present inside its parent sequences.
      * @see com.prowidesoftware.swift.model.mt.SequenceUtils
      *
-     * @return the found sequences or an empty list if none is found
 	 * @see SequenceB1#START_END_16RS
 	 */
 	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceB1> getSequenceB1List() {
-  	    /*
-		 * The delimiter FIA is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence B1.
-		 * So we call a special method to resolve this situation until we find a better approach.
+	public SequenceB1 getSequenceB1() {
+		/*
+		 * The delimiter FIA is not unique across all sequences, this api can not be resolved without considering nested sequences
+		 * In Sequence B1
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceB1List_sru2021(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceB1_sru2021(this);
 	}
 
-
+    /**
+     * Same as getSequenceB1 using the sequence delimiter field qualifier
+     * @see SequenceB1#getSequenceB1()
+     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+     * @since 9.2.18
+     */
+    public SequenceB1 getSequenceFIA() {
+        return getSequenceB1();
+    }
+	
 	/**
-	 * Get the list of SequenceB1 delimited by 16R/16S with value specified in {@link SequenceB1#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
-     *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
-     *
+	 * Get the single occurrence of SequenceB1 delimited by 16R/16S the value of SequenceB1#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceB1#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceB1 within it
-	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceB1> getSequenceB1List(final SwiftTagListBlock parentSequence) {
-	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceB1.START_END_16RS);
-            if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceB1> result = new ArrayList<>(blocks.size());
-                for (final SwiftTagListBlock b : blocks) {
-                    final SequenceB1 s = new SequenceB1();
-                    s.setTags(b.getSubBlock(SequenceB1.START_END_16RS).getTags());
-                    result.add(s);
-                }
-                return result;
-            }
+	public static SequenceB1 getSequenceB1(SwiftTagListBlock parentSequence) {
+		final SequenceB1 s = new SequenceB1();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceB1.START_END_16RS).getTags());
 		}
-		return Collections.emptyList();
+		return s;
 	}
 
+    /**
+	 * Same as getSequenceB1 using the sequence delimiter field qualifier
+	 * @see SequenceB1#getSequenceB1(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceB1 within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2.18
+	 */
+	public static SequenceB1 getSequenceFIA(SwiftTagListBlock parentSequence) {
+		return getSequenceB1(parentSequence);
+	}
  
 
 	/**
