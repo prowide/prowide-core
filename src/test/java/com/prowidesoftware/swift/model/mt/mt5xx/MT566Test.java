@@ -42,7 +42,7 @@ public class MT566Test {
         MT566 m = new MT566();
         m.append(MT566.SequenceB.newInstance());
         m.append(MT566.SequenceD1a.newInstance());
-        assertTrue(m.getSequenceB1List().isEmpty());
+        assertTrue(m.getSequenceB1().isEmpty());
     }
 
 }
