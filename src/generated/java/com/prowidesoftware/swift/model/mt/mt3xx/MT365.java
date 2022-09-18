@@ -1244,7 +1244,7 @@ public class MT365 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1347,7 +1347,7 @@ public class MT365 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1450,7 +1450,7 @@ public class MT365 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceE() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1553,7 +1553,7 @@ public class MT365 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceJ() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1656,7 +1656,7 @@ public class MT365 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceK() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1759,7 +1759,7 @@ public class MT365 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceL() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -1862,7 +1862,7 @@ public class MT365 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceM() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**

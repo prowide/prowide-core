@@ -564,7 +564,7 @@ public class MT526 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -679,7 +679,7 @@ public class MT526 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**

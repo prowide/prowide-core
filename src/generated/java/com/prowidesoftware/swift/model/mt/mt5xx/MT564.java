@@ -1922,7 +1922,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -2060,7 +2060,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceA1() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -2209,7 +2209,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -2348,7 +2348,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB1() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -2500,7 +2500,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceB2() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -2649,7 +2649,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceC() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -2787,7 +2787,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceD() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -2925,7 +2925,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceE() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -3074,7 +3074,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceE1() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -3224,7 +3224,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceE1a() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -3374,7 +3374,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceE2() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
@@ -3523,7 +3523,7 @@ public class MT564 extends AbstractMT implements Serializable {
 		 * Constructs an empty sequence.
 		 */
 	    private SequenceF() {
-			super(new ArrayList<Tag>());
+			super(new ArrayList<>());
 		}
 
 		/**
