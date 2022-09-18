@@ -2,7 +2,7 @@
  Prowide Core - CHANGELOG
 -----------------------------------------------------------------------------------------------------------------------
 
-9.3.4-SNAPSHOT
+RELEASE 9.3.4 - September 2022
   * Added getCADETL method for "CADETL" separator sequences
   * (GH-119) MT566: Fixed repetitions of sequence USECU/FIA that is not repetitive
   * Added sequence getters using the boundary field qualifier, for example getSequenceGENL() as equivalent to the existing getSequenceA()
