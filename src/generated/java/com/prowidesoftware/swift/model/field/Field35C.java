@@ -52,7 +52,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>8x[/30x]</code></li>
+ * 		<li>validation pattern: <code>&lt;VAR-SEQU-5&gt;</code></li>
  * 		<li>parser pattern: <code>S[/S]</code></li>
  * 		<li>components pattern: <code>SS</code></li>
  * </ul>
@@ -263,7 +263,7 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "8x[/30x]";
+        return "<VAR-SEQU-5>";
     }
 
     /**
