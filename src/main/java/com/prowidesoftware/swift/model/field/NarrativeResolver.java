@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  * @since 9.0.1
  */
 public class NarrativeResolver {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(NarrativeResolver.class.getName());
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(NarrativeResolver.class.getName());
 
     private static final int CODEWORDTYPE_UCASE = 1;
     private static final int CODEWORDTYPE_UCASE_NUMBER = 2;
@@ -360,10 +360,23 @@ public class NarrativeResolver {
     /**
      * Line 1:       /8c/[3!a13d][additional information]  (Code)(Currency)(Amount)(Narrative)
      * Lines 2-6:   /8c/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
+     * Line 1 option for SCORE:       /8a/1!a/[3!a13d][additional information]  (Code)(Currency)(Amount)(Narrative)
+     * Lines 2-6 option for SCORE:   /8c//1!a/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
      * [//continuation of additional information]          (Narrative)
      */
     public static Narrative parseFormat3(Field f) {
-        return parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, true, false, true);
+        Narrative narrative = parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, true, false, true);
+        List<StructuredNarrative> structuredNarratives = narrative.getStructured();
+        if (structuredNarratives != null) {
+            for (StructuredNarrative structuredNarrative : structuredNarratives) {
+                String currency = structuredNarrative.getCurrency();
+                if (StringUtils.isNotEmpty(currency) && (currency.startsWith("O/") || currency.startsWith("B/"))) {
+                    structuredNarrative.setBankCode(currency.substring(0, 1));
+                    structuredNarrative.setCurrency(currency.substring(2));
+                }
+            }
+        }
+        return narrative;
     }
 
     /**

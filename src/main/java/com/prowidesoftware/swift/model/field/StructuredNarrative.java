@@ -36,15 +36,14 @@ import java.util.List;
  * @since 9.0.1
  */
 public class StructuredNarrative {
+    private final List<String> narrativeFragments = new ArrayList<>();
+    private final List<String> narrativeSupplementFragments = new ArrayList<>();
     private String codeword;
     private String currency;
     private BigDecimal amount;
     private String country;
-    private final List<String> narrativeFragments = new ArrayList<>();
-    private final List<String> narrativeSupplementFragments = new ArrayList<>();
 
-    public StructuredNarrative() {
-    }
+    private String bankCode;
 
     /**
      * The codeword is a mandatory keyword to identify this particular narrative content in a narrative field value.
@@ -77,6 +76,24 @@ public class StructuredNarrative {
     StructuredNarrative setCurrency(String currency) {
         this.currency = currency;
         return this;
+    }
+
+
+
+    /**
+     * In SCORE messages, in field 71B, there is a bank code within the codeword with a slash separator (i.e. C/USD).
+     * This will get the bank code (i.e. C for the C/USD case). Or null if this is not possible.
+     * @see #getCurrency()
+     */
+    public String getBankCode() {
+        return bankCode;
+    }
+
+    /**
+     * See {@link #getBankCode()}.
+     */
+    public void setBankCode(String bankCode) {
+        this.bankCode = bankCode;
     }
 
     /**
