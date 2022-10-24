@@ -119,4 +119,71 @@ public class SwiftBlock4Test {
         assertEquals(4, clean.size());
     }
 
+    /**
+     * Null and Empty blocks
+     */
+    @Test
+    public void testRepeatedBoundariesNull() {
+        assertNull(SwiftBlock4.removeRepeatedBoundaries(null));
+        SwiftBlock4 b4 = SwiftBlock4.removeRepeatedBoundaries(new SwiftBlock4());
+        assertTrue(b4.isEmpty());
+    }
+
+    /**
+     * Nothing to remove
+     */
+    @Test
+    public void testRemoveRepeatedBoundariesNOP() {
+        SwiftBlock4 b = new SwiftBlock4();
+        b.append(new Tag("20", "FOO"));
+        b.append(new Tag("21", "FOO"));
+        b.append(new Tag("16R", "FOO"));
+        b.append(new Tag("20", "FOO"));
+        b.append(new Tag("16S", "FOO"));
+        b.append(new Tag("20", "FOO"));
+        b.append(new Tag("15A", "FOO"));
+        b.append(new Tag("20", "FOO"));
+        SwiftBlock4 clean = SwiftBlock4.removeRepeatedBoundaries(b);
+        assertTrue(comp.compareTagListBlock(b, clean));
+    }
+
+    /**
+     * 16RS removed
+     */
+    @Test
+    public void testRemoveRepeatedBoundaries16RS() {
+        SwiftBlock4 b = new SwiftBlock4();
+        b.append(new Tag("20", "AAA"));
+        b.append(new Tag("16R", "FOO"));
+        b.append(new Tag("16R", "FOO"));
+        b.append(new Tag("16R", "FOO"));
+        b.append(new Tag("21", "BBB"));
+        b.append(new Tag("16R", "XXX"));
+        b.append(new Tag("16S", "XXX"));
+        b.append(new Tag("16S", "XXX"));
+        b.append(new Tag("16R", "FOO"));
+        b.append(new Tag("16R", "FEE"));
+        b.append(new Tag("20", "FOO"));
+        b.append(new Tag("16S", "AAA"));
+        b.append(new Tag("16S", "XXX"));
+        b.append(new Tag("20", "FOO"));
+        assertEquals(14, b.size());
+        SwiftBlock4 clean = SwiftBlock4.removeRepeatedBoundaries(b);
+        assertFalse(comp.compareTagListBlock(b, clean));
+        assertEquals(11, clean.size());
+        assertEquals(b.getTag(0), clean.getTag(0));
+        assertEquals(b.getTag(1), clean.getTag(1));
+        // 2 entries of :16R:FOO" removed
+        assertEquals(b.getTag(4), clean.getTag(2));
+        assertEquals(b.getTag(5), clean.getTag(3));
+        assertEquals(b.getTag(6), clean.getTag(4));
+        // :16S:XXX" removed
+        assertEquals(b.getTag(8), clean.getTag(5));
+        assertEquals(b.getTag(9), clean.getTag(6));
+        assertEquals(b.getTag(10), clean.getTag(7));
+        assertEquals(b.getTag(11), clean.getTag(8));
+        assertEquals(b.getTag(12), clean.getTag(9));
+        assertEquals(b.getTag(13), clean.getTag(10));
+    }
+
 }
