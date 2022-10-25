@@ -55,9 +55,10 @@ public class NarrativeResolver {
                 return parseFormat2(f);
             case Field73A.NAME:
             case Field71D.NAME:
-            case Field71B.NAME:
             case Field73.NAME:
                 return parseFormat3(f);
+            case Field71B.NAME:
+                return parseFormat3Score(f);
             case Field77B.NAME:
                 return parseFormat4(f);
             case Field75.NAME:
@@ -360,12 +361,19 @@ public class NarrativeResolver {
     /**
      * Line 1:       /8c/[3!a13d][additional information]  (Code)(Currency)(Amount)(Narrative)
      * Lines 2-6:   /8c/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
+     */
+    public static Narrative parseFormat3(Field f) {
+        return parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, true, false, true);
+    }
+
+    /**
      * Line 1 option for SCORE:       /8a/1!a/[3!a13d][additional information]  (Code)(Currency)(Amount)(Narrative)
      * Lines 2-6 option for SCORE:   /8c//1!a/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
      * [//continuation of additional information]          (Narrative)
      */
-    public static Narrative parseFormat3(Field f) {
-        Narrative narrative = parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, true, false, true);
+    public static Narrative parseFormat3Score(Field f) {
+
+        Narrative narrative = parseFormat3(f);
         List<StructuredNarrative> structuredNarratives = narrative.getStructured();
         if (structuredNarratives != null) {
             for (StructuredNarrative structuredNarrative : structuredNarratives) {
