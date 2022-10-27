@@ -223,7 +223,7 @@ distributions {
                 from (project.configurations.runtimeClasspath)
             }
             from files('LICENSE.txt')
-            from files('CHANGELOG.txt')
+            from files('CHANGELOG.md')
             from ("$buildDir/publications/mavenJava/pom-default.xml") {
                 rename ".*", "pom.xml"
             }
