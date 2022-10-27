@@ -207,6 +207,7 @@ public class SafeXmlUtils {
         try {
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
+            // https://stackoverflow.com/questions/58374278/org-xml-sax-saxnotrecognizedexception-property-http-javax-xml-xmlconstants-p
             feature = XMLConstants.ACCESS_EXTERNAL_DTD;
             factory.setProperty(feature, "");
 
