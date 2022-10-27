@@ -111,7 +111,6 @@ public interface SchemeConstantsP {
     String PLDT = "PLDT";
     String PARL = "PARL";
     String PTBA = "PTBA";
-    String PNTI = "PNTI";
     String PORT = "PORT";
     String PND = "PND";
     String PLAT = "PLAT";
