@@ -49,7 +49,7 @@ Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 98 A,C,E (O)</li>
 <li class="fieldset">
 Fieldset 99
- (O)<ul><li>FieldsetItem 99 B,C (O)</li><li>FieldsetItem 99 B,C (O)</li></ul></li><li class="sequence">
+ (O)<ul><li>FieldsetItem 99 B (O)</li><li>FieldsetItem 99 B (O)</li></ul></li><li class="sequence">
 Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 22 F (O)</li>
 <li class="field">Field 13 A,B (O)</li>
@@ -483,26 +483,6 @@ public class MT540 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field99B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 99C, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 99C at MT540 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field99C objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field99C> getField99C() {
-		final List<Field99C> result = new ArrayList<>();
-		final Tag[] tags = tags("99C");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field99C(tag.getValue()));
             }
 		}
 		return result;
