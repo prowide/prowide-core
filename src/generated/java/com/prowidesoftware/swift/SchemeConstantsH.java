@@ -21,5 +21,9 @@ public interface SchemeConstantsH {
     String HOLS = "HOLS";
     String HEAR = "HEAR";
     String HOST = "HOST";
+    String HERM = "HERM";
+    String HERR = "HERR";
+    String HIST = "HIST";
+    String HSVP = "HSVP";
 
 }

@@ -36,5 +36,13 @@ public interface SchemeConstantsV {
     String VALN = "VALN";
     String VREN = "VREN";
     String V = "V";
+    String VALI = "VALI";
+    String VALR = "VALR";
+    String VARI = "VARI";
+    String VDAA = "VDAA";
+    String VIBE = "VIBE";
+    String VLDA = "VLDA";
+    String VOLU = "VOLU";
+    String VVPR = "VVPR";
 
 }

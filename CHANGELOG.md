@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.2.19-SNAPSHOT
+  * (GH-88) Missing constants for ISO 15022 codes added 
+
 #### 9.2.18 - September 2022
   * (GH-119) MT566: Fixed repetitions of sequence USECU/FIA that is not repetitive
   * Added sequence getters using the boundary field qualifier, for example getSequenceGENL() as equivalent to the existing getSequenceA()

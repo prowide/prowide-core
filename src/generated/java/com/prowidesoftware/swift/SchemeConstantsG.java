@@ -33,5 +33,26 @@ public interface SchemeConstantsG {
     String GECU = "GECU";
     String GOZ = "GOZ";
     String GENINFAD = "GENINFAD";
+    String GAIN = "GAIN";
+    String GBSC = "GBSC";
+    String GCOL = "GCOL";
+    String GDAY = "GDAY";
+    String GENR = "GENR";
+    String GENS = "GENS";
+    String GERM = "GERM";
+    String GIVE = "GIVE";
+    String GLOB = "GLOB";
+    String GPPH = "GPPH";
+    String GREX = "GREX";
+    String GROS = "GROS";
+    String GRSC = "GRSC";
+    String GTCA = "GTCA";
+    String GTDL = "GTDL";
+    String GTGP = "GTGP";
+    String GTHD = "GTHD";
+    String GTMO = "GTMO";
+    String GTNM = "GTNM";
+    String GTPH = "GTPH";
+    String GTXO = "GTXO";
 
 }
