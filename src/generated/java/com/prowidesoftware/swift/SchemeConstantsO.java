@@ -61,5 +61,26 @@ public interface SchemeConstantsO {
     String OTHERFNC = "OTHERFNC";
     String OPEN = "OPEN";
     String ONEY = "ONEY";
+    String OAGN = "OAGN";
+    String OBJT = "OBJT";
+    String ODLT = "ODLT";
+    String ODNP = "ODNP";
+    String OMET = "OMET";
+    String ONEL = "ONEL";
+    String ONGO = "ONGO";
+    String OPEF = "OPEF";
+    String OPEP = "OPEP";
+    String OPLF = "OPLF";
+    String OPNM = "OPNM";
+    String OPOD = "OPOD";
+    String OPTY = "OPTY";
+    String ORIG = "ORIG";
+    String ORLI = "ORLI";
+    String OTCD = "OTCD";
+    String OTCO = "OTCO";
+    String OUTS = "OUTS";
+    String OUTT = "OUTT";
+    String OWNE = "OWNE";
+    String OWNI = "OWNI";
 
 }

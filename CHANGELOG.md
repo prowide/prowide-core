@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.6-SNAPSHOT
+* (GH-88) Missing constants for ISO 15022 codes added
+
 #### 9.3.5 - October 2022
   * SRU2022 updates review: field 35C validation pattern changed to <VAR-SEQU-5>
 

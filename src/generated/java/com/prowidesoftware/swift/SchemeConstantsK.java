@@ -22,5 +22,6 @@ public interface SchemeConstantsK {
     String KNIN = "KNIN";
     String KLO = "KLO";
     String KRUG = "KRUG";
+    String KNOC = "KNOC";
 
 }
