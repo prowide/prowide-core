@@ -2,6 +2,7 @@
 
 #### 9.2.19 SNAPSHOT
   * (PW-1078) StructuredNarrative: Added getBankCode() methods in order to allow direct access to data
+  * Added removeRepeatedBoundaries method in order to remove repeated tag boundaries
 
 #### 9.2.18 - September 2022
   * (GH-119) MT566: Fixed repetitions of sequence USECU/FIA that is not repetitive

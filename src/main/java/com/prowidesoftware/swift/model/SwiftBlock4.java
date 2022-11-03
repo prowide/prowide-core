@@ -62,6 +62,36 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
     }
 
     /**
+     * Creates a new block removing all the duplicated sequence boundaries (16R, 16S).
+     * <br>
+     * <p>The implementation uses as sequence boundaries the fields: 16R, 16S.
+     * Two or more consecutive 16R (start of sequence) or 16S (end of sequence) with the same qualifier
+     * are considered duplicated entries, so all repeated boundary fields 16R or 16S will be dropped.
+     *
+     * @param b4 a block with sequences to filter
+     * @return a new block containing all tags without repeated boundaries or null if the parameter block is null
+     * @since 9.2.19
+     */
+    public static SwiftBlock4 removeRepeatedBoundaries(final SwiftBlock4 b4) {
+        if (b4 == null) {
+            return null;
+        }
+        List<Tag> result = new ArrayList<>();
+        Tag lastTag = null;
+        for (Tag t : b4.getTags()) {
+            if (StringUtils.startsWith(t.getName(), "16")
+                    && lastTag != null
+                    && t.getName().equals(lastTag.getName())
+                    && t.getValue().equals(lastTag.getValue())) {
+                continue;
+            }
+            result.add(t);
+            lastTag = t;
+        }
+        return new SwiftBlock4(result);
+    }
+
+    /**
      * Creates a new block with all empty sequences removed.
      * <br>
      * <p>The implementation uses as sequence boundaries the fields: 16R, 16S and 15a.
