@@ -1,8 +1,8 @@
 # Prowide Core - CHANGELOG
 
-#### 9.2.19-SNAPSHOT
+#### 9.2.19 - November 2022
   * (PW-1078) StructuredNarrative: Added getBankCode() methods in order to allow direct access to data
-  * (GH-88) Missing constants for ISO 15022 codes added 
+  * (GH-88) Added missing constants for ISO 15022 codes 
   * Added removeRepeatedBoundaries method in order to remove repeated tag boundaries
 
 #### 9.2.18 - September 2022
