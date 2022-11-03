@@ -2,6 +2,7 @@
 
 #### 9.3.6-SNAPSHOT
   * (PW-1086) Fixed typo in field 36D accessors
+  * MT540 and MT548 added missing getter for Field99C
 
 #### 9.3.5 - October 2022
   * SRU2022 updates review: field 35C validation pattern changed to <VAR-SEQU-5>
