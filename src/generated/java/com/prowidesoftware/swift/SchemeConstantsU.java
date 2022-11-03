@@ -39,5 +39,25 @@ public interface SchemeConstantsU {
     String UNDK = "UNDK";
     String UCPR = "UCPR";
     String URDG = "URDG";
+    String UKWN = "UKWN";
+    String ULNK = "ULNK";
+    String UNAC = "UNAC";
+    String UNBR = "UNBR";
+    String UNEX = "UNEX";
+    String UNIT = "UNIT";
+    String UNKN = "UNKN";
+    String UNLK = "UNLK";
+    String UNMT = "UNMT";
+    String UNRE = "UNRE";
+    String UNRG = "UNRG";
+    String UNSP = "UNSP";
+    String UNTR = "UNTR";
+    String USCD = "USCD";
+    String USCH = "USCH";
+    String USET = "USET";
+    String USEX = "USEX";
+    String USFW = "USFW";
+    String USNX = "USNX";
+    String USOL = "USOL";
 
 }

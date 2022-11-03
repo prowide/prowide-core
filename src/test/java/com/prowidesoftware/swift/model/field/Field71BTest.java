@@ -34,9 +34,9 @@ public class Field71BTest extends AbstractFieldTest {
 
     @Test
     public void testGetters() {
-        Field71B f = new Field71B("/ACGH/B/EUR1,00Fees");
+        Field71B f = new Field71B("/ACGH/O/EUR1,00Fees");
 
-        assertEquals("/ACGH/B/EUR1,00Fees", f.getComponent1());
+        assertEquals("/ACGH/O/EUR1,00Fees", f.getComponent1());
 
         Narrative n = f.narrative();
         //n.getStructured().forEach(System.out::println);
@@ -48,7 +48,34 @@ public class Field71BTest extends AbstractFieldTest {
 
         // In SCORE messages there is a bank code within the codeword with a slash separator
         // Our parser cannot handle that and lets the bank code as part of the currency component
-        assertEquals("B/EUR", structuredNarrative.getCurrency());
+        assertEquals("EUR", structuredNarrative.getCurrency());
+        assertEquals("O", structuredNarrative.getBankCode());
+    }
+
+    @Test
+    public void testGettersScore() {
+        Field71B f = new Field71B("/ACGH/B/EUR1,00Fees");
+
+        assertEquals("/ACGH/B/EUR1,00Fees", f.getComponent1());
+
+        Narrative n = f.narrative();
+        StructuredNarrative structuredNarrative = n.getStructured("ACGH");
+        assertEquals("B", structuredNarrative.getBankCode());
+        assertEquals("EUR", structuredNarrative.getCurrency());
+
+        structuredNarrative.setCurrency("EUR/");
+        assertEquals("EUR/", structuredNarrative.getCurrency());
+
+        f = new Field71B("/ACGH/EUR1,00Fees");
+        assertEquals("/ACGH/EUR1,00Fees", f.getComponent1());
+
+        n = f.narrative();
+        structuredNarrative = n.getStructured("ACGH");
+        assertNull(structuredNarrative.getBankCode());
+        assertEquals("EUR", structuredNarrative.getCurrency());
+
+        structuredNarrative.setCurrency("EUR/");
+        assertEquals("EUR/", structuredNarrative.getCurrency());
     }
 
 }

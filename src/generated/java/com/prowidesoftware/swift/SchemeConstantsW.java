@@ -30,5 +30,21 @@ public interface SchemeConstantsW {
     String WITHOUT_OUR_CONFIRMATION = "WITHOUT_OUR_CONFIRMATION";
     String WINF = "WINF";
     String WARR = "WARR";
+    String W8BE = "W8BE";
+    String W8EC = "W8EC";
+    String W8EX = "W8EX";
+    String W8IM = "W8IM";
+    String W9US = "W9US";
+    String WAIT = "WAIT";
+    String WBKG = "WBKG";
+    String WDIS = "WDIS";
+    String WEEK = "WEEK";
+    String WHOU = "WHOU";
+    String WIDI = "WIDI";
+    String WISS = "WISS";
+    String WITF = "WITF";
+    String WRTH = "WRTH";
+    String WSET = "WSET";
+    String WTRC = "WTRC";
 
 }

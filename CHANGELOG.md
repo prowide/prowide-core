@@ -1,5 +1,10 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.6-SNAPSHOT
+  * (PW-1078) StructuredNarrative: Added getBankCode() methods in order to allow direct access to data
+  * (GH-88) Missing constants for ISO 15022 codes added
+  * Added removeRepeatedBoundaries method in order to remove repeated tag boundaries
+
 #### 9.3.5 - October 2022
   * SRU2022 updates review: field 35C validation pattern changed to <VAR-SEQU-5>
 
