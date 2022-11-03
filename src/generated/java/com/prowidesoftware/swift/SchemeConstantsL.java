@@ -56,5 +56,25 @@ public interface SchemeConstantsL {
     String LIT = "LIT";
     String LEAD = "LEAD";
     String LEAS = "LEAS";
+    String LAAW = "LAAW";
+    String LACK = "LACK";
+    String LALO = "LALO";
+    String LAMI = "LAMI";
+    String LAPS = "LAPS";
+    String LATE = "LATE";
+    String LCOL = "LCOL";
+    String LEGL = "LEGL";
+    String LEND = "LEND";
+    String LETT = "LETT";
+    String LIMB = "LIMB";
+    String LIPS = "LIPS";
+    String LIWI = "LIWI";
+    String LIWO = "LIWO";
+    String LMAR = "LMAR";
+    String LMTO = "LMTO";
+    String LODE = "LODE";
+    String LOSS = "LOSS";
+    String LTCG = "LTCG";
+    String LVTS = "LVTS";
 
 }
