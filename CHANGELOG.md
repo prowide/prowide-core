@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.2.19 SNAPSHOT
+  * (PW-1078) StructuredNarrative: Added getBankCode() methods in order to allow direct access to data
+
 #### 9.2.18 - September 2022
   * (GH-119) MT566: Fixed repetitions of sequence USECU/FIA that is not repetitive
   * Added sequence getters using the boundary field qualifier, for example getSequenceGENL() as equivalent to the existing getSequenceA()
