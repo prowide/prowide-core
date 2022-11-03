@@ -114,7 +114,7 @@ public class Field36D extends Field implements Serializable, GenericField {
 	public static final Integer QUANTITY_TYPE_CODE = 2;
 
 	/**
-	 * Component number for the Quantity of Digital Tokens subfield.
+	 * Component number for the Quantity Of Digital Tokens subfield.
 	 */
 	public static final Integer QUANTITY_OF_DIGITAL_TOKENS = 3;
 
@@ -330,7 +330,7 @@ public class Field36D extends Field implements Serializable, GenericField {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Quantity Type Code");
-        result.add("Quantity of Digital Tokens");
+        result.add("Quantity Of Digital Tokens");
         return result;
     }
 
@@ -343,7 +343,7 @@ public class Field36D extends Field implements Serializable, GenericField {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
         result.put(2, "quantityTypeCode");
-        result.put(3, "quantityofDigitalTokens");
+        result.put(3, "quantityOfDigitalTokens");
         return result;
     }
 
@@ -381,7 +381,7 @@ public class Field36D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 3 (Quantity of Digital Tokens).
+     * Gets the component 3 (Quantity Of Digital Tokens).
      * @return the component 3
      */
     public String getComponent3() {
@@ -415,34 +415,34 @@ public class Field36D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the Quantity of Digital Tokens (component 3).
-     * @return the Quantity of Digital Tokens from component 3
+     * Gets the Quantity Of Digital Tokens (component 3).
+     * @return the Quantity Of Digital Tokens from component 3
      */
-    public String getQuantityofDigitalTokens() {
+    public String getQuantityOfDigitalTokens() {
         return getComponent3();
     }
 
     /**
-     * Get the Quantity of Digital Tokens (component 3) as Long
-     * @return the Quantity of Digital Tokens from component 3 converted to Long or null if cannot be converted
+     * Get the Quantity Of Digital Tokens (component 3) as Long
+     * @return the Quantity Of Digital Tokens from component 3 converted to Long or null if cannot be converted
      * @since 9.2.7
      */
-    public java.lang.Long getQuantityofDigitalTokensAsLong() {
+    public java.lang.Long getQuantityOfDigitalTokensAsLong() {
         return getComponent3AsLong();
     }
 
     /**
-     * Get the Quantity of Digital Tokens (component 3) as as Number (BigDecimal)
+     * Get the Quantity Of Digital Tokens (component 3) as as Number (BigDecimal)
      *
      * The value is returned as BigDecimal to keep compatibility with previous API. You should
      * use <code>getComponent3AsLong()</code> to get the proper value.
      *
      * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getQuantityofDigitalTokensAsLong()
+     * @see #getQuantityOfDigitalTokensAsLong()
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-    public java.lang.Number getQuantityofDigitalTokensAsNumber() {
+    public java.lang.Number getQuantityOfDigitalTokensAsNumber() {
         return getComponent3AsNumber();
     }
 
@@ -489,9 +489,9 @@ public class Field36D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 3 (Quantity of Digital Tokens).
+     * Set the component 3 (Quantity Of Digital Tokens).
      *
-     * @param component3 the Quantity of Digital Tokens to set
+     * @param component3 the Quantity Of Digital Tokens to set
      * @return the field object to enable build pattern
      */
     public Field36D setComponent3(String component3) {
@@ -509,7 +509,7 @@ public class Field36D extends Field implements Serializable, GenericField {
      * @see #setComponent3(String)
      * @since 9.2.7
      *
-     * @param component3 the Long with the Quantity of Digital Tokens content to set
+     * @param component3 the Long with the Quantity Of Digital Tokens content to set
      * @return the field object to enable build pattern
      */
     public Field36D setComponent3(java.lang.Long component3) {
@@ -518,13 +518,13 @@ public class Field36D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative method setter for field's Quantity of Digital Tokens (component 3) as as Number
+     * Alternative method setter for field's Quantity Of Digital Tokens (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component3 the Number with the Quantity of Digital Tokens content to set
+     * @param component3 the Number with the Quantity Of Digital Tokens content to set
      * @return the field object to enable build pattern
-     * @see #setQuantityofDigitalTokens(java.lang.Long)
+     * @see #setQuantityOfDigitalTokens(java.lang.Long)
      */
     public Field36D setComponent3(java.lang.Number component3) {
 
@@ -545,38 +545,38 @@ public class Field36D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Quantity of Digital Tokens (component 3).
+     * Set the Quantity Of Digital Tokens (component 3).
      *
-     * @param component3 the Quantity of Digital Tokens to set
+     * @param component3 the Quantity Of Digital Tokens to set
      * @return the field object to enable build pattern
      */
-    public Field36D setQuantityofDigitalTokens(String component3) {
+    public Field36D setQuantityOfDigitalTokens(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the Quantity of Digital Tokens (component 3) from a Long object.
+     * Set the Quantity Of Digital Tokens (component 3) from a Long object.
      *
      * @see #setComponent3(java.lang.Long)
      *
-     * @param component3 Long with the Quantity of Digital Tokens content to set
+     * @param component3 Long with the Quantity Of Digital Tokens content to set
      * @return the field object to enable build pattern
      * @since 9.2.7
      */
-    public Field36D setQuantityofDigitalTokens(java.lang.Long component3) {
+    public Field36D setQuantityOfDigitalTokens(java.lang.Long component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Alternative method setter for field's Quantity of Digital Tokens (component 3) as as Number
+     * Alternative method setter for field's Quantity Of Digital Tokens (component 3) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component3 the Number with the Quantity of Digital Tokens content to set
+     * @param component3 the Number with the Quantity Of Digital Tokens content to set
      * @return the field object to enable build pattern
-     * @see #setQuantityofDigitalTokens(java.lang.Long)
+     * @see #setQuantityOfDigitalTokens(java.lang.Long)
      */
-    public Field36D setQuantityofDigitalTokens(java.lang.Number component3) {
+    public Field36D setQuantityOfDigitalTokens(java.lang.Number component3) {
         return setComponent3(component3);
     }
 
@@ -712,10 +712,10 @@ public class Field36D extends Field implements Serializable, GenericField {
             field.setComponent2(jsonObject.get("quantityTypeCode").getAsString());
         }
 
-        // **** COMPONENT 3 - Quantity of Digital Tokens
+        // **** COMPONENT 3 - Quantity Of Digital Tokens
 
-        if (jsonObject.get("quantityofDigitalTokens") != null) {
-            field.setComponent3(jsonObject.get("quantityofDigitalTokens").getAsString());
+        if (jsonObject.get("quantityOfDigitalTokens") != null) {
+            field.setComponent3(jsonObject.get("quantityOfDigitalTokens").getAsString());
         }
 
         return field;
