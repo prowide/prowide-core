@@ -73,5 +73,34 @@ public interface SchemeConstantsE {
     String EMAL = "EMAL";
     String EC = "EC";
     String ED = "ED";
+    String EAFD = "EAFD";
+    String EBAC = "EBAC";
+    String ECKA = "ECKA";
+    String EGRE = "EGRE";
+    String EINX = "EINX";
+    String EMBQ = "EMBQ";
+    String EMPL = "EMPL";
+    String EMTR = "EMTR";
+    String ENGL = "ENGL";
+    String EOSP = "EOSP";
+    String EPMS = "EPMS";
+    String EQPT = "EQPT";
+    String EQUS = "EQUS";
+    String ERUN = "ERUN";
+    String ETFT = "ETFT";
+    String EUSI = "EUSI";
+    String EUSO = "EUSO";
+    String EVNM = "EVNM";
+    String EXAC = "EXAC";
+    String EXCL = "EXCL";
+    String EXCS = "EXCS";
+    String EXIS = "EXIS";
+    String EXOF = "EXOF";
+    String EXPT = "EXPT";
+    String EXRI = "EXRI";
+    String EXTD = "EXTD";
+    String EXTE = "EXTE";
+    String EXTM = "EXTM";
+    String EXWA = "EXWA";
 
 }

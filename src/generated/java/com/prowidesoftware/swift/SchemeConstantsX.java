@@ -19,5 +19,11 @@ public interface SchemeConstantsX {
     String XDTE = "XDTE";
     String XCDT = "XCDT";
     String XAMT = "XAMT";
+    String XBNS = "XBNS";
+    String XCPN = "XCPN";
+    String XDIV = "XDIV";
+    String XMET = "XMET";
+    String XRTS = "XRTS";
+    String XWAR = "XWAR";
 
 }

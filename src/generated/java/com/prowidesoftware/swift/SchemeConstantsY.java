@@ -21,5 +21,17 @@ public interface SchemeConstantsY {
     String YN = "YN";
     String YTMR = "YTMR";
     String YIEL = "YIEL";
+    String YBEN = "YBEN";
+    String YBOR = "YBOR";
+    String YCCP = "YCCP";
+    String YCOL = "YCOL";
+    String YCON = "YCON";
+    String YEAR = "YEAR";
+    String YLEG = "YLEG";
+    String YNET = "YNET";
+    String YPRE = "YPRE";
+    String YREG = "YREG";
+    String YRTG = "YRTG";
+    String YSET = "YSET";
 
 }

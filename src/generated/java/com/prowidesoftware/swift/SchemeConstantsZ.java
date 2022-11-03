@@ -18,5 +18,6 @@ public interface SchemeConstantsZ {
 
     String ZWIS = "ZWIS";
     String ZINC = "ZINC";
+    String ZENG = "ZENG";
 
 }
