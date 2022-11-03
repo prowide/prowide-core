@@ -177,6 +177,12 @@ public class NarrativeResolverTest {
         assertEquals(new BigDecimal("300"), n.getStructured("COMM").getAmount());
         assertEquals("FOO BAR", n.getStructured("COMM").getNarrative());
         assertNull(n.getUnstructured());
+
+       v = "/WITX/CAPITAL GAINS TAX RELATING TO\n" +
+               "//THE PERIOD 1998-07-01 2022-10-30\n" +
+               "//REF 009524780232\n" +
+               "//BANCA DEL TEST";
+
     }
 
     /**
