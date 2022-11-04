@@ -18,6 +18,7 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Test;
@@ -38,6 +39,56 @@ public class FieldJsonTest {
         assertEquals("USD", o.get("currency").getAsString());
         assertEquals("123,45", o.get("amount").getAsString());
     }
+
+    @Test
+    public void toJsonField71B() {
+
+        StructuredNarrative structNarrative = new StructuredNarrative().setCodeword("WITX")
+                .addNarrativeFragment("CAPITAL GAINS TAX RELATING TO")
+                .addNarrativeFragment("THE PERIOD 1998-07-01 2022-10-30")
+                .addNarrativeFragment("REF 009524780232")
+                .addNarrativeFragment("BANCA DEL TEST");
+        Narrative narrative = new Narrative();
+        narrative.add(structNarrative);
+
+        Field71B tag71Ba = new Field71B();
+        tag71Ba.setNarrative(narrative);
+
+        assertEquals("CAPITAL GAINS TAX RELATING TO", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(0));
+        assertEquals("THE PERIOD 1998-07-01 2022-10-30", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(1));
+        assertEquals("REF 009524780232", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(2));
+        assertEquals("BANCA DEL TEST", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(3));
+
+        Gson g = new Gson();
+        System.out.println("ACTUAL");
+        System.out.println();
+        String jsonTag71Ba = tag71Ba.toJson();
+        System.out.println(jsonTag71Ba);
+        System.out.println();
+        //{"structured":[{"narrativeFragments":["CAPITAL GAINS TAX RELATING TO","//THE PERIOD 1998-07-01 2022-10-30","//REF 009524780232","//BANCA DEL TEST"],"narrativeSupplementFragments":[],"codeword":"WITX"}],"unstructuredFragments":[]}
+        Narrative narrativeA = tag71Ba.narrative();
+        System.out.println(g.toJson(narrativeA));
+
+//
+//
+//
+//
+//        String _71Ba = "{\"name\":\"71B\",\"narrative\":\"/WITX/CAPITAL GAINS TAX RELATING TO\n" +
+//                "//THE PERIOD 1998-07-01 2022-10-30\n//REF 009524780232\n//BANCA DEL TEST\n//(REF. ART. 6 DL 461/97)\"}";
+//        Field71B tag71Ba = Field71B.fromJson(_71Ba);
+//
+//
+//
+//        Field32A f32A = new Field32A("010203USD123,45");
+//        //{"name":"32A","date":"010203","currency":"USD","amount":"123"}
+//
+//        JsonObject o = JsonParser.parseString(f32A.toJson()).getAsJsonObject();
+//        assertEquals("32A", o.get("name").getAsString());
+//        assertEquals("010203", o.get("date").getAsString());
+//        assertEquals("USD", o.get("currency").getAsString());
+//        assertEquals("123,45", o.get("amount").getAsString());
+    }
+
 
     @Test
     public void toJsonField50D() {

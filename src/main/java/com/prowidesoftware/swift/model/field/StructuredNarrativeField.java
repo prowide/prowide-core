@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.google.gson.Gson;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
@@ -262,4 +263,10 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
         return this;
     }
 
+    @Override
+    public String toJson() {
+        return super.toJson().substring(0, super.toJson().length() - 1) + ","
+                + new Gson().toJson(this.narrative()).substring(1);
+
+    }
 }

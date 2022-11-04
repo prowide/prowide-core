@@ -27,7 +27,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 class NarrativeContainerJsonUtils {
 
-    static void fromJson(JsonObject jsonObject, String json, Field field) {
+    static void fromJson(JsonObject jsonObject, String json, StructuredNarrativeField field) {
         if (jsonObject.get("narrative") != null) {
             int numberOfNarrativesInJson = countNarrativesInJson(json);
             if (numberOfNarrativesInJson > 1) {
@@ -35,6 +35,11 @@ class NarrativeContainerJsonUtils {
                 field.setComponent(1, jsonWithNarrativeGroup.get("narrative").getAsString());
             } else {
                 field.setComponent(1, jsonObject.get("narrative").getAsString());
+            }
+        } else {
+            if (jsonObject.get("structured") != null) {
+                Narrative narrative = new Gson().fromJson(jsonObject, Narrative.class);
+                field.setNarrative(narrative);
             }
         }
     }
@@ -56,7 +61,9 @@ class NarrativeContainerJsonUtils {
     }
 
     private static int countNarrativesInJson(String json) {
-        return StringUtils.countMatches(json, "narrative");
+        return StringUtils.countMatches(json, "narrative")
+                - (StringUtils.countMatches(json, "narrativeFragments")
+                + StringUtils.countMatches(json, "narrativeSupplementFragments"));
     }
 
 }
