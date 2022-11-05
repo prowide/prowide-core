@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.7 SNAPSHOT
+  * (PW-1101) Fix field 35C labels to match the FIN xsd: Identification Of Instrument, Description Of Instrument
+
 #### 9.3.6 - November 2022
   * (PW-1086) Fixed typo in field 36D accessors
   * (PW-1078) StructuredNarrative: Added getBankCode() methods in order to allow direct access to data

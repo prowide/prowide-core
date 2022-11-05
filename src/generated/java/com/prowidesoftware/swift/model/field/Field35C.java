@@ -100,14 +100,14 @@ public class Field35C extends Field implements Serializable {
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
-	 * Component number for the Digital Token Identifier subfield.
+	 * Component number for the Identification Of Instrument subfield.
 	 */
-	public static final Integer DIGITAL_TOKEN_IDENTIFIER = 1;
+	public static final Integer IDENTIFICATION_OF_INSTRUMENT = 1;
 
 	/**
-	 * Component number for the Description subfield.
+	 * Component number for the Description Of Instrument subfield.
 	 */
-	public static final Integer DESCRIPTION = 2;
+	public static final Integer DESCRIPTION_OF_INSTRUMENT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -314,8 +314,8 @@ public class Field35C extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Digital Token Identifier");
-        result.add("Description");
+        result.add("Identification Of Instrument");
+        result.add("Description Of Instrument");
         return result;
     }
 
@@ -326,14 +326,14 @@ public class Field35C extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "digitalTokenIdentifier");
-        result.put(2, "description");
+        result.put(1, "identificationOfInstrument");
+        result.put(2, "descriptionOfInstrument");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Digital Token Identifier).
+     * Gets the component 1 (Identification Of Instrument).
      * @return the component 1
      */
     public String getComponent1() {
@@ -341,15 +341,15 @@ public class Field35C extends Field implements Serializable {
     }
 
     /**
-     * Gets the Digital Token Identifier (component 1).
-     * @return the Digital Token Identifier from component 1
+     * Gets the Identification Of Instrument (component 1).
+     * @return the Identification Of Instrument from component 1
      */
-    public String getDigitalTokenIdentifier() {
+    public String getIdentificationOfInstrument() {
         return getComponent1();
     }
 
     /**
-     * Gets the component 2 (Description).
+     * Gets the component 2 (Description Of Instrument).
      * @return the component 2
      */
     public String getComponent2() {
@@ -357,17 +357,17 @@ public class Field35C extends Field implements Serializable {
     }
 
     /**
-     * Gets the Description (component 2).
-     * @return the Description from component 2
+     * Gets the Description Of Instrument (component 2).
+     * @return the Description Of Instrument from component 2
      */
-    public String getDescription() {
+    public String getDescriptionOfInstrument() {
         return getComponent2();
     }
 
     /**
-     * Set the component 1 (Digital Token Identifier).
+     * Set the component 1 (Identification Of Instrument).
      *
-     * @param component1 the Digital Token Identifier to set
+     * @param component1 the Identification Of Instrument to set
      * @return the field object to enable build pattern
      */
     public Field35C setComponent1(String component1) {
@@ -376,19 +376,19 @@ public class Field35C extends Field implements Serializable {
     }
 
     /**
-     * Set the Digital Token Identifier (component 1).
+     * Set the Identification Of Instrument (component 1).
      *
-     * @param component1 the Digital Token Identifier to set
+     * @param component1 the Identification Of Instrument to set
      * @return the field object to enable build pattern
      */
-    public Field35C setDigitalTokenIdentifier(String component1) {
+    public Field35C setIdentificationOfInstrument(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the component 2 (Description).
+     * Set the component 2 (Description Of Instrument).
      *
-     * @param component2 the Description to set
+     * @param component2 the Description Of Instrument to set
      * @return the field object to enable build pattern
      */
     public Field35C setComponent2(String component2) {
@@ -397,12 +397,12 @@ public class Field35C extends Field implements Serializable {
     }
 
     /**
-     * Set the Description (component 2).
+     * Set the Description Of Instrument (component 2).
      *
-     * @param component2 the Description to set
+     * @param component2 the Description Of Instrument to set
      * @return the field object to enable build pattern
      */
-    public Field35C setDescription(String component2) {
+    public Field35C setDescriptionOfInstrument(String component2) {
         return setComponent2(component2);
     }
 
@@ -492,16 +492,16 @@ public class Field35C extends Field implements Serializable {
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Digital Token Identifier
+        // **** COMPONENT 1 - Identification Of Instrument
 
-        if (jsonObject.get("digitalTokenIdentifier") != null) {
-            field.setComponent1(jsonObject.get("digitalTokenIdentifier").getAsString());
+        if (jsonObject.get("identificationOfInstrument") != null) {
+            field.setComponent1(jsonObject.get("identificationOfInstrument").getAsString());
         }
 
-        // **** COMPONENT 2 - Description
+        // **** COMPONENT 2 - Description Of Instrument
 
-        if (jsonObject.get("description") != null) {
-            field.setComponent2(jsonObject.get("description").getAsString());
+        if (jsonObject.get("descriptionOfInstrument") != null) {
+            field.setComponent2(jsonObject.get("descriptionOfInstrument").getAsString());
         }
 
         return field;
