@@ -265,7 +265,8 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
 
     @Override
     public String toJson() {
-        return super.toJson().substring(0, super.toJson().length() - 1) + ","
+        String json = super.toJson();
+        return json.substring(0, json.length() - 1) + ","
                 + new Gson().toJson(this.narrative()).substring(1);
 
     }

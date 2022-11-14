@@ -1151,6 +1151,14 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     @Override
     public String toJson() {
+        String stdFormat = toJsonFormat();
+        if (this instanceof StructuredNarrativeField) {
+            return stdFormat.substring(0, stdFormat.length() - 1) + "," + toNarrativeFormat().substring(1);
+        }
+        return stdFormat;
+    }
+
+    String toJsonFormat() {
         JsonObject field = new JsonObject();
         field.addProperty("name", this.getName());
         for (int i = 1; i <= this.getComponents().size(); i++) {
@@ -1165,40 +1173,10 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         return field.toString();
     }
 
-    public String toJsonNarrative() {
-        JsonObject field = new JsonObject();
-        field.addProperty("name", this.getName());
-        for (int i = 1; i <= this.getComponents().size(); i++) {
-            if (this.getComponent(i) != null) {
-                String label = this.getComponentLabelCamelCase(i);
-                if (label == null) {
-                    label = "value";
-                }
-                field.addProperty(label, this.getComponent(i));
-            }
-        }
-        String oldFormat = field.toString();
-        if(this instanceof StructuredNarrativeField){
-            Narrative narrative = ((StructuredNarrativeField) this).narrative();
-            Gson gson = new Gson();
-            String narrativeJson = gson.toJson(narrative);
-
-            return oldFormat.substring(oldFormat.length()-1)+ "," + narrativeJson.substring(1);
-        }
-        return oldFormat;
-/*
-        {"name":"71B",
-        "narrative":"/WITX/CAPITAL GAINS TAX RELATING TO\n//THE PERIOD 1998-07-01 2022-10-30\n//REF 009524780232\n//BANCA DEL TEST\n//(REF. ART. 6 DL 461/97)",
-        "structured":[{ "narrativeFragments":
-                                ["CAPITAL GAINS TAX RELATING TO",
-                                "THE PERIOD 1998-07-01 2022-10-30",
-                                "REF 009524780232","BANCA DEL TEST",
-                                "(REF. ART. 6 DL 461/97)"],
-                        "narrativeSupplementFragments":[],
-                        "codeword":"WITX"
-                        }],
-        "unstructuredFragments":[]}
-*/
+    String toNarrativeFormat() {
+        Narrative narrative = ((StructuredNarrativeField) this).narrative();
+        Gson gson = new Gson();
+        return gson.toJson(narrative);
     }
 
 }

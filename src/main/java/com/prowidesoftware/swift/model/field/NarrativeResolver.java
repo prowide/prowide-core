@@ -180,9 +180,12 @@ public class NarrativeResolver {
         return narrative;
     }
 
-    private static boolean isCurrencyAndAmount(String text) {
-        String textWithoutBankCode = (Character.isUpperCase(text.charAt(0)) && (text.charAt(1) == '/'))
+    static boolean isCurrencyAndAmount(String text) {
+        String textWithoutBankCode = (text.length() > 1 && Character.isUpperCase(text.charAt(0)) && (text.charAt(1) == '/'))
                 ? text.substring(2) : text;
+
+        if (textWithoutBankCode.length() < 4)
+            return false;
 
         for (int i = 0; i < 3; i++) {
             if (!Character.isUpperCase(textWithoutBankCode.charAt(i))) {
@@ -190,11 +193,7 @@ public class NarrativeResolver {
             }
         }
 
-        char c = textWithoutBankCode.charAt(3);
-        if (!Character.isDigit(c))
-            return false;
-
-        return true;
+        return Character.isDigit(textWithoutBankCode.charAt(3));
     }
 
     private static List<String> notEmptyLines(String value) {
@@ -400,7 +399,7 @@ public class NarrativeResolver {
         if (structuredNarratives != null) {
             for (StructuredNarrative structuredNarrative : structuredNarratives) {
                 String currency = structuredNarrative.getCurrency();
-                if (StringUtils.isNotEmpty(currency) && (currency.charAt(1) == '/')) {
+                if (currency != null && currency.length() > 1 && (currency.charAt(1) == '/')) {
                     structuredNarrative.setBankCode(currency.substring(0, 1));
                     structuredNarrative.setCurrency(currency.substring(2));
                 }

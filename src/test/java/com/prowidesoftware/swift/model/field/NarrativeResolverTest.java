@@ -590,4 +590,41 @@ public class NarrativeResolverTest {
         assertEquals("EUR50,///xxxxxxxxxx", n.getStructured().get(2).getNarrative());
     }
 
+    @Test
+    void isCurrencyAndAmountWithBankCode() {
+        v = "B/EUR1,00Fees";
+        assertTrue(NarrativeResolver.isCurrencyAndAmount(v));
+    }
+
+    @Test
+    void isCurrencyAndAmountWithoutBankCode() {
+        v = "EUR1,00Fees";
+        assertTrue(NarrativeResolver.isCurrencyAndAmount(v));
+    }
+
+    @Test
+    void isCurrencyAndAmountShortSize() {
+        v = "B/EU";
+        assertFalse(NarrativeResolver.isCurrencyAndAmount(v));
+    }
+
+    @Test
+    void isCurrencyAndAmountShortSizeWithoutBankCode() {
+        v = "EU";
+        assertFalse(NarrativeResolver.isCurrencyAndAmount(v));
+    }
+
+
+    @Test
+    void isCurrencyAndNoAmount() {
+        v = "EURA";
+        assertFalse(NarrativeResolver.isCurrencyAndAmount(v));
+    }
+
+    @Test
+    void isNoCurrencyAndAmount() {
+        v = "EU12";
+        assertFalse(NarrativeResolver.isCurrencyAndAmount(v));
+    }
+
 }

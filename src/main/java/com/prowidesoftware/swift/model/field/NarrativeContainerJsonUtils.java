@@ -20,12 +20,18 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Helper API for the {@link NarrativeContainer} fields JSON support
  *
  * @since 9.1.4
  */
 class NarrativeContainerJsonUtils {
+
+    static Pattern NARRATIVE_PATTERN =
+            Pattern.compile("[\"|']narrative([0-9]*)[\"|']");
 
     static void fromJson(JsonObject jsonObject, String json, StructuredNarrativeField field) {
         if (jsonObject.get("narrative") != null) {
@@ -60,10 +66,13 @@ class NarrativeContainerJsonUtils {
         return jsonObj;
     }
 
-    private static int countNarrativesInJson(String json) {
-        return StringUtils.countMatches(json, "narrative")
-                - (StringUtils.countMatches(json, "narrativeFragments")
-                + StringUtils.countMatches(json, "narrativeSupplementFragments"));
+    static int countNarrativesInJson(String json) {
+        Matcher narrativeMatcher = NARRATIVE_PATTERN.matcher(json);
+        int count = 0;
+        while (narrativeMatcher.find()) {
+            count++;
+        }
+        return count;
     }
 
 }
