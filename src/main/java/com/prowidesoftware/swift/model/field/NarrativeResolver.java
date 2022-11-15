@@ -98,7 +98,7 @@ public class NarrativeResolver {
 
         // start processing
         boolean unstructuredSection = !value.startsWith("/") || value.startsWith("//");
-        StructuredNarrative structured = null;
+        StructuredNarrative structured = new StructuredNarrative();
         boolean firstSupplementAdded = false;
         List<String> valueLines = notEmptyLines(value);
         for (String valueLine : valueLines) {
@@ -164,12 +164,12 @@ public class NarrativeResolver {
                         }
 
                         narrative.add(structured);
-                    } else if (!additionalNarrativesStartWithDoubleSlash && structured != null) {
+                    } else if (!additionalNarrativesStartWithDoubleSlash && !structured.isEmpty()) {
                         structured.addNarrativeFragment(valueLine);
                         unstructuredSection = false;
                     }
                 }
-            } else if (!additionalNarrativesStartWithDoubleSlash && structured != null) {
+            } else if (!additionalNarrativesStartWithDoubleSlash && !structured.isEmpty()) {
                 structured.addNarrativeFragment(valueLine);
                 unstructuredSection = false;
             }
