@@ -20,6 +20,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Helper API for the {@link NarrativeContainer} fields JSON support
  *
@@ -27,7 +30,10 @@ import org.apache.commons.lang3.StringUtils;
  */
 class NarrativeContainerJsonUtils {
 
-    static void fromJson(JsonObject jsonObject, String json, Field field) {
+    static Pattern NARRATIVE_PATTERN =
+            Pattern.compile("[\"|']narrative([0-9]*)[\"|']");
+
+    static void fromJson(JsonObject jsonObject, String json, StructuredNarrativeField field) {
         if (jsonObject.get("narrative") != null) {
             int numberOfNarrativesInJson = countNarrativesInJson(json);
             if (numberOfNarrativesInJson > 1) {
@@ -35,6 +41,11 @@ class NarrativeContainerJsonUtils {
                 field.setComponent(1, jsonWithNarrativeGroup.get("narrative").getAsString());
             } else {
                 field.setComponent(1, jsonObject.get("narrative").getAsString());
+            }
+        } else {
+            if (jsonObject.get("structured") != null) {
+                Narrative narrative = new Gson().fromJson(jsonObject, Narrative.class);
+                field.setNarrative(narrative);
             }
         }
     }
@@ -55,8 +66,13 @@ class NarrativeContainerJsonUtils {
         return jsonObj;
     }
 
-    private static int countNarrativesInJson(String json) {
-        return StringUtils.countMatches(json, "narrative");
+    static int countNarrativesInJson(String json) {
+        Matcher narrativeMatcher = NARRATIVE_PATTERN.matcher(json);
+        int count = 0;
+        while (narrativeMatcher.find()) {
+            count++;
+        }
+        return count;
     }
 
 }

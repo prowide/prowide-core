@@ -15,11 +15,9 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -37,6 +35,52 @@ public class FieldJsonTest {
         assertEquals("010203", o.get("date").getAsString());
         assertEquals("USD", o.get("currency").getAsString());
         assertEquals("123,45", o.get("amount").getAsString());
+    }
+
+    @Test
+    public void toJsonField71B() {
+
+        StructuredNarrative structNarrative = new StructuredNarrative().setCodeword("WITX")
+                .addNarrativeFragment("CAPITAL GAINS TAX RELATING TO")
+                .addNarrativeFragment("THE PERIOD 1998-07-01 2022-10-30")
+                .addNarrativeFragment("REF 009524780232")
+                .addNarrativeFragment("BANCA DEL TEST");
+        Narrative narrative = new Narrative();
+        narrative.add(structNarrative);
+
+        Field71B tag71Ba = new Field71B();
+        tag71Ba.setNarrative(narrative);
+
+        assertEquals("CAPITAL GAINS TAX RELATING TO", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(0));
+        assertEquals("THE PERIOD 1998-07-01 2022-10-30", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(1));
+        assertEquals("REF 009524780232", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(2));
+        assertEquals("BANCA DEL TEST", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(3));
+    }
+
+    @Test
+    public void toJsonNarrativeField71B() {
+
+        StructuredNarrative structNarrative = new StructuredNarrative().setCodeword("WITX")
+                .addNarrativeFragment("CAPITAL GAINS TAX RELATING TO")
+                .addNarrativeFragment("THE PERIOD 1998-07-01 2022-10-30")
+                .addNarrativeFragment("REF 009524780232")
+                .addNarrativeFragment("BANCA DEL TEST");
+        Narrative narrative = new Narrative();
+        narrative.add(structNarrative);
+
+        Field71B tag71Ba = new Field71B();
+        tag71Ba.setNarrative(narrative);
+
+        JsonObject tag71BaNarrative = JsonParser.parseString(tag71Ba.toNarrativeFormat()).getAsJsonObject();
+
+        JsonObject structuredNarrative = tag71BaNarrative.get("structured").getAsJsonArray().get(0).getAsJsonObject();
+        assertEquals("WITX",structuredNarrative.get("codeword").getAsString());
+
+        JsonArray narrativeFragments = structuredNarrative.get("narrativeFragments").getAsJsonArray();
+        assertTrue(narrativeFragments.get(0).getAsString().contains("CAPITAL GAINS TAX RELATING TO"));
+        assertTrue(narrativeFragments.get(1).getAsString().contains("THE PERIOD 1998-07-01 2022-10-30"));
+        assertTrue(narrativeFragments.get(2).getAsString().contains("REF 009524780232"));
+        assertTrue(narrativeFragments.get(3).getAsString().contains("BANCA DEL TEST"));
     }
 
     @Test
@@ -74,6 +118,23 @@ public class FieldJsonTest {
 
         JsonObject o = JsonParser.parseString(f70.toJson()).getAsJsonObject();
         assertEquals("VALUE 1 VALUE 2 VALUE 3", o.get("narrative").getAsString().replace("\n", "").replace("\r", ""));
+    }
+
+    @Test
+    public void toJsonNarrativeField70() {
+        Narrative narrative = new Narrative();
+        narrative.addUnstructuredFragment("VALUE 1 ");
+        narrative.addUnstructuredFragment("VALUE 2 ");
+        narrative.addUnstructuredFragment("VALUE 3");
+        Field70 f70 = new Field70(narrative);
+        //{"name":"70","narrative":"\"VALUE 1 \\r\\nVALUE 2 \\r\\nVALUE 3\"";}
+
+        JsonObject o = JsonParser.parseString(f70.toNarrativeFormat()).getAsJsonObject();
+        JsonArray asJsonArray = o.get("unstructuredFragments").getAsJsonArray();
+
+        assertTrue(asJsonArray.get(0).getAsString().contains("VALUE 1"));
+        assertTrue(asJsonArray.get(1).getAsString().contains("VALUE 2"));
+        assertTrue(asJsonArray.get(2).getAsString().contains("VALUE 3"));
     }
 
     @Test

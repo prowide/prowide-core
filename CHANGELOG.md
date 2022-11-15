@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.2.20 SNAPSHOT
+  * (GH-127) Enhanced field JSON serialization to include detailed structure when the field is a NarrativeContainer 
+
 #### 9.2.19 - November 2022
   * (PW-1078) StructuredNarrative: Added getBankCode() methods in order to allow direct access to data
   * (GH-88) Added missing constants for ISO 15022 codes 
