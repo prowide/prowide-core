@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -1145,6 +1146,14 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     @Override
     public String toJson() {
+        String stdFormat = toJsonFormat();
+        if (this instanceof StructuredNarrativeField) {
+            return stdFormat.substring(0, stdFormat.length() - 1) + "," + toNarrativeFormat().substring(1);
+        }
+        return stdFormat;
+    }
+
+    String toJsonFormat() {
         JsonObject field = new JsonObject();
         field.addProperty("name", this.getName());
         for (int i = 1; i <= this.getComponents().size(); i++) {
@@ -1157,6 +1166,12 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             }
         }
         return field.toString();
+    }
+
+    String toNarrativeFormat() {
+        Narrative narrative = ((StructuredNarrativeField) this).narrative();
+        Gson gson = new Gson();
+        return gson.toJson(narrative);
     }
 
 }

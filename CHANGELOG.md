@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.8 SNAPSHOT
+  * (GH-127) Enhanced field JSON serialization to include detailed structure when the field is a NarrativeContainer 
+
 #### 9.3.7 - November 2022
   * (PW-1101) Fix field 35C labels to match the FIN xsd: Identification Of Instrument, Description Of Instrument
 

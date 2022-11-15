@@ -55,9 +55,10 @@ public class NarrativeResolver {
                 return parseFormat2(f);
             case Field73A.NAME:
             case Field71D.NAME:
-            case Field71B.NAME:
             case Field73.NAME:
                 return parseFormat3(f);
+            case Field71B.NAME:
+                return parseFormat3Score(f);
             case Field77B.NAME:
                 return parseFormat4(f);
             case Field75.NAME:
@@ -84,7 +85,9 @@ public class NarrativeResolver {
         return new Narrative();
     }
 
-    private static Narrative parseFormat(Field f, int codewordMaxSize, int codewordType, boolean supportsCountry, boolean supportsCurrency, boolean supportsSupplement, boolean additionalNarrativesStartWithDoubleSlash) {
+    private static Narrative parseFormat(Field f, int codewordMaxSize, int codewordType, boolean supportsCountry,
+                                         boolean supportsCurrency, boolean supportsSupplement,
+                                         boolean additionalNarrativesStartWithDoubleSlash) {
 
         // create an empty narrative, get the value and check there's something to do
         Narrative narrative = new Narrative();
@@ -95,39 +98,41 @@ public class NarrativeResolver {
 
         // start processing
         boolean unstructuredSection = !value.startsWith("/") || value.startsWith("//");
-        StructuredNarrative structured = null;
+        StructuredNarrative structured = new StructuredNarrative();
         boolean firstSupplementAdded = false;
-        for (String line : notEmptyLines(value)) {
+        List<String> valueLines = notEmptyLines(value);
+        for (String valueLine : valueLines) {
             if (unstructuredSection) {
-                narrative.addUnstructuredFragment(line);
+                narrative.addUnstructuredFragment(valueLine);
                 continue;
             }
-
             unstructuredSection = true;
-            if (line.charAt(0) == '/') {
+
+            if (valueLine.charAt(0) == '/') {
                 String text;
-                if (line.length() > 1 && line.charAt(1) == '/') {
+                if (valueLine.length() > 1 && valueLine.charAt(1) == '/') {
+                    //line starts with '//'
                     unstructuredSection = false;
                     if (additionalNarrativesStartWithDoubleSlash) {
-                        // continuation of current narrative
-                        line = line.substring(2);
+                        // continuation of current narrative, remove '//'
+                        valueLine = valueLine.substring(2);
 
                         if (supportsSupplement) {
-                            firstSupplementAdded = addNarrativeSupplement(firstSupplementAdded, line, structured);
-                        } else if (StringUtils.isNotEmpty(line)) {
-                            structured.addNarrativeFragment(line);
+                            firstSupplementAdded = addNarrativeSupplement(firstSupplementAdded, valueLine, structured);
+                        } else if (StringUtils.isNotEmpty(valueLine)) {
+                            structured.addNarrativeFragment(valueLine);
                         }
                     } else
-                        structured.addNarrativeFragment(line);
+                        structured.addNarrativeFragment(valueLine);
                 } else {
                     // new codeword
-                    String codeword = StringUtils.substringBetween(line, "/", "/");
+                    String codeword = StringUtils.substringBetween(valueLine, "/", "/");
                     if (isCodewordValid(codeword, codewordType, codewordMaxSize)) {
                         firstSupplementAdded = false;
                         unstructuredSection = false;
                         structured = new StructuredNarrative().setCodeword(codeword);
 
-                        text = StringUtils.substringAfter(line, codeword + "/");
+                        text = StringUtils.substringAfter(valueLine, codeword + "/");
 
                         if (supportsCountry) {
                             String country = getCountry(StringUtils.substringBefore(text, "//"));
@@ -137,7 +142,7 @@ public class NarrativeResolver {
                             }
                         }
 
-                        if (supportsCurrency) {
+                        if (supportsCurrency && isCurrencyAndAmount(text)) {
                             Triple<String, BigDecimal, String> tripleValue = getCurrencyAmountAndNarrative(text);
                             String currency = tripleValue.getLeft();
                             BigDecimal amount = tripleValue.getMiddle();
@@ -159,20 +164,36 @@ public class NarrativeResolver {
                         }
 
                         narrative.add(structured);
-                    } else if (!additionalNarrativesStartWithDoubleSlash && structured != null) {
-                        structured.addNarrativeFragment(line);
+                    } else if (!additionalNarrativesStartWithDoubleSlash && !structured.isEmpty()) {
+                        structured.addNarrativeFragment(valueLine);
                         unstructuredSection = false;
                     }
                 }
-            } else if (!additionalNarrativesStartWithDoubleSlash && structured != null) {
-                structured.addNarrativeFragment(line);
+            } else if (!additionalNarrativesStartWithDoubleSlash && !structured.isEmpty()) {
+                structured.addNarrativeFragment(valueLine);
                 unstructuredSection = false;
             }
             if (unstructuredSection)
-                narrative.addUnstructuredFragment(line);
+                narrative.addUnstructuredFragment(valueLine);
         }
 
         return narrative;
+    }
+
+    static boolean isCurrencyAndAmount(String text) {
+        String textWithoutBankCode = (text.length() > 1 && Character.isUpperCase(text.charAt(0)) && (text.charAt(1) == '/'))
+                ? text.substring(2) : text;
+
+        if (textWithoutBankCode.length() < 4)
+            return false;
+
+        for (int i = 0; i < 3; i++) {
+            if (!Character.isUpperCase(textWithoutBankCode.charAt(i))) {
+                return false;
+            }
+        }
+
+        return Character.isDigit(textWithoutBankCode.charAt(3));
     }
 
     private static List<String> notEmptyLines(String value) {
@@ -360,17 +381,25 @@ public class NarrativeResolver {
     /**
      * Line 1:       /8c/[3!a13d][additional information]  (Code)(Currency)(Amount)(Narrative)
      * Lines 2-6:   /8c/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
-     * Line 1 option for SCORE:       /8a/1!a/[3!a13d][additional information]  (Code)(Currency)(Amount)(Narrative)
-     * Lines 2-6 option for SCORE:   /8c//1!a/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
      * [//continuation of additional information]          (Narrative)
      */
     public static Narrative parseFormat3(Field f) {
-        Narrative narrative = parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, true, false, true);
+        return parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, true, false, true);
+    }
+
+    /**
+     * Line 1 option for SCORE:       /8a/1!a/[3!a13d][additional information]  (Code)(Currency)(Amount)(Narrative)
+     * Lines 2-6 option for SCORE:   /8a/1!a/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
+     * [//continuation of additional information]          (Narrative)
+     */
+    public static Narrative parseFormat3Score(Field f) {
+
+        Narrative narrative = parseFormat3(f);
         List<StructuredNarrative> structuredNarratives = narrative.getStructured();
         if (structuredNarratives != null) {
             for (StructuredNarrative structuredNarrative : structuredNarratives) {
                 String currency = structuredNarrative.getCurrency();
-                if (StringUtils.isNotEmpty(currency) && (currency.startsWith("O/") || currency.startsWith("B/"))) {
+                if (currency != null && currency.length() > 1 && (currency.charAt(1) == '/')) {
                     structuredNarrative.setBankCode(currency.substring(0, 1));
                     structuredNarrative.setCurrency(currency.substring(2));
                 }
