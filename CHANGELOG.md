@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.3.8 SNAPSHOT
+#### 9.3.8 - November 2022
   * (GH-127) Enhanced field JSON serialization to include detailed structure when the field is a NarrativeContainer 
 
 #### 9.3.7 - November 2022
