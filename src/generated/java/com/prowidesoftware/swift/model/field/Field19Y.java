@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -69,7 +69,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -85,21 +85,21 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = "N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "I";
 
 	/**
@@ -112,7 +112,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
 	 * @see #WEIGHT
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer AMOUNT = 1;
 
     /**
@@ -236,7 +236,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "N";
     }
@@ -358,7 +358,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      * @see #getComponent1AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent1AsNumber() {
         return getComponent1AsBigDecimal();
     }
@@ -377,7 +377,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getAmount() {
         return getWeight();
     }
@@ -401,7 +401,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      * @see #getWeightAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getWeightAsNumber() {
         return getComponent1AsNumber();
     }
@@ -411,7 +411,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      * @see #getWeightAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getWeightAsBigDecimal();
     }
@@ -426,7 +426,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      * @see #getWeightAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getAmountAsNumber() {
         return getWeightAsNumber();
     }
@@ -534,7 +534,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field19Y setAmount(String component1) {
         return setWeight(component1);
     }
@@ -549,7 +549,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field19Y setAmount(java.math.BigDecimal component1) {
         return setWeight(component1);
     }
@@ -564,7 +564,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      * @see #setWeight(java.math.BigDecimal)
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field19Y setAmount(java.lang.Number component1) {
         return setWeight(component1);
     }

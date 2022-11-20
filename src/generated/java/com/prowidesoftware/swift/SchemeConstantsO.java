@@ -23,11 +23,11 @@ public interface SchemeConstantsO {
     String OTHRPRTY = "OTHRPRTY";
     String ORDRPRTY = "ORDRPRTY";
     String ORDR = "ORDR";
-    String OWNT = "OWNT";
     String OPST = "OPST";
     String OPTI = "OPTI";
-    String OWND = "OWND";
     String OCCU = "OCCU";
+    String OWNT = "OWNT";
+    String OWND = "OWND";
     String ODDC = "ODDC";
     String ORGV = "ORGV";
     String OCMT = "OCMT";
@@ -51,6 +51,7 @@ public interface SchemeConstantsO {
     String OSUB = "OSUB";
     String OAPD = "OAPD";
     String OSTA = "OSTA";
+    String OTYP = "OTYP";
     String ORDER = "ORDER";
     String OTH = "OTH";
     String OSMI = "OSMI";

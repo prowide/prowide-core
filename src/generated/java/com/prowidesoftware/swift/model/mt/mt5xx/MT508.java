@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,11 +59,11 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="sequence">
 Sequence B - Intra-Position Details (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 95 P,R (O)</li>
-<li class="field">Field 97 A,B (M)</li>
+<li class="field">Field 97 A,B,D (M)</li>
 <li class="field">Field 94 B,C,F (O)</li>
 <li class="fieldset">
 Fieldset 36
- (M) (repetitive)<ul><li>FieldsetItem 36 B (M)</li><li>FieldsetItem 36 B (O)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="field">Field 13 B (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 36 B,D (M)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 13 B (O)</li>
 <li class="field">Field 19 A (O)</li>
 <li class="field">Field 35 B (M)</li>
 <li class="sequence">
@@ -86,7 +86,7 @@ Fieldset 17
 Fieldset 90
  (O)<ul><li>FieldsetItem 90 A,B (O)</li><li>FieldsetItem 90 A,B (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (O)<ul><li>FieldsetItem 36 B (O)</li><li>FieldsetItem 36 B (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (O)<ul><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="fieldset">
@@ -108,7 +108,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2021</strong>
+ * This source code is specific to release <strong>SRU 2022</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -117,7 +117,7 @@ public class MT508 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT508.class.getName());
 	
@@ -424,6 +424,24 @@ public class MT508 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return the first one whose name matches 97D, 
+	 * or null if none is found.
+	 * The first occurrence of field 97D at MT508 is expected to be the only one.
+	 * 
+	 * @return a Field97D object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field97D getField97D() {
+		final Tag t = tag("97D");
+		if (t != null) {
+			return new Field97D(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Iterates through block4 fields and return the first one whose name matches 94C, 
 	 * or null if none is found.
 	 * The first occurrence of field 94C at MT508 is expected to be the only one.
@@ -628,6 +646,26 @@ public class MT508 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field36B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36D, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 36D at MT508 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field36D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field36D> getField36D() {
+		final List<Field36D> result = new ArrayList<>();
+		final Tag[] tags = tags("36D");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field36D(tag.getValue()));
             }
 		}
 		return result;

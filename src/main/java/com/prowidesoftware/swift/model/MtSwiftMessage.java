@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.ConversionService;
@@ -361,14 +362,12 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     }
 
     /**
-     * Updates the derived attributes from the current raw (FIN) message attribute.
-     * This is similar to create a new message instance from string content.
-     *
-     * @deprecated use {@link #updateFromFIN(String)} instead
+     * @deprecated Use {@link #updateFromFIN(String)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public void updateFromFIN() {
+        DeprecationUtils.phase2(getClass(), "updateFromFIN()", "Use updateFromFIN(String) instead");
         updateFromMessage();
     }
 

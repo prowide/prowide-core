@@ -28,8 +28,8 @@ public interface SchemeConstantsL {
     String LDPRTY1 = "LDPRTY1";
     String LAST = "LAST";
     String LOCA = "LOCA";
-    String LANG = "LANG";
     String LOTS = "LOTS";
+    String LANG = "LANG";
     String LOCO = "LOCO";
     String LOCL = "LOCL";
     String LEGA = "LEGA";
@@ -48,6 +48,7 @@ public interface SchemeConstantsL {
     String LAPD = "LAPD";
     String LOAN = "LOAN";
     String LOTO = "LOTO";
+    String LBIP = "LBIP";
     String LTRD = "LTRD";
     String LICO = "LICO";
     String LOC = "LOC";

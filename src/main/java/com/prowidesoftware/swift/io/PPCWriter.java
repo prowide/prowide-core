@@ -47,16 +47,20 @@ public class PPCWriter extends AbstractWriter {
         super(writer);
     }
 
-    /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    /**
+     * @deprecated Use constructor signature with {@link Charset} parameter instead
+     */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023, comment = "Use constructor signature with Charset parameter instead")
     public PPCWriter(final File file) throws FileNotFoundException {
         super(file);
     }
 
-    /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    /**
+     * @deprecated Use constructor signature with {@link Charset} parameter instead
+     */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023, comment = "Use constructor signature with Charset parameter instead")
     public PPCWriter(final String filename) throws FileNotFoundException {
         super(filename);
     }
@@ -71,9 +75,11 @@ public class PPCWriter extends AbstractWriter {
         super(_file, _charset);
     }
 
-    /** @deprecated use constructor signature with {@link Charset} parameter instead */
+    /**
+     * @deprecated Use constructor signature with {@link Charset} parameter instead
+     */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022, comment = "use constructor signature with Charset parameter instead")
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023, comment = "Use constructor signature with Charset parameter instead")
     public PPCWriter(final OutputStream stream) {
         super(stream);
     }

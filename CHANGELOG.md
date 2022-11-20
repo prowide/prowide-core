@@ -1,34 +1,46 @@
 # Prowide Core - CHANGELOG
 
-#### 9.2.20 - November 2022
+#### 9.3.8 - November 2022
   * (GH-127) Enhanced field JSON serialization to include detailed structure when the field is a NarrativeContainer 
 
-#### 9.2.19 - November 2022
-  * (PW-1078) StructuredNarrative: Added getBankCode() methods in order to allow direct access to data
+#### 9.3.7 - November 2022
+  * (PW-1101) Fix field 35C labels to match the FIN xsd: Identification Of Instrument, Description Of Instrument
+
+#### 9.3.6 - November 2022
+  * (PW-1086) Fixed typo in field 36D accessors
+  * (PW-1078) StructuredNarrative: Added getBankCode() methods in order to allow direct access to data (used in SCORE messages)
   * (GH-88) Added missing constants for ISO 15022 codes 
+  * MT540 and MT548 added missing getter for Field99C
   * Added removeRepeatedBoundaries method in order to remove repeated tag boundaries
 
-#### 9.2.18 - September 2022
+#### 9.3.5 - October 2022
+  * SRU2022 updates review: field 35C validation pattern changed to <VAR-SEQU-5>
+
+#### 9.3.4 - September 2022
+  * Added getCADETL method for "CADETL" separator sequences
   * (GH-119) MT566: Fixed repetitions of sequence USECU/FIA that is not repetitive
   * Added sequence getters using the boundary field qualifier, for example getSequenceGENL() as equivalent to the existing getSequenceA()
 
-#### 9.2.17 - August 2022
+#### 9.3.3 - August 2022
   * (PW-1015) Added field model classes for 47E, 49D and 49F (required in SCORE MT798_774)
 
-#### 9.2.16 - July 2022
+#### 9.3.2 - July 2022
   * (PW-977) Changed the MT203 and MT210 inner structure from regular sequence to inner loop named Loop1
   * Added Loop1 getter API to MTs: 110, 201, 203, 210, 410, 412, 420, 422, 450, 456, 604, 605, 801, 920, 973
 
-#### 9.2.15 - July 2022
+#### 9.3.1 - July 2022
   * (PW-976) Added new MonetaryAmountContainer interface for fields having both an Amount and Currency
   * (PW-969) Modified field 12E, 12K and 12R labels
   * (PW-969) Added an optional narrative component to field 12R (required when the field is used in SCORE messages)
   * (PW-898) Changed the heuristic to retrieve sequence B1 from MT300 and MT304 to be more efficient even if the message structure is invalid
-
-#### 9.2.14 - June 2022
   * (PW-867) Enhanced the parsing of party fields A, B and D, to be more strict when splitting the /D/ or /C/ prefix from the account
   * Enhanced MtId constructor with regex matching
   * Added method namespaceURI() in the MtId class to return for example "urn:swift:xsd:fin.103.2021" for the MT103
+
+#### 9.3.0 - May 2022
+  * SWIFT Standard release update 2022 (live 20 November 2022)
+  * Yearly revision of deprecation phase (see http://www.prowidesoftware.com/resources/deprecation-policy)
+  * Updated gson dependency to 2.9.0
 
 #### 9.2.13 - April 2022
   * (PW-892) Fixed AbstractMT#create when the message type number is less than 100

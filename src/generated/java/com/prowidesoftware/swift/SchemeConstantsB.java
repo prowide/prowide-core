@@ -27,6 +27,7 @@ public interface SchemeConstantsB {
     String BBAIRS = "BBAIRS";
     String BUSE = "BUSE";
     String BUYE = "BUYE";
+    String BCAW = "BCAW";
     String BENT = "BENT";
     String BIRT = "BIRT";
     String BPAR = "BPAR";

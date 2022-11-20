@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -72,7 +72,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -88,21 +88,21 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = ":S//[S]N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "SSN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "SSI";
 
 	/**
@@ -125,7 +125,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
 	 * @see #RATE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer RATE_AMOUNT = 3;
 
     /**
@@ -264,7 +264,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "SSN";
     }
@@ -425,7 +425,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * @see #getComponent3AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent3AsNumber() {
         return getComponent3AsBigDecimal();
     }
@@ -444,7 +444,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getRateAmount() {
         return getRate();
     }
@@ -468,7 +468,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * @see #getRateAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getRateAsNumber() {
         return getComponent3AsNumber();
     }
@@ -478,7 +478,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * @see #getRateAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.math.BigDecimal getRateAmountAsBigDecimal() {
         return getRateAsBigDecimal();
     }
@@ -493,7 +493,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * @see #getRateAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getRateAmountAsNumber() {
         return getRateAsNumber();
     }
@@ -643,7 +643,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field92A setRateAmount(String component3) {
         return setRate(component3);
     }
@@ -658,7 +658,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field92A setRateAmount(java.math.BigDecimal component3) {
         return setRate(component3);
     }
@@ -673,7 +673,7 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      * @see #setRate(java.math.BigDecimal)
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field92A setRateAmount(java.lang.Number component3) {
         return setRate(component3);
     }

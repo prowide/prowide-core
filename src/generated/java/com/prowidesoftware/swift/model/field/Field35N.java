@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -70,7 +70,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -86,21 +86,21 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = "SN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "SN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "SI";
 
 	/**
@@ -113,7 +113,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
 	 * @see #TYPE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer CURRENCY = 1;
 
 	/**
@@ -126,7 +126,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
 	 * @see #QUANTITY
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer AMOUNT = 2;
 
     /**
@@ -255,7 +255,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "SN";
     }
@@ -373,7 +373,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getCurrency() {
         return getType();
     }
@@ -406,7 +406,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @see #getComponent2AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent2AsNumber() {
         return getComponent2AsBigDecimal();
     }
@@ -425,7 +425,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getAmount() {
         return getQuantity();
     }
@@ -449,7 +449,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @see #getQuantityAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getQuantityAsNumber() {
         return getComponent2AsNumber();
     }
@@ -459,7 +459,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @see #getQuantityAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getQuantityAsBigDecimal();
     }
@@ -474,7 +474,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @see #getQuantityAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getAmountAsNumber() {
         return getQuantityAsNumber();
     }
@@ -509,7 +509,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field35N setCurrency(String component1) {
         return setType(component1);
     }
@@ -617,7 +617,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field35N setAmount(String component2) {
         return setQuantity(component2);
     }
@@ -632,7 +632,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field35N setAmount(java.math.BigDecimal component2) {
         return setQuantity(component2);
     }
@@ -647,7 +647,7 @@ public class Field35N extends Field implements Serializable, AmountContainer {
      * @see #setQuantity(java.math.BigDecimal)
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field35N setAmount(java.lang.Number component2) {
         return setQuantity(component2);
     }

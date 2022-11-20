@@ -23,7 +23,7 @@ archivesBaseName = 'pw-swift-core'
 group 'com.prowidesoftware'
 
 project.ext {
-    SRU = 'SRU2021'
+    SRU = 'SRU2022'
 }
 
 scmVersion {
@@ -52,7 +52,7 @@ repositories {
 
 dependencies {
     implementation 'org.apache.commons:commons-lang3:3.12.0'
-    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     compileOnly 'javax.persistence:javax.persistence-api:2.2'
     compileOnly 'javax.xml.bind:jaxb-api:2.3.1'
@@ -60,10 +60,10 @@ dependencies {
 
     testImplementation 'javax.persistence:javax.persistence-api:2.2'
     testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
-    testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.8.4'
-    testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.8.4'
-    testImplementation group: 'org.xmlunit', name: 'xmlunit-assertj', version: '2.8.4'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.22.0'
+    testImplementation group: 'org.xmlunit', name: 'xmlunit-core', version: '2.9.0'
+    testImplementation group: 'org.xmlunit', name: 'xmlunit-matchers', version: '2.9.0'
+    testImplementation group: 'org.xmlunit', name: 'xmlunit-assertj', version: '2.9.0'
 }
 
 sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']

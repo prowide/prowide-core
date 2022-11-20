@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -76,7 +76,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -92,21 +92,21 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = ":S//<DATE4><TIME2>[,S][/[c]<TIME3>]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "SDTNSW";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "SDTNSW";
 
 	/**
@@ -328,7 +328,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "SDTNSW";
     }
@@ -551,7 +551,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      * @see #getComponent4AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -584,7 +584,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      * @see #getDecimalsAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getDecimalsAsNumber() {
         return getComponent4AsNumber();
     }
@@ -1085,7 +1085,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
 	 * @deprecated Use OFFSET instead
 	 */
 	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public static final Integer UTC_INDICATOR = 6;
 
 	/**
@@ -1108,9 +1108,9 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      * @deprecated Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getUTCIndicator() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getUTCIndicator()", "Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getUTCIndicator()", "Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset");
         return getOffset();
     }
 
@@ -1118,9 +1118,9 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      * @deprecated Use getOffsetAsCalendar() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public java.util.Calendar getUTCIndicatorAsCalendar() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getUTCIndicatorAsCalendar()", "Use getOffsetAsCalendar() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getUTCIndicatorAsCalendar()", "Use getOffsetAsCalendar() instead");
         return SwiftFormatUtils.getTime3(getOffset());
     }
 
@@ -1128,9 +1128,9 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      * @deprecated Use setOffset(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public Field98E setUTCIndicator(String component) {
-	    com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setUTCIndicator(String)", "Use setOffset(String) instead");
+	    com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setUTCIndicator(String)", "Use setOffset(String) instead");
 	    return setOffset(component);
 	}
 
@@ -1138,9 +1138,9 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      * @deprecated Use setOffset(Calendar) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public Field98E setUTCIndicator(java.util.Calendar cal) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setUTCIndicator(Calendar)", "Use setOffset(Calendar) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setUTCIndicator(Calendar)", "Use setOffset(Calendar) instead");
         return setOffset(cal);
 	}
 }

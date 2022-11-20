@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.ResolverUtils;
@@ -45,17 +46,12 @@ public class CurrencyResolver {
     }
 
     /**
-     * Returns the list of Currency values (as String) given the Types Pattern and the list of values
-     *
-     * This is <EM>DEPRECATED</EM>, use currencyStrings instead
-     * @param pattern the Types Pattern
-     * @param components the list of Component Values
-     * @return the list of currencies
-     * @see #currencyStrings(Field)
+     * @deprecated Use {@link #currencyStrings(Field)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase2= TargetYear.SRU2022)
+    @ProwideDeprecated(phase3= TargetYear.SRU2023)
     public static List<String> resolveComponentsPattern(String pattern, List<String> components) {
+        DeprecationUtils.phase2(CurrencyResolver.class, "resolveComponentsPattern", "Use currencyStrings instead");
         return ResolverUtils.findWantedType(pattern, 'C', components);
     }
 

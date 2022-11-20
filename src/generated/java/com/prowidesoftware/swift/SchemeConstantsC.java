@@ -57,12 +57,12 @@ public interface SchemeConstantsC {
     String COLN = "COLN";
     String COUP = "COUP";
     String CADETL = "CADETL";
-    String CLTDET = "CLTDET";
-    String CUFC = "CUFC";
     String CERT = "CERT";
     String CLAS = "CLAS";
     String CALD = "CALD";
     String CITY = "CITY";
+    String CLTDET = "CLTDET";
+    String CUFC = "CUFC";
     String COVE = "COVE";
     String COMM = "COMM";
     String COWA = "COWA";
@@ -104,6 +104,7 @@ public interface SchemeConstantsC {
     String CAND = "CAND";
     String CAST = "CAST";
     String CPRC = "CPRC";
+    String CMIT = "CMIT";
     String COMT = "COMT";
     String CAEV = "CAEV";
     String CORP = "CORP";

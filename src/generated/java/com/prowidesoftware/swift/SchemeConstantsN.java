@@ -37,10 +37,10 @@ public interface SchemeConstantsN {
     String NMAT = "NMAT";
     String NPAY = "NPAY";
     String NACC = "NACC";
-    String NXRT = "NXRT";
     String NOMI = "NOMI";
     String NATO = "NATO";
     String NWFC = "NWFC";
+    String NXRT = "NXRT";
     String NAVD = "NAVD";
     String NRAD = "NRAD";
     String NAFI = "NAFI";

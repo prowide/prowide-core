@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -76,7 +76,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -92,21 +92,21 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = "N[//<DATE2>cS][/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "NESNS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "IESNS";
 
 	/**
@@ -124,7 +124,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
 	 * @see #END_DATE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer DATE = 2;
 
 	/**
@@ -137,7 +137,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
 	 * @see #PERIOD
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer DM_MARK = 3;
 
 	/**
@@ -150,7 +150,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
 	 * @see #NUMBER
 	 */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer NUMBER_OF_DAYSMONTHS = 4;
 
 	/**
@@ -322,7 +322,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "NESNS";
     }
@@ -464,7 +464,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @see #getComponent1AsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent1AsNumber() {
         return getComponent1AsBigDecimal();
     }
@@ -496,7 +496,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @see #getRateAsBigDecimal()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getRateAsNumber() {
         return getComponent1AsNumber();
     }
@@ -532,7 +532,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getDate() {
         return getEndDate();
     }
@@ -550,7 +550,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @see #getEndDateAsCalendar()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.util.Calendar getDateAsCalendar() {
         return getEndDateAsCalendar();
     }
@@ -577,7 +577,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getDMMark() {
         return getPeriod();
     }
@@ -610,7 +610,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @see #getComponent4AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -630,7 +630,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getNumberofDaysMonths() {
         return getNumber();
     }
@@ -654,7 +654,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getNumberAsNumber() {
         return getComponent4AsNumber();
     }
@@ -664,7 +664,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Long getNumberofDaysMonthsAsLong() {
         return getNumberAsLong();
     }
@@ -679,7 +679,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getNumberofDaysMonthsAsNumber() {
         return getNumberAsNumber();
     }
@@ -847,7 +847,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field37E setDate(String component2) {
         return setEndDate(component2);
     }
@@ -861,7 +861,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field37E setDate(java.util.Calendar component2) {
         return setEndDate(component2);
     }
@@ -896,7 +896,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field37E setDMMark(String component3) {
         return setPeriod(component3);
     }
@@ -1002,7 +1002,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field37E setNumberofDaysMonths(String component4) {
         return setNumber(component4);
     }
@@ -1017,7 +1017,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field37E setNumberofDaysMonths(java.lang.Long component4) {
         return setNumber(component4);
     }
@@ -1032,7 +1032,7 @@ public class Field37E extends Field implements Serializable, AmountContainer, Da
      * @see #setNumber(java.lang.Long)
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public Field37E setNumberofDaysMonths(java.lang.Number component4) {
         return setNumber(component4);
     }

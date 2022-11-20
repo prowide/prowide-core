@@ -15,4 +15,15 @@ out
 .checkstyle
 pom.xml
 release.sh
-.idea
+.idea/gradle.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/prowide-core.iml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/libraries-with-intellij-classes.xml
+.idea/jpa-buddy.xml
+.idea/runConfigurations.xml
+.idea/.name

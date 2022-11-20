@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ Fieldset 22
 <li class="sequence">
 Sequence C1 - Securities Collateral Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 35 B (M)</li>
-<li class="field">Field 36 B (M)</li>
+<li class="field">Field 36 B,D (M)</li>
 <li class="field">Field 17 B (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -125,7 +125,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2021</strong>
+ * This source code is specific to release <strong>SRU 2022</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -134,7 +134,7 @@ public class MT503 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT503.class.getName());
 	
@@ -435,6 +435,24 @@ public class MT503 extends AbstractMT implements Serializable {
 		final Tag t = tag("36B");
 		if (t != null) {
 			return new Field36B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 36D, 
+	 * or null if none is found.
+	 * The first occurrence of field 36D at MT503 is expected to be the only one.
+	 * 
+	 * @return a Field36D object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field36D getField36D() {
+		final Tag t = tag("36D");
+		if (t != null) {
+			return new Field36D(t.getValue());
 		} else {
 			return null;
 		}

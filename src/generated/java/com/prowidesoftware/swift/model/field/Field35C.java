@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,17 +47,18 @@ import com.google.gson.JsonParser;
  * <p>Subfields (components) Data types
  * <ol>
  * 		<li><code>String</code></li>
+ * 		<li><code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>3!c</code></li>
- * 		<li>parser pattern: <code>S</code></li>
- * 		<li>components pattern: <code>S</code></li>
+ * 		<li>validation pattern: <code>&lt;VAR-SEQU-5&gt;</code></li>
+ * 		<li>parser pattern: <code>S[/S]</code></li>
+ * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -65,7 +66,7 @@ public class Field35C extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -81,33 +82,38 @@ public class Field35C extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	public static final String PARSER_PATTERN = "S";
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	public static final String COMPONENTS_PATTERN = "S";
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
-	public static final String TYPES_PATTERN = "S";
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+	public static final String TYPES_PATTERN = "SS";
 
 	/**
-	 * Component number for the Number subfield.
+	 * Component number for the Identification Of Instrument subfield.
 	 */
-	public static final Integer NUMBER = 1;
+	public static final Integer IDENTIFICATION_OF_INSTRUMENT = 1;
+
+	/**
+	 * Component number for the Description Of Instrument subfield.
+	 */
+	public static final Integer DESCRIPTION_OF_INSTRUMENT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field35C() {
-        super(1);
+        super(2);
     }
 
     /**
@@ -179,8 +185,9 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     public void parse(final String value) {
-        init(1);
-        setComponent1(value);
+        init(2);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
+        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
     }
 
     /**
@@ -190,6 +197,9 @@ public class Field35C extends Field implements Serializable {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
+        if (getComponent2() != null) {
+            result.append("/").append(getComponent2());
+        }
         return result.toString();
     }
 
@@ -204,12 +214,16 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 35C");
         }
         if (component == 1) {
             //default format (as is)
             return getComponent(1);
+        }
+        if (component == 2) {
+            //default format (as is)
+            return getComponent(2);
         }
         return null;
     }
@@ -219,9 +233,9 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
-        return "S";
+        return "SS";
     }
 
     /**
@@ -233,7 +247,7 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     public String typesPattern() {
-        return "S";
+        return "SS";
     }
 
     /**
@@ -241,7 +255,7 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S";
+        return "S[/S]";
     }
 
     /**
@@ -249,7 +263,7 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "3!c";
+        return "<VAR-SEQU-5>";
     }
 
     /**
@@ -264,6 +278,9 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 2) {
+            return true;
+        }
         return false;
     }
 
@@ -284,7 +301,7 @@ public class Field35C extends Field implements Serializable {
      */
     @Override
     public int componentsSize() {
-        return 1;
+        return 2;
     }
 
     /**
@@ -297,7 +314,8 @@ public class Field35C extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Number");
+        result.add("Identification Of Instrument");
+        result.add("Description Of Instrument");
         return result;
     }
 
@@ -308,13 +326,14 @@ public class Field35C extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "number");
+        result.put(1, "identificationOfInstrument");
+        result.put(2, "descriptionOfInstrument");
         return result;
     }
 
 
     /**
-     * Gets the component 1 (Number).
+     * Gets the component 1 (Identification Of Instrument).
      * @return the component 1
      */
     public String getComponent1() {
@@ -322,17 +341,33 @@ public class Field35C extends Field implements Serializable {
     }
 
     /**
-     * Gets the Number (component 1).
-     * @return the Number from component 1
+     * Gets the Identification Of Instrument (component 1).
+     * @return the Identification Of Instrument from component 1
      */
-    public String getNumber() {
+    public String getIdentificationOfInstrument() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Number).
+     * Gets the component 2 (Description Of Instrument).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
+
+    /**
+     * Gets the Description Of Instrument (component 2).
+     * @return the Description Of Instrument from component 2
+     */
+    public String getDescriptionOfInstrument() {
+        return getComponent2();
+    }
+
+    /**
+     * Set the component 1 (Identification Of Instrument).
      *
-     * @param component1 the Number to set
+     * @param component1 the Identification Of Instrument to set
      * @return the field object to enable build pattern
      */
     public Field35C setComponent1(String component1) {
@@ -341,13 +376,34 @@ public class Field35C extends Field implements Serializable {
     }
 
     /**
-     * Set the Number (component 1).
+     * Set the Identification Of Instrument (component 1).
      *
-     * @param component1 the Number to set
+     * @param component1 the Identification Of Instrument to set
      * @return the field object to enable build pattern
      */
-    public Field35C setNumber(String component1) {
+    public Field35C setIdentificationOfInstrument(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Description Of Instrument).
+     *
+     * @param component2 the Description Of Instrument to set
+     * @return the field object to enable build pattern
+     */
+    public Field35C setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the Description Of Instrument (component 2).
+     *
+     * @param component2 the Description Of Instrument to set
+     * @return the field object to enable build pattern
+     */
+    public Field35C setDescriptionOfInstrument(String component2) {
+        return setComponent2(component2);
     }
 
 
@@ -436,10 +492,16 @@ public class Field35C extends Field implements Serializable {
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Number
+        // **** COMPONENT 1 - Identification Of Instrument
 
-        if (jsonObject.get("number") != null) {
-            field.setComponent1(jsonObject.get("number").getAsString());
+        if (jsonObject.get("identificationOfInstrument") != null) {
+            field.setComponent1(jsonObject.get("identificationOfInstrument").getAsString());
+        }
+
+        // **** COMPONENT 2 - Description Of Instrument
+
+        if (jsonObject.get("descriptionOfInstrument") != null) {
+            field.setComponent2(jsonObject.get("descriptionOfInstrument").getAsString());
         }
 
         return field;

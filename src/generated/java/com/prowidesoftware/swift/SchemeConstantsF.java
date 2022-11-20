@@ -42,9 +42,9 @@ public interface SchemeConstantsF {
     String FRWD = "FRWD";
     String FIAC = "FIAC";
     String FIAN = "FIAN";
+    String FCOU = "FCOU";
     String FRNF = "FRNF";
     String FRNR = "FRNR";
-    String FCOU = "FCOU";
     String FIA = "FIA";
     String FORM = "FORM";
     String FICL = "FICL";
@@ -64,6 +64,7 @@ public interface SchemeConstantsF {
     String FOLQ = "FOLQ";
     String FLFR = "FLFR";
     String FISC = "FISC";
+    String FBIP = "FBIP";
     String FXDT = "FXDT";
     String FDAT = "FDAT";
     String FTCA = "FTCA";

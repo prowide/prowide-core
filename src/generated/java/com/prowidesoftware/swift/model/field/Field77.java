@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -66,7 +66,7 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -351,16 +351,16 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
     }
 
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public static final Integer NARRATIVE = 1;
 
 	/**
      * @deprecated Use getValue() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrative() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrative()", "Use getValue() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrative()", "Use getValue() instead");
         return getValue();
     }
 
@@ -370,9 +370,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine1() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine1()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine1()", "Use getLine(int) or narrative() instead");
 		return getLine(1);
 	}
 
@@ -380,9 +380,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine1(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine1(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine1(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -393,9 +393,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent2() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent2()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent2()", "Use getLine(int) or narrative() instead");
         return getLine(2);
     }
 
@@ -403,9 +403,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent2(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent2(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent2(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -414,9 +414,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine2() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine2()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine2()", "Use getLine(int) or narrative() instead");
 		return getLine(2);
 	}
 
@@ -424,9 +424,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine2(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine2(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine2(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -437,9 +437,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent3() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent3()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent3()", "Use getLine(int) or narrative() instead");
         return getLine(3);
     }
 
@@ -447,9 +447,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent3(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent3(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent3(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -458,9 +458,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine3() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine3()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine3()", "Use getLine(int) or narrative() instead");
 		return getLine(3);
 	}
 
@@ -468,9 +468,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine3(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine3(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine3(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -481,9 +481,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent4() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent4()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent4()", "Use getLine(int) or narrative() instead");
         return getLine(4);
     }
 
@@ -491,9 +491,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent4(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent4(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent4(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -502,9 +502,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine4() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine4()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine4()", "Use getLine(int) or narrative() instead");
 		return getLine(4);
 	}
 
@@ -512,9 +512,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine4(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine4(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine4(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -525,9 +525,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent5() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent5()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent5()", "Use getLine(int) or narrative() instead");
         return getLine(5);
     }
 
@@ -535,9 +535,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent5(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent5(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent5(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -546,9 +546,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine5() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine5()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine5()", "Use getLine(int) or narrative() instead");
 		return getLine(5);
 	}
 
@@ -556,9 +556,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine5(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine5(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine5(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -569,9 +569,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent6() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent6()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent6()", "Use getLine(int) or narrative() instead");
         return getLine(6);
     }
 
@@ -579,9 +579,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent6(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent6(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent6(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -590,9 +590,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine6() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine6()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine6()", "Use getLine(int) or narrative() instead");
 		return getLine(6);
 	}
 
@@ -600,9 +600,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine6(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine6(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine6(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -613,9 +613,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent7() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent7()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent7()", "Use getLine(int) or narrative() instead");
         return getLine(7);
     }
 
@@ -623,9 +623,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent7(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent7(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent7(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -634,9 +634,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine7() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine7()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine7()", "Use getLine(int) or narrative() instead");
 		return getLine(7);
 	}
 
@@ -644,9 +644,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine7(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine7(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine7(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -657,9 +657,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent8() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent8()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent8()", "Use getLine(int) or narrative() instead");
         return getLine(8);
     }
 
@@ -667,9 +667,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent8(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent8(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent8(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -678,9 +678,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine8() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine8()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine8()", "Use getLine(int) or narrative() instead");
 		return getLine(8);
 	}
 
@@ -688,9 +688,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine8(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine8(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine8(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -701,9 +701,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent9() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent9()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent9()", "Use getLine(int) or narrative() instead");
         return getLine(9);
     }
 
@@ -711,9 +711,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent9(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent9(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent9(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -722,9 +722,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine9() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine9()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine9()", "Use getLine(int) or narrative() instead");
 		return getLine(9);
 	}
 
@@ -732,9 +732,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine9(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine9(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine9(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -745,9 +745,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent10() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent10()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent10()", "Use getLine(int) or narrative() instead");
         return getLine(10);
     }
 
@@ -755,9 +755,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent10(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent10(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent10(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -766,9 +766,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine10() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine10()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine10()", "Use getLine(int) or narrative() instead");
 		return getLine(10);
 	}
 
@@ -776,9 +776,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine10(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine10(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine10(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -789,9 +789,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent11() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent11()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent11()", "Use getLine(int) or narrative() instead");
         return getLine(11);
     }
 
@@ -799,9 +799,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent11(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent11(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent11(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -810,9 +810,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine11() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine11()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine11()", "Use getLine(int) or narrative() instead");
 		return getLine(11);
 	}
 
@@ -820,9 +820,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine11(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine11(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine11(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -833,9 +833,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent12() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent12()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent12()", "Use getLine(int) or narrative() instead");
         return getLine(12);
     }
 
@@ -843,9 +843,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent12(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent12(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent12(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -854,9 +854,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine12() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine12()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine12()", "Use getLine(int) or narrative() instead");
 		return getLine(12);
 	}
 
@@ -864,9 +864,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine12(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine12(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine12(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -877,9 +877,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent13() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent13()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent13()", "Use getLine(int) or narrative() instead");
         return getLine(13);
     }
 
@@ -887,9 +887,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent13(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent13(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent13(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -898,9 +898,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine13() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine13()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine13()", "Use getLine(int) or narrative() instead");
 		return getLine(13);
 	}
 
@@ -908,9 +908,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine13(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine13(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine13(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -921,9 +921,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent14() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent14()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent14()", "Use getLine(int) or narrative() instead");
         return getLine(14);
     }
 
@@ -931,9 +931,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent14(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent14(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent14(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -942,9 +942,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine14() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine14()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine14()", "Use getLine(int) or narrative() instead");
 		return getLine(14);
 	}
 
@@ -952,9 +952,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine14(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine14(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine14(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -965,9 +965,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent15() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent15()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent15()", "Use getLine(int) or narrative() instead");
         return getLine(15);
     }
 
@@ -975,9 +975,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent15(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent15(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent15(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -986,9 +986,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine15() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine15()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine15()", "Use getLine(int) or narrative() instead");
 		return getLine(15);
 	}
 
@@ -996,9 +996,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine15(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine15(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine15(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1009,9 +1009,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent16() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent16()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent16()", "Use getLine(int) or narrative() instead");
         return getLine(16);
     }
 
@@ -1019,9 +1019,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent16(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent16(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent16(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1030,9 +1030,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine16() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine16()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine16()", "Use getLine(int) or narrative() instead");
 		return getLine(16);
 	}
 
@@ -1040,9 +1040,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine16(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine16(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine16(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1053,9 +1053,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent17() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent17()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent17()", "Use getLine(int) or narrative() instead");
         return getLine(17);
     }
 
@@ -1063,9 +1063,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent17(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent17(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent17(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1074,9 +1074,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine17() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine17()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine17()", "Use getLine(int) or narrative() instead");
 		return getLine(17);
 	}
 
@@ -1084,9 +1084,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine17(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine17(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine17(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1097,9 +1097,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent18() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent18()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent18()", "Use getLine(int) or narrative() instead");
         return getLine(18);
     }
 
@@ -1107,9 +1107,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent18(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent18(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent18(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1118,9 +1118,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine18() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine18()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine18()", "Use getLine(int) or narrative() instead");
 		return getLine(18);
 	}
 
@@ -1128,9 +1128,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine18(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine18(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine18(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1141,9 +1141,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent19() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent19()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent19()", "Use getLine(int) or narrative() instead");
         return getLine(19);
     }
 
@@ -1151,9 +1151,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent19(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent19(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent19(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1162,9 +1162,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine19() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine19()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine19()", "Use getLine(int) or narrative() instead");
 		return getLine(19);
 	}
 
@@ -1172,9 +1172,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine19(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine19(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine19(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1185,9 +1185,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
 	public String getComponent20() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getComponent20()", "Use getLine(int) or narrative() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent20()", "Use getLine(int) or narrative() instead");
         return getLine(20);
     }
 
@@ -1195,9 +1195,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setComponent20(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setComponent20(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent20(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }
@@ -1206,9 +1206,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated Use getLine(int) or narrative() instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public String getNarrativeLine20() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrativeLine20()", "Use getLine(int) or narrative() instead");
+		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine20()", "Use getLine(int) or narrative() instead");
 		return getLine(20);
 	}
 
@@ -1216,9 +1216,9 @@ public class Field77 extends StructuredNarrativeField implements Serializable, N
      * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2022)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
     public Field77 setNarrativeLine20(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrativeLine20(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine20(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
         appendLine(component);
         return this;
     }

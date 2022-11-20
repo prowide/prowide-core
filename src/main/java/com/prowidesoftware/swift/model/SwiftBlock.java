@@ -260,7 +260,7 @@ public abstract class SwiftBlock implements Serializable {
      * Only valid for block2, only when using hibernate for persistence
      *
      * @return true if the message block type is <code>2I</code>
-     * @deprecated use {@link #getBlockType()}
+     * @deprecated Use {@link #getBlockType()}
      */
     @Deprecated
     public Boolean getInput() {
@@ -280,7 +280,7 @@ public abstract class SwiftBlock implements Serializable {
      * Only valid for block2, only when using hibernate for persistence
      *
      * @return <code>true</code> if message block type is <code>2O</code>
-     * @deprecated use {@link #getBlockType()}
+     * @deprecated Use {@link #getBlockType()}
      */
     @Deprecated
     public Boolean getOutput() {

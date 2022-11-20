@@ -28,10 +28,10 @@ public interface SchemeConstantsD {
     String DPLO = "DPLO";
     String DAAC = "DAAC";
     String DRAW = "DRAW";
-    String DIST = "DIST";
     String DENO = "DENO";
     String DBIR = "DBIR";
     String DOMI = "DOMI";
+    String DIST = "DIST";
     String DDTE = "DDTE";
     String DFON = "DFON";
     String DEAL = "DEAL";

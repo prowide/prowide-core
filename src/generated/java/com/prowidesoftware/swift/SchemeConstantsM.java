@@ -22,10 +22,10 @@ public interface SchemeConstantsM {
     String MICO = "MICO";
     String MEOR = "MEOR";
     String MODIFIEDF = "MODIFIEDF";
+    String MINO = "MINO";
     String MAIL = "MAIL";
     String MRKT = "MRKT";
     String MERE = "MERE";
-    String MINO = "MINO";
     String MINI = "MINI";
     String MPLE = "MPLE";
     String MAIN = "MAIN";

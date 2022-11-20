@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@ Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
 <li class="field">Field 17 F (O)</li>
 <li class="field">Field 14 S (O) (repetitive)</li>
 <li class="field">Field 32 E (O)</li>
+<li class="field">Field 35 C (O)</li>
 <li class="field">Field 26 K (O)</li>
 <li class="field">Field 32 B (M)</li>
 <li class="field">Field 36  (M)</li>
@@ -116,7 +117,7 @@ Sequence B1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2021</strong>
+ * This source code is specific to release <strong>SRU 2022</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -125,7 +126,7 @@ public class MT305 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT305.class.getName());
 	
@@ -714,6 +715,24 @@ public class MT305 extends AbstractMT implements Serializable {
 		final Tag t = tag("32E");
 		if (t != null) {
 			return new Field32E(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 35C, 
+	 * or null if none is found.
+	 * The first occurrence of field 35C at MT305 is expected to be the only one.
+	 * 
+	 * @return a Field35C object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field35C getField35C() {
+		final Tag t = tag("35C");
+		if (t != null) {
+			return new Field35C(t.getValue());
 		} else {
 			return null;
 		}

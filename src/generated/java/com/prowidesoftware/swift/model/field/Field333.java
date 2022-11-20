@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2022 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2021</strong>
+ * This class complies with standard release <strong>SRU2022</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -77,7 +77,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2021;
+	public static final int SRU = 2022;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -93,21 +93,21 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String PARSER_PATTERN = "<DATE2><HHMM>4!N<DATE2><HHMM>3!N6!N6!N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String COMPONENTS_PATTERN = "EHNEHNNN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
 	public static final String TYPES_PATTERN = "EHNEHNNN";
 
 	/**
@@ -335,7 +335,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
         return "EHNEHNNN";
     }
@@ -537,7 +537,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @see #getComponent3AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -570,7 +570,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @see #getSessionNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getSessionNumberAsNumber() {
         return getComponent3AsNumber();
     }
@@ -669,7 +669,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @see #getComponent6AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent6AsNumber() {
         Long l = getComponent6AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -702,7 +702,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @see #getReasonForClosureAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getReasonForClosureAsNumber() {
         return getComponent6AsNumber();
     }
@@ -735,7 +735,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @see #getComponent7AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent7AsNumber() {
         Long l = getComponent7AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -768,7 +768,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @see #getLastInputSequenceNumberReceivedAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getLastInputSequenceNumberReceivedAsNumber() {
         return getComponent7AsNumber();
     }
@@ -801,7 +801,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @see #getComponent8AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getComponent8AsNumber() {
         Long l = getComponent8AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -834,7 +834,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      * @see #getLastOutputSequenceNumberSentAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2022)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public java.lang.Number getLastOutputSequenceNumberSentAsNumber() {
         return getComponent8AsNumber();
     }

@@ -29,9 +29,9 @@ public interface SchemeConstantsR {
     String RVAL = "RVAL";
     String REVO = "REVO";
     String REGDET = "REGDET";
+    String REGI = "REGI";
     String RREG = "RREG";
     String REST = "REST";
-    String REGI = "REGI";
     String RREA = "RREA";
     String RSPR = "RSPR";
     String REVA = "REVA";

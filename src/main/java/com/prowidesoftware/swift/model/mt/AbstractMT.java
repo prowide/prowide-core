@@ -230,7 +230,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @return the given sequence or null if msg is null, sequence is null or the message can not be converted to MT
      * @see SwiftMessage#toMT()
      * @since 7.7
-     * @deprecated use <code>msg.toMT().getSequence(sequence)</code> instead of this method
+     * @deprecated Use <code>msg.toMT().getSequence(sequence)</code> instead of this method
      */
     @Deprecated
     public static SwiftTagListBlock getSequence(final SwiftMessage msg, final String sequence) {
