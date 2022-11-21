@@ -40,8 +40,6 @@ public class NarrativeResolver {
      * Parses the narrative text with a specific format depending on the field
      */
     public static Narrative parse(Field f) {
-// enabled parser for any field until SRU2020 when NarrativeContainer is added for the generated fields model
-//        if (f instanceof NarrativeContainer) {
         // each field support one or two line formats
         switch (f.getName()) {
             case Field77A.NAME:
@@ -393,7 +391,6 @@ public class NarrativeResolver {
      * [//continuation of additional information]          (Narrative)
      */
     public static Narrative parseFormat3Score(Field f) {
-
         Narrative narrative = parseFormat3(f);
         List<StructuredNarrative> structuredNarratives = narrative.getStructured();
         if (structuredNarratives != null) {
