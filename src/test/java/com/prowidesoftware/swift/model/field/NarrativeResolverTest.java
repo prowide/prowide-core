@@ -416,7 +416,7 @@ public class NarrativeResolverTest {
     }
 
     /**
-     * valid input
+     * valid input, no currency/amount, only narrative
      */
     @Test
     public void testFormat3Score_5() {
@@ -428,6 +428,22 @@ public class NarrativeResolverTest {
         assertNull(s.getCurrency());
         assertNull(s.getAmount());
         assertEquals("0,19% MwSt 190,00 EUR", s.getNarrativeFragments().get(0));
+        assertNull(n.getUnstructured());
+    }
+
+    /**
+     * valid input, only bank code
+     */
+    @Test
+    public void testFormat3Score_6() {
+        String v = "/TAXES/O/";
+        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        StructuredNarrative s = n.getStructured("TAXES");
+        assertEquals("O", s.getBankCode());
+        assertNull(s.getCountry());
+        assertNull(s.getCurrency());
+        assertNull(s.getAmount());
+        assertTrue(s.getNarrativeFragments().isEmpty());
         assertNull(n.getUnstructured());
     }
 
@@ -852,7 +868,8 @@ public class NarrativeResolverTest {
     @Test
     void isCurrencyAndAmountWithBankCode() {
         String v = "B/EUR1,00Fees";
-        assertTrue(NarrativeResolver.isCurrencyAndAmount(v));
+        // currency amount method should check just the currency amount without bank code
+        assertFalse(NarrativeResolver.isCurrencyAndAmount(v));
     }
 
     @Test
