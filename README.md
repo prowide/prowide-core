@@ -23,7 +23,7 @@ For ISO 20022 model, parser and builder API check the https://github.com/prowide
 For SWIFT messages validation, translations, GUI application and more, please check our complementary commercial offerings at http://www.prowidesoftware.com/
 
 ### Documentation
-* Documentation site https://www.prowidesoftware.com/resources
+* Documentation site https://dev.prowidesoftware.com
 * Javadoc https://www.javadoc.io/doc/com.prowidesoftware/pw-swift-core/
 * Code examples https://github.com/prowide/prowide-core-examples
 
