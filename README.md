@@ -16,8 +16,6 @@ The project (previously known as WIFE) is active since 2006, production ready an
 * JPA entities model for MT message persistence
 * BIC and IBAN validation
 
-![alt tag](https://www.prowidesoftware.com/img/infografias/coreModelLayers.png)
-
 For ISO 20022 model, parser and builder API check the https://github.com/prowide/prowide-iso20022 project
 
 For SWIFT messages validation, translations, GUI application and more, please check our complementary commercial offerings at http://www.prowidesoftware.com/
@@ -28,7 +26,7 @@ For SWIFT messages validation, translations, GUI application and more, please ch
 * Code examples https://github.com/prowide/prowide-core-examples
 
 ### Distribution
-Latest public **binary DOWNLOAD** is available at https://www.prowidesoftware.com/download
+Latest public **binary DOWNLOAD** is available at https://dev.prowidesoftware.com/SRU2022/getting-started/download-core/
 
 SRU updates are made available on October (one month before SWIFT production date) for the general public, and 6 months in advance for subscribed customers.
 
