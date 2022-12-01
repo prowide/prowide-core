@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.9 - December 2022
+  * (PW-1078) StructuredNarrative: Fixed parser to treat the optional [3!a13d] part as a unit block, both currency and amount present or missing
+
 #### 9.3.8 - November 2022
   * (GH-127) Enhanced field JSON serialization to include detailed structure when the field is a NarrativeContainer 
 

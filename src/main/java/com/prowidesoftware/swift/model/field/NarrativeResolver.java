@@ -40,8 +40,6 @@ public class NarrativeResolver {
      * Parses the narrative text with a specific format depending on the field
      */
     public static Narrative parse(Field f) {
-// enabled parser for any field until SRU2020 when NarrativeContainer is added for the generated fields model
-//        if (f instanceof NarrativeContainer) {
         // each field support one or two line formats
         switch (f.getName()) {
             case Field77A.NAME:
@@ -56,9 +54,8 @@ public class NarrativeResolver {
             case Field73A.NAME:
             case Field71D.NAME:
             case Field73.NAME:
-                return parseFormat3(f);
             case Field71B.NAME:
-                return parseFormat3Score(f);
+                return parseFormat3(f);
             case Field77B.NAME:
                 return parseFormat4(f);
             case Field75.NAME:
@@ -142,8 +139,14 @@ public class NarrativeResolver {
                             }
                         }
 
-                        if (supportsCurrency && isCurrencyAndAmount(text)) {
-                            Triple<String, BigDecimal, String> tripleValue = getCurrencyAmountAndNarrative(text);
+                        String textWithoutBankCode = text;
+                        if (text.length() > 1 && Character.isUpperCase(text.charAt(0)) && (text.charAt(1) == '/')){
+                            textWithoutBankCode = text.substring(2);
+                            structured.setBankCode(text.substring(0,1));
+                        }
+
+                        if (supportsCurrency && isCurrencyAndAmount(textWithoutBankCode)) {
+                            Triple<String, BigDecimal, String> tripleValue = getCurrencyAmountAndNarrative(textWithoutBankCode);
                             String currency = tripleValue.getLeft();
                             BigDecimal amount = tripleValue.getMiddle();
                             String narrativeFragment = tripleValue.getRight();
@@ -154,13 +157,13 @@ public class NarrativeResolver {
                                     structured.setAmount(amount);
                                 }
                             }
-                            text = narrativeFragment;
+                            textWithoutBankCode = narrativeFragment;
                         }
 
                         if (supportsSupplement) {
                             firstSupplementAdded = addNarrativeSupplement(firstSupplementAdded, text, structured);
-                        } else if (StringUtils.isNotEmpty(text)) {
-                            structured.addNarrativeFragment(text);
+                        } else if (StringUtils.isNotEmpty(textWithoutBankCode)) {
+                            structured.addNarrativeFragment(textWithoutBankCode);
                         }
 
                         narrative.add(structured);
@@ -180,9 +183,7 @@ public class NarrativeResolver {
         return narrative;
     }
 
-    static boolean isCurrencyAndAmount(String text) {
-        String textWithoutBankCode = (text.length() > 1 && Character.isUpperCase(text.charAt(0)) && (text.charAt(1) == '/'))
-                ? text.substring(2) : text;
+    static boolean isCurrencyAndAmount(String textWithoutBankCode) {
 
         if (textWithoutBankCode.length() < 4)
             return false;
@@ -385,27 +386,6 @@ public class NarrativeResolver {
      */
     public static Narrative parseFormat3(Field f) {
         return parseFormat(f, 8, CODEWORDTYPE_UCASE_NUMBER, false, true, false, true);
-    }
-
-    /**
-     * Line 1 option for SCORE:       /8a/1!a/[3!a13d][additional information]  (Code)(Currency)(Amount)(Narrative)
-     * Lines 2-6 option for SCORE:   /8a/1!a/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
-     * [//continuation of additional information]          (Narrative)
-     */
-    public static Narrative parseFormat3Score(Field f) {
-
-        Narrative narrative = parseFormat3(f);
-        List<StructuredNarrative> structuredNarratives = narrative.getStructured();
-        if (structuredNarratives != null) {
-            for (StructuredNarrative structuredNarrative : structuredNarratives) {
-                String currency = structuredNarrative.getCurrency();
-                if (currency != null && currency.length() > 1 && (currency.charAt(1) == '/')) {
-                    structuredNarrative.setBankCode(currency.substring(0, 1));
-                    structuredNarrative.setCurrency(currency.substring(2));
-                }
-            }
-        }
-        return narrative;
     }
 
     /**
