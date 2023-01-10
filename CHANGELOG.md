@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.3.10
+#### 9.3.10 - January 2023
   * (PW-1150) Added field model class for 31M (required in SCORE MT798_753)
   * (PW-1150) Added field model class for 71E (required in SCORE MT798_755 and MT798_757)
 
