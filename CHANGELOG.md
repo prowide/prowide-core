@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.10 - January 2023
+  * (PW-1150) Added field model class for 31M (required in SCORE MT798_753)
+  * (PW-1150) Added field model class for 71E (required in SCORE MT798_755 and MT798_757)
+
 #### 9.3.9 - December 2022
   * (PW-1078) StructuredNarrative: Fixed parser to treat the optional [3!a13d] part as a unit block, both currency and amount present or missing
 
