@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.field.Narrative;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT547;
 import com.prowidesoftware.swift.utils.SwiftMessageComparator;
@@ -547,9 +548,11 @@ public class AbstractMtJsonTest {
                 "}";
 
         MT103 mt103 = (MT103) AbstractMT.fromJson(mt103JsonMoreThanOneNarrative);
-        String narrativeFinalValue = mt103.getField70().narrative().getUnstructuredFragments().get(0);
-        assertEquals("Narrative Value 1 Narrative Value 2 Narrative Value 3", narrativeFinalValue);
-        assertEquals("Narrative Value 1 Narrative Value 2 Narrative Value 3", mt103.getField70().getComponent(1));
+
+        Narrative narrative = mt103.getField70().narrative();
+        assertEquals("Narrative Value 1 ", narrative.getUnstructuredFragments().get(0));
+        assertEquals("Narrative Value 2 ", narrative.getUnstructuredFragments().get(1));
+        assertEquals("Narrative Value 3", narrative.getUnstructuredFragments().get(2));
     }
 
 }

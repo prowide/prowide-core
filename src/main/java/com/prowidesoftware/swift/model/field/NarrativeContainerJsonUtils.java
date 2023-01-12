@@ -18,7 +18,7 @@ package com.prowidesoftware.swift.model.field;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import org.apache.commons.lang3.StringUtils;
+import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,8 +37,7 @@ class NarrativeContainerJsonUtils {
         if (jsonObject.get("narrative") != null) {
             int numberOfNarrativesInJson = countNarrativesInJson(json);
             if (numberOfNarrativesInJson > 1) {
-                JsonObject jsonWithNarrativeGroup = groupNarratives(json, numberOfNarrativesInJson);
-                field.setComponent(1, jsonWithNarrativeGroup.get("narrative").getAsString());
+                field.setComponent(1, groupNarratives(json, numberOfNarrativesInJson));
             } else {
                 field.setComponent(1, jsonObject.get("narrative").getAsString());
             }
@@ -50,20 +49,16 @@ class NarrativeContainerJsonUtils {
         }
     }
 
-    private static JsonObject groupNarratives(String json, int numberOfNarrativesInJson) {
-        Gson gson = new Gson();
-        JsonElement element = gson.fromJson(json, JsonElement.class);
-        JsonObject jsonObj = element.getAsJsonObject();
-
-        String finalNarrativeValue = jsonObj.get("narrative").getAsString();
+    private static String groupNarratives(String json, int numberOfNarrativesInJson) {
+        JsonObject jsonObj = new Gson().fromJson(json, JsonElement.class).getAsJsonObject();
+        StringBuilder sb = new StringBuilder(jsonObj.get("narrative").getAsString());
         for (int i = 2; i <= numberOfNarrativesInJson; i++) {
             String currentNarrativeValue = jsonObj.get("narrative" + i).getAsString();
-            finalNarrativeValue = finalNarrativeValue + currentNarrativeValue;
-            jsonObj.remove("narrative" + i);
+            sb.append(FINWriterVisitor.SWIFT_EOL);
+            sb.append(currentNarrativeValue);
         }
 
-        jsonObj.addProperty("narrative", finalNarrativeValue);
-        return jsonObj;
+        return sb.toString();
     }
 
     static int countNarrativesInJson(String json) {
