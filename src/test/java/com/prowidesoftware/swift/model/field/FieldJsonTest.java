@@ -203,8 +203,39 @@ public class FieldJsonTest {
                 "    \"narrative4\": \"VALUE 4 \"\n" +
                 "}";
         Field70 f70 = Field70.fromJson(field70JsonStringMoreThanOneNarratives);
-        assertEquals("VALUE 1 VALUE 2 VALUE 3 VALUE 4 ", f70.narrative().getUnstructuredFragments().get(0));
-        assertEquals("VALUE 1 VALUE 2 VALUE 3 VALUE 4 ", f70.getComponent(1));
+
+        Narrative narrative = f70.narrative();
+        assertEquals("VALUE 1 ", narrative.getUnstructuredFragments().get(0));
+        assertEquals("VALUE 2 ", narrative.getUnstructuredFragments().get(1));
+        assertEquals("VALUE 3 ", narrative.getUnstructuredFragments().get(2));
+        assertEquals("VALUE 4 ", narrative.getUnstructuredFragments().get(3));
+    }
+
+    /**
+     * Check fromJson in the Field72 with more than one "narrative" key present in json.
+     */
+    @Test
+    public void fromJson72() {
+        String field72WithNarrativeS = "{" +
+                "    'name': '72'," +
+                "    'narrative':  '/INS/PURPOSE CODE 1670'," +
+                "    'narrative2':  '//SERVICES, SELF COMPANY FUNDING'" +
+                "}";
+        Field72 f72 = Field72.fromJson(field72WithNarrativeS);
+        Narrative narrative = f72.narrative();
+        assertEquals("INS", narrative.getStructured().get(0).getCodeword());
+        assertEquals("PURPOSE CODE 1670", narrative.getStructured().get(0).getNarrativeFragments().get(0));
+        assertEquals("SERVICES, SELF COMPANY FUNDING", narrative.getStructured().get(0).getNarrativeFragments().get(1));
+    }
+
+
+    @Test
+    public void fromJson72B() {
+        Field72 f72 = new Field72("/INS/PURPOSE CODE 1670\n//SERVICES, SELF COMPANY FUNDING");
+        Narrative narrative = f72.narrative();
+        assertEquals("INS", narrative.getStructured().get(0).getCodeword());
+        assertEquals("PURPOSE CODE 1670", narrative.getStructured().get(0).getNarrativeFragments().get(0));
+        assertEquals("SERVICES, SELF COMPANY FUNDING", narrative.getStructured().get(0).getNarrativeFragments().get(1));
     }
 
 }

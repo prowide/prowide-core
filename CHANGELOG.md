@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.11 - january 2023
+  * (PW-1152) Preserve line breaks when creating NarrativeContainer fields from JSON with legacy structure: narrative1, narrative2, etc...
+  * Fixed duplicate elements when serializing NarrativeContainer fields into JSON 
+
 #### 9.3.10 - January 2023
   * (PW-1150) Added field model class for 31M (required in SCORE MT798_753)
   * (PW-1150) Added field model class for 71E (required in SCORE MT798_755 and MT798_757)
