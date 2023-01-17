@@ -18,7 +18,13 @@ package com.prowidesoftware.swift.io.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.prowidesoftware.swift.model.SwiftBlock2Output;
+import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.model.field.Field72;
+import com.prowidesoftware.swift.model.field.Narrative;
+import com.prowidesoftware.swift.model.field.StructuredNarrative;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 /**
  * MT103 tests
@@ -453,6 +459,60 @@ public class MT103ParserTest extends BaseMessageTestcase {
                 "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
 
         assertEquals("103", parseMessage(messageToParse).getType());
+    }
+
+    @Test
+    public void test103_8() {
+        messageToParse = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" +
+                ":20:Return A\n" +
+                ":23B:CRED\n" +
+                ":32A:021125USD100,25\n" +
+                ":33B:USD100,25\n" +
+                ":50K:Franz Holzappel GMBH Vienna\n" +
+                ":59:H.F. Janssen\n" +
+                ":71A:SHA\n" +
+                ":72:/REJT/59\n" +
+                "/BE04/\n" +
+                "/MREF/Sample A /CHGS/EUR20,\n" +
+                "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
+
+        assertEquals("103", parseMessage(messageToParse).getType());
+
+        //check b1
+        assertEquals("F01FOOBARYYAXXX1234123456", b1.getBlockValue());
+
+        //check b2
+        assertEquals("O1030803051028AAPBESMMAXXX54237368560510280803N", b2.getBlockValue());
+
+        //check b3
+        assertEquals(3, b3.countAll());
+        assertEquals("NOMF", b3.getTagValue("113"));
+        assertEquals("0510280086100057", b3.getTagValue("108"));
+        assertEquals("STP", b3.getTagValue("119"));
+
+        //check b4
+        // assertEquals(13, b4.countAll());
+        assertEquals("Return A", b4.getTagValue("20"));
+        assertEquals("CRED", b4.getTagValue("23B"));
+        assertEquals("021125USD100,25", b4.getTagValue("32A"));
+        assertEquals("USD100,25", b4.getTagValue("33B"));
+        assertEquals("Franz Holzappel GMBH Vienna", b4.getTagValue("50K"));
+        assertEquals("H.F. Janssen", b4.getTagValue("59"));
+        assertEquals("SHA", b4.getTagValue("71A"));
+
+        Field72 field72 = (Field72) b4.getFieldByNumber(72);
+        Narrative narrative = field72.narrative();
+
+        List<StructuredNarrative> structured = narrative.getStructured();
+        assertEquals("REJT", structured.get(0).getCodeword());
+        assertEquals("59", structured.get(0).getNarrativeFragments().get(0));
+        assertEquals("BE04", structured.get(1).getCodeword());
+        assertEquals("MREF", structured.get(2).getCodeword());
+        assertEquals("Sample A /CHGS/EUR20,", structured.get(2).getNarrativeFragments().get(0));
+        //check b5
+        assertEquals(2, b5.countAll());
+        assertEquals("D9D8FA56", b5.getTagValue("MAC"));
+        assertEquals("46E46A6460F2", b5.getTagValue("CHK"));
     }
 
 }
