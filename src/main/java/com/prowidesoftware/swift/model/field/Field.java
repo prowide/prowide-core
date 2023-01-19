@@ -544,6 +544,52 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     }
 
     /**
+     * Inserts a component String value into the list of components, using the component name to position the value into the List.
+     *
+     * @param componentName name of component to set
+     * @param value         String value of the parsed component (without component separators ':', '/', '//')
+     * @since 9.3.12
+     */
+    public void setComponent(final String componentName, final String value) {
+        int componentNameToNumber = componentNameToNumber(componentName);
+        if (componentNameToNumber > 0) {
+            setComponent(componentNameToNumber, value);
+        } else {
+            log.warning("Component Name: '" + componentName + "' is not part of field " + getName());
+        }
+    }
+
+    /**
+     * Get the component number based on the component name Map
+     *
+     * @param componentName name of component to get
+     * @return the component number
+     * @since 9.3.12
+     */
+    public int componentNameToNumber(final String componentName) {
+        Validate.isTrue(StringUtils.isNotBlank(componentName), "component name should not be empty " + componentName);
+        final Map<Integer, String> labels = getComponentMap();
+        for (Map.Entry<Integer, String> componentEntry : labels.entrySet()) {
+            if (componentName.equalsIgnoreCase(componentEntry.getValue())) {
+                return componentEntry.getKey();
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Gets a specific component from the components list.
+     *
+     * @param componentName name of component to get
+     * @return found component or null
+     * @since 9.3.12
+     */
+    public String getComponent(final String componentName) {
+        int componentNameToNumber = componentNameToNumber(componentName);
+        return componentNameToNumber > 0 ? this.getComponent(componentNameToNumber) : null;
+    }
+
+    /**
      * @see #getValueDisplay(Locale)
      */
     public String getValueDisplay() {
@@ -583,6 +629,34 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 7.8
      */
     public abstract String getValueDisplay(int component, Locale locale);
+
+    /**
+     * Returns a localized suitable for showing to humans string of a field component.<br>
+     *
+     * @param componentName name of the component to display
+     * @param locale        optional locale to format date and amounts, if null, the default locale is used
+     * @return formatted component value or null if component name is invalid or not present
+     * @throws IllegalArgumentException if component name is invalid for the field
+     * @since 9.3.12
+     */
+    public String getValueDisplay(String componentName, Locale locale) {
+        int componentNameToNumber = componentNameToNumber(componentName);
+        return componentNameToNumber > 0 ? this.getValueDisplay(componentNameToNumber, locale) : null;
+    }
+
+    /**
+     * Get the given component as the given object type.
+     * If the class is not recognized, it returns null, as well as if conversion fails.
+     *
+     * @param componentName name of the component to retrieve
+     * @throws IllegalArgumentException if c is not any of: String, BIC, Currency, Number, BigDecimal Character or Integer
+     * @see #getComponent(int)
+     * @since 9.3.12
+     */
+    public Object getComponentAs(final String componentName, @SuppressWarnings("rawtypes") final Class c) {
+        int componentNameToNumber = componentNameToNumber(componentName);
+        return componentNameToNumber > 0 ? this.getComponentAs(componentNameToNumber, c) : null;
+    }
 
     /**
      * Get the given component as the given object type.
@@ -628,6 +702,17 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             log.severe("Error converting component content: " + e);
         }
         return null;
+    }
+
+    /**
+     * Get the given component as a number object
+     * This method internal y calls {@link #getComponentAsNumber(int)}, and casts the result
+     *
+     * @since 9.3.12
+     */
+    public Object getComponentAsNumber(final String componentName) {
+        int componentNameToNumber = componentNameToNumber(componentName);
+        return componentNameToNumber > 0 ? getComponentAsNumber(componentNameToNumber) : null;
     }
 
     /**
@@ -775,12 +860,12 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public abstract String componentsPattern();
 
     /**
      * Returns the field component types pattern
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      */
@@ -1053,6 +1138,19 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 7.8.4
      */
     public abstract List<String> getComponentLabels();
+
+    /**
+     * Returns english label for the component.
+     * <br>
+     *
+     * @param componentName name of the component to get
+     * @return found label or null if it is not defined
+     * @since 9.3.12
+     */
+    public String getComponentLabel(final String componentName) {
+        int componentNameToNumber = componentNameToNumber(componentName);
+        return componentNameToNumber > 0 ? getComponentLabel(componentNameToNumber) : null;
+    }
 
     /**
      * Returns english label for the component.

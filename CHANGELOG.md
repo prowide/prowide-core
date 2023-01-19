@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.12-SNAPSHOT
+  * Added getComponent(String componentName) to retrieve the component based on the name instead of the number
+  * Added componentNameToNumber(String componentName) to retrieve the component number based on the component name
+
 #### 9.3.11 - January 2023
   * (PW-1152) Preserve line breaks when creating NarrativeContainer fields from JSON with legacy structure: narrative1, narrative2, etc...
   * Fixed duplicate elements when serializing NarrativeContainer fields into JSON 
