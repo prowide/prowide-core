@@ -1,4 +1,4 @@
-![alt tag](http://www.prowidesoftware.com/img/logoPW_800x253-300dpi.jpg)
+![alt tag](https://www.prowidesoftware.com/img/logo/horizontal/500x142.png)
 
 
 **Prowide Core** is an open source Java framework for managing SWIFT FIN messages.
@@ -9,16 +9,16 @@ The project (previously known as WIFE) is active since 2006, production ready an
 ### What's included?
 
 * Java model for ISO 15022 MT (for example: MT103 and Field32A classes, for all MT message categories)
-* Parser from SWIFT (FIN or RJE) into Java
-* Builder API from Java to SWIFT (FIN or RJE)
-* Conversion between SWIFT FIN and JSON
-* Conversion between SWIFT FIN and proprietary XML for MT
+* Parser from SWIFT MT (FIN or RJE) into Java
+* Builder API from Java to SWIFT MT (FIN or RJE)
+* Conversion between SWIFT MT and JSON
+* Conversion between SWIFT MT and proprietary XML for MT
 * JPA entities model for MT message persistence
 * BIC and IBAN validation
 
 For ISO 20022 model, parser and builder API check the https://github.com/prowide/prowide-iso20022 project
 
-For SWIFT messages validation, translations, GUI application and more, please check our complementary commercial offerings at http://www.prowidesoftware.com/
+For SWIFT messages validation, translations, GUI application and more, please check Prowide's complementary commercial offerings at http://www.prowidesoftware.com/
 
 ### Documentation
 * Documentation site https://dev.prowidesoftware.com
@@ -38,7 +38,6 @@ SWIFT is a trademark of S.W.I.F.T. SCRL. (www.swift.com)
 
 ### Build
 
-* run `./gradlew eclipse` or `./gradlew idea` to generate your local IDE setup
 * run `./gradlew build` to build the library
 
 Make sure your IDE encoding is UTF-8, some test may fail if not.
