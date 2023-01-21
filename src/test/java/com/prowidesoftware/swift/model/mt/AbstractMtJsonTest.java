@@ -23,10 +23,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.field.Narrative;
+import com.prowidesoftware.swift.model.field.StructuredNarrative;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import com.prowidesoftware.swift.model.mt.mt2xx.MT202;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT547;
 import com.prowidesoftware.swift.utils.SwiftMessageComparator;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 /**
  * Test for JSON API in AbstractMT and subclasses
@@ -553,6 +557,84 @@ public class AbstractMtJsonTest {
         assertEquals("Narrative Value 1 ", narrative.getUnstructuredFragments().get(0));
         assertEquals("Narrative Value 2 ", narrative.getUnstructuredFragments().get(1));
         assertEquals("Narrative Value 3", narrative.getUnstructuredFragments().get(2));
+    }
+
+
+    @Test
+    public void testMT202_Field72() {
+        String mt202JsonOneNarrative = "{" +
+                "    'type': 'MT'," +
+                "    'basicHeaderBlock': {" +
+                "        'applicationId': 'F'," +
+                "        'serviceId': '01'," +
+                "        'logicalTerminal': 'GECGHKHHAXXX'," +
+                "        'sessionNumber': '0000'," +
+                "        'sequenceNumber': '000000'" +
+                "    }," +
+                "    'applicationHeaderBlock': {" +
+                "        'receiverAddress': 'EXMTHKHHXXXX'," +
+                "        'senderInputTime': null," +
+                "        'MIRDate': null," +
+                "        'MIRLogicalTerminal': null," +
+                "        'MIRSessionNumber': null," +
+                "        'MIRSequenceNumber': null," +
+                "        'receiverOutputDate': null," +
+                "        'receiverOutputTime': null," +
+                "        'messagePriority': 'N'," +
+                "        'messageType': '202'," +
+                "        'direction': 'I'" +
+                "    }," +
+                "    'userHeaderBlock': {" +
+                "        'fields': [" +
+                "            {" +
+                "                'name': '121'," +
+                "                'uniqueReference': '36e05862-4af1-43ed-a54c-ccdcf0101396'" +
+                "            }" +
+                "        ]" +
+                "    }," +
+                "    'textBlock': {" +
+                "        'fields': [" +
+                "            {" +
+                "                'name': '20'," +
+                "                'reference': 'TEST2021234'" +
+                "            }," +
+                "            {" +
+                "                'name': '21'," +
+                "                'reference': 'TEST202123233'" +
+                "            }," +
+                "            {" +
+                "                'name': '32A'," +
+                "                'date': '230131'," +
+                "                'currency': 'USD'," +
+                "                'amount': '7878778,'" +
+                "            }," +
+                "            {" +
+                "                'name': '58A'," +
+                "                'account': '898989'," +
+                "                'bIC': 'EXMTHKHH'" +
+                "            }," +
+                "            {" +
+                "                'name': '72'," +
+                "                'structured': [" +
+                "                    {" +
+                "                        'narrativeFragments': [" +
+                "                            'PURPOSE CODE 1670'," +
+                "                            'SERVICES, SELF COMPANY FUNDING'" +
+                "                        ]," +
+                "                        'narrativeSupplementFragments': []," +
+                "                        'codeword': 'INS'" +
+                "                    }" +
+                "                ]" +
+                "            }" +
+                "        ]" +
+                "    }" +
+                "}";
+        MT202 mt202 = (MT202) AbstractMT.fromJson(mt202JsonOneNarrative);
+        Narrative narrative = mt202.getField72().narrative();
+        StructuredNarrative structuredNarrative = narrative.getStructured().get(0);
+        assertEquals("INS", structuredNarrative.getCodeword());
+        assertEquals("PURPOSE CODE 1670", structuredNarrative.getNarrativeFragments().get(0));
+        assertEquals("SERVICES, SELF COMPANY FUNDING", structuredNarrative.getNarrativeFragments().get(1));
     }
 
 }
