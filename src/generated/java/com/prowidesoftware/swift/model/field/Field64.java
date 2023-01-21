@@ -375,6 +375,25 @@ public class Field64 extends Field implements Serializable, AmountContainer, Dat
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("dcmark", 1);
+        super.labelMap.put("date", 2);
+        super.labelMap.put("currency", 3);
+        // alias name
+        super.labelMap.put("unit", 3);
+        super.labelMap.put("amount", 4);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (D/C Mark).

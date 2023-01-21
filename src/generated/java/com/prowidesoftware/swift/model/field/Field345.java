@@ -424,6 +424,29 @@ public class Field345 extends Field implements Serializable {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("mt1", 1);
+        super.labelMap.put("mt2", 2);
+        super.labelMap.put("mt3", 3);
+        super.labelMap.put("mt4", 4);
+        super.labelMap.put("mt5", 5);
+        super.labelMap.put("mt6", 6);
+        super.labelMap.put("mt7", 7);
+        super.labelMap.put("mt8", 8);
+        super.labelMap.put("mt9", 9);
+        super.labelMap.put("mt10", 10);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (MT1).

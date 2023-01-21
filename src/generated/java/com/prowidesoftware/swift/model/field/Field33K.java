@@ -403,6 +403,28 @@ public class Field33K extends Field implements Serializable, MonetaryAmountConta
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("daymonth", 1);
+        // alias name
+        super.labelMap.put("dmmark", 1);
+        super.labelMap.put("numberofdaysmonths", 2);
+        // alias name
+        super.labelMap.put("numberofdaysmonths", 2);
+        super.labelMap.put("code", 3);
+        super.labelMap.put("currency", 4);
+        super.labelMap.put("amount", 5);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (DayMonth).

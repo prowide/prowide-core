@@ -422,6 +422,29 @@ public class Field347 extends Field implements Serializable {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("field1", 1);
+        super.labelMap.put("field2", 2);
+        super.labelMap.put("field3", 3);
+        super.labelMap.put("field4", 4);
+        super.labelMap.put("field5", 5);
+        super.labelMap.put("field6", 6);
+        super.labelMap.put("field7", 7);
+        super.labelMap.put("field8", 8);
+        super.labelMap.put("field9", 9);
+        super.labelMap.put("field10", 10);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Field 1).

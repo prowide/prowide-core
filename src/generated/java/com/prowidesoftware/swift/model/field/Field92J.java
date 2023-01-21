@@ -423,6 +423,29 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("datasourcescheme", 2);
+        super.labelMap.put("ratetypecode", 3);
+        // alias name
+        super.labelMap.put("code", 3);
+        super.labelMap.put("currencycode", 4);
+        // alias name
+        super.labelMap.put("currency", 4);
+        super.labelMap.put("amount", 5);
+        super.labelMap.put("ratestatus", 6);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Qualifier).

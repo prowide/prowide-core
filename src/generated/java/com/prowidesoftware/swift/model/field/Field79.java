@@ -654,6 +654,54 @@ public class Field79 extends Field implements Serializable, MultiLineField {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("narrative", 1);
+        super.labelMap.put("narrative2", 2);
+        super.labelMap.put("narrative3", 3);
+        super.labelMap.put("narrative4", 4);
+        super.labelMap.put("narrative5", 5);
+        super.labelMap.put("narrative6", 6);
+        super.labelMap.put("narrative7", 7);
+        super.labelMap.put("narrative8", 8);
+        super.labelMap.put("narrative9", 9);
+        super.labelMap.put("narrative10", 10);
+        super.labelMap.put("narrative11", 11);
+        super.labelMap.put("narrative12", 12);
+        super.labelMap.put("narrative13", 13);
+        super.labelMap.put("narrative14", 14);
+        super.labelMap.put("narrative15", 15);
+        super.labelMap.put("narrative16", 16);
+        super.labelMap.put("narrative17", 17);
+        super.labelMap.put("narrative18", 18);
+        super.labelMap.put("narrative19", 19);
+        super.labelMap.put("narrative20", 20);
+        super.labelMap.put("narrative21", 21);
+        super.labelMap.put("narrative22", 22);
+        super.labelMap.put("narrative23", 23);
+        super.labelMap.put("narrative24", 24);
+        super.labelMap.put("narrative25", 25);
+        super.labelMap.put("narrative26", 26);
+        super.labelMap.put("narrative27", 27);
+        super.labelMap.put("narrative28", 28);
+        super.labelMap.put("narrative29", 29);
+        super.labelMap.put("narrative30", 30);
+        super.labelMap.put("narrative31", 31);
+        super.labelMap.put("narrative32", 32);
+        super.labelMap.put("narrative33", 33);
+        super.labelMap.put("narrative34", 34);
+        super.labelMap.put("narrative35", 35);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Narrative).

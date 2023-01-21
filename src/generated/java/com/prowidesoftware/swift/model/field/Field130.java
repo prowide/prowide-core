@@ -369,6 +369,23 @@ public class Field130 extends Field implements Serializable, MultiLineField {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("headingcode", 1);
+        super.labelMap.put("headingtext", 2);
+        super.labelMap.put("headingcode2", 3);
+        super.labelMap.put("headingtext2", 4);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Heading Code).

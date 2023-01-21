@@ -486,6 +486,31 @@ public class Field331 extends Field implements Serializable, DateContainer {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("sessionnumber", 1);
+        super.labelMap.put("datesessionopened", 2);
+        super.labelMap.put("timesessionopened", 3);
+        super.labelMap.put("datesessionclosed", 4);
+        super.labelMap.put("timesessionclosed", 5);
+        super.labelMap.put("reasonforclosure", 6);
+        super.labelMap.put("quantityofmessagessent", 7);
+        super.labelMap.put("quantityofmessagesreceived", 8);
+        super.labelMap.put("firstinputsequencenumber", 9);
+        super.labelMap.put("lastinputsequencenumber", 10);
+        super.labelMap.put("firstoutputsequencenumber", 11);
+        super.labelMap.put("lastoutputsequencenumber", 12);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Session Number).

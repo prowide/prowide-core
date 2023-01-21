@@ -414,6 +414,45 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("isin", 2);
+        // alias name
+        super.labelMap.put("identificationofinstrument", 2);
+        // alias name
+        super.labelMap.put("identificationofsecurity", 2);
+        super.labelMap.put("description", 3);
+        // alias name
+        super.labelMap.put("descriptionofinstrument", 3);
+        // alias name
+        super.labelMap.put("descriptionofsecurity", 3);
+        super.labelMap.put("description2", 4);
+        // alias name
+        super.labelMap.put("descriptionofinstrument2", 4);
+        // alias name
+        super.labelMap.put("descriptionofsecurity2", 4);
+        super.labelMap.put("description3", 5);
+        // alias name
+        super.labelMap.put("descriptionofinstrument3", 5);
+        // alias name
+        super.labelMap.put("descriptionofsecurity3", 5);
+        super.labelMap.put("description4", 6);
+        // alias name
+        super.labelMap.put("descriptionofinstrument4", 6);
+        // alias name
+        super.labelMap.put("descriptionofsecurity4", 6);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Qualifier).

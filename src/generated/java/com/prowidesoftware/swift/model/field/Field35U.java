@@ -361,6 +361,24 @@ public class Field35U extends Field implements Serializable, AmountContainer {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("currency", 1);
+        super.labelMap.put("price", 2);
+        // alias name
+        super.labelMap.put("amount", 2);
+        super.labelMap.put("period", 3);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Currency).

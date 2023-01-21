@@ -425,6 +425,30 @@ public class Field95V extends Field implements Serializable, GenericField, Multi
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("nameandaddress", 2);
+        super.labelMap.put("nameandaddress2", 3);
+        super.labelMap.put("nameandaddress3", 4);
+        super.labelMap.put("nameandaddress4", 5);
+        super.labelMap.put("nameandaddress5", 6);
+        super.labelMap.put("nameandaddress6", 7);
+        super.labelMap.put("nameandaddress7", 8);
+        super.labelMap.put("nameandaddress8", 9);
+        super.labelMap.put("nameandaddress9", 10);
+        super.labelMap.put("nameandaddress10", 11);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Qualifier).

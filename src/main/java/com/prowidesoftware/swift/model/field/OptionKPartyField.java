@@ -261,6 +261,25 @@ public abstract class OptionKPartyField extends Field {
     }
 
     /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("account", 1);
+        super.labelMap.put("nameAndAddress", 2);
+        super.labelMap.put("nameAndAddress2", 3);
+        super.labelMap.put("nameAndAddress3", 4);
+        super.labelMap.put("nameAndAddress4", 5);
+        return super.labelMap;
+    }
+
+    /**
      * @return the specific field name (number and letter option)
      */
     @Override

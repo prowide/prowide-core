@@ -425,6 +425,30 @@ public class Field70E extends Field implements Serializable, GenericField, Multi
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("narrative", 2);
+        super.labelMap.put("narrative2", 3);
+        super.labelMap.put("narrative3", 4);
+        super.labelMap.put("narrative4", 5);
+        super.labelMap.put("narrative5", 6);
+        super.labelMap.put("narrative6", 7);
+        super.labelMap.put("narrative7", 8);
+        super.labelMap.put("narrative8", 9);
+        super.labelMap.put("narrative9", 10);
+        super.labelMap.put("narrative10", 11);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Qualifier).

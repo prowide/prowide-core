@@ -353,6 +353,22 @@ public class Field31G extends Field implements Serializable, DateContainer {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("date", 1);
+        super.labelMap.put("time", 2);
+        super.labelMap.put("location", 3);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Date).

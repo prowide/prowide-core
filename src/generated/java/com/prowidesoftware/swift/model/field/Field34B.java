@@ -335,6 +335,21 @@ public class Field34B extends Field implements Serializable, MonetaryAmountConta
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("currency", 1);
+        super.labelMap.put("amount", 2);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Currency).

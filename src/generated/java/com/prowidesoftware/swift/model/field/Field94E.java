@@ -425,6 +425,30 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("address", 2);
+        super.labelMap.put("address2", 3);
+        super.labelMap.put("address3", 4);
+        super.labelMap.put("address4", 5);
+        super.labelMap.put("address5", 6);
+        super.labelMap.put("address6", 7);
+        super.labelMap.put("address7", 8);
+        super.labelMap.put("address8", 9);
+        super.labelMap.put("address9", 10);
+        super.labelMap.put("address10", 11);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Qualifier).
