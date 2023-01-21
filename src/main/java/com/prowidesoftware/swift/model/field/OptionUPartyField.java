@@ -250,6 +250,24 @@ public abstract class OptionUPartyField extends Field {
     }
 
     /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("partyname", 2);
+        super.labelMap.put("partyname2", 3);
+        super.labelMap.put("partyname3", 4);
+        return super.labelMap;
+    }
+
+    /**
      * @return the specific field name (number and letter option)
      */
     @Override

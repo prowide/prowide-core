@@ -379,6 +379,26 @@ public class Field71N extends Field implements Serializable, MultiLineField {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("code", 1);
+        super.labelMap.put("narrative", 2);
+        super.labelMap.put("narrative2", 3);
+        super.labelMap.put("narrative3", 4);
+        super.labelMap.put("narrative4", 5);
+        super.labelMap.put("narrative5", 6);
+        super.labelMap.put("narrative6", 7);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Code).

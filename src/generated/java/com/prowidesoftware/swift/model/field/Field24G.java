@@ -379,6 +379,38 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("code", 1);
+        super.labelMap.put("nameandaddress", 2);
+        // alias name
+        super.labelMap.put("nameandaddress", 2);
+        super.labelMap.put("nameandaddress2", 3);
+        // alias name
+        super.labelMap.put("nameandaddress2", 3);
+        super.labelMap.put("nameandaddress3", 4);
+        // alias name
+        super.labelMap.put("nameandaddress3", 4);
+        super.labelMap.put("nameandaddress4", 5);
+        // alias name
+        super.labelMap.put("nameandaddress4", 5);
+        super.labelMap.put("nameandaddress5", 6);
+        // alias name
+        super.labelMap.put("nameandaddress5", 6);
+        super.labelMap.put("nameandaddress6", 7);
+        // alias name
+        super.labelMap.put("nameandaddress6", 7);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Code).

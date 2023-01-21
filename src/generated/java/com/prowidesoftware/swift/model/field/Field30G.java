@@ -350,6 +350,25 @@ public class Field30G extends Field implements Serializable, DateContainer {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("startdate", 1);
+        // alias name
+        super.labelMap.put("periodstartdate", 1);
+        super.labelMap.put("enddate", 2);
+        // alias name
+        super.labelMap.put("periodenddate", 2);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Start Date).

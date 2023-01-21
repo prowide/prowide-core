@@ -476,6 +476,28 @@ public class Field50F extends Field implements Serializable, MultiLineField {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("partyidentifier", 1);
+        super.labelMap.put("number1", 2);
+        super.labelMap.put("nameandaddress1", 3);
+        super.labelMap.put("number2", 4);
+        super.labelMap.put("nameandaddress2", 5);
+        super.labelMap.put("number3", 6);
+        super.labelMap.put("nameandaddress3", 7);
+        super.labelMap.put("number4", 8);
+        super.labelMap.put("nameandaddress4", 9);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Party Identifier).

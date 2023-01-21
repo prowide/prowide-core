@@ -387,6 +387,27 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("datasourcescheme", 2);
+        super.labelMap.put("ratetypecode", 3);
+        // alias name
+        super.labelMap.put("code", 3);
+        super.labelMap.put("rate", 4);
+        // alias name
+        super.labelMap.put("amount", 4);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Qualifier).

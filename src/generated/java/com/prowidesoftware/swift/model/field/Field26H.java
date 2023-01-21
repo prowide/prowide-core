@@ -326,6 +326,24 @@ public class Field26H extends Field implements Serializable {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("counterpartyreference", 1);
+        // alias name
+        super.labelMap.put("collateraltype", 1);
+        // alias name
+        super.labelMap.put("reference", 1);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Counterparty Reference).

@@ -288,6 +288,23 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
     }
 
     /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("dcmark", 1);
+        super.labelMap.put("account", 2);
+        super.labelMap.put("identifiercode", 3);
+        return super.labelMap;
+    }
+
+    /**
      * Gets the component1 (D/C Mark).
      *
      * @return the component1

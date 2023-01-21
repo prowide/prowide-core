@@ -367,6 +367,23 @@ public class Field280 extends Field implements Serializable {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("inputtime", 1);
+        super.labelMap.put("mir", 2);
+        super.labelMap.put("accepted", 3);
+        super.labelMap.put("error", 4);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Input Time).

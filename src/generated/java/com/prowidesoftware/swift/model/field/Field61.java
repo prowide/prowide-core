@@ -484,6 +484,33 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("valuedate", 1);
+        // alias name
+        super.labelMap.put("date", 1);
+        super.labelMap.put("entrydate", 2);
+        super.labelMap.put("debitcreditmark", 3);
+        // alias name
+        super.labelMap.put("dcmark", 3);
+        super.labelMap.put("fundscode", 4);
+        super.labelMap.put("amount", 5);
+        super.labelMap.put("transactiontype", 6);
+        super.labelMap.put("identificationcode", 7);
+        super.labelMap.put("referencefortheaccountowner", 8);
+        super.labelMap.put("referenceoftheaccountservicinginstitution", 9);
+        super.labelMap.put("supplementarydetails", 10);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Value Date).

@@ -424,6 +424,31 @@ public class Field39D extends Field implements Serializable, MultiLineField {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("narrative", 1);
+        super.labelMap.put("narrative2", 2);
+        super.labelMap.put("narrative3", 3);
+        super.labelMap.put("narrative4", 4);
+        super.labelMap.put("narrative5", 5);
+        super.labelMap.put("narrative6", 6);
+        super.labelMap.put("narrative7", 7);
+        super.labelMap.put("narrative8", 8);
+        super.labelMap.put("narrative9", 9);
+        super.labelMap.put("narrative10", 10);
+        super.labelMap.put("narrative11", 11);
+        super.labelMap.put("narrative12", 12);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Narrative).

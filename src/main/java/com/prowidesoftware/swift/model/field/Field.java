@@ -41,19 +41,22 @@ import java.util.stream.Collectors;
 
 
 /**
- * Base class implemented by classes that provide a general access to field components.
+ * Base class implemented by classes that provide general access to field components.
  *
  * @author sebastian
  * @since 6.0
  */
 public abstract class Field implements PatternContainer, JsonSerializable {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field.class.getName());
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field.class.getName());
 
     /**
      * Zero based list of field components in String format.<br>
      * For example: for field content ":FOO//EUR1234 will be components[0]=FOO, components[1]=EUR and components[1]=1234
      */
     protected List<String> components;
+
+    // cached results for getLabelMap() method
+    protected Map<String, Integer> labelMap;
 
     /**
      * Creates a field with the list of components initialized to the given number of components.
@@ -560,33 +563,31 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     }
 
     /**
-     * Get the component number based on the component name Map
+     * Get the component number based on the component name
      *
      * @param componentName name of component to get
-     * @return the component number
+     * @return the component number or zero if the component name is not part of the field
      * @since 9.3.12
      */
     public int componentNameToNumber(final String componentName) {
         Validate.isTrue(StringUtils.isNotBlank(componentName), "component name should not be empty " + componentName);
-        final Map<Integer, String> labels = getComponentMap();
-        for (Map.Entry<Integer, String> componentEntry : labels.entrySet()) {
-            if (componentName.equalsIgnoreCase(componentEntry.getValue())) {
-                return componentEntry.getKey();
-            }
+        Integer component = getLabelMap().get(componentName.toLowerCase());
+        if (component != null) {
+            return component;
         }
         return 0;
     }
 
     /**
-     * Gets a specific component from the components list.
+     * Gets a specific component (subfield) value given its name.
      *
      * @param componentName name of component to get
-     * @return found component or null
+     * @return found component or null if the component name is not part of the field or the value for the component is not set
      * @since 9.3.12
      */
     public String getComponent(final String componentName) {
-        int componentNameToNumber = componentNameToNumber(componentName);
-        return componentNameToNumber > 0 ? this.getComponent(componentNameToNumber) : null;
+        int componentNumber = componentNameToNumber(componentName);
+        return componentNumber > 0 ? this.getComponent(componentNumber) : null;
     }
 
     /**
@@ -631,7 +632,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public abstract String getValueDisplay(int component, Locale locale);
 
     /**
-     * Returns a localized suitable for showing to humans string of a field component.<br>
+     * Returns a localized suitable for showing to humans string of a field component.
      *
      * @param componentName name of the component to display
      * @param locale        optional locale to format date and amounts, if null, the default locale is used
@@ -640,8 +641,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 9.3.12
      */
     public String getValueDisplay(String componentName, Locale locale) {
-        int componentNameToNumber = componentNameToNumber(componentName);
-        return componentNameToNumber > 0 ? this.getValueDisplay(componentNameToNumber, locale) : null;
+        int componentNumber = componentNameToNumber(componentName);
+        return componentNumber > 0 ? this.getValueDisplay(componentNumber, locale) : null;
     }
 
     /**
@@ -654,8 +655,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 9.3.12
      */
     public Object getComponentAs(final String componentName, @SuppressWarnings("rawtypes") final Class c) {
-        int componentNameToNumber = componentNameToNumber(componentName);
-        return componentNameToNumber > 0 ? this.getComponentAs(componentNameToNumber, c) : null;
+        int componentNumber = componentNameToNumber(componentName);
+        return componentNumber > 0 ? this.getComponentAs(componentNumber, c) : null;
     }
 
     /**
@@ -711,8 +712,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 9.3.12
      */
     public Object getComponentAsNumber(final String componentName) {
-        int componentNameToNumber = componentNameToNumber(componentName);
-        return componentNameToNumber > 0 ? getComponentAsNumber(componentNameToNumber) : null;
+        int componentNumber = componentNameToNumber(componentName);
+        return componentNumber > 0 ? getComponentAsNumber(componentNumber) : null;
     }
 
     /**
@@ -1148,8 +1149,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 9.3.12
      */
     public String getComponentLabel(final String componentName) {
-        int componentNameToNumber = componentNameToNumber(componentName);
-        return componentNameToNumber > 0 ? getComponentLabel(componentNameToNumber) : null;
+        int componentNumber = componentNameToNumber(componentName);
+        return componentNumber > 0 ? getComponentLabel(componentNumber) : null;
     }
 
     /**
@@ -1176,6 +1177,15 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 7.10.3
      */
     protected abstract Map<Integer, String> getComponentMap();
+
+
+    /**
+     * Returns a mapping between component labels and the internal component number.
+     * Component labels are in lowercase and without spaces and separators.
+     * If a for a given component there is more than one label option, both are mapped to the same component number.
+     * @since 9.3.12
+     */
+    protected abstract Map<String, Integer> getLabelMap();
 
     /**
      * Returns english label for the component in camel case format.

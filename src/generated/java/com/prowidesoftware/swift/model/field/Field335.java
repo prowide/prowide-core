@@ -391,6 +391,24 @@ public class Field335 extends Field implements Serializable {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("timemessageentered", 1);
+        super.labelMap.put("mir", 2);
+        super.labelMap.put("mt", 3);
+        super.labelMap.put("receiver", 4);
+        super.labelMap.put("timelastdeliveryattempt", 5);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Time Message Entered).

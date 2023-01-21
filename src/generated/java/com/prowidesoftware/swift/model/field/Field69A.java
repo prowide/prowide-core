@@ -356,6 +356,22 @@ public class Field69A extends Field implements Serializable, DateContainer, Gene
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("date1", 2);
+        super.labelMap.put("date2", 3);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Qualifier).

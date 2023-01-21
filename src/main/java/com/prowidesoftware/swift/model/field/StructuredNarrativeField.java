@@ -209,6 +209,21 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
     }
 
     /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("narrative", 1);
+        return super.labelMap;
+    }
+
+    /**
      * Gets the single field component with the complete consolidated narrative content.
      *
      * @return the narrative content

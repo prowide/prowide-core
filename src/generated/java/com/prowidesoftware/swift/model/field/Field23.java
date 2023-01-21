@@ -406,6 +406,31 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("code1", 1);
+        // alias name
+        super.labelMap.put("buysellindicator", 1);
+        super.labelMap.put("code2", 2);
+        // alias name
+        super.labelMap.put("callputindicator", 2);
+        super.labelMap.put("code3", 3);
+        // alias name
+        super.labelMap.put("styleindicator", 3);
+        super.labelMap.put("currency", 4);
+        // alias name
+        super.labelMap.put("manualautomaticindicator", 4);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Code 1).

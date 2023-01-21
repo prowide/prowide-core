@@ -414,6 +414,25 @@ public class Field258 extends Field implements Serializable, DateContainer {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("ltaddress", 1);
+        super.labelMap.put("sessionnumber", 2);
+        super.labelMap.put("messagetype", 3);
+        super.labelMap.put("date", 4);
+        super.labelMap.put("starttime", 5);
+        super.labelMap.put("endtime", 6);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (LT Address).

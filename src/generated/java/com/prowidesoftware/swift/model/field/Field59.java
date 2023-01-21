@@ -369,6 +369,24 @@ public class Field59 extends Field implements Serializable, MultiLineField {
         return result;
     }
 
+    /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("account", 1);
+        super.labelMap.put("nameandaddress", 2);
+        super.labelMap.put("nameandaddress2", 3);
+        super.labelMap.put("nameandaddress3", 4);
+        super.labelMap.put("nameandaddress4", 5);
+        return super.labelMap;
+    }
 
     /**
      * Gets the component 1 (Account).

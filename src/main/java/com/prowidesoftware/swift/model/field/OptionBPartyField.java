@@ -274,6 +274,23 @@ public abstract class OptionBPartyField extends Field implements PartyIdentifier
     }
 
     /**
+     * @see Field#getLabelMap()
+     * @since 9.3.12
+     */
+    @Override
+    protected Map<String, Integer> getLabelMap() {
+        if (super.labelMap != null && !super.labelMap.isEmpty()) {
+            // return cached map
+            return super.labelMap;
+        }
+        super.labelMap = new HashMap<>();
+        super.labelMap.put("dcmark", 1);
+        super.labelMap.put("account", 2);
+        super.labelMap.put("location", 3);
+        return super.labelMap;
+    }
+
+    /**
      * @return the specific field name (number and letter option)
      */
     @Override
