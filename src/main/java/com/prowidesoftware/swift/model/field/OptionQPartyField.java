@@ -267,10 +267,10 @@ public abstract class OptionQPartyField extends Field {
         }
         super.labelMap = new HashMap<>();
         super.labelMap.put("qualifier", 1);
-        super.labelMap.put("nameAndAddress", 2);
-        super.labelMap.put("nameAndAddress2", 3);
-        super.labelMap.put("nameAndAddress3", 4);
-        super.labelMap.put("nameAndAddress4", 5);
+        super.labelMap.put("nameandaddress", 2);
+        super.labelMap.put("nameandaddress2", 3);
+        super.labelMap.put("nameandaddress3", 4);
+        super.labelMap.put("nameandaddress4", 5);
         return super.labelMap;
     }
 

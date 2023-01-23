@@ -294,10 +294,10 @@ public abstract class OptionDPartyField extends Field implements PartyIdentifier
         super.labelMap = new HashMap<>();
         super.labelMap.put("dcmark", 1);
         super.labelMap.put("account", 2);
-        super.labelMap.put("nameAndAddress", 3);
-        super.labelMap.put("nameAndAddress2", 4);
-        super.labelMap.put("nameAndAddress3", 5);
-        super.labelMap.put("nameAndAddress4", 6);
+        super.labelMap.put("nameandaddress", 3);
+        super.labelMap.put("nameandaddress2", 4);
+        super.labelMap.put("nameandaddress3", 5);
+        super.labelMap.put("nameandaddress4", 6);
         return super.labelMap;
     }
 
