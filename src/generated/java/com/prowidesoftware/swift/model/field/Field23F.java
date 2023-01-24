@@ -46,8 +46,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: period: <code>String</code></li>
- * 		<li>Component 2: details: <code>String</code></li>
+ * 		<li>Component 1: Period: <code>String</code></li>
+ * 		<li>Component 2: Details: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

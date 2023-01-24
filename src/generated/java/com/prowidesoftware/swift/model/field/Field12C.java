@@ -47,8 +47,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: qualifier: <code>String</code></li>
- * 		<li>Component 2: cficode: <code>String</code></li>
+ * 		<li>Component 1: Qualifier: <code>String</code></li>
+ * 		<li>Component 2: CFICode: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

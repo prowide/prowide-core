@@ -50,7 +50,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: rate: <code>BigDecimal</code></li>
+ * 		<li>Component 1: Rate: <code>BigDecimal</code></li>
  * </ol>
  *
  * <p>Structure definition

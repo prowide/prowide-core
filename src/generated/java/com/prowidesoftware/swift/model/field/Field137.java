@@ -48,10 +48,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: broadcastindicator: <code>Character</code></li>
- * 		<li>Component 2: unsequencedbroadcast: <code>String</code></li>
- * 		<li>Component 3: broadcastissuer: <code>String</code></li>
- * 		<li>Component 4: broadcastnumber: <code>Long</code></li>
+ * 		<li>Component 1: BroadcastIndicator: <code>Character</code></li>
+ * 		<li>Component 2: UnsequencedBroadcast: <code>String</code></li>
+ * 		<li>Component 3: BroadcastIssuer: <code>String</code></li>
+ * 		<li>Component 4: BroadcastNumber: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

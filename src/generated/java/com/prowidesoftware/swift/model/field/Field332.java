@@ -48,8 +48,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: totalmessagessent: <code>Long</code></li>
- * 		<li>Component 2: totalmessagesreceived: <code>Long</code></li>
+ * 		<li>Component 1: TotalMessagesSent: <code>Long</code></li>
+ * 		<li>Component 2: TotalMessagesReceived: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

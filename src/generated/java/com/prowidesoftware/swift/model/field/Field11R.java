@@ -52,10 +52,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: mtnumber: <code>Long</code></li>
- * 		<li>Component 2: date: <code>Calendar</code></li>
- * 		<li>Component 3: sessionnumber: <code>Long</code></li>
- * 		<li>Component 4: isn: <code>Long</code></li>
+ * 		<li>Component 1: MTNumber: <code>Long</code></li>
+ * 		<li>Component 2: Date: <code>Calendar</code></li>
+ * 		<li>Component 3: SessionNumber: <code>Long</code></li>
+ * 		<li>Component 4: ISN: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

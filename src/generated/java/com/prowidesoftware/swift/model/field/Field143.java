@@ -49,7 +49,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: enddatetime: <code>Calendar</code></li>
+ * 		<li>Component 1: EndDateTime: <code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition

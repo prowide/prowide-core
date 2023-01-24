@@ -54,16 +54,16 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: valuedate: <code>Calendar</code></li>
- * 		<li>Component 2: entrydate: <code>Calendar</code></li>
- * 		<li>Component 3: debitcreditmark: <code>String</code></li>
- * 		<li>Component 4: fundscode: <code>String</code></li>
- * 		<li>Component 5: amount: <code>BigDecimal</code></li>
- * 		<li>Component 6: transactiontype: <code>String</code></li>
- * 		<li>Component 7: identificationcode: <code>String</code></li>
- * 		<li>Component 8: referencefortheaccountowner: <code>String</code></li>
- * 		<li>Component 9: referenceoftheaccountservicinginstitution: <code>String</code></li>
- * 		<li>Component 10: supplementarydetails: <code>String</code></li>
+ * 		<li>Component 1: ValueDate: <code>Calendar</code></li>
+ * 		<li>Component 2: EntryDate: <code>Calendar</code></li>
+ * 		<li>Component 3: DebitCreditMark: <code>String</code></li>
+ * 		<li>Component 4: FundsCode: <code>String</code></li>
+ * 		<li>Component 5: Amount: <code>BigDecimal</code></li>
+ * 		<li>Component 6: TransactionType: <code>String</code></li>
+ * 		<li>Component 7: IdentificationCode: <code>String</code></li>
+ * 		<li>Component 8: ReferenceForTheAccountOwner: <code>String</code></li>
+ * 		<li>Component 9: ReferenceOfTheAccountServicingInstitution: <code>String</code></li>
+ * 		<li>Component 10: SupplementaryDetails: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

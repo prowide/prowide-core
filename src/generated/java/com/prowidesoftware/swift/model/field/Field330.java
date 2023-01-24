@@ -48,12 +48,12 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: sessionnumber: <code>Long</code></li>
- * 		<li>Component 2: isn: <code>Long</code></li>
- * 		<li>Component 3: isnnak: <code>Long</code></li>
- * 		<li>Component 4: osn: <code>Long</code></li>
- * 		<li>Component 5: osnnak: <code>Long</code></li>
- * 		<li>Component 6: ackreplayindicator: <code>Long</code></li>
+ * 		<li>Component 1: SessionNumber: <code>Long</code></li>
+ * 		<li>Component 2: ISN: <code>Long</code></li>
+ * 		<li>Component 3: ISNNAK: <code>Long</code></li>
+ * 		<li>Component 4: OSN: <code>Long</code></li>
+ * 		<li>Component 5: OSNNAK: <code>Long</code></li>
+ * 		<li>Component 6: ACKReplayIndicator: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

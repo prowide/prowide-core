@@ -46,7 +46,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: reconnectallowedoption: <code>Boolean</code></li>
+ * 		<li>Component 1: ReconnectAllowedOption: <code>Boolean</code></li>
  * </ol>
  *
  * <p>Structure definition

@@ -46,7 +46,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: valuedateordering: <code>Boolean</code></li>
+ * 		<li>Component 1: ValueDateOrdering: <code>Boolean</code></li>
  * </ol>
  *
  * <p>Structure definition

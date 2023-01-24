@@ -26,11 +26,11 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- *   <li>Component 1: qualifier: <code>String</code></li>
- *   <li>Component 2: datasourcescheme: <code>String</code></li>
- *   <li>Component 3: typeofid: <code>String</code></li>
- *   <li>Component 4: countrycode: <code>String</code></li>
- *   <li>Component 5: alternateid: <code>String</code></li>
+ *   <li>Component 1: Qualifier: <code>String</code></li>
+ *   <li>Component 2: DataSourceScheme: <code>String</code></li>
+ *   <li>Component 3: TypeofId: <code>String</code></li>
+ *   <li>Component 4: CountryCode: <code>String</code></li>
+ *   <li>Component 5: AlternateId: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

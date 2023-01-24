@@ -29,9 +29,9 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- *   <li>Component 1: dcmark: <code>String</code></li>
- *   <li>Component 2: account: <code>String</code></li>
- *   <li>Component 3: identifiercode: <code>BIC</code></li>
+ *   <li>Component 1: DCMark: <code>String</code></li>
+ *   <li>Component 2: Account: <code>String</code></li>
+ *   <li>Component 3: IdentifierCode: <code>BIC</code></li>
  * </ol>
  *
  * <p>Structure definition

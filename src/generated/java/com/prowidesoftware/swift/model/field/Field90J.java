@@ -52,12 +52,12 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: qualifier: <code>String</code></li>
- * 		<li>Component 2: amounttypecode: <code>String</code></li>
- * 		<li>Component 3: currencycode1: <code>Currency</code></li>
- * 		<li>Component 4: amount1: <code>BigDecimal</code></li>
- * 		<li>Component 5: currencycode2: <code>Currency</code></li>
- * 		<li>Component 6: amount2: <code>BigDecimal</code></li>
+ * 		<li>Component 1: Qualifier: <code>String</code></li>
+ * 		<li>Component 2: AmountTypeCode: <code>String</code></li>
+ * 		<li>Component 3: CurrencyCode1: <code>Currency</code></li>
+ * 		<li>Component 4: Amount1: <code>BigDecimal</code></li>
+ * 		<li>Component 5: CurrencyCode2: <code>Currency</code></li>
+ * 		<li>Component 6: Amount2: <code>BigDecimal</code></li>
  * </ol>
  *
  * <p>Structure definition

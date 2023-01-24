@@ -47,18 +47,18 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: narrative: <code>String</code></li>
- * 		<li>Component 2: narrative2: <code>String</code></li>
- * 		<li>Component 3: narrative3: <code>String</code></li>
- * 		<li>Component 4: narrative4: <code>String</code></li>
- * 		<li>Component 5: narrative5: <code>String</code></li>
- * 		<li>Component 6: narrative6: <code>String</code></li>
- * 		<li>Component 7: narrative7: <code>String</code></li>
- * 		<li>Component 8: narrative8: <code>String</code></li>
- * 		<li>Component 9: narrative9: <code>String</code></li>
- * 		<li>Component 10: narrative10: <code>String</code></li>
- * 		<li>Component 11: narrative11: <code>String</code></li>
- * 		<li>Component 12: narrative12: <code>String</code></li>
+ * 		<li>Component 1: Narrative: <code>String</code></li>
+ * 		<li>Component 2: Narrative2: <code>String</code></li>
+ * 		<li>Component 3: Narrative3: <code>String</code></li>
+ * 		<li>Component 4: Narrative4: <code>String</code></li>
+ * 		<li>Component 5: Narrative5: <code>String</code></li>
+ * 		<li>Component 6: Narrative6: <code>String</code></li>
+ * 		<li>Component 7: Narrative7: <code>String</code></li>
+ * 		<li>Component 8: Narrative8: <code>String</code></li>
+ * 		<li>Component 9: Narrative9: <code>String</code></li>
+ * 		<li>Component 10: Narrative10: <code>String</code></li>
+ * 		<li>Component 11: Narrative11: <code>String</code></li>
+ * 		<li>Component 12: Narrative12: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

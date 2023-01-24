@@ -48,9 +48,9 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: deliverysubsetname: <code>String</code></li>
- * 		<li>Component 2: numberofmessages: <code>Long</code></li>
- * 		<li>Component 3: codes: <code>String</code></li>
+ * 		<li>Component 1: DeliverySubsetName: <code>String</code></li>
+ * 		<li>Component 2: NumberOfMessages: <code>Long</code></li>
+ * 		<li>Component 3: Codes: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

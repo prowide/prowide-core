@@ -27,12 +27,12 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- *   <li>Component 1: dcmark: <code>String</code></li>
- *   <li>Component 2: account: <code>String</code></li>
- *   <li>Component 3: nameandaddress: <code>String</code></li>
- *   <li>Component 4: nameandaddress2: <code>String</code></li>
- *   <li>Component 5: nameandaddress3: <code>String</code></li>
- *   <li>Component 6: nameandaddress4: <code>String</code></li>
+ *   <li>Component 1: DCMark: <code>String</code></li>
+ *   <li>Component 2: Account: <code>String</code></li>
+ *   <li>Component 3: NameAndAddress: <code>String</code></li>
+ *   <li>Component 4: NameAndAddress2: <code>String</code></li>
+ *   <li>Component 5: NameAndAddress3: <code>String</code></li>
+ *   <li>Component 6: NameAndAddress4: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

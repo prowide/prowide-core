@@ -46,8 +46,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: typeofswap: <code>String</code></li>
- * 		<li>Component 2: settlementmethod: <code>String</code></li>
+ * 		<li>Component 1: TypeOfSwap: <code>String</code></li>
+ * 		<li>Component 2: SettlementMethod: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

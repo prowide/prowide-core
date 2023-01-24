@@ -26,7 +26,7 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- *   <li>Component 1: account: <code>String</code></li>
+ *   <li>Component 1: Account: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

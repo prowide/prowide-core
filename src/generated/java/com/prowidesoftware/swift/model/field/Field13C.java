@@ -47,10 +47,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: code: <code>String</code></li>
- * 		<li>Component 2: timeindication: <code>Calendar</code></li>
- * 		<li>Component 3: sign: <code>Character</code></li>
- * 		<li>Component 4: timeoffset: <code>Calendar</code></li>
+ * 		<li>Component 1: Code: <code>String</code></li>
+ * 		<li>Component 2: TimeIndication: <code>Calendar</code></li>
+ * 		<li>Component 3: Sign: <code>Character</code></li>
+ * 		<li>Component 4: TimeOffset: <code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition

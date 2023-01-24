@@ -49,9 +49,9 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: date: <code>Calendar</code></li>
- * 		<li>Component 2: location: <code>String</code></li>
- * 		<li>Component 3: time: <code>Calendar</code></li>
+ * 		<li>Component 1: Date: <code>Calendar</code></li>
+ * 		<li>Component 2: Location: <code>String</code></li>
+ * 		<li>Component 3: Time: <code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition

@@ -51,18 +51,18 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: sessionnumber: <code>Long</code></li>
- * 		<li>Component 2: datesessionopened: <code>Calendar</code></li>
- * 		<li>Component 3: timesessionopened: <code>Calendar</code></li>
- * 		<li>Component 4: datesessionclosed: <code>Calendar</code></li>
- * 		<li>Component 5: timesessionclosed: <code>Calendar</code></li>
- * 		<li>Component 6: reasonforclosure: <code>Long</code></li>
- * 		<li>Component 7: quantityofmessagessent: <code>Long</code></li>
- * 		<li>Component 8: quantityofmessagesreceived: <code>Long</code></li>
- * 		<li>Component 9: firstinputsequencenumber: <code>Long</code></li>
- * 		<li>Component 10: lastinputsequencenumber: <code>Long</code></li>
- * 		<li>Component 11: firstoutputsequencenumber: <code>Long</code></li>
- * 		<li>Component 12: lastoutputsequencenumber: <code>Long</code></li>
+ * 		<li>Component 1: SessionNumber: <code>Long</code></li>
+ * 		<li>Component 2: DateSessionOpened: <code>Calendar</code></li>
+ * 		<li>Component 3: TimeSessionOpened: <code>Calendar</code></li>
+ * 		<li>Component 4: DateSessionClosed: <code>Calendar</code></li>
+ * 		<li>Component 5: TimeSessionClosed: <code>Calendar</code></li>
+ * 		<li>Component 6: ReasonForClosure: <code>Long</code></li>
+ * 		<li>Component 7: QuantityOfMessagesSent: <code>Long</code></li>
+ * 		<li>Component 8: QuantityOfMessagesReceived: <code>Long</code></li>
+ * 		<li>Component 9: FirstInputSequenceNumber: <code>Long</code></li>
+ * 		<li>Component 10: LastInputSequenceNumber: <code>Long</code></li>
+ * 		<li>Component 11: FirstOutputSequenceNumber: <code>Long</code></li>
+ * 		<li>Component 12: LastOutputSequenceNumber: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

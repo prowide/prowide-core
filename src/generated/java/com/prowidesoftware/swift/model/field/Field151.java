@@ -48,7 +48,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: sessionnumber: <code>Long</code></li>
+ * 		<li>Component 1: SessionNumber: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition
