@@ -51,18 +51,18 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Long</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
+ * 		<li>Component 1: sessionnumber: <code>Long</code></li>
+ * 		<li>Component 2: datesessionopened: <code>Calendar</code></li>
+ * 		<li>Component 3: timesessionopened: <code>Calendar</code></li>
+ * 		<li>Component 4: datesessionclosed: <code>Calendar</code></li>
+ * 		<li>Component 5: timesessionclosed: <code>Calendar</code></li>
+ * 		<li>Component 6: reasonforclosure: <code>Long</code></li>
+ * 		<li>Component 7: quantityofmessagessent: <code>Long</code></li>
+ * 		<li>Component 8: quantityofmessagesreceived: <code>Long</code></li>
+ * 		<li>Component 9: firstinputsequencenumber: <code>Long</code></li>
+ * 		<li>Component 10: lastinputsequencenumber: <code>Long</code></li>
+ * 		<li>Component 11: firstoutputsequencenumber: <code>Long</code></li>
+ * 		<li>Component 12: lastoutputsequencenumber: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

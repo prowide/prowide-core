@@ -48,10 +48,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>MIR</code></li>
- * 		<li><code>MIR</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Calendar</code></li>
+ * 		<li>Component 1: startmir: <code>MIR</code></li>
+ * 		<li>Component 2: endmir: <code>MIR</code></li>
+ * 		<li>Component 3: starttime: <code>Calendar</code></li>
+ * 		<li>Component 4: endtime: <code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition

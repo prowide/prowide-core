@@ -47,7 +47,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>MIR</code></li>
+ * 		<li>Component 1: mir: <code>MIR</code></li>
  * </ol>
  *
  * <p>Structure definition

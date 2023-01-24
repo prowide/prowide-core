@@ -46,30 +46,30 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
+ * 		<li>Component 1: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 2: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 3: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 4: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 5: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 6: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 7: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 8: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 9: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 10: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 11: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 12: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 13: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 14: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 15: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 16: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 17: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 18: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 19: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 20: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 21: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 22: $component.getMemberName().toLowerCase(): <code>String</code></li>
+ * 		<li>Component 23: $component.getMemberName().toLowerCase(): <code>Character</code></li>
+ * 		<li>Component 24: $component.getMemberName().toLowerCase(): <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

@@ -28,8 +28,8 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- *   <li><code>String</code></li>
- *   <li><code>BIC</code></li>
+ *   <li>Component 1: qualifier: <code>String</code></li>
+ *   <li>Component 2: identifiercode: <code>BIC</code></li>
  * </ol>
  *
  * <p>Structure definition

@@ -47,7 +47,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
+ * 		<li>Component 1: edifactmessage: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

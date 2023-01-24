@@ -51,11 +51,11 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>MIR</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>LogicalTerminalAddress</code></li>
- * 		<li><code>Calendar</code></li>
+ * 		<li>Component 1: timemessageentered: <code>Calendar</code></li>
+ * 		<li>Component 2: mir: <code>MIR</code></li>
+ * 		<li>Component 3: mt: <code>Long</code></li>
+ * 		<li>Component 4: receiver: <code>LogicalTerminalAddress</code></li>
+ * 		<li>Component 5: timelastdeliveryattempt: <code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition

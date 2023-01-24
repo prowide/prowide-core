@@ -49,7 +49,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Currency</code></li>
+ * 		<li>Component 1: currency: <code>Currency</code></li>
  * </ol>
  *
  * <p>Structure definition

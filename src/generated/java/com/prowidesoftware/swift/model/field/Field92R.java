@@ -51,10 +51,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>BigDecimal</code></li>
+ * 		<li>Component 1: qualifier: <code>String</code></li>
+ * 		<li>Component 2: datasourcescheme: <code>String</code></li>
+ * 		<li>Component 3: ratetypecode: <code>String</code></li>
+ * 		<li>Component 4: rate: <code>BigDecimal</code></li>
  * </ol>
  *
  * <p>Structure definition

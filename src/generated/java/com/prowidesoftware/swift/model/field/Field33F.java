@@ -51,8 +51,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Currency</code></li>
- * 		<li><code>BigDecimal</code></li>
+ * 		<li>Component 1: currency: <code>Currency</code></li>
+ * 		<li>Component 2: amount: <code>BigDecimal</code></li>
  * </ol>
  *
  * <p>Structure definition

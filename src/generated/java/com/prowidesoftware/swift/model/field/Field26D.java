@@ -47,36 +47,36 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
+ * 		<li>Component 1: narrative: <code>String</code></li>
+ * 		<li>Component 2: narrative2: <code>String</code></li>
+ * 		<li>Component 3: narrative3: <code>String</code></li>
+ * 		<li>Component 4: narrative4: <code>String</code></li>
+ * 		<li>Component 5: narrative5: <code>String</code></li>
+ * 		<li>Component 6: narrative6: <code>String</code></li>
+ * 		<li>Component 7: narrative7: <code>String</code></li>
+ * 		<li>Component 8: narrative8: <code>String</code></li>
+ * 		<li>Component 9: narrative9: <code>String</code></li>
+ * 		<li>Component 10: narrative10: <code>String</code></li>
+ * 		<li>Component 11: narrative11: <code>String</code></li>
+ * 		<li>Component 12: narrative12: <code>String</code></li>
+ * 		<li>Component 13: narrative13: <code>String</code></li>
+ * 		<li>Component 14: narrative14: <code>String</code></li>
+ * 		<li>Component 15: narrative15: <code>String</code></li>
+ * 		<li>Component 16: narrative16: <code>String</code></li>
+ * 		<li>Component 17: narrative17: <code>String</code></li>
+ * 		<li>Component 18: narrative18: <code>String</code></li>
+ * 		<li>Component 19: narrative19: <code>String</code></li>
+ * 		<li>Component 20: narrative20: <code>String</code></li>
+ * 		<li>Component 21: narrative21: <code>String</code></li>
+ * 		<li>Component 22: narrative22: <code>String</code></li>
+ * 		<li>Component 23: narrative23: <code>String</code></li>
+ * 		<li>Component 24: narrative24: <code>String</code></li>
+ * 		<li>Component 25: narrative25: <code>String</code></li>
+ * 		<li>Component 26: narrative26: <code>String</code></li>
+ * 		<li>Component 27: narrative27: <code>String</code></li>
+ * 		<li>Component 28: narrative28: <code>String</code></li>
+ * 		<li>Component 29: narrative29: <code>String</code></li>
+ * 		<li>Component 30: narrative30: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

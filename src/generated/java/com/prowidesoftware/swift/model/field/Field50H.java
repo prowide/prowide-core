@@ -47,11 +47,11 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
+ * 		<li>Component 1: account: <code>String</code></li>
+ * 		<li>Component 2: nameandaddress: <code>String</code></li>
+ * 		<li>Component 3: nameandaddress2: <code>String</code></li>
+ * 		<li>Component 4: nameandaddress3: <code>String</code></li>
+ * 		<li>Component 5: nameandaddress4: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

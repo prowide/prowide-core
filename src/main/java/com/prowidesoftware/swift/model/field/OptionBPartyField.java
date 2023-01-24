@@ -27,9 +27,9 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- *   <li><code>String</code></li>
- *   <li><code>String</code></li>
- *   <li><code>String</code></li>
+ *   <li>Component 1: dcmark: <code>String</code></li>
+ *   <li>Component 2: account: <code>String</code></li>
+ *   <li>Component 3: location: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

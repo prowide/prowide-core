@@ -48,16 +48,16 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
+ * 		<li>Component 1: mt1: <code>Long</code></li>
+ * 		<li>Component 2: mt2: <code>Long</code></li>
+ * 		<li>Component 3: mt3: <code>Long</code></li>
+ * 		<li>Component 4: mt4: <code>Long</code></li>
+ * 		<li>Component 5: mt5: <code>Long</code></li>
+ * 		<li>Component 6: mt6: <code>Long</code></li>
+ * 		<li>Component 7: mt7: <code>Long</code></li>
+ * 		<li>Component 8: mt8: <code>Long</code></li>
+ * 		<li>Component 9: mt9: <code>Long</code></li>
+ * 		<li>Component 10: mt10: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition
