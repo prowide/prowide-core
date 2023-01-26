@@ -4,6 +4,7 @@
   * (GH-148) Fixed parser of Field61 amount component when number starts with the decimal comma (implicit zero in amount lower than 1)
   * Added getComponent(String componentName) to retrieve the component based on the name instead of the number
   * Added componentNameToNumber(String componentName) to retrieve the component number based on the component name
+  * (PW-1109) Changed Narrative Resolver to validate minimum codeword length of 1 char
 
 #### 9.3.11 - January 2023
   * (PW-1152) Preserve line breaks when creating NarrativeContainer fields from JSON with legacy structure: narrative1, narrative2, etc...
