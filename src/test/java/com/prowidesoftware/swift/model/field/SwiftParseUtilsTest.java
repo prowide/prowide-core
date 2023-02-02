@@ -63,6 +63,8 @@ public class SwiftParseUtilsTest {
         assertNull(SwiftParseUtils.getAlphaPrefix("1asdf"));
         assertEquals("a", SwiftParseUtils.getAlphaPrefix("a"));
         assertEquals("ABC", SwiftParseUtils.getAlphaPrefix("ABC"));
+        assertEquals("ABC,", SwiftParseUtils.getAlphaPrefix("ABC,"));
+        assertEquals("ABC,", SwiftParseUtils.getAlphaPrefix("ABC,234234"));
         assertEquals("ABC", SwiftParseUtils.getAlphaPrefix("ABC234234"));
         assertEquals("ABC", SwiftParseUtils.getAlphaPrefix("ABC234234asd"));
         assertEquals("///", SwiftParseUtils.getAlphaPrefix("///"));

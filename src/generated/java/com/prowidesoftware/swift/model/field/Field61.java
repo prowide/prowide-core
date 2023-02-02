@@ -1468,7 +1468,17 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
 		/*
 		 * parse component 3 and 4 (DC mark and optional funds code)
 		 */
-		String comp3and4 = SwiftParseUtils.getAlphaPrefix(toparse);	
+		String comp3and4 = null;
+        if (toparse != null && toparse.length() > 0) {
+            int i = 0;
+            while (i < toparse.length() && (!StringUtils.isNumeric(Character.toString(toparse.charAt(i))) && toparse.charAt(i) != ',')) {
+                i++;
+            }
+            if (i > 0) {
+                comp3and4 = StringUtils.substring(toparse, 0, i);
+            }
+        }
+
 		if (comp3and4 != null) {
 	    	if (comp3and4.charAt(0) == 'R' || comp3and4.charAt(0) == 'E') {
 	    		/*
