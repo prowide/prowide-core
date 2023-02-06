@@ -48,8 +48,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>Long</code></li>
+ * 		<li>Component 1: ReasonForRejection: <code>String</code></li>
+ * 		<li>Component 2: LineFieldNumber: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

@@ -47,7 +47,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>LogicalTerminalAddress</code></li>
+ * 		<li>Component 1: LTAddress: <code>LogicalTerminalAddress</code></li>
  * </ol>
  *
  * <p>Structure definition

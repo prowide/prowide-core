@@ -53,10 +53,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>BigDecimal</code></li>
+ * 		<li>Component 1: DCMark: <code>String</code></li>
+ * 		<li>Component 2: Date: <code>Calendar</code></li>
+ * 		<li>Component 3: Currency: <code>String</code></li>
+ * 		<li>Component 4: Amount: <code>BigDecimal</code></li>
  * </ol>
  *
  * <p>Structure definition

@@ -51,9 +51,9 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>BigDecimal</code></li>
- * 		<li><code>BigDecimal</code></li>
+ * 		<li>Component 1: Qualifier: <code>String</code></li>
+ * 		<li>Component 2: Quantity1: <code>BigDecimal</code></li>
+ * 		<li>Component 3: Quantity2: <code>BigDecimal</code></li>
  * </ol>
  *
  * <p>Structure definition

@@ -49,8 +49,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Character</code></li>
- * 		<li><code>BIC</code></li>
+ * 		<li>Component 1: Priority: <code>Character</code></li>
+ * 		<li>Component 2: BIC: <code>BIC</code></li>
  * </ol>
  *
  * <p>Structure definition

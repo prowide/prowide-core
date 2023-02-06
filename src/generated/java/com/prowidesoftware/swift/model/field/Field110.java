@@ -48,7 +48,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Long</code></li>
+ * 		<li>Component 1: WindowSize: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

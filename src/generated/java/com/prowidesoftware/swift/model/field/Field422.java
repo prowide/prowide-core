@@ -46,30 +46,30 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Character</code></li>
- * 		<li><code>String</code></li>
+ * 		<li>Component 1: <code>Character</code></li>
+ * 		<li>Component 2: <code>String</code></li>
+ * 		<li>Component 3: <code>Character</code></li>
+ * 		<li>Component 4: <code>String</code></li>
+ * 		<li>Component 5: <code>Character</code></li>
+ * 		<li>Component 6: <code>String</code></li>
+ * 		<li>Component 7: <code>Character</code></li>
+ * 		<li>Component 8: <code>String</code></li>
+ * 		<li>Component 9: <code>Character</code></li>
+ * 		<li>Component 10: <code>String</code></li>
+ * 		<li>Component 11: <code>Character</code></li>
+ * 		<li>Component 12: <code>String</code></li>
+ * 		<li>Component 13: <code>Character</code></li>
+ * 		<li>Component 14: <code>String</code></li>
+ * 		<li>Component 15: <code>Character</code></li>
+ * 		<li>Component 16: <code>String</code></li>
+ * 		<li>Component 17: <code>Character</code></li>
+ * 		<li>Component 18: <code>String</code></li>
+ * 		<li>Component 19: <code>Character</code></li>
+ * 		<li>Component 20: <code>String</code></li>
+ * 		<li>Component 21: <code>Character</code></li>
+ * 		<li>Component 22: <code>String</code></li>
+ * 		<li>Component 23: <code>Character</code></li>
+ * 		<li>Component 24: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

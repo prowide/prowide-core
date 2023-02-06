@@ -52,12 +52,12 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>LogicalTerminalAddress</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Calendar</code></li>
+ * 		<li>Component 1: LTAddress: <code>LogicalTerminalAddress</code></li>
+ * 		<li>Component 2: SessionNumber: <code>Long</code></li>
+ * 		<li>Component 3: MessageCategory: <code>Long</code></li>
+ * 		<li>Component 4: Date: <code>Calendar</code></li>
+ * 		<li>Component 5: StartTime: <code>Calendar</code></li>
+ * 		<li>Component 6: EndTime: <code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition

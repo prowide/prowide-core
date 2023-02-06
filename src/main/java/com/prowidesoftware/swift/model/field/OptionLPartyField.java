@@ -26,7 +26,7 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- *   <li><code>String</code></li>
+ *   <li>Component 1: PartyIdentifier: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

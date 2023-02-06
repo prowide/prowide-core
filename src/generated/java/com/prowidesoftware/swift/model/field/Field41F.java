@@ -49,7 +49,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>BIC</code></li>
+ * 		<li>Component 1: IdentifierCode: <code>BIC</code></li>
  * </ol>
  *
  * <p>Structure definition

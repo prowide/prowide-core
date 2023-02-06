@@ -46,46 +46,46 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
+ * 		<li>Component 1: <code>String</code></li>
+ * 		<li>Component 2: <code>String</code></li>
+ * 		<li>Component 3: <code>String</code></li>
+ * 		<li>Component 4: <code>String</code></li>
+ * 		<li>Component 5: <code>String</code></li>
+ * 		<li>Component 6: <code>String</code></li>
+ * 		<li>Component 7: <code>String</code></li>
+ * 		<li>Component 8: <code>String</code></li>
+ * 		<li>Component 9: <code>String</code></li>
+ * 		<li>Component 10: <code>String</code></li>
+ * 		<li>Component 11: <code>String</code></li>
+ * 		<li>Component 12: <code>String</code></li>
+ * 		<li>Component 13: <code>String</code></li>
+ * 		<li>Component 14: <code>String</code></li>
+ * 		<li>Component 15: <code>String</code></li>
+ * 		<li>Component 16: <code>String</code></li>
+ * 		<li>Component 17: <code>String</code></li>
+ * 		<li>Component 18: <code>String</code></li>
+ * 		<li>Component 19: <code>String</code></li>
+ * 		<li>Component 20: <code>String</code></li>
+ * 		<li>Component 21: <code>String</code></li>
+ * 		<li>Component 22: <code>String</code></li>
+ * 		<li>Component 23: <code>String</code></li>
+ * 		<li>Component 24: <code>String</code></li>
+ * 		<li>Component 25: <code>String</code></li>
+ * 		<li>Component 26: <code>String</code></li>
+ * 		<li>Component 27: <code>String</code></li>
+ * 		<li>Component 28: <code>String</code></li>
+ * 		<li>Component 29: <code>String</code></li>
+ * 		<li>Component 30: <code>String</code></li>
+ * 		<li>Component 31: <code>String</code></li>
+ * 		<li>Component 32: <code>String</code></li>
+ * 		<li>Component 33: <code>String</code></li>
+ * 		<li>Component 34: <code>String</code></li>
+ * 		<li>Component 35: <code>String</code></li>
+ * 		<li>Component 36: <code>String</code></li>
+ * 		<li>Component 37: <code>String</code></li>
+ * 		<li>Component 38: <code>String</code></li>
+ * 		<li>Component 39: <code>String</code></li>
+ * 		<li>Component 40: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

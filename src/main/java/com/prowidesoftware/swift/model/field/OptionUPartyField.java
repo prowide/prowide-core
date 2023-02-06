@@ -27,10 +27,10 @@ import java.util.*;
  *
  * <p>Subfields (components) Data types
  * <ol>
- *   <li><code>String</code></li>
- *   <li><code>String</code></li>
- *   <li><code>String</code></li>
- *   <li><code>String</code></li>
+ *   <li>Component 1: Qualifier: <code>String</code></li>
+ *   <li>Component 2: PartyName: <code>String</code></li>
+ *   <li>Component 3: PartyName2: <code>String</code></li>
+ *   <li>Component 4: PartyName3: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

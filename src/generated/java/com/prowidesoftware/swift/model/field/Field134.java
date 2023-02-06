@@ -50,9 +50,9 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>BIC</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
+ * 		<li>Component 1: BIC: <code>BIC</code></li>
+ * 		<li>Component 2: BroadcastRequesterName: <code>String</code></li>
+ * 		<li>Component 3: BroadcastRequesterCity: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

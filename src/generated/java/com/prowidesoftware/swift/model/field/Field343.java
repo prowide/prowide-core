@@ -48,10 +48,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
+ * 		<li>Component 1: RegionTimeCount1: <code>Long</code></li>
+ * 		<li>Component 2: RegionTimeCount2: <code>Long</code></li>
+ * 		<li>Component 3: RegionTimeCount3: <code>Long</code></li>
+ * 		<li>Component 4: RegionTimeCount4: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

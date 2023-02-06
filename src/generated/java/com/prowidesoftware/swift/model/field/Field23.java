@@ -49,10 +49,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Currency</code></li>
+ * 		<li>Component 1: Code1: <code>String</code></li>
+ * 		<li>Component 2: Code2: <code>String</code></li>
+ * 		<li>Component 3: Code3: <code>String</code></li>
+ * 		<li>Component 4: Currency: <code>Currency</code></li>
  * </ol>
  *
  * <p>Structure definition

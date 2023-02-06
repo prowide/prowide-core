@@ -51,14 +51,14 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
- * 		<li><code>Long</code></li>
+ * 		<li>Component 1: DateLastSessionOpened: <code>Calendar</code></li>
+ * 		<li>Component 2: TimeLastSessionOpened: <code>Calendar</code></li>
+ * 		<li>Component 3: SessionNumber: <code>Long</code></li>
+ * 		<li>Component 4: DateLastSessionClosed: <code>Calendar</code></li>
+ * 		<li>Component 5: TimeLastSessionClosed: <code>Calendar</code></li>
+ * 		<li>Component 6: ReasonForClosure: <code>Long</code></li>
+ * 		<li>Component 7: LastInputSequenceNumberReceived: <code>Long</code></li>
+ * 		<li>Component 8: LastOutputSequenceNumberSent: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

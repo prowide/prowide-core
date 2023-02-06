@@ -47,7 +47,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>MOR</code></li>
+ * 		<li>Component 1: MOR: <code>MOR</code></li>
  * </ol>
  *
  * <p>Structure definition

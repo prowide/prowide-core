@@ -50,8 +50,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>BIC</code></li>
- * 		<li><code>String</code></li>
+ * 		<li>Component 1: IdentifierCode: <code>BIC</code></li>
+ * 		<li>Component 2: Code: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition

@@ -49,9 +49,9 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>String</code></li>
- * 		<li><code>String</code></li>
- * 		<li><code>Long</code></li>
+ * 		<li>Component 1: Qualifier: <code>String</code></li>
+ * 		<li>Component 2: LegalEntityIdentifierCode: <code>String</code></li>
+ * 		<li>Component 3: LegalEntityIdentifierNumber: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition

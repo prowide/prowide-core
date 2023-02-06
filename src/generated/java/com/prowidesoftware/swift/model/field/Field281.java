@@ -48,10 +48,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li><code>Calendar</code></li>
- * 		<li><code>MOR</code></li>
- * 		<li><code>Boolean</code></li>
- * 		<li><code>String</code></li>
+ * 		<li>Component 1: OutputTime: <code>Calendar</code></li>
+ * 		<li>Component 2: MOR: <code>MOR</code></li>
+ * 		<li>Component 3: Accepted: <code>Boolean</code></li>
+ * 		<li>Component 4: Error: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
