@@ -1,6 +1,7 @@
 # Prowide Core - CHANGELOG
 
 #### 9.3.12-SNAPSHOT
+  * (GH-148) Fixed parser of Field61 amount component when number starts with the decimal comma (implicit zero in amount lower than 1)
   * Added getComponent(String componentName) to retrieve the component based on the name instead of the number
   * Added componentNameToNumber(String componentName) to retrieve the component number based on the component name
 
