@@ -294,7 +294,7 @@ public class NarrativeResolver {
     }
 
     private static boolean isCodewordValid(String codeword, int codewordType, int codewordMaxSize) {
-        if (StringUtils.isEmpty(codeword))
+        if (StringUtils.isBlank(codeword))
             return false;
         codeword = StringUtils.trimToEmpty(codeword);
 

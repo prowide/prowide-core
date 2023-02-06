@@ -198,12 +198,12 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_4() {
         String v = "/RETN/59\n" +
-                "/BE02/BENEFICIARIO DESCONOCIDO\n" +
+                "/BE02/UNKNOWN BENEFICIARY\n" +
                 "/MREF/0511030094000014";
         Narrative n = NarrativeResolver.parse(new Field72(v));
         assertEquals(3, n.getStructured().size());
         assertEquals("59", n.getStructured("RETN").getNarrative());
-        assertEquals("BENEFICIARIO DESCONOCIDO", n.getStructured("BE02").getNarrative());
+        assertEquals("UNKNOWN BENEFICIARY", n.getStructured("BE02").getNarrative());
         assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
         assertNull(n.getUnstructured());
     }
@@ -213,12 +213,13 @@ public class NarrativeResolverTest {
      */
     @Test
     public void testFormat2_5() {
-        String v = "/12BNF34/1000057346REDEMPTION MERRILL L\n" +
-                "//YNCH FUNDSFFC 123455600000078 //BAN\n" +
-                "//COFOO / FOO";
+        String v = "/RETN/59\n" +
+                "//UNKNOWN BENEFICIARY\n" +
+                "/MREF/0511030094000014";
         Narrative n = NarrativeResolver.parse(new Field72(v));
-        assertEquals(1, n.getStructured().size());
-        assertEquals("1000057346REDEMPTION MERRILL LYNCH FUNDSFFC 123455600000078 //BANCOFOO / FOO", n.getStructured("12BNF34").getNarrative());
+        assertEquals(2, n.getStructured().size());
+        assertEquals("59UNKNOWN BENEFICIARY", n.getStructured("RETN").getNarrative());
+        assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
         assertNull(n.getUnstructured());
     }
 
@@ -227,6 +228,82 @@ public class NarrativeResolverTest {
      */
     @Test
     public void testFormat2_6() {
+        String v = "/RETN/\n" +
+                "/BE02/UNKNOWN BENEFICIARY\n" +
+                "/MREF/0511030094000014";
+        Narrative n = NarrativeResolver.parse(new Field72(v));
+        assertEquals(3, n.getStructured().size());
+        assertNull(n.getStructured("RETN").getNarrative());
+        assertEquals("UNKNOWN BENEFICIARY", n.getStructured("BE02").getNarrative());
+        assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
+        assertNull(n.getUnstructured());
+    }
+
+    /**
+     * valid input
+     */
+    @Test
+    public void testFormat2_7() {
+        String v = "/RETN/\n" +
+                "//UNKNOWN BENEFICIARY\n" +
+                "/MREF/0511030094000014";
+        Narrative n = NarrativeResolver.parse(new Field72(v));
+        assertEquals(2, n.getStructured().size());
+        assertEquals("UNKNOWN BENEFICIARY", n.getStructured("RETN").getNarrative());
+        assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
+        assertNull(n.getUnstructured());
+    }
+
+    /**
+     * valid input
+     */
+    @Test
+    public void testFormat2_8() {
+        String v = "/RETN/\n" +
+                "/ /UNKNOWN BENEFICIARY\n" +
+                "/MREF/0511030094000014\n" +
+                "//WELL KNOWN BENEFICIARY";
+        Narrative n = NarrativeResolver.parse(new Field72(v));
+        assertEquals(1, n.getStructured().size());
+        assertNull(n.getStructured("RETN").getNarrative());
+        assertEquals("/ /UNKNOWN BENEFICIARY /MREF/0511030094000014 //WELL KNOWN BENEFICIARY", n.getUnstructured(" "));
+    }
+
+    /**
+     * valid input
+     */
+    @Test
+    public void testFormat2_9() {
+        String v = "/RETN/\n" +
+                "//UNKNOWN BENEFICIARY\n" +
+                "/MREF/0511030094000014";
+        Narrative n = NarrativeResolver.parse(new Field72(v));
+        assertEquals(2, n.getStructured().size());
+        assertEquals("UNKNOWN BENEFICIARY", n.getStructured("RETN").getNarrative());
+        assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
+        assertNull(n.getUnstructured());
+    }
+
+    /**
+     * valid input
+     */
+    @Test
+    public void testFormat2_10() {
+        String v = "/12BNF34/1000057346REDEMPTION MERRILL L\n" +
+                "//YNCH FUNDSFFC 123455600000078 //BAN\n" +
+                "//COFOO / FOO";
+        Narrative n = NarrativeResolver.parse(new Field72(v));
+        assertEquals(1, n.getStructured().size());
+        assertEquals("1000057346REDEMPTION MERRILL LYNCH FUNDSFFC 123455600000078 //BANCOFOO / FOO",
+                n.getStructured("12BNF34").getNarrative());
+        assertNull(n.getUnstructured());
+    }
+
+    /**
+     * valid input
+     */
+    @Test
+    public void testFormat2_11() {
         String v = "/MYCODE/FOO BAR\n" +
                 "//CONTINUATION OF MYCODE\n" +
                 "FREE ADDITIONAL NARRATIVE\n" +
