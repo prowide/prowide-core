@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.13 SNAPSHOT
+  * Deprecated all fields that are only used in SCORE messages and not in the general MT standard as they will eventually be removed from the library
+
 #### 9.3.12 - February 2023
   * (PW-1109) Changed Narrative Resolver to validate minimum codeword length of 1 char
   * (GH-148) Fixed parser of Field61 amount component when number starts with the decimal comma (implicit zero in amount lower than 1)

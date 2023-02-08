@@ -24,7 +24,6 @@ import com.prowidesoftware.swift.model.SwiftBlock2Output;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field27;
-import com.prowidesoftware.swift.model.field.Field27A;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt7xx.MT798;
 import org.junit.jupiter.api.Assertions;
@@ -365,7 +364,6 @@ public class SwiftParserTest {
         MtSwiftMessage msg = MtSwiftMessage.parse("Big blue sea{4:\n" +
                 ":20:123456789\n" +
                 ":77E:\n" +
-                ":27A:2/3\n" +
                 ":15A:\n" +
                 ":27:3/5\n" +
                 "-}dark green forrest");
@@ -376,10 +374,6 @@ public class SwiftParserTest {
         assertNull(mt798.getField12());
         // The content of block 4 is available
         SwiftTagListBlock contentMessage = mt798.getSwiftMessage().getBlock4().getSubBlockAfterFirst("77E", false);
-
-        Field27A field27A = (Field27A) contentMessage.getFieldByName("27A");
-        assertEquals(2, field27A.getNumberAsLong());
-        assertEquals(3, field27A.getTotalAsLong());
 
         Field27 field27 = (Field27) contentMessage.getFieldByName("27");
         assertEquals(3, field27.getNumberAsLong());
@@ -428,7 +422,6 @@ public class SwiftParserTest {
         SwiftMessage msg = SwiftMessage.parse("Big blue sea{4:\n" +
                 ":20:123456789\n" +
                 ":77E:\n" +
-                ":27A:2/3\n" +
                 ":15A:\n" +
                 ":27:3/5\n" +
                 "-}dark green forrest");
@@ -438,17 +431,13 @@ public class SwiftParserTest {
 
         assertEquals("798", mt798.getMessageType());
 
-        // missing field is is null, as expected
+        // missing field is null, as expected
         assertNull(mt798.getField12());
 
         // The content of block 4 is still available
         assertEquals("123456789", mt798.getField20().getValue());
 
         SwiftTagListBlock contentMessage = mt798.getSwiftMessage().getBlock4().getSubBlockAfterFirst("77E", false);
-
-        Field27A field27A = (Field27A) contentMessage.getFieldByName("27A");
-        assertEquals(2, field27A.getNumberAsLong());
-        assertEquals(3, field27A.getTotalAsLong());
 
         Field27 field27 = (Field27) contentMessage.getFieldByName("27");
         assertEquals(3, field27.getNumberAsLong());
