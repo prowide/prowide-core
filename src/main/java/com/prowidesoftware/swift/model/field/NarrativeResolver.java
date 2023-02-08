@@ -55,7 +55,7 @@ public class NarrativeResolver {
             case Field71D.NAME:
             case Field73.NAME:
             case Field71B.NAME:
-            case Field71E.NAME:
+            case "71E":    // SCORE field
                 return parseFormat3(f);
             case Field77B.NAME:
                 return parseFormat4(f);
