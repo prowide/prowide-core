@@ -24,6 +24,9 @@ import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.DefaultMtMetadataStrategy;
 import com.prowidesoftware.swift.model.mt.MTVariant;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -35,10 +38,6 @@ import java.util.Calendar;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Level;
-
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 
 
 /**

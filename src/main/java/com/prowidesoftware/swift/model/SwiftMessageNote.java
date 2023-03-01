@@ -15,9 +15,9 @@
  */
 package com.prowidesoftware.swift.model;
 
-import java.util.Calendar;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
+import java.util.Calendar;
 
 /**
  * Comments associated to a message for application only usage (not part of the standard).
