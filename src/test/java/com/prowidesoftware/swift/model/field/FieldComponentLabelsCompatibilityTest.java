@@ -51,8 +51,8 @@ public class FieldComponentLabelsCompatibilityTest {
         int missing = 0;
         int availableOK = 0;
         int availableError = 0;
-        for (Class c : classes) {
-            Field f = (Field) c.newInstance();
+        for (Class<?> c : classes) {
+            Field f = (Field) c.getDeclaredConstructor().newInstance();
             int size = f.getComponents().size();
             final String label = Field.getLabelComponents(f.getName(), null, null, null);
             if (label.endsWith(".components")) {
