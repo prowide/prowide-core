@@ -36,7 +36,7 @@ project.version = "${SRU}-${scmVersion.version}"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
 tasks.withType(JavaCompile) {
