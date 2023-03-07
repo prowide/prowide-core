@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.3.13 SNAPSHOT
+#### 9.3.13 - March 2023
   * Deprecated all fields that are only used in SCORE messages and not in the general MT standard as they will eventually be removed from the library
 
 #### 9.3.12 - February 2023
