@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.14-SNAPSHOT
+  * (PW-1241) Added addUnstructuredStrict method to Narrative in order to strictly wrap unstructured input
+
 #### 9.3.13 - March 2023
   * Deprecated all fields that are only used in SCORE messages and not in the general MT standard as they will eventually be removed from the library
 

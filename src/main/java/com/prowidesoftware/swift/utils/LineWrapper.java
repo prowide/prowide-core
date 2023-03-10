@@ -13,6 +13,8 @@
  */
 package com.prowidesoftware.swift.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -106,6 +108,43 @@ public final class LineWrapper {
         }
 
         wrapped.add(str.substring(offset, strLen)); // add remainder
+        return Collections.unmodifiableList(wrapped);
+    }
+
+    /**
+     * Wraps the input sequence {@code _str} into a list of lines of the specified {@code _width}<br>
+     * Leading and trailing spaces on new lines are trimmed.
+     *
+     * @param _str      the input sequence to be wrapped (may be null or empty)
+     * @param _width    the width to wrap the words at (if less than 1 defaults to 1)
+     * @return an immutable list of lines, an empty list if input was {@code null}
+     */
+    public static List<String> wrapIntoListStrict(final CharSequence _str, final int _width) {
+
+        final char wrapChar = ' ';
+        String leftStrippedString = lstripChar(_str, wrapChar);
+
+        if (leftStrippedString == null) {
+            return Collections.emptyList();
+        }
+
+        final int width = Math.max(1, _width);
+        if (leftStrippedString.length() <= width) {
+            return Collections.singletonList(leftStrippedString); // no wrapping required
+        }
+
+        final int strLen = leftStrippedString.length();
+        final List<String> wrapped = new ArrayList<>(strLen / _width + 2);
+
+        while (StringUtils.isNotBlank(leftStrippedString) && leftStrippedString.length() > width) {
+            String subStr = leftStrippedString.substring(0, width);
+            wrapped.add(subStr.trim());
+            leftStrippedString = lstripChar(leftStrippedString.substring(width), wrapChar);
+        }
+
+        if (StringUtils.isNotBlank(leftStrippedString)) {
+            wrapped.add(leftStrippedString.trim()); // add remainder
+        }
         return Collections.unmodifiableList(wrapped);
     }
 

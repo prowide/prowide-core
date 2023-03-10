@@ -21,6 +21,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class LineWrapperTest {
 
@@ -52,6 +53,48 @@ public class LineWrapperTest {
         assertEquals("", LineWrapper.wrap("", 20, System.lineSeparator()));
         assertEquals("", LineWrapper.wrap("", 20, null));
         assertEquals("", LineWrapper.wrap("", 20, "<br>"));
+    }
+
+    @Test
+    public void testWrapSpaces1() {
+        List<String> actual = LineWrapper.wrapIntoList("  012 34567890 01",
+                3);
+        assertEquals("012", actual.get(0));
+        assertEquals("345", actual.get(1));
+        assertEquals("678", actual.get(2));
+        assertEquals("90", actual.get(3));
+        assertEquals("01", actual.get(4));
+    }
+
+    @Test
+    public void testWrapSpaces2() {
+        List<String> actual = LineWrapper.wrapIntoListStrict("  012 34567890 01  a ",
+                3);
+        assertEquals(actual.size(),6);
+        assertEquals("012", actual.get(0));
+        assertEquals("345", actual.get(1));
+        assertEquals("678", actual.get(2));
+        assertEquals("90", actual.get(3));
+        assertEquals("01", actual.get(4));
+        assertEquals("a", actual.get(5));
+    }
+
+    @Test
+    public void testWrapSpaces3() {
+        List<String> actual = LineWrapper.wrapIntoListStrict("  012345678900123456789001 23456789001234567890 0123456789001234567890",
+                35);
+        assertEquals("012345678900123456789001 2345678900", actual.get(0));
+        assertEquals("1234567890 0123456789001234567890", actual.get(1));
+    }
+
+
+    @Test
+    public void testWrapSpaces4() {
+        List<String> actual = LineWrapper.wrapIntoList("  012345678900123456789001 23456789001234567890 0123456789001234567890",
+                35);
+        assertEquals("012345678900123456789001", actual.get(0));
+        assertEquals("23456789001234567890", actual.get(1));
+        assertEquals("0123456789001234567890", actual.get(2));
     }
 
     @ParameterizedTest(name = "[{index}] {4}")
