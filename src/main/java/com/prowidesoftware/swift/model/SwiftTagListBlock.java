@@ -1560,6 +1560,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
                                     l.append(tag);
                                     offset++;
                                     added = true;
+                                    // if matched we break the tail loop at this moment, since two consecutive tail tags
+                                    // such as field 34F in MT920 Loop1, would make this to add the matched field twice
+                                    break;
                                 }
                             }
                             if (!added) {
