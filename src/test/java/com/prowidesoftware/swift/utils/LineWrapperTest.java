@@ -19,9 +19,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.BiFunction;
 
 public class LineWrapperTest {
 
@@ -72,11 +74,11 @@ public class LineWrapperTest {
                 3);
         assertEquals(actual.size(),6);
         assertEquals("012", actual.get(0));
-        assertEquals("345", actual.get(1));
-        assertEquals("678", actual.get(2));
-        assertEquals("90", actual.get(3));
-        assertEquals("01", actual.get(4));
-        assertEquals("a", actual.get(5));
+        assertEquals(" 34", actual.get(1));
+        assertEquals("567", actual.get(2));
+        assertEquals("890", actual.get(3));
+        assertEquals(" 01", actual.get(4));
+        assertEquals("  a", actual.get(5));
     }
 
     @Test
@@ -85,6 +87,40 @@ public class LineWrapperTest {
                 35);
         assertEquals("012345678900123456789001 2345678900", actual.get(0));
         assertEquals("1234567890 0123456789001234567890", actual.get(1));
+    }
+
+
+    @Test
+    void testWrapIntoListStrict() {
+        // given
+        List<String> strings;
+        String input;
+        String output;
+        String delimiter = "";
+
+        // when/ then
+        input = "test";
+        strings = LineWrapper.wrapIntoListStrict(input, 4);
+        output = String.join(delimiter, strings);
+        assertEquals(input, output);
+
+        input = "test test";
+        strings = LineWrapper.wrapIntoListStrict(input, 4);
+        output = String.join(delimiter, strings);
+        assertEquals(input, output);
+
+        input = "test test te te tes  test esd sef ds a a a a  c c c  c";
+        strings = LineWrapper.wrapIntoListStrict(input, 4);
+        output = String.join(delimiter, strings);
+        assertEquals(input, output);
+    }
+
+    @Test
+    void testSampleBuilder() {
+        String input = "test test";
+        int lineLength = 4;
+        List<String> lines = LineWrapper.wrapIntoListStrict(input, lineLength);
+        assertEquals(3, lines.size());
     }
 
 

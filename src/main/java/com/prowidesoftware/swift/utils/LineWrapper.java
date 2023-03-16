@@ -113,7 +113,7 @@ public final class LineWrapper {
 
     /**
      * Wraps the input sequence {@code _str} into a list of lines of the specified {@code _width}<br>
-     * Leading and trailing spaces on new lines are trimmed.
+     * Leading spaces on first line are stripped, while the rest of the spaces are left unmodified.
      *
      * @param _str      the input sequence to be wrapped (may be null or empty)
      * @param _width    the width to wrap the words at (if less than 1 defaults to 1)
@@ -138,12 +138,12 @@ public final class LineWrapper {
 
         while (StringUtils.isNotBlank(leftStrippedString) && leftStrippedString.length() > width) {
             String subStr = leftStrippedString.substring(0, width);
-            wrapped.add(subStr.trim());
-            leftStrippedString = lstripChar(leftStrippedString.substring(width), wrapChar);
+            wrapped.add(subStr);
+            leftStrippedString = leftStrippedString.substring(width);
         }
 
         if (StringUtils.isNotBlank(leftStrippedString)) {
-            wrapped.add(leftStrippedString.trim()); // add remainder
+            wrapped.add(leftStrippedString); // add remainder
         }
         return Collections.unmodifiableList(wrapped);
     }
