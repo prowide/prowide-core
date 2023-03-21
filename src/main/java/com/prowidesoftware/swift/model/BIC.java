@@ -367,7 +367,7 @@ public class BIC {
      */
     public String distinguishedName(boolean includeDefaultBranch) {
         StringBuilder result = new StringBuilder();
-        if (includeDefaultBranch || !"XXX".equals(getBranchOrDefault())) {
+        if (includeDefaultBranch || !Objects.equals(getBranchOrDefault(), "XXX")) {
             result.append("ou=").append(StringUtils.lowerCase(getBranchOrDefault())).append(",");
         }
         result.append("o=").append(StringUtils.lowerCase(getBic8())).append(",o=swift");

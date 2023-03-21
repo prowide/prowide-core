@@ -27,3 +27,4 @@ release.sh
 .idea/jpa-buddy.xml
 .idea/runConfigurations.xml
 .idea/.name
+*.pb
