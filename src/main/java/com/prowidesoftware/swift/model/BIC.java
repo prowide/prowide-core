@@ -351,9 +351,24 @@ public class BIC {
      * @since 7.9.3
      */
     public String distinguishedName() {
+        return distinguishedName(false);
+    }
+
+    /**
+     * Returns the Distinguished Name (DN) for this BIC.
+     *
+     * <p>The created DN always includes the BIC8 and "swift" and
+     * if the branch is present and not "XXX" it will also be included
+     * as organization unit (ou)
+     *
+     * @param includeDefaultBranch if true will return ou=&lt;xxx even if the branch is not present
+     * @return ou=&lt;branch&gt;,o=&lt;bic8&gt;,o=swift
+     * @since 9.3.15
+     */
+    public String distinguishedName(boolean includeDefaultBranch) {
         StringBuilder result = new StringBuilder();
-        if (this.branch != null && !this.branch.equals("XXX")) {
-            result.append("ou=").append(StringUtils.lowerCase(this.branch)).append(",");
+        if (includeDefaultBranch || !"XXX".equals(getBranchOrDefault())) {
+            result.append("ou=").append(StringUtils.lowerCase(getBranchOrDefault())).append(",");
         }
         result.append("o=").append(StringUtils.lowerCase(getBic8())).append(",o=swift");
         return result.toString();
