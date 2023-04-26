@@ -23,7 +23,7 @@ archivesBaseName = 'pw-swift-core'
 group 'com.prowidesoftware'
 
 project.ext {
-    SRU = 'SRU2022'
+    SRU = 'SRU2023'
 }
 
 scmVersion {
