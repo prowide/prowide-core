@@ -32,7 +32,8 @@ scmVersion {
         versionSeparator.set('-')
     }
 }
-project.version = "${SRU}-${scmVersion.version}"
+//project.version = "${SRU}-${scmVersion.version}"
+project.version = "${SRU}-9.4.0-SNAPSHOT"
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
