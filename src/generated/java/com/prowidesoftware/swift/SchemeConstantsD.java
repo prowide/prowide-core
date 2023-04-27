@@ -21,7 +21,6 @@ public interface SchemeConstantsD {
     String DIGI = "DIGI";
     String DKOT = "DKOT";
     String DKIN = "DKIN";
-    String DBTR = "DBTR";
     String DAVO = "DAVO";
     String DAVF = "DAVF";
     String D = "D";

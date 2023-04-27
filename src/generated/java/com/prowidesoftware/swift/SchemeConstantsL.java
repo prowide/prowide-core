@@ -50,7 +50,6 @@ public interface SchemeConstantsL {
     String LOTO = "LOTO";
     String LBIP = "LBIP";
     String LTRD = "LTRD";
-    String LICO = "LICO";
     String LOC = "LOC";
     String LOT = "LOT";
     String LBTY = "LBTY";
