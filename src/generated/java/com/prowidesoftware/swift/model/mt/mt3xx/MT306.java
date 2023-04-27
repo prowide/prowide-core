@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,9 +52,9 @@ Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
 <li class="field">Field 21 N (M)</li>
 <li class="field">Field 21 B (O)</li>
 <li class="field">Field 12 F (M)</li>
-<li class="field">Field 12 E (M)</li>
+<li class="field">Field 12 E (O)</li>
 <li class="field">Field 12 D (O)</li>
-<li class="field">Field 17 A (M)</li>
+<li class="field">Field 17 A (O)</li>
 <li class="field">Field 17 F (M)</li>
 <li class="field">Field 22 K (M)</li>
 <li class="field">Field 30 U (O)</li>
@@ -73,6 +73,7 @@ Sequence B (M)<ul><li class="field">Field 15 B (M)</li>
 <li class="field">Field 30 X (M)</li>
 <li class="field">Field 29 E (M)</li>
 <li class="field">Field 30 F,J (M)</li>
+<li class="field">Field 29 H (O) (repetitive)</li>
 <li class="field">Field 14 S (O) (repetitive)</li>
 <li class="field">Field 39 M (O)</li>
 <li class="sequence">
@@ -114,22 +115,29 @@ Sequence E (O)<ul><li class="field">Field 15 E (M)</li>
 <li class="sequence">
 Sequence F (O)<ul><li class="field">Field 15 F (M)</li>
 <li class="field">Field 22 G (M)</li>
+<li class="field">Field 17 C (O)</li>
 <li class="field">Field 37 J (M)</li>
 <li class="field">Field 37 L (O)</li>
-<li class="sequence">
-Sequence F1 (O) (repetitive)<ul><li class="field">Field 30 G (M)</li>
-<li class="field">Field 29 J (M)</li>
-<li class="field">Field 29 K (M)</li>
 <li class="field">Field 14 S (O) (repetitive)</li>
+<li class="field">Field 29 I (O) (repetitive)</li>
+<li class="field">Field 14 H (O)</li>
+<li class="field">Field 14 K (O)</li>
+<li class="field">Field 14 L (O)</li>
+<li class="field">Field 14 M (M)</li>
+<li class="field">Field 29 O (O)</li>
+<li class="field">Field 14 N (O)</li>
+<li class="field">Field 29 J (O)</li>
+<li class="field">Field 14 O (O)</li>
+<li class="field">Field 33 Z (O)</li>
+<li class="field">Field 30 F,J (O)</li>
+<li class="field">Field 83 A,B,D,J (O)</li>
+<li class="sequence">
+Sequence F1 (O) (repetitive)<ul><li class="field">Field 30 I (M)</li>
 </ul></li>
 </ul></li>
 <li class="sequence">
-Sequence G (O) (repetitive)<ul><li class="field">Field 15 G (M)</li>
-<li class="field">Field 22 J (M)</li>
-<li class="field">Field 37 U (M)</li>
-<li class="field">Field 37 P (O)</li>
+Sequence G (O)<ul><li class="field">Field 15 G (M)</li>
 <li class="field">Field 32 Q (M)</li>
-<li class="field">Field 14 S (O) (repetitive)</li>
 </ul></li>
 <li class="sequence">
 Sequence H (O)<ul><li class="field">Field 15 H (M)</li>
@@ -238,7 +246,7 @@ Sequence M1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2022</strong>
+ * This source code is specific to release <strong>SRU 2023</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -247,7 +255,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT306.class.getName());
 	
@@ -752,24 +760,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 29H, 
-	 * or null if none is found.
-	 * The first occurrence of field 29H at MT306 is expected to be the only one.
-	 * 
-	 * @return a Field29H object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field29H getField29H() {
-		final Tag t = tag("29H");
-		if (t != null) {
-			return new Field29H(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 82A, 
 	 * or null if none is found.
 	 * The first occurrence of field 82A at MT306 is expected to be the only one.
@@ -836,42 +826,6 @@ public class MT306 extends AbstractMT implements Serializable {
 		final Tag t = tag("87J");
 		if (t != null) {
 			return new Field87J(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 83A, 
-	 * or null if none is found.
-	 * The first occurrence of field 83A at MT306 is expected to be the only one.
-	 * 
-	 * @return a Field83A object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field83A getField83A() {
-		final Tag t = tag("83A");
-		if (t != null) {
-			return new Field83A(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 83J, 
-	 * or null if none is found.
-	 * The first occurrence of field 83J at MT306 is expected to be the only one.
-	 * 
-	 * @return a Field83J object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field83J getField83J() {
-		final Tag t = tag("83J");
-		if (t != null) {
-			return new Field83J(t.getValue());
 		} else {
 			return null;
 		}
@@ -980,24 +934,6 @@ public class MT306 extends AbstractMT implements Serializable {
 		final Tag t = tag("30X");
 		if (t != null) {
 			return new Field30X(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 30J, 
-	 * or null if none is found.
-	 * The first occurrence of field 30J at MT306 is expected to be the only one.
-	 * 
-	 * @return a Field30J object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field30J getField30J() {
-		final Tag t = tag("30J");
-		if (t != null) {
-			return new Field30J(t.getValue());
 		} else {
 			return null;
 		}
@@ -1292,6 +1228,24 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return the first one whose name matches 17C, 
+	 * or null if none is found.
+	 * The first occurrence of field 17C at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field17C object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field17C getField17C() {
+		final Tag t = tag("17C");
+		if (t != null) {
+			return new Field17C(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Iterates through block4 fields and return the first one whose name matches 37J, 
 	 * or null if none is found.
 	 * The first occurrence of field 37J at MT306 is expected to be the only one.
@@ -1322,6 +1276,240 @@ public class MT306 extends AbstractMT implements Serializable {
 		final Tag t = tag("37L");
 		if (t != null) {
 			return new Field37L(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 14H, 
+	 * or null if none is found.
+	 * The first occurrence of field 14H at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field14H object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field14H getField14H() {
+		final Tag t = tag("14H");
+		if (t != null) {
+			return new Field14H(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 14K, 
+	 * or null if none is found.
+	 * The first occurrence of field 14K at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field14K object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field14K getField14K() {
+		final Tag t = tag("14K");
+		if (t != null) {
+			return new Field14K(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 14L, 
+	 * or null if none is found.
+	 * The first occurrence of field 14L at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field14L object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field14L getField14L() {
+		final Tag t = tag("14L");
+		if (t != null) {
+			return new Field14L(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 14M, 
+	 * or null if none is found.
+	 * The first occurrence of field 14M at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field14M object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field14M getField14M() {
+		final Tag t = tag("14M");
+		if (t != null) {
+			return new Field14M(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 29O, 
+	 * or null if none is found.
+	 * The first occurrence of field 29O at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field29O object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field29O getField29O() {
+		final Tag t = tag("29O");
+		if (t != null) {
+			return new Field29O(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 14N, 
+	 * or null if none is found.
+	 * The first occurrence of field 14N at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field14N object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field14N getField14N() {
+		final Tag t = tag("14N");
+		if (t != null) {
+			return new Field14N(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 29J, 
+	 * or null if none is found.
+	 * The first occurrence of field 29J at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field29J object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field29J getField29J() {
+		final Tag t = tag("29J");
+		if (t != null) {
+			return new Field29J(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 14O, 
+	 * or null if none is found.
+	 * The first occurrence of field 14O at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field14O object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field14O getField14O() {
+		final Tag t = tag("14O");
+		if (t != null) {
+			return new Field14O(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 33Z, 
+	 * or null if none is found.
+	 * The first occurrence of field 33Z at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field33Z object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field33Z getField33Z() {
+		final Tag t = tag("33Z");
+		if (t != null) {
+			return new Field33Z(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 83B, 
+	 * or null if none is found.
+	 * The first occurrence of field 83B at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field83B object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field83B getField83B() {
+		final Tag t = tag("83B");
+		if (t != null) {
+			return new Field83B(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 83D, 
+	 * or null if none is found.
+	 * The first occurrence of field 83D at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field83D object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field83D getField83D() {
+		final Tag t = tag("83D");
+		if (t != null) {
+			return new Field83D(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 15G, 
+	 * or null if none is found.
+	 * The first occurrence of field 15G at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field15G object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field15G getField15G() {
+		final Tag t = tag("15G");
+		if (t != null) {
+			return new Field15G(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 32Q, 
+	 * or null if none is found.
+	 * The first occurrence of field 32Q at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field32Q object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field32Q getField32Q() {
+		final Tag t = tag("32Q");
+		if (t != null) {
+			return new Field32Q(t.getValue());
 		} else {
 			return null;
 		}
@@ -2300,6 +2488,26 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 29H, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 29H at MT306 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field29H objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field29H> getField29H() {
+		final List<Field29H> result = new ArrayList<>();
+		final Tag[] tags = tags("29H");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field29H(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 14S, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 14S at MT306 are expected at one sequence or across several sequences.
@@ -2540,160 +2748,120 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 30G, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 29I, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 30G at MT306 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 29I at MT306 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field30G objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field29I objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field30G> getField30G() {
-		final List<Field30G> result = new ArrayList<>();
-		final Tag[] tags = tags("30G");
+	public List<Field29I> getField29I() {
+		final List<Field29I> result = new ArrayList<>();
+		final Tag[] tags = tags("29I");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field30G(tag.getValue()));
+                result.add(new Field29I(tag.getValue()));
             }
 		}
 		return result;
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 29J, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 30F, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 29J at MT306 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 30F at MT306 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field29J objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field30F objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field29J> getField29J() {
-		final List<Field29J> result = new ArrayList<>();
-		final Tag[] tags = tags("29J");
+	public List<Field30F> getField30F() {
+		final List<Field30F> result = new ArrayList<>();
+		final Tag[] tags = tags("30F");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field29J(tag.getValue()));
+                result.add(new Field30F(tag.getValue()));
             }
 		}
 		return result;
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 29K, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 30J, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 29K at MT306 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 30J at MT306 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field29K objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field30J objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field29K> getField29K() {
-		final List<Field29K> result = new ArrayList<>();
-		final Tag[] tags = tags("29K");
+	public List<Field30J> getField30J() {
+		final List<Field30J> result = new ArrayList<>();
+		final Tag[] tags = tags("30J");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field29K(tag.getValue()));
+                result.add(new Field30J(tag.getValue()));
             }
 		}
 		return result;
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 15G, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 83A, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 15G at MT306 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 83A at MT306 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field15G objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field83A objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field15G> getField15G() {
-		final List<Field15G> result = new ArrayList<>();
-		final Tag[] tags = tags("15G");
+	public List<Field83A> getField83A() {
+		final List<Field83A> result = new ArrayList<>();
+		final Tag[] tags = tags("83A");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field15G(tag.getValue()));
+                result.add(new Field83A(tag.getValue()));
             }
 		}
 		return result;
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22J, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 83J, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 22J at MT306 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 83J at MT306 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field22J objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field83J objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field22J> getField22J() {
-		final List<Field22J> result = new ArrayList<>();
-		final Tag[] tags = tags("22J");
+	public List<Field83J> getField83J() {
+		final List<Field83J> result = new ArrayList<>();
+		final Tag[] tags = tags("83J");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field22J(tag.getValue()));
+                result.add(new Field83J(tag.getValue()));
             }
 		}
 		return result;
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 37U, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 30I, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 37U at MT306 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 30I at MT306 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field37U objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field30I objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field37U> getField37U() {
-		final List<Field37U> result = new ArrayList<>();
-		final Tag[] tags = tags("37U");
+	public List<Field30I> getField30I() {
+		final List<Field30I> result = new ArrayList<>();
+		final Tag[] tags = tags("30I");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field37U(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 37P, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 37P at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field37P objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field37P> getField37P() {
-		final List<Field37P> result = new ArrayList<>();
-		final Tag[] tags = tags("37P");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field37P(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 32Q, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 32Q at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field32Q objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field32Q> getField32Q() {
-		final List<Field32Q> result = new ArrayList<>();
-		final Tag[] tags = tags("32Q");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field32Q(tag.getValue()));
+                result.add(new Field30I(tag.getValue()));
             }
 		}
 		return result;
@@ -2934,26 +3102,6 @@ public class MT306 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field88D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 30F, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 30F at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field30F objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field30F> getField30F() {
-		final List<Field30F> result = new ArrayList<>();
-		final Tag[] tags = tags("30F");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field30F(tag.getValue()));
             }
 		}
 		return result;
@@ -3820,93 +3968,12 @@ public class MT306 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * First mandatory tag name of the sequence: <em>"30G"  </em>.
-		 * Array format is for cases when more than one letter options is allowed
+		 * The name of the first tag in the sequence which must be mandatory.
+		 * May be null if we cannot determine this safely
 		 */
-		public static final String[] START = { "30G"   } ;
-
-		/**
-		 * Last mandatory tag name of the sequence: <em>"29K"  </em>
-		 * Array format is for cases when more than one letter options is allowed
-		 */
-		protected static final String[] END = { "29K"   };
-
-		/**
-		 * List of optional tags after the last mandatory tag.
-		 */
-		protected static final String[] TAIL = new String[]{ "14S"   };
-
-		/**
-		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
-		 * @param tags the list of tags to set as sequence content
-		 * @return a new instance of the sequence, initialized with the parameter tags
-		 */
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceF1 newInstance(final Tag... tags) {
-			return newInstance(0, 0, tags);
-		}
-
-		/**
-		 * Creates a sequence with starting and ending tags set to the indicated tags in from the
-		 * {@link #START} and {@link #END} lists of mandatory fields, and with the content between
-		 * the starting and ending tag initialized with the given optional tags.
-		 *
-		 * @param start a zero-based index within the list of mandatory starting tags in the sequence
-		 * @param end a zero-based index within the list of mandatory ending tags in the sequence
-		 * @param tags the list of tags to set as sequence content
-		 * @return a new instance of the sequence, initialized with the parameter tags
-		 */
-		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static SequenceF1 newInstance(final int start, final int end, final Tag... tags) {
-			final SequenceF1 result = new SequenceF1();
-			result.append(new Tag(START[start], ""));
-			if (tags != null && tags.length > 0) {
-				for (final Tag t : tags) {
-					result.append(t);
-				}
-			}
-			result.append(new Tag(END[end], ""));
-			return result;
-		}
+		public static final String START_NAME =  "30I"  ;
 	}
-	/**
-	 * Get the list of SequenceF1 delimited by leading tag and end, with an optional tail.
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
-	 *
-	 * @return the found sequences or an empty list if none is found
-	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 */
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<SequenceF1> getSequenceF1List() {
-		return getSequenceF1List(super.getSwiftMessageNotNullOrException().getBlock4());
-	}
-	
-	/**
-	 * Get the list of SequenceF1 delimited by leading tag and end, with an optional tail.
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
-	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
-	 *
-	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence a not null parent sequence to find SequenceF1 within it
-	 * @return the found sequences or an empty list if none is found or parent sequence is null
-	 * @since 7.7
-	 */
-	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<SequenceF1> getSequenceF1List(final SwiftTagListBlock parentSequence) {
-	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceF1.START, SequenceF1.END, SequenceF1.TAIL);
-            if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceF1> result = new ArrayList<>(blocks.size());
-                for (final SwiftTagListBlock b : blocks) {
-                    result.add(new SequenceF1(b));
-                }
-                return result;
-            }
-        }
-        return Collections.emptyList();
-	}
- 
+
 
 	/**
 	 * Class to model Sequence "G" in MT 306.
@@ -3982,38 +4049,32 @@ public class MT306 extends AbstractMT implements Serializable {
 
 	}
 	/**
-	 * Get the list of SequenceG using field field 15 as sequence boundary.
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceG using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @return the found sequences or an empty list if none is found
 	 * @since 7.7
+	 * @return a new sequence that may be empty, <em>never returns null</em>
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
-	public List<SequenceG> getSequenceGList() {
-		return getSequenceGList(super.getSwiftMessageNotNullOrException().getBlock4());
+	public SequenceG getSequenceG() {
+		return getSequenceG(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	 * Get the list of SequenceG using field field 15 as sequence boundary.
-	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceG using field field 15 as sequence boundary.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 *
-	 * @param parentSequence a no null parent sequence to find SequenceG within it
-	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @param parentSequence a not null parent sequence to find SequenceG within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.SPLIT_BY_15)
-	public static List<SequenceG> getSequenceGList(final SwiftTagListBlock parentSequence) {
-	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = SwiftMessageUtils.splitByField15(parentSequence, "G");
-            if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceG> result = new ArrayList<>(blocks.size());
-                for (final SwiftTagListBlock b : blocks) {
-                    result.add(new SequenceG(b));
-                }
-                return result;
-            }
-        }
-		return Collections.emptyList();
+	public SequenceG getSequenceG(SwiftTagListBlock parentSequence) {
+		final java.util.Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(parentSequence);
+		if (map.containsKey("G")) {
+			return new SequenceG(map.get("G"));
+		}
+		return new SequenceG();
 	}
 
 
