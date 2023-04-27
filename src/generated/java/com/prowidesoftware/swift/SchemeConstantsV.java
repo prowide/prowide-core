@@ -31,11 +31,9 @@ public interface SchemeConstantsV {
     String VSMR = "VSMR";
     String VASO = "VASO";
     String VAHA = "VAHA";
-    String VAFC = "VAFC";
-    String VALDET = "VALDET";
-    String VALN = "VALN";
     String VREN = "VREN";
     String V = "V";
+    String VALDET = "VALDET";
     String VALI = "VALI";
     String VALR = "VALR";
     String VARI = "VARI";

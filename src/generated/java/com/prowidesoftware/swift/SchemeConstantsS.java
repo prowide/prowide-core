@@ -24,7 +24,6 @@ public interface SchemeConstantsS {
     String SDVA = "SDVA";
     String SKOT = "SKOT";
     String SKIN = "SKIN";
-    String SITR = "SITR";
     String SAFE = "SAFE";
     String SEME = "SEME";
     String SETPRTY = "SETPRTY";
@@ -98,9 +97,6 @@ public interface SchemeConstantsS {
     String SODF = "SODF";
     String STAC = "STAC";
     String STAQ = "STAQ";
-    String SECDET = "SECDET";
-    String SUME = "SUME";
-    String SUMC = "SUMC";
     String SILV = "SILV";
     String SAEG = "SAEG";
     String STEE = "STEE";
@@ -126,6 +122,7 @@ public interface SchemeConstantsS {
     String SDOT = "SDOT";
     String SDUT = "SDUT";
     String SECB = "SECB";
+    String SECDET = "SECDET";
     String SECL = "SECL";
     String SECM = "SECM";
     String SEMI = "SEMI";
@@ -181,6 +178,8 @@ public interface SchemeConstantsS {
     String STLI = "STLI";
     String SUAP = "SUAP";
     String SUBR = "SUBR";
+    String SUMC = "SUMC";
+    String SUME = "SUME";
     String SUPP = "SUPP";
     String SWIF = "SWIF";
     String SWIT = "SWIT";
