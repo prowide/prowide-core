@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -234,8 +234,9 @@ Fieldset 97
 Fieldset 95
  (O)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (M) (repetitive)<ul><li>FieldsetItem 36 B,D (M) (repetitive)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 19 A (O)</li>
-<li class="sequence">
+ (M) (repetitive)<ul><li>FieldsetItem 36 B,D (M) (repetitive)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="fieldset">
+Fieldset 19
+ (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="sequence">
 Sequence D1a1B1a - Status (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 25 D (M)</li>
 <li class="sequence">
@@ -273,7 +274,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2022</strong>
+ * This source code is specific to release <strong>SRU 2023</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -282,7 +283,7 @@ public class MT537 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT537.class.getName());
 	
@@ -1715,7 +1716,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceA1List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceA1List_sru2023(this);
 	}
 
 
@@ -1866,7 +1867,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceBList_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceBList_sru2023(this);
 	}
 
 
@@ -2017,7 +2018,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB1List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB1List_sru2023(this);
 	}
 
 
@@ -2168,7 +2169,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2List_sru2023(this);
 	}
 
 
@@ -2319,7 +2320,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2aList_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2aList_sru2023(this);
 	}
 
 
@@ -2470,7 +2471,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2bList_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2bList_sru2023(this);
 	}
 
 
@@ -2621,7 +2622,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2b1List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceB2b1List_sru2023(this);
 	}
 
 
@@ -2921,7 +2922,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC1List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC1List_sru2023(this);
 	}
 
 
@@ -3072,7 +3073,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2List_sru2023(this);
 	}
 
 
@@ -3223,7 +3224,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2aList_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC2aList_sru2023(this);
 	}
 
 
@@ -3374,7 +3375,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3List_sru2023(this);
 	}
 
 
@@ -3525,7 +3526,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3aList_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceC3aList_sru2023(this);
 	}
 
 
@@ -4719,7 +4720,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1List_sru2023(this);
 	}
 
 
@@ -4870,7 +4871,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1aList_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1aList_sru2023(this);
 	}
 
 
@@ -5021,7 +5022,7 @@ public class MT537 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1a1List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT537GetSequenceD1a1B1a1List_sru2023(this);
 	}
 
 

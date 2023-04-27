@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,13 +77,14 @@ import java.io.IOException;
 <li class="field">Field 58 A,D (O)</li>
 <li class="field">Field 53 A,D (O)</li>
 <li class="field">Field 78  (O)</li>
+<li class="field">Field 78 D (O)</li>
 <li class="field">Field 57 A,B,D (O)</li>
 <li class="field">Field 72 Z (O)</li>
 </ul></div>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2022</strong>
+ * This source code is specific to release <strong>SRU 2023</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -92,7 +93,7 @@ public class MT710 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT710.class.getName());
 	
@@ -1149,6 +1150,24 @@ public class MT710 extends AbstractMT implements Serializable {
 		final Tag t = tag("78");
 		if (t != null) {
 			return new Field78(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 78D, 
+	 * or null if none is found.
+	 * The first occurrence of field 78D at MT710 is expected to be the only one.
+	 * 
+	 * @return a Field78D object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field78D getField78D() {
+		final Tag t = tag("78D");
+		if (t != null) {
+			return new Field78D(t.getValue());
 		} else {
 			return null;
 		}
