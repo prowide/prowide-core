@@ -51,7 +51,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>65x</code></li>
+ * 		<li>validation pattern: <code>140z</code></li>
  * 		<li>parser pattern: <code>S</code></li>
  * 		<li>components pattern: <code>S</code></li>
  * </ul>
@@ -249,7 +249,7 @@ public class Field44A extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "65x";
+        return "140z";
     }
 
     /**

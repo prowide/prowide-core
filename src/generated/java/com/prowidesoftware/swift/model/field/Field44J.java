@@ -40,20 +40,22 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * SWIFT MT Field 44F.
+ * SWIFT MT Field 44J.
  * <p>
- * Model and parser for field 44F of a SWIFT MT message.
+ * Model and parser for field 44J of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: Narrative: <code>String</code></li>
+ * 		<li>Component 1: CountryCode: <code>String</code></li>
+ * 		<li>Component 2: CountrySubDivision: <code>String</code></li>
+ * 		<li>Component 3: Narrative: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>140z</code></li>
- * 		<li>parser pattern: <code>S</code></li>
- * 		<li>components pattern: <code>S</code></li>
+ * 		<li>validation pattern: <code>&lt;CC&gt;[/35x][$/65x]</code></li>
+ * 		<li>parser pattern: <code>S[/S][/S]</code></li>
+ * 		<li>components pattern: <code>SSS</code></li>
  * </ul>
  *
  * <p>
@@ -61,7 +63,7 @@ import com.google.gson.JsonParser;
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field44F extends Field implements Serializable {
+public class Field44J extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -69,52 +71,62 @@ public class Field44F extends Field implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 44F.
+	 * Constant with the field name 44J.
 	 */
-    public static final String NAME = "44F";
+    public static final String NAME = "44J";
     /**
      * Same as NAME, intended to be clear when using static imports.
      */
-    public static final String F_44F = "44F";
+    public static final String F_44J = "44J";
 
     /**
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String PARSER_PATTERN = "S";
+	public static final String PARSER_PATTERN = "S[/S][/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String COMPONENTS_PATTERN = "S";
+	public static final String COMPONENTS_PATTERN = "SSS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String TYPES_PATTERN = "S";
+	public static final String TYPES_PATTERN = "SSS";
+
+	/**
+	 * Component number for the Country Code subfield.
+	 */
+	public static final Integer COUNTRY_CODE = 1;
+
+	/**
+	 * Component number for the Country Sub Division subfield.
+	 */
+	public static final Integer COUNTRY_SUB_DIVISION = 2;
 
 	/**
 	 * Component number for the Narrative subfield.
 	 */
-	public static final Integer NARRATIVE = 1;
+	public static final Integer NARRATIVE = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
-    public Field44F() {
-        super(1);
+    public Field44J() {
+        super(3);
     }
 
     /**
      * Creates a new field and initializes its components with content from the parameter value.
      * @param value complete field value including separators and CRLF
      */
-    public Field44F(final String value) {
+    public Field44J(final String value) {
         super(value);
     }
 
@@ -124,13 +136,13 @@ public class Field44F extends Field implements Serializable {
      * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
      * @since 7.8
      */
-    public Field44F(final Tag tag) {
+    public Field44J(final Tag tag) {
         this();
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "44F")) {
-            throw new IllegalArgumentException("cannot create field 44F from tag "+tag.getName()+", tagname must match the name of the field.");
+        if (!StringUtils.equals(tag.getName(), "44J")) {
+            throw new IllegalArgumentException("cannot create field 44J from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -141,8 +153,8 @@ public class Field44F extends Field implements Serializable {
      * @param source a field instance to copy
      * @since 7.7
      */
-    public static Field44F newInstance(Field44F source) {
-        Field44F cp = new Field44F();
+    public static Field44J newInstance(Field44J source) {
+        Field44J cp = new Field44J();
         cp.setComponents(new ArrayList<>(source.getComponents()));
         return cp;
     }
@@ -179,8 +191,9 @@ public class Field44F extends Field implements Serializable {
      */
     @Override
     public void parse(final String value) {
-        init(1);
-        setComponent1(value);
+        init(3);
+        // @NotImplemented
+        throw new org.apache.commons.lang3.NotImplementedException("Missing parserPattern in Field.vm : S[/S][/S]");
     }
 
     /**
@@ -189,7 +202,9 @@ public class Field44F extends Field implements Serializable {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        append(result, 1);
+        //FIXME serialization S[/S][/S]
+        // @NotImplemented
+        int notImplemented;
         return result.toString();
     }
 
@@ -204,12 +219,20 @@ public class Field44F extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
-            throw new IllegalArgumentException("invalid component number " + component + " for field 44F");
+        if (component < 1 || component > 3) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 44J");
         }
         if (component == 1) {
             //default format (as is)
             return getComponent(1);
+        }
+        if (component == 2) {
+            //default format (as is)
+            return getComponent(2);
+        }
+        if (component == 3) {
+            //default format (as is)
+            return getComponent(3);
         }
         return null;
     }
@@ -221,7 +244,7 @@ public class Field44F extends Field implements Serializable {
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
-        return "S";
+        return "SSS";
     }
 
     /**
@@ -233,7 +256,7 @@ public class Field44F extends Field implements Serializable {
      */
     @Override
     public String typesPattern() {
-        return "S";
+        return "SSS";
     }
 
     /**
@@ -241,7 +264,7 @@ public class Field44F extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S";
+        return "S[/S][/S]";
     }
 
     /**
@@ -249,7 +272,7 @@ public class Field44F extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "140z";
+        return "<CC>[/35x][$/65x]";
     }
 
     /**
@@ -264,6 +287,12 @@ public class Field44F extends Field implements Serializable {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 2) {
+            return true;
+        }
+        if (component == 3) {
+            return true;
+        }
         return false;
     }
 
@@ -284,7 +313,7 @@ public class Field44F extends Field implements Serializable {
      */
     @Override
     public int componentsSize() {
-        return 1;
+        return 3;
     }
 
     /**
@@ -297,6 +326,8 @@ public class Field44F extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
+        result.add("Country Code");
+        result.add("Country Sub Division");
         result.add("Narrative");
         return result;
     }
@@ -308,7 +339,9 @@ public class Field44F extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "narrative");
+        result.put(1, "countryCode");
+        result.put(2, "countrySubDivision");
+        result.put(3, "narrative");
         return result;
     }
 
@@ -323,12 +356,14 @@ public class Field44F extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("narrative", 1);
+        super.labelMap.put("countrycode", 1);
+        super.labelMap.put("countrysubdivision", 2);
+        super.labelMap.put("narrative", 3);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Narrative).
+     * Gets the component 1 (Country Code).
      * @return the component 1
      */
     public String getComponent1() {
@@ -336,39 +371,113 @@ public class Field44F extends Field implements Serializable {
     }
 
     /**
-     * Gets the Narrative (component 1).
-     * @return the Narrative from component 1
+     * Gets the Country Code (component 1).
+     * @return the Country Code from component 1
      */
-    public String getNarrative() {
+    public String getCountryCode() {
         return getComponent1();
     }
 
     /**
-     * Set the component 1 (Narrative).
+     * Gets the component 2 (Country Sub Division).
+     * @return the component 2
+     */
+    public String getComponent2() {
+        return getComponent(2);
+    }
+
+    /**
+     * Gets the Country Sub Division (component 2).
+     * @return the Country Sub Division from component 2
+     */
+    public String getCountrySubDivision() {
+        return getComponent2();
+    }
+
+    /**
+     * Gets the component 3 (Narrative).
+     * @return the component 3
+     */
+    public String getComponent3() {
+        return getComponent(3);
+    }
+
+    /**
+     * Gets the Narrative (component 3).
+     * @return the Narrative from component 3
+     */
+    public String getNarrative() {
+        return getComponent3();
+    }
+
+    /**
+     * Set the component 1 (Country Code).
      *
-     * @param component1 the Narrative to set
+     * @param component1 the Country Code to set
      * @return the field object to enable build pattern
      */
-    public Field44F setComponent1(String component1) {
+    public Field44J setComponent1(String component1) {
         setComponent(1, component1);
         return this;
     }
 
     /**
-     * Set the Narrative (component 1).
+     * Set the Country Code (component 1).
      *
-     * @param component1 the Narrative to set
+     * @param component1 the Country Code to set
      * @return the field object to enable build pattern
      */
-    public Field44F setNarrative(String component1) {
+    public Field44J setCountryCode(String component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * Set the component 2 (Country Sub Division).
+     *
+     * @param component2 the Country Sub Division to set
+     * @return the field object to enable build pattern
+     */
+    public Field44J setComponent2(String component2) {
+        setComponent(2, component2);
+        return this;
+    }
+
+    /**
+     * Set the Country Sub Division (component 2).
+     *
+     * @param component2 the Country Sub Division to set
+     * @return the field object to enable build pattern
+     */
+    public Field44J setCountrySubDivision(String component2) {
+        return setComponent2(component2);
+    }
+
+    /**
+     * Set the component 3 (Narrative).
+     *
+     * @param component3 the Narrative to set
+     * @return the field object to enable build pattern
+     */
+    public Field44J setComponent3(String component3) {
+        setComponent(3, component3);
+        return this;
+    }
+
+    /**
+     * Set the Narrative (component 3).
+     *
+     * @param component3 the Narrative to set
+     * @return the field object to enable build pattern
+     */
+    public Field44J setNarrative(String component3) {
+        return setComponent3(component3);
     }
 
 
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
-     * @return the static value of Field44F.NAME
+     * @return the static value of Field44J.NAME
      */
     @Override
     public String getName() {
@@ -380,7 +489,7 @@ public class Field44F extends Field implements Serializable {
      * @return null if not found o block is null or empty
      * @param block may be null or empty
      */
-    public static Field44F get(final SwiftTagListBlock block) {
+    public static Field44J get(final SwiftTagListBlock block) {
         if (block == null || block.isEmpty()) {
             return null;
         }
@@ -388,16 +497,16 @@ public class Field44F extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field44F(t);
+        return new Field44J(t);
     }
 
     /**
-     * Gets the first instance of Field44F in the given message.
+     * Gets the first instance of Field44J in the given message.
      * @param msg may be empty or null
      * @return null if not found or msg is empty or null
      * @see #get(SwiftTagListBlock)
      */
-    public static Field44F get(final SwiftMessage msg) {
+    public static Field44J get(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
         }
@@ -405,12 +514,12 @@ public class Field44F extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field44F in the given message
+     * Gets a list of all occurrences of the field Field44J in the given message
      * an empty list is returned if none found.
      * @param msg may be empty or null in which case an empty list is returned
      * @see #getAll(SwiftTagListBlock)
      */
-    public static List<Field44F> getAll(final SwiftMessage msg) {
+    public static List<Field44J> getAll(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
         }
@@ -418,42 +527,54 @@ public class Field44F extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field44F from the given block
+     * Gets a list of all occurrences of the field Field44J from the given block
      * an empty list is returned if none found.
      *
      * @param block may be empty or null in which case an empty list is returned
      */
-    public static List<Field44F> getAll(final SwiftTagListBlock block) {
-        final List<Field44F> result = new ArrayList<>();
+    public static List<Field44J> getAll(final SwiftTagListBlock block) {
+        final List<Field44J> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add(new Field44F(f));
+                result.add(new Field44J(f));
             }
         }
         return result;
     }
 
     /**
-     * This method deserializes the JSON data into a Field44F object.
+     * This method deserializes the JSON data into a Field44J object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    public static Field44F fromJson(final String json) {
+    public static Field44J fromJson(final String json) {
 
-        final Field44F field = new Field44F();
+        final Field44J field = new Field44J();
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Narrative
+        // **** COMPONENT 1 - Country Code
+
+        if (jsonObject.get("countryCode") != null) {
+            field.setComponent1(jsonObject.get("countryCode").getAsString());
+        }
+
+        // **** COMPONENT 2 - Country Sub Division
+
+        if (jsonObject.get("countrySubDivision") != null) {
+            field.setComponent2(jsonObject.get("countrySubDivision").getAsString());
+        }
+
+        // **** COMPONENT 3 - Narrative
 
         if (jsonObject.get("narrative") != null) {
-            field.setComponent1(jsonObject.get("narrative").getAsString());
+            field.setComponent3(jsonObject.get("narrative").getAsString());
         }
 
         return field;
