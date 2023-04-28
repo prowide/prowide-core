@@ -54,13 +54,19 @@ import com.google.gson.JsonParser;
  * 		<li>Component 5: NameAndAddress4: <code>String</code></li>
  * 		<li>Component 6: NameAndAddress5: <code>String</code></li>
  * 		<li>Component 7: NameAndAddress6: <code>String</code></li>
+ * 		<li>Component 8: NameAndAddress7: <code>String</code></li>
+ * 		<li>Component 9: NameAndAddress8: <code>String</code></li>
+ * 		<li>Component 10: NameAndAddress9: <code>String</code></li>
+ * 		<li>Component 11: NameAndAddress10: <code>String</code></li>
+ * 		<li>Component 12: NameAndAddress11: <code>String</code></li>
+ * 		<li>Component 13: NameAndAddress12: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>4!c(**)[$35x]0-6</code></li>
- * 		<li>parser pattern: <code>S[$S]0-6</code></li>
- * 		<li>components pattern: <code>SSSSSSS</code></li>
+ * 		<li>validation pattern: <code>4!c(**)[$65z]0-6</code></li>
+ * 		<li>parser pattern: <code>S[$S]0-12</code></li>
+ * 		<li>components pattern: <code>SSSSSSSSSSSSS</code></li>
  * </ul>
  *
  * <p>
@@ -89,21 +95,21 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String PARSER_PATTERN = "S[$S]0-6";
+	public static final String PARSER_PATTERN = "S[$S]0-12";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String COMPONENTS_PATTERN = "SSSSSSS";
+	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String TYPES_PATTERN = "SSSSSSS";
+	public static final String TYPES_PATTERN = "SSSSSSSSSSSSS";
 
 	/**
 	 * Component number for the Code subfield.
@@ -119,7 +125,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field24G() {
-        super(7);
+        super(13);
     }
 
     /**
@@ -191,9 +197,9 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Override
     public void parse(final String value) {
-        init(7);
-        List<String> lines = SwiftParseUtils.getLines(value);
-        SwiftParseUtils.setComponentsFromLines(this, 1, null, 0, lines);
+        init(13);
+        // @NotImplemented
+        throw new org.apache.commons.lang3.NotImplementedException("Missing parserPattern in Field.vm : S[$S]0-12");
     }
 
     /**
@@ -202,7 +208,9 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        appendInLines(result, 1, 7);
+        //FIXME serialization S[$S]0-12
+        // @NotImplemented
+        int notImplemented;
         return result.toString();
     }
 
@@ -217,7 +225,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 7) {
+        if (component < 1 || component > 13) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 24G");
         }
         if (component == 1) {
@@ -248,6 +256,30 @@ public class Field24G extends Field implements Serializable, MultiLineField {
             //default format (as is)
             return getComponent(7);
         }
+        if (component == 8) {
+            //default format (as is)
+            return getComponent(8);
+        }
+        if (component == 9) {
+            //default format (as is)
+            return getComponent(9);
+        }
+        if (component == 10) {
+            //default format (as is)
+            return getComponent(10);
+        }
+        if (component == 11) {
+            //default format (as is)
+            return getComponent(11);
+        }
+        if (component == 12) {
+            //default format (as is)
+            return getComponent(12);
+        }
+        if (component == 13) {
+            //default format (as is)
+            return getComponent(13);
+        }
         return null;
     }
 
@@ -258,7 +290,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String componentsPattern() {
-        return "SSSSSSS";
+        return "SSSSSSSSSSSSS";
     }
 
     /**
@@ -270,7 +302,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String typesPattern() {
-        return "SSSSSSS";
+        return "SSSSSSSSSSSSS";
     }
 
     /**
@@ -278,7 +310,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String parserPattern() {
-        return "S[$S]0-6";
+        return "S[$S]0-12";
     }
 
     /**
@@ -286,7 +318,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String validatorPattern() {
-        return "4!c(**)[$35x]0-6";
+        return "4!c(**)[$65z]0-6";
     }
 
     /**
@@ -319,6 +351,24 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         if (component == 7) {
             return true;
         }
+        if (component == 8) {
+            return true;
+        }
+        if (component == 9) {
+            return true;
+        }
+        if (component == 10) {
+            return true;
+        }
+        if (component == 11) {
+            return true;
+        }
+        if (component == 12) {
+            return true;
+        }
+        if (component == 13) {
+            return true;
+        }
         return false;
     }
 
@@ -339,7 +389,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Override
     public int componentsSize() {
-        return 7;
+        return 13;
     }
 
     /**
@@ -359,6 +409,12 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         result.add("Name And Address 4");
         result.add("Name And Address 5");
         result.add("Name And Address 6");
+        result.add("Name And Address 7");
+        result.add("Name And Address 8");
+        result.add("Name And Address 9");
+        result.add("Name And Address 10");
+        result.add("Name And Address 11");
+        result.add("Name And Address 12");
         return result;
     }
 
@@ -376,6 +432,12 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         result.put(5, "nameAndAddress4");
         result.put(6, "nameAndAddress5");
         result.put(7, "nameAndAddress6");
+        result.put(8, "nameAndAddress7");
+        result.put(9, "nameAndAddress8");
+        result.put(10, "nameAndAddress9");
+        result.put(11, "nameAndAddress10");
+        result.put(12, "nameAndAddress11");
+        result.put(13, "nameAndAddress12");
         return result;
     }
 
@@ -409,6 +471,24 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         super.labelMap.put("nameandaddress6", 7);
         // alias name
         super.labelMap.put("nameandaddress6", 7);
+        super.labelMap.put("nameandaddress7", 8);
+        // alias name
+        super.labelMap.put("nameandaddress7", 8);
+        super.labelMap.put("nameandaddress8", 9);
+        // alias name
+        super.labelMap.put("nameandaddress8", 9);
+        super.labelMap.put("nameandaddress9", 10);
+        // alias name
+        super.labelMap.put("nameandaddress9", 10);
+        super.labelMap.put("nameandaddress10", 11);
+        // alias name
+        super.labelMap.put("nameandaddress10", 11);
+        super.labelMap.put("nameandaddress11", 12);
+        // alias name
+        super.labelMap.put("nameandaddress11", 12);
+        super.labelMap.put("nameandaddress12", 13);
+        // alias name
+        super.labelMap.put("nameandaddress12", 13);
         return super.labelMap;
     }
 
@@ -454,7 +534,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Name And Address as a concatenation of component 2 to component 7.
+     * Gets the Name And Address as a concatenation of component 2 to component 13.
      * @return the Name And Address from components
      */
     public String getNameAndAddress() {
@@ -462,7 +542,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Name And Address as a concatenation of component 2 to component 7 joined together with a copy of the
+     * Gets the Name And Address as a concatenation of component 2 to component 13 joined together with a copy of the
      * specified delimiter.
      * @param deli the delimiter that separates each component
      * @return the Name And Address from components
@@ -470,7 +550,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     public String getNameAndAddress(CharSequence deli) {
         StringBuilder result = new StringBuilder();
-        for (int i = 2; i < 8; i++) {
+        for (int i = 2; i < 14; i++) {
             if (getComponent(i) != null) {
                 if (deli != null && result.length() > 0) {
                     result.append(deli);
@@ -483,7 +563,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for concatenation
-     * of component 2 to component 7 joined together with a copy of the
+     * of component 2 to component 13 joined together with a copy of the
      * specified delimiter.
      * @return the Name And Address from components
      * @see #getNameAndAddress()
@@ -494,7 +574,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for concatenation
-     * of component 2 to component 7 joined together with a copy of the
+     * of component 2 to component 13 joined together with a copy of the
      * specified delimiter.
      * @param deli the delimiter that separates each component
      * @return the Name And Address from components
@@ -630,6 +710,156 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
+     * Gets the component 8 (Name And Address 7).
+     * @return the component 8
+     */
+    public String getComponent8() {
+        return getComponent(8);
+    }
+
+    /**
+     * Gets the Name And Address 7 (component 8).
+     * @return the Name And Address 7 from component 8
+     */
+    public String getNameAndAddressLine7() {
+        return getComponent8();
+    }
+
+    /**
+     * Alternative method getter for field's Name And Address 7
+     * @see #getNameAndAddressLine7()
+     * @since 9.2.7
+     */
+    public String getNameandAddressLine7() {
+        return getNameAndAddressLine7();
+    }
+
+    /**
+     * Gets the component 9 (Name And Address 8).
+     * @return the component 9
+     */
+    public String getComponent9() {
+        return getComponent(9);
+    }
+
+    /**
+     * Gets the Name And Address 8 (component 9).
+     * @return the Name And Address 8 from component 9
+     */
+    public String getNameAndAddressLine8() {
+        return getComponent9();
+    }
+
+    /**
+     * Alternative method getter for field's Name And Address 8
+     * @see #getNameAndAddressLine8()
+     * @since 9.2.7
+     */
+    public String getNameandAddressLine8() {
+        return getNameAndAddressLine8();
+    }
+
+    /**
+     * Gets the component 10 (Name And Address 9).
+     * @return the component 10
+     */
+    public String getComponent10() {
+        return getComponent(10);
+    }
+
+    /**
+     * Gets the Name And Address 9 (component 10).
+     * @return the Name And Address 9 from component 10
+     */
+    public String getNameAndAddressLine9() {
+        return getComponent10();
+    }
+
+    /**
+     * Alternative method getter for field's Name And Address 9
+     * @see #getNameAndAddressLine9()
+     * @since 9.2.7
+     */
+    public String getNameandAddressLine9() {
+        return getNameAndAddressLine9();
+    }
+
+    /**
+     * Gets the component 11 (Name And Address 10).
+     * @return the component 11
+     */
+    public String getComponent11() {
+        return getComponent(11);
+    }
+
+    /**
+     * Gets the Name And Address 10 (component 11).
+     * @return the Name And Address 10 from component 11
+     */
+    public String getNameAndAddressLine10() {
+        return getComponent11();
+    }
+
+    /**
+     * Alternative method getter for field's Name And Address 10
+     * @see #getNameAndAddressLine10()
+     * @since 9.2.7
+     */
+    public String getNameandAddressLine10() {
+        return getNameAndAddressLine10();
+    }
+
+    /**
+     * Gets the component 12 (Name And Address 11).
+     * @return the component 12
+     */
+    public String getComponent12() {
+        return getComponent(12);
+    }
+
+    /**
+     * Gets the Name And Address 11 (component 12).
+     * @return the Name And Address 11 from component 12
+     */
+    public String getNameAndAddressLine11() {
+        return getComponent12();
+    }
+
+    /**
+     * Alternative method getter for field's Name And Address 11
+     * @see #getNameAndAddressLine11()
+     * @since 9.2.7
+     */
+    public String getNameandAddressLine11() {
+        return getNameAndAddressLine11();
+    }
+
+    /**
+     * Gets the component 13 (Name And Address 12).
+     * @return the component 13
+     */
+    public String getComponent13() {
+        return getComponent(13);
+    }
+
+    /**
+     * Gets the Name And Address 12 (component 13).
+     * @return the Name And Address 12 from component 13
+     */
+    public String getNameAndAddressLine12() {
+        return getComponent13();
+    }
+
+    /**
+     * Alternative method getter for field's Name And Address 12
+     * @see #getNameAndAddressLine12()
+     * @since 9.2.7
+     */
+    public String getNameandAddressLine12() {
+        return getNameAndAddressLine12();
+    }
+
+    /**
      * Set the component 1 (Code).
      *
      * @param component1 the Code to set
@@ -684,20 +914,20 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Name And Address splitting the parameter lines into components 2 to 7.
+     * Set the Name And Address splitting the parameter lines into components 2 to 13.
      *
      * @param value the Name And Address to set, may contain line ends and each line will be set to its correspondent component attribute
      * @return the field object to enable build pattern
      */
     public Field24G setNameAndAddress(String value) {
         List<String> lines = SwiftParseUtils.getLines(value);
-        SwiftParseUtils.setComponentsFromLines(this, 2, 6, 0, lines);
+        SwiftParseUtils.setComponentsFromLines(this, 2, 12, 0, lines);
         return this;
     }
 
     /**
      * Alternative method setter for
-     * the Name And Address splitting the parameter lines into components 2 to 7.
+     * the Name And Address splitting the parameter lines into components 2 to 13.
      *
      * @param value the Name And Address to set, may contain line ends and each line will be set to its correspondent component attribute
      * @return the field object to enable build pattern
@@ -870,6 +1100,204 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     public Field24G setNameandAddressLine6(String component7) {
         return setNameAndAddressLine6(component7);
+    }
+
+    /**
+     * Set the component 8 (Name And Address 7).
+     *
+     * @param component8 the Name And Address 7 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setComponent8(String component8) {
+        setComponent(8, component8);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 7 (component 8).
+     *
+     * @param component8 the Name And Address 7 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameAndAddressLine7(String component8) {
+        return setComponent8(component8);
+    }
+
+    /**
+     * Alternative method setter for field's Name And Address 7
+     *
+     * @see #setNameAndAddressLine7(String)
+     *
+     * @param component8 the Name And Address 7 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameandAddressLine7(String component8) {
+        return setNameAndAddressLine7(component8);
+    }
+
+    /**
+     * Set the component 9 (Name And Address 8).
+     *
+     * @param component9 the Name And Address 8 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setComponent9(String component9) {
+        setComponent(9, component9);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 8 (component 9).
+     *
+     * @param component9 the Name And Address 8 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameAndAddressLine8(String component9) {
+        return setComponent9(component9);
+    }
+
+    /**
+     * Alternative method setter for field's Name And Address 8
+     *
+     * @see #setNameAndAddressLine8(String)
+     *
+     * @param component9 the Name And Address 8 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameandAddressLine8(String component9) {
+        return setNameAndAddressLine8(component9);
+    }
+
+    /**
+     * Set the component 10 (Name And Address 9).
+     *
+     * @param component10 the Name And Address 9 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setComponent10(String component10) {
+        setComponent(10, component10);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 9 (component 10).
+     *
+     * @param component10 the Name And Address 9 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameAndAddressLine9(String component10) {
+        return setComponent10(component10);
+    }
+
+    /**
+     * Alternative method setter for field's Name And Address 9
+     *
+     * @see #setNameAndAddressLine9(String)
+     *
+     * @param component10 the Name And Address 9 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameandAddressLine9(String component10) {
+        return setNameAndAddressLine9(component10);
+    }
+
+    /**
+     * Set the component 11 (Name And Address 10).
+     *
+     * @param component11 the Name And Address 10 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setComponent11(String component11) {
+        setComponent(11, component11);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 10 (component 11).
+     *
+     * @param component11 the Name And Address 10 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameAndAddressLine10(String component11) {
+        return setComponent11(component11);
+    }
+
+    /**
+     * Alternative method setter for field's Name And Address 10
+     *
+     * @see #setNameAndAddressLine10(String)
+     *
+     * @param component11 the Name And Address 10 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameandAddressLine10(String component11) {
+        return setNameAndAddressLine10(component11);
+    }
+
+    /**
+     * Set the component 12 (Name And Address 11).
+     *
+     * @param component12 the Name And Address 11 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setComponent12(String component12) {
+        setComponent(12, component12);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 11 (component 12).
+     *
+     * @param component12 the Name And Address 11 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameAndAddressLine11(String component12) {
+        return setComponent12(component12);
+    }
+
+    /**
+     * Alternative method setter for field's Name And Address 11
+     *
+     * @see #setNameAndAddressLine11(String)
+     *
+     * @param component12 the Name And Address 11 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameandAddressLine11(String component12) {
+        return setNameAndAddressLine11(component12);
+    }
+
+    /**
+     * Set the component 13 (Name And Address 12).
+     *
+     * @param component13 the Name And Address 12 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setComponent13(String component13) {
+        setComponent(13, component13);
+        return this;
+    }
+
+    /**
+     * Set the Name And Address 12 (component 13).
+     *
+     * @param component13 the Name And Address 12 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameAndAddressLine12(String component13) {
+        return setComponent13(component13);
+    }
+
+    /**
+     * Alternative method setter for field's Name And Address 12
+     *
+     * @see #setNameAndAddressLine12(String)
+     *
+     * @param component13 the Name And Address 12 to set
+     * @return the field object to enable build pattern
+     */
+    public Field24G setNameandAddressLine12(String component13) {
+        return setNameAndAddressLine12(component13);
     }
 
 
@@ -1112,6 +1540,78 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         // last try using the official component's name (overwrites alternatives and DEPRECATED)
         if (jsonObject.get("nameAndAddress6") != null) {
             field.setComponent7(jsonObject.get("nameAndAddress6").getAsString());
+        }
+
+        // **** COMPONENT 8 - Name And Address 7
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("nameandAddress7") != null) {
+            field.setComponent8(jsonObject.get("nameandAddress7").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("nameAndAddress7") != null) {
+            field.setComponent8(jsonObject.get("nameAndAddress7").getAsString());
+        }
+
+        // **** COMPONENT 9 - Name And Address 8
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("nameandAddress8") != null) {
+            field.setComponent9(jsonObject.get("nameandAddress8").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("nameAndAddress8") != null) {
+            field.setComponent9(jsonObject.get("nameAndAddress8").getAsString());
+        }
+
+        // **** COMPONENT 10 - Name And Address 9
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("nameandAddress9") != null) {
+            field.setComponent10(jsonObject.get("nameandAddress9").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("nameAndAddress9") != null) {
+            field.setComponent10(jsonObject.get("nameAndAddress9").getAsString());
+        }
+
+        // **** COMPONENT 11 - Name And Address 10
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("nameandAddress10") != null) {
+            field.setComponent11(jsonObject.get("nameandAddress10").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("nameAndAddress10") != null) {
+            field.setComponent11(jsonObject.get("nameAndAddress10").getAsString());
+        }
+
+        // **** COMPONENT 12 - Name And Address 11
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("nameandAddress11") != null) {
+            field.setComponent12(jsonObject.get("nameandAddress11").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("nameAndAddress11") != null) {
+            field.setComponent12(jsonObject.get("nameAndAddress11").getAsString());
+        }
+
+        // **** COMPONENT 13 - Name And Address 12
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("nameandAddress12") != null) {
+            field.setComponent13(jsonObject.get("nameandAddress12").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("nameAndAddress12") != null) {
+            field.setComponent13(jsonObject.get("nameAndAddress12").getAsString());
         }
 
         return field;
