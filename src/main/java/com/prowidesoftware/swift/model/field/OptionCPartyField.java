@@ -44,7 +44,7 @@ public abstract class OptionCPartyField extends Field {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final String COMPONENTS_PATTERN = "S";
 
     /**
@@ -123,7 +123,7 @@ public abstract class OptionCPartyField extends Field {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     @Override
     public final String componentsPattern() {
         DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");

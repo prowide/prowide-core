@@ -66,7 +66,7 @@ import com.google.gson.JsonParser;
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
 @Deprecated
-@ProwideDeprecated(phase2 = TargetYear.SRU2023)
+@ProwideDeprecated(phase3 = TargetYear.SRU2024)
 public class Field31R extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
@@ -87,21 +87,21 @@ public class Field31R extends Field implements Serializable, DateContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "<DATE2>[/<DATE2>]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "EE";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "EE";
 
 	/**
@@ -246,7 +246,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "EE";
     }
