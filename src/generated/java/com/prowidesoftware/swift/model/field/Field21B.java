@@ -81,21 +81,21 @@ public class Field21B extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "S";
 
 	/**
@@ -231,7 +231,7 @@ public class Field21B extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "S";
     }
@@ -361,7 +361,7 @@ public class Field21B extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Reference
-     * @see #getReference()
+     * @deprecated use #getReference() instead
      * @since 9.2.7
      */
     public String getContractNumber() {
@@ -370,7 +370,7 @@ public class Field21B extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Reference
-     * @see #getReference()
+     * @deprecated use #getReference() instead
      * @since 9.2.7
      */
     public String getNumber() {
@@ -399,24 +399,14 @@ public class Field21B extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Reference
-     *
-     * @see #setReference(String)
-     *
-     * @param component1 the Reference to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setReference(String) instead
      */
     public Field21B setContractNumber(String component1) {
         return setReference(component1);
     }
 
     /**
-     * Alternative method setter for field's Reference
-     *
-     * @see #setReference(String)
-     *
-     * @param component1 the Reference to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setReference(String) instead
      */
     public Field21B setNumber(String component1) {
         return setReference(component1);

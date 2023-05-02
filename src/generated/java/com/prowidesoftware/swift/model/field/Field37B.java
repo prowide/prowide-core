@@ -92,21 +92,21 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "N[//<DATE2>cS][/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "NESNS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "IESNS";
 
 	/**
@@ -120,11 +120,10 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
 	public static final Integer END_DATE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's End Date Component number.
-	 * @see #END_DATE
+	 * @deprecated use #END_DATE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer DATE = 2;
 
 	/**
@@ -133,11 +132,10 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
 	public static final Integer PERIOD = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Period Component number.
-	 * @see #PERIOD
+	 * @deprecated use #PERIOD instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer DM_MARK = 3;
 
 	/**
@@ -146,11 +144,10 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
 	public static final Integer NUMBER = 4;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Number Component number.
-	 * @see #NUMBER
+	 * @deprecated use #NUMBER instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer NUMBER_OF_DAYSMONTHS = 4;
 
 	/**
@@ -322,7 +319,7 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "NESNS";
     }
@@ -479,16 +476,10 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Get the component 1 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent1AsBigDecimal()
+     * @deprecated use #getComponent1AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent1AsNumber() {
         return getComponent1AsBigDecimal();
     }
@@ -511,16 +502,10 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Get the Rate (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getRateAsBigDecimal()
+     * @deprecated use #getRateAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getRateAsNumber() {
         return getComponent1AsNumber();
     }
@@ -552,11 +537,11 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's End Date
-     * @see #getEndDate()
+     * @deprecated use #getEndDate() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getDate() {
         return getEndDate();
     }
@@ -570,11 +555,10 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's End Date as Calendar
-     * @see #getEndDateAsCalendar()
+     * @deprecated use #getEndDateAsCalendar() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.util.Calendar getDateAsCalendar() {
         return getEndDateAsCalendar();
     }
@@ -597,11 +581,11 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Period
-     * @see #getPeriod()
+     * @deprecated use #getPeriod() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getDMMark() {
         return getPeriod();
     }
@@ -625,16 +609,10 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Get the component 4 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent4AsLong()
+     * @deprecated use #getComponent4AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -650,11 +628,11 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Number
-     * @see #getNumber()
+     * @deprecated use #getNumber() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getNumberofDaysMonths() {
         return getNumber();
     }
@@ -669,41 +647,28 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Get the Number (component 4) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
+     * @deprecated use #getNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumberAsNumber() {
         return getComponent4AsNumber();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number as Long
-     * @see #getNumberAsLong()
+     * @deprecated use #getNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Long getNumberofDaysMonthsAsLong() {
         return getNumberAsLong();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number (component 4) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
+     * @deprecated use #getNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumberofDaysMonthsAsNumber() {
         return getNumberAsNumber();
     }
@@ -863,29 +828,19 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's End Date
-     *
-     * @see #setEndDate(String)
-     *
-     * @param component2 the End Date to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setEndDate(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field37B setDate(String component2) {
         return setEndDate(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's End Date from a Calendar object.
-     *
-     * @see #setComponent2(java.util.Calendar)
-     *
-     * @param component2 Calendar with the End Date content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.util.Calendar) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field37B setDate(java.util.Calendar component2) {
         return setEndDate(component2);
     }
@@ -912,15 +867,10 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Period
-     *
-     * @see #setPeriod(String)
-     *
-     * @param component3 the Period to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setPeriod(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field37B setDMMark(String component3) {
         return setPeriod(component3);
     }
@@ -1018,45 +968,29 @@ public class Field37B extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Number
-     *
-     * @see #setNumber(String)
-     *
-     * @param component4 the Number to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNumber(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field37B setNumberofDaysMonths(String component4) {
         return setNumber(component4);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Number from a Long object.
-     *
-     * @see #setComponent4(java.lang.Long)
-     *
-     * @param component4 Long with the Number content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent4(java.lang.Long) instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field37B setNumberofDaysMonths(java.lang.Long component4) {
         return setNumber(component4);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Number (component 4) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component4 the Number with the Number content to set
-     * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @deprecated use #setNumber(java.lang.Long) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field37B setNumberofDaysMonths(java.lang.Number component4) {
         return setNumber(component4);
     }

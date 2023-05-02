@@ -87,21 +87,21 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S//S/S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSB";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSB";
 
 	/**
@@ -115,11 +115,10 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
 	public static final Integer PLACE_CODE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Place Code Component number.
-	 * @see #PLACE_CODE
+	 * @deprecated use #PLACE_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CODE = 2;
 
 	/**
@@ -128,11 +127,10 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
 	public static final Integer IDENTIFIER_CODE = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Identifier Code Component number.
-	 * @see #IDENTIFIER_CODE
+	 * @deprecated use #IDENTIFIER_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer BIC = 3;
 
     /**
@@ -267,7 +265,7 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSB";
     }
@@ -419,11 +417,11 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Place Code
-     * @see #getPlaceCode()
+     * @deprecated use #getPlaceCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCode() {
         return getPlaceCode();
     }
@@ -455,11 +453,11 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
-     * @see #getIdentifierCode()
+     * @deprecated use #getIdentifierCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getBIC() {
         return getIdentifierCode();
     }
@@ -473,11 +471,10 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code as BIC
-     * @see #getIdentifierCodeAsBIC()
+     * @deprecated use #getIdentifierCodeAsBIC() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
         return getIdentifierCodeAsBIC();
     }
@@ -525,15 +522,10 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Place Code
-     *
-     * @see #setPlaceCode(String)
-     *
-     * @param component2 the Place Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setPlaceCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field94F setCode(String component2) {
         return setPlaceCode(component2);
     }
@@ -583,29 +575,19 @@ public class Field94F extends Field implements Serializable, BICContainer, Gener
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code
-     *
-     * @see #setIdentifierCode(String)
-     *
-     * @param component3 the Identifier Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setIdentifierCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field94F setBIC(String component3) {
         return setIdentifierCode(component3);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code from a BIC object.
-     *
-     * @see #setComponent3(com.prowidesoftware.swift.model.BIC)
-     *
-     * @param component3 BIC with the Identifier Code content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent3(com.prowidesoftware.swift.model.BIC) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field94F setBIC(com.prowidesoftware.swift.model.BIC component3) {
         return setIdentifierCode(component3);
     }

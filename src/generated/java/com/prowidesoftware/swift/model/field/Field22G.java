@@ -81,21 +81,21 @@ public class Field22G extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "S";
 
 	/**
@@ -231,7 +231,7 @@ public class Field22G extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "S";
     }
@@ -361,7 +361,7 @@ public class Field22G extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Type
-     * @see #getType()
+     * @deprecated use #getType() instead
      * @since 9.2.7
      */
     public String getTypeOfBarrier() {
@@ -370,7 +370,7 @@ public class Field22G extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Type
-     * @see #getType()
+     * @deprecated use #getType() instead
      * @since 9.2.7
      */
     public String getTypeOfDemand() {
@@ -399,24 +399,14 @@ public class Field22G extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Type
-     *
-     * @see #setType(String)
-     *
-     * @param component1 the Type to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setType(String) instead
      */
     public Field22G setTypeOfBarrier(String component1) {
         return setType(component1);
     }
 
     /**
-     * Alternative method setter for field's Type
-     *
-     * @see #setType(String)
-     *
-     * @param component1 the Type to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setType(String) instead
      */
     public Field22G setTypeOfDemand(String component1) {
         return setType(component1);

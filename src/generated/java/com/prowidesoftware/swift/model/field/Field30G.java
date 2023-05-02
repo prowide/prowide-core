@@ -85,21 +85,21 @@ public class Field30G extends Field implements Serializable, DateContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S/S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "DD";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "DD";
 
 	/**
@@ -255,7 +255,7 @@ public class Field30G extends Field implements Serializable, DateContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "DD";
     }
@@ -397,7 +397,7 @@ public class Field30G extends Field implements Serializable, DateContainer {
 
     /**
      * Alternative method getter for field's Start Date
-     * @see #getStartDate()
+     * @deprecated use #getStartDate() instead
      * @since 9.2.7
      */
     public String getPeriodStartDate() {
@@ -413,8 +413,7 @@ public class Field30G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Alternative method getter for field's Start Date as Calendar
-     * @see #getStartDateAsCalendar()
+     * @deprecated use #getStartDateAsCalendar() instead
      * @since 9.2.7
      */
     public java.util.Calendar getPeriodStartDateAsCalendar() {
@@ -448,7 +447,7 @@ public class Field30G extends Field implements Serializable, DateContainer {
 
     /**
      * Alternative method getter for field's End Date
-     * @see #getEndDate()
+     * @deprecated use #getEndDate() instead
      * @since 9.2.7
      */
     public String getPeriodEndDate() {
@@ -464,8 +463,7 @@ public class Field30G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Alternative method getter for field's End Date as Calendar
-     * @see #getEndDateAsCalendar()
+     * @deprecated use #getEndDateAsCalendar() instead
      * @since 9.2.7
      */
     public java.util.Calendar getPeriodEndDateAsCalendar() {
@@ -517,24 +515,14 @@ public class Field30G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Alternative method setter for field's Start Date
-     *
-     * @see #setStartDate(String)
-     *
-     * @param component1 the Start Date to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setStartDate(String) instead
      */
     public Field30G setPeriodStartDate(String component1) {
         return setStartDate(component1);
     }
 
     /**
-     * Alternative method setter for field's Start Date from a Calendar object.
-     *
-     * @see #setComponent1(java.util.Calendar)
-     *
-     * @param component1 Calendar with the Start Date content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent1(java.util.Calendar) instead
      */
     public Field30G setPeriodStartDate(java.util.Calendar component1) {
         return setStartDate(component1);
@@ -585,24 +573,14 @@ public class Field30G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Alternative method setter for field's End Date
-     *
-     * @see #setEndDate(String)
-     *
-     * @param component2 the End Date to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setEndDate(String) instead
      */
     public Field30G setPeriodEndDate(String component2) {
         return setEndDate(component2);
     }
 
     /**
-     * Alternative method setter for field's End Date from a Calendar object.
-     *
-     * @see #setComponent2(java.util.Calendar)
-     *
-     * @param component2 Calendar with the End Date content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.util.Calendar) instead
      */
     public Field30G setPeriodEndDate(java.util.Calendar component2) {
         return setEndDate(component2);

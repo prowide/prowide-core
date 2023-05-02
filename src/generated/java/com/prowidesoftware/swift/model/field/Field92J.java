@@ -92,21 +92,21 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S/[S]/S/SN[/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSSCNS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSSCIS";
 
 	/**
@@ -125,11 +125,10 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
 	public static final Integer RATE_TYPE_CODE = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Rate Type Code Component number.
-	 * @see #RATE_TYPE_CODE
+	 * @deprecated use #RATE_TYPE_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CODE = 3;
 
 	/**
@@ -138,11 +137,10 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
 	public static final Integer CURRENCY_CODE = 4;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code Component number.
-	 * @see #CURRENCY_CODE
+	 * @deprecated use #CURRENCY_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CURRENCY = 4;
 
 	/**
@@ -314,7 +312,7 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSSCNS";
     }
@@ -497,11 +495,11 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Rate Type Code
-     * @see #getRateTypeCode()
+     * @deprecated use #getRateTypeCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCode() {
         return getRateTypeCode();
     }
@@ -533,11 +531,11 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Currency Code
-     * @see #getCurrencyCode()
+     * @deprecated use #getCurrencyCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCurrency() {
         return getCurrencyCode();
     }
@@ -551,11 +549,10 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Currency Code as Currency
-     * @see #getCurrencyCodeAsCurrency()
+     * @deprecated use #getCurrencyCodeAsCurrency() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.util.Currency getCurrencyAsCurrency() {
         return getCurrencyCodeAsCurrency();
     }
@@ -579,16 +576,10 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Get the component 5 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent5AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 5 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent5AsBigDecimal()
+     * @deprecated use #getComponent5AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent5AsNumber() {
         return getComponent5AsBigDecimal();
     }
@@ -611,16 +602,10 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Get the Amount (component 5) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent5AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 5 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @deprecated use #getAmountAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getAmountAsNumber() {
         return getComponent5AsNumber();
     }
@@ -705,15 +690,10 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Rate Type Code
-     *
-     * @see #setRateTypeCode(String)
-     *
-     * @param component3 the Rate Type Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setRateTypeCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field92J setCode(String component3) {
         return setRateTypeCode(component3);
     }
@@ -763,29 +743,19 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code
-     *
-     * @see #setCurrencyCode(String)
-     *
-     * @param component4 the Currency Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setCurrencyCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field92J setCurrency(String component4) {
         return setCurrencyCode(component4);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code from a Currency object.
-     *
-     * @see #setComponent4(java.util.Currency)
-     *
-     * @param component4 Currency with the Currency Code content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent4(java.util.Currency) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field92J setCurrency(java.util.Currency component4) {
         return setCurrencyCode(component4);
     }
@@ -1124,14 +1094,14 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
      * @deprecated Use RATE_STATUS instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
     public static final Integer NARRATIVE = 6;
 
     /**
      * @deprecated Use getRateStatus instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
     public String getNarrative() {
         com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrative()", "Use getRateStatus() instead");
         return getRateStatus();
@@ -1141,7 +1111,7 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
      * @deprecated Use setRateStatus instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
     public Field92J setNarrative(String narrative) {
         com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrative(String)", "Use setRateStatus(String) instead");
         return setRateStatus(narrative);

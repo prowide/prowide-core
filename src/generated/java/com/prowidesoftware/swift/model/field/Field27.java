@@ -84,21 +84,21 @@ public class Field27 extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S/S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "NN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "NN";
 
 	/**
@@ -246,7 +246,7 @@ public class Field27 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "NN";
     }
@@ -380,16 +380,10 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 1 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent1AsLong()
+     * @deprecated use #getComponent1AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -405,7 +399,7 @@ public class Field27 extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Number
-     * @see #getNumber()
+     * @deprecated use #getNumber() instead
      * @since 9.2.7
      */
     public String getMessageNumber() {
@@ -422,23 +416,16 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Get the Number (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
+     * @deprecated use #getNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumberAsNumber() {
         return getComponent1AsNumber();
     }
 
     /**
-     * Alternative method getter for field's Number as Long
-     * @see #getNumberAsLong()
+     * @deprecated use #getNumberAsLong() instead
      * @since 9.2.7
      */
     public java.lang.Long getMessageNumberAsLong() {
@@ -446,16 +433,10 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method getter for field's Number (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
+     * @deprecated use #getNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getMessageNumberAsNumber() {
         return getNumberAsNumber();
     }
@@ -479,16 +460,10 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsLong()
+     * @deprecated use #getComponent2AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -504,7 +479,7 @@ public class Field27 extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Total
-     * @see #getTotal()
+     * @deprecated use #getTotal() instead
      * @since 9.2.7
      */
     public String getSequenceNumber() {
@@ -521,23 +496,16 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Get the Total (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getTotalAsLong()
+     * @deprecated use #getTotalAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getTotalAsNumber() {
         return getComponent2AsNumber();
     }
 
     /**
-     * Alternative method getter for field's Total as Long
-     * @see #getTotalAsLong()
+     * @deprecated use #getTotalAsLong() instead
      * @since 9.2.7
      */
     public java.lang.Long getSequenceNumberAsLong() {
@@ -545,16 +513,10 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method getter for field's Total (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getTotalAsLong()
+     * @deprecated use #getTotalAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getSequenceNumberAsNumber() {
         return getTotalAsNumber();
     }
@@ -652,24 +614,14 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Number
-     *
-     * @see #setNumber(String)
-     *
-     * @param component1 the Number to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNumber(String) instead
      */
     public Field27 setMessageNumber(String component1) {
         return setNumber(component1);
     }
 
     /**
-     * Alternative method setter for field's Number from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Number content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent1(java.lang.Long) instead
      * @since 9.2.7
      */
     public Field27 setMessageNumber(java.lang.Long component1) {
@@ -677,13 +629,7 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Number (component 1) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component1 the Number with the Number content to set
-     * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
+     * @deprecated use #setNumber(java.lang.Long) instead
      */
     public Field27 setMessageNumber(java.lang.Number component1) {
         return setNumber(component1);
@@ -782,24 +728,14 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Total
-     *
-     * @see #setTotal(String)
-     *
-     * @param component2 the Total to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setTotal(String) instead
      */
     public Field27 setSequenceNumber(String component2) {
         return setTotal(component2);
     }
 
     /**
-     * Alternative method setter for field's Total from a Long object.
-     *
-     * @see #setComponent2(java.lang.Long)
-     *
-     * @param component2 Long with the Total content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.lang.Long) instead
      * @since 9.2.7
      */
     public Field27 setSequenceNumber(java.lang.Long component2) {
@@ -807,13 +743,7 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Total (component 2) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component2 the Number with the Total content to set
-     * @return the field object to enable build pattern
-     * @see #setTotal(java.lang.Long)
+     * @deprecated use #setTotal(java.lang.Long) instead
      */
     public Field27 setSequenceNumber(java.lang.Number component2) {
         return setTotal(component2);

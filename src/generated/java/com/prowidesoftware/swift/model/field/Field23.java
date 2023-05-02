@@ -87,21 +87,21 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S[/S/S[/S]]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSSC";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSSC";
 
 	/**
@@ -298,7 +298,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSSC";
     }
@@ -450,7 +450,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
     /**
      * Alternative method getter for field's Code 1
-     * @see #getCode1()
+     * @deprecated use #getCode1() instead
      * @since 9.2.7
      */
     public String getBuySellIndicator() {
@@ -475,7 +475,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
     /**
      * Alternative method getter for field's Code 2
-     * @see #getCode2()
+     * @deprecated use #getCode2() instead
      * @since 9.2.7
      */
     public String getCallPutIndicator() {
@@ -500,7 +500,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
     /**
      * Alternative method getter for field's Code 3
-     * @see #getCode3()
+     * @deprecated use #getCode3() instead
      * @since 9.2.7
      */
     public String getStyleIndicator() {
@@ -534,7 +534,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
     /**
      * Alternative method getter for field's Currency
-     * @see #getCurrency()
+     * @deprecated use #getCurrency() instead
      * @since 9.2.7
      */
     public String getManualAutomaticIndicator() {
@@ -550,8 +550,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
-     * Alternative method getter for field's Currency as Currency
-     * @see #getCurrencyAsCurrency()
+     * @deprecated use #getCurrencyAsCurrency() instead
      * @since 9.2.7
      */
     public java.util.Currency getManualAutomaticIndicatorAsCurrency() {
@@ -580,12 +579,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
-     * Alternative method setter for field's Code 1
-     *
-     * @see #setCode1(String)
-     *
-     * @param component1 the Code 1 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setCode1(String) instead
      */
     public Field23 setBuySellIndicator(String component1) {
         return setCode1(component1);
@@ -613,12 +607,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
-     * Alternative method setter for field's Code 2
-     *
-     * @see #setCode2(String)
-     *
-     * @param component2 the Code 2 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setCode2(String) instead
      */
     public Field23 setCallPutIndicator(String component2) {
         return setCode2(component2);
@@ -646,12 +635,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
-     * Alternative method setter for field's Code 3
-     *
-     * @see #setCode3(String)
-     *
-     * @param component3 the Code 3 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setCode3(String) instead
      */
     public Field23 setStyleIndicator(String component3) {
         return setCode3(component3);
@@ -702,24 +686,14 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
-     * Alternative method setter for field's Currency
-     *
-     * @see #setCurrency(String)
-     *
-     * @param component4 the Currency to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setCurrency(String) instead
      */
     public Field23 setManualAutomaticIndicator(String component4) {
         return setCurrency(component4);
     }
 
     /**
-     * Alternative method setter for field's Currency from a Currency object.
-     *
-     * @see #setComponent4(java.util.Currency)
-     *
-     * @param component4 Currency with the Currency content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent4(java.util.Currency) instead
      */
     public Field23 setManualAutomaticIndicator(java.util.Currency component4) {
         return setCurrency(component4);

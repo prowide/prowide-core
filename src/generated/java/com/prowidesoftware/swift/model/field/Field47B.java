@@ -350,18 +350,5 @@ public class Field47B extends StructuredNarrativeField implements Serializable, 
         return field;
     }
 
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public static final Integer NARRATIVE = 1;
-
-	/**
-     * @deprecated Use getValue() instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public String getNarrative() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrative()", "Use getValue() instead");
-        return getValue();
-    }
 
 }

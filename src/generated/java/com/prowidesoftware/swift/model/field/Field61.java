@@ -98,21 +98,21 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "CUSTOM";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "EJSSNSSSSS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "EJSSISSSSS";
 
 	/**
@@ -137,11 +137,10 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
 	public static final Integer DEBITCREDIT_MARK = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Debit/Credit Mark Component number.
-	 * @see #DEBITCREDIT_MARK
+	 * @deprecated use #DEBITCREDIT_MARK instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer DC_MARK = 3;
 
 	/**
@@ -361,7 +360,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "EJSSNSSSSS";
     }
@@ -539,7 +538,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
 
     /**
      * Alternative method getter for field's Value Date
-     * @see #getValueDate()
+     * @deprecated use #getValueDate() instead
      * @since 9.2.7
      */
     public String getDate() {
@@ -555,8 +554,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * Alternative method getter for field's Value Date as Calendar
-     * @see #getValueDateAsCalendar()
+     * @deprecated use #getValueDateAsCalendar() instead
      * @since 9.2.7
      */
     public java.util.Calendar getDateAsCalendar() {
@@ -614,11 +612,11 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Debit/Credit Mark
-     * @see #getDebitCreditMark()
+     * @deprecated use #getDebitCreditMark() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getDCMark() {
         return getDebitCreditMark();
     }
@@ -658,16 +656,10 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * Get the component 5 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent5AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 5 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent5AsBigDecimal()
+     * @deprecated use #getComponent5AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent5AsNumber() {
         return getComponent5AsBigDecimal();
     }
@@ -690,16 +682,10 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * Get the Amount (component 5) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent5AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 5 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @deprecated use #getAmountAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getAmountAsNumber() {
         return getComponent5AsNumber();
     }
@@ -829,24 +815,14 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * Alternative method setter for field's Value Date
-     *
-     * @see #setValueDate(String)
-     *
-     * @param component1 the Value Date to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setValueDate(String) instead
      */
     public Field61 setDate(String component1) {
         return setValueDate(component1);
     }
 
     /**
-     * Alternative method setter for field's Value Date from a Calendar object.
-     *
-     * @see #setComponent1(java.util.Calendar)
-     *
-     * @param component1 Calendar with the Value Date content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent1(java.util.Calendar) instead
      */
     public Field61 setDate(java.util.Calendar component1) {
         return setValueDate(component1);
@@ -918,15 +894,10 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Debit/Credit Mark
-     *
-     * @see #setDebitCreditMark(String)
-     *
-     * @param component3 the Debit/Credit Mark to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setDebitCreditMark(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field61 setDCMark(String component3) {
         return setDebitCreditMark(component3);
     }

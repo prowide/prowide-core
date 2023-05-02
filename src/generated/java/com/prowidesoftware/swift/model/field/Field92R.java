@@ -89,21 +89,21 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S/[S]/S/N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSSN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSSI";
 
 	/**
@@ -122,11 +122,10 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer RATE_TYPE_CODE = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Rate Type Code Component number.
-	 * @see #RATE_TYPE_CODE
+	 * @deprecated use #RATE_TYPE_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CODE = 3;
 
 	/**
@@ -135,11 +134,10 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer RATE = 4;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Rate Component number.
-	 * @see #RATE
+	 * @deprecated use #RATE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer AMOUNT = 4;
 
     /**
@@ -285,7 +283,7 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSSN";
     }
@@ -459,11 +457,11 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Rate Type Code
-     * @see #getRateTypeCode()
+     * @deprecated use #getRateTypeCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCode() {
         return getRateTypeCode();
     }
@@ -487,16 +485,10 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Get the component 4 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent4AsBigDecimal()
+     * @deprecated use #getComponent4AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent4AsNumber() {
         return getComponent4AsBigDecimal();
     }
@@ -511,11 +503,11 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Rate
-     * @see #getRate()
+     * @deprecated use #getRate() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getAmount() {
         return getRate();
     }
@@ -530,41 +522,28 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Get the Rate (component 4) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getRateAsBigDecimal()
+     * @deprecated use #getRateAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getRateAsNumber() {
         return getComponent4AsNumber();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Rate as BigDecimal
-     * @see #getRateAsBigDecimal()
+     * @deprecated use #getRateAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getRateAsBigDecimal();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Rate (component 4) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getRateAsBigDecimal()
+     * @deprecated use #getRateAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getAmountAsNumber() {
         return getRateAsNumber();
     }
@@ -633,15 +612,10 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Rate Type Code
-     *
-     * @see #setRateTypeCode(String)
-     *
-     * @param component3 the Rate Type Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setRateTypeCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field92R setCode(String component3) {
         return setRateTypeCode(component3);
     }
@@ -741,45 +715,29 @@ public class Field92R extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Rate
-     *
-     * @see #setRate(String)
-     *
-     * @param component4 the Rate to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setRate(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field92R setAmount(String component4) {
         return setRate(component4);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Rate from a BigDecimal object.
-     *
-     * @see #setComponent4(java.math.BigDecimal)
-     *
-     * @param component4 BigDecimal with the Rate content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent4(java.math.BigDecimal) instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field92R setAmount(java.math.BigDecimal component4) {
         return setRate(component4);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Rate (component 4) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component4 the Number with the Rate content to set
-     * @return the field object to enable build pattern
-     * @see #setRate(java.math.BigDecimal)
+     * @deprecated use #setRate(java.math.BigDecimal) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field92R setAmount(java.lang.Number component4) {
         return setRate(component4);
     }

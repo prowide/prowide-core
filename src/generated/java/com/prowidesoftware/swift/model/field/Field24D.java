@@ -82,21 +82,21 @@ public class Field24D extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
@@ -239,7 +239,7 @@ public class Field24D extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SS";
     }
@@ -373,7 +373,7 @@ public class Field24D extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Code
-     * @see #getCode()
+     * @deprecated use #getCode() instead
      * @since 9.2.7
      */
     public String getMethod() {
@@ -418,12 +418,7 @@ public class Field24D extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Code
-     *
-     * @see #setCode(String)
-     *
-     * @param component1 the Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setCode(String) instead
      */
     public Field24D setMethod(String component1) {
         return setCode(component1);

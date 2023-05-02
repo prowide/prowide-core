@@ -81,21 +81,21 @@ public class Field22J extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "S";
 
 	/**
@@ -104,11 +104,10 @@ public class Field22J extends Field implements Serializable {
 	public static final Integer TYPE_OF_TRIGGER = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Type Of Trigger Component number.
-	 * @see #TYPE_OF_TRIGGER
+	 * @deprecated use #TYPE_OF_TRIGGER instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer TYPE_OF_BARRIER = 1;
 
     /**
@@ -227,7 +226,7 @@ public class Field22J extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "S";
     }
@@ -355,11 +354,11 @@ public class Field22J extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Type Of Trigger
-     * @see #getTypeOfTrigger()
+     * @deprecated use #getTypeOfTrigger() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getTypeOfBarrier() {
         return getTypeOfTrigger();
     }
@@ -386,15 +385,10 @@ public class Field22J extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Type Of Trigger
-     *
-     * @see #setTypeOfTrigger(String)
-     *
-     * @param component1 the Type Of Trigger to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setTypeOfTrigger(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field22J setTypeOfBarrier(String component1) {
         return setTypeOfTrigger(component1);
     }

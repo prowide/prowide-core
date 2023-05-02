@@ -83,21 +83,21 @@ public class Field97A extends Field implements Serializable, GenericField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S//S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
@@ -111,11 +111,10 @@ public class Field97A extends Field implements Serializable, GenericField {
 	public static final Integer ACCOUNT_NUMBER = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Account Number Component number.
-	 * @see #ACCOUNT_NUMBER
+	 * @deprecated use #ACCOUNT_NUMBER instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer ACCOUNT = 2;
 
     /**
@@ -242,7 +241,7 @@ public class Field97A extends Field implements Serializable, GenericField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SS";
     }
@@ -398,11 +397,11 @@ public class Field97A extends Field implements Serializable, GenericField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Account Number
-     * @see #getAccountNumber()
+     * @deprecated use #getAccountNumber() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getAccount() {
         return getAccountNumber();
     }
@@ -450,15 +449,10 @@ public class Field97A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Account Number
-     *
-     * @see #setAccountNumber(String)
-     *
-     * @param component2 the Account Number to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setAccountNumber(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field97A setAccount(String component2) {
         return setAccountNumber(component2);
     }

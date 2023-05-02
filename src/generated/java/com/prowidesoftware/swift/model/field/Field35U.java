@@ -87,21 +87,21 @@ public class Field35U extends Field implements Serializable, AmountContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "SN[S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SNS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SIS";
 
 	/**
@@ -115,11 +115,10 @@ public class Field35U extends Field implements Serializable, AmountContainer {
 	public static final Integer PRICE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Price Component number.
-	 * @see #PRICE
+	 * @deprecated use #PRICE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer AMOUNT = 2;
 
 	/**
@@ -261,7 +260,7 @@ public class Field35U extends Field implements Serializable, AmountContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SNS";
     }
@@ -415,16 +414,10 @@ public class Field35U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsBigDecimal()
+     * @deprecated use #getComponent2AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         return getComponent2AsBigDecimal();
     }
@@ -439,11 +432,11 @@ public class Field35U extends Field implements Serializable, AmountContainer {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Price
-     * @see #getPrice()
+     * @deprecated use #getPrice() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getAmount() {
         return getPrice();
     }
@@ -458,41 +451,28 @@ public class Field35U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Get the Price (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getPriceAsBigDecimal()
+     * @deprecated use #getPriceAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getPriceAsNumber() {
         return getComponent2AsNumber();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Price as BigDecimal
-     * @see #getPriceAsBigDecimal()
+     * @deprecated use #getPriceAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getPriceAsBigDecimal();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Price (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getPriceAsBigDecimal()
+     * @deprecated use #getPriceAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getAmountAsNumber() {
         return getPriceAsNumber();
     }
@@ -629,45 +609,29 @@ public class Field35U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Price
-     *
-     * @see #setPrice(String)
-     *
-     * @param component2 the Price to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setPrice(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field35U setAmount(String component2) {
         return setPrice(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Price from a BigDecimal object.
-     *
-     * @see #setComponent2(java.math.BigDecimal)
-     *
-     * @param component2 BigDecimal with the Price content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.math.BigDecimal) instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field35U setAmount(java.math.BigDecimal component2) {
         return setPrice(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Price (component 2) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component2 the Number with the Price content to set
-     * @return the field object to enable build pattern
-     * @see #setPrice(java.math.BigDecimal)
+     * @deprecated use #setPrice(java.math.BigDecimal) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field35U setAmount(java.lang.Number component2) {
         return setPrice(component2);
     }

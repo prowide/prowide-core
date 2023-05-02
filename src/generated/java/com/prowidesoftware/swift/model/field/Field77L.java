@@ -82,21 +82,21 @@ public class Field77L extends Field implements Serializable, MultiLineField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "S";
 
 	/**
@@ -105,11 +105,10 @@ public class Field77L extends Field implements Serializable, MultiLineField {
 	public static final Integer NARRATIVE = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Narrative Component number.
-	 * @see #NARRATIVE
+	 * @deprecated use #NARRATIVE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer LINE = 1;
 
     /**
@@ -228,7 +227,7 @@ public class Field77L extends Field implements Serializable, MultiLineField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "S";
     }
@@ -356,11 +355,11 @@ public class Field77L extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative
-     * @see #getNarrative()
+     * @deprecated use #getNarrative() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getLine() {
         return getNarrative();
     }
@@ -387,15 +386,10 @@ public class Field77L extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Narrative
-     *
-     * @see #setNarrative(String)
-     *
-     * @param component1 the Narrative to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNarrative(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field77L setLine(String component1) {
         return setNarrative(component1);
     }

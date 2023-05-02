@@ -86,21 +86,21 @@ public class Field59A extends Field implements Serializable, BICContainer, Multi
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "[/S$]S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SB";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SB";
 
 	/**
@@ -114,11 +114,10 @@ public class Field59A extends Field implements Serializable, BICContainer, Multi
 	public static final Integer IDENTIFIER_CODE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Identifier Code Component number.
-	 * @see #IDENTIFIER_CODE
+	 * @deprecated use #IDENTIFIER_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer BIC = 2;
 
     /**
@@ -252,7 +251,7 @@ public class Field59A extends Field implements Serializable, BICContainer, Multi
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SB";
     }
@@ -420,11 +419,11 @@ public class Field59A extends Field implements Serializable, BICContainer, Multi
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
-     * @see #getIdentifierCode()
+     * @deprecated use #getIdentifierCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getBIC() {
         return getIdentifierCode();
     }
@@ -438,11 +437,10 @@ public class Field59A extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code as BIC
-     * @see #getIdentifierCodeAsBIC()
+     * @deprecated use #getIdentifierCodeAsBIC() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
         return getIdentifierCodeAsBIC();
     }
@@ -513,29 +511,19 @@ public class Field59A extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code
-     *
-     * @see #setIdentifierCode(String)
-     *
-     * @param component2 the Identifier Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setIdentifierCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field59A setBIC(String component2) {
         return setIdentifierCode(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code from a BIC object.
-     *
-     * @see #setComponent2(com.prowidesoftware.swift.model.BIC)
-     *
-     * @param component2 BIC with the Identifier Code content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(com.prowidesoftware.swift.model.BIC) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field59A setBIC(com.prowidesoftware.swift.model.BIC component2) {
         return setIdentifierCode(component2);
     }

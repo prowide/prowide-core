@@ -82,21 +82,21 @@ public class Field22K extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
@@ -239,7 +239,7 @@ public class Field22K extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SS";
     }
@@ -373,7 +373,7 @@ public class Field22K extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Type Of Event
-     * @see #getTypeOfEvent()
+     * @deprecated use #getTypeOfEvent() instead
      * @since 9.2.7
      */
     public String getCode() {
@@ -418,12 +418,7 @@ public class Field22K extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Type Of Event
-     *
-     * @see #setTypeOfEvent(String)
-     *
-     * @param component1 the Type Of Event to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setTypeOfEvent(String) instead
      */
     public Field22K setCode(String component1) {
         return setTypeOfEvent(component1);

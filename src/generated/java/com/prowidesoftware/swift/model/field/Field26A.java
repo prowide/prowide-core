@@ -82,21 +82,21 @@ public class Field26A extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
@@ -233,7 +233,7 @@ public class Field26A extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SS";
     }
@@ -523,48 +523,24 @@ public class Field26A extends Field implements Serializable {
     }
 
 
-	/**
-	 * Component number for the Number 1 subfield.
-	 *
-	 * <em>IMPORTANT</em>: this constant is kept for compatibility, but getting component 1
-	 * will now return only part of the value (the Number 1) as the Form is now a separate
-	 * component.
-	 */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
 	public static final Integer NUMBER = 1;
 
 	/**
-	 * Gets the Number (components 1 and 2) as a unit
-	 *
-	 * This method is a wrapper for <code>getValue</code>.
-	 *
-	 * <em>Note</em> that in previous versions, this field had only one component and now has two
-	 * because it's what the SWIFT specification indicates.
-	 *
-	 * @return the concatenated values of component 1 and 2
-	 * @see #getValue()
-	 */
+     * @deprecated Use getValue() instead
+     */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
 	public String getNumber() {
         return getValue();
 	}
 
-	/**
-	 * Sets the Number (components 1 and 2) as a unit
-	 *
-	 * This method is a wrapper for <code>parse</code>.
-	 *
-	 * <em>Note</em> that in previous versions, this field had only one component and now has two
-	 * because it's what the SWIFT specification indicates.
-     *
-	 * @param number the new expected value for components 1 and 2 concatenated
-     * @return the field object to enable build pattern
-	 * @see #parse(String)
-	 */
+    /**
+      * @deprecated Use parse(String) instead
+      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
 	public Field26A setNumber(final String number) {
         parse(number);
         return this;
