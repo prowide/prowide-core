@@ -84,21 +84,21 @@ public class Field28 extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "NN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "NN";
 
 	/**
@@ -247,7 +247,7 @@ public class Field28 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "NN";
     }
@@ -384,16 +384,10 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 1 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent1AsLong()
+     * @deprecated use #getComponent1AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -409,7 +403,7 @@ public class Field28 extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Statement Number
-     * @see #getStatementNumber()
+     * @deprecated use #getStatementNumber() instead
      * @since 9.2.7
      */
     public String getSettlementNumber() {
@@ -426,23 +420,16 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Get the Statement Number (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getStatementNumberAsLong()
+     * @deprecated use #getStatementNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getStatementNumberAsNumber() {
         return getComponent1AsNumber();
     }
 
     /**
-     * Alternative method getter for field's Statement Number as Long
-     * @see #getStatementNumberAsLong()
+     * @deprecated use #getStatementNumberAsLong() instead
      * @since 9.2.7
      */
     public java.lang.Long getSettlementNumberAsLong() {
@@ -450,16 +437,10 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method getter for field's Statement Number (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getStatementNumberAsLong()
+     * @deprecated use #getStatementNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getSettlementNumberAsNumber() {
         return getStatementNumberAsNumber();
     }
@@ -483,16 +464,10 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsLong()
+     * @deprecated use #getComponent2AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -508,7 +483,7 @@ public class Field28 extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Sequence Number
-     * @see #getSequenceNumber()
+     * @deprecated use #getSequenceNumber() instead
      * @since 9.2.7
      */
     public String getPageNumber() {
@@ -525,23 +500,16 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Get the Sequence Number (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getSequenceNumberAsLong()
+     * @deprecated use #getSequenceNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getSequenceNumberAsNumber() {
         return getComponent2AsNumber();
     }
 
     /**
-     * Alternative method getter for field's Sequence Number as Long
-     * @see #getSequenceNumberAsLong()
+     * @deprecated use #getSequenceNumberAsLong() instead
      * @since 9.2.7
      */
     public java.lang.Long getPageNumberAsLong() {
@@ -549,16 +517,10 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method getter for field's Sequence Number (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getSequenceNumberAsLong()
+     * @deprecated use #getSequenceNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getPageNumberAsNumber() {
         return getSequenceNumberAsNumber();
     }
@@ -656,24 +618,14 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Statement Number
-     *
-     * @see #setStatementNumber(String)
-     *
-     * @param component1 the Statement Number to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setStatementNumber(String) instead
      */
     public Field28 setSettlementNumber(String component1) {
         return setStatementNumber(component1);
     }
 
     /**
-     * Alternative method setter for field's Statement Number from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Statement Number content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent1(java.lang.Long) instead
      * @since 9.2.7
      */
     public Field28 setSettlementNumber(java.lang.Long component1) {
@@ -681,13 +633,7 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Statement Number (component 1) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component1 the Number with the Statement Number content to set
-     * @return the field object to enable build pattern
-     * @see #setStatementNumber(java.lang.Long)
+     * @deprecated use #setStatementNumber(java.lang.Long) instead
      */
     public Field28 setSettlementNumber(java.lang.Number component1) {
         return setStatementNumber(component1);
@@ -786,24 +732,14 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Sequence Number
-     *
-     * @see #setSequenceNumber(String)
-     *
-     * @param component2 the Sequence Number to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setSequenceNumber(String) instead
      */
     public Field28 setPageNumber(String component2) {
         return setSequenceNumber(component2);
     }
 
     /**
-     * Alternative method setter for field's Sequence Number from a Long object.
-     *
-     * @see #setComponent2(java.lang.Long)
-     *
-     * @param component2 Long with the Sequence Number content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.lang.Long) instead
      * @since 9.2.7
      */
     public Field28 setPageNumber(java.lang.Long component2) {
@@ -811,13 +747,7 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Sequence Number (component 2) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component2 the Number with the Sequence Number content to set
-     * @return the field object to enable build pattern
-     * @see #setSequenceNumber(java.lang.Long)
+     * @deprecated use #setSequenceNumber(java.lang.Long) instead
      */
     public Field28 setPageNumber(java.lang.Number component2) {
         return setSequenceNumber(component2);

@@ -64,7 +64,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>4!c(**)[$65z]0-6</code></li>
+ * 		<li>validation pattern: <code>4!c(**)[$65z]0-12</code></li>
  * 		<li>parser pattern: <code>S[$S]0-12</code></li>
  * 		<li>components pattern: <code>SSSSSSSSSSSSS</code></li>
  * </ul>
@@ -94,21 +94,21 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S[$S]0-12";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSSSSSSSSSSSS";
 
 	/**
@@ -288,7 +288,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSSSSSSSSSSSS";
     }
@@ -318,7 +318,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String validatorPattern() {
-        return "4!c(**)[$65z]0-6";
+        return "4!c(**)[$65z]0-12";
     }
 
     /**
@@ -526,7 +526,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address
-     * @see #getNameAndAddressLine1()
+     * @deprecated use #getNameAndAddressLine1() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine1() {
@@ -562,23 +562,14 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method getter for concatenation
-     * of component 2 to component 13 joined together with a copy of the
-     * specified delimiter.
-     * @return the Name And Address from components
-     * @see #getNameAndAddress()
+     * @deprecated use #getNameAndAddress() instead
      */
     public String getNameandAddress() {
         return getNameAndAddress();
     }
 
     /**
-     * Alternative method getter for concatenation
-     * of component 2 to component 13 joined together with a copy of the
-     * specified delimiter.
-     * @param deli the delimiter that separates each component
-     * @return the Name And Address from components
-     * @see #getNameAndAddress()
+     * @deprecated use #getNameAndAddress() instead
      */
     public String getNameandAddress(CharSequence deli) {
         return getNameAndAddress(deli);
@@ -602,7 +593,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 2
-     * @see #getNameAndAddressLine2()
+     * @deprecated use #getNameAndAddressLine2() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine2() {
@@ -627,7 +618,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 3
-     * @see #getNameAndAddressLine3()
+     * @deprecated use #getNameAndAddressLine3() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine3() {
@@ -652,7 +643,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 4
-     * @see #getNameAndAddressLine4()
+     * @deprecated use #getNameAndAddressLine4() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine4() {
@@ -677,7 +668,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 5
-     * @see #getNameAndAddressLine5()
+     * @deprecated use #getNameAndAddressLine5() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine5() {
@@ -702,7 +693,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 6
-     * @see #getNameAndAddressLine6()
+     * @deprecated use #getNameAndAddressLine6() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine6() {
@@ -727,7 +718,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 7
-     * @see #getNameAndAddressLine7()
+     * @deprecated use #getNameAndAddressLine7() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine7() {
@@ -752,7 +743,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 8
-     * @see #getNameAndAddressLine8()
+     * @deprecated use #getNameAndAddressLine8() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine8() {
@@ -777,7 +768,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 9
-     * @see #getNameAndAddressLine9()
+     * @deprecated use #getNameAndAddressLine9() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine9() {
@@ -802,7 +793,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 10
-     * @see #getNameAndAddressLine10()
+     * @deprecated use #getNameAndAddressLine10() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine10() {
@@ -827,7 +818,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 11
-     * @see #getNameAndAddressLine11()
+     * @deprecated use #getNameAndAddressLine11() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine11() {
@@ -852,7 +843,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Name And Address 12
-     * @see #getNameAndAddressLine12()
+     * @deprecated use #getNameAndAddressLine12() instead
      * @since 9.2.7
      */
     public String getNameandAddressLine12() {
@@ -902,12 +893,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address
-     *
-     * @see #setNameAndAddressLine1(String)
-     *
-     * @param component2 the Name And Address to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine1(String) instead
      */
     public Field24G setNameandAddressLine1(String component2) {
         return setNameAndAddressLine1(component2);
@@ -926,12 +912,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for
-     * the Name And Address splitting the parameter lines into components 2 to 13.
-     *
-     * @param value the Name And Address to set, may contain line ends and each line will be set to its correspondent component attribute
-     * @return the field object to enable build pattern
-     * @see #setNameAndAddress(String)
+     * @deprecated use #setNameAndAddress(String) instead
      */
     public Field24G setNameandAddress(String value) {
         return setNameAndAddress(value);
@@ -959,12 +940,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 2
-     *
-     * @see #setNameAndAddressLine2(String)
-     *
-     * @param component3 the Name And Address 2 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine2(String) instead
      */
     public Field24G setNameandAddressLine2(String component3) {
         return setNameAndAddressLine2(component3);
@@ -992,12 +968,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 3
-     *
-     * @see #setNameAndAddressLine3(String)
-     *
-     * @param component4 the Name And Address 3 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine3(String) instead
      */
     public Field24G setNameandAddressLine3(String component4) {
         return setNameAndAddressLine3(component4);
@@ -1025,12 +996,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 4
-     *
-     * @see #setNameAndAddressLine4(String)
-     *
-     * @param component5 the Name And Address 4 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine4(String) instead
      */
     public Field24G setNameandAddressLine4(String component5) {
         return setNameAndAddressLine4(component5);
@@ -1058,12 +1024,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 5
-     *
-     * @see #setNameAndAddressLine5(String)
-     *
-     * @param component6 the Name And Address 5 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine5(String) instead
      */
     public Field24G setNameandAddressLine5(String component6) {
         return setNameAndAddressLine5(component6);
@@ -1091,12 +1052,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 6
-     *
-     * @see #setNameAndAddressLine6(String)
-     *
-     * @param component7 the Name And Address 6 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine6(String) instead
      */
     public Field24G setNameandAddressLine6(String component7) {
         return setNameAndAddressLine6(component7);
@@ -1124,12 +1080,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 7
-     *
-     * @see #setNameAndAddressLine7(String)
-     *
-     * @param component8 the Name And Address 7 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine7(String) instead
      */
     public Field24G setNameandAddressLine7(String component8) {
         return setNameAndAddressLine7(component8);
@@ -1157,12 +1108,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 8
-     *
-     * @see #setNameAndAddressLine8(String)
-     *
-     * @param component9 the Name And Address 8 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine8(String) instead
      */
     public Field24G setNameandAddressLine8(String component9) {
         return setNameAndAddressLine8(component9);
@@ -1190,12 +1136,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 9
-     *
-     * @see #setNameAndAddressLine9(String)
-     *
-     * @param component10 the Name And Address 9 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine9(String) instead
      */
     public Field24G setNameandAddressLine9(String component10) {
         return setNameAndAddressLine9(component10);
@@ -1223,12 +1164,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 10
-     *
-     * @see #setNameAndAddressLine10(String)
-     *
-     * @param component11 the Name And Address 10 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine10(String) instead
      */
     public Field24G setNameandAddressLine10(String component11) {
         return setNameAndAddressLine10(component11);
@@ -1256,12 +1192,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 11
-     *
-     * @see #setNameAndAddressLine11(String)
-     *
-     * @param component12 the Name And Address 11 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine11(String) instead
      */
     public Field24G setNameandAddressLine11(String component12) {
         return setNameAndAddressLine11(component12);
@@ -1289,12 +1220,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Name And Address 12
-     *
-     * @see #setNameAndAddressLine12(String)
-     *
-     * @param component13 the Name And Address 12 to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNameAndAddressLine12(String) instead
      */
     public Field24G setNameandAddressLine12(String component13) {
         return setNameAndAddressLine12(component13);

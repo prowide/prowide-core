@@ -84,21 +84,21 @@ public class Field12B extends Field implements Serializable, GenericField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S/[S]/S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSS";
 
 	/**
@@ -253,7 +253,7 @@ public class Field12B extends Field implements Serializable, GenericField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSS";
     }
@@ -422,7 +422,7 @@ public class Field12B extends Field implements Serializable, GenericField {
 
     /**
      * Alternative method getter for field's Instrument Type Code
-     * @see #getInstrumentTypeCode()
+     * @deprecated use #getInstrumentTypeCode() instead
      * @since 9.2.7
      */
     public String getType() {
@@ -493,12 +493,7 @@ public class Field12B extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative method setter for field's Instrument Type Code
-     *
-     * @see #setInstrumentTypeCode(String)
-     *
-     * @param component3 the Instrument Type Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setInstrumentTypeCode(String) instead
      */
     public Field12B setType(String component3) {
         return setInstrumentTypeCode(component3);

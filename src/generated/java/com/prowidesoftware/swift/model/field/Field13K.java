@@ -88,21 +88,21 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S//S/N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSI";
 
 	/**
@@ -121,11 +121,10 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer QUANTITY = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Quantity Component number.
-	 * @see #QUANTITY
+	 * @deprecated use #QUANTITY instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer AMOUNT = 3;
 
     /**
@@ -265,7 +264,7 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSN";
     }
@@ -432,16 +431,10 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Get the component 3 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent3AsBigDecimal()
+     * @deprecated use #getComponent3AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent3AsNumber() {
         return getComponent3AsBigDecimal();
     }
@@ -456,11 +449,11 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Quantity
-     * @see #getQuantity()
+     * @deprecated use #getQuantity() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getAmount() {
         return getQuantity();
     }
@@ -475,41 +468,28 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Get the Quantity (component 3) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getQuantityAsBigDecimal()
+     * @deprecated use #getQuantityAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getQuantityAsNumber() {
         return getComponent3AsNumber();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Quantity as BigDecimal
-     * @see #getQuantityAsBigDecimal()
+     * @deprecated use #getQuantityAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getQuantityAsBigDecimal();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Quantity (component 3) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getQuantityAsBigDecimal()
+     * @deprecated use #getQuantityAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getAmountAsNumber() {
         return getQuantityAsNumber();
     }
@@ -651,45 +631,29 @@ public class Field13K extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Quantity
-     *
-     * @see #setQuantity(String)
-     *
-     * @param component3 the Quantity to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setQuantity(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field13K setAmount(String component3) {
         return setQuantity(component3);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Quantity from a BigDecimal object.
-     *
-     * @see #setComponent3(java.math.BigDecimal)
-     *
-     * @param component3 BigDecimal with the Quantity content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent3(java.math.BigDecimal) instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field13K setAmount(java.math.BigDecimal component3) {
         return setQuantity(component3);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Quantity (component 3) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component3 the Number with the Quantity content to set
-     * @return the field object to enable build pattern
-     * @see #setQuantity(java.math.BigDecimal)
+     * @deprecated use #setQuantity(java.math.BigDecimal) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field13K setAmount(java.lang.Number component3) {
         return setQuantity(component3);
     }

@@ -87,21 +87,21 @@ public class Field32M extends Field implements Serializable, MonetaryAmountConta
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "SN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "CN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "CI";
 
 	/**
@@ -240,7 +240,7 @@ public class Field32M extends Field implements Serializable, MonetaryAmountConta
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "CN";
     }
@@ -403,16 +403,10 @@ public class Field32M extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsBigDecimal()
+     * @deprecated use #getComponent2AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         return getComponent2AsBigDecimal();
     }
@@ -435,16 +429,10 @@ public class Field32M extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Get the Amount (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @deprecated use #getAmountAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getAmountAsNumber() {
         return getComponent2AsNumber();
     }

@@ -87,21 +87,21 @@ public class Field34J extends Field implements Serializable, AmountContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "[c]<CUR>N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSI";
 
 	/**
@@ -115,11 +115,10 @@ public class Field34J extends Field implements Serializable, AmountContainer {
 	public static final Integer UNIT = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Unit Component number.
-	 * @see #UNIT
+	 * @deprecated use #UNIT instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CURRENCY = 2;
 
 	/**
@@ -265,7 +264,7 @@ public class Field34J extends Field implements Serializable, AmountContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSN";
     }
@@ -418,11 +417,11 @@ public class Field34J extends Field implements Serializable, AmountContainer {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Unit
-     * @see #getUnit()
+     * @deprecated use #getUnit() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCurrency() {
         return getUnit();
     }
@@ -446,16 +445,10 @@ public class Field34J extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Get the component 3 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent3AsBigDecimal()
+     * @deprecated use #getComponent3AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent3AsNumber() {
         return getComponent3AsBigDecimal();
     }
@@ -478,16 +471,10 @@ public class Field34J extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Get the Amount (component 3) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @deprecated use #getAmountAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getAmountAsNumber() {
         return getComponent3AsNumber();
     }
@@ -535,15 +522,10 @@ public class Field34J extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Unit
-     *
-     * @see #setUnit(String)
-     *
-     * @param component2 the Unit to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setUnit(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field34J setCurrency(String component2) {
         return setUnit(component2);
     }

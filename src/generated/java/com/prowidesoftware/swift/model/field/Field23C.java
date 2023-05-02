@@ -81,21 +81,21 @@ public class Field23C extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "S";
 
 	/**
@@ -104,11 +104,10 @@ public class Field23C extends Field implements Serializable {
 	public static final Integer SETTLEMENT_CALCULATION = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Settlement Calculation Component number.
-	 * @see #SETTLEMENT_CALCULATION
+	 * @deprecated use #SETTLEMENT_CALCULATION instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CODE = 1;
 
     /**
@@ -227,7 +226,7 @@ public class Field23C extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "S";
     }
@@ -355,11 +354,11 @@ public class Field23C extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Settlement Calculation
-     * @see #getSettlementCalculation()
+     * @deprecated use #getSettlementCalculation() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCode() {
         return getSettlementCalculation();
     }
@@ -386,15 +385,10 @@ public class Field23C extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Settlement Calculation
-     *
-     * @see #setSettlementCalculation(String)
-     *
-     * @param component1 the Settlement Calculation to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setSettlementCalculation(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field23C setCode(String component1) {
         return setSettlementCalculation(component1);
     }

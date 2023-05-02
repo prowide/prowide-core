@@ -88,21 +88,21 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S//[S]N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSI";
 
 	/**
@@ -121,11 +121,10 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
 	public static final Integer BALANCE = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Balance Component number.
-	 * @see #BALANCE
+	 * @deprecated use #BALANCE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer AMOUNT = 3;
 
     /**
@@ -264,7 +263,7 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSN";
     }
@@ -434,16 +433,10 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Get the component 3 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent3AsBigDecimal()
+     * @deprecated use #getComponent3AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent3AsNumber() {
         return getComponent3AsBigDecimal();
     }
@@ -458,11 +451,11 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Balance
-     * @see #getBalance()
+     * @deprecated use #getBalance() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getAmount() {
         return getBalance();
     }
@@ -477,41 +470,28 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Get the Balance (component 3) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getBalanceAsBigDecimal()
+     * @deprecated use #getBalanceAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getBalanceAsNumber() {
         return getComponent3AsNumber();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Balance as BigDecimal
-     * @see #getBalanceAsBigDecimal()
+     * @deprecated use #getBalanceAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getBalanceAsBigDecimal();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Balance (component 3) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getBalanceAsBigDecimal()
+     * @deprecated use #getBalanceAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getAmountAsNumber() {
         return getBalanceAsNumber();
     }
@@ -653,45 +633,29 @@ public class Field93D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Balance
-     *
-     * @see #setBalance(String)
-     *
-     * @param component3 the Balance to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setBalance(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field93D setAmount(String component3) {
         return setBalance(component3);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Balance from a BigDecimal object.
-     *
-     * @see #setComponent3(java.math.BigDecimal)
-     *
-     * @param component3 BigDecimal with the Balance content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent3(java.math.BigDecimal) instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field93D setAmount(java.math.BigDecimal component3) {
         return setBalance(component3);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Balance (component 3) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component3 the Number with the Balance content to set
-     * @return the field object to enable build pattern
-     * @see #setBalance(java.math.BigDecimal)
+     * @deprecated use #setBalance(java.math.BigDecimal) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field93D setAmount(java.lang.Number component3) {
         return setBalance(component3);
     }

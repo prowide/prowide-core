@@ -82,21 +82,21 @@ public class Field77F extends Field implements Serializable, MultiLineField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "S";
 
 	/**
@@ -105,11 +105,10 @@ public class Field77F extends Field implements Serializable, MultiLineField {
 	public static final Integer EDIFACT_MESSAGE = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's EDIFACT Message Component number.
-	 * @see #EDIFACT_MESSAGE
+	 * @deprecated use #EDIFACT_MESSAGE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer DIFACT_MESSAGE = 1;
 
     /**
@@ -228,7 +227,7 @@ public class Field77F extends Field implements Serializable, MultiLineField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "S";
     }
@@ -356,11 +355,11 @@ public class Field77F extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's EDIFACT Message
-     * @see #getEDIFACTMessage()
+     * @deprecated use #getEDIFACTMessage() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getDIFACTMessage() {
         return getEDIFACTMessage();
     }
@@ -387,15 +386,10 @@ public class Field77F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's EDIFACT Message
-     *
-     * @see #setEDIFACTMessage(String)
-     *
-     * @param component1 the EDIFACT Message to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setEDIFACTMessage(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field77F setDIFACTMessage(String component1) {
         return setEDIFACTMessage(component1);
     }

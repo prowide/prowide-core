@@ -220,29 +220,19 @@ public class Field95P extends OptionPPartyField implements Serializable, BICCont
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's IdentifierCode
-     *
-     * @see #setIdentifierCode(String)
-     *
-     * @param component2 the IdentifierCode to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setIdentifierCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field95P setBIC(String component2) {
         return setIdentifierCode(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's IdentifierCode from a BIC object.
-     *
-     * @see #setComponent2(com.prowidesoftware.swift.model.BIC)
-     *
-     * @param component2 BIC with the IdentifierCode content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(com.prowidesoftware.swift.model.BIC) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field95P setBIC(com.prowidesoftware.swift.model.BIC component2) {
         return setIdentifierCode(component2);
     }

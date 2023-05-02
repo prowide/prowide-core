@@ -90,21 +90,21 @@ public class Field98D extends Field implements Serializable, DateContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "<DATE4><TIME2>[,S][/[c]<TIME3>]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "DTNSW";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "DTNSW";
 
 	/**
@@ -312,7 +312,7 @@ public class Field98D extends Field implements Serializable, DateContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "DTNSW";
     }
@@ -526,16 +526,10 @@ public class Field98D extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the component 3 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsLong()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent3AsLong()
+     * @deprecated use #getComponent3AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -559,16 +553,10 @@ public class Field98D extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the Decimals (component 3) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsLong()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getDecimalsAsLong()
+     * @deprecated use #getDecimalsAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getDecimalsAsNumber() {
         return getComponent3AsNumber();
     }
@@ -1005,13 +993,6 @@ public class Field98D extends Field implements Serializable, DateContainer {
     }
 
 	/**
-	 * @deprecated Use OFFSET instead
-	 */
-	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public static final Integer UTC_INDICATOR = 5;
-
-	/**
 	 * Get the ISO UTC Indicator combining the sign and offset, and changing the "N" negative sign indication by
 	 * proper +/- signs
 	 * @return the the UTC indicator such as +0100 or -0300
@@ -1027,43 +1008,4 @@ public class Field98D extends Field implements Serializable, DateContainer {
 	    return null;
 	}
 
-	/**
-     * @deprecated Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public String getUTCIndicator() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getUTCIndicator()", "Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset");
-        return getOffset();
-    }
-
-    /**
-     * @deprecated Use getOffsetAsCalendar() instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public java.util.Calendar getUTCIndicatorAsCalendar() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getUTCIndicatorAsCalendar()", "Use getOffsetAsCalendar() instead");
-        return SwiftFormatUtils.getTime3(getOffset());
-    }
-
-    /**
-     * @deprecated Use setOffset(String) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public Field98D setUTCIndicator(String component) {
-	    com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setUTCIndicator(String)", "Use setOffset(String) instead");
-	    return setOffset(component);
-	}
-
-	/**
-     * @deprecated Use setOffset(Calendar) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public Field98D setUTCIndicator(java.util.Calendar cal) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setUTCIndicator(Calendar)", "Use setOffset(Calendar) instead");
-        return setOffset(cal);
-	}
 }

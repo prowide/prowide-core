@@ -81,21 +81,21 @@ public class Field22Q extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "S";
 
 	/**
@@ -104,11 +104,10 @@ public class Field22Q extends Field implements Serializable {
 	public static final Integer PORTFOLIO = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Portfolio Component number.
-	 * @see #PORTFOLIO
+	 * @deprecated use #PORTFOLIO instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer TYPE = 1;
 
     /**
@@ -227,7 +226,7 @@ public class Field22Q extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "S";
     }
@@ -355,11 +354,11 @@ public class Field22Q extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Portfolio
-     * @see #getPortfolio()
+     * @deprecated use #getPortfolio() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getType() {
         return getPortfolio();
     }
@@ -386,15 +385,10 @@ public class Field22Q extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Portfolio
-     *
-     * @see #setPortfolio(String)
-     *
-     * @param component1 the Portfolio to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setPortfolio(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field22Q setType(String component1) {
         return setPortfolio(component1);
     }

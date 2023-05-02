@@ -90,21 +90,21 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S$<DATE2>[$4!S6!S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "MENN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "MENN";
 
 	/**
@@ -113,11 +113,10 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
 	public static final Integer MT_NUMBER = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's MT Number Component number.
-	 * @see #MT_NUMBER
+	 * @deprecated use #MT_NUMBER instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer MT = 1;
 
 	/**
@@ -293,7 +292,7 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "MENN";
     }
@@ -436,11 +435,11 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's MT Number
-     * @see #getMTNumber()
+     * @deprecated use #getMTNumber() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getMT() {
         return getMTNumber();
     }
@@ -497,16 +496,10 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Get the component 3 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsLong()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent3AsLong()
+     * @deprecated use #getComponent3AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -530,16 +523,10 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Get the Session Number (component 3) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsLong()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getSessionNumberAsLong()
+     * @deprecated use #getSessionNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getSessionNumberAsNumber() {
         return getComponent3AsNumber();
     }
@@ -563,16 +550,10 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Get the component 4 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent4AsLong()
+     * @deprecated use #getComponent4AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -596,16 +577,10 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Get the ISN (component 4) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getISNAsLong()
+     * @deprecated use #getISNAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getISNAsNumber() {
         return getComponent4AsNumber();
     }
@@ -632,15 +607,10 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's MT Number
-     *
-     * @see #setMTNumber(String)
-     *
-     * @param component1 the MT Number to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setMTNumber(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field11R setMT(String component1) {
         return setMTNumber(component1);
     }

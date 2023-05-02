@@ -83,21 +83,21 @@ public class Field69J extends Field implements Serializable, GenericField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S//S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
@@ -111,11 +111,10 @@ public class Field69J extends Field implements Serializable, GenericField {
 	public static final Integer DATE_CODE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date Code Component number.
-	 * @see #DATE_CODE
+	 * @deprecated use #DATE_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CODE = 2;
 
     /**
@@ -242,7 +241,7 @@ public class Field69J extends Field implements Serializable, GenericField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SS";
     }
@@ -389,11 +388,11 @@ public class Field69J extends Field implements Serializable, GenericField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Date Code
-     * @see #getDateCode()
+     * @deprecated use #getDateCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCode() {
         return getDateCode();
     }
@@ -441,15 +440,10 @@ public class Field69J extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Date Code
-     *
-     * @see #setDateCode(String)
-     *
-     * @param component2 the Date Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setDateCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field69J setCode(String component2) {
         return setDateCode(component2);
     }

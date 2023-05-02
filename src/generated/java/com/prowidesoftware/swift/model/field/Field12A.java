@@ -84,21 +84,21 @@ public class Field12A extends Field implements Serializable, GenericField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S/[S]/S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSS";
 
 	/**
@@ -117,11 +117,10 @@ public class Field12A extends Field implements Serializable, GenericField {
 	public static final Integer INSTRUMENT_CODE_OR_DESCRIPTION = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Instrument Code Or Description Component number.
-	 * @see #INSTRUMENT_CODE_OR_DESCRIPTION
+	 * @deprecated use #INSTRUMENT_CODE_OR_DESCRIPTION instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer INSTRUMENT_CODE = 3;
 
     /**
@@ -255,7 +254,7 @@ public class Field12A extends Field implements Serializable, GenericField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSS";
     }
@@ -424,11 +423,11 @@ public class Field12A extends Field implements Serializable, GenericField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Instrument Code Or Description
-     * @see #getInstrumentCodeOrDescription()
+     * @deprecated use #getInstrumentCodeOrDescription() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getInstrumentCode() {
         return getInstrumentCodeOrDescription();
     }
@@ -497,15 +496,10 @@ public class Field12A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Instrument Code Or Description
-     *
-     * @see #setInstrumentCodeOrDescription(String)
-     *
-     * @param component3 the Instrument Code Or Description to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setInstrumentCodeOrDescription(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field12A setInstrumentCode(String component3) {
         return setInstrumentCodeOrDescription(component3);
     }

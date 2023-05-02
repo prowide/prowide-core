@@ -82,21 +82,21 @@ public class Field23A extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S/S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
@@ -105,11 +105,10 @@ public class Field23A extends Field implements Serializable {
 	public static final Integer TYPE_OF_SWAP = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Type Of Swap Component number.
-	 * @see #TYPE_OF_SWAP
+	 * @deprecated use #TYPE_OF_SWAP instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CODE = 1;
 
 	/**
@@ -118,11 +117,10 @@ public class Field23A extends Field implements Serializable {
 	public static final Integer SETTLEMENT_METHOD = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Settlement Method Component number.
-	 * @see #SETTLEMENT_METHOD
+	 * @deprecated use #SETTLEMENT_METHOD instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer ADDITIONAL_INFORMATION = 2;
 
     /**
@@ -248,7 +246,7 @@ public class Field23A extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SS";
     }
@@ -381,11 +379,11 @@ public class Field23A extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Type Of Swap
-     * @see #getTypeOfSwap()
+     * @deprecated use #getTypeOfSwap() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCode() {
         return getTypeOfSwap();
     }
@@ -408,11 +406,11 @@ public class Field23A extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Settlement Method
-     * @see #getSettlementMethod()
+     * @deprecated use #getSettlementMethod() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getAdditionalInformation() {
         return getSettlementMethod();
     }
@@ -439,15 +437,10 @@ public class Field23A extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Type Of Swap
-     *
-     * @see #setTypeOfSwap(String)
-     *
-     * @param component1 the Type Of Swap to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setTypeOfSwap(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field23A setCode(String component1) {
         return setTypeOfSwap(component1);
     }
@@ -474,15 +467,10 @@ public class Field23A extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Settlement Method
-     *
-     * @see #setSettlementMethod(String)
-     *
-     * @param component2 the Settlement Method to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setSettlementMethod(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field23A setAdditionalInformation(String component2) {
         return setSettlementMethod(component2);
     }

@@ -83,21 +83,21 @@ public class Field13A extends Field implements Serializable, GenericField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S//S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SS";
 
 	/**
@@ -240,7 +240,7 @@ public class Field13A extends Field implements Serializable, GenericField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SS";
     }
@@ -387,7 +387,7 @@ public class Field13A extends Field implements Serializable, GenericField {
 
     /**
      * Alternative method getter for field's Number Id
-     * @see #getNumberId()
+     * @deprecated use #getNumberId() instead
      * @since 9.2.7
      */
     public String getNumberIdentification() {
@@ -437,12 +437,7 @@ public class Field13A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative method setter for field's Number Id
-     *
-     * @see #setNumberId(String)
-     *
-     * @param component2 the Number Id to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setNumberId(String) instead
      */
     public Field13A setNumberIdentification(String component2) {
         return setNumberId(component2);

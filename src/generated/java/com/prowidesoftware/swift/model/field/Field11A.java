@@ -86,21 +86,21 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S//S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SC";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SC";
 
 	/**
@@ -114,11 +114,10 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
 	public static final Integer CURRENCY_CODE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code Component number.
-	 * @see #CURRENCY_CODE
+	 * @deprecated use #CURRENCY_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CURRENCY = 2;
 
     /**
@@ -245,7 +244,7 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SC";
     }
@@ -401,11 +400,11 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Currency Code
-     * @see #getCurrencyCode()
+     * @deprecated use #getCurrencyCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCurrency() {
         return getCurrencyCode();
     }
@@ -419,11 +418,10 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Currency Code as Currency
-     * @see #getCurrencyCodeAsCurrency()
+     * @deprecated use #getCurrencyCodeAsCurrency() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.util.Currency getCurrencyAsCurrency() {
         return getCurrencyCodeAsCurrency();
     }
@@ -494,29 +492,19 @@ public class Field11A extends Field implements Serializable, CurrencyContainer, 
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code
-     *
-     * @see #setCurrencyCode(String)
-     *
-     * @param component2 the Currency Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setCurrencyCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field11A setCurrency(String component2) {
         return setCurrencyCode(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code from a Currency object.
-     *
-     * @see #setComponent2(java.util.Currency)
-     *
-     * @param component2 Currency with the Currency Code content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.util.Currency) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field11A setCurrency(java.util.Currency component2) {
         return setCurrencyCode(component2);
     }

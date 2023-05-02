@@ -85,21 +85,21 @@ public class Field13C extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "/S/<HHMM><SIGN><OFFSET>";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SHGO";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SHGO";
 
 	/**
@@ -113,11 +113,10 @@ public class Field13C extends Field implements Serializable {
 	public static final Integer TIME_INDICATION = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Time Indication Component number.
-	 * @see #TIME_INDICATION
+	 * @deprecated use #TIME_INDICATION instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer TIME = 2;
 
 	/**
@@ -131,11 +130,10 @@ public class Field13C extends Field implements Serializable {
 	public static final Integer TIME_OFFSET = 4;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Time Offset Component number.
-	 * @see #TIME_OFFSET
+	 * @deprecated use #TIME_OFFSET instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer OFFSET = 4;
 
     /**
@@ -287,7 +285,7 @@ public class Field13C extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SHGO";
     }
@@ -451,11 +449,11 @@ public class Field13C extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Time Indication
-     * @see #getTimeIndication()
+     * @deprecated use #getTimeIndication() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getTime() {
         return getTimeIndication();
     }
@@ -469,11 +467,10 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Time Indication as Calendar
-     * @see #getTimeIndicationAsCalendar()
+     * @deprecated use #getTimeIndicationAsCalendar() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.util.Calendar getTimeAsCalendar() {
         return getTimeIndicationAsCalendar();
     }
@@ -521,11 +518,11 @@ public class Field13C extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Time Offset
-     * @see #getTimeOffset()
+     * @deprecated use #getTimeOffset() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getOffset() {
         return getTimeOffset();
     }
@@ -539,11 +536,10 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Time Offset as Calendar
-     * @see #getTimeOffsetAsCalendar()
+     * @deprecated use #getTimeOffsetAsCalendar() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.util.Calendar getOffsetAsCalendar() {
         return getTimeOffsetAsCalendar();
     }
@@ -614,29 +610,19 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Time Indication
-     *
-     * @see #setTimeIndication(String)
-     *
-     * @param component2 the Time Indication to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setTimeIndication(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field13C setTime(String component2) {
         return setTimeIndication(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Time Indication from a Calendar object.
-     *
-     * @see #setComponent2(java.util.Calendar)
-     *
-     * @param component2 Calendar with the Time Indication content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.util.Calendar) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field13C setTime(java.util.Calendar component2) {
         return setTimeIndication(component2);
     }
@@ -707,29 +693,19 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Time Offset
-     *
-     * @see #setTimeOffset(String)
-     *
-     * @param component4 the Time Offset to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setTimeOffset(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field13C setOffset(String component4) {
         return setTimeOffset(component4);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Time Offset from a Calendar object.
-     *
-     * @see #setComponent4(java.util.Calendar)
-     *
-     * @param component4 Calendar with the Time Offset content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent4(java.util.Calendar) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field13C setOffset(java.util.Calendar component4) {
         return setTimeOffset(component4);
     }
