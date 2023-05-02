@@ -861,7 +861,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public abstract String componentsPattern();
 
     /**

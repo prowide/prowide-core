@@ -46,7 +46,7 @@ public class SwiftMessageUtils {
      * @deprecated Use the static API instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public SwiftMessageUtils() {
         this(null);
     }
@@ -55,7 +55,7 @@ public class SwiftMessageUtils {
      * @deprecated Use the static API instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public SwiftMessageUtils(final SwiftMessage m) {
         this.msg = m;
     }
@@ -716,7 +716,7 @@ public class SwiftMessageUtils {
      * @deprecated Use the static {@link #currencyStrings(SwiftMessage)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public List<String> currencyStrings() {
         return currencyStrings(msg);
     }
@@ -725,7 +725,7 @@ public class SwiftMessageUtils {
      * @deprecated Use the static {@link #valueDate(SwiftMessage)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Calendar valueDate() {
         return valueDate(msg);
     }
@@ -734,7 +734,7 @@ public class SwiftMessageUtils {
      * @deprecated Use the static {@link #reference(SwiftMessage)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public final String reference() {
         return reference(msg);
     }
@@ -743,7 +743,7 @@ public class SwiftMessageUtils {
      * @deprecated Use the static {@link #money(SwiftMessage)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     protected Money money() {
         return money(msg);
     }

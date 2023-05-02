@@ -47,7 +47,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final String COMPONENTS_PATTERN = "SB";
 
     /**
@@ -71,7 +71,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use {@link #IDENTIFIER_CODE} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer BIC = 2;
 
     /**
@@ -147,7 +147,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     @Override
     public final String componentsPattern() {
         DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");
@@ -328,7 +328,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use {@link #getIdentifierCode()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getBIC() {
         DeprecationUtils.phase2(getClass(), "getBIC()", "Use getIdentifierCode() instead.");
         return getIdentifierCode();
@@ -346,7 +346,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use #getIdentifierCodeAsBIC() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
         DeprecationUtils.phase2(getClass(), "getBICAsBIC()", "Use getIdentifierCodeAsBIC() instead.");
         return getIdentifierCodeAsBIC();

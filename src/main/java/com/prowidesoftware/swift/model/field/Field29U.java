@@ -65,7 +65,7 @@ import com.google.gson.JsonParser;
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
 @Deprecated
-@ProwideDeprecated(phase2 = TargetYear.SRU2023)
+@ProwideDeprecated(phase3 = TargetYear.SRU2024)
 public class Field29U extends Field implements Serializable, BICContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
@@ -86,21 +86,21 @@ public class Field29U extends Field implements Serializable, BICContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "B";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "B";
 
 	/**
@@ -113,7 +113,7 @@ public class Field29U extends Field implements Serializable, BICContainer {
 	 * @see #IDENTIFIERCODE
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer BIC = 1;
 
     /**
@@ -232,7 +232,7 @@ public class Field29U extends Field implements Serializable, BICContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "B";
     }
@@ -373,7 +373,7 @@ public class Field29U extends Field implements Serializable, BICContainer {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getBIC() {
         return getIdentifierCode();
     }
@@ -391,7 +391,7 @@ public class Field29U extends Field implements Serializable, BICContainer {
      * @see #getIdentifierCodeAsBIC()
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
         return getIdentifierCodeAsBIC();
     }
@@ -449,7 +449,7 @@ public class Field29U extends Field implements Serializable, BICContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field29U setBIC(String component1) {
         return setIdentifierCode(component1);
     }
@@ -463,7 +463,7 @@ public class Field29U extends Field implements Serializable, BICContainer {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field29U setBIC(com.prowidesoftware.swift.model.BIC component1) {
         return setIdentifierCode(component1);
     }

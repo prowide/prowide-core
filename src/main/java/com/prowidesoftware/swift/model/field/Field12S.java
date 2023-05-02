@@ -62,7 +62,7 @@ import com.google.gson.JsonParser;
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
 @Deprecated
-@ProwideDeprecated(phase2 = TargetYear.SRU2023)
+@ProwideDeprecated(phase3 = TargetYear.SRU2024)
 public class Field12S extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
@@ -83,21 +83,21 @@ public class Field12S extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "S";
 
 	/**
@@ -221,7 +221,7 @@ public class Field12S extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "S";
     }
