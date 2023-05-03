@@ -1103,7 +1103,7 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
     public String getNarrative() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrative()", "Use getRateStatus() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrative()", "Use getRateStatus() instead");
         return getRateStatus();
     }
 
@@ -1113,7 +1113,7 @@ public class Field92J extends Field implements Serializable, MonetaryAmountConta
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
     public Field92J setNarrative(String narrative) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "setNarrative(String)", "Use setRateStatus(String) instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrative(String)", "Use setRateStatus(String) instead");
         return setRateStatus(narrative);
     }
 
