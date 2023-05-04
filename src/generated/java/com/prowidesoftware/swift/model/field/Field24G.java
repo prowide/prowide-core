@@ -198,8 +198,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     @Override
     public void parse(final String value) {
         init(13);
-        // @NotImplemented
-        throw new org.apache.commons.lang3.NotImplementedException("Missing parserPattern in Field.vm : S[$S]0-12");
+        List<String> lines = SwiftParseUtils.getLines(value);
+        SwiftParseUtils.setComponentsFromLines(this, 1, null, 0, lines);
     }
 
     /**
@@ -208,9 +208,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        //FIXME serialization S[$S]0-12
-        // @NotImplemented
-        int notImplemented;
+        appendInLines(result, 1, 13);
         return result.toString();
     }
 
