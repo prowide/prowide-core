@@ -661,7 +661,6 @@ public class MT210 extends AbstractMT implements Serializable {
     @Deprecated
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2024)
 	public static List<SequenceA> getSequenceAList(final SwiftTagListBlock parentSequence) {
-	    com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getSequenceAList", "Use getLoop1List(SwiftTagListBlock) instead");
 		List<SequenceA> result = new ArrayList<>();
         getLoop1List(parentSequence).forEach(s -> result.add(new SequenceA(s)));
         return result;
@@ -674,7 +673,6 @@ public class MT210 extends AbstractMT implements Serializable {
     @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2024)
 	public static class SequenceA extends SwiftTagListBlock {
 	    private SequenceA(final Loop1 content) {
-	        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "SequenceA(Loop1)", "Use Loop1() instead");
             super(content.getTags());
         }
     }
