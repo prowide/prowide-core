@@ -319,7 +319,7 @@ public class SwiftParserConsumeBlockLenientTest {
         assertEquals("00112233", b.getTagValue("108"));
         assertTrue(b.containsTag("4"));
         assertEquals("foobar", b.getTagValue("4"));
-        assertEquals(b.getUnparsedTextsSize(), new Integer(1));
+        assertEquals(b.getUnparsedTextsSize(), Integer.valueOf(1));
         assertEquals(b.unparsedTextGetText(0), "blockdata");
     }
 
