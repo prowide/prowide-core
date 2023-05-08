@@ -24,21 +24,25 @@ group 'com.prowidesoftware'
 
 project.ext {
     SRU = 'SRU2022'
+    // this is not working since the version is unresolved at this point, to publish snapshots just uncomment below until this is fixed
+    nexusRepo = 'maven-snapshots'
+    //nexusRepo = project.version.endsWith('-SNAPSHOT') ? 'maven-snapshots' : 'maven-releases'
 }
 
-scmVersion {
-    tag {
-        prefix.set("${SRU}")
-        versionSeparator.set('-')
-    }
-}
-project.version = "${SRU}-${scmVersion.version}"
+//scmVersion {
+//    tag {
+//        prefix.set("${SRU}")
+//        versionSeparator.set('-')
+//    }
+//}
+//version = "${SRU}-${scmVersion.version}"
+version = 'SRU2022-10.0.0-RC1-SNAPSHOT'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(8))
+            languageVersion.set(JavaLanguageVersion.of(11))
         }
     }
     doFirst {
