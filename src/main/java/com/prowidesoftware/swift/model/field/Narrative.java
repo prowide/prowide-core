@@ -485,6 +485,15 @@ public class Narrative {
         }
 
         /**
+         * Adds unstructured narrative content strictly wrapped into lines without any format or slash separator
+         */
+        public Builder addUnstructuredStrict(String narrative) {
+            List<String> lines = LineWrapper.wrapIntoListStrict(narrative, lineLength);
+            this.unstructuredFragments.addAll(lines);
+            return this;
+        }
+
+        /**
          * Wraps the text into lines considering the prefix size for the first line and considering the "//" prefix
          * that would be added to the following lines in the serialization
          */
