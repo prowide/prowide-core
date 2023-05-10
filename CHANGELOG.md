@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.3.15 - SNAPSHOT
+#### 9.3.15 - May 2023
   * (PW-1341) Avoid log pollution with exception stacktrace in Field#formatAccount method
   * (PW-1264) Added distinguishedName(boolean includeDefaultBranch) method to BIC in order to return default branch name
 
