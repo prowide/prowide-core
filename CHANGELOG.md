@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.15 - SNAPSHOT
+* (PW-1341) Avoid log pollution with exception stacktrace in Field#formatAccount method
+
 #### 9.3.14 - March 2023
   * (PW-1182) Fixed MT internal Loops API, when strategy is GENERATED_FIXED_WITH_OPTIONAL_TAIL and the tail part contains repetitive fields, such as MT920
   * (PW-1241) Added addUnstructuredStrict method to Narrative in order to strictly wrap unstructured input
