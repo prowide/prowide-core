@@ -155,6 +155,9 @@ public class BICTest {
         assertEquals("o=bacoarb1,o=swift", new BIC("BACOARB1").distinguishedName());
         assertEquals("o=bacoarb1,o=swift", new BIC("BACOARB1XXX").distinguishedName());
         assertEquals("ou=0be,o=bacoarb1,o=swift", new BIC("BACOARB10BE").distinguishedName());
+
+        assertEquals("ou=xxx,o=bacoarb1,o=swift", new BIC("BACOARB1").distinguishedName(true));
+        assertEquals("ou=xxx,o=bacoarb1,o=swift", new BIC("BACOARB1XXX").distinguishedName(true));
     }
 
     @Test
