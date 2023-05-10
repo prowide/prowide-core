@@ -34,13 +34,13 @@ scmVersion {
 }
 project.version = "${SRU}-${scmVersion.version}"
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-    }
-}
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(8))
+        }
+    }
     doFirst {
         println 'Compiling with ' + getJavaCompiler().get().getMetadata().getInstallationPath()
     }
