@@ -36,7 +36,7 @@ project.ext {
 //    }
 //}
 //version = "${SRU}-${scmVersion.version}"
-version = 'SRU2022-10.0.0-RC1-SNAPSHOT'
+version = 'SRU2022-10.0.0-RC1'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
