@@ -137,7 +137,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     // TODO support user formatting masks from property file
     protected static String formatAccount(final String a) {
-        if (a != null) {
+        if (a != null && a.length() > 12) {
             final StringBuilder result = new StringBuilder(a);
             try {
                 result.insert(4, '-');
