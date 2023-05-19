@@ -1,4 +1,4 @@
-package com.prowidesoftware.swift.issues;
+package com.prowidesoftware.issues;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
