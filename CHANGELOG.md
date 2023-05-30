@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.0.0-RC1 - May 2023
+#### 10.0.0 - May 2023
   * Migration to Java 11
   * Migration to Jakarta EE 10
 
