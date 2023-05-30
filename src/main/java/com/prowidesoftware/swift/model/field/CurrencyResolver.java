@@ -51,7 +51,7 @@ public class CurrencyResolver {
     @Deprecated
     @ProwideDeprecated(phase4= TargetYear.SRU2024)
     public static List<String> resolveComponentsPattern(String pattern, List<String> components) {
-        DeprecationUtils.phase2(CurrencyResolver.class, "resolveComponentsPattern", "Use currencyStrings instead");
+        DeprecationUtils.phase3(CurrencyResolver.class, "resolveComponentsPattern", "Use currencyStrings instead");
         return ResolverUtils.findWantedType(pattern, 'C', components);
     }
 

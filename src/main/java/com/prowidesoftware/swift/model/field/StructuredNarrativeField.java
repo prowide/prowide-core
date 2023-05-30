@@ -111,7 +111,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     @Override
     public final String componentsPattern() {
-        DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");
+        DeprecationUtils.phase3(getClass(), "componentsPattern()", "Use typesPattern() instead.");
         return typesPattern();
     }
 
