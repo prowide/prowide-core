@@ -179,6 +179,7 @@ public interface SchemeConstantsC {
     String CABF = "CABF";
     String CONB = "CONB";
     String CACF = "CACF";
+    String CLPR = "CLPR";
     String CASHDET = "CASHDET";
     String CASHACCT = "CASHACCT";
     String CASHSECDET = "CASHSECDET";

@@ -102,6 +102,12 @@ public interface SchemeConstantsT {
     String TEMP = "TEMP";
     String TAXVODET = "TAXVODET";
     String TAVO = "TAVO";
+    String TPRI = "TPRI";
+    String TVRC = "TVRC";
+    String TREX = "TREX";
+    String TCOR = "TCOR";
+    String TCFA = "TCFA";
+    String TVOC = "TVOC";
     String TITA = "TITA";
     String TOL = "TOL";
     String TON = "TON";
@@ -121,7 +127,6 @@ public interface SchemeConstantsT {
     String TBAT = "TBAT";
     String TBFF = "TBFF";
     String TBSP = "TBSP";
-    String TCFA = "TCFA";
     String TCKA = "TCKA";
     String TCRP = "TCRP";
     String TDIN = "TDIN";

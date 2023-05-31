@@ -66,6 +66,10 @@ public interface SchemeConstantsM {
     String MFDV = "MFDV";
     String MET2 = "MET2";
     String MET3 = "MET3";
+    String MVBF = "MVBF";
+    String MKTB = "MKTB";
+    String MKTP = "MKTP";
+    String MVPF = "MVPF";
     String MAPL = "MAPL";
     String MEXP = "MEXP";
     String MANU = "MANU";

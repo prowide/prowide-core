@@ -103,6 +103,7 @@ public interface SchemeConstantsR {
     String REVR = "REVR";
     String REFU = "REFU";
     String RECDEL = "RECDEL";
+    String RELC = "RELC";
     String RHOD = "RHOD";
     String RUTH = "RUTH";
     String REPALL = "REPALL";

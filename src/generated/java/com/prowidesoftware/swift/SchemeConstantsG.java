@@ -25,6 +25,9 @@ public interface SchemeConstantsG {
     String GBON = "GBON";
     String GRSS = "GRSS";
     String GUPA = "GUPA";
+    String GCST = "GCST";
+    String GCOS = "GCOS";
+    String GETS = "GETS";
     String GOLD = "GOLD";
     String GRM = "GRM";
     String GECU = "GECU";
