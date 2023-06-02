@@ -133,6 +133,7 @@ public interface SchemeConstantsC {
     String CCPT = "CCPT";
     String CGEN = "CGEN";
     String CASD = "CASD";
+    String CNTI = "CNTI";
     String CALM = "CALM";
     String CACO = "CACO";
     String CBON = "CBON";
@@ -140,10 +141,10 @@ public interface SchemeConstantsC {
     String CPRF = "CPRF";
     String CALDET = "CALDET";
     String CANP = "CANP";
+    String CMPU = "CMPU";
     String CSBT = "CSBT";
     String COLE = "COLE";
     String CACK = "CACK";
-    String CMPU = "CMPU";
     String CMAF = "CMAF";
     String CLTR = "CLTR";
     String CCTR = "CCTR";

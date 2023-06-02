@@ -184,8 +184,9 @@ Sequence D1a1 - Penalty Details (O) (repetitive)<ul><li class="field">Field 16 R
 Fieldset 20
  (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="fieldset">
 Fieldset 22
- (M)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li></ul></li><li class="field">Field 17 B (O)</li>
-<li class="field">Field 25 D (O)</li>
+ (M)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li></ul></li><li class="fieldset">
+Fieldset 17
+ (O)<ul><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="field">Field 25 D (O)</li>
 <li class="fieldset">
 Fieldset 24
  (O)<ul><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li><li>FieldsetItem 24 B (O)</li></ul></li><li class="field">Field 70 D (O)</li>
