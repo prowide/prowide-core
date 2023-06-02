@@ -62,6 +62,11 @@ public interface SchemeConstantsB {
     String BMRB = "BMRB";
     String BRIT = "BRIT";
     String BUY = "BUY";
+    String BY_DEF_PAYMENT = "BY_DEF_PAYMENT";
+    String BY_NEGOTIATION = "BY_NEGOTIATION";
+    String BY_ACCEPTANCE = "BY_ACCEPTANCE";
+    String BY_PAYMENT = "BY_PAYMENT";
+    String BY_MIXED_PYMT = "BY_MIXED_PYMT";
     String BILL = "BILL";
     String BAGN = "BAGN";
     String BATC = "BATC";
