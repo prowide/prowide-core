@@ -55,6 +55,8 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     implementation 'com.google.code.gson:gson:2.9.0'
 
+    // jakarta is only used for annotations, we do not add it as implementation dependency on purpose to avoid forcing
+    // users to use jakarta jars in their project when they might not event be using JPA or JAXB at all
     compileOnly 'jakarta.persistence:jakarta.persistence-api:3.1.0'
     compileOnly 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
     compileOnly 'jakarta.validation:jakarta.validation-api:3.0.2'
