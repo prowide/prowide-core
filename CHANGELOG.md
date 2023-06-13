@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.1-SNAPSHOT
+  * (PW-1323) Fixing missing pattern issue in Field44J
+
 #### 9.4.0 - May 2022
   * SWIFT Standard release update 2023 (live 19 November 2023)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2022/getting-started/deprecation/)
