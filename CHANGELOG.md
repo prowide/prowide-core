@@ -3,6 +3,8 @@
 #### 10.1.0 - SNAPSHOT
   * Migration to Java 11
   * Migration to Jakarta EE 10
+  * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
+  * (PW-1323) Fixing missing pattern issue in Field44J
 
 #### 9.4.0 - May 2022
   * SWIFT Standard release update 2023 (live 19 November 2023)

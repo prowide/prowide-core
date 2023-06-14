@@ -192,8 +192,9 @@ public class Field44J extends Field implements Serializable {
     @Override
     public void parse(final String value) {
         init(3);
-        // @NotImplemented
-        throw new org.apache.commons.lang3.NotImplementedException("Missing parserPattern in Field.vm : S[/S][/S]");
+        setComponent1(SwiftParseUtils.getTokenFirst(value, null, "/"));
+        setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
+        setComponent3(SwiftParseUtils.getTokenThirdLast(value, "/"));
     }
 
     /**
