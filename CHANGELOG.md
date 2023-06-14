@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+
+#### 10.0.1 - SNAPSHOT
+  * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
+
 #### 10.0.0 - May 2023
   * Migration to Java 11
   * Migration to Jakarta EE 10

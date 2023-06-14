@@ -183,14 +183,11 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
         String msgType = getMessageTypeAsString(messageType);
         b2.setMessageType(msgType);
         b2.setInput(true);
-        // TODO revisar valores de inicializacion
         b2.setMessagePriority("N");
-        b2.setDeliveryMonitoring("2");
-        b2.setObsolescencePeriod("020");
         sm.setBlock2(b2);
         final AbstractMT result = sm.toMT();
-        result.setSender(StringUtils.rightPad(sender, 12, 'X'));
-        result.setReceiver(StringUtils.rightPad(receiver, 12, 'X'));
+        result.setSender(sender);
+        result.setReceiver(receiver);
         return result;
     }
 
