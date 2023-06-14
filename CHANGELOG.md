@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.1.0 - SNAPSHOT
+#### 10.1.0 - June 2023
   * Migration to Java 11
   * Migration to Jakarta EE 10
   * (PW-1323) Fixing getValue method for pattern issue in Field44J
