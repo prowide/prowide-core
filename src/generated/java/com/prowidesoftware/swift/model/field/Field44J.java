@@ -203,9 +203,13 @@ public class Field44J extends Field implements Serializable {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        //FIXME serialization S[/S][/S]
-        // @NotImplemented
-        int notImplemented;
+        append(result, 1);
+        if (getComponent2() != null) {
+            result.append("/").append(getComponent2());
+        }
+        if (getComponent3() != null) {
+            result.append("/").append(getComponent3());
+        }
         return result.toString();
     }
 

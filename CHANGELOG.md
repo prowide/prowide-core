@@ -3,6 +3,7 @@
 #### 10.1.0 - SNAPSHOT
   * Migration to Java 11
   * Migration to Jakarta EE 10
+  * (PW-1323) Fixing getValue method for pattern issue in Field44J
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
   * (PW-1323) Fixing missing pattern issue in Field44J
 
