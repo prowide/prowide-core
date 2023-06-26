@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.3.16 - SNAPSHOT
+#### 9.3.16 - June 2023
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
 
 #### 9.3.15 - May 2023
