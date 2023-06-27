@@ -1,10 +1,13 @@
 # Prowide Core - CHANGELOG
 
+#### 10.1.2 - SNAPSHOT
+  * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
+  * (PW-1323) Fixing getValue method for pattern issue in Field44J
+
 #### 10.1.0 - June 2023
   * Migration to Java 11
   * Migration to Jakarta EE 10
   * (PW-1323) Fixing getValue method for pattern issue in Field44J
-  * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
   * (PW-1323) Fixing missing pattern issue in Field44J
 
 #### 9.4.0 - May 2022
