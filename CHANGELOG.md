@@ -1,6 +1,5 @@
 # Prowide Core - CHANGELOG
 
-
 #### 10.0.1 - SNAPSHOT
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
 
