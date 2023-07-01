@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.1.2 - SNAPSHOT
+#### 10.1.1 - July 2023
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
   * (PW-1323) Fixing getValue method for pattern issue in Field44J
 

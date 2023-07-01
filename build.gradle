@@ -33,7 +33,7 @@ scmVersion {
     }
 }
 //project.version = "${SRU}-${scmVersion.version}"
-project.version = "${SRU}-10.1.0"
+project.version = "${SRU}-10.1.1"
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
