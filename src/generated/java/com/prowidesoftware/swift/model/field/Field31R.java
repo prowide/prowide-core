@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,29 +49,26 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: Date1: <code>Calendar</code></li>
- * 		<li>Component 2: Date2: <code>Calendar</code></li>
+ * 		<li>Component 1: Date: <code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>&lt;DATE2&gt;[/&lt;DATE2&gt;]</code></li>
- * 		<li>parser pattern: <code>&lt;DATE2&gt;[/&lt;DATE2&gt;]</code></li>
- * 		<li>components pattern: <code>EE</code></li>
+ * 		<li>validation pattern: <code>&lt;DATE2&gt;</code></li>
+ * 		<li>parser pattern: <code>S</code></li>
+ * 		<li>components pattern: <code>E</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
- *
- * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
+ * This class complies with standard release <strong>SRU2023</strong>
  */
-@Deprecated
-@ProwideDeprecated(phase3 = TargetYear.SRU2024)
+@SuppressWarnings("unused")
+@Generated
 public class Field31R extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -88,37 +85,32 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "<DATE2>[/<DATE2>]";
+	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "EE";
+	public static final String COMPONENTS_PATTERN = "E";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "EE";
+	public static final String TYPES_PATTERN = "E";
 
 	/**
-	 * Component number for the Date 1 subfield.
+	 * Component number for the Date subfield.
 	 */
-	public static final Integer DATE_1 = 1;
-
-	/**
-	 * Component number for the Date 2 subfield.
-	 */
-	public static final Integer DATE_2 = 2;
+	public static final Integer DATE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field31R() {
-        super(2);
+        super(1);
     }
 
     /**
@@ -190,9 +182,8 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Override
     public void parse(final String value) {
-        init(2);
-        setComponent1(SwiftParseUtils.getTokenFirst(value, null, "/"));
-        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
+        init(1);
+        setComponent1(value);
     }
 
     /**
@@ -202,9 +193,6 @@ public class Field31R extends Field implements Serializable, DateContainer {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
-        if (getComponent2() != null) {
-            result.append("/").append(getComponent2());
-        }
         return result.toString();
     }
 
@@ -219,21 +207,13 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 2) {
+        if (component < 1 || component > 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 31R");
         }
         if (component == 1) {
             //date: [YY]YYMMDD
             java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
-            if (cal != null) {
-                return f.format(cal.getTime());
-            }
-        }
-        if (component == 2) {
-            //date: [YY]YYMMDD
-            java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
-            java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
                 return f.format(cal.getTime());
             }
@@ -248,7 +228,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
-        return "EE";
+        return "E";
     }
 
     /**
@@ -260,7 +240,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Override
     public String typesPattern() {
-        return "EE";
+        return "E";
     }
 
     /**
@@ -268,7 +248,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Override
     public String parserPattern() {
-        return "<DATE2>[/<DATE2>]";
+        return "S";
     }
 
     /**
@@ -276,7 +256,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Override
     public String validatorPattern() {
-        return "<DATE2>[/<DATE2>]";
+        return "<DATE2>";
     }
 
     /**
@@ -291,9 +271,6 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Override
     public boolean isOptional(int component) {
-        if (component == 2) {
-            return true;
-        }
         return false;
     }
 
@@ -314,7 +291,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Override
     public int componentsSize() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -327,8 +304,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Date 1");
-        result.add("Date 2");
+        result.add("Date");
         return result;
     }
 
@@ -339,8 +315,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "date1");
-        result.put(2, "date2");
+        result.put(1, "date");
         return result;
     }
 
@@ -355,13 +330,12 @@ public class Field31R extends Field implements Serializable, DateContainer {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("date1", 1);
-        super.labelMap.put("date2", 2);
+        super.labelMap.put("date", 1);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Date 1).
+     * Gets the component 1 (Date).
      * @return the component 1
      */
     public String getComponent1() {
@@ -378,58 +352,25 @@ public class Field31R extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Gets the Date 1 (component 1).
-     * @return the Date 1 from component 1
+     * Gets the Date (component 1).
+     * @return the Date from component 1
      */
-    public String getDate1() {
+    public String getDate() {
         return getComponent1();
     }
 
     /**
-     * Get the Date 1 (component 1) as Calendar
-     * @return the Date 1 from component 1 converted to Calendar or null if cannot be converted
+     * Get the Date (component 1) as Calendar
+     * @return the Date from component 1 converted to Calendar or null if cannot be converted
      */
-    public java.util.Calendar getDate1AsCalendar() {
+    public java.util.Calendar getDateAsCalendar() {
         return getComponent1AsCalendar();
     }
 
     /**
-     * Gets the component 2 (Date 2).
-     * @return the component 2
-     */
-    public String getComponent2() {
-        return getComponent(2);
-    }
-
-    /**
-     * Get the component 2 as Calendar
+     * Set the component 1 (Date).
      *
-     * @return the component 2 converted to Calendar or null if cannot be converted
-     */
-    public java.util.Calendar getComponent2AsCalendar() {
-        return SwiftFormatUtils.getDate2(getComponent(2));
-    }
-
-    /**
-     * Gets the Date 2 (component 2).
-     * @return the Date 2 from component 2
-     */
-    public String getDate2() {
-        return getComponent2();
-    }
-
-    /**
-     * Get the Date 2 (component 2) as Calendar
-     * @return the Date 2 from component 2 converted to Calendar or null if cannot be converted
-     */
-    public java.util.Calendar getDate2AsCalendar() {
-        return getComponent2AsCalendar();
-    }
-
-    /**
-     * Set the component 1 (Date 1).
-     *
-     * @param component1 the Date 1 to set
+     * @param component1 the Date to set
      * @return the field object to enable build pattern
      */
     public Field31R setComponent1(String component1) {
@@ -440,7 +381,7 @@ public class Field31R extends Field implements Serializable, DateContainer {
     /**
      * Set the component1 from a Calendar object.
      *
-     * @param component1 the Calendar with the Date 1 content to set
+     * @param component1 the Calendar with the Date content to set
      * @return the field object to enable build pattern
      */
     public Field31R setComponent1(java.util.Calendar component1) {
@@ -449,69 +390,25 @@ public class Field31R extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Date 1 (component 1).
+     * Set the Date (component 1).
      *
-     * @param component1 the Date 1 to set
+     * @param component1 the Date to set
      * @return the field object to enable build pattern
      */
-    public Field31R setDate1(String component1) {
+    public Field31R setDate(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the Date 1 (component 1) from a Calendar object.
+     * Set the Date (component 1) from a Calendar object.
      *
      * @see #setComponent1(java.util.Calendar)
      *
-     * @param component1 Calendar with the Date 1 content to set
+     * @param component1 Calendar with the Date content to set
      * @return the field object to enable build pattern
      */
-    public Field31R setDate1(java.util.Calendar component1) {
+    public Field31R setDate(java.util.Calendar component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * Set the component 2 (Date 2).
-     *
-     * @param component2 the Date 2 to set
-     * @return the field object to enable build pattern
-     */
-    public Field31R setComponent2(String component2) {
-        setComponent(2, component2);
-        return this;
-    }
-
-    /**
-     * Set the component2 from a Calendar object.
-     *
-     * @param component2 the Calendar with the Date 2 content to set
-     * @return the field object to enable build pattern
-     */
-    public Field31R setComponent2(java.util.Calendar component2) {
-        setComponent(2, SwiftFormatUtils.getDate2(component2));
-        return this;
-    }
-
-    /**
-     * Set the Date 2 (component 2).
-     *
-     * @param component2 the Date 2 to set
-     * @return the field object to enable build pattern
-     */
-    public Field31R setDate2(String component2) {
-        return setComponent2(component2);
-    }
-
-    /**
-     * Set the Date 2 (component 2) from a Calendar object.
-     *
-     * @see #setComponent2(java.util.Calendar)
-     *
-     * @param component2 Calendar with the Date 2 content to set
-     * @return the field object to enable build pattern
-     */
-    public Field31R setDate2(java.util.Calendar component2) {
-        return setComponent2(component2);
     }
 
 
@@ -618,16 +515,10 @@ public class Field31R extends Field implements Serializable, DateContainer {
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Date 1
+        // **** COMPONENT 1 - Date
 
-        if (jsonObject.get("date1") != null) {
-            field.setComponent1(jsonObject.get("date1").getAsString());
-        }
-
-        // **** COMPONENT 2 - Date 2
-
-        if (jsonObject.get("date2") != null) {
-            field.setComponent2(jsonObject.get("date2").getAsString());
+        if (jsonObject.get("date") != null) {
+            field.setComponent1(jsonObject.get("date").getAsString());
         }
 
         return field;
