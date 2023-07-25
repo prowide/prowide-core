@@ -19,17 +19,15 @@ import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.utils.SafeXmlUtils;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
+import javax.xml.parsers.DocumentBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.logging.Level;
-
-import javax.xml.parsers.DocumentBuilder;
 
 /**
  * This is the main parser for WIFE's XML internal representation.<br>
@@ -46,7 +44,8 @@ import javax.xml.parsers.DocumentBuilder;
  * @since 5.0
  */
 public class XMLParser {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(XMLParser.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(XMLParser.class.getName());
 
     private static final String UNPARSEDTEXTS = "unparsedtexts";
 
@@ -186,7 +185,8 @@ public class XMLParser {
         } else if ("output".equals(type)) {
             return getBlock2OutputFromNode(blockNode);
         } else {
-            log.severe("expected 'input' or 'output' value for 'type' atribute at <block2> xml tag, and found: " + type);
+            log.severe(
+                    "expected 'input' or 'output' value for 'type' atribute at <block2> xml tag, and found: " + type);
             return null;
         }
     }
@@ -340,7 +340,7 @@ public class XMLParser {
             }
             if ("value".equalsIgnoreCase(n.getNodeName())) {
                 String text = getText(n);
-                //normalize line feeds (DOM parser removes carriage return characters from original XML file)
+                // normalize line feeds (DOM parser removes carriage return characters from original XML file)
                 text = StringUtils.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
                 tag.setValue(text);
             } else if (UNPARSEDTEXTS.equalsIgnoreCase(n.getNodeName())) {
@@ -378,7 +378,7 @@ public class XMLParser {
                     final String number = getNodeAttribute(n, "number");
                     if (StringUtils.isNumeric(number)) {
                         String text = getText(n);
-                        //normalize line feeds (DOM parser removes carriage return characters from original XML file)
+                        // normalize line feeds (DOM parser removes carriage return characters from original XML file)
                         text = StringUtils.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
                         field.setComponent(Integer.parseInt(number), text);
                     }

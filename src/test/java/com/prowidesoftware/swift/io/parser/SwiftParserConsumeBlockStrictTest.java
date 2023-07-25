@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,10 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
+import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 /**
  * Swift parser tests using the non lenient (strict) configuration.
@@ -42,7 +41,6 @@ public class SwiftParserConsumeBlockStrictTest {
             parser.setData("{1:012345678901}");
             parser.consumeBlock(null);
         });
-
     }
 
     @Test
@@ -51,7 +49,6 @@ public class SwiftParserConsumeBlockStrictTest {
             parser.setData("{1:0123456789012345678901234");
             parser.consumeBlock(null);
         });
-
     }
 
     @Test
@@ -69,7 +66,6 @@ public class SwiftParserConsumeBlockStrictTest {
             parser.consumeBlock(null); // block 1
             parser.consumeBlock(null);
         }); // block 2
-
     }
 
     @Test
@@ -80,7 +76,6 @@ public class SwiftParserConsumeBlockStrictTest {
             parser.consumeBlock(null); // block 1
             parser.consumeBlock(null);
         }); // block 2
-
     }
 
     @Test
@@ -154,7 +149,6 @@ public class SwiftParserConsumeBlockStrictTest {
             parser.setData("{4:\r\n" + ":79:FOO\r\n" + "}");
             parser.consumeBlock(null);
         });
-
     }
 
     @Test
@@ -167,10 +161,7 @@ public class SwiftParserConsumeBlockStrictTest {
 
     @Test
     public void testBlock4ClossingBracketOk() throws IOException {
-        parser.setData("{4:\r\n" +
-                ":79:FOO\r\n" +
-                "-}");
+        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-}");
         parser.consumeBlock(null);
     }
-
 }

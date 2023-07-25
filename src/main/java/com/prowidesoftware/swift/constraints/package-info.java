@@ -13,17 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.prowidesoftware.swift.model.field;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-public class Field94GTest extends AbstractFieldTest {
-
-    @Override
-    @Test
-    public void testSerialization() {
-        testSerializationImpl("94G", ":PACO//Settled\nFully paid 49896.00 USD", ":SUBB//TYPE OF SAFEKEEPING/GS");
-    }
-}
+/**
+ * SWIFT related constraint validations (BIC, IBAN Country, Currency)
+ */
+package com.prowidesoftware.swift.constraints;

@@ -17,13 +17,12 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for SWIFT <b>Trailer Block (block 5)</b>.
@@ -36,14 +35,15 @@ import java.util.Optional;
  */
 public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
     @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock5.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftBlock5.class.getName());
+
     private static final long serialVersionUID = 3114133378482486859L;
 
     /**
      * Default constructor
      */
-    public SwiftBlock5() {
-    }
+    public SwiftBlock5() {}
 
     /**
      * Constructor with tag initialization
@@ -161,5 +161,4 @@ public class SwiftBlock5 extends SwiftTagListBlock implements Serializable {
     public SwiftBlock5 setPDE() {
         return setTag(SwiftBlock5Field.PDE, null);
     }
-
 }

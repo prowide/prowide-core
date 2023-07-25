@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,15 +43,21 @@ public class SwiftParseUtilsTest {
         assertEquals("foo", SwiftParseUtils.splitComponents(":foo//", ":", "//").get(0));
 
         assertEquals(2, SwiftParseUtils.splitComponents(":foo//abc", ":", "//").size());
-        assertEquals("foo", SwiftParseUtils.splitComponents(":foo//abc", ":", "//").get(0));
-        assertEquals("abc", SwiftParseUtils.splitComponents(":foo//abc", ":", "//").get(1));
+        assertEquals(
+                "foo", SwiftParseUtils.splitComponents(":foo//abc", ":", "//").get(0));
+        assertEquals(
+                "abc", SwiftParseUtils.splitComponents(":foo//abc", ":", "//").get(1));
 
         assertEquals(2, SwiftParseUtils.splitComponents("foo//abc", ":", "//").size());
-        assertEquals("foo", SwiftParseUtils.splitComponents("foo//abc", ":", "//").get(0));
-        assertEquals("abc", SwiftParseUtils.splitComponents("foo//abc", ":", "//").get(1));
+        assertEquals(
+                "foo", SwiftParseUtils.splitComponents("foo//abc", ":", "//").get(0));
+        assertEquals(
+                "abc", SwiftParseUtils.splitComponents("foo//abc", ":", "//").get(1));
 
         assertEquals(1, SwiftParseUtils.splitComponents(":foo/abc", ":", "//").size());
-        assertEquals("foo/abc", SwiftParseUtils.splitComponents(":foo/abc", ":", "//").get(0));
+        assertEquals(
+                "foo/abc",
+                SwiftParseUtils.splitComponents(":foo/abc", ":", "//").get(0));
     }
 
     @Test
@@ -205,7 +211,8 @@ public class SwiftParseUtilsTest {
         assertEquals("foo/def", SwiftParseUtils.getTokenSecondLast("abc/foo/def", "/"));
         assertEquals("foo/def/", SwiftParseUtils.getTokenSecondLast("abc/foo/def/", "/"));
         assertEquals("foo/def//", SwiftParseUtils.getTokenSecondLast("abc/foo/def//", "/"));
-        assertEquals("foo/def/hsjs/slkdjf//dsd", SwiftParseUtils.getTokenSecondLast("abc/foo/def/hsjs/slkdjf//dsd", "/"));
+        assertEquals(
+                "foo/def/hsjs/slkdjf//dsd", SwiftParseUtils.getTokenSecondLast("abc/foo/def/hsjs/slkdjf//dsd", "/"));
         assertEquals("/", SwiftParseUtils.getTokenSecondLast("//", "/"));
         assertEquals("/", SwiftParseUtils.getTokenSecondLast("///", "//"));
     }
@@ -228,7 +235,9 @@ public class SwiftParseUtilsTest {
         assertEquals("foo/def", SwiftParseUtils.getTokenSecondLast("/abc/foo/def", "/", "/"));
         assertEquals("foo/def/", SwiftParseUtils.getTokenSecondLast(":abc/foo/def/", ":", "/"));
         assertEquals("foo/def//", SwiftParseUtils.getTokenSecondLast(":abc/foo/def//", ":", "/"));
-        assertEquals("foo/def/hsjs/slkdjf//dsd", SwiftParseUtils.getTokenSecondLast(":abc/foo/def/hsjs/slkdjf//dsd", ":", "/"));
+        assertEquals(
+                "foo/def/hsjs/slkdjf//dsd",
+                SwiftParseUtils.getTokenSecondLast(":abc/foo/def/hsjs/slkdjf//dsd", ":", "/"));
         assertEquals("/", SwiftParseUtils.getTokenSecondLast("://", ":", "/"));
         assertEquals("/", SwiftParseUtils.getTokenSecondLast(":///", ":", "//"));
     }
@@ -324,5 +333,4 @@ public class SwiftParseUtilsTest {
         assertEquals("aaa", SwiftParseUtils.removePrefix("/aaa", "/"));
         assertEquals("/aaa", SwiftParseUtils.removePrefix("//aaa", "/"));
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 package com.prowidesoftware.swift.model;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -180,7 +179,7 @@ public class IBANTest {
         IBAN iban = new IBAN("AT32010000000173363");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_LENGTH);
-        //System.out.println(result.message());
+        // System.out.println(result.message());
     }
 
     @Test
@@ -188,11 +187,11 @@ public class IBANTest {
         IBAN iban = new IBAN("aa17002001280000001200527600");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.INVALID_COUNTRY_CODE_CHARSET);
-        //System.out.println(result.message());
+        // System.out.println(result.message());
         iban = new IBAN("ZZ17002001280000001200527600");
         result = iban.validate();
         assertTrue(result == IbanValidationResult.INVALID_COUNTRY_CODE);
-        //System.out.println(result.message());
+        // System.out.println(result.message());
     }
 
     @Test
@@ -214,7 +213,7 @@ public class IBANTest {
         IBAN iban = new IBAN("GI75NWBK00000000709t453");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_DIGITS_OR_LETTERS);
-        //System.out.println(result.message());
+        // System.out.println(result.message());
     }
 
     @Test
@@ -222,7 +221,7 @@ public class IBANTest {
         IBAN iban = new IBAN("GI75nWBK000000007099453");
         IbanValidationResult result = iban.validate();
         assertTrue(result == IbanValidationResult.BBAN_INVALID_UPPER_CASE_LETTERS);
-        //System.out.println(result.message());
+        // System.out.println(result.message());
     }
 
     @Test
@@ -267,8 +266,7 @@ public class IBANTest {
     private void assertIbanOk(String string) {
         IBAN iban = new IBAN(string);
         IbanValidationResult result = iban.validate();
-        //System.out.println(result.message());
+        // System.out.println(result.message());
         assertEquals(result, IbanValidationResult.OK);
     }
-
 }

@@ -28,5 +28,4 @@ public interface JsonSerializable {
      * @return the message content as JSON
      */
     String toJson();
-
 }

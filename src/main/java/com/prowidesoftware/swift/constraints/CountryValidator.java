@@ -16,10 +16,9 @@
 package com.prowidesoftware.swift.constraints;
 
 import com.prowidesoftware.swift.utils.IsoUtils;
-import org.apache.commons.lang3.StringUtils;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Implementation of the ISO Alpha-2 country validation constraint
@@ -30,8 +29,7 @@ import javax.validation.ConstraintValidatorContext;
 public class CountryValidator implements ConstraintValidator<CountryConstraint, String> {
 
     @Override
-    public void initialize(CountryConstraint country) {
-    }
+    public void initialize(CountryConstraint country) {}
 
     @Override
     public boolean isValid(String country, ConstraintValidatorContext context) {
@@ -40,5 +38,4 @@ public class CountryValidator implements ConstraintValidator<CountryConstraint, 
         }
         return IsoUtils.getInstance().isValidISOCountry(country);
     }
-
 }

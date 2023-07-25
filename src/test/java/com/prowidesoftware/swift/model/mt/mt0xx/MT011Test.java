@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import com.prowidesoftware.swift.model.field.Field107;
 import com.prowidesoftware.swift.model.field.Field108;
 import com.prowidesoftware.swift.model.field.Field175;
 import org.junit.jupiter.api.Test;
-
 
 public class MT011Test {
 
@@ -54,7 +53,6 @@ public class MT011Test {
 
         assertNotNull(m.getField107());
         assertEquals("010605VNDZGBT2AXXX0017000244", m.getField107().getValue());
-
     }
 
     @Test

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,7 @@ public class Field57DTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("57D",
-                "//\nBIODATA LIMITED\nLONDON WC1 23H\nUNITED KINGDOM",
-                "//"
-        );
+        testSerializationImpl("57D", "//\nBIODATA LIMITED\nLONDON WC1 23H\nUNITED KINGDOM", "//");
     }
 
     @Test
@@ -38,5 +35,4 @@ public class Field57DTest extends AbstractFieldTest {
         assertEquals("/", f.getComponent2());
         assertEquals("", f.getAccount());
     }
-
 }

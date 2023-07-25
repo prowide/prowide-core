@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.prowidesoftware.swift.Constants;
@@ -23,11 +22,10 @@ import com.prowidesoftware.swift.model.SwiftBlock1;
 import com.prowidesoftware.swift.model.SwiftBlock2Input;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.io.StringWriter;
 import java.io.Writer;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Swift writer tests
@@ -142,7 +140,9 @@ public class FINWriterVisitorTest {
         msg.getBlock4().append(new Tag("2:val2"));
 
         msg.visit(this.visitor);
-        assertEquals("{1:F01VNDZBET2AXXX0027000580}{2:I028BBBBUSC0XXXXN}{4:{1:val1}{2:val2}}", getResult("testWriteBlock4_3"));
+        assertEquals(
+                "{1:F01VNDZBET2AXXX0027000580}{2:I028BBBBUSC0XXXXN}{4:{1:val1}{2:val2}}",
+                getResult("testWriteBlock4_3"));
     }
 
     @Test
@@ -159,5 +159,4 @@ public class FINWriterVisitorTest {
         msg.visit(this.visitor);
         assertEquals("{5:{MAC:valmac}{CHK:valchk}}", getResult("testBug1601122_1"));
     }
-
 }

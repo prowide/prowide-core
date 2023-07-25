@@ -84,5 +84,4 @@ public enum ServiceIdType {
     public final String number() {
         return this.name().substring(1);
     }
-
 }

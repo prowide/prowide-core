@@ -19,9 +19,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-
 import java.lang.reflect.Type;
-
 
 /**
  * Basic Bank Account Number Entry Types.
@@ -57,18 +55,16 @@ public enum BbanEntryType {
     public String getText() {
         return this.text;
     }
-
 }
 
 class BbanEntryTypeDeserializer implements JsonDeserializer<BbanEntryType> {
     @Override
-    public BbanEntryType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public BbanEntryType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+            throws JsonParseException {
         BbanEntryType[] scopes = BbanEntryType.values();
         for (BbanEntryType scope : scopes) {
-            if (scope.getText().equals(json.getAsString()))
-                return scope;
+            if (scope.getText().equals(json.getAsString())) return scope;
         }
         return null;
     }
 }
-

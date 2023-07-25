@@ -63,7 +63,8 @@ public abstract class AbstractWriter {
      * @throws FileNotFoundException if file does not exist
      */
     public AbstractWriter(final File _file, final Charset _charset) throws FileNotFoundException {
-        this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(_file), _charset != null ? _charset : StandardCharsets.UTF_8));
+        this.writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(_file), _charset != null ? _charset : StandardCharsets.UTF_8));
     }
 
     public AbstractWriter(final OutputStream stream) {
@@ -77,7 +78,8 @@ public abstract class AbstractWriter {
      * @param _charset charset
      */
     public AbstractWriter(final OutputStream _stream, Charset _charset) {
-        this.writer = new BufferedWriter(new OutputStreamWriter(_stream, _charset != null ? _charset : StandardCharsets.UTF_8));
+        this.writer = new BufferedWriter(
+                new OutputStreamWriter(_stream, _charset != null ? _charset : StandardCharsets.UTF_8));
     }
 
     /**
@@ -101,5 +103,4 @@ public abstract class AbstractWriter {
             this.writer.flush();
         }
     }
-
 }

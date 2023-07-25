@@ -16,7 +16,6 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.model.field.*;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +30,8 @@ import java.util.Objects;
  * @since 7.10.0
  */
 public class SwiftBlock3Builder {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock3Builder.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftBlock3Builder.class.getName());
 
     private Tag field103 = null;
     private Tag field113 = null;
@@ -273,5 +273,4 @@ public class SwiftBlock3Builder {
         }
         return this;
     }
-
 }

@@ -20,14 +20,14 @@ public class PartyIdentifierUtils {
         }
 
         // build the party identifier
-        return StringUtils.trimToNull( (cdPart != null ? cdPart : "") + (accountPart != null ? accountPart : "") );
+        return StringUtils.trimToNull((cdPart != null ? cdPart : "") + (accountPart != null ? accountPart : ""));
     }
 
     public static Field setPartyIdentifier(Field field, int cdComponent, int accountComponent, String partyIdentifier) {
 
         // if party identifier is null or does not start with a "/" => set to empty
         partyIdentifier = StringUtils.trimToNull(partyIdentifier);
-        if (partyIdentifier == null || ! partyIdentifier.startsWith("/")) {
+        if (partyIdentifier == null || !partyIdentifier.startsWith("/")) {
             field.setComponent(cdComponent, null);
             field.setComponent(accountComponent, null);
             return field;
@@ -37,7 +37,9 @@ public class PartyIdentifierUtils {
         String dcMark = SwiftParseUtils.getTokenFirst(partyIdentifier, "/", "/");
         if (StringUtils.isNotEmpty(dcMark)) {
             field.setComponent(cdComponent, dcMark);
-            field.setComponent(accountComponent, SwiftParseUtils.getTokenSecondLast(StringUtils.substring(partyIdentifier, 1), "/"));
+            field.setComponent(
+                    accountComponent,
+                    SwiftParseUtils.getTokenSecondLast(StringUtils.substring(partyIdentifier, 1), "/"));
         } else {
             field.setComponent(cdComponent, null);
             field.setComponent(accountComponent, StringUtils.substring(partyIdentifier, 1));
@@ -45,5 +47,4 @@ public class PartyIdentifierUtils {
 
         return field;
     }
-
 }

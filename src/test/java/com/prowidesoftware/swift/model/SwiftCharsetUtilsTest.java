@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-
 public class SwiftCharsetUtilsTest {
-    private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftCharsetUtilsTest.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftCharsetUtilsTest.class.getName());
 
     @Test
     public void test_n() {
@@ -187,7 +187,9 @@ public class SwiftCharsetUtilsTest {
         assertFalse(SwiftCharsetUtils.is_x('>'));
         assertFalse(SwiftCharsetUtils.is_x(';'));
 
-        assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_x("asdkjahsdHJKAHS876823 /asd78(sdf)+ adssssd' sds89?sd-43/sdf"));
+        assertEquals(
+                SwiftCharsetUtils.OK,
+                SwiftCharsetUtils.is_x("asdkjahsdHJKAHS876823 /asd78(sdf)+ adssssd' sds89?sd-43/sdf"));
         assertEquals(0, SwiftCharsetUtils.is_x("$asdfasd"));
         assertEquals(1, SwiftCharsetUtils.is_x("Y&UJUIk"));
         assertEquals(6, SwiftCharsetUtils.is_x("J3fYDF="));
@@ -261,8 +263,9 @@ public class SwiftCharsetUtilsTest {
         assertFalse(SwiftCharsetUtils.is_y(']'));
         assertFalse(SwiftCharsetUtils.is_y('@'));
 
-
-        assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_y("KJAHSDJSHJKAHS876823 /DD78()+ DDFD<JJ>&%*\"' 89?DD-43/D;!:=D"));
+        assertEquals(
+                SwiftCharsetUtils.OK,
+                SwiftCharsetUtils.is_y("KJAHSDJSHJKAHS876823 /DD78()+ DDFD<JJ>&%*\"' 89?DD-43/D;!:=D"));
         assertEquals(0, SwiftCharsetUtils.is_y("$asdfasd"));
         assertEquals(1, SwiftCharsetUtils.is_y("YkUJUIk"));
         assertEquals(6, SwiftCharsetUtils.is_y("J3(YDF_"));
@@ -272,7 +275,9 @@ public class SwiftCharsetUtilsTest {
     public void test_z() {
         log.info("z " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_z()));
 
-        assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_z("KJAHSDJSsdfs@#HJKAHS876823 /DD78()+ DDFD<JJ>&%*\"' 89?DD-43/D;!:=D"));
+        assertEquals(
+                SwiftCharsetUtils.OK,
+                SwiftCharsetUtils.is_z("KJAHSDJSsdfs@#HJKAHS876823 /DD78()+ DDFD<JJ>&%*\"' 89?DD-43/D;!:=D"));
         assertEquals(0, SwiftCharsetUtils.is_z("$asdfasd"));
         assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_z("Y_UJUIk"));
         assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_z("J3(dDF_"));
@@ -282,7 +287,8 @@ public class SwiftCharsetUtilsTest {
     public void test_c() {
         log.info("c " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_c()));
 
-        assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_c("KASJDFSD8223JS2220983JFKSI12SFD5344678590LSKSFDMNCVXOW"));
+        assertEquals(
+                SwiftCharsetUtils.OK, SwiftCharsetUtils.is_c("KASJDFSD8223JS2220983JFKSI12SFD5344678590LSKSFDMNCVXOW"));
         assertEquals(0, SwiftCharsetUtils.is_c("$asdfasd"));
         assertEquals(1, SwiftCharsetUtils.is_c("Y(UJUIk"));
         assertEquals(6, SwiftCharsetUtils.is_c("J3SSDF%"));
@@ -292,7 +298,9 @@ public class SwiftCharsetUtilsTest {
     public void test_B() {
         log.info("B " + SwiftCharsetUtils.getAsString(SwiftCharsetUtils.get_B()));
 
-        assertEquals(SwiftCharsetUtils.OK, SwiftCharsetUtils.is_B("KASJDFasdsSD8223JS22209ytJFKSI1dd2SFD5d344678590LSKSFDMNCVXOW"));
+        assertEquals(
+                SwiftCharsetUtils.OK,
+                SwiftCharsetUtils.is_B("KASJDFasdsSD8223JS22209ytJFKSI1dd2SFD5d344678590LSKSFDMNCVXOW"));
         assertEquals(0, SwiftCharsetUtils.is_B("$asdfasd"));
         assertEquals(1, SwiftCharsetUtils.is_B("s(UJUIk"));
         assertEquals(6, SwiftCharsetUtils.is_B("J3ssDF%"));

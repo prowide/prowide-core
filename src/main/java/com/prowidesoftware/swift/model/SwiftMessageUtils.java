@@ -21,9 +21,6 @@ import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -32,6 +29,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Utility methods that provide higher level access to {@link SwiftMessage}
@@ -97,20 +96,23 @@ public class SwiftMessageUtils {
      * @throws IllegalArgumentException if the starting tag is not 16R or the ending tag is not the matching 16S
      * @since 7.8.1
      */
-    public static SwiftTagListBlock removeInnerSequences(final SwiftTagListBlock sequence) throws IllegalArgumentException {
+    public static SwiftTagListBlock removeInnerSequences(final SwiftTagListBlock sequence)
+            throws IllegalArgumentException {
         if (sequence == null || sequence.size() < 3) {
             return sequence;
         }
         final Tag start = sequence.getTag(0);
         final Tag end = sequence.getTag(sequence.size() - 1);
         if (!StringUtils.equals("16R", start.getName())) {
-            throw new IllegalArgumentException("Starting tag of sequence must be 16R (and was " + start.getName() + ")");
+            throw new IllegalArgumentException(
+                    "Starting tag of sequence must be 16R (and was " + start.getName() + ")");
         }
         if (!StringUtils.equals("16S", end.getName())) {
             throw new IllegalArgumentException("Ending tag of sequence must be 16S (and was " + end.getName() + ")");
         }
         if (!StringUtils.equals(start.getValue(), end.getValue())) {
-            throw new IllegalArgumentException("The qualifier of the starting block " + start + " must match the qualifier of the ending block " + end);
+            throw new IllegalArgumentException("The qualifier of the starting block " + start
+                    + " must match the qualifier of the ending block " + end);
         }
         final SwiftTagListBlock result = new SwiftTagListBlock();
         String qualifier = null;
@@ -121,7 +123,9 @@ public class SwiftMessageUtils {
                  * found sequence start
                  */
                 qualifier = t.getValue();
-            } else if (qualifier != null && StringUtils.equals(t.getName(), "16S") && StringUtils.equals(t.getValue(), qualifier)) {
+            } else if (qualifier != null
+                    && StringUtils.equals(t.getName(), "16S")
+                    && StringUtils.equals(t.getValue(), qualifier)) {
                 /*
                  * found sequence end
                  */
@@ -333,14 +337,14 @@ public class SwiftMessageUtils {
      * @return computed hash or null if exceptions are thrown reading bytes or processing the digest
      * @since 7.9.5
      */
-    //TODO add base 64 encoding on top when upgraded to Java 8
+    // TODO add base 64 encoding on top when upgraded to Java 8
     private static String md5(final String text) {
         try {
             byte[] bytesOfMessage = text.getBytes(StandardCharsets.UTF_8);
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] thedigest = md.digest(bytesOfMessage);
 
-            //Converting the bytes to a Hex string
+            // Converting the bytes to a Hex string
             StringBuilder buff = new StringBuilder();
             for (byte b : thedigest) {
                 String conversion = Integer.toString(b & 0xFF, 16);
@@ -549,7 +553,8 @@ public class SwiftMessageUtils {
      * @return the SwiftTagListBlock containing all parent sequences, the sequence requested and the contents
      * @since 7.8
      */
-    public static SwiftTagListBlock createSubsequenceWithParents(final Class<? extends AbstractMT> mt, final String sequenceName, final Tag... tags) {
+    public static SwiftTagListBlock createSubsequenceWithParents(
+            final Class<? extends AbstractMT> mt, final String sequenceName, final Tag... tags) {
         log.finer("Create sequence " + sequenceName);
         final SwiftTagListBlock result = new SwiftTagListBlock();
         result.append(tags);
@@ -561,17 +566,18 @@ public class SwiftMessageUtils {
             result.setTags(newresult.getTags());
         }
         return result;
-
     }
 
-    public static SwiftTagListBlock createSequenceSingle(final Class<? extends AbstractMT> mt, final String sequenceName, final Tag... tags) {
+    public static SwiftTagListBlock createSequenceSingle(
+            final Class<? extends AbstractMT> mt, final String sequenceName, final Tag... tags) {
         final String cn = mt.getName() + "$Sequence" + sequenceName;
         try {
             final Class<?> subSequenceClass = Class.forName(cn);
             final Method method = subSequenceClass.getMethod("newInstance", Tag[].class);
-            return (SwiftTagListBlock) method.invoke(null, new Object[]{tags});
+            return (SwiftTagListBlock) method.invoke(null, new Object[] {tags});
         } catch (Exception e) {
-            String message = "Reflection error: mt=" + mt.getName() + ", sequenceName=" + sequenceName + ", tags=" + Arrays.toString(tags) + " - " + e.getMessage();
+            String message = "Reflection error: mt=" + mt.getName() + ", sequenceName=" + sequenceName + ", tags="
+                    + Arrays.toString(tags) + " - " + e.getMessage();
             log.log(Level.WARNING, message, e);
             throw new ProwideException(message);
         }
@@ -606,9 +612,13 @@ public class SwiftMessageUtils {
         }
         if (m.isType(102, 103, 200, 202, 205, 256, 450, 455, 643, 644, 646, 734, 802, 900, 910)) {
             return Money.of(b4.getFieldByName("32A"));
-        } else if (m.isType(191, 291, 300, 304, 305, 320, 391, 491, 591, 691, 791, 891, 991, 340, 341, 350, 360, 361, 364, 365, 620, 700, 705, 710, 720, 732, 740, 742, 756)) {
+        } else if (m.isType(
+                191, 291, 300, 304, 305, 320, 391, 491, 591, 691, 791, 891, 991, 340, 341, 350, 360, 361, 364, 365, 620,
+                700, 705, 710, 720, 732, 740, 742, 756)) {
             return Money.of(b4.getFieldByName("32B"));
-        } else if (m.isType(321, 370, 508, 509, 535, 536, 537, 540, 541, 542, 543, 544, 545, 546, 547, 548, 558, 559, 569, 574, 575, 576, 578, 586)) {
+        } else if (m.isType(
+                321, 370, 508, 509, 535, 536, 537, 540, 541, 542, 543, 544, 545, 546, 547, 548, 558, 559, 569, 574, 575,
+                576, 578, 586)) {
             return Money.of(b4.getFieldByName("19A"));
         } else if (m.isType(330, 362)) {
             return Money.of(b4.getFieldByName("32H"));
@@ -747,5 +757,4 @@ public class SwiftMessageUtils {
     protected Money money() {
         return money(msg);
     }
-
 }

@@ -15,7 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-
 /**
  * This class models and parses the Message Output Reference (MOR).
  *
@@ -25,7 +24,8 @@ package com.prowidesoftware.swift.model;
  */
 public class MOR extends MIR {
     @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MOR.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(MOR.class.getName());
 
     public MOR(String date, String logicalTerminal, String sessionNumber, String sequenceNumber) {
         super(date, logicalTerminal, sessionNumber, sequenceNumber);
@@ -35,8 +35,7 @@ public class MOR extends MIR {
         super(value);
     }
 
-    public MOR() {
-    }
+    public MOR() {}
 
     /**
      * @see #getMIR()

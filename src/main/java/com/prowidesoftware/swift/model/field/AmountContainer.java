@@ -17,7 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import java.math.BigDecimal;
 
-
 /**
  * Fields with an amount component.
  *

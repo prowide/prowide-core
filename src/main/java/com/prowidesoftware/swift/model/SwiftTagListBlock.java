@@ -21,14 +21,13 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.field.Field16R;
 import com.prowidesoftware.swift.model.field.Field16S;
 import com.prowidesoftware.swift.model.field.GenericField;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for SWIFT blocks that contain and arbitrary <b>set of fields</b> (3, 4, 5 and user blocks).<br>
@@ -41,8 +40,10 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * <em>Immutable</em>empty instance of this class.
      */
     public static final SwiftTagListBlock EMPTY_LIST = emptyList();
+
     private static final long serialVersionUID = -3753513588165638610L;
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftTagListBlock.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftTagListBlock.class.getName());
     private static final String TAG_VALIDATION_MESSAGE = "parameter 'tag' cannot not be null";
     private static final String NAME_VALIDATION_MESSAGE = "parameter 'name' cannot not be null";
     /**
@@ -56,8 +57,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * Default constructor, shouldn't be used normally.
      * present only for subclasses
      */
-    public SwiftTagListBlock() {
-    }
+    public SwiftTagListBlock() {}
 
     /**
      * Intended to be used by search results in this class
@@ -233,9 +233,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return the tags matching the given number or an empty list if none is found.
      */
     public List<Tag> getTagsByNumber(final int tagNumber) {
-        return tags.stream()
-                .filter(tag -> tag.isNumber(tagNumber))
-                .collect(Collectors.toList());
+        return tags.stream().filter(tag -> tag.isNumber(tagNumber)).collect(Collectors.toList());
     }
 
     /**
@@ -279,9 +277,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public String[] getTagValues(final String name) {
         Objects.requireNonNull(name, NAME_VALIDATION_MESSAGE);
-        return Arrays.stream(getTagsByName(name))
-                .map(Tag::getValue)
-                .toArray(String[]::new);
+        return Arrays.stream(getTagsByName(name)).map(Tag::getValue).toArray(String[]::new);
     }
 
     /**
@@ -291,8 +287,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return a Map for the tags name and values
      */
     public Map<String, String> getTagMap() {
-        return tags.stream()
-                .collect(Collectors.toMap(Tag::getName, Tag::getValue, (k1, k2) -> k1, HashMap::new));
+        return tags.stream().collect(Collectors.toMap(Tag::getName, Tag::getValue, (k1, k2) -> k1, HashMap::new));
     }
 
     /**
@@ -443,7 +438,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
     public Field getFieldByName(final String name, final String component1, final String component2) {
         return getFieldsByName(name, component1).stream()
                 .filter(field -> StringUtils.equals(field.getComponent(2), component2))
-                .findFirst().orElse(null);
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -461,7 +457,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         return getFieldsByName(name, qualifier).stream()
                 .filter(GenericField.class::isInstance)
                 .filter(f -> StringUtils.equals(((GenericField) f).getConditionalQualifier(), conditionalQualifier))
-                .findFirst().orElse(null);
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -473,7 +470,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @see #getTagByNumber(int)
      */
     public Field getFieldByNumber(final int fieldNumber) {
-        return Optional.ofNullable(getTagByNumber(fieldNumber)).map(Tag::asField).orElse(null);
+        return Optional.ofNullable(getTagByNumber(fieldNumber))
+                .map(Tag::asField)
+                .orElse(null);
     }
 
     /**
@@ -508,7 +507,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
     public Field getFieldByNumber(final int fieldNumber, final String componentValue) {
         return getFieldsByNumber(fieldNumber).stream()
                 .filter(field -> field.is(componentValue))
-                .findFirst().orElse(null);
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -542,9 +542,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     @Override
     public String toString() {
-        return getClass().getName() + "[" +
-                (tags == null ? "tags=null" : tags.toString()) +
-                "]";
+        return getClass().getName() + "[" + (tags == null ? "tags=null" : tags.toString()) + "]";
     }
 
     /**
@@ -734,7 +732,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
                 }
             }
         }
-        //if necessary, we add the last found sub block
+        // if necessary, we add the last found sub block
         if (toAdd != null) {
             result.add(toAdd);
         }
@@ -823,7 +821,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @param endTagLetter   optional ending tag letter option
      * @return the found subblocks
      */
-    private List<SwiftTagListBlock> _getSubBlocks(final int startTagNumber, final String startTagLetter, final int endTagNumber, final String endTagLetter) {
+    private List<SwiftTagListBlock> _getSubBlocks(
+            final int startTagNumber, final String startTagLetter, final int endTagNumber, final String endTagLetter) {
         final List<SwiftTagListBlock> result = new ArrayList<>();
 
         SwiftTagListBlock toAdd = null;
@@ -831,22 +830,22 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         for (Tag t : this.tags) {
             if (blockFound) {
                 toAdd.append(t);
-                if ((endTagLetter != null && StringUtils.equals(t.getName(), endTagNumber + endTagLetter)) ||
-                        (endTagLetter == null && t.isNumber(endTagNumber))) {
+                if ((endTagLetter != null && StringUtils.equals(t.getName(), endTagNumber + endTagLetter))
+                        || (endTagLetter == null && t.isNumber(endTagNumber))) {
                     result.add(toAdd);
                     blockFound = false;
                     toAdd = null;
                 }
             } else {
-                if ((startTagLetter != null && StringUtils.equals(t.getName(), startTagNumber + startTagLetter)) ||
-                        (startTagLetter == null && t.isNumber(startTagNumber))) {
+                if ((startTagLetter != null && StringUtils.equals(t.getName(), startTagNumber + startTagLetter))
+                        || (startTagLetter == null && t.isNumber(startTagNumber))) {
                     toAdd = new SwiftTagListBlock();
                     toAdd.append(t);
                     blockFound = true;
                 }
             }
         }
-        //if necessary, we add the last found sub block
+        // if necessary, we add the last found sub block
         if (toAdd != null) {
             result.add(toAdd);
         }
@@ -940,7 +939,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         if (tags == null || tags.isEmpty()) {
             throw new IllegalStateException("No tags in this list");
         }
-        if ((start != null && start < 0) || (end != null && (end + 1) > this.tags.size()) || (start != null && end != null && start > end)) {
+        if ((start != null && start < 0)
+                || (end != null && (end + 1) > this.tags.size())
+                || (start != null && end != null && start > end)) {
             throw new IllegalArgumentException("start: " + start + ", end: " + end + ", size=" + this.tags.size());
         }
         final SwiftTagListBlock result = new SwiftTagListBlock();
@@ -961,14 +962,18 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @param searchBoundary           mandatory limit search criteria.
      * @return the found subblocks
      */
-    private SwiftTagListBlock _searchSubBlockByCriteria(final Tag tag, final boolean includeDelimiterInResult, SearchSelection searchSelection, SearchBoundary searchBoundary) {
+    private SwiftTagListBlock _searchSubBlockByCriteria(
+            final Tag tag,
+            final boolean includeDelimiterInResult,
+            SearchSelection searchSelection,
+            SearchBoundary searchBoundary) {
 
         SwiftTagListBlock result = new SwiftTagListBlock();
 
         int index = getIndexByCriteria(searchBoundary, tag);
 
         if (index >= 0) {
-            //boundary tag found
+            // boundary tag found
             if (includeDelimiterInResult) {
                 if (searchSelection == SearchSelection.AFTER) {
                     result = getSubBlock(index, null);
@@ -977,7 +982,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
                 }
             } else {
 
-                boolean hasDelimiterCriteria = (searchSelection == SearchSelection.AFTER && index < this.tags.size() - 1) || (searchSelection == SearchSelection.BEFORE && index < this.tags.size());
+                boolean hasDelimiterCriteria =
+                        (searchSelection == SearchSelection.AFTER && index < this.tags.size() - 1)
+                                || (searchSelection == SearchSelection.BEFORE && index < this.tags.size());
 
                 if (hasDelimiterCriteria) {
                     if (searchSelection == SearchSelection.AFTER) {
@@ -1028,7 +1035,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public SwiftTagListBlock getSubBlockAfterFirst(final String tagname, final boolean includeBoundaryInResult) {
         final Tag tag = new Tag(tagname, "");
-        return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.AFTER, SearchBoundary.FIRST_TAG_NAME);
+        return _searchSubBlockByCriteria(
+                tag, includeBoundaryInResult, SearchSelection.AFTER, SearchBoundary.FIRST_TAG_NAME);
     }
 
     /**
@@ -1045,7 +1053,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.9.3
      */
     public SwiftTagListBlock getSubBlockAfterFirst(final Tag tag, final boolean includeBoundaryInResult) {
-        return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.AFTER, SearchBoundary.FIRST_TAG_IGNORE_CR);
+        return _searchSubBlockByCriteria(
+                tag, includeBoundaryInResult, SearchSelection.AFTER, SearchBoundary.FIRST_TAG_IGNORE_CR);
     }
 
     /**
@@ -1060,7 +1069,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public SwiftTagListBlock getSubBlockAfterLast(final String tagname, final boolean includeBoundaryInResult) {
         final Tag tag = new Tag(tagname, "");
-        return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.AFTER, SearchBoundary.LAST_TAG_NAME);
+        return _searchSubBlockByCriteria(
+                tag, includeBoundaryInResult, SearchSelection.AFTER, SearchBoundary.LAST_TAG_NAME);
     }
 
     /**
@@ -1075,7 +1085,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public SwiftTagListBlock getSubBlockBeforeFirst(final String tagname, final boolean includeBoundaryInResult) {
         final Tag tag = new Tag(tagname, "");
-        return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.BEFORE, SearchBoundary.FIRST_TAG_NAME);
+        return _searchSubBlockByCriteria(
+                tag, includeBoundaryInResult, SearchSelection.BEFORE, SearchBoundary.FIRST_TAG_NAME);
     }
 
     /**
@@ -1090,7 +1101,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 9.2.9
      */
     public SwiftTagListBlock getSubBlockBeforeFirst(final Tag tag, final boolean includeBoundaryInResult) {
-        return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.BEFORE, SearchBoundary.FIRST_TAG_IGNORE_CR);
+        return _searchSubBlockByCriteria(
+                tag, includeBoundaryInResult, SearchSelection.BEFORE, SearchBoundary.FIRST_TAG_IGNORE_CR);
     }
 
     /**
@@ -1102,7 +1114,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      */
     public SwiftTagListBlock getSubBlockBeforeLast(final String tagname, final boolean includeBoundaryInResult) {
         final Tag tag = new Tag(tagname, "");
-        return _searchSubBlockByCriteria(tag, includeBoundaryInResult, SearchSelection.BEFORE, SearchBoundary.LAST_TAG_NAME);
+        return _searchSubBlockByCriteria(
+                tag, includeBoundaryInResult, SearchSelection.BEFORE, SearchBoundary.LAST_TAG_NAME);
     }
 
     /**
@@ -1312,8 +1325,10 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         if (this.tags != null && !this.tags.isEmpty()) {
             for (int i = 0; i < this.tags.size(); i++) {
                 final Tag t = this.tags.get(i);
-                if ((ignoreCR && t.equalsIgnoreCR(new Tag(tagname, value))) ||
-                        (!ignoreCR && StringUtils.equals(tagname, t.getName()) && StringUtils.equals(value, t.getValue()))) {
+                if ((ignoreCR && t.equalsIgnoreCR(new Tag(tagname, value)))
+                        || (!ignoreCR
+                                && StringUtils.equals(tagname, t.getName())
+                                && StringUtils.equals(value, t.getValue()))) {
                     return i;
                 }
             }
@@ -1536,7 +1551,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @param tail  names of tags that are optional and belong to the sequence, the must be after endName
      * @return an empty list if none found or prerequisites not met
      */
-    public List<SwiftTagListBlock> getSubBlocksDelimitedWithOptionalTail(final String[] start, final String[] end, final String[] tail) {
+    public List<SwiftTagListBlock> getSubBlocksDelimitedWithOptionalTail(
+            final String[] start, final String[] end, final String[] tail) {
         if (tags != null && !tags.isEmpty()) {
             final List<SwiftTagListBlock> result = new ArrayList<>();
             int offset = 0;
@@ -1633,7 +1649,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return the tag index of the last field added to the target block, useful to get multiple blocks
      * @since 7.10.4
      */
-    private int getSubBlockByTagNames(final SwiftTagListBlock target, final Integer startIndex, final String... searchTags) {
+    private int getSubBlockByTagNames(
+            final SwiftTagListBlock target, final Integer startIndex, final String... searchTags) {
         int tagsIndex = startIndex != null ? startIndex : 0;
         int searchIndex = 0;
         int lastAddedIndex = tagsIndex;
@@ -1671,7 +1688,8 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @param tail  names of tags that are optional and belong to the sequence, the must be after endName
      * @return the found block or null if prerequisites are not met
      */
-    public SwiftTagListBlock getSubBlockDelimitedWithOptionalTail(final String[] start, final String[] end, final String[] tail) {
+    public SwiftTagListBlock getSubBlockDelimitedWithOptionalTail(
+            final String[] start, final String[] end, final String[] tail) {
         if (tags != null && !tags.isEmpty()) {
             final int s = indexOfAnyFirst(start);
             final int e = indexOfAnyFirstAfterIndex(s + 1, end);
@@ -1986,24 +2004,24 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
 
     @Override
     public String getName() {
-        //unused
+        // unused
         return null;
     }
 
     @Override
     public Integer getNumber() {
-        //unused
+        // unused
         return null;
     }
 
     @Override
     protected void setBlockName(final String blockName) {
-        //unused
+        // unused
     }
 
     @Override
     protected void setBlockNumber(final Integer blockNumber) {
-        //unused
+        // unused
     }
 
     public void visit(final TagVisitor visitor) {
@@ -2110,5 +2128,4 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
             throw new UnsupportedOperationException("Can't remove on an empty iterator");
         }
     }
-
 }

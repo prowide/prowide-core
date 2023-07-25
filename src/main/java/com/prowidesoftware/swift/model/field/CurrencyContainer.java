@@ -68,5 +68,4 @@ public interface CurrencyContainer extends PatternContainer {
      * @see #initializeCurrencies(String)
      */
     void initializeCurrencies(Currency cur);
-
 }

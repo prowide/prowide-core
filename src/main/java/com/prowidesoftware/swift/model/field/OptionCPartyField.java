@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model.field;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-
 import java.util.*;
 
 /**
@@ -115,7 +114,7 @@ public abstract class OptionCPartyField extends Field {
         if (component < 1 || component > 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
-        //default format (as is)
+        // default format (as is)
         return getComponent(component);
     }
 
@@ -270,5 +269,4 @@ public abstract class OptionCPartyField extends Field {
         }
         return null;
     }
-
 }

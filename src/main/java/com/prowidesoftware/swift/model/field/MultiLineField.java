@@ -17,7 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import java.util.List;
 
-
 /**
  * Interface to mark fields whose structure admits multiple lines and API to query the field lines.
  *
@@ -101,5 +100,4 @@ public interface MultiLineField {
      * @since 7.7
      */
     List<String> getLinesBetween(int start, int end, int offset);
-
 }

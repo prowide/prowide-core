@@ -16,9 +16,8 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.utils.IsoUtils;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Helper class to process BIC information.
@@ -90,8 +89,7 @@ public class BIC {
     /**
      * Default constructor
      */
-    public BIC() {
-    }
+    public BIC() {}
 
     protected void parse(final String bic) {
         if (bic != null) {
@@ -135,36 +133,28 @@ public class BIC {
             return BicValidationResult.INVALID_LENGTH;
         }
         if (this.institution.length() != 4) {
-            return BicValidationResult.INVALID_INSTITUTION_LENGTH
-                    .setFound(this.institution);
+            return BicValidationResult.INVALID_INSTITUTION_LENGTH.setFound(this.institution);
         }
         if (this.country.length() != 2) {
-            return BicValidationResult.INVALID_COUNTRY_LENGTH
-                    .setFound(this.country);
+            return BicValidationResult.INVALID_COUNTRY_LENGTH.setFound(this.country);
         }
         if (this.location.length() != 2) {
-            return BicValidationResult.INVALID_LOCATION_LENGTH
-                    .setFound(this.location);
+            return BicValidationResult.INVALID_LOCATION_LENGTH.setFound(this.location);
         }
         if (this.branch != null && this.branch.length() != 3) {
-            return BicValidationResult.INVALID_BRANCH_LENGTH
-                    .setFound(this.branch);
+            return BicValidationResult.INVALID_BRANCH_LENGTH.setFound(this.branch);
         }
         if (!isUpperCase(this.institution)) {
-            return BicValidationResult.INVALID_INSTITUTION_CHARSET
-                    .setFound(this.institution);
+            return BicValidationResult.INVALID_INSTITUTION_CHARSET.setFound(this.institution);
         }
         if (!IsoUtils.getInstance().isValidISOCountry(this.country)) {
-            return BicValidationResult.INVALID_COUNTRY
-                    .setFound(this.country);
+            return BicValidationResult.INVALID_COUNTRY.setFound(this.country);
         }
         if (!isUpperCaseOrDigit(this.location)) {
-            return BicValidationResult.INVALID_LOCATION_CHARSET
-                    .setFound(this.location);
+            return BicValidationResult.INVALID_LOCATION_CHARSET.setFound(this.location);
         }
         if (this.branch != null && !isUpperCaseOrDigit(this.branch)) {
-            return BicValidationResult.INVALID_BRANCH_CHARSET
-                    .setFound(this.branch);
+            return BicValidationResult.INVALID_BRANCH_CHARSET.setFound(this.branch);
         }
         return BicValidationResult.OK;
     }
@@ -313,11 +303,11 @@ public class BIC {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BIC bic = (BIC) o;
-        return Objects.equals(institution, bic.institution) &&
-                Objects.equals(country, bic.country) &&
-                Objects.equals(location, bic.location) &&
-                Objects.equals(branch, bic.branch) &&
-                Objects.equals(subtype, bic.subtype);
+        return Objects.equals(institution, bic.institution)
+                && Objects.equals(country, bic.country)
+                && Objects.equals(location, bic.location)
+                && Objects.equals(branch, bic.branch)
+                && Objects.equals(subtype, bic.subtype);
     }
 
     @Override
@@ -368,7 +358,9 @@ public class BIC {
     public String distinguishedName(boolean includeDefaultBranch) {
         StringBuilder result = new StringBuilder();
         if (includeDefaultBranch || !Objects.equals(getBranchOrDefault(), "XXX")) {
-            result.append("ou=").append(StringUtils.lowerCase(getBranchOrDefault())).append(",");
+            result.append("ou=")
+                    .append(StringUtils.lowerCase(getBranchOrDefault()))
+                    .append(",");
         }
         result.append("o=").append(StringUtils.lowerCase(getBic8())).append(",o=swift");
         return result.toString();
@@ -443,5 +435,4 @@ public class BIC {
         }
         return bic;
     }
-
 }

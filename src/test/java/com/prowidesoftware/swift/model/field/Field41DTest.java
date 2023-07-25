@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,10 +32,7 @@ public class Field41DTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("41D",
-                "ANY BANK\r\nBY NEGOTIATION",
-                "A\r\nB\r\nC\r\nD\r\nE"
-        );
+        testSerializationImpl("41D", "ANY BANK\r\nBY NEGOTIATION", "A\r\nB\r\nC\r\nD\r\nE");
     }
 
     @Test
@@ -111,5 +108,4 @@ public class Field41DTest extends AbstractFieldTest {
         Field41D f = new Field41D(s);
         assertFalse(StringUtils.isEmpty(f.getComponent5()));
     }
-
 }

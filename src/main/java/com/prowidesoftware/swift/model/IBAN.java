@@ -15,9 +15,8 @@
  */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.logging.Level;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Utility class to validate IBAN codes.
@@ -40,7 +39,8 @@ import java.util.logging.Level;
 public class IBAN {
     static final int COUNTRY_CODE_LENGTH = 2;
     static final int CHECK_DIGIT_LENGTH = 2;
-    private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(IBAN.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(IBAN.class.getName());
     private static final int COUNTRY_CODE_INDEX = 0;
     private static final int CHECK_DIGIT_INDEX = COUNTRY_CODE_LENGTH;
     private static final int BBAN_INDEX = CHECK_DIGIT_INDEX + CHECK_DIGIT_LENGTH;
@@ -170,7 +170,8 @@ public class IBAN {
                      * load specific structure for country
                      */
                     final String country = getCountryCode(code);
-                    final BbanStructureDTO structure = BbanStructureValidations.getInstance().forCountry(country);
+                    final BbanStructureDTO structure =
+                            BbanStructureValidations.getInstance().forCountry(country);
                     if (structure == null) {
                         result = IbanValidationResult.MISSING_BBAN_CONFIGURATION;
                         result.setFound(country);
@@ -285,5 +286,4 @@ public class IBAN {
         }
         return null;
     }
-
 }

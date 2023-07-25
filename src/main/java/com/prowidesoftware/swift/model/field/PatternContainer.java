@@ -20,5 +20,4 @@ public interface PatternContainer {
     String typesPattern();
 
     String parserPattern();
-
 }

@@ -19,7 +19,6 @@ import static javax.persistence.FetchType.LAZY;
 
 import java.util.Calendar;
 import java.util.Objects;
-
 import javax.persistence.*;
 
 /**
@@ -52,8 +51,7 @@ public class SwiftMessageRevision {
     @Basic(fetch = LAZY)
     private String json;
 
-    public SwiftMessageRevision() {
-    }
+    public SwiftMessageRevision() {}
 
     /**
      * Creates a message revision from a messages.<br>
@@ -78,9 +76,9 @@ public class SwiftMessageRevision {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SwiftMessageRevision that = (SwiftMessageRevision) o;
-        return Objects.equals(creationDate, that.creationDate) &&
-                Objects.equals(creationUser, that.creationUser) &&
-                Objects.equals(message, that.message);
+        return Objects.equals(creationDate, that.creationDate)
+                && Objects.equals(creationUser, that.creationUser)
+                && Objects.equals(message, that.message);
     }
 
     @Override
@@ -127,5 +125,4 @@ public class SwiftMessageRevision {
     public void setJson(String json) {
         this.json = json;
     }
-
 }

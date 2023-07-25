@@ -18,11 +18,10 @@ package com.prowidesoftware.swift.io.writer;
 import com.prowidesoftware.ProwideException;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.IMessageVisitor;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.IOException;
 import java.io.Writer;
 import java.util.logging.Level;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Main class for writing SwiftMessage objects into SWIFT FIN message text.
@@ -36,7 +35,9 @@ public class FINWriterVisitor implements IMessageVisitor {
      * EOL as defined by swift
      */
     public static final String SWIFT_EOL = "\r\n";
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(FINWriterVisitor.class.getName());
+
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(FINWriterVisitor.class.getName());
     private final Writer writer;
     private boolean block4asText = true;
     private boolean trimTagValues = false;
@@ -80,7 +81,8 @@ public class FINWriterVisitor implements IMessageVisitor {
         // if b1 not empty
         if (b1 != null && StringUtils.isNotEmpty(b1.getValue())) {
             // check for app id and service id
-            boolean isAppIdOrServiceId = !StringUtils.equals(b1.getApplicationId(), "F") || !StringUtils.equals(b1.getServiceId(), "01");
+            boolean isAppIdOrServiceId =
+                    !StringUtils.equals(b1.getApplicationId(), "F") || !StringUtils.equals(b1.getServiceId(), "01");
             if (isAppIdOrServiceId) {
                 // if app identifier NOT 'F' OR service identifier NOT '01' => USE TAG-BLOCK syntax
                 this.block4asText = false;
@@ -107,8 +109,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (m.getUnparsedTextsSize() > 0)
-            write(m.getUnparsedTexts());
+        if (m.getUnparsedTextsSize() > 0) write(m.getUnparsedTexts());
 
         // cleanup status
         this.block4asText = true;
@@ -139,8 +140,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0)
-            write(b.getUnparsedTexts());
+        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts());
 
         // write block termination
         write("}");
@@ -171,8 +171,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0)
-            write(b.getUnparsedTexts());
+        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts());
 
         // write block termination
         write("}");
@@ -201,8 +200,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0)
-            write(b.getUnparsedTexts());
+        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts());
 
         // write block termination
         write("}");
@@ -235,8 +233,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0)
-            write(b.getUnparsedTexts());
+        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts());
 
         // write block termination
         write((this.block4asText ? "-" : "") + "}");
@@ -265,8 +262,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0)
-            write(b.getUnparsedTexts());
+        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts());
 
         // write block termination
         write("}");
@@ -295,8 +291,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0)
-            write(b.getUnparsedTexts());
+        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts());
 
         // write block termination
         write("}");
@@ -308,8 +303,7 @@ public class FINWriterVisitor implements IMessageVisitor {
     //
     ////////////////////////////////////////////////////////////
     public void tag(SwiftBlock b, Tag t) {
-        if (b == null)
-            return;
+        if (b == null) return;
         if (b instanceof SwiftBlock3) {
             tag((SwiftBlock3) b, t);
         }
@@ -352,8 +346,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (t.getUnparsedTextsSize() > 0)
-            write(t.getUnparsedTexts());
+        if (t.getUnparsedTextsSize() > 0) write(t.getUnparsedTexts());
 
         // write closing braquets
         write("}");
@@ -393,7 +386,6 @@ public class FINWriterVisitor implements IMessageVisitor {
         }
     }
 
-
     /**
      * Returns the tags value.
      *
@@ -415,8 +407,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         // write the unparsed texts (if any)
         if (texts.size() > 0) {
             for (int i = 0; i < texts.size(); i++) {
-                if (texts.isMessage(i))
-                    write(texts.getText(i));
+                if (texts.isMessage(i)) write(texts.getText(i));
             }
         }
     }
@@ -429,5 +420,4 @@ public class FINWriterVisitor implements IMessageVisitor {
             throw new ProwideException(e);
         }
     }
-
 }

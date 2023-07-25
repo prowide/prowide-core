@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ public class Issue74 {
     @Test
     public void testField48() {
 
-        Tag swift48Tag  = new Tag("48:30/BUT WITHIN L/C VALIDITY");
+        Tag swift48Tag = new Tag("48:30/BUT WITHIN L/C VALIDITY");
 
         String formattedValue = swift48Tag.getValue();
 
@@ -39,5 +39,4 @@ public class Issue74 {
         System.out.println("swift48Tag.asField.getValue: " + formattedValue);
         assert "30/BUT WITHIN L/C VALIDITY".equals(formattedValue);
     }
-
 }

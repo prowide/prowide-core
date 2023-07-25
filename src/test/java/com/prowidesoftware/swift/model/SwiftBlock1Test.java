@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ public class SwiftBlock1Test {
     @Test
     public void testSetValue_3() {
         try {
-            //set an invalid length value
+            // set an invalid length value
             b.setValue("1:F01BANKBEBBAXXX12345678");
         } catch (IllegalArgumentException e) {
             return;
@@ -68,7 +68,7 @@ public class SwiftBlock1Test {
     @Test
     public void testSetValue_4() {
         try {
-            //set an invalid starting substring
+            // set an invalid starting substring
             b.setValue("a:F01BANKBEBBAXXX1234567890");
         } catch (IllegalArgumentException e) {
             return;
@@ -147,7 +147,7 @@ public class SwiftBlock1Test {
         assertEquals("01", bb.getServiceId());
         assertEquals("BANKBEBBAXXX", bb.getLogicalTerminal());
         assertEquals("1234", bb.getSessionNumber());
-        assertEquals("56789", bb.getSequenceNumber());    //less than expected
+        assertEquals("56789", bb.getSequenceNumber()); // less than expected
     }
 
     @Test
@@ -157,7 +157,7 @@ public class SwiftBlock1Test {
         assertEquals("01", bb.getServiceId());
         assertEquals("BANKBEBBAXXX", bb.getLogicalTerminal());
         assertEquals("1234", bb.getSessionNumber());
-        assertEquals("567890123", bb.getSequenceNumber());    //more than expected
+        assertEquals("567890123", bb.getSequenceNumber()); // more than expected
     }
 
     @Test
@@ -185,7 +185,7 @@ public class SwiftBlock1Test {
         SwiftBlock1 bb = new SwiftBlock1("1:F01BANKBEBBA", true);
         assertEquals("F", bb.getApplicationId());
         assertEquals("01", bb.getServiceId());
-        assertEquals("BANKBEBBA", bb.getLogicalTerminal()); //missign branch code
+        assertEquals("BANKBEBBA", bb.getLogicalTerminal()); // missign branch code
         assertNull(bb.getSessionNumber());
         assertNull(bb.getSequenceNumber());
     }
@@ -246,5 +246,4 @@ public class SwiftBlock1Test {
         SwiftBlock1 b = new SwiftBlock1(a);
         assertEquals(a.getValue(), b.getValue());
     }
-
 }

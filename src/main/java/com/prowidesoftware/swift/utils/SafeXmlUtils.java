@@ -16,11 +16,6 @@
 package com.prowidesoftware.swift.utils;
 
 import com.prowidesoftware.ProwideException;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
-import org.xml.sax.XMLReader;
-
 import javax.xml.XMLConstants;
 import javax.xml.parsers.*;
 import javax.xml.stream.XMLInputFactory;
@@ -30,6 +25,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXNotRecognizedException;
+import org.xml.sax.SAXNotSupportedException;
+import org.xml.sax.XMLReader;
 
 /**
  * Reusable safe XML document builder to prevent XXE
@@ -39,7 +38,8 @@ import javax.xml.validation.Validator;
  */
 public class SafeXmlUtils {
     @SuppressWarnings("unused")
-    private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(SafeXmlUtils.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SafeXmlUtils.class.getName());
 
     // Suppress default constructor for noninstantiability
     private SafeXmlUtils() {
@@ -87,8 +87,10 @@ public class SafeXmlUtils {
             return dbf.newDocumentBuilder();
 
         } catch (ParserConfigurationException e) {
-            throw new ProwideException("Error configuring the XML document builder. " +
-                    "The feature " + feature + " is probably not supported by your XML processor.", e);
+            throw new ProwideException(
+                    "Error configuring the XML document builder. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
         }
     }
 
@@ -155,8 +157,10 @@ public class SafeXmlUtils {
             return reader;
 
         } catch (ParserConfigurationException | SAXException e) {
-            throw new ProwideException("Error configuring the XML parser. " +
-                    "The feature " + feature + " is probably not supported by your XML processor.", e);
+            throw new ProwideException(
+                    "Error configuring the XML parser. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
         }
     }
 
@@ -194,8 +198,10 @@ public class SafeXmlUtils {
             return tf.newTransformer();
 
         } catch (TransformerConfigurationException e) {
-            throw new ProwideException("Error configuring the XML transformer factory. " +
-                    "The feature " + feature + " is probably not supported by your XML processor.", e);
+            throw new ProwideException(
+                    "Error configuring the XML transformer factory. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
         }
     }
 
@@ -212,14 +218,16 @@ public class SafeXmlUtils {
             factory.setProperty(feature, "");
 
             // we keep this one for the moment because it is needed in MX xsys validation
-            //feature = XMLConstants.ACCESS_EXTERNAL_SCHEMA;
-            //factory.setProperty(feature, "");
+            // feature = XMLConstants.ACCESS_EXTERNAL_SCHEMA;
+            // factory.setProperty(feature, "");
 
             return factory;
 
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
-            throw new ProwideException("Error configuring the schema factory. " +
-                    "The feature " + feature + " is probably not supported by your XML processor.", e);
+            throw new ProwideException(
+                    "Error configuring the schema factory. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
         }
     }
 
@@ -240,9 +248,10 @@ public class SafeXmlUtils {
             return validator;
 
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
-            throw new ProwideException("Error configuring the schema validator. " +
-                    "The feature " + feature + " is probably not supported by your XML processor.", e);
+            throw new ProwideException(
+                    "Error configuring the schema validator. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
         }
     }
-
 }

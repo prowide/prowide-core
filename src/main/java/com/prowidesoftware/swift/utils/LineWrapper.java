@@ -13,11 +13,10 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Static utility class to wrap character data into lines.
@@ -30,8 +29,7 @@ public final class LineWrapper {
     /**
      * Constructor hidden to prevent instantiation.
      */
-    private LineWrapper() {
-    }
+    private LineWrapper() {}
 
     /**
      * Wraps the input sequence {@code _str} to the specified {@code _width} identifying words by space.<br>
@@ -48,7 +46,7 @@ public final class LineWrapper {
         if (wrapped.isEmpty()) {
             return null;
         }
-        CharSequence newLineSeq = _newLineSeq != null? _newLineSeq : System.lineSeparator();
+        CharSequence newLineSeq = _newLineSeq != null ? _newLineSeq : System.lineSeparator();
         return String.join(newLineSeq, wrapped);
     }
 
@@ -165,5 +163,4 @@ public final class LineWrapper {
         }
         return _str.toString().substring(i);
     }
-
 }

@@ -15,8 +15,6 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
-import org.apache.commons.lang3.Validate;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,10 +25,10 @@ import java.util.logging.Level;
  *
  * @author sebastian
  */
-//Sebastian Feb 2016: make this API static
+// Sebastian Feb 2016: make this API static
 public class MultilineUtil {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(MultilineUtil.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(MultilineUtil.class.getName());
 
     /**
      * Same as <code>removeInnerEmptyLines(lines, false)</code>
@@ -51,8 +49,7 @@ public class MultilineUtil {
      */
     public String[] removeInnerEmptyLines(final String[] lines, final boolean keepAll) {
         Objects.requireNonNull(lines, "lines cannot be null");
-        if (lines.length == 0)
-            return lines;
+        if (lines.length == 0) return lines;
         final List<String> text = new ArrayList<>();
         List<String> empty = null;
         if (keepAll) {
@@ -80,5 +77,4 @@ public class MultilineUtil {
     private boolean isEmpty(String string) {
         return string == null || string.trim().length() == 0;
     }
-
 }

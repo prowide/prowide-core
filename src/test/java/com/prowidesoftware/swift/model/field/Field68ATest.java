@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,7 @@ public class Field68ATest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("68A",
-                "130301FOO130302/1234/999",
-                "130301FOO130302/1234/999//ABC"
-        );
+        testSerializationImpl("68A", "130301FOO130302/1234/999", "130301FOO130302/1234/999//ABC");
     }
 
     /**
@@ -124,5 +121,4 @@ public class Field68ATest extends AbstractFieldTest {
         assertEquals("999", f.getComponent5());
         assertEquals("ABC", f.getComponent6());
     }
-
 }

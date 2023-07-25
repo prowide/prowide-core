@@ -15,11 +15,10 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.util.*;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Helper API to check country and currency codes using Java {@link Currency} and {@link Locale} API.
@@ -48,7 +47,8 @@ public final class IsoUtils {
 
         countries = new HashSet<>(Arrays.asList(Locale.getISOCountries()));
 
-        log.fine("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size() + " country codes");
+        log.fine("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size()
+                + " country codes");
     }
 
     public static IsoUtils getInstance() {
@@ -109,7 +109,9 @@ public final class IsoUtils {
      * @since 7.9.7
      */
     public void addCountry(final String countryCode) {
-        Validate.isTrue(countryCode != null && countryCode.length() == 2 && countryCode.matches("[A-Z]*"), "The country code must by indicated with two uppercase letters");
+        Validate.isTrue(
+                countryCode != null && countryCode.length() == 2 && countryCode.matches("[A-Z]*"),
+                "The country code must by indicated with two uppercase letters");
         countries.add(countryCode);
     }
 
@@ -121,8 +123,9 @@ public final class IsoUtils {
      * @since 7.9.7
      */
     public void addCurrency(final String currencyCode) {
-        Validate.isTrue(currencyCode != null && currencyCode.length() == 3 && currencyCode.matches("[A-Z]*"), "The currency code must by indicated with three uppercase letters");
+        Validate.isTrue(
+                currencyCode != null && currencyCode.length() == 3 && currencyCode.matches("[A-Z]*"),
+                "The currency code must by indicated with three uppercase letters");
         currencies.add(currencyCode);
     }
-
 }

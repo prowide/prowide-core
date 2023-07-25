@@ -18,9 +18,8 @@ package com.prowidesoftware.swift.model.field;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.*;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Branch of Sender/Receiver
@@ -155,7 +154,7 @@ public abstract class OptionBPartyField extends Field implements PartyIdentifier
         if (component < 1 || component > 3) {
             throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
-        //default format (as is)
+        // default format (as is)
         return getComponent(component);
     }
 
@@ -388,5 +387,4 @@ public abstract class OptionBPartyField extends Field implements PartyIdentifier
     public OptionBPartyField setPartyIdentifier(String partyIdentifier) {
         return (OptionBPartyField) PartyIdentifierUtils.setPartyIdentifier(this, 1, 2, partyIdentifier);
     }
-
 }

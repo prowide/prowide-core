@@ -17,8 +17,6 @@ package com.prowidesoftware.swift.io;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.apache.commons.lang3.Validate;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Objects;
@@ -35,7 +33,6 @@ public class RJEWriter extends AbstractWriter {
     private static final String WRITER_MESSAGE = "writer has not been initialized";
     private int count = 0;
     private char splitChar = RJEReader.SPLITCHAR;
-
 
     /**
      * Constructs a RJEWriter to write content into a given Writer instance.
@@ -149,5 +146,4 @@ public class RJEWriter extends AbstractWriter {
     public void setSplitChar(final char c) {
         this.splitChar = c;
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,6 +46,4 @@ public class GetLabelTest {
         assertEquals("Name And Address", f.getComponentLabel(2));
         assertEquals("Name And Address 2", f.getComponentLabel(3));
     }
-
-
 }

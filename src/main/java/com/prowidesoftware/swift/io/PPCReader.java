@@ -126,5 +126,4 @@ public class PPCReader extends AbstractReader {
             throw new IllegalStateException("hasNext did not return true but this method was called");
         }
     }
-
 }

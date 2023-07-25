@@ -18,9 +18,8 @@ package com.prowidesoftware.swift.model.field;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.*;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Party
@@ -132,7 +131,7 @@ public abstract class OptionUPartyField extends Field {
         if (component < 1 || component > 4) {
             throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
-        //default format (as is)
+        // default format (as is)
         return getComponent(component);
     }
 
@@ -362,5 +361,4 @@ public abstract class OptionUPartyField extends Field {
     public String getComponent4() {
         return getComponent(4);
     }
-
 }

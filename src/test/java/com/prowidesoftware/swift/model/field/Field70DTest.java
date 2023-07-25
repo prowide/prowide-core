@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,7 @@ public class Field70DTest {
 
     @Test
     public void testParse() {
-        Field70D f = new Field70D(":REAS//INVALID FIELD 95P..DEAG//ABCDDEFFCU\n" +
-                "S\n" +
-                "/SETT/EUR145123");
+        Field70D f = new Field70D(":REAS//INVALID FIELD 95P..DEAG//ABCDDEFFCU\n" + "S\n" + "/SETT/EUR145123");
 
         // get components API
         assertEquals("REAS", f.getComponent1());
@@ -45,5 +43,4 @@ public class Field70DTest {
 
         assertEquals("ABCDDEFFCU", StringUtils.substringAfter(f.getComponent2(), "//"));
     }
-
 }

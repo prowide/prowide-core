@@ -17,7 +17,6 @@ package com.prowidesoftware.swift.model;
 
 import java.util.List;
 
-
 /**
  * Container for a specific country BBAN structure.
  *
@@ -74,5 +73,4 @@ public class BbanStructureDTO {
     public void setCountry_coode(String country_coode) {
         this.country_code = country_coode;
     }
-
 }

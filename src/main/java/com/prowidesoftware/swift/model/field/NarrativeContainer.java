@@ -50,5 +50,4 @@ public interface NarrativeContainer {
      * @see Narrative#builder(int)
      */
     NarrativeContainer setNarrative(Narrative narrative);
-
 }

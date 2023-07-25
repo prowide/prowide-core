@@ -88,5 +88,4 @@ public interface IConversionService {
      * @throws IllegalArgumentException if XML is null
      */
     SwiftMessage getMessageFromXML(String xml);
-
 }

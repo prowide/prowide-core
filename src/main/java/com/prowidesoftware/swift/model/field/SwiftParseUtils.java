@@ -16,14 +16,12 @@
 package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.ProwideException;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * This class provides methods to parse field components.
@@ -33,7 +31,8 @@ import java.util.List;
  */
 public class SwiftParseUtils {
     @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftParseUtils.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftParseUtils.class.getName());
 
     // Suppress default constructor for noninstantiability
     private SwiftParseUtils() {
@@ -49,7 +48,7 @@ public class SwiftParseUtils {
         if (value == null) {
             return false;
         }
-        for(char c : value.toCharArray()) {
+        for (char c : value.toCharArray()) {
             if (c < '0' || '9' < c) {
                 return false;
             }
@@ -76,7 +75,7 @@ public class SwiftParseUtils {
 
             if (StringUtils.isNotBlank(separator)) {
                 final String[] tokens = StringUtils.splitByWholeSeparator(lineNoPrefix, separator);
-                //add not empty tokens to result
+                // add not empty tokens to result
                 for (String token : tokens) {
                     if (StringUtils.isNotBlank(token)) {
                         result.add(token);
@@ -140,7 +139,8 @@ public class SwiftParseUtils {
      * @return s
      */
     public static String getTokenSecond(final String line, final String separator) {
-        //notice we cannot use String.split nor StringUtils.split because in that implementations two adjacent separators are treated as one
+        // notice we cannot use String.split nor StringUtils.split because in that implementations two adjacent
+        // separators are treated as one
         return getTokenFirst(StringUtils.substringAfter(line, separator), null, separator);
     }
 
@@ -324,7 +324,8 @@ public class SwiftParseUtils {
     public static String getNumericPrefix(final String value) {
         if (value != null && value.length() > 0) {
             int i = 0;
-            while (i < value.length() && (StringUtils.isNumeric(Character.toString(value.charAt(i))) || value.charAt(i) == ',')) {
+            while (i < value.length()
+                    && (StringUtils.isNumeric(Character.toString(value.charAt(i))) || value.charAt(i) == ',')) {
                 i++;
             }
             if (i > 0) {
@@ -368,7 +369,8 @@ public class SwiftParseUtils {
     public static String getAlphaSuffix(final String value) {
         if (value != null && value.length() > 0) {
             int i = 0;
-            while (i < value.length() && (StringUtils.isNumeric(Character.toString(value.charAt(i))) || value.charAt(i) == ',')) {
+            while (i < value.length()
+                    && (StringUtils.isNumeric(Character.toString(value.charAt(i))) || value.charAt(i) == ',')) {
                 i++;
             }
             if (i < value.length()) {
@@ -411,7 +413,12 @@ public class SwiftParseUtils {
      * @param startingLine            lines list offset, zero based
      * @param lines                   list of lines from where to get components content
      */
-    public static void setComponentsFromLines(final Field f, final int startingComponentNumber, final Integer linesToSet, final int startingLine, final List<String> lines) {
+    public static void setComponentsFromLines(
+            final Field f,
+            final int startingComponentNumber,
+            final Integer linesToSet,
+            final int startingLine,
+            final List<String> lines) {
         int max = linesToSet != null ? linesToSet : lines.size();
         int componentNumber = startingComponentNumber;
         int lineNumber = startingLine;
@@ -434,12 +441,17 @@ public class SwiftParseUtils {
      * @param value                   from where to get components content
      * @since 7.4
      */
-    public static void setComponentsFromTokens(final Field f, final int startingComponentNumber, final int componentsToSet, final int tokenSize, final String value) {
+    public static void setComponentsFromTokens(
+            final Field f,
+            final int startingComponentNumber,
+            final int componentsToSet,
+            final int tokenSize,
+            final String value) {
         StringBuilder token = new StringBuilder();
         int componentNumber = startingComponentNumber;
         for (final char c : value.toCharArray()) {
             if (token.length() >= tokenSize) {
-                //token complete
+                // token complete
                 if (componentNumber <= componentsToSet) {
                     f.setComponent(componentNumber, token.toString());
                 }
@@ -448,10 +460,9 @@ public class SwiftParseUtils {
             }
             token.append(c);
         }
-        //add remainder
+        // add remainder
         if (token.length() > 0 && componentNumber <= componentsToSet) {
             f.setComponent(componentNumber, token.toString());
         }
     }
-
 }

@@ -17,10 +17,9 @@ package com.prowidesoftware.swift.constraints;
 
 import com.prowidesoftware.swift.model.IBAN;
 import com.prowidesoftware.swift.model.IbanValidationResult;
-import org.apache.commons.lang3.StringUtils;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Implementation of the IBAN validation constraint
@@ -31,8 +30,7 @@ import javax.validation.ConstraintValidatorContext;
 public class IbanValidator implements ConstraintValidator<IbanConstraint, String> {
 
     @Override
-    public void initialize(IbanConstraint iban) {
-    }
+    public void initialize(IbanConstraint iban) {}
 
     @Override
     public boolean isValid(String iban, ConstraintValidatorContext context) {
@@ -48,5 +46,4 @@ public class IbanValidator implements ConstraintValidator<IbanConstraint, String
             return false;
         }
     }
-
 }

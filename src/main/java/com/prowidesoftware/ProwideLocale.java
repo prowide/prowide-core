@@ -85,5 +85,4 @@ public final class ProwideLocale {
     public static ResourceBundle getBundle(final String resource) {
         return getBundle(resource, Locale.getDefault());
     }
-
 }

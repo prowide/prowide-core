@@ -19,5 +19,4 @@ package com.prowidesoftware.swift.model.field;
  * Fields with an amount component and a currency component.
  * @since 9.2.15
  */
-public interface MonetaryAmountContainer extends CurrencyContainer, AmountContainer {
-}
+public interface MonetaryAmountContainer extends CurrencyContainer, AmountContainer {}

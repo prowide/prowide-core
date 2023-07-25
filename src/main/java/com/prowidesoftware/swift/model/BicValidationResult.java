@@ -27,7 +27,8 @@ import java.util.Objects;
 public enum BicValidationResult {
     OK("The BIC code is valid"),
 
-    INVALID_LENGTH("The BIC code must contain at least 8 characters with the institution (4), country (2) and location code (2)"),
+    INVALID_LENGTH(
+            "The BIC code must contain at least 8 characters with the institution (4), country (2) and location code (2)"),
     INVALID_INSTITUTION_LENGTH("The institution code must contain 4 characters and ${length} were found in ${found}"),
     INVALID_COUNTRY_LENGTH("The country code must contain 2 characters and ${length} were found in ${found}"),
     INVALID_LOCATION_LENGTH("The location code must contain 2 characters and ${length} were found in ${found}"),
@@ -38,7 +39,7 @@ public enum BicValidationResult {
     INVALID_BRANCH_CHARSET("The branch code can only contain uppercase letters or digits and ${found} was found");
 
     private final String message;
-    private String       found;
+    private String found;
 
     BicValidationResult(final String message) {
         this.message = message;
@@ -60,10 +61,9 @@ public enum BicValidationResult {
      * @param found content
      * @return this
      */
-    //TODO: enums should be immutable
+    // TODO: enums should be immutable
     BicValidationResult setFound(final String found) {
         this.found = found;
         return this;
     }
-
 }

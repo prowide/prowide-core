@@ -2,12 +2,11 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.apache.commons.lang3.tuple.Pair;
-
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class DateResolver {
 
@@ -31,7 +30,8 @@ public class DateResolver {
         Objects.requireNonNull(f);
 
         // find all the non-null AMOUNT components
-        List<Pair<Character, String>> values = ResolverUtils.findWantedType(f.typesPattern(), "DEFYAUPJ", f.getComponents());
+        List<Pair<Character, String>> values =
+                ResolverUtils.findWantedType(f.typesPattern(), "DEFYAUPJ", f.getComponents());
 
         // prepare the result and convert all that match
         return values.stream()
@@ -56,21 +56,30 @@ public class DateResolver {
         Objects.requireNonNull(f);
 
         // find the first DATE component
-        Pair<Character, String> value = ResolverUtils.findFirstWantedType(f.typesPattern(), "DEFYAUPJ", f.getComponents());
+        Pair<Character, String> value =
+                ResolverUtils.findFirstWantedType(f.typesPattern(), "DEFYAUPJ", f.getComponents());
         return value != null ? _convert(value.getKey(), value.getValue()) : null;
     }
 
     private static Calendar _convert(Character type, String value) {
 
         switch (type) {
-            case 'D': return SwiftFormatUtils.getDate4(value);
-            case 'E': return SwiftFormatUtils.getDate2(value);
-            case 'F': return SwiftFormatUtils.getDate1(value);
-            case 'Y': return SwiftFormatUtils.getYear(value);
-            case 'A': return SwiftFormatUtils.getDateTime(value);
-            case 'U': return SwiftFormatUtils.getDateTimeShortYear(value);
-            case 'P': return SwiftFormatUtils.getDayTime(value);
-            case 'J': return SwiftFormatUtils.getMonthDay(value);
+            case 'D':
+                return SwiftFormatUtils.getDate4(value);
+            case 'E':
+                return SwiftFormatUtils.getDate2(value);
+            case 'F':
+                return SwiftFormatUtils.getDate1(value);
+            case 'Y':
+                return SwiftFormatUtils.getYear(value);
+            case 'A':
+                return SwiftFormatUtils.getDateTime(value);
+            case 'U':
+                return SwiftFormatUtils.getDateTimeShortYear(value);
+            case 'P':
+                return SwiftFormatUtils.getDayTime(value);
+            case 'J':
+                return SwiftFormatUtils.getMonthDay(value);
         }
 
         return null;

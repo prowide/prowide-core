@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.prowidesoftware.swift.model.field.*;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for currency amount containers
@@ -61,7 +60,8 @@ public class MoneyTest {
 
     @Test
     public void testMoneySum() {
-        Money m = Money.ofSum(new Field32A("121212USD1000,1"), new Field33B("USD2000,1"), new Field62F("121212USD3000,1"));
+        Money m = Money.ofSum(
+                new Field32A("121212USD1000,1"), new Field33B("USD2000,1"), new Field62F("121212USD3000,1"));
         assertEquals("USD", m.getCurrency());
         assertEquals(new BigDecimal("6000.3"), m.getAmount());
 
@@ -69,5 +69,4 @@ public class MoneyTest {
         assertEquals("USD", m.getCurrency());
         assertEquals(new BigDecimal("7000.1"), m.getAmount());
     }
-
 }

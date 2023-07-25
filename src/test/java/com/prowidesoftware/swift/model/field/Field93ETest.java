@@ -9,11 +9,11 @@ public class Field93ETest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("93E",
+        testSerializationImpl(
+                "93E",
                 ":DDDD//EEEE/SSSS/1234,",
                 ":DDDD//EEEE/DDDD/N1234,",
-                ":DDDD//AAAA/EEEE/N1234567890123456789012345,45"
-        );
+                ":DDDD//AAAA/EEEE/N1234567890123456789012345,45");
     }
 
     public void testParse() {
@@ -24,5 +24,4 @@ public class Field93ETest extends AbstractFieldTest {
         assertEquals("N", f.getComponent4());
         assertEquals("1234,", f.getComponent5());
     }
-
 }

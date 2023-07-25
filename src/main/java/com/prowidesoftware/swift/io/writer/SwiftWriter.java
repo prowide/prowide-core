@@ -16,18 +16,18 @@
 package com.prowidesoftware.swift.io.writer;
 
 import com.prowidesoftware.swift.model.*;
-import org.apache.commons.lang3.Validate;
-
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Writes MT messages content into FIN format (raw SWIFT format for MT messages).
  */
 public class SwiftWriter {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftWriter.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftWriter.class.getName());
 
     private static final String WRITER_MESSAGE = "writer cannot be null";
 
@@ -280,11 +280,10 @@ public class SwiftWriter {
             log.severe("Error in EOL correction: " + e);
         }
         if (buf.length() > 0) {
-            //remove the last EOL inserted
+            // remove the last EOL inserted
             return buf.substring(0, buf.length() - FINWriterVisitor.SWIFT_EOL.length());
         } else {
             return "";
         }
     }
-
 }

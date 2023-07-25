@@ -3,7 +3,6 @@ package com.prowidesoftware.swift.model.field;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -47,5 +46,4 @@ public class BICResolver {
                 .map(v -> v != null ? SwiftFormatUtils.getBIC(v) : null)
                 .collect(Collectors.toList());
     }
-
 }

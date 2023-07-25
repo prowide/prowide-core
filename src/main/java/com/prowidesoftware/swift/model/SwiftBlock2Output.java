@@ -17,12 +17,11 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.time.DateFormatUtils;
-
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 /**
  * Base class for SWIFT <b>Application Header Block (block 2)
@@ -104,7 +103,16 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      * @param receiverOutputTime receiver time
      * @param messagePriority    the message priority (S=system, U=urgent, N=normal)
      */
-    public SwiftBlock2Output(final String messageType, final String senderInputTime, final String MIRDate, final String MIRLogicalTerminal, final String MIRSessionNumber, final String MIRSequenceNumber, final String receiverOutputDate, final String receiverOutputTime, final String messagePriority) {
+    public SwiftBlock2Output(
+            final String messageType,
+            final String senderInputTime,
+            final String MIRDate,
+            final String MIRLogicalTerminal,
+            final String MIRSessionNumber,
+            final String MIRSequenceNumber,
+            final String receiverOutputDate,
+            final String receiverOutputTime,
+            final String messagePriority) {
         this.output = true;
         this.messageType = messageType;
         this.senderInputTime = senderInputTime;
@@ -146,8 +154,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
     /**
      * Default Constructor
      */
-    public SwiftBlock2Output() {
-    }
+    public SwiftBlock2Output() {}
 
     /**
      * Copy constructor
@@ -156,7 +163,16 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      * @since 7.10.4
      */
     public SwiftBlock2Output(SwiftBlock2Output block) {
-        this(block.getMessageType(), block.getSenderInputTime(), block.getMIRDate(), block.getMIRLogicalTerminal(), block.getMIRSessionNumber(), block.getMIRSequenceNumber(), block.getReceiverOutputDate(), block.getReceiverOutputTime(), block.getMessagePriority());
+        this(
+                block.getMessageType(),
+                block.getSenderInputTime(),
+                block.getMIRDate(),
+                block.getMIRLogicalTerminal(),
+                block.getMIRSessionNumber(),
+                block.getMIRSequenceNumber(),
+                block.getReceiverOutputDate(),
+                block.getReceiverOutputTime(),
+                block.getMessagePriority());
     }
 
     /**
@@ -371,7 +387,9 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
     public void setMIR(final String mir, boolean lenient) {
         if (!lenient) {
             Objects.requireNonNull(mir);
-            Validate.isTrue(mir.length() == 28, "expected a 28 characters string for MIR value and found a " + mir.length() + " string:" + mir);
+            Validate.isTrue(
+                    mir.length() == 28,
+                    "expected a 28 characters string for MIR value and found a " + mir.length() + " string:" + mir);
         }
         if (mir != null) {
             int offset = 0;
@@ -390,7 +408,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
             offset += len;
 
             if (lenient) {
-                //get all remaining text
+                // get all remaining text
                 this.setMIRSequenceNumber(getValuePart(mir, offset, mir.length()));
             } else {
                 len = 6;
@@ -456,7 +474,12 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      */
     @Override
     public boolean isEmpty() {
-        return messageType == null && senderInputTime == null && getMIR() == null && receiverOutputDate == null && receiverOutputTime == null && messagePriority == null;
+        return messageType == null
+                && senderInputTime == null
+                && getMIR() == null
+                && receiverOutputDate == null
+                && receiverOutputTime == null
+                && messagePriority == null;
     }
 
     /**
@@ -540,7 +563,7 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
      */
     public void setValue(final String value, boolean lenient) {
         if (lenient) {
-            //leave all attributes as null (cleaning defaults)
+            // leave all attributes as null (cleaning defaults)
             clean();
         } else {
             // check parameters
@@ -554,7 +577,10 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
             if (!lenient) {
                 // check parameters
                 Objects.requireNonNull(value, "value must not be null");
-                Validate.isTrue(slen == 46 || slen == 48 || slen == 47 || slen == 49, "expected a string value of 46 and up to 49 chars and obtained a " + slen + " chars string: '" + value + "'");
+                Validate.isTrue(
+                        slen == 46 || slen == 48 || slen == 47 || slen == 49,
+                        "expected a string value of 46 and up to 49 chars and obtained a " + slen + " chars string: '"
+                                + value + "'");
             }
 
             // figure out the starting point and check the input value has proper optional
@@ -591,13 +617,12 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
             offset += len;
 
             if (lenient) {
-                //get all remaining text
+                // get all remaining text
                 this.setMessagePriority(this.getValuePart(value, offset));
             } else {
                 len = 1;
                 this.setMessagePriority(this.getValuePart(value, offset, len));
             }
-
         }
     }
 
@@ -607,18 +632,26 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         SwiftBlock2Output that = (SwiftBlock2Output) o;
-        return Objects.equals(senderInputTime, that.senderInputTime) &&
-                Objects.equals(MIRDate, that.MIRDate) &&
-                Objects.equals(MIRLogicalTerminal, that.MIRLogicalTerminal) &&
-                Objects.equals(MIRSessionNumber, that.MIRSessionNumber) &&
-                Objects.equals(MIRSequenceNumber, that.MIRSequenceNumber) &&
-                Objects.equals(receiverOutputDate, that.receiverOutputDate) &&
-                Objects.equals(receiverOutputTime, that.receiverOutputTime);
+        return Objects.equals(senderInputTime, that.senderInputTime)
+                && Objects.equals(MIRDate, that.MIRDate)
+                && Objects.equals(MIRLogicalTerminal, that.MIRLogicalTerminal)
+                && Objects.equals(MIRSessionNumber, that.MIRSessionNumber)
+                && Objects.equals(MIRSequenceNumber, that.MIRSequenceNumber)
+                && Objects.equals(receiverOutputDate, that.receiverOutputDate)
+                && Objects.equals(receiverOutputTime, that.receiverOutputTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), senderInputTime, MIRDate, MIRLogicalTerminal, MIRSessionNumber, MIRSequenceNumber, receiverOutputDate, receiverOutputTime);
+        return Objects.hash(
+                super.hashCode(),
+                senderInputTime,
+                MIRDate,
+                MIRLogicalTerminal,
+                MIRSessionNumber,
+                MIRSequenceNumber,
+                receiverOutputDate,
+                receiverOutputTime);
     }
 
     /**
@@ -652,7 +685,6 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
                 return getReceiverOutputTime();
             default:
                 return null;
-
         }
     }
 
@@ -696,5 +728,4 @@ public class SwiftBlock2Output extends SwiftBlock2 implements Serializable {
                 break;
         }
     }
-
 }

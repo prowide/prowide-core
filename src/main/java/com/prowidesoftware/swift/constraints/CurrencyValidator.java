@@ -16,10 +16,9 @@
 package com.prowidesoftware.swift.constraints;
 
 import com.prowidesoftware.swift.utils.IsoUtils;
-import org.apache.commons.lang3.StringUtils;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Implementation of the ISO currency code validation constraint
@@ -30,8 +29,7 @@ import javax.validation.ConstraintValidatorContext;
 public class CurrencyValidator implements ConstraintValidator<CurrencyConstraint, String> {
 
     @Override
-    public void initialize(CurrencyConstraint currency) {
-    }
+    public void initialize(CurrencyConstraint currency) {}
 
     @Override
     public boolean isValid(String currency, ConstraintValidatorContext context) {
@@ -40,5 +38,4 @@ public class CurrencyValidator implements ConstraintValidator<CurrencyConstraint
         }
         return IsoUtils.getInstance().isValidISOCurrency(currency);
     }
-
 }

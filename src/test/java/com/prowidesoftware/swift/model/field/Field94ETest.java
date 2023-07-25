@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,11 @@ public class Field94ETest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("94E",
+        testSerializationImpl(
+                "94E",
                 ":ISSU//foo bar",
                 ":ISSU//foo bar\nsecond line\nthird line",
-                ":ISSU//foo bar \n second line \n third line "
-        );
+                ":ISSU//foo bar \n second line \n third line ");
     }
 
     @Test
@@ -50,5 +50,4 @@ public class Field94ETest extends AbstractFieldTest {
         assertEquals(" third line", f.getComponent4());
         assertEquals("foo bar second line third line", f.getAddress());
     }
-
 }
