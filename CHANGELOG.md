@@ -1,6 +1,7 @@
 # Prowide Core - CHANGELOG
 
 #### 9.4.3 - SNAPSHOT
+  * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
 
 #### 9.4.2 - June 2023

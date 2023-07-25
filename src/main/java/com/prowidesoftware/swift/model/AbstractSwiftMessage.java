@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -197,7 +197,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     protected AbstractSwiftMessage(
             final String content, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) {
         Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-        this.message = content;
+        this.message = StringUtils.trim(content);
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
     }
