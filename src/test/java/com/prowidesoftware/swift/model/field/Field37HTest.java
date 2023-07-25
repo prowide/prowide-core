@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,19 +17,15 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
+import org.junit.jupiter.api.Test;
 
 public class Field37HTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("37H",
-                "D9,75",
-                "DN123"
-        );
+        testSerializationImpl("37H", "D9,75", "DN123");
     }
 
     @Test
@@ -93,5 +89,4 @@ public class Field37HTest extends AbstractFieldTest {
         assertNull(f.getComponent2());
         assertEquals(new BigDecimal("9.75"), f.getComponentAs(3, Number.class));
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
-
 
 public class MTVariantTest {
 
@@ -58,5 +57,4 @@ public class MTVariantTest {
         assertEquals(MTVariant.ISLFIN, MTVariant.extract("202_ISLFIN").get());
         assertEquals(MTVariant.ISLFIN, MTVariant.extract("fin.202.ISLFIN").get());
     }
-
 }

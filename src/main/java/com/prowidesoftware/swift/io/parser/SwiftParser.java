@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,11 @@ package com.prowidesoftware.swift.io.parser;
 import com.prowidesoftware.ProwideException;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.Lib;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * FIN Parser. This implementation now properly supports all system messages (i.e: messages for MT 0xx) and
@@ -38,11 +37,13 @@ import java.util.List;
  */
 public class SwiftParser {
 
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftParser.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftParser.class.getName());
     /**
      * Errors found while parsing the message.
      */
     private final List<String> errors = new ArrayList<>();
+
     private Reader reader;
     private StringBuilder buffer;
     /**
@@ -51,6 +52,7 @@ public class SwiftParser {
      * like a value in a previous tag or block.
      */
     private SwiftMessage currentMessage;
+
     private int lastBlockStartOffset = 0;
 
     /**
@@ -90,8 +92,7 @@ public class SwiftParser {
      * default constructor.<br>
      * <b>NOTE</b>: If this constructor is called, setReader must be called to use the parser
      */
-    public SwiftParser() {
-    }
+    public SwiftParser() {}
 
     /**
      * Create a parser and feed it with the contents of the given file
@@ -139,7 +140,7 @@ public class SwiftParser {
      * @return content parsed into a block 4 or an empty block 4 if string cannot be parsed
      * @since 7.8.4
      */
-    static public SwiftBlock4 parseBlock4(String s) {
+    public static SwiftBlock4 parseBlock4(String s) {
         SwiftBlock4 b4 = new SwiftBlock4();
         String toParse = s;
         if (toParse.startsWith("{")) {
@@ -159,7 +160,7 @@ public class SwiftParser {
      * @return content parsed into a block 3 or an empty block 3 if string cannot be parsed
      * @since 7.8.6
      */
-    static public SwiftBlock3 parseBlock3(String s) {
+    public static SwiftBlock3 parseBlock3(String s) {
         SwiftBlock3 b3 = new SwiftBlock3();
         SwiftParser parser = new SwiftParser();
         return (SwiftBlock3) parser.consumeTagListBlock(b3, s);
@@ -172,7 +173,7 @@ public class SwiftParser {
      * @return content parsed into a block 5 or an empty block 5 if string cannot be parsed
      * @since 7.8.6
      */
-    static public SwiftBlock5 parseBlock5(String s) {
+    public static SwiftBlock5 parseBlock5(String s) {
         SwiftBlock5 b5 = new SwiftBlock5();
         SwiftParser parser = new SwiftParser();
         return (SwiftBlock5) parser.consumeTagListBlock(b5, s);
@@ -185,7 +186,7 @@ public class SwiftParser {
      * @return content parsed into a block 1 or an empty block 1 if string cannot be parsed
      * @since 7.8.6
      */
-    static public SwiftBlock1 parseBlock1(String s) {
+    public static SwiftBlock1 parseBlock1(String s) {
         return new SwiftBlock1(StringUtils.strip(s, "{}"), true);
     }
 
@@ -197,7 +198,7 @@ public class SwiftParser {
      * @return content parsed into a block 2 or an empty block 2 (output) if string cannot be parsed
      * @since 7.8.6
      */
-    static public SwiftBlock2 parseBlock2(String s) {
+    public static SwiftBlock2 parseBlock2(String s) {
         if (s != null) {
             Character block2Type = extractBlock2Type(s);
             if (Character.valueOf('I').equals(block2Type)) {
@@ -226,7 +227,7 @@ public class SwiftParser {
      * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
      * @since 7.8.6
      */
-    static public SwiftBlock2Input parseBlock2Input(String s) {
+    public static SwiftBlock2Input parseBlock2Input(String s) {
         return new SwiftBlock2Input(StringUtils.strip(s, "{}"), true);
     }
 
@@ -238,7 +239,7 @@ public class SwiftParser {
      * @return content parsed into a block 2 or an empty block 2 if string cannot be parsed
      * @since 7.8.6
      */
-    static public SwiftBlock2Output parseBlock2Output(String s) {
+    public static SwiftBlock2Output parseBlock2Output(String s) {
         return new SwiftBlock2Output(StringUtils.strip(s, "{}"), true);
     }
 
@@ -470,12 +471,12 @@ public class SwiftParser {
     private SwiftBlock2 createBlock2(final String s) {
         Character block2Type = extractBlock2Type(s);
         if (Character.valueOf('I').equals(block2Type)) {
-            return enrichBlockType(createBlock2Input(s),"I");
+            return enrichBlockType(createBlock2Input(s), "I");
         } else if (Character.valueOf('O').equals(block2Type)) {
-            return enrichBlockType(createBlock2Output(s),"O");
+            return enrichBlockType(createBlock2Output(s), "O");
         } else {
-            final String error = "Expected an \"I\" or \"O\" to identify " +
-                    "the block 2 type (direction) and found: " + block2Type;
+            final String error =
+                    "Expected an \"I\" or \"O\" to identify " + "the block 2 type (direction) and found: " + block2Type;
             if (this.configuration.isLenient()) {
                 this.errors.add(error);
                 // in lenient mode we use the size as heuristic to default as Input or Output
@@ -506,7 +507,6 @@ public class SwiftParser {
             }
         }
     }
-
 
     /**
      * Creates the block 2, dealing with the {@link IllegalArgumentException} in case of lenient mode
@@ -560,8 +560,7 @@ public class SwiftParser {
                 } else {
                     // read all the characters until data end or a new '{'
                     int end;
-                    for (end = i; end < data.length() && data.charAt(end) != '{'; end++) {
-                    }
+                    for (end = i; end < data.length() && data.charAt(end) != '{'; end++) {}
                     final String unparsedText = data.substring(i, end).trim();
                     if (!"".equals(unparsedText)) {
                         b.unparsedTextAddText(unparsedText);
@@ -784,12 +783,12 @@ public class SwiftParser {
                     // found it
                     i = begin;
                     break;
-                // if it's a colon followed by a character different than CR or LF (':x') => it's a proper tag end
-                // because we have reached a new line with a beginning new tag.
-                // Note: It is note sufficient to check for a starting colon because for some fields like
-                // 77E for example, it is allowed the field content to have a ':<CR><LF>' as the second line
-                // of its content.
-                // check if :xxx matches a new starting tag or not, break only if matches valid start of tag
+                    // if it's a colon followed by a character different than CR or LF (':x') => it's a proper tag end
+                    // because we have reached a new line with a beginning new tag.
+                    // Note: It is note sufficient to check for a starting colon because for some fields like
+                    // 77E for example, it is allowed the field content to have a ':<CR><LF>' as the second line
+                    // of its content.
+                    // check if :xxx matches a new starting tag or not, break only if matches valid start of tag
                 } else if (c == ':' && isTagStart(s, i + 1)) {
                     i = begin;
                     break;
@@ -1048,7 +1047,7 @@ public class SwiftParser {
         int count = 0;
         Boolean isTextBlock = null;
 
-        //iterate until proper block end or EOF
+        // iterate until proper block end or EOF
         while (!done) {
             c = getChar();
             // check if we can set the textblock flag first
@@ -1180,7 +1179,7 @@ public class SwiftParser {
         }
 
         // debug code
-        //if (textUntilBlock.length()>0) log.fine("textUntilBlock: "+textUntilBlock.toString());
+        // if (textUntilBlock.length()>0) log.fine("textUntilBlock: "+textUntilBlock.toString());
 
         return textUntilBlock.length() > 0 ? textUntilBlock.toString() : StringUtils.EMPTY;
     }
@@ -1237,5 +1236,4 @@ public class SwiftParser {
     public void setConfiguration(final SwiftParserConfiguration configuration) {
         this.configuration = configuration;
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,9 @@ import com.prowidesoftware.swift.io.parser.XMLParser;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
 import com.prowidesoftware.swift.model.SwiftMessage;
-import org.apache.commons.lang3.Validate;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Objects;
-
 
 /**
  * This interface provides a general conversion service between three different formats:
@@ -125,5 +122,4 @@ public class ConversionService implements IConversionService {
     public SwiftMessage getMessageFromXML(final String xml) {
         return new XMLParser().parse(xml);
     }
-
 }

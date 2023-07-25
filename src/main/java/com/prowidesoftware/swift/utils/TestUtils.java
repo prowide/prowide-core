@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,9 @@ import com.prowidesoftware.swift.model.SwiftBlock2Input;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.Tag;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.List;
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Utility methods for test cases
@@ -112,5 +111,4 @@ public class TestUtils {
         }
         return result.toString();
     }
-
 }

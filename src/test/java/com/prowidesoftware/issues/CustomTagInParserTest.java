@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,14 @@
  */
 package com.prowidesoftware.issues;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
 /**
  * Kantoro Erkulov
@@ -34,10 +32,9 @@ public class CustomTagInParserTest {
 
     @Test
     public void test() throws IOException {
-        final String fin = "{1:F01BIC0BANKAXXX0006222623}{2:I198BIC0BANKXXXXS}{4:\n" +
-                ":20:my_ref\n" +
-                ":CUSTOM_TAG:my_value\n" +
-                "-}";
+        final String fin = "{1:F01BIC0BANKAXXX0006222623}{2:I198BIC0BANKXXXXS}{4:\n" + ":20:my_ref\n"
+                + ":CUSTOM_TAG:my_value\n"
+                + "-}";
         SwiftParser swiftParser = new SwiftParser(fin);
         SwiftMessage swiftMessage = swiftParser.message();
         final Tag t20 = swiftMessage.getBlock4().getTagByName("20");
@@ -52,5 +49,4 @@ public class CustomTagInParserTest {
         assertNull(tcustom);
         assertEquals("my_ref\n:CUSTOM_TAG:my_value", t20.getValue());
     }
-
 }

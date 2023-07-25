@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,14 +38,10 @@ public class SwiftValueBlockTest {
     static class TestValueBlock extends SwiftValueBlock {
 
         @Override
-        protected void setBlockNumber(Integer blockNumber) {
-
-        }
+        protected void setBlockNumber(Integer blockNumber) {}
 
         @Override
-        protected void setBlockName(String blockName) {
-
-        }
+        protected void setBlockName(String blockName) {}
 
         @Override
         public Integer getNumber() {
@@ -57,5 +53,4 @@ public class SwiftValueBlockTest {
             return null;
         }
     }
-
 }

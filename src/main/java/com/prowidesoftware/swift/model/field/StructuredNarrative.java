@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,10 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Simple POJO for portions of structured text in narrative containers.
@@ -77,8 +76,6 @@ public class StructuredNarrative {
         this.currency = currency;
         return this;
     }
-
-
 
     /**
      * In SCORE messages, in field 71B, there is a bank code within the codeword with a slash separator (i.e. C/USD).
@@ -222,17 +219,21 @@ public class StructuredNarrative {
      * @return true if non of the narrative fields are set
      */
     public boolean isEmpty() {
-        return this.codeword == null && this.currency == null && this.amount == null && this.country == null
-                && this.narrativeFragments.isEmpty() && this.narrativeSupplementFragments.isEmpty();
+        return this.codeword == null
+                && this.currency == null
+                && this.amount == null
+                && this.country == null
+                && this.narrativeFragments.isEmpty()
+                && this.narrativeSupplementFragments.isEmpty();
     }
 
     /**
      * Basic validation to check the codeword is present and at least one of the other fields is present
      */
     public boolean valid() {
-        return StringUtils.isNotBlank(this.codeword) &&
-                (this.currency != null && this.amount != null ||
-                        this.country != null || !this.narrativeFragments.isEmpty());
+        return StringUtils.isNotBlank(this.codeword)
+                && (this.currency != null && this.amount != null
+                        || this.country != null
+                        || !this.narrativeFragments.isEmpty());
     }
-
 }

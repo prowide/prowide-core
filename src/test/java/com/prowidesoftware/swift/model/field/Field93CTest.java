@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,7 @@ public class Field93CTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("93C",
-                ":DDDD//EEEEEEEE/FFFF/E1234"
-        );
+        testSerializationImpl("93C", ":DDDD//EEEEEEEE/FFFF/E1234");
     }
 
     /**
@@ -53,7 +51,7 @@ public class Field93CTest extends AbstractFieldTest {
         assertTrue(StringUtils.isBlank(f.getComponent5()));
 
         f = new Field93C(":/");
-        //assertTrue(StringUtils.isBlank(f.getComponent1()));
+        // assertTrue(StringUtils.isBlank(f.getComponent1()));
         assertTrue(StringUtils.isBlank(f.getComponent2()));
         assertTrue(StringUtils.isBlank(f.getComponent3()));
         assertTrue(StringUtils.isBlank(f.getComponent4()));
@@ -136,5 +134,4 @@ public class Field93CTest extends AbstractFieldTest {
         assertEquals("E", f.getComponent4());
         assertEquals("1234", f.getComponent5());
     }
-
 }

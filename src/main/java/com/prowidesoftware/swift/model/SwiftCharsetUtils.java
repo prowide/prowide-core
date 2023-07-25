@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,24 @@ import org.apache.commons.lang3.StringUtils;
 public class SwiftCharsetUtils {
     public static final int OK = -1;
     private static final char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    private static final char[] AZ = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-    private static final char[] azLowerCase = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-    private static final char[] specialCharacters_x = {'/', '-', '?', ':', '(', ')', '.', ',', '\'', '+', ' ', '\n', '\r'};
-    private static final char[] specialCharacters_y = {' ', '.', ',', '-', '(', ')', '/', '=', '\'', '+', ':', '?', '!', '"', '%', '&', '*', ';', '<', '>'};
-    private static final char[] specialCharacters_z = {'.', ',', '-', '(', ')', '/', '=', '\'', '+', ':', '?', '@', '#', ' ', '{', '!', '"', '%', '&', '*', ';', '<', '>', '_', '\n', '\r'};
+    private static final char[] AZ = {
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+        'W', 'X', 'Y', 'Z'
+    };
+    private static final char[] azLowerCase = {
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+        'w', 'x', 'y', 'z'
+    };
+    private static final char[] specialCharacters_x = {
+        '/', '-', '?', ':', '(', ')', '.', ',', '\'', '+', ' ', '\n', '\r'
+    };
+    private static final char[] specialCharacters_y = {
+        ' ', '.', ',', '-', '(', ')', '/', '=', '\'', '+', ':', '?', '!', '"', '%', '&', '*', ';', '<', '>'
+    };
+    private static final char[] specialCharacters_z = {
+        '.', ',', '-', '(', ')', '/', '=', '\'', '+', ':', '?', '@', '#', ' ', '{', '!', '"', '%', '&', '*', ';', '<',
+        '>', '_', '\n', '\r'
+    };
 
     // Suppress default constructor for noninstantiability
     private SwiftCharsetUtils() {
@@ -94,7 +107,10 @@ public class SwiftCharsetUtils {
      * any character of the X permitted set (General FIN application set)  upper case and lower case allowed
      */
     public static boolean is_x(final char character) {
-        return isLowercaseLetter(character) || isUppercaseLetter(character) || isNumber(character) || is(character, specialCharacters_x);
+        return isLowercaseLetter(character)
+                || isUppercaseLetter(character)
+                || isNumber(character)
+                || is(character, specialCharacters_x);
     }
 
     /**
@@ -130,7 +146,10 @@ public class SwiftCharsetUtils {
      * all characters included in the X and Y sets, plus a couple of special characters
      */
     public static boolean is_z(final char character) {
-        return isLowercaseLetter(character) || isUppercaseLetter(character) || isNumber(character) || is(character, specialCharacters_z);
+        return isLowercaseLetter(character)
+                || isUppercaseLetter(character)
+                || isNumber(character)
+                || is(character, specialCharacters_z);
     }
 
     /**
@@ -312,21 +331,27 @@ public class SwiftCharsetUtils {
      * Gets SWIFT n charset; numeric digits (0 through 9) only.
      */
     public static char[] get_n() {
-        return new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        return new char[] {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     }
 
     /**
      * Gets SWIFT a charset; alphabetic capital letters (A through Z), upper case only.
      */
     public static char[] get_a() {
-        return new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+        return new char[] {
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+            'V', 'W', 'X', 'Y', 'Z'
+        };
     }
 
     /**
      * Lower case a to z.
      */
     private static char[] _get_az() {
-        return new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        return new char[] {
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+            'v', 'w', 'x', 'y', 'z'
+        };
     }
 
     /**
@@ -420,5 +445,4 @@ public class SwiftCharsetUtils {
         }
         return result.toString();
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,8 +43,8 @@ public class NationalClearingSystemComponentTest {
         assertEquals("//ATBBBBB\r\nABNANL2A", f.getValue());
         assertNull(f.getDCMark());
         assertNull(f.getComponent1());
-        assertEquals("/ATBBBBB", f.getComponent2());    //component getter will keep the extra slash
-        assertEquals("ATBBBBB", f.getAccount());    //account getter will trims the starting slash
+        assertEquals("/ATBBBBB", f.getComponent2()); // component getter will keep the extra slash
+        assertEquals("ATBBBBB", f.getAccount()); // account getter will trims the starting slash
         assertEquals("ABNANL2A", f.getIdentifierCode());
     }
 
@@ -52,7 +52,7 @@ public class NationalClearingSystemComponentTest {
     public void testField52ABuild() {
         Field52A f = new Field52A();
 
-        //we need to add the explicit extra slash to the component value
+        // we need to add the explicit extra slash to the component value
         f.setComponent2("/ATBBBBB");
         f.setComponent3("ABNANL2A");
 
@@ -214,5 +214,4 @@ public class NationalClearingSystemComponentTest {
         assertEquals("/CHBBBBBB", f.getComponent1());
         assertEquals("CHBBBBBB", f.getAccount());
     }
-
 }

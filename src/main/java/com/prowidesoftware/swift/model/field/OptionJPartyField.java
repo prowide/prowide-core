@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,8 @@ package com.prowidesoftware.swift.model.field;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.*;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Party Identification
@@ -45,7 +44,7 @@ public abstract class OptionJPartyField extends Field {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final String COMPONENTS_PATTERN = "S";
 
     /**
@@ -115,7 +114,7 @@ public abstract class OptionJPartyField extends Field {
         if (component < 1 || component > 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
-        //default format (as is)
+        // default format (as is)
         return getComponent(component);
     }
 
@@ -123,7 +122,7 @@ public abstract class OptionJPartyField extends Field {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     @Override
     public final String componentsPattern() {
         DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");
@@ -313,5 +312,4 @@ public abstract class OptionJPartyField extends Field {
         NOSI,
         SVBY
     }
-
 }

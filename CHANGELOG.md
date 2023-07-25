@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.3.17 - SNAPSHOT
+#### 9.3.17 - July 2023
   * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
 
 #### 9.3.16 - June 2023

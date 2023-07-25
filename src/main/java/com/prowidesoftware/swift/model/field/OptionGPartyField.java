@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import java.util.*;
 
 /**
@@ -47,7 +46,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final String COMPONENTS_PATTERN = "SB";
 
     /**
@@ -71,7 +70,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use {@link #IDENTIFIER_CODE} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer BIC = 2;
 
     /**
@@ -120,7 +119,8 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
         result.append("/");
         append(result, 1);
         if (getComponent2() != null) {
-            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL).append(getComponent2());
+            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL)
+                    .append(getComponent2());
         }
         return result.toString();
     }
@@ -139,7 +139,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
         if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
-        //default format (as is)
+        // default format (as is)
         return getComponent(component);
     }
 
@@ -147,7 +147,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     @Override
     public final String componentsPattern() {
         DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");
@@ -328,7 +328,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use {@link #getIdentifierCode()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public String getBIC() {
         DeprecationUtils.phase2(getClass(), "getBIC()", "Use getIdentifierCode() instead.");
         return getIdentifierCode();
@@ -346,7 +346,7 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
      * @deprecated Use #getIdentifierCodeAsBIC() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
         DeprecationUtils.phase2(getClass(), "getBICAsBIC()", "Use getIdentifierCodeAsBIC() instead.");
         return getIdentifierCodeAsBIC();
@@ -365,5 +365,4 @@ public abstract class OptionGPartyField extends Field implements BICContainer {
         result.add(getComponent(2));
         return result;
     }
-
 }

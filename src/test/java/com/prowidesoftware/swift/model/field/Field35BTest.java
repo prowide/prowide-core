@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,17 +27,14 @@ public class Field35BTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("35B",
-                "ISIN HELLO\nAAAA\nBBBB\nCCCC",
-                "AAAA\nBBBB\nCCCC\nDDDD"
-        );
+        testSerializationImpl("35B", "ISIN HELLO\nAAAA\nBBBB\nCCCC", "AAAA\nBBBB\nCCCC\nDDDD");
     }
 
     @Test
     public void testParse() {
         Field35B f = new Field35B();
 
-        //remaining lines are ignored by parser
+        // remaining lines are ignored by parser
         f = new Field35B("ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD\nEEEE\nFFFF\nGGGG");
         assertEquals("ISIN", f.getComponent1());
         assertEquals("HELLO", f.getComponent2());
@@ -102,5 +99,4 @@ public class Field35BTest extends AbstractFieldTest {
         f = new Field35B(v);
         assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
-
 }

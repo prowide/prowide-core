@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,10 @@ package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.model.field.Field32A;
 import com.prowidesoftware.swift.model.mt.MTVariant;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Structured identification of MT message types, composed by the business process, actual type and variant.
@@ -41,8 +40,7 @@ public class MtId {
     /**
      * @since @since 8.0.3
      */
-    public MtId() {
-    }
+    public MtId() {}
 
     /**
      * Parses a string identifier into a structured MT identifier
@@ -176,9 +174,9 @@ public class MtId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MtId mtId = (MtId) o;
-        return Objects.equals(businessProcess, mtId.businessProcess) &&
-                Objects.equals(messageType, mtId.messageType) &&
-                Objects.equals(variant, mtId.variant);
+        return Objects.equals(businessProcess, mtId.businessProcess)
+                && Objects.equals(messageType, mtId.messageType)
+                && Objects.equals(variant, mtId.variant);
     }
 
     @Override
@@ -210,7 +208,10 @@ public class MtId {
      * @since 9.2.14
      */
     public String namespaceURI() {
-        return new StringBuilder("urn:swift:xsd:").append(id()).append(".").append(Field32A.SRU).toString();
+        return new StringBuilder("urn:swift:xsd:")
+                .append(id())
+                .append(".")
+                .append(Field32A.SRU)
+                .toString();
     }
-
 }

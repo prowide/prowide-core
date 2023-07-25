@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.model.*;
+import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 /**
  * Swift parser tests using the default lenient (permissive) mode.
@@ -104,69 +103,56 @@ public class SwiftParserConsumeBlockLenientTest {
 
     @Test
     public void testBlock4MissingClossingBracket() throws IOException {
-        parser.setData("{4:\r\n" +
-                ":79:FOO");
+        parser.setData("{4:\r\n" + ":79:FOO");
         parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingBracket2() throws IOException {
-        parser.setData("{4:\r\n" +
-                ":79:FOO\r\n");
+        parser.setData("{4:\r\n" + ":79:FOO\r\n");
         parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingBracket3() throws IOException {
-        parser.setData("{4:\r\n" +
-                ":79:FOO\r\n" +
-                "-");
+        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-");
         parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingBracket4() throws IOException {
-        parser.setData("{4:\r\n" +
-                ":79:FOO\r\n" +
-                "-{");
+        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-{");
         parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingBracket5() throws IOException {
-        parser.setData("{4:\r\n" +
-                ":79:FOO\r\n" +
-                "-{5:CHK:ABSH}");
+        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-{5:CHK:ABSH}");
         parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingHyphen() throws IOException {
-        parser.setData("{4:\r\n" +
-                ":79:FOO\r\n" +
-                "}");
+        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "}");
         parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingHyphen2() throws IOException {
-        parser.setData("{4:\r\n" +
-                ":79:FOO}");
+        parser.setData("{4:\r\n" + ":79:FOO}");
         parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4ClossingBracketOk() throws IOException {
-        parser.setData("{4:\r\n" +
-                ":79:FOO\r\n" +
-                "-}");
+        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-}");
         parser.consumeBlock(null);
     }
 
@@ -195,40 +181,39 @@ public class SwiftParserConsumeBlockLenientTest {
 
     @Test
     public void testConsumeBock_03() throws IOException {
-        parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I541CITIGB2LXXXXN}{4:\r\n" +
-                ":16R:GENL\r\n" +
-                ":20C::SEME//2005070600000006\r\n" +
-                ":23G:NEWM\r\n" +
-                ":98A::PREP//20050706\r\n" +
-                ":16S:GENL\r\n" +
-                ":16R:TRADDET\r\n" +
-                ":98A::TRAD//20050706\r\n" +
-                ":98A::SETT//20050711\r\n" +
-                ":90B::DEAL//ACTU/GBP1,38\r\n" +
-                ":35B:ISIN GB0007192106\r\n" +
-                "VODAFONE\r\n" +
-                ":16S:TRADDET\r\n" +
-                ":16R:FIAC\r\n" +
-                ":36B::SETT//UNIT/5000,00\r\n" +
-                ":97A::SAFE//6990457647\r\n" +
-                ":16S:FIAC\r\n" +
-                ":16R:SETDET\r\n" +
-                ":22F::SETR//TRAD\r\n" +
-                ":16R:SETPRTY\r\n" +
-                ":95R::DEAG/CRST/382\r\n" +
-                ":16S:SETPRTY\r\n" +
-                ":16R:SETPRTY\r\n" +
-                ":95P::SELL//ISNTGB2L\r\n" +
-                ":16S:SETPRTY\r\n" +
-                ":16R:SETPRTY\r\n" +
-                ":95P::PSET//CRSTGB22\r\n" +
-                ":16S:SETPRTY\r\n" +
-                ":16R:AMT\r\n" +
-                ":19A::SETT//GBP6958,31\r\n" +
-                ":16S:AMT\r\n" +
-                ":16S:SETDET\r\n" +
-                "-}\r\n" +
-                "");
+        parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I541CITIGB2LXXXXN}{4:\r\n" + ":16R:GENL\r\n"
+                + ":20C::SEME//2005070600000006\r\n"
+                + ":23G:NEWM\r\n"
+                + ":98A::PREP//20050706\r\n"
+                + ":16S:GENL\r\n"
+                + ":16R:TRADDET\r\n"
+                + ":98A::TRAD//20050706\r\n"
+                + ":98A::SETT//20050711\r\n"
+                + ":90B::DEAL//ACTU/GBP1,38\r\n"
+                + ":35B:ISIN GB0007192106\r\n"
+                + "VODAFONE\r\n"
+                + ":16S:TRADDET\r\n"
+                + ":16R:FIAC\r\n"
+                + ":36B::SETT//UNIT/5000,00\r\n"
+                + ":97A::SAFE//6990457647\r\n"
+                + ":16S:FIAC\r\n"
+                + ":16R:SETDET\r\n"
+                + ":22F::SETR//TRAD\r\n"
+                + ":16R:SETPRTY\r\n"
+                + ":95R::DEAG/CRST/382\r\n"
+                + ":16S:SETPRTY\r\n"
+                + ":16R:SETPRTY\r\n"
+                + ":95P::SELL//ISNTGB2L\r\n"
+                + ":16S:SETPRTY\r\n"
+                + ":16R:SETPRTY\r\n"
+                + ":95P::PSET//CRSTGB22\r\n"
+                + ":16S:SETPRTY\r\n"
+                + ":16R:AMT\r\n"
+                + ":19A::SETT//GBP6958,31\r\n"
+                + ":16S:AMT\r\n"
+                + ":16S:SETDET\r\n"
+                + "-}\r\n"
+                + "");
         final SwiftBlock1 b1 = (SwiftBlock1) parser.consumeBlock(null);
         assertNotNull(b1);
         assertEquals(1, b1.getNumber().intValue());
@@ -242,7 +227,7 @@ public class SwiftParserConsumeBlockLenientTest {
         final SwiftBlock4 b4 = (SwiftBlock4) parser.consumeBlock(null);
         assertNotNull(b4);
         assertEquals(4, b4.getNumber().intValue());
-        //assertEquals("", b4.getBlockValue());
+        // assertEquals("", b4.getBlockValue());
 
         final SwiftBlock nil = parser.consumeBlock(null);
         assertNull(nil);
@@ -342,5 +327,4 @@ public class SwiftParserConsumeBlockLenientTest {
         this.parser.consumeBlock4(b4, "\n:20:FOO\r\n\r\n");
         assertEquals("FOO\r\n", b4.getTags().get(4).getValue());
     }
-
 }

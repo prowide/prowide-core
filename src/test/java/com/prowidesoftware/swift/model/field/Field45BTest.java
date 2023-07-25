@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,9 +33,8 @@ public class Field45BTest {
 
     @Test
     public void testWithNull() {
-        Field45B field = new Field45B( (String) null);
+        Field45B field = new Field45B((String) null);
         Narrative narrative = field.narrative();
         assertTrue(narrative.isEmpty());
     }
-
 }

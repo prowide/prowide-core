@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,7 @@ public class Field77HTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("77H",
-                "ISDA/20200310//2021"
-        );
+        testSerializationImpl("77H", "ISDA/20200310//2021");
     }
 
     @Test
@@ -63,5 +61,4 @@ public class Field77HTest extends AbstractFieldTest {
         assertEquals("20200310", f.getComponent2());
         assertEquals("2021", f.getComponent3());
     }
-
 }

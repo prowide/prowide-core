@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ import static javax.persistence.FetchType.LAZY;
 
 import java.util.Calendar;
 import java.util.Objects;
-
 import javax.persistence.*;
 
 /**
@@ -52,8 +51,7 @@ public class SwiftMessageRevision {
     @Basic(fetch = LAZY)
     private String json;
 
-    public SwiftMessageRevision() {
-    }
+    public SwiftMessageRevision() {}
 
     /**
      * Creates a message revision from a messages.<br>
@@ -78,9 +76,9 @@ public class SwiftMessageRevision {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SwiftMessageRevision that = (SwiftMessageRevision) o;
-        return Objects.equals(creationDate, that.creationDate) &&
-                Objects.equals(creationUser, that.creationUser) &&
-                Objects.equals(message, that.message);
+        return Objects.equals(creationDate, that.creationDate)
+                && Objects.equals(creationUser, that.creationUser)
+                && Objects.equals(message, that.message);
     }
 
     @Override
@@ -127,5 +125,4 @@ public class SwiftMessageRevision {
     public void setJson(String json) {
         this.json = json;
     }
-
 }

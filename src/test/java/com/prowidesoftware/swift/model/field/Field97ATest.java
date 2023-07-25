@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,7 @@ public class Field97ATest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("97A",
-                ":abc//def//ggg"
-        );
+        testSerializationImpl("97A", ":abc//def//ggg");
     }
 
     @Test
@@ -87,5 +85,4 @@ public class Field97ATest extends AbstractFieldTest {
         assertEquals("abc", f.getComponent1());
         assertEquals("def//ggg", f.getComponent2());
     }
-
 }

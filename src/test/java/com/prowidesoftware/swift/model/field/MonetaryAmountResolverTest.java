@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class MonetaryAmountResolverTest {
 
@@ -57,5 +56,4 @@ public class MonetaryAmountResolverTest {
         assertEquals("USD", currencyStrings.get(0));
         assertEquals("EUR", currencyStrings.get(1));
     }
-
 }

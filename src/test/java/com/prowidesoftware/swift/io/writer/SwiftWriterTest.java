@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,12 +23,11 @@ import com.prowidesoftware.swift.model.SwiftBlock3;
 import com.prowidesoftware.swift.model.SwiftBlock4;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
-import org.junit.jupiter.api.Test;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import org.junit.jupiter.api.Test;
 
 /**
  * Swift writer tests
@@ -63,37 +62,38 @@ public class SwiftWriterTest {
 
         StringWriter buf = new StringWriter();
         SwiftWriter.writeMessage(m, buf);
-        assertEquals("{1:" + Constants.B1_DATA + "}{2:" + Constants.B2_INPUT + "}{3:{helloworld}}{4:\r\n" +
-                ":k:val\r\n" +
-                "-}{5:{foo:dacatadat}}", buf.toString());
+        assertEquals(
+                "{1:" + Constants.B1_DATA + "}{2:" + Constants.B2_INPUT + "}{3:{helloworld}}{4:\r\n" + ":k:val\r\n"
+                        + "-}{5:{foo:dacatadat}}",
+                buf.toString());
     }
 
     @Test
     public void testWriteParsedMessage() throws IOException {
-        String m1 = "{1:F01GENODEFFAXXX4321100001}{2:O1030711060804MARKDEFFAXXX12342000010608040711N}{4:\n" +
-                ":20:TEST-IBAN001\n" +
-                ":13C:/SNDTIME/0701+0200\n" +
-                ":13C:/RNCTIME/0701+0200\n" +
-                ":23B:CRED\n" +
-                ":32A:060804EUR18001,01\n" +
-                ":33B:EUR18001,01\n" +
-                ":50K:KUNDE WO FOO FOO\n" +
-                "SYMMACH. FOO OREOKASTRO-DIAVATA\n" +
-                "GR-57008 FOO\n" +
-                "GREECE\n" +
-                ":52A://TAGRPRNKGRAAXXX052/S/20115\n" +
-                "PRNKGRAAXXX\n" +
-                ":57A:GENODE51LOS\n" +
-                ":59:/DE66593922000000045500\n" +
-                "FOO DER VOLKS-RAIFFEISENBANK\n" +
-                "RAIFFEISENPLATZ\n" +
-                "D-66787 WADGASSEN-HOSTENBACH\n" +
-                "GERMANY\n" +
-                ":70:TEST IBAN 01P DE\n" +
-                "IBAN FOO\n" +
-                ":71A:SHA\n" +
-                "-}{5:{MAC:11111111}{CHK:222222222222}}\n" +
-                "";
+        String m1 = "{1:F01GENODEFFAXXX4321100001}{2:O1030711060804MARKDEFFAXXX12342000010608040711N}{4:\n"
+                + ":20:TEST-IBAN001\n"
+                + ":13C:/SNDTIME/0701+0200\n"
+                + ":13C:/RNCTIME/0701+0200\n"
+                + ":23B:CRED\n"
+                + ":32A:060804EUR18001,01\n"
+                + ":33B:EUR18001,01\n"
+                + ":50K:KUNDE WO FOO FOO\n"
+                + "SYMMACH. FOO OREOKASTRO-DIAVATA\n"
+                + "GR-57008 FOO\n"
+                + "GREECE\n"
+                + ":52A://TAGRPRNKGRAAXXX052/S/20115\n"
+                + "PRNKGRAAXXX\n"
+                + ":57A:GENODE51LOS\n"
+                + ":59:/DE66593922000000045500\n"
+                + "FOO DER VOLKS-RAIFFEISENBANK\n"
+                + "RAIFFEISENPLATZ\n"
+                + "D-66787 WADGASSEN-HOSTENBACH\n"
+                + "GERMANY\n"
+                + ":70:TEST IBAN 01P DE\n"
+                + "IBAN FOO\n"
+                + ":71A:SHA\n"
+                + "-}{5:{MAC:11111111}{CHK:222222222222}}\n"
+                + "";
         String result = parseAndWrite(m1);
         BufferedReader expected = new BufferedReader(new StringReader(m1));
         BufferedReader obtained = new BufferedReader(new StringReader(result));
@@ -134,9 +134,6 @@ public class SwiftWriterTest {
         StringWriter buf = new StringWriter();
         SwiftWriter.writeMessage(m, buf, true, true);
 
-        assertEquals("{3:{108:MUR}}{4:\r\n" +
-                ":20:REF\r\n" +
-                "-}", buf.toString());
+        assertEquals("{3:{108:MUR}}{4:\r\n" + ":20:REF\r\n" + "-}", buf.toString());
     }
-
 }

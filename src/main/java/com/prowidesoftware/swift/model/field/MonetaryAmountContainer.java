@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,5 +19,4 @@ package com.prowidesoftware.swift.model.field;
  * Fields with an amount component and a currency component.
  * @since 9.2.15
  */
-public interface MonetaryAmountContainer extends CurrencyContainer, AmountContainer {
-}
+public interface MonetaryAmountContainer extends CurrencyContainer, AmountContainer {}

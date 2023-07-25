@@ -7,6 +7,7 @@ buildscript {
         classpath 'ru.vyarus:gradle-quality-plugin:4.7.0'
         classpath 'pl.allegro.tech.build:axion-release-plugin:1.14.2'
         classpath 'io.github.gradle-nexus:publish-plugin:1.1.0'
+        classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.13.0' // above this version requires Java 11
     }
 }
 apply plugin: 'pl.allegro.tech.build.axion-release'
@@ -317,3 +318,14 @@ quality {
     spotbugsEffort = 'min'
     spotbugsMaxRank = 8
 }
+
+apply plugin: 'com.diffplug.spotless'
+
+spotless {
+    java {
+        target '**/src/main/java/**/*.java', '**/src/test/java/**/*.java'
+        palantirJavaFormat()
+    }
+}
+
+test.finalizedBy(spotlessCheck)

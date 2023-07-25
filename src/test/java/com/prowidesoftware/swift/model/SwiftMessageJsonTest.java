@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,8 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testBlock1FromJson() {
-        String json = "{\"applicationId\":\"F\",\"serviceId\":\"01\",\"logicalTerminal\":\"FOOSEDR0AXXX\",\"sessionNumber\":\"0000\",\"sequenceNumber\":\"000000\"}";
+        String json =
+                "{\"applicationId\":\"F\",\"serviceId\":\"01\",\"logicalTerminal\":\"FOOSEDR0AXXX\",\"sessionNumber\":\"0000\",\"sequenceNumber\":\"000000\"}";
         SwiftBlock1 b1 = SwiftBlock1.fromJson(json);
         assertEquals("F", b1.getApplicationId());
         assertEquals("01", b1.getServiceId());
@@ -91,7 +92,8 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testBlock2InputFromJson() {
-        String s = "{\"direction\":\"I\",\"messageType\":\"103\",\"receiverAddress\":\"BBBBUSC0XXXX\",\"messagePriority\":\"N\",\"deliveryMonitoring\":\"2\",\"obsolescencePeriod\":\"003\"}";
+        String s =
+                "{\"direction\":\"I\",\"messageType\":\"103\",\"receiverAddress\":\"BBBBUSC0XXXX\",\"messagePriority\":\"N\",\"deliveryMonitoring\":\"2\",\"obsolescencePeriod\":\"003\"}";
         SwiftBlock2Input block2Input = SwiftBlock2Input.fromJson(s);
         assertTrue(block2Input.isInput());
         assertEquals("103", block2Input.getMessageType());
@@ -103,7 +105,8 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testBlock2OutputFromJson() {
-        String s = "{\"direction\":\"O\",\"messageType\":\"100\",\"senderInputTime\":\"1200\",\"MIRDate\":\"010103\",\"MIRLogicalTerminal\":\"BANKBEBBAXXX\",\"MIRSessionNumber\":\"2222\",\"MIRSequenceNumber\":\"123456\",\"receiverOutputDate\":\"010103\",\"receiverOutputTime\":\"1201\",\"messagePriority\":\"N\"}";
+        String s =
+                "{\"direction\":\"O\",\"messageType\":\"100\",\"senderInputTime\":\"1200\",\"MIRDate\":\"010103\",\"MIRLogicalTerminal\":\"BANKBEBBAXXX\",\"MIRSessionNumber\":\"2222\",\"MIRSequenceNumber\":\"123456\",\"receiverOutputDate\":\"010103\",\"receiverOutputTime\":\"1201\",\"messagePriority\":\"N\"}";
 
         SwiftBlock2Output block2Output = SwiftBlock2Output.fromJson(s);
         assertTrue(block2Output.isOutput());
@@ -126,7 +129,7 @@ public class SwiftMessageJsonTest {
 
         assertNotNull(o);
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
-        //TODO agregar mas asserts, ver testBlock1ToJson
+        // TODO agregar mas asserts, ver testBlock1ToJson
     }
 
     @Test
@@ -149,10 +152,38 @@ public class SwiftMessageJsonTest {
 
         assertNotNull(o);
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
-        assertEquals("20", o.get("tags").getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString());
-        assertEquals("23B", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString());
-        assertEquals("REFERENCE", o.get("tags").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString());
-        assertEquals("CRED", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("value").getAsString());
+        assertEquals(
+                "20",
+                o.get("tags")
+                        .getAsJsonArray()
+                        .get(0)
+                        .getAsJsonObject()
+                        .get("name")
+                        .getAsString());
+        assertEquals(
+                "23B",
+                o.get("tags")
+                        .getAsJsonArray()
+                        .get(1)
+                        .getAsJsonObject()
+                        .get("name")
+                        .getAsString());
+        assertEquals(
+                "REFERENCE",
+                o.get("tags")
+                        .getAsJsonArray()
+                        .get(0)
+                        .getAsJsonObject()
+                        .get("value")
+                        .getAsString());
+        assertEquals(
+                "CRED",
+                o.get("tags")
+                        .getAsJsonArray()
+                        .get(1)
+                        .getAsJsonObject()
+                        .get("value")
+                        .getAsString());
     }
 
     @Test
@@ -176,15 +207,36 @@ public class SwiftMessageJsonTest {
         assertNotNull(o);
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
 
-        assertEquals("PDE", o.get("tags").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString());
-        assertEquals("CHK", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString());
-        assertEquals("aaaa1111bbbb2222", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("value").getAsString());
-
+        assertEquals(
+                "PDE",
+                o.get("tags")
+                        .getAsJsonArray()
+                        .get(0)
+                        .getAsJsonObject()
+                        .get("value")
+                        .getAsString());
+        assertEquals(
+                "CHK",
+                o.get("tags")
+                        .getAsJsonArray()
+                        .get(1)
+                        .getAsJsonObject()
+                        .get("name")
+                        .getAsString());
+        assertEquals(
+                "aaaa1111bbbb2222",
+                o.get("tags")
+                        .getAsJsonArray()
+                        .get(1)
+                        .getAsJsonObject()
+                        .get("value")
+                        .getAsString());
     }
 
     @Test
     public void testBlock5FromJson() {
-        String json = "{\"tags\":[{\"name\":\"PDE\",\"value\":\"\"},{\"name\":\"CHK\",\"value\":\"aaaa1111bbbb2222\"}]}";
+        String json =
+                "{\"tags\":[{\"name\":\"PDE\",\"value\":\"\"},{\"name\":\"CHK\",\"value\":\"aaaa1111bbbb2222\"}]}";
         SwiftBlock5 b5 = SwiftBlock5.fromJson(json);
         assertTrue(b5.getTags().size() == 2);
 
@@ -204,14 +256,29 @@ public class SwiftMessageJsonTest {
         assertNotNull(o);
         assertTrue(o.get("tags").getAsJsonArray().size() == 2);
 
-        assertEquals("PDE", o.get("tags").getAsJsonArray().get(0).getAsJsonObject().get("value").getAsString());
-        assertEquals("CHK", o.get("tags").getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString());
+        assertEquals(
+                "PDE",
+                o.get("tags")
+                        .getAsJsonArray()
+                        .get(0)
+                        .getAsJsonObject()
+                        .get("value")
+                        .getAsString());
+        assertEquals(
+                "CHK",
+                o.get("tags")
+                        .getAsJsonArray()
+                        .get(1)
+                        .getAsJsonObject()
+                        .get("name")
+                        .getAsString());
         assertEquals("P", o.get("blockName").getAsString());
     }
 
     @Test
     public void testSwiftBlockUserFromJson() {
-        String json = "{\"blockName\":\"A\",\"tags\":[{\"name\":\"PDE\",\"value\":\"\"},{\"name\":\"CHK\",\"value\":\"aaaa1111bbbb2222\"}]}";
+        String json =
+                "{\"blockName\":\"A\",\"tags\":[{\"name\":\"PDE\",\"value\":\"\"},{\"name\":\"CHK\",\"value\":\"aaaa1111bbbb2222\"}]}";
         SwiftBlockUser b = SwiftBlockUser.fromJson(json);
         assertTrue(b.getTags().size() == 2);
 
@@ -222,16 +289,18 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testSwiftMessageToJson() {
-        SwiftMessage m = MT103.parse("{1:F01FOOSEDR0AXXX0000000000}{3:{113:SEPA}{108:ILOVESEPA}}{2:I103FOORECV0XXXXN}{4:\n" +
-                ":20:REFERENCE\n" +
-                ":23B:CRED\n" +
-                ":32A:130204USD1234567,89\n" +
-                ":50K:/12345678901234567890\n" +
-                "FOOBANKXXXXX\n" +
-                ":59:/12345678901234567890\n" +
-                "JOE DOE\n" +
-                ":71A:OUR\n" +
-                "-}").getSwiftMessage();
+        SwiftMessage m = MT103.parse(
+                        "{1:F01FOOSEDR0AXXX0000000000}{3:{113:SEPA}{108:ILOVESEPA}}{2:I103FOORECV0XXXXN}{4:\n"
+                                + ":20:REFERENCE\n"
+                                + ":23B:CRED\n"
+                                + ":32A:130204USD1234567,89\n"
+                                + ":50K:/12345678901234567890\n"
+                                + "FOOBANKXXXXX\n"
+                                + ":59:/12345678901234567890\n"
+                                + "JOE DOE\n"
+                                + ":71A:OUR\n"
+                                + "-}")
+                .getSwiftMessage();
         final String json = m.toJson();
 
         JsonObject o = JsonParser.parseString(json).getAsJsonObject();
@@ -255,65 +324,64 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testSwiftMessageFromJsonWithBlock3() {
-        String json = "{\n" +
-                "  \"timestamp\": \"2018-04-19T02:31:26Z\",\n" +
-                "  \"version\": 2,\n" +
-                "  \"data\": {\n" +
-                "    \"block1\": {\n" +
-                "      \"applicationId\": \"F\",\n" +
-                "      \"serviceId\": \"01\",\n" +
-                "      \"logicalTerminal\": \"FOOSEDR0AXXX\",\n" +
-                "      \"sessionNumber\": \"0000\",\n" +
-                "      \"sequenceNumber\": \"000000\"\n" +
-                "    },\n" +
-                "    \"block2\": {\n" +
-                "      \"receiverAddress\": \"FOORECV0XXXX\",\n" +
-                "      \"messagePriority\": \"N\",\n" +
-                "      \"messageType\": \"103\",\n" +
-                "      \"direction\": \"I\"\n" +
-                "    },\n" +
-                "    \"block3\": {\n" +
-                "      \"tags\": [\n" +
-                "        {\n" +
-                "          \"name\": \"113\",\n" +
-                "          \"value\": \"SEPA\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"108\",\n" +
-                "          \"value\": \"ILOVESEPA\"\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    },\n" +
-                "    \"block4\": {\n" +
-                "      \"tags\": [\n" +
-                "        {\n" +
-                "          \"name\": \"20\",\n" +
-                "          \"value\": \"REFERENCE\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"23B\",\n" +
-                "          \"value\": \"CRED\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"32A\",\n" +
-                "          \"value\": \"130204USD1234567,89\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"50K\",\n" +
-                "          \"value\": \"/12345678901234567890\\nFOOBANKXXXXX\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"59\",\n" +
-                "          \"value\": \"/12345678901234567890\\nJOE DOE\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"71A\",\n" +
-                "          \"value\": \"OUR\"\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
+        String json = "{\n" + "  \"timestamp\": \"2018-04-19T02:31:26Z\",\n"
+                + "  \"version\": 2,\n"
+                + "  \"data\": {\n"
+                + "    \"block1\": {\n"
+                + "      \"applicationId\": \"F\",\n"
+                + "      \"serviceId\": \"01\",\n"
+                + "      \"logicalTerminal\": \"FOOSEDR0AXXX\",\n"
+                + "      \"sessionNumber\": \"0000\",\n"
+                + "      \"sequenceNumber\": \"000000\"\n"
+                + "    },\n"
+                + "    \"block2\": {\n"
+                + "      \"receiverAddress\": \"FOORECV0XXXX\",\n"
+                + "      \"messagePriority\": \"N\",\n"
+                + "      \"messageType\": \"103\",\n"
+                + "      \"direction\": \"I\"\n"
+                + "    },\n"
+                + "    \"block3\": {\n"
+                + "      \"tags\": [\n"
+                + "        {\n"
+                + "          \"name\": \"113\",\n"
+                + "          \"value\": \"SEPA\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"108\",\n"
+                + "          \"value\": \"ILOVESEPA\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    },\n"
+                + "    \"block4\": {\n"
+                + "      \"tags\": [\n"
+                + "        {\n"
+                + "          \"name\": \"20\",\n"
+                + "          \"value\": \"REFERENCE\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"23B\",\n"
+                + "          \"value\": \"CRED\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"32A\",\n"
+                + "          \"value\": \"130204USD1234567,89\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"50K\",\n"
+                + "          \"value\": \"/12345678901234567890\\nFOOBANKXXXXX\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"59\",\n"
+                + "          \"value\": \"/12345678901234567890\\nJOE DOE\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"71A\",\n"
+                + "          \"value\": \"OUR\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    }\n"
+                + "  }\n"
+                + "}";
 
         SwiftMessage m = SwiftMessage.fromJson(json);
         assertNotNull(m.getBlock1());
@@ -328,54 +396,53 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testSwiftMessageFromJson() {
-        String json = "{\n" +
-                "  \"timestamp\": \"2018-04-16T03:57:16Z\",\n" +
-                "  \"version\": 2,\n" +
-                "  \"data\": {\n" +
-                "    \"block1\": {\n" +
-                "      \"applicationId\": \"F\",\n" +
-                "      \"serviceId\": \"01\",\n" +
-                "      \"logicalTerminal\": \"FOOSEDR0AXXX\",\n" +
-                "      \"sessionNumber\": \"0000\",\n" +
-                "      \"sequenceNumber\": \"000000\"\n" +
-                "    },\n" +
-                "    \"block2\": {\n" +
-                "      \"input\": true,\n" +
-                "      \"direction\": I,\n" +
-                "      \"receiverAddress\": \"FOORECV0XXXX\",\n" +
-                "      \"messagePriority\": \"N\",\n" +
-                "      \"messageType\": \"103\"\n" +
-                "    },\n" +
-                "    \"block4\": {\n" +
-                "      \"tags\": [\n" +
-                "        {\n" +
-                "          \"name\": \"20\",\n" +
-                "          \"value\": \"REFERENCE\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"23B\",\n" +
-                "          \"value\": \"CRED\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"32A\",\n" +
-                "          \"value\": \"130204USD1234567,89\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"50K\",\n" +
-                "          \"value\": \"/12345678901234567890\\nFOOBANKXXXXX\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"59\",\n" +
-                "          \"value\": \"/12345678901234567890\\nJOE DOE\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"71A\",\n" +
-                "          \"value\": \"OUR\"\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
+        String json = "{\n" + "  \"timestamp\": \"2018-04-16T03:57:16Z\",\n"
+                + "  \"version\": 2,\n"
+                + "  \"data\": {\n"
+                + "    \"block1\": {\n"
+                + "      \"applicationId\": \"F\",\n"
+                + "      \"serviceId\": \"01\",\n"
+                + "      \"logicalTerminal\": \"FOOSEDR0AXXX\",\n"
+                + "      \"sessionNumber\": \"0000\",\n"
+                + "      \"sequenceNumber\": \"000000\"\n"
+                + "    },\n"
+                + "    \"block2\": {\n"
+                + "      \"input\": true,\n"
+                + "      \"direction\": I,\n"
+                + "      \"receiverAddress\": \"FOORECV0XXXX\",\n"
+                + "      \"messagePriority\": \"N\",\n"
+                + "      \"messageType\": \"103\"\n"
+                + "    },\n"
+                + "    \"block4\": {\n"
+                + "      \"tags\": [\n"
+                + "        {\n"
+                + "          \"name\": \"20\",\n"
+                + "          \"value\": \"REFERENCE\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"23B\",\n"
+                + "          \"value\": \"CRED\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"32A\",\n"
+                + "          \"value\": \"130204USD1234567,89\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"50K\",\n"
+                + "          \"value\": \"/12345678901234567890\\nFOOBANKXXXXX\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"59\",\n"
+                + "          \"value\": \"/12345678901234567890\\nJOE DOE\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"71A\",\n"
+                + "          \"value\": \"OUR\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    }\n"
+                + "  }\n"
+                + "}";
 
         SwiftMessage m = SwiftMessage.fromJson(json);
         assertNotNull(m.getBlock1());
@@ -388,92 +455,91 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testSwiftMessageFromJsonUserBlocks() {
-        String json = "{\n" +
-                "  \"timestamp\": \"2018-04-25T02:22:10Z\",\n" +
-                "  \"version\": 2,\n" +
-                "  \"data\": {\n" +
-                "    \"block1\": {\n" +
-                "      \"applicationId\": \"F\",\n" +
-                "      \"serviceId\": \"01\",\n" +
-                "      \"logicalTerminal\": \"FOOSEDR0AXXX\",\n" +
-                "      \"sessionNumber\": \"0000\",\n" +
-                "      \"sequenceNumber\": \"000000\"\n" +
-                "    },\n" +
-                "    \"block2\": {\n" +
-                "      \"receiverAddress\": \"FOORECV0XXXX\",\n" +
-                "      \"messagePriority\": \"N\",\n" +
-                "      \"messageType\": \"103\",\n" +
-                "      \"direction\": \"I\"\n" +
-                "    },\n" +
-                "    \"block3\": {\n" +
-                "      \"tags\": [\n" +
-                "        {\n" +
-                "          \"name\": \"113\",\n" +
-                "          \"value\": \"SEPA\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"108\",\n" +
-                "          \"value\": \"ILOVESEPA\"\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    },\n" +
-                "    \"block4\": {\n" +
-                "      \"tags\": [\n" +
-                "        {\n" +
-                "          \"name\": \"20\",\n" +
-                "          \"value\": \"REFERENCE\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"23B\",\n" +
-                "          \"value\": \"CRED\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"32A\",\n" +
-                "          \"value\": \"130204USD1234567,89\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"50K\",\n" +
-                "          \"value\": \"/12345678901234567890\\nFOOBANKXXXXX\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"59\",\n" +
-                "          \"value\": \"/12345678901234567890\\nJOE DOE\"\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"name\": \"71A\",\n" +
-                "          \"value\": \"OUR\"\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    },\n" +
-                "    \"userBlocks\": [\n" +
-                "      {\n" +
-                "       \"blockName\":\"P\",\n" +
-                "        \"tags\": [\n" +
-                "          {\n" +
-                "            \"name\": \"20\",\n" +
-                "            \"value\": \"REFERENCE\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"name\": \"23B\",\n" +
-                "            \"value\": \"CRED\"\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"tags\": [\n" +
-                "          {\n" +
-                "            \"name\": \"20\",\n" +
-                "            \"value\": \"REFERENCE\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"name\": \"23B\",\n" +
-                "            \"value\": \"CRED\"\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  }\n" +
-                "}";
+        String json = "{\n" + "  \"timestamp\": \"2018-04-25T02:22:10Z\",\n"
+                + "  \"version\": 2,\n"
+                + "  \"data\": {\n"
+                + "    \"block1\": {\n"
+                + "      \"applicationId\": \"F\",\n"
+                + "      \"serviceId\": \"01\",\n"
+                + "      \"logicalTerminal\": \"FOOSEDR0AXXX\",\n"
+                + "      \"sessionNumber\": \"0000\",\n"
+                + "      \"sequenceNumber\": \"000000\"\n"
+                + "    },\n"
+                + "    \"block2\": {\n"
+                + "      \"receiverAddress\": \"FOORECV0XXXX\",\n"
+                + "      \"messagePriority\": \"N\",\n"
+                + "      \"messageType\": \"103\",\n"
+                + "      \"direction\": \"I\"\n"
+                + "    },\n"
+                + "    \"block3\": {\n"
+                + "      \"tags\": [\n"
+                + "        {\n"
+                + "          \"name\": \"113\",\n"
+                + "          \"value\": \"SEPA\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"108\",\n"
+                + "          \"value\": \"ILOVESEPA\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    },\n"
+                + "    \"block4\": {\n"
+                + "      \"tags\": [\n"
+                + "        {\n"
+                + "          \"name\": \"20\",\n"
+                + "          \"value\": \"REFERENCE\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"23B\",\n"
+                + "          \"value\": \"CRED\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"32A\",\n"
+                + "          \"value\": \"130204USD1234567,89\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"50K\",\n"
+                + "          \"value\": \"/12345678901234567890\\nFOOBANKXXXXX\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"59\",\n"
+                + "          \"value\": \"/12345678901234567890\\nJOE DOE\"\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"name\": \"71A\",\n"
+                + "          \"value\": \"OUR\"\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    },\n"
+                + "    \"userBlocks\": [\n"
+                + "      {\n"
+                + "       \"blockName\":\"P\",\n"
+                + "        \"tags\": [\n"
+                + "          {\n"
+                + "            \"name\": \"20\",\n"
+                + "            \"value\": \"REFERENCE\"\n"
+                + "          },\n"
+                + "          {\n"
+                + "            \"name\": \"23B\",\n"
+                + "            \"value\": \"CRED\"\n"
+                + "          }\n"
+                + "        ]\n"
+                + "      },\n"
+                + "      {\n"
+                + "        \"tags\": [\n"
+                + "          {\n"
+                + "            \"name\": \"20\",\n"
+                + "            \"value\": \"REFERENCE\"\n"
+                + "          },\n"
+                + "          {\n"
+                + "            \"name\": \"23B\",\n"
+                + "            \"value\": \"CRED\"\n"
+                + "          }\n"
+                + "        ]\n"
+                + "      }\n"
+                + "    ]\n"
+                + "  }\n"
+                + "}";
 
         SwiftMessage m = SwiftMessage.fromJson(json);
         assertNotNull(m.getBlock1());
@@ -489,16 +555,18 @@ public class SwiftMessageJsonTest {
 
     @Test
     public void testSwiftMessageToJsonAndFromJson() {
-        SwiftMessage m = MT103.parse("{1:F01FOOSEDR0AXXX0000000000}{3:{113:SEPA}{108:ILOVESEPA}}{2:I103FOORECV0XXXXN}{4:\n" +
-                ":20:REFERENCE\n" +
-                ":23B:CRED\n" +
-                ":32A:130204USD1234567,89\n" +
-                ":50K:/12345678901234567890\n" +
-                "FOOBANKXXXXX\n" +
-                ":59:/12345678901234567890\n" +
-                "JOE DOE\n" +
-                ":71A:OUR\n" +
-                "-}{5:{CHK:C77F8E009597}}").getSwiftMessage();
+        SwiftMessage m = MT103.parse(
+                        "{1:F01FOOSEDR0AXXX0000000000}{3:{113:SEPA}{108:ILOVESEPA}}{2:I103FOORECV0XXXXN}{4:\n"
+                                + ":20:REFERENCE\n"
+                                + ":23B:CRED\n"
+                                + ":32A:130204USD1234567,89\n"
+                                + ":50K:/12345678901234567890\n"
+                                + "FOOBANKXXXXX\n"
+                                + ":59:/12345678901234567890\n"
+                                + "JOE DOE\n"
+                                + ":71A:OUR\n"
+                                + "-}{5:{CHK:C77F8E009597}}")
+                .getSwiftMessage();
 
         String toJsonSwiftMessage = m.toJson();
 
@@ -508,5 +576,4 @@ public class SwiftMessageJsonTest {
 
         assertTrue(comp.compare(m, fromJsonSwiftMessage) == 0);
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,6 @@ import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.time.DateFormatUtils;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -38,7 +34,9 @@ import java.text.NumberFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 /**
  * Base class implemented by classes that provide general access to field components.
@@ -103,7 +101,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return the formatted amount as String
      */
     protected static String formatNumber(final Object aValue) {
-        //create formatter for financial amounts
+        // create formatter for financial amounts
         final DecimalFormat fmt = new DecimalFormat("#,###.00");
 
         final NumberFormat f = NumberFormat.getInstance(Locale.getDefault());
@@ -156,7 +154,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      *
      * @return BigDecimal value of number parameter
      */
-    static public BigDecimal getAsBigDecimal(final Number number) {
+    public static BigDecimal getAsBigDecimal(final Number number) {
         if (number instanceof BigDecimal) {
             return (BigDecimal) number;
         } else if (number instanceof Long) {
@@ -179,7 +177,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @param t a tag with proper name and value content
      * @return a specific field object, ex: Field32A. Or null if exceptions occur during object creation.
      */
-    static public Field getField(final Tag t) {
+    public static Field getField(final Tag t) {
         return getField(t.getName(), t.getValue());
     }
 
@@ -191,17 +189,20 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return a specific field object (example: Field32A) or null if exceptions occur during object creation.
      * @since 7.8
      */
-    static public Field getField(final String name, final String value) {
+    public static Field getField(final String name, final String value) {
         Object r = null;
         try {
             final Class<?> c = Class.forName("com.prowidesoftware.swift.model.field.Field" + name);
-            @SuppressWarnings("rawtypes") final Class[] argsClass = {String.class};
-            @SuppressWarnings("rawtypes") final Constructor ct = c.getConstructor(argsClass);
+            @SuppressWarnings("rawtypes")
+            final Class[] argsClass = {String.class};
+            @SuppressWarnings("rawtypes")
+            final Constructor ct = c.getConstructor(argsClass);
             final Object[] arglist = {value};
             r = ct.newInstance(arglist);
         } catch (final ClassNotFoundException e) {
-            log.warning("Field class for Field" + name
-                    + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.");
+            log.warning(
+                    "Field class for Field" + name
+                            + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.");
         } catch (final Exception e) {
             log.log(Level.WARNING, "An error occurred while creating an instance of " + name, e);
         }
@@ -213,7 +214,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      *
      * @since 7.8
      */
-    static public String getLabel(final String fieldName, final String mt, final String sequence) {
+    public static String getLabel(final String fieldName, final String mt, final String sequence) {
         return getLabel(fieldName, mt, sequence, Locale.getDefault());
     }
 
@@ -240,7 +241,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @param locale    the locale for which a resource bundle is desired
      * @return a resource bundle based label for the given locale or the tag name, or the resource key if not found
      */
-    static public String getLabel(final String fieldName, final String mt, final String sequence, final Locale locale) {
+    public static String getLabel(final String fieldName, final String mt, final String sequence, final Locale locale) {
         return _getLabel(fieldName, mt, sequence, locale, "name");
     }
 
@@ -249,16 +250,18 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      *
      * @since 7.8.4
      */
-    static public String getLabelComponents(final String fieldName, final String mt, final String sequence, final Locale locale) {
+    public static String getLabelComponents(
+            final String fieldName, final String mt, final String sequence, final Locale locale) {
         Locale l = locale != null ? locale : Locale.getDefault();
         return _getLabel(fieldName, mt, sequence, l, "components");
     }
 
-    static private String _getLabel(final String fieldName, final String mt, final String sequence, final Locale locale, final String prop) {
+    private static String _getLabel(
+            final String fieldName, final String mt, final String sequence, final Locale locale, final String prop) {
         final String bundle = "pw_swift_labels";
         String key = null;
         String result = null;
-        //try {
+        // try {
         final ResourceBundle labels = ResourceBundle.getBundle(bundle, locale);
         if (labels != null) {
             if (sequence != null && mt != null) {
@@ -311,9 +314,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
                 result = getString(labels, key);
             }
         }
-        //} catch (MissingResourceException e) {
+        // } catch (MissingResourceException e) {
         //    e.printStackTrace();
-        //}
+        // }
         if (result != null) {
             return result;
         }
@@ -362,15 +365,19 @@ public abstract class Field implements PatternContainer, JsonSerializable {
             return false;
         }
         if (name.length() < 2 || name.length() > 3) {
-            //log.warning("field name must be present and have 2 or 3 characters length and found: "+field);
+            // log.warning("field name must be present and have 2 or 3 characters length and found: "+field);
             return false;
         }
         if (!StringUtils.isNumeric(name.substring(0, 2))) {
-            //log.warning("field name should start with a numeric prefix and found: "+field.substring(0, 2));
+            // log.warning("field name should start with a numeric prefix and found: "+field.substring(0, 2));
             return false;
         }
-        //log.warning("letter option if present should be a single capital letter or an 'a' for all letter options, and found: "+field.charAt(2));
-        return name.length() != 3 || Character.isDigit(name.charAt(2)) || name.charAt(2) == 'a' || Character.isUpperCase(name.charAt(2));
+        // log.warning("letter option if present should be a single capital letter or an 'a' for all letter options, and
+        // found: "+field.charAt(2));
+        return name.length() != 3
+                || Character.isDigit(name.charAt(2))
+                || name.charAt(2) == 'a'
+                || Character.isUpperCase(name.charAt(2));
     }
 
     /**
@@ -392,7 +399,9 @@ public abstract class Field implements PatternContainer, JsonSerializable {
                 Method method = c.getMethod("fromJson", String.class);
                 return (Field) method.invoke(null, json);
             } catch (final ClassNotFoundException e) {
-                log.warning("Field class for Field" + name + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.");
+                log.warning(
+                        "Field class for Field" + name
+                                + " not found. This is normally caused by an unrecognized field in the message or a malformed message block structure.");
             } catch (final Exception e) {
                 log.log(Level.WARNING, "An error occured while creating an instance of " + name, e);
             }
@@ -515,9 +524,10 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @param value  String value of the parsed component (without component separators ':', '/', '//')
      */
     public void setComponent(final int number, final String value) {
-        Validate.isTrue(number > 0, "components are numerated starting at 1, cannot insert a component with number " + number);
+        Validate.isTrue(
+                number > 0, "components are numerated starting at 1, cannot insert a component with number " + number);
 
-        //internal position index is zero based
+        // internal position index is zero based
         final int position = number - 1;
 
         if (this.components == null) {
@@ -537,7 +547,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return found component or null
      */
     public String getComponent(final int number) {
-        //internal position index is zero based
+        // internal position index is zero based
         final int position = number - 1;
 
         if (this.components != null && position >= 0 && position < this.components.size()) {
@@ -736,7 +746,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return s
      */
     public String joinComponents(final int start, final boolean skipLast) {
-        // FIXME para que se crea el list intermedio toAdd? no le veo razon de ser, se podria iterar en el segundo loop directo sobre this.components
+        // FIXME para que se crea el list intermedio toAdd? no le veo razon de ser, se podria iterar en el segundo loop
+        // directo sobre this.components
         final List<String> toAdd = new ArrayList<>();
         for (int i = start; i < this.componentsSize(); i++) {
             if (StringUtils.isNotEmpty(this.components.get(i))) {
@@ -1044,8 +1055,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
                         // return line subset
                         return asString(hash, lines.subList(start - 1, trimmedEnd));
                     } else {
-                        log.warning("invalid lines range [" + start + "-" + end
-                                + "] the ending line number (" + end + ") must be greater or equal to the starting line number (" + start + ")");
+                        log.warning("invalid lines range [" + start + "-" + end + "] the ending line number (" + end
+                                + ") must be greater or equal to the starting line number (" + start + ")");
                     }
                 } else {
                     // return a single line
@@ -1162,7 +1173,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 7.8.4
      */
     public String getComponentLabel(final int number) {
-        //internal position index is zero based
+        // internal position index is zero based
         final int position = number - 1;
         final List<String> labels = getComponentLabels();
         if (labels != null && position >= 0 && position < labels.size()) {
@@ -1177,7 +1188,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @since 7.10.3
      */
     protected abstract Map<Integer, String> getComponentMap();
-
 
     /**
      * Returns a mapping between component labels and the internal component number.
@@ -1225,8 +1235,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * For example Name And Address will be name-and-address key
      * in resource bundle
      */
-    //public abstract List<String> getComponentLabels(Locale locale);
-    //public String getComponentLabel(Locale locale);
+    // public abstract List<String> getComponentLabels(Locale locale);
+    // public String getComponentLabel(Locale locale);
 
     /**
      * Appends a not null field component to the builder.
@@ -1256,7 +1266,8 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public String toJson() {
         String stdFormat = toJsonFormat();
         if (this instanceof StructuredNarrativeField) {
-            return stdFormat.substring(0, stdFormat.length() - 1) + "," + toNarrativeFormat().substring(1);
+            return stdFormat.substring(0, stdFormat.length() - 1) + ","
+                    + toNarrativeFormat().substring(1);
         }
         return stdFormat;
     }
@@ -1281,5 +1292,4 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         Gson gson = new Gson();
         return gson.toJson(narrative);
     }
-
 }

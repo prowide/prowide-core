@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,18 +18,15 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Calendar;
+import org.junit.jupiter.api.Test;
 
 public class Field69FTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("69F",
-                ":ABC//DEF/20111224131415"
-        );
+        testSerializationImpl("69F", ":ABC//DEF/20111224131415");
     }
 
     @Test
@@ -84,5 +81,4 @@ public class Field69FTest extends AbstractFieldTest {
         assertEquals(14, f.getComponent4AsCalendar().get(Calendar.MINUTE));
         assertEquals(15, f.getComponent4AsCalendar().get(Calendar.SECOND));
     }
-
 }

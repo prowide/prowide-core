@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,10 @@ package com.prowidesoftware.swift.utils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.time.Year;
 import java.util.Calendar;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for SwiftFormatUtils.
@@ -37,27 +36,37 @@ public class SwiftFormatUtilsTest {
         assertEquals(123, SwiftFormatUtils.getNumber("123").intValue());
 
         assertNotNull(SwiftFormatUtils.getNumber("123,"));
-        assertEquals(new BigDecimal("123.0"), BigDecimal.valueOf(SwiftFormatUtils.getNumber("123,").doubleValue()));
+        assertEquals(
+                new BigDecimal("123.0"),
+                BigDecimal.valueOf(SwiftFormatUtils.getNumber("123,").doubleValue()));
 
-        //this test does not work but this format is not used
+        // this test does not work but this format is not used
 
         assertNotNull(SwiftFormatUtils.getNumber("1,2"));
-        assertEquals(new Double(1.2), new Double(SwiftFormatUtils.getNumber("1,2").doubleValue()));
+        assertEquals(
+                new Double(1.2), new Double(SwiftFormatUtils.getNumber("1,2").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("12,34"));
-        assertEquals(new Double(12.34), new Double(SwiftFormatUtils.getNumber("12,34").doubleValue()));
+        assertEquals(
+                new Double(12.34),
+                new Double(SwiftFormatUtils.getNumber("12,34").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("12,3456"));
-        assertEquals(new Double(12.3456), new Double(SwiftFormatUtils.getNumber("12,3456").doubleValue()));
+        assertEquals(
+                new Double(12.3456),
+                new Double(SwiftFormatUtils.getNumber("12,3456").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("0,"));
         assertEquals(new Double(0), new Double(SwiftFormatUtils.getNumber("0,").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("299000,34"));
-        assertEquals(new Double(299000.34), new Double(SwiftFormatUtils.getNumber("299000,34").doubleValue()));
+        assertEquals(
+                new Double(299000.34),
+                new Double(SwiftFormatUtils.getNumber("299000,34").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber(",34"));
-        assertEquals(new Double(0.34), new Double(SwiftFormatUtils.getNumber(",34").doubleValue()));
+        assertEquals(
+                new Double(0.34), new Double(SwiftFormatUtils.getNumber(",34").doubleValue()));
     }
 
     @Test
@@ -173,5 +182,4 @@ public class SwiftFormatUtilsTest {
         assertEquals(6, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1.000123")));
         assertEquals(8, SwiftFormatUtils.decimalsInAmount(new BigDecimal("1.00012300")));
     }
-
 }
