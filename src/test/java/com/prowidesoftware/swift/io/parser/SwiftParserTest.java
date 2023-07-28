@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,11 @@ import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field27;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt7xx.MT798;
-import java.io.IOException;
-import java.io.StringReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.io.StringReader;
 
 public class SwiftParserTest {
 

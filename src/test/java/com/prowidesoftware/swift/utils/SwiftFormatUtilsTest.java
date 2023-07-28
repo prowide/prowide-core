@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,11 @@ package com.prowidesoftware.swift.utils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Test;
+
 import java.math.BigDecimal;
 import java.time.Year;
 import java.util.Calendar;
-import org.junit.jupiter.api.Test;
 
 /**
  * Test for SwiftFormatUtils.
