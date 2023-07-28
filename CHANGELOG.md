@@ -1,6 +1,7 @@
 # Prowide Core - CHANGELOG
 
 #### 9.4.3 - SNAPSHOT
+  * (PW-1461) Remove deprecation of field 31R model since is it used back in SRU2023
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
 
 #### 9.4.2 - June 2023
