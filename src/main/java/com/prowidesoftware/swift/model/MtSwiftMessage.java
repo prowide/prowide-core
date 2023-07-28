@@ -47,7 +47,8 @@ import org.apache.commons.lang3.StringUtils;
 @Entity(name = "mt")
 @DiscriminatorValue("mt")
 public class MtSwiftMessage extends AbstractSwiftMessage {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MtSwiftMessage.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(MtSwiftMessage.class.getName());
     private static final long serialVersionUID = -5972656648349958815L;
 
     @Column(length = 35)

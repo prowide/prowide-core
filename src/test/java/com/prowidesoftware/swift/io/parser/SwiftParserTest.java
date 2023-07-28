@@ -26,11 +26,10 @@ import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field27;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt7xx.MT798;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.io.StringReader;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SwiftParserTest {
 

@@ -17,11 +17,10 @@ package com.prowidesoftware.swift.utils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.time.Year;
 import java.util.Calendar;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for SwiftFormatUtils.
