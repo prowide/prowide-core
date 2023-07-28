@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import java.util.*;
 
 /**
@@ -133,7 +132,7 @@ public abstract class OptionPPartyField extends Field implements BICContainer {
         if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
-        //default format (as is)
+        // default format (as is)
         return getComponent(component);
     }
 
@@ -353,5 +352,4 @@ public abstract class OptionPPartyField extends Field implements BICContainer {
         result.add(getComponent(2));
         return result;
     }
-
 }

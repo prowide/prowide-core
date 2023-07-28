@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -154,5 +154,4 @@ public class TagTest {
          */
         assertFalse(new Tag("50K:FOO1\nFOO2").equalsIgnoreCR(new Tag("50K:FOO1\nFOO3")));
     }
-
 }

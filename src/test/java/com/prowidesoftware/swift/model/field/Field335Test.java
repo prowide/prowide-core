@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,15 +36,13 @@ public class Field335Test extends AbstractFieldTest {
      * 1800010606BANKBEBBAXXX0008222211100DEUTDEFFXXXX1802
      */
     private static final String EXAMPLE1_FIELD_335 = "1522010605VNDZBET2AXXX0018000377999BANKBEBBXXXX";
+
     private static final String EXAMPLE2_FIELD_335 = "1800010606BANKBEBBAXXX0008222211100DEUTDEFFXXXX1802";
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("335",
-                EXAMPLE1_FIELD_335,
-                EXAMPLE2_FIELD_335
-        );
+        testSerializationImpl("335", EXAMPLE1_FIELD_335, EXAMPLE2_FIELD_335);
     }
 
     @Test
@@ -123,5 +121,4 @@ public class Field335Test extends AbstractFieldTest {
         f = new Field335(v);
         assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -89,7 +89,9 @@ public class MT022Test {
         assertEquals("VNDZBET2AXXX", m.getField102().getValue());
 
         assertNotNull(m.getField252());
-        assertEquals("050822VNDZBET2AXXX0294001093050822VNDZBET2AXXX0294001096", m.getField252().getValue());
+        assertEquals(
+                "050822VNDZBET2AXXX0294001093050822VNDZBET2AXXX0294001096",
+                m.getField252().getValue());
     }
 
     @Test
@@ -113,7 +115,9 @@ public class MT022Test {
         assertEquals("VNDZBET2AXXX", m.getField102().getValue());
 
         assertNotNull(m.getField254());
-        assertEquals("050822VNDZBET2AXXX0025000093050822VNDZBET2AXXX002500009714501454", m.getField254().getValue());
+        assertEquals(
+                "050822VNDZBET2AXXX0025000093050822VNDZBET2AXXX002500009714501454",
+                m.getField254().getValue());
     }
 
     @Test
@@ -239,5 +243,4 @@ public class MT022Test {
 
         assertEquals(sample8, m.message());
     }
-
 }

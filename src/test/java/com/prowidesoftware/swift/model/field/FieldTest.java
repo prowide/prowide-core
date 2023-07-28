@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,10 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.model.Tag;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.Locale;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for base class Field.
@@ -160,7 +159,7 @@ public class FieldTest {
     }
 
     @Test
-    //TODO add API for partyfields structure like field 83J
+    // TODO add API for partyfields structure like field 83J
     public void testGetValueByCodewordWorkaround() {
         final Field83J f = new Field83J("/ACCT/006-6005XXXXXX\n/NAME/JF ASIAN TOTAL RETURN BOND FUND");
         assertEquals("006-6005XXXXXX", StringUtils.substringBetween(f.getComponent1(), "/ACCT/", "\n"));
@@ -234,7 +233,6 @@ public class FieldTest {
         assertFalse(Field.validName(""));
         assertFalse(Field.validName(null));
     }
-
 
     @Test
     public void testLines_01() {
@@ -313,5 +311,4 @@ public class FieldTest {
         // field getValue() is empty, not null, so the Tag ends up with empty as value
         assertEquals("", t.getValue());
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,19 +17,15 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
+import org.junit.jupiter.api.Test;
 
 public class Field19ATest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("19A",
-                ":abc//errr123",
-                ":SETT//CHF178626,04"
-        );
+        testSerializationImpl("19A", ":abc//errr123", ":SETT//CHF178626,04");
     }
 
     @Test
@@ -74,13 +70,13 @@ public class Field19ATest extends AbstractFieldTest {
 
         f = new Field19A("///");
         assertNull(f.getComponent1());
-        assertNull(f.getComponent2());    // the expected component is a letter, so it is not filled with the slash
+        assertNull(f.getComponent2()); // the expected component is a letter, so it is not filled with the slash
         assertNull(f.getComponent3());
         assertNull(f.getComponent4());
 
         f = new Field19A(":///");
         assertNull(f.getComponent1());
-        assertNull(f.getComponent2());    // the expected component is a letter, so it is not filled with the slash
+        assertNull(f.getComponent2()); // the expected component is a letter, so it is not filled with the slash
         assertNull(f.getComponent3());
         assertNull(f.getComponent4());
 
@@ -152,7 +148,7 @@ public class Field19ATest extends AbstractFieldTest {
         assertEquals("abc", f.getComponent1());
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
-        //assertNull(f.getComponent4());
+        // assertNull(f.getComponent4());
     }
 
     @Test
@@ -161,5 +157,4 @@ public class Field19ATest extends AbstractFieldTest {
         Object n = f.getComponentAs(4, Number.class);
         assertNotNull(n);
     }
-
 }

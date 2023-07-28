@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,13 +31,12 @@ import com.prowidesoftware.swift.model.mt.mt1xx.*;
 import com.prowidesoftware.swift.model.mt.mt2xx.*;
 import com.prowidesoftware.swift.model.mt.mt3xx.MT300;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT540;
-import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * General swift message tests.
@@ -115,7 +114,7 @@ public class SwiftMessageTest {
         assertNotNull(m.getUserBlocks());
         assertTrue(m.getUserBlocks() instanceof List);
 
-        //expected 2 because empty blocks are not counted and block 1 and 2 have default attribute values
+        // expected 2 because empty blocks are not counted and block 1 and 2 have default attribute values
         assertEquals(2, m.getBlockCount());
     }
 
@@ -165,9 +164,21 @@ public class SwiftMessageTest {
         SwiftParser parser;
         SwiftMessage msg;
 
-        final String messageOutput = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n" + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n" + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n" + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n" + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
+        final String messageOutput =
+                "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n"
+                        + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n"
+                        + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n"
+                        + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n"
+                        + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n"
+                        + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
 
-        final String messageInput = "{1:F01FOOBARXXAXXX3219604112}{2:I535FOOBARXXXXXXN}{4:\n" + ":16R:GENL\n" + ":28E:1/ONLY\n" + ":13A::STAT//086\n" + ":20C::SEME//ABC20070327P1\n" + ":23G:NEWM\n" + ":98A::STAT//20070327\n" + ":98C::PREP//20070328043657\n" + ":22F::SFRE//DAIL\n" + ":22F::CODE//COMP\n" + ":22F::STTY//CUST\n" + ":22F::STBA//TRAD\n" + ":97A::SAFE//ABC\n" + ":17B::ACTI//Y\n" + ":17B::CONS//Y\n" + ":16S:GENL\n" + ":16R:ADDINFO\n" + ":19A::HOLP//USD0,\n" + ":19A::HOLS//USD0,\n" + ":16S:ADDINFO\n" + "-}{5:{MAC:8A1FADA1}{CHK:B018C2CA74CD}}{S:{REF:I20070328.386482886.out/1/1}}";
+        final String messageInput = "{1:F01FOOBARXXAXXX3219604112}{2:I535FOOBARXXXXXXN}{4:\n" + ":16R:GENL\n"
+                + ":28E:1/ONLY\n" + ":13A::STAT//086\n" + ":20C::SEME//ABC20070327P1\n" + ":23G:NEWM\n"
+                + ":98A::STAT//20070327\n" + ":98C::PREP//20070328043657\n" + ":22F::SFRE//DAIL\n"
+                + ":22F::CODE//COMP\n" + ":22F::STTY//CUST\n" + ":22F::STBA//TRAD\n" + ":97A::SAFE//ABC\n"
+                + ":17B::ACTI//Y\n" + ":17B::CONS//Y\n" + ":16S:GENL\n" + ":16R:ADDINFO\n" + ":19A::HOLP//USD0,\n"
+                + ":19A::HOLS//USD0,\n" + ":16S:ADDINFO\n"
+                + "-}{5:{MAC:8A1FADA1}{CHK:B018C2CA74CD}}{S:{REF:I20070328.386482886.out/1/1}}";
 
         try {
             parser = new SwiftParser(messageOutput);
@@ -182,8 +193,8 @@ public class SwiftMessageTest {
             msg = parser.message();
             assertTrue(msg.getBlock2() instanceof SwiftBlock2Input);
 
-            //msSender = msg.getBlock2().getSender();
-            //msPriority = msg.getBlock2().getMessagePriority();
+            // msSender = msg.getBlock2().getSender();
+            // msPriority = msg.getBlock2().getMessagePriority();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -195,8 +206,20 @@ public class SwiftMessageTest {
     @Test
     public void testCOVMessage() {
         SwiftParser parser;
-        final String msg1s = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:COV}}{4:\n" + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n" + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n" + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n" + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n" + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
-        final String msg2s = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}}{4:\n" + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n" + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n" + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n" + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n" + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
+        final String msg1s =
+                "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:COV}}{4:\n"
+                        + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n"
+                        + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n"
+                        + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n"
+                        + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n"
+                        + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
+        final String msg2s =
+                "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}}{4:\n"
+                        + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n"
+                        + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n"
+                        + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n"
+                        + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n"
+                        + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
         try {
             parser = new SwiftParser(msg1s);
             SwiftMessage msg1 = parser.message();
@@ -216,8 +239,20 @@ public class SwiftMessageTest {
     @Test
     public void testSTPMessage() {
         SwiftParser parser;
-        final String msg1s = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n" + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n" + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n" + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n" + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n" + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
-        final String msg2s = "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}}{4:\n" + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n" + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n" + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n" + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n" + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
+        final String msg1s =
+                "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}{119:STP}}{4:\n"
+                        + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n"
+                        + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n"
+                        + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n"
+                        + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n"
+                        + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
+        final String msg2s =
+                "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{3:{113:NOMF}{108:0510280086100057}}{4:\n"
+                        + ":20:D051026EUR100057\n" + ":13C:/RNCTIME/0802+0000\n" + ":23B:CRED\n"
+                        + ":32A:051028EUR6740,91\n" + ":33B:EUR6740,91\n" + ":50A:SSSSESMMXXX\n" + ":53A:BBBBESMMXXX\n"
+                        + ":57A:FOOBARYYXXX\n" + ":59:/ES0123456789012345671234\n" + "FOOOOO 1000 FOOBAR S.A.\n"
+                        + ":70:REDEMPTS. TRADEDATE 2222-10-26\n" + "/123123123: FOOVIMAR 2000 FOOBAR\n" + ":71A:SHA\n"
+                        + "-}{5:{MAC:D9D8FA56}{CHK:46E46A6460F2}}";
         try {
             parser = new SwiftParser(msg1s);
             SwiftMessage msg1 = parser.message();
@@ -245,7 +280,6 @@ public class SwiftMessageTest {
 
         AbstractMT o = m.toMT();
         assertTrue(o instanceof MT102, "MT not an instance of 102");
-
     }
 
     @Test
@@ -274,10 +308,11 @@ public class SwiftMessageTest {
 
     @Test
     public void isAck() throws IOException {
-        String msg = "{1:F21LITEBEBBAXXX0066000079}{4:{177:1104180901}{451:0}}{1:F01LITEBEBBAXXX0066000079}{2:I999LITEBEBBXXXXN}{4:\n" +
-                ":20:TESTREF1\n" +
-                ":79:This is text line 1\n" +
-                "-}{5:{CHK:7602B010CF31}{TNG:}}";
+        String msg =
+                "{1:F21LITEBEBBAXXX0066000079}{4:{177:1104180901}{451:0}}{1:F01LITEBEBBAXXX0066000079}{2:I999LITEBEBBXXXXN}{4:\n"
+                        + ":20:TESTREF1\n"
+                        + ":79:This is text line 1\n"
+                        + "-}{5:{CHK:7602B010CF31}{TNG:}}";
         SwiftMessage m = SwiftMessage.parse(msg);
         assertTrue(m.isAck());
         assertFalse(m.isNack());
@@ -285,9 +320,7 @@ public class SwiftMessageTest {
 
     @Test
     public void getMtId() throws IOException {
-        String msg = "{1:F01BICAUS11AXXX0000000000}{2:I202N}{4:\n" +
-                ":20:asdfasdf\n" +
-                "-}";
+        String msg = "{1:F01BICAUS11AXXX0000000000}{2:I202N}{4:\n" + ":20:asdfasdf\n" + "-}";
         SwiftParser p = new SwiftParser(msg);
         SwiftMessage m = p.message();
         assertNotNull(m.getMtId());
@@ -296,7 +329,8 @@ public class SwiftMessageTest {
 
     @Test
     public void isServiceMessage21() throws IOException {
-        SwiftMessage m = SwiftMessage.parse("{1:F01BNPAFRPPZXXX0000000006}{2:O0111702040914DYLRXXXXCXXX00000000001702040914S}{4:{175:0914}{106:170204BNPAFRPPZXXX0000000007}{108:MyRef9}{175:0914}{107:170204MGTCBEBBXXXX0000000007}}{5:{CHK:ABCDEF123456}{SYS:}}");
+        SwiftMessage m = SwiftMessage.parse(
+                "{1:F01BNPAFRPPZXXX0000000006}{2:O0111702040914DYLRXXXXCXXX00000000001702040914S}{4:{175:0914}{106:170204BNPAFRPPZXXX0000000007}{108:MyRef9}{175:0914}{107:170204MGTCBEBBXXXX0000000007}}{5:{CHK:ABCDEF123456}{SYS:}}");
         assertFalse(m.isServiceMessage());
         assertFalse(m.isAck());
         assertFalse(m.isNack());
@@ -308,7 +342,8 @@ public class SwiftMessageTest {
 
     @Test
     public void isServiceMessage() throws IOException {
-        SwiftMessage m = SwiftMessage.parse("{1:F21BNPAFRPPZXXX0000000007}{4:{177:1702040914}{451:0}}{1:F01BNPAFRPPZXXX0000000007}{2:I103MGTCBEBBXXXXN}{3:{108:MyRef9}}{4:\n-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}");
+        SwiftMessage m = SwiftMessage.parse(
+                "{1:F21BNPAFRPPZXXX0000000007}{4:{177:1702040914}{451:0}}{1:F01BNPAFRPPZXXX0000000007}{2:I103MGTCBEBBXXXXN}{3:{108:MyRef9}}{4:\n-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}");
         assertTrue(m.isServiceMessage());
         assertTrue(m.isAck());
         assertFalse(m.isNack());
@@ -323,7 +358,8 @@ public class SwiftMessageTest {
         /*
          * incomming
          */
-        SwiftMessage m = SwiftMessage.parse("{1:F01FOOBARXXAXXX0387241036}{2:O9502352060913FOOBUS22XXXX18884819330609140052N}{4:\n:20:123456\n-}");
+        SwiftMessage m = SwiftMessage.parse(
+                "{1:F01FOOBARXXAXXX0387241036}{2:O9502352060913FOOBUS22XXXX18884819330609140052N}{4:\n:20:123456\n-}");
         assertEquals("FOOBUS22XXXX", m.getSender());
         assertEquals("FOOBARXXAXXX", m.getReceiver());
         /*
@@ -342,7 +378,8 @@ public class SwiftMessageTest {
 
     @Test
     public void testGetCategory() throws IOException {
-        SwiftMessage m = SwiftMessage.parse("{1:F01FOOBARXXAXXX0387241036}{2:O9502352060913YYYYUSYYYYYY18884819330609140052N}{4:\n:20:123456\n-}");
+        SwiftMessage m = SwiftMessage.parse(
+                "{1:F01FOOBARXXAXXX0387241036}{2:O9502352060913YYYYUSYYYYYY18884819330609140052N}{4:\n:20:123456\n-}");
         assertEquals(MtCategory._9, m.getCategory());
         assertTrue(m.isCategory(MtCategory._9));
         assertTrue(m.isCategory(MtCategory._0, MtCategory._1, MtCategory._3, MtCategory._9));
@@ -356,7 +393,8 @@ public class SwiftMessageTest {
         SwiftMessage m = SwiftMessage.parse("{1:F01FOOBARAAAXXX3219604112}{2:I535BBBBBBBXXXXXN}{4:\n:16R:GENL\n-}");
         assertEquals(new BIC("BBBBBBBXXXXX"), m.getCorrespondentBIC());
 
-        m = SwiftMessage.parse("{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{4:\n:16R:GENL\n-}");
+        m = SwiftMessage.parse(
+                "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{4:\n:16R:GENL\n-}");
         assertEquals(new BIC("AAPBESMMAXXX"), m.getCorrespondentBIC());
     }
 
@@ -365,10 +403,12 @@ public class SwiftMessageTest {
         SwiftMessage m = SwiftMessage.parse("{1:F01FOOBARAAAXXX3219604112}{2:I535BBBBBBBXXXXXN}{4:\n:16R:GENL\n-}");
         assertEquals("IBBBBBBBXXXX535", m.getUUID());
 
-        m = SwiftMessage.parse("{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{4:\n:16R:GENL\n-}");
+        m = SwiftMessage.parse(
+                "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{4:\n:16R:GENL\n-}");
         assertEquals("OAAPBESMMXXX103", m.getUUID());
 
-        m = SwiftMessage.parse("{1:F01FOOBARXXAXXX8683497519}{2:O5411535051028ESPBESMMAXXX54237522470510281535N}{3:{113:ROMF}{108:0510280182794665}}{4:\n:16R:GENL\n:20C::SEME//K8N46BUK6XXXXXXXXXXXX\n-}");
+        m = SwiftMessage.parse(
+                "{1:F01FOOBARXXAXXX8683497519}{2:O5411535051028ESPBESMMAXXX54237522470510281535N}{3:{113:ROMF}{108:0510280182794665}}{4:\n:16R:GENL\n:20C::SEME//K8N46BUK6XXXXXXXXXXXX\n-}");
         assertEquals("OESPBESMMXXX541K8N46BUK6XXXXXXXXXXXX", m.getUUID());
     }
 
@@ -382,7 +422,8 @@ public class SwiftMessageTest {
         SwiftMessage m = SwiftMessage.parse("{1:F01FOOBARAAAXXX3219604112}{2:I535BBBBBBBXXXXXN}{4:\n:16R:GENL\n-}");
         assertEquals("IBBBBBBBXXXX5351508270000001234", m.getUID(cal, 1234L));
 
-        m = SwiftMessage.parse("{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{4:\n:16R:GENL\n-}");
+        m = SwiftMessage.parse(
+                "{1:F01FOOBARYYAXXX1234123456}{2:O1030803051028AAPBESMMAXXX54237368560510280803N}{4:\n:16R:GENL\n-}");
         assertEquals("OAAPBESMMXXX1031508270000001234", m.getUID(cal, 1234L));
     }
 
@@ -459,5 +500,4 @@ public class SwiftMessageTest {
         assertFalse(new MT300().getSwiftMessage().isGpi());
         assertFalse(new MT198().getSwiftMessage().isGpi());
     }
-
 }

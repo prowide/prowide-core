@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,6 @@ import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.utils.Lib;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.*;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -35,7 +33,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Base class for specific MTs.<br>
@@ -584,7 +582,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.8.1
      */
     @SuppressWarnings("unchecked")
-    public /* cant make static, but should be */ List<SwiftTagListBlock> getSequenceList(final String name, final SwiftTagListBlock block) {
+    public /* cant make static, but should be */ List<SwiftTagListBlock> getSequenceList(
+            final String name, final SwiftTagListBlock block) {
         final String methodName = GETSEQUENCE + name + "List";
         return (List<SwiftTagListBlock>) invokeHere(methodName, this, block);
     }
@@ -629,8 +628,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     private Object invokeHere(final String methodName, final Object where, final SwiftTagListBlock argument) {
         try {
-            final Method method = argument == null ?
-                    getClass().getMethod(methodName)
+            final Method method = argument == null
+                    ? getClass().getMethod(methodName)
                     : getClass().getMethod(methodName, SwiftTagListBlock.class);
             if (argument == null) {
                 return method.invoke(where);
@@ -672,7 +671,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @return found sequence or empty sequence block
      * @since 7.8.1
      */
-    public /* cant make static, but should be */ SwiftTagListBlock getSequence(final String name, final SwiftTagListBlock block) {
+    public /* cant make static, but should be */ SwiftTagListBlock getSequence(
+            final String name, final SwiftTagListBlock block) {
         final String methodName = GETSEQUENCE + name;
         Object o = invokeHere(methodName, this, block);
         return (SwiftTagListBlock) o;
@@ -724,8 +724,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public AbstractMT append(final SwiftTagListBlock block) {
         Objects.requireNonNull(block);
-        if (!block.isEmpty())
-            b4().addTags(block.getTags());
+        if (!block.isEmpty()) b4().addTags(block.getTags());
         return this;
     }
 
@@ -925,5 +924,4 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
         }
         return fields;
     }
-
 }

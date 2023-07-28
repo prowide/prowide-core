@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,7 @@ public class Field98FTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("98F",
-                ":RDDT//ONGO160000",
-                ":abc/def/ggggggggfffaaaaaa"
-        );
+        testSerializationImpl("98F", ":RDDT//ONGO160000", ":abc/def/ggggggggfffaaaaaa");
     }
 
     @Test
@@ -116,5 +113,4 @@ public class Field98FTest extends AbstractFieldTest {
         assertEquals("ONGO", f.getComponent3());
         assertEquals("160000", f.getComponent4());
     }
-
 }

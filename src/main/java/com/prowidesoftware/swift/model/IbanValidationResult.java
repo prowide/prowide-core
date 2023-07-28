@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,8 @@ public enum IbanValidationResult {
 
     MISSING_COUNTRY_CODE("The IBAN must start with the two letters ISO country code"),
     INVALID_COUNTRY_CODE_CHARSET("The country code must contain upper case letters and ${found} was found"),
-    INVALID_COUNTRY_CODE("The country code ${found} is not a valid ISO country code or the country code is not configured for IBAN validations"),
+    INVALID_COUNTRY_CODE(
+            "The country code ${found} is not a valid ISO country code or the country code is not configured for IBAN validations"),
 
     INVALID_CHARACTERS("Invalid character '${found}' found"),
     MISSING_CHECK_DIGITS("Missing check digits"),
@@ -42,17 +43,19 @@ public enum IbanValidationResult {
     IVALID_CHECK_DIGITS("The expected computed check digit is ${expectedCheckDigit} and ${found} was found"),
 
     MISSING_BBAN("Missing custom account number (BBAN)"),
-    BBAN_MAX_LENGTH("The max length for the custom account number (BBAN) is ${expectedLength} and found ${foundLength}"),
+    BBAN_MAX_LENGTH(
+            "The max length for the custom account number (BBAN) is ${expectedLength} and found ${foundLength}"),
 
     MISSING_BBAN_CONFIGURATION("Missing custom account number (BBAN) configuration for country ${found}"),
-    BBAN_INVALID_LENGTH("Expected a ${expectedLength} characters length for the custom account number (BBAN) and found ${foundLength} in ${found}"),
+    BBAN_INVALID_LENGTH(
+            "Expected a ${expectedLength} characters length for the custom account number (BBAN) and found ${foundLength} in ${found}"),
     BBAN_INVALID_UPPER_CASE_LETTERS("The ${bbanEntryType} ${found} must contain only upper case letters"),
     BBAN_INVALID_DIGITS_OR_LETTERS("The ${bbanEntryType} ${found} must contain only digits or upper case letters"),
     BBAN_INVALID_DIGITS("The ${bbanEntryType} ${found} must contain only digits"),
 
     UNKNOWN("Unknown exception validating IBAN");
 
-    private final String              message;
+    private final String message;
     private final Map<String, String> vars = new HashMap<>();
 
     IbanValidationResult(final String message) {
@@ -73,7 +76,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "found" variable for messages text
      */
-    //TODO enums should be immutable
+    // TODO enums should be immutable
     void setFound(final String found) {
         this.vars.put("found", found);
     }
@@ -81,7 +84,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "expectedLength" variable for messages text
      */
-    //TODO enums should be immutable
+    // TODO enums should be immutable
     void setExpectedLength(final int expectedLength) {
         this.vars.put("expectedLength", String.valueOf(expectedLength));
     }
@@ -89,7 +92,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "foundLength" variable for messages text
      */
-    //TODO enums should be immutable
+    // TODO enums should be immutable
     void setFoundLength(final int foundLength) {
         this.vars.put("foundLength", String.valueOf(foundLength));
     }
@@ -97,7 +100,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "bbanEntryType" variable for messages text
      */
-    //TODO enums should be immutable
+    // TODO enums should be immutable
     void setBbanEntryType(final BbanEntryType type) {
         this.vars.put("bbanEntryType", type.name());
     }
@@ -105,7 +108,7 @@ public enum IbanValidationResult {
     /**
      * Sets a "expectedCheckDigit" variable for messages text
      */
-    //TODO enums should be immutable
+    // TODO enums should be immutable
     void setExpectedCheckDigit(final String expectedCheckDigit) {
         this.vars.put("expectedCheckDigit", expectedCheckDigit);
     }
@@ -116,5 +119,4 @@ public enum IbanValidationResult {
     public Map<String, String> vars() {
         return this.vars;
     }
-
 }

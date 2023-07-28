@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,35 +15,23 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
-import java.io.Serializable;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Calendar;
-
-import com.prowidesoftware.swift.model.field.MultiLineField;
-import com.prowidesoftware.swift.model.field.DateContainer;
-import com.prowidesoftware.swift.model.field.DateResolver;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * SWIFT MT Field 11T.
@@ -72,15 +60,15 @@ import com.google.gson.JsonParser;
 @Deprecated
 @ProwideDeprecated(phase3 = TargetYear.SRU2024)
 public class Field11T extends Field implements Serializable, DateContainer, MultiLineField {
-	/**
-	 * Constant identifying the SRU to which this class belongs to.
-	 */
-	public static final int SRU = 2022;
+    /**
+     * Constant identifying the SRU to which this class belongs to.
+     */
+    public static final int SRU = 2022;
 
-	private static final long serialVersionUID = 1L;
-	/**
-	 * Constant with the field name 11T.
-	 */
+    private static final long serialVersionUID = 1L;
+    /**
+     * Constant with the field name 11T.
+     */
     public static final String NAME = "11T";
     /**
      * Same as NAME, intended to be clear when using static imports.
@@ -92,36 +80,36 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S$<DATE4><HHMM>";
+    public static final String PARSER_PATTERN = "S$<DATE4><HHMM>";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "NDH";
+    public static final String COMPONENTS_PATTERN = "NDH";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "NDH";
+    public static final String TYPES_PATTERN = "NDH";
 
-	/**
-	 * Component number for the Type subfield.
-	 */
-	public static final Integer TYPE = 1;
+    /**
+     * Component number for the Type subfield.
+     */
+    public static final Integer TYPE = 1;
 
-	/**
-	 * Component number for the Date subfield.
-	 */
-	public static final Integer DATE = 2;
+    /**
+     * Component number for the Date subfield.
+     */
+    public static final Integer DATE = 2;
 
-	/**
-	 * Component number for the Time subfield.
-	 */
-	public static final Integer TIME = 3;
+    /**
+     * Component number for the Time subfield.
+     */
+    public static final Integer TIME = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -150,7 +138,8 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
             throw new IllegalArgumentException("tag cannot be null.");
         }
         if (!StringUtils.equals(tag.getName(), "11T")) {
-            throw new IllegalArgumentException("cannot create field 11T from tag "+tag.getName()+", tagname must match the name of the field.");
+            throw new IllegalArgumentException("cannot create field 11T from tag " + tag.getName()
+                    + ", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -187,7 +176,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
         return new Tag(NAME, "");
     }
 
-
     /**
      * Parses the parameter value into the internal components structure.
      *
@@ -220,12 +208,12 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-    append(result, 1);
-    if (getComponent2() != null || getComponent3() != null) {
-        result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-        append(result, 2);
-        append(result, 3);
-    }
+        append(result, 1);
+        if (getComponent2() != null || getComponent3() != null) {
+            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
+            append(result, 2);
+            append(result, 3);
+        }
         return result.toString();
     }
 
@@ -244,19 +232,20 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
             throw new IllegalArgumentException("invalid component number " + component + " for field 11T");
         }
         if (component == 1) {
-            //default format (as is)
+            // default format (as is)
             return getComponent(1);
         }
         if (component == 2) {
-            //date: [YY]YYMMDD
-            java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+            // date: [YY]YYMMDD
+            java.text.DateFormat f =
+                    java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
                 return f.format(cal.getTime());
             }
         }
         if (component == 3) {
-            //time: HH[mm]
+            // time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent3AsCalendar();
             if (cal != null) {
@@ -697,7 +686,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
         return setComponent3(component3);
     }
 
-
     /**
      * Returns all components that can be converted to a Calendar
      *
@@ -715,7 +703,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     public Calendar date() {
         return DateResolver.date(this);
     }
-
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
@@ -899,6 +886,4 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
 
         return field;
     }
-
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,29 +15,19 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
-import java.io.Serializable;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.Tag;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * SWIFT MT Field 12H.
@@ -65,15 +55,15 @@ import com.google.gson.JsonParser;
 @Deprecated
 @ProwideDeprecated(phase3 = TargetYear.SRU2024)
 public class Field12H extends Field implements Serializable {
-	/**
-	 * Constant identifying the SRU to which this class belongs to.
-	 */
-	public static final int SRU = 2022;
+    /**
+     * Constant identifying the SRU to which this class belongs to.
+     */
+    public static final int SRU = 2022;
 
-	private static final long serialVersionUID = 1L;
-	/**
-	 * Constant with the field name 12H.
-	 */
+    private static final long serialVersionUID = 1L;
+    /**
+     * Constant with the field name 12H.
+     */
     public static final String NAME = "12H";
     /**
      * Same as NAME, intended to be clear when using static imports.
@@ -85,31 +75,31 @@ public class Field12H extends Field implements Serializable {
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S]";
+    public static final String PARSER_PATTERN = "S[/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
+    public static final String COMPONENTS_PATTERN = "SS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
+    public static final String TYPES_PATTERN = "SS";
 
-	/**
-	 * Component number for the Code subfield.
-	 */
-	public static final Integer CODE = 1;
+    /**
+     * Component number for the Code subfield.
+     */
+    public static final Integer CODE = 1;
 
-	/**
-	 * Component number for the Narrative subfield.
-	 */
-	public static final Integer NARRATIVE = 2;
+    /**
+     * Component number for the Narrative subfield.
+     */
+    public static final Integer NARRATIVE = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -138,7 +128,8 @@ public class Field12H extends Field implements Serializable {
             throw new IllegalArgumentException("tag cannot be null.");
         }
         if (!StringUtils.equals(tag.getName(), "12H")) {
-            throw new IllegalArgumentException("cannot create field 12H from tag "+tag.getName()+", tagname must match the name of the field.");
+            throw new IllegalArgumentException("cannot create field 12H from tag " + tag.getName()
+                    + ", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -174,7 +165,6 @@ public class Field12H extends Field implements Serializable {
     public static Tag emptyTag() {
         return new Tag(NAME, "");
     }
-
 
     /**
      * Parses the parameter value into the internal components structure.
@@ -220,11 +210,11 @@ public class Field12H extends Field implements Serializable {
             throw new IllegalArgumentException("invalid component number " + component + " for field 12H");
         }
         if (component == 1) {
-            //default format (as is)
+            // default format (as is)
             return getComponent(1);
         }
         if (component == 2) {
-            //default format (as is)
+            // default format (as is)
             return getComponent(2);
         }
         return null;
@@ -423,8 +413,6 @@ public class Field12H extends Field implements Serializable {
         return setComponent2(component2);
     }
 
-
-
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
      * @return the static value of Field12H.NAME
@@ -523,6 +511,4 @@ public class Field12H extends Field implements Serializable {
 
         return field;
     }
-
-
 }

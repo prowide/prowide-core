@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ public class FieldJsonTest {
     @Test
     public void toJsonField32A() {
         Field32A f32A = new Field32A("010203USD123,45");
-        //{"name":"32A","date":"010203","currency":"USD","amount":"123"}
+        // {"name":"32A","date":"010203","currency":"USD","amount":"123"}
 
         JsonObject o = JsonParser.parseString(f32A.toJson()).getAsJsonObject();
         assertEquals("32A", o.get("name").getAsString());
@@ -40,7 +40,8 @@ public class FieldJsonTest {
     @Test
     public void toJsonField71B() {
 
-        StructuredNarrative structNarrative = new StructuredNarrative().setCodeword("WITX")
+        StructuredNarrative structNarrative = new StructuredNarrative()
+                .setCodeword("WITX")
                 .addNarrativeFragment("CAPITAL GAINS TAX RELATING TO")
                 .addNarrativeFragment("THE PERIOD 1998-07-01 2022-10-30")
                 .addNarrativeFragment("REF 009524780232")
@@ -51,16 +52,37 @@ public class FieldJsonTest {
         Field71B tag71Ba = new Field71B();
         tag71Ba.setNarrative(narrative);
 
-        assertEquals("CAPITAL GAINS TAX RELATING TO", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(0));
-        assertEquals("THE PERIOD 1998-07-01 2022-10-30", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(1));
-        assertEquals("REF 009524780232", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(2));
-        assertEquals("BANCA DEL TEST", tag71Ba.narrative().getStructured("WITX").getNarrativeFragments().get(3));
+        assertEquals(
+                "CAPITAL GAINS TAX RELATING TO",
+                tag71Ba.narrative()
+                        .getStructured("WITX")
+                        .getNarrativeFragments()
+                        .get(0));
+        assertEquals(
+                "THE PERIOD 1998-07-01 2022-10-30",
+                tag71Ba.narrative()
+                        .getStructured("WITX")
+                        .getNarrativeFragments()
+                        .get(1));
+        assertEquals(
+                "REF 009524780232",
+                tag71Ba.narrative()
+                        .getStructured("WITX")
+                        .getNarrativeFragments()
+                        .get(2));
+        assertEquals(
+                "BANCA DEL TEST",
+                tag71Ba.narrative()
+                        .getStructured("WITX")
+                        .getNarrativeFragments()
+                        .get(3));
     }
 
     @Test
     public void toJsonNarrativeField71B() {
 
-        StructuredNarrative structNarrative = new StructuredNarrative().setCodeword("WITX")
+        StructuredNarrative structNarrative = new StructuredNarrative()
+                .setCodeword("WITX")
                 .addNarrativeFragment("CAPITAL GAINS TAX RELATING TO")
                 .addNarrativeFragment("THE PERIOD 1998-07-01 2022-10-30")
                 .addNarrativeFragment("REF 009524780232")
@@ -71,12 +93,15 @@ public class FieldJsonTest {
         Field71B tag71Ba = new Field71B();
         tag71Ba.setNarrative(narrative);
 
-        JsonObject tag71BaNarrative = JsonParser.parseString(tag71Ba.toNarrativeFormat()).getAsJsonObject();
+        JsonObject tag71BaNarrative =
+                JsonParser.parseString(tag71Ba.toNarrativeFormat()).getAsJsonObject();
 
-        JsonObject structuredNarrative = tag71BaNarrative.get("structured").getAsJsonArray().get(0).getAsJsonObject();
-        assertEquals("WITX",structuredNarrative.get("codeword").getAsString());
+        JsonObject structuredNarrative =
+                tag71BaNarrative.get("structured").getAsJsonArray().get(0).getAsJsonObject();
+        assertEquals("WITX", structuredNarrative.get("codeword").getAsString());
 
-        JsonArray narrativeFragments = structuredNarrative.get("narrativeFragments").getAsJsonArray();
+        JsonArray narrativeFragments =
+                structuredNarrative.get("narrativeFragments").getAsJsonArray();
         assertTrue(narrativeFragments.get(0).getAsString().contains("CAPITAL GAINS TAX RELATING TO"));
         assertTrue(narrativeFragments.get(1).getAsString().contains("THE PERIOD 1998-07-01 2022-10-30"));
         assertTrue(narrativeFragments.get(2).getAsString().contains("REF 009524780232"));
@@ -114,10 +139,12 @@ public class FieldJsonTest {
         narrative.addUnstructuredFragment("VALUE 2 ");
         narrative.addUnstructuredFragment("VALUE 3");
         Field70 f70 = new Field70(narrative);
-        //{"name":"70","narrative":"\"VALUE 1 \\r\\nVALUE 2 \\r\\nVALUE 3\"";}
+        // {"name":"70","narrative":"\"VALUE 1 \\r\\nVALUE 2 \\r\\nVALUE 3\"";}
 
         JsonObject o = JsonParser.parseString(f70.toJson()).getAsJsonObject();
-        assertEquals("VALUE 1 VALUE 2 VALUE 3", o.get("narrative").getAsString().replace("\n", "").replace("\r", ""));
+        assertEquals(
+                "VALUE 1 VALUE 2 VALUE 3",
+                o.get("narrative").getAsString().replace("\n", "").replace("\r", ""));
     }
 
     @Test
@@ -127,7 +154,7 @@ public class FieldJsonTest {
         narrative.addUnstructuredFragment("VALUE 2 ");
         narrative.addUnstructuredFragment("VALUE 3");
         Field70 f70 = new Field70(narrative);
-        //{"name":"70","narrative":"\"VALUE 1 \\r\\nVALUE 2 \\r\\nVALUE 3\"";}
+        // {"name":"70","narrative":"\"VALUE 1 \\r\\nVALUE 2 \\r\\nVALUE 3\"";}
 
         JsonObject o = JsonParser.parseString(f70.toNarrativeFormat()).getAsJsonObject();
         JsonArray asJsonArray = o.get("unstructuredFragments").getAsJsonArray();
@@ -162,7 +189,8 @@ public class FieldJsonTest {
 
     @Test
     public void fromJson50D() {
-        String json50D = "{\"name\":\"50D\",\"dCMark\":\"D\",\"account\":\"1234\",\"nameAndAddress\":\"Foo1\",\"nameAndAddress2\":\"Foo2\",\"nameAndAddress3\":\"Foo3\"}";
+        String json50D =
+                "{\"name\":\"50D\",\"dCMark\":\"D\",\"account\":\"1234\",\"nameAndAddress\":\"Foo1\",\"nameAndAddress2\":\"Foo2\",\"nameAndAddress3\":\"Foo3\"}";
         Field50D f50D = Field50D.fromJson(json50D);
         assertEquals("D", f50D.getDCMark());
         assertEquals("1234", f50D.getAccount());
@@ -179,12 +207,11 @@ public class FieldJsonTest {
      */
     @Test
     public void fromJson70() {
-        String field70JsonStringWithOneNarrative = "{\n" +
-                "    \"name\": \"70\",\n" +
-                "    \"narrative\":  \"VALUE 1 VALUE 2\"\n" +
-                "}";
+        String field70JsonStringWithOneNarrative =
+                "{\n" + "    \"name\": \"70\",\n" + "    \"narrative\":  \"VALUE 1 VALUE 2\"\n" + "}";
         Field70 f70 = Field70.fromJson(field70JsonStringWithOneNarrative);
-        assertEquals("VALUE 1 VALUE 2", f70.narrative().getUnstructuredFragments().get(0));
+        assertEquals(
+                "VALUE 1 VALUE 2", f70.narrative().getUnstructuredFragments().get(0));
         assertEquals("VALUE 1 VALUE 2", f70.getComponent(1));
     }
 
@@ -195,13 +222,12 @@ public class FieldJsonTest {
      */
     @Test
     public void fromJson70_backwardCompatibility() {
-        String field70JsonStringMoreThanOneNarratives = "{\n" +
-                "    \"name\": \"70\",\n" +
-                "    \"narrative\":  \"VALUE 1 \",\n" +
-                "    \"narrative2\": \"VALUE 2 \",\n" +
-                "    \"narrative3\": \"VALUE 3 \",\n" +
-                "    \"narrative4\": \"VALUE 4 \"\n" +
-                "}";
+        String field70JsonStringMoreThanOneNarratives = "{\n" + "    \"name\": \"70\",\n"
+                + "    \"narrative\":  \"VALUE 1 \",\n"
+                + "    \"narrative2\": \"VALUE 2 \",\n"
+                + "    \"narrative3\": \"VALUE 3 \",\n"
+                + "    \"narrative4\": \"VALUE 4 \"\n"
+                + "}";
         Field70 f70 = Field70.fromJson(field70JsonStringMoreThanOneNarratives);
 
         Narrative narrative = f70.narrative();
@@ -216,26 +242,31 @@ public class FieldJsonTest {
      */
     @Test
     public void fromJson72() {
-        String field72WithNarrativeS = "{" +
-                "    'name': '72'," +
-                "    'narrative':  '/INS/PURPOSE CODE 1670'," +
-                "    'narrative2':  '//SERVICES, SELF COMPANY FUNDING'" +
-                "}";
+        String field72WithNarrativeS = "{" + "    'name': '72',"
+                + "    'narrative':  '/INS/PURPOSE CODE 1670',"
+                + "    'narrative2':  '//SERVICES, SELF COMPANY FUNDING'"
+                + "}";
         Field72 f72 = Field72.fromJson(field72WithNarrativeS);
         Narrative narrative = f72.narrative();
         assertEquals("INS", narrative.getStructured().get(0).getCodeword());
-        assertEquals("PURPOSE CODE 1670", narrative.getStructured().get(0).getNarrativeFragments().get(0));
-        assertEquals("SERVICES, SELF COMPANY FUNDING", narrative.getStructured().get(0).getNarrativeFragments().get(1));
+        assertEquals(
+                "PURPOSE CODE 1670",
+                narrative.getStructured().get(0).getNarrativeFragments().get(0));
+        assertEquals(
+                "SERVICES, SELF COMPANY FUNDING",
+                narrative.getStructured().get(0).getNarrativeFragments().get(1));
     }
-
 
     @Test
     public void fromJson72B() {
         Field72 f72 = new Field72("/INS/PURPOSE CODE 1670\n//SERVICES, SELF COMPANY FUNDING");
         Narrative narrative = f72.narrative();
         assertEquals("INS", narrative.getStructured().get(0).getCodeword());
-        assertEquals("PURPOSE CODE 1670", narrative.getStructured().get(0).getNarrativeFragments().get(0));
-        assertEquals("SERVICES, SELF COMPANY FUNDING", narrative.getStructured().get(0).getNarrativeFragments().get(1));
+        assertEquals(
+                "PURPOSE CODE 1670",
+                narrative.getStructured().get(0).getNarrativeFragments().get(0));
+        assertEquals(
+                "SERVICES, SELF COMPANY FUNDING",
+                narrative.getStructured().get(0).getNarrativeFragments().get(1));
     }
-
 }

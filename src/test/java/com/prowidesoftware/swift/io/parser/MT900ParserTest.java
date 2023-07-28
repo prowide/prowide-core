@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,21 +28,20 @@ public class MT900ParserTest extends BaseMessageTestcase {
 
     @Test
     public void testImproperBlock4Ending() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" +
-                ":20:628735BKRU3X\n" +
-                ":79:TO.   FOOBANK NA (HONG KONG)\n" +
-                "ATTN. FOO - FOO OPERATIONS\n" +
-                "FROM.\n" +
-                "RE.   FOO  SUB A/C 123456\n" +
-                "A/C: 961XXX\n" +
-                ".\n" +
-                "WE CONFIRM TO INCREASE THE FOLLOWING DEPOSIT FROM\n" +
-                ".\n" +
-                "INSTRUCTIONS:\n" +
-                ".\n" +
-                "REGARDS,\n" +
-                "}" +
-                "{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" + ":20:628735BKRU3X\n"
+                + ":79:TO.   FOOBANK NA (HONG KONG)\n"
+                + "ATTN. FOO - FOO OPERATIONS\n"
+                + "FROM.\n"
+                + "RE.   FOO  SUB A/C 123456\n"
+                + "A/C: 961XXX\n"
+                + ".\n"
+                + "WE CONFIRM TO INCREASE THE FOLLOWING DEPOSIT FROM\n"
+                + ".\n"
+                + "INSTRUCTIONS:\n"
+                + ".\n"
+                + "REGARDS,\n"
+                + "}"
+                + "{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}";
 
         parseMessage(messageToParse);
         assertEquals("900", this.o.getType());
@@ -56,12 +55,11 @@ public class MT900ParserTest extends BaseMessageTestcase {
 
     @Test
     public void testMissingEOBandB5() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" +
-                ":20:628735BKRU3X\n" +
-                ":79:TO FOO\n" +
-                "REGARDS,\n" +
-                "{" +
-                "{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" + ":20:628735BKRU3X\n"
+                + ":79:TO FOO\n"
+                + "REGARDS,\n"
+                + "{"
+                + "{5:{CHK:12C48A7C53B2}}{S:{REF:I20070404.763727356.out/1/1}}";
 
         parseMessage(messageToParse);
         assertEquals("900", this.o.getType());
@@ -74,11 +72,10 @@ public class MT900ParserTest extends BaseMessageTestcase {
 
     @Test
     public void testMissingEOBAndEOF() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" +
-                ":20:628735BKRU3X\n" +
-                ":79:TO FOO\n" +
-                "INSTRUCTIONS:\n" +
-                "{";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I900FOOBARXXXXXXN}{4:\n" + ":20:628735BKRU3X\n"
+                + ":79:TO FOO\n"
+                + "INSTRUCTIONS:\n"
+                + "{";
 
         parseMessage(messageToParse);
         assertEquals("900", this.o.getType());
@@ -86,5 +83,4 @@ public class MT900ParserTest extends BaseMessageTestcase {
         String last = b4.getTagByName("79").getValue();
         assertTrue(last.endsWith("\n{"));
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,9 +24,7 @@ public class Field38GTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("38G",
-                "11A/22b"
-        );
+        testSerializationImpl("38G", "11A/22b");
     }
 
     @Test
@@ -39,5 +37,4 @@ public class Field38GTest extends AbstractFieldTest {
         assertEquals(22, f.getComponent3AsLong());
         assertEquals("b", f.getComponent4());
     }
-
 }

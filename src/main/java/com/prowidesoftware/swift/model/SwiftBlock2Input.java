@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,10 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.commons.lang3.Validate;
-
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.logging.Level;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for SWIFT <b>Application Header Block (block 2)
@@ -49,9 +48,9 @@ import java.util.logging.Level;
  */
 // TODO: add parameter checks (Validate.*) and complete javadocs
 public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock2.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftBlock2.class.getName());
     private static final long serialVersionUID = 6094810199379196198L;
-
 
     /**
      * Receiver's address with X in position 9.<br>
@@ -90,7 +89,12 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      * @param obsolescencePeriod the obsolescence period, measured in 5 minutes units (3 for priority U, 20 for priority N).<br>
      *                           According to SWIFT documentation, this value is ignored by the system
      */
-    public SwiftBlock2Input(final String messageType, final String receiverAddress, final String messagePriority, final String deliveryMonitoring, final String obsolescencePeriod) {
+    public SwiftBlock2Input(
+            final String messageType,
+            final String receiverAddress,
+            final String messagePriority,
+            final String deliveryMonitoring,
+            final String obsolescencePeriod) {
         this.input = true;
         this.messageType = messageType;
         this.receiverAddress = receiverAddress;
@@ -130,8 +134,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
     /**
      * Default constructor
      */
-    public SwiftBlock2Input() {
-    }
+    public SwiftBlock2Input() {}
 
     /**
      * Copy constructor
@@ -140,7 +143,12 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      * @since 7.10.4
      */
     public SwiftBlock2Input(SwiftBlock2Input block) {
-        this(block.getMessageType(), block.getReceiverAddress(), block.getMessagePriority(), block.getDeliveryMonitoring(), block.getObsolescencePeriod());
+        this(
+                block.getMessageType(),
+                block.getReceiverAddress(),
+                block.getMessagePriority(),
+                block.getDeliveryMonitoring(),
+                block.getObsolescencePeriod());
     }
 
     /**
@@ -295,7 +303,8 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
             try {
                 return DeliveryMonitoring.valueOf("_" + this.deliveryMonitoring);
             } catch (Exception e) {
-                final String text = "Block2 deliveryMonitoring contains an invalid value [" + this.deliveryMonitoring + "]";
+                final String text =
+                        "Block2 deliveryMonitoring contains an invalid value [" + this.deliveryMonitoring + "]";
                 log.warning(text);
                 log.log(Level.FINEST, text, e);
             }
@@ -333,7 +342,11 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      */
     @Override
     public boolean isEmpty() {
-        return messageType == null && receiverAddress == null && messagePriority == null && deliveryMonitoring == null && obsolescencePeriod == null;
+        return messageType == null
+                && receiverAddress == null
+                && messagePriority == null
+                && deliveryMonitoring == null
+                && obsolescencePeriod == null;
     }
 
     /**
@@ -415,7 +428,7 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
      */
     public void setValue(final String value, boolean lenient) {
         if (lenient) {
-            //leave all attributes as null (cleaning defaults)
+            // leave all attributes as null (cleaning defaults)
             clean();
         } else {
             // check parameters
@@ -428,7 +441,10 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
             if (!lenient) {
                 // check parameters
                 Objects.requireNonNull(value, "value must not be null");
-                Validate.isTrue(slen >= 16 && slen <= 23, "expected a string value of 17 up to 23 chars and obtained a " + slen + " chars string: '" + value + "'");
+                Validate.isTrue(
+                        slen >= 16 && slen <= 23,
+                        "expected a string value of 17 up to 23 chars and obtained a " + slen + " chars string: '"
+                                + value + "'");
             }
 
             // figure out the starting point and check the input value has proper optional
@@ -440,7 +456,8 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
             slen -= offset;
             if (!lenient) {
                 if (slen != 16 && slen != 17 && slen != 18 && slen != 21) {
-                    throw new IllegalArgumentException("Value must match: I<mt><address>[<pri>[<monitoring>[<obsolescence>]]]");
+                    throw new IllegalArgumentException(
+                            "Value must match: I<mt><address>[<pri>[<monitoring>[<obsolescence>]]]");
                 }
             }
             offset++; // skip the input mark
@@ -463,13 +480,12 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
             offset += len; // optional
 
             if (lenient) {
-                //get all remaining text
+                // get all remaining text
                 this.setObsolescencePeriod(this.getValuePart(value, offset));
             } else {
                 len = 3;
                 this.setObsolescencePeriod(this.getValuePart(value, offset, len));
             }
-
         }
     }
 
@@ -493,9 +509,9 @@ public class SwiftBlock2Input extends SwiftBlock2 implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         SwiftBlock2Input that = (SwiftBlock2Input) o;
-        return Objects.equals(receiverAddress, that.receiverAddress) &&
-                Objects.equals(deliveryMonitoring, that.deliveryMonitoring) &&
-                Objects.equals(obsolescencePeriod, that.obsolescencePeriod);
+        return Objects.equals(receiverAddress, that.receiverAddress)
+                && Objects.equals(deliveryMonitoring, that.deliveryMonitoring)
+                && Objects.equals(obsolescencePeriod, that.obsolescencePeriod);
     }
 
     @Override

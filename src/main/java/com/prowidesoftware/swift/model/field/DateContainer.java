@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,5 +34,4 @@ public interface DateContainer extends PatternContainer {
      * @return found dates or empty list
      */
     List<Calendar> dates();
-
 }

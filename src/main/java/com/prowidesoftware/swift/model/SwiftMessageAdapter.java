@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 package com.prowidesoftware.swift.model;
 
 import com.google.gson.*;
-
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -40,7 +39,7 @@ public class SwiftMessageAdapter implements JsonDeserializer<SwiftMessage>, Json
         objectBlocks.add("block3", context.serialize(src.getBlock3()));
         objectBlocks.add("block4", context.serialize(src.getBlock4()));
         objectBlocks.add("block5", context.serialize(src.getBlock5()));
-        //TODO agregar user blocks
+        // TODO agregar user blocks
 
         object.add("data", objectBlocks);
 
@@ -48,7 +47,9 @@ public class SwiftMessageAdapter implements JsonDeserializer<SwiftMessage>, Json
     }
 
     @Override
-    public SwiftMessage deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+    public SwiftMessage deserialize(
+            JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
+            throws JsonParseException {
 
         JsonObject jsonArray = jsonElement.getAsJsonObject().get("data").getAsJsonObject();
 

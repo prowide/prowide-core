@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,6 @@ import com.prowidesoftware.JsonSerializable;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.Lib;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,9 +28,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.*;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Base entity for MT and MX message persistence.
@@ -60,14 +57,16 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      *
      * @since 7.8.8
      */
-    protected final static String IDENTIFIER_ACK = "ACK";
+    protected static final String IDENTIFIER_ACK = "ACK";
     /**
      * Identifier constant for non-acknowledge service messages
      *
      * @since 7.8.8
      */
-    protected final static String IDENTIFIER_NAK = "NAK";
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
+    protected static final String IDENTIFIER_NAK = "NAK";
+
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
     private static final long serialVersionUID = 3769865560736793606L;
 
     /**
@@ -122,7 +121,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     @CollectionTable(name = "swift_msg_properties", joinColumns = @JoinColumn(name = "id"))
     @MapKeyColumn(name = "property_key", length = 200)
     @Column(name = "property_value")
-    @Lob //only applies to the value
+    @Lob // only applies to the value
     private Map<String, String> properties = new HashMap<>();
 
     @Column(length = 100)
@@ -161,8 +160,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      *
      * @since 7.7
      */
-    public AbstractSwiftMessage() {
-    }
+    public AbstractSwiftMessage() {}
 
     /**
      * @deprecated Use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
@@ -196,9 +194,10 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @param metadataStrategy the specific metadata extraction to apply
      * @since 9.1.4
      */
-    protected AbstractSwiftMessage(final String content, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) {
+    protected AbstractSwiftMessage(
+            final String content, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) {
         Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-        this.message = content;
+        this.message = StringUtils.trim(content);
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
     }
@@ -237,7 +236,9 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @param metadataStrategy the specific metadata extraction to apply
      * @since 9.1.4
      */
-    protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
+    protected AbstractSwiftMessage(
+            final InputStream stream, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy)
+            throws IOException {
         Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
         this.message = Lib.readStream(stream);
         this.fileFormat = fileFormat;
@@ -281,7 +282,9 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @throws IOException     on error during file reading
      * @since 9.1.4
      */
-    protected AbstractSwiftMessage(final File file, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) throws IOException {
+    protected AbstractSwiftMessage(
+            final File file, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy)
+            throws IOException {
         Objects.requireNonNull(file, "the file parameter cannot be null");
         Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
         this.message = Lib.readFile(file);
@@ -388,7 +391,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      *
      * @see SwiftMessageUtils#calculateChecksum(SwiftMessage)
      */
-    //TODO implement the same for MX, computing hash on XSLT normalized version of the XML
+    // TODO implement the same for MX, computing hash on XSLT normalized version of the XML
     public String getChecksum() {
         return checksum;
     }
@@ -412,7 +415,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @see SwiftMessageUtils#calculateChecksum(SwiftBlock4)
      * @since 7.9.5
      */
-    //TODO implement the same for MX, computing hash on XSLT normalized version of the XML
+    // TODO implement the same for MX, computing hash on XSLT normalized version of the XML
     public String getChecksumBody() {
         return checksumBody;
     }
@@ -783,7 +786,9 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         if (l != null) {
             for (int i = l.size() - 1; i >= 0; i--) {
                 String d = l.get(i).getData();
-                if (d != null && (statuses == null || ArrayUtils.contains(statuses, l.get(i).getName()))) {
+                if (d != null
+                        && (statuses == null
+                                || ArrayUtils.contains(statuses, l.get(i).getName()))) {
                     return d;
                 }
             }
@@ -1020,7 +1025,12 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
         msg.setStatusTrail(null);
         for (SwiftMessageStatusInfo status : getStatusTrail()) {
-            msg.addStatus(new SwiftMessageStatusInfo(status.getComments(), status.getCreationDate(), status.getCreationUser(), status.getName(), status.getData()));
+            msg.addStatus(new SwiftMessageStatusInfo(
+                    status.getComments(),
+                    status.getCreationDate(),
+                    status.getCreationUser(),
+                    status.getName(),
+                    status.getData()));
         }
         msg.setStatus(getStatus());
 
@@ -1305,32 +1315,53 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         if (this == o) return true;
         if (o == null || !(o instanceof AbstractSwiftMessage)) return false;
         AbstractSwiftMessage that = (AbstractSwiftMessage) o;
-        return Objects.equals(message, that.message) &&
-                Objects.equals(identifier, that.identifier) &&
-                Objects.equals(sender, that.sender) &&
-                Objects.equals(receiver, that.receiver) &&
-                direction == that.direction &&
-                Objects.equals(checksum, that.checksum) &&
-                Objects.equals(checksumBody, that.checksumBody) &&
-                Objects.equals(lastModified, that.lastModified) &&
-                Objects.equals(creationDate, that.creationDate) &&
-                Objects.equals(statusTrail, that.statusTrail) &&
-                Objects.equals(status, that.status) &&
-                Objects.equals(notes, that.notes) &&
-                Objects.equals(properties, that.properties) &&
-                Objects.equals(filename, that.filename) &&
-                fileFormat == that.fileFormat &&
-                Objects.equals(reference, that.reference) &&
-                Objects.equals(currency, that.currency) &&
-                Objects.equals(amount, that.amount) &&
-                Objects.equals(revisions, that.revisions) &&
-                Objects.equals(valueDate, that.valueDate) &&
-                Objects.equals(tradeDate, that.tradeDate);
+        return Objects.equals(message, that.message)
+                && Objects.equals(identifier, that.identifier)
+                && Objects.equals(sender, that.sender)
+                && Objects.equals(receiver, that.receiver)
+                && direction == that.direction
+                && Objects.equals(checksum, that.checksum)
+                && Objects.equals(checksumBody, that.checksumBody)
+                && Objects.equals(lastModified, that.lastModified)
+                && Objects.equals(creationDate, that.creationDate)
+                && Objects.equals(statusTrail, that.statusTrail)
+                && Objects.equals(status, that.status)
+                && Objects.equals(notes, that.notes)
+                && Objects.equals(properties, that.properties)
+                && Objects.equals(filename, that.filename)
+                && fileFormat == that.fileFormat
+                && Objects.equals(reference, that.reference)
+                && Objects.equals(currency, that.currency)
+                && Objects.equals(amount, that.amount)
+                && Objects.equals(revisions, that.revisions)
+                && Objects.equals(valueDate, that.valueDate)
+                && Objects.equals(tradeDate, that.tradeDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(message, identifier, sender, receiver, direction, checksum, checksumBody, lastModified, creationDate, statusTrail, status, notes, properties, filename, fileFormat, reference, currency, amount, revisions, valueDate, tradeDate);
+        return Objects.hash(
+                message,
+                identifier,
+                sender,
+                receiver,
+                direction,
+                checksum,
+                checksumBody,
+                lastModified,
+                creationDate,
+                statusTrail,
+                status,
+                notes,
+                properties,
+                filename,
+                fileFormat,
+                reference,
+                currency,
+                amount,
+                revisions,
+                valueDate,
+                tradeDate);
     }
 
     /**
@@ -1441,9 +1472,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 7.10.6
      */
     protected String toJsonImpl() {
-        final Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .create();
+        final Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(this);
     }
 
@@ -1468,5 +1497,4 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
             return getIdentifier();
         }
     }
-
 }

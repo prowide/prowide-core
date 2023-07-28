@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,9 @@ package com.prowidesoftware.swift.constraints;
 
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.BicValidationResult;
-import org.apache.commons.lang3.StringUtils;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Implementation of the BIC validation constraint
@@ -31,8 +30,7 @@ import javax.validation.ConstraintValidatorContext;
 public class BicValidator implements ConstraintValidator<BicConstraint, String> {
 
     @Override
-    public void initialize(BicConstraint bic) {
-    }
+    public void initialize(BicConstraint bic) {}
 
     @Override
     public boolean isValid(String bic, ConstraintValidatorContext context) {
@@ -48,5 +46,4 @@ public class BicValidator implements ConstraintValidator<BicConstraint, String> 
             return false;
         }
     }
-
 }

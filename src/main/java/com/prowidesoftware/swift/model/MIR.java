@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -52,7 +51,8 @@ import java.util.Objects;
  * @since 6.0
  */
 public class MIR {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MIR.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(MIR.class.getName());
     /**
      * 6 characters string containing the date field of the MIR.
      */
@@ -119,8 +119,7 @@ public class MIR {
     /**
      * Default constructor
      */
-    public MIR() {
-    }
+    public MIR() {}
 
     /**
      * @return the date
@@ -212,10 +211,10 @@ public class MIR {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MIR mir = (MIR) o;
-        return Objects.equals(date, mir.date) &&
-                Objects.equals(logicalTerminal, mir.logicalTerminal) &&
-                Objects.equals(sessionNumber, mir.sessionNumber) &&
-                Objects.equals(sequenceNumber, mir.sequenceNumber);
+        return Objects.equals(date, mir.date)
+                && Objects.equals(logicalTerminal, mir.logicalTerminal)
+                && Objects.equals(sessionNumber, mir.sessionNumber)
+                && Objects.equals(sequenceNumber, mir.sequenceNumber);
     }
 
     @Override

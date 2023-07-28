@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,7 @@ public abstract class AbstractMessage {
     /**
      * Protected constructor necessary for jaxb in MX.
      */
-    protected AbstractMessage() {
-    }
+    protected AbstractMessage() {}
 
     /**
      * Constructor for an {@link MessageStandardType#MT} or {@link MessageStandardType#MX} message.

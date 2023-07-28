@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,16 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-
 public class Field94DTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("94D",
-                ":AAAA//BB/C",
-                ":AAAA///C"
-        );
+        testSerializationImpl("94D", ":AAAA//BB/C", ":AAAA///C");
     }
 
     @Test
@@ -47,5 +43,4 @@ public class Field94DTest extends AbstractFieldTest {
         assertNull(f.getComponent2());
         assertEquals(f.getComponent3(), "C");
     }
-
 }

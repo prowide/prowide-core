@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +26,10 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test192_1() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":11S:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":11S:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("192", parseMessage(messageToParse).getType());
         assertEquals(3, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -40,12 +39,11 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test192_2() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":11S:FOO\n" +
-                ":79:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":11S:FOO\n"
+                + ":79:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("192", parseMessage(messageToParse).getType());
         assertEquals(4, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -56,14 +54,13 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test192_3() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":11S:FOO\n" +
-                ":79:FOO\n" +
-                ":52A:FOO\n" +
-                ":23G:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":11S:FOO\n"
+                + ":79:FOO\n"
+                + ":52A:FOO\n"
+                + ":23G:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("192", parseMessage(messageToParse).getType());
         assertEquals(6, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -76,13 +73,12 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test192_4() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":11S:FOO\n" +
-                ":52A:FOO\n" +
-                ":23G:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":11S:FOO\n"
+                + ":52A:FOO\n"
+                + ":23G:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("192", parseMessage(messageToParse).getType());
         assertEquals(5, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -94,14 +90,13 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test192_5() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":11S:FOO\n" +
-                ":59:FOO\n" +
-                "FOO2\n" +
-                ":23G:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I192FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":11S:FOO\n"
+                + ":59:FOO\n"
+                + "FOO2\n"
+                + ":23G:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("192", parseMessage(messageToParse).getType());
         assertEquals(5, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -113,11 +108,10 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test195_1() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":75:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":75:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("195", parseMessage(messageToParse).getType());
         assertEquals(3, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -127,12 +121,11 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test195_2() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":75:FOO\n" +
-                ":79:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":75:FOO\n"
+                + ":79:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("195", parseMessage(messageToParse).getType());
         assertEquals(4, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -143,14 +136,13 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test195_3() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":75:FOO\n" +
-                ":79:FOO\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":75:FOO\n"
+                + ":79:FOO\n"
+                + ":20:FOO\n"
+                + ":21:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("195", parseMessage(messageToParse).getType());
         assertEquals(6, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -163,15 +155,14 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test195_4() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":75:FOO\n" +
-                ":11R:FOO\n" +
-                ":21:FOO\n" +
-                ":52A:FOO\n" +
-                ":23G:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":75:FOO\n"
+                + ":11R:FOO\n"
+                + ":21:FOO\n"
+                + ":52A:FOO\n"
+                + ":23G:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("195", parseMessage(messageToParse).getType());
         assertEquals(7, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -185,18 +176,17 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test195_5() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":75:FOO\n" +
-                ":11R:FOO\n" +
-                ":21:FOO\n" +
-                ":52A:FOO\n" +
-                ":23G:FOO\n" +
-                ":59:FOO\n" +
-                "FOO2\n" +
-                ":20:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I195FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":75:FOO\n"
+                + ":11R:FOO\n"
+                + ":21:FOO\n"
+                + ":52A:FOO\n"
+                + ":23G:FOO\n"
+                + ":59:FOO\n"
+                + "FOO2\n"
+                + ":20:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("195", parseMessage(messageToParse).getType());
         assertEquals(9, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -212,18 +202,17 @@ public class MTn9nParserTest extends BaseMessageTestcase {
 
     @Test
     public void test196_1() {
-        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I196FOOBARXXXXXXN}{4:\n" +
-                ":20:FOO\n" +
-                ":21:FOO\n" +
-                ":75:FOO\n" +
-                ":11R:FOO\n" +
-                ":21:FOO\n" +
-                ":52A:FOO\n" +
-                ":23G:FOO\n" +
-                ":59:FOO\n" +
-                "FOO2\n" +
-                ":20:FOO\n" +
-                "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3227607589}{2:I196FOOBARXXXXXXN}{4:\n" + ":20:FOO\n"
+                + ":21:FOO\n"
+                + ":75:FOO\n"
+                + ":11R:FOO\n"
+                + ":21:FOO\n"
+                + ":52A:FOO\n"
+                + ":23G:FOO\n"
+                + ":59:FOO\n"
+                + "FOO2\n"
+                + ":20:FOO\n"
+                + "-}{5:{MAC:0D3E6718}{CHK:76FFBA03C41F}}";
         assertEquals("196", parseMessage(messageToParse).getType());
         assertEquals(9, b4.countAll());
         assertEquals("FOO", b4.getTagValue("20"));
@@ -236,5 +225,4 @@ public class MTn9nParserTest extends BaseMessageTestcase {
         assertEquals("FOO\nFOO2", b4.getTagValue("59"));
         assertEquals("FOO", b4.getTagValue("20"));
     }
-
 }

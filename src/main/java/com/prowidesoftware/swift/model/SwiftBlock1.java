@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,11 @@ package com.prowidesoftware.swift.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.prowidesoftware.swift.model.mt.ServiceIdType;
-import org.apache.commons.lang3.Validate;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.logging.Level;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for SWIFT <b>Basic Header Block (block 1)</b>.
@@ -38,7 +37,7 @@ import java.util.logging.Level;
  * @author sebastian
  * @since 4.0
  */
-//TODO: add parameter checks (Validate.*) and complete javadocs 
+// TODO: add parameter checks (Validate.*) and complete javadocs
 public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
     /**
      * Constant for FIN messages in application id
@@ -58,7 +57,9 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * @since 4.1
      */
     public static final transient String APPLICATION_ID_LOGINS = "L";
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock1.class.getName());
+
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftBlock1.class.getName());
     private static final long serialVersionUID = 4229511645041690763L;
     /**
      * String of 1 character containing the Application ID as follows:<br>
@@ -136,7 +137,12 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * @param sessionNumber   the session number
      * @param sequenceNumber  the message sequence number
      */
-    public SwiftBlock1(final String applicationId, final String serviceId, final String logicalTerminal, final String sessionNumber, final String sequenceNumber) {
+    public SwiftBlock1(
+            final String applicationId,
+            final String serviceId,
+            final String logicalTerminal,
+            final String sessionNumber,
+            final String sequenceNumber) {
         this.applicationId = applicationId;
         this.serviceId = serviceId;
         this.logicalTerminal = logicalTerminal;
@@ -147,8 +153,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
     /**
      * Default constructor
      */
-    public SwiftBlock1() {
-    }
+    public SwiftBlock1() {}
 
     /**
      * Creates the block with lenient false, meaning it expects a fixed length value.
@@ -182,7 +187,12 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      * @since 7.10.4
      */
     public SwiftBlock1(SwiftBlock1 block) {
-        this(block.getApplicationId(), block.getServiceId(), block.getLogicalTerminal(), block.getSessionNumber(), block.getSequenceNumber());
+        this(
+                block.getApplicationId(),
+                block.getServiceId(),
+                block.getLogicalTerminal(),
+                block.getSessionNumber(),
+                block.getSequenceNumber());
     }
 
     /**
@@ -406,7 +416,11 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      */
     @Override
     public boolean isEmpty() {
-        return applicationId == null && serviceId == null && logicalTerminal == null && sessionNumber == null && sequenceNumber == null;
+        return applicationId == null
+                && serviceId == null
+                && logicalTerminal == null
+                && sessionNumber == null
+                && sequenceNumber == null;
     }
 
     /**
@@ -480,7 +494,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
      */
     public void setValue(final String value, boolean lenient) {
         if (lenient) {
-            //leave all attributes as null (cleaning defaults)
+            // leave all attributes as null (cleaning defaults)
             clean();
         } else {
             // check parameters
@@ -494,13 +508,23 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
             // figure out the starting point
             if (value.startsWith("1")) {
                 if (!lenient) {
-                    Validate.isTrue(value.startsWith("1:"), "expected '1:' at the beginning of value and found '" + value.charAt(0) + "'");
-                    Validate.isTrue(slen == 26 || slen == 27, "block value " + value + " cannot be parsed because it has an invalid size, expected 26 or 27 and found " + value.length());
+                    Validate.isTrue(
+                            value.startsWith("1:"),
+                            "expected '1:' at the beginning of value and found '" + value.charAt(0) + "'");
+                    Validate.isTrue(
+                            slen == 26 || slen == 27,
+                            "block value " + value
+                                    + " cannot be parsed because it has an invalid size, expected 26 or 27 and found "
+                                    + value.length());
                 }
                 offset = 2;
             } else {
                 if (!lenient) {
-                    Validate.isTrue(slen == 24 || slen == 25, "block value " + value + " cannot be parsed because it has an invalid size, expected 24 or 25 and found " + value.length());
+                    Validate.isTrue(
+                            slen == 24 || slen == 25,
+                            "block value " + value
+                                    + " cannot be parsed because it has an invalid size, expected 24 or 25 and found "
+                                    + value.length());
                 }
             }
 
@@ -513,7 +537,7 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
             this.setServiceId(this.getValuePart(value, offset, len));
             offset += len;
 
-            //LT address must be fixed to 12 characters padding both the LT id and the branch with X if necessary
+            // LT address must be fixed to 12 characters padding both the LT id and the branch with X if necessary
             len = 12;
             this.setLogicalTerminal(this.getValuePart(value, offset, len));
             offset += len;
@@ -523,10 +547,10 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
             offset += len;
 
             if (lenient) {
-                //get all remaining text
+                // get all remaining text
                 this.setSequenceNumber(this.getValuePart(value, offset));
             } else {
-                //get text between size boundaries
+                // get text between size boundaries
                 len = 6;
                 this.setSequenceNumber(this.getValuePart(value, offset, len));
             }
@@ -552,11 +576,11 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         SwiftBlock1 that = (SwiftBlock1) o;
-        return Objects.equals(applicationId, that.applicationId) &&
-                Objects.equals(serviceId, that.serviceId) &&
-                Objects.equals(logicalTerminal, that.logicalTerminal) &&
-                Objects.equals(sessionNumber, that.sessionNumber) &&
-                Objects.equals(sequenceNumber, that.sequenceNumber);
+        return Objects.equals(applicationId, that.applicationId)
+                && Objects.equals(serviceId, that.serviceId)
+                && Objects.equals(logicalTerminal, that.logicalTerminal)
+                && Objects.equals(sessionNumber, that.sessionNumber)
+                && Objects.equals(sequenceNumber, that.sequenceNumber);
     }
 
     @Override
@@ -650,7 +674,8 @@ public class SwiftBlock1 extends SwiftValueBlock implements Serializable {
         try {
             return ServiceIdType.valueOf("_" + this.serviceId);
         } catch (Exception e) {
-            final String text = "Block1 serviceId contains an invalid value [" + this.serviceId + "]. The expected values are " + Arrays.toString(ServiceIdType.values());
+            final String text = "Block1 serviceId contains an invalid value [" + this.serviceId
+                    + "]. The expected values are " + Arrays.toString(ServiceIdType.values());
             log.warning(text);
             log.log(Level.FINEST, text, e);
             return null;

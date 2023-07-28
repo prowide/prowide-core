@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,9 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.utils.LineWrapper;
-import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigDecimal;
 import java.util.*;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Models the value of fields containing narrative content. The content is normally text wrapped in lines but they also
@@ -82,8 +81,7 @@ public class Narrative {
     private List<StructuredNarrative> structured = new ArrayList<>();
     private List<String> unstructuredFragments = new ArrayList<>();
 
-    Narrative() {
-    }
+    Narrative() {}
 
     private Narrative(Builder builder) {
         this.structured = builder.structured;
@@ -289,8 +287,7 @@ public class Narrative {
                 result.append(FINWriterVisitor.SWIFT_EOL);
             }
             // append mandatory codeword, even if it is empty (invalid) we will add the slashes
-            result
-                    .append("/")
+            result.append("/")
                     .append(StringUtils.trimToEmpty(structured.getCodeword()))
                     .append("/");
 
@@ -335,7 +332,6 @@ public class Narrative {
                 result.append(fragment);
                 first = false;
             }
-
         }
 
         // add the unstructured narrative at te end (one fragment per line with no separators)
@@ -418,9 +414,8 @@ public class Narrative {
          * </pre>
          */
         public Builder addCodewordWithCountry(String codeword, String country, String narrative) {
-            StructuredNarrative structured = new StructuredNarrative()
-                    .setCodeword(codeword)
-                    .setCountry(country);
+            StructuredNarrative structured =
+                    new StructuredNarrative().setCodeword(codeword).setCountry(country);
             String countrySlash = country != null ? country + "//" : "";
             String prefix = "/" + StringUtils.trim(codeword) + countrySlash;
             for (String fragment : wrap(prefix, narrative)) {
@@ -534,5 +529,4 @@ public class Narrative {
             return new Narrative(this);
         }
     }
-
 }

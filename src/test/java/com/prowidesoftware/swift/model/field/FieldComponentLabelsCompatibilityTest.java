@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,15 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 @Disabled
 public class FieldComponentLabelsCompatibilityTest {
@@ -37,7 +36,10 @@ public class FieldComponentLabelsCompatibilityTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream) upackage.getContent()));
         String line = null;
         while ((line = reader.readLine()) != null) {
-            if (line.endsWith(".class") && line.startsWith("Field") && !line.contains("Test") && !line.equals("Field.class")) {
+            if (line.endsWith(".class")
+                    && line.startsWith("Field")
+                    && !line.contains("Test")
+                    && !line.equals("Field.class")) {
                 classes.add(Class.forName(dottedPackage + "." + line.substring(0, line.lastIndexOf('.'))));
             }
         }
@@ -67,7 +69,8 @@ public class FieldComponentLabelsCompatibilityTest {
                 }
             }
         }
-        System.out.println("total=" + classes.size() + " missing=" + missing + " availableOK=" + availableOK + " availableError=" + availableError);
+        System.out.println("total=" + classes.size() + " missing=" + missing + " availableOK=" + availableOK
+                + " availableError=" + availableError);
     }
 
     @Test

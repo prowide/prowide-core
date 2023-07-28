@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,26 +15,21 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.LogicalTerminalAddress;
 import com.prowidesoftware.swift.model.MIR;
 import com.prowidesoftware.swift.model.MOR;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
-
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.Calendar;
 import java.util.Currency;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 /**
  * This class provides methods to convert field components to objects.
@@ -61,7 +56,8 @@ import java.util.GregorianCalendar;
  * @since 6.0
  */
 public class SwiftFormatUtils {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftFormatUtils.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftFormatUtils.class.getName());
 
     // Suppress default constructor for noninstantiability
     private SwiftFormatUtils() {
@@ -346,7 +342,9 @@ public class SwiftFormatUtils {
                 cal.setTime(d);
                 return cal;
             } catch (final ParseException e) {
-                log.log(java.util.logging.Level.WARNING, "Could not parse '" + value + "' with pattern '" + format + "'");
+                log.log(
+                        java.util.logging.Level.WARNING,
+                        "Could not parse '" + value + "' with pattern '" + format + "'");
             }
         }
         return null;
@@ -507,9 +505,11 @@ public class SwiftFormatUtils {
     public static Boolean getBoolean(final String string) {
         if (string == null) {
             return null;
-        } if ("Y".equals(string)) {
+        }
+        if ("Y".equals(string)) {
             return Boolean.TRUE;
-        } if ("N".equals(string)) {
+        }
+        if ("N".equals(string)) {
             return Boolean.FALSE;
         }
         return null;

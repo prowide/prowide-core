@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,9 @@ public class SwiftBlock3Test {
         assertEquals(current, b.getTagByName("108").getValue());
         Thread.sleep(500);
         b.generateMUR(true);
-        assertFalse(StringUtils.equals(current, b.getTagByName("108").getValue()), "expected a different MUR after generateMUR(true)");
+        assertFalse(
+                StringUtils.equals(current, b.getTagByName("108").getValue()),
+                "expected a different MUR after generateMUR(true)");
     }
 
     @Test
@@ -70,5 +72,4 @@ public class SwiftBlock3Test {
         assertEquals(4, b.getTags().size());
         assertEquals("finalValue106", b.getTagValue(Field106.NAME));
     }
-
 }

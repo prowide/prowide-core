@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,10 @@ import com.prowidesoftware.swift.model.field.Field177;
 import com.prowidesoftware.swift.model.field.Field405;
 import com.prowidesoftware.swift.model.field.Field451;
 import com.prowidesoftware.swift.utils.Lib;
-import org.apache.commons.lang3.Validate;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Generic MT representation for <strong>service messages</strong> with service id 21 = GPA/FIN Message (ACK/NAK/UAK/UNK).
@@ -198,8 +197,7 @@ public class ServiceMessage21 extends AbstractMT {
      */
     public String getErrorCode() {
         Field405 f = getField405();
-        if (f == null)
-            return null;
+        if (f == null) return null;
         return f.getReasonForRejection();
     }
 
@@ -210,8 +208,7 @@ public class ServiceMessage21 extends AbstractMT {
      */
     public String getErrorLine() {
         Field405 f = getField405();
-        if (f == null)
-            return null;
+        if (f == null) return null;
         return f.getLineFieldNumber();
     }
 
@@ -281,5 +278,4 @@ public class ServiceMessage21 extends AbstractMT {
     public MtId getMtId() {
         return mtId();
     }
-
 }

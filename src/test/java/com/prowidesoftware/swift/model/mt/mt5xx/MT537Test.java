@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field22H;
 import com.prowidesoftware.swift.model.field.Field95C;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
+import org.junit.jupiter.api.Test;
 
 public class MT537Test {
 
@@ -73,8 +71,8 @@ public class MT537Test {
         m.append(MT537.SequenceC.newInstance(MT537.SequenceC2.newInstance(MT537.SequenceC2a.newInstance())));
         assertEquals(1, MT537.getSequenceCList(m.getSwiftMessage().getBlock4()).size());
         assertEquals(1, MT537.getSequenceC2List(m.getSwiftMessage().getBlock4()).size());
-        assertEquals(1, MT537.getSequenceC2aList(m.getSwiftMessage().getBlock4()).size());
-
+        assertEquals(
+                1, MT537.getSequenceC2aList(m.getSwiftMessage().getBlock4()).size());
     }
 
     @Test
@@ -82,13 +80,11 @@ public class MT537Test {
         SwiftTagListBlock C2_contents = new SwiftTagListBlock()
                 .append(Field22H.tag(":REDE//DELI"))
                 .append(MT537.SequenceC2a.newInstance(Field95C.tag(":DEAG")));
-        MT537 m = new MT537()
-                .append(MT537.SequenceC.newInstance(
-                        MT537.SequenceC2.newInstance(C2_contents)
-                ));
+        MT537 m = new MT537().append(MT537.SequenceC.newInstance(MT537.SequenceC2.newInstance(C2_contents)));
         assertEquals(1, MT537.getSequenceCList(m.getSwiftMessage().getBlock4()).size());
         assertEquals(1, MT537.getSequenceC2List(m.getSwiftMessage().getBlock4()).size());
-        assertEquals(1, MT537.getSequenceC2aList(m.getSwiftMessage().getBlock4()).size());
+        assertEquals(
+                1, MT537.getSequenceC2aList(m.getSwiftMessage().getBlock4()).size());
 
         assertEquals(1, m.getSequenceCList().size());
         assertEquals(1, m.getSequenceC2List().size());
@@ -175,7 +171,9 @@ public class MT537Test {
         MT537 m = new MT537();
         m.append(MT537.SequenceB.newInstance(MT537.SequenceB1.newInstance()));
         m.append(MT537.SequenceB.newInstance(MT537.SequenceB1.newInstance()));
-        m.append(MT537.SequenceD.newInstance(MT537.SequenceD1.newInstance(MT537.SequenceD1a.newInstance(MT537.SequenceD1a1.newInstance(MT537.SequenceD1a1B.newInstance(MT537.SequenceD1a1B1.newInstance(MT537.SequenceD1a1B1a.newInstance())))))));
+        m.append(MT537.SequenceD.newInstance(MT537.SequenceD1.newInstance(
+                MT537.SequenceD1a.newInstance(MT537.SequenceD1a1.newInstance(MT537.SequenceD1a1B.newInstance(
+                        MT537.SequenceD1a1B1.newInstance(MT537.SequenceD1a1B1a.newInstance())))))));
         List<MT537.SequenceB> sequences = m.getSequenceBList();
         assertFalse(sequences.isEmpty());
         assertEquals(2, sequences.size());
@@ -187,9 +185,10 @@ public class MT537Test {
     @Test
     public void testB_overlappingD1a1B1a_2() {
         MT537 m = new MT537();
-        m.append(MT537.SequenceD.newInstance(MT537.SequenceD1.newInstance(MT537.SequenceD1a.newInstance(MT537.SequenceD1a1.newInstance(MT537.SequenceD1a1B.newInstance(MT537.SequenceD1a1B1.newInstance(MT537.SequenceD1a1B1a.newInstance())))))));
+        m.append(MT537.SequenceD.newInstance(MT537.SequenceD1.newInstance(
+                MT537.SequenceD1a.newInstance(MT537.SequenceD1a1.newInstance(MT537.SequenceD1a1B.newInstance(
+                        MT537.SequenceD1a1B1.newInstance(MT537.SequenceD1a1B1a.newInstance())))))));
         List<MT537.SequenceB> sequences = m.getSequenceBList();
         assertTrue(sequences.isEmpty());
     }
-
 }

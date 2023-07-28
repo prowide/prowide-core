@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,11 @@
  */
 package com.prowidesoftware.deprecation;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Map;
 import java.util.logging.Level;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Helper API to implement the http://www.prowidesoftware.com/resources/deprecation-policy
@@ -33,7 +32,9 @@ public class DeprecationUtils {
      * Environment variable used to switch off deprecation phase implementation
      */
     public static final String PW_DEPRECATED = "PW_DEPRECATED";
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(DeprecationUtils.class.getName());
+
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(DeprecationUtils.class.getName());
 
     // Suppress default constructor for noninstantiability
     private DeprecationUtils() {
@@ -142,7 +143,8 @@ public class DeprecationUtils {
             theEnvironmentField.setAccessible(true);
             Map<String, String> env = (Map<String, String>) theEnvironmentField.get(null);
             env.put(key, value);
-            Field theCaseInsensitiveEnvironmentField = processEnvironmentClass.getDeclaredField("theCaseInsensitiveEnvironment");
+            Field theCaseInsensitiveEnvironmentField =
+                    processEnvironmentClass.getDeclaredField("theCaseInsensitiveEnvironment");
             theCaseInsensitiveEnvironmentField.setAccessible(true);
             Map<String, String> cienv = (Map<String, String>) theCaseInsensitiveEnvironmentField.get(null);
             cienv.put(key, value);
@@ -176,5 +178,4 @@ public class DeprecationUtils {
         NODELAY,
         NOEXCEPTION
     }
-
 }

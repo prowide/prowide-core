@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,16 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Miscellaneous helper functions.
  */
 public class Lib {
-    private Lib() {
-    }
+    private Lib() {}
 
     /**
      * Read the content of the given file into a string.
@@ -66,10 +64,8 @@ public class Lib {
         }
         final String charset = encoding != null ? encoding : "UTF-8";
         final StringBuilder sb = new StringBuilder((int) file.length());
-        try (
-                FileInputStream fileStream = new FileInputStream(file);
-                BufferedReader in = new BufferedReader(new InputStreamReader(fileStream, charset))
-        ) {
+        try (FileInputStream fileStream = new FileInputStream(file);
+                BufferedReader in = new BufferedReader(new InputStreamReader(fileStream, charset))) {
             int c;
             while ((c = in.read()) != -1) {
                 sb.append((char) c);
@@ -212,5 +208,4 @@ public class Lib {
         }
         return out.toString();
     }
-
 }

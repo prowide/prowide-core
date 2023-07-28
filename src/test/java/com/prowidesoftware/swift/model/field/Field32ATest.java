@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,20 +17,16 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.Calendar;
+import org.junit.jupiter.api.Test;
 
 public class Field32ATest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("32A",
-                "010203USD123",
-                "081001USD30625,00"
-        );
+        testSerializationImpl("32A", "010203USD123", "081001USD30625,00");
     }
 
     @Test
@@ -42,7 +38,7 @@ public class Field32ATest extends AbstractFieldTest {
         assertEquals(3, f.getComponent1AsCalendar().get(Calendar.DATE));
         assertEquals("USD", f.getComponent2());
         assertEquals(new BigDecimal("123"), f.getComponent3AsBigDecimal());
-        //081001USD30625,00
+        // 081001USD30625,00
     }
 
     @Test
@@ -111,5 +107,4 @@ public class Field32ATest extends AbstractFieldTest {
         assertEquals("EUR", f.getComponent2());
         assertEquals(new BigDecimal("1765432"), f.getComponent3AsBigDecimal());
     }
-
 }
