@@ -24,11 +24,11 @@ public class Field94ETest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("94E",
+        testSerializationImpl(
+                "94E",
                 ":ISSU//foo bar",
                 ":ISSU//foo bar\nsecond line\nthird line",
-                ":ISSU//foo bar \n second line \n third line "
-        );
+                ":ISSU//foo bar \n second line \n third line ");
     }
 
     @Test
@@ -50,5 +50,4 @@ public class Field94ETest extends AbstractFieldTest {
         assertEquals(" third line", f.getComponent4());
         assertEquals("foo bar second line third line", f.getAddress());
     }
-
 }

@@ -17,15 +17,14 @@ package com.prowidesoftware.swift.io;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for message reader iterators.
@@ -36,6 +35,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     private static final Logger log = Logger.getLogger(AbstractReader.class.getName());
     /** The wrapped reader instance. */
     protected Reader reader;
+
     private boolean usedAsIterable = false;
 
     @Override
@@ -91,7 +91,8 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     public AbstractReader(final File _file, Charset _charset) throws FileNotFoundException {
         Objects.requireNonNull(_file, "file must not be null");
         Validate.isTrue(_file.exists(), "Non existent file: " + _file.getAbsolutePath());
-        this.reader = new BufferedReader(new InputStreamReader(new FileInputStream(_file), _charset != null ? _charset : StandardCharsets.UTF_8));
+        this.reader = new BufferedReader(new InputStreamReader(
+                new FileInputStream(_file), _charset != null ? _charset : StandardCharsets.UTF_8));
     }
 
     /**
@@ -101,7 +102,8 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     @Override
     public Iterator<String> iterator() throws IllegalArgumentException {
         if (usedAsIterable) {
-            throw new IllegalStateException("This reader has already been used as Iterator and the implementation does not support multiple iterations, create another reader instance instead");
+            throw new IllegalStateException(
+                    "This reader has already been used as Iterator and the implementation does not support multiple iterations, create another reader instance instead");
         }
         usedAsIterable = true;
         return this;
@@ -129,7 +131,8 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
                 final String fin = candidate.getUnparsedTexts().getAsFINString();
                 return AbstractMT.parse(fin);
             } else if (candidate.isServiceMessage()) {
-                log.warning("nextMT in " + getClass().getName() + " is not intended for service messages, use nextSwiftMessage() instead");
+                log.warning("nextMT in " + getClass().getName()
+                        + " is not intended for service messages, use nextSwiftMessage() instead");
                 return null;
             } else {
                 return candidate.toMT();
@@ -155,5 +158,4 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
         log.warning("Ignoring blank message");
         return null;
     }
-
 }

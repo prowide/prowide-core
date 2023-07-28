@@ -25,7 +25,6 @@ import com.prowidesoftware.swift.model.field.Field108;
 import com.prowidesoftware.swift.model.field.Field175;
 import org.junit.jupiter.api.Test;
 
-
 public class MT011Test {
 
     private final String sample = "{1:F01VNDZBET2AXXX0000000000}{2:I011DYDYXXXXXXXXN}{4:"
@@ -54,7 +53,6 @@ public class MT011Test {
 
         assertNotNull(m.getField107());
         assertEquals("010605VNDZGBT2AXXX0017000244", m.getField107().getValue());
-
     }
 
     @Test

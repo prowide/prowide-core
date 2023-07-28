@@ -20,15 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-
 public class Field23Test extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("23",
-                "abcd/efgh/ijk/USD//aaa"
-        );
+        testSerializationImpl("23", "abcd/efgh/ijk/USD//aaa");
     }
 
     @Test

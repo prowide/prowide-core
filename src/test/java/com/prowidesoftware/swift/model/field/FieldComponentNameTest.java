@@ -20,5 +20,4 @@ public class FieldComponentNameTest {
 
         assertEquals(0, f.componentNameToNumber("foo"));
     }
-
 }

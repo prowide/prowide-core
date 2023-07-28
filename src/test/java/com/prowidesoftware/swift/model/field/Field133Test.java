@@ -46,8 +46,8 @@ public class Field133Test extends AbstractFieldTest {
      *
      * Note: Unsequenced Broadcast cannot contain numbers.
      */
-
     private static final String EXAMPLE1_FIELD_133 = "BAZEUS1111";
+
     private static final String EXAMPLE2_FIELD_133 = "SAAUNZ2101";
     private static final String EXAMPLE3_FIELD_133 = "BJBDHQ1506";
     private static final String EXAMPLE4_FIELD_133 = "SCCXHK9999";
@@ -55,12 +55,7 @@ public class Field133Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("133",
-                EXAMPLE1_FIELD_133,
-                EXAMPLE2_FIELD_133,
-                EXAMPLE3_FIELD_133,
-                EXAMPLE4_FIELD_133
-        );
+        testSerializationImpl("133", EXAMPLE1_FIELD_133, EXAMPLE2_FIELD_133, EXAMPLE3_FIELD_133, EXAMPLE4_FIELD_133);
     }
 
     @Test
@@ -141,5 +136,4 @@ public class Field133Test extends AbstractFieldTest {
         f = new Field133(v);
         assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
-
 }

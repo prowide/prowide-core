@@ -25,9 +25,7 @@ public class Field98JTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("98J",
-                ":FOO//121212121111/ABCDUSAAXXX"
-        );
+        testSerializationImpl("98J", ":FOO//121212121111/ABCDUSAAXXX");
     }
 
     @Test
@@ -82,5 +80,4 @@ public class Field98JTest extends AbstractFieldTest {
         assertEquals("2222", f.getComponent3());
         assertEquals("foo", f.getComponent4());
     }
-
 }

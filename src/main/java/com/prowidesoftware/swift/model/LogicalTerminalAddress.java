@@ -15,9 +15,8 @@
  */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Identifies a logical channel connection to SWIFT, and the network uses it for addressing.

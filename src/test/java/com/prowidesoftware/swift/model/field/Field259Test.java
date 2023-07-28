@@ -38,9 +38,7 @@ public class Field259Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("259",
-                EXAMPLE1_FIELD_259
-        );
+        testSerializationImpl("259", EXAMPLE1_FIELD_259);
     }
 
     @Test
@@ -112,5 +110,4 @@ public class Field259Test extends AbstractFieldTest {
         Field259 f = new Field259(EXAMPLE1_FIELD_259);
         assertEquals(EXAMPLE1_FIELD_259, f.getValue());
     }
-
 }

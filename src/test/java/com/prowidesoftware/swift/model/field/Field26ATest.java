@@ -25,15 +25,15 @@ public class Field26ATest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("26A",
+        testSerializationImpl(
+                "26A",
                 "AAAABBBBCCCCDDDD/FFFF",
                 "68364118512/8516",
                 "68364119321/9330",
                 "68489165771/5775",
                 "68489166203/6212",
                 "68371148100/8104",
-                "68371148100"
-        );
+                "68371148100");
     }
 
     /**

@@ -31,5 +31,4 @@ public interface PartyIdentifier {
      * @return the current OptionAPartyField
      */
     PartyIdentifier setPartyIdentifier(String partyIdentifier);
-
 }

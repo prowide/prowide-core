@@ -19,15 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-
 public class Field50GTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("50G",
-                "/0000001111000000\r\nBNPPARIBAS"
-        );
+        testSerializationImpl("50G", "/0000001111000000\r\nBNPPARIBAS");
     }
 
     @Test
@@ -36,5 +33,4 @@ public class Field50GTest extends AbstractFieldTest {
         assertEquals(f.getComponent1(), "0000001111000000");
         assertEquals(f.getComponent2(), "BNPPARIBAS");
     }
-
 }

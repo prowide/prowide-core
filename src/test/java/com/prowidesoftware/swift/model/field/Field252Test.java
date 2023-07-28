@@ -30,9 +30,7 @@ public class Field252Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("252",
-                "MIR4567890123456789012345ENDMIR4567890123456789012345END11112222"
-        );
+        testSerializationImpl("252", "MIR4567890123456789012345ENDMIR4567890123456789012345END11112222");
     }
 
     @Test
@@ -44,5 +42,4 @@ public class Field252Test extends AbstractFieldTest {
         assertEquals("1111", f.getComponent3());
         assertEquals("2222", f.getComponent4());
     }
-
 }

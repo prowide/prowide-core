@@ -30,48 +30,46 @@ public class TabInFieldValueTest {
     private static final String REF_ACC_OWN = "REFERENCE_BB_ACCOUNTOWNER";
     private static final String REF_ACC_OWN_TAB = "REFERENCE_\u000b\u000b_ACCOUNTOWNER";
     private static final String REF_ACC_OWN_TAB2 = "\u000b\u000b";
-    private static final String MESSAGE = "{1:F01ABCDEFGHXXX0000000000}{2:I940WOWAUS6CUXXXX}{4:\n" +
-            ":20:1234567890123456\n" +
-            ":25:ABCDEFGHXXX/12345678\n" +
-            ":28C:12345\n" +
-            ":60F:C180418CNY0,00\n" +
-            ":61:1804190419D93366,00NTRFREFERENCE_BB_ACCOUNTOWNER//NNN 123456789012\n" +
-            "MULTITUDE\n" +
-            ":86:/YYYY/\u000b\u000b MARKMS1234/PPPP/RRR93366,00/RASK/\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\n" +
-            ":62F:C180419CNY0,00\n" +
-            ":64:C180419CNY0,00\n" +
-            "-}";
-    private static final String MESSAGE_TAB = "{1:F01ABCDEFGHXXX0000000000}{2:I940WOWAUS6CUXXXX}{4:\n" +
-            ":20:1234567890123456\n" +
-            ":25:ABCDEFGHXXX/12345678\n" +
-            ":28C:12345\n" +
-            ":60F:C180418CNY0,00\n" +
-            ":61:1804190419D93366,00NTRFREFERENCE_\u000b\u000b_ACCOUNTOWNER//NNN 123456789012\n" +
-            "MULTITUDE\n" +
-            ":86:/YYYY/\u000b\u000b MARKMS1234/PPPP/RRR93366,00/RASK/\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\n" +
-            ":62F:C180419CNY0,00\n" +
-            ":64:C180419CNY0,00\n" +
-            "-}";
-    private static final String MESSAGE_TAB2 = "{1:F01ABCDEFGHXXX0000000000}{2:I940WOWAUS6CUXXXX}{4:\n" +
-            ":20:1234567890123456\n" +
-            ":25:ABCDEFGHXXX/12345678\n" +
-            ":28C:12345\n" +
-            ":60F:C180418CNY0,00\n" +
-            ":61:1804190419D93366,00NTRF\u000b\u000b//NNN 123456789012\n" +
-            "MULTITUDE\n" +
-            ":86:/YYYY/\u000b\u000b MARKMS1234/PPPP/RRR93366,00/RASK/\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\n" +
-            ":62F:C180419CNY0,00\n" +
-            ":64:C180419CNY0,00\n" +
-            "-}";
+    private static final String MESSAGE =
+            "{1:F01ABCDEFGHXXX0000000000}{2:I940WOWAUS6CUXXXX}{4:\n" + ":20:1234567890123456\n"
+                    + ":25:ABCDEFGHXXX/12345678\n"
+                    + ":28C:12345\n"
+                    + ":60F:C180418CNY0,00\n"
+                    + ":61:1804190419D93366,00NTRFREFERENCE_BB_ACCOUNTOWNER//NNN 123456789012\n"
+                    + "MULTITUDE\n"
+                    + ":86:/YYYY/\u000b\u000b MARKMS1234/PPPP/RRR93366,00/RASK/\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\n"
+                    + ":62F:C180419CNY0,00\n"
+                    + ":64:C180419CNY0,00\n"
+                    + "-}";
+    private static final String MESSAGE_TAB =
+            "{1:F01ABCDEFGHXXX0000000000}{2:I940WOWAUS6CUXXXX}{4:\n" + ":20:1234567890123456\n"
+                    + ":25:ABCDEFGHXXX/12345678\n"
+                    + ":28C:12345\n"
+                    + ":60F:C180418CNY0,00\n"
+                    + ":61:1804190419D93366,00NTRFREFERENCE_\u000b\u000b_ACCOUNTOWNER//NNN 123456789012\n"
+                    + "MULTITUDE\n"
+                    + ":86:/YYYY/\u000b\u000b MARKMS1234/PPPP/RRR93366,00/RASK/\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\n"
+                    + ":62F:C180419CNY0,00\n"
+                    + ":64:C180419CNY0,00\n"
+                    + "-}";
+    private static final String MESSAGE_TAB2 =
+            "{1:F01ABCDEFGHXXX0000000000}{2:I940WOWAUS6CUXXXX}{4:\n" + ":20:1234567890123456\n"
+                    + ":25:ABCDEFGHXXX/12345678\n"
+                    + ":28C:12345\n"
+                    + ":60F:C180418CNY0,00\n"
+                    + ":61:1804190419D93366,00NTRF\u000b\u000b//NNN 123456789012\n"
+                    + "MULTITUDE\n"
+                    + ":86:/YYYY/\u000b\u000b MARKMS1234/PPPP/RRR93366,00/RASK/\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\u000b\n"
+                    + ":62F:C180419CNY0,00\n"
+                    + ":64:C180419CNY0,00\n"
+                    + "-}";
 
     @Test
     public void test() {
-        Field61 field = new Field61(":61:1804190419D56716,17NTRF\u000b//XXX 18041900259\n" +
-                "FX-NORMAL TRANSACTION");
+        Field61 field = new Field61(":61:1804190419D56716,17NTRF\u000b//XXX 18041900259\n" + "FX-NORMAL TRANSACTION");
         assertNotNull(field);
 
-        Field61 field2 = new Field61(":61:1804190419D56716,17NTRF\t//XXX 18041900259\n" +
-                "FX-NORMAL TRANSACTION");
+        Field61 field2 = new Field61(":61:1804190419D56716,17NTRF\t//XXX 18041900259\n" + "FX-NORMAL TRANSACTION");
         assertNotNull(field2);
     }
 
@@ -96,5 +94,4 @@ public class TabInFieldValueTest {
     public void messageTab2() {
         test(REF_ACC_OWN_TAB2, MESSAGE_TAB2);
     }
-
 }

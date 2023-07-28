@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.Diff;
 
-
 /**
  * Conversion services test.
  *
@@ -42,7 +41,8 @@ public class ConversionServiceTest {
     private final String someText = "hello world";
 
     private void assertXmlEqual(String control, String test) {
-        Diff diff = DiffBuilder.compare(control).withTest(test).ignoreWhitespace().build();
+        Diff diff =
+                DiffBuilder.compare(control).withTest(test).ignoreWhitespace().build();
         assertFalse(diff.hasDifferences());
     }
 
@@ -67,7 +67,9 @@ public class ConversionServiceTest {
         msg.getBlock3().append(new Tag("113:NOMT"));
         msg.getBlock3().append(new Tag("108", "P22VUXC43C6J3NLD"));
         String fin = srv.getFIN(msg);
-        assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}", fin);
+        assertEquals(
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}",
+                fin);
     }
 
     /**
@@ -81,9 +83,10 @@ public class ConversionServiceTest {
         msg.addBlock(new SwiftBlock3());
         msg.getBlock3().append(new Tag("108", "P22VUXC43C6J3NLD"));
         String fin = srv.getFIN(msg);
-        assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}", fin);
+        assertEquals(
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}",
+                fin);
     }
-
 
     /**
      * Test method for {@link ConversionService#getFIN(SwiftMessage)}.
@@ -100,7 +103,10 @@ public class ConversionServiceTest {
         msg.setUnparsedTexts(this.unparsedTexts);
 
         String fin = srv.getFIN(msg);
-        assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}" + this.someMsgText, fin);
+        assertEquals(
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}"
+                        + this.someMsgText,
+                fin);
     }
 
     /**
@@ -118,7 +124,10 @@ public class ConversionServiceTest {
         msg.getBlock3().setUnparsedTexts(this.unparsedTexts);
 
         String fin = srv.getFIN(msg);
-        assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}" + this.someMsgText + "}", fin);
+        assertEquals(
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}"
+                        + this.someMsgText + "}",
+                fin);
     }
 
     /**
@@ -136,7 +145,10 @@ public class ConversionServiceTest {
         msg.getBlock3().getTagByName("113").setUnparsedTexts(this.unparsedTexts);
 
         String fin = srv.getFIN(msg);
-        assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT" + this.someMsgText + "}{108:P22VUXC43C6J3NLD}}", fin);
+        assertEquals(
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT"
+                        + this.someMsgText + "}{108:P22VUXC43C6J3NLD}}",
+                fin);
     }
 
     /**
@@ -153,7 +165,9 @@ public class ConversionServiceTest {
         String xml = SwiftWriter.getInternalXml(msg);
         assertNotNull(xml);
         String fin = srv.getFIN(xml);
-        assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}", fin);
+        assertEquals(
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}",
+                fin);
     }
 
     /**
@@ -171,7 +185,9 @@ public class ConversionServiceTest {
         String xml = SwiftWriter.getInternalXml(msg);
         assertNotNull(xml);
         String fin = srv.getFIN(xml);
-        assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}", fin);
+        assertEquals(
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{113:NOMT}{108:P22VUXC43C6J3NLD}}",
+                fin);
     }
 
     /**
@@ -189,7 +205,9 @@ public class ConversionServiceTest {
         String xml = SwiftWriter.getInternalXml(msg);
         assertNotNull(xml);
         String fin = srv.getFIN(xml);
-        assertEquals("{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{Z:{1:val1}{2:val2}}", fin);
+        assertEquals(
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{Z:{1:val1}{2:val2}}",
+                fin);
     }
 
     /**
@@ -263,7 +281,8 @@ public class ConversionServiceTest {
      */
     @Test
     public void testGetObjFromXML_block5() {
-        String xml = "<message><block5><tag><name>MAC</name><value>52F48656</value></tag><tag><name>CHK</name><value>24C40F1FF931</value></tag></block5></message>";
+        String xml =
+                "<message><block5><tag><name>MAC</name><value>52F48656</value></tag><tag><name>CHK</name><value>24C40F1FF931</value></tag></block5></message>";
         SwiftMessage msg = srv.getMessageFromXML(xml);
         assertNotNull(msg);
         assertNull(msg.getBlock1());
@@ -281,7 +300,8 @@ public class ConversionServiceTest {
      */
     @Test
     public void testGetObjFromXML_blockUser() {
-        String xml = "<message><block name=\"Z\"><tag><name>1</name><value>val1</value></tag><tag><name>2</name><value>val2</value></tag></block></message>";
+        String xml =
+                "<message><block name=\"Z\"><tag><name>1</name><value>val1</value></tag><tag><name>2</name><value>val2</value></tag></block></message>";
         SwiftMessage msg = srv.getMessageFromXML(xml);
         assertNotNull(msg);
         assertNull(msg.getBlock1());
@@ -313,7 +333,8 @@ public class ConversionServiceTest {
         assertNotNull(m.getBlock3());
 
         assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
-        assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
+        assertEquals(
+                "O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
         assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTag(0).getValue());
         assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTagValue("108"));
     }
@@ -337,7 +358,8 @@ public class ConversionServiceTest {
         assertNotNull(m.getUserBlock("Z"));
 
         assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
-        assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
+        assertEquals(
+                "O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
         assertEquals("val1", m.getUserBlock("Z").getTag(0).getValue());
         assertEquals("val1", m.getUserBlock("Z").getTagValue("1"));
     }
@@ -362,7 +384,8 @@ public class ConversionServiceTest {
         assertNotNull(m.getBlock2());
         assertNotNull(m.getBlock3());
         assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
-        assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
+        assertEquals(
+                "O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
         assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTag(0).getValue());
         assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTagValue("108"));
         assertEquals(2, m.getUnparsedTextsSize().intValue());
@@ -394,7 +417,8 @@ public class ConversionServiceTest {
         assertNotNull(m.getBlock3());
 
         assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
-        assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
+        assertEquals(
+                "O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
         assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTag(0).getValue());
         assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTagValue("108"));
 
@@ -432,13 +456,18 @@ public class ConversionServiceTest {
         assertNotNull(m.getBlock3());
 
         assertEquals("F01FOOBARYYAXXX8669486759", m.getBlock1().getBlockValue());
-        assertEquals("O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
+        assertEquals(
+                "O1030831051017CRESLULLCXXX10194697810510170831N", m.getBlock2().getBlockValue());
         assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTag(0).getValue());
         assertEquals("P22VUXC43C6J3NLD", m.getBlock3().getTagValue("108"));
 
         assertEquals(2, m.getBlock3().getTagByName("108").getUnparsedTextsSize().intValue());
-        assertEquals(this.someMsgText, m.getBlock3().getTagByName("108").getUnparsedTexts().getText(0));
-        assertEquals(this.someText, m.getBlock3().getTagByName("108").getUnparsedTexts().getText(1));
+        assertEquals(
+                this.someMsgText,
+                m.getBlock3().getTagByName("108").getUnparsedTexts().getText(0));
+        assertEquals(
+                this.someText,
+                m.getBlock3().getTagByName("108").getUnparsedTexts().getText(1));
     }
 
     /**
@@ -446,21 +475,22 @@ public class ConversionServiceTest {
      */
     @Test
     public void testGetObjFromFIN_block4() {
-        String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" +
-                ":20:AMLX985338-D4E5E\n" +
-                ":23B:CRED\n" +
-                ":32A:051018EUR66969,52\n" +
-                ":33B:EUR66969,52\n" +
-                ":50K:FOO SA\n" +
-                ":53A:DEUTDEFF\n" +
-                ":54A://RT\n" +
-                "FOOBARYY\n" +
-                ":59:/-\n" +
-                "Tressis SA\n" +
-                ":70:/CS BD ST EUR B\n" +
-                "REDEMPTION AMLX985338\n" +
-                ":71A:OUR\n" +
-                "-}{5:{MAC:52F48656}{CHK:24C40F1FF931}}";
+        String fin =
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n"
+                        + ":20:AMLX985338-D4E5E\n"
+                        + ":23B:CRED\n"
+                        + ":32A:051018EUR66969,52\n"
+                        + ":33B:EUR66969,52\n"
+                        + ":50K:FOO SA\n"
+                        + ":53A:DEUTDEFF\n"
+                        + ":54A://RT\n"
+                        + "FOOBARYY\n"
+                        + ":59:/-\n"
+                        + "Tressis SA\n"
+                        + ":70:/CS BD ST EUR B\n"
+                        + "REDEMPTION AMLX985338\n"
+                        + ":71A:OUR\n"
+                        + "-}{5:{MAC:52F48656}{CHK:24C40F1FF931}}";
         String xml = srv.getXml(fin);
         SwiftMessage m = srv.getMessageFromXML(xml);
         assertNotNull(m);
@@ -483,21 +513,20 @@ public class ConversionServiceTest {
     public void testBug1539324() {
         String fin = "{1:F01FOOBARYYAXXX8669486759}{3:{108:P22VUXC43C6J3NLD}}";
         String xml = srv.getXml(fin);
-        String expected = "<message>\n" +
-                "\n<block1>" +
-                "\n\t<applicationId>F</applicationId>" +
-                "\n\t<serviceId>01</serviceId>" +
-                "\n\t<logicalTerminal>FOOBARYYAXXX</logicalTerminal>" +
-                "\n\t<sessionNumber>8669</sessionNumber>" +
-                "\n\t<sequenceNumber>486759</sequenceNumber>" +
-                "\n</block1>" +
-                "\n<block3>" +
-                "\n\t<tag>" +
-                "\n\t\t<name>108</name>" +
-                "\n\t\t<value>P22VUXC43C6J3NLD</value>" +
-                "\n\t</tag>" +
-                "\n</block3>" +
-                "\n</message>";
+        String expected = "<message>\n" + "\n<block1>"
+                + "\n\t<applicationId>F</applicationId>"
+                + "\n\t<serviceId>01</serviceId>"
+                + "\n\t<logicalTerminal>FOOBARYYAXXX</logicalTerminal>"
+                + "\n\t<sessionNumber>8669</sessionNumber>"
+                + "\n\t<sequenceNumber>486759</sequenceNumber>"
+                + "\n</block1>"
+                + "\n<block3>"
+                + "\n\t<tag>"
+                + "\n\t\t<name>108</name>"
+                + "\n\t\t<value>P22VUXC43C6J3NLD</value>"
+                + "\n\t</tag>"
+                + "\n</block3>"
+                + "\n</message>";
         assertXmlEqual(expected, xml);
     }
 
@@ -520,22 +549,22 @@ public class ConversionServiceTest {
     @Test
     public void testGetObjFromFIN() {
         ConversionService srv;
-        String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n" +
-                ":20:AMLX985338-D4E5E\n" +
-                ":23B:CRED\n" +
-                ":32A:051018EUR66969,52\n" +
-                ":33B:EUR66969,52\n" +
-                ":50K:Tressis SA\n" +
-                ":53A:DEUTDEFF\n" +
-                ":54A://RT\n" +
-                "FOOBARYY\n" +
-                ":59:/-\n" +
-                "Tressis SA\n" +
-                ":70:/CS BD ST EUR B\n" +
-                "REDEMPTION AMLX985338\n" +
-                ":71A:OUR\n" +
-                "-}{5:{MAC:52F48656}{CHK:24C40F1FF931}}";
-
+        String fin =
+                "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{3:{108:P22VUXC43C6J3NLD}}{4:\n"
+                        + ":20:AMLX985338-D4E5E\n"
+                        + ":23B:CRED\n"
+                        + ":32A:051018EUR66969,52\n"
+                        + ":33B:EUR66969,52\n"
+                        + ":50K:Tressis SA\n"
+                        + ":53A:DEUTDEFF\n"
+                        + ":54A://RT\n"
+                        + "FOOBARYY\n"
+                        + ":59:/-\n"
+                        + "Tressis SA\n"
+                        + ":70:/CS BD ST EUR B\n"
+                        + "REDEMPTION AMLX985338\n"
+                        + ":71A:OUR\n"
+                        + "-}{5:{MAC:52F48656}{CHK:24C40F1FF931}}";
 
         srv = new ConversionService();
         msg = new SwiftMessage();
@@ -590,11 +619,11 @@ public class ConversionServiceTest {
         SwiftMessage m = srv.getMessageFromXML(xml);
         assertNotNull(m);
         assertNotNull(m.getBlock1());
-        //assertNull(m.getBlock1().getApplicationId());
+        // assertNull(m.getBlock1().getApplicationId());
         assertEquals("01", m.getBlock1().getServiceId());
         assertNull(m.getBlock1().getLogicalTerminal());
-        //assertNull(m.getBlock1().getSessionNumber());
-        //assertNull(m.getBlock1().getSequenceNumber());
+        // assertNull(m.getBlock1().getSessionNumber());
+        // assertNull(m.getBlock1().getSequenceNumber());
         assertNull(m.getBlock2());
         assertNull(m.getBlock3());
         assertNull(m.getBlock4());
@@ -636,23 +665,25 @@ public class ConversionServiceTest {
      */
     @Test
     public void testCRLF_3() {
-        String xml = "<message><block4><tag><name>58</name><value>line1\r\nline2\r\nline3</value></tag></block4></message>";
+        String xml =
+                "<message><block4><tag><name>58</name><value>line1\r\nline2\r\nline3</value></tag></block4></message>";
         SwiftMessage msg = srv.getMessageFromXML(xml);
-        assertEquals("line1\r\nline2\r\nline3", msg.getBlock4().getTagByName("58").getValue());
+        assertEquals(
+                "line1\r\nline2\r\nline3", msg.getBlock4().getTagByName("58").getValue());
     }
 
     @Test
     public void testBackAndForthXMLConversion1() {
-        final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:" + FINWriterVisitor.SWIFT_EOL +
-                ":57A:/123456789" + FINWriterVisitor.SWIFT_EOL +
-                "FOOBARYY" + FINWriterVisitor.SWIFT_EOL +
-                "-}";
-        //no fields
+        final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:"
+                + FINWriterVisitor.SWIFT_EOL + ":57A:/123456789"
+                + FINWriterVisitor.SWIFT_EOL + "FOOBARYY"
+                + FINWriterVisitor.SWIFT_EOL + "-}";
+        // no fields
         String xml = srv.getXml(fin);
         String fin2 = srv.getFIN(xml);
         assertEquals(fin, fin2);
 
-        //with fields
+        // with fields
         ConversionService srv2 = new ConversionService();
         xml = srv2.getXml(fin, true);
         fin2 = srv2.getFIN(xml);
@@ -661,16 +692,16 @@ public class ConversionServiceTest {
 
     @Test
     public void testBackAndForthXMLConversion2() {
-        final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:" + FINWriterVisitor.SWIFT_EOL +
-                ":57A:/D/123456789" + FINWriterVisitor.SWIFT_EOL +
-                "FOOBARYY" + FINWriterVisitor.SWIFT_EOL +
-                "-}";
-        //no fields
+        final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:"
+                + FINWriterVisitor.SWIFT_EOL + ":57A:/D/123456789"
+                + FINWriterVisitor.SWIFT_EOL + "FOOBARYY"
+                + FINWriterVisitor.SWIFT_EOL + "-}";
+        // no fields
         String xml = srv.getXml(fin);
         String fin2 = srv.getFIN(xml);
         assertEquals(fin, fin2);
 
-        //with fields
+        // with fields
         ConversionService srv2 = new ConversionService();
         xml = srv2.getXml(fin, true);
         fin2 = srv2.getFIN(xml);
@@ -682,23 +713,22 @@ public class ConversionServiceTest {
      */
     @Test
     public void testBackAndForthXMLConversion3() {
-        final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:" + FINWriterVisitor.SWIFT_EOL +
-                ":57A:/123456789" + FINWriterVisitor.SWIFT_EOL +
-                " FOOBARYY" + FINWriterVisitor.SWIFT_EOL +
-                ":61:190907D5675,S103AZMES11071950766" + FINWriterVisitor.SWIFT_EOL +
-                "  FOOEDEMMAXXXKREDBEBBXXXXN071404 " + FINWriterVisitor.SWIFT_EOL +
-                "-}";
+        final String fin = "{1:F01FOOBARYYAXXX8669486759}{2:O1030831051017CRESLULLCXXX10194697810510170831N}{4:"
+                + FINWriterVisitor.SWIFT_EOL + ":57A:/123456789"
+                + FINWriterVisitor.SWIFT_EOL + " FOOBARYY"
+                + FINWriterVisitor.SWIFT_EOL + ":61:190907D5675,S103AZMES11071950766"
+                + FINWriterVisitor.SWIFT_EOL + "  FOOEDEMMAXXXKREDBEBBXXXXN071404 "
+                + FINWriterVisitor.SWIFT_EOL + "-}";
         ConversionService srv2 = new ConversionService();
 
-        //no fields
+        // no fields
         String xml = srv.getXml(fin);
         String fin2 = srv.getFIN(xml);
         assertEquals(fin, fin2);
 
-        //with fields
+        // with fields
         xml = srv2.getXml(fin, true);
         fin2 = srv2.getFIN(xml);
         assertEquals(fin, fin2);
     }
-
 }

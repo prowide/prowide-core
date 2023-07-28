@@ -70,5 +70,4 @@ public class MT023Test {
 
         assertEquals(sample1, m.message());
     }
-
 }

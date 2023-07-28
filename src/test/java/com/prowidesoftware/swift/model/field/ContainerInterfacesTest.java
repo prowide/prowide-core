@@ -39,5 +39,4 @@ public class ContainerInterfacesTest {
         assertTrue(new Field32Q() instanceof CurrencyContainer);
         assertFalse(new Field32Q() instanceof AmountContainer);
     }
-
 }

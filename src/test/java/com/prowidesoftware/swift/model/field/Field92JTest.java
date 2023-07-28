@@ -26,9 +26,7 @@ public class Field92JTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("92J",
-                ":DDDD/EEEEEEEE/FFFF/EUR1234,56/AAAA"
-        );
+        testSerializationImpl("92J", ":DDDD/EEEEEEEE/FFFF/EUR1234,56/AAAA");
     }
 
     /**
@@ -182,5 +180,4 @@ public class Field92JTest extends AbstractFieldTest {
         assertEquals("1234,56", f.getComponent5());
         assertEquals("AAAA", f.getComponent6());
     }
-
 }

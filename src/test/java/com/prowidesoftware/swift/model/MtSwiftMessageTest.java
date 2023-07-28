@@ -21,20 +21,18 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import com.prowidesoftware.swift.model.mt.DefaultMtMetadataStrategy;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt7xx.MT798;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
 public class MtSwiftMessageTest {
 
     @Test
     public void testParseMt() {
-        String fin = "{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n" +
-                ":20:TEST\n" +
-                ":79:AAAAA\n" +
-                "-}";
+        String fin = "{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n" + ":20:TEST\n"
+                + ":79:AAAAA\n"
+                + "-}";
         MtSwiftMessage mt = MtSwiftMessage.parse(fin);
         assertEquals("AGBLLT2XXXX", mt.getSender());
         assertEquals("TESTARZZXXX", mt.getReceiver());
@@ -44,10 +42,11 @@ public class MtSwiftMessageTest {
 
     @Test
     public void testParseAck() {
-        String fin = "{1:F21AGBLLT2XAXXX0000000000}{4:{177:1903250612}{451:0}{108:MYMUR123458}}{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{4:\n" +
-                ":20:TEST\n" +
-                ":79:AAAAA\n" +
-                "-}";
+        String fin =
+                "{1:F21AGBLLT2XAXXX0000000000}{4:{177:1903250612}{451:0}{108:MYMUR123458}}{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{4:\n"
+                        + ":20:TEST\n"
+                        + ":79:AAAAA\n"
+                        + "-}";
         MtSwiftMessage mt = MtSwiftMessage.parse(fin);
         assertEquals("MYMUR123458", mt.getMur());
         assertEquals("TEST", mt.getReference());
@@ -55,10 +54,9 @@ public class MtSwiftMessageTest {
 
     @Test
     public void testUpdateMetadata() {
-        String fin = "{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n" +
-                ":20:TEST\n" +
-                ":79:AAAAA\n" +
-                "-}";
+        String fin = "{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n" + ":20:TEST\n"
+                + ":79:AAAAA\n"
+                + "-}";
 
         MtSwiftMessage mt = MtSwiftMessage.parse(fin);
 
@@ -79,9 +77,8 @@ public class MtSwiftMessageTest {
 
     @Test
     public void testUpdateMetadata2() {
-        String fin = "{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n" +
-                ":79:AAAAA\n" +
-                "-}";
+        String fin =
+                "{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n" + ":79:AAAAA\n" + "-}";
         MtSwiftMessage mt = MtSwiftMessage.parse(fin);
 
         // default metadata
@@ -154,13 +151,12 @@ public class MtSwiftMessageTest {
 
     @Test
     void testParseInvalidHeader() {
-        MtSwiftMessage msg = MtSwiftMessage.parse("Big blue sea{4:\n" +
-                ":20:123456789\n" +
-                ":77E:\n" +
-                ":27A:2/3\n" +
-                ":15A:\n" +
-                ":27:3/5\n" +
-                "-}dark green forrest");
+        MtSwiftMessage msg = MtSwiftMessage.parse("Big blue sea{4:\n" + ":20:123456789\n"
+                + ":77E:\n"
+                + ":27A:2/3\n"
+                + ":15A:\n"
+                + ":27:3/5\n"
+                + "-}dark green forrest");
 
         // Still cast to a specific type
         MT798 mt798 = new MT798(msg);
@@ -196,5 +192,4 @@ public class MtSwiftMessageTest {
             return Optional.empty();
         }
     }
-
 }

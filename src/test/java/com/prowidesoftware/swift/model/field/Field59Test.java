@@ -26,9 +26,7 @@ public class Field59Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("59",
-                "/acc\nbbb\nccc\nddd\neee"
-        );
+        testSerializationImpl("59", "/acc\nbbb\nccc\nddd\neee");
     }
 
     @Test
@@ -67,7 +65,10 @@ public class Field59Test extends AbstractFieldTest {
         assertEquals("ddd", f.getNameAndAddressLine2());
         assertEquals("eee", f.getNameAndAddressLine3());
         assertEquals("fff", f.getNameAndAddressLine4());
-        assertEquals("ccc" + FINWriterVisitor.SWIFT_EOL + "ddd" + FINWriterVisitor.SWIFT_EOL + "eee" + FINWriterVisitor.SWIFT_EOL + "fff", f.getNameAndAddress(FINWriterVisitor.SWIFT_EOL));
+        assertEquals(
+                "ccc" + FINWriterVisitor.SWIFT_EOL + "ddd" + FINWriterVisitor.SWIFT_EOL + "eee"
+                        + FINWriterVisitor.SWIFT_EOL + "fff",
+                f.getNameAndAddress(FINWriterVisitor.SWIFT_EOL));
         assertEquals("ccc ddd eee fff", f.getNameAndAddress(" "));
         assertEquals("cccdddeeefff", f.getNameAndAddress());
         f.setComponent3(null);
@@ -94,7 +95,9 @@ public class Field59Test extends AbstractFieldTest {
 
         f = new Field59();
         f.setNameAndAddress("aaaa\nbbbb\ncccc");
-        assertEquals("aaaa" + FINWriterVisitor.SWIFT_EOL + "bbbb" + FINWriterVisitor.SWIFT_EOL + "cccc", f.getNameAndAddress(FINWriterVisitor.SWIFT_EOL));
+        assertEquals(
+                "aaaa" + FINWriterVisitor.SWIFT_EOL + "bbbb" + FINWriterVisitor.SWIFT_EOL + "cccc",
+                f.getNameAndAddress(FINWriterVisitor.SWIFT_EOL));
         assertEquals("aaaa bbbb cccc", f.getNameAndAddress(" "));
         assertEquals("aaaabbbbcccc", f.getNameAndAddress());
     }
@@ -108,5 +111,4 @@ public class Field59Test extends AbstractFieldTest {
     public void testMultilineApiGetLine1Null() {
         assertNull(new Field59((String) null).getLine(1));
     }
-
 }

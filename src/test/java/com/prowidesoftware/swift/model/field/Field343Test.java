@@ -31,9 +31,7 @@ public class Field343Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("343",
-                "101 202 103 202"
-        );
+        testSerializationImpl("343", "101 202 103 202");
     }
 
     @Test
@@ -50,5 +48,4 @@ public class Field343Test extends AbstractFieldTest {
         assertEquals("202", f.getComponent2());
         assertEquals("103", f.getComponent3());
     }
-
 }

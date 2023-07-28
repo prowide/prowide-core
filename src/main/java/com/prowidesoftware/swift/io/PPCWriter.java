@@ -18,8 +18,6 @@ package com.prowidesoftware.swift.io;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.apache.commons.lang3.Validate;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Objects;
@@ -51,7 +49,9 @@ public class PPCWriter extends AbstractWriter {
      * @deprecated Use constructor signature with {@link Charset} parameter instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023, comment = "Use constructor signature with Charset parameter instead")
+    @ProwideDeprecated(
+            phase3 = TargetYear.SRU2023,
+            comment = "Use constructor signature with Charset parameter instead")
     public PPCWriter(final File file) throws FileNotFoundException {
         super(file);
     }
@@ -60,7 +60,9 @@ public class PPCWriter extends AbstractWriter {
      * @deprecated Use constructor signature with {@link Charset} parameter instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023, comment = "Use constructor signature with Charset parameter instead")
+    @ProwideDeprecated(
+            phase3 = TargetYear.SRU2023,
+            comment = "Use constructor signature with Charset parameter instead")
     public PPCWriter(final String filename) throws FileNotFoundException {
         super(filename);
     }
@@ -79,7 +81,9 @@ public class PPCWriter extends AbstractWriter {
      * @deprecated Use constructor signature with {@link Charset} parameter instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023, comment = "Use constructor signature with Charset parameter instead")
+    @ProwideDeprecated(
+            phase3 = TargetYear.SRU2023,
+            comment = "Use constructor signature with Charset parameter instead")
     public PPCWriter(final OutputStream stream) {
         super(stream);
     }
@@ -160,5 +164,4 @@ public class PPCWriter extends AbstractWriter {
     public void write(final AbstractMT msg) throws IOException {
         write(msg, this.writer);
     }
-
 }

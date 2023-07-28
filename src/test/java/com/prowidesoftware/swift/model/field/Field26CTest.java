@@ -30,9 +30,7 @@ public class Field26CTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("26C",
-                "A/B/CCCCCDDDDEEEE"
-        );
+        testSerializationImpl("26C", "A/B/CCCCCDDDDEEEE");
     }
 
     /**
@@ -149,5 +147,4 @@ public class Field26CTest extends AbstractFieldTest {
         assertEquals("EEEE", f.getComponent5());
         assertEquals("FFFFFFFF", f.getComponent6());
     }
-
 }

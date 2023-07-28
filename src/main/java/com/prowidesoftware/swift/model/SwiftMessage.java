@@ -28,16 +28,15 @@ import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
 import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.*;
 import com.prowidesoftware.swift.utils.IMessageVisitor;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Base class for swift messages.
@@ -56,7 +55,8 @@ import java.util.logging.Level;
 public class SwiftMessage implements Serializable, JsonSerializable {
     static final int JSON_VERSION = 2;
     private static final long serialVersionUID = 8094995269559985432L;
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftMessage.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftMessage.class.getName());
     private static final String INVALID_NAME_BLOCK = "Invalid name for User Defined Blocks (";
     private static final String MESSAGE_IS_NOT_A_FRAGMENT = "message is not a fragment";
 
@@ -85,8 +85,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      *
      * @see #SwiftMessage(boolean)
      */
-    public SwiftMessage() {
-    }
+    public SwiftMessage() {}
 
     /**
      * Constructor that initializes blocks
@@ -269,13 +268,13 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SwiftMessage that = (SwiftMessage) o;
-        return Objects.equals(block1, that.block1) &&
-                Objects.equals(block2, that.block2) &&
-                Objects.equals(block3, that.block3) &&
-                Objects.equals(block4, that.block4) &&
-                Objects.equals(block5, that.block5) &&
-                Objects.equals(userBlocks, that.userBlocks) &&
-                Objects.equals(unparsedTexts, that.unparsedTexts);
+        return Objects.equals(block1, that.block1)
+                && Objects.equals(block2, that.block2)
+                && Objects.equals(block3, that.block3)
+                && Objects.equals(block4, that.block4)
+                && Objects.equals(block5, that.block5)
+                && Objects.equals(userBlocks, that.userBlocks)
+                && Objects.equals(unparsedTexts, that.unparsedTexts);
     }
 
     @Override
@@ -595,7 +594,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public int getUserBlockPosition(final String blockName) {
         // check parameters
-        if (StringUtils.isBlank(blockName) || //check user blocks array
+        if (StringUtils.isBlank(blockName)
+                || // check user blocks array
                 this.userBlocks == null) {
             return -1;
         }
@@ -1178,7 +1178,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     public MessageIOType getDirection() {
         try {
             if (this.block2 == null) {
-                log.fine("Requesting direction on a message without block2, can't determine direction. set log level to finer to view more details");
+                log.fine(
+                        "Requesting direction on a message without block2, can't determine direction. set log level to finer to view more details");
                 log.finest("Message: " + this);
             } else {
                 if (this.block2.isOutput()) {
@@ -1423,7 +1424,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
             suffix.append(StringUtils.leftPad(String.valueOf(id), 10, "0"));
         }
         if (suffix.length() == 0) {
-            log.warning("The computed suffix for message UID is blank, provide either the creation date or the numeric identifier as parameters for getUID");
+            log.warning(
+                    "The computed suffix for message UID is blank, provide either the creation date or the numeric identifier as parameters for getUID");
         }
         return getUUID() + suffix;
     }
@@ -1755,7 +1757,8 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public void setVariant(final MTVariant variant) {
         if (!variant.isValidationFlag()) {
-            log.warning("Field " + Field199.NAME + " should be used only for validation flags and not for " + variant.name());
+            log.warning("Field " + Field199.NAME + " should be used only for validation flags and not for "
+                    + variant.name());
         }
         if (this.block3 == null) {
             this.block3 = new SwiftBlock3();
@@ -1913,5 +1916,4 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         IConversionService srv = new ConversionService();
         return srv.getFIN(this);
     }
-
 }

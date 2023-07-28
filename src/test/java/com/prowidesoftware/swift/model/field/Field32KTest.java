@@ -25,10 +25,7 @@ public class Field32KTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("32K",
-                "D123AAAEUR1234,56",
-                "123AAAEUR1234,56"
-        );
+        testSerializationImpl("32K", "D123AAAEUR1234,56", "123AAAEUR1234,56");
     }
 
     /**
@@ -85,5 +82,4 @@ public class Field32KTest extends AbstractFieldTest {
         assertEquals("EUR", f.getComponent4());
         assertEquals("1234,56", f.getComponent5());
     }
-
 }

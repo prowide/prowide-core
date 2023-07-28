@@ -47,7 +47,6 @@ public class BbanStructureEntryDTO {
     @Expose
     private int length;
 
-
     /**
      * Gets entry type.
      *
@@ -101,5 +100,4 @@ public class BbanStructureEntryDTO {
     public void setLength(int length) {
         this.length = length;
     }
-
 }

@@ -30,11 +30,7 @@ public class Field14STest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("14S",
-                "EMT00",
-                "CHF01/1400/GBLO",
-                "GBP01/1000/USNY"
-        );
+        testSerializationImpl("14S", "EMT00", "CHF01/1400/GBLO", "GBP01/1000/USNY");
     }
 
     @Test
@@ -88,5 +84,4 @@ public class Field14STest extends AbstractFieldTest {
         assertEquals("1000", f.getComponent3());
         assertEquals("USNY", f.getComponent4());
     }
-
 }

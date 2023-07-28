@@ -29,5 +29,4 @@ public class MT103Test {
         assertNotNull(m.getUETR());
         assertFalse(m.getSwiftMessage().isSTP());
     }
-
 }

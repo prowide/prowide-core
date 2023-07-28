@@ -18,19 +18,15 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
-
+import org.junit.jupiter.api.Test;
 
 public class Field19Test extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("19",
-                "12345,"
-        );
+        testSerializationImpl("19", "12345,");
     }
 
     @Test
@@ -50,5 +46,4 @@ public class Field19Test extends AbstractFieldTest {
         assertNotNull(f, "Parse of correct field failed");
         assertEquals(new BigDecimal("12345"), f.getComponent1AsBigDecimal());
     }
-
 }

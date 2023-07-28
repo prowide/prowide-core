@@ -16,7 +16,6 @@
 package com.prowidesoftware.swift.model;
 
 import jakarta.persistence.*;
-
 import java.util.Calendar;
 
 /**
@@ -44,8 +43,7 @@ public class SwiftMessageNote {
     @Lob
     private String text;
 
-    public SwiftMessageNote() {
-    }
+    public SwiftMessageNote() {}
 
     public SwiftMessageNote(String creationUser, String text) {
         this.creationDate = Calendar.getInstance();
@@ -102,5 +100,4 @@ public class SwiftMessageNote {
     public void setText(String text) {
         this.text = text;
     }
-
 }

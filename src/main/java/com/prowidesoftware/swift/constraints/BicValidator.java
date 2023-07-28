@@ -30,8 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 public class BicValidator implements ConstraintValidator<BicConstraint, String> {
 
     @Override
-    public void initialize(BicConstraint bic) {
-    }
+    public void initialize(BicConstraint bic) {}
 
     @Override
     public boolean isValid(String bic, ConstraintValidatorContext context) {
@@ -47,5 +46,4 @@ public class BicValidator implements ConstraintValidator<BicConstraint, String> 
             return false;
         }
     }
-
 }

@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-
 public class MT564Test {
 
     /**
@@ -47,40 +46,36 @@ public class MT564Test {
 
     @Test
     public void testGetSequences() {
-        MT564 mt = MT564.parse("{1:F01FOOBARXXBGLO0524000001}{2:I564AAAABEBEXECLN}{4:\n" +
-                ":16R:GENL\n" +
-                ":20C::CORP//11111111\n" +
-                ":20C::SEME//2222222\n" +
-                ":23G:NEWM\n" +
-                ":22F::CAEV//EXWA\n" +
-                ":22F::CAMV//MAND\n" +
-                ":98C::PREP//20151016170651\n" +
-                ":25D::PROC//PREU\n" +
-                ":16S:GENL\n" +
-                ":16R:USECU\n" +
-                ":35B:ISIN DE000UT12345\n" +
-                "UBS LDN FOO IFX\n" +
-                ":16R:ACCTINFO\n" +
-                ":97A::SAFE//71xx0000\n" +
-                ":93B::ELIG//UNIT/1000,\n" +
-                ":93B::SETT//UNIT/1000,\n" +
-                ":16S:ACCTINFO\n" +
-                ":16S:USECU\n" +
-
-                ":16R:CADETL\n" +
-                ":17B::CERT//Y\n" +
-                ":17B::LEOG//Y\n" +
-                ":17B::SRDC//Y\n" +
-                ":16S:CADETL\n" +
-
-                ":16R:CAOPTN\n" +
-                ":13A::CAON//001\n" +
-                ":22F::CAOP//CASH\n" +
-                ":17B::DFLT//Y\n" +
-                ":17B::APLI//Y\n" +
-                ":16S:CAOPTN\n" +
-
-                "-}");
+        MT564 mt = MT564.parse("{1:F01FOOBARXXBGLO0524000001}{2:I564AAAABEBEXECLN}{4:\n" + ":16R:GENL\n"
+                + ":20C::CORP//11111111\n"
+                + ":20C::SEME//2222222\n"
+                + ":23G:NEWM\n"
+                + ":22F::CAEV//EXWA\n"
+                + ":22F::CAMV//MAND\n"
+                + ":98C::PREP//20151016170651\n"
+                + ":25D::PROC//PREU\n"
+                + ":16S:GENL\n"
+                + ":16R:USECU\n"
+                + ":35B:ISIN DE000UT12345\n"
+                + "UBS LDN FOO IFX\n"
+                + ":16R:ACCTINFO\n"
+                + ":97A::SAFE//71xx0000\n"
+                + ":93B::ELIG//UNIT/1000,\n"
+                + ":93B::SETT//UNIT/1000,\n"
+                + ":16S:ACCTINFO\n"
+                + ":16S:USECU\n"
+                + ":16R:CADETL\n"
+                + ":17B::CERT//Y\n"
+                + ":17B::LEOG//Y\n"
+                + ":17B::SRDC//Y\n"
+                + ":16S:CADETL\n"
+                + ":16R:CAOPTN\n"
+                + ":13A::CAON//001\n"
+                + ":22F::CAOP//CASH\n"
+                + ":17B::DFLT//Y\n"
+                + ":17B::APLI//Y\n"
+                + ":16S:CAOPTN\n"
+                + "-}");
 
         // CADTL
         assertFalse(mt.getSequenceD().isEmpty());
@@ -88,5 +83,4 @@ public class MT564Test {
         // CAOPTN
         assertEquals(1, mt.getSequenceEList().size());
     }
-
 }

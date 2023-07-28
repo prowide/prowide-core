@@ -20,8 +20,6 @@ import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.ResolverUtils;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.util.Currency;
 import java.util.List;
 import java.util.Objects;
@@ -49,7 +47,7 @@ public class CurrencyResolver {
      * @deprecated Use {@link #currencyStrings(Field)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3= TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static List<String> resolveComponentsPattern(String pattern, List<String> components) {
         DeprecationUtils.phase2(CurrencyResolver.class, "resolveComponentsPattern", "Use currencyStrings instead");
         return ResolverUtils.findWantedType(pattern, 'C', components);
@@ -72,9 +70,7 @@ public class CurrencyResolver {
         List<String> values = ResolverUtils.findWantedType(f.typesPattern(), 'C', f.getComponents());
 
         // prepare the result and convert all that match
-        return values.stream()
-                .map(SwiftFormatUtils::getCurrency)
-                .collect(Collectors.toList());
+        return values.stream().map(SwiftFormatUtils::getCurrency).collect(Collectors.toList());
     }
 
     public static Currency resolveCurrency(CurrencyContainer o) {

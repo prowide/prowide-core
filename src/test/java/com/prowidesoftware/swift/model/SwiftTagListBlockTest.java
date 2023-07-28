@@ -19,13 +19,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.model.field.*;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SwiftTagListBlockTest {
 
@@ -785,8 +784,8 @@ public class SwiftTagListBlockTest {
         b.append(new Tag("5:val5"));
 
         assertEquals(0, (int) b.getTagIndex("1", null));
-        assertEquals(2, (int) b.getTagIndex("3", new String[]{"A", "B", "K"}));
-        assertEquals(3, (int) b.getTagIndex("4", new String[]{"A", "B", "K", ""}));
+        assertEquals(2, (int) b.getTagIndex("3", new String[] {"A", "B", "K"}));
+        assertEquals(3, (int) b.getTagIndex("4", new String[] {"A", "B", "K", ""}));
     }
 
     @Test
@@ -1050,54 +1049,55 @@ public class SwiftTagListBlockTest {
      */
     @Test
     public void testGetSubBlockMT564() {
-        final String msg = "{1:F01MTGSUS6SAXXX3206837054}{2:O5641435070316CHASGB2LDGST07128160300703160735N}{3:{108:000255CQ8272245}}{4:\n" +
-                ":16R:GENL\n" +
-                ":20C::CORP//D455103\n" +
-                ":20C::SEME//029206016\n" +
-                ":23G:NEWM\n" +
-                ":22F::CAEV//DVCA\n" +
-                ":22F::CAMV//MAND\n" +
-                ":98C::PREP//20070316143348\n" +
-                ":25D::PROC//COMP\n" +
-                ":16S:GENL\n" +
-                ":16R:USECU\n" +
-                ":35B:ISIN CH0011075394\n" +
-                "/XX/5983816\n" +
-                "ZURICH FIN SVS GRP\n" +
-                "CHF0.10\n" +
-                ":16R:ACCTINFO\n" +
-                ":97A::SAFE//760043140\n" +
-                ":94F::SAFE//CUST/UBSWCHZH80A\n" +
-                ":93B::ELIG//UNIT/7000,\n" +
-                ":16S:ACCTINFO\n" +
-                ":16S:USECU\n" +
-                ":16R:CADETL\n" +
-                ":98A::XDTE//20111111\n" +
-                ":98A::PAYD//20111111\n" +
-                ":98A::RDTE//20111111\n" +
-                ":92A::WITF//35,\n" +
-                ":92A::GRSS//0,000001000\n" +
-                ":16S:CADETL\n" +
-                ":16R:CAOPTN\n" +
-                ":13A::CAON//001\n" +
-                ":22F::CAOP//CASH\n" +
-                ":11A::OPTN//CHF\n" +
-                ":17B::DFLT//Y\n" +
-                ":98A::XDTE//20111111\n" +
-                ":98A::PAYD//20111111\n" +
-                ":98A::RDTE//20111111\n" +
-                ":92A::GRSS//0,000001000\n" +
-                ":16R:CASHMOVE\n" +
-                ":22H::CRDB//CRED\n" +
-                ":19B::ENTL//CHF0,01\n" +
-                ":19B::GRSS//CHF0,01\n" +
-                ":19B::NETT//CHF0,01\n" +
-                ":98A::PAYD//20111111\n" +
-                ":98A::VALU//20111111\n" +
-                ":16S:CASHMOVE\n" +
-                ":16S:CAOPTN\n" +
-                "-}";
-        //parse text message into SWIFT message object
+        final String msg =
+                "{1:F01MTGSUS6SAXXX3206837054}{2:O5641435070316CHASGB2LDGST07128160300703160735N}{3:{108:000255CQ8272245}}{4:\n"
+                        + ":16R:GENL\n"
+                        + ":20C::CORP//D455103\n"
+                        + ":20C::SEME//029206016\n"
+                        + ":23G:NEWM\n"
+                        + ":22F::CAEV//DVCA\n"
+                        + ":22F::CAMV//MAND\n"
+                        + ":98C::PREP//20070316143348\n"
+                        + ":25D::PROC//COMP\n"
+                        + ":16S:GENL\n"
+                        + ":16R:USECU\n"
+                        + ":35B:ISIN CH0011075394\n"
+                        + "/XX/5983816\n"
+                        + "ZURICH FIN SVS GRP\n"
+                        + "CHF0.10\n"
+                        + ":16R:ACCTINFO\n"
+                        + ":97A::SAFE//760043140\n"
+                        + ":94F::SAFE//CUST/UBSWCHZH80A\n"
+                        + ":93B::ELIG//UNIT/7000,\n"
+                        + ":16S:ACCTINFO\n"
+                        + ":16S:USECU\n"
+                        + ":16R:CADETL\n"
+                        + ":98A::XDTE//20111111\n"
+                        + ":98A::PAYD//20111111\n"
+                        + ":98A::RDTE//20111111\n"
+                        + ":92A::WITF//35,\n"
+                        + ":92A::GRSS//0,000001000\n"
+                        + ":16S:CADETL\n"
+                        + ":16R:CAOPTN\n"
+                        + ":13A::CAON//001\n"
+                        + ":22F::CAOP//CASH\n"
+                        + ":11A::OPTN//CHF\n"
+                        + ":17B::DFLT//Y\n"
+                        + ":98A::XDTE//20111111\n"
+                        + ":98A::PAYD//20111111\n"
+                        + ":98A::RDTE//20111111\n"
+                        + ":92A::GRSS//0,000001000\n"
+                        + ":16R:CASHMOVE\n"
+                        + ":22H::CRDB//CRED\n"
+                        + ":19B::ENTL//CHF0,01\n"
+                        + ":19B::GRSS//CHF0,01\n"
+                        + ":19B::NETT//CHF0,01\n"
+                        + ":98A::PAYD//20111111\n"
+                        + ":98A::VALU//20111111\n"
+                        + ":16S:CASHMOVE\n"
+                        + ":16S:CAOPTN\n"
+                        + "-}";
+        // parse text message into SWIFT message object
         SwiftMessage o = new ConversionService().getMessageFromFIN(msg);
         List<SwiftTagListBlock> sequencesB2 = o.getBlock4().getSubBlocks("ACCTINFO");
         List<SwiftTagListBlock> sequencesC = o.getBlock4().getSubBlocks("INTSEC");
@@ -1175,7 +1175,7 @@ public class SwiftTagListBlockTest {
         b.append(new Tag("7:val7"));
         b.append(new Tag("8:val8"));
 
-        SwiftTagListBlock result = b.getOptionalList(new String[][]{{"1a", "1b", "1"}, {"2e", "2c"}, {"2", "3"}});
+        SwiftTagListBlock result = b.getOptionalList(new String[][] {{"1a", "1b", "1"}, {"2e", "2c"}, {"2", "3"}});
 
         assertEquals(2, result.size());
         assertEquals("val1", result.getTag(0).getValue());
@@ -1187,7 +1187,8 @@ public class SwiftTagListBlockTest {
         appends(b, 1, 8);
         appends(b, 1, 8);
 
-        List<SwiftTagListBlock> result = b.getOptionalLists(new String[][]{{"1a", "1b", "1"}, {"2e", "2c"}, {"2", "3"}});
+        List<SwiftTagListBlock> result =
+                b.getOptionalLists(new String[][] {{"1a", "1b", "1"}, {"2e", "2c"}, {"2", "3"}});
 
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -1302,7 +1303,7 @@ public class SwiftTagListBlockTest {
         assertEquals(5, result.get(0).size());
         assertEquals(5, result.get(1).size());
 
-        tail = new String[]{"6a", "6"};
+        tail = new String[] {"6a", "6"};
         result = b.getSubBlocksDelimitedWithOptionalTail(start, end, tail);
         assertEquals(2, result.size());
         assertEquals(6, result.get(0).size());
@@ -1715,10 +1716,10 @@ public class SwiftTagListBlockTest {
         result = b.getSubBlocksByTagNames(0, "5", "2");
         assertNotNull(result);
         assertEquals(2, result.size());
-        //first pass will find 2
+        // first pass will find 2
         assertEquals(1, result.get(0).size());
         assertEquals("2", result.get(0).getTag(0).getName());
-        //second pass will find 5
+        // second pass will find 5
         assertEquals(1, result.get(1).size());
         assertEquals("5", result.get(1).getTag(0).getName());
     }
@@ -1823,5 +1824,4 @@ public class SwiftTagListBlockTest {
         assertEquals("22M", list2.get(1).getTag(1).getName());
         assertEquals("95P", list2.get(1).getTag(2).getName());
     }
-
 }

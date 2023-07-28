@@ -24,9 +24,7 @@ public class Field70Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("70",
-                "a\nb\nc\nd"
-        );
+        testSerializationImpl("70", "a\nb\nc\nd");
     }
 
     @Test
@@ -51,5 +49,4 @@ public class Field70Test extends AbstractFieldTest {
         assertEquals("b", n.getUnstructuredFragments().get(1));
         assertEquals("c", n.getUnstructuredFragments().get(2));
     }
-
 }

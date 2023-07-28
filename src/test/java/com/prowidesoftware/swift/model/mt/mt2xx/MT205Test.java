@@ -27,5 +27,4 @@ public class MT205Test {
         MT205 m = new MT205();
         assertNotNull(m.getUETR());
     }
-
 }

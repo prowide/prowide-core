@@ -15,32 +15,21 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
-import java.io.Serializable;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-import java.util.Calendar;
-
-import com.prowidesoftware.swift.model.field.DateContainer;
-import com.prowidesoftware.swift.model.field.DateResolver;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * SWIFT MT Field 31M.
@@ -67,15 +56,15 @@ import com.google.gson.JsonParser;
 @Deprecated
 @ProwideDeprecated(phase2 = TargetYear.SRU2023)
 public class Field31M extends Field implements Serializable, DateContainer {
-	/**
-	 * Constant identifying the SRU to which this class belongs to.
-	 */
-	public static final int SRU = 2022;
+    /**
+     * Constant identifying the SRU to which this class belongs to.
+     */
+    public static final int SRU = 2022;
 
-	private static final long serialVersionUID = 1L;
-	/**
-	 * Constant with the field name 31M.
-	 */
+    private static final long serialVersionUID = 1L;
+    /**
+     * Constant with the field name 31M.
+     */
     public static final String NAME = "31M";
     /**
      * Same as NAME, intended to be clear when using static imports.
@@ -87,26 +76,26 @@ public class Field31M extends Field implements Serializable, DateContainer {
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String PARSER_PATTERN = "S";
+    public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String COMPONENTS_PATTERN = "E";
+    public static final String COMPONENTS_PATTERN = "E";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String TYPES_PATTERN = "E";
+    public static final String TYPES_PATTERN = "E";
 
-	/**
-	 * Component number for the Date subfield.
-	 */
-	public static final Integer DATE = 1;
+    /**
+     * Component number for the Date subfield.
+     */
+    public static final Integer DATE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -135,7 +124,8 @@ public class Field31M extends Field implements Serializable, DateContainer {
             throw new IllegalArgumentException("tag cannot be null.");
         }
         if (!StringUtils.equals(tag.getName(), "31M")) {
-            throw new IllegalArgumentException("cannot create field 31M from tag "+tag.getName()+", tagname must match the name of the field.");
+            throw new IllegalArgumentException("cannot create field 31M from tag " + tag.getName()
+                    + ", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -171,7 +161,6 @@ public class Field31M extends Field implements Serializable, DateContainer {
     public static Tag emptyTag() {
         return new Tag(NAME, "");
     }
-
 
     /**
      * Parses the parameter value into the internal components structure.
@@ -213,8 +202,9 @@ public class Field31M extends Field implements Serializable, DateContainer {
             throw new IllegalArgumentException("invalid component number " + component + " for field 31M");
         }
         if (component == 1) {
-            //date: [YY]YYMMDD
-            java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+            // date: [YY]YYMMDD
+            java.text.DateFormat f =
+                    java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
             if (cal != null) {
                 return f.format(cal.getTime());
@@ -413,7 +403,6 @@ public class Field31M extends Field implements Serializable, DateContainer {
         return setComponent1(component1);
     }
 
-
     /**
      * Returns all components that can be converted to a Calendar
      *
@@ -431,7 +420,6 @@ public class Field31M extends Field implements Serializable, DateContainer {
     public Calendar date() {
         return DateResolver.date(this);
     }
-
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
@@ -525,6 +513,4 @@ public class Field31M extends Field implements Serializable, DateContainer {
 
         return field;
     }
-
-
 }

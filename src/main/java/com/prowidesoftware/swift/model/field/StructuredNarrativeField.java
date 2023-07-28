@@ -16,11 +16,9 @@
 package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.google.gson.Gson;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-
 import java.util.*;
 
 /**
@@ -42,7 +40,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final String COMPONENTS_PATTERN = "S";
 
     /**
@@ -89,7 +87,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
         if (component != 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
-        //default format (as is)
+        // default format (as is)
         return getComponent1();
     }
 
@@ -108,7 +106,7 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
      * @deprecated Use {@link #typesPattern()} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3=TargetYear.SRU2023)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     @Override
     public final String componentsPattern() {
         DeprecationUtils.phase2(getClass(), "componentsPattern()", "Use typesPattern() instead.");
@@ -272,5 +270,4 @@ public abstract class StructuredNarrativeField extends Field implements Narrativ
         setComponent(1, narrative.getValue());
         return this;
     }
-
 }

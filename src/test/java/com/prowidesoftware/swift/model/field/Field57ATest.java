@@ -25,11 +25,7 @@ public class Field57ATest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("57A",
-                "/D/1234\nFOOBAR",
-                "/1234\nFOOBAR",
-                "FOOBAR"
-        );
+        testSerializationImpl("57A", "/D/1234\nFOOBAR", "/1234\nFOOBAR", "FOOBAR");
     }
 
     @Test
@@ -48,5 +44,4 @@ public class Field57ATest extends AbstractFieldTest {
         f.setComponent3("FOOBARXX");
         assertEquals("/1234567890" + FINWriterVisitor.SWIFT_EOL + "FOOBARXX", f.getValue());
     }
-
 }

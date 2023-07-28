@@ -154,5 +154,4 @@ public class TagTest {
          */
         assertFalse(new Tag("50K:FOO1\nFOO2").equalsIgnoreCR(new Tag("50K:FOO1\nFOO3")));
     }
-
 }

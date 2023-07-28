@@ -29,6 +29,4 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Documented
 @Retention(RetentionPolicy.SOURCE)
-public @interface NonUniqueSeparator {
-
-}
+public @interface NonUniqueSeparator {}

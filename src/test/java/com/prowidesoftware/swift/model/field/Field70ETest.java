@@ -21,16 +21,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-
 public class Field70ETest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("70E",
-                ":2134//goobar",
-                "://goobar"
-        );
+        testSerializationImpl("70E", ":2134//goobar", "://goobar");
     }
 
     @Test
@@ -92,7 +88,7 @@ public class Field70ETest extends AbstractFieldTest {
         assertNull(f.getComponent10());
         assertNull(f.getComponent11());
 
-        //remaining lines are ignored by parser
+        // remaining lines are ignored by parser
         f = new Field70E("://goobar\nAAAA\nBBBB\nCCCC\nDDDD\nEEEE\nFFFF\nGGGG\nHHHH\nIIII\nJJJJ\nKKKK");
         assertEquals("goobar", f.getComponent2());
         assertEquals("AAAA", f.getComponent3());
@@ -111,9 +107,7 @@ public class Field70ETest extends AbstractFieldTest {
      */
     @Test
     public void testField70ELines_PreserveSpaces() {
-        Field70E f = new Field70E(":PACO//The quick brown fox \n" +
-                "jumps over the\n" +
-                " the lazy dog");
+        Field70E f = new Field70E(":PACO//The quick brown fox \n" + "jumps over the\n" + " the lazy dog");
         assertEquals("PACO", f.getQualifier());
         assertEquals("The quick brown fox ", f.getNarrativeLine1());
         assertEquals("jumps over the", f.getNarrativeLine2());
@@ -142,5 +136,4 @@ public class Field70ETest extends AbstractFieldTest {
         f.setComponent1(null);
         assertEquals("FOO\r\n BAR", StringUtils.substringAfter(f.getValue(), "://"));
     }
-
 }

@@ -31,10 +31,7 @@ public class Field48Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("48",
-                "1",
-                "1/FOO"
-        );
+        testSerializationImpl("48", "1", "1/FOO");
     }
 
     @Test
@@ -51,5 +48,4 @@ public class Field48Test extends AbstractFieldTest {
         f.setComponent2("FOO");
         assertEquals("1234/FOO", f.getValue());
     }
-
 }

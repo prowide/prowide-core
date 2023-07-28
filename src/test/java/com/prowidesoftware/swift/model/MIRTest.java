@@ -15,7 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -60,5 +59,4 @@ public class MIRTest {
         assertEquals("2222", mir.getSessionNumber());
         assertEquals("123456", mir.getSequenceNumber());
     }
-
 }

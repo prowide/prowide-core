@@ -17,24 +17,23 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.Calendar;
+import org.junit.jupiter.api.Test;
 
 public class Field61Test extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("61",
+        testSerializationImpl(
+                "61",
                 "081027C858,28NOPT12716219\n1524/6006/TESORO NACIONAL",
                 "1001060106D341,34N422NONREF\r\nFURTHER REFERENCE",
                 "090227C291553,62NAYG13391140\n1524/6009/TRASPASO AUTOMATICO AL",
                 "020626D120000,NCOLABCD//12345",
                 "1512290201EDZ0000000002,2222FBNKNONREF",
-                "170717D203336,94NTRFR016341554//2395200  \n01P"
-        );
+                "170717D203336,94NTRFR016341554//2395200  \n01P");
     }
 
     @Test
@@ -81,8 +80,7 @@ public class Field61Test extends AbstractFieldTest {
 
     @Test
     public void testParse_02() {
-        String val = "081024" + "C" + "10215,NOPT12710361\n"
-                + "1524/6006/TESORO NACIONAL";
+        String val = "081024" + "C" + "10215,NOPT12710361\n" + "1524/6006/TESORO NACIONAL";
         Field61 f = new Field61(val);
         assertNotNull(f);
         assertEquals(2008, f.getComponent1AsCalendar().get(Calendar.YEAR));
@@ -155,13 +153,13 @@ public class Field61Test extends AbstractFieldTest {
     public void test_DCMark() {
 
         /*
-         C  Credit
-         D  Debit
-         EC Expected Credit
-         ED Expected Debit
-         RC Reversal of Credit (debit entry)
-         RD Reversal of Debit (credit entry)
-         */
+        C  Credit
+        D  Debit
+        EC Expected Credit
+        ED Expected Debit
+        RC Reversal of Credit (debit entry)
+        RD Reversal of Debit (credit entry)
+        */
         Field61 field61;
 
         field61 = new Field61("1512290201C0000000002,2222FBNKNONREF");
@@ -186,13 +184,13 @@ public class Field61Test extends AbstractFieldTest {
     @Test
     public void test_DCMArk_with_funds_code() {
         /*
-         C  Credit
-         D  Debit
-         EC Expected Credit
-         ED Expected Debit
-         RC Reversal of Credit (debit entry)
-         RD Reversal of Debit (credit entry)
-         */
+        C  Credit
+        D  Debit
+        EC Expected Credit
+        ED Expected Debit
+        RC Reversal of Credit (debit entry)
+        RD Reversal of Debit (credit entry)
+        */
         Field61 field61;
 
         field61 = new Field61("1512290201CZ0000000002,2222FBNKNONREF");
@@ -234,5 +232,4 @@ public class Field61Test extends AbstractFieldTest {
         assertEquals("2395200  ", f.getComponent9());
         assertEquals("01P", f.getComponent10());
     }
-
 }

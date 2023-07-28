@@ -27,10 +27,6 @@ import com.prowidesoftware.swift.model.mt.MTVariant;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import org.apache.commons.lang3.EnumUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +34,8 @@ import java.util.Calendar;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Level;
-
+import org.apache.commons.lang3.EnumUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * MT messages entity for JPA persistence.
@@ -50,7 +47,8 @@ import java.util.logging.Level;
 @Entity(name = "mt")
 @DiscriminatorValue("mt")
 public class MtSwiftMessage extends AbstractSwiftMessage {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(MtSwiftMessage.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(MtSwiftMessage.class.getName());
     private static final long serialVersionUID = -5972656648349958815L;
 
     @Column(length = 35)
@@ -68,8 +66,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     @Column(length = 31, name = "uuid")
     private String uuid;
 
-    public MtSwiftMessage() {
-    }
+    public MtSwiftMessage() {}
 
     /**
      * Calls {@link #MtSwiftMessage(String, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
@@ -250,7 +247,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
         Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
         Objects.requireNonNull(getMessage(), "the raw message attribute cannot be null");
         if (getFileFormat() != FileFormat.FIN) {
-            throw new IllegalArgumentException("expected source format " + FileFormat.FIN + " and found " + getFileFormat());
+            throw new IllegalArgumentException(
+                    "expected source format " + FileFormat.FIN + " and found " + getFileFormat());
         }
         SwiftMessage model = null;
         try {
@@ -622,11 +620,11 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         MtSwiftMessage that = (MtSwiftMessage) o;
-        return Objects.equals(pde, that.pde) &&
-                Objects.equals(pdm, that.pdm) &&
-                Objects.equals(mir, that.mir) &&
-                Objects.equals(mur, that.mur) &&
-                Objects.equals(uuid, that.uuid);
+        return Objects.equals(pde, that.pde)
+                && Objects.equals(pdm, that.pdm)
+                && Objects.equals(mir, that.mir)
+                && Objects.equals(mur, that.mur)
+                && Objects.equals(uuid, that.uuid);
     }
 
     @Override
@@ -700,5 +698,4 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
         Objects.requireNonNull(strategy, "the strategy for metadata extraction cannot be null");
         applyStrategy(modelMessage(), strategy);
     }
-
 }

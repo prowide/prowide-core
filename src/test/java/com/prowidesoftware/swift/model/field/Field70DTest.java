@@ -27,9 +27,7 @@ public class Field70DTest {
 
     @Test
     public void testParse() {
-        Field70D f = new Field70D(":REAS//INVALID FIELD 95P..DEAG//ABCDDEFFCU\n" +
-                "S\n" +
-                "/SETT/EUR145123");
+        Field70D f = new Field70D(":REAS//INVALID FIELD 95P..DEAG//ABCDDEFFCU\n" + "S\n" + "/SETT/EUR145123");
 
         // get components API
         assertEquals("REAS", f.getComponent1());
@@ -45,5 +43,4 @@ public class Field70DTest {
 
         assertEquals("ABCDDEFFCU", StringUtils.substringAfter(f.getComponent2(), "//"));
     }
-
 }

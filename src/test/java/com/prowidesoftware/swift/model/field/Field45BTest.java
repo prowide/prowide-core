@@ -33,9 +33,8 @@ public class Field45BTest {
 
     @Test
     public void testWithNull() {
-        Field45B field = new Field45B( (String) null);
+        Field45B field = new Field45B((String) null);
         Narrative narrative = field.narrative();
         assertTrue(narrative.isEmpty());
     }
-
 }

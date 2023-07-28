@@ -19,9 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class BICResolverTest {
 

@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-
 public class MT670Test {
 
     @Test
@@ -49,5 +48,4 @@ public class MT670Test {
         m.append(MT670.SequenceC.newInstance());
         assertFalse(m.getSequenceC().isEmpty());
     }
-
 }

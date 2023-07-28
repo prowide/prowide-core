@@ -16,7 +16,6 @@
 package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.model.BIC;
-
 import java.util.List;
 
 /**

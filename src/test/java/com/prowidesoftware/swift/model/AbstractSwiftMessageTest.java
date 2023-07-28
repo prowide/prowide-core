@@ -62,5 +62,4 @@ public class AbstractSwiftMessageTest {
         mt.setIdentifier("fin.103");
         assertEquals("1", mt.getCategory());
     }
-
 }

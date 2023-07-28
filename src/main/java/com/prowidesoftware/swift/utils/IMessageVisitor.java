@@ -116,5 +116,4 @@ public interface IMessageVisitor {
     void startMessage(SwiftMessage m);
 
     void endMessage(SwiftMessage m);
-
 }

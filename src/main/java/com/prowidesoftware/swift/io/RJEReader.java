@@ -124,5 +124,4 @@ public class RJEReader extends AbstractReader {
     public void setSplitChar(final char c) {
         this.splitChar = c;
     }
-
 }

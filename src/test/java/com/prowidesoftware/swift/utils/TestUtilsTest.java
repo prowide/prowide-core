@@ -30,5 +30,4 @@ public class TestUtilsTest {
         assertEquals("/*[local-name()='Foo']/*[local-name()='Bar']", TestUtils.patch("/Foo/Bar"));
         assertEquals("/*[local-name()='Foo']/*[local-name()='Bar'][4]", TestUtils.patch("/Foo/Bar[4]"));
     }
-
 }

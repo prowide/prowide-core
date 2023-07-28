@@ -40,12 +40,9 @@ public class MT202COVTest {
                         Field21.tag("RELREF"),
                         Field32A.tag("121212USD1234,56"),
                         Field58A.tag("ABCOCOBMXXX")))
-                .append(MT202COV.SequenceB.newInstance(
-                        Field50A.tag("DEFOCOBMXXX"),
-                        Field59A.tag("GHIOCOBMXXX")));
+                .append(MT202COV.SequenceB.newInstance(Field50A.tag("DEFOCOBMXXX"), Field59A.tag("GHIOCOBMXXX")));
         assertNotNull(m.getUETR());
         assertTrue(m.getSwiftMessage().isCOV());
         assertEquals(6, m.getSwiftMessage().getBlock4().getTags().size());
     }
-
 }

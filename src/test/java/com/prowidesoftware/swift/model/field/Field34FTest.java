@@ -18,18 +18,15 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
+import org.junit.jupiter.api.Test;
 
 public class Field34FTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("34F",
-                "aaab123,45"
-        );
+        testSerializationImpl("34F", "aaab123,45");
     }
 
     @Test
@@ -104,5 +101,4 @@ public class Field34FTest extends AbstractFieldTest {
         assertEquals("123,45", f.getComponent3());
         assertEquals(new BigDecimal("123.45"), f.getComponent3AsBigDecimal());
     }
-
 }

@@ -19,11 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for the {@link RJEReader} class
@@ -35,11 +33,12 @@ public class RJEReaderTest {
 
     @Test
     public void testIterator() {
-        RJEReader r = new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"), StandardCharsets.US_ASCII);
+        RJEReader r =
+                new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"), StandardCharsets.US_ASCII);
         int count = 0;
         for (String m : r) {
             assertNotNull(m);
-            //System.out.println("msg "+(count));
+            // System.out.println("msg "+(count));
             count++;
         }
         assertEquals(13, count);
@@ -65,17 +64,17 @@ public class RJEReaderTest {
                         assertEquals("foo", m);
                     }
                 },
-                "Expected iterator to throw IllegalStateException, but it didn't"
-        );
+                "Expected iterator to throw IllegalStateException, but it didn't");
     }
 
     @Test
     public void testIterableWithNextMT() throws IOException {
-        RJEReader r = new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"), StandardCharsets.US_ASCII);
+        RJEReader r =
+                new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"), StandardCharsets.US_ASCII);
         assertTrue(r.hasNext());
         AbstractMT mt = r.nextMT();
         assertNotNull(mt);
-        //System.out.println(mt.message());
+        // System.out.println(mt.message());
         assertEquals("103", mt.getMessageType());
     }
 
@@ -91,14 +90,16 @@ public class RJEReaderTest {
 
     @Test
     public void testDeliveryNotification() throws IOException {
-        RJEReader r = new RJEReader("{1:F01AAAAFRPPZXXX0000000001}{2:O0111702090738DYLRXXXXCXXX00000000001702090738S}{4:{175:0741}{106:170209AAAAFRPPZXXX0000000002}{108:REF1}{175:0741}{107:170209AAAAFRPPXXXX0000000002}}{5:{CHK:ABCDEF123456}{SYS:}}$");
+        RJEReader r = new RJEReader(
+                "{1:F01AAAAFRPPZXXX0000000001}{2:O0111702090738DYLRXXXXCXXX00000000001702090738S}{4:{175:0741}{106:170209AAAAFRPPZXXX0000000002}{108:REF1}{175:0741}{107:170209AAAAFRPPXXXX0000000002}}{5:{CHK:ABCDEF123456}{SYS:}}$");
         assertNotNull(r.nextMT());
         assertNull(r.nextMT());
     }
 
     @Test
     public void testBulkFileWithAcks() throws IOException {
-        RJEReader r = new RJEReader(this.getClass().getResourceAsStream("/MT103-bulk-with-ack.rje"), StandardCharsets.US_ASCII);
+        RJEReader r = new RJEReader(
+                this.getClass().getResourceAsStream("/MT103-bulk-with-ack.rje"), StandardCharsets.US_ASCII);
         int count = 0;
         while (r.hasNext()) {
             SwiftMessage ack = r.nextSwiftMessage();
@@ -107,10 +108,9 @@ public class RJEReaderTest {
             SwiftMessage mt = SwiftMessage.parse(ack.getUnparsedTexts().getAsFINString());
             assertNotNull(mt);
             assertTrue(mt.isType(103));
-            //System.out.println(mt.getBlock4().getTagValue("20"));
+            // System.out.println(mt.getBlock4().getTagValue("20"));
             count++;
         }
         assertEquals(3, count);
     }
-
 }

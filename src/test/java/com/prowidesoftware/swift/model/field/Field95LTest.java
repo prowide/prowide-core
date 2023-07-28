@@ -17,19 +17,15 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Locale;
+import org.junit.jupiter.api.Test;
 
 public class Field95LTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("95L",
-                ":ISSU//300300E1007142000089",
-                ":ISSU//12345678AAAAAAAA99"
-        );
+        testSerializationImpl("95L", ":ISSU//300300E1007142000089", ":ISSU//12345678AAAAAAAA99");
     }
 
     @Test
@@ -82,7 +78,5 @@ public class Field95LTest extends AbstractFieldTest {
         f.setLegalEntityIdentifier("ABCD1234");
         assertEquals("ABCD1234", f.getComponent2());
         assertNull(f.getComponent3());
-
     }
-
 }

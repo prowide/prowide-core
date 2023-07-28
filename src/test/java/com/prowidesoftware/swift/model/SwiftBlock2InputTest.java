@@ -125,7 +125,7 @@ public class SwiftBlock2InputTest {
     @Test
     public void testInput_5() {
         try {
-            //set an invalid length value
+            // set an invalid length value
             in.setValue("I103BANKDEFFXXXXU300");
         } catch (IllegalArgumentException e) {
             return;
@@ -143,7 +143,7 @@ public class SwiftBlock2InputTest {
     @Test
     public void testInput_7() {
         try {
-            //set an invalid starting substring
+            // set an invalid starting substring
             in.setValue("1:I103BANKDEFFXXXXU3003");
         } catch (IllegalArgumentException e) {
             return;
@@ -187,7 +187,7 @@ public class SwiftBlock2InputTest {
         assertEquals("BANKDEFFXXXX", nin.getReceiverAddress());
         assertEquals("U", nin.getMessagePriority());
         assertEquals("3", nin.getDeliveryMonitoring());
-        assertEquals("00", nin.getObsolescencePeriod()); //less than expected
+        assertEquals("00", nin.getObsolescencePeriod()); // less than expected
     }
 
     @Test
@@ -198,7 +198,7 @@ public class SwiftBlock2InputTest {
         assertEquals("BANKDEFFXXXX", nin.getReceiverAddress());
         assertEquals("U", nin.getMessagePriority());
         assertEquals("3", nin.getDeliveryMonitoring());
-        assertEquals("00399", nin.getObsolescencePeriod()); //more than expected
+        assertEquals("00399", nin.getObsolescencePeriod()); // more than expected
     }
 
     @Test
@@ -306,5 +306,4 @@ public class SwiftBlock2InputTest {
         SwiftBlock2Input b = new SwiftBlock2Input(a);
         assertEquals(a.getValue(), b.getValue());
     }
-
 }

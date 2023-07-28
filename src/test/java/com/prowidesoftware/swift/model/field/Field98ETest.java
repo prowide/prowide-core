@@ -22,15 +22,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 public class Field98ETest extends AbstractFieldTest {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(Field98ETest.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(Field98ETest.class.getName());
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("98E",
-                ":abc//12121212242424,33/N2020",
-                ":abc//12121212242424,33"
-        );
+        testSerializationImpl("98E", ":abc//12121212242424,33/N2020", ":abc//12121212242424,33");
     }
 
     @Test
@@ -188,5 +186,4 @@ public class Field98ETest extends AbstractFieldTest {
         assertEquals("N", f.getComponent5());
         assertEquals("2020", f.getComponent6());
     }
-
 }

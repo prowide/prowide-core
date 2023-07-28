@@ -70,5 +70,4 @@ class MtIdTest {
         assertEquals("urn:swift:xsd:fin.NAK." + current, new MtId("NAK").namespaceURI());
         assertEquals("urn:swift:xsd:fin.BypassFoobar." + current, new MtId("BypassFoobar").namespaceURI());
     }
-
 }

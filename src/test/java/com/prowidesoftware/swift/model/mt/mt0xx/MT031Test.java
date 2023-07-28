@@ -55,6 +55,5 @@ public class MT031Test {
         m.append(new Field177("0106052359"));
 
         assertEquals(sample1, m.message());
-
     }
 }

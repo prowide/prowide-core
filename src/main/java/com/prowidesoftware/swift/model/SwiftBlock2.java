@@ -17,13 +17,12 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.logging.Level;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Base class for SWIFT <b>Application Header Block (block 2)</b>
@@ -41,7 +40,8 @@ import java.util.logging.Level;
  * @since 4.0
  */
 public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializable {
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock2.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftBlock2.class.getName());
     private static final long serialVersionUID = 7994472954593732477L;
 
     /**
@@ -61,8 +61,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
     /**
      * Default Constructor
      */
-    public SwiftBlock2() {
-    }
+    public SwiftBlock2() {}
 
     /**
      * Sets the block number. Will cause an exception unless setting block number to 2.
@@ -169,7 +168,8 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
             try {
                 return MessagePriority.valueOf(this.messagePriority);
             } catch (Exception e) {
-                final String text = "Block2 messagePriority contains an invalid value [" + this.messagePriority + "]. The expected values are " + Arrays.toString(MessagePriority.values());
+                final String text = "Block2 messagePriority contains an invalid value [" + this.messagePriority
+                        + "]. The expected values are " + Arrays.toString(MessagePriority.values());
                 log.warning(text);
                 log.log(Level.FINEST, text, e);
             }
@@ -211,8 +211,7 @@ public abstract class SwiftBlock2 extends SwiftValueBlock implements Serializabl
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         SwiftBlock2 that = (SwiftBlock2) o;
-        return Objects.equals(messagePriority, that.messagePriority) &&
-                Objects.equals(messageType, that.messageType);
+        return Objects.equals(messagePriority, that.messagePriority) && Objects.equals(messageType, that.messageType);
     }
 
     @Override

@@ -17,19 +17,15 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
-
+import org.junit.jupiter.api.Test;
 
 public class Field71BTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("71B",
-                "/ACGH/B/EUR1,00Fees"
-        );
+        testSerializationImpl("71B", "/ACGH/B/EUR1,00Fees");
     }
 
     @Test
@@ -39,7 +35,7 @@ public class Field71BTest extends AbstractFieldTest {
         assertEquals("/ACGH/O/EUR1,00Fees", f.getComponent1());
 
         Narrative n = f.narrative();
-        //n.getStructured().forEach(System.out::println);
+        // n.getStructured().forEach(System.out::println);
 
         StructuredNarrative structuredNarrative = n.getStructured("ACGH");
         assertEquals("ACGH", structuredNarrative.getCodeword());
@@ -77,5 +73,4 @@ public class Field71BTest extends AbstractFieldTest {
         structuredNarrative.setCurrency("EUR/");
         assertEquals("EUR/", structuredNarrative.getCurrency());
     }
-
 }

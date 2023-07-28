@@ -60,5 +60,4 @@ public class MT535Test {
         m.append(MT535.SequenceB1c.newInstance());
         assertTrue(m.getSequenceB1b1List().isEmpty());
     }
-
 }

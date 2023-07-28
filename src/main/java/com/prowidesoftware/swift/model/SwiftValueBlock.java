@@ -27,15 +27,16 @@ import java.util.logging.Level;
  */
 public abstract class SwiftValueBlock extends SwiftBlock implements Serializable {
     private static final long serialVersionUID = -3680693640473937755L;
+
     @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftValueBlock.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftValueBlock.class.getName());
 
     /**
      * Default constructor, shouldn't be used normally.
      * present only for subclasses
      */
-    protected SwiftValueBlock() {
-    }
+    protected SwiftValueBlock() {}
 
     /**
      * This method should be overwritten by subclasses, calling
@@ -44,7 +45,8 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
      * @return N/A
      */
     public String getBlockValue() {
-        throw new UnsupportedOperationException("cannot call getBlockValue on SwiftValueBlock, must be on specific subclasses");
+        throw new UnsupportedOperationException(
+                "cannot call getBlockValue on SwiftValueBlock, must be on specific subclasses");
     }
 
     /**
@@ -54,7 +56,8 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
      * @param value <em>unused</em>
      */
     public void setBlockValue(final String value) {
-        throw new UnsupportedOperationException("cannot call setBlockValue on SwiftValueBlock, must be on specific subclasses");
+        throw new UnsupportedOperationException(
+                "cannot call setBlockValue on SwiftValueBlock, must be on specific subclasses");
     }
 
     /**
@@ -64,7 +67,8 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
      * @return the blocks value as a single string
      */
     public String getValue() {
-        throw new UnsupportedOperationException("cannot call getValue on SwiftValueBlock, must be on specific subclasses");
+        throw new UnsupportedOperationException(
+                "cannot call getValue on SwiftValueBlock, must be on specific subclasses");
     }
 
     /**
@@ -75,7 +79,8 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
      * @param value the blocks value as a single string
      */
     public void setValue(final String value) {
-        throw new UnsupportedOperationException("cannot call setValue on SwiftValueBlock, must be on specific subclasses");
+        throw new UnsupportedOperationException(
+                "cannot call setValue on SwiftValueBlock, must be on specific subclasses");
     }
 
     /**
@@ -135,7 +140,6 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
         }
         return s;
     }
-
 
     /**
      * Returns a fragment of the block value received from a starting index until the end of value

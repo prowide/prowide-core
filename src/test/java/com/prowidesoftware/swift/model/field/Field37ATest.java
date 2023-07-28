@@ -31,9 +31,7 @@ public class Field37ATest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("37A",
-                "1234//131201AFOO/ABC"
-        );
+        testSerializationImpl("37A", "1234//131201AFOO/ABC");
     }
 
     /**
@@ -97,5 +95,4 @@ public class Field37ATest extends AbstractFieldTest {
         assertEquals("FOO", f.getComponent4());
         assertEquals("ABC", f.getComponent5());
     }
-
 }

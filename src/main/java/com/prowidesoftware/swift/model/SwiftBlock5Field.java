@@ -22,11 +22,14 @@ package com.prowidesoftware.swift.model;
  * @since 8.0.2
  */
 public enum SwiftBlock5Field {
-    MAC("Message Authentication Code calculated based on the entire contents of the message using a pre-exchanged key and a secret algorithm."),
+    MAC(
+            "Message Authentication Code calculated based on the entire contents of the message using a pre-exchanged key and a secret algorithm."),
     CHK("Checksum calculated for all message types."),
     PDE("Possible Duplicate Emission added if user thinks the same message was sent previously."),
-    PDM("Possible Duplicate Message added to any output message being resent because a prior delivery may not be valid."),
-    DLM("Delayed Message added if the message has not been delivered within the expected minutes according to the message priority."),
+    PDM(
+            "Possible Duplicate Message added to any output message being resent because a prior delivery may not be valid."),
+    DLM(
+            "Delayed Message added if the message has not been delivered within the expected minutes according to the message priority."),
     MRF("The Message Reference specifies the reference of the original user message."),
     TNG("Test & Training Message, only in test and training mode"),
     SYS("System Originated Message added for system message or service message, cotaining the MIR of the request.");
@@ -40,5 +43,4 @@ public enum SwiftBlock5Field {
     public String description() {
         return this.description;
     }
-
 }

@@ -29,5 +29,4 @@ public class MT103_REMITTest {
         assertNotNull(m.getUETR());
         assertTrue(m.getSwiftMessage().isREMIT());
     }
-
 }

@@ -25,9 +25,7 @@ public class Field58DTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("58D",
-                "/00010001380002000114"
-        );
+        testSerializationImpl("58D", "/00010001380002000114");
     }
 
     @Test
@@ -136,5 +134,4 @@ public class Field58DTest extends AbstractFieldTest {
         assertNull(f.getDCMark());
         assertNull(f.getComponent3());
     }
-
 }

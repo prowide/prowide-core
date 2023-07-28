@@ -15,32 +15,21 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
-import java.io.Serializable;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-import java.util.Calendar;
-
-import com.prowidesoftware.swift.model.field.DateContainer;
-import com.prowidesoftware.swift.model.field.DateResolver;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * SWIFT MT Field 31R.
@@ -68,15 +57,15 @@ import com.google.gson.JsonParser;
 @Deprecated
 @ProwideDeprecated(phase2 = TargetYear.SRU2023)
 public class Field31R extends Field implements Serializable, DateContainer {
-	/**
-	 * Constant identifying the SRU to which this class belongs to.
-	 */
-	public static final int SRU = 2022;
+    /**
+     * Constant identifying the SRU to which this class belongs to.
+     */
+    public static final int SRU = 2022;
 
-	private static final long serialVersionUID = 1L;
-	/**
-	 * Constant with the field name 31R.
-	 */
+    private static final long serialVersionUID = 1L;
+    /**
+     * Constant with the field name 31R.
+     */
     public static final String NAME = "31R";
     /**
      * Same as NAME, intended to be clear when using static imports.
@@ -88,31 +77,31 @@ public class Field31R extends Field implements Serializable, DateContainer {
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String PARSER_PATTERN = "<DATE2>[/<DATE2>]";
+    public static final String PARSER_PATTERN = "<DATE2>[/<DATE2>]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String COMPONENTS_PATTERN = "EE";
+    public static final String COMPONENTS_PATTERN = "EE";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String TYPES_PATTERN = "EE";
+    public static final String TYPES_PATTERN = "EE";
 
-	/**
-	 * Component number for the Date 1 subfield.
-	 */
-	public static final Integer DATE_1 = 1;
+    /**
+     * Component number for the Date 1 subfield.
+     */
+    public static final Integer DATE_1 = 1;
 
-	/**
-	 * Component number for the Date 2 subfield.
-	 */
-	public static final Integer DATE_2 = 2;
+    /**
+     * Component number for the Date 2 subfield.
+     */
+    public static final Integer DATE_2 = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -141,7 +130,8 @@ public class Field31R extends Field implements Serializable, DateContainer {
             throw new IllegalArgumentException("tag cannot be null.");
         }
         if (!StringUtils.equals(tag.getName(), "31R")) {
-            throw new IllegalArgumentException("cannot create field 31R from tag "+tag.getName()+", tagname must match the name of the field.");
+            throw new IllegalArgumentException("cannot create field 31R from tag " + tag.getName()
+                    + ", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -177,7 +167,6 @@ public class Field31R extends Field implements Serializable, DateContainer {
     public static Tag emptyTag() {
         return new Tag(NAME, "");
     }
-
 
     /**
      * Parses the parameter value into the internal components structure.
@@ -223,16 +212,18 @@ public class Field31R extends Field implements Serializable, DateContainer {
             throw new IllegalArgumentException("invalid component number " + component + " for field 31R");
         }
         if (component == 1) {
-            //date: [YY]YYMMDD
-            java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+            // date: [YY]YYMMDD
+            java.text.DateFormat f =
+                    java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent1AsCalendar();
             if (cal != null) {
                 return f.format(cal.getTime());
             }
         }
         if (component == 2) {
-            //date: [YY]YYMMDD
-            java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+            // date: [YY]YYMMDD
+            java.text.DateFormat f =
+                    java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
             java.util.Calendar cal = getComponent2AsCalendar();
             if (cal != null) {
                 return f.format(cal.getTime());
@@ -514,7 +505,6 @@ public class Field31R extends Field implements Serializable, DateContainer {
         return setComponent2(component2);
     }
 
-
     /**
      * Returns all components that can be converted to a Calendar
      *
@@ -532,7 +522,6 @@ public class Field31R extends Field implements Serializable, DateContainer {
     public Calendar date() {
         return DateResolver.date(this);
     }
-
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
@@ -632,6 +621,4 @@ public class Field31R extends Field implements Serializable, DateContainer {
 
         return field;
     }
-
-
 }

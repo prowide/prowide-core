@@ -15,18 +15,16 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.model.*;
+import java.io.StringWriter;
+import java.io.Writer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.Diff;
-
-import java.io.StringWriter;
-import java.io.Writer;
 
 /**
  * XML writer tests
@@ -40,7 +38,8 @@ public class XMLWriterVisitorTest {
     private SwiftMessage msg;
 
     private void assertXmlEqual(String control, String test) {
-        Diff diff = DiffBuilder.compare(control).withTest(test).ignoreWhitespace().build();
+        Diff diff =
+                DiffBuilder.compare(control).withTest(test).ignoreWhitespace().build();
         assertFalse(diff.hasDifferences());
     }
 
@@ -49,7 +48,7 @@ public class XMLWriterVisitorTest {
         this.io = new StringWriter();
         this.visitor = new XMLWriterVisitor(this.io);
         this.msg = new SwiftMessage();
-        this.msg.clear();                    // some tests require that there are no extra blocks
+        this.msg.clear(); // some tests require that there are no extra blocks
     }
 
     @SuppressWarnings("unused")
@@ -92,15 +91,14 @@ public class XMLWriterVisitorTest {
 
     @Test
     public void testWithTags() {
-        String xml = "<message>" +
-                Constants.B1_DATA_XML +
-                "\n<block4>" +
-                "\n\t<tag>" +
-                "\n\t\t<name>t1</name>" +
-                "\n\t\t<value>v1</value>" +
-                "\n\t</tag>" +
-                "\n</block4>" +
-                "\n</message>";
+        String xml = "<message>" + Constants.B1_DATA_XML
+                + "\n<block4>"
+                + "\n\t<tag>"
+                + "\n\t\t<name>t1</name>"
+                + "\n\t\t<value>v1</value>"
+                + "\n\t</tag>"
+                + "\n</block4>"
+                + "\n</message>";
         msg.clear();
         SwiftBlock1 b1 = new SwiftBlock1();
         b1.setValue(Constants.B1_DATA);
@@ -121,10 +119,7 @@ public class XMLWriterVisitorTest {
         b2.setValue(Constants.B2_INPUT);
         msg.setBlock2(b2);
 
-        String xml = "<message>\n" +
-                Constants.B1_DATA_XML +
-                Constants.B2_INPUT_XML +
-                "</message>";
+        String xml = "<message>\n" + Constants.B1_DATA_XML + Constants.B2_INPUT_XML + "</message>";
         assertXmlEqual(xml, getResult("testBug1539324_1"));
     }
 
@@ -143,18 +138,17 @@ public class XMLWriterVisitorTest {
         msg.setBlock4(new SwiftBlock4());
         msg.setBlock5(new SwiftBlock5());
 
-        String xml = "<message>\n" +
-                Constants.B1_DATA_XML +
-                "<block2></block2>\n" +
-                "<block3>" +
-                "\n\t<tag>" +
-                "\n\t\t<name>n</name>" +
-                "\n\t\t<value>v</value>" +
-                "\n\t</tag>" +
-                "\n</block3>" +
-                "\n<block4>\n</block4>" +
-                "\n<block5>\n</block5>" +
-                "\n</message>";
+        String xml = "<message>\n" + Constants.B1_DATA_XML
+                + "<block2></block2>\n"
+                + "<block3>"
+                + "\n\t<tag>"
+                + "\n\t\t<name>n</name>"
+                + "\n\t\t<value>v</value>"
+                + "\n\t</tag>"
+                + "\n</block3>"
+                + "\n<block4>\n</block4>"
+                + "\n<block5>\n</block5>"
+                + "\n</message>";
         assertXmlEqual(xml, getResult("testBug1539324_2"));
     }
 
@@ -166,18 +160,17 @@ public class XMLWriterVisitorTest {
         b4.append(new Tag("t2", "v2"));
         msg.setBlock4(b4);
 
-        String xml = "<message>\n" +
-                "<block4>" +
-                "\n\t<tag>" +
-                "\n\t\t<name>t1</name>" +
-                "\n\t\t<value>v1</value>" +
-                "\n\t</tag>" +
-                "\n\t<tag>" +
-                "\n\t\t<name>t2</name>" +
-                "\n\t\t<value>v2</value>" +
-                "\n\t</tag>" +
-                "\n</block4>" +
-                "</message>";
+        String xml = "<message>\n" + "<block4>"
+                + "\n\t<tag>"
+                + "\n\t\t<name>t1</name>"
+                + "\n\t\t<value>v1</value>"
+                + "\n\t</tag>"
+                + "\n\t<tag>"
+                + "\n\t\t<name>t2</name>"
+                + "\n\t\t<value>v2</value>"
+                + "\n\t</tag>"
+                + "\n</block4>"
+                + "</message>";
         assertXmlEqual(xml, getResult("testBug1540294_1"));
     }
 
@@ -192,10 +185,7 @@ public class XMLWriterVisitorTest {
         b2.setValue(Constants.B2_OUTPUT);
         msg.setBlock2(b2);
 
-        String xml = "<message>\n" +
-                Constants.B1_DATA_XML +
-                Constants.B2_OUTPUT_XML +
-                "</message>";
+        String xml = "<message>\n" + Constants.B1_DATA_XML + Constants.B2_OUTPUT_XML + "</message>";
         assertXmlEqual(xml, getResult("testBlock2Output_1"));
     }
 
@@ -207,9 +197,7 @@ public class XMLWriterVisitorTest {
         b2.setValue(Constants.B2_OUTPUT);
         msg.setBlock2(b2);
 
-        String xml = "<message>\n" +
-                Constants.B2_OUTPUT_XML +
-                "</message>";
+        String xml = "<message>\n" + Constants.B2_OUTPUT_XML + "</message>";
         String got = getResult("testBlock2Output");
         assertXmlEqual(xml, got);
     }
@@ -221,14 +209,13 @@ public class XMLWriterVisitorTest {
         b4.append(new Tag("26C", "/LONDON/UNFOOGOLD"));
         msg.setBlock4(b4);
 
-        String xml = "<message>\n" +
-                "<block4>" +
-                "\n\t<tag>" +
-                "\n\t\t<name>26C</name>" +
-                "\n\t\t<value>/LONDON/UNFOOGOLD</value>" +
-                "\n\t</tag>" +
-                "\n</block4>" +
-                "</message>";
+        String xml = "<message>\n" + "<block4>"
+                + "\n\t<tag>"
+                + "\n\t\t<name>26C</name>"
+                + "\n\t\t<value>/LONDON/UNFOOGOLD</value>"
+                + "\n\t</tag>"
+                + "\n</block4>"
+                + "</message>";
         assertXmlEqual(xml, getResult("testTagSerialization"));
     }
 
@@ -238,31 +225,29 @@ public class XMLWriterVisitorTest {
         msg.setBlock4(new SwiftBlock4());
 
         msg.getBlock4().append(new Tag("26C", "/LONDON/UNFOOGOLD"));
-        //workaround
-        //mt.getSwiftMessage().getBlock4().append(new Tag("26C", "/LONDON/UNFOOGOLD"));
+        // workaround
+        // mt.getSwiftMessage().getBlock4().append(new Tag("26C", "/LONDON/UNFOOGOLD"));
 
-        String xml = "<message>\n" +
-                "<block4>" +
-                "\n\t<tag>" +
-                "\n\t\t<name>26C</name>" +
-                "\n\t\t<value>/LONDON/UNFOOGOLD</value>" +
-                "\n\t</tag>" +
-                "\n</block4>" +
-                "</message>";
+        String xml = "<message>\n" + "<block4>"
+                + "\n\t<tag>"
+                + "\n\t\t<name>26C</name>"
+                + "\n\t\t<value>/LONDON/UNFOOGOLD</value>"
+                + "\n\t</tag>"
+                + "\n</block4>"
+                + "</message>";
         assertXmlEqual(xml, getResult("testFieldSerialization"));
     }
 
     @Test
     public void testWithTags_asField() {
-        String xml = "<message>" +
-                Constants.B1_DATA_XML +
-                "\n<block4>" +
-                "\n\t<field>" +
-                "\n\t\t<name>16R</name>" +
-                "\n\t\t<component number=\"1\">TEST</component>" +
-                "\n\t</field>" +
-                "\n</block4>" +
-                "\n</message>";
+        String xml = "<message>" + Constants.B1_DATA_XML
+                + "\n<block4>"
+                + "\n\t<field>"
+                + "\n\t\t<name>16R</name>"
+                + "\n\t\t<component number=\"1\">TEST</component>"
+                + "\n\t</field>"
+                + "\n</block4>"
+                + "\n</message>";
         msg.clear();
         SwiftBlock1 b1 = new SwiftBlock1();
         b1.setValue(Constants.B1_DATA);
@@ -273,5 +258,4 @@ public class XMLWriterVisitorTest {
         this.visitor = new XMLWriterVisitor(this.io, true);
         assertXmlEqual(xml, getResult("testWithTags"));
     }
-
 }

@@ -24,8 +24,6 @@ import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT540;
 import com.prowidesoftware.swift.model.mt.mt6xx.MT670;
 import com.prowidesoftware.swift.utils.Lib;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -33,14 +31,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
 public class SwiftMessageUtilsTest {
 
     @Test
     public void testSplitByField15() {
         final SwiftMessage sm = new SwiftMessage(true);
-        sm.getBlock4().append(Field15B.emptyTag())
-                .append(Field32A.emptyTag());
+        sm.getBlock4().append(Field15B.emptyTag()).append(Field32A.emptyTag());
         final Map<String, SwiftTagListBlock> map = SwiftMessageUtils.splitByField15(sm);
         assertNotNull(map);
         assertTrue(map.containsKey("B"));
@@ -55,10 +53,8 @@ public class SwiftMessageUtilsTest {
         sm.getBlock4()
                 .append(Field15A.emptyTag())
                 .append(Field33A.emptyTag())
-
                 .append(Field15B.emptyTag())
                 .append(Field32A.emptyTag())
-
                 .append(Field15B.emptyTag())
                 .append(Field32B.emptyTag())
                 .append(Field32B.emptyTag());
@@ -82,12 +78,9 @@ public class SwiftMessageUtilsTest {
         sm.getBlock4()
                 .append(Field15A.emptyTag())
                 .append(Field33A.emptyTag())
-
                 .append(Field15B.emptyTag())
-
                 .append(Field15C.emptyTag())
                 .append(Field32A.emptyTag())
-
                 .append(Field15B.emptyTag())
                 .append(Field32B.emptyTag())
                 .append(Field32B.emptyTag());
@@ -111,12 +104,9 @@ public class SwiftMessageUtilsTest {
         sm.getBlock4()
                 .append(Field15A.emptyTag())
                 .append(Field33A.emptyTag())
-
                 .append(Field15B.emptyTag())
-
                 .append(Field15C.emptyTag())
                 .append(Field32A.emptyTag())
-
                 .append(Field15B.emptyTag())
                 .append(Field32B.emptyTag())
                 .append(Field32B.emptyTag());
@@ -128,7 +118,6 @@ public class SwiftMessageUtilsTest {
         final SwiftTagListBlock list0 = Bs.get(0);
         assertNotNull(list0);
         assertEquals(2, list0.size());
-
     }
 
     @Test
@@ -137,16 +126,12 @@ public class SwiftMessageUtilsTest {
         sm.getBlock4()
                 .append(Field15A.emptyTag())
                 .append(Field33A.emptyTag())
-
                 .append(Field15B.emptyTag())
-
                 .append(Field15C.emptyTag())
                 .append(Field32A.emptyTag())
-
                 .append(Field15B.emptyTag())
                 .append(Field32B.emptyTag())
                 .append(Field32B.emptyTag())
-
                 .append(Field15D.emptyTag())
                 .append(Field34B.emptyTag())
                 .append(Field34B.emptyTag())
@@ -160,13 +145,12 @@ public class SwiftMessageUtilsTest {
         final SwiftTagListBlock list0 = Bs.get(0);
         assertNotNull(list0);
         assertEquals(5, list0.size());
-
     }
 
     @Test
     public void testCreateSubsequenceWithParentsB_502() {
-        SwiftTagListBlock o = SwiftMessageUtils.createSubsequenceWithParents(MT502.class, "B",
-                Field13A.emptyTag(), Field13B.emptyTag(), Field13C.emptyTag());
+        SwiftTagListBlock o = SwiftMessageUtils.createSubsequenceWithParents(
+                MT502.class, "B", Field13A.emptyTag(), Field13B.emptyTag(), Field13C.emptyTag());
         assertEquals(5, o.size());
     }
 
@@ -211,11 +195,7 @@ public class SwiftMessageUtilsTest {
     public void testRemoveInnerSequences() {
         MT535 m = new MT535()
                 .append(MT535.SequenceA.newInstance(
-                        MT535.SequenceA1.newInstance(
-                                Field13C.tag("foo1")
-                        ).append(Field13C.tag("foo2"))
-                        )
-                );
+                        MT535.SequenceA1.newInstance(Field13C.tag("foo1")).append(Field13C.tag("foo2"))));
         SwiftTagListBlock sublist = SwiftMessageUtils.removeInnerSequences(m.getSequenceA());
 
         assertEquals(3, sublist.size());
@@ -224,22 +204,22 @@ public class SwiftMessageUtilsTest {
 
     @Test
     public void testCurrencyAmountFromMessage() throws IOException {
-        final String fin = "{1:F01CCRTIT2TX36A0000000000}{2:I101PPABPLPKXXXXN}{3:{108:YSGU193268223XXX}}{4:\n" +
-                ":20:4C2W0S0V8AM6X7OH\n" +
-                ":28D:00001/00001\n" +
-                ":50H:/PL66160011270003012399999999\n" +
-                "FOO\n" +
-                ":30:131119\n" +
-                ":21:ZCAR1HI1HF3STLJO\n" +
-                ":32B:PLN2044,10\n" +
-                ":59:/PL74175000090000000001905201\n" +
-                "POLONIA FOO HOTEL\n" +
-                "AL FOOLIMSKIE 45\n" +
-                "00-692\n" +
-                "PL WARSAWA\n" +
-                ":70:1/34530/13\n" +
-                ":71A:SHA\n" +
-                "-}";
+        final String fin = "{1:F01CCRTIT2TX36A0000000000}{2:I101PPABPLPKXXXXN}{3:{108:YSGU193268223XXX}}{4:\n"
+                + ":20:4C2W0S0V8AM6X7OH\n"
+                + ":28D:00001/00001\n"
+                + ":50H:/PL66160011270003012399999999\n"
+                + "FOO\n"
+                + ":30:131119\n"
+                + ":21:ZCAR1HI1HF3STLJO\n"
+                + ":32B:PLN2044,10\n"
+                + ":59:/PL74175000090000000001905201\n"
+                + "POLONIA FOO HOTEL\n"
+                + "AL FOOLIMSKIE 45\n"
+                + "00-692\n"
+                + "PL WARSAWA\n"
+                + ":70:1/34530/13\n"
+                + ":71A:SHA\n"
+                + "-}";
         Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
         assertNotNull(money);
         assertEquals("PLN", money.getCurrency());
@@ -248,9 +228,10 @@ public class SwiftMessageUtilsTest {
 
     @Test
     public void testCurrencyAmountFromSystemMessage() throws IOException {
-        final String fin = "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}{4:\n" +
-                ":20:WITHMUR\n" +
-                "-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}";
+        final String fin =
+                "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}{4:\n"
+                        + ":20:WITHMUR\n"
+                        + "-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}";
         Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
         assertNull(money);
     }
@@ -258,39 +239,39 @@ public class SwiftMessageUtilsTest {
     @Test
     public void testValueDate() throws IOException, ParseException {
 
-        //MT305
+        // MT305
         SwiftMessage sm = SwiftMessage.parse(Lib.readResource("MT305.fin"));
         Calendar date = SwiftMessageUtils.valueDate(sm);
         SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
         assertEquals(date.getTime(), sdf.parse("201230"));
 
-        //MT306
+        // MT306
         sm = SwiftMessage.parse(Lib.readResource("MT306.fin"));
         date = SwiftMessageUtils.valueDate(sm);
         sdf = new SimpleDateFormat("yyyyMMdd");
         assertEquals(date.getTime(), sdf.parse("20080609"));
 
-        //MT340
+        // MT340
         sm = SwiftMessage.parse(Lib.readResource("MT340.fin"));
         date = SwiftMessageUtils.valueDate(sm);
         assertEquals(date.getTime(), sdf.parse("20000715"));
 
-        //MT341
+        // MT341
         sm = SwiftMessage.parse(Lib.readResource("MT341.fin"));
         date = SwiftMessageUtils.valueDate(sm);
         assertEquals(date.getTime(), sdf.parse("20000715"));
 
-        //MT360
+        // MT360
         sm = SwiftMessage.parse(Lib.readResource("MT360.fin"));
         date = SwiftMessageUtils.valueDate(sm);
         assertEquals(date.getTime(), sdf.parse("20070209"));
 
-        //MT361
+        // MT361
         sm = SwiftMessage.parse(Lib.readResource("MT361.fin"));
         date = SwiftMessageUtils.valueDate(sm);
         assertEquals(date.getTime(), sdf.parse("19941214"));
 
-        //MT362
+        // MT362
         sm = SwiftMessage.parse(Lib.readResource("MT362.fin"));
         date = SwiftMessageUtils.valueDate(sm);
         assertEquals(date.getTime(), sdf.parse("20090106"));
@@ -321,5 +302,4 @@ public class SwiftMessageUtilsTest {
         mt3.append(Field20C.tag(":SEME//REF3"));
         assertEquals("REF3", SwiftMessageUtils.reference(mt3.getSwiftMessage()));
     }
-
 }

@@ -75,7 +75,7 @@ public class BICTest {
         assertEquals("IIII", b.getInstitution());
         assertEquals("CC", b.getCountry());
         assertEquals("LL", b.getLocation());
-        assertEquals("BBBBB", b.getBranch()); //one B is dropped as LT identifier
+        assertEquals("BBBBB", b.getBranch()); // one B is dropped as LT identifier
     }
 
     @Test
@@ -144,7 +144,7 @@ public class BICTest {
 
     @Test
     public void testBIC11() {
-        assertEquals("FOOOOOHUXXX", new BIC("FOOOOOHUAXXX").getBic11()); //LT is picked up as part of the branch
+        assertEquals("FOOOOOHUXXX", new BIC("FOOOOOHUAXXX").getBic11()); // LT is picked up as part of the branch
         assertEquals("FOOOOOHUXXX", new BIC("FOOOOOHUXXX").getBic11());
         assertEquals("FOOOOOHUXXX", new BIC("FOOOOOHU").getBic11());
         assertNull(new BIC("FOO").getBic8());
@@ -166,5 +166,4 @@ public class BICTest {
         assertEquals("BACOARB0XXX", new BIC("BACOARB1XXX").asTestBic().getBic11());
         assertEquals("BACOARB00BE", new BIC("BACOARB10BE").asTestBic().getBic11());
     }
-
 }

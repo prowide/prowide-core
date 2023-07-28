@@ -140,5 +140,4 @@ public class LogicalTerminalAddressTest {
         assertEquals("BCD", lt.getBranch());
         assertEquals("FOOOOOHUBCD", lt.getBic11());
     }
-
 }

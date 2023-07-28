@@ -26,7 +26,7 @@ public class Issue74 {
     @Test
     public void testField48() {
 
-        Tag swift48Tag  = new Tag("48:30/BUT WITHIN L/C VALIDITY");
+        Tag swift48Tag = new Tag("48:30/BUT WITHIN L/C VALIDITY");
 
         String formattedValue = swift48Tag.getValue();
 
@@ -39,5 +39,4 @@ public class Issue74 {
         System.out.println("swift48Tag.asField.getValue: " + formattedValue);
         assert "30/BUT WITHIN L/C VALIDITY".equals(formattedValue);
     }
-
 }

@@ -25,10 +25,7 @@ public class Field50KTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("50K",
-                "/acc",
-                "/acc\nbbb\nccc\nddd\neee"
-        );
+        testSerializationImpl("50K", "/acc", "/acc\nbbb\nccc\nddd\neee");
     }
 
     @Test
@@ -65,5 +62,4 @@ public class Field50KTest extends AbstractFieldTest {
         assertEquals("ddd", f.getComponent4());
         assertEquals("eee", f.getComponent5());
     }
-
 }

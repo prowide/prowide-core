@@ -26,11 +26,10 @@ import org.junit.jupiter.api.Test;
 
 public class MT028Test {
 
-    private final String sample1 = "{1:F01VNDZBET2AXXX0000000000}{2:I028DYDYXXXXXXXXN}{4:"
-            + "{103:TGT}{243:1}}";
+    private final String sample1 = "{1:F01VNDZBET2AXXX0000000000}{2:I028DYDYXXXXXXXXN}{4:" + "{103:TGT}{243:1}}";
 
-    private final String sample2 = "{1:F01VNDZBET2AXXX0000000000}{2:I028DYDYXXXXXXXXN}{4:"
-            + "{103:TGT}{243:2}{177:0106051000}}";
+    private final String sample2 =
+            "{1:F01VNDZBET2AXXX0000000000}{2:I028DYDYXXXXXXXXN}{4:" + "{103:TGT}{243:2}{177:0106051000}}";
 
     private final String sample3 = "{1:F01VNDZBET2AXXX0000000000}{2:I028DYDYXXXXXXXXN}{4:"
             + "{103:TGT}{243:1}{177:0106052200}{177:0106062359}}";

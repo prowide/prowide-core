@@ -25,9 +25,7 @@ public class Field77HTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("77H",
-                "ISDA/20200310//2021"
-        );
+        testSerializationImpl("77H", "ISDA/20200310//2021");
     }
 
     @Test
@@ -63,5 +61,4 @@ public class Field77HTest extends AbstractFieldTest {
         assertEquals("20200310", f.getComponent2());
         assertEquals("2021", f.getComponent3());
     }
-
 }

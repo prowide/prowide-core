@@ -18,10 +18,9 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.Locale;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.Locale;
 
 /**
  * Test for fields getValueDisplay API.
@@ -65,10 +64,7 @@ public class GetValueDisplayTest {
      */
     @Test
     public void test50F() {
-        final String value = "/1234567890\r\n" +
-                "1/JOHN SMITH\r\n" +
-                "2/HIGH STREET 6, APT 6C\r\n" +
-                "3/BE/BRUSSELS";
+        final String value = "/1234567890\r\n" + "1/JOHN SMITH\r\n" + "2/HIGH STREET 6, APT 6C\r\n" + "3/BE/BRUSSELS";
         Field50F f = new Field50F(value);
         assertEquals("1234567890", f.getValueDisplay(1, Locale.US));
     }
@@ -77,12 +73,11 @@ public class GetValueDisplayTest {
      * Huge number formatting
      */
     @Disabled("produces heap exception because number is interpreted as exponential value")
-    //TODO fix getValueDisplay when expression is parsed into exponential value
+    // TODO fix getValueDisplay when expression is parsed into exponential value
     @Test
     public void test95L() {
         Field95L f = new Field95L(":ISSU//300300E1007142000089");
         f.setComponent3("300300E1007142000089");
         assertNotNull(f.getValueDisplay(Locale.getDefault()));
     }
-
 }

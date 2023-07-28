@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import com.prowidesoftware.swift.model.*;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
@@ -64,13 +63,11 @@ public abstract class BaseMessageTestcase {
             int c;
             do {
                 c = is.read();
-                if (c != '$' && c != -1)
-                    msgBuf.append((char) c);
+                if (c != '$' && c != -1) msgBuf.append((char) c);
             } while (c != '$' && c != -1);
 
             // check for end of input
-            if (msgBuf.length() > 0)
-                s = msgBuf.toString();
+            if (msgBuf.length() > 0) s = msgBuf.toString();
         } catch (IOException e) {
             fail("Reading input file: FAILED [" + e.getMessage() + "]");
         }
@@ -129,5 +126,4 @@ public abstract class BaseMessageTestcase {
         assertNotNull(o.getBlock4(), "Block 4 is null");
         assertNotNull(o.getBlock5(), "Block 5 is null");
     }
-
 }

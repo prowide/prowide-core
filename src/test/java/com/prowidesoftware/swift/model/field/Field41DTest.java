@@ -32,10 +32,7 @@ public class Field41DTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("41D",
-                "ANY BANK\r\nBY NEGOTIATION",
-                "A\r\nB\r\nC\r\nD\r\nE"
-        );
+        testSerializationImpl("41D", "ANY BANK\r\nBY NEGOTIATION", "A\r\nB\r\nC\r\nD\r\nE");
     }
 
     @Test
@@ -111,5 +108,4 @@ public class Field41DTest extends AbstractFieldTest {
         Field41D f = new Field41D(s);
         assertFalse(StringUtils.isEmpty(f.getComponent5()));
     }
-
 }

@@ -18,9 +18,8 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for fields getLine API.
@@ -38,7 +37,7 @@ public class GetLineTest {
         assertEquals("BBBB", f.getLine(3));
         assertEquals("CCCC", f.getLine(4));
         assertEquals("DDDD", f.getLine(5));
-        //remaining lines are ignored by copy constructor
+        // remaining lines are ignored by copy constructor
         assertNull(f.getLine(6));
         assertNull(f.getLine(7));
         assertNull(f.getLine(8));
@@ -245,11 +244,7 @@ public class GetLineTest {
     @Test
     public void testField50H() {
         final Field50H f = new Field50H(
-                "/8754219990\n" +
-                        "MAG-NUM INC.\n" +
-                        "GENERAL A/C\n" +
-                        "BANHOFFSTRASSE 30\n" +
-                        "ZURICH, SWITZERLAND");
+                "/8754219990\n" + "MAG-NUM INC.\n" + "GENERAL A/C\n" + "BANHOFFSTRASSE 30\n" + "ZURICH, SWITZERLAND");
         assertEquals("/8754219990", f.getLine(1));
         assertEquals("/8754219990", f.getLine(1, 0));
         assertEquals("MAG-NUM INC.", f.getLine(2));

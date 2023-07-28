@@ -29,8 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 public class CurrencyValidator implements ConstraintValidator<CurrencyConstraint, String> {
 
     @Override
-    public void initialize(CurrencyConstraint currency) {
-    }
+    public void initialize(CurrencyConstraint currency) {}
 
     @Override
     public boolean isValid(String currency, ConstraintValidatorContext context) {
@@ -39,5 +38,4 @@ public class CurrencyValidator implements ConstraintValidator<CurrencyConstraint
         }
         return IsoUtils.getInstance().isValidISOCurrency(currency);
     }
-
 }

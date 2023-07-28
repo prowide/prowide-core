@@ -16,10 +16,9 @@
 package com.prowidesoftware.swift.utils;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Comparator;
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Compares the messages based on the MUR.
@@ -49,5 +48,4 @@ public class MurMessageComparator implements Comparator<SwiftMessage> {
         Objects.requireNonNull(right);
         return StringUtils.equals(left.getMUR(), right.getMUR()) ? 0 : 1;
     }
-
 }

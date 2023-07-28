@@ -33,5 +33,4 @@ public class AckMessageComparator extends SwiftMessageComparator {
         super.ignoreHeaderSession = true;
         super.ignoreBlock2OptionalFields = true;
     }
-
 }

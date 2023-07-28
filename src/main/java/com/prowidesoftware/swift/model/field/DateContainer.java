@@ -34,5 +34,4 @@ public interface DateContainer extends PatternContainer {
      * @return found dates or empty list
      */
     List<Calendar> dates();
-
 }

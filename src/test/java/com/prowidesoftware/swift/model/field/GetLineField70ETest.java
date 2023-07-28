@@ -17,10 +17,9 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 public class GetLineField70ETest {
 
@@ -28,9 +27,7 @@ public class GetLineField70ETest {
 
     @BeforeEach
     public void setUp() {
-        this.field70E = new Field70E(":PACO//The quick brown fox \n" +
-                "jumps over the\n" +
-                " the lazy dog");
+        this.field70E = new Field70E(":PACO//The quick brown fox \n" + "jumps over the\n" + " the lazy dog");
     }
 
     @Test
@@ -64,5 +61,4 @@ public class GetLineField70ETest {
         assertEquals("jumps over the", field70E.getLine(2, Field70E.NARRATIVE));
         assertEquals(" the lazy dog", field70E.getLine(3, Field70E.NARRATIVE));
     }
-
 }

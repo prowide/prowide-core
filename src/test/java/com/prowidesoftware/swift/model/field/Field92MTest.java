@@ -26,9 +26,7 @@ public class Field92MTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("92M",
-                ":DDDD//EEEEEEEE123/FFFF"
-        );
+        testSerializationImpl("92M", ":DDDD//EEEEEEEE123/FFFF");
     }
 
     @Test
@@ -48,7 +46,7 @@ public class Field92MTest extends AbstractFieldTest {
         assertTrue(StringUtils.isBlank(f.getComponent4()));
 
         f = new Field92M(":/");
-        //assertTrue(StringUtils.isBlank(f.getComponent1()));
+        // assertTrue(StringUtils.isBlank(f.getComponent1()));
         assertTrue(StringUtils.isBlank(f.getComponent2()));
         assertTrue(StringUtils.isBlank(f.getComponent3()));
         assertTrue(StringUtils.isBlank(f.getComponent4()));
@@ -95,5 +93,4 @@ public class Field92MTest extends AbstractFieldTest {
         assertEquals("123", f.getComponent3());
         assertEquals("FFFF", f.getComponent4());
     }
-
 }

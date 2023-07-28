@@ -18,14 +18,12 @@ package com.prowidesoftware.swift.model;
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.CurrencyContainer;
 import com.prowidesoftware.swift.model.field.Field;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Objects;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * A simple POJO to represent money, an amount associated with a currency.
@@ -197,7 +195,8 @@ public final class Money implements Serializable {
             } else if (StringUtils.equals(currency, money.getCurrency())) {
                 total = total.add(money.getAmount());
             } else {
-                log.warning("cannot sum amounts with different currencies, expected " + currency + " and found " + money.getCurrency() + " in field " + field.getName() + ":" + field.getValue());
+                log.warning("cannot sum amounts with different currencies, expected " + currency + " and found "
+                        + money.getCurrency() + " in field " + field.getName() + ":" + field.getValue());
                 return null;
             }
         }
@@ -215,5 +214,4 @@ public final class Money implements Serializable {
     public BigDecimal getAmount() {
         return amount;
     }
-
 }

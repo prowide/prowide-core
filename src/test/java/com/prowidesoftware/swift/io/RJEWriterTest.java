@@ -19,10 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.io.StringWriter;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for the {@link RJEWriter} class
@@ -48,7 +47,12 @@ public class RJEWriterTest {
         MT103 mt = new MT103();
         w.write(mt);
         w.write(mt);
-        assertEquals(s.toString(), mt.message() + FINWriterVisitor.SWIFT_EOL + RJEReader.SPLITCHAR + FINWriterVisitor.SWIFT_EOL + mt.message());
+        assertEquals(
+                s.toString(),
+                mt.message()
+                        + FINWriterVisitor.SWIFT_EOL
+                        + RJEReader.SPLITCHAR
+                        + FINWriterVisitor.SWIFT_EOL
+                        + mt.message());
     }
-
 }

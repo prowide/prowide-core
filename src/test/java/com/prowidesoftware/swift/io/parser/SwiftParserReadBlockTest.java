@@ -20,11 +20,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.prowidesoftware.swift.Constants;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.SwiftMessage;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.io.StringReader;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for readUntilBlockEnds and related methods in the parser implementation
@@ -65,23 +64,23 @@ public class SwiftParserReadBlockTest {
 
     @Test
     public void testReadBlock4() throws IOException {
-        parser.setData("4:" + FINWriterVisitor.SWIFT_EOL +
-                ":16R:GENL" + FINWriterVisitor.SWIFT_EOL +
-                ":23G:NEWM" + FINWriterVisitor.SWIFT_EOL +
-                ":98A::PREP//20050711" + FINWriterVisitor.SWIFT_EOL +
-                ":16S:GENL" + FINWriterVisitor.SWIFT_EOL +
-                ":16S:AMT" + FINWriterVisitor.SWIFT_EOL +
-                ":16S:SETDET" + FINWriterVisitor.SWIFT_EOL +
-                "-}");
+        parser.setData("4:" + FINWriterVisitor.SWIFT_EOL + ":16R:GENL"
+                + FINWriterVisitor.SWIFT_EOL + ":23G:NEWM"
+                + FINWriterVisitor.SWIFT_EOL + ":98A::PREP//20050711"
+                + FINWriterVisitor.SWIFT_EOL + ":16S:GENL"
+                + FINWriterVisitor.SWIFT_EOL + ":16S:AMT"
+                + FINWriterVisitor.SWIFT_EOL + ":16S:SETDET"
+                + FINWriterVisitor.SWIFT_EOL + "-}");
         final String m = parser.readUntilBlockEnds();
-        assertEquals("4:\r\n" +
-                ":16R:GENL\r\n" +
-                ":23G:NEWM\r\n" +
-                ":98A::PREP//20050711\r\n" +
-                ":16S:GENL\r\n" +
-                ":16S:AMT\r\n" +
-                ":16S:SETDET\r\n" +
-                "-", m);
+        assertEquals(
+                "4:\r\n" + ":16R:GENL\r\n"
+                        + ":23G:NEWM\r\n"
+                        + ":98A::PREP//20050711\r\n"
+                        + ":16S:GENL\r\n"
+                        + ":16S:AMT\r\n"
+                        + ":16S:SETDET\r\n"
+                        + "-",
+                m);
     }
 
     @Test
@@ -151,44 +150,44 @@ public class SwiftParserReadBlockTest {
 
     @Test
     public void testReadBlock4WithStartingBraquetInFieldValue() throws IOException {
-        parser.setData("4:" + FINWriterVisitor.SWIFT_EOL +
-                ":16R:GENL" + FINWriterVisitor.SWIFT_EOL +
-                ":23G:NEWM" + FINWriterVisitor.SWIFT_EOL +
-                ":98A::PREP//20050711" + FINWriterVisitor.SWIFT_EOL +
-                ":16S:GE{NL" + FINWriterVisitor.SWIFT_EOL +
-                ":16S:AMT" + FINWriterVisitor.SWIFT_EOL +
-                ":16S:SETDET" + FINWriterVisitor.SWIFT_EOL +
-                "-}");
+        parser.setData("4:" + FINWriterVisitor.SWIFT_EOL + ":16R:GENL"
+                + FINWriterVisitor.SWIFT_EOL + ":23G:NEWM"
+                + FINWriterVisitor.SWIFT_EOL + ":98A::PREP//20050711"
+                + FINWriterVisitor.SWIFT_EOL + ":16S:GE{NL"
+                + FINWriterVisitor.SWIFT_EOL + ":16S:AMT"
+                + FINWriterVisitor.SWIFT_EOL + ":16S:SETDET"
+                + FINWriterVisitor.SWIFT_EOL + "-}");
         final String m = parser.readUntilBlockEnds();
-        assertEquals("4:\r\n" +
-                ":16R:GENL\r\n" +
-                ":23G:NEWM\r\n" +
-                ":98A::PREP//20050711\r\n" +
-                ":16S:GE{NL\r\n" +
-                ":16S:AMT\r\n" +
-                ":16S:SETDET\r\n" +
-                "-", m);
+        assertEquals(
+                "4:\r\n" + ":16R:GENL\r\n"
+                        + ":23G:NEWM\r\n"
+                        + ":98A::PREP//20050711\r\n"
+                        + ":16S:GE{NL\r\n"
+                        + ":16S:AMT\r\n"
+                        + ":16S:SETDET\r\n"
+                        + "-",
+                m);
     }
 
     @Test
     public void testReadBlock4WithClosingBraquetInFieldValue() throws IOException {
-        parser.setData("4:" + FINWriterVisitor.SWIFT_EOL +
-                ":16R:GENL" + FINWriterVisitor.SWIFT_EOL +
-                ":23G:NEWM" + FINWriterVisitor.SWIFT_EOL +
-                ":98A::PREP//20050711" + FINWriterVisitor.SWIFT_EOL +
-                ":16S:GE}NL" + FINWriterVisitor.SWIFT_EOL +
-                ":16S:AMT" + FINWriterVisitor.SWIFT_EOL +
-                ":16S:SETDET" + FINWriterVisitor.SWIFT_EOL +
-                "-}");
+        parser.setData("4:" + FINWriterVisitor.SWIFT_EOL + ":16R:GENL"
+                + FINWriterVisitor.SWIFT_EOL + ":23G:NEWM"
+                + FINWriterVisitor.SWIFT_EOL + ":98A::PREP//20050711"
+                + FINWriterVisitor.SWIFT_EOL + ":16S:GE}NL"
+                + FINWriterVisitor.SWIFT_EOL + ":16S:AMT"
+                + FINWriterVisitor.SWIFT_EOL + ":16S:SETDET"
+                + FINWriterVisitor.SWIFT_EOL + "-}");
         final String m = parser.readUntilBlockEnds();
-        assertEquals("4:\r\n" +
-                ":16R:GENL\r\n" +
-                ":23G:NEWM\r\n" +
-                ":98A::PREP//20050711\r\n" +
-                ":16S:GE}NL\r\n" +
-                ":16S:AMT\r\n" +
-                ":16S:SETDET\r\n" +
-                "-", m);
+        assertEquals(
+                "4:\r\n" + ":16R:GENL\r\n"
+                        + ":23G:NEWM\r\n"
+                        + ":98A::PREP//20050711\r\n"
+                        + ":16S:GE}NL\r\n"
+                        + ":16S:AMT\r\n"
+                        + ":16S:SETDET\r\n"
+                        + "-",
+                m);
     }
 
     @Test
@@ -221,9 +220,7 @@ public class SwiftParserReadBlockTest {
 
     @Test
     public void testOneTagSimilarToBug1540294_1() throws IOException {
-        final String fin = "{4:\r\n" +
-                ":t2:v2\r\n" +
-                "-}";
+        final String fin = "{4:\r\n" + ":t2:v2\r\n" + "-}";
         final SwiftParser p = new SwiftParser(new StringReader(fin));
         final SwiftMessage msg = p.message();
         assertNotNull(msg.getBlock4());
@@ -241,5 +238,4 @@ public class SwiftParserReadBlockTest {
         assertEquals("32D7EA50", msg.getBlock5().getTagValue("MAC"));
         assertEquals("AB1538FB729E", msg.getBlock5().getTagValue("CHK"));
     }
-
 }

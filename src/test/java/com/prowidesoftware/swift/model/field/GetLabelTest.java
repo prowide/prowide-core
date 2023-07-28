@@ -46,6 +46,4 @@ public class GetLabelTest {
         assertEquals("Name And Address", f.getComponentLabel(2));
         assertEquals("Name And Address 2", f.getComponentLabel(3));
     }
-
-
 }

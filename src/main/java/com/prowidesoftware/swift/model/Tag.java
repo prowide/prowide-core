@@ -16,11 +16,9 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.model.field.Field;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.io.Serializable;
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Representation of an MT field in a message as a plain key/value tuple.
@@ -49,8 +47,7 @@ public class Tag implements Serializable {
     /**
      * Default constructor.
      */
-    public Tag() {
-    }
+    public Tag() {}
 
     /**
      * Copy constructor.
@@ -99,8 +96,7 @@ public class Tag implements Serializable {
                 this.value = inner.substring(i + 1);
             }
         } else {
-            if (inner.length() > 0)
-                this.value = inner;
+            if (inner.length() > 0) this.value = inner;
         }
     }
 
@@ -220,8 +216,7 @@ public class Tag implements Serializable {
      * verifies that the unparsed text list exists
      */
     protected void unparsedTextVerify() {
-        if (this.unparsedTexts == null)
-            this.unparsedTexts = new UnparsedTextList();
+        if (this.unparsedTexts == null) this.unparsedTexts = new UnparsedTextList();
     }
 
     /**
@@ -254,8 +249,7 @@ public class Tag implements Serializable {
     public Integer getUnparsedTextsSize() {
 
         // no list => size is zero...
-        if (this.unparsedTexts == null)
-            return 0;
+        if (this.unparsedTexts == null) return 0;
         return this.unparsedTexts.size();
     }
 
@@ -335,9 +329,9 @@ public class Tag implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tag tag = (Tag) o;
-        return Objects.equals(name, tag.name) &&
-                Objects.equals(value, tag.value) &&
-                Objects.equals(unparsedTexts, tag.unparsedTexts);
+        return Objects.equals(name, tag.name)
+                && Objects.equals(value, tag.value)
+                && Objects.equals(unparsedTexts, tag.unparsedTexts);
     }
 
     @Override
@@ -354,20 +348,14 @@ public class Tag implements Serializable {
      * @since 7.9.3
      */
     public boolean equalsIgnoreCR(Tag other) {
-        if (other == null)
-            return false;
-        if (this == other)
-            return true;
+        if (other == null) return false;
+        if (this == other) return true;
         if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
+            if (other.name != null) return false;
+        } else if (!name.equals(other.name)) return false;
         if (unparsedTexts == null) {
-            if (other.unparsedTexts != null)
-                return false;
-        } else if (!unparsedTexts.equals(other.unparsedTexts))
-            return false;
+            if (other.unparsedTexts != null) return false;
+        } else if (!unparsedTexts.equals(other.unparsedTexts)) return false;
         if (value == null) {
             return other.value == null;
         } else return StringUtils.replace(value, "\r", "").equals(StringUtils.replace(other.value, "\r", ""));
@@ -494,5 +482,4 @@ public class Tag implements Serializable {
     public Field asField() {
         return Field.getField(this);
     }
-
 }

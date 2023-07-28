@@ -18,19 +18,15 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Calendar;
+import org.junit.jupiter.api.Test;
 
 public class Field69DTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("69D",
-                ":ABC//20111224131415/DEF",
-                ":PRIC//20210326091730/ONGO"
-        );
+        testSerializationImpl("69D", ":ABC//20111224131415/DEF", ":PRIC//20210326091730/ONGO");
     }
 
     @Test
@@ -106,6 +102,4 @@ public class Field69DTest extends AbstractFieldTest {
         assertEquals("091730", f.getComponent3());
         assertEquals("ONGO", f.getComponent4());
     }
-
 }
-

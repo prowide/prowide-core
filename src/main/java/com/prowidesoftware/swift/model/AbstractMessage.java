@@ -27,8 +27,7 @@ public abstract class AbstractMessage {
     /**
      * Protected constructor necessary for jaxb in MX.
      */
-    protected AbstractMessage() {
-    }
+    protected AbstractMessage() {}
 
     /**
      * Constructor for an {@link MessageStandardType#MT} or {@link MessageStandardType#MX} message.

@@ -21,9 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.model.SwiftBlock1;
 import com.prowidesoftware.swift.model.SwiftMessage;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
 /**
  * Swift message comparator for tests.
@@ -89,7 +88,6 @@ public class AckMessageComparatorTest {
         b2.setServiceId("99");
         b2.setSessionNumber("190");
 
-
         AckMessageComparator comp = new AckMessageComparator();
         assertTrue(comp.compareB1(b1, b2));
 
@@ -116,17 +114,15 @@ public class AckMessageComparatorTest {
 
     @Test
     public void testCompare2() throws IOException {
-        String fin1 = "{1:F01AAAADEF0AXXX0023000109}{2:I999BBBBGB20AXXXN}{4:\r\n" +
-                ":20:1234\r\n" +
-                ":21:REPORT NAN\r\n" +
-                ":79:TEST 13 NOV 2020\r\n" +
-                "-}{5:{CHK:201113000184}{TNG:}}";
+        String fin1 = "{1:F01AAAADEF0AXXX0023000109}{2:I999BBBBGB20AXXXN}{4:\r\n" + ":20:1234\r\n"
+                + ":21:REPORT NAN\r\n"
+                + ":79:TEST 13 NOV 2020\r\n"
+                + "-}{5:{CHK:201113000184}{TNG:}}";
 
-        String fin2 = "{1:F01AAAADEF0BXXX0000000000}{2:I999BBBBGB20XXXXN}{4:\r\n" +
-                ":20:1234\r\n" +
-                ":21:REPORT NAN\r\n" +
-                ":79:TEST 13 NOV 2020\r\n" +
-                "-}";
+        String fin2 = "{1:F01AAAADEF0BXXX0000000000}{2:I999BBBBGB20XXXXN}{4:\r\n" + ":20:1234\r\n"
+                + ":21:REPORT NAN\r\n"
+                + ":79:TEST 13 NOV 2020\r\n"
+                + "-}";
 
         AckMessageComparator comp = new AckMessageComparator();
         SwiftMessage msg1 = SwiftMessage.parse(fin1);
@@ -139,17 +135,15 @@ public class AckMessageComparatorTest {
 
     @Test
     public void testCompare3() throws IOException {
-        String fin1 = "{1:F01AAAADEFXAXXX0023000109}{2:I999BBBBGB22XXXXN}{4:\r\n" +
-                ":20:1234\r\n" +
-                ":21:REPORT NAN\r\n" +
-                ":79:TEST 13 NOV 2020\r\n" +
-                "-}{5:{CHK:201113000184}{TNG:}}";
+        String fin1 = "{1:F01AAAADEFXAXXX0023000109}{2:I999BBBBGB22XXXXN}{4:\r\n" + ":20:1234\r\n"
+                + ":21:REPORT NAN\r\n"
+                + ":79:TEST 13 NOV 2020\r\n"
+                + "-}{5:{CHK:201113000184}{TNG:}}";
 
-        String fin2 = "{1:F01AAAADEF0AXXX0023000109}{2:I999BBBBGB20XXXXN}{4:\r\n" +
-                ":20:1234\r\n" +
-                ":21:REPORT NAN\r\n" +
-                ":79:TEST 13 NOV 2020\r\n" +
-                "-}";
+        String fin2 = "{1:F01AAAADEF0AXXX0023000109}{2:I999BBBBGB20XXXXN}{4:\r\n" + ":20:1234\r\n"
+                + ":21:REPORT NAN\r\n"
+                + ":79:TEST 13 NOV 2020\r\n"
+                + "-}";
 
         AckMessageComparator comp = new AckMessageComparator();
         SwiftMessage msg1 = SwiftMessage.parse(fin1);
@@ -159,5 +153,4 @@ public class AckMessageComparatorTest {
         comp.setIgnoreLocationFlag(true);
         assertEquals(0, comp.compare(msg1, msg2));
     }
-
 }

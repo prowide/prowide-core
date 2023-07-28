@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.prowidesoftware.swift.model.field.*;
 import org.junit.jupiter.api.Test;
 
-
 public class MT010Test {
 
     private final String sample = "{1:F01VNDZBET2AXXX0000000000}{2:I010DYDYXXXXXXXXN}{4:"

@@ -18,49 +18,43 @@ package com.prowidesoftware.swift.model.mt.mt3xx;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class MT300Test {
 
     @Test
     public void test1() {
-        String fin = "{1:F01ABCDSKB0AXXX1024007372}{2:O3001920140829ABCDHUH0AXXX21390371231409011800N}{4:\n" +
-                ":15A:\n" +
-                ":20:712443\n" +
-                ":22A:NEWT\n" +
-                ":22C:FOO12345678\n" +
-                ":17U:N\n" +
-                ":82A:ABCDHUH0XXX\n" +
-                ":87A:ABCDSKB0XXX\n" +
-                ":15B:\n" +
-                ":30T:20140829\n" +
-                ":30V:20140902\n" +
-                ":36:232,1\n" +
-                ":32B:USD200000,\n" +
-                ":53A:BOFAUS30XXX\n" +
-                ":57A:BOFAUS30XXX\n" +
-                ":33B:HUF46420000,\n" +
-                ":53A:ABCDHUH0XXX\n" +
-                ":57A:/1178200781106853\n" +
-                "ABCDHUH0XXX\n" +
-                ":15E:\n" +
-
-                ":22L:ESMA1\n" +
-                ":22M:W3MOO00A18\n" +
-                ":22N:00OTP00KS00FWD000000000000000123\n" +
-
-                ":22L:ESMA2\n" +
-
-                ":22L:ESMA3\n" +
-                ":22M:W3MOO00A19\n" +
-                ":22N:00OTP00KS00FWD000000000000000234\n" +
-                ":22M:W3MOO00A20\n" +
-                ":22N:00OTP00KS00FWD000000000000000345\n" +
-
-                ":22L:ESMA4\n" +
-                "-}";
+        String fin = "{1:F01ABCDSKB0AXXX1024007372}{2:O3001920140829ABCDHUH0AXXX21390371231409011800N}{4:\n" + ":15A:\n"
+                + ":20:712443\n"
+                + ":22A:NEWT\n"
+                + ":22C:FOO12345678\n"
+                + ":17U:N\n"
+                + ":82A:ABCDHUH0XXX\n"
+                + ":87A:ABCDSKB0XXX\n"
+                + ":15B:\n"
+                + ":30T:20140829\n"
+                + ":30V:20140902\n"
+                + ":36:232,1\n"
+                + ":32B:USD200000,\n"
+                + ":53A:BOFAUS30XXX\n"
+                + ":57A:BOFAUS30XXX\n"
+                + ":33B:HUF46420000,\n"
+                + ":53A:ABCDHUH0XXX\n"
+                + ":57A:/1178200781106853\n"
+                + "ABCDHUH0XXX\n"
+                + ":15E:\n"
+                + ":22L:ESMA1\n"
+                + ":22M:W3MOO00A18\n"
+                + ":22N:00OTP00KS00FWD000000000000000123\n"
+                + ":22L:ESMA2\n"
+                + ":22L:ESMA3\n"
+                + ":22M:W3MOO00A19\n"
+                + ":22N:00OTP00KS00FWD000000000000000234\n"
+                + ":22M:W3MOO00A20\n"
+                + ":22N:00OTP00KS00FWD000000000000000345\n"
+                + ":22L:ESMA4\n"
+                + "-}";
         MT300 m = MT300.parse(fin);
 
         // test getter for E1
@@ -96,5 +90,4 @@ public class MT300Test {
         assertEquals("W3MOO00A20", found.get(2).getTag(3).getValue());
         assertEquals("00OTP00KS00FWD000000000000000345", found.get(2).getTag(4).getValue());
     }
-
 }

@@ -37,15 +37,13 @@ public class Field257Test extends AbstractFieldTest {
      * FOOBARABCDEF210117111122223333
      */
     private static final String EXAMPLE1_FIELD_257 = "FOOBARXXXXXX731019121213139999";
+
     private static final String EXAMPLE2_FIELD_257 = "FOOBARABCDEF210117111122223333";
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("257",
-                EXAMPLE1_FIELD_257,
-                EXAMPLE2_FIELD_257
-        );
+        testSerializationImpl("257", EXAMPLE1_FIELD_257, EXAMPLE2_FIELD_257);
     }
 
     @Test
@@ -85,7 +83,6 @@ public class Field257Test extends AbstractFieldTest {
         assertEquals("1212", f.getComponent3());
         assertEquals("1313", f.getComponent4());
         assertNull(f.getComponent5());
-
     }
 
     @Test
@@ -114,5 +111,4 @@ public class Field257Test extends AbstractFieldTest {
         f = new Field257(v);
         assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
-
 }

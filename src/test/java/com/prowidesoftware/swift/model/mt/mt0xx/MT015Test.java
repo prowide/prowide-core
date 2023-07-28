@@ -24,8 +24,7 @@ import org.junit.jupiter.api.Test;
 
 public class MT015Test {
 
-    private final String sample = "{1:F01VNDZBET2AXXX0000000000}{2:I015DYDYXXXXXXXXN}{4:"
-            + "{405:V22}}";
+    private final String sample = "{1:F01VNDZBET2AXXX0000000000}{2:I015DYDYXXXXXXXXN}{4:" + "{405:V22}}";
 
     @Test
     public void test_parse() {

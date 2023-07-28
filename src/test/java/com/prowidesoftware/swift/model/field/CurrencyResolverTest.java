@@ -19,11 +19,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class CurrencyResolverTest {
 
@@ -141,12 +140,9 @@ public class CurrencyResolverTest {
         }
 
         @Override
-        public void initializeCurrencies(String cur) {
-        }
+        public void initializeCurrencies(String cur) {}
 
         @Override
-        public void initializeCurrencies(Currency cur) {
-        }
+        public void initializeCurrencies(Currency cur) {}
     }
-
 }

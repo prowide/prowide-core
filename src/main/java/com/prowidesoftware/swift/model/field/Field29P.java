@@ -15,32 +15,21 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
-import java.io.Serializable;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-import com.prowidesoftware.swift.model.BIC;
-
-import com.prowidesoftware.swift.model.field.BICContainer;
-import com.prowidesoftware.swift.model.field.BICResolver;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.BIC;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * SWIFT MT Field 29P.
@@ -67,15 +56,15 @@ import com.google.gson.JsonParser;
 @Deprecated
 @ProwideDeprecated(phase2 = TargetYear.SRU2023)
 public class Field29P extends Field implements Serializable, BICContainer {
-	/**
-	 * Constant identifying the SRU to which this class belongs to.
-	 */
-	public static final int SRU = 2022;
+    /**
+     * Constant identifying the SRU to which this class belongs to.
+     */
+    public static final int SRU = 2022;
 
-	private static final long serialVersionUID = 1L;
-	/**
-	 * Constant with the field name 29P.
-	 */
+    private static final long serialVersionUID = 1L;
+    /**
+     * Constant with the field name 29P.
+     */
     public static final String NAME = "29P";
     /**
      * Same as NAME, intended to be clear when using static imports.
@@ -87,31 +76,31 @@ public class Field29P extends Field implements Serializable, BICContainer {
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String PARSER_PATTERN = "S";
+    public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String COMPONENTS_PATTERN = "B";
+    public static final String COMPONENTS_PATTERN = "B";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
-	public static final String TYPES_PATTERN = "B";
+    public static final String TYPES_PATTERN = "B";
 
-	/**
-	 * Component number for the IdentifierCode subfield.
-	 */
-	public static final Integer IDENTIFIERCODE = 1;
+    /**
+     * Component number for the IdentifierCode subfield.
+     */
+    public static final Integer IDENTIFIERCODE = 1;
 
-	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's IdentifierCode Component number.
-	 * @see #IDENTIFIERCODE
-	 */
+    /**
+     * Alternative (<em>DEPRECATED</em>) constant name for field's IdentifierCode Component number.
+     * @see #IDENTIFIERCODE
+     */
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     public static final Integer BIC = 1;
@@ -143,7 +132,8 @@ public class Field29P extends Field implements Serializable, BICContainer {
             throw new IllegalArgumentException("tag cannot be null.");
         }
         if (!StringUtils.equals(tag.getName(), "29P")) {
-            throw new IllegalArgumentException("cannot create field 29P from tag "+tag.getName()+", tagname must match the name of the field.");
+            throw new IllegalArgumentException("cannot create field 29P from tag " + tag.getName()
+                    + ", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -179,7 +169,6 @@ public class Field29P extends Field implements Serializable, BICContainer {
     public static Tag emptyTag() {
         return new Tag(NAME, "");
     }
-
 
     /**
      * Parses the parameter value into the internal components structure.
@@ -221,7 +210,7 @@ public class Field29P extends Field implements Serializable, BICContainer {
             throw new IllegalArgumentException("invalid component number " + component + " for field 29P");
         }
         if (component == 1) {
-            //default format (as is)
+            // default format (as is)
             return getComponent(1);
         }
         return null;
@@ -468,15 +457,13 @@ public class Field29P extends Field implements Serializable, BICContainer {
         return setIdentifierCode(component1);
     }
 
-
     public List<BIC> bics() {
         return BICResolver.bics(this);
     }
 
-    public List<String> bicStrings () {
+    public List<String> bicStrings() {
         return BICResolver.bicStrings(this);
     }
-
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
@@ -576,6 +563,4 @@ public class Field29P extends Field implements Serializable, BICContainer {
 
         return field;
     }
-
-
 }

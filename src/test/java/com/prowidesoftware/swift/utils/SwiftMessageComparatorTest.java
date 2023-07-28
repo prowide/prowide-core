@@ -22,9 +22,8 @@ import com.prowidesoftware.swift.model.SwiftBlock1;
 import com.prowidesoftware.swift.model.SwiftBlock2Input;
 import com.prowidesoftware.swift.model.SwiftBlock2Output;
 import com.prowidesoftware.swift.model.SwiftMessage;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
 /**
  * Swift message comparator for tests.
@@ -273,21 +272,24 @@ public class SwiftMessageComparatorTest {
     public void testB3() throws IOException {
         SwiftMessageComparator comp = new SwiftMessageComparator();
 
-        SwiftMessage msg1 = SwiftMessage.parse("{1:F01BICFOOYYAXXX8667486276}{2:O1031610051014IRVTUS3NBXXX63382244920510142210N}{3:{108:FDF0510141142100}{121:8579f4a4-a547-463e-ae63-e7c6620d59b4}}{4:\n" +
-                ":20:FDF0510141142100\n" +
-                ":72:/ACC/ 00940060752415000231\n" +
-                "-}");
+        SwiftMessage msg1 = SwiftMessage.parse(
+                "{1:F01BICFOOYYAXXX8667486276}{2:O1031610051014IRVTUS3NBXXX63382244920510142210N}{3:{108:FDF0510141142100}{121:8579f4a4-a547-463e-ae63-e7c6620d59b4}}{4:\n"
+                        + ":20:FDF0510141142100\n"
+                        + ":72:/ACC/ 00940060752415000231\n"
+                        + "-}");
         assertTrue(comp.compare(msg1, msg1) == 0);
 
-        SwiftMessage msg2 = SwiftMessage.parse("{1:F01BICFOOYYAXXX8667486276}{2:O1031610051014IRVTUS3NBXXX63382244920510142210N}{3:{108:FDF0510141142100}}{4:\n" +
-            ":20:FDF0510141142100\n" +
-            ":72:/ACC/ 00940060752415000231\n" +
-            "-}");
+        SwiftMessage msg2 = SwiftMessage.parse(
+                "{1:F01BICFOOYYAXXX8667486276}{2:O1031610051014IRVTUS3NBXXX63382244920510142210N}{3:{108:FDF0510141142100}}{4:\n"
+                        + ":20:FDF0510141142100\n"
+                        + ":72:/ACC/ 00940060752415000231\n"
+                        + "-}");
 
-        SwiftMessage msg3 = SwiftMessage.parse("{1:F01BICFOOYYAXXX8667486276}{2:O1031610051014IRVTUS3NBXXX63382244920510142210N}{3:{121:8579f4a4-a547-463e-ae63-e7c6620d59b4}}{4:\n" +
-                ":20:FDF0510141142100\n" +
-                ":72:/ACC/ 00940060752415000231\n" +
-                "-}");
+        SwiftMessage msg3 = SwiftMessage.parse(
+                "{1:F01BICFOOYYAXXX8667486276}{2:O1031610051014IRVTUS3NBXXX63382244920510142210N}{3:{121:8579f4a4-a547-463e-ae63-e7c6620d59b4}}{4:\n"
+                        + ":20:FDF0510141142100\n"
+                        + ":72:/ACC/ 00940060752415000231\n"
+                        + "-}");
 
         assertTrue(comp.compare(msg2, msg3) != 0);
 

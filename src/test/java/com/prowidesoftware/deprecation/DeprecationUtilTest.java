@@ -47,7 +47,10 @@ public class DeprecationUtilTest {
      * Log and delay switched off
      */
     @Test
-    @DisabledForJreRange(min = JRE.JAVA_17, disabledReason="Consider rewrite or removal. Due to JPMS this case requires: --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED")
+    @DisabledForJreRange(
+            min = JRE.JAVA_17,
+            disabledReason =
+                    "Consider rewrite or removal. Due to JPMS this case requires: --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED")
     public void testPhase2_off() {
         DeprecationUtils.setEnv(EnvironmentVariableKey.NOLOG, EnvironmentVariableKey.NODELAY);
         long t0 = System.currentTimeMillis();
@@ -62,19 +65,23 @@ public class DeprecationUtilTest {
      */
     @Test
     public void testPhase3_default() {
-        Assertions.assertThrows(UnsupportedOperationException.class, () -> DeprecationUtils.phase3(this.getClass(), null, "phase 3 message"));
+        Assertions.assertThrows(
+                UnsupportedOperationException.class,
+                () -> DeprecationUtils.phase3(this.getClass(), null, "phase 3 message"));
     }
-
 
     /**
      * Exception switched off
      */
     @Test
-    @DisabledForJreRange(min = JRE.JAVA_17, disabledReason="Consider rewrite or removal. Due to JPMS this case requires: --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED")
+    @DisabledForJreRange(
+            min = JRE.JAVA_17,
+            disabledReason =
+                    "Consider rewrite or removal. Due to JPMS this case requires: --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED")
     public void testPhase3_off() {
-        DeprecationUtils.setEnv(EnvironmentVariableKey.NOLOG, EnvironmentVariableKey.NODELAY, EnvironmentVariableKey.NOEXCEPTION);
+        DeprecationUtils.setEnv(
+                EnvironmentVariableKey.NOLOG, EnvironmentVariableKey.NODELAY, EnvironmentVariableKey.NOEXCEPTION);
         DeprecationUtils.phase3(this.getClass(), null, "phase 3 message");
         DeprecationUtils.clearEnv();
     }
-
 }

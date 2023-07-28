@@ -15,9 +15,7 @@
  */
 package com.prowidesoftware.swift.model.mt;
 
-
 import com.prowidesoftware.swift.model.*;
-
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -68,5 +66,4 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
         }
         return null;
     }
-
 }

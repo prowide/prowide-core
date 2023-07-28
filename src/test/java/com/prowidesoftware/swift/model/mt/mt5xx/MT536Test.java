@@ -43,5 +43,4 @@ public class MT536Test {
         m.append(MT536.SequenceB1a1.newInstance());
         assertTrue(m.getSequenceA1List().isEmpty());
     }
-
 }

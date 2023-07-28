@@ -43,7 +43,9 @@ public class SwiftBlock3Test {
         assertEquals(current, b.getTagByName("108").getValue());
         Thread.sleep(500);
         b.generateMUR(true);
-        assertFalse(StringUtils.equals(current, b.getTagByName("108").getValue()), "expected a different MUR after generateMUR(true)");
+        assertFalse(
+                StringUtils.equals(current, b.getTagByName("108").getValue()),
+                "expected a different MUR after generateMUR(true)");
     }
 
     @Test
@@ -70,5 +72,4 @@ public class SwiftBlock3Test {
         assertEquals(4, b.getTags().size());
         assertEquals("finalValue106", b.getTagValue(Field106.NAME));
     }
-
 }

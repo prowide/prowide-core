@@ -15,7 +15,6 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-
 /**
  * Interface to mark generic fields and add method related to DSS and qualifiers.
  *

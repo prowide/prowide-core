@@ -19,11 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import org.junit.jupiter.api.Test;
 
 public class SwiftBlock5Test {
 
@@ -81,5 +79,4 @@ public class SwiftBlock5Test {
         assertTrue(b5.getTag(SwiftBlock5Field.PDE).isPresent());
         assertEquals("", b5.getTag(SwiftBlock5Field.PDE).get().getValue());
     }
-
 }

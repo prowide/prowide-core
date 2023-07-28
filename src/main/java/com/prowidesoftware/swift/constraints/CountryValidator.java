@@ -29,8 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 public class CountryValidator implements ConstraintValidator<CountryConstraint, String> {
 
     @Override
-    public void initialize(CountryConstraint country) {
-    }
+    public void initialize(CountryConstraint country) {}
 
     @Override
     public boolean isValid(String country, ConstraintValidatorContext context) {
@@ -39,5 +38,4 @@ public class CountryValidator implements ConstraintValidator<CountryConstraint, 
         }
         return IsoUtils.getInstance().isValidISOCountry(country);
     }
-
 }

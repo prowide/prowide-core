@@ -20,16 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-
 public class Field22CTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("22C",
-                "AAAABB122C4CCCCDD",
-                "CNFM2L0007GEBABB"
-        );
+        testSerializationImpl("22C", "AAAABB122C4CCCCDD", "CNFM2L0007GEBABB");
     }
 
     @Test
@@ -85,5 +81,4 @@ public class Field22CTest extends AbstractFieldTest {
         assertEquals("CCCC", f.getComponent4());
         assertEquals("DD", f.getComponent5());
     }
-
 }

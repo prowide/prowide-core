@@ -25,9 +25,7 @@ public class Field13DTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("13D",
-                "aaaaaabbbbcddddx"
-        );
+        testSerializationImpl("13D", "aaaaaabbbbcddddx");
     }
 
     @Test
@@ -142,5 +140,4 @@ public class Field13DTest extends AbstractFieldTest {
         assertEquals("c", f.getComponent3());
         assertEquals("ddddx", f.getComponent4());
     }
-
 }

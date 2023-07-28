@@ -72,5 +72,4 @@ public enum MtCategory {
     public final String number() {
         return this.name().substring(1);
     }
-
 }

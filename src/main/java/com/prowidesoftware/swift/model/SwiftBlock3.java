@@ -18,13 +18,12 @@ package com.prowidesoftware.swift.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.prowidesoftware.swift.model.field.Field108;
-import org.apache.commons.lang3.Validate;
-
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for SWIFT <b>User Header Block (block 3)</b>.
@@ -34,13 +33,13 @@ import java.util.Objects;
  */
 public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
     private static final long serialVersionUID = 4377884587811023149L;
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftBlock3.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftBlock3.class.getName());
 
     /**
      * Default constructor
      */
-    public SwiftBlock3() {
-    }
+    public SwiftBlock3() {}
 
     /**
      * Constructor with tag initialization
@@ -134,7 +133,8 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
      * @since 7.8.8
      */
     public void generateMUR(boolean overwriteIfExist) {
-        final String MUR = new SimpleDateFormat("yyMMddHHmmssSSSS").format(Calendar.getInstance().getTime());
+        final String MUR = new SimpleDateFormat("yyMMddHHmmssSSSS")
+                .format(Calendar.getInstance().getTime());
         Tag t = getTagByName("108");
         if (t == null) {
             builder().setField108(new Field108(MUR));
@@ -151,5 +151,4 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
     public SwiftBlock3Builder builder() {
         return new SwiftBlock3Builder(this);
     }
-
 }

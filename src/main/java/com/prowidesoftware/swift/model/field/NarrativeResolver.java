@@ -16,13 +16,12 @@
 package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.utils.IsoUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-import org.apache.commons.lang3.tuple.Triple;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.apache.commons.lang3.tuple.Triple;
 
 /**
  * Implementation for {@link StructuredNarrativeField}
@@ -30,7 +29,8 @@ import java.util.stream.Collectors;
  * @since 9.0.1
  */
 public class NarrativeResolver {
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(NarrativeResolver.class.getName());
+    private static final java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(NarrativeResolver.class.getName());
 
     private static final int CODEWORDTYPE_UCASE = 1;
     private static final int CODEWORDTYPE_UCASE_NUMBER = 2;
@@ -55,7 +55,7 @@ public class NarrativeResolver {
             case Field71D.NAME:
             case Field73.NAME:
             case Field71B.NAME:
-            case "71E":    // SCORE field
+            case "71E": // SCORE field
                 return parseFormat3(f);
             case Field77B.NAME:
                 return parseFormat4(f);
@@ -83,9 +83,14 @@ public class NarrativeResolver {
         return new Narrative();
     }
 
-    private static Narrative parseFormat(Field f, int codewordMaxSize, int codewordType, boolean supportsCountry,
-                                         boolean supportsCurrency, boolean supportsSupplement,
-                                         boolean additionalNarrativesStartWithDoubleSlash) {
+    private static Narrative parseFormat(
+            Field f,
+            int codewordMaxSize,
+            int codewordType,
+            boolean supportsCountry,
+            boolean supportsCurrency,
+            boolean supportsSupplement,
+            boolean additionalNarrativesStartWithDoubleSlash) {
 
         // create an empty narrative, get the value and check there's something to do
         Narrative narrative = new Narrative();
@@ -109,7 +114,7 @@ public class NarrativeResolver {
             if (valueLine.charAt(0) == '/') {
                 String text;
                 if (valueLine.length() > 1 && valueLine.charAt(1) == '/') {
-                    //line starts with '//'
+                    // line starts with '//'
                     unstructuredSection = false;
                     if (additionalNarrativesStartWithDoubleSlash) {
                         // continuation of current narrative, remove '//'
@@ -120,8 +125,7 @@ public class NarrativeResolver {
                         } else if (StringUtils.isNotEmpty(valueLine)) {
                             structured.addNarrativeFragment(valueLine);
                         }
-                    } else
-                        structured.addNarrativeFragment(valueLine);
+                    } else structured.addNarrativeFragment(valueLine);
                 } else {
                     // new codeword
                     String codeword = StringUtils.substringBetween(valueLine, "/", "/");
@@ -141,13 +145,14 @@ public class NarrativeResolver {
                         }
 
                         String textWithoutBankCode = text;
-                        if (text.length() > 1 && Character.isUpperCase(text.charAt(0)) && (text.charAt(1) == '/')){
+                        if (text.length() > 1 && Character.isUpperCase(text.charAt(0)) && (text.charAt(1) == '/')) {
                             textWithoutBankCode = text.substring(2);
-                            structured.setBankCode(text.substring(0,1));
+                            structured.setBankCode(text.substring(0, 1));
                         }
 
                         if (supportsCurrency && isCurrencyAndAmount(textWithoutBankCode)) {
-                            Triple<String, BigDecimal, String> tripleValue = getCurrencyAmountAndNarrative(textWithoutBankCode);
+                            Triple<String, BigDecimal, String> tripleValue =
+                                    getCurrencyAmountAndNarrative(textWithoutBankCode);
                             String currency = tripleValue.getLeft();
                             BigDecimal amount = tripleValue.getMiddle();
                             String narrativeFragment = tripleValue.getRight();
@@ -177,8 +182,7 @@ public class NarrativeResolver {
                 structured.addNarrativeFragment(valueLine);
                 unstructuredSection = false;
             }
-            if (unstructuredSection)
-                narrative.addUnstructuredFragment(valueLine);
+            if (unstructuredSection) narrative.addUnstructuredFragment(valueLine);
         }
 
         return narrative;
@@ -186,8 +190,7 @@ public class NarrativeResolver {
 
     static boolean isCurrencyAndAmount(String textWithoutBankCode) {
 
-        if (textWithoutBankCode.length() < 4)
-            return false;
+        if (textWithoutBankCode.length() < 4) return false;
 
         for (int i = 0; i < 3; i++) {
             if (!Character.isUpperCase(textWithoutBankCode.charAt(i))) {
@@ -204,16 +207,17 @@ public class NarrativeResolver {
                 .collect(Collectors.toList());
     }
 
-    //returns true if it's the first supplement added
-    private static boolean addNarrativeSupplement(boolean firstSupplementAdded, String line, StructuredNarrative structured) {
+    // returns true if it's the first supplement added
+    private static boolean addNarrativeSupplement(
+            boolean firstSupplementAdded, String line, StructuredNarrative structured) {
         if (!firstSupplementAdded) {
-            //narrative
+            // narrative
             String text = StringUtils.substringBefore(line, "/");
             if (StringUtils.isNotEmpty(text)) {
                 structured.addNarrativeFragment(text);
             }
 
-            //first supplement
+            // first supplement
             text = StringUtils.substringAfter(line, "/");
             if (StringUtils.isNotEmpty(text)) {
                 structured.addNarrativeSupplementFragment(text);
@@ -238,7 +242,8 @@ public class NarrativeResolver {
             return narrative;
         }
 
-        boolean structured = value.startsWith("/") && isCodewordValid(StringUtils.substringBefore(value.substring(1), "/"), CODEWORDTYPE_UCASE, -1);
+        boolean structured = value.startsWith("/")
+                && isCodewordValid(StringUtils.substringBefore(value.substring(1), "/"), CODEWORDTYPE_UCASE, -1);
 
         List<String> lines = notEmptyLines(value);
         if (structured) {
@@ -294,25 +299,20 @@ public class NarrativeResolver {
     }
 
     private static boolean isCodewordValid(String codeword, int codewordType, int codewordMaxSize) {
-        if (StringUtils.isBlank(codeword))
-            return false;
+        if (StringUtils.isBlank(codeword)) return false;
         codeword = StringUtils.trimToEmpty(codeword);
 
-        //Maxlength
-        if (codewordMaxSize > 0 && codeword.length() > codewordMaxSize)
-            return false;
+        // Maxlength
+        if (codewordMaxSize > 0 && codeword.length() > codewordMaxSize) return false;
 
-        //Type
+        // Type
         for (int i = 0; i < codeword.length(); i++) {
             char c = codeword.charAt(i);
-            if (!Character.isLetterOrDigit(c))
-                return false;
-            else if (Character.isLowerCase(c) && (codewordType == CODEWORDTYPE_UCASE || codewordType == CODEWORDTYPE_UCASE_NUMBER))
-                return false;
-            else if (Character.isLetter(c) && codewordType == CODEWORDTYPE_NUMBER)
-                return false;
-            else if (Character.isDigit(c) && codewordType == CODEWORDTYPE_UCASE)
-                return false;
+            if (!Character.isLetterOrDigit(c)) return false;
+            else if (Character.isLowerCase(c)
+                    && (codewordType == CODEWORDTYPE_UCASE || codewordType == CODEWORDTYPE_UCASE_NUMBER)) return false;
+            else if (Character.isLetter(c) && codewordType == CODEWORDTYPE_NUMBER) return false;
+            else if (Character.isDigit(c) && codewordType == CODEWORDTYPE_UCASE) return false;
         }
 
         return true;
@@ -320,8 +320,7 @@ public class NarrativeResolver {
 
     private static String getCountry(String text) {
         text = StringUtils.trimToEmpty(text);
-        if (!IsoUtils.getInstance().isValidISOCountry(text))
-            return null;
+        if (!IsoUtils.getInstance().isValidISOCountry(text)) return null;
         return text;
     }
 
@@ -335,31 +334,29 @@ public class NarrativeResolver {
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
             switch (section) {
-                case 1: //currency section
+                case 1: // currency section
                     if (Character.isDigit(c)) {
                         section = 2;
                         amount.append(c);
-                    } else
-                        currency.append(c);
+                    } else currency.append(c);
                     break;
-                case 2: //amount section
-                    if (Character.isDigit(c) || c == '.' || c == ',')
-                        amount.append(c == ',' ? '.' : c);
+                case 2: // amount section
+                    if (Character.isDigit(c) || c == '.' || c == ',') amount.append(c == ',' ? '.' : c);
                     else {
                         section = 3;
                         narrative.append(c);
                     }
                     break;
-                case 3: //narrative section
+                case 3: // narrative section
                     narrative.append(c);
                     break;
             }
         }
 
-        return new ImmutableTriple<>
-                (currency.length() == 0 ? null : currency.toString(),
-                        amount.length() == 0 ? null : new BigDecimal(amount.toString()),
-                        narrative.length() == 0 ? null : narrative.toString());
+        return new ImmutableTriple<>(
+                currency.length() == 0 ? null : currency.toString(),
+                amount.length() == 0 ? null : new BigDecimal(amount.toString()),
+                narrative.length() == 0 ? null : narrative.toString());
     }
 
     /**
@@ -430,7 +427,5 @@ public class NarrativeResolver {
      */
     public static Narrative parseFormat8(String value) {
         return parseFreeFormat(value);
-
     }
-
 }

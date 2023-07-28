@@ -47,5 +47,4 @@ public abstract class AbstractFieldTest {
      * components back into a plain string.
      */
     public abstract void testSerialization();
-
 }

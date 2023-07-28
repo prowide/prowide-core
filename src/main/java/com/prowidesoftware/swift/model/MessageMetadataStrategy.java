@@ -15,7 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -49,5 +48,4 @@ public interface MessageMetadataStrategy {
      * Extracts the message trade date (only meaningful for some types of messages)
      */
     Optional<Calendar> tradeDate(AbstractMessage message);
-
 }

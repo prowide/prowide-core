@@ -16,11 +16,9 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.io.ConversionService;
-import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.io.Serializable;
 import java.util.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * <p>List of unparsed texts for messages, blocks or tags.<br>
@@ -85,8 +83,7 @@ public class UnparsedTextList implements Serializable {
     /**
      * Default Constructor
      */
-    public UnparsedTextList() {
-    }
+    public UnparsedTextList() {}
 
     /**
      * Constructor from a collection of texts
@@ -109,7 +106,7 @@ public class UnparsedTextList implements Serializable {
      * @param text the text to analyze
      * @return true if the text is likely to be a SWIFT message
      */
-    static public Boolean isMessage(final String text) {
+    public static Boolean isMessage(final String text) {
         // sanity check and evaluation
         return text != null && text.contains("{1:");
     }

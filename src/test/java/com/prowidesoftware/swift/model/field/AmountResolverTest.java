@@ -18,10 +18,9 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class AmountResolverTest {
 
@@ -47,7 +46,6 @@ public class AmountResolverTest {
 
         f = new Field32B("USD10,1");
         assertEquals(new BigDecimal("10.1"), AmountResolver.amount(f));
-
     }
 
     @Test
@@ -67,5 +65,4 @@ public class AmountResolverTest {
         assertEquals(new BigDecimal("23456.78"), amounts.get(1));
         assertEquals(new BigDecimal("1234.56"), _90F.amount());
     }
-
 }

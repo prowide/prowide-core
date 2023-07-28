@@ -25,11 +25,7 @@ public class Field54BTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("54B",
-                "/00010001380002000114",
-                "/D/1234/56",
-                "/D\nabcd"
-        );
+        testSerializationImpl("54B", "/00010001380002000114", "/D/1234/56", "/D\nabcd");
     }
 
     @Test
@@ -97,5 +93,4 @@ public class Field54BTest extends AbstractFieldTest {
         assertNull(f.getDCMark());
         assertNull(f.getComponent3());
     }
-
 }

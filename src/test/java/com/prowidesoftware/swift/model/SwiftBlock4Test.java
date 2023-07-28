@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
  */
 public class SwiftBlock4Test {
 
-    final private SwiftMessageComparator comp = new SwiftMessageComparator();
+    private final SwiftMessageComparator comp = new SwiftMessageComparator();
 
     /**
      * Null and Empty blocks
@@ -185,5 +185,4 @@ public class SwiftBlock4Test {
         assertEquals(b.getTag(12), clean.getTag(9));
         assertEquals(b.getTag(13), clean.getTag(10));
     }
-
 }

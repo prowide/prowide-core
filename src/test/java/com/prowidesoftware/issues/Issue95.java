@@ -24,5 +24,4 @@ public class Issue95 {
             return super.getValue() + "FOO";
         }
     }
-
 }

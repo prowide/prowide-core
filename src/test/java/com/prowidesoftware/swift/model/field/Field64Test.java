@@ -25,10 +25,7 @@ public class Field64Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("64",
-                "090822EUR1234,56",
-                "D090822EUR1234,56"
-        );
+        testSerializationImpl("64", "090822EUR1234,56", "D090822EUR1234,56");
     }
 
     @Test
@@ -53,5 +50,4 @@ public class Field64Test extends AbstractFieldTest {
         assertEquals("EUR", f.getComponent3());
         assertEquals("1234,56", f.getComponent4());
     }
-
 }

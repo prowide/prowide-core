@@ -17,10 +17,9 @@ package com.prowidesoftware.swift.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class ResolverUtilsTest {
 
@@ -45,5 +44,4 @@ class ResolverUtilsTest {
         assertEquals(1, o.size());
         assertEquals("c2", o.get(0));
     }
-
 }

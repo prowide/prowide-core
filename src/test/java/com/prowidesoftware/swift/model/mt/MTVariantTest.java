@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-
 public class MTVariantTest {
 
     @Test
@@ -58,5 +57,4 @@ public class MTVariantTest {
         assertEquals(MTVariant.ISLFIN, MTVariant.extract("202_ISLFIN").get());
         assertEquals(MTVariant.ISLFIN, MTVariant.extract("fin.202.ISLFIN").get());
     }
-
 }

@@ -38,14 +38,10 @@ public class SwiftValueBlockTest {
     static class TestValueBlock extends SwiftValueBlock {
 
         @Override
-        protected void setBlockNumber(Integer blockNumber) {
-
-        }
+        protected void setBlockNumber(Integer blockNumber) {}
 
         @Override
-        protected void setBlockName(String blockName) {
-
-        }
+        protected void setBlockName(String blockName) {}
 
         @Override
         public Integer getNumber() {
@@ -57,5 +53,4 @@ public class SwiftValueBlockTest {
             return null;
         }
     }
-
 }

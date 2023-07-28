@@ -25,9 +25,7 @@ public class Field281Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("281",
-                "1020MIR4567890123456789012345678AFOO"
-        );
+        testSerializationImpl("281", "1020MIR4567890123456789012345678AFOO");
     }
 
     @Test
@@ -39,5 +37,4 @@ public class Field281Test extends AbstractFieldTest {
         assertEquals("A", f.getComponent3());
         assertEquals("FOO", f.getComponent4());
     }
-
 }

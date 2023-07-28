@@ -59,5 +59,4 @@ public enum MTVariant {
         }
         return Optional.empty();
     }
-
 }

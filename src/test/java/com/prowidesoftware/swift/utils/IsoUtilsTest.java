@@ -100,22 +100,26 @@ public class IsoUtilsTest {
 
     @Test
     public void testAddCountry_1() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry(null));
+        Assertions.assertThrows(
+                IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry(null));
     }
 
     @Test
     public void testAddCountry_2() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry("33"));
+        Assertions.assertThrows(
+                IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry("33"));
     }
 
     @Test
     public void testAddCountry_3() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry("aa"));
+        Assertions.assertThrows(
+                IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry("aa"));
     }
 
     @Test
     public void testAddCountry_4() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry("AAA"));
+        Assertions.assertThrows(
+                IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry("AAA"));
     }
 
     @Test
@@ -127,22 +131,26 @@ public class IsoUtilsTest {
 
     @Test
     public void testAddCurrency_1() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency(null));
+        Assertions.assertThrows(
+                IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency(null));
     }
 
     @Test
     public void testAddCurrency_2() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency("333"));
+        Assertions.assertThrows(
+                IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency("333"));
     }
 
     @Test
     public void testAddCurrency_3() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency("aaa"));
+        Assertions.assertThrows(
+                IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency("aaa"));
     }
 
     @Test
     public void testAddCurrency_4() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency("AAAA"));
+        Assertions.assertThrows(
+                IllegalArgumentException.class, () -> IsoUtils.getInstance().addCurrency("AAAA"));
     }
 
     @Test
@@ -151,5 +159,4 @@ public class IsoUtilsTest {
         assertTrue(IsoUtils.getInstance().isValidISOCurrency("DSZ"));
         IsoUtils.getInstance().getCurrencies().remove("DSZ");
     }
-
 }

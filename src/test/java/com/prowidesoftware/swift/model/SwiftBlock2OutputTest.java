@@ -91,7 +91,7 @@ public class SwiftBlock2OutputTest {
     @Test
     public void testOutput_5() {
         try {
-            //set an invalid length value
+            // set an invalid length value
             out.setValue("O1001200010103BANKBEBBAXXX222212345601010");
         } catch (IllegalArgumentException e) {
             return;
@@ -109,7 +109,7 @@ public class SwiftBlock2OutputTest {
     @Test
     public void testOutput_7() {
         try {
-            //set an invalid starting substring
+            // set an invalid starting substring
             out.setValue("1:O1001200010103BANKBEBBAXXX22221234560101031201N");
         } catch (IllegalArgumentException e) {
             return;
@@ -136,7 +136,7 @@ public class SwiftBlock2OutputTest {
     @Test
     public void testOutputMIR_2() {
         try {
-            //set an invalid length string
+            // set an invalid length string
             out.setMIR("YYMMDDBANKBEBBAXXX2222123");
         } catch (IllegalArgumentException e) {
             return;
@@ -340,5 +340,4 @@ public class SwiftBlock2OutputTest {
         SwiftBlock2Output b = new SwiftBlock2Output(a);
         assertEquals(a.getValue(), b.getValue());
     }
-
 }
