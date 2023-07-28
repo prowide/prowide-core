@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.4.3 - SNAPSHOT
+#### 9.4.3 - July 2023
   * (PW-1461) Remove deprecation of field 31R model since is it used back in SRU2023
   * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
 
