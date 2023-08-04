@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 10.1.2 - August 2023
+  * (PW-1461) Remove deprecation of field 31R model since is it used back in SRU2023
+  * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
+
 #### 10.1.1 - July 2023
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
   * (PW-1323) Fixing getValue method for pattern issue in Field44J
@@ -10,7 +14,7 @@
   * (PW-1323) Fixing getValue method for pattern issue in Field44J
   * (PW-1323) Fixing missing pattern issue in Field44J
 
-#### 9.4.0 - May 2022
+#### 9.4.0 - May 2023
   * SWIFT Standard release update 2023 (live 19 November 2023)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2022/getting-started/deprecation/)
 

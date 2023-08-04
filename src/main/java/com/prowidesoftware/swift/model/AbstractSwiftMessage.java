@@ -197,7 +197,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     protected AbstractSwiftMessage(
             final String content, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) {
         Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-        this.message = content;
+        this.message = StringUtils.trim(content);
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
     }

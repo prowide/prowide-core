@@ -232,7 +232,7 @@ public class Field92L extends Field implements Serializable, MonetaryAmountConta
         String toparse3 = SwiftParseUtils.getTokenSecondLast(toparse, "/");
         setComponent4(SwiftParseUtils.getAlphaPrefixTrimSlash(toparse3));
         setComponent5(SwiftParseUtils.getNumericSuffix(toparse3));
-    }
+     }
 
     /**
      * Serializes the fields' components into the single string value (SWIFT format)
