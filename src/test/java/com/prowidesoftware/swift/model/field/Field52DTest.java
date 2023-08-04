@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,17 +25,12 @@ public class Field52DTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("52D",
-                "//SC1111111\r\nXXX XX\r\n111 XXXXXXXXX XX XXXXXX",
-                "/D/SC1111111"
-        );
+        testSerializationImpl("52D", "//SC1111111\r\nXXX XX\r\n111 XXXXXXXXX XX XXXXXX", "/D/SC1111111");
     }
 
     @Test
     public void test52D_issue6() {
-        Field52D f = new Field52D("//SC1111111\r\n"
-                + "XXX XX\r\n"
-                + "111 XXXXXXXXX XX XXXXXX");
+        Field52D f = new Field52D("//SC1111111\r\n" + "XXX XX\r\n" + "111 XXXXXXXXX XX XXXXXX");
         assertNull(f.getComponent1());
         assertEquals("/SC1111111", f.getComponent2());
         assertEquals("XXX XX", f.getComponent3());
@@ -55,5 +50,4 @@ public class Field52DTest extends AbstractFieldTest {
         assertNull(f.getComponent1());
         assertEquals("D2/SC1111111", f.getComponent2());
     }
-
 }

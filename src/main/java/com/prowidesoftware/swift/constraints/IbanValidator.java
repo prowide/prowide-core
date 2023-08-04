@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 public class IbanValidator implements ConstraintValidator<IbanConstraint, String> {
 
     @Override
-    public void initialize(IbanConstraint iban) {
-    }
+    public void initialize(IbanConstraint iban) {}
 
     @Override
     public boolean isValid(String iban, ConstraintValidatorContext context) {
@@ -47,5 +46,4 @@ public class IbanValidator implements ConstraintValidator<IbanConstraint, String
             return false;
         }
     }
-
 }

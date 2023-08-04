@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,7 @@ public class Field13DTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("13D",
-                "aaaaaabbbbcddddx"
-        );
+        testSerializationImpl("13D", "aaaaaabbbbcddddx");
     }
 
     @Test
@@ -142,5 +140,4 @@ public class Field13DTest extends AbstractFieldTest {
         assertEquals("c", f.getComponent3());
         assertEquals("ddddx", f.getComponent4());
     }
-
 }

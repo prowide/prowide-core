@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,10 @@ package com.prowidesoftware.swift.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.io.ConversionService;
+import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 /**
  * Unparsed text lists tests.
@@ -99,7 +98,6 @@ public class UnparsedTextListTest {
     @Test
     public void test_getTextAsMessageBAD() {
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> assertNull(t.getTextAsMessage(-1)));
-
     }
 
     @Test
@@ -182,5 +180,4 @@ public class UnparsedTextListTest {
         @SuppressWarnings("unused")
         SwiftMessage m3 = SwiftMessage.parse(msg.getUnparsedTexts().getText(1));
     }
-
 }

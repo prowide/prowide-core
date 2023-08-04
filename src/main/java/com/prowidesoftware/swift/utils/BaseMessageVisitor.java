@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,87 +23,66 @@ import com.prowidesoftware.swift.model.*;
  *
  * @author sebastian
  */
-//TODO: complete javadocs 
+// TODO: complete javadocs
 public class BaseMessageVisitor implements IMessageVisitor {
 
     @Override
-    public void startBlock1(SwiftBlock1 b) {
-    }
+    public void startBlock1(SwiftBlock1 b) {}
 
     @Override
-    public void startBlock2(SwiftBlock2 b) {
-    }
+    public void startBlock2(SwiftBlock2 b) {}
 
     @Override
-    public void startBlock3(SwiftBlock3 b) {
-    }
+    public void startBlock3(SwiftBlock3 b) {}
 
     @Override
-    public void startBlock4(SwiftBlock4 b) {
-    }
+    public void startBlock4(SwiftBlock4 b) {}
 
     @Override
-    public void startBlock5(SwiftBlock5 b) {
-    }
+    public void startBlock5(SwiftBlock5 b) {}
 
     @Override
-    public void startBlockUser(SwiftBlockUser b) {
-    }
+    public void startBlockUser(SwiftBlockUser b) {}
 
     @Override
-    public void endBlock1(SwiftBlock1 b) {
-    }
+    public void endBlock1(SwiftBlock1 b) {}
 
     @Override
-    public void endBlock2(SwiftBlock2 b) {
-    }
+    public void endBlock2(SwiftBlock2 b) {}
 
     @Override
-    public void endBlock3(SwiftBlock3 b) {
-    }
+    public void endBlock3(SwiftBlock3 b) {}
 
     @Override
-    public void endBlock4(SwiftBlock4 b) {
-    }
+    public void endBlock4(SwiftBlock4 b) {}
 
     @Override
-    public void endBlock5(SwiftBlock5 b) {
-    }
+    public void endBlock5(SwiftBlock5 b) {}
 
     @Override
-    public void endBlockUser(SwiftBlockUser b) {
-    }
+    public void endBlockUser(SwiftBlockUser b) {}
 
     @Override
-    public void tag(SwiftBlock3 b, Tag t) {
-    }
+    public void tag(SwiftBlock3 b, Tag t) {}
 
     @Override
-    public void tag(SwiftBlock4 b, Tag t) {
-    }
+    public void tag(SwiftBlock4 b, Tag t) {}
 
     @Override
-    public void tag(SwiftBlock5 b, Tag t) {
-    }
+    public void tag(SwiftBlock5 b, Tag t) {}
 
     @Override
-    public void tag(SwiftBlockUser b, Tag t) {
-    }
+    public void tag(SwiftBlockUser b, Tag t) {}
 
     @Override
-    public void value(SwiftBlock1 b, String v) {
-    }
+    public void value(SwiftBlock1 b, String v) {}
 
     @Override
-    public void value(SwiftBlock2 b, String v) {
-    }
+    public void value(SwiftBlock2 b, String v) {}
 
     @Override
-    public void endMessage(SwiftMessage m) {
-    }
+    public void endMessage(SwiftMessage m) {}
 
     @Override
-    public void startMessage(SwiftMessage m) {
-    }
-
+    public void startMessage(SwiftMessage m) {}
 }

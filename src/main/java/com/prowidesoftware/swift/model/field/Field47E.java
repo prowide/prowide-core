@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,30 +15,19 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
-import java.io.Serializable;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-
-import com.prowidesoftware.swift.model.field.MultiLineField;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.Tag;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * SWIFT MT Field 47E.
@@ -65,15 +54,15 @@ import com.google.gson.JsonParser;
 @Deprecated
 @ProwideDeprecated(phase3 = TargetYear.SRU2024)
 public class Field47E extends Field implements Serializable, MultiLineField {
-	/**
-	 * Constant identifying the SRU to which this class belongs to.
-	 */
-	public static final int SRU = 2022;
+    /**
+     * Constant identifying the SRU to which this class belongs to.
+     */
+    public static final int SRU = 2022;
 
-	private static final long serialVersionUID = 1L;
-	/**
-	 * Constant with the field name 47E.
-	 */
+    private static final long serialVersionUID = 1L;
+    /**
+     * Constant with the field name 47E.
+     */
     public static final String NAME = "47E";
     /**
      * Same as NAME, intended to be clear when using static imports.
@@ -85,26 +74,26 @@ public class Field47E extends Field implements Serializable, MultiLineField {
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
+    public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
+    public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
+    public static final String TYPES_PATTERN = "S";
 
-	/**
-	 * Component number for the Information from Advising Bank subfield.
-	 */
-	public static final Integer INFORMATION_FROM_ADVISING_BANK = 1;
+    /**
+     * Component number for the Information from Advising Bank subfield.
+     */
+    public static final Integer INFORMATION_FROM_ADVISING_BANK = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -133,7 +122,8 @@ public class Field47E extends Field implements Serializable, MultiLineField {
             throw new IllegalArgumentException("tag cannot be null.");
         }
         if (!StringUtils.equals(tag.getName(), "47E")) {
-            throw new IllegalArgumentException("cannot create field 47E from tag "+tag.getName()+", tagname must match the name of the field.");
+            throw new IllegalArgumentException("cannot create field 47E from tag " + tag.getName()
+                    + ", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -169,7 +159,6 @@ public class Field47E extends Field implements Serializable, MultiLineField {
     public static Tag emptyTag() {
         return new Tag(NAME, "");
     }
-
 
     /**
      * Parses the parameter value into the internal components structure.
@@ -211,7 +200,7 @@ public class Field47E extends Field implements Serializable, MultiLineField {
             throw new IllegalArgumentException("invalid component number " + component + " for field 47E");
         }
         if (component == 1) {
-            //default format (as is)
+            // default format (as is)
             return getComponent(1);
         }
         return null;
@@ -366,8 +355,6 @@ public class Field47E extends Field implements Serializable, MultiLineField {
     public Field47E setInformationfromAdvisingBank(String component1) {
         return setComponent1(component1);
     }
-
-
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
@@ -539,6 +526,4 @@ public class Field47E extends Field implements Serializable, MultiLineField {
 
         return field;
     }
-
-
 }

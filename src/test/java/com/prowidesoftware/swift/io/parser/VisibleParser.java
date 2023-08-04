@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,7 @@
 package com.prowidesoftware.swift.io.parser;
 
 import com.prowidesoftware.swift.model.Tag;
-
 import java.io.IOException;
-
 
 /**
  * Simple class that increases visibility of parser methods in order to unit tests them.
@@ -27,8 +25,7 @@ import java.io.IOException;
  */
 final class VisibleParser extends SwiftParser {
 
-    public VisibleParser() {
-    }
+    public VisibleParser() {}
 
     @Override
     protected char identifyBlock(String s) {
@@ -41,12 +38,9 @@ final class VisibleParser extends SwiftParser {
     }
 
     public Tag consumeTag(String br) {
-        if (br.startsWith("{"))
-            br = br.substring(1);
-        if (br.endsWith("}"))
-            br = br.substring(0, br.length() - 1);
-        if (br.startsWith(":"))
-            br = br.substring(1);
+        if (br.startsWith("{")) br = br.substring(1);
+        if (br.endsWith("}")) br = br.substring(0, br.length() - 1);
+        if (br.startsWith(":")) br = br.substring(1);
         return super.createTag(br, null);
     }
 
@@ -59,5 +53,4 @@ final class VisibleParser extends SwiftParser {
     public int findEndOfTagByLineFeed(String s, int start, boolean isTextBlock) {
         return super.findEndOfTagByLineFeed(s, start, isTextBlock);
     }
-
 }

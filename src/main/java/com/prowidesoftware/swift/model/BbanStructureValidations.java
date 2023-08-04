@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,15 +19,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.prowidesoftware.swift.utils.Lib;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
-
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * This singleton handles all the available BBAN structure entries.
@@ -40,7 +38,8 @@ import java.util.logging.Level;
  * @since 7.9.7
  */
 public final class BbanStructureValidations {
-    private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(BbanStructureValidations.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(BbanStructureValidations.class.getName());
     private static final Type REVIEW_TYPE = new TypeToken<List<BbanStructureDTO>>() {}.getType();
     private static final BbanStructureValidations INSTANCE = new BbanStructureValidations();
     private static final String JSON_FILE = "BbanStructureValidations.json";
@@ -55,7 +54,11 @@ public final class BbanStructureValidations {
         try {
             reader = Lib.readResource(JSON_FILE, null, BbanStructureValidations.class);
         } catch (IOException e) {
-            log.log(Level.SEVERE, "Cannot load " + JSON_FILE + " from classpath, the BBAN structure validations will be initialized empty", e);
+            log.log(
+                    Level.SEVERE,
+                    "Cannot load " + JSON_FILE
+                            + " from classpath, the BBAN structure validations will be initialized empty",
+                    e);
         }
         if (reader != null) {
             this.bbanStructures = gson.fromJson(reader, REVIEW_TYPE);
@@ -143,5 +146,4 @@ public final class BbanStructureValidations {
         this.bbanStructures.add(bbanStructure);
         return this;
     }
-
 }

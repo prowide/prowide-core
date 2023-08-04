@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 public class CountryValidator implements ConstraintValidator<CountryConstraint, String> {
 
     @Override
-    public void initialize(CountryConstraint country) {
-    }
+    public void initialize(CountryConstraint country) {}
 
     @Override
     public boolean isValid(String country, ConstraintValidatorContext context) {
@@ -39,5 +38,4 @@ public class CountryValidator implements ConstraintValidator<CountryConstraint, 
         }
         return IsoUtils.getInstance().isValidISOCountry(country);
     }
-
 }

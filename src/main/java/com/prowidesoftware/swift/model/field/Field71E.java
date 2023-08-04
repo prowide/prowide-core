@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,30 +15,16 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
-import java.io.Serializable;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-
-import com.prowidesoftware.swift.model.field.MultiLineField;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.Tag;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * SWIFT MT Field 71E.
@@ -65,15 +51,15 @@ import com.google.gson.JsonParser;
 @Deprecated
 @ProwideDeprecated(phase3 = TargetYear.SRU2024)
 public class Field71E extends StructuredNarrativeField implements Serializable, NarrativeContainer, MultiLineField {
-	/**
-	 * Constant identifying the SRU to which this class belongs to.
-	 */
-	public static final int SRU = 2022;
+    /**
+     * Constant identifying the SRU to which this class belongs to.
+     */
+    public static final int SRU = 2022;
 
-	private static final long serialVersionUID = 1L;
-	/**
-	 * Constant with the field name 71E.
-	 */
+    private static final long serialVersionUID = 1L;
+    /**
+     * Constant with the field name 71E.
+     */
     public static final String NAME = "71E";
     /**
      * Same as NAME, intended to be clear when using static imports.
@@ -107,7 +93,8 @@ public class Field71E extends StructuredNarrativeField implements Serializable, 
             throw new IllegalArgumentException("tag cannot be null.");
         }
         if (!StringUtils.equals(tag.getName(), "71E")) {
-            throw new IllegalArgumentException("cannot create field 71E from tag "+tag.getName()+", tagname must match the name of the field.");
+            throw new IllegalArgumentException("cannot create field 71E from tag " + tag.getName()
+                    + ", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -182,8 +169,6 @@ public class Field71E extends StructuredNarrativeField implements Serializable, 
     public Field71E setNarrative(String component1) {
         return setComponent1(component1);
     }
-
-
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
@@ -351,6 +336,4 @@ public class Field71E extends StructuredNarrativeField implements Serializable, 
 
         return field;
     }
-
-
 }

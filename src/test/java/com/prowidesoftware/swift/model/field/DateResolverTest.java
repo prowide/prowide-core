@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,16 +18,15 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.junit.jupiter.api.Test;
-
 import java.util.Calendar;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class DateResolverTest {
-/*
-    public List<Calendar> dates()
-    public Calendar date()
-*/
+    /*
+        public List<Calendar> dates()
+        public Calendar date()
+    */
     @Test
     public void testResolve69A_multiple() {
 
@@ -73,5 +72,4 @@ public class DateResolverTest {
         // first date
         assertNull(field.date());
     }
-
 }

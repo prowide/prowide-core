@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,6 @@ public class Field94GTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("94G",
-                ":PACO//Settled\nFully paid 49896.00 USD",
-                ":SUBB//TYPE OF SAFEKEEPING/GS"
-        );
+        testSerializationImpl("94G", ":PACO//Settled\nFully paid 49896.00 USD", ":SUBB//TYPE OF SAFEKEEPING/GS");
     }
-
 }

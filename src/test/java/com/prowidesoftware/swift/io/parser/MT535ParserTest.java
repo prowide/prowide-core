@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,31 +29,30 @@ public class MT535ParserTest extends BaseMessageTestcase {
 
     @Test
     public void test535_1() {
-        messageToParse = "{1:F01FOOBARXXAXXX3219604112}{2:I535FOOBARXXXXXXN}{4:\n" +
-                ":16R:GENL\n" +
-                ":28E:1/ONLY\n" +
-                ":13A::STAT//086\n" +
-                ":20C::SEME//ABC20070327P1\n" +
-                ":23G:NEWM\n" +
-                ":98A::STAT//20070327\n" +
-                ":98C::PREP//20070328043657\n" +
-                ":22F::SFRE//DAIL\n" +
-                ":22F::CODE//COMP\n" +
-                ":22F::STTY//CUST\n" +
-                ":22F::STBA//TRAD\n" +
-                ":97A::SAFE//ABC\n" +
-                ":17B::ACTI//Y\n" +
-                ":17B::CONS//Y\n" +
-                ":16S:GENL\n" +
-                ":16R:ADDINFO\n" +
-                ":19A::HOLP//USD0,\n" +
-                ":19A::HOLS//USD0,\n" +
-                ":16S:ADDINFO\n" +
-                "-}{5:{MAC:8A1FADA1}{CHK:B018C2CA74CD}}{S:{REF:I20070328.386482886.out/1/1}}";
+        messageToParse = "{1:F01FOOBARXXAXXX3219604112}{2:I535FOOBARXXXXXXN}{4:\n" + ":16R:GENL\n"
+                + ":28E:1/ONLY\n"
+                + ":13A::STAT//086\n"
+                + ":20C::SEME//ABC20070327P1\n"
+                + ":23G:NEWM\n"
+                + ":98A::STAT//20070327\n"
+                + ":98C::PREP//20070328043657\n"
+                + ":22F::SFRE//DAIL\n"
+                + ":22F::CODE//COMP\n"
+                + ":22F::STTY//CUST\n"
+                + ":22F::STBA//TRAD\n"
+                + ":97A::SAFE//ABC\n"
+                + ":17B::ACTI//Y\n"
+                + ":17B::CONS//Y\n"
+                + ":16S:GENL\n"
+                + ":16R:ADDINFO\n"
+                + ":19A::HOLP//USD0,\n"
+                + ":19A::HOLS//USD0,\n"
+                + ":16S:ADDINFO\n"
+                + "-}{5:{MAC:8A1FADA1}{CHK:B018C2CA74CD}}{S:{REF:I20070328.386482886.out/1/1}}";
 
         assertEquals("535", parseMessage(messageToParse).getType());
 
-        //check b1
+        // check b1
         assertEquals("F01FOOBARXXAXXX3219604112", b1.getBlockValue());
         assertEquals("F", b1.getApplicationId());
         assertEquals("01", b1.getServiceId());
@@ -61,7 +60,7 @@ public class MT535ParserTest extends BaseMessageTestcase {
         assertEquals("3219", b1.getSessionNumber());
         assertEquals("604112", b1.getSequenceNumber());
 
-        //check b2
+        // check b2
         assertEquals("I535FOOBARXXXXXXN", b2.getBlockValue());
         assertEquals("535", b2.getMessageType());
         assertEquals("FOOBARXXXXXX", ((SwiftBlock2Input) b2).getReceiverAddress());
@@ -69,7 +68,7 @@ public class MT535ParserTest extends BaseMessageTestcase {
         assertNull(((SwiftBlock2Input) b2).getDeliveryMonitoring());
         assertNull(((SwiftBlock2Input) b2).getObsolescencePeriod());
 
-        //check b4
+        // check b4
         assertEquals(19, b4.countAll());
 
         tags = b4.getTagsByName("16R");
@@ -103,15 +102,13 @@ public class MT535ParserTest extends BaseMessageTestcase {
         assertEquals(":HOLP//USD0,", tags[0].getValue());
         assertEquals(":HOLS//USD0,", tags[1].getValue());
 
-        //check b5
+        // check b5
         assertEquals(2, b5.countAll());
         assertEquals("8A1FADA1", b5.getTagValue("MAC"));
         assertEquals("B018C2CA74CD", b5.getTagValue("CHK"));
 
-        //user block (extra data, not swift standard, attached to the message as a trailer block)
+        // user block (extra data, not swift standard, attached to the message as a trailer block)
         assertNotNull(o.getUserBlock("S"));
         assertEquals("I20070328.386482886.out/1/1", o.getUserBlock("S").getTagValue("REF"));
     }
-
 }
-

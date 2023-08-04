@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model;
 import static jakarta.persistence.FetchType.LAZY;
 
 import jakarta.persistence.*;
-
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -37,7 +36,8 @@ import java.util.Objects;
 @Table(name = "swift_msg_status")
 public class SwiftMessageStatusInfo implements Cloneable {
     @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log = java.util.logging.Logger.getLogger(SwiftMessageStatusInfo.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(SwiftMessageStatusInfo.class.getName());
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,7 +67,7 @@ public class SwiftMessageStatusInfo implements Cloneable {
      * No arguments constructor
      */
     public SwiftMessageStatusInfo() {
-        this.creationDate = Calendar.getInstance();    //this cannot be null, default to now
+        this.creationDate = Calendar.getInstance(); // this cannot be null, default to now
     }
 
     /**
@@ -79,7 +79,8 @@ public class SwiftMessageStatusInfo implements Cloneable {
      * @param name         status name
      * @param data         optional additional text data associated to the status processing
      */
-    public SwiftMessageStatusInfo(String comments, Calendar creationDate, String creationUser, String name, String data) {
+    public SwiftMessageStatusInfo(
+            String comments, Calendar creationDate, String creationUser, String name, String data) {
         this();
         this.comments = comments;
         this.creationDate = creationDate;
@@ -150,10 +151,10 @@ public class SwiftMessageStatusInfo implements Cloneable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SwiftMessageStatusInfo that = (SwiftMessageStatusInfo) o;
-        return Objects.equals(name, that.name) &&
-                Objects.equals(comments, that.comments) &&
-                Objects.equals(creationDate, that.creationDate) &&
-                Objects.equals(creationUser, that.creationUser);
+        return Objects.equals(name, that.name)
+                && Objects.equals(comments, that.comments)
+                && Objects.equals(creationDate, that.creationDate)
+                && Objects.equals(creationUser, that.creationUser);
     }
 
     @Override
@@ -230,5 +231,4 @@ public class SwiftMessageStatusInfo implements Cloneable {
         result.setName(getName());
         return result;
     }
-
 }

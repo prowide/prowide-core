@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model.mt;
 import com.google.gson.*;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +77,12 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
 
         if (src.m.getBlock5() != null && !src.m.getBlock5().getTags().isEmpty()) {
             // default serialization from SwiftMessage with tags renamed to fields
-            JsonArray tags = o.get("data").getAsJsonObject().get("block5").getAsJsonObject().get("tags").getAsJsonArray();
+            JsonArray tags = o.get("data")
+                    .getAsJsonObject()
+                    .get("block5")
+                    .getAsJsonObject()
+                    .get("tags")
+                    .getAsJsonArray();
             JsonObject trailer = new JsonObject();
             trailer.add("fields", tags);
             response.add(BLOCK5_FINAL_NAME, trailer);
@@ -88,16 +92,20 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
     }
 
     @Override
-    public AbstractMT deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+    public AbstractMT deserialize(
+            JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
+            throws JsonParseException {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         SwiftMessage swiftMessage = new SwiftMessage();
 
-        SwiftBlock1 block1 = jsonDeserializationContext.deserialize(jsonObject.get(BLOCK1_FINAL_NAME), SwiftBlock1.class);
+        SwiftBlock1 block1 =
+                jsonDeserializationContext.deserialize(jsonObject.get(BLOCK1_FINAL_NAME), SwiftBlock1.class);
         if (block1 != null) {
             swiftMessage.addBlock(block1);
         }
 
-        SwiftBlock2 block2 = jsonDeserializationContext.deserialize(jsonObject.get(BLOCK2_FINAL_NAME), SwiftBlock2.class);
+        SwiftBlock2 block2 =
+                jsonDeserializationContext.deserialize(jsonObject.get(BLOCK2_FINAL_NAME), SwiftBlock2.class);
         if (block2 != null) {
             swiftMessage.addBlock(block2);
         }
@@ -176,6 +184,4 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
         }
         return fields;
     }
-
 }
-

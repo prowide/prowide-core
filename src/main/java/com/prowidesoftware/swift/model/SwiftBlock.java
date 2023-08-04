@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,10 @@
  */
 package com.prowidesoftware.swift.model;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.io.Serializable;
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Base class for a generic SWIFT block.<br>
@@ -34,7 +33,7 @@ import java.util.Objects;
  *
  * @author sebastian
  */
-//TODO: add parameter checks (Validate.*) and complete javadocs 
+// TODO: add parameter checks (Validate.*) and complete javadocs
 public abstract class SwiftBlock implements Serializable {
     private static final long serialVersionUID = -6993261477630953757L;
 
@@ -60,8 +59,7 @@ public abstract class SwiftBlock implements Serializable {
      * Default constructor, shouldn't be used normally.
      * <b>DO NOT USE</b>: present only for subclasses
      */
-    protected SwiftBlock() {
-    }
+    protected SwiftBlock() {}
 
     /**
      * Constructor for an unparsed text list

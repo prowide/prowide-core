@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,15 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-
 public class Field50GTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("50G",
-                "/0000001111000000\r\nBNPPARIBAS"
-        );
+        testSerializationImpl("50G", "/0000001111000000\r\nBNPPARIBAS");
     }
 
     @Test
@@ -36,5 +33,4 @@ public class Field50GTest extends AbstractFieldTest {
         assertEquals(f.getComponent1(), "0000001111000000");
         assertEquals(f.getComponent2(), "BNPPARIBAS");
     }
-
 }

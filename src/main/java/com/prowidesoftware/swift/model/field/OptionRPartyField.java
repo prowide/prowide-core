@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model.field;
 import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-
 import java.util.*;
 
 /**
@@ -133,7 +132,7 @@ public abstract class OptionRPartyField extends Field {
         if (component < 1 || component > 3) {
             throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
-        //default format (as is)
+        // default format (as is)
         return getComponent(component);
     }
 
@@ -321,5 +320,4 @@ public abstract class OptionRPartyField extends Field {
     public String getProprietaryCode() {
         return getComponent(3);
     }
-
 }

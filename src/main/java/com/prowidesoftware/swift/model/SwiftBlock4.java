@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,13 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for SWIFT <b>Body Block (block 4)</b>.<br>
@@ -43,8 +42,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
     /**
      * Default constructor
      */
-    public SwiftBlock4() {
-    }
+    public SwiftBlock4() {}
 
     /**
      * Constructor with tag initialization
@@ -112,10 +110,10 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
         // TODO find replacement for Stack
         final Stack<Tag> stack = new Stack<>();
         for (Tag t : b4.getTags()) {
-            if (!stack.isEmpty() &&
-                    StringUtils.equals(t.getName(), "16S") &&
-                    StringUtils.equals(stack.peek().getName(), "16R") &&
-                    StringUtils.equals(stack.peek().getValue(), t.getValue())) {
+            if (!stack.isEmpty()
+                    && StringUtils.equals(t.getName(), "16S")
+                    && StringUtils.equals(stack.peek().getName(), "16R")
+                    && StringUtils.equals(stack.peek().getValue(), t.getValue())) {
                 /*
                  * found an empty 16R 16S pair
                  */
@@ -124,8 +122,8 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
                 /*
                  * found two consecutive 15a
                  */
-                stack.pop(); //remove the previous seq start
-                stack.push(t); //keep this new sequence for the moment
+                stack.pop(); // remove the previous seq start
+                stack.push(t); // keep this new sequence for the moment
             } else {
                 stack.push(t);
             }
@@ -199,5 +197,4 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
     public String getName() {
         return "4";
     }
-
 }

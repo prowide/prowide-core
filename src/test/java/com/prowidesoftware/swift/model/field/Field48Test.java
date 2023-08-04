@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,10 +31,7 @@ public class Field48Test extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("48",
-                "1",
-                "1/FOO"
-        );
+        testSerializationImpl("48", "1", "1/FOO");
     }
 
     @Test
@@ -51,5 +48,4 @@ public class Field48Test extends AbstractFieldTest {
         f.setComponent2("FOO");
         assertEquals("1234/FOO", f.getValue());
     }
-
 }

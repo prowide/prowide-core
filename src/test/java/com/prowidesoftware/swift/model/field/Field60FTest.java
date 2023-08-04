@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,7 @@ public class Field60FTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("60F",
-                "D121212USD1234,56",
-                "121212USD1234,56"
-        );
+        testSerializationImpl("60F", "D121212USD1234,56", "121212USD1234,56");
     }
 
     @Test
@@ -59,5 +56,4 @@ public class Field60FTest extends AbstractFieldTest {
     public void testSetDCMarkTag() {
         assertEquals("D", new Field60F().setDCMark("D").asTag().getValue());
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,20 +18,16 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
+import java.util.Calendar;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
-
-import java.util.Calendar;
 
 public class Field11RTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("11R",
-                "100\n091019",
-                "100\n091019\n1234123456"
-        );
+        testSerializationImpl("11R", "100\n091019", "100\n091019\n1234123456");
     }
 
     @Test
@@ -63,7 +59,7 @@ public class Field11RTest extends AbstractFieldTest {
         assertEquals("100", f.getMTNumber());
         assertEquals("091019", f.getComponent2());
         assertEquals(2009, f.getComponent2AsCalendar().get(Calendar.YEAR));
-        assertEquals(10, f.getComponent2AsCalendar().get(Calendar.MONTH) + 1); //MONTH is zero based at Calendar
+        assertEquals(10, f.getComponent2AsCalendar().get(Calendar.MONTH) + 1); // MONTH is zero based at Calendar
         assertEquals(19, f.getComponent2AsCalendar().get(Calendar.DAY_OF_MONTH));
         assertNull(f.getComponent3());
         assertNull(f.getComponent4());
@@ -99,7 +95,9 @@ public class Field11RTest extends AbstractFieldTest {
         assertEquals("151111", f.getComponent2());
         assertEquals("4444666666", f.getComponent3());
         assertNull(f.getComponent4());
-        assertEquals("103" + FINWriterVisitor.SWIFT_EOL + "151111" + FINWriterVisitor.SWIFT_EOL + "4444666666", f.getValue());
+        assertEquals(
+                "103" + FINWriterVisitor.SWIFT_EOL + "151111" + FINWriterVisitor.SWIFT_EOL + "4444666666",
+                f.getValue());
 
         f = new Field11R();
         f.setComponent1("103");
@@ -110,7 +108,9 @@ public class Field11RTest extends AbstractFieldTest {
         assertEquals("151111", f.getComponent2());
         assertEquals("4444", f.getComponent3());
         assertEquals("666666", f.getComponent4());
-        assertEquals("103" + FINWriterVisitor.SWIFT_EOL + "151111" + FINWriterVisitor.SWIFT_EOL + "4444666666", f.getValue());
+        assertEquals(
+                "103" + FINWriterVisitor.SWIFT_EOL + "151111" + FINWriterVisitor.SWIFT_EOL + "4444666666",
+                f.getValue());
 
         f = new Field11R();
         f.setComponent1("103");
@@ -125,7 +125,9 @@ public class Field11RTest extends AbstractFieldTest {
         assertEquals("151019", f.getComponent2());
         assertEquals("4444", f.getComponent3());
         assertEquals("666666", f.getComponent4());
-        assertEquals("103" + FINWriterVisitor.SWIFT_EOL + "151019" + FINWriterVisitor.SWIFT_EOL + "4444666666", f.getValue());
+        assertEquals(
+                "103" + FINWriterVisitor.SWIFT_EOL + "151019" + FINWriterVisitor.SWIFT_EOL + "4444666666",
+                f.getValue());
 
         f = new Field11R();
         f.setComponent1("103");
@@ -136,7 +138,9 @@ public class Field11RTest extends AbstractFieldTest {
         assertEquals("151111", f.getComponent2());
         assertEquals("4444", f.getComponent3());
         assertEquals("666666", f.getComponent4());
-        assertEquals("103" + FINWriterVisitor.SWIFT_EOL + "151111" + FINWriterVisitor.SWIFT_EOL + "4444666666", f.getValue());
+        assertEquals(
+                "103" + FINWriterVisitor.SWIFT_EOL + "151111" + FINWriterVisitor.SWIFT_EOL + "4444666666",
+                f.getValue());
 
         f = new Field11R();
         f.setComponent1("103");
@@ -149,5 +153,4 @@ public class Field11RTest extends AbstractFieldTest {
         assertEquals("6", f.getComponent4());
         assertEquals("103" + FINWriterVisitor.SWIFT_EOL + "151111" + FINWriterVisitor.SWIFT_EOL + "46", f.getValue());
     }
-
 }

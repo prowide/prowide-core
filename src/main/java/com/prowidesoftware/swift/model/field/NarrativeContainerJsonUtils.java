@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,8 +29,7 @@ import java.util.regex.Pattern;
  */
 class NarrativeContainerJsonUtils {
 
-    static Pattern NARRATIVE_PATTERN =
-            Pattern.compile("[\"|']narrative([0-9]*)[\"|']");
+    static Pattern NARRATIVE_PATTERN = Pattern.compile("[\"|']narrative([0-9]*)[\"|']");
 
     static void fromJson(JsonObject jsonObject, String json, StructuredNarrativeField field) {
         if (jsonObject.get("narrative") != null) {
@@ -69,5 +67,4 @@ class NarrativeContainerJsonUtils {
         }
         return count;
     }
-
 }

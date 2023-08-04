@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,9 +50,9 @@ class IbanValidationUtils {
         final String countryCode = IBAN.getCountryCode(iban);
 
         // check case sensitivity
-        if (!countryCode.equals(countryCode.toUpperCase()) ||
-                !Character.isLetter(countryCode.charAt(0)) ||
-                !Character.isLetter(countryCode.charAt(1))) {
+        if (!countryCode.equals(countryCode.toUpperCase())
+                || !Character.isLetter(countryCode.charAt(0))
+                || !Character.isLetter(countryCode.charAt(1))) {
             IbanValidationResult result = IbanValidationResult.INVALID_COUNTRY_CODE_CHARSET;
             result.setFound(countryCode);
             return result;
@@ -81,8 +81,7 @@ class IbanValidationUtils {
         final String checkDigit = IBAN.getCheckDigits(iban);
 
         // check digits
-        if (!Character.isDigit(checkDigit.charAt(0)) ||
-                !Character.isDigit(checkDigit.charAt(1))) {
+        if (!Character.isDigit(checkDigit.charAt(0)) || !Character.isDigit(checkDigit.charAt(1))) {
             IbanValidationResult result = IbanValidationResult.INVALID_CHECK_DIGITS_FORMAT;
             result.setFound(checkDigit);
             return result;
@@ -153,7 +152,6 @@ class IbanValidationUtils {
             if (result != null) {
                 return result;
             }
-
         }
         return null;
     }
@@ -179,7 +177,8 @@ class IbanValidationUtils {
      * @return problem found or null if OK
      * @since 7.9.7
      */
-    private static IbanValidationResult validateBbanEntryCharacterType(final BbanStructureEntryDTO entry, final String entryValue) {
+    private static IbanValidationResult validateBbanEntryCharacterType(
+            final BbanStructureEntryDTO entry, final String entryValue) {
         if (SwiftCharsetUtils.is(entryValue, entry.getCharacterType()) != SwiftCharsetUtils.OK) {
             IbanValidationResult result = null;
             switch (entry.getCharacterType()) {
@@ -195,7 +194,6 @@ class IbanValidationUtils {
 
                 default:
                     break;
-
             }
             if (result != null) {
                 result.setFound(entryValue);
@@ -289,5 +287,4 @@ class IbanValidationUtils {
         }
         return (int) (total % MOD);
     }
-
 }

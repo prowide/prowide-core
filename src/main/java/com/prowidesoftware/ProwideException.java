@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.prowidesoftware;
 import java.util.*;
 import java.util.Map.Entry;
 
-
 /**
  * Base class for Prowide exceptions hierarchy.
  *
@@ -26,12 +25,12 @@ import java.util.Map.Entry;
  */
 public class ProwideException extends RuntimeException {
     private static final long serialVersionUID = 4645197208853563727L;
-    private static transient final java.util.logging.Logger log = java.util.logging.Logger.getLogger(ProwideException.class.getName());
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(ProwideException.class.getName());
 
     private final Map<String, String> variables = new HashMap<>();
 
-    public ProwideException() {
-    }
+    public ProwideException() {}
 
     public ProwideException(final String message, final Throwable cause) {
         super(message, cause);
@@ -98,7 +97,6 @@ public class ProwideException extends RuntimeException {
             log.fine("No localized message found for exception key '" + key + "'");
             return super.getMessage();
         }
-
     }
 
     static String substitute(String message, Map<String, String> variables) {

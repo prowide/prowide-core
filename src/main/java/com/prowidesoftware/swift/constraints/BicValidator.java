@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 public class BicValidator implements ConstraintValidator<BicConstraint, String> {
 
     @Override
-    public void initialize(BicConstraint bic) {
-    }
+    public void initialize(BicConstraint bic) {}
 
     @Override
     public boolean isValid(String bic, ConstraintValidatorContext context) {
@@ -47,5 +46,4 @@ public class BicValidator implements ConstraintValidator<BicConstraint, String> 
             return false;
         }
     }
-
 }

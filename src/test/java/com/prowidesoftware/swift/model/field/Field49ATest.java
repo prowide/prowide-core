@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2021 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,11 +31,7 @@ public class Field49ATest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("49A",
-                "123",
-                "123\nFOO",
-                "123\nFOO\nBAR"
-        );
+        testSerializationImpl("49A", "123", "123\nFOO", "123\nFOO\nBAR");
     }
 
     @Test
@@ -52,5 +48,4 @@ public class Field49ATest extends AbstractFieldTest {
         f.setComponent2("FOO\nBAR");
         assertEquals("1234\r\nFOO\nBAR", f.getValue());
     }
-
 }
