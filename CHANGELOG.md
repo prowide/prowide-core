@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.18-SNAPSHOT
+  * Updating the message setter in order to handle case-insensitive XML prolog for lenient parsing.
+
 #### 9.3.17 - July 2023
   * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
 

@@ -21,6 +21,9 @@ import com.prowidesoftware.JsonSerializable;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.Lib;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,10 +31,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.*;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Base entity for MT and MX message persistence.
@@ -168,7 +170,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     protected AbstractSwiftMessage(final String content) {
-        this.message = content;
+        setMessage(content);
         updateFromMessage();
     }
 
@@ -178,7 +180,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     protected AbstractSwiftMessage(final String content, final FileFormat fileFormat) {
-        this.message = content;
+        setMessage(content);
         this.fileFormat = fileFormat;
         updateFromMessage();
     }
@@ -197,7 +199,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     protected AbstractSwiftMessage(
             final String content, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy) {
         Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-        this.message = StringUtils.trim(content);
+        setMessage(StringUtils.trim(content));
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
     }
@@ -209,7 +211,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     protected AbstractSwiftMessage(final InputStream stream) throws IOException {
-        this.message = Lib.readStream(stream);
+        setMessage(Lib.readStream(stream));
         updateFromMessage();
     }
 
@@ -220,7 +222,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat) throws IOException {
-        this.message = Lib.readStream(stream);
+        setMessage(Lib.readStream(stream));
         this.fileFormat = fileFormat;
         updateFromMessage();
     }
@@ -240,7 +242,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
             final InputStream stream, final FileFormat fileFormat, final MessageMetadataStrategy metadataStrategy)
             throws IOException {
         Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-        this.message = Lib.readStream(stream);
+        setMessage(Lib.readStream(stream));
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
     }
@@ -252,7 +254,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     protected AbstractSwiftMessage(final File file) throws IOException {
-        this.message = Lib.readFile(file);
+        setMessage(Lib.readFile(file));
         this.filename = file.getAbsolutePath();
         updateFromMessage();
     }
@@ -264,7 +266,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2023)
     protected AbstractSwiftMessage(final File file, final FileFormat fileFormat) throws IOException {
-        this.message = Lib.readFile(file);
+        setMessage(Lib.readFile(file));
         this.filename = file.getAbsolutePath();
         this.fileFormat = fileFormat;
         updateFromMessage();
@@ -287,7 +289,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
             throws IOException {
         Objects.requireNonNull(file, "the file parameter cannot be null");
         Objects.requireNonNull(metadataStrategy, "the strategy for metadata extraction cannot be null");
-        this.message = Lib.readFile(file);
+        setMessage(Lib.readFile(file));
         this.filename = file.getAbsolutePath();
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
@@ -347,7 +349,11 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @param message raw content of the message
      */
     public void setMessage(String message) {
-        this.message = message;
+        this.message = makeXmlLenient(message);
+    }
+
+    private String makeXmlLenient(String xml) {
+        return xml.replaceFirst("(?i)<\\?XML", "<?xml");
     }
 
     /**
@@ -1497,4 +1503,5 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
             return getIdentifier();
         }
     }
+
 }
