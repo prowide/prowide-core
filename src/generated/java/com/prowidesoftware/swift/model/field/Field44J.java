@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 
+import com.prowidesoftware.swift.model.field.MultiLineField;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -54,7 +55,7 @@ import com.google.gson.JsonParser;
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;CC&gt;[/35x][$/65x]</code></li>
- * 		<li>parser pattern: <code>S[/S][/S]</code></li>
+ * 		<li>parser pattern: <code>S[/S][$/S]</code></li>
  * 		<li>components pattern: <code>SSS</code></li>
  * </ul>
  *
@@ -63,7 +64,7 @@ import com.google.gson.JsonParser;
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field44J extends Field implements Serializable {
+public class Field44J extends Field implements Serializable, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -84,7 +85,7 @@ public class Field44J extends Field implements Serializable {
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S][/S]";
+	public static final String PARSER_PATTERN = "S[/S][$/S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
@@ -192,9 +193,8 @@ public class Field44J extends Field implements Serializable {
     @Override
     public void parse(final String value) {
         init(3);
-        setComponent1(SwiftParseUtils.getTokenFirst(value, null, "/"));
-        setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
-        setComponent3(SwiftParseUtils.getTokenThirdLast(value, "/"));
+        // @NotImplemented
+        throw new org.apache.commons.lang3.NotImplementedException("Missing parserPattern in Field.vm : S[/S][$/S]");
     }
 
     /**
@@ -203,13 +203,9 @@ public class Field44J extends Field implements Serializable {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        append(result, 1);
-        if (getComponent2() != null) {
-            result.append("/").append(getComponent2());
-        }
-        if (getComponent3() != null) {
-            result.append("/").append(getComponent3());
-        }
+        //FIXME serialization S[/S][$/S]
+        // @NotImplemented
+        int notImplemented;
         return result.toString();
     }
 
@@ -269,7 +265,7 @@ public class Field44J extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S[/S][/S]";
+        return "S[/S][$/S]";
     }
 
     /**
@@ -549,6 +545,84 @@ public class Field44J extends Field implements Serializable {
             }
         }
         return result;
+    }
+
+    /**
+     * Returns a specific line from the field's value.
+     *
+     * @see MultiLineField#getLine(int)
+     * @param line a reference to a specific line in the field, first line being 1
+     * @return line content or null if not present or if line number is above the expected
+     * @since 7.7
+     */
+    public String getLine(int line) {
+        return getLine(line, 0);
+    }
+
+    /**
+     * Returns a specific line from the field's value.
+     *
+     * @see MultiLineField#getLine(int, int)
+     * @param line a reference to a specific line in the field, first line being 1
+     * @param offset an optional component number used as offset when counting lines
+     * @return line content or null if not present or if line number is above the expected
+     * @since 7.7
+     */
+    public String getLine(int line, int offset) {
+        Field44J cp = newInstance(this);
+        return getLine(cp, line, null, offset);
+    }
+
+    /**
+     * Returns the field value split into lines.
+     *
+     * @see MultiLineField#getLines()
+     * @return lines content or empty list if field's value is empty
+     * @since 7.7
+     */
+    public List<String> getLines() {
+        return SwiftParseUtils.getLines(getValue());
+    }
+
+    /**
+     * Returns the field value starting at the offset component, split into lines.
+     *
+     * @see MultiLineField#getLines(int)
+     * @param offset an optional component number used as offset when counting lines
+     * @return found lines or empty list if lines are not present or the offset is invalid
+     * @since 7.7
+     */
+    public List<String> getLines(int offset) {
+        Field44J cp = newInstance(this);
+        return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
+    }
+
+    /**
+     * Returns a specific subset of lines from the field's value, given a range.
+     *
+     * @see MultiLineField#getLinesBetween(int, int )
+     * @param start a reference to a specific line in the field, first line being 1
+     * @param end a reference to a specific line in the field, must be greater than start
+     * @return found lines or empty list if value is empty
+     * @since 7.7
+     */
+    public List<String> getLinesBetween(int start, int end) {
+        return getLinesBetween(start, end, 0);
+    }
+
+    /**
+     * Returns a specific subset of lines from the field's value, starting at the offset component.
+     *
+     * @see MultiLineField#getLinesBetween(int start, int end, int offset)
+     * @param start a reference to a specific line in the field, first line being 1
+     * @param end a reference to a specific line in the field, must be greater than start
+     * @param offset an optional component number used as offset when counting lines
+     * @return found lines or empty list if lines are not present or the offset is invalid
+     * @since 7.7
+     */
+    public List<String> getLinesBetween(int start, int end, int offset) {
+        Field44J cp = newInstance(this);
+        return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
     }
 
     /**
