@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.1.3 - SNAPSHOT
+#### 10.1.3 - August 2023
   * (PW-1478) Field 44J format fixed to allow multiline
 
 #### 10.1.2 - August 2023
