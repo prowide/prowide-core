@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.4-SNAPSHOT
+  * (PW-1478) Field 44J format fixed to allow multiline
+
 #### 9.4.3 - July 2023
   * (PW-1461) Remove deprecation of field 31R model since is it used back in SRU2023
   * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
