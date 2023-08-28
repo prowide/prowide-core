@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.19-SNAPSHOT
+  * Added default methods for sender, receiver, and identifier extraction to the MessageExtractionStrategy.
+
 #### 9.3.18 - September 2023
   * Added support for an optional `pw-swift-core.properties` to customize the behavior of the SafeXmlUtils class
 

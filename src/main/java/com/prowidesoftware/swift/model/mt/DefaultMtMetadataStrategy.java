@@ -59,8 +59,32 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
         return Optional.ofNullable(SwiftMessageUtils.tradeDate(asSwiftMessage(message)));
     }
 
+    /**
+     * Extracts the MT sender, if present, using {@link SwiftMessageUtils#sender(SwiftMessage)}
+     */
+    @Override
+    public Optional<String> sender(AbstractMessage message) {
+        return Optional.ofNullable(SwiftMessageUtils.sender(asSwiftMessage(message)));
+    }
+
+    /**
+     * Extracts the MT receiver, if any, using {@link SwiftMessageUtils#receiver(SwiftMessage)}
+     */
+    @Override
+    public Optional<String> receiver(AbstractMessage message) {
+        return Optional.ofNullable(SwiftMessageUtils.receiver(asSwiftMessage(message)));
+    }
+
+    /**
+     * Extracts the MT identifier, if any, using {@link SwiftMessageUtils#identifier(SwiftMessage)}
+     */
+    @Override
+    public Optional<String> identifier(AbstractMessage message) {
+        return Optional.ofNullable(SwiftMessageUtils.identifier(asSwiftMessage(message)));
+    }
+
     private SwiftMessage asSwiftMessage(AbstractMessage message) {
-        if (message.isMT()) {
+        if (message != null && message.isMT()) {
             AbstractMT mt = (AbstractMT) message;
             return mt.getSwiftMessage();
         }

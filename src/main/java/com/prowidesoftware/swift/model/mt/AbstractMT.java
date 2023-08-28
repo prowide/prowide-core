@@ -421,7 +421,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public String getSender() {
         if (getSwiftMessage() != null) {
-            return getSwiftMessage().getSender();
+            return SwiftMessageUtils.sender(getSwiftMessage());
         }
         return null;
     }
@@ -472,7 +472,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public String getReceiver() {
         if (getSwiftMessage() != null) {
-            return getSwiftMessage().getReceiver();
+            return SwiftMessageUtils.receiver(getSwiftMessage());
         }
         return null;
     }
