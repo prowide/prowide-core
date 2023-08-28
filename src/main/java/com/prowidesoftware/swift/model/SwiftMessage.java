@@ -1056,49 +1056,19 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
-     * Gets the message sender BIC from the message headers.
-     * <p>For outgoing messages this is the the logical terminal at block 1,
-     * and for incoming messages this is logical terminal at the MIR of block 2.
-     * <p>for service message (example acknowledges) always returns the logical terminal from block1
-     *
-     * @return the proper sender address or null if blocks 1 or 2 are not found or incomplete
+     * @see SwiftMessageUtils#sender(SwiftMessage)
+     * @since 9.3.18
      */
     public String getSender() {
-        try {
-            if (isServiceMessage() || getDirection() == MessageIOType.outgoing) {
-                return this.block1 == null ? null : this.block1.getLogicalTerminal();
-            } else if ((getDirection() == MessageIOType.incoming) && (this.block2 != null)) {
-                return ((SwiftBlock2Output) this.block2).getMIRLogicalTerminal();
-            }
-        } catch (final Exception e) {
-            log.severe("Exception occurred while retrieving sender's BIC from message data: " + e);
-        }
-        return null;
+        return SwiftMessageUtils.sender(this);
     }
 
     /**
-     * Gets the message receiver BIC from the message headers.
-     * <p>For outgoing messages this is the receiver address at block 2,
-     * and for incoming messages this is logical terminal at block 1.
-     * <p>for service message (example acknowledges) always returns null
-     *
-     * @return the proper receiver address or null if blocks 1 or 2 are not found or incomplete
+     * @see SwiftMessageUtils#receiver(SwiftMessage)
+     * @since 9.3.18
      */
     public String getReceiver() {
-        try {
-            if (isServiceMessage()) {
-                return null;
-            } else if (getDirection() == MessageIOType.incoming) {
-                return this.block1.getLogicalTerminal();
-            } else if (getDirection() == MessageIOType.outgoing) {
-                return ((SwiftBlock2Input) this.block2).getReceiverAddress();
-            } else {
-                return null;
-            }
-        } catch (final Exception e) {
-            log.severe("Exception occurred while retrieving receiver's BIC from message data: " + e);
-            return null;
-        }
+        return SwiftMessageUtils.receiver(this);
     }
 
     /**
@@ -1810,13 +1780,13 @@ public class SwiftMessage implements Serializable, JsonSerializable {
      */
     public BIC getCorrespondentBIC() {
         if (isOutgoing()) {
-            final String receiver = getReceiver();
+            final String receiver = SwiftMessageUtils.receiver(this);
             if (receiver != null) {
                 return new BIC(receiver);
             }
         }
         if (isIncoming()) {
-            final String sender = getSender();
+            final String sender = SwiftMessageUtils.sender(this);
             if (sender != null) {
                 return new BIC(sender);
             }

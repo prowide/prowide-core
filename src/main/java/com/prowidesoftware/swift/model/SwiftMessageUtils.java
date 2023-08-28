@@ -288,6 +288,69 @@ public class SwiftMessageUtils {
     }
 
     /**
+     * Gets the message sender BIC from the message headers.
+     * <p>For outgoing messages this is the logical terminal at block 1,
+     * and for incoming messages this is logical terminal at the MIR of block 2.
+     * <p>for service message (example acknowledges) always returns the logical terminal from block1
+     *
+     * @return the proper sender address or null if blocks 1 or 2 are not found or incomplete
+     * @since 9.3.18
+     */
+    public static String sender(final SwiftMessage m) {
+        try {
+            if (m.isServiceMessage() || m.getDirection() == MessageIOType.outgoing) {
+                return m.getBlock1() == null ? null : m.getBlock1().getLogicalTerminal();
+            } else if ((m.getDirection() == MessageIOType.incoming) && (m.getBlock2() != null)) {
+                return ((SwiftBlock2Output) m.getBlock2()).getMIRLogicalTerminal();
+            }
+        } catch (final Exception e) {
+            log.severe("Exception occurred while retrieving sender's BIC from message data: " + e);
+        }
+        return null;
+    }
+
+    /**
+     * Gets the message receiver BIC from the message headers.
+     * <p>For outgoing messages this is the receiver address at block 2,
+     * and for incoming messages this is logical terminal at block 1.
+     * <p>for service message (example acknowledges) always returns null
+     *
+     * @return the proper receiver address or null if blocks 1 or 2 are not found or incomplete
+     * @since 9.3.18
+     */
+    public static String receiver(final SwiftMessage m) {
+        try {
+            if (m.isServiceMessage()) {
+                return null;
+            } else if (m.getDirection() == MessageIOType.incoming) {
+                return m.getBlock1().getLogicalTerminal();
+            } else if (m.getDirection() == MessageIOType.outgoing) {
+                return ((SwiftBlock2Input) m.getBlock2()).getReceiverAddress();
+            } else {
+                return null;
+            }
+        } catch (final Exception e) {
+            log.severe("Exception occurred while retrieving receiver's BIC from message data: " + e);
+            return null;
+        }
+    }
+
+    /**
+     * Get a string in the form of businessprocess.messagetype.variant
+     *
+     * @return a string with the MT message type identification
+     * @since 9.3.18
+     */
+    public static String identifier(final SwiftMessage m) {
+        try {
+            return m.getMtId().id();
+        } catch (final Exception e) {
+            log.severe("Exception occurred while retrieving identifier from message data: " + e);
+            return null;
+        }
+    }
+
+    /**
      * Proprietary checksum for message integrity verification or duplicates detection.
      * <p>Please notice <strong>this is not the SWIFT trailer CHK field</strong>.
      * <p>The implementation computes an MD5 on the complete message in FIN format. The result hash

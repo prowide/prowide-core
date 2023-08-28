@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.18-SNAPSHOT
+  * Added default methods for sender, receiver, and identifier extraction to the MessageExtractionStrategy.
+
 #### 9.3.17 - July 2023
   * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
 
