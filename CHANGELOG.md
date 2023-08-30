@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.5 - August 2023
+  * (PW-1478) Field 44J parse and getValue fix
+
 #### 9.4.4 - August 2023
   * (PW-1478) Field 44J format fixed to allow multiline
 
