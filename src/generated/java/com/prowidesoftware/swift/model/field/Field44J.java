@@ -193,8 +193,9 @@ public class Field44J extends Field implements Serializable, MultiLineField {
     @Override
     public void parse(final String value) {
         init(3);
-        // @NotImplemented
-        throw new org.apache.commons.lang3.NotImplementedException("Missing parserPattern in Field.vm : S[/S][$/S]");
+        setComponent1(SwiftParseUtils.getTokenFirst(value, null, "/"));
+        setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
+        setComponent3(SwiftParseUtils.getTokenThirdLast(value, "/"));
     }
 
     /**
@@ -203,9 +204,13 @@ public class Field44J extends Field implements Serializable, MultiLineField {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        //FIXME serialization S[/S][$/S]
-        // @NotImplemented
-        int notImplemented;
+        append(result, 1);
+        if (getComponent2() != null) {
+            result.append("/").append(getComponent2());
+        }
+        if (getComponent3() != null) {
+            result.append("/").append(getComponent3());
+        }
         return result.toString();
     }
 
