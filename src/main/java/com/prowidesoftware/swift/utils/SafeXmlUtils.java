@@ -16,7 +16,6 @@
 package com.prowidesoftware.swift.utils;
 
 import com.prowidesoftware.ProwideException;
-
 import javax.xml.XMLConstants;
 import javax.xml.parsers.*;
 import javax.xml.stream.XMLInputFactory;
@@ -26,8 +25,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
-
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
@@ -44,7 +42,7 @@ public class SafeXmlUtils {
     private static final java.util.logging.Logger log =
             java.util.logging.Logger.getLogger(SafeXmlUtils.class.getName());
 
-    private static String FEATURE_IGNORE_PROPERTY = "safeXmlUtils.ignore";
+    private static final String FEATURE_IGNORE_PROPERTY = "safeXmlUtils.ignore";
 
     // Suppress default constructor for noninstantiability
     private SafeXmlUtils() {
@@ -73,7 +71,7 @@ public class SafeXmlUtils {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
             feature = XMLConstants.FEATURE_SECURE_PROCESSING;
-            if (!applyFeature(feature)) {
+            if (applyFeature(feature)) {
                 dbf.setFeature(feature, true);
             }
 
@@ -82,11 +80,15 @@ public class SafeXmlUtils {
 
             // Using the SAXParserFactory's setFeature
             feature = "http://xml.org/sax/features/external-general-entities";
-            dbf.setFeature(feature, false);
+            if (applyFeature(feature)) {
+                dbf.setFeature(feature, false);
+            }
 
             // Xerces 2 only - http://xerces.apache.org/xerces-j/features.html#external-general-entities
             feature = "http://apache.org/xml/features/disallow-doctype-decl";
-            dbf.setFeature(feature, true);
+            if (applyFeature(feature)) {
+                dbf.setFeature(feature, true);
+            }
 
             // set parameter
             dbf.setNamespaceAware(namespaceAware);
@@ -94,9 +96,15 @@ public class SafeXmlUtils {
             return dbf.newDocumentBuilder();
 
         } catch (ParserConfigurationException e) {
-            log.log(java.util.logging.Level.SEVERE, "Error configuring the XML document builder. " + "The feature " + feature
-                    + " is probably not supported by your XML processor.", e);
-            log.finer("To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a " + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a " + FEATURE_IGNORE_PROPERTY + "=" + feature);
+            log.log(
+                    java.util.logging.Level.SEVERE,
+                    "Error configuring the XML document builder. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
+            log.finer(
+                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
+                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
+                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
             throw new ProwideException(
                     "Error configuring the XML document builder. " + "The feature " + feature
                             + " is probably not supported by your XML processor.",
@@ -127,18 +135,24 @@ public class SafeXmlUtils {
             SAXParserFactory spf = SAXParserFactory.newInstance();
 
             feature = XMLConstants.FEATURE_SECURE_PROCESSING;
-            spf.setFeature(feature, true);
+            if (applyFeature(feature)) {
+                spf.setFeature(feature, true);
+            }
 
             // Xerces 1 - http://xerces.apache.org/xerces-j/features.html#external-general-entities
             // Xerces 2 - http://xerces.apache.org/xerces2-j/features.html#external-general-entities
 
             // Using the SAXParserFactory's setFeature
             feature = "http://xml.org/sax/features/external-general-entities";
-            spf.setFeature(feature, false);
+            if (applyFeature(feature)) {
+                spf.setFeature(feature, false);
+            }
 
             // Xerces 2 only - http://xerces.apache.org/xerces-j/features.html#external-general-entities
             feature = "http://apache.org/xml/features/disallow-doctype-decl";
-            spf.setFeature(feature, true);
+            if (applyFeature(feature)) {
+                spf.setFeature(feature, true);
+            }
 
             // set parameters
             spf.setNamespaceAware(namespaceAware);
@@ -152,21 +166,38 @@ public class SafeXmlUtils {
             // Using the XMLReader's setFeature
 
             feature = "http://apache.org/xml/features/disallow-doctype-decl";
-            reader.setFeature(feature, true);
+            if (applyFeature(feature)) {
+                spf.setFeature(feature, true);
+            }
 
             // This may not be strictly required as DTDs shouldn't be allowed at all, per previous line.
             feature = "http://apache.org/xml/features/nonvalidating/load-external-dtd";
-            reader.setFeature(feature, false);
+            if (applyFeature(feature)) {
+                spf.setFeature(feature, false);
+            }
 
             feature = "http://xml.org/sax/features/external-general-entities";
-            reader.setFeature(feature, false);
+            if (applyFeature(feature)) {
+                spf.setFeature(feature, false);
+            }
 
             feature = "http://xml.org/sax/features/external-parameter-entities";
-            reader.setFeature(feature, false);
+            if (applyFeature(feature)) {
+                spf.setFeature(feature, false);
+            }
 
             return reader;
 
         } catch (ParserConfigurationException | SAXException e) {
+            log.log(
+                    java.util.logging.Level.SEVERE,
+                    "Error configuring the XML document builder. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
+            log.finer(
+                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
+                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
+                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
             throw new ProwideException(
                     "Error configuring the XML parser. " + "The feature " + feature
                             + " is probably not supported by your XML processor.",
@@ -183,10 +214,14 @@ public class SafeXmlUtils {
         XMLInputFactory xif = XMLInputFactory.newInstance();
 
         // This disables DTDs entirely for that factory
-        xif.setProperty(XMLInputFactory.SUPPORT_DTD, false);
-
+        if (applyFeature(XMLInputFactory.SUPPORT_DTD)) {
+            xif.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        }
         // disable external entities
-        xif.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
+        String property = "javax.xml.stream.isSupportingExternalEntities";
+        if (applyFeature(property)) {
+            xif.setProperty(property, false);
+        }
 
         return xif;
     }
@@ -200,14 +235,27 @@ public class SafeXmlUtils {
             TransformerFactory tf = TransformerFactory.newInstance();
 
             feature = XMLConstants.ACCESS_EXTERNAL_DTD;
-            tf.setAttribute(feature, "");
+            if (applyFeature(feature)) {
+                tf.setAttribute(feature, "");
+            }
 
             feature = XMLConstants.ACCESS_EXTERNAL_STYLESHEET;
-            tf.setAttribute(feature, "");
+            if (applyFeature(feature)) {
+                tf.setAttribute(feature, "");
+            }
 
             return tf.newTransformer();
 
         } catch (TransformerConfigurationException e) {
+            log.log(
+                    java.util.logging.Level.SEVERE,
+                    "Error configuring the XML document builder. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
+            log.finer(
+                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
+                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
+                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
             throw new ProwideException(
                     "Error configuring the XML transformer factory. " + "The feature " + feature
                             + " is probably not supported by your XML processor.",
@@ -225,7 +273,9 @@ public class SafeXmlUtils {
 
             // https://stackoverflow.com/questions/58374278/org-xml-sax-saxnotrecognizedexception-property-http-javax-xml-xmlconstants-p
             feature = XMLConstants.ACCESS_EXTERNAL_DTD;
-            factory.setProperty(feature, "");
+            if (applyFeature(feature)) {
+                factory.setProperty(feature, "");
+            }
 
             // we keep this one for the moment because it is needed in MX xsys validation
             // feature = XMLConstants.ACCESS_EXTERNAL_SCHEMA;
@@ -234,6 +284,15 @@ public class SafeXmlUtils {
             return factory;
 
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
+            log.log(
+                    java.util.logging.Level.SEVERE,
+                    "Error configuring the XML document builder. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
+            log.finer(
+                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
+                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
+                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
             throw new ProwideException(
                     "Error configuring the schema factory. " + "The feature " + feature
                             + " is probably not supported by your XML processor.",
@@ -250,14 +309,27 @@ public class SafeXmlUtils {
             Validator validator = schema.newValidator();
 
             feature = XMLConstants.ACCESS_EXTERNAL_DTD;
-            validator.setProperty(feature, "");
+            if (applyFeature(feature)) {
+                validator.setProperty(feature, "");
+            }
 
             feature = XMLConstants.ACCESS_EXTERNAL_SCHEMA;
-            validator.setProperty(feature, "");
+            if (applyFeature(feature)) {
+                validator.setProperty(feature, "");
+            }
 
             return validator;
 
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
+            log.log(
+                    java.util.logging.Level.SEVERE,
+                    "Error configuring the XML document builder. " + "The feature " + feature
+                            + " is probably not supported by your XML processor.",
+                    e);
+            log.finer(
+                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
+                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
+                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
             throw new ProwideException(
                     "Error configuring the schema validator. " + "The feature " + feature
                             + " is probably not supported by your XML processor.",
@@ -265,8 +337,8 @@ public class SafeXmlUtils {
         }
     }
 
-    private boolean applyFeature(final String feature) {
+    private static boolean applyFeature(final String feature) {
         final String[] prop = PropertyLoader.getPropertyArray(FEATURE_IGNORE_PROPERTY);
-        return (prop != null && prop.length > 0 && StringUtils.contains(prop, feature));
+        return (!ArrayUtils.contains(prop, feature));
     }
 }

@@ -26,6 +26,10 @@ class PropertyLoader {
     static final String PROPERTIES_FILE = "pw-swift-core.properties";
     private static Properties properties = null;
 
+    private PropertyLoader() {
+        // prevent instantiation
+    }
+
     static Properties loadProperties() {
         if (properties == null) {
             properties = new Properties();
@@ -48,7 +52,7 @@ class PropertyLoader {
             return propertyValue.split(",");
         }
 
-        return null;
+        return new String[0];
     }
 
     static String getProperty(String key) {
@@ -61,5 +65,4 @@ class PropertyLoader {
 
         return null;
     }
-
 }
