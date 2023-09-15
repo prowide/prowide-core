@@ -16,6 +16,7 @@
 package com.prowidesoftware.swift.utils;
 
 import com.prowidesoftware.ProwideException;
+
 import javax.xml.XMLConstants;
 import javax.xml.parsers.*;
 import javax.xml.stream.XMLInputFactory;
@@ -25,6 +26,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
+
+import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
@@ -38,8 +41,10 @@ import org.xml.sax.XMLReader;
  */
 public class SafeXmlUtils {
     @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger log =
             java.util.logging.Logger.getLogger(SafeXmlUtils.class.getName());
+
+    private static String FEATURE_IGNORE_PROPERTY = "safeXmlUtils.ignore";
 
     // Suppress default constructor for noninstantiability
     private SafeXmlUtils() {
@@ -68,7 +73,9 @@ public class SafeXmlUtils {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
             feature = XMLConstants.FEATURE_SECURE_PROCESSING;
-            dbf.setFeature(feature, true);
+            if (!applyFeature(feature)) {
+                dbf.setFeature(feature, true);
+            }
 
             // Xerces 1 - http://xerces.apache.org/xerces-j/features.html#external-general-entities
             // Xerces 2 - http://xerces.apache.org/xerces2-j/features.html#external-general-entities
@@ -87,6 +94,9 @@ public class SafeXmlUtils {
             return dbf.newDocumentBuilder();
 
         } catch (ParserConfigurationException e) {
+            log.log(java.util.logging.Level.SEVERE, "Error configuring the XML document builder. " + "The feature " + feature
+                    + " is probably not supported by your XML processor.", e);
+            log.finer("To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a " + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a " + FEATURE_IGNORE_PROPERTY + "=" + feature);
             throw new ProwideException(
                     "Error configuring the XML document builder. " + "The feature " + feature
                             + " is probably not supported by your XML processor.",
@@ -253,5 +263,10 @@ public class SafeXmlUtils {
                             + " is probably not supported by your XML processor.",
                     e);
         }
+    }
+
+    private boolean applyFeature(final String feature) {
+        final String[] prop = PropertyLoader.getPropertyArray(FEATURE_IGNORE_PROPERTY);
+        return (prop != null && prop.length > 0 && StringUtils.contains(prop, feature));
     }
 }
