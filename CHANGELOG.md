@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.1.5 - SNAPSHOT
+  * Added support for an optional `pw-swift-core.properties` to customize the behavior of the SafeXmlUtils class
+
 #### 10.1.4 - September 2023
   * (PW-1478) Field 44J parse and getValue fix
 
