@@ -16,6 +16,7 @@
 package com.prowidesoftware.swift.utils;
 
 import com.prowidesoftware.ProwideException;
+import java.util.logging.Level;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.*;
 import javax.xml.stream.XMLInputFactory;
@@ -32,19 +33,26 @@ import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.XMLReader;
 
 /**
- * Reusable safe XML document builder to prevent XXE
- * https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html
+ * This class is uses in many places in the library to create XML parsers and transformers, to switch off certain
+ * features that may be vulnerable to XXE attacks.
+ * <p>
+ * The features are implementation dependent, thus they might not be present in certain implementations of the XML apis.
+ * We have experience issues with many xerces and xalan versions. So when faced with an error because a feature is
+ * not present in your environment, the first choice should be to review the xml related dependencies, and to try to
+ * those that do not support the feature.
+ * <p>
+ * When the dependencies cannot be changed, you can ignore the error by adding a pw-swift-core.properties file in the
+ * application classpath with a safeXmlUtils.ignore=featureName,featureName,featureName property. This will prevent the
+ * indicated features to be applied.
  *
  * @since 8.0.5
  */
 public class SafeXmlUtils {
-    @SuppressWarnings("unused")
     private static final java.util.logging.Logger log =
             java.util.logging.Logger.getLogger(SafeXmlUtils.class.getName());
 
     private static final String FEATURE_IGNORE_PROPERTY = "safeXmlUtils.ignore";
 
-    // Suppress default constructor for noninstantiability
     private SafeXmlUtils() {
         throw new AssertionError();
     }
@@ -96,19 +104,7 @@ public class SafeXmlUtils {
             return dbf.newDocumentBuilder();
 
         } catch (ParserConfigurationException e) {
-            log.log(
-                    java.util.logging.Level.SEVERE,
-                    "Error configuring the XML document builder. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
-            log.finer(
-                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
-                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
-                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
-            throw new ProwideException(
-                    "Error configuring the XML document builder. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
+            throw logAndCreateException(e, feature, DocumentBuilderFactory.class.getName());
         }
     }
 
@@ -189,19 +185,7 @@ public class SafeXmlUtils {
             return reader;
 
         } catch (ParserConfigurationException | SAXException e) {
-            log.log(
-                    java.util.logging.Level.SEVERE,
-                    "Error configuring the XML document builder. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
-            log.finer(
-                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
-                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
-                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
-            throw new ProwideException(
-                    "Error configuring the XML parser. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
+            throw logAndCreateException(e, feature, SAXParserFactory.class.getName());
         }
     }
 
@@ -247,19 +231,7 @@ public class SafeXmlUtils {
             return tf.newTransformer();
 
         } catch (TransformerConfigurationException e) {
-            log.log(
-                    java.util.logging.Level.SEVERE,
-                    "Error configuring the XML document builder. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
-            log.finer(
-                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
-                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
-                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
-            throw new ProwideException(
-                    "Error configuring the XML transformer factory. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
+            throw logAndCreateException(e, feature, Transformer.class.getName());
         }
     }
 
@@ -284,19 +256,7 @@ public class SafeXmlUtils {
             return factory;
 
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
-            log.log(
-                    java.util.logging.Level.SEVERE,
-                    "Error configuring the XML document builder. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
-            log.finer(
-                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
-                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
-                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
-            throw new ProwideException(
-                    "Error configuring the schema factory. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
+            throw logAndCreateException(e, feature, SchemaFactory.class.getName());
         }
     }
 
@@ -321,24 +281,29 @@ public class SafeXmlUtils {
             return validator;
 
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
-            log.log(
-                    java.util.logging.Level.SEVERE,
-                    "Error configuring the XML document builder. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
-            log.finer(
-                    "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
-                            + PropertyLoader.PROPERTIES_FILE + " in the application claspath with a "
-                            + FEATURE_IGNORE_PROPERTY + "=" + feature);
-            throw new ProwideException(
-                    "Error configuring the schema validator. " + "The feature " + feature
-                            + " is probably not supported by your XML processor.",
-                    e);
+            throw logAndCreateException(e, feature, Validator.class.getName());
         }
     }
 
     private static boolean applyFeature(final String feature) {
         final String[] prop = PropertyLoader.getPropertyArray(FEATURE_IGNORE_PROPERTY);
         return (!ArrayUtils.contains(prop, feature));
+    }
+
+    private static ProwideException logAndCreateException(Exception e, String feature, String className) {
+        log.log(
+                Level.SEVERE,
+                "Error configuring the " + className + ". The feature " + feature
+                        + " is not supported by your XML processor. Increase log level for details.");
+        log.log(
+                Level.FINER,
+                "To avoid the missing feature, try removing the xerces and xalan dependencies in your project. If that is not doable, you can ignore this error by adding a "
+                        + PropertyLoader.PROPERTIES_FILE + " in your application classpath with property "
+                        + FEATURE_IGNORE_PROPERTY + "=" + feature,
+                e);
+        return new ProwideException(
+                "Error configuring the " + className + ". The feature " + feature
+                        + " is not supported by your XML processor.",
+                e);
     }
 }

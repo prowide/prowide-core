@@ -18,6 +18,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
+ * Helper class to load properties from a file.
+ *
  * @since 9.3.18
  */
 class PropertyLoader {

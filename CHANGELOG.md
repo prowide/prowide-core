@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.3.18 - SNAPSHOT
+  * Added support for an optional `pw-swift-core.properties` to customize the behavior of the SafeXmlUtils class
+
 #### 9.3.17 - July 2023
   * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
 
