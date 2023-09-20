@@ -1057,7 +1057,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
     /**
      * @see SwiftMessageUtils#sender(SwiftMessage)
-     * @since 9.3.18
+     * @since 9.3.19
      */
     public String getSender() {
         return SwiftMessageUtils.sender(this);
@@ -1065,7 +1065,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
 
     /**
      * @see SwiftMessageUtils#receiver(SwiftMessage)
-     * @since 9.3.18
+     * @since 9.3.19
      */
     public String getReceiver() {
         return SwiftMessageUtils.receiver(this);

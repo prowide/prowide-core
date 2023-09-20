@@ -52,7 +52,7 @@ public interface MessageMetadataStrategy {
     /**
      * Extracts the sender information from the message.
      * This default implementation returns empty.
-     * @since 9.3.18
+     * @since 9.3.19
      */
     default Optional<String> sender(AbstractMessage message) {
         return Optional.empty();
@@ -61,7 +61,7 @@ public interface MessageMetadataStrategy {
     /**
      * Extracts the receiver information from the message.
      * This default implementation returns empty.
-     * @since 9.3.18
+     * @since 9.3.19
      */
     default Optional<String> receiver(AbstractMessage message) {
         return Optional.empty();
@@ -70,7 +70,7 @@ public interface MessageMetadataStrategy {
     /**
      * Extracts the identifier from the message.
      * This default implementation returns empty.
-     * @since 9.3.18
+     * @since 9.3.19
      */
     default Optional<String> identifier(AbstractMessage message) {
         return Optional.empty();

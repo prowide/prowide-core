@@ -294,7 +294,7 @@ public class SwiftMessageUtils {
      * <p>for service message (example acknowledges) always returns the logical terminal from block1
      *
      * @return the proper sender address or null if blocks 1 or 2 are not found or incomplete
-     * @since 9.3.18
+     * @since 9.3.19
      */
     public static String sender(final SwiftMessage m) {
         try {
@@ -316,7 +316,7 @@ public class SwiftMessageUtils {
      * <p>for service message (example acknowledges) always returns null
      *
      * @return the proper receiver address or null if blocks 1 or 2 are not found or incomplete
-     * @since 9.3.18
+     * @since 9.3.19
      */
     public static String receiver(final SwiftMessage m) {
         try {
@@ -339,7 +339,7 @@ public class SwiftMessageUtils {
      * Get a string in the form of businessprocess.messagetype.variant
      *
      * @return a string with the MT message type identification
-     * @since 9.3.18
+     * @since 9.3.19
      */
     public static String identifier(final SwiftMessage m) {
         try {
