@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.0.2 - SNAPSHOT
+  * Added support for an optional `pw-swift-core.properties` to customize the behavior of the SafeXmlUtils class
+
 #### 10.0.1 - July 2023
   * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
