@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.0.2 - SNAPSHOT
+#### 10.0.2 - September 2023
   * Added support for an optional `pw-swift-core.properties` to customize the behavior of the SafeXmlUtils class
 
 #### 10.0.1 - July 2023
