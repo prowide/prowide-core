@@ -193,9 +193,12 @@ public class Field44J extends Field implements Serializable, MultiLineField {
     @Override
     public void parse(final String value) {
         init(3);
-        setComponent1(SwiftParseUtils.getTokenFirst(value, null, "/"));
-        setComponent2(SwiftParseUtils.getTokenSecond(value, "/"));
-        setComponent3(SwiftParseUtils.getTokenThirdLast(value, "/"));
+        List<String> lines = SwiftParseUtils.getLines(value);
+        if (!lines.isEmpty()) {
+            setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/"));
+            setComponent2(SwiftParseUtils.getTokenSecondLast(lines.get(0), "/"));
+            SwiftParseUtils.setComponentsFromLines(this, 3, null, 1, lines);
+        }
     }
 
     /**
@@ -209,7 +212,8 @@ public class Field44J extends Field implements Serializable, MultiLineField {
             result.append("/").append(getComponent2());
         }
         if (getComponent3() != null) {
-            result.append("/").append(getComponent3());
+            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
+            result.append(getComponent3());
         }
         return result.toString();
     }
