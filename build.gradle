@@ -29,14 +29,13 @@ project.ext {
     nexusRepo = project.version.endsWith('-SNAPSHOT') ? 'maven-snapshots' : 'maven-releases'
 }
 
-//scmVersion {
-//    tag {
-//        prefix.set("${SRU}")
-//        versionSeparator.set('-')
-//    }
-//}
-//version = "${SRU}-${scmVersion.version}"
-version = 'SRU2022-10.0.1'
+scmVersion {
+    tag {
+        prefix.set("${SRU}")
+        versionSeparator.set('-')
+    }
+}
+version = "${SRU}-${scmVersion.version}"
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
