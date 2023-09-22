@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.1.6 - September 2023
+  * (PW-1478) Fixed Field 44J parse and getValue to enable proper data preservation when the field contains multiline content
+
 #### 10.1.5 - September 2023
   * Added support for an optional `pw-swift-core.properties` to customize the behavior of the SafeXmlUtils class
 
