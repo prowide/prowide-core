@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.3.19-SNAPSHOT
+#### 9.3.19 - October 2023
   * Added default methods for sender, receiver, and identifier extraction to the MessageExtractionStrategy
   * Added JSON to the `FileFormat` enumeration
 
