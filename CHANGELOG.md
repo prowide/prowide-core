@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 10.0.3 - October 2023
+  * Added default methods for sender, receiver, and identifier extraction to the MessageExtractionStrategy
+  * Added JSON to the `FileFormat` enumeration
+
 #### 10.0.2 - September 2023
   * Added support for an optional `pw-swift-core.properties` to customize the behavior of the SafeXmlUtils class
 
