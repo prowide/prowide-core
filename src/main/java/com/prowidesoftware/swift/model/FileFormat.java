@@ -15,6 +15,9 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 /**
  * Supported file formats in the {@link AbstractSwiftMessage} hierarchy.
  *
@@ -31,8 +34,9 @@ public enum FileFormat {
      */
     CORE_XML("xml"),
     /**
-     * MQ-MT format
+     * @deprecated undefined and unused file format
      */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2024)
     MQ_MT("mt"),
     /**
      * Only valid for MT.
