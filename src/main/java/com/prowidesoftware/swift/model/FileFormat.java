@@ -15,14 +15,14 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+
 /**
  * Supported file formats in the {@link AbstractSwiftMessage} hierarchy.
  *
  * @author sebastian
  * @since 7.8.4
- */
-/*
- * sebastian aug 2016: annotate subclasses?
  */
 public enum FileFormat {
     /**
@@ -34,8 +34,9 @@ public enum FileFormat {
      */
     CORE_XML("xml"),
     /**
-     * MQ-MT format
+     * @deprecated undefined and unused file format
      */
+    @ProwideDeprecated(phase2 = TargetYear.SRU2024)
     MQ_MT("mt"),
     /**
      * Only valid for MT.
@@ -49,12 +50,16 @@ public enum FileFormat {
     /**
      * Applies to both MT and MX
      */
-    XML_V2("xml");
+    XML_V2("xml"),
+    /**
+     * Prowide default JSON formats for both MT and MX
+     */
+    JSON("json");
 
     private final String extension;
 
-    FileFormat(String _extension) {
-        extension = _extension;
+    FileFormat(String extension) {
+        this.extension = extension;
     }
 
     public String extension() {

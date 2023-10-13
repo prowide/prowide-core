@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.8 - October 2023
+  * Added default methods for sender, receiver, and identifier extraction to the MessageExtractionStrategy
+  * Added JSON to the `FileFormat` enumeration
+
 #### 9.4.7 - September 2023
   * (PW-1478) Fixed Field 44J parse and getValue to enable proper data preservation when the field contains multiline content
 
