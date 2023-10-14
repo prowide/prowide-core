@@ -282,12 +282,15 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
         } else {
             // any other case we just update the metadata from the received message
             extractMetadata(model, metadataStrategy);
-            if (model.getMtId() != null) {
-                setIdentifier(model.getMtId().id());
-            }
+            Optional<String> identifier = metadataStrategy.identifier(model.toMT());
+            identifier.ifPresent(this::setIdentifier);
         }
+
         setFileFormat(FileFormat.FIN);
-        setSender(bic11(model.getSender()));
+
+        Optional<String> sender = metadataStrategy.sender(model.toMT());
+        sender.ifPresent(s -> setSender(bic11(s)));
+
         setChecksum(SwiftMessageUtils.calculateChecksum(model));
         setChecksumBody(SwiftMessageUtils.calculateChecksum(model.getBlock4()));
         setLastModified(Calendar.getInstance());
@@ -295,7 +298,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     }
 
     private void extractMetadata(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-        setReceiver(bic11(model.getReceiver()));
+
+        Optional<String> receiver = metadataStrategy.receiver(model.toMT());
+        receiver.ifPresent(r -> setReceiver(bic11(r)));
         setDirection(model.getDirection());
 
         setPde(model.getPDE());

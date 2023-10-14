@@ -48,4 +48,31 @@ public interface MessageMetadataStrategy {
      * Extracts the message trade date (only meaningful for some types of messages)
      */
     Optional<Calendar> tradeDate(AbstractMessage message);
+
+    /**
+     * Extracts the sender information from the message.
+     * This default implementation returns empty.
+     * @since 9.3.19
+     */
+    default Optional<String> sender(AbstractMessage message) {
+        return Optional.empty();
+    }
+
+    /**
+     * Extracts the receiver information from the message.
+     * This default implementation returns empty.
+     * @since 9.3.19
+     */
+    default Optional<String> receiver(AbstractMessage message) {
+        return Optional.empty();
+    }
+
+    /**
+     * Extracts the identifier from the message.
+     * This default implementation returns empty.
+     * @since 9.3.19
+     */
+    default Optional<String> identifier(AbstractMessage message) {
+        return Optional.empty();
+    }
 }
