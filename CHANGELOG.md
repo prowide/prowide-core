@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.1.8 - October 2023
+  * (PW-1659) Field 24G deprecated Name and Address for Narrative
+
 #### 10.1.7 - October 2023
   * Added default methods for sender, receiver, and identifier extraction to the MessageExtractionStrategy
   * Added JSON to the `FileFormat` enumeration
