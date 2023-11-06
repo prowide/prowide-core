@@ -15,18 +15,30 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.SwiftTagListBlock;
-import com.prowidesoftware.swift.model.Tag;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Locale;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
+
+import com.prowidesoftware.swift.model.field.MultiLineField;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.prowidesoftware.swift.model.field.SwiftParseUtils;
+import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * SWIFT MT Field 24G.
@@ -63,15 +75,15 @@ import java.util.*;
 @SuppressWarnings("unused")
 @Generated
 public class Field24G extends Field implements Serializable, MultiLineField {
-    /**
-     * Constant identifying the SRU to which this class belongs to.
-     */
-    public static final int SRU = 2023;
+	/**
+	 * Constant identifying the SRU to which this class belongs to.
+	 */
+	public static final int SRU = 2023;
 
-    private static final long serialVersionUID = 1L;
-    /**
-     * Constant with the field name 24G.
-     */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Constant with the field name 24G.
+	 */
     public static final String NAME = "24G";
     /**
      * Same as NAME, intended to be clear when using static imports.
@@ -83,35 +95,35 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String PARSER_PATTERN = "S[$S]0-12";
+	public static final String PARSER_PATTERN = "S[$S]0-12";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSS";
+	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String TYPES_PATTERN = "SSSSSSSSSSSSS";
+	public static final String TYPES_PATTERN = "SSSSSSSSSSSSS";
 
-    /**
-     * Component number for the Code subfield.
-     */
-    public static final Integer CODE = 1;
+	/**
+	 * Component number for the Code subfield.
+	 */
+	public static final Integer CODE = 1;
 
-    /**
-     * Component number for the Narrative subfield.
-     */
-    public static final Integer NARRATIVE = 2;
+	/**
+	 * Component number for the Narrative subfield.
+	 */
+	public static final Integer NARRATIVE = 2;
 
-    /**
-     * @deprecated use #NARRATIVE instead
-     */
+	/**
+	 * @deprecated use #NARRATIVE instead
+	 */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer NAME_AND_ADDRESS = 2;
@@ -125,7 +137,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Creates a new field and initializes its components with content from the parameter value.
-     *
      * @param value complete field value including separators and CRLF
      */
     public Field24G(final String value) {
@@ -135,7 +146,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Creates a new field and initializes its components with content from the parameter tag.
      * The value is parsed with {@link #parse(String)}
-     *
      * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
      * @since 7.8
      */
@@ -145,7 +155,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
             throw new IllegalArgumentException("tag cannot be null.");
         }
         if (!StringUtils.equals(tag.getName(), "24G")) {
-            throw new IllegalArgumentException("cannot create field 24G from tag " + tag.getName() + ", tagname must match the name of the field.");
+            throw new IllegalArgumentException("cannot create field 24G from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -153,7 +163,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Copy constructor.
      * Initializes the components list with a deep copy of the source components list.
-     *
      * @param source a field instance to copy
      * @since 7.7
      */
@@ -166,7 +175,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Create a Tag with this field name and the given value.
      * Shorthand for <code>new Tag(NAME, value)</code>
-     *
      * @see #NAME
      * @since 7.5
      */
@@ -177,7 +185,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Create a Tag with this field name and an empty string as value.
      * Shorthand for <code>new Tag(NAME, "")</code>
-     *
      * @see #NAME
      * @since 7.5
      */
@@ -216,7 +223,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      * Returns a localized suitable for showing to humans string of a field component.<br>
      *
      * @param component number of the component to display
-     * @param locale    optional locale to format date and amounts, if null, the default locale is used
+     * @param locale optional locale to format date and amounts, if null, the default locale is used
      * @return formatted component value or null if component number is invalid or not present
      * @throws IllegalArgumentException if component number is invalid for the field
      * @since 7.8
@@ -293,10 +300,9 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Returns the field component types pattern.
-     * <p>
+     *
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
-     *
      * @since 9.2.7
      */
     @Override
@@ -373,7 +379,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Returns true if the field is a GENERIC FIELD as specified by the standard.
-     *
      * @return true if the field is generic, false otherwise
      */
     @Override
@@ -385,7 +390,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      * Returns the defined amount of components.<br>
      * This is not the amount of components present in the field instance, but the total amount of components
      * that this field accepts as defined.
-     *
      * @since 7.7
      */
     @Override
@@ -397,7 +401,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      * Returns english label for components.
      * <br>
      * The index in the list is in sync with specific field component structure.
-     *
      * @see #getComponentLabel(int)
      * @since 7.8.4
      */
@@ -422,7 +425,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Returns a mapping between component numbers and their label in camel case format.
-     *
      * @since 7.10.3
      */
     @Override
@@ -497,7 +499,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 1 (Code).
-     *
      * @return the component 1
      */
     public String getComponent1() {
@@ -506,7 +507,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Code (component 1).
-     *
      * @return the Code from component 1
      */
     public String getCode() {
@@ -515,7 +515,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 2 (Narrative).
-     *
      * @return the component 2
      */
     public String getComponent2() {
@@ -524,7 +523,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative (component 2).
-     *
      * @return the Narrative from component 2
      */
     public String getNarrativeLine1() {
@@ -533,9 +531,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine1() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -545,7 +542,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative as a concatenation of component 2 to component 13.
-     *
      * @return the Narrative from components
      */
     public String getNarrative() {
@@ -555,7 +551,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Gets the Narrative as a concatenation of component 2 to component 13 joined together with a copy of the
      * specified delimiter.
-     *
      * @param deli the delimiter that separates each component
      * @return the Narrative from components
      * @since 9.1.4
@@ -593,7 +588,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 3 (Narrative 2).
-     *
      * @return the component 3
      */
     public String getComponent3() {
@@ -602,7 +596,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 2 (component 3).
-     *
      * @return the Narrative 2 from component 3
      */
     public String getNarrativeLine2() {
@@ -611,9 +604,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 2
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine2() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -623,7 +615,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 4 (Narrative 3).
-     *
      * @return the component 4
      */
     public String getComponent4() {
@@ -632,7 +623,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 3 (component 4).
-     *
      * @return the Narrative 3 from component 4
      */
     public String getNarrativeLine3() {
@@ -641,9 +631,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 3
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine3() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -653,7 +642,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 5 (Narrative 4).
-     *
      * @return the component 5
      */
     public String getComponent5() {
@@ -662,7 +650,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 4 (component 5).
-     *
      * @return the Narrative 4 from component 5
      */
     public String getNarrativeLine4() {
@@ -671,9 +658,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 4
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine4() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -683,7 +669,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 6 (Narrative 5).
-     *
      * @return the component 6
      */
     public String getComponent6() {
@@ -692,7 +677,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 5 (component 6).
-     *
      * @return the Narrative 5 from component 6
      */
     public String getNarrativeLine5() {
@@ -701,9 +685,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 5
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine5() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -713,7 +696,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 7 (Narrative 6).
-     *
      * @return the component 7
      */
     public String getComponent7() {
@@ -722,7 +704,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 6 (component 7).
-     *
      * @return the Narrative 6 from component 7
      */
     public String getNarrativeLine6() {
@@ -731,9 +712,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 6
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine6() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -743,7 +723,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 8 (Narrative 7).
-     *
      * @return the component 8
      */
     public String getComponent8() {
@@ -752,7 +731,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 7 (component 8).
-     *
      * @return the Narrative 7 from component 8
      */
     public String getNarrativeLine7() {
@@ -761,9 +739,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 7
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine7() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -773,7 +750,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 9 (Narrative 8).
-     *
      * @return the component 9
      */
     public String getComponent9() {
@@ -782,7 +758,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 8 (component 9).
-     *
      * @return the Narrative 8 from component 9
      */
     public String getNarrativeLine8() {
@@ -791,9 +766,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 8
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine8() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -803,7 +777,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 10 (Narrative 9).
-     *
      * @return the component 10
      */
     public String getComponent10() {
@@ -812,7 +785,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 9 (component 10).
-     *
      * @return the Narrative 9 from component 10
      */
     public String getNarrativeLine9() {
@@ -821,9 +793,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 9
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine9() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -833,7 +804,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 11 (Narrative 10).
-     *
      * @return the component 11
      */
     public String getComponent11() {
@@ -842,7 +812,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 10 (component 11).
-     *
      * @return the Narrative 10 from component 11
      */
     public String getNarrativeLine10() {
@@ -851,9 +820,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 10
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine10() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -863,7 +831,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 12 (Narrative 11).
-     *
      * @return the component 12
      */
     public String getComponent12() {
@@ -872,7 +839,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 11 (component 12).
-     *
      * @return the Narrative 11 from component 12
      */
     public String getNarrativeLine11() {
@@ -881,9 +847,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 11
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine11() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -893,7 +858,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the component 13 (Narrative 12).
-     *
      * @return the component 13
      */
     public String getComponent13() {
@@ -902,7 +866,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the Narrative 12 (component 13).
-     *
      * @return the Narrative 12 from component 13
      */
     public String getNarrativeLine12() {
@@ -911,9 +874,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Narrative 12
-     *
-     * @since 9.2.7
      * @deprecated use #getNarrativeLine12() instead
+     * @since 9.2.7
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
@@ -1324,9 +1286,9 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
 
+
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
-     *
      * @return the static value of Field24G.NAME
      */
     @Override
@@ -1336,9 +1298,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the first occurrence form the tag list or null if not found.
-     *
-     * @param block may be null or empty
      * @return null if not found o block is null or empty
+     * @param block may be null or empty
      */
     public static Field24G get(final SwiftTagListBlock block) {
         if (block == null || block.isEmpty()) {
@@ -1353,7 +1314,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * Gets the first instance of Field24G in the given message.
-     *
      * @param msg may be empty or null
      * @return null if not found or msg is empty or null
      * @see #get(SwiftTagListBlock)
@@ -1368,7 +1328,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Gets a list of all occurrences of the field Field24G in the given message
      * an empty list is returned if none found.
-     *
      * @param msg may be empty or null in which case an empty list is returned
      * @see #getAll(SwiftTagListBlock)
      */
@@ -1402,9 +1361,9 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Returns a specific line from the field's value.
      *
+     * @see MultiLineField#getLine(int)
      * @param line a reference to a specific line in the field, first line being 1
      * @return line content or null if not present or if line number is above the expected
-     * @see MultiLineField#getLine(int)
      * @since 7.7
      */
     public String getLine(int line) {
@@ -1414,10 +1373,10 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Returns a specific line from the field's value.
      *
-     * @param line   a reference to a specific line in the field, first line being 1
+     * @see MultiLineField#getLine(int, int)
+     * @param line a reference to a specific line in the field, first line being 1
      * @param offset an optional component number used as offset when counting lines
      * @return line content or null if not present or if line number is above the expected
-     * @see MultiLineField#getLine(int, int)
      * @since 7.7
      */
     public String getLine(int line, int offset) {
@@ -1428,8 +1387,8 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Returns the field value split into lines.
      *
-     * @return lines content or empty list if field's value is empty
      * @see MultiLineField#getLines()
+     * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
     public List<String> getLines() {
@@ -1439,9 +1398,9 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Returns the field value starting at the offset component, split into lines.
      *
+     * @see MultiLineField#getLines(int)
      * @param offset an optional component number used as offset when counting lines
      * @return found lines or empty list if lines are not present or the offset is invalid
-     * @see MultiLineField#getLines(int)
      * @since 7.7
      */
     public List<String> getLines(int offset) {
@@ -1452,10 +1411,10 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Returns a specific subset of lines from the field's value, given a range.
      *
+     * @see MultiLineField#getLinesBetween(int, int )
      * @param start a reference to a specific line in the field, first line being 1
-     * @param end   a reference to a specific line in the field, must be greater than start
+     * @param end a reference to a specific line in the field, must be greater than start
      * @return found lines or empty list if value is empty
-     * @see MultiLineField#getLinesBetween(int, int)
      * @since 7.7
      */
     public List<String> getLinesBetween(int start, int end) {
@@ -1465,11 +1424,11 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     /**
      * Returns a specific subset of lines from the field's value, starting at the offset component.
      *
-     * @param start  a reference to a specific line in the field, first line being 1
-     * @param end    a reference to a specific line in the field, must be greater than start
+     * @see MultiLineField#getLinesBetween(int start, int end, int offset)
+     * @param start a reference to a specific line in the field, first line being 1
+     * @param end a reference to a specific line in the field, must be greater than start
      * @param offset an optional component number used as offset when counting lines
      * @return found lines or empty list if lines are not present or the offset is invalid
-     * @see MultiLineField#getLinesBetween(int start, int end, int offset)
      * @since 7.7
      */
     public List<String> getLinesBetween(int start, int end, int offset) {
@@ -1479,11 +1438,10 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 
     /**
      * This method deserializes the JSON data into a Field24G object.
-     *
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
-     * @see Field#fromJson(String)
      * @since 7.10.3
+     * @see Field#fromJson(String)
      */
     public static Field24G fromJson(final String json) {
 
