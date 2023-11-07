@@ -53,7 +53,7 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 </ul></li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P (M)</li><li>FieldsetItem 95 Q (O) (repetitive)</li><li>FieldsetItem 95 R (O) (repetitive)</li></ul></li><li class="field">Field 22 F (M)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P (M)</li><li>FieldsetItem 95 Q (O) (repetitive)</li><li>FieldsetItem 95 P,Q (O) (repetitive)</li></ul></li><li class="field">Field 22 F (M)</li>
 <li class="field">Field 97 A (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -454,26 +454,6 @@ public class MT671 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95R, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 95R at MT671 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field95R objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field95R> getField95R() {
-		final List<Field95R> result = new ArrayList<>();
-		final Tag[] tags = tags("95R");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field95R(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22H, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22H at MT671 are expected at one sequence or across several sequences.
@@ -548,6 +528,26 @@ public class MT671 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field22F(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95R, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 95R at MT671 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field95R objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field95R> getField95R() {
+		final List<Field95R> result = new ArrayList<>();
+		final Tag[] tags = tags("95R");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95R(tag.getValue()));
             }
 		}
 		return result;
