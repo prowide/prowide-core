@@ -16,6 +16,7 @@ import com.prowidesoftware.Generated;
 @Generated
 public interface SchemeConstantsG {
 
+    String GLOB = "GLOB";
     String GENL = "GENL";
     String GROSS = "GROSS";
     String GUAR = "GUAR";
@@ -41,7 +42,6 @@ public interface SchemeConstantsG {
     String GENS = "GENS";
     String GERM = "GERM";
     String GIVE = "GIVE";
-    String GLOB = "GLOB";
     String GPPH = "GPPH";
     String GREX = "GREX";
     String GROS = "GROS";

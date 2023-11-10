@@ -34,7 +34,9 @@ public interface SchemeConstantsC {
     String CAMN = "CAMN";
     String CLOSEOUT = "CLOSEOUT";
     String CANCEL = "CANCEL";
+    String CLOS = "CLOS";
     String CLST = "CLST";
+    String CONT = "CONT";
     String CONF = "CONF";
     String CALL = "CALL";
     String COUN = "COUN";
@@ -53,7 +55,6 @@ public interface SchemeConstantsC {
     String CORRSELLER = "CORRSELLER";
     String CSHPRTY = "CSHPRTY";
     String CNTR = "CNTR";
-    String CLOS = "CLOS";
     String COLN = "COLN";
     String COUP = "COUP";
     String CADETL = "CADETL";
@@ -162,7 +163,6 @@ public interface SchemeConstantsC {
     String COLI = "COLI";
     String CDFI = "CDFI";
     String COMP = "COMP";
-    String CONT = "CONT";
     String CRDB = "CRDB";
     String CHAN = "CHAN";
     String CACN = "CACN";

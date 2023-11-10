@@ -20,6 +20,9 @@ public interface SchemeConstantsU {
     String URGP = "URGP";
     String UNWD = "UNWD";
     String UNWR = "UNWR";
+    String UIKI = "UIKI";
+    String UOKO = "UOKO";
+    String UNAD = "UNAD";
     String UNWEIGHT = "UNWEIGHT";
     String UNDE = "UNDE";
     String UNT = "UNT";
