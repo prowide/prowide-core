@@ -690,4 +690,49 @@ public class AbstractMtJsonTest {
                 "SERVICES, SELF COMPANY FUNDING",
                 structuredNarrative.getNarrativeFragments().get(1));
     }
+
+    @Test
+    public void testInvalidField() {
+        final String json = "{\n" + "    \"type\": \"MT\",\n"
+                + "    \"basicHeaderBlock\": {\n"
+                + "        \"applicationId\": \"F\",\n"
+                + "        \"serviceId\": \"01\",\n"
+                + "        \"logicalTerminal\": \"AAAABEBBAXXX\",\n"
+                + "        \"sessionNumber\": \"0001\",\n"
+                + "        \"sequenceNumber\": \"000001\"\n"
+                + "    },\n"
+                + "    \"applicationHeaderBlock\": {\n"
+                + "    \"receiverAddress\": \"BBBBBEBBXBIL\",\n"
+                + "    \"messagePriority\": \"N\",\n"
+                + "    \"messageType\": \"565\",\n"
+                + "    \"blockType\": \"I\",\n"
+                + "    \"direction\": \"I\"\n"
+                + "    },\n"
+                + "    \"userHeaderBlock\": {\n"
+                + "        \"fields\": [\n"
+                + "            { \"name\": \"108\", \"mUR\": \"495\" }\n"
+                + "        ]\n"
+                + "    },\n"
+                + "    \"textBlock\": {\n"
+                + "        \"fields\": [\n"
+                + "            { \"name\": \"16R\", \"blockName\": \"GENL\" },\n"
+                +
+                // invalid name
+                "            { \"name\": \"foo\", \"qualifier\": \"CORP\", \"reference\": \"ABCD1234\" },\n"
+                +
+                // incomatible structure for components
+                "            { \"name\": \"20C\", \"function\": \"NEWM\" },\n"
+                +
+                // empty name
+                "            { \"name\": \"\", \"qualifier\": \"CAEV\", \"indicator\": \"CONV\" },\n"
+                +
+                // missing name
+                "            { \"qualifier\": \"PREP\", \"date\": \"20210912\", \"time\": \"123111\" },\n"
+                + "        ]\n"
+                + "    }\n"
+                + "}\n";
+        AbstractMT mt = AbstractMT.fromJson(json);
+        assertNotNull(mt);
+        // TODO continue asserts
+    }
 }
