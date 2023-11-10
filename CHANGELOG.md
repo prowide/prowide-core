@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 10.1.10 - November 2023
+  * (PW-1695) Fixed a stack overflow in the fields fromJson implementation when a malformed JSON input contains empty field names
+  * (PW-1688) Added missing field labels for SRU2023 changes in the pw_swift_*.properties file
+
 #### 10.1.9 - October 2023
   * (PW-1675) update to Field 31R to support also two date components as requested by SCORE messages
   * Added 36B and 36D getters to MT543
