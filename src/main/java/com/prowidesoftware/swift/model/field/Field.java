@@ -396,14 +396,14 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         JsonElement nameElement = jsonObject.get("name");
         if (nameElement != null) {
             String name = nameElement.getAsString();
-            if(StringUtils.isBlank(name)) {
+            if (StringUtils.isBlank(name)) {
                 log.warning("Field name is empty");
                 return null;
             }
             if (!name.matches(fieldNamePattern)) {
                 log.warning(
-                        "Invalid field name: " + name
-                                + ". The field name must start with 2 or 3 numeric digits and can optionally end with a single capital letter.");
+                        "Invalid field name [" + name
+                                + "]. The field name must start with 2 or 3 numeric digits and can optionally end with a single capital letter.");
                 return null;
             }
             try {
@@ -1205,6 +1205,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * Returns a mapping between component labels and the internal component number.
      * Component labels are in lowercase and without spaces and separators.
      * If a for a given component there is more than one label option, both are mapped to the same component number.
+     *
      * @since 9.3.12
      */
     protected abstract Map<String, Integer> getLabelMap();
