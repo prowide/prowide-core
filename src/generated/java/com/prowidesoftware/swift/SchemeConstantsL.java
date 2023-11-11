@@ -19,6 +19,7 @@ public interface SchemeConstantsL {
     String L = "L";
     String LC = "LC";
     String LF = "LF";
+    String LOCA = "LOCA";
     String LDDET = "LDDET";
     String LDCR = "LDCR";
     String LDCO = "LDCO";
@@ -27,7 +28,6 @@ public interface SchemeConstantsL {
     String LDPRTY2 = "LDPRTY2";
     String LDPRTY1 = "LDPRTY1";
     String LAST = "LAST";
-    String LOCA = "LOCA";
     String LOTS = "LOTS";
     String LANG = "LANG";
     String LOCO = "LOCO";

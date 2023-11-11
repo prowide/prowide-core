@@ -23,6 +23,7 @@ public interface SchemeConstantsE {
     String ELEC = "ELEC";
     String EXOP = "EXOP";
     String E = "E";
+    String EXPI = "EXPI";
     String EURO = "EURO";
     String EXBO = "EXBO";
     String EMA = "EMA";
@@ -31,7 +32,6 @@ public interface SchemeConstantsE {
     String ESTT = "ESTT";
     String EXCH = "EXCH";
     String EXER = "EXER";
-    String EXPI = "EXPI";
     String EMAI = "EMAI";
     String EREG = "EREG";
     String EMOD = "EMOD";

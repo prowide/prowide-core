@@ -18,8 +18,12 @@ public interface SchemeConstantsD {
 
     String DERV = "DERV";
     String DUPL = "DUPL";
-    String DIGI = "DIGI";
+    String DIKI = "DIKI";
     String DKOT = "DKOT";
+    String DOKO = "DOKO";
+    String DUKI = "DUKI";
+    String DUKO = "DUKO";
+    String DISC = "DISC";
     String DKIN = "DKIN";
     String DAVO = "DAVO";
     String DAVF = "DAVF";
@@ -64,7 +68,6 @@ public interface SchemeConstantsD {
     String DSWO = "DSWO";
     String DSWS = "DSWS";
     String DFLT = "DFLT";
-    String DISC = "DISC";
     String DISF = "DISF";
     String DSWA = "DSWA";
     String DIVI = "DIVI";
