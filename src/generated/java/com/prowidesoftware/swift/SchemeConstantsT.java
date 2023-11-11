@@ -20,7 +20,6 @@ public interface SchemeConstantsT {
     String TELI = "TELI";
     String TELE = "TELE";
     String TELX = "TELX";
-    String TRIG = "TRIG";
     String TRAD = "TRAD";
     String TOSE = "TOSE";
     String TLDE = "TLDE";

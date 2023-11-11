@@ -22,6 +22,7 @@ public interface SchemeConstantsF {
     String FBF = "FBF";
     String FAXT = "FAXT";
     String FEOMA = "FEOMA";
+    String FOLL = "FOLL";
     String FLIPPED = "FLIPPED";
     String FLOATFIXED = "FLOATFIXED";
     String FRABBA = "FRABBA";

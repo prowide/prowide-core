@@ -53,8 +53,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>4!c[/&lt;HHMM&gt;]</code></li>
- * 		<li>parser pattern: <code>S[/S]</code></li>
+ * 		<li>validation pattern: <code>4!c/&lt;HHMM&gt;</code></li>
+ * 		<li>parser pattern: <code>S/S</code></li>
  * 		<li>components pattern: <code>SH</code></li>
  * </ul>
  *
@@ -84,7 +84,7 @@ public class Field29J extends Field implements Serializable {
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S]";
+	public static final String PARSER_PATTERN = "S/S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
@@ -198,9 +198,8 @@ public class Field29J extends Field implements Serializable {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
-        if (getComponent2() != null) {
-            result.append("/").append(getComponent2());
-        }
+        result.append("/");
+        append(result, 2);
         return result.toString();
     }
 
@@ -260,7 +259,7 @@ public class Field29J extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S[/S]";
+        return "S/S";
     }
 
     /**
@@ -268,7 +267,7 @@ public class Field29J extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "4!c[/<HHMM>]";
+        return "4!c/<HHMM>";
     }
 
     /**
@@ -283,9 +282,6 @@ public class Field29J extends Field implements Serializable {
      */
     @Override
     public boolean isOptional(int component) {
-        if (component == 2) {
-            return true;
-        }
         return false;
     }
 
