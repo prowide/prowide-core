@@ -28,6 +28,4 @@ release.sh
 .idea/runConfigurations.xml
 .idea/.name
 *.pb
-.idea/sonarlint/issuestore/
-.idea/sonarlint/issuestore/
-.idea/sonarlint/issuestore/
+.idea/sonarlint/
