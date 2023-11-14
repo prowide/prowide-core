@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.13 - SNAPSHOT
+  * (PW-1697) Fixed validation/parse pattern in field 29O
+
 #### 9.4.12 - November 2023
   * (PW-1697) Fixed validation pattern in fields 14[H,K,L,M,N,O] and 29J
 
