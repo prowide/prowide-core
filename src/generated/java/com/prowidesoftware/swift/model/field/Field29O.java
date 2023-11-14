@@ -197,11 +197,12 @@ public class Field29O extends Field implements Serializable {
             setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
             String toparse = SwiftParseUtils.getTokenSecondLast(value, "/");
             if (toparse != null) {
-                if (toparse.length() >= 4) {
-                    setComponent2(StringUtils.substring(toparse, 0, 4));
+                if (toparse.length() >= 1) {
+                    int endIndex = Math.min(4, toparse.length());
+                    setComponent2(StringUtils.substring(toparse, 0, endIndex));
                 }
-                if (toparse.length() >= 8) {
-                    setComponent3(StringUtils.substring(toparse, 4, 8));
+                if (toparse.length() > 4) {
+                    setComponent3(StringUtils.substring(toparse, 4));
                 }
             }
         }
