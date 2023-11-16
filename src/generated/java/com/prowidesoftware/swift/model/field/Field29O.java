@@ -55,7 +55,7 @@ import com.google.gson.JsonParser;
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>4!c/&lt;HHMM&gt;&lt;HHMM&gt;</code></li>
- * 		<li>parser pattern: <code>S/S</code></li>
+ * 		<li>parser pattern: <code>S/&lt;HHMM&gt;&lt;HHMM&gt;</code></li>
  * 		<li>components pattern: <code>SHH</code></li>
  * </ul>
  *
@@ -85,7 +85,7 @@ public class Field29O extends Field implements Serializable {
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
+	public static final String PARSER_PATTERN = "S/<HHMM><HHMM>";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
@@ -193,8 +193,19 @@ public class Field29O extends Field implements Serializable {
     @Override
     public void parse(final String value) {
         init(3);
-        setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
-        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
+        if (value != null) {
+            setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
+            String toparse = SwiftParseUtils.getTokenSecondLast(value, "/");
+            if (toparse != null) {
+                if (toparse.length() >= 1) {
+                    int endIndex = Math.min(4, toparse.length());
+                    setComponent2(StringUtils.substring(toparse, 0, endIndex));
+                }
+                if (toparse.length() > 4) {
+                    setComponent3(StringUtils.substring(toparse, 4));
+                }
+            }
+        }
     }
 
     /**
@@ -206,6 +217,7 @@ public class Field29O extends Field implements Serializable {
         append(result, 1);
         result.append("/");
         append(result, 2);
+        append(result, 3);
         return result.toString();
     }
 
@@ -273,7 +285,7 @@ public class Field29O extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S/S";
+        return "S/<HHMM><HHMM>";
     }
 
     /**
