@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -68,7 +68,7 @@ public class Field30J extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -84,21 +84,21 @@ public class Field30J extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "SN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SN";
 
 	/**
@@ -232,7 +232,7 @@ public class Field30J extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SN";
     }
@@ -378,16 +378,10 @@ public class Field30J extends Field implements Serializable {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsLong()
+     * @deprecated use #getComponent2AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -411,16 +405,10 @@ public class Field30J extends Field implements Serializable {
     }
 
     /**
-     * Get the Number (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
+     * @deprecated use #getNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumberAsNumber() {
         return getComponent2AsNumber();
     }

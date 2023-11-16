@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -70,7 +70,7 @@ public class Field37K extends Field implements Serializable, AmountContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -86,21 +86,21 @@ public class Field37K extends Field implements Serializable, AmountContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "SN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SI";
 
 	/**
@@ -239,7 +239,7 @@ public class Field37K extends Field implements Serializable, AmountContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SN";
     }
@@ -385,16 +385,10 @@ public class Field37K extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsBigDecimal()
+     * @deprecated use #getComponent2AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         return getComponent2AsBigDecimal();
     }
@@ -417,16 +411,10 @@ public class Field37K extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Get the Rate (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getRateAsBigDecimal()
+     * @deprecated use #getRateAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getRateAsNumber() {
         return getComponent2AsNumber();
     }

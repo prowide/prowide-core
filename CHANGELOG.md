@@ -1,20 +1,57 @@
 # Prowide Core - CHANGELOG
 
-#### 9.3.20 - SNAPSHOT
+#### 9.4.13 - SNAPSHOT
+  * (PW-1697) Fixed validation/parse pattern in field 29O
+  * (PW-1697) MT306 changes in field 30I
   * Added DistinguishedName with Builder in order to encapsulate the BIC branch name logic 
 
-#### 9.3.19 - October 2023
+#### 9.4.12 - November 2023
+  * (PW-1697) Fixed validation pattern in fields 14[H,K,L,M,N,O] and 29J
+
+#### 9.4.12 - November 2023
+  * (PW-1697) Fixed validation pattern in fields 14[H,K,L,M,N,O] and 29J
+
+#### 9.4.11 - November 2023
+  * (PW-1695) Fixed a stack overflow in the fields fromJson implementation when a malformed JSON input contains empty field names
+  * (PW-1688) Added missing field labels for SRU2023 changes in the pw_swift_*.properties file
+
+#### 9.4.10 - October 2023
+  * (PW-1675) update to Field 31R to support also two date components as requested by SCORE messages
+  * Added 36B and 36D getters to MT543
+
+#### 9.4.9 - October 2023
+  * (PW-1659) Field 24G deprecated Name and Address for Narrative
+
+#### 9.4.8 - October 2023
   * Added default methods for sender, receiver, and identifier extraction to the MessageExtractionStrategy
   * Added JSON to the `FileFormat` enumeration
 
-#### 9.3.18 - September 2023
+#### 9.4.7 - September 2023
+  * (PW-1478) Fixed Field 44J parse and getValue to enable proper data preservation when the field contains multiline content
+
+#### 9.4.6 - September 2023
   * Added support for an optional `pw-swift-core.properties` to customize the behavior of the SafeXmlUtils class
 
-#### 9.3.17 - July 2023
+#### 9.4.5 - August 2023
+  * (PW-1478) Field 44J parse and getValue fix
+
+#### 9.4.4 - August 2023
+  * (PW-1478) Field 44J format fixed to allow multiline
+
+#### 9.4.3 - July 2023
+  * (PW-1461) Remove deprecation of field 31R model since is it used back in SRU2023
   * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
 
-#### 9.3.16 - June 2023
+#### 9.4.2 - June 2023
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
+  * (PW-1323) Fixing getValue method for pattern issue in Field44J
+
+#### 9.4.1 - June 2023
+  * (PW-1323) Fixing missing pattern issue in Field44J
+
+#### 9.4.0 - May 2023
+  * SWIFT Standard release update 2023 (live 19 November 2023)
+  * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2022/getting-started/deprecation/)
 
 #### 9.3.15 - May 2023
   * (PW-1341) Avoid log pollution with exception stacktrace in Field#formatAccount method

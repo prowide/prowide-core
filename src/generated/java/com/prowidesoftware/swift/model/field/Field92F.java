@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -73,7 +73,7 @@ public class Field92F extends Field implements Serializable, MonetaryAmountConta
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -89,21 +89,21 @@ public class Field92F extends Field implements Serializable, MonetaryAmountConta
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S//SN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SCN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SCI";
 
 	/**
@@ -117,11 +117,10 @@ public class Field92F extends Field implements Serializable, MonetaryAmountConta
 	public static final Integer CURRENCY_CODE = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Currency Code Component number.
-	 * @see #CURRENCY_CODE
+	 * @deprecated use #CURRENCY_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CURRENCY = 2;
 
 	/**
@@ -265,7 +264,7 @@ public class Field92F extends Field implements Serializable, MonetaryAmountConta
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SCN";
     }
@@ -424,11 +423,11 @@ public class Field92F extends Field implements Serializable, MonetaryAmountConta
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Currency Code
-     * @see #getCurrencyCode()
+     * @deprecated use #getCurrencyCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCurrency() {
         return getCurrencyCode();
     }
@@ -442,11 +441,10 @@ public class Field92F extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Currency Code as Currency
-     * @see #getCurrencyCodeAsCurrency()
+     * @deprecated use #getCurrencyCodeAsCurrency() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.util.Currency getCurrencyAsCurrency() {
         return getCurrencyCodeAsCurrency();
     }
@@ -470,16 +468,10 @@ public class Field92F extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Get the component 3 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent3AsBigDecimal()
+     * @deprecated use #getComponent3AsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent3AsNumber() {
         return getComponent3AsBigDecimal();
     }
@@ -502,16 +494,10 @@ public class Field92F extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Get the Amount (component 3) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
+     * @deprecated use #getAmountAsBigDecimal() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getAmountAsNumber() {
         return getComponent3AsNumber();
     }
@@ -582,29 +568,19 @@ public class Field92F extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code
-     *
-     * @see #setCurrencyCode(String)
-     *
-     * @param component2 the Currency Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setCurrencyCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field92F setCurrency(String component2) {
         return setCurrencyCode(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Currency Code from a Currency object.
-     *
-     * @see #setComponent2(java.util.Currency)
-     *
-     * @param component2 Currency with the Currency Code content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.util.Currency) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field92F setCurrency(java.util.Currency component2) {
         return setCurrencyCode(component2);
     }

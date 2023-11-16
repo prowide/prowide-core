@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -81,7 +81,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -97,21 +97,21 @@ public class Field331 extends Field implements Serializable, DateContainer {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "4!N<DATE2><HHMM><DATE2><HHMM>3!N6!N6!N6!N6!N6!N6!N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "NEHEHNNNNNNN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "NEHEHNNNNNNN";
 
 	/**
@@ -371,7 +371,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "NEHEHNNNNNNN";
     }
@@ -531,16 +531,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the component 1 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent1AsLong()
+     * @deprecated use #getComponent1AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -564,16 +558,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the Session Number (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getSessionNumberAsLong()
+     * @deprecated use #getSessionNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getSessionNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -729,16 +717,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the component 6 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent6AsLong()</code> to get the proper value.
-     *
-     * @return the component 6 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent6AsLong()
+     * @deprecated use #getComponent6AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent6AsNumber() {
         Long l = getComponent6AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -762,16 +744,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the Reason For Closure (component 6) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent6AsLong()</code> to get the proper value.
-     *
-     * @return the component 6 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getReasonForClosureAsLong()
+     * @deprecated use #getReasonForClosureAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getReasonForClosureAsNumber() {
         return getComponent6AsNumber();
     }
@@ -795,16 +771,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the component 7 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent7AsLong()</code> to get the proper value.
-     *
-     * @return the component 7 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent7AsLong()
+     * @deprecated use #getComponent7AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent7AsNumber() {
         Long l = getComponent7AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -828,16 +798,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the Quantity Of Messages Sent (component 7) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent7AsLong()</code> to get the proper value.
-     *
-     * @return the component 7 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getQuantityOfMessagesSentAsLong()
+     * @deprecated use #getQuantityOfMessagesSentAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getQuantityOfMessagesSentAsNumber() {
         return getComponent7AsNumber();
     }
@@ -861,16 +825,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the component 8 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent8AsLong()</code> to get the proper value.
-     *
-     * @return the component 8 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent8AsLong()
+     * @deprecated use #getComponent8AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent8AsNumber() {
         Long l = getComponent8AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -894,16 +852,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the Quantity Of Messages Received (component 8) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent8AsLong()</code> to get the proper value.
-     *
-     * @return the component 8 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getQuantityOfMessagesReceivedAsLong()
+     * @deprecated use #getQuantityOfMessagesReceivedAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getQuantityOfMessagesReceivedAsNumber() {
         return getComponent8AsNumber();
     }
@@ -927,16 +879,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the component 9 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent9AsLong()</code> to get the proper value.
-     *
-     * @return the component 9 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent9AsLong()
+     * @deprecated use #getComponent9AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent9AsNumber() {
         Long l = getComponent9AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -960,16 +906,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the First Input Sequence Number (component 9) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent9AsLong()</code> to get the proper value.
-     *
-     * @return the component 9 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getFirstInputSequenceNumberAsLong()
+     * @deprecated use #getFirstInputSequenceNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getFirstInputSequenceNumberAsNumber() {
         return getComponent9AsNumber();
     }
@@ -993,16 +933,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the component 10 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent10AsLong()</code> to get the proper value.
-     *
-     * @return the component 10 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent10AsLong()
+     * @deprecated use #getComponent10AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent10AsNumber() {
         Long l = getComponent10AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -1026,16 +960,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the Last Input Sequence Number (component 10) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent10AsLong()</code> to get the proper value.
-     *
-     * @return the component 10 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getLastInputSequenceNumberAsLong()
+     * @deprecated use #getLastInputSequenceNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getLastInputSequenceNumberAsNumber() {
         return getComponent10AsNumber();
     }
@@ -1059,16 +987,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the component 11 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent11AsLong()</code> to get the proper value.
-     *
-     * @return the component 11 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent11AsLong()
+     * @deprecated use #getComponent11AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent11AsNumber() {
         Long l = getComponent11AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -1092,16 +1014,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the First Output Sequence Number (component 11) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent11AsLong()</code> to get the proper value.
-     *
-     * @return the component 11 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getFirstOutputSequenceNumberAsLong()
+     * @deprecated use #getFirstOutputSequenceNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getFirstOutputSequenceNumberAsNumber() {
         return getComponent11AsNumber();
     }
@@ -1125,16 +1041,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the component 12 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent12AsLong()</code> to get the proper value.
-     *
-     * @return the component 12 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent12AsLong()
+     * @deprecated use #getComponent12AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent12AsNumber() {
         Long l = getComponent12AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -1158,16 +1068,10 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Get the Last Output Sequence Number (component 12) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent12AsLong()</code> to get the proper value.
-     *
-     * @return the component 12 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getLastOutputSequenceNumberAsLong()
+     * @deprecated use #getLastOutputSequenceNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getLastOutputSequenceNumberAsNumber() {
         return getComponent12AsNumber();
     }

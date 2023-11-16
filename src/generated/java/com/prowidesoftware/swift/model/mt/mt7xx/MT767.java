@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,6 +57,7 @@ Sequence B - Undertaking Details (M)<ul><li class="field">Field 15 B (M)</li>
 <li class="field">Field 26 E (M)</li>
 <li class="field">Field 30  (M)</li>
 <li class="field">Field 52 A,D (M)</li>
+<li class="field">Field 23  (O)</li>
 <li class="field">Field 32 B (O)</li>
 <li class="field">Field 33 B (O)</li>
 <li class="field">Field 23 B (O)</li>
@@ -83,7 +84,7 @@ Sequence C - Local Undertaking Details (O)<ul><li class="field">Field 15 C (M)</
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2022</strong>
+ * This source code is specific to release <strong>SRU 2023</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -92,7 +93,7 @@ public class MT767 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT767.class.getName());
 	
@@ -555,6 +556,24 @@ public class MT767 extends AbstractMT implements Serializable {
 		final Tag t = tag("52D");
 		if (t != null) {
 			return new Field52D(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 23, 
+	 * or null if none is found.
+	 * The first occurrence of field 23 at MT767 is expected to be the only one.
+	 * 
+	 * @return a Field23 object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field23 getField23() {
+		final Tag t = tag("23");
+		if (t != null) {
+			return new Field23(t.getValue());
 		} else {
 			return null;
 		}

@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.LogicalTerminalAddress;
 import com.prowidesoftware.swift.model.MIR;
@@ -27,7 +24,6 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.Calendar;
 import java.util.Currency;
 import java.util.Date;
@@ -101,16 +97,6 @@ public class SwiftFormatUtils {
      */
     public static Calendar getDate1(final String strDate) {
         return getMonthDay(strDate);
-    }
-
-    /**
-     * @deprecated Use Year.now().isLeap() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2023)
-    public static final boolean isLeapYear() {
-        DeprecationUtils.phase3(SwiftFormatUtils.class, "isLeapYear()", "Use Year.now().isLeap() instead");
-        return Year.now().isLeap();
     }
 
     /**

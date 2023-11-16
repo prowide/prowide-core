@@ -22,9 +22,7 @@ public interface SchemeConstantsS {
     String SPRI = "SPRI";
     String SSTD = "SSTD";
     String SDVA = "SDVA";
-    String SKOT = "SKOT";
-    String SKIN = "SKIN";
-    String SITR = "SITR";
+    String SERS = "SERS";
     String SAFE = "SAFE";
     String SEME = "SEME";
     String SETPRTY = "SETPRTY";

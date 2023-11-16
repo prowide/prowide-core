@@ -17,8 +17,6 @@ import com.prowidesoftware.Generated;
 public interface SchemeConstantsK {
 
     String KNOT = "KNOT";
-    String KIKO = "KIKO";
-    String KOKI = "KOKI";
     String KNIN = "KNIN";
     String KLO = "KLO";
     String KRUG = "KRUG";

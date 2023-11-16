@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -70,7 +70,7 @@ public class Field50G extends OptionGPartyField implements Serializable, BICCont
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -220,29 +220,19 @@ public class Field50G extends OptionGPartyField implements Serializable, BICCont
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code
-     *
-     * @see #setIdentifierCode(String)
-     *
-     * @param component2 the Identifier Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setIdentifierCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field50G setBIC(String component2) {
         return setIdentifierCode(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Identifier Code from a BIC object.
-     *
-     * @see #setComponent2(com.prowidesoftware.swift.model.BIC)
-     *
-     * @param component2 BIC with the Identifier Code content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(com.prowidesoftware.swift.model.BIC) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field50G setBIC(com.prowidesoftware.swift.model.BIC component2) {
         return setIdentifierCode(component2);
     }

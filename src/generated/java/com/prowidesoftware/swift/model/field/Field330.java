@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -72,7 +72,7 @@ public class Field330 extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -88,21 +88,21 @@ public class Field330 extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "4!N6!N6!N6!N6!N1!N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "NNNNNN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "NNNNNN";
 
 	/**
@@ -290,7 +290,7 @@ public class Field330 extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "NNNNNN";
     }
@@ -432,16 +432,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 1 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent1AsLong()
+     * @deprecated use #getComponent1AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -465,16 +459,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the Session Number (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getSessionNumberAsLong()
+     * @deprecated use #getSessionNumberAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getSessionNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -498,16 +486,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsLong()
+     * @deprecated use #getComponent2AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -531,16 +513,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the ISN (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getISNAsLong()
+     * @deprecated use #getISNAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getISNAsNumber() {
         return getComponent2AsNumber();
     }
@@ -564,16 +540,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 3 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsLong()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent3AsLong()
+     * @deprecated use #getComponent3AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent3AsNumber() {
         Long l = getComponent3AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -597,16 +567,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the ISN NAK (component 3) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent3AsLong()</code> to get the proper value.
-     *
-     * @return the component 3 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getISNNAKAsLong()
+     * @deprecated use #getISNNAKAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getISNNAKAsNumber() {
         return getComponent3AsNumber();
     }
@@ -630,16 +594,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 4 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent4AsLong()
+     * @deprecated use #getComponent4AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -663,16 +621,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the OSN (component 4) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getOSNAsLong()
+     * @deprecated use #getOSNAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getOSNAsNumber() {
         return getComponent4AsNumber();
     }
@@ -696,16 +648,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 5 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent5AsLong()</code> to get the proper value.
-     *
-     * @return the component 5 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent5AsLong()
+     * @deprecated use #getComponent5AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent5AsNumber() {
         Long l = getComponent5AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -729,16 +675,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the OSN NAK (component 5) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent5AsLong()</code> to get the proper value.
-     *
-     * @return the component 5 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getOSNNAKAsLong()
+     * @deprecated use #getOSNNAKAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getOSNNAKAsNumber() {
         return getComponent5AsNumber();
     }
@@ -762,16 +702,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the component 6 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent6AsLong()</code> to get the proper value.
-     *
-     * @return the component 6 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent6AsLong()
+     * @deprecated use #getComponent6AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent6AsNumber() {
         Long l = getComponent6AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -795,16 +729,10 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Get the ACK Replay Indicator (component 6) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent6AsLong()</code> to get the proper value.
-     *
-     * @return the component 6 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getACKReplayIndicatorAsLong()
+     * @deprecated use #getACKReplayIndicatorAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getACKReplayIndicatorAsNumber() {
         return getComponent6AsNumber();
     }

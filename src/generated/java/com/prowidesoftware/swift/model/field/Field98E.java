@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -76,7 +76,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -92,21 +92,21 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S//<DATE4><TIME2>[,S][/[c]<TIME3>]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SDTNSW";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SDTNSW";
 
 	/**
@@ -328,7 +328,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SDTNSW";
     }
@@ -561,16 +561,10 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Get the component 4 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent4AsLong()
+     * @deprecated use #getComponent4AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -594,16 +588,10 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * Get the Decimals (component 4) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getDecimalsAsLong()
+     * @deprecated use #getDecimalsAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getDecimalsAsNumber() {
         return getComponent4AsNumber();
     }
@@ -1101,13 +1089,6 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
     }
 
 	/**
-	 * @deprecated Use OFFSET instead
-	 */
-	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public static final Integer UTC_INDICATOR = 6;
-
-	/**
 	 * Get the ISO UTC Indicator combining the sign and offset, and changing the "N" negative sign indication by
 	 * proper +/- signs
 	 * @return the the UTC indicator such as +0100 or -0300
@@ -1123,43 +1104,4 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
 	    return null;
 	}
 
-	/**
-     * @deprecated Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public String getUTCIndicator() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getUTCIndicator()", "Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset");
-        return getOffset();
-    }
-
-    /**
-     * @deprecated Use getOffsetAsCalendar() instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public java.util.Calendar getUTCIndicatorAsCalendar() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getUTCIndicatorAsCalendar()", "Use getOffsetAsCalendar() instead");
-        return SwiftFormatUtils.getTime3(getOffset());
-    }
-
-    /**
-     * @deprecated Use setOffset(String) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public Field98E setUTCIndicator(String component) {
-	    com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setUTCIndicator(String)", "Use setOffset(String) instead");
-	    return setOffset(component);
-	}
-
-	/**
-     * @deprecated Use setOffset(Calendar) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public Field98E setUTCIndicator(java.util.Calendar cal) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setUTCIndicator(Calendar)", "Use setOffset(Calendar) instead");
-        return setOffset(cal);
-	}
 }

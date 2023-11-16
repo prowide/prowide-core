@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -70,7 +70,7 @@ public class Field98F extends Field implements Serializable, GenericField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -86,21 +86,21 @@ public class Field98F extends Field implements Serializable, GenericField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = ":S/[S]/S<TIME2>";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSST";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSST";
 
 	/**
@@ -119,11 +119,10 @@ public class Field98F extends Field implements Serializable, GenericField {
 	public static final Integer DATE_CODE = 3;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Date Code Component number.
-	 * @see #DATE_CODE
+	 * @deprecated use #DATE_CODE instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer CODE = 3;
 
 	/**
@@ -280,7 +279,7 @@ public class Field98F extends Field implements Serializable, GenericField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSST";
     }
@@ -452,11 +451,11 @@ public class Field98F extends Field implements Serializable, GenericField {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Date Code
-     * @see #getDateCode()
+     * @deprecated use #getDateCode() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getCode() {
         return getDateCode();
     }
@@ -558,15 +557,10 @@ public class Field98F extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Date Code
-     *
-     * @see #setDateCode(String)
-     *
-     * @param component3 the Date Code to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setDateCode(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field98F setCode(String component3) {
         return setDateCode(component3);
     }
