@@ -5,6 +5,10 @@
 
 #### 9.4.12 - November 2023
   * (PW-1697) Fixed validation pattern in fields 14[H,K,L,M,N,O] and 29J
+  * (PW-1697) MT306 Changes in Field30I
+
+#### 9.4.12 - November 2023
+  * (PW-1697) Fixed validation pattern in fields 14[H,K,L,M,N,O] and 29J
 
 #### 9.4.11 - November 2023
   * (PW-1695) Fixed a stack overflow in the fields fromJson implementation when a malformed JSON input contains empty field names
