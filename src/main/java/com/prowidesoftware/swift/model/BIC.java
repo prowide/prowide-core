@@ -356,14 +356,11 @@ public class BIC {
      * @since 9.3.15
      */
     public String distinguishedName(boolean includeDefaultBranch) {
-        StringBuilder result = new StringBuilder();
+        DistinguishedName.Builder dnBuilder = new DistinguishedName.Builder(getBic8());
         if (includeDefaultBranch || !Objects.equals(getBranchOrDefault(), "XXX")) {
-            result.append("ou=")
-                    .append(StringUtils.lowerCase(getBranchOrDefault()))
-                    .append(",");
+            dnBuilder.withBranch(getBranchOrDefault());
         }
-        result.append("o=").append(StringUtils.lowerCase(getBic8())).append(",o=swift");
-        return result.toString();
+        return dnBuilder.build().toString();
     }
 
     @Override
