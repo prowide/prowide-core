@@ -8,9 +8,6 @@
 #### 9.4.12 - November 2023
   * (PW-1697) Fixed validation pattern in fields 14[H,K,L,M,N,O] and 29J
 
-#### 9.4.12 - November 2023
-  * (PW-1697) Fixed validation pattern in fields 14[H,K,L,M,N,O] and 29J
-
 #### 9.4.11 - November 2023
   * (PW-1695) Fixed a stack overflow in the fields fromJson implementation when a malformed JSON input contains empty field names
   * (PW-1688) Added missing field labels for SRU2023 changes in the pw_swift_*.properties file
