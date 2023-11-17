@@ -15,32 +15,19 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.prowidesoftware.Generated;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-
-import java.io.Serializable;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-import java.util.Calendar;
-
-import com.prowidesoftware.swift.model.field.DateContainer;
-import com.prowidesoftware.swift.model.field.DateResolver;
-
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.SwiftTagListBlock;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * SWIFT MT Field 30I.
@@ -49,7 +36,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: DateorStartDate: <code>Calendar</code></li>
+ * 		<li>Component 1: StartDate: <code>Calendar</code></li>
  * 		<li>Component 2: EndDate: <code>Calendar</code></li>
  * </ol>
  *
@@ -103,9 +90,16 @@ public class Field30I extends Field implements Serializable, DateContainer {
 	public static final String TYPES_PATTERN = "DD";
 
 	/**
-	 * Component number for the Date or Start Date subfield.
+	 * Component number for the Start Date subfield.
 	 */
-	public static final Integer DATE_OR_START_DATE = 1;
+	public static final Integer START_DATE = 1;
+
+	/**
+	 * @deprecated use #START_DATE instead
+	 */
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
+    public static final Integer DATE_OR_START_DATE = 1;
 
 	/**
 	 * Component number for the End Date subfield.
@@ -322,7 +316,7 @@ public class Field30I extends Field implements Serializable, DateContainer {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Date or Start Date");
+        result.add("Start Date");
         result.add("End Date");
         return result;
     }
@@ -334,7 +328,7 @@ public class Field30I extends Field implements Serializable, DateContainer {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "dateorStartDate");
+        result.put(1, "startDate");
         result.put(2, "endDate");
         return result;
     }
@@ -350,13 +344,15 @@ public class Field30I extends Field implements Serializable, DateContainer {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
+        super.labelMap.put("startdate", 1);
+        // alias name
         super.labelMap.put("dateorstartdate", 1);
         super.labelMap.put("enddate", 2);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Date or Start Date).
+     * Gets the component 1 (Start Date).
      * @return the component 1
      */
     public String getComponent1() {
@@ -373,19 +369,39 @@ public class Field30I extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Gets the Date or Start Date (component 1).
-     * @return the Date or Start Date from component 1
+     * Gets the Start Date (component 1).
+     * @return the Start Date from component 1
      */
-    public String getDateorStartDate() {
+    public String getStartDate() {
         return getComponent1();
     }
 
     /**
-     * Get the Date or Start Date (component 1) as Calendar
-     * @return the Date or Start Date from component 1 converted to Calendar or null if cannot be converted
+     * Alternative <em>DEPRECATED</em> method getter for field's Start Date
+     * @deprecated use #getStartDate() instead
+     * @since 9.2.7
      */
-    public java.util.Calendar getDateorStartDateAsCalendar() {
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
+    public String getDateorStartDate() {
+        return getStartDate();
+    }
+
+    /**
+     * Get the Start Date (component 1) as Calendar
+     * @return the Start Date from component 1 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getStartDateAsCalendar() {
         return getComponent1AsCalendar();
+    }
+
+    /**
+     * @deprecated use #getStartDateAsCalendar() instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
+    public java.util.Calendar getDateorStartDateAsCalendar() {
+        return getStartDateAsCalendar();
     }
 
     /**
@@ -422,9 +438,9 @@ public class Field30I extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the component 1 (Date or Start Date).
+     * Set the component 1 (Start Date).
      *
-     * @param component1 the Date or Start Date to set
+     * @param component1 the Start Date to set
      * @return the field object to enable build pattern
      */
     public Field30I setComponent1(String component1) {
@@ -435,7 +451,7 @@ public class Field30I extends Field implements Serializable, DateContainer {
     /**
      * Set the component1 from a Calendar object.
      *
-     * @param component1 the Calendar with the Date or Start Date content to set
+     * @param component1 the Calendar with the Start Date content to set
      * @return the field object to enable build pattern
      */
     public Field30I setComponent1(java.util.Calendar component1) {
@@ -444,25 +460,43 @@ public class Field30I extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Date or Start Date (component 1).
+     * Set the Start Date (component 1).
      *
-     * @param component1 the Date or Start Date to set
+     * @param component1 the Start Date to set
      * @return the field object to enable build pattern
      */
-    public Field30I setDateorStartDate(String component1) {
+    public Field30I setStartDate(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the Date or Start Date (component 1) from a Calendar object.
+     * Set the Start Date (component 1) from a Calendar object.
      *
      * @see #setComponent1(java.util.Calendar)
      *
-     * @param component1 Calendar with the Date or Start Date content to set
+     * @param component1 Calendar with the Start Date content to set
      * @return the field object to enable build pattern
      */
-    public Field30I setDateorStartDate(java.util.Calendar component1) {
+    public Field30I setStartDate(java.util.Calendar component1) {
         return setComponent1(component1);
+    }
+
+    /**
+     * @deprecated use #setStartDate(String) instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
+    public Field30I setDateorStartDate(String component1) {
+        return setStartDate(component1);
+    }
+
+    /**
+     * @deprecated use #setComponent1(java.util.Calendar) instead
+     */
+    @Deprecated
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
+    public Field30I setDateorStartDate(java.util.Calendar component1) {
+        return setStartDate(component1);
     }
 
     /**
@@ -613,10 +647,16 @@ public class Field30I extends Field implements Serializable, DateContainer {
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Date or Start Date
+        // **** COMPONENT 1 - Start Date
 
+        // first try using alias's names (including deprecated ones, if any)
         if (jsonObject.get("dateorStartDate") != null) {
             field.setComponent1(jsonObject.get("dateorStartDate").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("startDate") != null) {
+            field.setComponent1(jsonObject.get("startDate").getAsString());
         }
 
         // **** COMPONENT 2 - End Date
