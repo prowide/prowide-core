@@ -54,8 +54,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
-@Deprecated
-@ProwideDeprecated(phase2 = TargetYear.SRU2023)
+@ProwideDeprecated(phase3 = TargetYear.SRU2024)
 public class Field12K extends Field implements Serializable {
     /**
      * Constant identifying the SRU to which this class belongs to.
@@ -76,21 +75,21 @@ public class Field12K extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final String COMPONENTS_PATTERN = "N";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final String TYPES_PATTERN = "N";
 
     /**
@@ -103,7 +102,7 @@ public class Field12K extends Field implements Serializable {
      * @see #NUMBER
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer VERSION = 1;
 
     /**
@@ -222,7 +221,7 @@ public class Field12K extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "N";
     }
@@ -360,7 +359,7 @@ public class Field12K extends Field implements Serializable {
      * @see #getComponent1AsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -380,7 +379,7 @@ public class Field12K extends Field implements Serializable {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getVersion() {
         return getNumber();
     }
@@ -404,7 +403,7 @@ public class Field12K extends Field implements Serializable {
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumberAsNumber() {
         return getComponent1AsNumber();
     }
@@ -414,7 +413,7 @@ public class Field12K extends Field implements Serializable {
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Long getVersionAsLong() {
         return getNumberAsLong();
     }
@@ -429,7 +428,7 @@ public class Field12K extends Field implements Serializable {
      * @see #getNumberAsLong()
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getVersionAsNumber() {
         return getNumberAsNumber();
     }
@@ -535,7 +534,7 @@ public class Field12K extends Field implements Serializable {
      * @return the field object to enable build pattern
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field12K setVersion(String component1) {
         return setNumber(component1);
     }
@@ -550,7 +549,7 @@ public class Field12K extends Field implements Serializable {
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field12K setVersion(java.lang.Long component1) {
         return setNumber(component1);
     }
@@ -565,7 +564,7 @@ public class Field12K extends Field implements Serializable {
      * @see #setNumber(java.lang.Long)
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field12K setVersion(java.lang.Number component1) {
         return setNumber(component1);
     }

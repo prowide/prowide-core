@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ Sequence Loop1 - Returned Transaction (M) (repetitive)<ul><li class="field">Fiel
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2022</strong>
+ * This source code is specific to release <strong>SRU 2023</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -70,7 +70,7 @@ public class MT203 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT203.class.getName());
 	
@@ -820,8 +820,9 @@ public class MT203 extends AbstractMT implements Serializable {
      * @deprecated use {@link #getLoop1List()} instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2024)
     public List<SequenceA> getSequenceAList() {
+        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getSequenceAList()", "Use getLoop1List() instead");
 		return getSequenceAList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
@@ -829,8 +830,9 @@ public class MT203 extends AbstractMT implements Serializable {
 	 * @deprecated use {@link #getLoop1List(SwiftTagListBlock)} instead
 	 */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2024)
 	public static List<SequenceA> getSequenceAList(final SwiftTagListBlock parentSequence) {
+	    com.prowidesoftware.deprecation.DeprecationUtils.phase2(MT203.class, "getSequenceAList(SwiftTagListBlock)", "Use getLoop1List(SwiftTagListBlock) instead");
 		List<SequenceA> result = new ArrayList<>();
         getLoop1List(parentSequence).forEach(s -> result.add(new SequenceA(s)));
         return result;
@@ -840,10 +842,11 @@ public class MT203 extends AbstractMT implements Serializable {
 	 * @deprecated use Loop1 instead
 	 */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase2=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2024)
 	public static class SequenceA extends SwiftTagListBlock {
 	    private SequenceA(final Loop1 content) {
             super(content.getTags());
+	        com.prowidesoftware.deprecation.DeprecationUtils.phase2(MT203.class, "SequenceA(Loop1)", "Use Loop1() instead");
         }
     }
 }

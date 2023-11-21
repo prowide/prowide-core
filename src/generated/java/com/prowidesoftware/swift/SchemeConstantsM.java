@@ -17,6 +17,7 @@ import com.prowidesoftware.Generated;
 public interface SchemeConstantsM {
 
     String MIDE = "MIDE";
+    String MODI = "MODI";
     String M = "M";
     String MATU = "MATU";
     String MICO = "MICO";

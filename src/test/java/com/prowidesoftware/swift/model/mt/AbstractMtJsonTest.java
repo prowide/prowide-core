@@ -16,12 +16,12 @@
 
 package com.prowidesoftware.swift.model.mt;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.field.Field16R;
 import com.prowidesoftware.swift.model.field.Narrative;
 import com.prowidesoftware.swift.model.field.StructuredNarrative;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
@@ -689,5 +689,48 @@ public class AbstractMtJsonTest {
         assertEquals(
                 "SERVICES, SELF COMPANY FUNDING",
                 structuredNarrative.getNarrativeFragments().get(1));
+    }
+
+    @Test
+    public void testInvalidField() {
+        final String json = "{\n"
+                + "    \"type\": \"MT\",\n"
+                + "    \"basicHeaderBlock\": {\n"
+                + "        \"applicationId\": \"F\",\n"
+                + "        \"serviceId\": \"01\",\n"
+                + "        \"logicalTerminal\": \"AAAABEBBAXXX\",\n"
+                + "        \"sessionNumber\": \"0001\",\n"
+                + "        \"sequenceNumber\": \"000001\"\n"
+                + "    },\n"
+                + "    \"applicationHeaderBlock\": {\n"
+                + "    \"receiverAddress\": \"BBBBBEBBXBIL\",\n"
+                + "    \"messagePriority\": \"N\",\n"
+                + "    \"messageType\": \"565\",\n"
+                + "    \"blockType\": \"I\",\n"
+                + "    \"direction\": \"I\"\n"
+                + "    },\n"
+                + "    \"userHeaderBlock\": {\n"
+                + "        \"fields\": [\n"
+                + "            { \"name\": \"108\", \"mUR\": \"495\" }\n"
+                + "        ]\n"
+                + "    },\n"
+                + "    \"textBlock\": {\n"
+                + "        \"fields\": [\n"
+                + "            { \"name\": \"16R\", \"blockName\": \"GENL\" },\n"
+                // invalid name
+                + "            { \"name\": \"foo\", \"qualifier\": \"CORP\", \"reference\": \"ABCD1234\" },\n"
+                // incomatible structure for components
+                + "            { \"name\": \"99Q\", \"function\": \"NEWM\" },\n"
+                // empty name
+                + "            { \"name\": \"\", \"qualifier\": \"CAEV\", \"indicator\": \"CONV\" },\n"
+                // missing name
+                + "            { \"qualifier\": \"PREP\", \"date\": \"20210912\", \"time\": \"123111\" }\n"
+                + "        ]\n"
+                + "    }\n"
+                + "}\n";
+        AbstractMT mt = AbstractMT.fromJson(json);
+        assertNotNull(mt);
+        assertEquals(1, mt.getFields().size());
+        assertTrue(mt.getFields().get(0) instanceof Field16R);
     }
 }

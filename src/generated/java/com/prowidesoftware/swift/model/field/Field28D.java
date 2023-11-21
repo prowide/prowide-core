@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -68,7 +68,7 @@ public class Field28D extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -84,21 +84,21 @@ public class Field28D extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S/S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "NN";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "NN";
 
 	/**
@@ -107,11 +107,10 @@ public class Field28D extends Field implements Serializable {
 	public static final Integer MESSAGE_INDEX = 1;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Message Index Component number.
-	 * @see #MESSAGE_INDEX
+	 * @deprecated use #MESSAGE_INDEX instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer STATEMENT_NUMBER = 1;
 
 	/**
@@ -120,11 +119,10 @@ public class Field28D extends Field implements Serializable {
 	public static final Integer TOTAL = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Total Component number.
-	 * @see #TOTAL
+	 * @deprecated use #TOTAL instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer SEQUENCE_NUMBER = 2;
 
     /**
@@ -250,7 +248,7 @@ public class Field28D extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "NN";
     }
@@ -384,16 +382,10 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Get the component 1 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent1AsLong()
+     * @deprecated use #getComponent1AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent1AsNumber() {
         Long l = getComponent1AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -409,11 +401,11 @@ public class Field28D extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Message Index
-     * @see #getMessageIndex()
+     * @deprecated use #getMessageIndex() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getStatementNumber() {
         return getMessageIndex();
     }
@@ -428,41 +420,28 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Get the Message Index (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getMessageIndexAsLong()
+     * @deprecated use #getMessageIndexAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getMessageIndexAsNumber() {
         return getComponent1AsNumber();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Message Index as Long
-     * @see #getMessageIndexAsLong()
+     * @deprecated use #getMessageIndexAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Long getStatementNumberAsLong() {
         return getMessageIndexAsLong();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Message Index (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getMessageIndexAsLong()
+     * @deprecated use #getMessageIndexAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getStatementNumberAsNumber() {
         return getMessageIndexAsNumber();
     }
@@ -486,16 +465,10 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsLong()
+     * @deprecated use #getComponent2AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -511,11 +484,11 @@ public class Field28D extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Total
-     * @see #getTotal()
+     * @deprecated use #getTotal() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getSequenceNumber() {
         return getTotal();
     }
@@ -530,41 +503,28 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Get the Total (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getTotalAsLong()
+     * @deprecated use #getTotalAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getTotalAsNumber() {
         return getComponent2AsNumber();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Total as Long
-     * @see #getTotalAsLong()
+     * @deprecated use #getTotalAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Long getSequenceNumberAsLong() {
         return getTotalAsLong();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Total (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getTotalAsLong()
+     * @deprecated use #getTotalAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getSequenceNumberAsNumber() {
         return getTotalAsNumber();
     }
@@ -662,45 +622,29 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Message Index
-     *
-     * @see #setMessageIndex(String)
-     *
-     * @param component1 the Message Index to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setMessageIndex(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field28D setStatementNumber(String component1) {
         return setMessageIndex(component1);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Message Index from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Message Index content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent1(java.lang.Long) instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field28D setStatementNumber(java.lang.Long component1) {
         return setMessageIndex(component1);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Message Index (component 1) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component1 the Number with the Message Index content to set
-     * @return the field object to enable build pattern
-     * @see #setMessageIndex(java.lang.Long)
+     * @deprecated use #setMessageIndex(java.lang.Long) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field28D setStatementNumber(java.lang.Number component1) {
         return setMessageIndex(component1);
     }
@@ -798,45 +742,29 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Total
-     *
-     * @see #setTotal(String)
-     *
-     * @param component2 the Total to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setTotal(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field28D setSequenceNumber(String component2) {
         return setTotal(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Total from a Long object.
-     *
-     * @see #setComponent2(java.lang.Long)
-     *
-     * @param component2 Long with the Total content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.lang.Long) instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field28D setSequenceNumber(java.lang.Long component2) {
         return setTotal(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Total (component 2) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component2 the Number with the Total content to set
-     * @return the field object to enable build pattern
-     * @see #setTotal(java.lang.Long)
+     * @deprecated use #setTotal(java.lang.Long) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field28D setSequenceNumber(java.lang.Number component2) {
         return setTotal(component2);
     }

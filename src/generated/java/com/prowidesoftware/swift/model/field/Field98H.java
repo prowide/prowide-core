@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -71,7 +71,7 @@ public class Field98H extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -87,21 +87,21 @@ public class Field98H extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "<TIME2>[,S][/[c]<TIME3>]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "TNSW";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "TNSW";
 
 	/**
@@ -115,11 +115,10 @@ public class Field98H extends Field implements Serializable {
 	public static final Integer DECIMALS = 2;
 
 	/**
-	 * Alternative (<em>DEPRECATED</em>) constant name for field's Decimals Component number.
-	 * @see #DECIMALS
+	 * @deprecated use #DECIMALS instead
 	 */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public static final Integer NUMBER = 2;
 
 	/**
@@ -303,7 +302,7 @@ public class Field98H extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "TNSW";
     }
@@ -483,16 +482,10 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsLong()
+     * @deprecated use #getComponent2AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -508,11 +501,11 @@ public class Field98H extends Field implements Serializable {
 
     /**
      * Alternative <em>DEPRECATED</em> method getter for field's Decimals
-     * @see #getDecimals()
+     * @deprecated use #getDecimals() instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String getNumber() {
         return getDecimals();
     }
@@ -527,41 +520,28 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Get the Decimals (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getDecimalsAsLong()
+     * @deprecated use #getDecimalsAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getDecimalsAsNumber() {
         return getComponent2AsNumber();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Decimals as Long
-     * @see #getDecimalsAsLong()
+     * @deprecated use #getDecimalsAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Long getNumberAsLong() {
         return getDecimalsAsLong();
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Decimals (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getDecimalsAsLong()
+     * @deprecated use #getDecimalsAsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumberAsNumber() {
         return getDecimalsAsNumber();
     }
@@ -752,45 +732,29 @@ public class Field98H extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Decimals
-     *
-     * @see #setDecimals(String)
-     *
-     * @param component2 the Decimals to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setDecimals(String) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field98H setNumber(String component2) {
         return setDecimals(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Decimals from a Long object.
-     *
-     * @see #setComponent2(java.lang.Long)
-     *
-     * @param component2 Long with the Decimals content to set
-     * @return the field object to enable build pattern
+     * @deprecated use #setComponent2(java.lang.Long) instead
      * @since 9.2.7
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field98H setNumber(java.lang.Long component2) {
         return setDecimals(component2);
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Decimals (component 2) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component2 the Number with the Decimals content to set
-     * @return the field object to enable build pattern
-     * @see #setDecimals(java.lang.Long)
+     * @deprecated use #setDecimals(java.lang.Long) instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field98H setNumber(java.lang.Number component2) {
         return setDecimals(component2);
     }
@@ -980,13 +944,6 @@ public class Field98H extends Field implements Serializable {
     }
 
 	/**
-	 * @deprecated Use OFFSET instead
-	 */
-	@Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public static final Integer TIME_2 = 4;
-
-	/**
 	 * Get the ISO UTC Indicator combining the sign and offset, and changing the "N" negative sign indication by
 	 * proper +/- signs
 	 * @return the the UTC indicator such as +0100 or -0300
@@ -1002,43 +959,4 @@ public class Field98H extends Field implements Serializable {
 	    return null;
 	}
 
-	/**
-     * @deprecated Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public String getTime2() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getTime2()", "Use getOffset() or getUtcIndicator() instead, the later returns both the sign and offset");
-        return getOffset();
-    }
-
-    /**
-     * @deprecated Use getOffsetAsCalendar() instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public java.util.Calendar getTime2AsCalendar() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getTime2AsCalendar()", "Use getOffsetAsCalendar() instead");
-        return SwiftFormatUtils.getTime3(getOffset());
-    }
-
-    /**
-     * @deprecated Use setOffset(String) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public Field98H setTime2(String component) {
-	    com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setTime2(String)", "Use setOffset(String) instead");
-	    return setOffset(component);
-	}
-
-	/**
-     * @deprecated Use setOffset(Calendar) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public Field98H setTime2(java.util.Calendar cal) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setTime2(Calendar)", "Use setOffset(Calendar) instead");
-        return setOffset(cal);
-	}
 }

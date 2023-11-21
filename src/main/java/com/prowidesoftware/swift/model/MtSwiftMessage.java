@@ -367,9 +367,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * @deprecated Use {@link #updateFromFIN(String)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public void updateFromFIN() {
-        DeprecationUtils.phase2(getClass(), "updateFromFIN()", "Use updateFromFIN(String) instead");
+        DeprecationUtils.phase3(getClass(), "updateFromFIN()", "Use updateFromFIN(String) instead");
         updateFromMessage();
     }
 

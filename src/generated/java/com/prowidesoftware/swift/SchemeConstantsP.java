@@ -26,6 +26,7 @@ public interface SchemeConstantsP {
     String PTYA = "PTYA";
     String PRUR = "PRUR";
     String PRINCIPAL = "PRINCIPAL";
+    String PREC = "PREC";
     String PUTO = "PUTO";
     String PC = "PC";
     String PRIN = "PRIN";
@@ -95,7 +96,6 @@ public interface SchemeConstantsP {
     String PNTP = "PNTP";
     String PNST = "PNST";
     String PAIR = "PAIR";
-    String PREC = "PREC";
     String PWAL = "PWAL";
     String PENR = "PENR";
     String PTNI = "PTNI";

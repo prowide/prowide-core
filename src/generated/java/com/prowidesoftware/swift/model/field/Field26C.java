@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -70,7 +70,7 @@ public class Field26C extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -86,21 +86,21 @@ public class Field26C extends Field implements Serializable {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "[S]/S/5!a4!aS[//S]";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SSSSSS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SSSSSS";
 
 	/**
@@ -303,7 +303,7 @@ public class Field26C extends Field implements Serializable {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SSSSSS";
     }
@@ -783,23 +783,15 @@ public class Field26C extends Field implements Serializable {
     }
 
 
-	/**
-	 * Component number for the Denomination Form subfield.
-	 *
-	 * <em>IMPORTANT</em>: this constant is kept for compatibility, but getting component 5
-	 * will now return only part of the value (the Denomination) as the Form is now a separate
-	 * component.
-	 */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
 	public static final Integer DENOMINATION_FORM = 5;
 
     /**
-     * Gets the Denomination and Form as a unit (components 5 and 6).
-     * @return the Denomination and Form from components 5 and 6
+     * @deprecated Use getComponent5/getDenomination and/or getComponent6 instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
     public String getDenominationForm() {
         // build the field
         final StringBuilder result = new StringBuilder();
@@ -811,13 +803,10 @@ public class Field26C extends Field implements Serializable {
     }
 
     /**
-     * Set the Denomination and Form (components 5 and 6).
-     *
-     * @param denominationForm the Denomination and Form to set
-     * @return the field object to enable build pattern
+     * @deprecated Use setComponent5/setDenomination and/or setComponent6 instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2023)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
     public Field26C setDenominationForm(final String denominationForm) {
         setComponent5(SwiftParseUtils.getTokenFirst(denominationForm, "//"));
         setComponent6(SwiftParseUtils.getTokenSecond(denominationForm, "//"));

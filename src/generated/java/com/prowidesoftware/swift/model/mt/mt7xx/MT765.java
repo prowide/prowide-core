@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,6 +49,7 @@ import java.io.IOException;
 <li class="field">Field 49 A (O)</li>
 <li class="field">Field 77  (O)</li>
 <li class="field">Field 31 E (O)</li>
+<li class="field">Field 31 R (O)</li>
 <li class="field">Field 56 A,B,D (O)</li>
 <li class="field">Field 57 A,B,D (O)</li>
 <li class="field">Field 72 Z (O)</li>
@@ -57,7 +58,7 @@ import java.io.IOException;
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2022</strong>
+ * This source code is specific to release <strong>SRU 2023</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -66,7 +67,7 @@ public class MT765 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT765.class.getName());
 	
@@ -547,6 +548,24 @@ public class MT765 extends AbstractMT implements Serializable {
 		final Tag t = tag("31E");
 		if (t != null) {
 			return new Field31E(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 31R, 
+	 * or null if none is found.
+	 * The first occurrence of field 31R at MT765 is expected to be the only one.
+	 * 
+	 * @return a Field31R object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field31R getField31R() {
+		final Tag t = tag("31R");
+		if (t != null) {
+			return new Field31R(t.getValue());
 		} else {
 			return null;
 		}

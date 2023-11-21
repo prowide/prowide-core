@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,14 +66,14 @@ Sequence B - Undertaking Details (M)<ul><li class="field">Field 15 B (M)</li>
 <li class="field">Field 23  (O)</li>
 <li class="field">Field 57 A,D (O)</li>
 <li class="field">Field 32 B (M)</li>
-<li class="field">Field 39 D (O)</li>
+<li class="field">Field 39 F (O)</li>
 <li class="field">Field 41 F,G (O)</li>
 <li class="field">Field 71 D (O)</li>
 <li class="field">Field 45 C (O)</li>
 <li class="field">Field 77 U (M)</li>
 <li class="field">Field 49  (O)</li>
 <li class="field">Field 58 A,D (O)</li>
-<li class="field">Field 44 H (O)</li>
+<li class="field">Field 44 J (O)</li>
 <li class="field">Field 23 F (O)</li>
 <li class="field">Field 78  (O)</li>
 <li class="field">Field 26 E (O)</li>
@@ -99,14 +99,15 @@ Sequence C - Local Undertaking Details (O)<ul><li class="field">Field 15 C (M)</
 <li class="field">Field 52 A,D (O)</li>
 <li class="field">Field 59  (M)</li>
 <li class="field">Field 32 B (M)</li>
-<li class="field">Field 39 D (O)</li>
+<li class="field">Field 39 F (O)</li>
+<li class="field">Field 57 A,D (O)</li>
 <li class="field">Field 41 F,G (O)</li>
 <li class="field">Field 71 D (O)</li>
 <li class="field">Field 45 C (O)</li>
 <li class="field">Field 77 L (O)</li>
 <li class="field">Field 22 Y (O)</li>
 <li class="field">Field 40 D (O)</li>
-<li class="field">Field 44 H (O)</li>
+<li class="field">Field 44 J (O)</li>
 <li class="field">Field 23 F (O)</li>
 <li class="field">Field 78  (O)</li>
 <li class="field">Field 26 E (O)</li>
@@ -122,7 +123,7 @@ Sequence C - Local Undertaking Details (O)<ul><li class="field">Field 15 C (M)</
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2022</strong>
+ * This source code is specific to release <strong>SRU 2023</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -131,7 +132,7 @@ public class MT760 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT760.class.getName());
 	
@@ -582,42 +583,6 @@ public class MT760 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 57A, 
-	 * or null if none is found.
-	 * The first occurrence of field 57A at MT760 is expected to be the only one.
-	 * 
-	 * @return a Field57A object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field57A getField57A() {
-		final Tag t = tag("57A");
-		if (t != null) {
-			return new Field57A(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 57D, 
-	 * or null if none is found.
-	 * The first occurrence of field 57D at MT760 is expected to be the only one.
-	 * 
-	 * @return a Field57D object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field57D getField57D() {
-		final Tag t = tag("57D");
-		if (t != null) {
-			return new Field57D(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77U, 
 	 * or null if none is found.
 	 * The first occurrence of field 77U at MT760 is expected to be the only one.
@@ -1018,20 +983,60 @@ public class MT760 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 39D, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 39F, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 39D at MT760 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 39F at MT760 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field39D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field39F objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field39D> getField39D() {
-		final List<Field39D> result = new ArrayList<>();
-		final Tag[] tags = tags("39D");
+	public List<Field39F> getField39F() {
+		final List<Field39F> result = new ArrayList<>();
+		final Tag[] tags = tags("39F");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field39D(tag.getValue()));
+                result.add(new Field39F(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57A, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 57A at MT760 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field57A objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field57A> getField57A() {
+		final List<Field57A> result = new ArrayList<>();
+		final Tag[] tags = tags("57A");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field57A(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 57D, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 57D at MT760 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field57D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field57D> getField57D() {
+		final List<Field57D> result = new ArrayList<>();
+		final Tag[] tags = tags("57D");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field57D(tag.getValue()));
             }
 		}
 		return result;
@@ -1118,20 +1123,20 @@ public class MT760 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 44H, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 44J, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 44H at MT760 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 44J at MT760 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field44H objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field44J objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field44H> getField44H() {
-		final List<Field44H> result = new ArrayList<>();
-		final Tag[] tags = tags("44H");
+	public List<Field44J> getField44J() {
+		final List<Field44J> result = new ArrayList<>();
+		final Tag[] tags = tags("44J");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field44H(tag.getValue()));
+                result.add(new Field44J(tag.getValue()));
             }
 		}
 		return result;

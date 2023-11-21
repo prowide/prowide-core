@@ -48,8 +48,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
-@Deprecated
-@ProwideDeprecated(phase2 = TargetYear.SRU2023)
+@ProwideDeprecated(phase3 = TargetYear.SRU2024)
 public class Field71E extends StructuredNarrativeField implements Serializable, NarrativeContainer, MultiLineField {
     /**
      * Constant identifying the SRU to which this class belongs to.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -66,7 +66,7 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -350,148 +350,5 @@ public class Field77B extends StructuredNarrativeField implements Serializable, 
         return field;
     }
 
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public static final Integer CODE = 1;
-
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public static final Integer COUNTRY_CODE = 1;
-
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public static final Integer NARRATIVE = 1;
-
-	/**
-     * @deprecated Use getValue() instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public String getNarrative() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getNarrative()", "Use getValue() instead");
-        return getValue();
-    }
-
-    // changed component 1
-
-	/**
-     * @deprecated Use narrative() instead and get the codewords from the parsed structured narrative
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public String getCode() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getCode()", "Use getLine(int) or narrative() instead");
-		return getLine(1);
-	}
-
-	/**
-     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public Field77B setCode(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setCode(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
-        appendLine(component);
-        return this;
-    }
-
-    // deprecated component 2
-
-	/**
-     * @deprecated Use narrative() instead and get the country codes from the parsed structured narrative
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public String getComponent2() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent2()", "Use getLine(int) or narrative() instead");
-        return getLine(2);
-    }
-
-	/**
-     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public Field77B setComponent2(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent2(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
-        appendLine(component);
-        return this;
-    }
-
-    /**
-     * @deprecated Use narrative() instead and get the country codes from the parsed structured narrative
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public String getCountryCode() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getCountryCode()", "Use getLine(int) or narrative() instead");
-		return getLine(2);
-	}
-
-	/**
-     * @deprecated this method does not set any value, use setNarrative(Narrative)
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public Field77B setCountryCode(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setCountryCode(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
-        appendLine(component);
-        return this;
-    }
-
-	/**
-     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public Field77B setNarrativeLine2(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine2(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
-        appendLine(component);
-        return this;
-    }
-
-    // deprecated component 3
-
-	/**
-     * @deprecated Use getLine(int) or narrative() instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-	public String getComponent3() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getComponent3()", "Use getLine(int) or narrative() instead");
-        return getLine(3);
-    }
-
-	/**
-     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public Field77B setComponent3(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setComponent3(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
-        appendLine(component);
-        return this;
-    }
-
-    /**
-     * @deprecated Use getLine(int) or narrative() instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public String getNarrativeLine3() {
-		com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getNarrativeLine3()", "Use getLine(int) or narrative() instead");
-		return getLine(3);
-	}
-
-	/**
-     * @deprecated this method does not set any value, use setNarrative(Narrative) or appendLine(String) instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2023)
-    public Field77B setNarrativeLine3(String component) {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "setNarrativeLine3(String)", "Use setNarrative(Narrative) or appendLine(String) instead");
-        appendLine(component);
-        return this;
-    }
 
 }

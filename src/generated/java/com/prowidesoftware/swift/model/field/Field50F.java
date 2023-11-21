@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
+ * This class complies with standard release <strong>SRU2023</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -76,7 +76,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -92,21 +92,21 @@ public class Field50F extends Field implements Serializable, MultiLineField {
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String PARSER_PATTERN = "S$S/S[$S/S]0-3";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String COMPONENTS_PATTERN = "SNSNSNSNS";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
 	public static final String TYPES_PATTERN = "SNSNSNSNS";
 
 	/**
@@ -349,7 +349,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
      */
     @Override
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
         return "SNSNSNSNS";
     }
@@ -534,16 +534,10 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsLong()
+     * @deprecated use #getComponent2AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent2AsNumber() {
         Long l = getComponent2AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -567,16 +561,10 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Get the Number 1 (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsLong()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumber1AsLong()
+     * @deprecated use #getNumber1AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumber1AsNumber() {
         return getComponent2AsNumber();
     }
@@ -616,16 +604,10 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Get the component 4 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent4AsLong()
+     * @deprecated use #getComponent4AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent4AsNumber() {
         Long l = getComponent4AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -649,16 +631,10 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Get the Number 2 (component 4) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent4AsLong()</code> to get the proper value.
-     *
-     * @return the component 4 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumber2AsLong()
+     * @deprecated use #getNumber2AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumber2AsNumber() {
         return getComponent4AsNumber();
     }
@@ -698,16 +674,10 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Get the component 6 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent6AsLong()</code> to get the proper value.
-     *
-     * @return the component 6 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent6AsLong()
+     * @deprecated use #getComponent6AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent6AsNumber() {
         Long l = getComponent6AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -731,16 +701,10 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Get the Number 3 (component 6) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent6AsLong()</code> to get the proper value.
-     *
-     * @return the component 6 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumber3AsLong()
+     * @deprecated use #getNumber3AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumber3AsNumber() {
         return getComponent6AsNumber();
     }
@@ -780,16 +744,10 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Get the component 8 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent8AsLong()</code> to get the proper value.
-     *
-     * @return the component 8 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent8AsLong()
+     * @deprecated use #getComponent8AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getComponent8AsNumber() {
         Long l = getComponent8AsLong();
         return l != null ? new BigDecimal(l) : null;
@@ -813,16 +771,10 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Get the Number 4 (component 8) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent8AsLong()</code> to get the proper value.
-     *
-     * @return the component 8 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumber4AsLong()
+     * @deprecated use #getNumber4AsLong() instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public java.lang.Number getNumber4AsNumber() {
         return getComponent8AsNumber();
     }

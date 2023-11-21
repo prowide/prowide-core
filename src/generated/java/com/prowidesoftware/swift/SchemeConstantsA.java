@@ -32,7 +32,6 @@ public interface SchemeConstantsA {
     String AVRF = "AVRF";
     String AMER = "AMER";
     String AVSO = "AVSO";
-    String ASIA = "ASIA";
     String AVSF = "AVSF";
     String AFI_365 = "AFI/365";
     String ACT_365 = "ACT/365";

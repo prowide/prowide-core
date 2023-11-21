@@ -166,7 +166,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @deprecated Use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     protected AbstractSwiftMessage(final String content) {
         this.message = content;
         updateFromMessage();
@@ -176,7 +176,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @deprecated Use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     protected AbstractSwiftMessage(final String content, final FileFormat fileFormat) {
         this.message = content;
         this.fileFormat = fileFormat;
@@ -207,7 +207,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @deprecated Use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     protected AbstractSwiftMessage(final InputStream stream) throws IOException {
         this.message = Lib.readStream(stream);
         updateFromMessage();
@@ -218,7 +218,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @deprecated Use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat) throws IOException {
         this.message = Lib.readStream(stream);
         this.fileFormat = fileFormat;
@@ -250,7 +250,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @deprecated Use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     protected AbstractSwiftMessage(final File file) throws IOException {
         this.message = Lib.readFile(file);
         this.filename = file.getAbsolutePath();
@@ -262,7 +262,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @deprecated Use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2023)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     protected AbstractSwiftMessage(final File file, final FileFormat fileFormat) throws IOException {
         this.message = Lib.readFile(file);
         this.filename = file.getAbsolutePath();

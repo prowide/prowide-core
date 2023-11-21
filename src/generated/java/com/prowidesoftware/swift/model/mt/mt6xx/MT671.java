@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2022 Prowide
+ * Copyright 2006-2023 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 </ul></li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P (M)</li><li>FieldsetItem 95 Q (O) (repetitive)</li><li>FieldsetItem 95 R (O) (repetitive)</li></ul></li><li class="field">Field 22 F (M)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P (M)</li><li>FieldsetItem 95 Q (O) (repetitive)</li><li>FieldsetItem 95 P,Q (O) (repetitive)</li></ul></li><li class="field">Field 22 F (M)</li>
 <li class="field">Field 97 A (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -92,7 +92,7 @@ Sequence C - Other Details (O)<ul><li class="field">Field 16 R (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2022</strong>
+ * This source code is specific to release <strong>SRU 2023</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -101,7 +101,7 @@ public class MT671 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2022;
+	public static final int SRU = 2023;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT671.class.getName());
 	
@@ -454,26 +454,6 @@ public class MT671 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95R, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 95R at MT671 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field95R objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field95R> getField95R() {
-		final List<Field95R> result = new ArrayList<>();
-		final Tag[] tags = tags("95R");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field95R(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22H, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22H at MT671 are expected at one sequence or across several sequences.
@@ -548,6 +528,26 @@ public class MT671 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field22F(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95R, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 95R at MT671 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field95R objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field95R> getField95R() {
+		final List<Field95R> result = new ArrayList<>();
+		final Tag[] tags = tags("95R");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95R(tag.getValue()));
             }
 		}
 		return result;
@@ -1313,7 +1313,7 @@ public class MT671 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceB2List_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceB2List_sru2023(this);
 	}
 
 
@@ -1461,7 +1461,7 @@ public class MT671 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceC_sru2022(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceC_sru2023(this);
 	}
 
     /**
