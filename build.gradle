@@ -4,10 +4,10 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'ru.vyarus:gradle-quality-plugin:4.7.0'
-        classpath 'pl.allegro.tech.build:axion-release-plugin:1.14.2'
-        classpath 'io.github.gradle-nexus:publish-plugin:1.1.0'
-        classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.20.0'
+        classpath 'ru.vyarus:gradle-quality-plugin:4.9.0'
+        classpath 'pl.allegro.tech.build:axion-release-plugin:1.15.1'
+        classpath 'io.github.gradle-nexus:publish-plugin:1.3.0'
+        classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.23.3'
     }
 }
 apply plugin: 'pl.allegro.tech.build.axion-release'
@@ -69,7 +69,11 @@ dependencies {
     testImplementation group: 'org.xmlunit', name: 'xmlunit-assertj', version: '2.9.0'
 }
 
-sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']
+sourceSets.named('main') {
+    java {
+        setSrcDirs(['src/main/java', 'src/generated/java'])
+    }
+}
 
 test {
     useJUnitPlatform()
@@ -84,8 +88,8 @@ tasks.withType(Jar) {
         'Implementation-Version': project.version,
         'Implementation-Vendor': 'www.prowidesoftware.com',
         'Built-OS': System.getProperty('os.name'),
-        'Source-Compatibility': project.sourceCompatibility,
-        'Target-Compatibility': project.targetCompatibility,
+        'Source-Compatibility': JavaVersion.VERSION_11,
+        'Target-Compatibility': JavaVersion.VERSION_11,
         'Built-Date': new Date().format("yyyy-MM-dd"),
         'Automatic-Module-Name': 'com.prowidesoftware.core'
     )
@@ -260,7 +264,7 @@ tasks.register('bundle', Jar) {
     from ("$buildDir/libs") {
         include '*.asc'
     }
-    archiveName 'bundle.jar'
+    archiveFileName.set('bundle.jar')
 }
 
 tasks.withType(Test) {
@@ -283,9 +287,15 @@ task('testOn17', type: Test) {
 
 jacocoTestReport {
     reports {
-        xml.enabled true
-        csv.enabled false
-        html.enabled false
+        xml {
+            required.set(true)
+        }
+        csv {
+            required.set(false)
+        }
+        html {
+            required.set(false)
+        }
     }
 
     // exclude generated code
