@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.14 - SNAPSHOT
+  * Expanded printout enhancement for field 59F
+
 #### 9.4.13 - November 2023
   * (PW-1697) Fixed validation/parse pattern in field 29O
   * (PW-1697) MT306 changes in field 30I

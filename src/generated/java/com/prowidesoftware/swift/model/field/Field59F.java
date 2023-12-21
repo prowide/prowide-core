@@ -1476,6 +1476,83 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         return field;
     }
 
+	/**
+	 * Specific implementation for field 59F using dynamic labels based on line identifiers.
+	 *
+	 * <p>For component 3 this implementation will return the labels provided by
+	 * {@link #getLabelForLineNumber(String)} while for all other cases it will return the
+	 * default label.
+	 *
+	 * <p>
+	 * Also since the party identifier can be an account or a code plus the identifier,
+	 * then for component 1 if the value starts with a slash, this implementation will return
+	 * "Account" as label instead of the generic "Party Identifier".
+	 *
+	 * @param number a component number
+	 * @return english label for the field component
+	 *
+	 * @since 9.4.14
+	 */
+	@Override
+	public String getComponentLabel(final int number) {
+		if (number == 1 && StringUtils.startsWith(getComponent1(), "/")) {
+			return "Account";
+		}
+		if (number == 3 || number == 5 || number == 7) {
+			String label = getLabelForLineNumber(getComponent(number-1));
+			if (label != null) {
+				return label;
+			}
+		}
+		return super.getComponentLabel(number);
+	}
+
+
+	/**
+	 * Return the line labels based on the structured line number identification as follows:
+	 *
+	 * <ul>
+	 * 	<li>1 -&gt; Name of Beneficiary Customer</li>
+	 * 	<li>2 -&gt; Address Line</li>
+	 * 	<li>3 -&gt; Country and Town</li>
+	 * 	<li>For any other number returns null</li>
+	 * </ul>
+	 *
+	 * <p>This is used in {@link #getComponentLabel(int)} to determine a suitable label dynamically
+	 * based on the line identifiers. For example if the field value is this:
+	 * <pre>
+	 * 1/John Smith
+	 * 2/Hoogstrat 6
+	 * 3/BE/Brussel
+	 * </pre>
+	 * The components will be parsed as follows:
+	 * <ul>
+	 * 	<li>1 -&gt; John Smith</li>
+	 * 	<li>2 -&gt; 1</li>
+	 * 	<li>3 -&gt; Hoogstrat 6</li>
+	 * 	<li>4 -&gt; 2</li>
+	 * 	<li>5 -&gt; BE/Brussel</li>
+	 * 	<li>5 -&gt; 3</li>
+	 * </ul>
+	 *
+	 * <p>
+	 * @param lineIdentifier the line number identifier, 1 to 3 according to the specification.
+	 * @return the line label
+	 * @since 9.4.14
+	 */
+	public String getLabelForLineNumber(String lineIdentifier) {
+		if (StringUtils.isNumeric(StringUtils.trimToNull(lineIdentifier))) {
+			int number = Integer.valueOf(lineIdentifier.trim());
+			if (number == 1) {
+				return "Name of Beneficiary Customer";
+			} else if (number == 2) {
+				return "Address Line";
+			} else if (number == 3) {
+				return "Country and Town";
+			}
+		}
+		return null;
+	}
     /**
      * Get the details (right part of the line) based on the line identification number.
      * This API is specific for the structured field 59F.
