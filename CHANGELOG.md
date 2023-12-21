@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.14 - SNAPSHOT
+  * (PW-1718) Changed the getComponentLabel(component) in Field59F to be dynamic based on the line identifiers (similar to existing API in Field50F)
+
 #### 9.4.13 - November 2023
   * (PW-1697) Fixed validation/parse pattern in field 29O
   * (PW-1697) MT306 changes in field 30I
