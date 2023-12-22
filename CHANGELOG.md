@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.4.14 - SNAPSHOT
+#### 9.4.14 - December 2023
   * (PW-1718) Changed the getComponentLabel(component) in Field59F to be dynamic based on the line identifiers (similar to existing API in Field50F)
 
 #### 9.4.13 - November 2023
