@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -15,7 +16,6 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
@@ -72,23 +72,6 @@ class SafeXmlUtilsTest {
     }
 
     /**
-     * Tests the creation of a SchemaFactory.
-     */
-    @Test
-    void testSchemaFactory() {
-        assertDoesNotThrow(SafeXmlUtils::schemaFactory);
-    }
-
-    /**
-     * Tests the creation of a Validator with a schema.
-     */
-    @Test
-    void testValidator() {
-        SchemaFactory schemaFactory = SafeXmlUtils.schemaFactory();
-        assertDoesNotThrow(() -> SafeXmlUtils.validator(schemaFactory.newSchema()));
-    }
-
-    /**
      * Tests the prevention of XXE attack on DocumentBuilder.
      */
     @Test
@@ -127,7 +110,7 @@ class SafeXmlUtilsTest {
                 + "<!DOCTYPE foo [<!ELEMENT foo ANY ><!ENTITY xxe SYSTEM \"file:///etc/passwd\">]>"
                 + "<foo>&xxe;</foo>";
 
-        SchemaFactory schemaFactory = SafeXmlUtils.schemaFactory();
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = null;
         try {
             schema = schemaFactory.newSchema();
@@ -139,56 +122,6 @@ class SafeXmlUtilsTest {
         assertThrows(SAXException.class, () -> {
             SafeXmlUtils.reader(true, finalSchema)
                     .parse(new org.xml.sax.InputSource(new java.io.StringReader(maliciousXml)));
-        });
-    }
-
-    /**
-     * Tests XXE attack on the Safe SchemaFactory and verifies that the entity in the schema is ignored.
-     */
-    @Test
-    void testXXEAttackOnSchemaFactory() {
-        String dummyXSDWithExternalDTD = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<!DOCTYPE root [\n"
-                + "    <!ELEMENT root ANY >\n"
-                + "    <!ENTITY xxe SYSTEM \"file:///etc/passwd\" >]>\n"
-                + "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:fn=\"http://www.w3.org/2005/xpath-functions\">\n"
-                + "    <xs:element name=\"root\" type=\"xs:string\">\n"
-                + "        <xs:complexType>\n"
-                + "            <xs:sequence>\n"
-                + "                <xs:element name=\"data\" type=\"xs:string\"/>\n"
-                + "            </xs:sequence>\n"
-                + "        </xs:complexType>\n"
-                + "    </xs:element>\n"
-                + "</xs:schema>\n";
-
-        // Attempt to create a Schema with dummy XSD containing external DTD using SafeXmlUtils
-        assertThrows(SAXException.class, () -> {
-            SchemaFactory schemaFactory = SafeXmlUtils.schemaFactory();
-            Schema dummySchema = schemaFactory.newSchema(new javax.xml.transform.sax.SAXSource(
-                    new org.xml.sax.InputSource(new java.io.StringReader(dummyXSDWithExternalDTD))));
-        });
-    }
-
-    /**
-     * Tests XXE attack on the Safe Validator and verifies that the entity in the XML is ignored.
-     */
-    @Test
-    void testXXEAttackOnValidator() throws SAXException {
-        // Create a dummy schema
-        SchemaFactory schemaFactory = SafeXmlUtils.schemaFactory();
-        Schema dummySchema = schemaFactory.newSchema();
-
-        // Attempt to create a Validator with dummy schema using SafeXmlUtils.validator
-        assertThrows(SAXException.class, () -> {
-            Validator validator = SafeXmlUtils.validator(dummySchema);
-
-            // Malicious XML document with XXE attack
-            String maliciousXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-                    + "<!DOCTYPE foo [<!ELEMENT foo ANY ><!ENTITY xxe SYSTEM \"file:///etc/passwd\">]>"
-                    + "<foo>&xxe;</foo>";
-
-            // Attempt to validate the malicious XML document
-            validator.validate(new javax.xml.transform.sax.SAXSource(
-                    new org.xml.sax.InputSource(new java.io.StringReader(maliciousXml))));
         });
     }
 

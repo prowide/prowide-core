@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.15 - SNAPSHOT
+  * Deprecated unnecessary methods in the SafeXmlUtils class
+
 #### 9.4.14 - December 2023
   * (PW-1718) Changed the getComponentLabel(component) in Field59F to be dynamic based on the line identifiers (similar to existing API in Field50F)
 
