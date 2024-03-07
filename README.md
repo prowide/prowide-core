@@ -41,3 +41,14 @@ SWIFT is a trademark of S.W.I.F.T. SCRL. (www.swift.com)
 * run `./gradlew build` to build the library
 
 Make sure your IDE encoding is UTF-8, some test may fail if not.
+
+### Versioning
+
+The versioning scheme used is [Semantic Versioning 2.0.0](http://semver.org/) with the Gradle Axion Release plugin
+that controls versions automatically based on git tags. If you ever face issues with the version or version tags are
+manually manipulated; the following command will clean up your local tags and fetch the remote tags again:
+
+```
+git tag -l | xargs git tag -d
+git fetch --tags
+```
