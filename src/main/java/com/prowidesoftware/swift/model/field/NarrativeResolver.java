@@ -168,7 +168,7 @@ public class NarrativeResolver {
 
                         if (supportsSupplement) {
                             firstSupplementAdded = addNarrativeSupplement(firstSupplementAdded, text, structured);
-                        } else if (StringUtils.isNotEmpty(textWithoutBankCode)) {
+                        } else if (textWithoutBankCode != null) {
                             structured.addNarrativeFragment(textWithoutBankCode);
                         }
 
