@@ -215,8 +215,8 @@ public class NarrativeResolverTest {
 
     /**
      * valid input
-     * 1 Fragment Empty
-     * 2 Fragments with values
+     * 1 Fragment Empty 1 codeword
+     * 2 Fragments with values 2 Codewords
      */
     @Test
     public void testFormat2_6() {
@@ -235,6 +235,8 @@ public class NarrativeResolverTest {
 
     /**
      * valid input
+     * 1 Fragment Empty + 1 Non empty value, 1 codeword
+     * 1 Non empty value, 1 codeword
      */
     @Test
     public void testFormat2_7() {
@@ -247,7 +249,6 @@ public class NarrativeResolverTest {
                 n.getStructured("RETN").getNarrativeFragments().get(1));
         assertEquals("UNKNOWN BENEFICIARY", n.getStructured("RETN").getNarrative());
         assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
-        assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
         // Check Fragments
         assertEquals(2, n.getStructured("RETN").getNarrativeFragments().size());
         assertEquals(1, n.getStructured("MREF").getNarrativeFragments().size());
@@ -256,6 +257,7 @@ public class NarrativeResolverTest {
 
     /**
      * valid input
+     * 1 Fragment Empty + 4 Non empty value, 1 codeword
      */
     @Test
     public void testFormat11() {
@@ -343,8 +345,10 @@ public class NarrativeResolverTest {
         // Fragmento uno es    . (White spaces detectados luego del /ACC/)
         Narrative n = NarrativeResolver.parse(new Field77J(v));
         assertEquals(1, n.getStructured().size());
-        assertEquals("FOO BAR CONTINUATION OF MYCODE", n.getStructured("MYCODE").getNarrative(" "));
-        assertEquals("FREE ADDITIONAL NARRATIVE CONTINUATION", n.getUnstructured(" "));
+        assertEquals("   ", n.getStructured("ACC").getNarrativeFragments().get(0));
+        assertEquals(
+                "CONTINUATION OF MYCODE",
+                n.getStructured("ACC").getNarrativeFragments().get(1));
     }
 
     /*
@@ -559,7 +563,8 @@ public class NarrativeResolverTest {
         assertNull(s.getCountry());
         assertNull(s.getCurrency());
         assertNull(s.getAmount());
-        assertTrue(s.getNarrativeFragments().isEmpty());
+        assertEquals(1, s.getNarrativeFragments().size());
+        assertTrue(s.getNarrative().isEmpty());
         assertNull(n.getUnstructured());
     }
 
