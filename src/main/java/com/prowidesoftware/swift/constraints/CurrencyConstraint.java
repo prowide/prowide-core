@@ -39,7 +39,7 @@ import javax.validation.Payload;
 @Target({METHOD, FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CurrencyConstraint {
-    String message() default "Invalid currency code";
+    String message() default "{prowide.invalid.currency.code}";
 
     Class<?>[] groups() default {};
 

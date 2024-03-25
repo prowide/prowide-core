@@ -39,7 +39,7 @@ import javax.validation.Payload;
 @Target({METHOD, FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IbanConstraint {
-    String message() default "Invalid IBAN number";
+    String message() default "{prowide.invalid.iban.number}";
 
     Class<?>[] groups() default {};
 

@@ -1,6 +1,7 @@
 # Prowide Core - CHANGELOG
 
 #### 9.4.15 - SNAPSHOT
+  * Updated validators for BIC, country, and currency constraints to utilize keywords for i18n-compatible messages
   * Deprecated unnecessary methods in the SafeXmlUtils class
 
 #### 9.4.14 - December 2023

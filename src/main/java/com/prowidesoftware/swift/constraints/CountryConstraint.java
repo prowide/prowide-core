@@ -39,7 +39,7 @@ import javax.validation.Payload;
 @Target({METHOD, FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CountryConstraint {
-    String message() default "Invalid ISO country code";
+    String message() default "{prowide.invalid.iso.country.code}";
 
     Class<?>[] groups() default {};
 

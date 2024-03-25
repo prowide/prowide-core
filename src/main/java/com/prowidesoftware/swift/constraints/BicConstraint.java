@@ -39,7 +39,7 @@ import javax.validation.Payload;
 @Target({METHOD, FIELD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface BicConstraint {
-    String message() default "Invalid BIC code";
+    String message() default "{prowide.invalid.bic.code}";
 
     Class<?>[] groups() default {};
 
