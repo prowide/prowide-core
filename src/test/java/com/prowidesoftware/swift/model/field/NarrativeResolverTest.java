@@ -215,29 +215,73 @@ public class NarrativeResolverTest {
 
     /**
      * valid input
+     * 1 Fragment Empty 1 codeword
+     * 2 Fragments with values 2 Codewords
      */
     @Test
     public void testFormat2_6() {
         String v = "/RETN/\n" + "/BE02/UNKNOWN BENEFICIARY\n" + "/MREF/0511030094000014";
         Narrative n = NarrativeResolver.parse(new Field72(v));
         assertEquals(3, n.getStructured().size());
-        assertNull(n.getStructured("RETN").getNarrative());
+        assertEquals("", n.getStructured("RETN").getNarrative());
         assertEquals("UNKNOWN BENEFICIARY", n.getStructured("BE02").getNarrative());
         assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
+        // Check Fragments
+        assertEquals(1, n.getStructured("RETN").getNarrativeFragments().size());
+        assertEquals(1, n.getStructured("BE02").getNarrativeFragments().size());
+        assertEquals(1, n.getStructured("MREF").getNarrativeFragments().size());
         assertNull(n.getUnstructured());
     }
 
     /**
      * valid input
+     * 1 Fragment Empty + 1 Non empty value, 1 codeword
+     * 1 Non empty value, 1 codeword
      */
     @Test
     public void testFormat2_7() {
         String v = "/RETN/\n" + "//UNKNOWN BENEFICIARY\n" + "/MREF/0511030094000014";
         Narrative n = NarrativeResolver.parse(new Field72(v));
-        assertEquals(2, n.getStructured().size());
+        assertEquals(2, n.getStructured().size()); // This count only the CodeWords
+        assertEquals("", n.getStructured("RETN").getNarrativeFragments().get(0));
+        assertEquals(
+                "UNKNOWN BENEFICIARY",
+                n.getStructured("RETN").getNarrativeFragments().get(1));
         assertEquals("UNKNOWN BENEFICIARY", n.getStructured("RETN").getNarrative());
         assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
+        // Check Fragments
+        assertEquals(2, n.getStructured("RETN").getNarrativeFragments().size());
+        assertEquals(1, n.getStructured("MREF").getNarrativeFragments().size());
         assertNull(n.getUnstructured());
+    }
+
+    /**
+     * valid input
+     * 1 Fragment Empty + 4 Non empty value, 1 codeword
+     */
+    @Test
+    public void testFormat11() {
+        // PW-1812 - Invalid parsing for field 72 in prowide form
+        String v = "/ACC/\n"
+                + "//ABU DHABI ISLAMIC BANK DUBAI INTE\n"
+                + "//RNET CITY BRANCH, P.O. BOX 46000,\n"
+                + "//DUBAI, UAE\n"
+                + "//UNITED ARAB EMIRATES";
+        Narrative n = NarrativeResolver.parse(new Field72(v));
+        assertEquals(1, n.getStructured().size()); // This count only the CodeWords
+        assertEquals(5, n.getStructured("ACC").getNarrativeFragments().size());
+        assertEquals("", n.getStructured("ACC").getNarrativeFragments().get(0));
+        assertEquals(
+                "ABU DHABI ISLAMIC BANK DUBAI INTE",
+                n.getStructured("ACC").getNarrativeFragments().get(1));
+        assertEquals(
+                "RNET CITY BRANCH, P.O. BOX 46000,",
+                n.getStructured("ACC").getNarrativeFragments().get(2));
+        assertEquals(
+                "DUBAI, UAE", n.getStructured("ACC").getNarrativeFragments().get(3));
+        assertEquals(
+                "UNITED ARAB EMIRATES",
+                n.getStructured("ACC").getNarrativeFragments().get(4));
     }
 
     /**
@@ -248,7 +292,7 @@ public class NarrativeResolverTest {
         String v = "/RETN/\n" + "/ /UNKNOWN BENEFICIARY\n" + "/MREF/0511030094000014\n" + "//WELL KNOWN BENEFICIARY";
         Narrative n = NarrativeResolver.parse(new Field72(v));
         assertEquals(1, n.getStructured().size());
-        assertNull(n.getStructured("RETN").getNarrative());
+        assertEquals("", n.getStructured("RETN").getNarrative());
         assertEquals("/ /UNKNOWN BENEFICIARY /MREF/0511030094000014 //WELL KNOWN BENEFICIARY", n.getUnstructured(" "));
     }
 
@@ -290,6 +334,21 @@ public class NarrativeResolverTest {
         assertEquals(1, n.getStructured().size());
         assertEquals("FOO BAR CONTINUATION OF MYCODE", n.getStructured("MYCODE").getNarrative(" "));
         assertEquals("FREE ADDITIONAL NARRATIVE CONTINUATION", n.getUnstructured(" "));
+    }
+
+    /**
+     * valid input
+     */
+    @Test
+    public void testFormat2_12() {
+        String v = "/ACC/   \n" + "//CONTINUATION OF MYCODE";
+        // Fragmento uno es    . (White spaces detectados luego del /ACC/)
+        Narrative n = NarrativeResolver.parse(new Field77J(v));
+        assertEquals(1, n.getStructured().size());
+        assertEquals("   ", n.getStructured("ACC").getNarrativeFragments().get(0));
+        assertEquals(
+                "CONTINUATION OF MYCODE",
+                n.getStructured("ACC").getNarrativeFragments().get(1));
     }
 
     /*
@@ -504,7 +563,8 @@ public class NarrativeResolverTest {
         assertNull(s.getCountry());
         assertNull(s.getCurrency());
         assertNull(s.getAmount());
-        assertTrue(s.getNarrativeFragments().isEmpty());
+        assertEquals(1, s.getNarrativeFragments().size());
+        assertTrue(s.getNarrative().isEmpty());
         assertNull(n.getUnstructured());
     }
 
