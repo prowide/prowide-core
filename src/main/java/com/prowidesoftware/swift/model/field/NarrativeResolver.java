@@ -168,8 +168,15 @@ public class NarrativeResolver {
 
                         if (supportsSupplement) {
                             firstSupplementAdded = addNarrativeSupplement(firstSupplementAdded, text, structured);
-                        } else if (StringUtils.isNotEmpty(textWithoutBankCode)) {
-                            structured.addNarrativeFragment(textWithoutBankCode);
+                        } else if (textWithoutBankCode != null) {
+                            if (supportsCountry) {
+                                if (!textWithoutBankCode.isEmpty()) {
+                                    structured.addNarrativeFragment(
+                                            textWithoutBankCode); // structured.addNarrativeFragment(null);
+                                }
+                            } else {
+                                structured.addNarrativeFragment(textWithoutBankCode);
+                            }
                         }
 
                         narrative.add(structured);
