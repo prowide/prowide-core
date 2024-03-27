@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.1.14 - SNAPSHOT
+#### 10.1.14 - March 2024
   * (PW-1812) Updated the narrative resolver, format 2 (used in field 72 for example), to allow empty values as part of the narrative fragment
   * Updated validators for BIC, country, and currency constraints to utilize keywords for i18n-compatible messages
   * Deprecated unnecessary methods in the SafeXmlUtils class
