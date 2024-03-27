@@ -21,6 +21,8 @@ import com.prowidesoftware.JsonSerializable;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.Lib;
+import jakarta.persistence.*;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,8 +30,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.*;
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlTransient;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 

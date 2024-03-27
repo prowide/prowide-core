@@ -44,29 +44,33 @@ public class SwiftFormatUtilsTest {
 
         assertNotNull(SwiftFormatUtils.getNumber("1,2"));
         assertEquals(
-                new Double(1.2), new Double(SwiftFormatUtils.getNumber("1,2").doubleValue()));
+                Double.valueOf(1.2),
+                Double.valueOf(SwiftFormatUtils.getNumber("1,2").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("12,34"));
         assertEquals(
-                new Double(12.34),
-                new Double(SwiftFormatUtils.getNumber("12,34").doubleValue()));
+                Double.valueOf(12.34),
+                Double.valueOf(SwiftFormatUtils.getNumber("12,34").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("12,3456"));
         assertEquals(
-                new Double(12.3456),
-                new Double(SwiftFormatUtils.getNumber("12,3456").doubleValue()));
+                Double.valueOf(12.3456),
+                Double.valueOf(SwiftFormatUtils.getNumber("12,3456").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("0,"));
-        assertEquals(new Double(0), new Double(SwiftFormatUtils.getNumber("0,").doubleValue()));
+        assertEquals(
+                Double.valueOf(0),
+                Double.valueOf(SwiftFormatUtils.getNumber("0,").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber("299000,34"));
         assertEquals(
-                new Double(299000.34),
-                new Double(SwiftFormatUtils.getNumber("299000,34").doubleValue()));
+                Double.valueOf(299000.34),
+                Double.valueOf(SwiftFormatUtils.getNumber("299000,34").doubleValue()));
 
         assertNotNull(SwiftFormatUtils.getNumber(",34"));
         assertEquals(
-                new Double(0.34), new Double(SwiftFormatUtils.getNumber(",34").doubleValue()));
+                Double.valueOf(0.34),
+                Double.valueOf(SwiftFormatUtils.getNumber(",34").doubleValue()));
     }
 
     @Test

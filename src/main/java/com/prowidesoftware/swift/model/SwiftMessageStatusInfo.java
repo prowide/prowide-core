@@ -15,11 +15,11 @@
  */
 package com.prowidesoftware.swift.model;
 
-import static javax.persistence.FetchType.LAZY;
+import static jakarta.persistence.FetchType.LAZY;
 
+import jakarta.persistence.*;
 import java.util.Calendar;
 import java.util.Objects;
-import javax.persistence.*;
 
 /**
  * Status tracking record for application only usage (not part of the standard).<br>
