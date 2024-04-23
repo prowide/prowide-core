@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
-import com.prowidesoftware.swift.model.field.AmountContainer;
-import com.prowidesoftware.swift.model.field.AmountResolver;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -44,73 +40,68 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * SWIFT MT Field 37P.
+ * SWIFT MT Field 29Q.
  * <p>
- * Model and parser for field 37P of a SWIFT MT message.
+ * Model and parser for field 29Q of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: Rate: <code>BigDecimal</code></li>
+ * 		<li>Component 1: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>&lt;AMOUNT&gt;12</code></li>
- * 		<li>parser pattern: <code>N</code></li>
- * 		<li>components pattern: <code>N</code></li>
+ * 		<li>validation pattern: <code>4!c</code></li>
+ * 		<li>parser pattern: <code>S</code></li>
+ * 		<li>components pattern: <code>S</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field37P extends Field implements Serializable, AmountContainer {
+public class Field29Q extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 37P.
+	 * Constant with the field name 29Q.
 	 */
-    public static final String NAME = "37P";
+    public static final String NAME = "29Q";
     /**
      * Same as NAME, intended to be clear when using static imports.
      */
-    public static final String F_37P = "37P";
+    public static final String F_29Q = "29Q";
 
     /**
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "N";
+	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "N";
+	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "I";
-
-	/**
-	 * Component number for the Rate subfield.
-	 */
-	public static final Integer RATE = 1;
+	public static final String TYPES_PATTERN = "S";
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
-    public Field37P() {
+    public Field29Q() {
         super(1);
     }
 
@@ -118,7 +109,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
      * Creates a new field and initializes its components with content from the parameter value.
      * @param value complete field value including separators and CRLF
      */
-    public Field37P(final String value) {
+    public Field29Q(final String value) {
         super(value);
     }
 
@@ -128,13 +119,13 @@ public class Field37P extends Field implements Serializable, AmountContainer {
      * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
      * @since 7.8
      */
-    public Field37P(final Tag tag) {
+    public Field29Q(final Tag tag) {
         this();
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "37P")) {
-            throw new IllegalArgumentException("cannot create field 37P from tag "+tag.getName()+", tagname must match the name of the field.");
+        if (!StringUtils.equals(tag.getName(), "29Q")) {
+            throw new IllegalArgumentException("cannot create field 29Q from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -145,8 +136,8 @@ public class Field37P extends Field implements Serializable, AmountContainer {
      * @param source a field instance to copy
      * @since 7.7
      */
-    public static Field37P newInstance(Field37P source) {
-        Field37P cp = new Field37P();
+    public static Field29Q newInstance(Field29Q source) {
+        Field29Q cp = new Field29Q();
         cp.setComponents(new ArrayList<>(source.getComponents()));
         return cp;
     }
@@ -193,7 +184,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        result.append(joinComponents());
+        append(result, 1);
         return result.toString();
     }
 
@@ -209,16 +200,11 @@ public class Field37P extends Field implements Serializable, AmountContainer {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component < 1 || component > 1) {
-            throw new IllegalArgumentException("invalid component number " + component + " for field 37P");
+            throw new IllegalArgumentException("invalid component number " + component + " for field 29Q");
         }
         if (component == 1) {
-            //amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            BigDecimal n = getComponent1AsBigDecimal();
-            if (n != null) {
-                return f.format(n);
-            }
+            //default format (as is)
+            return getComponent(1);
         }
         return null;
     }
@@ -230,7 +216,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
-        return "N";
+        return "S";
     }
 
     /**
@@ -242,7 +228,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
      */
     @Override
     public String typesPattern() {
-        return "I";
+        return "S";
     }
 
     /**
@@ -250,7 +236,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
      */
     @Override
     public String parserPattern() {
-        return "N";
+        return "S";
     }
 
     /**
@@ -258,7 +244,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
      */
     @Override
     public String validatorPattern() {
-        return "<AMOUNT>12";
+        return "4!c";
     }
 
     /**
@@ -306,7 +292,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Rate");
+        result.add(null);
         return result;
     }
 
@@ -317,7 +303,6 @@ public class Field37P extends Field implements Serializable, AmountContainer {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "rate");
         return result;
     }
 
@@ -332,12 +317,11 @@ public class Field37P extends Field implements Serializable, AmountContainer {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("rate", 1);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Rate).
+     * Gets the component 1 ($label).
      * @return the component 1
      */
     public String getComponent1() {
@@ -345,169 +329,21 @@ public class Field37P extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Get the component 1 as BigDecimal
+     * Set the component 1 ($label).
      *
-     * @return the component 1 converted to BigDecimal or null if cannot be converted
-     * @since 9.2.7
-     */
-    public java.math.BigDecimal getComponent1AsBigDecimal() {
-        return SwiftFormatUtils.getBigDecimal(getComponent(1));
-    }
-
-    /**
-     * @deprecated use #getComponent1AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        return getComponent1AsBigDecimal();
-    }
-
-    /**
-     * Gets the Rate (component 1).
-     * @return the Rate from component 1
-     */
-    public String getRate() {
-        return getComponent1();
-    }
-
-    /**
-     * Get the Rate (component 1) as BigDecimal
-     * @return the Rate from component 1 converted to BigDecimal or null if cannot be converted
-     * @since 9.2.7
-     */
-    public java.math.BigDecimal getRateAsBigDecimal() {
-        return getComponent1AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getRateAsNumber() {
-        return getComponent1AsNumber();
-    }
-
-    /**
-     * Set the component 1 (Rate).
-     *
-     * @param component1 the Rate to set
+     * @param component1 the $label to set
      * @return the field object to enable build pattern
      */
-    public Field37P setComponent1(String component1) {
+    public Field29Q setComponent1(String component1) {
         setComponent(1, component1);
         return this;
     }
 
-    /**
-     * Set the component1 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
-     * @since 9.2.7
-     *
-     * @param component1 the BigDecimal with the Rate content to set
-     * @return the field object to enable build pattern
-     */
-    public Field37P setComponent1(java.math.BigDecimal component1) {
-        setComponent(1, SwiftFormatUtils.getBigDecimal(component1));
-        return this;
-    }
-    /**
-     * Alternative method setter for field's Rate (component 1) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
-     *
-     * @param component1 the Number with the Rate content to set
-     * @return the field object to enable build pattern
-     * @see #setRate(java.math.BigDecimal)
-     */
-    public Field37P setComponent1(java.lang.Number component1) {
-
-        // NOTE: remember instanceof implicitly checks for non-null
-
-        if (component1 instanceof BigDecimal) {
-            setComponent(1, SwiftFormatUtils.getBigDecimal((BigDecimal) component1));
-        } else if (component1 instanceof BigInteger) {
-            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component1)));
-        } else if (component1 instanceof Long || component1 instanceof Integer) {
-            setComponent(1, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component1.longValue())));
-        } else if (component1 != null) {
-            // it's other non-null Number (Float, Double, etc...)
-            setComponent(1, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component1.doubleValue())));
-        } else {
-            // explicitly set component as null
-            setComponent(1, null);
-        }
-        return this;
-    }
-
-    /**
-     * Set the Rate (component 1).
-     *
-     * @param component1 the Rate to set
-     * @return the field object to enable build pattern
-     */
-    public Field37P setRate(String component1) {
-        return setComponent1(component1);
-    }
-
-    /**
-     * Set the Rate (component 1) from a BigDecimal object.
-     *
-     * @see #setComponent1(java.math.BigDecimal)
-     *
-     * @param component1 BigDecimal with the Rate content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field37P setRate(java.math.BigDecimal component1) {
-        return setComponent1(component1);
-    }
-
-    /**
-     * Alternative method setter for field's Rate (component 1) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component1 the Number with the Rate content to set
-     * @return the field object to enable build pattern
-     * @see #setRate(java.math.BigDecimal)
-     */
-    public Field37P setRate(java.lang.Number component1) {
-        return setComponent1(component1);
-    }
-
-
-    /**
-     * Returns the list of all NON-NULL amounts as BigDecimal
-     *
-     * @return the list of NON-NULL amounts as BigDecimal values
-     * @see AmountResolver#amounts(Field)
-     */
-    public List<BigDecimal> amounts() {
-        return AmountResolver.amounts(this);
-    }
-
-    /**
-     * Returns the first amounts as BigDecimal
-     *
-     * @return the first amount as BigDecimal value. Can be null
-     * @see AmountResolver#amount(Field)
-     */
-    public BigDecimal amount() {
-        return AmountResolver.amount(this);
-    }
 
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
-     * @return the static value of Field37P.NAME
+     * @return the static value of Field29Q.NAME
      */
     @Override
     public String getName() {
@@ -519,7 +355,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
      * @return null if not found o block is null or empty
      * @param block may be null or empty
      */
-    public static Field37P get(final SwiftTagListBlock block) {
+    public static Field29Q get(final SwiftTagListBlock block) {
         if (block == null || block.isEmpty()) {
             return null;
         }
@@ -527,16 +363,16 @@ public class Field37P extends Field implements Serializable, AmountContainer {
         if (t == null) {
             return null;
         }
-        return new Field37P(t);
+        return new Field29Q(t);
     }
 
     /**
-     * Gets the first instance of Field37P in the given message.
+     * Gets the first instance of Field29Q in the given message.
      * @param msg may be empty or null
      * @return null if not found or msg is empty or null
      * @see #get(SwiftTagListBlock)
      */
-    public static Field37P get(final SwiftMessage msg) {
+    public static Field29Q get(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
         }
@@ -544,12 +380,12 @@ public class Field37P extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field37P in the given message
+     * Gets a list of all occurrences of the field Field29Q in the given message
      * an empty list is returned if none found.
      * @param msg may be empty or null in which case an empty list is returned
      * @see #getAll(SwiftTagListBlock)
      */
-    public static List<Field37P> getAll(final SwiftMessage msg) {
+    public static List<Field29Q> getAll(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
         }
@@ -557,43 +393,37 @@ public class Field37P extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field37P from the given block
+     * Gets a list of all occurrences of the field Field29Q from the given block
      * an empty list is returned if none found.
      *
      * @param block may be empty or null in which case an empty list is returned
      */
-    public static List<Field37P> getAll(final SwiftTagListBlock block) {
-        final List<Field37P> result = new ArrayList<>();
+    public static List<Field29Q> getAll(final SwiftTagListBlock block) {
+        final List<Field29Q> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add(new Field37P(f));
+                result.add(new Field29Q(f));
             }
         }
         return result;
     }
 
     /**
-     * This method deserializes the JSON data into a Field37P object.
+     * This method deserializes the JSON data into a Field29Q object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    public static Field37P fromJson(final String json) {
+    public static Field29Q fromJson(final String json) {
 
-        final Field37P field = new Field37P();
+        final Field29Q field = new Field29Q();
 
-        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Rate
-
-        if (jsonObject.get("rate") != null) {
-            field.setComponent1(jsonObject.get("rate").getAsString());
-        }
 
         return field;
     }

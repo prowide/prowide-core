@@ -25,7 +25,6 @@ public interface SchemeConstantsN {
     String NEWT = "NEWT";
     String NEW = "NEW";
     String NETCASH = "NETCASH";
-    String NORMAL = "NORMAL";
     String NINT = "NINT";
     String NEWM = "NEWM";
     String NET = "NET";

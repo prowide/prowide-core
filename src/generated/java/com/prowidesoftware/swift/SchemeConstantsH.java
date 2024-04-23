@@ -17,6 +17,7 @@ import com.prowidesoftware.Generated;
 public interface SchemeConstantsH {
 
     String HOLD = "HOLD";
+    String HARM = "HARM";
     String HOLP = "HOLP";
     String HOLS = "HOLS";
     String HEAR = "HEAR";

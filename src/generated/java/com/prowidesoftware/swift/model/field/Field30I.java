@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,32 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.Generated;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.SwiftTagListBlock;
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Locale;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
+import java.util.Calendar;
+
+import com.prowidesoftware.swift.model.field.DateContainer;
+import com.prowidesoftware.swift.model.field.DateResolver;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.prowidesoftware.swift.model.field.SwiftParseUtils;
+import com.prowidesoftware.swift.model.field.Field;
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * SWIFT MT Field 30I.
@@ -48,7 +61,7 @@ import java.util.*;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -56,7 +69,7 @@ public class Field30I extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**

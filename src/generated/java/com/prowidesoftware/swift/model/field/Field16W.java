@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,87 +40,76 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * SWIFT MT Field 44H.
+ * SWIFT MT Field 16W.
  * <p>
- * Model and parser for field 44H of a SWIFT MT message.
+ * Model and parser for field 16W of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: CountryCode: <code>String</code></li>
- * 		<li>Component 2: Narrative: <code>String</code></li>
+ * 		<li>Component 1: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>&lt;CC&gt;[/65x]</code></li>
- * 		<li>parser pattern: <code>S[/S]</code></li>
- * 		<li>components pattern: <code>SS</code></li>
+ * 		<li>validation pattern: <code>4!c</code></li>
+ * 		<li>parser pattern: <code>S</code></li>
+ * 		<li>components pattern: <code>S</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field44H extends Field implements Serializable {
+public class Field16W extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 44H.
+	 * Constant with the field name 16W.
 	 */
-    public static final String NAME = "44H";
+    public static final String NAME = "16W";
     /**
      * Same as NAME, intended to be clear when using static imports.
      */
-    public static final String F_44H = "44H";
+    public static final String F_16W = "16W";
 
     /**
      * @deprecated Use {@link #parserPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S]";
+	public static final String PARSER_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
+	public static final String COMPONENTS_PATTERN = "S";
 
     /**
      * @deprecated Use {@link #typesPattern()} method instead.
      */
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
-
-	/**
-	 * Component number for the Country Code subfield.
-	 */
-	public static final Integer COUNTRY_CODE = 1;
-
-	/**
-	 * Component number for the Narrative subfield.
-	 */
-	public static final Integer NARRATIVE = 2;
+	public static final String TYPES_PATTERN = "S";
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
-    public Field44H() {
-        super(2);
+    public Field16W() {
+        super(1);
     }
 
     /**
      * Creates a new field and initializes its components with content from the parameter value.
      * @param value complete field value including separators and CRLF
      */
-    public Field44H(final String value) {
+    public Field16W(final String value) {
         super(value);
     }
 
@@ -130,13 +119,13 @@ public class Field44H extends Field implements Serializable {
      * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
      * @since 7.8
      */
-    public Field44H(final Tag tag) {
+    public Field16W(final Tag tag) {
         this();
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "44H")) {
-            throw new IllegalArgumentException("cannot create field 44H from tag "+tag.getName()+", tagname must match the name of the field.");
+        if (!StringUtils.equals(tag.getName(), "16W")) {
+            throw new IllegalArgumentException("cannot create field 16W from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -147,8 +136,8 @@ public class Field44H extends Field implements Serializable {
      * @param source a field instance to copy
      * @since 7.7
      */
-    public static Field44H newInstance(Field44H source) {
-        Field44H cp = new Field44H();
+    public static Field16W newInstance(Field16W source) {
+        Field16W cp = new Field16W();
         cp.setComponents(new ArrayList<>(source.getComponents()));
         return cp;
     }
@@ -185,9 +174,8 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public void parse(final String value) {
-        init(2);
-        setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
-        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
+        init(1);
+        setComponent1(value);
     }
 
     /**
@@ -197,9 +185,6 @@ public class Field44H extends Field implements Serializable {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
-        if (getComponent2() != null) {
-            result.append("/").append(getComponent2());
-        }
         return result.toString();
     }
 
@@ -214,16 +199,12 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 2) {
-            throw new IllegalArgumentException("invalid component number " + component + " for field 44H");
+        if (component < 1 || component > 1) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 16W");
         }
         if (component == 1) {
             //default format (as is)
             return getComponent(1);
-        }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
         }
         return null;
     }
@@ -235,7 +216,7 @@ public class Field44H extends Field implements Serializable {
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public String componentsPattern() {
-        return "SS";
+        return "S";
     }
 
     /**
@@ -247,7 +228,7 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public String typesPattern() {
-        return "SS";
+        return "S";
     }
 
     /**
@@ -255,7 +236,7 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S[/S]";
+        return "S";
     }
 
     /**
@@ -263,7 +244,7 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "<CC>[/65x]";
+        return "4!c";
     }
 
     /**
@@ -278,9 +259,6 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public boolean isOptional(int component) {
-        if (component == 2) {
-            return true;
-        }
         return false;
     }
 
@@ -301,7 +279,7 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public int componentsSize() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -314,8 +292,7 @@ public class Field44H extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Country Code");
-        result.add("Narrative");
+        result.add(null);
         return result;
     }
 
@@ -326,8 +303,6 @@ public class Field44H extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "countryCode");
-        result.put(2, "narrative");
         return result;
     }
 
@@ -342,13 +317,11 @@ public class Field44H extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("countrycode", 1);
-        super.labelMap.put("narrative", 2);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Country Code).
+     * Gets the component 1 ($label).
      * @return the component 1
      */
     public String getComponent1() {
@@ -356,76 +329,21 @@ public class Field44H extends Field implements Serializable {
     }
 
     /**
-     * Gets the Country Code (component 1).
-     * @return the Country Code from component 1
-     */
-    public String getCountryCode() {
-        return getComponent1();
-    }
-
-    /**
-     * Gets the component 2 (Narrative).
-     * @return the component 2
-     */
-    public String getComponent2() {
-        return getComponent(2);
-    }
-
-    /**
-     * Gets the Narrative (component 2).
-     * @return the Narrative from component 2
-     */
-    public String getNarrative() {
-        return getComponent2();
-    }
-
-    /**
-     * Set the component 1 (Country Code).
+     * Set the component 1 ($label).
      *
-     * @param component1 the Country Code to set
+     * @param component1 the $label to set
      * @return the field object to enable build pattern
      */
-    public Field44H setComponent1(String component1) {
+    public Field16W setComponent1(String component1) {
         setComponent(1, component1);
         return this;
-    }
-
-    /**
-     * Set the Country Code (component 1).
-     *
-     * @param component1 the Country Code to set
-     * @return the field object to enable build pattern
-     */
-    public Field44H setCountryCode(String component1) {
-        return setComponent1(component1);
-    }
-
-    /**
-     * Set the component 2 (Narrative).
-     *
-     * @param component2 the Narrative to set
-     * @return the field object to enable build pattern
-     */
-    public Field44H setComponent2(String component2) {
-        setComponent(2, component2);
-        return this;
-    }
-
-    /**
-     * Set the Narrative (component 2).
-     *
-     * @param component2 the Narrative to set
-     * @return the field object to enable build pattern
-     */
-    public Field44H setNarrative(String component2) {
-        return setComponent2(component2);
     }
 
 
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
-     * @return the static value of Field44H.NAME
+     * @return the static value of Field16W.NAME
      */
     @Override
     public String getName() {
@@ -437,7 +355,7 @@ public class Field44H extends Field implements Serializable {
      * @return null if not found o block is null or empty
      * @param block may be null or empty
      */
-    public static Field44H get(final SwiftTagListBlock block) {
+    public static Field16W get(final SwiftTagListBlock block) {
         if (block == null || block.isEmpty()) {
             return null;
         }
@@ -445,16 +363,16 @@ public class Field44H extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field44H(t);
+        return new Field16W(t);
     }
 
     /**
-     * Gets the first instance of Field44H in the given message.
+     * Gets the first instance of Field16W in the given message.
      * @param msg may be empty or null
      * @return null if not found or msg is empty or null
      * @see #get(SwiftTagListBlock)
      */
-    public static Field44H get(final SwiftMessage msg) {
+    public static Field16W get(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
         }
@@ -462,12 +380,12 @@ public class Field44H extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field44H in the given message
+     * Gets a list of all occurrences of the field Field16W in the given message
      * an empty list is returned if none found.
      * @param msg may be empty or null in which case an empty list is returned
      * @see #getAll(SwiftTagListBlock)
      */
-    public static List<Field44H> getAll(final SwiftMessage msg) {
+    public static List<Field16W> getAll(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
         }
@@ -475,49 +393,37 @@ public class Field44H extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field44H from the given block
+     * Gets a list of all occurrences of the field Field16W from the given block
      * an empty list is returned if none found.
      *
      * @param block may be empty or null in which case an empty list is returned
      */
-    public static List<Field44H> getAll(final SwiftTagListBlock block) {
-        final List<Field44H> result = new ArrayList<>();
+    public static List<Field16W> getAll(final SwiftTagListBlock block) {
+        final List<Field16W> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add(new Field44H(f));
+                result.add(new Field16W(f));
             }
         }
         return result;
     }
 
     /**
-     * This method deserializes the JSON data into a Field44H object.
+     * This method deserializes the JSON data into a Field16W object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    public static Field44H fromJson(final String json) {
+    public static Field16W fromJson(final String json) {
 
-        final Field44H field = new Field44H();
+        final Field16W field = new Field16W();
 
-        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Country Code
-
-        if (jsonObject.get("countryCode") != null) {
-            field.setComponent1(jsonObject.get("countryCode").getAsString());
-        }
-
-        // **** COMPONENT 2 - Narrative
-
-        if (jsonObject.get("narrative") != null) {
-            field.setComponent2(jsonObject.get("narrative").getAsString());
-        }
 
         return field;
     }
