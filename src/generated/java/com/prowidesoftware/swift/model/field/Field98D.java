@@ -678,7 +678,7 @@ public class Field98D extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Alternative method setter for field's Decimals (component 3) as as Number
+     * Alternative method setter for field's Decimals (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -728,7 +728,7 @@ public class Field98D extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Alternative method setter for field's Decimals (component 3) as as Number
+     * Alternative method setter for field's Decimals (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

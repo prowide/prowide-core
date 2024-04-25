@@ -50,15 +50,14 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: Amount: <code>String</code></li>
- * 		<li>Component 2: <code>BigDecimal</code></li>
+ * 		<li>Component 1: Amount: <code>BigDecimal</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;AMOUNT&gt;15</code></li>
  * 		<li>parser pattern: <code>N</code></li>
- * 		<li>components pattern: <code>SN</code></li>
+ * 		<li>components pattern: <code>N</code></li>
  * </ul>
  *
  * <p>
@@ -91,7 +90,7 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field33Z() {
-        super(2);
+        super(1);
     }
 
     /**
@@ -163,7 +162,7 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
      */
     @Override
     public void parse(final String value) {
-        init(2);
+        init(1);
         setComponent1(value);
     }
 
@@ -188,18 +187,14 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 2) {
+        if (component < 1 || component > 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 33Z");
         }
         if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
-        }
-        if (component == 2) {
             //amount, rate
             java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
             f.setMaximumFractionDigits(13);
-            BigDecimal n = getComponent2AsBigDecimal();
+            BigDecimal n = getComponent1AsBigDecimal();
             if (n != null) {
                 return f.format(n);
             }
@@ -216,7 +211,7 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
      */
     @Override
     public String typesPattern() {
-        return "SI";
+        return "I";
     }
 
     /**
@@ -267,7 +262,7 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
      */
     @Override
     public int componentsSize() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -281,7 +276,6 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Amount");
-        result.add(null);
         return result;
     }
 
@@ -320,6 +314,16 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
     }
 
     /**
+     * Get the component 1 as BigDecimal
+     *
+     * @return the component 1 converted to BigDecimal or null if cannot be converted
+     * @since 9.2.7
+     */
+    public java.math.BigDecimal getComponent1AsBigDecimal() {
+        return SwiftFormatUtils.getBigDecimal(getComponent(1));
+    }
+
+    /**
      * Gets the Amount (component 1).
      * @return the Amount from component 1
      */
@@ -328,21 +332,12 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets the component 2 (Amount).
-     * @return the component 2
-     */
-    public String getComponent2() {
-        return getComponent(2);
-    }
-
-    /**
-     * Get the component 2 as BigDecimal
-     *
-     * @return the component 2 converted to BigDecimal or null if cannot be converted
+     * Get the Amount (component 1) as BigDecimal
+     * @return the Amount from component 1 converted to BigDecimal or null if cannot be converted
      * @since 9.2.7
      */
-    public java.math.BigDecimal getComponent2AsBigDecimal() {
-        return SwiftFormatUtils.getBigDecimal(getComponent(2));
+    public java.math.BigDecimal getAmountAsBigDecimal() {
+        return getComponent1AsBigDecimal();
     }
 
     /**
@@ -357,6 +352,53 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
     }
 
     /**
+     * Set the component1 from a BigDecimal object.
+     * <br>
+     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
+     * <ul>
+     *     <li>Example: 1234.00 -&gt; 1234,</li>
+     *     <li>Example: 1234 -&gt; 1234,</li>
+     *     <li>Example: 1234.56 -&gt; 1234,56</li>
+     * </ul>
+     * @since 9.2.7
+     *
+     * @param component1 the BigDecimal with the Amount content to set
+     * @return the field object to enable build pattern
+     */
+    public Field33Z setComponent1(java.math.BigDecimal component1) {
+        setComponent(1, SwiftFormatUtils.getBigDecimal(component1));
+        return this;
+    }
+    /**
+     * Alternative method setter for field's Amount (component 1) as Number
+     *
+     * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
+     *
+     * @param component1 the Number with the Amount content to set
+     * @return the field object to enable build pattern
+     * @see #setAmount(java.math.BigDecimal)
+     */
+    public Field33Z setComponent1(java.lang.Number component1) {
+
+        // NOTE: remember instanceof implicitly checks for non-null
+
+        if (component1 instanceof BigDecimal) {
+            setComponent(1, SwiftFormatUtils.getBigDecimal((BigDecimal) component1));
+        } else if (component1 instanceof BigInteger) {
+            setComponent(1, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component1)));
+        } else if (component1 instanceof Long || component1 instanceof Integer) {
+            setComponent(1, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component1.longValue())));
+        } else if (component1 != null) {
+            // it's other non-null Number (Float, Double, etc...)
+            setComponent(1, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component1.doubleValue())));
+        } else {
+            // explicitly set component as null
+            setComponent(1, null);
+        }
+        return this;
+    }
+
+    /**
      * Set the Amount (component 1).
      *
      * @param component1 the Amount to set
@@ -367,61 +409,29 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the component 2 (Amount).
+     * Set the Amount (component 1) from a BigDecimal object.
      *
-     * @param component2 the Amount to set
+     * @see #setComponent1(java.math.BigDecimal)
+     *
+     * @param component1 BigDecimal with the Amount content to set
      * @return the field object to enable build pattern
-     */
-    public Field33Z setComponent2(String component2) {
-        setComponent(2, component2);
-        return this;
-    }
-
-    /**
-     * Set the component2 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
      * @since 9.2.7
-     *
-     * @param component2 the BigDecimal with the Amount content to set
-     * @return the field object to enable build pattern
      */
-    public Field33Z setComponent2(java.math.BigDecimal component2) {
-        setComponent(2, SwiftFormatUtils.getBigDecimal(component2));
-        return this;
+    public Field33Z setAmount(java.math.BigDecimal component1) {
+        return setComponent1(component1);
     }
+
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Alternative method setter for field's Amount (component 1) as Number
      *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
+     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
-     * @param component2 the Number with the Amount content to set
+     * @param component1 the Number with the Amount content to set
      * @return the field object to enable build pattern
-     * @see #set(java.math.BigDecimal)
+     * @see #setAmount(java.math.BigDecimal)
      */
-    public Field33Z setComponent2(java.lang.Number component2) {
-
-        // NOTE: remember instanceof implicitly checks for non-null
-
-        if (component2 instanceof BigDecimal) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal((BigDecimal) component2));
-        } else if (component2 instanceof BigInteger) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component2)));
-        } else if (component2 instanceof Long || component2 instanceof Integer) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component2.longValue())));
-        } else if (component2 != null) {
-            // it's other non-null Number (Float, Double, etc...)
-            setComponent(2, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component2.doubleValue())));
-        } else {
-            // explicitly set component as null
-            setComponent(2, null);
-        }
-        return this;
+    public Field33Z setAmount(java.lang.Number component1) {
+        return setComponent1(component1);
     }
 
 
@@ -535,7 +545,6 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
         if (jsonObject.get("amount") != null) {
             field.setComponent1(jsonObject.get("amount").getAsString());
         }
-
 
         return field;
     }

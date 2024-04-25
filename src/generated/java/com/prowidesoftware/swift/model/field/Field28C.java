@@ -418,7 +418,7 @@ public class Field28C extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Statement Number (component 1) as as Number
+     * Alternative method setter for field's Statement Number (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -468,7 +468,7 @@ public class Field28C extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Statement Number (component 1) as as Number
+     * Alternative method setter for field's Statement Number (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -510,7 +510,7 @@ public class Field28C extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Sequence Number (component 2) as as Number
+     * Alternative method setter for field's Sequence Number (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -560,7 +560,7 @@ public class Field28C extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Sequence Number (component 2) as as Number
+     * Alternative method setter for field's Sequence Number (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

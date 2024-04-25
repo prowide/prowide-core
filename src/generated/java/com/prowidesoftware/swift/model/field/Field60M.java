@@ -644,7 +644,7 @@ public class Field60M extends Field implements Serializable, MonetaryAmountConta
         return this;
     }
     /**
-     * Alternative method setter for field's Amount (component 4) as as Number
+     * Alternative method setter for field's Amount (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
@@ -696,7 +696,7 @@ public class Field60M extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Alternative method setter for field's Amount (component 4) as as Number
+     * Alternative method setter for field's Amount (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

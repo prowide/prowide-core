@@ -520,7 +520,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Region Time Count 1 (component 1) as as Number
+     * Alternative method setter for field's Region Time Count 1 (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -570,7 +570,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Region Time Count 1 (component 1) as as Number
+     * Alternative method setter for field's Region Time Count 1 (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -612,7 +612,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Region Time Count 2 (component 2) as as Number
+     * Alternative method setter for field's Region Time Count 2 (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -662,7 +662,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Region Time Count 2 (component 2) as as Number
+     * Alternative method setter for field's Region Time Count 2 (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -704,7 +704,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Region Time Count 3 (component 3) as as Number
+     * Alternative method setter for field's Region Time Count 3 (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -754,7 +754,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Region Time Count 3 (component 3) as as Number
+     * Alternative method setter for field's Region Time Count 3 (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -796,7 +796,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Region Time Count 4 (component 4) as as Number
+     * Alternative method setter for field's Region Time Count 4 (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -846,7 +846,7 @@ public class Field343 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Region Time Count 4 (component 4) as as Number
+     * Alternative method setter for field's Region Time Count 4 (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

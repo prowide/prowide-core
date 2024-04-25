@@ -424,7 +424,7 @@ public class Field37R extends Field implements Serializable, AmountContainer {
         return this;
     }
     /**
-     * Alternative method setter for field's Rate (component 2) as as Number
+     * Alternative method setter for field's Rate (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
@@ -476,7 +476,7 @@ public class Field37R extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Alternative method setter for field's Rate (component 2) as as Number
+     * Alternative method setter for field's Rate (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

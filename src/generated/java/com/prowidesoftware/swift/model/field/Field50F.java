@@ -739,7 +739,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Number 1 (component 2) as as Number
+     * Alternative method setter for field's Number 1 (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -789,7 +789,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Number 1 (component 2) as as Number
+     * Alternative method setter for field's Number 1 (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -852,7 +852,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Number 2 (component 4) as as Number
+     * Alternative method setter for field's Number 2 (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -902,7 +902,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Number 2 (component 4) as as Number
+     * Alternative method setter for field's Number 2 (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -965,7 +965,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Number 3 (component 6) as as Number
+     * Alternative method setter for field's Number 3 (component 6) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1015,7 +1015,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Number 3 (component 6) as as Number
+     * Alternative method setter for field's Number 3 (component 6) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1078,7 +1078,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Number 4 (component 8) as as Number
+     * Alternative method setter for field's Number 4 (component 8) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1128,7 +1128,7 @@ public class Field50F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Number 4 (component 8) as as Number
+     * Alternative method setter for field's Number 4 (component 8) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

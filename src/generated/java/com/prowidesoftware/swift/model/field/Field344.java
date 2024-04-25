@@ -421,7 +421,7 @@ public class Field344 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Message Categories (component 2) as as Number
+     * Alternative method setter for field's Message Categories (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -471,7 +471,7 @@ public class Field344 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Message Categories (component 2) as as Number
+     * Alternative method setter for field's Message Categories (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
