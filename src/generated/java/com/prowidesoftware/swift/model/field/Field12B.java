@@ -80,27 +80,6 @@ public class Field12B extends Field implements Serializable, GenericField {
      */
     public static final String F_12B = "12B";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S/[S]/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSS";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -246,16 +225,6 @@ public class Field12B extends Field implements Serializable, GenericField {
             return getComponent(3);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSS";
     }
 
     /**
@@ -422,7 +391,6 @@ public class Field12B extends Field implements Serializable, GenericField {
 
     /**
      * Alternative method getter for field's Instrument Type Code
-     * @deprecated use #getInstrumentTypeCode() instead
      * @since 9.2.7
      */
     public String getType() {
@@ -492,9 +460,6 @@ public class Field12B extends Field implements Serializable, GenericField {
         return setComponent3(component3);
     }
 
-    /**
-     * @deprecated use #setInstrumentTypeCode(String) instead
-     */
     public Field12B setType(String component3) {
         return setInstrumentTypeCode(component3);
     }

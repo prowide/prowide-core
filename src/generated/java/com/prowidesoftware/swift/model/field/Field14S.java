@@ -83,27 +83,6 @@ public class Field14S extends Field implements Serializable {
      */
     public static final String F_14S = "14S";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN[/<HHMM>/S]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SNHS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SNHS";
-
 	/**
 	 * Component number for the Source subfield.
 	 */
@@ -275,16 +254,6 @@ public class Field14S extends Field implements Serializable {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SNHS";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -437,16 +406,6 @@ public class Field14S extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number (component 2).
      * @return the Number from component 2
      */
@@ -461,15 +420,6 @@ public class Field14S extends Field implements Serializable {
      */
     public java.lang.Long getNumberAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

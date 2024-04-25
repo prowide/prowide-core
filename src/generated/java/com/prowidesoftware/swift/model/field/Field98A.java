@@ -82,27 +82,6 @@ public class Field98A extends Field implements Serializable, DateContainer, Gene
      */
     public static final String F_98A = "98A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//<DATE4>";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SD";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SD";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -234,16 +213,6 @@ public class Field98A extends Field implements Serializable, DateContainer, Gene
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SD";
     }
 
     /**

@@ -82,27 +82,6 @@ public class Field37R extends Field implements Serializable, AmountContainer {
      */
     public static final String F_37R = "37R";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "[S]N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SI";
-
 	/**
 	 * Component number for the Sign subfield.
 	 */
@@ -232,16 +211,6 @@ public class Field37R extends Field implements Serializable, AmountContainer {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -388,15 +357,6 @@ public class Field37R extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Rate (component 2).
      * @return the Rate from component 2
      */
@@ -411,15 +371,6 @@ public class Field37R extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getRateAsBigDecimal() {
         return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getRateAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

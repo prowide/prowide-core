@@ -77,27 +77,6 @@ public class Field22M extends Field implements Serializable {
      */
     public static final String F_22M = "22M";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
 	/**
 	 * Component number for the Namespace subfield.
 	 */
@@ -115,12 +94,6 @@ public class Field22M extends Field implements Serializable {
      */
     public static final Integer ISSUER_CODE = 1;
 
-	/**
-	 * @deprecated use #NAMESPACE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer TYPE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -231,16 +204,6 @@ public class Field22M extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -370,7 +333,6 @@ public class Field22M extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Namespace
-     * @deprecated use #getNamespace() instead
      * @since 9.2.7
      */
     public String getUTINamespace() {
@@ -379,23 +341,12 @@ public class Field22M extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Namespace
-     * @deprecated use #getNamespace() instead
      * @since 9.2.7
      */
     public String getIssuerCode() {
         return getNamespace();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Namespace
-     * @deprecated use #getNamespace() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getType() {
-        return getNamespace();
-    }
 
     /**
      * Set the component 1 (Namespace).
@@ -418,26 +369,11 @@ public class Field22M extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setNamespace(String) instead
-     */
     public Field22M setUTINamespace(String component1) {
         return setNamespace(component1);
     }
 
-    /**
-     * @deprecated use #setNamespace(String) instead
-     */
     public Field22M setIssuerCode(String component1) {
-        return setNamespace(component1);
-    }
-
-    /**
-     * @deprecated use #setNamespace(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field22M setType(String component1) {
         return setNamespace(component1);
     }
 

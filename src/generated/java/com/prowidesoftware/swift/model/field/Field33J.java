@@ -82,38 +82,11 @@ public class Field33J extends Field implements Serializable, AmountContainer {
      */
     public static final String F_33J = "33J";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SI";
-
 	/**
 	 * Component number for the Unit subfield.
 	 */
 	public static final Integer UNIT = 1;
 
-	/**
-	 * @deprecated use #UNIT instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CURRENCY = 1;
 
 	/**
 	 * Component number for the Amount subfield.
@@ -242,16 +215,6 @@ public class Field33J extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -375,16 +338,6 @@ public class Field33J extends Field implements Serializable, AmountContainer {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Unit
-     * @deprecated use #getUnit() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCurrency() {
-        return getUnit();
-    }
 
     /**
      * Gets the component 2 (Amount).
@@ -405,15 +358,6 @@ public class Field33J extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 2).
      * @return the Amount from component 2
      */
@@ -428,15 +372,6 @@ public class Field33J extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**
@@ -458,15 +393,6 @@ public class Field33J extends Field implements Serializable, AmountContainer {
      */
     public Field33J setUnit(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setUnit(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field33J setCurrency(String component1) {
-        return setUnit(component1);
     }
 
     /**

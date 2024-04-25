@@ -84,27 +84,6 @@ public class Field34E extends Field implements Serializable, MonetaryAmountConta
      */
     public static final String F_34E = "34E";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "[c]<CUR>N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SCN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SCI";
-
 	/**
 	 * Component number for the Sign subfield.
 	 */
@@ -251,16 +230,6 @@ public class Field34E extends Field implements Serializable, MonetaryAmountConta
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SCN";
     }
 
     /**
@@ -443,15 +412,6 @@ public class Field34E extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #getComponent3AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        return getComponent3AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 3).
      * @return the Amount from component 3
      */
@@ -466,15 +426,6 @@ public class Field34E extends Field implements Serializable, MonetaryAmountConta
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent3AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**

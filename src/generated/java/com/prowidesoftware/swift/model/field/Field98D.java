@@ -86,27 +86,6 @@ public class Field98D extends Field implements Serializable, DateContainer {
      */
     public static final String F_98D = "98D";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "<DATE4><TIME2>[,S][/[c]<TIME3>]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "DTNSW";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "DTNSW";
-
 	/**
 	 * Component number for the Date subfield.
 	 */
@@ -305,16 +284,6 @@ public class Field98D extends Field implements Serializable, DateContainer {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "DTNSW";
     }
 
     /**
@@ -526,16 +495,6 @@ public class Field98D extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Decimals (component 3).
      * @return the Decimals from component 3
      */
@@ -550,15 +509,6 @@ public class Field98D extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getDecimalsAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getDecimalsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getDecimalsAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**

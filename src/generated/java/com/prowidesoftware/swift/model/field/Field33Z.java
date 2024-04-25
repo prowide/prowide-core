@@ -82,27 +82,6 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
      */
     public static final String F_33Z = "33Z";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SI";
-
 	/**
 	 * Component number for the Amount subfield.
 	 */
@@ -226,16 +205,6 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -374,15 +343,6 @@ public class Field33Z extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getComponent2AsBigDecimal() {
         return SwiftFormatUtils.getBigDecimal(getComponent(2));
-    }
-
-    /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
     }
 
     /**

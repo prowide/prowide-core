@@ -83,27 +83,6 @@ public class Field130 extends Field implements Serializable, MultiLineField {
      */
     public static final String F_130 = "130";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "/S/S$/S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "NSNS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "NSNS";
-
 	/**
 	 * Component number for the Heading Code subfield.
 	 */
@@ -266,16 +245,6 @@ public class Field130 extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "NSNS";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -406,16 +375,6 @@ public class Field130 extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Heading Code (component 1).
      * @return the Heading Code from component 1
      */
@@ -430,15 +389,6 @@ public class Field130 extends Field implements Serializable, MultiLineField {
      */
     public java.lang.Long getHeadingCodeAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getHeadingCodeAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getHeadingCodeAsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**
@@ -476,16 +426,6 @@ public class Field130 extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Heading Code 2 (component 3).
      * @return the Heading Code 2 from component 3
      */
@@ -500,15 +440,6 @@ public class Field130 extends Field implements Serializable, MultiLineField {
      */
     public java.lang.Long getHeadingCode2AsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getHeadingCode2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getHeadingCode2AsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**

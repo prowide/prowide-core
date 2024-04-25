@@ -78,27 +78,6 @@ public class Field26A extends Field implements Serializable {
      */
     public static final String F_26A = "26A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
-
 	/**
 	 * Component number for the Number1 subfield.
 	 */
@@ -226,16 +205,6 @@ public class Field26A extends Field implements Serializable {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SS";
     }
 
     /**
@@ -522,28 +491,5 @@ public class Field26A extends Field implements Serializable {
         return field;
     }
 
-
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
-	public static final Integer NUMBER = 1;
-
-	/**
-     * @deprecated Use getValue() instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
-	public String getNumber() {
-        return getValue();
-	}
-
-    /**
-      * @deprecated Use parse(String) instead
-      */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
-	public Field26A setNumber(final String number) {
-        parse(number);
-        return this;
-	}
 
 }

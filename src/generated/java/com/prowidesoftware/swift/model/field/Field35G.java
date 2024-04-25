@@ -89,27 +89,6 @@ public class Field35G extends Field implements Serializable, MultiLineField {
      */
     public static final String F_35G = "35G";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[$S]0-11";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSSSSSSSSSS";
-
 	/**
 	 * Component number for the Narrative subfield.
 	 */
@@ -269,16 +248,6 @@ public class Field35G extends Field implements Serializable, MultiLineField {
             return getComponent(12);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSSSSSSSSSS";
     }
 
     /**

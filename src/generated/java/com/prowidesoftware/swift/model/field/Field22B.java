@@ -77,27 +77,6 @@ public class Field22B extends Field implements Serializable {
      */
     public static final String F_22B = "22B";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
 	/**
 	 * Component number for the Type subfield.
 	 */
@@ -227,16 +206,6 @@ public class Field22B extends Field implements Serializable {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -361,7 +330,6 @@ public class Field22B extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Type
-     * @deprecated use #getType() instead
      * @since 9.2.7
      */
     public String getCentre() {
@@ -370,7 +338,6 @@ public class Field22B extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Type
-     * @deprecated use #getType() instead
      * @since 9.2.7
      */
     public String getFinancialCentre() {
@@ -398,16 +365,10 @@ public class Field22B extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setType(String) instead
-     */
     public Field22B setCentre(String component1) {
         return setType(component1);
     }
 
-    /**
-     * @deprecated use #setType(String) instead
-     */
     public Field22B setFinancialCentre(String component1) {
         return setType(component1);
     }

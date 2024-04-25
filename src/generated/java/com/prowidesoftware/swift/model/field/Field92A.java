@@ -84,27 +84,6 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      */
     public static final String F_92A = "92A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//[S]N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSI";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -120,12 +99,6 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
 	 */
 	public static final Integer RATE = 3;
 
-	/**
-	 * @deprecated use #RATE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer RATE_AMOUNT = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -256,16 +229,6 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSN";
     }
 
     /**
@@ -433,15 +396,6 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated use #getComponent3AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        return getComponent3AsBigDecimal();
-    }
-
-    /**
      * Gets the Rate (component 3).
      * @return the Rate from component 3
      */
@@ -449,16 +403,6 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Rate
-     * @deprecated use #getRate() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getRateAmount() {
-        return getRate();
-    }
 
     /**
      * Get the Rate (component 3) as BigDecimal
@@ -467,33 +411,6 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      */
     public java.math.BigDecimal getRateAsBigDecimal() {
         return getComponent3AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getRateAsNumber() {
-        return getComponent3AsNumber();
-    }
-
-    /**
-     * @deprecated use #getRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.math.BigDecimal getRateAmountAsBigDecimal() {
-        return getRateAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getRateAmountAsNumber() {
-        return getRateAsNumber();
     }
 
     /**
@@ -630,34 +547,6 @@ public class Field92A extends Field implements Serializable, AmountContainer, Ge
      */
     public Field92A setRate(java.lang.Number component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setRate(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field92A setRateAmount(String component3) {
-        return setRate(component3);
-    }
-
-    /**
-     * @deprecated use #setComponent3(java.math.BigDecimal) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field92A setRateAmount(java.math.BigDecimal component3) {
-        return setRate(component3);
-    }
-
-    /**
-     * @deprecated use #setRate(java.math.BigDecimal) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field92A setRateAmount(java.lang.Number component3) {
-        return setRate(component3);
     }
 
 

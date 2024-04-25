@@ -86,27 +86,6 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      */
     public static final String F_93C = "93C";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S/S/[S]N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSSI";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -132,12 +111,6 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
 	 */
 	public static final Integer BALANCE = 5;
 
-	/**
-	 * @deprecated use #BALANCE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer AMOUNT = 5;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -283,16 +256,6 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSSN";
     }
 
     /**
@@ -498,15 +461,6 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated use #getComponent5AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent5AsNumber() {
-        return getComponent5AsBigDecimal();
-    }
-
-    /**
      * Gets the Balance (component 5).
      * @return the Balance from component 5
      */
@@ -514,16 +468,6 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
         return getComponent5();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Balance
-     * @deprecated use #getBalance() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAmount() {
-        return getBalance();
-    }
 
     /**
      * Get the Balance (component 5) as BigDecimal
@@ -532,33 +476,6 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      */
     public java.math.BigDecimal getBalanceAsBigDecimal() {
         return getComponent5AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getBalanceAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getBalanceAsNumber() {
-        return getComponent5AsNumber();
-    }
-
-    /**
-     * @deprecated use #getBalanceAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.math.BigDecimal getAmountAsBigDecimal() {
-        return getBalanceAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getBalanceAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getBalanceAsNumber();
     }
 
     /**
@@ -737,34 +654,6 @@ public class Field93C extends Field implements Serializable, AmountContainer, Ge
      */
     public Field93C setBalance(java.lang.Number component5) {
         return setComponent5(component5);
-    }
-
-    /**
-     * @deprecated use #setBalance(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field93C setAmount(String component5) {
-        return setBalance(component5);
-    }
-
-    /**
-     * @deprecated use #setComponent5(java.math.BigDecimal) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field93C setAmount(java.math.BigDecimal component5) {
-        return setBalance(component5);
-    }
-
-    /**
-     * @deprecated use #setBalance(java.math.BigDecimal) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field93C setAmount(java.lang.Number component5) {
-        return setBalance(component5);
     }
 
 

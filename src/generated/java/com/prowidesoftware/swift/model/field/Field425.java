@@ -117,27 +117,6 @@ public class Field425 extends Field implements Serializable {
     public static final String F_425 = "425";
 
     /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "20*(S/S)";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS";
-
-    /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field425() {
@@ -430,16 +409,6 @@ public class Field425 extends Field implements Serializable {
             return getComponent(40);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS";
     }
 
     /**

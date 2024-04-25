@@ -82,27 +82,6 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      */
     public static final String F_19C = "19C";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "[S]N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SI";
-
 	/**
 	 * Component number for the Sign subfield.
 	 */
@@ -113,12 +92,6 @@ public class Field19C extends Field implements Serializable, AmountContainer {
 	 */
 	public static final Integer ADJUSTMENT_FACTOR = 2;
 
-	/**
-	 * @deprecated use #ADJUSTMENT_FACTOR instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer AMOUNT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -239,16 +212,6 @@ public class Field19C extends Field implements Serializable, AmountContainer {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -397,15 +360,6 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Adjustment Factor (component 2).
      * @return the Adjustment Factor from component 2
      */
@@ -413,16 +367,6 @@ public class Field19C extends Field implements Serializable, AmountContainer {
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Adjustment Factor
-     * @deprecated use #getAdjustmentFactor() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAmount() {
-        return getAdjustmentFactor();
-    }
 
     /**
      * Get the Adjustment Factor (component 2) as BigDecimal
@@ -431,33 +375,6 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getAdjustmentFactorAsBigDecimal() {
         return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAdjustmentFactorAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAdjustmentFactorAsNumber() {
-        return getComponent2AsNumber();
-    }
-
-    /**
-     * @deprecated use #getAdjustmentFactorAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.math.BigDecimal getAmountAsBigDecimal() {
-        return getAdjustmentFactorAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAdjustmentFactorAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getAdjustmentFactorAsNumber();
     }
 
     /**
@@ -573,34 +490,6 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      */
     public Field19C setAdjustmentFactor(java.lang.Number component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setAdjustmentFactor(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field19C setAmount(String component2) {
-        return setAdjustmentFactor(component2);
-    }
-
-    /**
-     * @deprecated use #setComponent2(java.math.BigDecimal) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field19C setAmount(java.math.BigDecimal component2) {
-        return setAdjustmentFactor(component2);
-    }
-
-    /**
-     * @deprecated use #setAdjustmentFactor(java.math.BigDecimal) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field19C setAmount(java.lang.Number component2) {
-        return setAdjustmentFactor(component2);
     }
 
 

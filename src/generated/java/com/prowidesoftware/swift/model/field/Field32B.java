@@ -83,27 +83,6 @@ public class Field32B extends Field implements Serializable, MonetaryAmountConta
      */
     public static final String F_32B = "32B";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "CN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "CI";
-
 	/**
 	 * Component number for the Currency subfield.
 	 */
@@ -239,16 +218,6 @@ public class Field32B extends Field implements Serializable, MonetaryAmountConta
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "CN";
     }
 
     /**
@@ -411,15 +380,6 @@ public class Field32B extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 2).
      * @return the Amount from component 2
      */
@@ -429,7 +389,6 @@ public class Field32B extends Field implements Serializable, MonetaryAmountConta
 
     /**
      * Alternative method getter for field's Amount
-     * @deprecated use #getAmount() instead
      * @since 9.2.7
      */
     public String getPrice() {
@@ -446,29 +405,10 @@ public class Field32B extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent2AsNumber();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
      * @since 9.2.7
      */
     public java.math.BigDecimal getPriceAsBigDecimal() {
         return getAmountAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getPriceAsNumber() {
-        return getAmountAsNumber();
     }
 
     /**
@@ -609,24 +549,14 @@ public class Field32B extends Field implements Serializable, MonetaryAmountConta
         return setComponent2(component2);
     }
 
-    /**
-     * @deprecated use #setAmount(String) instead
-     */
     public Field32B setPrice(String component2) {
         return setAmount(component2);
     }
 
-    /**
-     * @deprecated use #setComponent2(java.math.BigDecimal) instead
-     * @since 9.2.7
-     */
     public Field32B setPrice(java.math.BigDecimal component2) {
         return setAmount(component2);
     }
 
-    /**
-     * @deprecated use #setAmount(java.math.BigDecimal) instead
-     */
     public Field32B setPrice(java.lang.Number component2) {
         return setAmount(component2);
     }

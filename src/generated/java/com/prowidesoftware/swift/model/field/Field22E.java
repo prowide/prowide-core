@@ -77,27 +77,6 @@ public class Field22E extends Field implements Serializable {
      */
     public static final String F_22E = "22E";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
 	/**
 	 * Component number for the Type subfield.
 	 */
@@ -218,16 +197,6 @@ public class Field22E extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -353,7 +322,6 @@ public class Field22E extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Type
-     * @deprecated use #getType() instead
      * @since 9.2.7
      */
     public String getTypeOfPayment() {
@@ -381,9 +349,6 @@ public class Field22E extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setType(String) instead
-     */
     public Field22E setTypeOfPayment(String component1) {
         return setType(component1);
     }

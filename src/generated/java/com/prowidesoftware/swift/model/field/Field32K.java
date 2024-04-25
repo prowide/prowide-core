@@ -86,38 +86,11 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
      */
     public static final String F_32K = "32K";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "cNS<CUR>N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SNSCN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SNSCI";
-
 	/**
 	 * Component number for the DayMonth subfield.
 	 */
 	public static final Integer DAYMONTH = 1;
 
-	/**
-	 * @deprecated use #DAYMONTH instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer DM_MARK = 1;
 
 	/**
 	 * Component number for the Number Of Days/Months subfield.
@@ -297,16 +270,6 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SNSCN";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -441,16 +404,6 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's DayMonth
-     * @deprecated use #getDayMonth() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getDMMark() {
-        return getDayMonth();
-    }
 
     /**
      * Gets the component 2 (Number Of Days/Months).
@@ -471,16 +424,6 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number Of Days/Months (component 2).
      * @return the Number Of Days/Months from component 2
      */
@@ -488,16 +431,6 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Days/Months
-     * @deprecated use #getNumberOfDaysMonths() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNumberofDaysMonths() {
-        return getNumberOfDaysMonths();
-    }
 
     /**
      * Get the Number Of Days/Months (component 2) as Long
@@ -506,33 +439,6 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
      */
     public java.lang.Long getNumberOfDaysMonthsAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberOfDaysMonthsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberOfDaysMonthsAsNumber() {
-        return getComponent2AsNumber();
-    }
-
-    /**
-     * @deprecated use #getNumberOfDaysMonthsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getNumberofDaysMonthsAsLong() {
-        return getNumberOfDaysMonthsAsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberOfDaysMonthsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberofDaysMonthsAsNumber() {
-        return getNumberOfDaysMonthsAsNumber();
     }
 
     /**
@@ -603,15 +509,6 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #getComponent5AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent5AsNumber() {
-        return getComponent5AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 5).
      * @return the Amount from component 5
      */
@@ -626,15 +523,6 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent5AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent5AsNumber();
     }
 
     /**
@@ -656,15 +544,6 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
      */
     public Field32K setDayMonth(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setDayMonth(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field32K setDMMark(String component1) {
-        return setDayMonth(component1);
     }
 
     /**
@@ -757,34 +636,6 @@ public class Field32K extends Field implements Serializable, MonetaryAmountConta
      */
     public Field32K setNumberOfDaysMonths(java.lang.Number component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setNumberOfDaysMonths(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field32K setNumberofDaysMonths(String component2) {
-        return setNumberOfDaysMonths(component2);
-    }
-
-    /**
-     * @deprecated use #setComponent2(java.lang.Long) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field32K setNumberofDaysMonths(java.lang.Long component2) {
-        return setNumberOfDaysMonths(component2);
-    }
-
-    /**
-     * @deprecated use #setNumberOfDaysMonths(java.lang.Long) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field32K setNumberofDaysMonths(java.lang.Number component2) {
-        return setNumberOfDaysMonths(component2);
     }
 
     /**

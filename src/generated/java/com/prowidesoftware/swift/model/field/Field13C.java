@@ -81,27 +81,6 @@ public class Field13C extends Field implements Serializable {
      */
     public static final String F_13C = "13C";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "/S/<HHMM><SIGN><OFFSET>";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SHGO";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SHGO";
-
 	/**
 	 * Component number for the Code subfield.
 	 */
@@ -112,12 +91,6 @@ public class Field13C extends Field implements Serializable {
 	 */
 	public static final Integer TIME_INDICATION = 2;
 
-	/**
-	 * @deprecated use #TIME_INDICATION instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer TIME = 2;
 
 	/**
 	 * Component number for the Sign subfield.
@@ -129,12 +102,6 @@ public class Field13C extends Field implements Serializable {
 	 */
 	public static final Integer TIME_OFFSET = 4;
 
-	/**
-	 * @deprecated use #TIME_OFFSET instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer OFFSET = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -278,16 +245,6 @@ public class Field13C extends Field implements Serializable {
             return getComponent(4);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SHGO";
     }
 
     /**
@@ -447,16 +404,6 @@ public class Field13C extends Field implements Serializable {
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Time Indication
-     * @deprecated use #getTimeIndication() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getTime() {
-        return getTimeIndication();
-    }
 
     /**
      * Get the Time Indication (component 2) as Calendar
@@ -464,15 +411,6 @@ public class Field13C extends Field implements Serializable {
      */
     public java.util.Calendar getTimeIndicationAsCalendar() {
         return getComponent2AsCalendar();
-    }
-
-    /**
-     * @deprecated use #getTimeIndicationAsCalendar() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.util.Calendar getTimeAsCalendar() {
-        return getTimeIndicationAsCalendar();
     }
 
     /**
@@ -516,16 +454,6 @@ public class Field13C extends Field implements Serializable {
         return getComponent4();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Time Offset
-     * @deprecated use #getTimeOffset() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getOffset() {
-        return getTimeOffset();
-    }
 
     /**
      * Get the Time Offset (component 4) as Calendar
@@ -533,15 +461,6 @@ public class Field13C extends Field implements Serializable {
      */
     public java.util.Calendar getTimeOffsetAsCalendar() {
         return getComponent4AsCalendar();
-    }
-
-    /**
-     * @deprecated use #getTimeOffsetAsCalendar() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.util.Calendar getOffsetAsCalendar() {
-        return getTimeOffsetAsCalendar();
     }
 
     /**
@@ -610,24 +529,6 @@ public class Field13C extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #setTimeIndication(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field13C setTime(String component2) {
-        return setTimeIndication(component2);
-    }
-
-    /**
-     * @deprecated use #setComponent2(java.util.Calendar) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field13C setTime(java.util.Calendar component2) {
-        return setTimeIndication(component2);
-    }
-
-    /**
      * Set the component 3 (Sign).
      *
      * @param component3 the Sign to set
@@ -690,24 +591,6 @@ public class Field13C extends Field implements Serializable {
      */
     public Field13C setTimeOffset(java.util.Calendar component4) {
         return setComponent4(component4);
-    }
-
-    /**
-     * @deprecated use #setTimeOffset(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field13C setOffset(String component4) {
-        return setTimeOffset(component4);
-    }
-
-    /**
-     * @deprecated use #setComponent4(java.util.Calendar) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field13C setOffset(java.util.Calendar component4) {
-        return setTimeOffset(component4);
     }
 
 

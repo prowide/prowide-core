@@ -80,27 +80,6 @@ public class Field30J extends Field implements Serializable {
      */
     public static final String F_30J = "30J";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SN";
-
 	/**
 	 * Component number for the Indicator subfield.
 	 */
@@ -225,16 +204,6 @@ public class Field30J extends Field implements Serializable {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -378,16 +347,6 @@ public class Field30J extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number (component 2).
      * @return the Number from component 2
      */
@@ -402,15 +361,6 @@ public class Field30J extends Field implements Serializable {
      */
     public java.lang.Long getNumberAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

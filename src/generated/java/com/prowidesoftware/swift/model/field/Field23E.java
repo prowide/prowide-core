@@ -78,27 +78,6 @@ public class Field23E extends Field implements Serializable {
      */
     public static final String F_23E = "23E";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
-
 	/**
 	 * Component number for the Instruction Code subfield.
 	 */
@@ -110,12 +89,6 @@ public class Field23E extends Field implements Serializable {
      */
     public static final Integer TYPE = 1;
 
-	/**
-	 * @deprecated use #INSTRUCTION_CODE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CODE = 1;
 
 	/**
 	 * Component number for the Additional Information subfield.
@@ -245,16 +218,6 @@ public class Field23E extends Field implements Serializable {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SS";
     }
 
     /**
@@ -390,23 +353,12 @@ public class Field23E extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Instruction Code
-     * @deprecated use #getInstructionCode() instead
      * @since 9.2.7
      */
     public String getType() {
         return getInstructionCode();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Instruction Code
-     * @deprecated use #getInstructionCode() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCode() {
-        return getInstructionCode();
-    }
 
     /**
      * Gets the component 2 (Additional Information).
@@ -426,7 +378,6 @@ public class Field23E extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Additional Information
-     * @deprecated use #getAdditionalInformation() instead
      * @since 9.2.7
      */
     public String getNarrative() {
@@ -454,19 +405,7 @@ public class Field23E extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setInstructionCode(String) instead
-     */
     public Field23E setType(String component1) {
-        return setInstructionCode(component1);
-    }
-
-    /**
-     * @deprecated use #setInstructionCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field23E setCode(String component1) {
         return setInstructionCode(component1);
     }
 
@@ -491,9 +430,6 @@ public class Field23E extends Field implements Serializable {
         return setComponent2(component2);
     }
 
-    /**
-     * @deprecated use #setAdditionalInformation(String) instead
-     */
     public Field23E setNarrative(String component2) {
         return setAdditionalInformation(component2);
     }

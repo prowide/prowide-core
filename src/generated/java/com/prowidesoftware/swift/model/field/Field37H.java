@@ -83,38 +83,11 @@ public class Field37H extends Field implements Serializable, AmountContainer {
      */
     public static final String F_37H = "37H";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "c[c]N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSI";
-
 	/**
 	 * Component number for the Indicator subfield.
 	 */
 	public static final Integer INDICATOR = 1;
 
-	/**
-	 * @deprecated use #INDICATOR instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer DC_MARK = 1;
 
 	/**
 	 * Component number for the Sign subfield.
@@ -260,16 +233,6 @@ public class Field37H extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSN";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -399,16 +362,6 @@ public class Field37H extends Field implements Serializable, AmountContainer {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Indicator
-     * @deprecated use #getIndicator() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getDCMark() {
-        return getIndicator();
-    }
 
     /**
      * Gets the component 2 (Sign).
@@ -445,15 +398,6 @@ public class Field37H extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent3AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        return getComponent3AsBigDecimal();
-    }
-
-    /**
      * Gets the Rate (component 3).
      * @return the Rate from component 3
      */
@@ -468,15 +412,6 @@ public class Field37H extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getRateAsBigDecimal() {
         return getComponent3AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getRateAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**
@@ -498,15 +433,6 @@ public class Field37H extends Field implements Serializable, AmountContainer {
      */
     public Field37H setIndicator(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setIndicator(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field37H setDCMark(String component1) {
-        return setIndicator(component1);
     }
 
     /**

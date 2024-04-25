@@ -77,38 +77,11 @@ public class Field43T extends Field implements Serializable {
      */
     public static final String F_43T = "43T";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
 	/**
 	 * Component number for the Code subfield.
 	 */
 	public static final Integer CODE = 1;
 
-	/**
-	 * @deprecated use #CODE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer NARRATIVE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -219,16 +192,6 @@ public class Field43T extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -352,16 +315,6 @@ public class Field43T extends Field implements Serializable {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Code
-     * @deprecated use #getCode() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNarrative() {
-        return getCode();
-    }
 
     /**
      * Set the component 1 (Code).
@@ -382,15 +335,6 @@ public class Field43T extends Field implements Serializable {
      */
     public Field43T setCode(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field43T setNarrative(String component1) {
-        return setCode(component1);
     }
 
 

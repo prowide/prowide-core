@@ -80,27 +80,6 @@ public class Field93A extends Field implements Serializable, GenericField {
      */
     public static final String F_93A = "93A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S/[S]/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSS";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -116,12 +95,6 @@ public class Field93A extends Field implements Serializable, GenericField {
 	 */
 	public static final Integer SUBBALANCE_TYPE = 3;
 
-	/**
-	 * @deprecated use #SUBBALANCE_TYPE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CODE = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -247,16 +220,6 @@ public class Field93A extends Field implements Serializable, GenericField {
             return getComponent(3);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSS";
     }
 
     /**
@@ -421,16 +384,6 @@ public class Field93A extends Field implements Serializable, GenericField {
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Sub-balance Type
-     * @deprecated use #getSubbalanceType() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCode() {
-        return getSubbalanceType();
-    }
 
     /**
      * Set the component 1 (Qualifier).
@@ -493,15 +446,6 @@ public class Field93A extends Field implements Serializable, GenericField {
      */
     public Field93A setSubbalanceType(String component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setSubbalanceType(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field93A setCode(String component3) {
-        return setSubbalanceType(component3);
     }
 
 

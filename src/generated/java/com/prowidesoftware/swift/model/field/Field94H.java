@@ -82,27 +82,6 @@ public class Field94H extends Field implements Serializable, BICContainer, Gener
      */
     public static final String F_94H = "94H";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SB";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SB";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -113,12 +92,6 @@ public class Field94H extends Field implements Serializable, BICContainer, Gener
 	 */
 	public static final Integer IDENTIFIER_CODE = 2;
 
-	/**
-	 * @deprecated use #IDENTIFIER_CODE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer BIC = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -237,16 +210,6 @@ public class Field94H extends Field implements Serializable, BICContainer, Gener
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SB";
     }
 
     /**
@@ -398,16 +361,6 @@ public class Field94H extends Field implements Serializable, BICContainer, Gener
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
-     * @deprecated use #getIdentifierCode() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getBIC() {
-        return getIdentifierCode();
-    }
 
     /**
      * Get the Identifier Code (component 2) as BIC
@@ -415,15 +368,6 @@ public class Field94H extends Field implements Serializable, BICContainer, Gener
      */
     public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
         return getComponent2AsBIC();
-    }
-
-    /**
-     * @deprecated use #getIdentifierCodeAsBIC() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-        return getIdentifierCodeAsBIC();
     }
 
     /**
@@ -489,24 +433,6 @@ public class Field94H extends Field implements Serializable, BICContainer, Gener
      */
     public Field94H setIdentifierCode(com.prowidesoftware.swift.model.BIC component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setIdentifierCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field94H setBIC(String component2) {
-        return setIdentifierCode(component2);
-    }
-
-    /**
-     * @deprecated use #setComponent2(com.prowidesoftware.swift.model.BIC) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field94H setBIC(com.prowidesoftware.swift.model.BIC component2) {
-        return setIdentifierCode(component2);
     }
 
 

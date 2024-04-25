@@ -82,27 +82,6 @@ public class Field32F extends Field implements Serializable, AmountContainer {
      */
     public static final String F_32F = "32F";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SI";
-
 	/**
 	 * Component number for the Unit subfield.
 	 */
@@ -232,16 +211,6 @@ public class Field32F extends Field implements Serializable, AmountContainer {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -385,15 +354,6 @@ public class Field32F extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 2).
      * @return the Amount from component 2
      */
@@ -408,15 +368,6 @@ public class Field32F extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

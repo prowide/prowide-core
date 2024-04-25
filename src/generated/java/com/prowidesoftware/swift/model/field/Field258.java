@@ -88,27 +88,6 @@ public class Field258 extends Field implements Serializable, DateContainer {
      */
     public static final String F_258 = "258";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "<LT>4!N<MT><DATE2>[<HHMM><HHMM>]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "ZNMEHH";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "ZNMEHH";
-
 	/**
 	 * Component number for the LT Address subfield.
 	 */
@@ -307,16 +286,6 @@ public class Field258 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "ZNMEHH";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -486,16 +455,6 @@ public class Field258 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Session Number (component 2).
      * @return the Session Number from component 2
      */
@@ -510,15 +469,6 @@ public class Field258 extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getSessionNumberAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getSessionNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getSessionNumberAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

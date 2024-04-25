@@ -85,27 +85,6 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
      */
     public static final String F_36E = "36E";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S/[c]N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSI";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -126,12 +105,6 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
 	 */
 	public static final Integer QUANTITY = 4;
 
-	/**
-	 * @deprecated use #QUANTITY instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer AMOUNT = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -270,16 +243,6 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSN";
     }
 
     /**
@@ -466,15 +429,6 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated use #getComponent4AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        return getComponent4AsBigDecimal();
-    }
-
-    /**
      * Gets the Quantity (component 4).
      * @return the Quantity from component 4
      */
@@ -482,16 +436,6 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
         return getComponent4();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Quantity
-     * @deprecated use #getQuantity() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAmount() {
-        return getQuantity();
-    }
 
     /**
      * Get the Quantity (component 4) as BigDecimal
@@ -500,33 +444,6 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
      */
     public java.math.BigDecimal getQuantityAsBigDecimal() {
         return getComponent4AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getQuantityAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getQuantityAsNumber() {
-        return getComponent4AsNumber();
-    }
-
-    /**
-     * @deprecated use #getQuantityAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.math.BigDecimal getAmountAsBigDecimal() {
-        return getQuantityAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getQuantityAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getQuantityAsNumber();
     }
 
     /**
@@ -684,34 +601,6 @@ public class Field36E extends Field implements Serializable, AmountContainer, Ge
      */
     public Field36E setQuantity(java.lang.Number component4) {
         return setComponent4(component4);
-    }
-
-    /**
-     * @deprecated use #setQuantity(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field36E setAmount(String component4) {
-        return setQuantity(component4);
-    }
-
-    /**
-     * @deprecated use #setComponent4(java.math.BigDecimal) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field36E setAmount(java.math.BigDecimal component4) {
-        return setQuantity(component4);
-    }
-
-    /**
-     * @deprecated use #setQuantity(java.math.BigDecimal) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field36E setAmount(java.lang.Number component4) {
-        return setQuantity(component4);
     }
 
 

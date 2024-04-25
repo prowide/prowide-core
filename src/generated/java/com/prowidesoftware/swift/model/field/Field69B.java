@@ -85,27 +85,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
      */
     public static final String F_69B = "69B";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//<DATE4><TIME2>/<DATE4><TIME2>";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SDTDT";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SDTDT";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -116,48 +95,24 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
 	 */
 	public static final Integer DATE1 = 2;
 
-	/**
-	 * @deprecated use #DATE1 instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer START_DATE = 2;
 
 	/**
 	 * Component number for the Time1 subfield.
 	 */
 	public static final Integer TIME1 = 3;
 
-	/**
-	 * @deprecated use #TIME1 instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer START_TIME = 3;
 
 	/**
 	 * Component number for the Date2 subfield.
 	 */
 	public static final Integer DATE2 = 4;
 
-	/**
-	 * @deprecated use #DATE2 instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer END_DATE = 4;
 
 	/**
 	 * Component number for the Time2 subfield.
 	 */
 	public static final Integer TIME2 = 5;
 
-	/**
-	 * @deprecated use #TIME2 instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer END_TIME = 5;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -329,16 +284,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SDTDT";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -502,16 +447,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Date1
-     * @deprecated use #getDate1() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getStartDate() {
-        return getDate1();
-    }
 
     /**
      * Get the Date1 (component 2) as Calendar
@@ -519,15 +454,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
      */
     public java.util.Calendar getDate1AsCalendar() {
         return getComponent2AsCalendar();
-    }
-
-    /**
-     * @deprecated use #getDate1AsCalendar() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.util.Calendar getStartDateAsCalendar() {
-        return getDate1AsCalendar();
     }
 
     /**
@@ -555,16 +481,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Time1
-     * @deprecated use #getTime1() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getStartTime() {
-        return getTime1();
-    }
 
     /**
      * Get the Time1 (component 3) as Calendar
@@ -572,15 +488,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
      */
     public java.util.Calendar getTime1AsCalendar() {
         return getComponent3AsCalendar();
-    }
-
-    /**
-     * @deprecated use #getTime1AsCalendar() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.util.Calendar getStartTimeAsCalendar() {
-        return getTime1AsCalendar();
     }
 
     /**
@@ -608,16 +515,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
         return getComponent4();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Date2
-     * @deprecated use #getDate2() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getEndDate() {
-        return getDate2();
-    }
 
     /**
      * Get the Date2 (component 4) as Calendar
@@ -625,15 +522,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
      */
     public java.util.Calendar getDate2AsCalendar() {
         return getComponent4AsCalendar();
-    }
-
-    /**
-     * @deprecated use #getDate2AsCalendar() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.util.Calendar getEndDateAsCalendar() {
-        return getDate2AsCalendar();
     }
 
     /**
@@ -661,16 +549,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
         return getComponent5();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Time2
-     * @deprecated use #getTime2() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getEndTime() {
-        return getTime2();
-    }
 
     /**
      * Get the Time2 (component 5) as Calendar
@@ -678,15 +556,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
      */
     public java.util.Calendar getTime2AsCalendar() {
         return getComponent5AsCalendar();
-    }
-
-    /**
-     * @deprecated use #getTime2AsCalendar() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.util.Calendar getEndTimeAsCalendar() {
-        return getTime2AsCalendar();
     }
 
     /**
@@ -755,24 +624,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * @deprecated use #setDate1(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field69B setStartDate(String component2) {
-        return setDate1(component2);
-    }
-
-    /**
-     * @deprecated use #setComponent2(java.util.Calendar) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field69B setStartDate(java.util.Calendar component2) {
-        return setDate1(component2);
-    }
-
-    /**
      * Set the component 3 (Time1).
      *
      * @param component3 the Time1 to set
@@ -814,24 +665,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
      */
     public Field69B setTime1(java.util.Calendar component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setTime1(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field69B setStartTime(String component3) {
-        return setTime1(component3);
-    }
-
-    /**
-     * @deprecated use #setComponent3(java.util.Calendar) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field69B setStartTime(java.util.Calendar component3) {
-        return setTime1(component3);
     }
 
     /**
@@ -879,24 +712,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * @deprecated use #setDate2(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field69B setEndDate(String component4) {
-        return setDate2(component4);
-    }
-
-    /**
-     * @deprecated use #setComponent4(java.util.Calendar) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field69B setEndDate(java.util.Calendar component4) {
-        return setDate2(component4);
-    }
-
-    /**
      * Set the component 5 (Time2).
      *
      * @param component5 the Time2 to set
@@ -938,24 +753,6 @@ public class Field69B extends Field implements Serializable, DateContainer, Gene
      */
     public Field69B setTime2(java.util.Calendar component5) {
         return setComponent5(component5);
-    }
-
-    /**
-     * @deprecated use #setTime2(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field69B setEndTime(String component5) {
-        return setTime2(component5);
-    }
-
-    /**
-     * @deprecated use #setComponent5(java.util.Calendar) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field69B setEndTime(java.util.Calendar component5) {
-        return setTime2(component5);
     }
 
 

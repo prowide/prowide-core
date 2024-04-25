@@ -80,27 +80,6 @@ public class Field28E extends Field implements Serializable {
      */
     public static final String F_28E = "28E";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "NS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "NS";
-
 	/**
 	 * Component number for the Page Number subfield.
 	 */
@@ -230,16 +209,6 @@ public class Field28E extends Field implements Serializable {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "NS";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -364,16 +333,6 @@ public class Field28E extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Page Number (component 1).
      * @return the Page Number from component 1
      */
@@ -388,15 +347,6 @@ public class Field28E extends Field implements Serializable {
      */
     public java.lang.Long getPageNumberAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getPageNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getPageNumberAsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**

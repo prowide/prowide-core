@@ -80,27 +80,6 @@ public class Field132 extends Field implements Serializable {
      */
     public static final String F_132 = "132";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "cN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "cN";
-
 	/**
 	 * Component number for the Broadcast Indicator subfield.
 	 */
@@ -225,16 +204,6 @@ public class Field132 extends Field implements Serializable {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "cN";
     }
 
     /**
@@ -381,16 +350,6 @@ public class Field132 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Broadcast Number (component 2).
      * @return the Broadcast Number from component 2
      */
@@ -405,15 +364,6 @@ public class Field132 extends Field implements Serializable {
      */
     public java.lang.Long getBroadcastNumberAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getBroadcastNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getBroadcastNumberAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

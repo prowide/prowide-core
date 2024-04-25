@@ -79,27 +79,6 @@ public class Field431 extends Field implements Serializable {
      */
     public static final String F_431 = "431";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "N";
-
 	/**
 	 * Component number for the Status Code subfield.
 	 */
@@ -214,16 +193,6 @@ public class Field431 extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "N";
     }
 
     /**
@@ -348,16 +317,6 @@ public class Field431 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Status Code (component 1).
      * @return the Status Code from component 1
      */
@@ -372,15 +331,6 @@ public class Field431 extends Field implements Serializable {
      */
     public java.lang.Long getStatusCodeAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getStatusCodeAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getStatusCodeAsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**

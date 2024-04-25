@@ -80,27 +80,6 @@ public class Field405 extends Field implements Serializable {
      */
     public static final String F_405 = "405";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "3!SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SN";
-
 	/**
 	 * Component number for the Reason For Rejection subfield.
 	 */
@@ -231,16 +210,6 @@ public class Field405 extends Field implements Serializable {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -384,16 +353,6 @@ public class Field405 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Line Field Number (component 2).
      * @return the Line Field Number from component 2
      */
@@ -408,15 +367,6 @@ public class Field405 extends Field implements Serializable {
      */
     public java.lang.Long getLineFieldNumberAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getLineFieldNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getLineFieldNumberAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

@@ -79,27 +79,6 @@ public class Field122 extends Field implements Serializable {
      */
     public static final String F_122 = "122";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "N";
-
 	/**
 	 * Component number for the Number Of Messages subfield.
 	 */
@@ -214,16 +193,6 @@ public class Field122 extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "N";
     }
 
     /**
@@ -350,16 +319,6 @@ public class Field122 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number Of Messages (component 1).
      * @return the Number Of Messages from component 1
      */
@@ -367,16 +326,6 @@ public class Field122 extends Field implements Serializable {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Messages
-     * @deprecated use #getNumberOfMessages() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNumberofMessages() {
-        return getNumberOfMessages();
-    }
 
     /**
      * Get the Number Of Messages (component 1) as Long
@@ -385,33 +334,6 @@ public class Field122 extends Field implements Serializable {
      */
     public java.lang.Long getNumberOfMessagesAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberOfMessagesAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberOfMessagesAsNumber() {
-        return getComponent1AsNumber();
-    }
-
-    /**
-     * @deprecated use #getNumberOfMessagesAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getNumberofMessagesAsLong() {
-        return getNumberOfMessagesAsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberOfMessagesAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberofMessagesAsNumber() {
-        return getNumberOfMessagesAsNumber();
     }
 
     /**
@@ -504,34 +426,6 @@ public class Field122 extends Field implements Serializable {
      */
     public Field122 setNumberOfMessages(java.lang.Number component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setNumberOfMessages(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field122 setNumberofMessages(String component1) {
-        return setNumberOfMessages(component1);
-    }
-
-    /**
-     * @deprecated use #setComponent1(java.lang.Long) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field122 setNumberofMessages(java.lang.Long component1) {
-        return setNumberOfMessages(component1);
-    }
-
-    /**
-     * @deprecated use #setNumberOfMessages(java.lang.Long) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field122 setNumberofMessages(java.lang.Number component1) {
-        return setNumberOfMessages(component1);
     }
 
 

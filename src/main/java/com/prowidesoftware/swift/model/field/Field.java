@@ -20,8 +20,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.prowidesoftware.JsonSerializable;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.model.Tag;
@@ -879,13 +877,6 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return the static value of FieldNN.NAME
      */
     public abstract String getName();
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public abstract String componentsPattern();
 
     /**
      * Returns the field component types pattern

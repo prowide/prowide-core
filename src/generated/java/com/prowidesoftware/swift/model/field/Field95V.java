@@ -89,27 +89,6 @@ public class Field95V extends Field implements Serializable, GenericField, Multi
      */
     public static final String F_95V = "95V";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S[$S]0-9";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSSSSSSSSS";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -278,16 +257,6 @@ public class Field95V extends Field implements Serializable, GenericField, Multi
             return getComponent(11);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSSSSSSSSS";
     }
 
     /**

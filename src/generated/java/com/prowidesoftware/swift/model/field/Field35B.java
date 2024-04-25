@@ -83,27 +83,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
      */
     public static final String F_35B = "35B";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "[<ISIN><SPACE>S][$S]0-4";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSSSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSSSS";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -286,16 +265,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
             return getComponent(6);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSSSS";
     }
 
     /**
@@ -488,7 +457,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's ISIN
-     * @deprecated use #getISIN() instead
      * @since 9.2.7
      */
     public String getIdentificationOfInstrument() {
@@ -497,7 +465,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's ISIN
-     * @deprecated use #getISIN() instead
      * @since 9.2.7
      */
     public String getIdentificationOfSecurity() {
@@ -522,7 +489,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Description
-     * @deprecated use #getDescriptionLine1() instead
      * @since 9.2.7
      */
     public String getDescriptionOfInstrumentLine1() {
@@ -531,7 +497,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Description
-     * @deprecated use #getDescriptionLine1() instead
      * @since 9.2.7
      */
     public String getDescriptionOfSecurityLine1() {
@@ -566,30 +531,18 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         return result.toString();
     }
 
-    /**
-     * @deprecated use #getDescription() instead
-     */
     public String getDescriptionOfInstrument() {
         return getDescription();
     }
 
-    /**
-     * @deprecated use #getDescription() instead
-     */
     public String getDescriptionOfInstrument(CharSequence deli) {
         return getDescription(deli);
     }
 
-    /**
-     * @deprecated use #getDescription() instead
-     */
     public String getDescriptionOfSecurity() {
         return getDescription();
     }
 
-    /**
-     * @deprecated use #getDescription() instead
-     */
     public String getDescriptionOfSecurity(CharSequence deli) {
         return getDescription(deli);
     }
@@ -612,7 +565,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Description 2
-     * @deprecated use #getDescriptionLine2() instead
      * @since 9.2.7
      */
     public String getDescriptionOfInstrumentLine2() {
@@ -621,7 +573,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Description 2
-     * @deprecated use #getDescriptionLine2() instead
      * @since 9.2.7
      */
     public String getDescriptionOfSecurityLine2() {
@@ -646,7 +597,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Description 3
-     * @deprecated use #getDescriptionLine3() instead
      * @since 9.2.7
      */
     public String getDescriptionOfInstrumentLine3() {
@@ -655,7 +605,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Description 3
-     * @deprecated use #getDescriptionLine3() instead
      * @since 9.2.7
      */
     public String getDescriptionOfSecurityLine3() {
@@ -680,7 +629,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Description 4
-     * @deprecated use #getDescriptionLine4() instead
      * @since 9.2.7
      */
     public String getDescriptionOfInstrumentLine4() {
@@ -689,7 +637,6 @@ public class Field35B extends Field implements Serializable, MultiLineField {
 
     /**
      * Alternative method getter for field's Description 4
-     * @deprecated use #getDescriptionLine4() instead
      * @since 9.2.7
      */
     public String getDescriptionOfSecurityLine4() {
@@ -738,16 +685,10 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         return setComponent2(component2);
     }
 
-    /**
-     * @deprecated use #setISIN(String) instead
-     */
     public Field35B setIdentificationOfInstrument(String component2) {
         return setISIN(component2);
     }
 
-    /**
-     * @deprecated use #setISIN(String) instead
-     */
     public Field35B setIdentificationOfSecurity(String component2) {
         return setISIN(component2);
     }
@@ -773,16 +714,10 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         return setComponent3(component3);
     }
 
-    /**
-     * @deprecated use #setDescriptionLine1(String) instead
-     */
     public Field35B setDescriptionOfInstrumentLine1(String component3) {
         return setDescriptionLine1(component3);
     }
 
-    /**
-     * @deprecated use #setDescriptionLine1(String) instead
-     */
     public Field35B setDescriptionOfSecurityLine1(String component3) {
         return setDescriptionLine1(component3);
     }
@@ -799,16 +734,10 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         return this;
     }
 
-    /**
-     * @deprecated use #setDescription(String) instead
-     */
     public Field35B setDescriptionOfInstrument(String value) {
         return setDescription(value);
     }
 
-    /**
-     * @deprecated use #setDescription(String) instead
-     */
     public Field35B setDescriptionOfSecurity(String value) {
         return setDescription(value);
     }
@@ -834,16 +763,10 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         return setComponent4(component4);
     }
 
-    /**
-     * @deprecated use #setDescriptionLine2(String) instead
-     */
     public Field35B setDescriptionOfInstrumentLine2(String component4) {
         return setDescriptionLine2(component4);
     }
 
-    /**
-     * @deprecated use #setDescriptionLine2(String) instead
-     */
     public Field35B setDescriptionOfSecurityLine2(String component4) {
         return setDescriptionLine2(component4);
     }
@@ -869,16 +792,10 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         return setComponent5(component5);
     }
 
-    /**
-     * @deprecated use #setDescriptionLine3(String) instead
-     */
     public Field35B setDescriptionOfInstrumentLine3(String component5) {
         return setDescriptionLine3(component5);
     }
 
-    /**
-     * @deprecated use #setDescriptionLine3(String) instead
-     */
     public Field35B setDescriptionOfSecurityLine3(String component5) {
         return setDescriptionLine3(component5);
     }
@@ -904,16 +821,10 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         return setComponent6(component6);
     }
 
-    /**
-     * @deprecated use #setDescriptionLine4(String) instead
-     */
     public Field35B setDescriptionOfInstrumentLine4(String component6) {
         return setDescriptionLine4(component6);
     }
 
-    /**
-     * @deprecated use #setDescriptionLine4(String) instead
-     */
     public Field35B setDescriptionOfSecurityLine4(String component6) {
         return setDescriptionLine4(component6);
     }

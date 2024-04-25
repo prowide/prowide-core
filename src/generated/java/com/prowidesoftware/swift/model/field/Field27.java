@@ -80,27 +80,6 @@ public class Field27 extends Field implements Serializable {
      */
     public static final String F_27 = "27";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "NN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "NN";
-
 	/**
 	 * Component number for the Number subfield.
 	 */
@@ -242,16 +221,6 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "NN";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -380,16 +349,6 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number (component 1).
      * @return the Number from component 1
      */
@@ -399,7 +358,6 @@ public class Field27 extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Number
-     * @deprecated use #getNumber() instead
      * @since 9.2.7
      */
     public String getMessageNumber() {
@@ -416,29 +374,10 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getComponent1AsNumber();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
      * @since 9.2.7
      */
     public java.lang.Long getMessageNumberAsLong() {
         return getNumberAsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getMessageNumberAsNumber() {
-        return getNumberAsNumber();
     }
 
     /**
@@ -460,16 +399,6 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Total (component 2).
      * @return the Total from component 2
      */
@@ -479,7 +408,6 @@ public class Field27 extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Total
-     * @deprecated use #getTotal() instead
      * @since 9.2.7
      */
     public String getSequenceNumber() {
@@ -496,29 +424,10 @@ public class Field27 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getTotalAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getTotalAsNumber() {
-        return getComponent2AsNumber();
-    }
-
-    /**
-     * @deprecated use #getTotalAsLong() instead
      * @since 9.2.7
      */
     public java.lang.Long getSequenceNumberAsLong() {
         return getTotalAsLong();
-    }
-
-    /**
-     * @deprecated use #getTotalAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getSequenceNumberAsNumber() {
-        return getTotalAsNumber();
     }
 
     /**
@@ -613,24 +522,14 @@ public class Field27 extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setNumber(String) instead
-     */
     public Field27 setMessageNumber(String component1) {
         return setNumber(component1);
     }
 
-    /**
-     * @deprecated use #setComponent1(java.lang.Long) instead
-     * @since 9.2.7
-     */
     public Field27 setMessageNumber(java.lang.Long component1) {
         return setNumber(component1);
     }
 
-    /**
-     * @deprecated use #setNumber(java.lang.Long) instead
-     */
     public Field27 setMessageNumber(java.lang.Number component1) {
         return setNumber(component1);
     }
@@ -727,24 +626,14 @@ public class Field27 extends Field implements Serializable {
         return setComponent2(component2);
     }
 
-    /**
-     * @deprecated use #setTotal(String) instead
-     */
     public Field27 setSequenceNumber(String component2) {
         return setTotal(component2);
     }
 
-    /**
-     * @deprecated use #setComponent2(java.lang.Long) instead
-     * @since 9.2.7
-     */
     public Field27 setSequenceNumber(java.lang.Long component2) {
         return setTotal(component2);
     }
 
-    /**
-     * @deprecated use #setTotal(java.lang.Long) instead
-     */
     public Field27 setSequenceNumber(java.lang.Number component2) {
         return setTotal(component2);
     }

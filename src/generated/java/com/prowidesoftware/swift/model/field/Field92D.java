@@ -84,27 +84,6 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
      */
     public static final String F_92D = "92D";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//N/N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SNN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SII";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -258,16 +237,6 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SNN";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -411,15 +380,6 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Quantity1 (component 2).
      * @return the Quantity1 from component 2
      */
@@ -434,15 +394,6 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
      */
     public java.math.BigDecimal getQuantity1AsBigDecimal() {
         return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getQuantity1AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getQuantity1AsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**
@@ -464,15 +415,6 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated use #getComponent3AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        return getComponent3AsBigDecimal();
-    }
-
-    /**
      * Gets the Quantity2 (component 3).
      * @return the Quantity2 from component 3
      */
@@ -487,15 +429,6 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
      */
     public java.math.BigDecimal getQuantity2AsBigDecimal() {
         return getComponent3AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getQuantity2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getQuantity2AsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**

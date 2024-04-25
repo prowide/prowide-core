@@ -77,38 +77,11 @@ public class Field22Q extends Field implements Serializable {
      */
     public static final String F_22Q = "22Q";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
 	/**
 	 * Component number for the Portfolio subfield.
 	 */
 	public static final Integer PORTFOLIO = 1;
 
-	/**
-	 * @deprecated use #PORTFOLIO instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer TYPE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -219,16 +192,6 @@ public class Field22Q extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -352,16 +315,6 @@ public class Field22Q extends Field implements Serializable {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Portfolio
-     * @deprecated use #getPortfolio() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getType() {
-        return getPortfolio();
-    }
 
     /**
      * Set the component 1 (Portfolio).
@@ -382,15 +335,6 @@ public class Field22Q extends Field implements Serializable {
      */
     public Field22Q setPortfolio(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setPortfolio(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field22Q setType(String component1) {
-        return setPortfolio(component1);
     }
 
 

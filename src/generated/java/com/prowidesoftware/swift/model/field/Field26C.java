@@ -82,27 +82,6 @@ public class Field26C extends Field implements Serializable {
      */
     public static final String F_26C = "26C";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "[S]/S/5!a4!aS[//S]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSSSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSSSS";
-
 	/**
 	 * Component number for the Delivery Details subfield.
 	 */
@@ -296,16 +275,6 @@ public class Field26C extends Field implements Serializable {
             return getComponent(6);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSSSS";
     }
 
     /**
@@ -782,35 +751,5 @@ public class Field26C extends Field implements Serializable {
         return field;
     }
 
-
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
-	public static final Integer DENOMINATION_FORM = 5;
-
-    /**
-     * @deprecated Use getComponent5/getDenomination and/or getComponent6 instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
-    public String getDenominationForm() {
-        // build the field
-        final StringBuilder result = new StringBuilder();
-        append(result, 5);
-        if (getComponent6() != null) {
-            result.append("//").append(getComponent6());
-        }
-        return StringUtils.trimToNull(result.toString());
-    }
-
-    /**
-     * @deprecated Use setComponent5/setDenomination and/or setComponent6 instead
-     */
-    @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2024)
-    public Field26C setDenominationForm(final String denominationForm) {
-        setComponent5(SwiftParseUtils.getTokenFirst(denominationForm, "//"));
-        setComponent6(SwiftParseUtils.getTokenSecond(denominationForm, "//"));
-        return this;
-    }
 
 }

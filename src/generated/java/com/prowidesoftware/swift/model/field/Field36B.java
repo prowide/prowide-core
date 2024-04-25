@@ -84,27 +84,6 @@ public class Field36B extends Field implements Serializable, AmountContainer, Ge
      */
     public static final String F_36B = "36B";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S/N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSI";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -250,16 +229,6 @@ public class Field36B extends Field implements Serializable, AmountContainer, Ge
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSN";
     }
 
     /**
@@ -422,15 +391,6 @@ public class Field36B extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated use #getComponent3AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        return getComponent3AsBigDecimal();
-    }
-
-    /**
      * Gets the Quantity (component 3).
      * @return the Quantity from component 3
      */
@@ -445,15 +405,6 @@ public class Field36B extends Field implements Serializable, AmountContainer, Ge
      */
     public java.math.BigDecimal getQuantityAsBigDecimal() {
         return getComponent3AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getQuantityAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getQuantityAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**

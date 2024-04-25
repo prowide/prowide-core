@@ -81,27 +81,6 @@ public class Field30G extends Field implements Serializable, DateContainer {
      */
     public static final String F_30G = "30G";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "DD";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "DD";
-
 	/**
 	 * Component number for the Start Date subfield.
 	 */
@@ -251,16 +230,6 @@ public class Field30G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "DD";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -397,7 +366,6 @@ public class Field30G extends Field implements Serializable, DateContainer {
 
     /**
      * Alternative method getter for field's Start Date
-     * @deprecated use #getStartDate() instead
      * @since 9.2.7
      */
     public String getPeriodStartDate() {
@@ -413,7 +381,6 @@ public class Field30G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getStartDateAsCalendar() instead
      * @since 9.2.7
      */
     public java.util.Calendar getPeriodStartDateAsCalendar() {
@@ -447,7 +414,6 @@ public class Field30G extends Field implements Serializable, DateContainer {
 
     /**
      * Alternative method getter for field's End Date
-     * @deprecated use #getEndDate() instead
      * @since 9.2.7
      */
     public String getPeriodEndDate() {
@@ -463,7 +429,6 @@ public class Field30G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getEndDateAsCalendar() instead
      * @since 9.2.7
      */
     public java.util.Calendar getPeriodEndDateAsCalendar() {
@@ -514,16 +479,10 @@ public class Field30G extends Field implements Serializable, DateContainer {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setStartDate(String) instead
-     */
     public Field30G setPeriodStartDate(String component1) {
         return setStartDate(component1);
     }
 
-    /**
-     * @deprecated use #setComponent1(java.util.Calendar) instead
-     */
     public Field30G setPeriodStartDate(java.util.Calendar component1) {
         return setStartDate(component1);
     }
@@ -572,16 +531,10 @@ public class Field30G extends Field implements Serializable, DateContainer {
         return setComponent2(component2);
     }
 
-    /**
-     * @deprecated use #setEndDate(String) instead
-     */
     public Field30G setPeriodEndDate(String component2) {
         return setEndDate(component2);
     }
 
-    /**
-     * @deprecated use #setComponent2(java.util.Calendar) instead
-     */
     public Field30G setPeriodEndDate(java.util.Calendar component2) {
         return setEndDate(component2);
     }

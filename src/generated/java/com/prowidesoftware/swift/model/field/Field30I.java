@@ -81,38 +81,11 @@ public class Field30I extends Field implements Serializable, DateContainer {
      */
     public static final String F_30I = "30I";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "DD";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "DD";
-
 	/**
 	 * Component number for the Start Date subfield.
 	 */
 	public static final Integer START_DATE = 1;
 
-	/**
-	 * @deprecated use #START_DATE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer DATE_OR_START_DATE = 1;
 
 	/**
 	 * Component number for the End Date subfield.
@@ -244,16 +217,6 @@ public class Field30I extends Field implements Serializable, DateContainer {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "DD";
     }
 
     /**
@@ -389,16 +352,6 @@ public class Field30I extends Field implements Serializable, DateContainer {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Start Date
-     * @deprecated use #getStartDate() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getDateorStartDate() {
-        return getStartDate();
-    }
 
     /**
      * Get the Start Date (component 1) as Calendar
@@ -406,15 +359,6 @@ public class Field30I extends Field implements Serializable, DateContainer {
      */
     public java.util.Calendar getStartDateAsCalendar() {
         return getComponent1AsCalendar();
-    }
-
-    /**
-     * @deprecated use #getStartDateAsCalendar() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.util.Calendar getDateorStartDateAsCalendar() {
-        return getStartDateAsCalendar();
     }
 
     /**
@@ -492,24 +436,6 @@ public class Field30I extends Field implements Serializable, DateContainer {
      */
     public Field30I setStartDate(java.util.Calendar component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setStartDate(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field30I setDateorStartDate(String component1) {
-        return setStartDate(component1);
-    }
-
-    /**
-     * @deprecated use #setComponent1(java.util.Calendar) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field30I setDateorStartDate(java.util.Calendar component1) {
-        return setStartDate(component1);
     }
 
     /**

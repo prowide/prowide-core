@@ -78,38 +78,11 @@ public class Field21H extends Field implements Serializable {
      */
     public static final String F_21H = "21H";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
-
 	/**
 	 * Component number for the Event Type subfield.
 	 */
 	public static final Integer EVENT_TYPE = 1;
 
-	/**
-	 * @deprecated use #EVENT_TYPE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer QUALIFIER = 1;
 
 	/**
 	 * Component number for the Reference subfield.
@@ -232,16 +205,6 @@ public class Field21H extends Field implements Serializable {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SS";
     }
 
     /**
@@ -368,16 +331,6 @@ public class Field21H extends Field implements Serializable {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Event Type
-     * @deprecated use #getEventType() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getQualifier() {
-        return getEventType();
-    }
 
     /**
      * Gets the component 2 (Reference).
@@ -414,15 +367,6 @@ public class Field21H extends Field implements Serializable {
      */
     public Field21H setEventType(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setEventType(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field21H setQualifier(String component1) {
-        return setEventType(component1);
     }
 
     /**

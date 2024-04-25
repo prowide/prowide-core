@@ -89,27 +89,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
      */
     public static final String F_333 = "333";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "<DATE2><HHMM>4!N<DATE2><HHMM>3!N6!N6!N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "EHNEHNNN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "EHNEHNNN";
-
 	/**
 	 * Component number for the Date Last Session Opened subfield.
 	 */
@@ -331,16 +310,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "EHNEHNNN";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -549,16 +518,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Session Number (component 3).
      * @return the Session Number from component 3
      */
@@ -573,15 +532,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getSessionNumberAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getSessionNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getSessionNumberAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**
@@ -669,16 +619,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent6AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent6AsNumber() {
-        Long l = getComponent6AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Reason For Closure (component 6).
      * @return the Reason For Closure from component 6
      */
@@ -693,15 +633,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getReasonForClosureAsLong() {
         return getComponent6AsLong();
-    }
-
-    /**
-     * @deprecated use #getReasonForClosureAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getReasonForClosureAsNumber() {
-        return getComponent6AsNumber();
     }
 
     /**
@@ -723,16 +654,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent7AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent7AsNumber() {
-        Long l = getComponent7AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Last Input Sequence Number Received (component 7).
      * @return the Last Input Sequence Number Received from component 7
      */
@@ -747,15 +668,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getLastInputSequenceNumberReceivedAsLong() {
         return getComponent7AsLong();
-    }
-
-    /**
-     * @deprecated use #getLastInputSequenceNumberReceivedAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getLastInputSequenceNumberReceivedAsNumber() {
-        return getComponent7AsNumber();
     }
 
     /**
@@ -777,16 +689,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent8AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent8AsNumber() {
-        Long l = getComponent8AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Last Output Sequence Number Sent (component 8).
      * @return the Last Output Sequence Number Sent from component 8
      */
@@ -801,15 +703,6 @@ public class Field333 extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getLastOutputSequenceNumberSentAsLong() {
         return getComponent8AsLong();
-    }
-
-    /**
-     * @deprecated use #getLastOutputSequenceNumberSentAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getLastOutputSequenceNumberSentAsNumber() {
-        return getComponent8AsNumber();
     }
 
     /**

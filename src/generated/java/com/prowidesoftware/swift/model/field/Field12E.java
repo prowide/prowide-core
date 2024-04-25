@@ -77,27 +77,6 @@ public class Field12E extends Field implements Serializable {
      */
     public static final String F_12E = "12E";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
 	/**
 	 * Component number for the Status subfield.
 	 */
@@ -109,12 +88,6 @@ public class Field12E extends Field implements Serializable {
      */
     public static final Integer CODE = 1;
 
-	/**
-	 * @deprecated use #STATUS instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer EXPIRATION_STYLE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -225,16 +198,6 @@ public class Field12E extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -362,23 +325,12 @@ public class Field12E extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Status
-     * @deprecated use #getStatus() instead
      * @since 9.2.7
      */
     public String getCode() {
         return getStatus();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Status
-     * @deprecated use #getStatus() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getExpirationStyle() {
-        return getStatus();
-    }
 
     /**
      * Set the component 1 (Status).
@@ -401,19 +353,7 @@ public class Field12E extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setStatus(String) instead
-     */
     public Field12E setCode(String component1) {
-        return setStatus(component1);
-    }
-
-    /**
-     * @deprecated use #setStatus(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field12E setExpirationStyle(String component1) {
         return setStatus(component1);
     }
 

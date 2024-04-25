@@ -81,27 +81,6 @@ public class Field336 extends Field implements Serializable {
      */
     public static final String F_336 = "336";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "6!S5!NS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SNS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SNS";
-
 	/**
 	 * Component number for the Delivery Subset Name subfield.
 	 */
@@ -244,16 +223,6 @@ public class Field336 extends Field implements Serializable {
             return getComponent(3);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SNS";
     }
 
     /**
@@ -400,16 +369,6 @@ public class Field336 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number Of Messages (component 2).
      * @return the Number Of Messages from component 2
      */
@@ -424,15 +383,6 @@ public class Field336 extends Field implements Serializable {
      */
     public java.lang.Long getNumberOfMessagesAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberOfMessagesAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberOfMessagesAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

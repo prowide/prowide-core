@@ -79,27 +79,6 @@ public class Field13A extends Field implements Serializable, GenericField {
      */
     public static final String F_13A = "13A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -233,16 +212,6 @@ public class Field13A extends Field implements Serializable, GenericField {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SS";
     }
 
     /**
@@ -387,7 +356,6 @@ public class Field13A extends Field implements Serializable, GenericField {
 
     /**
      * Alternative method getter for field's Number Id
-     * @deprecated use #getNumberId() instead
      * @since 9.2.7
      */
     public String getNumberIdentification() {
@@ -436,9 +404,6 @@ public class Field13A extends Field implements Serializable, GenericField {
         return setComponent2(component2);
     }
 
-    /**
-     * @deprecated use #setNumberId(String) instead
-     */
     public Field13A setNumberIdentification(String component2) {
         return setNumberId(component2);
     }

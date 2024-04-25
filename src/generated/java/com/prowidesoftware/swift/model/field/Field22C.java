@@ -83,27 +83,6 @@ public class Field22C extends Field implements Serializable {
      */
     public static final String F_22C = "22C";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "4!S2!S4!S4!S2!S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSNSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSNSS";
-
 	/**
 	 * Component number for the Party Prefix 1 subfield.
 	 */
@@ -273,16 +252,6 @@ public class Field22C extends Field implements Serializable {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSNSS";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -448,16 +417,6 @@ public class Field22C extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Reference Code (component 3).
      * @return the Reference Code from component 3
      */
@@ -472,15 +431,6 @@ public class Field22C extends Field implements Serializable {
      */
     public java.lang.Long getReferenceCodeAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getReferenceCodeAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getReferenceCodeAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**

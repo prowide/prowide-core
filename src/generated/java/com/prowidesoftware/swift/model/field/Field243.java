@@ -79,27 +79,6 @@ public class Field243 extends Field implements Serializable {
      */
     public static final String F_243 = "243";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "N";
-
 	/**
 	 * Component number for the Type subfield.
 	 */
@@ -214,16 +193,6 @@ public class Field243 extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "N";
     }
 
     /**
@@ -348,16 +317,6 @@ public class Field243 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Type (component 1).
      * @return the Type from component 1
      */
@@ -372,15 +331,6 @@ public class Field243 extends Field implements Serializable {
      */
     public java.lang.Long getTypeAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getTypeAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getTypeAsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**

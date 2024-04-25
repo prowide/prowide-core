@@ -77,27 +77,6 @@ public class Field26H extends Field implements Serializable {
      */
     public static final String F_26H = "26H";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
 	/**
 	 * Component number for the Counterparty Reference subfield.
 	 */
@@ -109,12 +88,6 @@ public class Field26H extends Field implements Serializable {
      */
     public static final Integer COLLATERAL_TYPE = 1;
 
-	/**
-	 * @deprecated use #COUNTERPARTY_REFERENCE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer REFERENCE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -225,16 +198,6 @@ public class Field26H extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -362,23 +325,12 @@ public class Field26H extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Counterparty Reference
-     * @deprecated use #getCounterpartyReference() instead
      * @since 9.2.7
      */
     public String getCollateralType() {
         return getCounterpartyReference();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Counterparty Reference
-     * @deprecated use #getCounterpartyReference() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getReference() {
-        return getCounterpartyReference();
-    }
 
     /**
      * Set the component 1 (Counterparty Reference).
@@ -401,19 +353,7 @@ public class Field26H extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setCounterpartyReference(String) instead
-     */
     public Field26H setCollateralType(String component1) {
-        return setCounterpartyReference(component1);
-    }
-
-    /**
-     * @deprecated use #setCounterpartyReference(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field26H setReference(String component1) {
         return setCounterpartyReference(component1);
     }
 

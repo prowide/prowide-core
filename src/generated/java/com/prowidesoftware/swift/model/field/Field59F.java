@@ -88,27 +88,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      */
     public static final String F_59F = "59F";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "[/S$]N/S[$N/S$]0-3";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SNSNSNSNS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SNSNSNSNS";
-
 	/**
 	 * Component number for the Account subfield.
 	 */
@@ -320,16 +299,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SNSNSNSNS";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -521,16 +490,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number 1 (component 2).
      * @return the Number 1 from component 2
      */
@@ -545,15 +504,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      */
     public java.lang.Long getNumber1AsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumber1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumber1AsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**
@@ -591,16 +541,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #getComponent4AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        Long l = getComponent4AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number 2 (component 4).
      * @return the Number 2 from component 4
      */
@@ -615,15 +555,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      */
     public java.lang.Long getNumber2AsLong() {
         return getComponent4AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumber2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumber2AsNumber() {
-        return getComponent4AsNumber();
     }
 
     /**
@@ -661,16 +592,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #getComponent6AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent6AsNumber() {
-        Long l = getComponent6AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number 3 (component 6).
      * @return the Number 3 from component 6
      */
@@ -685,15 +606,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      */
     public java.lang.Long getNumber3AsLong() {
         return getComponent6AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumber3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumber3AsNumber() {
-        return getComponent6AsNumber();
     }
 
     /**
@@ -731,16 +643,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #getComponent8AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent8AsNumber() {
-        Long l = getComponent8AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number 4 (component 8).
      * @return the Number 4 from component 8
      */
@@ -755,15 +657,6 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      */
     public java.lang.Long getNumber4AsLong() {
         return getComponent8AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumber4AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumber4AsNumber() {
-        return getComponent8AsNumber();
     }
 
     /**

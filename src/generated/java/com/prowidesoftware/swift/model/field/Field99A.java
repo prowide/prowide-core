@@ -82,27 +82,6 @@ public class Field99A extends Field implements Serializable, GenericField {
      */
     public static final String F_99A = "99A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//[S]N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSN";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -118,12 +97,6 @@ public class Field99A extends Field implements Serializable, GenericField {
 	 */
 	public static final Integer NUMBER = 3;
 
-	/**
-	 * @deprecated use #NUMBER instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer AMOUNT = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -249,16 +222,6 @@ public class Field99A extends Field implements Serializable, GenericField {
             return getComponent(3);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSN";
     }
 
     /**
@@ -426,16 +389,6 @@ public class Field99A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number (component 3).
      * @return the Number from component 3
      */
@@ -443,16 +396,6 @@ public class Field99A extends Field implements Serializable, GenericField {
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number
-     * @deprecated use #getNumber() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAmount() {
-        return getNumber();
-    }
 
     /**
      * Get the Number (component 3) as Long
@@ -461,33 +404,6 @@ public class Field99A extends Field implements Serializable, GenericField {
      */
     public java.lang.Long getNumberAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getComponent3AsNumber();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getAmountAsLong() {
-        return getNumberAsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getNumberAsNumber();
     }
 
     /**
@@ -622,34 +538,6 @@ public class Field99A extends Field implements Serializable, GenericField {
      */
     public Field99A setNumber(java.lang.Number component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setNumber(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field99A setAmount(String component3) {
-        return setNumber(component3);
-    }
-
-    /**
-     * @deprecated use #setComponent3(java.lang.Long) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field99A setAmount(java.lang.Long component3) {
-        return setNumber(component3);
-    }
-
-    /**
-     * @deprecated use #setNumber(java.lang.Long) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field99A setAmount(java.lang.Number component3) {
-        return setNumber(component3);
     }
 
 

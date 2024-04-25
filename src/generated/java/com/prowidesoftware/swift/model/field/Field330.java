@@ -84,27 +84,6 @@ public class Field330 extends Field implements Serializable {
      */
     public static final String F_330 = "330";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "4!N6!N6!N6!N6!N1!N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "NNNNNN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "NNNNNN";
-
 	/**
 	 * Component number for the Session Number subfield.
 	 */
@@ -286,16 +265,6 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "NNNNNN";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -432,16 +401,6 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Session Number (component 1).
      * @return the Session Number from component 1
      */
@@ -456,15 +415,6 @@ public class Field330 extends Field implements Serializable {
      */
     public java.lang.Long getSessionNumberAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getSessionNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getSessionNumberAsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**
@@ -486,16 +436,6 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the ISN (component 2).
      * @return the ISN from component 2
      */
@@ -510,15 +450,6 @@ public class Field330 extends Field implements Serializable {
      */
     public java.lang.Long getISNAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getISNAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getISNAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**
@@ -540,16 +471,6 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the ISN NAK (component 3).
      * @return the ISN NAK from component 3
      */
@@ -564,15 +485,6 @@ public class Field330 extends Field implements Serializable {
      */
     public java.lang.Long getISNNAKAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getISNNAKAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getISNNAKAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**
@@ -594,16 +506,6 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent4AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        Long l = getComponent4AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the OSN (component 4).
      * @return the OSN from component 4
      */
@@ -618,15 +520,6 @@ public class Field330 extends Field implements Serializable {
      */
     public java.lang.Long getOSNAsLong() {
         return getComponent4AsLong();
-    }
-
-    /**
-     * @deprecated use #getOSNAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getOSNAsNumber() {
-        return getComponent4AsNumber();
     }
 
     /**
@@ -648,16 +541,6 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent5AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent5AsNumber() {
-        Long l = getComponent5AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the OSN NAK (component 5).
      * @return the OSN NAK from component 5
      */
@@ -672,15 +555,6 @@ public class Field330 extends Field implements Serializable {
      */
     public java.lang.Long getOSNNAKAsLong() {
         return getComponent5AsLong();
-    }
-
-    /**
-     * @deprecated use #getOSNNAKAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getOSNNAKAsNumber() {
-        return getComponent5AsNumber();
     }
 
     /**
@@ -702,16 +576,6 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent6AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent6AsNumber() {
-        Long l = getComponent6AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the ACK Replay Indicator (component 6).
      * @return the ACK Replay Indicator from component 6
      */
@@ -726,15 +590,6 @@ public class Field330 extends Field implements Serializable {
      */
     public java.lang.Long getACKReplayIndicatorAsLong() {
         return getComponent6AsLong();
-    }
-
-    /**
-     * @deprecated use #getACKReplayIndicatorAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getACKReplayIndicatorAsNumber() {
-        return getComponent6AsNumber();
     }
 
     /**

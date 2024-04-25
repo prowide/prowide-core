@@ -15,8 +15,6 @@
  */
 package com.prowidesoftware.swift.io;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import java.io.*;
 import java.nio.charset.Charset;
@@ -46,28 +44,6 @@ public class PPCWriter extends AbstractWriter {
     }
 
     /**
-     * @deprecated Use constructor signature with {@link Charset} parameter instead
-     */
-    @Deprecated
-    @ProwideDeprecated(
-            phase4 = TargetYear.SRU2024,
-            comment = "Use constructor signature with Charset parameter instead")
-    public PPCWriter(final File file) throws FileNotFoundException {
-        super(file);
-    }
-
-    /**
-     * @deprecated Use constructor signature with {@link Charset} parameter instead
-     */
-    @Deprecated
-    @ProwideDeprecated(
-            phase4 = TargetYear.SRU2024,
-            comment = "Use constructor signature with Charset parameter instead")
-    public PPCWriter(final String filename) throws FileNotFoundException {
-        super(filename);
-    }
-
-    /**
      * Constructs a {@link PPCWriter} to write content into a file using the specified charset.
      *
      * @param _file file to write to
@@ -75,17 +51,6 @@ public class PPCWriter extends AbstractWriter {
      */
     public PPCWriter(final File _file, final Charset _charset) throws FileNotFoundException {
         super(_file, _charset);
-    }
-
-    /**
-     * @deprecated Use constructor signature with {@link Charset} parameter instead
-     */
-    @Deprecated
-    @ProwideDeprecated(
-            phase4 = TargetYear.SRU2024,
-            comment = "Use constructor signature with Charset parameter instead")
-    public PPCWriter(final OutputStream stream) {
-        super(stream);
     }
 
     /**

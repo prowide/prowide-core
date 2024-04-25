@@ -87,27 +87,6 @@ public class Field32A extends Field implements Serializable, MonetaryAmountConta
      */
     public static final String F_32A = "32A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "<DATE2>SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "ECN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "ECI";
-
 	/**
 	 * Component number for the Date subfield.
 	 */
@@ -256,16 +235,6 @@ public class Field32A extends Field implements Serializable, MonetaryAmountConta
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "ECN";
     }
 
     /**
@@ -462,15 +431,6 @@ public class Field32A extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #getComponent3AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        return getComponent3AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 3).
      * @return the Amount from component 3
      */
@@ -485,15 +445,6 @@ public class Field32A extends Field implements Serializable, MonetaryAmountConta
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent3AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**
@@ -852,10 +803,7 @@ public class Field32A extends Field implements Serializable, MonetaryAmountConta
 	 * @return BigDecimal value of amount attribute or null.
 	 */
 	public java.math.BigDecimal getAmountBigDecimal() {
-		if (getComponent3AsNumber() == null) {
-			return null;
-		}
-		return (java.math.BigDecimal) getComponentAs(3, java.math.BigDecimal.class);
+		return getComponent3AsBigDecimal();
 	}
 
 	/**
@@ -866,7 +814,7 @@ public class Field32A extends Field implements Serializable, MonetaryAmountConta
 		final StringBuilder sb = new StringBuilder();
 		sb.append(getComponent2());
 		sb.append(" ");
-		sb.append(formatNumber(getComponent3AsNumber()));
+		sb.append(formatNumber(getComponent3AsBigDecimal()));
 		sb.append(" ");
 		String valueDate = format(getComponent1AsCalendar());
 		sb.append(valueDate);	

@@ -79,38 +79,11 @@ public class Field49A extends Field implements Serializable, MultiLineField {
      */
     public static final String F_49A = "49A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[$S]0-n";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
-
 	/**
 	 * Component number for the Code subfield.
 	 */
 	public static final Integer CODE = 1;
 
-	/**
-	 * @deprecated use #CODE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer INSTRUCTION = 1;
 
 	/**
 	 * Component number for the Narrative subfield.
@@ -243,16 +216,6 @@ public class Field49A extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SS";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -379,16 +342,6 @@ public class Field49A extends Field implements Serializable, MultiLineField {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Code
-     * @deprecated use #getCode() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getInstruction() {
-        return getCode();
-    }
 
     /**
      * Gets the component 2 (Narrative).
@@ -425,15 +378,6 @@ public class Field49A extends Field implements Serializable, MultiLineField {
      */
     public Field49A setCode(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field49A setInstruction(String component1) {
-        return setCode(component1);
     }
 
     /**

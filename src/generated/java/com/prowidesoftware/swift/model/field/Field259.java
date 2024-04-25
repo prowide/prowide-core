@@ -88,27 +88,6 @@ public class Field259 extends Field implements Serializable, DateContainer {
      */
     public static final String F_259 = "259";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "<LT>4!Nc<DATE2><HHMM><HHMM>";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "ZNNEHH";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "ZNNEHH";
-
 	/**
 	 * Component number for the LT Address subfield.
 	 */
@@ -302,16 +281,6 @@ public class Field259 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "ZNNEHH";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -481,16 +450,6 @@ public class Field259 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Session Number (component 2).
      * @return the Session Number from component 2
      */
@@ -505,15 +464,6 @@ public class Field259 extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getSessionNumberAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getSessionNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getSessionNumberAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**
@@ -535,16 +485,6 @@ public class Field259 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Message Category (component 3).
      * @return the Message Category from component 3
      */
@@ -559,15 +499,6 @@ public class Field259 extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getMessageCategoryAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getMessageCategoryAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getMessageCategoryAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**

@@ -79,27 +79,6 @@ public class Field22H extends Field implements Serializable, GenericField {
      */
     public static final String F_22H = "22H";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -110,12 +89,6 @@ public class Field22H extends Field implements Serializable, GenericField {
 	 */
 	public static final Integer INDICATOR = 2;
 
-	/**
-	 * @deprecated use #INDICATOR instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CODE = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -234,16 +207,6 @@ public class Field22H extends Field implements Serializable, GenericField {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SS";
     }
 
     /**
@@ -386,16 +349,6 @@ public class Field22H extends Field implements Serializable, GenericField {
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Indicator
-     * @deprecated use #getIndicator() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCode() {
-        return getIndicator();
-    }
 
     /**
      * Set the component 1 (Qualifier).
@@ -437,15 +390,6 @@ public class Field22H extends Field implements Serializable, GenericField {
      */
     public Field22H setIndicator(String component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setIndicator(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field22H setCode(String component2) {
-        return setIndicator(component2);
     }
 
 

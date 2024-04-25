@@ -80,27 +80,6 @@ public class Field344 extends Field implements Serializable {
      */
     public static final String F_344 = "344";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "c[N]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "cN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "cN";
-
 	/**
 	 * Component number for the Priority subfield.
 	 */
@@ -232,16 +211,6 @@ public class Field344 extends Field implements Serializable {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "cN";
     }
 
     /**
@@ -385,16 +354,6 @@ public class Field344 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Message Categories (component 2).
      * @return the Message Categories from component 2
      */
@@ -409,15 +368,6 @@ public class Field344 extends Field implements Serializable {
      */
     public java.lang.Long getMessageCategoriesAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getMessageCategoriesAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getMessageCategoriesAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

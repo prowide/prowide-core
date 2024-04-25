@@ -94,27 +94,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      */
     public static final String F_61 = "61";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "CUSTOM";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "EJSSNSSSSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "EJSSISSSSS";
-
 	/**
 	 * Component number for the Value Date subfield.
 	 */
@@ -136,12 +115,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
 	 */
 	public static final Integer DEBITCREDIT_MARK = 3;
 
-	/**
-	 * @deprecated use #DEBITCREDIT_MARK instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer DC_MARK = 3;
 
 	/**
 	 * Component number for the Funds Code subfield.
@@ -356,16 +329,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "EJSSNSSSSS";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -538,7 +501,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
 
     /**
      * Alternative method getter for field's Value Date
-     * @deprecated use #getValueDate() instead
      * @since 9.2.7
      */
     public String getDate() {
@@ -554,7 +516,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * @deprecated use #getValueDateAsCalendar() instead
      * @since 9.2.7
      */
     public java.util.Calendar getDateAsCalendar() {
@@ -610,16 +571,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Debit/Credit Mark
-     * @deprecated use #getDebitCreditMark() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getDCMark() {
-        return getDebitCreditMark();
-    }
 
     /**
      * Gets the component 4 (Funds Code).
@@ -656,15 +607,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * @deprecated use #getComponent5AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent5AsNumber() {
-        return getComponent5AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 5).
      * @return the Amount from component 5
      */
@@ -679,15 +621,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent5AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent5AsNumber();
     }
 
     /**
@@ -814,16 +747,10 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setValueDate(String) instead
-     */
     public Field61 setDate(String component1) {
         return setValueDate(component1);
     }
 
-    /**
-     * @deprecated use #setComponent1(java.util.Calendar) instead
-     */
     public Field61 setDate(java.util.Calendar component1) {
         return setValueDate(component1);
     }
@@ -891,15 +818,6 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      */
     public Field61 setDebitCreditMark(String component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setDebitCreditMark(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field61 setDCMark(String component3) {
-        return setDebitCreditMark(component3);
     }
 
     /**

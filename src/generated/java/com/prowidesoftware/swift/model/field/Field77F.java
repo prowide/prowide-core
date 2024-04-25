@@ -78,38 +78,11 @@ public class Field77F extends Field implements Serializable, MultiLineField {
      */
     public static final String F_77F = "77F";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
 	/**
 	 * Component number for the EDIFACT Message subfield.
 	 */
 	public static final Integer EDIFACT_MESSAGE = 1;
 
-	/**
-	 * @deprecated use #EDIFACT_MESSAGE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer DIFACT_MESSAGE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -220,16 +193,6 @@ public class Field77F extends Field implements Serializable, MultiLineField {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -353,16 +316,6 @@ public class Field77F extends Field implements Serializable, MultiLineField {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's EDIFACT Message
-     * @deprecated use #getEDIFACTMessage() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getDIFACTMessage() {
-        return getEDIFACTMessage();
-    }
 
     /**
      * Set the component 1 (EDIFACT Message).
@@ -383,15 +336,6 @@ public class Field77F extends Field implements Serializable, MultiLineField {
      */
     public Field77F setEDIFACTMessage(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setEDIFACTMessage(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field77F setDIFACTMessage(String component1) {
-        return setEDIFACTMessage(component1);
     }
 
 

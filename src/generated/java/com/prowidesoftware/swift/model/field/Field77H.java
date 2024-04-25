@@ -82,27 +82,6 @@ public class Field77H extends Field implements Serializable, DateContainer {
      */
     public static final String F_77H = "77H";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S][//S]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SDY";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SDY";
-
 	/**
 	 * Component number for the Type Of Agreement subfield.
 	 */
@@ -257,16 +236,6 @@ public class Field77H extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SDY";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -401,7 +370,6 @@ public class Field77H extends Field implements Serializable, DateContainer {
 
     /**
      * Alternative method getter for field's Type Of Agreement
-     * @deprecated use #getTypeOfAgreement() instead
      * @since 9.2.7
      */
     public String getType() {
@@ -495,9 +463,6 @@ public class Field77H extends Field implements Serializable, DateContainer {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setTypeOfAgreement(String) instead
-     */
     public Field77H setType(String component1) {
         return setTypeOfAgreement(component1);
     }

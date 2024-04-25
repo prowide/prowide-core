@@ -53,7 +53,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
-@ProwideDeprecated(phase3 = TargetYear.SRU2024)
+@ProwideDeprecated(phase4 = TargetYear.SRU2025)
 public class Field31K extends Field implements Serializable, DateContainer {
     /**
      * Constant identifying the SRU to which this class belongs to.
@@ -69,27 +69,6 @@ public class Field31K extends Field implements Serializable, DateContainer {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_31K = "31K";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String COMPONENTS_PATTERN = "E";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String TYPES_PATTERN = "E";
 
     /**
      * Component number for the Date subfield.
@@ -210,16 +189,6 @@ public class Field31K extends Field implements Serializable, DateContainer {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "E";
     }
 
     /**

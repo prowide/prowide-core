@@ -85,27 +85,6 @@ public class Field90A extends Field implements Serializable, AmountContainer, Ge
      */
     public static final String F_90A = "90A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S/[S]N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSI";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -263,16 +242,6 @@ public class Field90A extends Field implements Serializable, AmountContainer, Ge
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSN";
     }
 
     /**
@@ -457,15 +426,6 @@ public class Field90A extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated use #getComponent4AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        return getComponent4AsBigDecimal();
-    }
-
-    /**
      * Gets the Price (component 4).
      * @return the Price from component 4
      */
@@ -480,15 +440,6 @@ public class Field90A extends Field implements Serializable, AmountContainer, Ge
      */
     public java.math.BigDecimal getPriceAsBigDecimal() {
         return getComponent4AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getPriceAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getPriceAsNumber() {
-        return getComponent4AsNumber();
     }
 
     /**

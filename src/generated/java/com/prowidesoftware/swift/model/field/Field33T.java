@@ -82,27 +82,6 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      */
     public static final String F_33T = "33T";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SI";
-
 	/**
 	 * Component number for the Currency subfield.
 	 */
@@ -113,12 +92,6 @@ public class Field33T extends Field implements Serializable, AmountContainer {
 	 */
 	public static final Integer PRICE = 2;
 
-	/**
-	 * @deprecated use #PRICE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer AMOUNT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -239,16 +212,6 @@ public class Field33T extends Field implements Serializable, AmountContainer {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -394,15 +357,6 @@ public class Field33T extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Price (component 2).
      * @return the Price from component 2
      */
@@ -410,16 +364,6 @@ public class Field33T extends Field implements Serializable, AmountContainer {
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Price
-     * @deprecated use #getPrice() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAmount() {
-        return getPrice();
-    }
 
     /**
      * Get the Price (component 2) as BigDecimal
@@ -428,33 +372,6 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getPriceAsBigDecimal() {
         return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getPriceAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getPriceAsNumber() {
-        return getComponent2AsNumber();
-    }
-
-    /**
-     * @deprecated use #getPriceAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.math.BigDecimal getAmountAsBigDecimal() {
-        return getPriceAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getPriceAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getPriceAsNumber();
     }
 
     /**
@@ -570,34 +487,6 @@ public class Field33T extends Field implements Serializable, AmountContainer {
      */
     public Field33T setPrice(java.lang.Number component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setPrice(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field33T setAmount(String component2) {
-        return setPrice(component2);
-    }
-
-    /**
-     * @deprecated use #setComponent2(java.math.BigDecimal) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field33T setAmount(java.math.BigDecimal component2) {
-        return setPrice(component2);
-    }
-
-    /**
-     * @deprecated use #setPrice(java.math.BigDecimal) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field33T setAmount(java.lang.Number component2) {
-        return setPrice(component2);
     }
 
 

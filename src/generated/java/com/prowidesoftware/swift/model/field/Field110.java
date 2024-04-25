@@ -79,27 +79,6 @@ public class Field110 extends Field implements Serializable {
      */
     public static final String F_110 = "110";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "N";
-
 	/**
 	 * Component number for the Window Size subfield.
 	 */
@@ -214,16 +193,6 @@ public class Field110 extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "N";
     }
 
     /**
@@ -348,16 +317,6 @@ public class Field110 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Window Size (component 1).
      * @return the Window Size from component 1
      */
@@ -372,15 +331,6 @@ public class Field110 extends Field implements Serializable {
      */
     public java.lang.Long getWindowSizeAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getWindowSizeAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getWindowSizeAsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**

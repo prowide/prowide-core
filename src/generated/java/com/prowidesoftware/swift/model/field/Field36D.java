@@ -82,27 +82,6 @@ public class Field36D extends Field implements Serializable, GenericField {
      */
     public static final String F_36D = "36D";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S/N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSN";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -243,16 +222,6 @@ public class Field36D extends Field implements Serializable, GenericField {
             return getComponent(3);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSN";
     }
 
     /**
@@ -415,16 +384,6 @@ public class Field36D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Quantity Of Digital Tokens (component 3).
      * @return the Quantity Of Digital Tokens from component 3
      */
@@ -439,15 +398,6 @@ public class Field36D extends Field implements Serializable, GenericField {
      */
     public java.lang.Long getQuantityOfDigitalTokensAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getQuantityOfDigitalTokensAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getQuantityOfDigitalTokensAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**

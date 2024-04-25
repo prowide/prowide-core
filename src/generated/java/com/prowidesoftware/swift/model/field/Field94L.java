@@ -82,27 +82,6 @@ public class Field94L extends Field implements Serializable, GenericField {
      */
     public static final String F_94L = "94L";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//18!SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSN";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -246,16 +225,6 @@ public class Field94L extends Field implements Serializable, GenericField {
             return getComponent(3);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSN";
     }
 
     /**
@@ -418,16 +387,6 @@ public class Field94L extends Field implements Serializable, GenericField {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Legal Entity Identifier Number (component 3).
      * @return the Legal Entity Identifier Number from component 3
      */
@@ -442,15 +401,6 @@ public class Field94L extends Field implements Serializable, GenericField {
      */
     public java.lang.Long getLegalEntityIdentifierNumberAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getLegalEntityIdentifierNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getLegalEntityIdentifierNumberAsNumber() {
-        return getComponent3AsNumber();
     }
 
     /**

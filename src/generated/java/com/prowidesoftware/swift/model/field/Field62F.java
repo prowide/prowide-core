@@ -87,27 +87,6 @@ public class Field62F extends Field implements Serializable, AmountContainer, Da
      */
     public static final String F_62F = "62F";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "[c]<DATE2>SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SESN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SESI";
-
 	/**
 	 * Component number for the D/C Mark subfield.
 	 */
@@ -269,16 +248,6 @@ public class Field62F extends Field implements Serializable, AmountContainer, Da
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SESN";
     }
 
     /**
@@ -462,7 +431,6 @@ public class Field62F extends Field implements Serializable, AmountContainer, Da
 
     /**
      * Alternative method getter for field's Currency
-     * @deprecated use #getCurrency() instead
      * @since 9.2.7
      */
     public String getUnit() {
@@ -488,15 +456,6 @@ public class Field62F extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * @deprecated use #getComponent4AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        return getComponent4AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 4).
      * @return the Amount from component 4
      */
@@ -511,15 +470,6 @@ public class Field62F extends Field implements Serializable, AmountContainer, Da
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent4AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent4AsNumber();
     }
 
     /**
@@ -608,9 +558,6 @@ public class Field62F extends Field implements Serializable, AmountContainer, Da
         return setComponent3(component3);
     }
 
-    /**
-     * @deprecated use #setCurrency(String) instead
-     */
     public Field62F setUnit(String component3) {
         return setCurrency(component3);
     }

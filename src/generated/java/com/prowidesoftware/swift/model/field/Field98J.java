@@ -87,27 +87,6 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
      */
     public static final String F_98J = "98J";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//<DATE4><TIME2>/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SDTB";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SDTB";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -128,12 +107,6 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
 	 */
 	public static final Integer IDENTIFIER_CODE = 4;
 
-	/**
-	 * @deprecated use #IDENTIFIER_CODE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer BIC = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -281,16 +254,6 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
             return getComponent(4);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SDTB";
     }
 
     /**
@@ -514,16 +477,6 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
         return getComponent4();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
-     * @deprecated use #getIdentifierCode() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getBIC() {
-        return getIdentifierCode();
-    }
 
     /**
      * Get the Identifier Code (component 4) as BIC
@@ -531,15 +484,6 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
      */
     public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
         return getComponent4AsBIC();
-    }
-
-    /**
-     * @deprecated use #getIdentifierCodeAsBIC() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-        return getIdentifierCodeAsBIC();
     }
 
     /**
@@ -693,24 +637,6 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
      */
     public Field98J setIdentifierCode(com.prowidesoftware.swift.model.BIC component4) {
         return setComponent4(component4);
-    }
-
-    /**
-     * @deprecated use #setIdentifierCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field98J setBIC(String component4) {
-        return setIdentifierCode(component4);
-    }
-
-    /**
-     * @deprecated use #setComponent4(com.prowidesoftware.swift.model.BIC) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field98J setBIC(com.prowidesoftware.swift.model.BIC component4) {
-        return setIdentifierCode(component4);
     }
 
 

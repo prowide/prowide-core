@@ -83,27 +83,6 @@ public class Field92P extends Field implements Serializable, AmountContainer, Ge
      */
     public static final String F_92P = "92P";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SI";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -114,12 +93,6 @@ public class Field92P extends Field implements Serializable, AmountContainer, Ge
 	 */
 	public static final Integer INDEX_POINTS = 2;
 
-	/**
-	 * @deprecated use #INDEX_POINTS instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer AMOUNT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -243,16 +216,6 @@ public class Field92P extends Field implements Serializable, AmountContainer, Ge
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -398,15 +361,6 @@ public class Field92P extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Index Points (component 2).
      * @return the Index Points from component 2
      */
@@ -414,16 +368,6 @@ public class Field92P extends Field implements Serializable, AmountContainer, Ge
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Index Points
-     * @deprecated use #getIndexPoints() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAmount() {
-        return getIndexPoints();
-    }
 
     /**
      * Get the Index Points (component 2) as BigDecimal
@@ -432,33 +376,6 @@ public class Field92P extends Field implements Serializable, AmountContainer, Ge
      */
     public java.math.BigDecimal getIndexPointsAsBigDecimal() {
         return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getIndexPointsAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getIndexPointsAsNumber() {
-        return getComponent2AsNumber();
-    }
-
-    /**
-     * @deprecated use #getIndexPointsAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.math.BigDecimal getAmountAsBigDecimal() {
-        return getIndexPointsAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getIndexPointsAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getIndexPointsAsNumber();
     }
 
     /**
@@ -574,34 +491,6 @@ public class Field92P extends Field implements Serializable, AmountContainer, Ge
      */
     public Field92P setIndexPoints(java.lang.Number component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setIndexPoints(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field92P setAmount(String component2) {
-        return setIndexPoints(component2);
-    }
-
-    /**
-     * @deprecated use #setComponent2(java.math.BigDecimal) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field92P setAmount(java.math.BigDecimal component2) {
-        return setIndexPoints(component2);
-    }
-
-    /**
-     * @deprecated use #setIndexPoints(java.math.BigDecimal) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field92P setAmount(java.lang.Number component2) {
-        return setIndexPoints(component2);
     }
 
 

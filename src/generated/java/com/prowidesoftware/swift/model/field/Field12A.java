@@ -80,27 +80,6 @@ public class Field12A extends Field implements Serializable, GenericField {
      */
     public static final String F_12A = "12A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S/[S]/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSS";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -116,12 +95,6 @@ public class Field12A extends Field implements Serializable, GenericField {
 	 */
 	public static final Integer INSTRUMENT_CODE_OR_DESCRIPTION = 3;
 
-	/**
-	 * @deprecated use #INSTRUMENT_CODE_OR_DESCRIPTION instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer INSTRUMENT_CODE = 3;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -247,16 +220,6 @@ public class Field12A extends Field implements Serializable, GenericField {
             return getComponent(3);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSS";
     }
 
     /**
@@ -421,16 +384,6 @@ public class Field12A extends Field implements Serializable, GenericField {
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Instrument Code Or Description
-     * @deprecated use #getInstrumentCodeOrDescription() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getInstrumentCode() {
-        return getInstrumentCodeOrDescription();
-    }
 
     /**
      * Set the component 1 (Qualifier).
@@ -493,15 +446,6 @@ public class Field12A extends Field implements Serializable, GenericField {
      */
     public Field12A setInstrumentCodeOrDescription(String component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setInstrumentCodeOrDescription(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field12A setInstrumentCode(String component3) {
-        return setInstrumentCodeOrDescription(component3);
     }
 
 

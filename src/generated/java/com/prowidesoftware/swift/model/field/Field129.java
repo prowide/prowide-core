@@ -80,27 +80,6 @@ public class Field129 extends Field implements Serializable {
      */
     public static final String F_129 = "129";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "NN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "NN";
-
 	/**
 	 * Component number for the Section subfield.
 	 */
@@ -230,16 +209,6 @@ public class Field129 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "NN";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -364,16 +333,6 @@ public class Field129 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Section (component 1).
      * @return the Section from component 1
      */
@@ -388,15 +347,6 @@ public class Field129 extends Field implements Serializable {
      */
     public java.lang.Long getSectionAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getSectionAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getSectionAsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**
@@ -418,16 +368,6 @@ public class Field129 extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Total (component 2).
      * @return the Total from component 2
      */
@@ -442,15 +382,6 @@ public class Field129 extends Field implements Serializable {
      */
     public java.lang.Long getTotalAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getTotalAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getTotalAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

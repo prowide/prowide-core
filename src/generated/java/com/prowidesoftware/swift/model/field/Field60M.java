@@ -88,27 +88,6 @@ public class Field60M extends Field implements Serializable, MonetaryAmountConta
      */
     public static final String F_60M = "60M";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "[c]<DATE2>SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SECN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SECI";
-
 	/**
 	 * Component number for the D/C Mark subfield.
 	 */
@@ -270,16 +249,6 @@ public class Field60M extends Field implements Serializable, MonetaryAmountConta
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SECN";
     }
 
     /**
@@ -472,7 +441,6 @@ public class Field60M extends Field implements Serializable, MonetaryAmountConta
 
     /**
      * Alternative method getter for field's Currency
-     * @deprecated use #getCurrency() instead
      * @since 9.2.7
      */
     public String getUnit() {
@@ -488,7 +456,6 @@ public class Field60M extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #getCurrencyAsCurrency() instead
      * @since 9.2.7
      */
     public java.util.Currency getUnitAsCurrency() {
@@ -514,15 +481,6 @@ public class Field60M extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #getComponent4AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        return getComponent4AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 4).
      * @return the Amount from component 4
      */
@@ -537,15 +495,6 @@ public class Field60M extends Field implements Serializable, MonetaryAmountConta
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent4AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent4AsNumber();
     }
 
     /**
@@ -657,16 +606,10 @@ public class Field60M extends Field implements Serializable, MonetaryAmountConta
         return setComponent3(component3);
     }
 
-    /**
-     * @deprecated use #setCurrency(String) instead
-     */
     public Field60M setUnit(String component3) {
         return setCurrency(component3);
     }
 
-    /**
-     * @deprecated use #setComponent3(java.util.Currency) instead
-     */
     public Field60M setUnit(java.util.Currency component3) {
         return setCurrency(component3);
     }

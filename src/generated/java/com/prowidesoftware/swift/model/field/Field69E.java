@@ -83,27 +83,6 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
      */
     public static final String F_69E = "69E";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSD";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSD";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -114,12 +93,6 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
 	 */
 	public static final Integer DATE_CODE = 2;
 
-	/**
-	 * @deprecated use #DATE_CODE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CODE = 2;
 
 	/**
 	 * Component number for the Date subfield.
@@ -255,16 +228,6 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSD";
     }
 
     /**
@@ -410,16 +373,6 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Date Code
-     * @deprecated use #getDateCode() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCode() {
-        return getDateCode();
-    }
 
     /**
      * Gets the component 3 (Date).
@@ -494,15 +447,6 @@ public class Field69E extends Field implements Serializable, DateContainer, Gene
      */
     public Field69E setDateCode(String component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setDateCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field69E setCode(String component2) {
-        return setDateCode(component2);
     }
 
     /**

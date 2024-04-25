@@ -86,27 +86,6 @@ public class Field93E extends Field implements Serializable, AmountContainer, Ge
      */
     public static final String F_93E = "93E";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S/S/[S]N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSSN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSSI";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -276,16 +255,6 @@ public class Field93E extends Field implements Serializable, AmountContainer, Ge
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSSN";
     }
 
     /**
@@ -489,15 +458,6 @@ public class Field93E extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * @deprecated use #getComponent5AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent5AsNumber() {
-        return getComponent5AsBigDecimal();
-    }
-
-    /**
      * Gets the Balance of Digital Tokens (component 5).
      * @return the Balance of Digital Tokens from component 5
      */
@@ -512,15 +472,6 @@ public class Field93E extends Field implements Serializable, AmountContainer, Ge
      */
     public java.math.BigDecimal getBalanceofDigitalTokensAsBigDecimal() {
         return getComponent5AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getBalanceofDigitalTokensAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getBalanceofDigitalTokensAsNumber() {
-        return getComponent5AsNumber();
     }
 
     /**

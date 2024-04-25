@@ -86,27 +86,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
      */
     public static final String F_98G = "98G";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "<DATE4><TIME2>[,S][/[c]<TIME3>]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "DTNSW";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "DTNSW";
-
 	/**
 	 * Component number for the Date subfield.
 	 */
@@ -122,12 +101,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	 */
 	public static final Integer DECIMALS = 3;
 
-	/**
-	 * @deprecated use #DECIMALS instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer NUMBER = 3;
 
 	/**
 	 * Component number for the Sign subfield.
@@ -312,16 +285,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "DTNSW";
     }
 
     /**
@@ -535,16 +498,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Decimals (component 3).
      * @return the Decimals from component 3
      */
@@ -552,16 +505,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Decimals
-     * @deprecated use #getDecimals() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNumber() {
-        return getDecimals();
-    }
 
     /**
      * Get the Decimals (component 3) as Long
@@ -570,33 +513,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getDecimalsAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getDecimalsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getDecimalsAsNumber() {
-        return getComponent3AsNumber();
-    }
-
-    /**
-     * @deprecated use #getDecimalsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getNumberAsLong() {
-        return getDecimalsAsLong();
-    }
-
-    /**
-     * @deprecated use #getDecimalsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getDecimalsAsNumber();
     }
 
     /**
@@ -826,34 +742,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
      */
     public Field98G setDecimals(java.lang.Number component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setDecimals(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field98G setNumber(String component3) {
-        return setDecimals(component3);
-    }
-
-    /**
-     * @deprecated use #setComponent3(java.lang.Long) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field98G setNumber(java.lang.Long component3) {
-        return setDecimals(component3);
-    }
-
-    /**
-     * @deprecated use #setDecimals(java.lang.Long) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field98G setNumber(java.lang.Number component3) {
-        return setDecimals(component3);
     }
 
     /**

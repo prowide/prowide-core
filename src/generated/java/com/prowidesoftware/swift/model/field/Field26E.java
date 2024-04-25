@@ -79,27 +79,6 @@ public class Field26E extends Field implements Serializable {
      */
     public static final String F_26E = "26E";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "N";
-
 	/**
 	 * Component number for the Number Of Amendment subfield.
 	 */
@@ -111,12 +90,6 @@ public class Field26E extends Field implements Serializable {
      */
     public static final Integer AUTOMATIC_EXTENSION_NOTIFICATION_PERIOD = 1;
 
-	/**
-	 * @deprecated use #NUMBER_OF_AMENDMENT instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer NUMBER = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -227,16 +200,6 @@ public class Field26E extends Field implements Serializable {
             return getComponent(1);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "N";
     }
 
     /**
@@ -365,16 +328,6 @@ public class Field26E extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number Of Amendment (component 1).
      * @return the Number Of Amendment from component 1
      */
@@ -384,23 +337,12 @@ public class Field26E extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Number Of Amendment
-     * @deprecated use #getNumberOfAmendment() instead
      * @since 9.2.7
      */
     public String getAutomaticExtensionNotificationPeriod() {
         return getNumberOfAmendment();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number Of Amendment
-     * @deprecated use #getNumberOfAmendment() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNumber() {
-        return getNumberOfAmendment();
-    }
 
     /**
      * Get the Number Of Amendment (component 1) as Long
@@ -412,47 +354,10 @@ public class Field26E extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getNumberOfAmendmentAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberOfAmendmentAsNumber() {
-        return getComponent1AsNumber();
-    }
-
-    /**
-     * @deprecated use #getNumberOfAmendmentAsLong() instead
      * @since 9.2.7
      */
     public java.lang.Long getAutomaticExtensionNotificationPeriodAsLong() {
         return getNumberOfAmendmentAsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberOfAmendmentAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAutomaticExtensionNotificationPeriodAsNumber() {
-        return getNumberOfAmendmentAsNumber();
-    }
-
-    /**
-     * @deprecated use #getNumberOfAmendmentAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getNumberAsLong() {
-        return getNumberOfAmendmentAsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberOfAmendmentAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getNumberOfAmendmentAsNumber();
     }
 
     /**
@@ -547,53 +452,15 @@ public class Field26E extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setNumberOfAmendment(String) instead
-     */
     public Field26E setAutomaticExtensionNotificationPeriod(String component1) {
         return setNumberOfAmendment(component1);
     }
 
-    /**
-     * @deprecated use #setComponent1(java.lang.Long) instead
-     * @since 9.2.7
-     */
     public Field26E setAutomaticExtensionNotificationPeriod(java.lang.Long component1) {
         return setNumberOfAmendment(component1);
     }
 
-    /**
-     * @deprecated use #setNumberOfAmendment(java.lang.Long) instead
-     */
     public Field26E setAutomaticExtensionNotificationPeriod(java.lang.Number component1) {
-        return setNumberOfAmendment(component1);
-    }
-
-    /**
-     * @deprecated use #setNumberOfAmendment(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field26E setNumber(String component1) {
-        return setNumberOfAmendment(component1);
-    }
-
-    /**
-     * @deprecated use #setComponent1(java.lang.Long) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field26E setNumber(java.lang.Long component1) {
-        return setNumberOfAmendment(component1);
-    }
-
-    /**
-     * @deprecated use #setNumberOfAmendment(java.lang.Long) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field26E setNumber(java.lang.Number component1) {
         return setNumberOfAmendment(component1);
     }
 

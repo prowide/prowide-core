@@ -82,27 +82,6 @@ public class Field98F extends Field implements Serializable, GenericField {
      */
     public static final String F_98F = "98F";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S/[S]/S<TIME2>";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSST";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSST";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -118,12 +97,6 @@ public class Field98F extends Field implements Serializable, GenericField {
 	 */
 	public static final Integer DATE_CODE = 3;
 
-	/**
-	 * @deprecated use #DATE_CODE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CODE = 3;
 
 	/**
 	 * Component number for the Time subfield.
@@ -272,16 +245,6 @@ public class Field98F extends Field implements Serializable, GenericField {
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSST";
     }
 
     /**
@@ -449,16 +412,6 @@ public class Field98F extends Field implements Serializable, GenericField {
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Date Code
-     * @deprecated use #getDateCode() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCode() {
-        return getDateCode();
-    }
 
     /**
      * Gets the component 4 (Time).
@@ -554,15 +507,6 @@ public class Field98F extends Field implements Serializable, GenericField {
      */
     public Field98F setDateCode(String component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setDateCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field98F setCode(String component3) {
-        return setDateCode(component3);
     }
 
     /**

@@ -79,27 +79,6 @@ public class Field97A extends Field implements Serializable, GenericField {
      */
     public static final String F_97A = "97A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
-
 	/**
 	 * Component number for the Qualifier subfield.
 	 */
@@ -110,12 +89,6 @@ public class Field97A extends Field implements Serializable, GenericField {
 	 */
 	public static final Integer ACCOUNT_NUMBER = 2;
 
-	/**
-	 * @deprecated use #ACCOUNT_NUMBER instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer ACCOUNT = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -234,16 +207,6 @@ public class Field97A extends Field implements Serializable, GenericField {
             return getComponent(2);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SS";
     }
 
     /**
@@ -395,16 +358,6 @@ public class Field97A extends Field implements Serializable, GenericField {
         return null;
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Account Number
-     * @deprecated use #getAccountNumber() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAccount() {
-        return getAccountNumber();
-    }
 
     /**
      * Set the component 1 (Qualifier).
@@ -446,15 +399,6 @@ public class Field97A extends Field implements Serializable, GenericField {
      */
     public Field97A setAccountNumber(String component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setAccountNumber(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field97A setAccount(String component2) {
-        return setAccountNumber(component2);
     }
 
 

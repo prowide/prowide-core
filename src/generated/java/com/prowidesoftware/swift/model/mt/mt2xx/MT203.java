@@ -820,9 +820,9 @@ public class MT203 extends AbstractMT implements Serializable {
      * @deprecated use {@link #getLoop1List()} instead
      */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2024)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2025)
     public List<SequenceA> getSequenceAList() {
-        com.prowidesoftware.deprecation.DeprecationUtils.phase2(this.getClass(), "getSequenceAList()", "Use getLoop1List() instead");
+        com.prowidesoftware.deprecation.DeprecationUtils.phase3(this.getClass(), "getSequenceAList()", "Use getLoop1List() instead");
 		return getSequenceAList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
@@ -830,9 +830,9 @@ public class MT203 extends AbstractMT implements Serializable {
 	 * @deprecated use {@link #getLoop1List(SwiftTagListBlock)} instead
 	 */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2024)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2025)
 	public static List<SequenceA> getSequenceAList(final SwiftTagListBlock parentSequence) {
-	    com.prowidesoftware.deprecation.DeprecationUtils.phase2(MT203.class, "getSequenceAList(SwiftTagListBlock)", "Use getLoop1List(SwiftTagListBlock) instead");
+	    com.prowidesoftware.deprecation.DeprecationUtils.phase3(MT203.class, "getSequenceAList(SwiftTagListBlock)", "Use getLoop1List(SwiftTagListBlock) instead");
 		List<SequenceA> result = new ArrayList<>();
         getLoop1List(parentSequence).forEach(s -> result.add(new SequenceA(s)));
         return result;
@@ -842,11 +842,11 @@ public class MT203 extends AbstractMT implements Serializable {
 	 * @deprecated use Loop1 instead
 	 */
     @Deprecated
-    @com.prowidesoftware.deprecation.ProwideDeprecated(phase3=com.prowidesoftware.deprecation.TargetYear.SRU2024)
+    @com.prowidesoftware.deprecation.ProwideDeprecated(phase4=com.prowidesoftware.deprecation.TargetYear.SRU2025)
 	public static class SequenceA extends SwiftTagListBlock {
 	    private SequenceA(final Loop1 content) {
             super(content.getTags());
-	        com.prowidesoftware.deprecation.DeprecationUtils.phase2(MT203.class, "SequenceA(Loop1)", "Use Loop1() instead");
+	        com.prowidesoftware.deprecation.DeprecationUtils.phase3(MT203.class, "SequenceA(Loop1)", "Use Loop1() instead");
         }
     }
 }
