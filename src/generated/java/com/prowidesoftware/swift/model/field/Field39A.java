@@ -483,7 +483,7 @@ public class Field39A extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Tolerance 1 (component 1) as as Number
+     * Alternative method setter for field's Tolerance 1 (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -533,7 +533,7 @@ public class Field39A extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Tolerance 1 (component 1) as as Number
+     * Alternative method setter for field's Tolerance 1 (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -575,7 +575,7 @@ public class Field39A extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Tolerance 2 (component 2) as as Number
+     * Alternative method setter for field's Tolerance 2 (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -625,7 +625,7 @@ public class Field39A extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Tolerance 2 (component 2) as as Number
+     * Alternative method setter for field's Tolerance 2 (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

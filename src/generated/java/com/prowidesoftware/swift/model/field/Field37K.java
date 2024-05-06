@@ -470,7 +470,7 @@ public class Field37K extends Field implements Serializable, AmountContainer {
         return this;
     }
     /**
-     * Alternative method setter for field's Rate (component 2) as as Number
+     * Alternative method setter for field's Rate (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
@@ -522,7 +522,7 @@ public class Field37K extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Alternative method setter for field's Rate (component 2) as as Number
+     * Alternative method setter for field's Rate (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -655,5 +655,18 @@ public class Field37K extends Field implements Serializable, AmountContainer {
         return field;
     }
 
+    /**
+     * Constant with the literal value PCT
+	 * @since 9.4.16
+	 */
+    public static final String PERCENTAGE = "PCT";
 
+	/**
+	 * This fields admits the literal PCT as a CurrencyCode meaning the amount is a percentage.
+	 * @return true if the currency code is PCT, false otherwise
+	 * @since 9.4.16
+	 */
+	public boolean isPercentage() {
+	    return PERCENTAGE.equals(getComponent1());
+	}
 }

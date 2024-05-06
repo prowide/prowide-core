@@ -767,7 +767,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Session Number (component 1) as as Number
+     * Alternative method setter for field's Session Number (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -817,7 +817,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Session Number (component 1) as as Number
+     * Alternative method setter for field's Session Number (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -859,7 +859,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's ISN (component 2) as as Number
+     * Alternative method setter for field's ISN (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -909,7 +909,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's ISN (component 2) as as Number
+     * Alternative method setter for field's ISN (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -951,7 +951,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's ISN NAK (component 3) as as Number
+     * Alternative method setter for field's ISN NAK (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1001,7 +1001,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's ISN NAK (component 3) as as Number
+     * Alternative method setter for field's ISN NAK (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1043,7 +1043,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's OSN (component 4) as as Number
+     * Alternative method setter for field's OSN (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1093,7 +1093,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's OSN (component 4) as as Number
+     * Alternative method setter for field's OSN (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1135,7 +1135,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's OSN NAK (component 5) as as Number
+     * Alternative method setter for field's OSN NAK (component 5) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1185,7 +1185,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's OSN NAK (component 5) as as Number
+     * Alternative method setter for field's OSN NAK (component 5) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1227,7 +1227,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's ACK Replay Indicator (component 6) as as Number
+     * Alternative method setter for field's ACK Replay Indicator (component 6) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -1277,7 +1277,7 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's ACK Replay Indicator (component 6) as as Number
+     * Alternative method setter for field's ACK Replay Indicator (component 6) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

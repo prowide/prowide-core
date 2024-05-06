@@ -768,7 +768,7 @@ public class Field92L extends Field implements Serializable, MonetaryAmountConta
         return this;
     }
     /**
-     * Alternative method setter for field's Amount1 (component 3) as as Number
+     * Alternative method setter for field's Amount1 (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
@@ -820,7 +820,7 @@ public class Field92L extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Alternative method setter for field's Amount1 (component 3) as as Number
+     * Alternative method setter for field's Amount1 (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -924,7 +924,7 @@ public class Field92L extends Field implements Serializable, MonetaryAmountConta
         return this;
     }
     /**
-     * Alternative method setter for field's Amount2 (component 5) as as Number
+     * Alternative method setter for field's Amount2 (component 5) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
@@ -976,7 +976,7 @@ public class Field92L extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Alternative method setter for field's Amount2 (component 5) as as Number
+     * Alternative method setter for field's Amount2 (component 5) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

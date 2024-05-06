@@ -809,7 +809,7 @@ public class Field264 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Alternative method setter for field's Session Number (component 5) as as Number
+     * Alternative method setter for field's Session Number (component 5) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -859,7 +859,7 @@ public class Field264 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Alternative method setter for field's Session Number (component 5) as as Number
+     * Alternative method setter for field's Session Number (component 5) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
