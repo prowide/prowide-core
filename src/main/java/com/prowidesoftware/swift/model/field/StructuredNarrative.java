@@ -18,6 +18,7 @@ package com.prowidesoftware.swift.model.field;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -35,7 +36,7 @@ import org.apache.commons.lang3.StringUtils;
  * @since 9.0.1
  */
 public class StructuredNarrative {
-    private final List<String> narrativeFragments = new ArrayList<>();
+    private final List<NarrativeFragment> narrativeFragments = new ArrayList<>();
     private final List<String> narrativeSupplementFragments = new ArrayList<>();
     private String codeword;
     private String currency;
@@ -132,14 +133,37 @@ public class StructuredNarrative {
      * @return the narrative fragments or an empty list if the narrative does not have any text
      */
     public List<String> getNarrativeFragments() {
+        return narrativeFragments.stream().map(NarrativeFragment::getText).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns the list of text fragments in the narrative including the line index and line length,
+     * fragments are segments of the text that is wrapped in lines.
+     * If the narrative is a single string in a single line, the list will contain a single element.
+     * To get the narrative as a simple joined string use {@link #getNarrative(String)}
+     *
+     * @return the narrative fragments or an empty list if the narrative does not have any text
+     */
+    public List<NarrativeFragment> getNarrativeFragmentsDetail() {
         return narrativeFragments;
     }
 
     /**
-     * @see #getNarrativeFragments()
+     * @see #addNarrativeFragment(String, int, int)
      */
     StructuredNarrative addNarrativeFragment(String narrativeFragment) {
-        this.narrativeFragments.add(narrativeFragment);
+        return addNarrativeFragment(narrativeFragment, 0, 0);
+    }
+
+    /**
+     * Adds a fragment indicating the line index (1 based) and the line length.
+     *
+     * @param narrativeFragment text of the fragment
+     * @param lineIndex complete narrative line index
+     * @param lineLength complete line length
+     */
+    StructuredNarrative addNarrativeFragment(String narrativeFragment, int lineIndex, int lineLength) {
+        this.narrativeFragments.add(new NarrativeFragment(narrativeFragment, lineIndex, lineLength));
         return this;
     }
 
@@ -183,7 +207,7 @@ public class StructuredNarrative {
     public String getNarrative(String delimiter) {
         if (!this.narrativeFragments.isEmpty()) {
             String s = delimiter != null ? delimiter : "";
-            return String.join(s, this.narrativeFragments);
+            return String.join(s, this.getNarrativeFragments());
         }
         return null;
     }
