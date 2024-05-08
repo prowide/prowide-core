@@ -62,4 +62,8 @@ public class NarrativeFragment {
     public int getLineLength() {
         return lineLength;
     }
+
+    public String toString() {
+        return text;
+    }
 }

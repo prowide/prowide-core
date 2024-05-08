@@ -102,30 +102,10 @@ public class FieldJsonTest {
 
         JsonArray narrativeFragments =
                 structuredNarrative.get("narrativeFragments").getAsJsonArray();
-        assertTrue(narrativeFragments
-                .get(0)
-                .getAsJsonObject()
-                .get("text")
-                .getAsString()
-                .contains("CAPITAL GAINS TAX RELATING TO"));
-        assertTrue(narrativeFragments
-                .get(1)
-                .getAsJsonObject()
-                .get("text")
-                .getAsString()
-                .contains("THE PERIOD 1998-07-01 2022-10-30"));
-        assertTrue(narrativeFragments
-                .get(2)
-                .getAsJsonObject()
-                .get("text")
-                .getAsString()
-                .contains("REF 009524780232"));
-        assertTrue(narrativeFragments
-                .get(3)
-                .getAsJsonObject()
-                .get("text")
-                .getAsString()
-                .contains("BANCA DEL TEST"));
+        assertTrue(narrativeFragments.get(0).getAsString().contains("CAPITAL GAINS TAX RELATING TO"));
+        assertTrue(narrativeFragments.get(1).getAsString().contains("THE PERIOD 1998-07-01 2022-10-30"));
+        assertTrue(narrativeFragments.get(2).getAsString().contains("REF 009524780232"));
+        assertTrue(narrativeFragments.get(3).getAsString().contains("BANCA DEL TEST"));
     }
 
     @Test

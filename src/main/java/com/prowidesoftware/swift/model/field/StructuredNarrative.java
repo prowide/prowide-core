@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model.field;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -36,7 +35,8 @@ import org.apache.commons.lang3.StringUtils;
  * @since 9.0.1
  */
 public class StructuredNarrative {
-    private final List<NarrativeFragment> narrativeFragments = new ArrayList<>();
+    private final List<String> narrativeFragments = new ArrayList<>();
+    private final transient List<NarrativeFragment> narrativeFragmentsDetail = new ArrayList<>();
     private final List<String> narrativeSupplementFragments = new ArrayList<>();
     private String codeword;
     private String currency;
@@ -133,7 +133,7 @@ public class StructuredNarrative {
      * @return the narrative fragments or an empty list if the narrative does not have any text
      */
     public List<String> getNarrativeFragments() {
-        return narrativeFragments.stream().map(NarrativeFragment::getText).collect(Collectors.toList());
+        return narrativeFragments;
     }
 
     /**
@@ -145,7 +145,7 @@ public class StructuredNarrative {
      * @return the narrative fragments or an empty list if the narrative does not have any text
      */
     public List<NarrativeFragment> getNarrativeFragmentsDetail() {
-        return narrativeFragments;
+        return narrativeFragmentsDetail;
     }
 
     /**
@@ -163,7 +163,8 @@ public class StructuredNarrative {
      * @param lineLength complete line length
      */
     StructuredNarrative addNarrativeFragment(String narrativeFragment, int lineIndex, int lineLength) {
-        this.narrativeFragments.add(new NarrativeFragment(narrativeFragment, lineIndex, lineLength));
+        this.narrativeFragments.add(narrativeFragment);
+        this.narrativeFragmentsDetail.add(new NarrativeFragment(narrativeFragment, lineIndex, lineLength));
         return this;
     }
 
