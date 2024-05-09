@@ -34,7 +34,7 @@ public class MT020Test {
 
     private final String sample3 = "{1:F01VNDZBET2AXXX0000000000}{2:I020DYDYXXXXXXXXN}{4:"
             + "{102:VNDZBET2AXXX}"
-            + "{253:050719MVNDZBET2AXXX0181000391}}";
+            + "{253:050719VNDZBET2AXXX0181000391}}";
 
     private final String sample4 = "{1:F01VNDZBET2AXXX0000000000}{2:I020DYDYXXXXXXXXN}{4:"
             + "{102:VNDZBET2AXXX}"
