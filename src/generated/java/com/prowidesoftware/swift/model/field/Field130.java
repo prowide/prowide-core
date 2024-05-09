@@ -557,7 +557,7 @@ public class Field130 extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Heading Code (component 1) as as Number
+     * Alternative method setter for field's Heading Code (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -607,7 +607,7 @@ public class Field130 extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Heading Code (component 1) as as Number
+     * Alternative method setter for field's Heading Code (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -670,7 +670,7 @@ public class Field130 extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Heading Code 2 (component 3) as as Number
+     * Alternative method setter for field's Heading Code 2 (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -720,7 +720,7 @@ public class Field130 extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Alternative method setter for field's Heading Code 2 (component 3) as as Number
+     * Alternative method setter for field's Heading Code 2 (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

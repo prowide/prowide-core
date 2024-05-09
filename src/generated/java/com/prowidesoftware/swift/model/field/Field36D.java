@@ -522,7 +522,7 @@ public class Field36D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative method setter for field's Quantity Of Digital Tokens (component 3) as as Number
+     * Alternative method setter for field's Quantity Of Digital Tokens (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -572,7 +572,7 @@ public class Field36D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Alternative method setter for field's Quantity Of Digital Tokens (component 3) as as Number
+     * Alternative method setter for field's Quantity Of Digital Tokens (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

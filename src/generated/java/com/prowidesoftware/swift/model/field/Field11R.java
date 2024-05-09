@@ -689,7 +689,7 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Alternative method setter for field's Session Number (component 3) as as Number
+     * Alternative method setter for field's Session Number (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -739,7 +739,7 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Alternative method setter for field's Session Number (component 3) as as Number
+     * Alternative method setter for field's Session Number (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -781,7 +781,7 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Alternative method setter for field's ISN (component 4) as as Number
+     * Alternative method setter for field's ISN (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -831,7 +831,7 @@ public class Field11R extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Alternative method setter for field's ISN (component 4) as as Number
+     * Alternative method setter for field's ISN (component 4) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

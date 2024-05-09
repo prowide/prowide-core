@@ -904,6 +904,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
     public String toJson() {
         final Gson gson = new GsonBuilder()
                 .registerTypeAdapter(AbstractMT.class, new AbstractMTAdapter())
+                .registerTypeAdapter(SwiftBlock2.class, new SwiftBlock2Adapter())
                 .setPrettyPrinting()
                 .create();
         return gson.toJson(this, AbstractMT.class);

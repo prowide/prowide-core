@@ -549,7 +549,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
         return this;
     }
     /**
-     * Alternative method setter for field's Quantity1 (component 2) as as Number
+     * Alternative method setter for field's Quantity1 (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
@@ -601,7 +601,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Alternative method setter for field's Quantity1 (component 2) as as Number
+     * Alternative method setter for field's Quantity1 (component 2) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -643,7 +643,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
         return this;
     }
     /**
-     * Alternative method setter for field's Quantity2 (component 3) as as Number
+     * Alternative method setter for field's Quantity2 (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
@@ -695,7 +695,7 @@ public class Field92D extends Field implements Serializable, AmountContainer, Ge
     }
 
     /**
-     * Alternative method setter for field's Quantity2 (component 3) as as Number
+     * Alternative method setter for field's Quantity2 (component 3) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *

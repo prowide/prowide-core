@@ -413,7 +413,7 @@ public class Field126 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Seed (component 1) as as Number
+     * Alternative method setter for field's Seed (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
@@ -463,7 +463,7 @@ public class Field126 extends Field implements Serializable {
     }
 
     /**
-     * Alternative method setter for field's Seed (component 1) as as Number
+     * Alternative method setter for field's Seed (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
