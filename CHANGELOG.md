@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.4.16 - SNAPSHOT
+#### 9.4.16 - May 2024
   * (PW-1862) Added NarrativeFragment class for detailed line information in StructuredNarrative fragments
   * Fixed SwiftMessage getPDE(): return empty value instead of null when codeword exists and has no value
   * Added isPercentage() helper method to field 37K
