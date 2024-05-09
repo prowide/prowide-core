@@ -351,6 +351,56 @@ public class NarrativeResolverTest {
                 n.getStructured("ACC").getNarrativeFragments().get(1));
     }
 
+    /**
+     * valid input
+     */
+    @Test
+    public void testFormat2_13() {
+        String v = "/BNF/RETN\n"
+                + "//THE TRANSACTION IS REJECTED DUE T\n"
+                + "//O INTERNAL POLICY\n"
+                + "/MREF/XXX55444/220424\n"
+                + "/TEXT/WE CONSIDER YR MT103 AS NULL\n"
+                + "//AND VOID\n";
+        Narrative n = NarrativeResolver.parse(new Field72(v));
+
+        assertNull(n.getUnstructured());
+
+        assertEquals(3, n.getStructured().size()); // This count only the CodeWords
+
+        StructuredNarrative BNF = n.getStructured().get(0);
+        StructuredNarrative MREF = n.getStructured().get(1);
+        StructuredNarrative TEXT = n.getStructured().get(2);
+
+        assertEquals(3, BNF.getNarrativeFragmentsDetail().size());
+        assertEquals(1, MREF.getNarrativeFragmentsDetail().size());
+        assertEquals(2, TEXT.getNarrativeFragmentsDetail().size());
+
+        // "/BNF/RETN"
+        assertEquals(9, BNF.getNarrativeFragmentsDetail().get(0).getLineLength());
+        assertEquals(1, BNF.getNarrativeFragmentsDetail().get(0).getLineIndex());
+
+        // "//THE TRANSACTION IS REJECTED DUE T"
+        assertEquals(35, BNF.getNarrativeFragmentsDetail().get(1).getLineLength());
+        assertEquals(2, BNF.getNarrativeFragmentsDetail().get(1).getLineIndex());
+
+        // "//O INTERNAL POLICY"
+        assertEquals(19, BNF.getNarrativeFragmentsDetail().get(2).getLineLength());
+        assertEquals(3, BNF.getNarrativeFragmentsDetail().get(2).getLineIndex());
+
+        // "/MREF/XXX55444/220424"
+        assertEquals(21, MREF.getNarrativeFragmentsDetail().get(0).getLineLength());
+        assertEquals(4, MREF.getNarrativeFragmentsDetail().get(0).getLineIndex());
+
+        // "/TEXT/WE CONSIDER YR MT103 AS NULL"
+        assertEquals(34, TEXT.getNarrativeFragmentsDetail().get(0).getLineLength());
+        assertEquals(5, TEXT.getNarrativeFragmentsDetail().get(0).getLineIndex());
+
+        // "//AND VOID"
+        assertEquals(10, TEXT.getNarrativeFragmentsDetail().get(1).getLineLength());
+        assertEquals(6, TEXT.getNarrativeFragmentsDetail().get(1).getLineIndex());
+    }
+
     /*
      * FORMAT 3
      *  Line 1:       /8c/[3!a13d][additional information]   (Code)(Currency)(Amount)(Narrative)
