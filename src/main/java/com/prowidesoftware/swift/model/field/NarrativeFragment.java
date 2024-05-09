@@ -25,9 +25,9 @@ package com.prowidesoftware.swift.model.field;
  * @since 9.4.16
  */
 public class NarrativeFragment {
-    private String text;
-    private int lineIndex;
-    private int lineLength;
+    private final String text;
+    private final int lineIndex;
+    private final int lineLength;
 
     /**
      * Creates a new fragment without line index or length.
@@ -55,10 +55,28 @@ public class NarrativeFragment {
         return text;
     }
 
+    /**
+     * This is the 1-based index of the line in the complete narrative. Thus, regardless of the codeword position and
+     * on the number of line continuations, this index reflects this particular fragment position in the original
+     * field value before parsing. And it can be used for example to know if the fragment was located in the first
+     * line of the field value.
+     *
+     * @return 1-based index of the line this fragment belongs to, in the complete field value
+     */
     public int getLineIndex() {
         return lineIndex;
     }
 
+    /**
+     * This is the length of the complete line in the original field value before parsing. Thus, this number could
+     * contain for example the length of the codeword and slash separators before the actual narrative fragment, or
+     * when it is not the first fragment for a given codeword this could contain the length of the double slash used
+     * as continuation indicator. All in all, this value will be at least the size of the fragment, and in most cases
+     * it will be more. The purpose of this value is to provide a hint of the original line length, which could be used
+     * when reassembling the complete narrative for a codeword.
+     *
+     * @return the length of the complete line in the original field value before parsing
+     */
     public int getLineLength() {
         return lineLength;
     }

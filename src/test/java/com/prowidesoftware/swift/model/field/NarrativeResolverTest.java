@@ -368,41 +368,37 @@ public class NarrativeResolverTest {
 
         assertEquals(3, n.getStructured().size()); // This count only the CodeWords
 
-        assertEquals(3, n.getStructured().get(0).getNarrativeFragmentsDetail().size());
-        assertEquals(1, n.getStructured().get(1).getNarrativeFragmentsDetail().size());
-        assertEquals(2, n.getStructured().get(2).getNarrativeFragmentsDetail().size());
+        StructuredNarrative BNF = n.getStructured().get(0);
+        StructuredNarrative MREF = n.getStructured().get(1);
+        StructuredNarrative TEXT = n.getStructured().get(2);
 
-        assertEquals(
-                9, n.getStructured().get(0).getNarrativeFragmentsDetail().get(0).getLineLength());
-        assertEquals(
-                1, n.getStructured().get(0).getNarrativeFragmentsDetail().get(0).getLineIndex());
-        assertEquals(
-                35,
-                n.getStructured().get(0).getNarrativeFragmentsDetail().get(1).getLineLength());
-        assertEquals(
-                2, n.getStructured().get(0).getNarrativeFragmentsDetail().get(1).getLineIndex());
-        assertEquals(
-                19,
-                n.getStructured().get(0).getNarrativeFragmentsDetail().get(2).getLineLength());
-        assertEquals(
-                3, n.getStructured().get(0).getNarrativeFragmentsDetail().get(2).getLineIndex());
+        assertEquals(3, BNF.getNarrativeFragmentsDetail().size());
+        assertEquals(1, MREF.getNarrativeFragmentsDetail().size());
+        assertEquals(2, TEXT.getNarrativeFragmentsDetail().size());
 
-        assertEquals(
-                21,
-                n.getStructured().get(1).getNarrativeFragmentsDetail().get(0).getLineLength());
-        assertEquals(
-                4, n.getStructured().get(1).getNarrativeFragmentsDetail().get(0).getLineIndex());
+        // "/BNF/RETN"
+        assertEquals(9, BNF.getNarrativeFragmentsDetail().get(0).getLineLength());
+        assertEquals(1, BNF.getNarrativeFragmentsDetail().get(0).getLineIndex());
 
-        assertEquals(
-                34,
-                n.getStructured().get(2).getNarrativeFragmentsDetail().get(0).getLineLength());
-        assertEquals(
-                5, n.getStructured().get(2).getNarrativeFragmentsDetail().get(0).getLineIndex());
-        assertEquals(
-                10,
-                n.getStructured().get(2).getNarrativeFragmentsDetail().get(1).getLineLength());
-        assertEquals(
-                6, n.getStructured().get(2).getNarrativeFragmentsDetail().get(1).getLineIndex());
+        // "//THE TRANSACTION IS REJECTED DUE T"
+        assertEquals(35, BNF.getNarrativeFragmentsDetail().get(1).getLineLength());
+        assertEquals(2, BNF.getNarrativeFragmentsDetail().get(1).getLineIndex());
+
+        // "//O INTERNAL POLICY"
+        assertEquals(19, BNF.getNarrativeFragmentsDetail().get(2).getLineLength());
+        assertEquals(3, BNF.getNarrativeFragmentsDetail().get(2).getLineIndex());
+
+        // "/MREF/XXX55444/220424"
+        assertEquals(21, MREF.getNarrativeFragmentsDetail().get(0).getLineLength());
+        assertEquals(4, MREF.getNarrativeFragmentsDetail().get(0).getLineIndex());
+
+        // "/TEXT/WE CONSIDER YR MT103 AS NULL"
+        assertEquals(34, TEXT.getNarrativeFragmentsDetail().get(0).getLineLength());
+        assertEquals(5, TEXT.getNarrativeFragmentsDetail().get(0).getLineIndex());
+
+        // "//AND VOID"
+        assertEquals(10, TEXT.getNarrativeFragmentsDetail().get(1).getLineLength());
+        assertEquals(6, TEXT.getNarrativeFragmentsDetail().get(1).getLineIndex());
     }
 
     /*

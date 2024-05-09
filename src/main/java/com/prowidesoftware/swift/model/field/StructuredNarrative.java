@@ -42,7 +42,6 @@ public class StructuredNarrative {
     private String currency;
     private BigDecimal amount;
     private String country;
-
     private String bankCode;
 
     /**
@@ -241,7 +240,7 @@ public class StructuredNarrative {
     }
 
     /**
-     * @return true if non of the narrative fields are set
+     * @return true if none of the narrative fields are set
      */
     public boolean isEmpty() {
         return this.codeword == null
