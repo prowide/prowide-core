@@ -91,7 +91,7 @@ public class MT020Test {
         assertEquals("VNDZBET2AXXX", m.getField102().getValue());
 
         assertNotNull(m.getField253());
-        assertEquals("050719MVNDZBET2AXXX0181000391", m.getField253().getValue());
+        assertEquals("050719VNDZBET2AXXX0181000391", m.getField253().getValue());
     }
 
     @Test
@@ -184,7 +184,7 @@ public class MT020Test {
         m.setSender("VNDZBET2AXXX");
         m.setReceiver("DYDYXXXXFXXX");
         m.append(new Field102("VNDZBET2AXXX"));
-        m.append(new Field253("050719MVNDZBET2AXXX0181000391"));
+        m.append(new Field253("050719VNDZBET2AXXX0181000391"));
 
         assertEquals(sample3, m.message());
     }
