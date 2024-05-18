@@ -4,6 +4,11 @@
   * SWIFT Standard release update 2024 (live 16 November 2025)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
 
+#### 9.4.16 - May 2024
+  * (PW-1862) Added NarrativeFragment class for detailed line information in StructuredNarrative fragments
+  * Fixed SwiftMessage getPDE(): return empty value instead of null when codeword exists and has no value
+  * Added isPercentage() helper method to field 37K
+
 #### 9.4.15 - March 2024
   * (PW-1812) Updated the narrative resolver, format 2 (used in field 72 for example), to allow empty values as part of the narrative fragment
   * Updated validators for BIC, country, and currency constraints to utilize keywords for i18n-compatible messages

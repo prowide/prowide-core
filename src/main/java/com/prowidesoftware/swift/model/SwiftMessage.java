@@ -1219,7 +1219,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         if (this.block5 != null) {
             Optional<Tag> t = this.block5.getTag(SwiftBlock5Field.PDE);
             if (t.isPresent()) {
-                return t.get().getValue();
+                return t.get().getValue() != null ? t.get().getValue() : "";
             }
         }
         return null;

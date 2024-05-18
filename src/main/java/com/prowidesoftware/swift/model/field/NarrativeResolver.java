@@ -104,7 +104,11 @@ public class NarrativeResolver {
         StructuredNarrative structured = new StructuredNarrative();
         boolean firstSupplementAdded = false;
         List<String> valueLines = notEmptyLines(value);
+        int lineIndex = 0;
         for (String valueLine : valueLines) {
+            lineIndex++;
+            final int lineLength = valueLine.length();
+
             if (unstructuredSection) {
                 narrative.addUnstructuredFragment(valueLine);
                 continue;
@@ -123,9 +127,9 @@ public class NarrativeResolver {
                         if (supportsSupplement) {
                             firstSupplementAdded = addNarrativeSupplement(firstSupplementAdded, valueLine, structured);
                         } else if (StringUtils.isNotEmpty(valueLine)) {
-                            structured.addNarrativeFragment(valueLine);
+                            structured.addNarrativeFragment(valueLine, lineIndex, lineLength);
                         }
-                    } else structured.addNarrativeFragment(valueLine);
+                    } else structured.addNarrativeFragment(valueLine, lineIndex, lineLength);
                 } else {
                     // new codeword
                     String codeword = StringUtils.substringBetween(valueLine, "/", "/");
@@ -172,21 +176,23 @@ public class NarrativeResolver {
                             if (supportsCountry) {
                                 if (!textWithoutBankCode.isEmpty()) {
                                     structured.addNarrativeFragment(
-                                            textWithoutBankCode); // structured.addNarrativeFragment(null);
+                                            textWithoutBankCode,
+                                            lineIndex,
+                                            lineLength); // structured.addNarrativeFragment(null);
                                 }
                             } else {
-                                structured.addNarrativeFragment(textWithoutBankCode);
+                                structured.addNarrativeFragment(textWithoutBankCode, lineIndex, lineLength);
                             }
                         }
 
                         narrative.add(structured);
                     } else if (!additionalNarrativesStartWithDoubleSlash && !structured.isEmpty()) {
-                        structured.addNarrativeFragment(valueLine);
+                        structured.addNarrativeFragment(valueLine, lineIndex, lineLength);
                         unstructuredSection = false;
                     }
                 }
             } else if (!additionalNarrativesStartWithDoubleSlash && !structured.isEmpty()) {
-                structured.addNarrativeFragment(valueLine);
+                structured.addNarrativeFragment(valueLine, lineIndex, lineLength);
                 unstructuredSection = false;
             }
             if (unstructuredSection) narrative.addUnstructuredFragment(valueLine);

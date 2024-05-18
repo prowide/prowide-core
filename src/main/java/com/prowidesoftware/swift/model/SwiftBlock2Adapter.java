@@ -62,7 +62,7 @@ public class SwiftBlock2Adapter implements JsonSerializer<SwiftBlock2>, JsonDese
                 && jsonObject.get(DIRECTION).getAsString().equals("O")) {
             return getSwiftBlock2OutputObject(jsonObject);
         } else {
-            // defult to INPUT
+            // default to INPUT
             return getSwiftBlock2InputObject(jsonObject);
         }
     }
