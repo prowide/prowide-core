@@ -91,11 +91,11 @@ Fieldset 36
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence B2 - Sub Balance (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence B2 - Sub Balance (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 94 B,C,F (O)</li>
 <li class="field">Field 93 A (M)</li>
 <li class="sequence">
-Sequence B2a - Intra-Position Movement (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence B2a - Intra-Position Movement (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="sequence">
 Sequence B2a1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 A,B (O)</li>

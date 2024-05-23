@@ -78,7 +78,7 @@ Fieldset 93
  (M)<ul><li>FieldsetItem 93 D (M)</li><li>FieldsetItem 93 D (M)</li></ul></li><li class="sequence">
 Sequence B1a - Activity Information Per Transaction (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="sequence">
-Sequence B1a1 - Activity Information Per Transaction (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence B1a1 - Linkages (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 A,B (O)</li>
 <li class="field">Field 20 C,U (M)</li>
 <li class="field">Field 16 S (M)</li>
@@ -126,7 +126,7 @@ Fieldset 95
 <li class="sequence">
 Sequence C - Free Asset Activity (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="sequence">
-Sequence C1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C1 - Linkages (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 A,B (O)</li>
 <li class="field">Field 20 C,U (M)</li>
 <li class="field">Field 16 S (M)</li>

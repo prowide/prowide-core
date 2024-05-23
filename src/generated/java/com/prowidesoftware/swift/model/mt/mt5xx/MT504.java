@@ -48,7 +48,7 @@ Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
 Fieldset 20
  (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="field">Field 23 G (M)</li>
 <li class="sequence">
-Sequence A1 - Agreement (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence A1 - Agreement (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 22 F (O)</li>
 <li class="field">Field 98 A (O)</li>
 <li class="field">Field 13 B (O)</li>
