@@ -51,7 +51,7 @@ Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 25 D (O)</li>
 <li class="sequence">
-Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence A1 - Linkages (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 A,B (O)</li>
 <li class="field">Field 20 C,U (M)</li>
 <li class="field">Field 16 S (M)</li>

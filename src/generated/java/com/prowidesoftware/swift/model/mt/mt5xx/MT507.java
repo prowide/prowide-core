@@ -64,7 +64,7 @@ Fieldset 95
 <li class="fieldset">
 Fieldset 70
  (O)<ul><li>FieldsetItem 70 D (O)</li><li>FieldsetItem 70 C (O)</li></ul></li><li class="sequence">
-Sequence A2 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence A2 - Linkages (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 A,B (O)</li>
 <li class="field">Field 20 C (M)</li>
 <li class="field">Field 16 S (M)</li>

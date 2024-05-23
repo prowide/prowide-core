@@ -132,7 +132,7 @@ Fieldset 22
 Fieldset 98
  (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="sequence">
-Sequence C2a - Settlement Parties (O)<ul><li class="field">Field 16 R (M)</li>
+Sequence C2a - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
