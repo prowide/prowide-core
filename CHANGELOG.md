@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.5.1 - SNAPSHOT
+  * Restore deprecated method in MT210 class
+
 #### 9.5.0 - May 2024
   * SWIFT Standard release update 2024 (live 16 November 2025)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
