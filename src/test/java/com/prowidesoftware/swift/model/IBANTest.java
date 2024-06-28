@@ -261,6 +261,7 @@ public class IBANTest {
         assertIbanOk("  GB06 BARC 2006 0500 9524 86");
         assertIbanOk("  GB06 LOYD 3097 5104 5702 05.");
         assertIbanOk("GB26BOFS80200643721002");
+        assertIbanOk("EG389004000100300074201200001");
     }
 
     private void assertIbanOk(String string) {
