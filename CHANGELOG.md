@@ -1,7 +1,7 @@
 # Prowide Core - CHANGELOG
 
-#### 9.4.17 - SNAPSHOT
-  * (PW-1913) Added IBAN validation for Egypt
+#### 9.4.17 - June 2024
+  * (PW-1913) Added IBAN validation for Egypt local account structure
 
 #### 9.4.16 - May 2024
   * (PW-1862) Added NarrativeFragment class for detailed line information in StructuredNarrative fragments
