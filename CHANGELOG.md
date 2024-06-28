@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.1.16 - June 2024
+  * (PW-1913) Added IBAN validation for Egypt local account structure
+
 #### 10.1.15 - May 2024
   * (PW-1862) Added NarrativeFragment class for detailed line information in StructuredNarrative fragments
   * Fixed SwiftMessage getPDE(): return empty value instead of null when codeword exists and has no value

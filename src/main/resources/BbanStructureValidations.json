@@ -220,6 +220,26 @@
     ]
   },
   {
+    "country_code": "EG",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 17,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
     "country_code": "HR",
     "validation_rules": [
       {
