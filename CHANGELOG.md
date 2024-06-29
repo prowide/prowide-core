@@ -1,6 +1,7 @@
 # Prowide Core - CHANGELOG
 
-#### 9.5.1 - SNAPSHOT
+#### 9.5.1 - June 2024
+  * (PW-1913) Added IBAN validation for Egypt local account structure
   * Restore deprecated method in MT210 class
 
 #### 9.5.0 - May 2024
