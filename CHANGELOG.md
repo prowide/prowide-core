@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 10.2.1 - June 2024
+  * (PW-1913) Added IBAN validation for Egypt local account structure
+  * Restore deprecated method in MT210 class
+
 #### 10.2.0 - May 2024
   * SWIFT Standard release update 2024 (live 16 November 2025)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
