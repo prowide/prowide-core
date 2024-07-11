@@ -59,6 +59,14 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     private static final String fieldNamePattern = "^\\d{2,3}[A-Z]?$";
 
     /**
+     * No-argument constructor required for serialization.
+     * Initializes the components list.
+     */
+    protected Field() {
+        this.components = new ArrayList<>();
+    }
+
+    /**
      * Creates a field with the list of components initialized to the given number of components.
      *
      * @param components the number of components to initialize

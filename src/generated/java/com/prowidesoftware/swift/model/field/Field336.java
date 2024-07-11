@@ -31,12 +31,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -239,11 +236,9 @@ public class Field336 extends Field implements Serializable {
             //default format (as is)
             return getComponent(2);
         }
-        if (component == 3) {
-            //default format (as is)
-            return getComponent(3);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(3);
     }
 
     /**
@@ -258,7 +253,7 @@ public class Field336 extends Field implements Serializable {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -483,32 +478,14 @@ public class Field336 extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component2 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent2(String)
-     * method.
-     *
-     * @see #setComponent2(String)
-     * @since 9.2.7
-     *
-     * @param component2 the Long with the Number Of Messages content to set
-     * @return the field object to enable build pattern
-     */
-    public Field336 setComponent2(java.lang.Long component2) {
-        setComponent(2, SwiftFormatUtils.getLong(component2));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number Of Messages (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Number Of Messages content to set
      * @return the field object to enable build pattern
-     * @see #setNumberOfMessages(java.lang.Long)
      */
     public Field336 setComponent2(java.lang.Number component2) {
 
@@ -539,26 +516,12 @@ public class Field336 extends Field implements Serializable {
     }
 
     /**
-     * Set the Number Of Messages (component 2) from a Long object.
-     *
-     * @see #setComponent2(java.lang.Long)
-     *
-     * @param component2 Long with the Number Of Messages content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field336 setNumberOfMessages(java.lang.Long component2) {
-        return setComponent2(component2);
-    }
-
-    /**
      * Alternative method setter for field's Number Of Messages (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Number Of Messages content to set
      * @return the field object to enable build pattern
-     * @see #setNumberOfMessages(java.lang.Long)
      */
     public Field336 setNumberOfMessages(java.lang.Number component2) {
         return setComponent2(component2);
@@ -650,7 +613,7 @@ public class Field336 extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field336(f));
             }

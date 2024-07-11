@@ -97,22 +97,22 @@ public class SwiftMessageTest {
         final SwiftMessage m = new SwiftMessage(true);
 
         assertNotNull(m.getBlock1());
-        assertTrue(m.getBlock1() instanceof SwiftBlock1);
+        assertInstanceOf(SwiftBlock1.class, m.getBlock1());
 
         assertNotNull(m.getBlock2());
-        assertTrue(m.getBlock2() instanceof SwiftBlock2);
+        assertInstanceOf(SwiftBlock2.class, m.getBlock2());
 
         assertNotNull(m.getBlock3());
-        assertTrue(m.getBlock3() instanceof SwiftBlock3);
+        assertInstanceOf(SwiftBlock3.class, m.getBlock3());
 
         assertNotNull(m.getBlock4());
-        assertTrue(m.getBlock4() instanceof SwiftBlock4);
+        assertInstanceOf(SwiftBlock4.class, m.getBlock4());
 
         assertNotNull(m.getBlock5());
-        assertTrue(m.getBlock5() instanceof SwiftBlock5);
+        assertInstanceOf(SwiftBlock5.class, m.getBlock5());
 
         assertNotNull(m.getUserBlocks());
-        assertTrue(m.getUserBlocks() instanceof List);
+        assertInstanceOf(List.class, m.getUserBlocks());
 
         // expected 2 because empty blocks are not counted and block 1 and 2 have default attribute values
         assertEquals(2, m.getBlockCount());

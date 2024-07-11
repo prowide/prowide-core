@@ -31,12 +31,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -265,11 +262,9 @@ public class Field22C extends Field implements Serializable {
             //default format (as is)
             return getComponent(4);
         }
-        if (component == 5) {
-            //default format (as is)
-            return getComponent(5);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(5);
     }
 
     /**
@@ -284,7 +279,7 @@ public class Field22C extends Field implements Serializable {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -568,32 +563,14 @@ public class Field22C extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component3 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent3(String)
-     * method.
-     *
-     * @see #setComponent3(String)
-     * @since 9.2.7
-     *
-     * @param component3 the Long with the Reference Code content to set
-     * @return the field object to enable build pattern
-     */
-    public Field22C setComponent3(java.lang.Long component3) {
-        setComponent(3, SwiftFormatUtils.getLong(component3));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Reference Code (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Reference Code content to set
      * @return the field object to enable build pattern
-     * @see #setReferenceCode(java.lang.Long)
      */
     public Field22C setComponent3(java.lang.Number component3) {
 
@@ -624,26 +601,12 @@ public class Field22C extends Field implements Serializable {
     }
 
     /**
-     * Set the Reference Code (component 3) from a Long object.
-     *
-     * @see #setComponent3(java.lang.Long)
-     *
-     * @param component3 Long with the Reference Code content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field22C setReferenceCode(java.lang.Long component3) {
-        return setComponent3(component3);
-    }
-
-    /**
      * Alternative method setter for field's Reference Code (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Reference Code content to set
      * @return the field object to enable build pattern
-     * @see #setReferenceCode(java.lang.Long)
      */
     public Field22C setReferenceCode(java.lang.Number component3) {
         return setComponent3(component3);
@@ -756,7 +719,7 @@ public class Field22C extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field22C(f));
             }
