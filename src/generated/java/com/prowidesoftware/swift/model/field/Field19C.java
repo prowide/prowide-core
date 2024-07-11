@@ -33,12 +33,9 @@ import java.math.BigInteger;
 import com.prowidesoftware.swift.model.field.AmountContainer;
 import com.prowidesoftware.swift.model.field.AmountResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -229,14 +226,13 @@ public class Field19C extends Field implements Serializable, AmountContainer {
             //default format (as is)
             return getComponent(1);
         }
-        if (component == 2) {
-            //amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            BigDecimal n = getComponent2AsBigDecimal();
-            if (n != null) {
-                return f.format(n);
-            }
+        // This is the last component, return directly without `if`
+        //amount, rate
+        java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+        f.setMaximumFractionDigits(13);
+        BigDecimal n = getComponent2AsBigDecimal();
+        if (n != null) {
+            return f.format(n);
         }
         return null;
     }
@@ -253,7 +249,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -493,31 +489,12 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the component2 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
-     * @since 9.2.7
-     *
-     * @param component2 the BigDecimal with the Adjustment Factor content to set
-     * @return the field object to enable build pattern
-     */
-    public Field19C setComponent2(java.math.BigDecimal component2) {
-        setComponent(2, SwiftFormatUtils.getBigDecimal(component2));
-        return this;
-    }
-    /**
      * Alternative method setter for field's Adjustment Factor (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
      * @param component2 the Number with the Adjustment Factor content to set
      * @return the field object to enable build pattern
-     * @see #setAdjustmentFactor(java.math.BigDecimal)
      */
     public Field19C setComponent2(java.lang.Number component2) {
 
@@ -550,26 +527,12 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the Adjustment Factor (component 2) from a BigDecimal object.
-     *
-     * @see #setComponent2(java.math.BigDecimal)
-     *
-     * @param component2 BigDecimal with the Adjustment Factor content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field19C setAdjustmentFactor(java.math.BigDecimal component2) {
-        return setComponent2(component2);
-    }
-
-    /**
      * Alternative method setter for field's Adjustment Factor (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Adjustment Factor content to set
      * @return the field object to enable build pattern
-     * @see #setAdjustmentFactor(java.math.BigDecimal)
      */
     public Field19C setAdjustmentFactor(java.lang.Number component2) {
         return setComponent2(component2);
@@ -581,16 +544,6 @@ public class Field19C extends Field implements Serializable, AmountContainer {
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field19C setAmount(String component2) {
-        return setAdjustmentFactor(component2);
-    }
-
-    /**
-     * @deprecated use #setComponent2(java.math.BigDecimal) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field19C setAmount(java.math.BigDecimal component2) {
         return setAdjustmentFactor(component2);
     }
 
@@ -620,6 +573,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
      * @return the first amount as BigDecimal value. Can be null
      * @see AmountResolver#amount(Field)
      */
+    @Override
     public BigDecimal amount() {
         return AmountResolver.amount(this);
     }
@@ -688,7 +642,7 @@ public class Field19C extends Field implements Serializable, AmountContainer {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field19C(f));
             }

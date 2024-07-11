@@ -31,12 +31,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -206,14 +203,11 @@ public class Field124 extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component != 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 124");
         }
-        if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
-        }
-        return null;
+        //default format (as is)
+        return getComponent(1);
     }
 
     /**
@@ -228,7 +222,7 @@ public class Field124 extends Field implements Serializable {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -431,7 +425,7 @@ public class Field124 extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field124(f));
             }

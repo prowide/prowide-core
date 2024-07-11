@@ -299,27 +299,6 @@ public class FINWriterVisitor implements IMessageVisitor {
 
     ////////////////////////////////////////////////////////////
     //
-    // DEPRECATED
-    //
-    ////////////////////////////////////////////////////////////
-    public void tag(SwiftBlock b, Tag t) {
-        if (b == null) return;
-        if (b instanceof SwiftBlock3) {
-            tag((SwiftBlock3) b, t);
-        }
-        if (b instanceof SwiftBlock4) {
-            tag((SwiftBlock4) b, t);
-        }
-        if (b instanceof SwiftBlock5) {
-            tag((SwiftBlock5) b, t);
-        }
-        if (b instanceof SwiftBlockUser) {
-            tag((SwiftBlockUser) b, t);
-        }
-    }
-
-    ////////////////////////////////////////////////////////////
-    //
     // INTERNAL METHODS
     //
     ////////////////////////////////////////////////////////////

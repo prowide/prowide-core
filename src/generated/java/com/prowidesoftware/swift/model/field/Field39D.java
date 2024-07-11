@@ -30,12 +30,9 @@ import java.util.HashMap;
 
 import com.prowidesoftware.swift.model.field.MultiLineField;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -264,11 +261,9 @@ public class Field39D extends Field implements Serializable, MultiLineField {
             //default format (as is)
             return getComponent(11);
         }
-        if (component == 12) {
-            //default format (as is)
-            return getComponent(12);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(12);
     }
 
     /**
@@ -283,7 +278,7 @@ public class Field39D extends Field implements Serializable, MultiLineField {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -999,7 +994,7 @@ public class Field39D extends Field implements Serializable, MultiLineField {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field39D(f));
             }
@@ -1015,6 +1010,7 @@ public class Field39D extends Field implements Serializable, MultiLineField {
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -1028,6 +1024,7 @@ public class Field39D extends Field implements Serializable, MultiLineField {
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line, int offset) {
         Field39D cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -1040,6 +1037,7 @@ public class Field39D extends Field implements Serializable, MultiLineField {
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -1052,6 +1050,7 @@ public class Field39D extends Field implements Serializable, MultiLineField {
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLines(int offset) {
         Field39D cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -1066,6 +1065,7 @@ public class Field39D extends Field implements Serializable, MultiLineField {
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -1080,6 +1080,7 @@ public class Field39D extends Field implements Serializable, MultiLineField {
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field39D cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));

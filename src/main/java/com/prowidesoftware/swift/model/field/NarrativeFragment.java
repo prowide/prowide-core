@@ -81,6 +81,7 @@ public class NarrativeFragment {
         return lineLength;
     }
 
+    @Override
     public String toString() {
         return text;
     }

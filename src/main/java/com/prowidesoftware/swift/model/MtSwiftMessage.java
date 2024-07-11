@@ -70,6 +70,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
     /**
      * Calls {@link #MtSwiftMessage(String, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     *
      * @param fin the plain FIN message content
      */
     public MtSwiftMessage(final String fin) {
@@ -98,6 +99,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
     /**
      * Calls {@link #MtSwiftMessage(InputStream, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     *
      * @param stream input stream to read
      * @throws IOException on error during file reading
      */
@@ -110,7 +112,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * <br>
      * File format is set to {@link FileFormat#FIN}.
      *
-     * @param stream input stream to read
+     * @param stream           input stream to read
      * @param metadataStrategy a strategy for metadata extraction
      * @throws IOException on error during file reading
      * @since 9.1.4
@@ -134,7 +136,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * <br>
      * File format is set to {@link FileFormat#FIN}
      *
-     * @param file file holding message content
+     * @param file             file holding message content
      * @param metadataStrategy a strategy for metadata extraction
      * @throws IOException on error during file reading
      * @since 9.1.4
@@ -342,6 +344,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
     /**
      * Calls {@link #updateFromFIN(String, MessageMetadataStrategy)} with the {@link DefaultMtMetadataStrategy}
+     *
      * @param fin raw (FIN) message content to update from
      */
     public void updateFromFIN(final String fin) {
@@ -451,10 +454,13 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     public Integer getMessageTypeInt() {
         final String number = getMessageType();
         if (StringUtils.isNumeric(number)) {
-            return Integer.parseInt(number);
-        } else {
-            return null;
+            try {
+                return Integer.parseInt(number);
+            } catch (NumberFormatException e) {
+                log.log(Level.WARNING, "error parsing message type as number: " + e.getMessage(), e);
+            }
         }
+        return null;
     }
 
     /**

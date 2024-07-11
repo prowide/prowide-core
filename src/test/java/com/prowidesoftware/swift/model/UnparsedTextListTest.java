@@ -57,7 +57,7 @@ public class UnparsedTextListTest {
     @Test
     public void test_addText() {
         t.addText(someText);
-        assertEquals(t.size(), new Integer(1));
+        assertEquals(t.size(), Integer.valueOf(1));
         assertEquals(t.getText(0), someText);
     }
 
@@ -71,9 +71,9 @@ public class UnparsedTextListTest {
 
     @Test
     public void test_size() {
-        assertEquals(t.size(), new Integer(0));
+        assertEquals(t.size(), Integer.valueOf(0));
         t.addText(someText);
-        assertEquals(t.size(), new Integer(1));
+        assertEquals(t.size(), Integer.valueOf(1));
     }
 
     @Test
@@ -111,7 +111,7 @@ public class UnparsedTextListTest {
         t.addText(msg);
 
         // check things out
-        assertEquals(t.size(), new Integer(1));
+        assertEquals(t.size(), Integer.valueOf(1));
         assertEquals(t.getText(0), msgString);
     }
 
@@ -121,7 +121,7 @@ public class UnparsedTextListTest {
         t.addText(someMsg);
         t.removeText(0);
         assertEquals(t.getText(0), someMsg);
-        assertEquals(t.size(), new Integer(1));
+        assertEquals(t.size(), Integer.valueOf(1));
     }
 
     @Test
@@ -135,7 +135,7 @@ public class UnparsedTextListTest {
         t.addText(someMsg);
         t.removeText(someText);
         assertEquals(t.getText(0), someMsg);
-        assertEquals(t.size(), new Integer(1));
+        assertEquals(t.size(), Integer.valueOf(1));
     }
 
     @Test
@@ -174,10 +174,7 @@ public class UnparsedTextListTest {
 
         SwiftMessage msg = SwiftMessage.parse(sb.toString());
 
-        @SuppressWarnings("unused")
-        SwiftMessage m2 = SwiftMessage.parse(msg.getUnparsedTexts().getText(0));
-
-        @SuppressWarnings("unused")
-        SwiftMessage m3 = SwiftMessage.parse(msg.getUnparsedTexts().getText(1));
+        assertNotNull(SwiftMessage.parse(msg.getUnparsedTexts().getText(0)));
+        assertNotNull(SwiftMessage.parse(msg.getUnparsedTexts().getText(1)));
     }
 }

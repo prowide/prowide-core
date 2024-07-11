@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static com.prowidesoftware.swift.utils.ConstraintUtils.escapeEcmaScript;
+
 import java.util.Objects;
 
 /**
@@ -52,7 +54,7 @@ public enum BicValidationResult {
      */
     public String message() {
         return this.message
-                .replace("${found}", Objects.toString(found))
+                .replace("${found}", Objects.toString(escapeEcmaScript(found)))
                 .replace("${length}", found == null ? "-1" : String.valueOf(found.length()));
     }
 

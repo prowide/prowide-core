@@ -1828,21 +1828,20 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return a new block with the trimmed content
      */
     public SwiftTagListBlock removeAfterFirstStartsWith(final String name, final String startsWith) {
-        if (this.tags == null || !this.tags.isEmpty()) {
+        if (this.tags == null || this.tags.isEmpty()) {
             return new SwiftTagListBlock();
         }
 
-        final List<Tag> tags = new ArrayList<>();
-        boolean done = false;
-        for (int i = 0; i < this.tags.size() && !done; i++) {
-            final Tag t = this.tags.get(i);
-            if (StringUtils.equals(t.getName(), name) && t.startsWith(startsWith)) {
-                done = true;
+        final List<Tag> updatedTags = new ArrayList<>();
+
+        for (Tag t : this.tags) {
+            if (StringUtils.equals(t.getName(), name) && StringUtils.startsWith(t.getValue(), startsWith)) {
+                break;
             } else {
-                tags.add(t);
+                updatedTags.add(t);
             }
         }
-        return new SwiftTagListBlock(tags);
+        return new SwiftTagListBlock(updatedTags);
     }
 
     /**

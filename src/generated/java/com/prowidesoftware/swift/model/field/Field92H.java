@@ -35,12 +35,9 @@ import com.prowidesoftware.swift.model.field.GenericField;
 import com.prowidesoftware.swift.model.field.MonetaryAmountContainer;
 import com.prowidesoftware.swift.model.field.MonetaryAmountResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -266,11 +263,9 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
                 return f.format(n);
             }
         }
-        if (component == 4) {
-            //default format (as is)
-            return getComponent(4);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(4);
     }
 
     /**
@@ -285,7 +280,7 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -630,31 +625,12 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Set the component3 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
-     * @since 9.2.7
-     *
-     * @param component3 the BigDecimal with the Amount content to set
-     * @return the field object to enable build pattern
-     */
-    public Field92H setComponent3(java.math.BigDecimal component3) {
-        setComponent(3, SwiftFormatUtils.getBigDecimal(component3));
-        return this;
-    }
-    /**
      * Alternative method setter for field's Amount (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
      * @param component3 the Number with the Amount content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
      */
     public Field92H setComponent3(java.lang.Number component3) {
 
@@ -687,26 +663,12 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Set the Amount (component 3) from a BigDecimal object.
-     *
-     * @see #setComponent3(java.math.BigDecimal)
-     *
-     * @param component3 BigDecimal with the Amount content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field92H setAmount(java.math.BigDecimal component3) {
-        return setComponent3(component3);
-    }
-
-    /**
      * Alternative method setter for field's Amount (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Amount content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
      */
     public Field92H setAmount(java.lang.Number component3) {
         return setComponent3(component3);
@@ -734,26 +696,32 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
     }
 
 
+    @Override
     public List<String> currencyStrings() {
         return MonetaryAmountResolver.currencyStrings(this);
     }
 
+    @Override
     public List<Currency> currencies() {
         return MonetaryAmountResolver.currencies(this);
     }
 
+    @Override
     public Currency currency() {
         return MonetaryAmountResolver.resolveCurrency(this);
     }
 
+    @Override
     public String currencyString() {
         return MonetaryAmountResolver.resolveCurrencyString(this);
     }
 
+    @Override
     public void initializeCurrencies(String cur) {
         MonetaryAmountResolver.resolveSetCurrency(this, cur);
     }
 
+    @Override
     public void initializeCurrencies(Currency cur) {
         MonetaryAmountResolver.resolveSetCurrency(this, cur);
     }
@@ -774,6 +742,7 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
      * @return the first amount as BigDecimal value. Can be null
      * @see MonetaryAmountResolver#amount(Field)
      */
+    @Override
     public BigDecimal amount() {
         return MonetaryAmountResolver.amount(this);
     }
@@ -785,6 +754,7 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
      *
      * @return DSS component value or null if the DSS is not set or not available for this field.
      */
+    @Override
     public String getDSS() {
         return null;
     }
@@ -795,6 +765,7 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
      * @see #getDSS()
      * @return true if DSS is present, false otherwise.
      */
+    @Override
     public boolean isDSSPresent() {
         return false;
     }
@@ -809,6 +780,7 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
      *
      * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
      */
+    @Override
     public String getConditionalQualifier() {
         return getComponent(CONDITIONAL_QUALIFIER);
     }
@@ -876,7 +848,7 @@ public class Field92H extends Field implements Serializable, MonetaryAmountConta
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field92H(f));
             }
