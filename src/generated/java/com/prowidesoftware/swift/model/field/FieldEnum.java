@@ -723,13 +723,34 @@ public enum FieldEnum {
     F619,
     F999;
 
-    public String getFieldName() {
+    /**
+    * Retrieves the field name associated with the enum constant.
+    * The field name is the part of the enum constant name after the initial 'F'.
+    *
+    * @return the field name as a {@code String}
+    * <p>
+    * Example:
+    *   FieldEnum field = FieldEnum.F11A;
+    *   String fieldName = field.fieldName(); // returns "11A"
+    */
+    public String fieldName() {
         return name().substring(1); // Skips the first character 'F' and returns the rest of the name
     }
 
-    public static FieldEnum fromCode(String code) {
+    /**
+    * Converts a string field name into its corresponding {@code FieldEnum} constant.
+    * The input should be the string representation of the field without the initial 'F'.
+    *
+    * @param fieldName the string field name (e.g., "11A", "12B")
+    * @return the corresponding {@code FieldEnum} constant, or {@code null} if not found
+    * <p>
+    * Example:
+    *   FieldEnum field = FieldEnum.fromFieldName("11A"); // returns FieldEnum.F11A
+    *   FieldEnum unknownField = FieldEnum.fromFieldName("99Z"); // returns null
+    */
+    public static FieldEnum fromFieldName(String fieldName) {
         for (FieldEnum field : FieldEnum.values()) {
-            if (field.getFieldName().equals(code)) {
+            if (field.fieldName().equals(fieldName)) {
                 return field;
             }
         }
