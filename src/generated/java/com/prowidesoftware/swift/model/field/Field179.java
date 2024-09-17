@@ -439,6 +439,8 @@ public class Field179 extends Field implements Serializable {
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
+    // Field179 doesn't have any labeled component, the fromJson method returns an empty field
+    @SuppressWarnings("unused")
     public static Field179 fromJson(final String json) {
 
         final Field179 field = new Field179();

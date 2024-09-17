@@ -413,6 +413,7 @@ public class Field15M extends Field implements Serializable {
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
+    // Field15M doesn't have any labeled component, the fromJson method returns an empty field
     @SuppressWarnings("unused")
     public static Field15M fromJson(final String json) {
 

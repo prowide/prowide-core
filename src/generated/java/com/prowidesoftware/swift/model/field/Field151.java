@@ -517,7 +517,6 @@ public class Field151 extends Field implements Serializable {
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    @SuppressWarnings("unused")
     public static Field151 fromJson(final String json) {
 
         final Field151 field = new Field151();
