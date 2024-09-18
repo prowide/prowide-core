@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main", "CU-*", "SRU*" ]
+    branches: [ "CU-86b14j4e0_SRU2024_check-code-security-reports-at-GitHub-for-all-repos", "main", "CU-*", "SRU*" ]
   schedule:
     - cron: "59 12 * * 2"
 
