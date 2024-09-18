@@ -21,13 +21,14 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.field.Field16R;
 import com.prowidesoftware.swift.model.field.Field16S;
 import com.prowidesoftware.swift.model.field.GenericField;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+
 import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for SWIFT blocks that contain and arbitrary <b>set of fields</b> (3, 4, 5 and user blocks).<br>
@@ -1909,7 +1910,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.7
      */
     public SwiftTagListBlock append(final Tag tag) {
-        Validate.notNull(tag);
+        Validate.isTrue(tag != null);
         this.tags.add(tag);
         return this;
     }
@@ -1940,7 +1941,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.7
      */
     public SwiftTagListBlock append(final Field field) {
-        Validate.notNull(field);
+        Validate.isTrue(field != null);
         this.tags.add(field.asTag());
         return this;
     }
@@ -1953,7 +1954,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.8
      */
     public SwiftTagListBlock append(final Field... fields) {
-        if (fields != null && fields.length > 0) {
+        if (fields != null) {
             for (final Field f : fields) {
                 append(f);
             }

@@ -171,13 +171,11 @@ public class Field29K extends Field implements Serializable {
             // default format (as is)
             return getComponent(1);
         }
-        if (component == 2) {
-            // time: HH[mm]
-            java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-            java.util.Calendar cal = getComponent2AsCalendar();
-            if (cal != null) {
-                return f.format(cal.getTime());
-            }
+        // time: HH[mm]
+        java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
+        java.util.Calendar cal = getComponent2AsCalendar();
+        if (cal != null) {
+            return f.format(cal.getTime());
         }
         return null;
     }

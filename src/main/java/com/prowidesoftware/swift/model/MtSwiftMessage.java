@@ -442,12 +442,12 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
         final String number = getMessageType();
         if (StringUtils.isNumeric(number)) {
             try {
-            return Integer.parseInt(number);
+                return Integer.parseInt(number);
             } catch (NumberFormatException e) {
                 log.log(Level.WARNING, "error parsing message type as number: " + e.getMessage(), e);
             }
         }
-            return null;
+        return null;
     }
 
     /**

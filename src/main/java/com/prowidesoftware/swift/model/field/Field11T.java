@@ -221,14 +221,14 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
                 return f.format(cal.getTime());
             }
         }
-            // time: HH[mm]
-            java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-            java.util.Calendar cal = getComponent3AsCalendar();
-            if (cal != null) {
-                return f.format(cal.getTime());
-            }
-        	return null;
+        // time: HH[mm]
+        java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
+        java.util.Calendar cal = getComponent3AsCalendar();
+        if (cal != null) {
+            return f.format(cal.getTime());
         }
+        return null;
+    }
 
     /**
      * Returns the field component types pattern.
@@ -451,7 +451,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
         return this;
     }
 
-
     /**
      * Alternative method setter for field's Type (component 1) as as Number
      *
@@ -593,7 +592,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      *
      * @return the list of converted components (a Calendar object or null)
      */
-	@Override
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -686,7 +685,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
-	@Override
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -700,7 +699,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
-	@Override
+    @Override
     public String getLine(int line, int offset) {
         Field11T cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -713,7 +712,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
-	@Override
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -726,7 +725,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
-	@Override
+    @Override
     public List<String> getLines(int offset) {
         Field11T cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -741,7 +740,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
-	@Override
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -756,7 +755,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
-	@Override
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field11T cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));

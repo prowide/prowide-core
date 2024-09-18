@@ -174,14 +174,11 @@ public class Field21T extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component != 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 21T");
         }
-        if (component == 1) {
-            // default format (as is)
-            return getComponent(1);
-        }
-        return null;
+        // default format (as is)
+        return getComponent(1);
     }
 
     /**
@@ -387,7 +384,7 @@ public class Field21T extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field21T(f));
             }
