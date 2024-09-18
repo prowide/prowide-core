@@ -221,16 +221,14 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
                 return f.format(cal.getTime());
             }
         }
-        if (component == 3) {
             // time: HH[mm]
             java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
             java.util.Calendar cal = getComponent3AsCalendar();
             if (cal != null) {
                 return f.format(cal.getTime());
             }
+        	return null;
         }
-        return null;
-    }
 
     /**
      * Returns the field component types pattern.
@@ -453,23 +451,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
         return this;
     }
 
-    /**
-     * Set the component1 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent1(String)
-     * method.
-     *
-     * @see #setComponent1(String)
-     * @since 9.2.7
-     *
-     * @param component1 the Long with the Type content to set
-     * @return the field object to enable build pattern
-     */
-    public Field11T setComponent1(java.lang.Long component1) {
-        setComponent(1, SwiftFormatUtils.getLong(component1));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Type (component 1) as as Number
@@ -478,7 +459,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      *
      * @param component1 the Number with the Type content to set
      * @return the field object to enable build pattern
-     * @see #setType(java.lang.Long)
      */
     public Field11T setComponent1(java.lang.Number component1) {
 
@@ -509,26 +489,12 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Set the Type (component 1) from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Type content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field11T setType(java.lang.Long component1) {
-        return setComponent1(component1);
-    }
-
-    /**
      * Alternative method setter for field's Type (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Type content to set
      * @return the field object to enable build pattern
-     * @see #setType(java.lang.Long)
      */
     public Field11T setType(java.lang.Number component1) {
         return setComponent1(component1);
@@ -627,6 +593,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      *
      * @return the list of converted components (a Calendar object or null)
      */
+	@Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -703,7 +670,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field11T(f));
             }
@@ -719,6 +686,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+	@Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -732,6 +700,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+	@Override
     public String getLine(int line, int offset) {
         Field11T cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -744,6 +713,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+	@Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -756,6 +726,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+	@Override
     public List<String> getLines(int offset) {
         Field11T cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -770,6 +741,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+	@Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -784,6 +756,7 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+	@Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field11T cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));

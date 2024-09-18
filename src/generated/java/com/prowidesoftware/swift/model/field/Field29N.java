@@ -32,12 +32,9 @@ import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -220,20 +217,19 @@ public class Field29N extends Field implements Serializable, DateContainer {
             //default format (as is)
             return getComponent(2);
         }
-        if (component == 3) {
-            //time: HH[mm]
-            java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-            java.util.Calendar cal = getComponent3AsCalendar();
-            if (cal != null) {
-                return f.format(cal.getTime());
-            }
+        // This is the last component, return directly without `if`
+        //time: HH[mm]
+        java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
+        java.util.Calendar cal = getComponent3AsCalendar();
+        if (cal != null) {
+            return f.format(cal.getTime());
         }
         return null;
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -537,6 +533,7 @@ public class Field29N extends Field implements Serializable, DateContainer {
      *
      * @return the list of converted components (a Calendar object or null)
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -614,7 +611,7 @@ public class Field29N extends Field implements Serializable, DateContainer {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field29N(f));
             }

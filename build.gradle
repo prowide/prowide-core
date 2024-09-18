@@ -60,6 +60,7 @@ dependencies {
     compileOnly 'javax.xml.bind:jaxb-api:2.3.1'
     compileOnly 'javax.validation:validation-api:2.0.1.Final'
 
+    testImplementation 'javax.validation:validation-api:2.0.1.Final'
     testImplementation 'javax.persistence:javax.persistence-api:2.2'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testImplementation 'org.assertj:assertj-core:3.25.3'

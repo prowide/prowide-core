@@ -31,12 +31,9 @@ import java.util.HashMap;
 import com.prowidesoftware.swift.model.field.GenericField;
 import com.prowidesoftware.swift.model.field.MultiLineField;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -258,6 +255,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      *
      * @return DSS component value or null if the DSS is not set or not available for this field.
      */
+    @Override
     public String getDSS() {
         return null;
     }
@@ -268,6 +266,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      * @see #getDSS()
      * @return true if DSS is present, false otherwise.
      */
+    @Override
     public boolean isDSSPresent() {
         return false;
     }
@@ -282,6 +281,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      *
      * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
      */
+    @Override
     public String getConditionalQualifier() {
         return getComponent(CONDITIONAL_QUALIFIER);
     }
@@ -349,7 +349,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field95U(f));
             }
@@ -365,6 +365,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -378,6 +379,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line, int offset) {
         Field95U cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -390,6 +392,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -402,6 +405,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLines(int offset) {
         Field95U cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -416,6 +420,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -430,6 +435,7 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field95U cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));

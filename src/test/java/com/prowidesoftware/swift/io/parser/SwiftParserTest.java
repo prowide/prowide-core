@@ -54,14 +54,6 @@ public class SwiftParserTest {
 
         SwiftMessage m = new SwiftParser(messageToParse).message();
 
-        // get a simple value tag
-        @SuppressWarnings("unused")
-        String val32a = m.getBlock3().getTagValue("32A");
-
-        // get a repeated value tag
-        @SuppressWarnings("unused")
-        String[] list71 = m.getBlock3().getTagValues("71F");
-
         assertEquals("103", m.getType());
 
         // check b1
