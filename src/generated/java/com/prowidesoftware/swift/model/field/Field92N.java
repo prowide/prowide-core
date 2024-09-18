@@ -35,12 +35,9 @@ import com.prowidesoftware.swift.model.field.GenericField;
 import com.prowidesoftware.swift.model.field.MonetaryAmountContainer;
 import com.prowidesoftware.swift.model.field.MonetaryAmountResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -238,21 +235,20 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
             //default format (as is)
             return getComponent(3);
         }
-        if (component == 4) {
-            //amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            BigDecimal n = getComponent4AsBigDecimal();
-            if (n != null) {
-                return f.format(n);
-            }
+        // This is the last component, return directly without `if`
+        //amount, rate
+        java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+        f.setMaximumFractionDigits(13);
+        BigDecimal n = getComponent4AsBigDecimal();
+        if (n != null) {
+            return f.format(n);
         }
         return null;
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -517,31 +513,12 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Set the component2 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
-     * @since 9.2.7
-     *
-     * @param component2 the BigDecimal with the Quantity content to set
-     * @return the field object to enable build pattern
-     */
-    public Field92N setComponent2(java.math.BigDecimal component2) {
-        setComponent(2, SwiftFormatUtils.getBigDecimal(component2));
-        return this;
-    }
-    /**
      * Alternative method setter for field's Quantity (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
      * @param component2 the Number with the Quantity content to set
      * @return the field object to enable build pattern
-     * @see #setQuantity(java.math.BigDecimal)
      */
     public Field92N setComponent2(java.lang.Number component2) {
 
@@ -574,26 +551,12 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Set the Quantity (component 2) from a BigDecimal object.
-     *
-     * @see #setComponent2(java.math.BigDecimal)
-     *
-     * @param component2 BigDecimal with the Quantity content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field92N setQuantity(java.math.BigDecimal component2) {
-        return setComponent2(component2);
-    }
-
-    /**
      * Alternative method setter for field's Quantity (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Quantity content to set
      * @return the field object to enable build pattern
-     * @see #setQuantity(java.math.BigDecimal)
      */
     public Field92N setQuantity(java.lang.Number component2) {
         return setComponent2(component2);
@@ -655,31 +618,12 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Set the component4 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
-     * @since 9.2.7
-     *
-     * @param component4 the BigDecimal with the Amount content to set
-     * @return the field object to enable build pattern
-     */
-    public Field92N setComponent4(java.math.BigDecimal component4) {
-        setComponent(4, SwiftFormatUtils.getBigDecimal(component4));
-        return this;
-    }
-    /**
      * Alternative method setter for field's Amount (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
      * @param component4 the Number with the Amount content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
      */
     public Field92N setComponent4(java.lang.Number component4) {
 
@@ -712,52 +656,44 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Set the Amount (component 4) from a BigDecimal object.
-     *
-     * @see #setComponent4(java.math.BigDecimal)
-     *
-     * @param component4 BigDecimal with the Amount content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field92N setAmount(java.math.BigDecimal component4) {
-        return setComponent4(component4);
-    }
-
-    /**
      * Alternative method setter for field's Amount (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component4 the Number with the Amount content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
      */
     public Field92N setAmount(java.lang.Number component4) {
         return setComponent4(component4);
     }
 
 
+    @Override
     public List<String> currencyStrings() {
         return MonetaryAmountResolver.currencyStrings(this);
     }
 
+    @Override
     public List<Currency> currencies() {
         return MonetaryAmountResolver.currencies(this);
     }
 
+    @Override
     public Currency currency() {
         return MonetaryAmountResolver.resolveCurrency(this);
     }
 
+    @Override
     public String currencyString() {
         return MonetaryAmountResolver.resolveCurrencyString(this);
     }
 
+    @Override
     public void initializeCurrencies(String cur) {
         MonetaryAmountResolver.resolveSetCurrency(this, cur);
     }
 
+    @Override
     public void initializeCurrencies(Currency cur) {
         MonetaryAmountResolver.resolveSetCurrency(this, cur);
     }
@@ -778,6 +714,7 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
      * @return the first amount as BigDecimal value. Can be null
      * @see MonetaryAmountResolver#amount(Field)
      */
+    @Override
     public BigDecimal amount() {
         return MonetaryAmountResolver.amount(this);
     }
@@ -789,6 +726,7 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
      *
      * @return DSS component value or null if the DSS is not set or not available for this field.
      */
+    @Override
     public String getDSS() {
         return null;
     }
@@ -799,6 +737,7 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
      * @see #getDSS()
      * @return true if DSS is present, false otherwise.
      */
+    @Override
     public boolean isDSSPresent() {
         return false;
     }
@@ -813,6 +752,7 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
      *
      * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
      */
+    @Override
     public String getConditionalQualifier() {
         return getComponent(CONDITIONAL_QUALIFIER);
     }
@@ -880,7 +820,7 @@ public class Field92N extends Field implements Serializable, MonetaryAmountConta
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field92N(f));
             }

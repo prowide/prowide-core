@@ -30,12 +30,9 @@ import java.util.HashMap;
 
 import com.prowidesoftware.swift.model.field.GenericField;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -267,6 +264,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
      *
      * @return DSS component value or null if the DSS is not set or not available for this field.
      */
+    @Override
     public String getDSS() {
         return getComponent2();
     }
@@ -277,6 +275,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
      * @see #getDSS()
      * @return true if DSS is present, false otherwise.
      */
+    @Override
     public boolean isDSSPresent() {
         return getComponent2() != null;
     }
@@ -291,6 +290,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
      *
      * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
      */
+    @Override
     public String getConditionalQualifier() {
         return getComponent(CONDITIONAL_QUALIFIER);
     }
@@ -358,7 +358,7 @@ public class Field95S extends OptionSPartyField implements Serializable, Generic
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field95S(f));
             }

@@ -13,7 +13,7 @@ public class Issue95 {
         assertEquals("121212USD1234,FOO", f.getValue());
     }
 
-    public class MyField32A extends Field32A {
+    public static class MyField32A extends Field32A {
 
         public MyField32A(String value) {
             super(value);

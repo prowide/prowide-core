@@ -44,9 +44,10 @@ public class IsoUtilsTest {
         assertFalse(IsoUtils.getInstance().isValidISOCurrency(null));
         assertFalse(IsoUtils.getInstance().isValidISOCurrency("XYZ"));
 
-        IsoUtils.getInstance().getCurrencies().add("XYZ");
+        IsoUtils.getInstance().addCurrency("XYZ");
         assertTrue(IsoUtils.getInstance().isValidISOCurrency("XYZ"));
-        IsoUtils.getInstance().getCurrencies().remove("XYZ");
+        IsoUtils.getInstance().removeCurrency("XYZ");
+        assertFalse(IsoUtils.getInstance().isValidISOCurrency("XYZ"));
     }
 
     @Test
@@ -126,7 +127,8 @@ public class IsoUtilsTest {
     public void testAddCountry_5() {
         IsoUtils.getInstance().addCountry("SZ");
         assertTrue(IsoUtils.getInstance().isValidISOCountry("SZ"));
-        IsoUtils.getInstance().getCountries().remove("SZ");
+        IsoUtils.getInstance().removeCountry("SZ");
+        assertFalse(IsoUtils.getInstance().isValidISOCountry("SZ"));
     }
 
     @Test
@@ -157,6 +159,7 @@ public class IsoUtilsTest {
     public void testAddCurrency_5() {
         IsoUtils.getInstance().addCurrency("DSZ");
         assertTrue(IsoUtils.getInstance().isValidISOCurrency("DSZ"));
-        IsoUtils.getInstance().getCurrencies().remove("DSZ");
+        IsoUtils.getInstance().removeCurrency("DSZ");
+        assertFalse(IsoUtils.getInstance().isValidISOCurrency("DSZ"));
     }
 }

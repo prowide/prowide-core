@@ -33,12 +33,9 @@ import com.prowidesoftware.swift.model.field.MultiLineField;
 import com.prowidesoftware.swift.model.field.BICContainer;
 import com.prowidesoftware.swift.model.field.BICResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -212,16 +209,14 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
             //default format (as is)
             return getComponent(1);
         }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(2);
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -455,10 +450,12 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
     }
 
 
+    @Override
     public List<BIC> bics() {
         return BICResolver.bics(this);
     }
 
+    @Override
     public List<String> bicStrings () {
         return BICResolver.bicStrings(this);
     }
@@ -527,7 +524,7 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field50A(f));
             }
@@ -543,6 +540,7 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -556,6 +554,7 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line, int offset) {
         Field50A cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -568,6 +567,7 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -580,6 +580,7 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLines(int offset) {
         Field50A cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -594,6 +595,7 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -608,6 +610,7 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field50A cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));

@@ -53,9 +53,14 @@ public class ParserTest {
      */
     @Test
     public void testParse101Stream() throws IOException {
-        MT101 mt = MT101.parse(getClass().getResourceAsStream("/MT101.fin"));
-        SwiftMessage msg = mt.getSwiftMessage();
-        assertMT101(msg);
+        try (InputStream resourceStream = ParserTest.class.getResourceAsStream("/MT101.fin")) {
+            if (resourceStream == null) {
+                throw new IOException("Resource not found: MT101.fin");
+            }
+            MT101 mt = MT101.parse(resourceStream);
+            SwiftMessage msg = mt.getSwiftMessage();
+            assertMT101(msg);
+        }
     }
 
     /*

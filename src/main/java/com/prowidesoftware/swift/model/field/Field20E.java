@@ -190,11 +190,8 @@ public class Field20E extends Field implements Serializable {
             // default format (as is)
             return getComponent(1);
         }
-        if (component == 2) {
-            // default format (as is)
-            return getComponent(2);
-        }
-        return null;
+        // default format (as is)
+        return getComponent(2);
     }
 
     /**
@@ -440,7 +437,7 @@ public class Field20E extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field20E(f));
             }

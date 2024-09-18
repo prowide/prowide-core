@@ -53,10 +53,6 @@ public class XMLWriterVisitorTest {
 
     @SuppressWarnings("unused")
     private String getResult() {
-        return this.getResult("");
-    }
-
-    private String getResult(String testName) {
         msg.visit(visitor);
         return this.io.toString();
     }
@@ -69,7 +65,7 @@ public class XMLWriterVisitorTest {
         msg.setBlock4(null);
         msg.setBlock5(null);
 
-        assertXmlEqual("<message/>", getResult("testEmpty"));
+        assertXmlEqual("<message/>", getResult());
     }
 
     @Test
@@ -86,7 +82,7 @@ public class XMLWriterVisitorTest {
         msg.setBlock5(new SwiftBlock5());
 
         String xml = "<message><block1/>\n<block2/>\n<block3/>\n<block4/>\n<block5/>\n</message>";
-        assertXmlEqual(xml, getResult("testEmptyBlocks"));
+        assertXmlEqual(xml, getResult());
     }
 
     @Test
@@ -106,7 +102,7 @@ public class XMLWriterVisitorTest {
         b4.append(new Tag("t1:v1"));
         msg.setBlock1(b1);
         msg.setBlock4(b4);
-        assertXmlEqual(xml, getResult("testWithTags"));
+        assertXmlEqual(xml, getResult());
     }
 
     @Test
@@ -120,7 +116,7 @@ public class XMLWriterVisitorTest {
         msg.setBlock2(b2);
 
         String xml = "<message>\n" + Constants.B1_DATA_XML + Constants.B2_INPUT_XML + "</message>";
-        assertXmlEqual(xml, getResult("testBug1539324_1"));
+        assertXmlEqual(xml, getResult());
     }
 
     @Test
@@ -149,7 +145,7 @@ public class XMLWriterVisitorTest {
                 + "\n<block4>\n</block4>"
                 + "\n<block5>\n</block5>"
                 + "\n</message>";
-        assertXmlEqual(xml, getResult("testBug1539324_2"));
+        assertXmlEqual(xml, getResult());
     }
 
     @Test
@@ -171,7 +167,7 @@ public class XMLWriterVisitorTest {
                 + "\n\t</tag>"
                 + "\n</block4>"
                 + "</message>";
-        assertXmlEqual(xml, getResult("testBug1540294_1"));
+        assertXmlEqual(xml, getResult());
     }
 
     @Test
@@ -186,7 +182,7 @@ public class XMLWriterVisitorTest {
         msg.setBlock2(b2);
 
         String xml = "<message>\n" + Constants.B1_DATA_XML + Constants.B2_OUTPUT_XML + "</message>";
-        assertXmlEqual(xml, getResult("testBlock2Output_1"));
+        assertXmlEqual(xml, getResult());
     }
 
     @Test
@@ -198,7 +194,7 @@ public class XMLWriterVisitorTest {
         msg.setBlock2(b2);
 
         String xml = "<message>\n" + Constants.B2_OUTPUT_XML + "</message>";
-        String got = getResult("testBlock2Output");
+        String got = getResult();
         assertXmlEqual(xml, got);
     }
 
@@ -216,7 +212,7 @@ public class XMLWriterVisitorTest {
                 + "\n\t</tag>"
                 + "\n</block4>"
                 + "</message>";
-        assertXmlEqual(xml, getResult("testTagSerialization"));
+        assertXmlEqual(xml, getResult());
     }
 
     @Test
@@ -235,7 +231,7 @@ public class XMLWriterVisitorTest {
                 + "\n\t</tag>"
                 + "\n</block4>"
                 + "</message>";
-        assertXmlEqual(xml, getResult("testFieldSerialization"));
+        assertXmlEqual(xml, getResult());
     }
 
     @Test
@@ -256,6 +252,6 @@ public class XMLWriterVisitorTest {
         msg.setBlock1(b1);
         msg.setBlock4(b4);
         this.visitor = new XMLWriterVisitor(this.io, true);
-        assertXmlEqual(xml, getResult("testWithTags"));
+        assertXmlEqual(xml, getResult());
     }
 }

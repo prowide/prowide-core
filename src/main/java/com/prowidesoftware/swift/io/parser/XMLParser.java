@@ -380,7 +380,13 @@ public class XMLParser {
                         String text = getText(n);
                         // normalize line feeds (DOM parser removes carriage return characters from original XML file)
                         text = StringUtils.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
-                        field.setComponent(Integer.parseInt(number), text);
+                        try {
+                            field.setComponent(Integer.parseInt(number), text);
+                        } catch (NumberFormatException e) {
+                            log.warning(
+                                    "error setting component " + number + " for field " + name + ": " + e.getMessage());
+                            return null;
+                        }
                     }
                 }
             }

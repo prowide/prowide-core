@@ -139,16 +139,37 @@ public class IBAN {
      * @return IbanFormatStatus with detailed information of the validation problem found
      */
     public IbanValidationResult validate() {
-        if (iban == null) {
+        if (this.iban == null) {
             return IbanValidationResult.IBAN_IS_NULL;
         }
-        if (iban.length() == 0) {
+        final String code = removeNonAlpha(this.iban);
+
+        return validate(code);
+    }
+
+    /**
+     * Check an IBAN code throwing an exception with validation details if it is not valid.
+     *
+     * <p>Validates that the length is at least 5 chars: composed by a valid 2 letters ISO country code,
+     * 2 verifying digits, and 1 BBAN. The verification digits are also computed and verified.
+     * For the BBAN validation the specific per country structure must be defined either in the
+     * BbanStructureValidations.json file or by API in the {@link BbanStructureValidations} instance.
+     *
+     * <p>Non alpha-numeric characters are removed from the code prior to validation. Meaning an IBAN
+     * such as "ES64 0049 6170 68 2810279951" will be considered valid.
+     *
+     * @return IbanFormatStatus with detailed information of the validation problem found
+     */
+    public static IbanValidationResult validate(String code) {
+        if (code == null) {
+            return IbanValidationResult.IBAN_IS_NULL;
+        }
+        if (code.isEmpty()) {
             return IbanValidationResult.IBAN_IS_EMPTY;
         }
 
-        IbanValidationResult result = null;
+        IbanValidationResult result;
         try {
-            final String code = removeNonAlpha(this.iban);
 
             result = IbanValidationUtils.validateCountryCode(code);
 

@@ -32,12 +32,9 @@ import java.math.BigInteger;
 
 import com.prowidesoftware.swift.model.field.MultiLineField;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -291,16 +288,14 @@ public class Field59F extends Field implements Serializable, MultiLineField {
             //default format (as is)
             return getComponent(8);
         }
-        if (component == 9) {
-            //default format (as is)
-            return getComponent(9);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(9);
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -707,32 +702,14 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         return this;
     }
 
-    /**
-     * Set the component2 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent2(String)
-     * method.
-     *
-     * @see #setComponent2(String)
-     * @since 9.2.7
-     *
-     * @param component2 the Long with the Number 1 content to set
-     * @return the field object to enable build pattern
-     */
-    public Field59F setComponent2(java.lang.Long component2) {
-        setComponent(2, SwiftFormatUtils.getLong(component2));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number 1 (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Number 1 content to set
      * @return the field object to enable build pattern
-     * @see #setNumber1(java.lang.Long)
      */
     public Field59F setComponent2(java.lang.Number component2) {
 
@@ -763,26 +740,12 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Number 1 (component 2) from a Long object.
-     *
-     * @see #setComponent2(java.lang.Long)
-     *
-     * @param component2 Long with the Number 1 content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field59F setNumber1(java.lang.Long component2) {
-        return setComponent2(component2);
-    }
-
-    /**
      * Alternative method setter for field's Number 1 (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Number 1 content to set
      * @return the field object to enable build pattern
-     * @see #setNumber1(java.lang.Long)
      */
     public Field59F setNumber1(java.lang.Number component2) {
         return setComponent2(component2);
@@ -820,32 +783,14 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         return this;
     }
 
-    /**
-     * Set the component4 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent4(String)
-     * method.
-     *
-     * @see #setComponent4(String)
-     * @since 9.2.7
-     *
-     * @param component4 the Long with the Number 2 content to set
-     * @return the field object to enable build pattern
-     */
-    public Field59F setComponent4(java.lang.Long component4) {
-        setComponent(4, SwiftFormatUtils.getLong(component4));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number 2 (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component4 the Number with the Number 2 content to set
      * @return the field object to enable build pattern
-     * @see #setNumber2(java.lang.Long)
      */
     public Field59F setComponent4(java.lang.Number component4) {
 
@@ -876,26 +821,12 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Number 2 (component 4) from a Long object.
-     *
-     * @see #setComponent4(java.lang.Long)
-     *
-     * @param component4 Long with the Number 2 content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field59F setNumber2(java.lang.Long component4) {
-        return setComponent4(component4);
-    }
-
-    /**
      * Alternative method setter for field's Number 2 (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component4 the Number with the Number 2 content to set
      * @return the field object to enable build pattern
-     * @see #setNumber2(java.lang.Long)
      */
     public Field59F setNumber2(java.lang.Number component4) {
         return setComponent4(component4);
@@ -933,32 +864,14 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         return this;
     }
 
-    /**
-     * Set the component6 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent6(String)
-     * method.
-     *
-     * @see #setComponent6(String)
-     * @since 9.2.7
-     *
-     * @param component6 the Long with the Number 3 content to set
-     * @return the field object to enable build pattern
-     */
-    public Field59F setComponent6(java.lang.Long component6) {
-        setComponent(6, SwiftFormatUtils.getLong(component6));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number 3 (component 6) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component6 the Number with the Number 3 content to set
      * @return the field object to enable build pattern
-     * @see #setNumber3(java.lang.Long)
      */
     public Field59F setComponent6(java.lang.Number component6) {
 
@@ -989,26 +902,12 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Number 3 (component 6) from a Long object.
-     *
-     * @see #setComponent6(java.lang.Long)
-     *
-     * @param component6 Long with the Number 3 content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field59F setNumber3(java.lang.Long component6) {
-        return setComponent6(component6);
-    }
-
-    /**
      * Alternative method setter for field's Number 3 (component 6) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component6 the Number with the Number 3 content to set
      * @return the field object to enable build pattern
-     * @see #setNumber3(java.lang.Long)
      */
     public Field59F setNumber3(java.lang.Number component6) {
         return setComponent6(component6);
@@ -1046,32 +945,14 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         return this;
     }
 
-    /**
-     * Set the component8 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent8(String)
-     * method.
-     *
-     * @see #setComponent8(String)
-     * @since 9.2.7
-     *
-     * @param component8 the Long with the Number 4 content to set
-     * @return the field object to enable build pattern
-     */
-    public Field59F setComponent8(java.lang.Long component8) {
-        setComponent(8, SwiftFormatUtils.getLong(component8));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number 4 (component 8) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component8 the Number with the Number 4 content to set
      * @return the field object to enable build pattern
-     * @see #setNumber4(java.lang.Long)
      */
     public Field59F setComponent8(java.lang.Number component8) {
 
@@ -1102,26 +983,12 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Number 4 (component 8) from a Long object.
-     *
-     * @see #setComponent8(java.lang.Long)
-     *
-     * @param component8 Long with the Number 4 content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field59F setNumber4(java.lang.Long component8) {
-        return setComponent8(component8);
-    }
-
-    /**
      * Alternative method setter for field's Number 4 (component 8) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component8 the Number with the Number 4 content to set
      * @return the field object to enable build pattern
-     * @see #setNumber4(java.lang.Long)
      */
     public Field59F setNumber4(java.lang.Number component8) {
         return setComponent8(component8);
@@ -1213,7 +1080,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field59F(f));
             }
@@ -1229,6 +1096,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -1242,6 +1110,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line, int offset) {
         Field59F cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -1254,6 +1123,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -1266,6 +1136,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLines(int offset) {
         Field59F cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -1280,6 +1151,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -1294,6 +1166,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field59F cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
@@ -1435,14 +1308,18 @@ public class Field59F extends Field implements Serializable, MultiLineField {
 	 */
 	public String getLabelForLineNumber(String lineIdentifier) {
 		if (StringUtils.isNumeric(StringUtils.trimToNull(lineIdentifier))) {
-			int number = Integer.valueOf(lineIdentifier.trim());
-			if (number == 1) {
-				return "Name of Beneficiary Customer";
-			} else if (number == 2) {
-				return "Address Line";
-			} else if (number == 3) {
-				return "Country and Town";
-			}
+            try {
+                int number = Integer.valueOf(lineIdentifier.trim());
+                if (number == 1) {
+                    return "Name of Beneficiary Customer";
+                } else if (number == 2) {
+                    return "Address Line";
+                } else if (number == 3) {
+                    return "Country and Town";
+                }
+            } catch (NumberFormatException e) {
+                // ignore
+            }
 		}
 		return null;
 	}

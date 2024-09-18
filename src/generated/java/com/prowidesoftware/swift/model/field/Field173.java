@@ -32,12 +32,9 @@ import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -186,24 +183,22 @@ public class Field173 extends Field implements Serializable, DateContainer {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component != 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 173");
         }
-        if (component == 1) {
-            //day + time: DDHHMM
-            java.text.DateFormat df = new java.text.SimpleDateFormat("dd", notNull(locale));
-            java.text.DateFormat tf = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-            java.util.Calendar cal = getComponent1AsCalendar();
-            if (cal != null) {
-                return df.format(cal.getTime()) + " " + tf.format(cal.getTime());
-            }
+        //day + time: DDHHMM
+        java.text.DateFormat df = new java.text.SimpleDateFormat("dd", notNull(locale));
+        java.text.DateFormat tf = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
+        java.util.Calendar cal = getComponent1AsCalendar();
+        if (cal != null) {
+            return df.format(cal.getTime()) + " " + tf.format(cal.getTime());
         }
         return null;
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -388,6 +383,7 @@ public class Field173 extends Field implements Serializable, DateContainer {
      * @return the list of converted components (a Calendar object or null)
      * @since 9.2.7
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -466,7 +462,7 @@ public class Field173 extends Field implements Serializable, DateContainer {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field173(f));
             }
