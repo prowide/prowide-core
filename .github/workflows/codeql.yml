@@ -2,9 +2,9 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "CU-*", "SRU*" ]
   pull_request:
-    branches: [ "CU-86b14j4e0_SRU2024_check-code-security-reports-at-GitHub-for-all-repos", "main", "CU-*", "SRU*" ]
+    branches: [ "main", "SRU*" ]
   schedule:
     - cron: "59 12 * * 2"
 
