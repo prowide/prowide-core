@@ -19,17 +19,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -158,17 +155,15 @@ public class Field37U extends Field implements Serializable, AmountContainer {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component != 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 37U");
         }
-        if (component == 1) {
-            // amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            BigDecimal n = getComponent1AsBigDecimal();
-            if (n != null) {
-                return f.format(n);
-            }
+        // amount, rate
+        java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+        f.setMaximumFractionDigits(13);
+        BigDecimal n = getComponent1AsBigDecimal();
+        if (n != null) {
+            return f.format(n);
         }
         return null;
     }
@@ -323,31 +318,12 @@ public class Field37U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the component1 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
-     * @since 9.2.7
-     *
-     * @param component1 the BigDecimal with the Rate content to set
-     * @return the field object to enable build pattern
-     */
-    public Field37U setComponent1(java.math.BigDecimal component1) {
-        setComponent(1, SwiftFormatUtils.getBigDecimal(component1));
-        return this;
-    }
-    /**
      * Alternative method setter for field's Rate (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
      * @param component1 the Number with the Rate content to set
      * @return the field object to enable build pattern
-     * @see #setRate(java.math.BigDecimal)
      */
     public Field37U setComponent1(java.lang.Number component1) {
 
@@ -380,26 +356,12 @@ public class Field37U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Set the Rate (component 1) from a BigDecimal object.
-     *
-     * @see #setComponent1(java.math.BigDecimal)
-     *
-     * @param component1 BigDecimal with the Rate content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field37U setRate(java.math.BigDecimal component1) {
-        return setComponent1(component1);
-    }
-
-    /**
      * Alternative method setter for field's Rate (component 1) as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Rate content to set
      * @return the field object to enable build pattern
-     * @see #setRate(java.math.BigDecimal)
      */
     public Field37U setRate(java.lang.Number component1) {
         return setComponent1(component1);
@@ -421,6 +383,7 @@ public class Field37U extends Field implements Serializable, AmountContainer {
      * @return the first amount as BigDecimal value. Can be null
      * @see AmountResolver#amount(Field)
      */
+    @Override
     public BigDecimal amount() {
         return AmountResolver.amount(this);
     }

@@ -31,12 +31,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -214,16 +211,14 @@ public class Field28 extends Field implements Serializable {
             //default format (as is)
             return getComponent(1);
         }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(2);
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -445,32 +440,14 @@ public class Field28 extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component1 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent1(String)
-     * method.
-     *
-     * @see #setComponent1(String)
-     * @since 9.2.7
-     *
-     * @param component1 the Long with the Statement Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field28 setComponent1(java.lang.Long component1) {
-        setComponent(1, SwiftFormatUtils.getLong(component1));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Statement Number (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Statement Number content to set
      * @return the field object to enable build pattern
-     * @see #setStatementNumber(java.lang.Long)
      */
     public Field28 setComponent1(java.lang.Number component1) {
 
@@ -501,36 +478,18 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Set the Statement Number (component 1) from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Statement Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field28 setStatementNumber(java.lang.Long component1) {
-        return setComponent1(component1);
-    }
-
-    /**
      * Alternative method setter for field's Statement Number (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Statement Number content to set
      * @return the field object to enable build pattern
-     * @see #setStatementNumber(java.lang.Long)
      */
     public Field28 setStatementNumber(java.lang.Number component1) {
         return setComponent1(component1);
     }
 
     public Field28 setSettlementNumber(String component1) {
-        return setStatementNumber(component1);
-    }
-
-    public Field28 setSettlementNumber(java.lang.Long component1) {
         return setStatementNumber(component1);
     }
 
@@ -549,32 +508,14 @@ public class Field28 extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component2 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent2(String)
-     * method.
-     *
-     * @see #setComponent2(String)
-     * @since 9.2.7
-     *
-     * @param component2 the Long with the Sequence Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field28 setComponent2(java.lang.Long component2) {
-        setComponent(2, SwiftFormatUtils.getLong(component2));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Sequence Number (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setSequenceNumber(java.lang.Long)
      */
     public Field28 setComponent2(java.lang.Number component2) {
 
@@ -605,36 +546,18 @@ public class Field28 extends Field implements Serializable {
     }
 
     /**
-     * Set the Sequence Number (component 2) from a Long object.
-     *
-     * @see #setComponent2(java.lang.Long)
-     *
-     * @param component2 Long with the Sequence Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field28 setSequenceNumber(java.lang.Long component2) {
-        return setComponent2(component2);
-    }
-
-    /**
      * Alternative method setter for field's Sequence Number (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setSequenceNumber(java.lang.Long)
      */
     public Field28 setSequenceNumber(java.lang.Number component2) {
         return setComponent2(component2);
     }
 
     public Field28 setPageNumber(String component2) {
-        return setSequenceNumber(component2);
-    }
-
-    public Field28 setPageNumber(java.lang.Long component2) {
         return setSequenceNumber(component2);
     }
 
@@ -707,7 +630,7 @@ public class Field28 extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field28(f));
             }
