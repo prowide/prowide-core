@@ -3,23 +3,21 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-class FieldEnumTest {
+class FieldEnu5mTest {
 
-    @Test
-    void testfieldName() {
-        // Validate that fieldName returns the correct value
-        assertEquals("11A", FieldEnum.F11A.fieldName());
-        assertEquals("22J", FieldEnum.F22J.fieldName());
-        assertEquals("44H", FieldEnum.F44H.fieldName());
+    @ParameterizedTest
+    @CsvSource({"F11A,11A", "F22J,22J", "F44H,44H"})
+    void testFieldName(FieldEnum field, String expectedName) {
+        assertEquals(expectedName, field.fieldName());
     }
 
-    @Test
-    void testfromFieldNameValid() {
-        // Validate that fromFieldName returns the correct enum when a valid code is provided
-        assertEquals(FieldEnum.F11A, FieldEnum.fromFieldName("11A"));
-        assertEquals(FieldEnum.F22J, FieldEnum.fromFieldName("22J"));
-        assertEquals(FieldEnum.F44H, FieldEnum.fromFieldName("44H"));
+    @ParameterizedTest
+    @CsvSource({"11A,F11A", "22J,F22J", "44H,F44H"})
+    void testFromFieldNameValid(String fieldName, FieldEnum expectedEnum) {
+        assertEquals(expectedEnum, FieldEnum.fromFieldName(fieldName));
     }
 
     @Test
@@ -36,6 +34,9 @@ class FieldEnumTest {
         assertNull(FieldEnum.fromFieldName("11a")); // should return null because "11a" is lowercase
         assertNull(FieldEnum.fromFieldName(" 11A")); // should return null because of the leading space
         assertNull(FieldEnum.fromFieldName("11A ")); // should return null because of the trailing space
+        assertNull(FieldEnum.fromFieldName(null)); // Test null input
+        assertNull(FieldEnum.fromFieldName("11")); // Test partial field name
+        assertNull(FieldEnum.fromFieldName("111A")); // Test invalid format with correct length
     }
 
     @Test
